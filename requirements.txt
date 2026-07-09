@@ -1,0 +1,7 @@
+# RDE lecture code — Python >= 3.10
+# Validated environment: Python 3.10.12, Cantera 3.2.0, NumPy 2.2.6,
+# SciPy 1.15.3, Matplotlib 3.x (matplotlib only needed for the plot stages).
+cantera>=3.0
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
