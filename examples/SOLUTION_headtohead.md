@@ -43,3 +43,6 @@ python examples/example_design_study.py    # Part 1 chain (asserts on every step
 python examples/example_headtohead.py      # Part 2 verdict, SL + vacuum (asserts)
 ```
 Expected key outputs: 2373.5 m/s · W 2.69 · 1979.1/1904.7 m/s · 233.6/245.3 s · CP 227.4 s @ ε\*2.44 · L_ch 66 mm · VAC 329.6/335.2 s.
+
+## 8. Scaling case — 10 kN, CH₄/O₂ (LOX/methane class)
+Same procedure at F = 10 kN, P_cp = 20 atm, envelope OD ≤ 320 × L ≤ 260 mm (`examples/example_design_10kN.py`): CJ 2390.3 m/s, γ_e = 1.1307; mission ṁ = 3.66 kg/s (nozzle config; SK nozzle-less bracket 5.01 kg/s — bases declared); annulus R̄ = 140 mm, gap 15 mm, L = 180 mm with λ = 2.5 mm ⇒ l_fill/λ = 38 ✓, gap/λ = 6 ✓, D̄/λ = 112 ✓, **W = 3.14 [2.2–5.4] → ~3 co-rotating heads** (multi-wave operation is the norm at this scale). RDE: bell ε\* = 4.04 → 268.0 s; **aerospike ε\* = 10.64 → 278.4 s**; choke margin 1.39 (fully choked cycle — contrast with 0.64 at 10 atm). CP at ITS optimum: ε\* = 4.04 (same, structural), **261.2 s**, ṁ = 3.90 kg/s, L_chamber ≈ 91 mm (+ nozzle) on a 220-mm bore. **Verdict: +6.6% Isp, −6% propellant at the same pump** — the advantage persists at scale; the higher P_cp narrows the spike-vs-bell gap (blowdown swing relatively smaller), exactly the Table-1 trend.
