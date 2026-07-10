@@ -58,25 +58,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(os.path.dirname(HERE))          # repo root
 sys.path.insert(0, PROJ)                               # vendored sdtoolbox/
 
-T1, P1 = 300.0, 1.0e5
+from src.common.constants import T_STD as T1, P_REF_BAR as P1  # 300 K, 1 bar
+from src.common import mixtures as _mixreg
 
 # (label, reactant composition, mechanism, fuel (x,y) for CxHy major products)
-MIX = [
-    ('H2/air',       'H2:2,O2:1,N2:3.76',         'gri30.yaml', (0, 2, 2.0)),
-    ('H2/O2',        'H2:2,O2:1',                 'gri30.yaml', (0, 2, 2.0)),
-    ('CH4/air',      'CH4:1,O2:2,N2:7.52',        'gri30.yaml', (1, 4, 1.0)),
-    ('CH4/O2',       'CH4:1,O2:2',                'gri30.yaml', (1, 4, 1.0)),
-    ('C2H4/air',     'C2H4:1,O2:3,N2:11.28',      'gri30.yaml', (2, 4, 1.0)),
-    ('C2H4/O2',      'C2H4:1,O2:3',               'gri30.yaml', (2, 4, 1.0)),
-    ('C2H2/air',     'C2H2:1,O2:2.5,N2:9.4',      'gri30.yaml', (2, 2, 1.0)),
-    ('C2H2/O2',      'C2H2:1,O2:2.5',             'gri30.yaml', (2, 2, 1.0)),
-    ('C3H8/air',     'C3H8:1,O2:5,N2:18.8',       'gri30.yaml', (3, 8, 1.0)),
-    ('C3H8/O2',      'C3H8:1,O2:5',               'gri30.yaml', (3, 8, 1.0)),
-    ('kerosene/air', 'c12h26:1,o2:18.5,n2:69.56',
-     os.path.join(PROJ, 'data', 'dodecane_eq_thermo.yaml'), (12, 26, 1.0)),
-    ('kerosene/O2',  'c12h26:1,o2:18.5',
-     os.path.join(PROJ, 'data', 'dodecane_eq_thermo.yaml'), (12, 26, 1.0)),
-]
+# — thin view of the shared registry src/common/mixtures.py (same X strings,
+#   mechanisms and labels as before the refactor; see validation/interface_audit.md)
+MIX = _mixreg.q_mapping_view()
 
 
 def spec_name(gas, generic):

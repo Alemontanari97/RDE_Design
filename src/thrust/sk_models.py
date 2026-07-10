@@ -33,9 +33,12 @@ try:
     from sdtoolbox.thermo import soundspeed_eq as _aeq_sdt
 except Exception:
     _aeq_sdt = None
+from src.common import mixtures as _mixreg               # shared registry
+from src.common import cj_core as _cj_core               # canonical CJ chain
+from src.common.constants import G0, P_ATM as ATM        # shared constants
 ct.suppress_thermo_warnings()
 
-G0 = 9.80665; ATM = 101325.0; PA = ATM          # ambient (sea level, as SK Table 1)
+PA = ATM                                         # ambient (sea level, as SK Table 1)
 UC = 300.0                                       # inlet axial speed, S&K 2013 (SK Sec.5)
 GRI = 'gri30.yaml'; DOD = 'nDodecane_Reitz.yaml'
 # reduced THERMO-only mech for kerosene surrogate (equilibrium needs no kinetics):
@@ -43,20 +46,10 @@ GRI = 'gri30.yaml'; DOD = 'nDodecane_Reitz.yaml'
 DODEQ = os.path.join(PROJ, 'data', 'dodecane_eq_thermo.yaml')
 AIR = 'O2:1,N2:3.76'; AIRD = 'o2:1,n2:3.76'
 
-CASES = {
- 'H2/air'    : dict(mech=GRI, fuel='H2',    ox=AIR,  K=1.02),
- 'H2/O2'     : dict(mech=GRI, fuel='H2',    ox='O2', K=1.54),
- 'CH4/air'   : dict(mech=GRI, fuel='CH4',   ox=AIR,  K=1.02),
- 'CH4/O2'    : dict(mech=GRI, fuel='CH4',   ox='O2', K=1.54),
- 'C2H4/air'  : dict(mech=GRI, fuel='C2H4',  ox=AIR,  K=1.02),
- 'C2H4/O2'   : dict(mech=GRI, fuel='C2H4',  ox='O2', K=1.54),
- 'C2H2/air'  : dict(mech=GRI, fuel='C2H2',  ox=AIR,  K=1.02),
- 'C2H2/O2'   : dict(mech=GRI, fuel='C2H2',  ox='O2', K=1.54),
- 'C3H8/air'  : dict(mech=GRI, fuel='C3H8',  ox=AIR,  K=1.02),
- 'C3H8/O2'   : dict(mech=GRI, fuel='C3H8',  ox='O2', K=1.54),
- 'C12H26/air': dict(mech=DODEQ, fuel='c12h26', ox=AIRD, K=1.02),
- 'C12H26/O2' : dict(mech=DODEQ, fuel='c12h26', ox='o2', K=1.54),
-}
+# 12 std cases = thin view of the shared registry (src/common/mixtures.py);
+# composition/mech/K live THERE.  Extension point unchanged: add a dict with
+# mech/fuel/ox/K here for any non-registry propellant.
+CASES = _mixreg.sk_cases_view()
 for _c in ['H2/air', 'C2H4/air', 'C2H4/O2', 'C3H8/O2']:   # SK Table-1 replicas
     CASES['SKREP:' + _c] = dict(CASES[_c], T1=255.0, P1=1.5 * ATM)
 
@@ -116,26 +109,34 @@ def aeq(gas):
 def cj_calc(key):
     """CJ speed + equilibrium CJ state for CASES[key] -> record dict (no I/O).
 
-    U_CJ from the SD Toolbox equilibrium-Hugoniot minimization (FM2018.001);
-    the record carries BOTH exponents: gamma_e = rho2*a_eq^2/P2 (equilibrium
+    Thin adapter over src/common/cj_core.cj_state (the ONE canonical SD
+    Toolbox chain: CJspeed -> PostShock_eq -> soundspeed_eq); this function
+    only maps the canonical record onto the historical sk_models schema.
+    Registry mixtures use the registry's exact composition string (the same
+    one the cycle suite feeds CJspeed — coherence test (i) in tests/);
+    non-registry CASES entries fall back to set_equivalence_ratio.
+
+    The record carries BOTH exponents: gamma_e = rho2*a_eq^2/P2 (equilibrium
     isentropic exponent, the S&K Eq. 19-22 / Stechmann gamma) and gamma_fr =
     cp/cv at frozen CJ composition (leading-shock gamma). See README, "Two
     conventions you must not mix"."""
-    c, T1, P1, gas, q = setup(key)
-    h1 = gas.enthalpy_mass; rho1 = gas.density; a1f = gas.sound_speed
-    Yf = float(gas[c['fuel']].Y[0]); M1w = gas.mean_molecular_weight
-    U = float(CJspeed(P1, T1, q, c['mech']))
-    g2 = PostShock_eq(U, P1, T1, q, c['mech'])
-    P2, T2, rho2 = g2.P, g2.T, g2.density
-    a2 = float(aeq(g2)); ge = rho2 * a2**2 / P2
-    w2 = U * rho1 / rho2
-    return dict(cond=dict(T1=T1, P1=P1, phi=1.0, mech=_mech_id(c['mech']), q=q),
-                UCJ=U, MCJ=U / a1f, p2p1=P2 / P1, P2=float(P2), T2=float(T2),
-                rho1=float(rho1), rho2=float(rho2), s2=float(g2.entropy_mass),
-                h1=float(h1), h2=float(g2.enthalpy_mass), a_eq2=a2, w2=float(w2),
-                u2lab=float(U - w2), gamma_e=float(ge), gamma_fr=float(g2.cp / g2.cv),
-                Yf=Yf, M1w=float(M1w), M2w=float(g2.mean_molecular_weight),
-                cj_sonic_resid=float(abs(w2 / a2 - 1.0)))
+    c = CASES[key]
+    T1 = c.get('T1', 300.0); P1 = c.get('P1', ATM)
+    base = key[6:] if key.startswith('SKREP:') else key
+    try:
+        r = _cj_core.cj_state(base, p1=P1, T1=T1, mech=c['mech'])
+    except KeyError:                      # custom (non-registry) CASES entry
+        _, _, _, gas, q = setup(key)
+        r = _cj_core.cj_state(q, p1=P1, T1=T1, mech=c['mech'])
+        r['Yf'] = float(gas[c['fuel']].Y[0])
+    return dict(cond=dict(T1=T1, P1=P1, phi=1.0, mech=_mech_id(c['mech']),
+                          q=r['X']),
+                UCJ=r['U_CJ'], MCJ=r['M_CJ'], p2p1=r['p2_p1'], P2=r['p2'],
+                T2=r['T2'], rho1=r['rho1'], rho2=r['rho2'], s2=r['s2'],
+                h1=r['h1'], h2=r['h2'], a_eq2=r['a_eq'], w2=r['w2'],
+                u2lab=r['u2_lab'], gamma_e=r['gamma_e'],
+                gamma_fr=r['gamma_fr'], Yf=r['Yf'], M1w=r['W1'], M2w=r['W2'],
+                cj_sonic_resid=r['sonic_resid'])
 
 def stage_cj(key):
     rec = cj_calc(key)
@@ -338,3 +339,4 @@ if __name__ == '__main__':
     for k in sys.argv[2:]:
         run(stage, k)
     print('OK', flush=True)
+# (coherence refactor 2026-07-10: cj_calc routes through src/common/cj_core)

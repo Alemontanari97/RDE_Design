@@ -354,20 +354,11 @@ def stage_onegamma():
 # ----------------------------------------------------------------------------
 # 2. real-chemistry cycles (Cantera + SD Toolbox)
 # ----------------------------------------------------------------------------
-MIXTURES = [  # (label, composition, mechanism)   phi = 1 throughout
-    ('H2/air',       'H2:2,O2:1,N2:3.76',        'gri30.yaml'),
-    ('H2/O2',        'H2:2,O2:1',                'gri30.yaml'),
-    ('CH4/air',      'CH4:1,O2:2,N2:7.52',       'gri30.yaml'),
-    ('CH4/O2',       'CH4:1,O2:2',               'gri30.yaml'),
-    ('C2H4/air',     'C2H4:1,O2:3,N2:11.28',     'gri30.yaml'),
-    ('C2H4/O2',      'C2H4:1,O2:3',              'gri30.yaml'),
-    ('C2H2/air',     'C2H2:1,O2:2.5,N2:9.4',     'gri30.yaml'),
-    ('C2H2/O2',      'C2H2:1,O2:2.5',            'gri30.yaml'),
-    ('C3H8/air',     'C3H8:1,O2:5,N2:18.8',      'gri30.yaml'),
-    ('C3H8/O2',      'C3H8:1,O2:5',              'gri30.yaml'),
-    ('kerosene/air', 'c12h26:1,o2:18.5,n2:69.56', DODEQ),   # n-dodecane surrogate
-    ('kerosene/O2',  'c12h26:1,o2:18.5',          DODEQ),
-]
+# (label, composition, mechanism), phi = 1 throughout — thin view of the
+# shared registry src/common/mixtures.py (same labels, X strings and
+# mechanisms as before the refactor; kerosene = n-dodecane surrogate)
+from src.common import mixtures as _mixreg
+MIXTURES = _mixreg.cycles_view()
 
 def _heat_of_combustion(mech, X, T1, P1):
     """qc = h1 - h6 (B1): reactants at (T1,P1) minus products equilibrated at
@@ -395,8 +386,7 @@ def three_cycles(label, X, mech, T1=300.0, P1=1e5, pic=1.0,
     """FJ / Humphrey / Brayton from the same initial and compressed states.
     Returns result dict (and path dict if want_paths)."""
     import cantera as ct
-    from sdtoolbox.postshock import CJspeed, PostShock_eq
-    from sdtoolbox.thermo import soundspeed_eq
+    from src.common.cj_core import cj_state          # canonical SDT CJ chain
     gas = ct.Solution(mech); gas.TPX = T1, P1, X
     h1, s1, v1 = gas.enthalpy_mass, gas.entropy_mass, 1.0 / gas.density
     qc, h6, v6 = _heat_of_combustion(mech, X, T1, P1)
@@ -412,13 +402,15 @@ def three_cycles(label, X, mech, T1=300.0, P1=1e5, pic=1.0,
     res = dict(label=label, X=X, mech=os.path.basename(mech), T1=T1, P1=P1,
                pic=pic, T2=T2, qc_MJkg=qc / 1e6, v1=v1, v2=v2, v6=v6)
     # --- Fickett-Jacobs: CJ detonation into state 2 (B steps c-e) ---
-    Ucj = CJspeed(P2, T2, X, mech)
-    prod = PostShock_eq(Ucj, P2, T2, X, mech)
-    res.update(U_CJ=Ucj, M_CJ=Ucj / a2_fr, P_CJ_bar=prod.P / 1e5,
-               pipk_FJ=prod.P / P1, T_CJ=prod.T, v_CJ=1.0 / prod.density,
-               u_p=Ucj * (1.0 - (1.0 / prod.density) / v2),  # (A49): u_p = U(1-rho1/rho2)
-               gamma_e_CJ=soundspeed_eq(prod)**2 * prod.density / prod.P,
-               gamma_fr_CJ=prod.cp_mass / prod.cv_mass)
+    # canonical CJ chain via src/common/cj_core (adapter; same SDT calls,
+    # same floating-point formulas as the historical inline block)
+    cjr, prod = cj_state(X, p1=P2, T1=T2, mech=mech, return_gas=True)
+    Ucj = cjr['U_CJ']
+    res.update(U_CJ=Ucj, M_CJ=cjr['M_CJ'], P_CJ_bar=cjr['p2'] / 1e5,
+               pipk_FJ=cjr['p2'] / P1, T_CJ=cjr['T2'], v_CJ=1.0 / cjr['rho2'],
+               u_p=Ucj * (1.0 - (1.0 / cjr['rho2']) / v2),  # (A49): u_p = U(1-rho1/rho2)
+               gamma_e_CJ=cjr['gamma_e'],
+               gamma_fr_CJ=cjr['gamma_fr'])
     pf = [] if want_paths else None
     _expand_eq(prod, P1, n=n_exp, path=pf)                    # 4 -> 5
     res['eta_FJ'] = (h1 - prod.enthalpy_mass) / qc            # (B1)

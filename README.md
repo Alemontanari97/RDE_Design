@@ -56,19 +56,76 @@ Expected key outputs:
 
 ```
 sdtoolbox/          vendored Shock & Detonation Toolbox (Caltech, GALCIT FM2018.001)
+src/common/         shared core: constants, 12-mixture registry, canonical CJ chain
 src/detonation/     CJ & von Neumann states, ZND profiles, CJ parameter sweeps
 src/cycles/         Wintenberger–Shepherd cycle analysis, heat-release mapping (q, q̃, q°)
 src/thrust/         Shepherd–Kasahara + Stechmann thrust models, tables & V&V generator
 data/               validated results (JSON) + mechanism files + provenance README
 validation/         frozen validation reports + audits (see validation/README.md)
 examples/           quickstart scripts + end-to-end design study (all self-checking)
+tests/              coherence & non-regression suite (python tests/run_all.py)
 figs/               output directory for the optional plot stages (created on demand)
 ```
+
+## Architecture & conventions
+
+**One CJ state, one mixture list, one set of constants.** Everything shared
+lives in `src/common/` (introduced by the 2026-07-10 coherence refactor,
+audit trail in `validation/interface_audit.md`):
+
+* `src/common/cj_core.py` — `cj_state(mix, p1, T1)`: THE canonical CJ
+  computation (vendored-SDT chain CJspeed → PostShock_eq → soundspeed_eq),
+  returning the canonical record (`U_CJ, p2, T2, gamma_e, gamma_fr, a_eq,
+  a_fr, s2, h1, …`). `sk_models.cj_calc` (thrust) and `cycles.three_cycles`
+  (cycles) are thin adapters over it; `q_mapping` consumes the store it
+  builds. Two solvers stay *independent on purpose* and are cross-checked by
+  the test suite instead of unified: `src/detonation/cj_states.CJ_state`
+  (standalone pedagogical solver) and `stechmann_nozzle.det_state` (verbatim
+  Stechmann-pipeline solver behind the blessed 18/18 validation; its canonical
+  twin is exposed as `stechmann_nozzle.cj_ref`).
+* `src/common/mixtures.py` — the 12-mixture registry (exact stoichiometric
+  Cantera X string + mechanism + fuel/ox + SK K factor + display names);
+  `cycles.MIXTURES`, `q_mapping.MIX`, `sk_models.CASES` are views of it
+  (`kerosene/… ↔ C12H26/…` aliases resolved). All canonical CJ paths now feed
+  CJspeed the *same exact composition string*. `stechmann_nozzle.PROPS`
+  remains the separate Stechmann-paper propellant set (documented there).
+* `src/common/constants.py` — `G0, P_ATM, P_REF_BAR, T_STD, T_REF` and the
+  standard tolerance ladder used by `tests/`.
+
+**Units.** SI internally (Pa, K, kg, J/kg); atm/bar/MJ-kg only at print/JSON
+edges. Two *deliberate* reference states, each replicating its source paper:
+thrust suite fills at **1 atm** (101325 Pa, SK Table-1 convention), cycle
+suite at **1 bar** (1e5 Pa, W&S convention). Do not "unify" them: the blessed
+numbers of each suite depend on their own fill pressure.
+
+**Coherence suite.** `python tests/run_all.py` asserts: (i) identical CJ from
+every canonical path (≤1e-9 rel) + independent solvers within 2e-3;
+(ii) Stechmann blowdown → steady-CP collapse (≤1e-6); (iii) SK axial sonic
+point vs an independent equilibrium-bound recomputation (demo-style SV march,
+~0%); (iv) q̃ round-trip M_CJ→q̃→M_CJ (≤1e-6); (v) the golden numbers
+(1969.0 / 2373.5 / 245.3 / η_FJ 0.300 / 18-18 / 8-8) exact at display
+precision, including the live examples and the design study.
+
+## SDT thrust demos (official) vs this repo
+
+Census + numeric comparison in `validation/sdt_thrust_demos.md`. One official
+demo ships an RDE thrust model — the **ideal axial flow** section of
+`demo_PrandtlMeyerDetn` — and it coincides with our `axial_calc` to ≤2.6e-5 %
+(CH₄/air 1 bar: 1250.42 vs 1250.42 m/s; H₂/air 1 atm: 1353.0971 vs
+1353.0971 m/s). `demo_rocket_impulse`/`demo_quasi1d_eq` are steady
+constant-chamber rockets (equilibrium/frozen brackets): they validate exactly
+the constant-pressure limit our Stechmann blowdown collapses to (identity at
+2.5e-11) and bracket its one-γ treatment (−5.4 % vs equilibrium at NPR 101,
+between the demo's eq and frozen). No PDE-impulse, pressure-history or
+blowdown demo exists in the official set — those parts of the course stack are
+validated against the papers instead (`vv_thrust.md`,
+`st_opt_validation.md`).
 
 ## Theory → code → paper map
 
 | module | equations implemented | reference |
 |---|---|---|
+| `src/common/cj_core.py` | canonical CJ chain (one function over the SDT calls below); canonical state record consumed by cycles/q_mapping/thrust adapters | wraps FM2018.001 §2 + §8 (soundspeed_eq App. G2) |
 | `sdtoolbox/postshock.py` | CJ speed (density-ratio sweep + LSQ parabola on the equilibrium Hugoniot); frozen/equilibrium post-shock states (Reynolds' iteration) | Shepherd, *SD Toolbox*, GALCIT FM2018.001 (rev. 2021) |
 | `sdtoolbox/znd.py` | ZND ODE system driven by thermicity σ̇ through η = 1 − M²; induction/exothermic lengths | FM2018.001 §2.4 |
 | `src/detonation/cj_states.py` | equilibrium Hugoniot h₂−h₁ = (p₂−p₁)(v₁+v₂)/2; Rayleigh speed U = v₁√((p₂−p₁)/(v₁−v₂)); CJ = min U; frozen vN jump | FM2018.001 §2; validated vs S&K FM2017.001 Table 2 |
@@ -182,6 +239,7 @@ python src/cycles/cycles.py all            # one-γ anchors, 12-mixture FJ, swee
 python src/thrust/sk_models.py all "H2/air"   # CJ + PH + AX (+ ST for fuel-O2)
 python src/thrust/stechmann_nozzle.py validate # 18-row Table-1 verdicts
 python src/thrust/tables.py                # thrust tables + 8 V&V verdicts
+python tests/run_all.py                    # coherence + non-regression suite
 ```
 
 Regenerated reports land in `data/` (they carry run dates); the reviewed,

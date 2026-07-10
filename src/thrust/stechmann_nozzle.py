@@ -115,6 +115,11 @@ except ImportError:                     # script mode: python src/thrust/stechma
                          cf_bell, cf_spike, _hug_point, _ct)
 
 CACHE = os.path.join(ROOT, 'data', 'st_nozzle_opt.json')
+# Stechmann-paper propellant set (fuel-O2 at the paper's phi, reduced CHO /
+# dodecane mechanisms for matched-cycle speed).  Deliberately NOT a view of
+# src/common/mixtures.py (that registry holds the 12 stoichiometric lecture
+# mixtures); coherence with the canonical CJ chain is asserted per-state by
+# cj_ref() below and tests/test_cj_coherence.py.
 PROPS = {'H2':   ('data/gri30_CHO_eq.yaml', 'H2', 'O2'),
          'CH4':  ('data/gri30_CHO_eq.yaml', 'CH4', 'O2'),
          'RP-1': ('data/dodecane_eq_thermo.yaml', 'c12h26', 'o2')}
@@ -241,6 +246,26 @@ def det_state(prop, phi, Ti, Pinit):
                 M=float(work.mean_molecular_weight), R=float(R),
                 cstar0=float(cstar_fn(g, R, T2)),
                 sonic_resid=float(abs(Ucj / xstar / a - 1.0)))
+
+
+def cj_ref(prop, phi, Ti, Pinit):
+    """Canonical CJ state (src/common/cj_core chain) for the same fill as
+    det_state(prop, phi, Ti, Pinit) — the coherence adapter.
+
+    det_state keeps its own verbatim Stechmann-pipeline Hugoniot solver (the
+    blessed 18/18 Table-1 states and the live design-study numbers depend on
+    it bit-for-bit); this function exposes the package-canonical CJ state of
+    the identical fill so that tests/test_cj_coherence.py can ASSERT their
+    agreement (U_CJ, PR, T_CJ, gamma within TOL['cross_solver_rel']) instead
+    of assuming it.  Returns the cj_core canonical record."""
+    ct = _ct()
+    from src.common.cj_core import cj_state
+    mech, fuel, ox = _prop(prop, phi)
+    gas = ct.Solution(os.path.join(ROOT, mech))
+    gas.set_equivalence_ratio(phi, fuel, ox)
+    X = ','.join('%s:%.12g' % (k, v)
+                 for k, v in gas.mole_fraction_dict().items() if v > 1e-12)
+    return cj_state(X, p1=Pinit, T1=Ti, mech=os.path.join(ROOT, mech))
 
 
 def matched(prop, phi, Ti, Pcp_atm, tol=0.01, itmax=5):

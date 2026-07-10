@@ -8,6 +8,12 @@ and vN_state() (frozen post-shock von Neumann state). Validated against
 Shepherd & Kasahara GALCIT FM2017.001 Table 2 / Caltech detonation DB
 (U_CJ within 0.1%, see data/sk_tables.json and validation/VALIDATION.md).
 
+ROLE IN THE PACKAGE: this solver is DELIBERATELY independent of the vendored
+SD Toolbox chain (src/common/cj_core.cj_state, the canonical path used by the
+cycle and thrust suites): it is the pedagogical cross-check implementation.
+Its agreement with cj_core is asserted by tests/test_cj_coherence.py at the
+cross-solver tolerance (2e-3 rel); do NOT "unify" it into cj_core.
+
 EQUATIONS IMPLEMENTED
   * equilibrium Hugoniot:  h2 - h1 = (p2 - p1)(v1 + v2)/2   with products in
     shifting equilibrium (Shepherd, GALCIT FM2018.001, Eq. 2.1-2.5);

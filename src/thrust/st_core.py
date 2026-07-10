@@ -32,11 +32,16 @@ Usage example:
     from st_core import cstar_fn, cf_bell, npr_of_eps
     cf = cf_bell(1.15, 4.0, 20 * 101325.0)     # bell CF at eps=4, Pc=20 atm
 """
+import os as _os
+import sys as _sys
 import numpy as np
 from scipy.optimize import brentq
 
-G0 = 9.80665
-ATM = 101325.0
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+if _ROOT not in _sys.path:
+    _sys.path.insert(0, _ROOT)
+from src.common.constants import G0, P_ATM as ATM        # shared constants
+
 PA = 1.0 * ATM            # sea-level ambient (default of cf_bell / cf_spike)
 TR = getattr(np, 'trapezoid', np.trapz)
 
