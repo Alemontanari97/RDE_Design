@@ -1,4 +1,4 @@
-"""SDToolbox thermo module (official) — sound speeds, Gruneisen, eq_state, state."""
+"""SDToolbox thermo module (official) - soundspeed_eq (TP method, identical to April 2026 release), eq_state, state; soundspeed_fr patched to Cantera analytic gas.sound_speed (equivalence vs official FD: 6-10e-5, ZND impact <=0.02%; see validation/sdt_official_audit.md)."""
 import numpy as np
 
 def soundspeed_eq(gas):

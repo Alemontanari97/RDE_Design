@@ -2,7 +2,7 @@
 
 Vendored subset of the **Shock & Detonation Toolbox** by the Explosion Dynamics
 Laboratory, California Institute of Technology (J. E. Shepherd and coworkers):
-GALCIT Report **FM2018.001**, module revision January 2021.
+GALCIT Report **FM2018.001**. Verified line-by-line against the official release 'Updated April 2026' (SDToolbox.zip, audit 2026-07-09: validation/sdt_official_audit.md - functional identity confirmed; single documented patch below).
 https://shepherd.caltech.edu/EDL/PublicResources/sdt/
 
 Modules vendored (only what the lecture code calls):
@@ -24,7 +24,7 @@ frozen sound speed `sqrt(gamma*R*T/W)` for an ideal-gas mixture) instead of the
 reference finite-difference SVX evaluation, which is kept verbatim as
 `_soundspeed_fr_fd` for comparison. Rationale: identical result for ideal-gas
 phases, ~100× faster inside the ZND integration loop. This is the only
-functional deviation from the official January 2021 modules; docstrings were
+functional deviation from the official modules (verified against the April 2026 release: equivalence 6-10e-5 on a_fr, <=0.02% end-to-end on ZND induction length); docstrings were
 added. The patched toolbox passed the full validation stack (33-check
 literature suite + 22-check internal-consistency suite, see
 `validation/VALIDATION.md`; ZND energy invariant conserved to 6e-6 %).
@@ -34,4 +34,4 @@ literature suite + 22-check internal-consistency suite, see
 Cite the SD Toolbox as: S. Browne, J. Ziegler, N. Bitter, B. Schmidt,
 J. Lawson, J. E. Shepherd, "SDToolbox: Numerical Tools for Shock and Detonation
 Wave Modeling", GALCIT Report FM2018.001, California Institute of Technology
-(rev. January 2021). See `../CITATION.md`.
+(2023 report; modules verified against the official release 'Updated April 2026'). See `../CITATION.md`.

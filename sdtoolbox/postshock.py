@@ -1,5 +1,5 @@
 """
-SDToolbox 'postshock' module (official, GALCIT FM2018.001, rev. Jan 2021).
+SDToolbox 'postshock' module (official, GALCIT FM2018.001). Verified identical, line-by-line, to the official release 'Updated April 2026' (audit 2026-07-09).
 CJ detonation speed and post-shock states (frozen and equilibrium).
 """
 import cantera as ct

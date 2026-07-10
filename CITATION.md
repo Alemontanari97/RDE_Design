@@ -37,7 +37,7 @@ equations you rely on (module → paper map in `README.md`).
   GALCIT Report FM2006.006 — R3 (2018 revision), and
   "SDToolbox: Numerical Tools for Shock and Detonation Wave Modeling",
   GALCIT Report FM2018.001, California Institute of Technology, Explosion
-  Dynamics Laboratory, rev. January 2021.
+  Dynamics Laboratory (2023 report; vendored modules verified line-by-line against the official release 'Updated April 2026', audit 2026-07-09).
   https://shepherd.caltech.edu/EDL/PublicResources/sdt/
   (Vendored subset and one documented performance patch: see
   `sdtoolbox/PROVENANCE.md`.)

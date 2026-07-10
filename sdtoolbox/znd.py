@@ -1,5 +1,5 @@
 """
-SDToolbox 'znd' module (official, GALCIT FM2018.001, rev. Jan 2021).
+SDToolbox 'znd' module (official, GALCIT FM2018.001). Verified identical to the official release 'Updated April 2026' (audit 2026-07-09; eigenvalue-detonation warnings of the official advanced_output are omitted - diagnostics only).
 Solves the ZND detonation-structure ODEs.
 """
 import cantera as ct
