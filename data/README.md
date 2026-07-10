@@ -18,11 +18,12 @@ frozen. Ownership: the module listed regenerates the file bit-compatibly
 | `gri30_CHO_eq.yaml` | *(input, frozen)* | GRI-3.0 C/H/O subset (no N chemistry) used by the Stechmann model for fuel/O2 equilibria — identical equilibria, ~3× faster. |
 | `q_formal.json` | `src/cycles/q_formal.py` | standard-state heat-release verification (q°, sensible-shift identity, CJ-plane release fraction) for H2/air and CH4/air; quoted by `validation/q_formal.md`. |
 
-Generated on demand by the modules (not shipped): `sweep_sdt.json`
-(`cj_sweeps.py`), `q_mapping.md`,
-`thrust_tables.md`, `vv_thrust.md`, `cycles_validation.md`,
-`st_opt_validation.md` (regenerated reports carry their run date; the frozen
-reviewed copies live in `validation/`).
+Generated on demand and **not shipped**: `sweep_sdt.json` (`cj_sweeps.py`)
+and `cycles_validation.md` (`cycles.py validate`). The dated report copies
+that *do* ship here (`q_mapping.md`, `thrust_tables.md`, `vv_thrust.md`,
+`st_opt_validation.md`) are regenerated in place by their owner modules;
+the frozen reviewed copies live in `validation/` (see
+`validation/README.md` for the report -> regenerator map).
 
 Conditions unless stated otherwise: φ = 1, T₁ = 300 K, p₁ = 1 atm (`cycles_*`
 use 1 bar where stated), ambient 1 atm, g₀ = 9.80665 m/s².

@@ -97,3 +97,26 @@ Il one-γ W&S applica γ_prodotti = 1.2 anche dove fluiscono reagenti (γ_r ≈ 
 4. Modelli di spinta: γ_e equilibrio prodotti **confermato** (nessuna azione).
 
 *Fonti numeriche: `data/cycles_ws.json`, `data/q_mapping.json`; V&V: `data/cycles_validation.md` (96/96), `data/vv_thrust.md`.*
+
+---
+
+## 4. MAPPA COMPLETA equilibrio/frozen — ogni punto d'uso della lezione (terzo giro, 2026-07-09)
+
+*Sezione nuova a valle dell'audit CJ-sonico e dei bound di espansione. Fonti: `data/cj_equilibrium_sonic_derivation.md` (derivazione formale + convergenza M₂,eq: 1.00148 → 0.999998 raffinando ERRFT/ERRFV 1e-4 → 1e-6), `data/cj_sonic_convergence.json`, `data/expansion_bounds.{json,md}` (bound eq/frozen/Bray sui 4 propellenti), `data/sdt_official_audit.md` §4, `data/gamma_audit.md`. Questa tabella alimenta la slide "models map" e le note.*
+
+| # | punto d'uso | ipotesi usata | giustificazione formale (1 riga + rif.) | bound/alternativa → effetto |
+|---|---|---|---|---|
+| 1 | **stato CJ / U_CJ** (tutte le tabelle e i modelli a valle) | Hugoniot di **equilibrio**; sonicità rispetto ad **a_eq** | tangenza Rayleigh–Hugoniot ⇒ ds=0 lungo ℋ ⇒ w₂=a_eq [FM2018 Eq. 6.31–6.39, App. C.2; derivazione backup]; verificato: M₂,eq→1 (2·10⁻⁶) con tolleranze raffinate, U_minwavespeed = U_sonicflow a 1e-7 | col suono frozen M₂,fr=0.960–0.968 SEMPRE: non un bound ma un errore di categoria (Def. II); γ_e 1.13–1.17 vs γ_fr 1.21–1.27 |
+| 2 | **stato von Neumann** | post-shock **frozen** (`PostShock_fr`) | urto inerte: zero avanzamento chimico sulla scala dell'urto (ansatz ZND; report §9) | `PostShock_eq` al posto del vN dà il CJ, non un bound (demo_vN_state ufficiale mislabeled: 3932 K vs ~2800 K; sdt_official_audit §1.4) |
+| 3 | **ZND interno** (`znd_sdt.py`) | suono **frozen** in η=1−M² (M=U/a_fr); shifting SEPARATO come termicità σ̇ | Y è variabile cinetica: (∂P/∂ρ)_{s,Y}=a_fr² [Eq. 9.23–9.24]; a_eq nello ZND = doppio conteggio dello shifting | non esiste bound alternativo coerente; patch a_fr analitica ≤0.02% su L_ind (sdt_official_audit §1.2) |
+| 4 | **espansione TZ / isentropa 3/4→5 dei cicli** (`cycles_ws.py`) | **equilibrio mobile** (`SP`-equilibrate a gradini) | τ_flow ≫ τ_chem a valle del CJ [SK S3 ← Wintenberger 2004]; demo_CJstate_isentrope/demo_quasi1d_eq | frozen = bound inferiore: sull'axial-flow Isp_f −7.3/−12.6% (riga 7); sui cicli stessa direzione, non ricalcolato |
+| 5 | **compressione 0→1→2 dei cicli (+ ram)** | isentropa **frozen dei REAGENTI** (γ₁≈1.36–1.40) | nessuna reazione sotto T_ign; regola di fase (spec §2.6; qui §1.A) | γ prodotti sul tratto reagenti = bias one-γ: η_FJ −0.098/−0.140 a π_c=5/20; claim 0.0136 (perdite ×3.9) — §2 qui |
+| 6 | **SK pressure-history γ_e (Eq. 19–22)** (`stage_ph`) | γ_e = ρ₂a²_eq/P₂ **equilibrio al CJ** | unica lettura che riproduce SK Table 1 a 3 decimali e Fig. 6a [gamma_audit §1.1; demo_CJstate.py:51–52; Eq. 6.54–6.55] | con γ_fr 1.24: Eq. 20 −3.6% e Table 1/Fig. 6a non riprodotte (gamma_audit §3) |
+| 7 | **SK axial-flow (Eq. 44–45)** (`stage_axial`) | isentropa di **equilibrio** s=s₂, nessun γ | dichiarazione esplicita SK [S3–S5]; replica Table 1 ±0.2%; = demo_quasi1d_eq (0.005%) | **frozen dal CJ**: w* −3.4/−4.2%, T/Ṁ sonico −6.8/−10.0%, Isp_f matched −7.3/−12.6%; **Bray (freeze alla gola)**: −0.2/−2.0% su Isp_f, ≡eq al piano sonico [expansion_bounds.md] |
+| 8 | **one-γ** (W&S A57–A60 cicli; SK Eq. 46–56; CJ two-γ) | γ costante = **γ_e prodotti equilibrio** (1.1–1.2) | prescrizione dei paper [W&S; SK "1.1<γ<1.15"]; γ_e è la pendenza log dell'isentropa eq al CJ (Eq. 6.54–6.55) | γ_fr: −3.6% su Eq. 20 (storia del vecchio deck, gamma_audit §3); γ=1.4 ovunque (Heiser–Pratt): η +0.13 (§2) |
+| 9 | **Stechmann c*, C_F** (`stage_stech`) | camera **CEA equilibrio**; γ_e ed M costanti lungo ugello e ciclo | assunzioni 2+4 del paper [T1–T5]; γ_e costante = linearizzazione dell'isentropa eq al CJ | collocato TRA i bound, adiacente all'equilibrio: variante one-γ entro ±2% dell'eq (H₂/aria +1.6%, fuel-O₂ −0.8/−1.4%), MAI vicina al frozen (−7/−13%) [expansion_bounds §3] |
+| 10 | **EAP Kaemming–Paxson** | espansione ideale isentropica di ogni cella a p₀, γ del paper (one-γ prodotti); media di availability | metrica di disponibilità: si media l'availability, non p_t [eap_spec/add_notes; worked example −0.4%] | bound eq/fr non applicato (metrica comparativa a γ fissato; sensibilità non calcolata) |
+| 11 | **benchmark steady** (Hugoniot q̃, partizione Δs, p_t2/p_t1, η(M₀)) | γ = 1.4 costante (**reagenti**/aria a monte) | scelta del paper per l'analisi steady (spec §3.1–3.2; §1.C qui) | γ_e prodotti sul tratto reagenti = il claim deprecato 0.0136 (FIXED, §1.C) |
+| 12 | **M_CJ nelle tabelle** (U_CJ/a₁) | a₁ = suono **frozen dei reagenti** (346–409 m/s fuel-aria) | definizione di M_CJ; coerenza reagenti a monte (q_mapping.md) | a₁=√(γ_eRT₁) implicita nell'inversione one-γ: q_eff/q_c=1.18–1.30 fuel-aria (già documentato) |
+
+**Sintesi in una riga (per la slide):** *equilibrio* per gli STATI ESTREMI e per l'espansione dei prodotti (CJ, isentrope, γ_e, Stechmann), *frozen* per ciò che attraversa scale più corte della chimica (urto/vN, interno ZND, suono dei reagenti, compressione dei freschi); i bound quantificati valgono −7/−13% (frozen) e −0.2/−2% (Bray alla gola) su Isp_f, ±2% (one-γ Stechmann-like vs equilibrio).
