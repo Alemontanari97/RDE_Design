@@ -119,3 +119,22 @@ hard-wired inside `q_formal.py`; `tables.py` re-imports from `sk_models`.
 
 Everything else (physics, stage logic, JSON schemas, validation reports) is
 untouched.
+
+
+## 6. Post-refactor outcome (measured, 2026-07-10)
+
+* Canonical identity (test i): `cj_core` vs `sk_models.cj_calc` vs
+  `cycles.three_cycles` — **0.0 relative deviation (bit-identical)** on U_CJ,
+  gamma_e, p2, T2, s2, h1 (H2/air, C2H4/O2 at 1 atm; CH4/air at 1 bar).
+* Finding MIX-2 composition unification: sk_models records moved by
+  **1.33e-8 rel** on U_CJ vs the shipped JSON (H2/air) — invisible at every
+  display digit (1969.0225 -> 1969.0225).
+* Independent solvers vs cj_core: `cj_states.CJ_state` **7.2e-8** (U_CJ) /
+  1.3e-5 (gamma_e); `stechmann_nozzle.det_state` **8.3e-4** (PR) / 7.1e-5
+  (T_CJ) / 6.9e-6 (gamma) — the ~1e-3 PR deviation empirically confirms §5:
+  swapping det_state onto cj_core would have moved the blowdown inputs at the
+  same order and endangered the 0.1-s-precision design-study digits (245.3
+  reproduced exactly with the solver kept in place).
+* Cycle-side regeneration: `q_mapping` rerun under the shared registry
+  reproduced data/q_mapping.{json,md} **byte-identical except the run date**.
+* Full ledger: tests/run_all.py (suite i-v + live examples & design study).

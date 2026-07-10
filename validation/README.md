@@ -33,4 +33,5 @@ those paths map to:
 | `data/gamma_audit.md`, `data/gamma_phase_audit.md` | `validation/gamma_audit.md`, `validation/gamma_phase_audit.md` |
 | `data/cycles_validation.md` (96 PASS, audit-time count) | `validation/cycles_validation.md` (99 PASS, converged release) |
 | `specs/*.md`, `tmp_sk/*` | not shipped (internal transcriptions of the source papers — cite the originals via `CITATION.md`) |
+| `validation/interface_audit.md` + `validation/sdt_thrust_demos.md` | 2026-07-10 coherence refactor: pre-refactor interface audit (+ post-refactor measured outcome) and the SDT official thrust-demo census/comparison; the permanent executable counterpart is `tests/run_all.py` |
 | `data/expansion_bounds.{json,md}`, `data/cj_equilibrium_sonic_derivation.md`, `data/cj_sonic_convergence.json` | not shipped (build-side backup derivations quoted by `gamma_phase_audit.md` §4; their live counterpart in this repo is `sk_models.axial_calc(..., chem='frozen')`) |
