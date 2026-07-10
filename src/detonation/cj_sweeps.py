@@ -49,15 +49,17 @@ def save(): json.dump(res, open(OUT, 'w'))
 
 if __name__ == '__main__':
     # 1) U_CJ vs phi (3 fuels, air)
-    if 'phi' not in res:
-        res['phi'] = {}
-        for fuel in ['H2', 'CH4', 'C2H4']:
-            xs = []; us = []; ts = []; ps = []
-            for phi in [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]:
-                U, pr, T = cj_state(phi_mix(fuel, 1, 1, phi), P0, T0)
-                xs.append(phi); us.append(U); ts.append(T); ps.append(pr)
-            res['phi'][fuel] = dict(phi=xs, U=us, T=ts, p=ps); save()
-        print('phi done', flush=True)
+    res.setdefault('phi', {})
+    for fuel in ['H2', 'CH4', 'C2H4']:
+        if fuel in res['phi']:
+            continue                                   # resumable per fuel
+        xs = []; us = []; ts = []; ps = []
+        for phi in [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]:
+            U, pr, T = cj_state(phi_mix(fuel, 1, 1, phi), P0, T0)
+            xs.append(phi); us.append(U); ts.append(T); ps.append(pr)
+        res['phi'][fuel] = dict(phi=xs, U=us, T=ts, p=ps); save()
+        print(f'phi {fuel} done', flush=True)
+    print('phi done', flush=True)
     # 2) U_CJ,T vs N2 dilution (H2/O2 with increasing N2/O2 ratio, stoich)
     if 'dilution' not in res:
         beta = [0, 1, 2, 3.76, 5, 7]; us = []; ts = []; ps = []

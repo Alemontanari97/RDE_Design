@@ -1,6 +1,6 @@
 {
  "meta": {
-  "script": "scripts/q_formal.py",
+  "script": "src/cycles/q_formal.py",
   "mech": "gri30.yaml",
   "T1_K": 300.0,
   "P1_Pa": 100000.0,
@@ -61,8 +61,8 @@
    "U_CJ": 1968.7472274949912,
    "T_CJ": 2943.2412323209937,
    "P_CJ_bar": 15.459708786486992,
-   "q_CJplane_MJkg": 2.8468815081201586,
-   "frac_released_at_CJ": 0.8320328860353766,
+   "q_CJplane_MJkg": 2.8468815081201577,
+   "frac_released_at_CJ": 0.8320328860353764,
    "dissociated_at_CJ_X": {
     "H2": 0.03145,
     "OH": 0.01786,
@@ -76,9 +76,9 @@
    "X": "CH4:1,O2:2,N2:7.52",
    "X_majors": "CO2:1,H2O:2,N2:7.52",
    "q_std_MJkg": 2.7607348143579253,
-   "q_std_sum_MJkg": 2.7607348143579253,
+   "q_std_sum_MJkg": 2.760734814357925,
    "q_a_hf298_MJkg": 2.7607348143579253,
-   "q_a_sum_MJkg": 2.7607348143579253,
+   "q_a_sum_MJkg": 2.760734814357925,
    "cp_react_298_JkgK": 1076.906899612889,
    "cp_majors_298_JkgK": 1110.8343890051308,
    "at_T": {
@@ -113,8 +113,8 @@
    "U_CJ": 1802.8399335949405,
    "T_CJ": 2777.373777189375,
    "P_CJ_bar": 17.038901827544763,
-   "q_CJplane_MJkg": 2.325832296583127,
-   "frac_released_at_CJ": 0.8424877297818565,
+   "q_CJplane_MJkg": 2.3258322965831293,
+   "frac_released_at_CJ": 0.8424877297818572,
    "dissociated_at_CJ_X": {
     "CO": 0.02358,
     "O2": 0.00982,

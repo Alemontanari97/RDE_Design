@@ -147,7 +147,7 @@ def main():
         q_cj = sum((Y1.get(s, 0.0) - Ycj.get(s, 0.0)) * hf[s]
                    for s in set(Y1) | set(Ycj))
         Xcj = {s: x for s, x in zip(gcj.species_names, gcj.X) if x > 1e-4}
-        diss = {s: round(x, 5) for s, x in sorted(Xcj.items(), key=lambda kv: -kv[1])
+        diss = {s: float(round(x, 5)) for s, x in sorted(Xcj.items(), key=lambda kv: -kv[1])
                 if s not in majors}
         c.update(U_CJ=ucj, T_CJ=gcj.T, P_CJ_bar=gcj.P / 1e5,
                  q_CJplane_MJkg=q_cj / 1e6,

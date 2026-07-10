@@ -107,8 +107,12 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))          # repo root
 sys.path[:0] = [ROOT, HERE, os.path.join(ROOT, 'src')]  # sdtoolbox / st_core / style
-from st_core import (G0, ATM, TR, cstar_fn, Ik, cf_base, npr_of_eps,
-                     cf_bell, cf_spike, _hug_point, _ct)
+try:                                    # package mode: from src.thrust import ...
+    from .st_core import (G0, ATM, TR, cstar_fn, Ik, cf_base, npr_of_eps,
+                          cf_bell, cf_spike, _hug_point, _ct)
+except ImportError:                     # script mode: python src/thrust/stechmann_nozzle.py
+    from st_core import (G0, ATM, TR, cstar_fn, Ik, cf_base, npr_of_eps,
+                         cf_bell, cf_spike, _hug_point, _ct)
 
 CACHE = os.path.join(ROOT, 'data', 'st_nozzle_opt.json')
 PROPS = {'H2':   ('data/gri30_CHO_eq.yaml', 'H2', 'O2'),
@@ -159,11 +163,25 @@ def dump(D):
 
 
 # --------------------------------------------------------------- gas states
+def _prop(prop, phi):
+    """PROPS lookup with actionable errors (extension point for new propellants)."""
+    if prop not in PROPS:
+        raise KeyError(
+            'unknown propellant %r — known: %s. Register new ones first, e.g. '
+            "PROPS['C2H4'] = ('data/gri30_CHO_eq.yaml', 'C2H4', 'O2')"
+            % (prop, ', '.join(sorted(PROPS))))
+    if not 0.2 <= phi <= 3.0:
+        raise ValueError(
+            'phi = %g outside 0.2-3.0: the CJ/CEA equilibria are only '
+            'meaningful near detonable compositions (Table 1 spans 0.44-1.26)'
+            % phi)
+    return PROPS[prop]
+
 def cp_state(prop, phi, Ti, Pcp_atm):
     """Step 1, CP side: HP equilibrium at Pcp -> gamma_s, c* (Eqs. 1/7)."""
     ct = _ct()
     from sdtoolbox.thermo import soundspeed_eq
-    mech, fuel, ox = PROPS[prop]
+    mech, fuel, ox = _prop(prop, phi)
     gas = ct.Solution(os.path.join(ROOT, mech))
     gas.set_equivalence_ratio(phi, fuel, ox)
     gas.TP = Ti, Pcp_atm * ATM
@@ -180,7 +198,7 @@ def det_state(prop, phi, Ti, Pinit):
     Same algorithm as figs_st_eap.det_side, generalized to any propellant."""
     ct = _ct()
     from sdtoolbox.thermo import soundspeed_eq
-    mech, fuel, ox = PROPS[prop]
+    mech, fuel, ox = _prop(prop, phi)
     gas = ct.Solution(os.path.join(ROOT, mech))
     gas.set_equivalence_ratio(phi, fuel, ox)
     gas.TP = Ti, Pinit
@@ -324,12 +342,12 @@ def golden_max(f, a, b, xtol):
 
 def bell_opt(isp_of_eps, Pmean, Pa, g, Pcp):
     """Step 5b: sweep + golden section; analytic check NPR(eps*) = mean(Pc)/Pa."""
-    hi = 40.0 if Pcp == 20 else 400.0
+    hi = 40.0 if Pcp <= 20 else 400.0
     grid = np.geomspace(1.05, hi, 241)
     vals = np.array([isp_of_eps(e) for e in grid])
     i = int(np.argmax(vals))
     a, b = grid[max(i - 1, 0)], grid[min(i + 1, len(grid) - 1)]
-    e_gs, isp_gs, nev = golden_max(isp_of_eps, a, b, XTOL[Pcp])
+    e_gs, isp_gs, nev = golden_max(isp_of_eps, a, b, XTOL.get(Pcp, 1e-3))
     e_an = eps_of_npr(Pmean / Pa, g)
     return dict(eps=e_an, Isp=isp_of_eps(e_an), eps_golden=e_gs,
                 Isp_golden=isp_gs, gs_evals=nev + len(grid),
@@ -339,7 +357,7 @@ def bell_opt(isp_of_eps, Pmean, Pa, g, Pcp):
 def spike_opt(isp_of_eps, Pmax, Pa, g, Pcp):
     """Step 5c: saturation knee NPR(eps*) = Pmax/Pa; verify plateau on sweep."""
     e_kn = eps_of_npr(Pmax / Pa, g)
-    hi = max(40.0 if Pcp == 20 else 400.0, 2.5 * e_kn)
+    hi = max(40.0 if Pcp <= 20 else 400.0, 2.5 * e_kn)
     grid = np.geomspace(1.05, hi, 241)
     vals = np.array([isp_of_eps(e) for e in grid])
     mono = bool(np.all(np.diff(vals[grid <= e_kn * 0.999]) > -1e-9))
@@ -523,7 +541,9 @@ def validate():
           '  (bell / aerospike, H2 20 atm case).']
     open(os.path.join(ROOT, 'data', 'st_opt_validation.md'), 'w').write(
         '\n'.join(L) + '\n')
-    print('\n'.join(L[12:12 + len(D['rows']) + 2]))
+    ih = next(i for i, s in enumerate(L) if s.startswith('| Prop'))
+    print('\n'.join(L[ih:ih + 2 + len(D['rows'])]))       # header + all rows
+    print(L[ih + 2 + len(D['rows']) + 1])                 # 'n/n rows PASS.'
     print('validation -> data/st_opt_validation.md', flush=True)
 
 
