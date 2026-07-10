@@ -250,3 +250,6 @@ frozen copies live in `validation/` and should not be overwritten.
 See `CITATION.md` for the source papers (Wintenberger–Shepherd, Shepherd–
 Kasahara, Stechmann–Heister–Harroun) and the SD Toolbox / Cantera / GRI-Mech
 citations.
+
+## Worked solution
+The capstone exercise (deck slide 60) has a formal written solution: **examples/SOLUTION_headtohead.md** — problem statement, per-step assumptions, full resolution (Part 1 chain + Part 2 independent CP optimization), verdict table (SL + vacuum), sensitivities, reproducibility.
