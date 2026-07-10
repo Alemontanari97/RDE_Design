@@ -53,3 +53,11 @@ print(f"VAC RDE: bell {bell(EPS_VAC, Pa_VAC):.1f} s | spike {spik(EPS_VAC, Pa_VA
 
 assert abs(Isp_cp-227.4) < 0.5 and abs(eps[i]-2.44) < 0.05
 assert abs(ob['Isp']-233.6) < 0.7 and abs(os_['Isp']-245.3) < 0.7
+
+# --- Throatless sizing closure (SK CVs assume a free annulus exit) ---------
+# A_ann = mdot/G* with G* = rho*·w* at the validated sonic state: the DIAMETER
+# follows the mass flow. 600 N / C2H4/O2, gap 5 mm: G* = 428 kg/m2s ->
+# R_bar = 22.6 mm (throatless engine). The 45-mm annulus is the NOZZLED
+# configuration (aft-restriction throat A_t = mdot·c*/P_mean = 4.3 cm2).
+# Cross-validation, 10 kN CH4/O2 (gap 15 mm): closure R_bar = 142.1 mm vs
+# chosen 140 mm (-1.5%) - already throatless-consistent.
