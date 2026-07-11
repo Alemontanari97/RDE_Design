@@ -3,21 +3,38 @@
 MISSION (explicit): ground static demonstrator. F = 600 N at sea level,
 P_a = 101.325 kPa constant (no trajectory, no altitude compensation credit);
 envelope OD <= 110 mm x L <= 100 mm (usable bore 90 mm, exit D_e <= 100 mm);
-propellant C2H4/O2, phi = 1, T1 = 300 K; feed equivalence: SAME mean chamber
-pressure P_cp = 10 atm for both engines (= same specific pump work; injector
-drop not modelled); CP combustor sized by L* = 0.9 m (LOX/HC class).
+propellant C2H4/O2, phi = 1, T1 = 300 K; CP combustor sized by L* = 0.9 m
+(LOX/HC class).
+
+FEED EQUIVALENCE (precise statement -- Stechmann protocol): equal delivered
+mass per cycle through equal throat area at P_cp = 10 atm. The matching
+fixes the cycle-MEAN MASS FLUX, not <Pc>: by Jensen (mdot ~ Pc^k, k < 1)
+the mean pressure comes out <Pc> = P_cp(1+DC) = 10.24 atm (DC +2.4%) --
+same pump CLASS, not literal equal manifold pressure (that stronger
+constraint needs an injector model, deliberately out of scope; EAP is the
+referee metric). Fill provenance: P_init = 1.11 atm is an OUTPUT of the
+matching fixed point -- the whole cycle state descends from the 10-atm feed
+class, so the mission chain contains no 1-atm assumption. Two-DOF rule: the
+mission fixes F; the models return the intensive Isp(eps); mdot =
+F/(g0*Isp) is DERIVED (never fix F, mdot and Isp together).
 
 FORMAL PROBLEM (each engine independently):
   max_{eps, mdot} Isp(eps)  s.t.  F = mdot*g0*Isp;  D_e(eps) <= 100 mm;
   CP: L_chamber(L*, A_t(mdot)) <= envelope;  det: choking/assert referees.
-  Bell optimum: analytic NPR*(eps*) = <Pc>/Pa (golden-section verified);
-  aerospike optimum: Eq.-12 saturation knee NPR* = P_max/Pa.
+  Protocol A (bell): analytic NPR*(eps*) = <Pc>/Pa (golden-section verified);
+  protocol B (aerospike): Eq.-12 saturation knee NPR* = P_max/Pa.
+  All Isp below are TOTAL-propellant (rocket convention); conditions (SL /
+  VAC, eps) are printed next to every number.
 
 EXPECTED (validated 2026-07-10, sea level):
   CP  : eps* 2.44, Isp 227.4 s, mdot 269 g/s, L_chamber ~66 mm (fits)
   RDE : bell 233.6 s (+2.7%) | aerospike 245.3 s (eps* 6.27, +7.9%), -7% propellant
 VACUUM EXTENSION (same envelope, eps capped at 15 by D_e): informative print --
 the matched bell loses its altitude match, the aerospike self-adapts.
+AREA CLOSURES (SOLUTION 3b2): the optimized engine above is the NOZZLED
+configuration (aft-restriction throat, A_t = mdot*cbar/<Pc>); the trailing
+comment gives the THROATLESS closure (annulus = throat, R_bar =
+mdot/(2 pi gap G*)) for the SK nozzle-less bracket of the same mission.
 """
 import sys, os, numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -56,8 +73,10 @@ assert abs(ob['Isp']-233.6) < 0.7 and abs(os_['Isp']-245.3) < 0.7
 
 # --- Throatless sizing closure (SK CVs assume a free annulus exit) ---------
 # A_ann = mdot/G* with G* = rho*·w* at the validated sonic state: the DIAMETER
-# follows the mass flow. 600 N / C2H4/O2, gap 5 mm: G* = 428 kg/m2s ->
+# follows the mass flow, R_bar = mdot/(2*pi*gap*G*). 600 N / C2H4/O2, gap 5 mm,
+# at the SK nozzle-less mdot = F/(F/Mdot)_PH = 303 g/s: G* = 428 kg/m2s ->
 # R_bar = 22.6 mm (throatless engine). The 45-mm annulus is the NOZZLED
-# configuration (aft-restriction throat A_t = mdot·c*/P_mean = 4.3 cm2).
+# configuration (aft-restriction throat A_t = mdot·cbar/<Pc> = 4.3 cm2 at the
+# 249 g/s mission closure).
 # Cross-validation, 10 kN CH4/O2 (gap 15 mm): closure R_bar = 142.1 mm vs
 # chosen 140 mm (-1.5%) - already throatless-consistent.
