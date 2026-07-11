@@ -1,7 +1,8 @@
 """example_design_study.py — end-to-end RDE design study using the repo as a library.
 
 Scenario: a lab-scale rotating detonation engine on stoichiometric C2H4/O2,
-fill state 1 atm / 300 K, annular chamber with mean radius 45 mm, channel gap
+DECLARED fill state 1 atm / 300 K (the operating point of the validated
+SK-class tables), annular chamber with mean radius 45 mm, channel gap
 5 mm, length 80 mm, total mass flow 0.30 kg/s; candidate pump-fed upgrade at
 P_cp = 10 atm with a nozzle. Every physical number below comes from the
 validated modules (imported as a package — no code is duplicated here except
@@ -12,7 +13,7 @@ module):
  (b) fill height + Wolanski wave number
      -> expected number of wave heads .... this file (PCI 34, Eqs. 4-5) +
                                            ZND induction length (data/znd_sdt.json)
- (c) specific thrust and Isp_f:
+ (c) specific thrust and fuel-based Isp_f:
      SK pressure-history (Terms I + II)... src.thrust.sk_models.ph_calc
      SK axial flow (Eq. 44-45) ........... src.thrust.sk_models.axial_calc
  (d) frozen-composition expansion bound .. axial_calc(chem='frozen')
@@ -20,19 +21,55 @@ module):
  (f) Stechmann nozzle optimization at P_cp
      (bell vs aerospike) ................. src.thrust.stechmann_nozzle
 
+DESIGN-CHAIN RULES (consolidated; full derivation in SOLUTION_headtohead.md):
+* Two degrees of freedom: of (F, mdot, Isp) fix TWO, never three. Here mdot
+  = 0.30 kg/s is declared, the models return the INTENSIVE F/mdot and Isp,
+  and F = mdot*(F/mdot) is derived. (The mission examples fix F instead and
+  derive mdot = F/(g0*Isp).)
+* Dual optimization protocols (Stechmann cycle):
+  A. bell — analytic optimum NPR(eps*) = <Pc>/Pa (from dCF/deps =
+     (Pe - Pa)/Pc at fixed Pc), verified by golden section;
+  B. aerospike — saturation knee NPR(eps*) = P_max/Pa (the Eq.-12 validity
+     limit: Isp(eps) is monotone below the knee, exactly flat above it).
+* Two configurations, two area closures:
+  - THROATLESS (both SK control volumes assume a FREE annulus exit, which is
+    then the sonic throat): A_ann = mdot/G* with G* = rho*·w* at the
+    validated sonic state, i.e. R_bar = mdot/(2*pi*gap*G*) — the diameter
+    follows the mass flow;
+  - NOZZLED (the aft restriction is the throat): A_t = mdot*cbar*/<Pc>; the
+    annulus is then a detonability/mixing DOF (gap from ~2.4*lambda,
+    D_bar >= 28*lambda), NOT a mass-flow consequence.
+  The given R_bar = 45 mm is the NOZZLED configuration; the script prints
+  the throatless closure R_bar(mdot) next to it for contrast.
+* Fill-state provenance: the SK branch (a)-(d) runs at the DECLARED fill
+  (1 atm / 300 K — a feed choice, not an ambient consequence: the choked
+  exit decouples the chamber, and SK themselves back out SUB-atmospheric
+  fills in their Kato comparison). The matched Stechmann branch (f) derives
+  its own fill: P_init = 1.11 atm is an OUTPUT of the mass-matching fixed
+  point at P_cp = 10 atm — that mission chain contains no 1-atm assumption.
+  Residual approximation, declared: the SK leg is evaluated at 1.00 atm vs
+  P_init = 1.11 atm (11% on fill pressure, <1% on every intensive result).
+* Isp conventions: SK Isp_f is FUEL-based (F/(Y_f*g0*mdot), airbreathing
+  style); Stechmann Isp in (f) is TOTAL-propellant (rocket convention).
+  Do not compare the two directly.
+
 Run:      python examples/example_design_study.py      (~15-60 s, all live)
 Expected (see also README "Use as a design tool"):
   (a) U_CJ = 2373.5 m/s, p_CJ/p1 = 33.2, gamma_e = 1.139  (= shipped values)
   (b) fill height/rev = 20.1 mm, W = 2.69 (band 1.9-4.6) -> nominally 2-3
       co-rotating wave heads (conservative band 1-4)
   (c) F/Mdot = 1979 (PH, term II = 300) / 1905 (AX sonic) m/s;
-      Isp_f = 892 / 859 s; F = 594 / 571 N at 0.30 kg/s
+      Isp_f = 892 / 859 s; F = 594 / 571 N at 0.30 kg/s;
+      throatless closure G* = 428 kg/m2s -> R_bar = 22.3 mm at this mdot
+      (given R_bar = 45 mm = nozzled configuration)
   (d) frozen bound: AX 1715 m/s (-10.0% vs equilibrium; Bray in between)
   (e) eta_FJ = 0.2042 (fuel-O2 dissociation penalty; fuel-air would be ~0.30)
-  (f) at P_cp = 10 atm: bell eps* = 2.44, Isp = 233.6 s; aerospike eps* = 6.27,
+  (f) at P_cp = 10 atm: fill P_init = 1.11 atm (matched-cycle OUTPUT);
+      bell eps* = 2.44, Isp = 233.6 s; aerospike eps* = 6.27,
       Isp = 245.3 s (+5.0% -- it tracks the blowdown); choke margin 0.64 (the
       late-cycle tail dips below choking; Stechmann assumption 3 retained,
-      exactly as the paper does on its 20 atm hydrocarbon rows)
+      exactly as the paper does on its 20 atm hydrocarbon rows);
+      nozzled throat A_t = 5.2 cm2 (2.7:1 contraction from the annulus)
 """
 import os, sys, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -121,15 +158,29 @@ assert wn['l_fill'] < LCH, 'chamber shorter than the fresh fill layer'
 # ---------------- (c) specific thrust and Isp_f: SK pressure-history + axial
 ph = ph_calc(cj, CASES[KEY]['K'])                        # Terms I + II
 ax = axial_calc(cj, FUEL, OX)                            # equilibrium isentrope
-print('\n(c) SK pressure-history: F/Mdot = %.1f m/s (term I %.1f + term II '
-      '%.1f), Isp_f = %.0f s\n    SK axial flow (sonic): F/Mdot = %.1f m/s, '
-      'Isp_f = %.0f s (matched-exit %.0f s)'
-      % (ph['FovM'], ph['FI'], ph['FII'], ph['Ispf'],
+print('\n(c) SK models at the DECLARED fill (%.2f atm / %.0f K; Pa = 1 atm; '
+      'Isp_f = fuel-based):\n    pressure-history: F/Mdot = %.1f m/s (term I '
+      '%.1f + term II %.1f), Isp_f = %.0f s\n    SK axial flow (sonic): '
+      'F/Mdot = %.1f m/s, Isp_f = %.0f s (matched-exit %.0f s)'
+      % (cj['cond']['P1'] / ATM, cj['cond']['T1'],
+         ph['FovM'], ph['FI'], ph['FII'], ph['Ispf'],
          ax['FovM_sonic'], ax['Ispf_sonic'], ax['Ispf_matched']))
 assert abs(ph['FovM'] / SHIP['ph']['FovM'] - 1) < 5e-3
 assert abs(ax['FovM_sonic'] / SHIP['axial']['FovM_sonic'] - 1) < 5e-3
 print('    thrust at mdot = %.2f kg/s: F = %.0f N (PH) / %.0f N (AX)'
       % (MDOT, MDOT * ph['FovM'], MDOT * ax['FovM_sonic']))
+# Area closure, THROATLESS configuration: both SK control volumes assume a
+# FREE annulus exit, which is then the sonic throat -> A_ann = mdot/G* with
+# G* = rho*·w* at the validated sonic state; the mean radius FOLLOWS the
+# mass flow, R_bar = mdot/(2*pi*gap*G*).  The given 45-mm annulus is instead
+# the NOZZLED configuration (aft-restriction throat, closed in section (f)).
+Gstar = ax['rhostar'] * ax['wstar']              # sonic mass flux G* [kg/m2/s]
+Rbar_tl = MDOT / (2 * np.pi * GAP * Gstar)       # throatless annulus closure
+print('    area closure — THROATLESS config (SK free annulus exit = sonic '
+      'throat):\n    G* = rho*·w* = %.0f kg/m2s -> R_bar = mdot/(2 pi gap G*)'
+      ' = %.1f mm;\n    the given R_bar = %.0f mm is the NOZZLED config '
+      '(aft throat, sized in (f))'
+      % (Gstar, 1e3 * Rbar_tl, 1e3 * RBAR))
 
 # --------------------------- (d) frozen bound of the axial expansion bracket
 axf = axial_calc(cj, FUEL, OX, chem='frozen')
@@ -160,15 +211,28 @@ bell = lambda e: stn.cycle_isp(s, lambda Pc, e=e: stn.cf_bell(gd, e, Pc, Pa))
 spik = lambda e: stn.cycle_isp(s, lambda Pc, e=e: stn.cf_spike(gd, e, Pc, Pa))
 ob, _, _ = stn.bell_opt(bell, Pmean, Pa, gd, PCP_ATM)
 os_, _, _ = stn.spike_opt(spik, s['P0'], Pa, gd, PCP_ATM)
-print('\n(f) Stechmann matched det cycle at P_cp = %.0f atm (Ti = %.0f K): '
-      'P_CJ = %.1f atm, fill %.2f atm,\n    PR = %.1f, gamma = %.4f, DC shift '
-      '= %+.1f%%, choke margin %.2f\n    bell:      eps* = %5.2f  Isp = %.1f '
+print('\n(f) Stechmann matched det cycle at P_cp = %.0f atm (Ti = %.0f K, '
+      'Pa = 1 atm; total-propellant Isp):\n    P_CJ = %.1f atm, fill P_init '
+      '= %.2f atm (matched-cycle OUTPUT — the mission chain\n    contains no '
+      '1-atm assumption), PR = %.1f, gamma = %.4f, DC shift = %+.1f%%,\n    '
+      'choke margin %.2f\n    bell:      eps* = %5.2f  Isp = %.1f '
       's  (NPR* = <Pc>/Pa check: |deps| = %.1e)\n    aerospike: eps* = %5.2f  '
       'Isp = %.1f s  -> +%.1f%% over the fixed bell at sea level'
       % (PCP_ATM, cj['cond']['T1'], s['P0a'], s['Pinita'], s['PR'], gd,
          100 * s['DC'], s['choke_margin'], ob['eps'], ob['Isp'],
          ob['gs_vs_analytic'], os_['eps'], os_['Isp'],
          100 * (os_['Isp'] / ob['Isp'] - 1)))
+# Area closure, NOZZLED configuration: with an aft-restriction throat the
+# mass flow fixes A_t (NOT the annulus): A_t = mdot*cbar*/<Pc> with cbar* =
+# mass-weighted c* of the cycle; the annulus is a detonability/mixing DOF.
+kk = (gd + 1) / (2 * gd)
+cbar = s['cstar0'] * stn.Ik(s['PR'], 1.0) / stn.Ik(s['PR'], kk)
+At = MDOT * cbar / Pmean
+print('    area closure — NOZZLED config at mdot = %.2f kg/s: A_t = '
+      'mdot·cbar*/<Pc> = %.1f cm2\n    (annulus 2 pi Rbar gap = %.1f cm2 -> '
+      '%.1f:1 contraction; annulus = detonability DOF)'
+      % (MDOT, 1e4 * At, 1e4 * 2 * np.pi * RBAR * GAP,
+         2 * np.pi * RBAR * GAP / At))
 if s['choke_margin'] < 1.0:
     print('    note: choke margin < 1 — the low-pressure tail of the blowdown '
           'is not strictly\n    choked; Stechmann assumption 3 is retained '
