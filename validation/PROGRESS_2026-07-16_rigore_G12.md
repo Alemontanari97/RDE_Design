@@ -145,3 +145,39 @@ the attackability assessment given in-conversation).
     THEOREM* at statement level, smooth scope; residues named
     (Fredholm property, quantitative IFT remainder); C-T1 stays
     CONJECTURE until written.
+15. [T7-FS + P7 EXEC — user directive "procedi con tutto ciò che
+    formalmente può essere investigato" + "ricorda sempre
+    l'obiettivo" + "scrivi in maniera pristine"] WROTE
+    docs/rde_nozzle_T7_P7_functionspace.md, ANCHORED to (P) of D2.6:
+    THEOREM T7-FS (§1, THEOREM*): differentiation under the cycle
+    integral — per-phase shape derivatives exist (classical Hadamard
+    at smooth phases, G12-S1 at shocked phases), are measurable (the
+    P3 composition one degree higher), uniformly dominated by the
+    audited margins (energy bound, uniform supersonicity, C^{1,1}
+    geometry, front-strength margins bounding the inverse linearized
+    RH via the certified s_min); dominated convergence => dJ = Int
+    F' dmu and T7(b) + (**') are genuine L^1(dmu) statements: T7
+    upgraded SCHEMA -> THEOREM* — (P)(ii) is now a rigorous necessary
+    condition. Conditionals R-T7.1 (shared D2.5 uniform-estimate
+    conditional), R-T7.2 (Frechet modulus) NAMED; falsifier =
+    O3-class exchange-of-derivative oracle.
+    THEOREM P7-S1 (§2, THEOREM*): existence of the argmax of (P)(i)
+    on every margin-certified level set A_h^delta (finite-dimensional
+    compactness of the working spline class + closedness of the
+    margin constraints + continuity of J by dominated convergence,
+    conditional R-P7.1 = R-T7.1); the monitored failure boundary of
+    record IS the boundary of the certified level sets (theorem-
+    shaped role); residue R-P7.2 (certified argmax vs uncertified
+    sup — reported, never hidden). Verification-sufficiency declared:
+    both are function-space theorems, no symbolic carrier possible;
+    their finite bricks are the machine-verified carriers of this
+    session. §3 honest tail: the single most valuable remaining task
+    = writing the shared uniform-stability conditional (would firm
+    T7-FS, P7-S1, P3, S1-U at once); five-field, P4-Fredholm,
+    Lemma-B mesh limit, second-order theory remain named. R4: M0 T7
+    named-gaps updated (T7-FS + P7 entries).
+16. [STANDING DIRECTIVES RECORDED] Memory repo-sota-standard.md
+    updated with the three standing additions of this session:
+    pristine writing everywhere; verification-sufficiency
+    declarations on every claim; always anchor to the objective (P),
+    never more.

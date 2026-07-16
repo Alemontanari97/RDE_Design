@@ -605,6 +605,17 @@ THEOREM* in the shock-free S1 class (lambda2(xi) = -f2(lip data),
 unique by scalar CQ, measurable + L^inf by margins; proof of record
 docs/rde_nozzle_P3_multipliers.md; residues R-P3.1/R-P3.2 named
 there; across fitted shocks it inherits the D2.5 conditional);
+T7 ITSELF UPGRADED same day ([F1/T7-FS],
+docs/rde_nozzle_T7_P7_functionspace.md §1): differentiation under the
+cycle integral is now THEOREM* — per-phase derivatives exist
+(classical + G12-S1), are measurable (P3 composition) and uniformly
+dominated by the audited margins, so dJ = Int F' dmu and the wall
+condition + (**') are genuine L^1(dmu) statements (conditionals
+R-T7.1/2 named: the shared D2.5 uniform-estimate conditional).
+P7 EXISTENCE attacked same day (same doc §2, THEOREM*): argmax exists
+on every margin-certified level set A_h^delta (finite-dim compactness
++ closed margins + continuity via R-P7.1); the monitored failure
+boundary of record IS the boundary of those level sets;
 G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
 [Bressan-Marson; Ulbrich]; quasi-1D design rigor [Cliff-Heinkenschloss-
 Shenoy]; 2-D practice [Baeza et al.]) — ATTACKED 2026-07-16
