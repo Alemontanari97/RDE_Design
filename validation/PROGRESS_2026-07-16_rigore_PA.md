@@ -189,3 +189,38 @@ from S5 and re-declared here.
     prompt (feed-closure quantification; Lemma-B mesh-limit) NOT
     executed — declared, deferred to S7 (time). SESSION 6 CLOSED at
     step 19.
+
+20. [POST-CLOSURE ADDENDUM — standing user assumption + R4] User
+    declared the data scope: "il dato è sempre onda periodica, mai
+    clapping o non periodico" and asked its effect on the corrector.
+    Recorded as STANDING MODELING ASSUMPTION (monitor = T0
+    thrust-trace flatness) and back-propagated to D3 §3 (C-T1 entry,
+    PERIODIC-MODE SCOPING paragraph): (1) statistical stationarity
+    reduces to the T0-covered case; (2) C-T1 re-scopes from two-scale
+    time-homogenization to STEADY singular perturbation of the
+    wave-frame BVP in the sweep parameter (anchor O4); (3) discrete
+    spectrum -> Fredholm-on-the-circle, no secular terms/small
+    divisors; (4) convergence regularity = harmonic decay, measurable
+    at the contract audit. O(St) sweep error unchanged; C-T1 stays
+    CONJECTURE in an easier class. Memory:
+    periodic-wave-data-scope.md + MEMORY.md index.
+21. [POST-CLOSURE ADDENDUM — algorithmic consequences, R4 to M0 VI]
+    User asked whether these aspects MODIFY THE ALGORITHM. Answer of
+    record written into M0 VI.4bis: skeleton unchanged (per-phase
+    solve + per-phase adjoint + mu-assembly + TR-SQP + certificates);
+    five choices PINNED DOWN: (i) periodic spectral quadrature in xi
+    (trapezoid-on-the-circle, spectrally accurate for smooth periodic
+    data) COMPOSED with the VI.4 switch-split rule; (ii) the O(St)
+    corrector computed as ONE STEADY LINEARIZED SOLVE on the
+    wave-frame anchor (sweep term as source) instead of primary
+    unsteady simulation (O5 demoted to independent confirmation);
+    (iii) EOS-general thermo backend mandatory, corner<->eps bijection
+    FORBIDDEN as solver shortcut (enforce f2 = const actively; E4);
+    (iv) per-phase adjoint = FIELD level (AD of the march); the
+    two-constant closed form = oracle/initializer only (rotational
+    data); NEW cheap per-phase certificates from this session's
+    results: f2-drift and E-residual along the terminal
+    characteristic, lambda2(xi) = -f2(lip) as closed-form multiplier
+    initializer (P3); (v) robust CVaR/DRO layer OPTIONAL (out of
+    baseline scope by the periodicity assumption; flatness monitor
+    mandatory).
