@@ -566,8 +566,11 @@ Stationarity structure (verified formally):
 Non-smoothness: topology-switch phases are mu-measure-zero with F
 continuous across them: Leibniz survives moving switches (boundary
 terms cancel); persistent kinks: Clarke subdifferentials.
-Named rigor gaps: P3 (lambda2 in L^2(dmu): measurable selection +
-phase-wise constraint qualification — open, no obstruction known);
+Named rigor gaps: P3 (lambda2 in L^2(dmu)) — UPGRADED 2026-07-16:
+THEOREM* in the shock-free S1 class (lambda2(xi) = -f2(lip data),
+unique by scalar CQ, measurable + L^inf by margins; proof of record
+docs/rde_nozzle_P3_multipliers.md; residues R-P3.1/R-P3.2 named
+there; across fitted shocks it inherits the D2.5 conditional);
 G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
 [Bressan-Marson; Ulbrich]; quasi-1D design rigor [Cliff-Heinkenschloss-
 Shenoy]; 2-D practice [Baeza et al.]).

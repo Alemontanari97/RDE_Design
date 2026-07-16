@@ -102,3 +102,35 @@ from S5 and re-declared here.
     THEOREM* with the full component-map table (every row
     equation-numbered post-read); P-A2 marked DISCHARGED in the
     PENDING register (numeric half remains in P-A3/O3.2).
+12. [T2 COMMIT] 36db818 "[F1/P-2] (rigore-T2): P-A2 DISCHARGED".
+13. [T-LIT LAUNCH — user directive mid-session] User requested a
+    study of ALL papers in GENO/literature ("variable inlet etc.,
+    general variational theory, to evaluate against what we are
+    developing"). Declared plan placement: [F1/D2-b0bis] corpus
+    evaluation vs the averaged theory (D2 §b0 deepening). FIVE
+    parallel background agents launched with structured briefs
+    (identification, variational content incl. variable-inlet flag,
+    NOVELTY-THREAT scan for multi-operating-point/averaged
+    objectives with verbatim quotes, importable oracles, gamma
+    status; radical-honesty citation rules; extraction via pypdf to
+    scratchpad only): A1 = ADA455494 + BF00934730(JOTA) +
+    Allman-Hoffman 1981; A2 = Scofield-Hoffman + JTH 1974 +
+    Johnson-Boney 1975; A3 = HTH plug (fixed-inlet) + Veen + migdal;
+    A4 = Rao 1961 spike/review + Rao-Beck 94-3264 + Rao et al.
+    99-2584; A5 = NASA SP-8120/RP-1104 + Zucrow Vol.2 TOC + theses
+    (skim). Synthesis doc to follow on completion.
+14. [T3 EXEC] WROTE docs/rde_nozzle_P3_multipliers.md — P3 attack:
+    THEOREM P3-S1 (shock-free S1 class, THEOREM* conditional on the
+    declared P7 continuity): per-phase lambda2 exists and is UNIQUE
+    (scalar Zowe-Kurcyusz CQ discharged by the Prop. A2 contraction
+    <grad m, r+> = rho(u_n + c) > 0 — the rigor-session lemma doing
+    double duty), equals the Lemma-A closed form -f2(lip data)
+    (EOS-general), measurable (measurable data ∘ continuous shock-free
+    S1 solution map — NO abstract selection theorem needed where the
+    closed form lives: the correspondence is single-valued) and
+    L^infinity(dmu) by the uniform margins (explicit bound
+    W_max/sqrt(1-1/M_min^2)). Residues NAMED: R-P3.1 (across fitted
+    shocks: inherits D2.5 conditional), R-P3.2 (beyond closed form:
+    ZK + Kuratowski-Ryll-Nardzewski route, SCHEMA), R-P3.3 (interior
+    field = P-2/G12). R4 same session: D3 §9 P3 row upgraded, M0 T7
+    named-gap list updated. Falsifier written in the doc.

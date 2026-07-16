@@ -418,8 +418,17 @@ declared oracles; dual-route rejector).
 ## 9. P3-P7 — status after this session
 
 P3 (averaged multiplier existence, λ₂ ∈ L²(dμ), system (a)-(c) with
-   (**')): OPEN; route: phase-wise Zowe-Kurcyusz constraint qualification
-   + measurable selection; no blocking obstruction identified. SCHEMA.
+   (**')): UPGRADED 2026-07-16 (rigor session, [F1/P3]:
+   docs/rde_nozzle_P3_multipliers.md) — THEOREM* in the SHOCK-FREE S1
+   class: lambda2(xi) exists, is unique (scalar CQ via the Prop. A2
+   contraction <grad m, r+> = rho(u_n + c) > 0), equals the Lemma-A
+   closed form -f2(lip data of xi) (EOS-general), and is measurable +
+   L^infinity(dmu) (measurable data ∘ continuous S1 solution map +
+   uniform margins; the abstract KRN selection is NOT needed where the
+   closed form lives — the correspondence is single-valued). Residues
+   named: R-P3.1 (across fitted shocks: inherits the D2.5 continuity
+   conditional), R-P3.2 (beyond closed form: Zowe-Kurcyusz + KRN
+   route, SCHEMA), R-P3.3 (interior adjoint field = P-2/G12, not P3).
 P4 (O(St) expansion with transfer-function corrector): OPEN; see C-T1.
    The b6 survey (pending completion) has so far found the linear
    building blocks only. CONJECTURE with falsifier O5.
