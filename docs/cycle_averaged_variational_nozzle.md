@@ -8,9 +8,11 @@
 > `docs/rde_nozzle_claims_verdict.md` (D4). Known corrections vs this
 > note (see D4 §1): T1 is a definition+conjecture, not a theorem; the
 > averaged transversality (**) must be the weighted form (**'); "Rao
-> verbatim in 3-D" is an overclaim; §5.1b measured numbers are
-> unverifiable in-repo (missing probe script); "Mo, Huang" is a
-> bibliographic conflation; T0 strengthens to instantaneous constancy.
+> verbatim in 3-D" is an overclaim; §5.1b measured numbers were
+> unverifiable in-repo until 2026-07-16 — now re-derived and CORRECTED
+> INLINE below (A0.3: examples/gamma_cycle_probe.py; eps* shift is
+> -0.56%, not -1.9%); "Mo, Huang" was a bibliographic conflation,
+> corrected inline below; T0 strengthens to instantaneous constancy.
 
 Status: RESEARCH NOTE (theory + program). Not V&V of shipped code; the
 theorems below are stated with hypotheses and proof sketches at the rigor
@@ -381,17 +383,28 @@ S-H assumption 2 (freeze gamma AT THE CJ STATE, not at some cycle-mean
 state) as the correct first-order closure of the averaged problem, not an
 arbitrary convenience.
 
-Measured magnitude (executable probe, CH4/O2 phi = 1.64, Pcp = 20 atm,
-PR = 49.2, blessed Table-1 state; scratch script `gamma_cycle_probe.py`):
+Measured magnitude (CORRECTED INLINE 2026-07-16, A0.3: the original
+scratch probe was never committed; the numbers below are the in-repo
+re-derivation of record — `examples/gamma_cycle_probe.py`,
+`tests/test_gamma_probe.py`, `data/gamma_cycle_probe.json` — CH4/O2
+phi = 1.64, Pcp = 20 atm, PR = 49.2, blessed Table-1 state):
 - equilibrium isentropic exponent along the blowdown stagnation states:
-  gamma_s = 1.154 (xi=0, T0=3727 K) -> 1.210 (xi=1, T0=2218 K);
-  thermally-perfect frozen-composition gamma_tp = 1.222 -> 1.244;
-- per-phase CF deviation from the frozen-gamma closure: < 0.3% over the
-  thrust-dominant early half-cycle, rising to ~2-3% only in the late,
-  low-thrust (overexpanded) tail;
-- induced shift of the quasi-1D bell optimum: eps* moves by -1.9%;
-  the Isp penalty of designing with frozen gamma under the
-  variable-gamma truth: -0.001% (second order, envelope theorem).
+  gamma_s = 1.1537 (xi=0, T0=3727 K) -> 1.2093 (xi=1, T0=2228 K), with
+  a single shallow interior minimum at xi ~ 0.1 (depth 4e-4);
+  thermally-perfect frozen-composition gamma_tp = 1.2223 -> 1.2286
+  (the old "1.244" endpoint was wrong);
+- per-phase CF deviation from the frozen-gamma closure at eps*_fr:
+  < 0.3% over the thrust-dominant early half-cycle, ~1.3% at xi = 0.75,
+  formally unbounded only across the late-cycle zero-crossing of the
+  overexpanded frozen CF (Pc-weighted mean 0.36%);
+- induced shift of the quasi-1D bell optimum: eps* moves by -0.56%
+  (3.980 -> 3.958). The old "-1.9%" is STRUCK: the pressure-weighted
+  gamma_eff = 1.1577 reproduces the true shift (-0.57%), while the
+  UNWEIGHTED mean gamma gives -2.39% — the wrong-averaging class the
+  stale figure most plausibly came from, now rejected by test;
+- the Isp penalty of designing with frozen gamma under the
+  variable-gamma truth: -0.00028% (second order, envelope theorem:
+  penalty 2.8e-6 <= shift^2 = 3.1e-5; the old "-0.001%" overstated it).
 
 Verdict on this channel (N4): real but SMALL - the collapse is falsified
 in principle and robust in practice, because (i) the Pc-weighting
@@ -490,9 +503,10 @@ N3. PHASE-DEPENDENT INLET NONUNIFORMITY. The real RDE exit is not a
 N4. THERMOCHEMISTRY ACROSS THE CYCLE: gamma_s and T0 drift along the
     blowdown (recombination); frozen-vs-equilibrium path differences.
     F_xi = a[Sigma; gamma(xi)] Pc(xi) - ... : an averaged-kernel problem
-    breaking T3 in principle; MEASURED small in practice (Sec. 5.1b:
-    gamma_s 1.154 -> 1.210 over the cycle, eps* shift -1.9%, Isp penalty
-    of the frozen-gamma design -0.001%, second order). First-order
+    breaking T3 in principle; MEASURED small in practice (Sec. 5.1b,
+    corrected in-repo numbers: gamma_s 1.1537 -> 1.2093 over the cycle,
+    eps* shift -0.56%, Isp penalty of the frozen-gamma design
+    -0.00028%, second order). First-order
     closure: design at gamma_eff = <Pc gamma>/<Pc> ~ gamma_CJ. Tool:
     GENO gamma(T) backend + per-phase CEA states from the repo's CJ/HP
     chain (contour-level confirmation pending, Phase C iv).
