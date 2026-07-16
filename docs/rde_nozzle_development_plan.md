@@ -174,8 +174,10 @@ P-2 (TIME-SENSITIVE, can precede or accompany P-1): the P2' bridge
     mostly assembly + the reverse-AD = adjoint-sweep statement + O3/E
     numerics from M1. [OUTLINE OF RECORD 2026-07-16, [F1/P-2]:
     docs/rde_nozzle_P2_outline.md — statement (Lemmas A/B with rigor
-    classes and falsifiers), banks, O3 oracle plan, declared risks,
-    venue/timeline proposal (user decision pending).]
+    classes and falsifiers), banks, O3 oracle plan, declared risks.
+    VENUE DECIDED 2026-07-16 (delegated, evidence-based): AIAA Journal
+    primary + arXiv preprint at (G5 pass ∧ draft ready); Aerospace
+    fallback with declared triggers; JOTA tertiary — outline §7.]
 P-3 (after M3): first certified cycle-averaged optima (N1/N2 numbers
     with dual-route certificates and bound gaps; truncated plug vs
     peak/mean baselines and vs Paxson parametric benchmark).

@@ -183,16 +183,43 @@ int-max == capped ideal at NQ·eps_mach (OP-0), phase-diagram rejectors
    Submission blocked until G5 verdict is in (D6 gate).
 
 ------------------------------------------------------------------------------
-## 7. Venue and timeline (proposal, user decision pending)
+## 7. Venue and timeline — DECISION OF RECORD (2026-07-16, delegated by
+##    the user "in modo SOTA"; evidence in the session log
+##    validation/PROGRESS_2026-07-16_S4_G5venue.md)
 
- - Primary: AIAA Journal (technical-note-to-full-paper class; the
-   audience that cites Rao and runs adjoints). Alternate fast lanes:
-   Aerospace (MDPI — Lozano-Ponsin's venue, fastest turnaround, direct
-   dialogue with B3) or Journal of Optimization Theory and Applications
-   (Hoffman-Scofield-Thompson's 1972 venue — the historical loop).
- - Timeline (D6 90-day plan item 7): outline NOW (this document);
+DECISION: PRIMARY VENUE = AIAA JOURNAL, coupled with an arXiv preprint
+posted IMMEDIATELY at (G5 pass ∧ Lemma-A draft ready). Rationale, with
+the web-verified numbers:
+ - The scoop risk (RK-A) is NOT neutralized by venue speed, because
+   gate G5 blocks ANY public claim-staking (journal submission AND
+   preprint alike — same due-diligence rationale). Once G5 closes, the
+   arXiv preprint stakes priority within days at zero cost; after
+   that, review latency no longer carries scoop risk and the venue
+   should be chosen on AUDIENCE FIT and SIGNAL, not turnaround.
+ - Audience fit: the bridge needs readers who BOTH cite Rao/Hoffman
+   and run adjoints — that is the AIAA Journal community (Lozano's own
+   adjoint mesh-divergence papers are AIAA J 2018/2019; the classical
+   contouring corpus is AIAA/ARS lineage). Signal: strongest of the
+   three for a theory-of-record identification.
+ - Verified numbers (2026-07-16): Aerospace (MDPI) median first
+   decision ~18.5 days, acceptance-to-publication ~2.7 days, APC
+   2400 CHF; AIAA Journal review "six months or more" (official
+   guidance). With priority secured by arXiv, the ~6 months are
+   acceptable; the 2400 CHF buys nothing we still need.
+FALLBACK (declared triggers): transfer to Aerospace (MDPI) if AIAA J
+desk-rejects, or if review exceeds ~8 months / two rounds without
+convergence — Aerospace remains apt (B3's venue, direct dialogue).
+TERTIARY: JOTA (the 1972 historical loop) only if both propulsion
+venues judge it "too mathematical"; wrong primary audience for design
+impact, right one for the variational identity per se.
+KILL/RE-EVALUATE: if the G5 pass surfaces a Soviet antecedent of the
+identification, novelty wording downgrades (D4 §3 contingency) and the
+format re-evaluates to AIAA J technical note; the certificates and
+Lemma B remain the contribution.
+ - Timeline (D6 90-day plan item 7): outline DONE (this document);
    Lemma-A draft + §3 identification weeks 6-9; Lemma B + quasi-1D
-   demonstrator weeks 9-12; O3 full numerics attach at M1 (A1 engine).
+   demonstrator weeks 9-12; O3 full numerics attach at M1 (A1 engine);
+   arXiv at (G5 ∧ draft); AIAA J submission immediately after.
  - Authorship/acknowledgment of the GENO corpus per repo policy.
 
 ------------------------------------------------------------------------------

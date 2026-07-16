@@ -111,17 +111,30 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 3. [F2-prep/G0] Spike JAX: UN unit process MOC (interior + inverse
    wall) con custom_vjp + regola implicita; gradiente vs differenze
    centrali e vs GENO su un caso TOC (90-day plan item 2).
+4. [F0/G5-2a] Spoglio DIGITALE dei TOC PMM 1957-1990 sull'archivio
+   ufficiale pmm.ipmnet.ru/ru/Issues.php (Item 2a della commissione,
+   rescopato in-house nella S4: autori Kraiko/Shmyglevskii/Tillyaeva/
+   Egoryan + parole chiave §3 della commissione); deliverable
+   query-bounded (indici passati + articoli flaggati per l'Item 2b).
 [FATTO in S3: ex-NEXT-1 OP-11-ε → 1438b1b; ex-NEXT-2 outline P-2 →
-05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08.]
+05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08. FATTO in S4:
+pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).]
 
 ## BLOCCATO / GATE APERTI
 
 - G5 (umano, biblioteca): blocca le SUBMISSION P-1/P-2/P-3, non il
-  lavoro. TESTO DI COMMISSIONING PRONTO
-  (validation/G5_kraiko_pmm_commission.md): invio e destinatario in
-  mano all'utente.
-- Venue P-2: proposta nell'outline (AIAA J / Aerospace / JOTA) —
-  decisione utente.
+  lavoro. PACCHETTO D'INVIO PRONTO (S4): email completa in
+  validation/G5_dispatch_email.md, destinatario web-verificato
+  bibliotecaboaga@uniroma1.it (ILL Boaga; DD anche via NILDE con
+  credenziali IDEM-GARR). RESIDUO UTENTE: solo l'invio dall'account
+  istituzionale (l'assistente non ha canale email autorizzato; per
+  invii diretti futuri autorizzare il connettore Gmail su claude.ai).
+  Item 2a (spoglio TOC PMM) RESCOPATO in-house → NEXT 4.
+- Venue P-2: **DECISA (S4, delega utente)** — AIAA Journal primaria +
+  preprint arXiv a (G5 pass ∧ bozza Lemma A pronta); fallback
+  Aerospace con trigger dichiarati; JOTA terziaria. Decisione di
+  record con evidenze in docs/rde_nozzle_P2_outline.md §7. NON PIÙ
+  BLOCCANTE.
 - ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
   committato): IN ATTESA DI RATIFICA UTENTE — nessuna implementazione
   avviata, per disciplina.
