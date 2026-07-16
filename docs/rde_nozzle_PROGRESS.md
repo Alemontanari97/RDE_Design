@@ -141,6 +141,17 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   Deviazioni dal piano: nessuna; T1/T3 della Sessione 2 anticipati.
   Verdetti: novità query-bounded confermata su tutti i filoni;
   residuo esterno = G5.
+  CODA S1 (stessa conversazione, post-chiusura, interleaved con S2/S3):
+  D2.6 Problema di record (P) — enunciato canonico (S*, δ) con
+  contratto di globalità certificata e massimalità (f51db39; già
+  consumato da S3 per il δ-certificato del diagramma); D7 §5 audit
+  inverso de-biasing — pipeline ri-derivata dal problema nudo, bias
+  residui B1 (schedule, gated G4) e B2 (esposizione) dichiarati
+  (bc73b71); collocazione formale di φ come parametro esterno annidato
+  del generatore (9341fdd); consolidamenti espositivi (aggiunto a
+  quattro livelli; M0 confermato come documento paper-grade unico:
+  teoria Parti I-IV, licenze Parte V, implementazione/testing
+  Parte VI, mappa Parte VII). Sessione S1 DEFINITIVAMENTE CHIUSA.
 
 - **S3 (2026-07-16, "Fase 1: OP-11-ε + P-2 + G5")** — Esecuzione
   T1→T2→T3 con log a ordine totale
