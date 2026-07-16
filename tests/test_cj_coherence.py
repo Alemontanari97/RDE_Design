@@ -55,6 +55,8 @@ def run():
                    TOL['cj_identity_rel']))
     checks.append(('cycles CH4/air gamma_e', _rel(rc['gamma_e_CJ'],
                    r0['gamma_e']), TOL['cj_identity_rel']))
+    checks.append(('CH4/air 1-bar sonic residual', r0['sonic_resid'],
+                   TOL['sonic_resid_max']))
 
     # --- independent solver 1: cj_states (standalone) ----------------------
     rH = cj_state('H2/air', p1=P_ATM, T1=T_STD)
@@ -67,12 +69,16 @@ def run():
     # --- independent solver 2: stechmann det_state vs cj_ref ---------------
     det = stn.det_state('CH4', 1.00, 300.0, P_ATM)
     ref = stn.cj_ref('CH4', 1.00, 300.0, P_ATM)
+    checks.append(('indep det_state U_CJ', _rel(det['Ucj'], ref['U_CJ']),
+                   TOL['cross_solver_rel']))
     checks.append(('indep det_state PR', _rel(det['PR'], ref['p2_p1']),
                    TOL['cross_solver_rel']))
     checks.append(('indep det_state T_CJ', _rel(det['TCJ'], ref['T2']),
                    TOL['cross_solver_rel']))
     checks.append(('indep det_state gamma', _rel(det['gamma'],
                    ref['gamma_e']), TOL['cross_solver_rel']))
+    checks.append(('indep det_state sonic residual', det['sonic_resid'],
+                   TOL['sonic_resid_max']))
 
     # --- golden inline ------------------------------------------------------
     checks.append(('golden U_CJ(H2/air) == 1969.0',

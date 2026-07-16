@@ -142,12 +142,23 @@ def main():
             M_model_g12_from_qtildeR=float(m_cj(1.1 * qt_R_true / 6.0)),
         ))
 
+    # cross-data consistency vs stored cycles_ws.json: both identities are
+    # near-exact (recombined major products; U_CJ/a1 vs stored M_CJ) — a
+    # stale/desynced upstream JSON would show up at percent level
+    assert mdev_q < 1e-6, 'q_major vs B1 drift: %.2e (stale cycles_ws.json?)' % mdev_q
+    assert mdev_M < 1e-6, 'M_CJ recompute drift: %.2e (stale cycles_ws.json?)' % mdev_M
+    # gamma=1.2 family model vs real M_CJ, fuel-air class (the md quotes this)
+    dev_air = max(abs(r['M_model_g12_from_qtildeR'] / r['M_CJ'] - 1) * 100
+                  for r in rows if 'air' in r['label'])
+    assert dev_air < 5.0, 'gamma=1.2 family claim broken: %.2f%% >= 5%%' % dev_air
+
     # family-figure correspondence (gamma = 1.2 curves, axis q_c/(R T1))
-    fam = {}
+    FAM_HALFWIDTH = 5.0   # nearest-bin half-width = half the Fig. A22 label
+    fam = {}              # spacing (labels 10,20,30,40), NOT a physics knob
     for q in (10, 20, 30, 40):
         near = sorted(rows, key=lambda r: abs(r['qtilde_R'] - q))
         fam[str(q)] = [dict(label=r['label'], qtilde_R=round(r['qtilde_R'], 1))
-                       for r in near[:2] if abs(r['qtilde_R'] - q) < 5.0]
+                       for r in near[:2] if abs(r['qtilde_R'] - q) < FAM_HALFWIDTH]
 
     out = dict(
         meta=dict(
@@ -200,7 +211,8 @@ def main():
              'Σᵢ Y_i,2 Δh°f,i(T_ref); exactly q_c(T₁) = q° + ∫_{T_ref}^{T₁}(c_p,react − '
              'c_p,prod)dT′, so the q_c of this table (T₁ = 300 K) differs from q° only by '
              'the sensible shift q° − q_c = −0.0076 % (H₂–air) / +0.0023 % (CH₄–air) — '
-             'percent-grade only at preheated T₁ (700 K: +1.58 %/−0.30 %); the 300 K values '
+             'percent-grade only at preheated T₁ (700 K, same q°−q_c convention: '
+             '−1.58 %/+0.30 %); the 300 K values '
              'below are unaffected.')
     L.append('2. **Non-dimensionalization.** The papers use q̃ = q_c/(c_p T₁) on the classical '
              'Hugoniot and in the FJ closed form (Eqs. A18/A21, B2–B3), '
@@ -239,7 +251,8 @@ def main():
     L.append('## Traceability of the Fig. A22 family (`fig_cycle_family`, γ = 1.2)')
     L.append('')
     L.append('Curve labels are q_c/RT₁; nearest stoichiometric mixtures by their actual '
-             'q_c/RT₁ (γ=1.2 model reproduces their M_CJ within ≈5% for fuel–air):')
+             f'q_c/RT₁ (γ=1.2 model reproduces their M_CJ to {dev_air:.1f}% max across '
+             'fuel–air, asserted <5% in this script):')
     L.append('')
     for q in (10, 20, 30, 40):
         hits = fam[str(q)]

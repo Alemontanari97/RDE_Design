@@ -48,6 +48,25 @@ def run():
           '%.3f' % C['CH4/air']['eta_FJ'] == '0.300',
           '(%.6f)' % C['CH4/air']['eta_FJ'])
 
+    # ---- registry: the 3 redundant encodings of every mixture must agree --
+    from src.common import mixtures
+    try:
+        nmix = mixtures.selfcheck()
+        check('mixtures.selfcheck: X <-> fuel/ox <-> xy, %d entries' % nmix, True)
+    except AssertionError as e:
+        check('mixtures.selfcheck: X <-> fuel/ox <-> xy', False, str(e))
+
+    # ---- guard consistency: _prop must accept every Table-1 state ---------
+    from src.thrust.stechmann_nozzle import _prop, STATE_LIST
+    rej = []
+    for kind, prop, pcp, phi in STATE_LIST:
+        try:
+            _prop(prop, phi)
+        except (KeyError, ValueError):
+            rej.append((prop, phi))
+    check('_prop accepts all %d Table-1 states' % len(STATE_LIST), not rej,
+          repr(rej) if rej else '')
+
     # ---- 18/18: stechmann_nozzle validate (reads cached states) -----------
     from src.thrust import stechmann_nozzle as stn
     buf = io.StringIO()
@@ -55,6 +74,8 @@ def run():
         stn.validate()
     check("stechmann validate -> '18/18 rows PASS'",
           '18/18 rows PASS' in buf.getvalue())
+    check("stechmann validate -> '18/18 rows FULL-OPT PASS'",
+          '18/18 rows FULL-OPT PASS' in buf.getvalue())
 
     # ---- 8/8: tables V&V verdicts ------------------------------------------
     from src.thrust import tables

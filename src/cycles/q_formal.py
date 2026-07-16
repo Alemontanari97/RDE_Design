@@ -45,7 +45,7 @@ sys.path.insert(0, PROJ)                               # vendored sdtoolbox/
 import cantera as ct
 from sdtoolbox.postshock import PostShock_eq
 
-T1, P1, TREF = 300.0, 1e5, 298.15
+from src.common.constants import T_STD as T1, P_REF_BAR as P1, T_REF as TREF
 T_EVAL = (300.0, 700.0)                        # sensible-term drift diagnostic
 MECH = 'gri30.yaml'
 CASES = [

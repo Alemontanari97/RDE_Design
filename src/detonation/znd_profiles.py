@@ -57,6 +57,15 @@ if __name__ == '__main__':
         gas = PostShock_fr(cj, P1, T1, q, mech)
         z = zndsolve(gas, gas1, cj, relTol=1e-5, absTol=1e-9, t_end=tend,
                      max_step=mstep, advanced_output=True, Method='LSODA')
+        # completeness of the tuned (t_end, max_step) window — without these,
+        # an insufficient t_end silently yields the vendored exo=0 sentinel
+        assert z['exo_len_ZND'] > 0, \
+            '%s: exothermic FWHM never closed within t_end=%g s - increase ' \
+            't_end (vendored sentinel exo_len_ZND=0)' % (nm, tend)
+        assert z['thermicity'][-1] < 0.01 * max(z['thermicity']), \
+            '%s: thermicity tail %.2e of peak at t_end (>1%%): profile not ' \
+            'relaxed - increase t_end' % (nm, z['thermicity'][-1] /
+                                          max(z['thermicity']))
         rec = dict(cj=cj,
                    x=(z['distance']*1000).tolist(), T=z['T'].tolist(),
                    P=(z['P']/P1).tolist(),

@@ -64,6 +64,13 @@ def eq_hugoniot_speed(gas, v2, p1, v1, h1, Tlo=1200., Thi=6500.):
         gas.TD = T2, 1.0/v2
         gas.equilibrate('TV')
         return gas.enthalpy_mass - h1 - 0.5*(gas.P - p1)*(v1 + v2)
+    ra, rb = resid(Tlo), resid(Thi)
+    if ra * rb > 0:
+        raise RuntimeError(
+            'eq_hugoniot_speed: Hugoniot residual does not change sign on '
+            '[%g, %g] K (resid %g / %g) at v2/v1 = %.3f - mixture outside '
+            'the validated bracket; widen Tlo/Thi explicitly'
+            % (Tlo, Thi, ra, rb, v2 / v1))
     T2 = brentq(resid, Tlo, Thi, xtol=1e-6, rtol=1e-10)
     gas.TD = T2, 1.0/v2
     gas.equilibrate('TV')
@@ -87,6 +94,15 @@ def CJ_state(mech, X, T1, P1):
     res = minimize_scalar(U_of_r, bounds=(1.35, 2.4), method='bounded',
                           options={'xatol':1e-6})
     rCJ = res.x; UCJ = res.fun
+    if UCJ >= 1e9 * 0.99:
+        raise RuntimeError('CJ_state: every Hugoniot trial failed the '
+                           'detonation-branch guard (sentinel minimum) for '
+                           'X=%r - not a detonable state?' % X)
+    if not 1.35 + 1e-3 < rCJ < 2.4 - 1e-3:
+        raise RuntimeError('CJ_state: wave-speed minimum sits on the '
+                           'compression-ratio bracket edge (r=%.4f, bounds '
+                           '1.35-2.4) - widen the bounds for this mixture'
+                           % rCJ)
     v2 = v1/rCJ
     # recover full CJ state
     def resid(T2):
@@ -117,8 +133,13 @@ def vN_state(mech, X, T1, P1, U):
         h2 = h1 + 0.5*m*m*(v1*v1 - v2*v2)
         gas.HP = h2, p2            # frozen composition (no equilibrate)
         v2n = 1.0/gas.density
-        if abs(v2n-v2) < 1e-12: v2=v2n; break
+        dv = abs(v2n - v2)
+        if dv < 1e-12: v2=v2n; break
         v2 = v2n
+    else:
+        raise RuntimeError('vN_state: fixed point not converged in 200 '
+                           'iterations (last dv = %.2e) at U = %.1f m/s'
+                           % (dv, U))
     return dict(pvN_p1=gas.P/p1, TvN=gas.T, PvN=gas.P, rho_ratio=v1/v2)
 
 if __name__ == '__main__':

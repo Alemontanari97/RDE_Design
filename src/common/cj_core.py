@@ -79,7 +79,13 @@ def cj_state(mix, p1=P_ATM, T1=T_STD, mech=None, return_gas=False):
     key = None
     fuel = None
     if isinstance(mix, str) and (':' not in mix):         # registry key/alias
-        key = mixtures.resolve(mix)
+        try:
+            key = mixtures.resolve(mix)
+        except KeyError:
+            raise KeyError(
+                'cj_state: %r is not a registry mixture key. For a raw '
+                'single-species composition write %r (a Cantera X string) '
+                'and pass mech= explicitly.' % (mix, mix + ':1'))
         m = mixtures.MIXTURES[key]
         X = m['X']
         fuel = m['fuel']

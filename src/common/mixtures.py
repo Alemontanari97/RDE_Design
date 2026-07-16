@@ -90,3 +90,36 @@ def sk_cases_view():
     (the SKREP:* replicas are added by sk_models itself)."""
     return {k: dict(mech=m['mech'], fuel=m['fuel'], ox=m['ox'], K=m['K'])
             for k, m in MIXTURES.items()}
+
+
+def selfcheck():
+    """Assert the three redundant encodings of every entry agree:
+    X string  <->  fuel/ox split at phi=1  <->  xy=(x, y, n_fuel).
+
+    Pure arithmetic (no Cantera): for CxHy fuel, stoichiometric O2 is
+    n_fuel*(x + y/4) and air carries N2 = 3.76*O2. Guards against a silent
+    desync when an entry is edited (the MIX-2 failure class); called by
+    tests/test_golden.py."""
+    for k, m in MIXTURES.items():
+        comp = {s.strip().upper(): float(v)
+                for s, v in (t.split(':') for t in m['X'].split(','))}
+        x, y, nf = m['xy']
+        fuel = m['fuel'].upper()
+        expected = ('H2' if x == 0 else
+                    'C%sH%d' % (x if x > 1 else '', y))
+        assert fuel == expected, '%s: fuel %r != xy formula %s' % (k, fuel, expected)
+        assert comp.get(fuel) == nf, '%s: X fuel moles %r != n_fuel %r' \
+            % (k, comp.get(fuel), nf)
+        nO2 = nf * (x + y / 4.0)
+        assert abs(comp.get('O2', 0.0) - nO2) < 1e-9, \
+            '%s: X O2 %r != stoichiometric %r' % (k, comp.get('O2'), nO2)
+        is_air = 'N2' in {s.split(':')[0].strip().upper()
+                          for s in m['ox'].split(',')}
+        if is_air:
+            assert abs(comp.get('N2', 0.0) - round(3.76 * nO2, 6)) < 5e-3, \
+                '%s: X N2 %r != 3.76*O2 = %r' % (k, comp.get('N2'), 3.76 * nO2)
+            assert m['K'] == 1.02, '%s: air case must carry K=1.02' % k
+        else:
+            assert 'N2' not in comp, '%s: fuel-O2 case contains N2' % k
+            assert m['K'] == 1.54, '%s: O2 case must carry K=1.54' % k
+    return len(MIXTURES)

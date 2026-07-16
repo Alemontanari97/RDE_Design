@@ -392,13 +392,16 @@ def three_cycles(label, X, mech, T1=300.0, P1=1e5, pic=1.0,
     qc, h6, v6 = _heat_of_combustion(mech, X, T1, P1)
     paths = {'comp': [(v1, P1)]}
     # state 2: frozen isentropic precompression of the reactants (B step b)
+    if pic < 1.0:
+        raise ValueError('pic = %g < 1: the cycle model precompresses the '
+                         'reactants; an expansion to state 2 would leave an '
+                         'inconsistent (T2, P2) pair' % pic)
     P2 = pic * P1
     if pic > 1.0:
         for P in np.geomspace(P1, P2, 25):
             gas.SP = s1, P                      # composition frozen: no reaction
             if want_paths: paths['comp'].append((1.0 / gas.density, gas.P))
     T2, v2 = gas.T, 1.0 / gas.density
-    a2_fr = gas.sound_speed
     res = dict(label=label, X=X, mech=os.path.basename(mech), T1=T1, P1=P1,
                pic=pic, T2=T2, qc_MJkg=qc / 1e6, v1=v1, v2=v2, v6=v6)
     # --- Fickett-Jacobs: CJ detonation into state 2 (B steps c-e) ---
@@ -585,7 +588,23 @@ def stage_validate():
         row(f'η_FJ(π_c=1),  qc/RT1={q} (A22)', r1, A.get(f'eta_pic1_q{q}'), 0.04, 'abs', '*')
         row(f'η_FJ(π_c=10), qc/RT1={q} (A22)', r10, A.get(f'eta_pic10_q{q}'), 0.04, 'abs', '*')
         row(f'η_FJ(π_c=50), qc/RT1={q} (A22)', r50, A.get(f'eta_pic50_q{q}'), 0.04, 'abs', '*')
-    row('Brayton η(π_c=10), γ=1.2 (A59)', 1 - 10**(-1 / 6.), eta_brayton_1g(10, 1.2), 1e-9, 'abs')
+    row('Brayton η(π_c=10), γ=1.2 (A59) [algebraic identity]',
+        1 - 10**(-1 / 6.), eta_brayton_1g(10, 1.2), 1e-9, 'abs')
+    # A21/A40 quadratics vs the closed-form CJ Mach numbers — genuinely
+    # independent cross-checks (different algebra paths): the Rayleigh-
+    # Hugoniot tangency at M1 = M_CJ forces the double root M2^2 -> 1, and
+    # just below M_CJ the detonation branch must lose its real roots.
+    Mdet_ = cj_mach(4.0, 1.4)[0]
+    xlo_, xhi_ = hugoniot_M2sq(Mdet_ * (1 + 1e-6), 4.0, 1.4)
+    row('A21 quadratic tangency at M_CJ (q̃=4, γ=1.4): M2²→1',
+        1.0, 0.5 * (xlo_ + xhi_), 5e-3, 'abs')
+    brow('A21: no real root just below M_CJ (tangency)',
+         bool(np.isnan(hugoniot_M2sq(Mdet_ * (1 - 1e-6), 4.0, 1.4)[0])),
+         'B2 closed form vs A21 quadratic')
+    Mst_ = stag_cj_mach(0.8, 1.4)[0]
+    ylo_, yhi_ = stag_hugoniot_M2sq(Mst_ * (1 + 1e-6), 0.8, 1.4)
+    row('A40 quadratic tangency at M_CJ (q̃t=0.8, γ=1.4): M2²→1',
+        1.0, 0.5 * (ylo_ + yhi_), 5e-3, 'abs')
     section[0] = 'FJ cycle, equilibrium chemistry (300 K, 1 bar, φ=1) — spec §3.3 [fig ±0.015]'
     def fjeta(k): return fj.get(k, {}).get('eta_FJ')
     row('η_FJ H2-air (paper 0.28-0.29)', 0.285, fjeta('H2/air'), 0.02, 'abs')
@@ -783,6 +802,11 @@ def stage_plot():
     #    Fig. B2/A25). Display mixture: CH4-air (lecture standard fuel); the
     #    papers' C3H8-air loops remain in cycles_ws.json['pv_loops_pic5'] as
     #    the validation anchor (dual basis declared in figs/figs_manifest.md).
+    for _k in ('pv_loops_pic5_CH4', 'sweep_CH4_air'):
+        if _k not in d:
+            raise RuntimeError("plot stage needs cycles_ws.json[%r] - run "
+                               "'sweep --mix CH4' first ('all' orders the "
+                               "stages correctly)" % _k)
     pv = d['pv_loops_pic5_CH4']; st = pv['states']
     # von Neumann state of the ZND wave: frozen (non-reactive) post-shock state
     # of the compressed reactants (state 2) behind a shock travelling at the
@@ -802,9 +826,10 @@ def stage_plot():
     ray = lambda v: (P2 + mflx2 * (st['v2'] - v)) * 1e-5     # Rayleigh line [bar]
     res_vN = abs(P_vN * 1e-5 - ray(v_vN)) / (P_vN * 1e-5)
     r_vN_CJ = P_vN * 1e-5 / st['P_CJ_bar']          # frozen-spike / CJ pressure
-    assert res_vN < 0.01 and 1.4 < r_vN_CJ < 2.2, \
+    assert res_vN < 0.01 and 1.6 <= r_vN_CJ <= 2.0, \
         (f'vN off the Rayleigh line (residual {res_vN:.2%}) or p_vN/p_CJ = '
-         f'{r_vN_CJ:.2f} outside the expected 1.6-2 window for CJ detonations')
+         f'{r_vN_CJ:.2f} outside the expected 1.6-2.0 window for CJ '
+         f'detonations (same window as the validate row 1.8±0.2)')
     save_section('pv_loops_pic5_CH4', {'vN': {
         'v': v_vN, 'P_bar': P_vN / 1e5, 'T': gvn.T, 'U_CJ': p5['U_CJ'],
         'p_vN_over_p2': P_vN / P2, 'p_vN_over_p_CJ': r_vN_CJ,
