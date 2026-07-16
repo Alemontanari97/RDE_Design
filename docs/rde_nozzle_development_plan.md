@@ -172,7 +172,10 @@ P-2 (TIME-SENSITIVE, can precede or accompany P-1): the P2' bridge
     Lozano-Ponsin 2025) and no bridge; Lozano-Ponsin built the 2-D bank
     in 2025, so the identification is at risk of being scooped. Cheap:
     mostly assembly + the reverse-AD = adjoint-sweep statement + O3/E
-    numerics from M1.
+    numerics from M1. [OUTLINE OF RECORD 2026-07-16, [F1/P-2]:
+    docs/rde_nozzle_P2_outline.md — statement (Lemmas A/B with rigor
+    classes and falsifiers), banks, O3 oracle plan, declared risks,
+    venue/timeline proposal (user decision pending).]
 P-3 (after M3): first certified cycle-averaged optima (N1/N2 numbers
     with dual-route certificates and bound gaps; truncated plug vs
     peak/mean baselines and vs Paxson parametric benchmark).
