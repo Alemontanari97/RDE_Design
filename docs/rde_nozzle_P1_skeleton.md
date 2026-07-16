@@ -9,6 +9,12 @@ writing is not. Sources of record: M0 (all theorem statements + proofs;
 in conflict, M0 wins), D3 (rigor ledger, §10quater), D2 (citations,
 §b0 corpus), D4 (novelty verdicts), D7 (declared biases B1/B2).
 
+DRAFT TEXT STATUS: sections §2 and §4 have FULL TEXT OF RECORD in
+docs/rde_nozzle_P1_sections_2_4.md (2026-07-16, session S8, rules
+(a)-(e) applied per subsection, claim-map cross-check included; §4.5
+novelty wording CONDITIONAL on Kraiko-Osipov PMM 34(6) 1970 full text,
+D4 §3 contingency armed). Other sections: skeleton only.
+
 Rigor legend as in M0: THEOREM / THEOREM* (within a declared closure) /
 SCHEMA / CONJECTURE / PRACTICE. Every claim in this paper carries a
 class, a falsifier, and an EXECUTABLE IN-REPO CARRIER (test group of
