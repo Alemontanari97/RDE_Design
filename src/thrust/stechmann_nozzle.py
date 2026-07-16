@@ -72,6 +72,11 @@ Step 5 - Area-ratio optimization (this script's contribution).
       i.e. the optimum bell is perfectly expanded at the TIME-mean chamber
       pressure Pcp*(1+DC).  |eps_golden - eps_analytic| is reported
       (< 1e-3 in all rows) and the analytic root is taken as eps_opt.
+      Existence/uniqueness/globality PROVED (Euler momentum lemma + NPR
+      monotonicity; the full Eq. 4-15 averaging machinery is retained, the
+      time mean emerges from mdot*cstar = Pc*A_t exactly):
+      validation/bell_optimality_proof.md; executable verification incl.
+      wrong-averaging discrimination: tests/test_bell_optimality.py.
   (c) AEROSPIKE: Isp(eps) is strictly increasing while any instant of the
       cycle is exit-area-limited (dCF/deps = (Pe-Pa)/Pc > 0 under Eq. 12)
       and exactly constant once even the cycle peak is fully expanded, so
@@ -94,9 +99,27 @@ Step 6 - Validation against Table 1 (all 18 rows).
   thermo file; H/C = 2.17 vs ~1.95 of RP-1, NASA7 extrapolated 300->200 K):
   the coarsest surrogate in the set, flagged with its own caveat.
 
+Step 7 - FULL-DOF optimization (optfull): joint (phi, eps) optimum per
+  configuration with NOTHING inherited from Table 1.  INPUT/DOF map:
+    specifications : propellant, Pcp (feed class), Pa (ambient), Ti = 200 K,
+                     vacuum geometric cap eps_max = 15/150 - design givens;
+    true DOFs      : phi (mixture) and eps (nozzle area ratio) - both
+                     optimized here;
+    eliminated     : Pinit (feed-equivalence fixed point, Sec. III), tc
+                     (cancels in the mass-weighted Isp), Pe(t) (slaved to
+                     NPR(eps) or Pa).  No other free quantity exists.
+  Inner eps at each phi is closed form (the Step-5 identities, certified
+  there by sweep + golden section); outer phi is maximized on the 0.01
+  lattice (= Table-1 display resolution): auto-extending coarse seed grid
+  (result independent of the bracket), parabolic vertex seed, lattice
+  hill-climb; certificate: both 0.01-neighbours strictly lower.  Table 1's
+  (phi*, eps*, Isp*) are used ONLY as validation targets; superiority
+  Isp(phi*_model) >= Isp(phi_paper) is asserted per row.
+
 Usage:
   python3 stechmann_nozzle.py states [budget_s]  # chunked, resumable
   python3 stechmann_nozzle.py optimize           # -> data/st_nozzle_opt.json
+  python3 stechmann_nozzle.py optfull            # joint (phi, eps) optimum
   python3 stechmann_nozzle.py validate           # -> data/st_opt_validation.md
   python3 stechmann_nozzle.py fig                # -> figs/st_fig_nozzle_opt.png
 Cache/results: data/st_nozzle_opt.json (states + optimization + validation).
@@ -149,6 +172,17 @@ TABLE1 = [
 NQ = 4001                 # quadrature grid (Step 4); convergence checked vs 16001
 XTOL = {20: 1e-3, 200: 5e-3}                 # golden-section tolerance on eps
 PASS_ISP, PASS_EPS_REL, PASS_EPS_ABS, PASS_BEN = 5.0, 10.0, 0.25, 3.0
+# ---- Step 7 (full-DOF) knobs: outer phi lattice and seed grids -------------
+PHI_STEP = 0.01           # outer-DOF lattice = Table-1 phi display resolution
+PHI_LO, PHI_HI = 0.60, 3.50   # hard walls (detonable range; _prop guard)
+PHI_SEED = {('H2', 'det'): (2.20, 3.44, 0.20),   # SEED grids only: the argmax
+            ('H2', 'cp'): (1.60, 2.90, 0.18),    # auto-extends past any edge,
+            ('CH4', 'det'): (1.10, 2.00, 0.15),  # so phi* does NOT depend on
+            ('CH4', 'cp'): (1.05, 1.80, 0.15),   # these brackets
+            ('RP-1', 'det'): (1.10, 2.00, 0.15),
+            ('RP-1', 'cp'): (1.05, 1.80, 0.15)}
+EPS_VAC = {20: 15.0, 200: 150.0}   # vacuum rows: geometric spec (no finite opt)
+PASS_PHI = 0.10           # |phi_model - phi_paper| tolerance (flat optimum)
 
 
 def dkey(prop, Pcp, phi):
@@ -175,10 +209,10 @@ def _prop(prop, phi):
             'unknown propellant %r — known: %s. Register new ones first, e.g. '
             "PROPS['C2H4'] = ('data/gri30_CHO_eq.yaml', 'C2H4', 'O2')"
             % (prop, ', '.join(sorted(PROPS))))
-    if not 0.2 <= phi <= 3.0:
+    if not 0.2 <= phi <= 3.5:
         raise ValueError(
-            'phi = %g outside 0.2-3.0: the CJ/CEA equilibria are only '
-            'meaningful near detonable compositions (Table 1 spans 0.44-1.26)'
+            'phi = %g outside 0.2-3.5: the CJ/CEA equilibria are only '
+            'meaningful near detonable compositions (Table 1 spans 1.29-3.28)'
             % phi)
     return PROPS[prop]
 
@@ -244,7 +278,7 @@ def det_state(prop, phi, Ti, Pinit):
     R = ct.gas_constant / work.mean_molecular_weight
     return dict(PR=float(P2 / Pinit), TCJ=float(T2), gamma=float(g),
                 M=float(work.mean_molecular_weight), R=float(R),
-                cstar0=float(cstar_fn(g, R, T2)),
+                cstar0=float(cstar_fn(g, R, T2)), Ucj=float(Ucj),
                 sonic_resid=float(abs(Ucj / xstar / a - 1.0)))
 
 
@@ -284,6 +318,15 @@ def matched(prop, phi, Ti, Pcp_atm, tol=0.01, itmax=5):
         Pin = Pnew
         if conv < tol:
             break
+    if conv > tol:
+        raise RuntimeError(
+            'matched(%s, phi=%.2f, Pcp=%g atm): feed-equivalence fixed point '
+            'NOT converged (conv=%.3g > tol=%g after %d CJ evals)'
+            % (prop, phi, Pcp_atm, conv, tol, nev))
+    from src.common.constants import TOL as _TOL
+    assert det['sonic_resid'] < _TOL['sonic_resid_max'], \
+        'CJ sonicity violated: |w2/a_eq-1|=%.2e >= %g (%s phi=%.2f)' \
+        % (det['sonic_resid'], _TOL['sonic_resid_max'], prop, phi)
     g = det['gamma']; k = (g + 1) / (2 * g)
     DC = det['cstar0'] / cpm['cstar'] * Ik(det['PR'], 1.0) / Ik(det['PR'], k) - 1.0
     chok = (P0 / det['PR'] / ATM) / ((g + 1) / 2) ** (g / (g - 1))  # min Pc/Pa*
@@ -392,6 +435,177 @@ def spike_opt(isp_of_eps, Pmax, Pa, g, Pcp):
                 plateau_flatness=plateau, gain_last2pct=below), grid, vals
 
 
+# ------------------------------------------------ Step 7: full-DOF optimum
+def _state_at(D, kind, prop, Pcp, phi):
+    """State cache on the 0.01 phi lattice; dumps after each new state so an
+    interrupted optfull run resumes for free (same keys as states())."""
+    phi = round(phi, 2)
+    S = D['states']
+    k = dkey(prop, Pcp, phi) if kind == 'det' else ckey(prop, Pcp, phi)
+    if k not in S:
+        S[k] = (matched(prop, phi, 200, Pcp) if kind == 'det'
+                else cp_state(prop, phi, 200, Pcp))
+        dump(D)
+    return S[k]
+
+
+def isp_at_phi(D, kind, prop, Pcp, noz, Pa, phi):
+    """Inner problem at fixed phi, closed form (Step-5 certified identities):
+    bell -> perfect expansion at mean(Pc); spike -> saturation knee at Pmax;
+    vacuum -> fixed geometric eps_max.  Returns (Isp, eps*)."""
+    if noz not in ('Bell', 'Aerospike', 'N/A'):
+        raise ValueError("nozzle %r: expected 'Bell', 'Aerospike' or 'N/A'"
+                         % (noz,))
+    if noz == 'N/A' and Pa != 0.0:
+        raise ValueError('N/A rows are the vacuum configuration: Pa must be '
+                         '0, got %g Pa' % Pa)
+    s = _state_at(D, kind, prop, Pcp, phi)
+    g = s['gamma']
+    if kind == 'det':
+        if noz == 'Bell':
+            e = eps_of_npr(s['P0'] * Ik(s['PR'], 1.0) / Pa, g)
+            return cycle_isp(s, lambda Pc: cf_bell(g, e, Pc, Pa)), e
+        if noz == 'Aerospike':
+            e = eps_of_npr(s['P0'] / Pa, g)
+            return cycle_isp(s, lambda Pc: cf_spike(g, e, Pc, Pa)), e
+        e = EPS_VAC[Pcp]
+        return cycle_isp(s, lambda Pc: cf_bell(g, e, Pc, 0.0)), e
+    if noz in ('Bell', 'Aerospike'):   # CP spike plateau == CP bell max (knee)
+        e = eps_of_npr(Pcp * ATM / Pa, g)
+        return float(cf_bell(g, e, Pcp * ATM, Pa)) * s['cstar'] / G0, e
+    e = EPS_VAC[Pcp]
+    return float(cf_bell(g, e, Pcp * ATM, 0.0)) * s['cstar'] / G0, e
+
+
+def phi_opt(D, kind, prop, Pcp, noz, Pa):
+    """Outer DOF: maximize Isp over phi on the PHI_STEP lattice.
+    Coarse seed grid -> auto-extension while the argmax sits on an edge
+    (seed-independence) -> parabolic vertex -> lattice hill-climb.
+    Certificate: both 0.01-neighbours lower (local-max proof at the paper's
+    own phi resolution); 'interior' flags that neither hard wall binds."""
+    lo, hi, st = PHI_SEED[(prop, kind)]
+    F = {}
+
+    def ev(p):
+        p = round(p, 2)
+        if p not in F:
+            F[p] = isp_at_phi(D, kind, prop, Pcp, noz, Pa, p)[0]
+        return F[p]
+
+    for p in np.arange(lo, hi + st / 2, st):
+        ev(p)
+    for _ in range(24):
+        pts = sorted(F)
+        i = int(np.argmax([F[p] for p in pts]))
+        if i == 0 and pts[0] - st >= PHI_LO - 1e-9:
+            ev(pts[0] - st)
+        elif i == len(pts) - 1 and pts[-1] + st <= PHI_HI + 1e-9:
+            ev(pts[-1] + st)
+        else:
+            break
+    pa_, pb, pc_ = pts[max(i - 1, 0)], pts[i], pts[min(i + 1, len(pts) - 1)]
+    ya, yb, yc = F[pa_], F[pb], F[pc_]
+    den = (pa_ - pb) * (pa_ - pc_) * (pb - pc_)
+    A = (pc_ * (yb - ya) + pb * (ya - yc) + pa_ * (yc - yb)) / den if den else 0.0
+    B = (pc_ ** 2 * (ya - yb) + pb ** 2 * (yc - ya)
+         + pa_ ** 2 * (yb - yc)) / den if den else 0.0
+    v = -B / (2 * A) if A < 0 else pb
+    ev(min(max(round(v, 2), PHI_LO), PHI_HI))
+    cur = max(F, key=F.get)
+    for _ in range(300):
+        up, dn = round(cur + PHI_STEP, 2), round(cur - PHI_STEP, 2)
+        if up <= PHI_HI and ev(up) > F[cur]:
+            cur = up
+        elif dn >= PHI_LO and ev(dn) > F[cur]:
+            cur = dn
+        else:
+            break
+    nb = [round(cur - PHI_STEP, 2), round(cur + PHI_STEP, 2)]
+    interior = nb[0] >= PHI_LO and nb[1] <= PHI_HI
+    cert = interior and all(ev(p) < F[cur] for p in nb)   # STRICT, as documented
+    isp, eps = isp_at_phi(D, kind, prop, Pcp, noz, Pa, cur)
+    gap = F[cur] - max(ev(p) for p in nb if PHI_LO <= p <= PHI_HI)
+    # executable unimodality scan over EVERY evaluated phi (global-in-phi
+    # evidence; persisted so the claim in the proof doc is reproducible)
+    pts = sorted(F)
+    vals = [F[p] for p in pts]
+    nloc = sum(1 for j in range(len(pts))
+               if (j == 0 or vals[j] > vals[j - 1]) and
+                  (j == len(pts) - 1 or vals[j] > vals[j + 1]))
+    return dict(phi=cur, Isp=isp, eps=eps, nphi=len(F),
+                interior=bool(interior), lattice_certified=bool(cert),
+                lattice_gap=float(gap), n_local_max=int(nloc),
+                unimodal=bool(nloc == 1),
+                grid=[[float(p), float(F[p])] for p in pts])
+
+
+def optimize_full():
+    """Step 7: joint (phi, eps) optimum for every Table-1 configuration.
+    Paper values enter ONLY as validation targets and for the per-row
+    superiority check Isp(phi*_model) >= Isp(phi_paper)."""
+    D = load()
+    rows = []
+    for (prop, Pcp, noz, Pa_atm, iD, phD, eD, iC, phC, eC, ben) in TABLE1:
+        Pa = Pa_atm * ATM
+        od = phi_opt(D, 'det', prop, Pcp, noz, Pa)
+        oc = phi_opt(D, 'cp', prop, Pcp, noz, Pa)
+        supd = od['Isp'] - isp_at_phi(D, 'det', prop, Pcp, noz, Pa, phD)[0]
+        supc = oc['Isp'] - isp_at_phi(D, 'cp', prop, Pcp, noz, Pa, phC)[0]
+        mben = 100.0 * (od['Isp'] / oc['Isp'] - 1.0)
+        row = dict(prop=prop, Pcp=Pcp, nozzle=noz, Pa=Pa_atm,
+                   paper=dict(Isp_det=iD, phi_det=phD, eps_det=eD,
+                              Isp_cp=iC, phi_cp=phC, eps_cp=eC, benefit=ben),
+                   full=dict(det=od, cp=oc, benefit=mben,
+                             sup_det=supd, sup_cp=supc),
+                   delta=dict(dphi_det=od['phi'] - phD, dphi_cp=oc['phi'] - phC,
+                              dIsp_det=100 * (od['Isp'] / iD - 1),
+                              dIsp_cp=100 * (oc['Isp'] / iC - 1),
+                              deps_det=100 * (od['eps'] / eD - 1),
+                              deps_cp=100 * (oc['eps'] / eC - 1),
+                              dben=mben - ben))
+        ok = (abs(row['delta']['dphi_det']) <= PASS_PHI + 1e-9 and
+              abs(row['delta']['dphi_cp']) <= PASS_PHI + 1e-9 and
+              abs(row['delta']['dIsp_det']) <= PASS_ISP and
+              abs(row['delta']['dIsp_cp']) <= PASS_ISP and
+              abs(row['delta']['dben']) <= PASS_BEN and
+              supd >= -1e-6 and supc >= -1e-6 and
+              od['lattice_certified'] and oc['lattice_certified'] and
+              od['unimodal'] and oc['unimodal'])
+        if noz != 'N/A':
+            ok &= ((abs(row['delta']['deps_det']) <= PASS_EPS_REL or
+                    abs(od['eps'] - eD) <= PASS_EPS_ABS) and
+                   (abs(row['delta']['deps_cp']) <= PASS_EPS_REL or
+                    abs(oc['eps'] - eC) <= PASS_EPS_ABS))
+        row['status'] = 'PASS' if ok else 'FAIL'
+        rows.append(row)
+        print('%-5s %3d %-9s det phi %.2f (pap %.2f) %6.1f s @eps %6.2f | '
+              'cp phi %.2f (pap %.2f) %6.1f @%6.2f | ben %5.2f (pap %4.1f) '
+              '| sup %+.1e/%+.1e %s'
+              % (prop, Pcp, noz, od['phi'], phD, od['Isp'], od['eps'],
+                 oc['phi'], phC, oc['Isp'], oc['eps'], mben, ben,
+                 supd, supc, row['status']), flush=True)
+    D['full_rows'] = rows
+    D['meta_full'] = dict(
+        dof_map='specs: prop, Pcp, Pa, Ti=200K, eps_max(vac)=15/150; '
+                'DOFs: phi (outer, 0.01 lattice) + eps (inner, closed form); '
+                'eliminated: Pinit (matching fixed point), tc (cancels), '
+                'Pe(t) (slaved to NPR(eps) or Pa)',
+        method='auto-extending coarse phi grid (seed-independent) -> '
+               'parabolic vertex -> lattice hill-climb; certificate: both '
+               '0.01-neighbours lower; inner eps closed form (bell '
+               'perfect-expansion identity / spike saturation knee / fixed '
+               'eps_max in vacuum); superiority vs paper phi asserted',
+        phi_step=PHI_STEP, phi_walls=[PHI_LO, PHI_HI],
+        seed_grids={'%s|%s' % k: v for k, v in PHI_SEED.items()},
+        pass_criteria=dict(phi_abs=PASS_PHI, Isp_pct=PASS_ISP,
+                           eps_pct=PASS_EPS_REL, eps_abs=PASS_EPS_ABS,
+                           benefit_pt=PASS_BEN))
+    dump(D)
+    npass = sum(1 for r in rows if r['status'] == 'PASS')
+    print('optfull: %d/%d rows PASS -> %s' % (npass, len(rows), CACHE),
+          flush=True)
+
+
 def optimize():
     """Step 5 for all Table-1 rows + fixed-phi anchors -> cache['rows' etc.]."""
     D = load(); S = D['states']
@@ -401,7 +615,7 @@ def optimize():
         s = S[dkey(prop, Pcp, phD)]
         c = S[ckey(prop, Pcp, phC)]
         gd, gc = s['gamma'], c['gamma']
-        Pmean = s['P0'] * ATM / ATM * Ik(s['PR'], 1.0)          # time-mean Pc [Pa]
+        Pmean = s['P0'] * Ik(s['PR'], 1.0)                      # time-mean Pc [Pa]
         row = dict(prop=prop, Pcp=Pcp, nozzle=noz, Pa=Pa_atm,
                    paper=dict(Isp_det=iD, phi_det=phD, eps_det=eD,
                               Isp_cp=iC, phi_cp=phC, eps_cp=eC, benefit=ben),
@@ -425,6 +639,7 @@ def optimize():
             cpbell = bell_opt(lambda e: float(cf_bell(gc, e, Pcp * ATM, Pa))
                               * c['cstar'] / G0, Pcp * ATM, Pa, gc, Pcp)[0]
             oc['equals_cp_bell'] = abs(oc['Isp'] - cpbell['Isp'])
+            assert oc['equals_cp_bell'] < 0.05, oc['equals_cp_bell']
         else:                                   # vacuum rows: fixed eps, Pa = 0
             e_fix = eD
             det = lambda e: cycle_isp(s, lambda Pc, e=e: cf_bell(gd, e, Pc, 0.0))
@@ -564,11 +779,48 @@ def validate():
           '- Quadrature: |Isp(n=4001) - Isp(n=16001)| = %.1e / %.1e s'
           % (D['quadrature_check']['bell'], D['quadrature_check']['spike']),
           '  (bell / aerospike, H2 20 atm case).']
+    if 'full_rows' in D:
+        fr = D['full_rows']
+        nf = sum(1 for r in fr if r['status'] == 'PASS')
+        L += ['',
+              '## Full-DOF optimization (Step 7): joint (phi, eps), nothing '
+              'inherited from Table 1',
+              '',
+              'Outer phi on the 0.01 lattice (auto-extending bracket -> seed-',
+              'independent; parabolic seed; hill-climb; certificate: both 0.01-',
+              'neighbours lower). Inner eps closed form (Step-5 identities).',
+              'Paper (phi, eps, Isp) enter ONLY as targets; superiority',
+              'Isp(phi*_model) >= Isp(phi_paper) checked per row.',
+              'PASS adds |dphi| <= %.2f to the Step-6 criteria.' % PASS_PHI,
+              '',
+              '| Prop | Pcp | Nozzle | phi_det pap/mod | Isp_det pap/mod (d%) |'
+              ' eps_det pap/mod | phi_cp pap/mod | Isp_cp pap/mod (d%) |'
+              ' eps_cp pap/mod | ben pap/mod | cert | status |',
+              '|---|---|---|---|---|---|---|---|---|---|---|---|']
+        for r in fr:
+            p, m, d = r['paper'], r['full'], r['delta']
+            L.append('| %s | %d | %s | %.2f / %.2f | %d / %.1f (%+.1f%%) |'
+                     ' %.1f / %.2f | %.2f / %.2f | %d / %.1f (%+.1f%%) |'
+                     ' %.1f / %.2f | %.1f / %.2f | %s | %s |' % (
+                         r['prop'], r['Pcp'], r['nozzle'],
+                         p['phi_det'], m['det']['phi'],
+                         p['Isp_det'], m['det']['Isp'], d['dIsp_det'],
+                         p['eps_det'], m['det']['eps'],
+                         p['phi_cp'], m['cp']['phi'],
+                         p['Isp_cp'], m['cp']['Isp'], d['dIsp_cp'],
+                         p['eps_cp'], m['cp']['eps'],
+                         p['benefit'], m['benefit'],
+                         'Y' if (m['det']['lattice_certified'] and
+                                 m['cp']['lattice_certified']) else 'N',
+                         r['status']))
+        L += ['', '%d/%d rows FULL-OPT PASS.' % (nf, len(fr))]
     open(os.path.join(ROOT, 'data', 'st_opt_validation.md'), 'w').write(
         '\n'.join(L) + '\n')
     ih = next(i for i, s in enumerate(L) if s.startswith('| Prop'))
     print('\n'.join(L[ih:ih + 2 + len(D['rows'])]))       # header + all rows
     print(L[ih + 2 + len(D['rows']) + 1])                 # 'n/n rows PASS.'
+    if 'full_rows' in D:
+        print(next(s for s in L if 'FULL-OPT PASS' in s))
     print('validation -> data/st_opt_validation.md', flush=True)
 
 
@@ -681,6 +933,8 @@ if __name__ == '__main__':
         states(float(sys.argv[2]) if len(sys.argv) > 2 else 38.0)
     elif cmd == 'optimize':
         optimize()
+    elif cmd == 'optfull':
+        optimize_full()
     elif cmd == 'validate':
         validate()
     elif cmd == 'fig':
