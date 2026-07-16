@@ -234,3 +234,17 @@
    non-characteristic surface det 2.5e9). VERDICT: PASS. R4: D3 §8
    Lemma-B-draft + dual-route entry; Lemma-A draft note under
    Prop. A2 (already placed at step 10).
+
+13. [CODA post-chiusura — suite + lint fix] Full fast suite run as
+   the final non-regression check: 10/11 — group (vii) numeric lint
+   correctly REJECTED the new bounds_gamma.py literals not yet
+   classified (the invariant worked as designed; the earlier exit-0
+   was tail's, declared). Fix: validation/numeric_allowlist.json
+   entry for src/thrust/bounds_gamma.py — six exempted named
+   assignments (M_TAB/N_REAL/N_SPOT/S_BAR/TOL_KA/T_FLOOR, each with
+   its derivation note) + ten classified literals (NUMERIC knobs all
+   covered by derived/measured bars or guards; SPEC = the
+   known-answer oracle's exact-gamma constants). Lint re-run: PASS
+   (21 files, 0 unlisted). Suite therefore 11/11 (groups (i)-(vi),
+   (viii)-(xi) all PASS in the same run; (vii) PASS after the
+   classification, no src/ code changed).

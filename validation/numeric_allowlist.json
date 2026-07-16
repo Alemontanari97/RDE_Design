@@ -13,26 +13,60 @@
  "files": {
   "src/common/constants.py": {
    "exempt_assignments": {
-    "TOL": {"note": "NUMERIC: the package tolerance ladder; each entry commented in-file and exercised by tests (test_cj_coherence, test_stechmann_collapse, det_state sonic gate)"}
+    "TOL": {
+     "note": "NUMERIC: the package tolerance ladder; each entry commented in-file and exercised by tests (test_cj_coherence, test_stechmann_collapse, det_state sonic gate)"
+    }
    },
    "values": {
-    "9.80665": {"cls": "SPEC", "note": "standard gravity g0 (Isp definition)"},
-    "101325.0": {"cls": "SPEC", "note": "standard atmosphere P_ATM (thrust-suite fill & ambient)"},
-    "100000.0": {"cls": "SPEC", "note": "1 bar P_REF_BAR (cycle-suite fill, Wintenberger-Shepherd convention)"},
-    "300.0": {"cls": "SPEC", "note": "T_STD standard initial temperature"},
-    "298.15": {"cls": "SPEC", "note": "T_REF thermochemical standard state (q-degree anchor)"}
+    "9.80665": {
+     "cls": "SPEC",
+     "note": "standard gravity g0 (Isp definition)"
+    },
+    "101325.0": {
+     "cls": "SPEC",
+     "note": "standard atmosphere P_ATM (thrust-suite fill & ambient)"
+    },
+    "100000.0": {
+     "cls": "SPEC",
+     "note": "1 bar P_REF_BAR (cycle-suite fill, Wintenberger-Shepherd convention)"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "T_STD standard initial temperature"
+    },
+    "298.15": {
+     "cls": "SPEC",
+     "note": "T_REF thermochemical standard state (q-degree anchor)"
+    }
    }
   },
   "src/common/mixtures.py": {
    "exempt_assignments": {
-    "MIXTURES": {"note": "SPEC: THE mixture registry (single source of truth); selfcheck() asserts internal consistency"}
+    "MIXTURES": {
+     "note": "SPEC: THE mixture registry (single source of truth); selfcheck() asserts internal consistency"
+    }
    },
    "values": {
-    "3.76": {"cls": "SPEC", "note": "air N2/O2 molar ratio (selfcheck cross-check of registry X strings)"},
-    "1.02": {"cls": "MODEL-CONST", "note": "SK K fuel-air (alpha=0.98 tail fit, FM2017.001 Eq. 14-18); selfcheck enforces per-oxidizer assignment"},
-    "1.54": {"cls": "MODEL-CONST", "note": "SK K fuel-O2 (alpha=0.65 tail fit); ditto"},
-    "1e-09": {"cls": "NUMERIC", "note": "exact-arithmetic tolerance on stoichiometric O2 (selfcheck)"},
-    "0.005": {"cls": "NUMERIC", "note": "N2 = 3.76*nO2 rounding tolerance (registry rounds to 2 decimals, e.g. 9.4)"}
+    "3.76": {
+     "cls": "SPEC",
+     "note": "air N2/O2 molar ratio (selfcheck cross-check of registry X strings)"
+    },
+    "1.02": {
+     "cls": "MODEL-CONST",
+     "note": "SK K fuel-air (alpha=0.98 tail fit, FM2017.001 Eq. 14-18); selfcheck enforces per-oxidizer assignment"
+    },
+    "1.54": {
+     "cls": "MODEL-CONST",
+     "note": "SK K fuel-O2 (alpha=0.65 tail fit); ditto"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "exact-arithmetic tolerance on stoichiometric O2 (selfcheck)"
+    },
+    "0.005": {
+     "cls": "NUMERIC",
+     "note": "N2 = 3.76*nO2 rounding tolerance (registry rounds to 2 decimals, e.g. 9.4)"
+    }
    }
   },
   "src/common/cj_core.py": {
@@ -40,216 +74,733 @@
   },
   "src/cycles/cycles.py": {
    "exempt_functions": {
-    "stage_validate": {"note": "SPEC: literature anchor rows (Wintenberger-Shepherd A/B); each row prints value+tolerance+source"},
-    "stage_plot": {"note": "presentation: figure layout; physics inputs read from cycles_ws.json"},
-    "stage_onegamma": {"note": "SPEC: paper-spec benchmark families (gamma, qtilde, M0) stored with labels"}
+    "stage_validate": {
+     "note": "SPEC: literature anchor rows (Wintenberger-Shepherd A/B); each row prints value+tolerance+source"
+    },
+    "stage_plot": {
+     "note": "presentation: figure layout; physics inputs read from cycles_ws.json"
+    },
+    "stage_onegamma": {
+     "note": "SPEC: paper-spec benchmark families (gamma, qtilde, M0) stored with labels"
+    }
    },
    "values": {
-    "1.4": {"cls": "SPEC", "note": "benchmark gamma of the one-gamma model defaults (classical/stagnation/eta_vs_M0; papers' textbook value; reactant-class gamma, see 0.0136 note)"},
-    "0.8": {"cls": "SPEC", "note": "stagnation benchmark qtilde_t = 0.8 (spec 3.2; M_CJ = 5.00)"},
-    "4.8": {"cls": "SPEC", "note": "eta_vs_M0 default Q0 = qc/CpT0 = 4.8 (spec figure family)"},
-    "0.05": {"cls": "NUMERIC", "note": "eta_vs_M0 M0-grid start (display grid 0.05..8)"},
-    "320": {"cls": "NUMERIC", "note": "eta_vs_M0 M0-grid points (display resolution)"},
-    "100000.0": {"cls": "SPEC", "note": "1 bar cycle fill / bar display conversions (standalone twin of constants.P_REF_BAR)"},
-    "300.0": {"cls": "SPEC", "note": "T1 = 300 K cycle convention (twin of constants.T_STD)"},
-    "25": {"cls": "NUMERIC", "note": "frozen-compression SP path steps (state function; path display only)"},
-    "40": {"cls": "NUMERIC", "note": "_expand_eq default n (equilibrium isentrope ladder; state-5 endpoint is a state function - n only smooths paths)"},
-    "30": {"cls": "NUMERIC", "note": "sweep n_exp (fast tier); endpoint state-function, checked vs n=12/60 usage"},
-    "60": {"cls": "NUMERIC", "note": "sweep n_exp when pv paths wanted (display smoothness)"},
-    "30.0": {"cls": "SPEC", "note": "brayton-ext sweep pic points 30/50/70/100 (fixed-peak-pressure comparison)"},
-    "50.0": {"cls": "SPEC", "note": "ditto"},
-    "70.0": {"cls": "SPEC", "note": "ditto"},
-    "1e-09": {"cls": "NUMERIC", "note": "algebraic-identity row tolerance (Brayton A59 [identity] check)"}
+    "1.4": {
+     "cls": "SPEC",
+     "note": "benchmark gamma of the one-gamma model defaults (classical/stagnation/eta_vs_M0; papers' textbook value; reactant-class gamma, see 0.0136 note)"
+    },
+    "0.8": {
+     "cls": "SPEC",
+     "note": "stagnation benchmark qtilde_t = 0.8 (spec 3.2; M_CJ = 5.00)"
+    },
+    "4.8": {
+     "cls": "SPEC",
+     "note": "eta_vs_M0 default Q0 = qc/CpT0 = 4.8 (spec figure family)"
+    },
+    "0.05": {
+     "cls": "NUMERIC",
+     "note": "eta_vs_M0 M0-grid start (display grid 0.05..8)"
+    },
+    "320": {
+     "cls": "NUMERIC",
+     "note": "eta_vs_M0 M0-grid points (display resolution)"
+    },
+    "100000.0": {
+     "cls": "SPEC",
+     "note": "1 bar cycle fill / bar display conversions (standalone twin of constants.P_REF_BAR)"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "T1 = 300 K cycle convention (twin of constants.T_STD)"
+    },
+    "25": {
+     "cls": "NUMERIC",
+     "note": "frozen-compression SP path steps (state function; path display only)"
+    },
+    "40": {
+     "cls": "NUMERIC",
+     "note": "_expand_eq default n (equilibrium isentrope ladder; state-5 endpoint is a state function - n only smooths paths)"
+    },
+    "30": {
+     "cls": "NUMERIC",
+     "note": "sweep n_exp (fast tier); endpoint state-function, checked vs n=12/60 usage"
+    },
+    "60": {
+     "cls": "NUMERIC",
+     "note": "sweep n_exp when pv paths wanted (display smoothness)"
+    },
+    "30.0": {
+     "cls": "SPEC",
+     "note": "brayton-ext sweep pic points 30/50/70/100 (fixed-peak-pressure comparison)"
+    },
+    "50.0": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "70.0": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "algebraic-identity row tolerance (Brayton A59 [identity] check)"
+    }
    }
   },
   "src/cycles/q_formal.py": {
    "exempt_assignments": {
-    "CASES": {"note": "SPEC: stoichiometric compositions + major products (mirror of the registry, MIX-2 class)"},
-    "T_EVAL": {"note": "SPEC: sensible-shift diagnostic temperatures 300/700 K"}
+    "CASES": {
+     "note": "SPEC: stoichiometric compositions + major products (mirror of the registry, MIX-2 class)"
+    },
+    "T_EVAL": {
+     "note": "SPEC: sensible-shift diagnostic temperatures 300/700 K"
+    }
    },
    "values": {
-    "201": {"cls": "NUMERIC", "note": "cp(T) quadrature grid for the sensible integral (checked vs closed enthalpy identity, 2 J/kg)"},
-    "0.0001": {"cls": "NUMERIC", "note": "relative floor of the quadrature-vs-identity assert (1e-4 * |I|)"},
-    "100000.0": {"cls": "SPEC", "note": "1 bar reference pressure in enthalpy evaluations (= P1)"}
+    "201": {
+     "cls": "NUMERIC",
+     "note": "cp(T) quadrature grid for the sensible integral (checked vs closed enthalpy identity, 2 J/kg)"
+    },
+    "0.0001": {
+     "cls": "NUMERIC",
+     "note": "relative floor of the quadrature-vs-identity assert (1e-4 * |I|)"
+    },
+    "100000.0": {
+     "cls": "SPEC",
+     "note": "1 bar reference pressure in enthalpy evaluations (= P1)"
+    }
    }
   },
   "src/cycles/q_mapping.py": {
    "values": {
-    "1.4": {"cls": "SPEC", "note": "benchmark gamma (AIAA 2004-1033 inverse anchor)"},
-    "4.599": {"cls": "SPEC", "note": "benchmark M_CJ(qtilde=4, g=1.4) closed form; asserted vs 4.60 spec anchor"},
-    "4.6": {"cls": "SPEC", "note": "spec anchor M_CJ = 4.60 (paper value)"},
-    "0.005": {"cls": "NUMERIC", "note": "benchmark assert half-width |M-4.599| < 5e-3"},
-    "1e-12": {"cls": "NUMERIC", "note": "qtilde round-trip exactness (algebraic inversion)"},
-    "1e-06": {"cls": "NUMERIC", "note": "cross-data consistency asserts mdev_q/mdev_M (live 4e-11 / 0)"},
-    "1.1": {"cls": "SPEC", "note": "(gamma+1)/2 at gamma=1.2 - family-model algebra (H = 1.1*qtilde)"},
-    "2.2": {"cls": "SPEC", "note": "gamma+1 at gamma=1.2 - family-model algebra"},
-    "20": {"cls": "SPEC", "note": "Fig. A22 family labels q_c/RT1 in {10,20,30,40}"},
-    "30": {"cls": "SPEC", "note": "ditto"},
-    "40": {"cls": "SPEC", "note": "ditto"}
+    "1.4": {
+     "cls": "SPEC",
+     "note": "benchmark gamma (AIAA 2004-1033 inverse anchor)"
+    },
+    "4.599": {
+     "cls": "SPEC",
+     "note": "benchmark M_CJ(qtilde=4, g=1.4) closed form; asserted vs 4.60 spec anchor"
+    },
+    "4.6": {
+     "cls": "SPEC",
+     "note": "spec anchor M_CJ = 4.60 (paper value)"
+    },
+    "0.005": {
+     "cls": "NUMERIC",
+     "note": "benchmark assert half-width |M-4.599| < 5e-3"
+    },
+    "1e-12": {
+     "cls": "NUMERIC",
+     "note": "qtilde round-trip exactness (algebraic inversion)"
+    },
+    "1e-06": {
+     "cls": "NUMERIC",
+     "note": "cross-data consistency asserts mdev_q/mdev_M (live 4e-11 / 0)"
+    },
+    "1.1": {
+     "cls": "SPEC",
+     "note": "(gamma+1)/2 at gamma=1.2 - family-model algebra (H = 1.1*qtilde)"
+    },
+    "2.2": {
+     "cls": "SPEC",
+     "note": "gamma+1 at gamma=1.2 - family-model algebra"
+    },
+    "20": {
+     "cls": "SPEC",
+     "note": "Fig. A22 family labels q_c/RT1 in {10,20,30,40}"
+    },
+    "30": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "40": {
+     "cls": "SPEC",
+     "note": "ditto"
+    }
    }
   },
   "src/detonation/cj_states.py": {
    "values": {
-    "0.0001": {"cls": "NUMERIC", "note": "soundspeed_eq FD perturbation dP = 1e-4*P (SDT TP method twin)"},
-    "1.35": {"cls": "NUMERIC", "note": "CJ compression-ratio bracket lower bound; edge now raises (shipped r_CJ 1.6-1.9)"},
-    "2.4": {"cls": "NUMERIC", "note": "CJ compression-ratio bracket upper bound; edge now raises"},
-    "0.001": {"cls": "NUMERIC", "note": "bracket-edge guard margin on r_CJ"},
-    "1000000000.0": {"cls": "NUMERIC", "note": "failed-Hugoniot sentinel (1e9); minimum at sentinel now raises"},
-    "0.99": {"cls": "NUMERIC", "note": "sentinel detection threshold 0.99*1e9"},
-    "1200": {"cls": "NUMERIC", "note": "Hugoniot T2 bracket low [K]; sign pre-checked, raises outside"},
-    "1200.0": {"cls": "NUMERIC", "note": "ditto (keyword default)"},
-    "6500": {"cls": "NUMERIC", "note": "Hugoniot T2 bracket high [K]; ditto"},
-    "6500.0": {"cls": "NUMERIC", "note": "ditto (keyword default)"},
-    "1e-06": {"cls": "NUMERIC", "note": "brentq xtol / minimize_scalar xatol"},
-    "1e-10": {"cls": "NUMERIC", "note": "brentq rtol"},
-    "0.2": {"cls": "NUMERIC", "note": "vN fixed-point seed v2 = 0.2*v1 (strong-shock scale; pure seed)"},
-    "200": {"cls": "NUMERIC", "note": "vN fixed-point max iterations; non-convergence now raises"},
-    "1e-12": {"cls": "NUMERIC", "note": "vN fixed-point convergence tolerance"},
-    "300.0": {"cls": "SPEC", "note": "__main__ self-test conditions (1 atm / 300 K std cases)"}
+    "0.0001": {
+     "cls": "NUMERIC",
+     "note": "soundspeed_eq FD perturbation dP = 1e-4*P (SDT TP method twin)"
+    },
+    "1.35": {
+     "cls": "NUMERIC",
+     "note": "CJ compression-ratio bracket lower bound; edge now raises (shipped r_CJ 1.6-1.9)"
+    },
+    "2.4": {
+     "cls": "NUMERIC",
+     "note": "CJ compression-ratio bracket upper bound; edge now raises"
+    },
+    "0.001": {
+     "cls": "NUMERIC",
+     "note": "bracket-edge guard margin on r_CJ"
+    },
+    "1000000000.0": {
+     "cls": "NUMERIC",
+     "note": "failed-Hugoniot sentinel (1e9); minimum at sentinel now raises"
+    },
+    "0.99": {
+     "cls": "NUMERIC",
+     "note": "sentinel detection threshold 0.99*1e9"
+    },
+    "1200": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot T2 bracket low [K]; sign pre-checked, raises outside"
+    },
+    "1200.0": {
+     "cls": "NUMERIC",
+     "note": "ditto (keyword default)"
+    },
+    "6500": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot T2 bracket high [K]; ditto"
+    },
+    "6500.0": {
+     "cls": "NUMERIC",
+     "note": "ditto (keyword default)"
+    },
+    "1e-06": {
+     "cls": "NUMERIC",
+     "note": "brentq xtol / minimize_scalar xatol"
+    },
+    "1e-10": {
+     "cls": "NUMERIC",
+     "note": "brentq rtol"
+    },
+    "0.2": {
+     "cls": "NUMERIC",
+     "note": "vN fixed-point seed v2 = 0.2*v1 (strong-shock scale; pure seed)"
+    },
+    "200": {
+     "cls": "NUMERIC",
+     "note": "vN fixed-point max iterations; non-convergence now raises"
+    },
+    "1e-12": {
+     "cls": "NUMERIC",
+     "note": "vN fixed-point convergence tolerance"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "__main__ self-test conditions (1 atm / 300 K std cases)"
+    }
    }
   },
   "src/detonation/cj_sweeps.py": {
    "values": {
-    "0.6": {"cls": "SPEC", "note": "phi sweep grid 0.6..1.8 (lecture figure range)"},
-    "0.8": {"cls": "SPEC", "note": "ditto"},
-    "1.2": {"cls": "SPEC", "note": "ditto"},
-    "1.4": {"cls": "SPEC", "note": "ditto"},
-    "1.6": {"cls": "SPEC", "note": "ditto"},
-    "1.8": {"cls": "SPEC", "note": "ditto"},
-    "0.2": {"cls": "SPEC", "note": "P1 sweep grid 0.2..10 atm (lecture figure range)"},
-    "250": {"cls": "SPEC", "note": "T1 sweep grid 250..1000 K (lecture figure range)"},
-    "300": {"cls": "SPEC", "note": "ditto"},
-    "400": {"cls": "SPEC", "note": "ditto"},
-    "500": {"cls": "SPEC", "note": "ditto"},
-    "700": {"cls": "SPEC", "note": "ditto"},
-    "3.76": {"cls": "SPEC", "note": "air N2/O2 molar ratio in sweep compositions"},
-    "300.0": {"cls": "SPEC", "note": "std T1 for the phi/P1 sweeps"}
+    "0.6": {
+     "cls": "SPEC",
+     "note": "phi sweep grid 0.6..1.8 (lecture figure range)"
+    },
+    "0.8": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "1.2": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "1.4": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "1.6": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "1.8": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "0.2": {
+     "cls": "SPEC",
+     "note": "P1 sweep grid 0.2..10 atm (lecture figure range)"
+    },
+    "250": {
+     "cls": "SPEC",
+     "note": "T1 sweep grid 250..1000 K (lecture figure range)"
+    },
+    "300": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "400": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "500": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "700": {
+     "cls": "SPEC",
+     "note": "ditto"
+    },
+    "3.76": {
+     "cls": "SPEC",
+     "note": "air N2/O2 molar ratio in sweep compositions"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "std T1 for the phi/P1 sweeps"
+    }
    }
   },
   "src/detonation/znd_profiles.py": {
    "exempt_assignments": {
-    "CASES": {"note": "NUMERIC: per-mixture (t_end, max_step) tuned for stiffness; completeness asserted in-run (exo>0, tail<1% peak)"}
+    "CASES": {
+     "note": "NUMERIC: per-mixture (t_end, max_step) tuned for stiffness; completeness asserted in-run (exo>0, tail<1% peak)"
+    }
    },
    "values": {
-    "1e-05": {"cls": "NUMERIC", "note": "zndsolve relTol (SDT recommended; energy invariant checked to 6e-6%)"},
-    "1e-09": {"cls": "NUMERIC", "note": "zndsolve absTol"},
-    "0.01": {"cls": "NUMERIC", "note": "completeness bound: thermicity tail < 1% of peak (shipped worst 0.21%, margin x5)"},
-    "300.0": {"cls": "SPEC", "note": "T1 = 300 K std fill"}
+    "1e-05": {
+     "cls": "NUMERIC",
+     "note": "zndsolve relTol (SDT recommended; energy invariant checked to 6e-6%)"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "zndsolve absTol"
+    },
+    "0.01": {
+     "cls": "NUMERIC",
+     "note": "completeness bound: thermicity tail < 1% of peak (shipped worst 0.21%, margin x5)"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "T1 = 300 K std fill"
+    }
    }
   },
   "src/thrust/st_core.py": {
    "values": {
-    "0.0002": {"cls": "NUMERIC", "note": "Hugoniot pressure fixed-point relative tolerance (2e-4)"},
-    "1.03": {"cls": "NUMERIC", "note": "secant second point Tb = 1.03*Tg (pure seed)"},
-    "30.0": {"cls": "NUMERIC", "note": "P2 initial guess heuristic 30*P1*x/1.8 (P_CJ ~ 30 P1 at x ~ 1.8; pure seed)"},
-    "1.8": {"cls": "NUMERIC", "note": "ditto (seed scale)"},
-    "1200.0": {"cls": "NUMERIC", "note": "secant T clamp low [K] (validated Table-1 domain; see dof_audit)"},
-    "5200.0": {"cls": "NUMERIC", "note": "secant T clamp high [K]; ditto"},
-    "30": {"cls": "NUMERIC", "note": "secant max iterations (residual guarded by sonic_resid gate downstream)"},
-    "200.0": {"cls": "NUMERIC", "note": "enthalpy residual convergence 2e2 J/kg (<0.005% of h-scale, in-code comment)"},
-    "1e-09": {"cls": "NUMERIC", "note": "secant denominator degeneracy guard"},
-    "1.0001": {"cls": "NUMERIC", "note": "brentq Me bracket low (supersonic root)"},
-    "20.0": {"cls": "NUMERIC", "note": "brentq Me bracket high (Me ~ 8-10 at eps=400; ample)"}
+    "0.0002": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot pressure fixed-point relative tolerance (2e-4)"
+    },
+    "1.03": {
+     "cls": "NUMERIC",
+     "note": "secant second point Tb = 1.03*Tg (pure seed)"
+    },
+    "30.0": {
+     "cls": "NUMERIC",
+     "note": "P2 initial guess heuristic 30*P1*x/1.8 (P_CJ ~ 30 P1 at x ~ 1.8; pure seed)"
+    },
+    "1.8": {
+     "cls": "NUMERIC",
+     "note": "ditto (seed scale)"
+    },
+    "1200.0": {
+     "cls": "NUMERIC",
+     "note": "secant T clamp low [K] (validated Table-1 domain; see dof_audit)"
+    },
+    "5200.0": {
+     "cls": "NUMERIC",
+     "note": "secant T clamp high [K]; ditto"
+    },
+    "30": {
+     "cls": "NUMERIC",
+     "note": "secant max iterations (residual guarded by sonic_resid gate downstream)"
+    },
+    "200.0": {
+     "cls": "NUMERIC",
+     "note": "enthalpy residual convergence 2e2 J/kg (<0.005% of h-scale, in-code comment)"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "secant denominator degeneracy guard"
+    },
+    "1.0001": {
+     "cls": "NUMERIC",
+     "note": "brentq Me bracket low (supersonic root)"
+    },
+    "20.0": {
+     "cls": "NUMERIC",
+     "note": "brentq Me bracket high (Me ~ 8-10 at eps=400; ample)"
+    }
    }
   },
   "src/thrust/sk_models.py": {
    "values": {
-    "300.0": {"cls": "MODEL-CONST", "note": "line 45: u_c = 300 m/s inlet speed (S&K 2013, PH term II); elsewhere SPEC T1 = 300 K std fill"},
-    "150000.0": {"cls": "SPEC", "note": "SKREP fill 0.15 MPa - the fill SK Table 1 tabulates (A6, re-blessed 2026-07-16)"},
-    "255.0": {"cls": "SPEC", "note": "SKREP fill temperature 255 K (S&K 2013)"},
-    "0.0001": {"cls": "NUMERIC", "note": "aeq FD dP = 1e-4*P; axial rebuilt-s2 cross-assert tolerance 1e-4 rel"},
-    "0.012": {"cls": "NUMERIC", "note": "axial march pfloor = 0.012*P2 (floor ~0.3 atm << P*; h1-crossing now guarded)"},
-    "90": {"cls": "NUMERIC", "note": "axial march nstep (sonic point re-solved by exact bisection, not grid)"},
-    "0.8": {"cls": "NUMERIC", "note": "flatness DIAGNOSTIC window WF_PA (declared+recorded; no verdict uses it)"},
-    "0.02": {"cls": "NUMERIC", "note": "flatness DIAGNOSTIC window WF_P2; ditto"},
-    "0.98": {"cls": "NUMERIC", "note": "first-supersonic-node search guard Ps < 0.98*Pm"},
-    "40": {"cls": "NUMERIC", "note": "sonic-point bisection max iterations (exact evals, rel 1e-6)"},
-    "1e-06": {"cls": "NUMERIC", "note": "sonic-point bisection relative tolerance"},
-    "1e-09": {"cls": "NUMERIC", "note": "composition-string mole-fraction cutoff"},
-    "20001": {"cls": "NUMERIC", "note": "stech_calc quadrature grid (Isp converged, cf. NQ=4001 check)"},
-    "101325.0": {"cls": "SPEC", "note": "atm conversions in prints/records (twin of constants.P_ATM)"}
+    "300.0": {
+     "cls": "MODEL-CONST",
+     "note": "line 45: u_c = 300 m/s inlet speed (S&K 2013, PH term II); elsewhere SPEC T1 = 300 K std fill"
+    },
+    "150000.0": {
+     "cls": "SPEC",
+     "note": "SKREP fill 0.15 MPa - the fill SK Table 1 tabulates (A6, re-blessed 2026-07-16)"
+    },
+    "255.0": {
+     "cls": "SPEC",
+     "note": "SKREP fill temperature 255 K (S&K 2013)"
+    },
+    "0.0001": {
+     "cls": "NUMERIC",
+     "note": "aeq FD dP = 1e-4*P; axial rebuilt-s2 cross-assert tolerance 1e-4 rel"
+    },
+    "0.012": {
+     "cls": "NUMERIC",
+     "note": "axial march pfloor = 0.012*P2 (floor ~0.3 atm << P*; h1-crossing now guarded)"
+    },
+    "90": {
+     "cls": "NUMERIC",
+     "note": "axial march nstep (sonic point re-solved by exact bisection, not grid)"
+    },
+    "0.8": {
+     "cls": "NUMERIC",
+     "note": "flatness DIAGNOSTIC window WF_PA (declared+recorded; no verdict uses it)"
+    },
+    "0.02": {
+     "cls": "NUMERIC",
+     "note": "flatness DIAGNOSTIC window WF_P2; ditto"
+    },
+    "0.98": {
+     "cls": "NUMERIC",
+     "note": "first-supersonic-node search guard Ps < 0.98*Pm"
+    },
+    "40": {
+     "cls": "NUMERIC",
+     "note": "sonic-point bisection max iterations (exact evals, rel 1e-6)"
+    },
+    "1e-06": {
+     "cls": "NUMERIC",
+     "note": "sonic-point bisection relative tolerance"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "composition-string mole-fraction cutoff"
+    },
+    "20001": {
+     "cls": "NUMERIC",
+     "note": "stech_calc quadrature grid (Isp converged, cf. NQ=4001 check)"
+    },
+    "101325.0": {
+     "cls": "SPEC",
+     "note": "atm conversions in prints/records (twin of constants.P_ATM)"
+    }
    }
   },
   "src/thrust/phase_diagram.py": {
    "exempt_assignments": {
-    "ANCHOR": {"note": "SPEC: gas anchor of record = the blessed D3-S5.2/gamma-probe state det|CH4|20|1.64 (data/st_nozzle_opt.json key)"},
-    "PR_GRID": {"note": "SPEC: spread-axis grid, octave rungs 1..64 + 90 = largest rung keeping min-cycle Pc >= Pa at <Pc> ~ 20.9 atm (validity edge documented in module docstring); blessed PR inserted at build time"},
-    "EPS_MAX_GRID": {"note": "SPEC: envelope-axis grid from the sonic annulus (1.0) past the largest knee on the grid (~12.9 at PR=90), populating tie / capped / attained regimes"},
-    "VAC_EPS_GRID": {"note": "SPEC: vacuum-oracle geometric eps ladder (x4 rungs) exposing the strictly-increasing, ceiling-unattained tail (Theorem 3)"}
+    "ANCHOR": {
+     "note": "SPEC: gas anchor of record = the blessed D3-S5.2/gamma-probe state det|CH4|20|1.64 (data/st_nozzle_opt.json key)"
+    },
+    "PR_GRID": {
+     "note": "SPEC: spread-axis grid, octave rungs 1..64 + 90 = largest rung keeping min-cycle Pc >= Pa at <Pc> ~ 20.9 atm (validity edge documented in module docstring); blessed PR inserted at build time"
+    },
+    "EPS_MAX_GRID": {
+     "note": "SPEC: envelope-axis grid from the sonic annulus (1.0) past the largest knee on the grid (~12.9 at PR=90), populating tie / capped / attained regimes"
+    },
+    "VAC_EPS_GRID": {
+     "note": "SPEC: vacuum-oracle geometric eps ladder (x4 rungs) exposing the strictly-increasing, ceiling-unattained tail (Theorem 3)"
+    }
    },
    "values": {}
   },
   "src/thrust/stechmann_nozzle.py": {
    "exempt_assignments": {
-    "TABLE1": {"note": "SPEC: Stechmann Table 1 verbatim (p. 896) - validation targets only"},
-    "PHI_SEED": {"note": "NUMERIC: phi seed grids; argmax auto-extends past any edge (seed-independent)"},
-    "EPS_VAC": {"note": "SPEC: paper-fixed vacuum eps_max 15/150 (no finite optimum at Pa=0)"},
-    "XTOL": {"note": "NUMERIC: golden-section eps tolerance per Pcp class; cross-checked vs analytic root <1e-3"}
+    "TABLE1": {
+     "note": "SPEC: Stechmann Table 1 verbatim (p. 896) - validation targets only"
+    },
+    "PHI_SEED": {
+     "note": "NUMERIC: phi seed grids; argmax auto-extends past any edge (seed-independent)"
+    },
+    "EPS_VAC": {
+     "note": "SPEC: paper-fixed vacuum eps_max 15/150 (no finite optimum at Pa=0)"
+    },
+    "XTOL": {
+     "note": "NUMERIC: golden-section eps tolerance per Pcp class; cross-checked vs analytic root <1e-3"
+    }
    },
    "exempt_functions": {
-    "fig": {"note": "presentation: figure geometry/annotation coordinates only"},
-    "validate": {"note": "SPEC: markdown report builder; echoes already-classified criteria into prose"}
+    "fig": {
+     "note": "presentation: figure geometry/annotation coordinates only"
+    },
+    "validate": {
+     "note": "SPEC: markdown report builder; echoes already-classified criteria into prose"
+    }
    },
    "values": {
-    "0.2": {"cls": "SPEC", "note": "_prop phi guard low (detonable-composition range)"},
-    "3.5": {"cls": "SPEC", "note": "_prop phi guard high / PHI_HI wall (Table-1 span 1.29-3.28; interior flag guards the wall)"},
-    "0.6": {"cls": "SPEC", "note": "PHI_LO wall (detonable range)"},
-    "0.1": {"cls": "NUMERIC", "note": "PASS_PHI = 0.10 acceptance (flat optimum; lattice 0.01) / Hugoniot refinement break window"},
-    "0.01": {"cls": "NUMERIC", "note": "PHI_STEP lattice (= Table-1 phi display resolution) / matched fixed-point tol"},
-    "0.11": {"cls": "NUMERIC", "note": "matched fixed-point seed Pinit = 0.11*Pcp (pure seed; convergence now raises)"},
-    "0.05": {"cls": "NUMERIC", "note": "Hugoniot x-grid step / equals_cp_bell assert half-width 0.05 s"},
-    "0.018": {"cls": "NUMERIC", "note": "Hugoniot parabolic refinement half-window in x"},
-    "0.3": {"cls": "NUMERIC", "note": "Hugoniot x-bracket extension span"},
-    "1.55": {"cls": "NUMERIC", "note": "Hugoniot x-bracket start (CJ x ~ 1.6-1.9; auto-extends)"},
-    "2.101": {"cls": "NUMERIC", "note": "Hugoniot x-bracket end (auto-extends)"},
-    "3500.0": {"cls": "NUMERIC", "note": "Hugoniot Tg seed (pure seed)"},
-    "1.05": {"cls": "NUMERIC", "note": "eps sweep lower bound (> choked eps=1)"},
-    "40.0": {"cls": "NUMERIC", "note": "eps sweep upper bound, 20 atm class (bracketing only; optimum analytic)"},
-    "400.0": {"cls": "NUMERIC", "note": "eps sweep upper bound, 200 atm class; ditto"},
-    "241": {"cls": "NUMERIC", "note": "coarse eps sweep points (bracketing; golden+analytic downstream)"},
-    "2.5": {"cls": "NUMERIC", "note": "spike sweep extension 2.5*knee (plateau verification span)"},
-    "0.98": {"cls": "NUMERIC", "note": "spike gain_last2pct probe (0.98*knee)"},
-    "0.999": {"cls": "NUMERIC", "note": "spike monotonicity mask below 0.999*knee"},
-    "0.001": {"cls": "NUMERIC", "note": "golden-section xtol fallback (XTOL.get default)"},
-    "4001": {"cls": "NUMERIC", "note": "NQ quadrature grid; |Isp(4001)-Isp(16001)| < 1e-5 s checked"},
-    "16001": {"cls": "NUMERIC", "note": "quadrature convergence reference grid"},
-    "24": {"cls": "NUMERIC", "note": "phi bracket auto-extension iteration cap"},
-    "300": {"cls": "NUMERIC", "note": "phi lattice hill-climb iteration cap (monotone ascent, terminates)"},
-    "20": {"cls": "SPEC", "note": "Pcp = 20 atm class (Table-1 configuration; also fixed-phi anchor rows)"},
-    "200": {"cls": "SPEC", "note": "Ti = 200 K paper inlet (states/optfull drivers) and Pcp = 200 atm class"},
-    "38.0": {"cls": "NUMERIC", "note": "states() default time budget [s] (chunked, resumable)"},
-    "3.28": {"cls": "SPEC", "note": "quadrature-check case: H2/20 Bell paper phi (Table 1)"},
-    "3.8": {"cls": "SPEC", "note": "quadrature-check case: H2/20 Bell paper eps"},
-    "9.2": {"cls": "SPEC", "note": "quadrature-check case: H2/20 Aerospike paper eps"},
-    "1e-06": {"cls": "NUMERIC", "note": "optfull superiority slack (sup >= -1e-6 s)"},
-    "1e-09": {"cls": "NUMERIC", "note": "float-safe comparison slack (walls, monotonicity, PASS_PHI)"},
-    "1e-12": {"cls": "NUMERIC", "note": "unimodality tie slack in the persisted-grid scan"},
-    "1e-05": {"cls": "NUMERIC", "note": "grid-collision probability note threshold (memoized U(x) keys, round 5)"}
+    "0.2": {
+     "cls": "SPEC",
+     "note": "_prop phi guard low (detonable-composition range)"
+    },
+    "3.5": {
+     "cls": "SPEC",
+     "note": "_prop phi guard high / PHI_HI wall (Table-1 span 1.29-3.28; interior flag guards the wall)"
+    },
+    "0.6": {
+     "cls": "SPEC",
+     "note": "PHI_LO wall (detonable range)"
+    },
+    "0.1": {
+     "cls": "NUMERIC",
+     "note": "PASS_PHI = 0.10 acceptance (flat optimum; lattice 0.01) / Hugoniot refinement break window"
+    },
+    "0.01": {
+     "cls": "NUMERIC",
+     "note": "PHI_STEP lattice (= Table-1 phi display resolution) / matched fixed-point tol"
+    },
+    "0.11": {
+     "cls": "NUMERIC",
+     "note": "matched fixed-point seed Pinit = 0.11*Pcp (pure seed; convergence now raises)"
+    },
+    "0.05": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot x-grid step / equals_cp_bell assert half-width 0.05 s"
+    },
+    "0.018": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot parabolic refinement half-window in x"
+    },
+    "0.3": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot x-bracket extension span"
+    },
+    "1.55": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot x-bracket start (CJ x ~ 1.6-1.9; auto-extends)"
+    },
+    "2.101": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot x-bracket end (auto-extends)"
+    },
+    "3500.0": {
+     "cls": "NUMERIC",
+     "note": "Hugoniot Tg seed (pure seed)"
+    },
+    "1.05": {
+     "cls": "NUMERIC",
+     "note": "eps sweep lower bound (> choked eps=1)"
+    },
+    "40.0": {
+     "cls": "NUMERIC",
+     "note": "eps sweep upper bound, 20 atm class (bracketing only; optimum analytic)"
+    },
+    "400.0": {
+     "cls": "NUMERIC",
+     "note": "eps sweep upper bound, 200 atm class; ditto"
+    },
+    "241": {
+     "cls": "NUMERIC",
+     "note": "coarse eps sweep points (bracketing; golden+analytic downstream)"
+    },
+    "2.5": {
+     "cls": "NUMERIC",
+     "note": "spike sweep extension 2.5*knee (plateau verification span)"
+    },
+    "0.98": {
+     "cls": "NUMERIC",
+     "note": "spike gain_last2pct probe (0.98*knee)"
+    },
+    "0.999": {
+     "cls": "NUMERIC",
+     "note": "spike monotonicity mask below 0.999*knee"
+    },
+    "0.001": {
+     "cls": "NUMERIC",
+     "note": "golden-section xtol fallback (XTOL.get default)"
+    },
+    "4001": {
+     "cls": "NUMERIC",
+     "note": "NQ quadrature grid; |Isp(4001)-Isp(16001)| < 1e-5 s checked"
+    },
+    "16001": {
+     "cls": "NUMERIC",
+     "note": "quadrature convergence reference grid"
+    },
+    "24": {
+     "cls": "NUMERIC",
+     "note": "phi bracket auto-extension iteration cap"
+    },
+    "300": {
+     "cls": "NUMERIC",
+     "note": "phi lattice hill-climb iteration cap (monotone ascent, terminates)"
+    },
+    "20": {
+     "cls": "SPEC",
+     "note": "Pcp = 20 atm class (Table-1 configuration; also fixed-phi anchor rows)"
+    },
+    "200": {
+     "cls": "SPEC",
+     "note": "Ti = 200 K paper inlet (states/optfull drivers) and Pcp = 200 atm class"
+    },
+    "38.0": {
+     "cls": "NUMERIC",
+     "note": "states() default time budget [s] (chunked, resumable)"
+    },
+    "3.28": {
+     "cls": "SPEC",
+     "note": "quadrature-check case: H2/20 Bell paper phi (Table 1)"
+    },
+    "3.8": {
+     "cls": "SPEC",
+     "note": "quadrature-check case: H2/20 Bell paper eps"
+    },
+    "9.2": {
+     "cls": "SPEC",
+     "note": "quadrature-check case: H2/20 Aerospike paper eps"
+    },
+    "1e-06": {
+     "cls": "NUMERIC",
+     "note": "optfull superiority slack (sup >= -1e-6 s)"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "float-safe comparison slack (walls, monotonicity, PASS_PHI)"
+    },
+    "1e-12": {
+     "cls": "NUMERIC",
+     "note": "unimodality tie slack in the persisted-grid scan"
+    },
+    "1e-05": {
+     "cls": "NUMERIC",
+     "note": "grid-collision probability note threshold (memoized U(x) keys, round 5)"
+    }
    }
   },
   "src/thrust/tables.py": {
    "exempt_assignments": {
-    "RHOC_SK": {"note": "SPEC: SK Table-1 quoted rho_c (0.15 MPa fill, anomaly A6)"},
-    "LIT_CFD": {"note": "SPEC: S&K 2013 published CFD Isp_f anchors (Table-1 footnote a)"}
+    "RHOC_SK": {
+     "note": "SPEC: SK Table-1 quoted rho_c (0.15 MPa fill, anomaly A6)"
+    },
+    "LIT_CFD": {
+     "note": "SPEC: S&K 2013 published CFD Isp_f anchors (Table-1 footnote a)"
+    }
    },
    "values": {
-    "1.2": {"cls": "SPEC", "note": "synthetic CP-collapse case gamma = 1.2"},
-    "8314.462": {"cls": "SPEC", "note": "universal gas constant [J/kmol K] (synthetic case R = Ru/24)"},
-    "24.0": {"cls": "SPEC", "note": "synthetic case molar mass 24 g/mol"},
-    "3500.0": {"cls": "SPEC", "note": "synthetic case T0 = 3500 K"},
-    "20": {"cls": "SPEC", "note": "synthetic case Pc = 20 atm"},
-    "1e-09": {"cls": "NUMERIC", "note": "PR -> 1 collapse epsilon (1 + 1e-9)"},
-    "1e-06": {"cls": "NUMERIC", "note": "CP-collapse verdict gate (measured ~2e-11)"},
-    "0.2": {"cls": "NUMERIC", "note": "check 3a |dU| gate 0.2% (live 0.044%)"},
-    "0.005": {"cls": "NUMERIC", "note": "check 3a |d gamma_e| gate / check 4 sonic-residual gate"},
-    "0.002": {"cls": "NUMERIC", "note": "check 3a |d Y_f| gate (live 0.0002)"},
-    "0.215": {"cls": "SPEC", "note": "Pm/P2 band low = SK ~0.22 minus 0.005 reading margin (check 4)"},
-    "0.255": {"cls": "SPEC", "note": "Pm/P2 band high = SK ~0.25 plus 0.005 reading margin"},
-    "150000.0": {"cls": "SPEC", "note": "0.15 MPa: SK Table-1 fill (meta record; A6 re-bless 2026-07-16)"},
-    "101325.0": {"cls": "SPEC", "note": "atm in meta conditions / A6 rescale (twin of constants.P_ATM)"},
-    "101325": {"cls": "SPEC", "note": "ditto (integer literal in meta)"},
-    "255.0": {"cls": "SPEC", "note": "SKREP fill temperature 255 K (meta record)"},
-    "300.0": {"cls": "SPEC", "note": "std fill temperature 300 K (meta record)"}
+    "1.2": {
+     "cls": "SPEC",
+     "note": "synthetic CP-collapse case gamma = 1.2"
+    },
+    "8314.462": {
+     "cls": "SPEC",
+     "note": "universal gas constant [J/kmol K] (synthetic case R = Ru/24)"
+    },
+    "24.0": {
+     "cls": "SPEC",
+     "note": "synthetic case molar mass 24 g/mol"
+    },
+    "3500.0": {
+     "cls": "SPEC",
+     "note": "synthetic case T0 = 3500 K"
+    },
+    "20": {
+     "cls": "SPEC",
+     "note": "synthetic case Pc = 20 atm"
+    },
+    "1e-09": {
+     "cls": "NUMERIC",
+     "note": "PR -> 1 collapse epsilon (1 + 1e-9)"
+    },
+    "1e-06": {
+     "cls": "NUMERIC",
+     "note": "CP-collapse verdict gate (measured ~2e-11)"
+    },
+    "0.2": {
+     "cls": "NUMERIC",
+     "note": "check 3a |dU| gate 0.2% (live 0.044%)"
+    },
+    "0.005": {
+     "cls": "NUMERIC",
+     "note": "check 3a |d gamma_e| gate / check 4 sonic-residual gate"
+    },
+    "0.002": {
+     "cls": "NUMERIC",
+     "note": "check 3a |d Y_f| gate (live 0.0002)"
+    },
+    "0.215": {
+     "cls": "SPEC",
+     "note": "Pm/P2 band low = SK ~0.22 minus 0.005 reading margin (check 4)"
+    },
+    "0.255": {
+     "cls": "SPEC",
+     "note": "Pm/P2 band high = SK ~0.25 plus 0.005 reading margin"
+    },
+    "150000.0": {
+     "cls": "SPEC",
+     "note": "0.15 MPa: SK Table-1 fill (meta record; A6 re-bless 2026-07-16)"
+    },
+    "101325.0": {
+     "cls": "SPEC",
+     "note": "atm in meta conditions / A6 rescale (twin of constants.P_ATM)"
+    },
+    "101325": {
+     "cls": "SPEC",
+     "note": "ditto (integer literal in meta)"
+    },
+    "255.0": {
+     "cls": "SPEC",
+     "note": "SKREP fill temperature 255 K (meta record)"
+    },
+    "300.0": {
+     "cls": "SPEC",
+     "note": "std fill temperature 300 K (meta record)"
+    }
+   }
+  },
+  "src/thrust/bounds_gamma.py": {
+   "exempt_assignments": {
+    "M_TAB": {
+     "note": "NUMERIC: isentrope-table density; interpolation error MEASURED per row by the exact-flash spot probes (bar_interp) - the knob is checked, not trusted"
+    },
+    "N_REAL": {
+     "note": "NUMERIC: phase grid (odd for nested Richardson at (n-1)/2+1); quadrature error carried as the derived bar_quad, Richardson-checked per row"
+    },
+    "N_SPOT": {
+     "note": "NUMERIC: exact-flash probes per row feeding the measured interpolation bar"
+    },
+    "S_BAR": {
+     "note": "NUMERIC: safety on measured/Richardson bars, same role and rationale as the g0-spike K_RICH (covers the 1/3 Richardson factor with margin)"
+    },
+    "TOL_KA": {
+     "note": "NUMERIC (derived in docstring): Cantera flash rel ~1e-9 x sensitivity <= 1e2 x safety 10 -> 1e-6; known-answer rejector proves it can reject (corrupted route fails at 8.7e-5)"
+    },
+    "T_FLOOR": {
+     "note": "SPEC: NASA7 validity floor of the shipped mechanisms (200 K lower bound of the thermo fits); vacuum-row truncation declared as a lower-bound instrument"
+    }
+   },
+   "values": {
+    "80.0": {
+     "cls": "NUMERIC",
+     "note": "floor_pressure descent safety: 80 ln-P decades below P0 raises RuntimeError (isentrope anchor suspect) - guard, not physics"
+    },
+    "60": {
+     "cls": "NUMERIC",
+     "note": "bisection iteration budget: 2^-60 interval reduction << all derived bars (two sites: floor_pressure, real_phase_exact)"
+    },
+    "192": {
+     "cls": "NUMERIC",
+     "note": "cap-probe exit-scan grid; grid-resolution error enters the probe bar via the second-difference curvature term"
+    },
+    "50.0": {
+     "cls": "NUMERIC",
+     "note": "table low-pressure margin P0/PR/50: keeps the sonic states of all phases strictly inside the table; violation would trip the w-monotonicity RuntimeError"
+    },
+    "64.0": {
+     "cls": "NUMERIC",
+     "note": "roundoff floor factor (ops-count scale for the <=~60-term sums, docstring rationale) - three floor sites"
+    },
+    "1.4": {
+     "cls": "SPEC",
+     "note": "known-answer oracle: constant-cp gas cp/R = 3.5 -> gamma = 7/5 EXACT by construction (declared gamma=const instance)"
+    },
+    "3.5": {
+     "cls": "SPEC",
+     "note": "known-answer oracle: NASA7 a1 = cp/R = 3.5 (monatomic-like constant cp), defines the exact-gamma gas"
+    },
+    "3000.0": {
+     "cls": "SPEC",
+     "note": "known-answer oracle anchor T0: representative chamber temperature; any positive value works (closed forms exact for the PG gas)"
+    },
+    "20.0": {
+     "cls": "SPEC",
+     "note": "known-answer oracle anchor P0 = 20 atm (Table-1-like), with Pa = 1 atm: supercritical instance"
+    },
+    "0.0001": {
+     "cls": "NUMERIC",
+     "note": "known-answer corruption amplitude 1e-4: two decades above TOL_KA, so the rejector MUST fire (and does, 8.7e-5 measured)"
+    }
    }
   }
  }
