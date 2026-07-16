@@ -8,6 +8,14 @@ oracles + rejection: `tests/test_phase_diagram.py`.  Proven limits: PR = 1 colum
 SUBCRITICAL cycles PR >~ 46, via the sonic-capped closure — the published S-H
 free branch leaves a false positive gap there); vacuum sweep = no finite optimum.
 
+SCOPE (winner semantics): winners rank VALUE MODELS (closures) at equal eps_max,
+NOT hardware sectors of the constrained problem (P) of M0 D2.6 — the released
+capped plug IS the per-phase relaxation, so its win measures the PREMIUM OF
+ADAPTATION only; the topology of the optimum S*(c) is the output of the sector
+tournament at the true constraint vector c, and bell-winning regions of (P) are
+EXPECTED at contour level (D3 §10quater(5)). Per cell, premium_bound =
+ideal - bell certifies the MAXIMUM any non-bell sector can earn there.
+
 | eps_max \ PR | 1 | 2 | 4 | 8 | 16 | 32 | 49.2126 | 64 | 90 |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | tie | tie | tie | tie | tie | tie | tie | tie | tie |

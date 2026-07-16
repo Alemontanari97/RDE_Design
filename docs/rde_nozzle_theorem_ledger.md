@@ -613,6 +613,35 @@ asserted EXACTLY, not skipped). Statements, with rigor classes:
      mixed region of the general conjecture is NOT expressible at the
      ε rung (one shared ε DOF cannot encode duty splitting): OP-11 at
      contour level remains CONJECTURE.
+ (5) SCOPE — NON-TRANSFER TO THE CONSTRAINED PROBLEM (P) (remark of
+     record, 2026-07-16, precision pass on user challenge; see M0
+     D2.6). The diagram's 'winner' ranks VALUE MODELS (closures) at
+     equal ε_max, NOT hardware sectors of (P): the released capped
+     plug IS the per-phase relaxation, so statement (1) is dominance
+     of a relaxation over a fixed member — it measures the PREMIUM OF
+     ADAPTATION and is SILENT on how much of it a real plug retains
+     at the true constraint vector c (truncation, base pressure and
+     length are invisible at the ε rung; zero-penalty truncation is
+     the spike-favorable corner — the standing ADR D4 challenge).
+     Consequently: (a) the topology of S*(c) is the OUTPUT of the
+     finite sector tournament at c (cone condition ⇒ finitely many
+     sectors, NOT a priori {bell, plug, shrouded}; duty-split
+     composites are C1, CONJECTURE); no theorem of the program pins
+     the argmax of (P) to the named trio, and bell-winning regions of
+     (P) are EXPECTED at contour level (direction consistent with
+     Paxson's 58-70%-of-ideal data). (b) What each cell CERTIFIES
+     toward (P): PREMIUM_BOUND := Isp_ideal(capped) − Isp_bell —
+     THEOREM (Prop. G-B capped + achievability of the bell member,
+     up to the bell surrogate's declared C4 model-form bar): a
+     geometry-free upper bound on the advantage of ANY non-bell solid
+     over the cell's best fixed bell. Tournament device (SCHEMA until
+     the loss bands land): a certified sector loss lower bound
+     ℓ_sector(c) > PREMIUM_BOUND closes the cell for the bell with
+     δ-certificate per D2.6(iv); the EMPIRICAL truncation-penalty
+     band (ADR D4, awaiting ratification) is the first such ℓ.
+     Persisted per cell ('premium_bound', identity-guarded by
+     check_cell + rejector; max 64.7 s at (PR = 90, ε_max = 1) on the
+     record grid, shrinking to the M1 gap elsewhere).
 
 ------------------------------------------------------------------------------
 ## 11. Falsifiable-criterion index (one line each)

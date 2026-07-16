@@ -13,7 +13,8 @@
   "plug_sh": "S-H spike closure verbatim (Eqs. 10-12) at min(knee, eps_max) \u2014 naive free branch, kept for the executable rejection",
   "plug": "capped-adaptation closure of record: released phases at the per-phase CAPPED ideal (sonic cap below critical)",
   "winner": "tie within tol_abs, else argmax; plug labeled \"plug-capped\" when eps_max < knee",
-  "m1_gap_zero": "winner attains the capped ceiling within tol_abs (duality-gap-zero global optimality, mechanism M1)"
+  "m1_gap_zero": "winner attains the capped ceiling within tol_abs (duality-gap-zero global optimality, mechanism M1)",
+  "premium_bound": "Isp_ideal - Isp_bell: geometry-free upper bound on the advantage of ANY non-bell solid over the cell best fixed bell (tournament device; see WINNER SEMANTICS scope note \u2014 winners rank closures at equal eps_max, not hardware sectors of the constrained problem (P))"
  },
  "tol_rel": 8.884004643050503e-13,
  "n": 4001,
@@ -92,6 +93,7 @@
    "winner": "tie",
    "m1_gap": 46.95232742647917,
    "m1_gap_zero": false,
+   "premium_bound": 46.95232742647917,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -139,6 +141,7 @@
    "winner": "tie",
    "m1_gap": 21.918061508227197,
    "m1_gap_zero": false,
+   "premium_bound": 21.918061508227197,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -186,6 +189,7 @@
    "winner": "tie",
    "m1_gap": 10.978774532002717,
    "m1_gap_zero": false,
+   "premium_bound": 10.978774532002717,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -233,6 +237,7 @@
    "winner": "tie",
    "m1_gap": 1.9315567842157293,
    "m1_gap_zero": false,
+   "premium_bound": 1.9315567842157293,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -280,6 +285,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -327,6 +333,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -374,6 +381,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -421,6 +429,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -468,6 +477,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -515,6 +525,7 @@
    "winner": "tie",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.0,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -562,6 +573,7 @@
    "winner": "tie",
    "m1_gap": 47.548976283088024,
    "m1_gap_zero": false,
+   "premium_bound": 47.548976283088024,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -609,6 +621,7 @@
    "winner": "tie",
    "m1_gap": 22.483883132747223,
    "m1_gap_zero": false,
+   "premium_bound": 22.483883132747223,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -656,6 +669,7 @@
    "winner": "tie",
    "m1_gap": 11.531125495784806,
    "m1_gap_zero": false,
+   "premium_bound": 11.531125495784806,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -703,6 +717,7 @@
    "winner": "tie",
    "m1_gap": 2.4727669715536535,
    "m1_gap_zero": false,
+   "premium_bound": 2.4727669715536535,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -750,6 +765,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.0330716847196868,
    "m1_gap_zero": false,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -797,6 +813,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -844,6 +861,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -891,6 +909,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -938,6 +957,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -985,6 +1005,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 0.5388316434808189,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1032,6 +1053,7 @@
    "winner": "tie",
    "m1_gap": 49.26888879220513,
    "m1_gap_zero": false,
+   "premium_bound": 49.26888879220513,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1079,6 +1101,7 @@
    "winner": "tie",
    "m1_gap": 24.11506524293128,
    "m1_gap_zero": false,
+   "premium_bound": 24.11506524293128,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1126,6 +1149,7 @@
    "winner": "tie",
    "m1_gap": 13.12353483761774,
    "m1_gap_zero": false,
+   "premium_bound": 13.12353483761774,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1173,6 +1197,7 @@
    "winner": "plug-capped",
    "m1_gap": 3.9218675405755334,
    "m1_gap_zero": false,
+   "premium_bound": 4.033109677771961,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1220,6 +1245,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.4147260664358896,
    "m1_gap_zero": false,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1267,6 +1293,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1314,6 +1341,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1361,6 +1389,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1408,6 +1437,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1455,6 +1485,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 2.092328154855693,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1502,6 +1533,7 @@
    "winner": "tie",
    "m1_gap": 51.92220870586462,
    "m1_gap_zero": false,
+   "premium_bound": 51.92220870586462,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1549,6 +1581,7 @@
    "winner": "tie",
    "m1_gap": 26.631849357305327,
    "m1_gap_zero": false,
+   "premium_bound": 26.631849357305327,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1596,6 +1629,7 @@
    "winner": "plug-capped",
    "m1_gap": 15.569858659397596,
    "m1_gap_zero": false,
+   "premium_bound": 15.580656522532365,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1643,6 +1677,7 @@
    "winner": "plug-capped",
    "m1_gap": 5.817658921798852,
    "m1_gap_zero": false,
+   "premium_bound": 6.4408881330376175,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1690,6 +1725,7 @@
    "winner": "plug-capped",
    "m1_gap": 1.1921150846784485,
    "m1_gap_zero": false,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1737,6 +1773,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.006192268446852722,
    "m1_gap_zero": false,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1784,6 +1821,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1831,6 +1869,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1878,6 +1917,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1925,6 +1965,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 4.489571871948101,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -1972,6 +2013,7 @@
    "winner": "tie",
    "m1_gap": 55.24929607519721,
    "m1_gap_zero": false,
+   "premium_bound": 55.24929607519721,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2019,6 +2061,7 @@
    "winner": "plug-capped",
    "m1_gap": 29.78185343111869,
    "m1_gap_zero": false,
+   "premium_bound": 29.78818884032438,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2066,6 +2109,7 @@
    "winner": "plug-capped",
    "m1_gap": 18.47225950305807,
    "m1_gap_zero": false,
+   "premium_bound": 18.66238381940275,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2113,6 +2157,7 @@
    "winner": "plug-capped",
    "m1_gap": 7.942834051458135,
    "m1_gap_zero": false,
+   "premium_bound": 9.460908138542493,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2160,6 +2205,7 @@
    "winner": "plug-capped",
    "m1_gap": 2.264825691438034,
    "m1_gap_zero": false,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2207,6 +2253,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.13009238771775244,
    "m1_gap_zero": false,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2254,6 +2301,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2301,6 +2349,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2348,6 +2397,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2395,6 +2445,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 7.496417407515139,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2442,6 +2493,7 @@
    "winner": "tie",
    "m1_gap": 58.97593889532851,
    "m1_gap_zero": false,
+   "premium_bound": 58.97593889532851,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2489,6 +2541,7 @@
    "winner": "plug-capped",
    "m1_gap": 33.20733087101905,
    "m1_gap_zero": false,
+   "premium_bound": 33.32378322956595,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2536,6 +2589,7 @@
    "winner": "plug-capped",
    "m1_gap": 21.494253341316437,
    "m1_gap_zero": false,
+   "premium_bound": 22.114495227598468,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2583,6 +2637,7 @@
    "winner": "plug-capped",
    "m1_gap": 10.164993484647994,
    "m1_gap_zero": false,
+   "premium_bound": 12.843975731812634,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2630,6 +2685,7 @@
    "winner": "plug-capped",
    "m1_gap": 3.530207855018034,
    "m1_gap_zero": false,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2677,6 +2733,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.4466579184966122,
    "m1_gap_zero": false,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2724,6 +2781,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.0008240922036861775,
    "m1_gap_zero": false,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2771,6 +2829,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2818,6 +2877,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2865,6 +2925,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 10.864744164032572,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2912,6 +2973,7 @@
    "winner": "tie",
    "m1_gap": 61.378179179081485,
    "m1_gap_zero": false,
+   "premium_bound": 61.378179179081485,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -2959,6 +3021,7 @@
    "winner": "plug-capped",
    "m1_gap": 35.340964538406865,
    "m1_gap_zero": false,
+   "premium_bound": 35.60252983612412,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3006,6 +3069,7 @@
    "winner": "plug-capped",
    "m1_gap": 23.355585036369234,
    "m1_gap_zero": false,
+   "premium_bound": 24.33927844194244,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3053,6 +3117,7 @@
    "winner": "plug-capped",
    "m1_gap": 11.55157025910728,
    "m1_gap_zero": false,
+   "premium_bound": 15.024129017811902,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3100,6 +3165,7 @@
    "winner": "plug-capped",
    "m1_gap": 4.37438225386984,
    "m1_gap_zero": false,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3147,6 +3213,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.7303739537336469,
    "m1_gap_zero": false,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3194,6 +3261,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.015952153083105713,
    "m1_gap_zero": false,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3241,6 +3309,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3288,6 +3357,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3335,6 +3405,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 13.035368956180719,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3382,6 +3453,7 @@
    "winner": "tie",
    "m1_gap": 62.846998088364614,
    "m1_gap_zero": false,
+   "premium_bound": 62.846998088364614,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3429,6 +3501,7 @@
    "winner": "plug-capped",
    "m1_gap": 36.62478447928919,
    "m1_gap_zero": false,
+   "premium_bound": 36.99539163290024,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3476,6 +3549,7 @@
    "winner": "plug-capped",
    "m1_gap": 24.473206946177925,
    "m1_gap_zero": false,
+   "premium_bound": 25.698949035212763,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3523,6 +3597,7 @@
    "winner": "plug-capped",
    "m1_gap": 12.39169014421583,
    "m1_gap_zero": false,
+   "premium_bound": 16.3563491254356,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3570,6 +3645,7 @@
    "winner": "plug-capped",
    "m1_gap": 4.902722364955423,
    "m1_gap_zero": false,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3617,6 +3693,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.9308048895688898,
    "m1_gap_zero": false,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3664,6 +3741,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.039032337514754545,
    "m1_gap_zero": false,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3711,6 +3789,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3758,6 +3837,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3805,6 +3885,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 14.361728375559949,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3852,6 +3933,7 @@
    "winner": "tie",
    "m1_gap": 64.7333454136174,
    "m1_gap_zero": false,
+   "premium_bound": 64.7333454136174,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3899,6 +3981,7 @@
    "winner": "plug-capped",
    "m1_gap": 38.25903546391828,
    "m1_gap_zero": false,
+   "premium_bound": 38.78336900925302,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3946,6 +4029,7 @@
    "winner": "plug-capped",
    "m1_gap": 25.895573445572495,
    "m1_gap_zero": false,
+   "premium_bound": 27.44394140157806,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -3993,6 +4077,7 @@
    "winner": "plug-capped",
    "m1_gap": 13.469344247725473,
    "m1_gap_zero": false,
+   "premium_bound": 18.06579112001981,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4040,6 +4125,7 @@
    "winner": "plug-capped",
    "m1_gap": 5.596987886458237,
    "m1_gap_zero": false,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4087,6 +4173,7 @@
    "winner": "plug-capped",
    "m1_gap": 1.2167892821698842,
    "m1_gap_zero": false,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4134,6 +4221,7 @@
    "winner": "plug-capped",
    "m1_gap": 0.08755984772574266,
    "m1_gap_zero": false,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4181,6 +4269,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4228,6 +4317,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   },
@@ -4275,6 +4365,7 @@
    "winner": "plug",
    "m1_gap": 0.0,
    "m1_gap_zero": true,
+   "premium_bound": 16.063580344537286,
    "cell_ok": true,
    "violations_cell": []
   }

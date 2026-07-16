@@ -72,6 +72,8 @@ def run():
                         / abs(live['cand'][k]))
         winners_match &= (live['winner'] == r['winner']
                           and live['m1_gap_zero'] == r['m1_gap_zero'])
+        worst = max(worst, abs(live['premium_bound'] - r['premium_bound'])
+                    / max(abs(live['premium_bound']), 1.0))
     check('D1: live grid == persisted JSON (%d cells)' % len(cells),
           worst <= rec['tol_rel'] and winners_match,
           '(worst rel %.1e, winners %s)'
@@ -159,6 +161,8 @@ def run():
           not corrupt(r_fit, winner='bell'))
     check('D6: dominance breach (bell above capped plug) REJECTED',
           not corrupt(r_fit, bell=r_fit['cand']['plug'] + 1.0))
+    check('D6: stale premium bound REJECTED',
+          not corrupt(r_fit, premium_bound=r_fit['premium_bound'] + 1.0))
     # broken implementation: the naive closure passed off as the record one
     broken = copy.deepcopy(r_fit)
     broken['cand']['plug'] = broken['cand']['plug_sh']

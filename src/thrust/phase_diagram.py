@@ -55,6 +55,26 @@ that produces it (eps_max -> 1 with subcritical tails, where the naive
 free branch loses to the sonic exit) is kept as an executable negative
 control in tests/test_phase_diagram.py.
 
+WINNER SEMANTICS — SCOPE (non-transfer to the constrained problem (P),
+M0 D2.6; remark of record in D3 §10quater(5)).  'winner' ranks VALUE
+MODELS (closures) at equal eps_max, NOT hardware sectors of the
+constrained problem: the released capped plug IS the per-phase
+relaxation, so its dominance is that of a relaxation over a fixed
+member — it measures the PREMIUM OF ADAPTATION, and says nothing about
+how much of that premium a real plug retains at the true constraint
+vector c (truncation / base pressure / length are invisible at the eps
+rung).  The topology of the optimum S* of (P) is the output of the
+SECTOR TOURNAMENT at c (finitely many sectors by the cone condition,
+NOT a priori {bell, plug, shrouded}); bell-winning regions of (P) are
+EXPECTED at contour level.  What each cell certifies toward (P) is
+PREMIUM_BOUND := Isp_ideal - Isp_bell — a geometry-free upper bound
+(Prop. G-B capped) on the advantage of ANY non-bell solid over the
+best fixed bell of the cell, up to the bell surrogate's declared
+model-form bar: once a certified sector loss band exceeds it, the bell
+wins (P) on that cell with certificate (tournament device; band lands
+with PB-2).  Persisted per cell as 'premium_bound', identity-guarded
+by check_cell and tests.
+
 LADDER REUSE. Every cell embeds the full OP-0 ladder row
 (bounds.ladder_row, eps_fix = eps_bell) and re-runs bounds.check_chain:
 chain C must hold verbatim on every PR > 1 cell; at PR = 1 the measure is
@@ -182,6 +202,9 @@ def cell_row(anchor, PR, eps_max, Pa, Pc_mean, n=NQ):
     best = max(cand['bell'], cand['plug'])
     row['m1_gap'] = row['Isp']['ideal'] - best
     row['m1_gap_zero'] = bool(row['m1_gap'] <= row['tol_abs'])
+    # geometry-free premium of ANY non-bell solid over the cell's best
+    # fixed bell (WINNER SEMANTICS scope note): the tournament device.
+    row['premium_bound'] = row['Isp']['ideal'] - cand['bell']
     return row
 
 
@@ -229,6 +252,8 @@ def check_cell(row):
         v.append('winner above the capped ceiling')
     if row['m1_gap_zero'] != (I['ideal'] - best <= t):
         v.append('m1 flag inconsistent with the recomputed gap')
+    if not abs(row['premium_bound'] - (I['ideal'] - c['bell'])) <= t:
+        v.append('premium bound != capped ceiling minus bell (staleness)')
     if row['knee_fits'] and not row['m1_gap_zero']:
         v.append('T4/M1: generous envelope fails to attain capped ceiling')
     if row['PR'] == 1.0:
@@ -330,7 +355,13 @@ def evaluate_all():
             winner='tie within tol_abs, else argmax; plug labeled '
                    '"plug-capped" when eps_max < knee',
             m1_gap_zero='winner attains the capped ceiling within tol_abs '
-                        '(duality-gap-zero global optimality, mechanism M1)'),
+                        '(duality-gap-zero global optimality, mechanism M1)',
+            premium_bound='Isp_ideal - Isp_bell: geometry-free upper bound '
+                          'on the advantage of ANY non-bell solid over the '
+                          'cell best fixed bell (tournament device; see '
+                          'WINNER SEMANTICS scope note — winners rank '
+                          'closures at equal eps_max, not hardware sectors '
+                          'of the constrained problem (P))'),
         tol_rel=TOL_REL, n=NQ, Pa_atm=1.0, pr_grid=PRs, eps_max_grid=EMs,
         vac_eps_grid=list(VAC_EPS_GRID), cells=cells,
         vacuum=dict(rows=vac, ok=vac_ok, violations=vac_viol))
@@ -365,6 +396,21 @@ def _write_md(rec):
          'published S-H',
          'free branch leaves a false positive gap there); vacuum sweep = '
          'no finite optimum.',
+         '',
+         'SCOPE (winner semantics): winners rank VALUE MODELS (closures) '
+         'at equal eps_max,',
+         'NOT hardware sectors of the constrained problem (P) of M0 D2.6 — '
+         'the released',
+         'capped plug IS the per-phase relaxation, so its win measures the '
+         'PREMIUM OF',
+         'ADAPTATION only; the topology of the optimum S*(c) is the output '
+         'of the sector',
+         'tournament at the true constraint vector c, and bell-winning '
+         'regions of (P) are',
+         'EXPECTED at contour level (D3 §10quater(5)). Per cell, '
+         'premium_bound =',
+         'ideal - bell certifies the MAXIMUM any non-bell sector can earn '
+         'there.',
          '',
          '| eps_max \\ PR | ' + ' | '.join('%g' % p for p in PRs) + ' |',
          '|---' * (len(PRs) + 1) + '|']

@@ -437,6 +437,20 @@ equals the bell as a member (plus the PR = 1 column, T3, and the
 vacuum no-optimum sweep, both asserted as oracles). Duty splitting is
 not expressible with the single shared eps DOF: at contour level OP-11
 remains CONJECTURE.
+SCOPE (non-transfer to (P), D2.6 — remark of record, full form D3
+§10quater(5)): the diagram's winners rank CLOSURES at equal eps_max,
+not hardware sectors of the constrained problem; the released capped
+plug IS the per-phase relaxation, so its dominance prices the
+ADAPTATION PREMIUM and does not decide (P) — the topology of S*(c) is
+the output of the finite sector tournament at the true constraint
+vector c (not a priori {bell, plug, shrouded}), and bell-winning
+regions of (P) are EXPECTED at contour level once truncation/base-
+pressure/length losses bite. Each cell certifies toward (P) the
+geometry-free PREMIUM_BOUND = Isp_ideal(capped) − Isp_bell (THEOREM,
+up to the bell surrogate's C4 bar): any certified non-bell loss band
+exceeding it closes that cell for the bell with delta-certificate per
+D2.6(iv) — the tournament device that PB-2's empirical truncation
+band will arm.
 
 REMARK (relation to EAP — verified against Kaemming-Paxson, AIAA
 2018-4567, NTRS 20180006890, full text read 2026-07-16). The industry's

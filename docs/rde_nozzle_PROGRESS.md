@@ -30,6 +30,21 @@ T3 = e23bb08). Stato per fase (piano D6):
     ε*(Pc_min)}; banda plug-cappato (regime genuinamente mediato,
     sezione di PB-2); regione M1 ε_max ≥ knee. Il duty split NON è
     esprimibile a livello ε: OP-11 a livello contorno resta CONGETTURA.
+  - SCOPE REMARK di record (addendum post-chiusura su challenge utente,
+    D3 §10quater(5) + M0 Prop. 7 + modulo/md/esempio): i "winner" del
+    diagramma ordinano CHIUSURE a parità di ε_max, NON i settori
+    hardware del problema vincolato (P) di D2.6 — il plug cappato
+    rilasciato È la rilassazione per-fase, quindi la sua dominanza
+    prezza il PREMIO DI ADATTAMENTO e non decide (P); la topologia di
+    S*(c) è l'OUTPUT del torneo di settori al vero vettore di vincoli
+    (non a priori {bell, plug, shrouded}); regioni bell-vincenti di (P)
+    sono ATTESE a livello contorno. Dispositivo per il torneo:
+    premium_bound = ideal − bell per cella (THEOREM geometry-free, a
+    meno della barra C4 del surrogato bell; max 64.7 s a (PR=90,
+    ε_max=1)), persistito e con rejector; una banda di perdita
+    certificata di settore > premium_bound chiude la cella per il bell
+    con δ-certificato D2.6(iv) — la banda EMPIRICAL di troncamento
+    (ADR D4, in attesa di ratifica) è la prima candidata.
   - P-2: **OUTLINE DI RECORD SCRITTO** (05001a5,
     docs/rde_nozzle_P2_outline.md): Lemmi A/B con classi di rigore e
     falsificatori, tre sponde citate, piano oracolo O3.1-O3.4,

@@ -50,6 +50,11 @@ def main():
     print('winner map %d cells: %d tie / %d plug-capped / %d plug-knee'
           % (len(rec['cells']), counts[0], counts[1], counts[2]))
     print('M1 gap-zero (capped ceiling attained) on %d cells' % nm1)
+    pmax = max(rec['cells'], key=lambda r: r['premium_bound'])
+    print('premium bound (ideal - bell, most ANY non-bell sector can earn):'
+          ' max %.1f s at (PR=%g, eps_max=%g); winners rank closures, not'
+          ' hardware - see SCOPE note in data/phase_diagram.md'
+          % (pmax['premium_bound'], pmax['PR'], pmax['eps_max']))
     sub = sorted({r['PR'] for r in rec['cells'] if r['subcritical']})
     print('subcritical strip: PR in {%s} (capped closure load-bearing)'
           % ', '.join('%g' % p for p in sub))
