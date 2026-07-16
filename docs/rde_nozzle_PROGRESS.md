@@ -4,9 +4,42 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 2 — "Fase 0-chiusura + OP-0")
+## ORA (2026-07-16, chiusura Sessione 3 — "Fase 1: OP-11-eps + P-2 + G5")
 
-Branch `rde-nozzle-program`, HEAD = 92cb8ea. Stato per fase (piano D6):
+Branch `rde-nozzle-program`, HEAD = e23bb08 (T1 = 1438b1b, T2 = 05001a5,
+T3 = e23bb08). Stato per fase (piano D6):
+
+- FASE 1 (fondazioni quasi-1D): **OP-11-ε CHIUSO** (1438b1b).
+  - Diagramma di fase quasi-1D di record: src/thrust/phase_diagram.py,
+    griglia 90 celle (ε_max × PR a ⟨Pc⟩ fissata, ancora CH4/O2 20 atm)
+    + sweep vuoto; ladder OP-0 riusata per cella (check_chain rieseguito;
+    a PR=1 la firma di degenerazione è ASSERITA, non saltata); test
+    (x) con 22 check e 8 controlli negativi (rigetta topologie vincenti
+    sbagliate, oracoli T3/T4 espliciti); figura P-1
+    figs/phase_diagram_op11.png; suite completa 11/11 PASS (441 s).
+  - DUE RISULTATI THEOREM-GRADE retro-propagati (R4, stessa sessione)
+    in D3 §10quater + M0 Prop. 7 + D4: (i) con la chiusura di
+    adattamento CAPPATA AL SONICO il plug domina puntualmente il bell —
+    nessuna regione bell stretta a livello ε; (ii) il plug cappato
+    raggiunge il ceiling cappato a ε_max ≥ knee su OGNI cella Pa > 0,
+    INCLUSE le 9 celle subcritiche: attainment M1 esteso oltre le 8
+    righe supercritiche di OP-0 (l'ipotesi supercritica appartiene solo
+    alla chiusura naive pubblicata, che a ε_max = 1 inverte perfino il
+    ranking bell/plug — artefatto eseguibile, test-rigettato).
+  - Struttura della mappa: tie = {PR=1} ∪ {ε_max=1} ∪ {ε_max ≤
+    ε*(Pc_min)}; banda plug-cappato (regime genuinamente mediato,
+    sezione di PB-2); regione M1 ε_max ≥ knee. Il duty split NON è
+    esprimibile a livello ε: OP-11 a livello contorno resta CONGETTURA.
+  - P-2: **OUTLINE DI RECORD SCRITTO** (05001a5,
+    docs/rde_nozzle_P2_outline.md): Lemmi A/B con classi di rigore e
+    falsificatori, tre sponde citate, piano oracolo O3.1-O3.4,
+    proposta venue (AIAA J primaria; Aerospace/JOTA alternative) —
+    DECISIONE VENUE ALL'UTENTE. Stesura Lemma A = prossimo passo P-2.
+- FASE 0 (coda): G5 **testo di commissioning PRONTO** (e23bb08,
+  validation/G5_kraiko_pmm_commission.md) — SOLO TESTO, nessun invio:
+  spedizione e destinatario sono dell'utente.
+
+Stato precedente (chiusura Sessione 2, HEAD = 92cb8ea):
 
 - FASE 0: **CHIUSA FORMALMENTE**. A0.1 completata: citazioni corrette
   propagate INLINE nelle note storiche (Li-Xu-Huang 2022 / Mo 2015
@@ -51,24 +84,34 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 3)
+## NEXT (passo atomico, Sessione 4)
 
-1. [F1/OP-11-ε] Diagramma di fase quasi-1D (era il T4 opzionale della
-   Sessione 2, DECLINATO deliberatamente per disciplina di chiusura):
-   griglia (ε_max o L) × (spread di μ via PR), topologia vincente per
-   cella dai closed form + bound ladder di src/thrust/bounds.py
-   (riusare ladder_row/check_chain; attenzione al regime subcritico:
-   usare il ceiling CAPPATO, mai il naive); figure per P-1.
-2. [F1/P-2] Outline del lemma-ponte Rao=aggiunto (TIME-SENSITIVE:
-   Lozano-Ponsin 2025 ha costruito la sponda 2-D).
-3. [F0/G5] Commissionare il passaggio biblioteca Kraiko 1979 / PMM.
-[FATTO in S2: ex-NEXT-1 grep di controllo A0.1 → gate PASS, 92cb8ea.]
+1. [F1/P-1] Skeleton della stesura P-1 (venue JPP): la teoria è pronta
+   (M0 Parti I-III + i due ponti EAP/S-H + numeri OP-0 + figura e
+   teoremi OP-11-ε di questa sessione); partire dallo scheletro
+   sezione-per-sezione con la mappa claim→(classe, falsificatore,
+   carrier eseguibile).
+2. [F1/P-2] Stesura Lemma A §3 (identificazione termine-a-termine,
+   equation-numbered vs corpus b0) sull'outline 05001a5.
+3. [F2-prep/G0] Spike JAX: UN unit process MOC (interior + inverse
+   wall) con custom_vjp + regola implicita; gradiente vs differenze
+   centrali e vs GENO su un caso TOC (90-day plan item 2).
+[FATTO in S3: ex-NEXT-1 OP-11-ε → 1438b1b; ex-NEXT-2 outline P-2 →
+05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08.]
 
 ## BLOCCATO / GATE APERTI
 
-- G5 (umano, biblioteca): blocca le SUBMISSION P-1/P-2/P-3, non il lavoro.
-- G0 (stack JAX/Julia): decisione a Fase 2 (spike settimane 2-5 del
-  90-day plan).
+- G5 (umano, biblioteca): blocca le SUBMISSION P-1/P-2/P-3, non il
+  lavoro. TESTO DI COMMISSIONING PRONTO
+  (validation/G5_kraiko_pmm_commission.md): invio e destinatario in
+  mano all'utente.
+- Venue P-2: proposta nell'outline (AIAA J / Aerospace / JOTA) —
+  decisione utente.
+- ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
+  committato): IN ATTESA DI RATIFICA UTENTE — nessuna implementazione
+  avviata, per disciplina.
+- G0 (stack JAX/Julia): decisione a Fase 2 (lo spike NEXT-3 la
+  istruisce).
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
@@ -83,6 +126,26 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   Deviazioni dal piano: nessuna; T1/T3 della Sessione 2 anticipati.
   Verdetti: novità query-bounded confermata su tutti i filoni;
   residuo esterno = G5.
+
+- **S3 (2026-07-16, "Fase 1: OP-11-ε + P-2 + G5")** — Esecuzione
+  T1→T2→T3 con log a ordine totale
+  (validation/PROGRESS_2026-07-16_fase1_OP11.md, passi 1-16):
+  T1/OP-11-ε (1438b1b): diagramma di fase 90 celle + vuoto, riuso
+  ladder_row/check_chain con firma di degenerazione PR=1 asserita,
+  test (x) 22 check + 8 rejector (controlli negativi T3/T4 espliciti),
+  figura P-1, suite 11/11; SCOPERTE retro-propagate (R4, D3 §10quater
+  + M0 Prop. 7 + D4): dominanza puntuale del plug con chiusura cappata
+  (nessuna regione bell a livello ε) e attainment M1 ESTESO alle celle
+  subcritiche via cap sonico (l'ipotesi supercritica è della sola
+  chiusura naive, il cui artefatto a ε_max=1 inverte il ranking:
+  test-rigettato); caratterizzata la regione tie (ε_max ≤ ε*(Pc_min):
+  il plug non rilascia mai). T2/P-2 (05001a5): outline di record con
+  Lemmi A/B classificati, falsificatori, piano O3, venue proposta.
+  T3/G5 (e23bb08): testo commissioning biblioteca, solo testo.
+  Deviazioni dichiarate: NESSUNA deviazione di merito; due errori
+  d'ordine nel log di sessione (righe inserite fuori sequenza)
+  corretti in-sessione prima dei commit. Verdetti: OP-11 a livello
+  contorno resta CONGETTURA (duty split non esprimibile a livello ε).
 
 - **S2 (2026-07-16, "Fase 0-chiusura + OP-0")** — Esecuzione T3→T1→T2
   con rendicontazione a ordine totale
