@@ -279,3 +279,10 @@ RATIFICATION — no implementation).
     oracle). The user decision coincides with the plan of record and
     ADDS an explicit G0 interop criterion — an improvement, zero
     deviation.
+27. [HANDOFF] Session-6 prompt delivered to the user (tasks =
+    PROGRESS NEXT 1-5 reprioritized: Lemma B + P-A1 time-sensitive
+    first, then OP-0-gamma purge, PMM sweep, P-1 §2/§4 text incl. the
+    Lemma-C pedagogical line agreed in conversation, spike extension;
+    gate pre-esecuzione now includes the gamma-status question per the
+    strengthened directive; one-session-at-a-time rule made EXPLICIT
+    after two violations). SESSION 5 DEFINITIVELY CLOSED at step 27.
