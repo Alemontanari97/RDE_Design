@@ -130,6 +130,30 @@ Consequences for the corrector, each following from results of record:
  (4) the regularity needed for convergence = harmonic decay of
      s(xi), MEASURABLE at the data-contract audit (replaces
      unverifiable ergodic hypotheses).
+P4-PERIODIC FIRST-ORDER SYSTEM (attack of record, 2026-07-16,
+Sessione 8-rigore; class THEOREM* at the STATEMENT level in the
+smooth scope — the proof is a function-space implicit-function
+argument, NAMED, beyond symbolic; verification-sufficiency per the
+standing directive). Under the periodic scoping, write the wave-frame
+problem as N(U; St) = N_0(U) + St * S_sweep(U) = 0 with N_0 the
+azimuthally-decoupled per-phase system and S_sweep = -Omega_w r
+d_theta' the sweep operator (N-SW/D1 §8 of record). IF the
+linearization L = DN_0(U_0) is boundedly invertible on the periodic
+function class (SPECTRAL HYPOTHESIS: no neutral mode — exactly the
+P1a/P1b margin, an audited quantity), then by the implicit function
+theorem U(St) = U_0 + St U_1 + O(St^2) with L U_1 = -S_sweep(U_0),
+and the corrector of C-T1 has the ADJOINT FORMULA
+    J_1 = dJ/dU [U_1] = - < psi_J , S_sweep(U_0) >,
+psi_J the thrust adjoint of the decoupled system (ONE extra linear
+solve — the algorithmic pin of M0 VI.4bis(ii), now with its exact
+operator and hypothesis stated). Named residues: (i) Fredholm/
+invertibility of L on the periodic class = function-space analysis
+(inherits the smooth-scope restriction; shocks reconnect to G12-S1);
+(ii) the O(St^2) remainder bound needs the standard IFT quantitative
+form (named); (iii) the spectral hypothesis is CHECKABLE (P1a/P1b
+diagnostic). C-T1 itself stays CONJECTURE until (i)-(ii) are written;
+the TARGET and the computable formula are now of record.
+
 What does NOT change: the O(St) sweep error itself is physical and
 remains; C-T1 remains CONJECTURE (now in an easier class); the
 generality-ladder rows for RPO/multistable/chaotic remain the honest

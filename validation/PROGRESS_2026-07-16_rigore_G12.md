@@ -94,3 +94,54 @@ the attackability assessment given in-conversation).
    (4) P4 smooth periodic (steady sweep perturbation, spectral
    hypothesis = P1a/P1b margin). Leads to verify for G12-S1:
    Bressan-Guerra-class shift-differentiability citation (R-G12.2).
+
+10. [RIAPERTURA — user directive] "devi attaccare lo swirl e gli
+    altri punti del quadro, con rigore estremo e certezza
+    matematica" + standing sub-directive recorded: EVERY claim must
+    declare whether SYMBOLIC verification SUFFICES (finite algebraic
+    identity: machine check = proof) or the content is FUNCTION-SPACE
+    (existence/regularity/limits: symbolic = consistency only,
+    analytic steps named). Log reopened append-only at step 10.
+11. [N6 EXEC] WROTE validation/n6_swirl_kernel.py + ran: first run 1
+    FAIL (|n|=1 substitution missing in the swirl kernel contraction
+    — same script-level issue as prior parts, declared), fixed;
+    FINAL PASS 16/16 (rejector + double negative control).
+12. [N6 RESULTS + R4] WROTE docs/rde_nozzle_N6_swirl.md:
+    THEOREM N6-1 (symbolic-sufficient, EOS-general): swirl pencil
+    det A_p = u^3(u^2-c^2); det(B-λA) = streamline^3 x SAME meridional
+    Mach bracket; kernel eigenvector has ZERO swirl component and the
+    thrust/mass annihilation laws are unchanged ⇒ the WHOLE G12-S1
+    machinery extends to swirl (Li-Yu import stays function-space,
+    inherits D2.5). THEOREM N6-2 (free-vortex extension): with
+    uniform Gamma_0 = r u_theta, h0, s the meridional Bernoulli gives
+    the EXACT fixed-y closure dp/dW = -rho W ⇒ the ENTIRE classical
+    stationarity system holds VERBATIM with W = meridional speed
+    (machine re-run of all identities with two-argument p(W,y) +
+    corner rejector) — a NEW positive swirl class for Rao machinery.
+    THEOREM N6-3 (sharp negative): the obstruction identity
+    dh/dW|_y = -W + (h0' - Gamma Gamma'/y^2) dpsi/dW vanishes IFF
+    free vortex (machine-verified both ways) ⇒ beyond free vortex the
+    control-surface closure FAILS and field-level machinery is
+    NECESSARY (grounds M0 VI.4bis(iv) unconditionally; the stronger
+    no-alternative-reduction claim stays SCHEMA with falsifier).
+    Five-field system = named SCHEMA (counting brick already
+    THEOREM). R4: M0 Theorem 3 CAUTION upgraded with the sharp N6
+    status.
+13. [S1-UNIQ EXEC] WROTE docs/rde_nozzle_S1_uniqueness.md — statement
+    THEOREM S1-U (uniqueness INSIDE the S1 class; does not touch
+    wild-solution non-uniqueness) + proof ARCHITECTURE with the two
+    machine-proven bricks (G12-L1 evolution, G12-L2 front
+    nonsingularity ⇒ front-distance Gronwall) + named function-space
+    steps (region Gronwall via D2.5 estimates; wall boundary; equal
+    front count via the a-posteriori certificate). Honest class:
+    SCHEMA with proven bricks, target THEOREM* — NO symbolic carrier
+    possible (declared per the sufficiency discipline). Falsifier
+    written. Discharging it would also close R-P3.1.
+14. [P4 EXEC + R4] D3 §3 addendum "P4-PERIODIC FIRST-ORDER SYSTEM":
+    N(U; St) = N_0 + St S_sweep; under the CHECKABLE spectral
+    hypothesis (P1a/P1b margin) the IFT gives U_1 = -L^{-1} S_sweep
+    and the ADJOINT FORMULA J_1 = -<psi_J, S_sweep(U_0)> — the exact
+    operator behind the M0 VI.4bis(ii) algorithmic pin. Class:
+    THEOREM* at statement level, smooth scope; residues named
+    (Fredholm property, quantitative IFT remainder); C-T1 stays
+    CONJECTURE until written.

@@ -254,7 +254,17 @@ Consequences: J_exact = steady 3-D wave-frame shape functional with W
 an EIGENVALUE-like unknown (freezing formulation + phase condition);
 thrust-trace flatness = executable mode-purity diagnostic (N-T0').
 CAUTION (verified weakening): T0 steadifies the PROBLEM; it does NOT
-transfer Rao's 2-D closed-form machinery to 3-D swirl (open, N6).
+transfer Rao's 2-D closed-form machinery to 3-D swirl (N6). N6 STATUS
+UPGRADE (2026-07-16, [F1/N6-S1], docs/rde_nozzle_N6_swirl.md +
+machine-verified carrier): the boundary is now THEOREM-grade SHARP —
+(i) the swirl STRUCTURE theorems hold (meridional Mach lines
+unchanged, swirl = triple streamline transport, kernel laws
+identical: N6-1, symbolic-sufficient); (ii) Rao's machinery DOES
+extend verbatim to FREE-VORTEX swirl (uniform r·u_theta, h0, s) with
+W = meridional speed (N6-2, THEOREM); (iii) beyond free vortex the
+pointwise control-surface closure fails by an exact obstruction
+identity (N6-3) — field-level (five-field/AD) machinery NECESSARY;
+the five-field optimality system is the named SCHEMA.
 
 ------------------------------------------------------------------------------
 LEMMA 4 (N-SW — spacelikeness is frame-invariant; the swirl audit). THEOREM.
