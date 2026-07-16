@@ -2,7 +2,7 @@
 
 Conditions: phi = 1, p1 = 1 atm, T1 = 300 K, Pa = 1 atm (sea level). CJ states: SD Toolbox (Caltech) on Cantera 3.2; GRI-3.0 for H2/CH4/C2H4/C2H2/C3H8; kerosene = n-dodecane surrogate (Reitz thermo + GRI NOx thermo, equilibrium-only reduced set, validated to +0.19% on U_CJ vs the full mechanism).
 
-Models: **PH** = Shepherd-Kasahara pressure-history, F/Mdot = K(P_CJ-P1)/(rho1 U_CJ) + [u_c + (P1-Pa)/(rho1 u_c)], K = 1.02 (air) / 1.54 (O2), u_c = 300 m/s; **AX** = SK axial flow, w = sqrt(2(h1-h(P,s2))) on the equilibrium isentrope through the CJ state, T/Mdot = w + (P-Pa)/(rho w) at the sonic point (matched-exit in parentheses conceptually within ~2-9%); **ST** = Stechmann-Heister mass-weighted blowdown cycle. gamma_e = equilibrium isentropic exponent rho2 a_eq^2/P2 at CJ. Isp_f = (T/Mdot)/(Y_f g0).
+Models: **PH** = Shepherd-Kasahara pressure-history, F/Mdot = K(P_CJ-P1)/(rho1 U_CJ) + [u_c + (P1-Pa)/(rho1 u_c)], K = 1.02 (air) / 1.54 (O2), u_c = 300 m/s; **AX** = SK axial flow, w = sqrt(2(h1-h(P,s2))) on the equilibrium isentrope through the CJ state, T/Mdot = w + (P-Pa)/(rho w) at the sonic point (matched-exit vs sonic span +2.1..+17.1% on this set); **ST** = Stechmann-Heister mass-weighted blowdown cycle. gamma_e = equilibrium isentropic exponent rho2 a_eq^2/P2 at CJ. Isp_f = (T/Mdot)/(Y_f g0).
 
 ## Table 1 - CJ state and specific thrust (all combos, phi=1, 1 atm, 300 K)
 
@@ -21,16 +21,16 @@ Models: **PH** = Shepherd-Kasahara pressure-history, F/Mdot = K(P_CJ-P1)/(rho1 U
 | Kerosene(C12H26)/air | 1796 | 18.61 | 2836 | 1.165 | 0.0628 | 1120 | 1276 | 1817 | 2071 | - |
 | Kerosene(C12H26)/O2 | 2341 | 40.61 | 3882 | 1.137 | 0.2235 | 1963 | 1915 | 896 | 874 | - |
 
-^a Schwer & Kailasanath (2013) unsteady 2-D CFD, computed at 1.5 atm / 255 K fill - see Table 2 for the same-condition comparison. PH includes term II with u_c = 300 m/s (at p1 = Pa the pressure part vanishes).
+^a Schwer & Kailasanath (2013) unsteady 2-D CFD, computed at 0.15 MPa / 255 K fill - see Table 2 for the same-condition comparison. PH includes term II with u_c = 300 m/s (at p1 = Pa the pressure part vanishes).
 
-## Table 2 - Literature convergence at SK Table-1 conditions (1.5 atm / 255 K fill)
+## Table 2 - Literature convergence at SK Table-1 conditions (0.15 MPa / 255 K fill, A6)
 
 | Case | U_CJ me/SK [m/s] | P_CJ me/SK [MPa] | gamma_e me/SK | Isp_f PH me/SK [s] | dPH% | Isp_f AX me/SK [s] | dAX% | CFD S&K [s] |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| H2-air | 1983 / 1982 | 2.78 / 2.75 | 1.169 / 1.169 | 4702 / 4706 | -0.1 | 5395 / 5383 | +0.2 | 4860 |
-| C2H4-air | 1836 / 1836 | 3.28 / 3.24 | 1.165 / 1.165 | 1957 / 1975 | -0.9 | 2285 / 2280 | +0.2 | 1990 |
-| C2H4-O2 | 2403 / 2402 | 6.06 / 5.97 | 1.142 / 1.142 | 937 / 704 | +33.1 | 912 / 911 | +0.1 | 700 |
-| C3H8-O2 | 2384 / 2383 | 6.55 / 6.46 | 1.137 / 1.137 | 974 / 1016 | -4.1 | 953 / 952 | +0.1 | 1070 |
+| H2-air | 1982 / 1982 | 2.75 / 2.75 | 1.169 / 1.169 | 4694 / 4706 | -0.3 | 5384 / 5383 | +0.0 | 4860 |
+| C2H4-air | 1836 / 1836 | 3.24 / 3.24 | 1.165 / 1.165 | 1953 / 1975 | -1.1 | 2281 / 2280 | +0.1 | 1990 |
+| C2H4-O2 | 2402 / 2402 | 5.97 / 5.97 | 1.142 / 1.142 | 936 / 704 | +32.9 | 911 / 911 | -0.0 | 700 |
+| C3H8-O2 | 2383 / 2383 | 6.46 / 6.46 | 1.137 / 1.137 | 973 / 1016 | -4.2 | 952 / 952 | +0.0 | 1070 |
 
 Axial model reproduced to +-0.2% on 4/4 cases; PH reproduced on 3/4 (the published C2H4-O2 value of 704 s is inconsistent with the model equations and its own twin case C3H8-O2 - see vv_thrust.md, anomaly A1).
 

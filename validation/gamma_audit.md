@@ -23,7 +23,7 @@ e (Sec. 3, dopo Eq. 22):
 
 Il paper **non scioglie mai a parole il pedice "e"**; l'identificazione con l'equilibrio è però numericamente univoca:
 
-- **Table 1** (p. 22): "γe 1.169 1.165 1.142 1.137" per H2-air, C2H4-air, C2H4-O2, C3H8-O2 (a 1.5 atm / 255 K). Il γ frozen (cp/cv a composizione congelata) allo stesso stato CJ è ~1.24 per H2-air: **se γe fosse frozen la tabella direbbe 1.24, non 1.169**.
+- **Table 1** (p. 22): "γe 1.169 1.165 1.142 1.137" per H2-air, C2H4-air, C2H4-O2, C3H8-O2 (al fill SK 0.15 MPa / 255 K; anomalia A6, re-bless 2026-07-16). Il γ frozen (cp/cv a composizione congelata) allo stesso stato CJ è ~1.24 per H2-air: **se γe fosse frozen la tabella direbbe 1.24, non 1.169**.
 - **Table 2** (App. B, 1 atm / 300 K): "γ 1.163 1.161 1.129 1.139 1.134" allo State 2 (CJ), con a2 = 1091 m/s per H2-air. Verifica: ρ2·a2²/P2 = 1.51·1091²/1.55e6 = **1.160 ≈ 1.163** ⇒ a2 è la **velocità del suono di equilibrio** e γ è l'**esponente isentropico di equilibrio** al CJ (col suono frozen, 1128 m/s, verrebbe 1.24). Coerente con la condizione CJ, che è sonica rispetto al suono di equilibrio (Fickett–Davis).
 - Tutta la termochimica del paper è dichiaratamente di equilibrio: "These solutions were computed using realistic thermochemistry **and equilibrium properties** using the Shock and Detonation Toolbox Browne et al. (2017)."
 - Replica numerica (vedi §2): con γ_e ≡ ρ2·a_eq²/P2 al CJ gli input di Table 1 sono riprodotti "**gamma_e exact to 3 dp**" (V&V check 3a) e la Isp_f del modello I+II a −0.1% (4702 vs 4706 s).
@@ -76,7 +76,7 @@ Quindi: c*(t) (Eq. 7) e C_F(t) (Eq. 8–11) sono le formule classiche a gas perf
 Da `data/thrust_models_all.json` (campo `meta`) e `data/vv_thrust.md`:
 
 - Definizione usata nei nuovi calcoli: `gamma_e_def: "equilibrium isentropic exponent rho2*a_eq^2/P2 at CJ (a_eq = equilibrium sound speed)"` (SDToolbox `soundspeed_eq`); il frozen è salvato a parte come `gamma_fr = cp/cv`.
-- Check 3a (input replica SK Table 1, 1.5 atm/255 K): "U_CJ<=0.05 pct, **gamma_e exact to 3 dp**, P_CJ<=1.5 pct on all 4 cases". Es.: gamma_e calcolato 1.16922 vs γe pubblicato 1.169 (H2-air).
+- Check 3a (input replica SK Table 1, 0.15 MPa/255 K dopo il re-bless A6): verdetto ora CALCOLATO dai dati (|dU|, |d gamma_e|, |dP|, |d rho_c|, |d Y_f| live vs gate). Es.: gamma_e calcolato 1.16922 vs γe pubblicato 1.169 (H2-air).
 - Check 3b (axial vs SK Table 1): "**all 4 within 0.2%**" (5395/5383, 2285/2280, 912/911, 953/952 s).
 - Check 3c (pressure-history I+II vs SK Table 1): H2-air 4702/4706 (−0.1%), C2H4-air −0.9%, C3H8-O2 −4.1%; C2H4-O2 704 s non riproducibile (anomalia A1 documentata, anche internamente incoerente nel report).
 - Valori di confronto per H2/air @ 1 atm/300 K: **γ_e = 1.1634** (equilibrio) vs **γ_fr = 1.2420** (frozen). Vecchio `results_main.json`: campo *chiamato* `gamma_eq` = 1.2420 con a2 = 1127.7 m/s ⇒ **il vecchio campo è etichettato male: è il frozen** (origine: `scripts/detonation.py` r. 43, `gamma_eq = gas.cp_mass/gas.cv_mass`, cioè cp/cv a composizione congelata sul gas equilibrato; SK Table 2 dà a2 = 1091 m/s, equilibrio). Curiosamente il vecchio deck lo "sapeva": la slide di validazione recita "The minimum-speed point returns M₂≈0.965 **on the frozen sound speed** — exactly the equilibrium-sound-speed sonic condition."

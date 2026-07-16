@@ -65,27 +65,63 @@ def main():
         trio = [C[k]['ph']['Isp_tot'], C[k]['axial']['Isp_tot_sonic'], st['Isp_sl_e1']]
         xmod.append((k, trio, (max(trio)-min(trio))/np.mean(trio)*100))
 
+    # every V&V input set must be non-empty (key drift => diagnosable error,
+    # never a bare min()/max() ValueError or a silently shrunken check)
+    for nm_, seq_ in (('vv1', vv1), ('vv3', vv3), ('pmv', pmv), ('resv', resv),
+                      ('sm', sm), ('stech_rows', stech_rows), ('xmod', xmod)):
+        if not seq_:
+            raise RuntimeError('V&V input set %r is empty - key drift between '
+                               'results_main.json / thrust_models_all.json / '
+                               'sk_tables.json?' % nm_)
+
     ck = {}
     ck['1_UCJ_vs_results_main'] = ('PASS' if max(abs(x[3]) for x in vv1) < 0.5 else 'FAIL',
         'max %+.2f%% (n=%d combos, threshold 0.5%%)' % (max((x[3] for x in vv1), key=abs), len(vv1)))
-    ck['2_CJ_vs_SK_Table2'] = ('PASS', 'max errU 0.1 pct, errP 1.7 pct (5 mixtures, precomputed sk_tables.json)')
-    ck['3a_replica_inputs'] = ('PASS' if all(abs(r['dU'])<0.2 and abs(r['ge']-r['ge_sk'])<0.005 and abs(r['dP'])<2.0 for r in vv3) else 'FAIL',
-        'U_CJ<=0.05 pct, gamma_e exact to 3 dp, P_CJ<=1.5 pct on all 4 cases')
+    # check 2 COMPUTED from sk_tables.json comp records (was a frozen string)
+    eU2 = max(abs(x['err_U']) for x in SKT['comp'])
+    eP2 = max(abs(x['err_P']) for x in SKT['comp'])
+    ck['2_CJ_vs_SK_Table2'] = ('PASS' if eU2 < 0.5 and eP2 < 2.0 else 'FAIL',
+        'live max errU %.1f%% (<0.5), errP %.1f%% (<2.0), %d mixtures (sk_tables.json comp)'
+        % (eU2, eP2, len(SKT['comp'])))
+    mdU = max(abs(r['dU']) for r in vv3); mge = max(abs(r['ge']-r['ge_sk']) for r in vv3)
+    mdP = max(abs(r['dP']) for r in vv3)
+    # rho_c: direct comparison since the 2026-07-16 re-bless at the SK fill
+    # 0.15 MPa (anomaly A6); bound = 3-s.f. literature rounding + thermo
+    mrho = max(abs(r['rho'] / r['rho_sk'] - 1) * 100 for r in vv3)
+    mYf = max(abs(r['Yf']-r['Yf_sk']) for r in vv3)
+    ck['3a_replica_inputs'] = ('PASS' if mdU<0.2 and mge<0.005 and mdP<2.0 and mrho<0.5 and mYf<0.002 else 'FAIL',
+        'live max on 4 cases: |dU| %.3f%% (<0.2), |d g_e| %.4f (<0.005), |dP| %.2f%% (<2.0), '
+        '|d rho_c| %.2f%% (<0.5, direct at the 0.15 MPa SK fill, A6), |d Y_f| %.4f (<0.002)'
+        % (mdU, mge, mdP, mrho, mYf))
     ck['3b_axial_vs_SK'] = ('PASS' if all(abs(r['dax'])<1.0 for r in vv3) else 'FAIL',
-        'all 4 within %.1f%%' % max(abs(r['dax']) for r in vv3))
-    n_ok = sum(abs(r['dph'])<5.0 for r in vv3)
-    ck['3c_PH_vs_SK'] = ('PASS*' if n_ok == 3 else ('PASS' if n_ok==4 else 'FAIL'),
-        '3/4 within 4.2 pct; C2H4-O2 published 704 s NOT reproducible (we get %d s) - documented anomaly' % round([r for r in vv3 if r['lab']=='C2H4-O2'][0]['ph']))
-    ck['4_axial_internal'] = ('PASS' if all(0.20<v<0.26 for _,v in pmv) and max(v for _,v in resv)<0.005 else 'FAIL',
-        'Pm/P2 in [%.3f,%.3f] (SK: ~0.22-0.25); CJ sonic residual <= %.4f; sonic-vs-matched %+.1f..%+.1f%%'
-        % (min(v for _,v in pmv), max(v for _,v in pmv), max(v for _,v in resv),
-           min(v for _,v in sm), max(v for _,v in sm)))
+        'all %d within %.1f%% (<1.0)' % (len(vv3), max(abs(r['dax']) for r in vv3)))
+    # check 3c: PASS* is valid ONLY if the single failure IS the documented
+    # C2H4-O2 anomaly (a new failure elsewhere must FAIL, not hide behind it)
+    fails3c = [r['lab'] for r in vv3 if abs(r['dph']) >= 5.0]
+    r_anom = [r for r in vv3 if r['lab'] == 'C2H4-O2'][0]
+    ok_others = max((abs(r['dph']) for r in vv3 if r['lab'] != 'C2H4-O2'))
+    ck['3c_PH_vs_SK'] = ('PASS' if not fails3c else
+                         ('PASS*' if fails3c == ['C2H4-O2'] else 'FAIL'),
+        '%d/%d within %.1f%%; the one failure IS the documented C2H4-O2 anomaly '
+        '(published 704 s vs our %d s, %+.0f%%) - see A1'
+        % (len(vv3)-len(fails3c), len(vv3), ok_others, round(r_anom['ph']), r_anom['dph']))
+    # Pm/P2 band = SK quoted ~0.22-0.25 with +-0.005 figure-reading margin
+    PM_LO, PM_HI = 0.215, 0.255
+    ck['4_axial_internal'] = ('PASS' if all(PM_LO<v<PM_HI for _,v in pmv) and max(v for _,v in resv)<0.005 else 'FAIL',
+        'Pm/P2 in [%.3f,%.3f] vs SK ~0.22-0.25 (+-0.005 reading margin => [%.3f,%.3f]); '
+        'CJ sonic residual <= %.4f (<0.005); sonic-vs-matched span %+.1f..%+.1f%% (reported)'
+        % (min(v for _,v in pmv), max(v for _,v in pmv), PM_LO, PM_HI,
+           max(v for _,v in resv), min(v for _,v in sm), max(v for _,v in sm)))
     ck['5_stechmann_internal'] = ('PASS' if collapse_err < 1e-6 and all(st['Isp_sl_e1']>st['Isp_ta_sl_e1'] for _,st in stech_rows) else 'FAIL',
-        'CP-collapse rel.err %.1e; mass-weighted > time-averaged for 6/6; choked fraction %.0f-%.0f%% of cycle'
-        % (collapse_err, 100*min(st['frac_choked'] for _,st in stech_rows), 100*max(st['frac_choked'] for _,st in stech_rows)))
+        'CP-collapse rel.err %.1e; mass-weighted > time-averaged for %d/%d; choked fraction %.0f-%.0f%% of cycle'
+        % (collapse_err, sum(st['Isp_sl_e1']>st['Isp_ta_sl_e1'] for _,st in stech_rows),
+           len(stech_rows), 100*min(st['frac_choked'] for _,st in stech_rows),
+           100*max(st['frac_choked'] for _,st in stech_rows)))
     ck['6_cross_model'] = ('PASS' if all(s<12 for _,_,s in xmod) else 'FAIL',
-        'PH vs axial-sonic vs Stechmann(eps=1,SL) total-mass Isp spread %.1f-%.1f%% (6 fuel-O2 combos)'
-        % (min(s for _,_,s in xmod), max(s for _,_,s in xmod)))
+        'PH vs axial-sonic vs Stechmann(eps=1,SL) total-mass Isp spread %.1f-%.1f%% '
+        '(%d fuel-O2 combos; 12%% budget = the three closures differ by design: '
+        'K-fit tail vs sonic-exit vs blowdown average, each ~5%% class, see A3/A4)'
+        % (min(s for _,_,s in xmod), max(s for _,_,s in xmod), len(xmod)))
 
     # ---------------- thrust_tables.md ----------------
     L = []
@@ -99,8 +135,9 @@ def main():
     A('')
     A('Models: **PH** = Shepherd-Kasahara pressure-history, F/Mdot = K(P_CJ-P1)/(rho1 U_CJ) + [u_c + (P1-Pa)/(rho1 u_c)], '
       'K = 1.02 (air) / 1.54 (O2), u_c = 300 m/s; **AX** = SK axial flow, w = sqrt(2(h1-h(P,s2))) on the equilibrium '
-      'isentrope through the CJ state, T/Mdot = w + (P-Pa)/(rho w) at the sonic point (matched-exit in parentheses '
-      'conceptually within ~2-9%); **ST** = Stechmann-Heister mass-weighted blowdown cycle. '
+      'isentrope through the CJ state, T/Mdot = w + (P-Pa)/(rho w) at the sonic point (matched-exit vs sonic '
+      'span %+.1f..%+.1f%% on this set); **ST** = Stechmann-Heister mass-weighted blowdown cycle. '
+      % (min(v for _, v in sm), max(v for _, v in sm)) +
       'gamma_e = equilibrium isentropic exponent rho2 a_eq^2/P2 at CJ. Isp_f = (T/Mdot)/(Y_f g0).')
     A('')
     A('## Table 1 - CJ state and specific thrust (all combos, phi=1, 1 atm, 300 K)')
@@ -115,10 +152,10 @@ def main():
           DISP(k), cj['UCJ'], cj['p2p1'], cj['T2'], cj['gamma_e'], cj['Yf'],
           ph['FovM'], ax['FovM_sonic'], ph['Ispf'], ax['Ispf_sonic'], lit))
     A('')
-    A('^a Schwer & Kailasanath (2013) unsteady 2-D CFD, computed at 1.5 atm / 255 K fill - see Table 2 '
+    A('^a Schwer & Kailasanath (2013) unsteady 2-D CFD, computed at 0.15 MPa / 255 K fill - see Table 2 '
       'for the same-condition comparison. PH includes term II with u_c = 300 m/s (at p1 = Pa the pressure part vanishes).')
     A('')
-    A('## Table 2 - Literature convergence at SK Table-1 conditions (1.5 atm / 255 K fill)')
+    A('## Table 2 - Literature convergence at SK Table-1 conditions (0.15 MPa / 255 K fill, A6)')
     A('')
     A('| Case | U_CJ me/SK [m/s] | P_CJ me/SK [MPa] | gamma_e me/SK | Isp_f PH me/SK [s] | dPH% | Isp_f AX me/SK [s] | dAX% | CFD S&K [s] |')
     A('|---|---:|---:|---:|---:|---:|---:|---:|---:|')
@@ -155,19 +192,19 @@ def main():
     V = []; B = V.append
     B('# V&V - analytical thrust models (PH / axial / Stechmann)')
     B('')
-    B('Pipeline: scripts/thrust_models.py -> data/thrust_models_all.json (16 cases: 12 std @ 1 atm/300 K + 4 SKREP @ 1.5 atm/255 K).')
+    B('Pipeline: scripts/thrust_models.py -> data/thrust_models_all.json (16 cases: 12 std @ 1 atm/300 K + 4 SKREP @ 0.15 MPa/255 K, A6).')
     B('No number is reported without a cross-check; verdicts below.')
     B('')
     B('## Checks')
     B('')
     B('| # | Check | Verdict | Evidence |')
     B('|---|---|---|---|')
-    NAMES = {'1_UCJ_vs_results_main': 'U_CJ vs results_main.json (9 validated combos, <0.5%)',
-     '2_CJ_vs_SK_Table2': 'CJ state vs SK Table 2 literature (5 mixtures)',
+    NAMES = {'1_UCJ_vs_results_main': 'U_CJ vs results_main.json (%d validated combos, <0.5%%)' % len(vv1),
+     '2_CJ_vs_SK_Table2': 'CJ state vs SK Table 2 literature (%d mixtures)' % len(SKT['comp']),
      '3a_replica_inputs': 'SK Table-1 replica: model INPUTS (U_CJ, P_CJ, gamma_e, rho_c, Y_f)',
-     '3b_axial_vs_SK': 'Axial-flow Isp_f vs SK Table 1 (4 cases)',
-     '3c_PH_vs_SK': 'Pressure-history Isp_f vs SK Table 1 (4 cases)',
-     '4_axial_internal': 'Axial internal: Pm/P2 range, CJ sonicity, exit-pressure insensitivity',
+     '3b_axial_vs_SK': 'Axial-flow Isp_f vs SK Table 1 (%d cases)' % len(vv3),
+     '3c_PH_vs_SK': 'Pressure-history Isp_f vs SK Table 1 (%d cases)' % len(vv3),
+     '4_axial_internal': 'Axial internal: Pm/P2 range, CJ sonicity (sonic-vs-matched span reported)',
      '5_stechmann_internal': 'Stechmann internal: CP-collapse, mass- vs time-weighting, choking',
      '6_cross_model': 'Cross-model coherence PH / axial / Stechmann (fuel-O2)'}
     for kk in ['1_UCJ_vs_results_main','2_CJ_vs_SK_Table2','3a_replica_inputs','3b_axial_vs_SK',
@@ -186,7 +223,7 @@ def main():
       'C2H2/air, C3H8/air, C12H26/air are new combos with no prior in-project reference: anchored by the same '
       'validated pipeline + physical ordering U_CJ(C2H2)>U_CJ(C2H4)>U_CJ(CH4)~U_CJ(C3H8)~U_CJ(C12H26) for air, satisfied.')
     B('')
-    B('## Check 3 detail - SK Table-1 replica (1.5 atm / 255 K, u_c = 300 m/s, Pa = 1 atm)')
+    B('## Check 3 detail - SK Table-1 replica (0.15 MPa / 255 K, u_c = 300 m/s, Pa = 1 atm)')
     B('')
     B('| Case | rho_c me/SK | Y_f me/SK | U_CJ d% | P_CJ d% | Isp_f PH me/SK (d%) | Isp_f AX me/SK (d%) |')
     B('|---|---:|---:|---:|---:|---:|---:|')
@@ -197,15 +234,18 @@ def main():
     B('')
     B('## Anomalies and limitations')
     B('')
-    B('**A1 - SK Table 1, C2H4-O2 pressure-history value (704 s) is not reproducible.** '
-      'Our faithful implementation gives 937 s. Proof of anomaly: C2H4-O2 and C3H8-O2 have near-identical '
-      'model inputs (U_CJ 2402/2383 m/s, gamma_e 1.142/1.137, Y_f 0.226/0.216, P_CJ 5.97/6.46 MPa), so the PH model '
-      'cannot produce Isp_f differing by 44% (704 vs 1016 s); our pair (937/974 s) has the physically required ratio. '
-      'The same-row axial value (911 s) IS reproduced at +0.1%, so the implementation is not at fault. '
-      'The published 704 coincides with the CFD value (700): plausible transcription/erratum in the report table, '
-      'or an undocumented case-specific alpha (~0.93 instead of 0.65). Also internally inconsistent in the report: '
-      'Mdot = 1.91 kg/s with H = 15.1 mm and rho_c = 2.19 implies channel width W = 24 mm, vs W = 10 mm for the '
-      'other three cases (Eq. 15).')
+    r_c3 = [r for r in vv3 if r['lab'] == 'C3H8-O2'][0]
+    B(('**A1 - SK Table 1, C2H4-O2 pressure-history value (704 s) is not reproducible.** '
+       'Our faithful implementation gives %d s. Proof of anomaly: C2H4-O2 and C3H8-O2 have near-identical '
+       'model inputs (U_CJ 2402/2383 m/s, gamma_e 1.142/1.137, Y_f 0.226/0.216, P_CJ 5.97/6.46 MPa), so the PH model '
+       'cannot produce Isp_f differing by 44%% (704 vs 1016 s); our pair (%d/%d s) has the physically required ratio. '
+       'The same-row axial value (911 s) IS reproduced at %+.1f%%, so the implementation is not at fault. '
+       'The published 704 coincides with the CFD value (700): plausible transcription/erratum in the report table, '
+       'or an undocumented case-specific alpha (~0.93 instead of 0.65). Also internally inconsistent in the report: '
+       'Mdot = 1.91 kg/s with H = 15.1 mm and rho_c = 2.19 implies channel width W = 24 mm, vs W = 10 mm for the '
+       'other three cases (Eq. 15).')
+      % (round(r_anom['ph']), round(r_anom['ph']), round(r_c3['ph']),
+         r_anom['dax']))
     B('')
     B('**A2 - kerosene surrogate.** Kerosene = n-C12H26 (as in the existing deck). The Reitz mechanism contains '
       'no NOx species at all, so kerosene/AIR equilibrium would miss NO: we grafted NO/N/N2O/NO2 NASA thermo from '
@@ -222,6 +262,13 @@ def main():
       'is therefore NOT directly comparable; V&V for this model is the CP-collapse test, the mass-vs-time weighting '
       'inequality, and cross-model coherence (checks 5-6).')
     B('')
+    B('**A6 - SK Table-1 fill convention (discovered 2026-07-15, RESOLVED by re-bless 2026-07-16).** '
+      'SK Table 1 quotes rho_c consistent with a 0.15 MPa (1.5 bar) fill, not the 1.5 atm the replica '
+      'historically ran: densities rescaled by 150000/151987.5 reproduced all four quoted rho_c to 3 s.f. '
+      'The SKREP cases are NOW computed directly at 0.15 MPa / 255 K (sk_models.py); check 3a compares '
+      'rho_c directly (live max %.2f%%). The former +1.32%% offset on P-linked quantities is gone; '
+      'U_CJ, gamma_e and the Isp_f ratios were never affected (<0.2%%).' % mrho)
+    B('')
     B('**A5 - correction to the existing deck numbers.** results_main.json FovM/Ispf used the FROZEN gamma at CJ '
       '(~1.22-1.25) in place of the equilibrium gamma_e (~1.13-1.17) required by SK Eq. 19-20, and omitted term II: '
       'e.g. H2/air Isp_f 3203 s (deck) -> 4268 s (faithful PH I+II at the same conditions). '
@@ -233,7 +280,7 @@ def main():
 
     # ---------------- meta into JSON ----------------
     D['meta'] = dict(
-      conditions=dict(phi=1.0, P1_std=101325.0, T1_std=300.0, Pa=101325.0, T1_skrep=255.0, P1_skrep=1.5*101325),
+      conditions=dict(phi=1.0, P1_std=101325.0, T1_std=300.0, Pa=101325.0, T1_skrep=255.0, P1_skrep=0.15e6),
       models=dict(PH='Shepherd-Kasahara FM2017.001 Sec.3: F/Mdot = K(P_CJ-P1)/(rho1 U_CJ) + u_c + (P1-Pa)/(rho1 u_c); K=1.02 air (alpha=0.98), 1.54 O2 (alpha=0.65); u_c=300 m/s',
                   AX='ibid. Sec.4: w=sqrt(2(h1-h(P,s2))) equilibrium isentrope through CJ; T/Mdot=w+(P-Pa)/(rho w) at sonic point',
                   ST='Stechmann-Heister-Harroun JSR 56(3) 2019: mass-weighted blowdown Isp, Pc=PR*Pinit*exp(-ln(PR) t/tc), choked, Cf eps=1 / ideal aerospike'),
@@ -250,7 +297,8 @@ def main():
         cj=C[k]['cj']; ph=C[k]['ph']; ax=C[k]['axial']
         print('%-16s %6.0f %6.2f %6.0f %7.3f %7.0f %7.0f %7.0f %7.0f' % (k, cj['UCJ'], cj['p2p1'], cj['T2'], cj['gamma_e'], ph['FovM'], ax['FovM_sonic'], ph['Ispf'], ax['Ispf_sonic']))
     print('\nfiles written: thrust_tables.md, vv_thrust.md, thrust_models_all.json (meta)')
+    return 0 if all(v[0] in ('PASS', 'PASS*') for v in ck.values()) else 1
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

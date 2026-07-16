@@ -18,8 +18,11 @@ Faithful implementations of:
       exponential blowdown Pc(t)=PR*Pinit*exp(-lambda t), lambda=ln(PR)/tc (Eq. 13-14),
       isentropic Tc (Eq. 15), choked exit mdot ~ Pc/cstar (Eq. 6-8),
       Cf bell eps=1 (Eq. 9) and ideal aerospike Pe=Pa (Eq. 10).
-Conditions: phi=1, P1=1 atm, T1=300 K (std);  SKREP:* cases at 1.5 atm / 255 K
-(Schwer & Kailasanath 2013 fill state) for literature convergence checks.
+Conditions: phi=1, P1=1 atm, T1=300 K (std);  SKREP:* cases at 0.15 MPa /
+255 K for literature convergence checks — the fill SK Table 1 itself
+tabulates (anomaly A6, vv_thrust.md: discovered 2026-07-15 when the rho_c
+check was made computed — the historical 1.5-atm replica carried a +1.32%
+offset on P-linked quantities; re-blessed at 0.15 MPa 2026-07-16).
 Usage:  python3 sk_models.py <stage> <case> [<case> ...]
         stage in {cj, ph, axial, stech, all};  case keys as in CASES below.
 """
@@ -51,7 +54,7 @@ AIR = 'O2:1,N2:3.76'; AIRD = 'o2:1,n2:3.76'
 # mech/fuel/ox/K here for any non-registry propellant.
 CASES = _mixreg.sk_cases_view()
 for _c in ['H2/air', 'C2H4/air', 'C2H4/O2', 'C3H8/O2']:   # SK Table-1 replicas
-    CASES['SKREP:' + _c] = dict(CASES[_c], T1=255.0, P1=1.5 * ATM)
+    CASES['SKREP:' + _c] = dict(CASES[_c], T1=255.0, P1=0.15e6)   # A6: SK fill
 
 DATA = os.path.join(PROJ, 'data', 'thrust_models_all.json')
 
@@ -99,9 +102,16 @@ def aeq(gas):
     if _aeq_sdt is not None:
         return _aeq_sdt(gas)
     s0, P0, X0 = gas.entropy_mass, gas.P, gas.X.copy()
+    src = getattr(gas, 'source', None)
+    if not src:
+        raise RuntimeError(
+            'aeq fallback: sdtoolbox.soundspeed_eq unavailable and this '
+            'Cantera Solution carries no .source file to rebuild from '
+            '(gas.name is a phase name, not a loadable input) - install '
+            'sdtoolbox or build the Solution from a yaml path')
     dP = 1e-4 * P0; r = []
     for P in (P0 - dP, P0 + dP):
-        g = ct.Solution(gas.source if hasattr(gas, 'source') else gas.name)
+        g = ct.Solution(src)
         g.SPX = s0, P, X0; g.equilibrate('SP'); r.append(g.density)
     return float(np.sqrt(2 * dP / (r[1] - r[0])))
 
@@ -163,8 +173,19 @@ def ph_calc(cj, K, uc=UC, Pa=PA):
                 Isp_tot=F / G0,
                 FovM_approx_I=Fap, Ispf_approx_I=Fap / (cj['Yf'] * G0))
 
+def _need_cj(d, key, stage):
+    """cj record for `key` with an actionable error instead of a bare KeyError."""
+    try:
+        return d['cases'][key]['cj']
+    except KeyError:
+        raise RuntimeError(
+            "stage %r needs the cj record for %r - run 'python "
+            "src/thrust/sk_models.py cj %s' first (or stage 'all')"
+            % (stage, key, key))
+
+
 def stage_ph(key):
-    d = load(); cj = d['cases'][key]['cj']
+    d = load(); cj = _need_cj(d, key, 'ph')
     ph = ph_calc(cj, CASES[key]['K'])
     d['cases'][key]['ph'] = ph; save(d)
     print('%s PH: FI=%.1f FII=%.1f F/M=%.1f m/s Ispf=%.0f s'
@@ -214,6 +235,19 @@ def axial_calc(cj, fuel, ox, mech=None, nstep=90, pfloor=0.012, chem='eq', Pa=PA
     s2 = gas.entropy_mass
     X2 = gas.X.copy()                                           # frozen-branch composition
     P2 = cj['P2']
+    # guards: the rebuild assumes the record's stoichiometric phi=1 charge;
+    # the rebuilt CJ entropy must reproduce the record (composition/mech drift
+    # or a phi != 1 record would silently mix inconsistent states)
+    if abs(cj['cond'].get('phi', 1.0) - 1.0) > 1e-9:
+        raise ValueError('axial_calc rebuilds phi=1 reactants but the cj '
+                         'record was computed at phi=%r' % cj['cond']['phi'])
+    if 's2' in cj and abs(s2 / cj['s2'] - 1.0) > 1e-4:
+        raise RuntimeError('axial_calc: rebuilt CJ entropy off the record by '
+                           '%.2e rel (>1e-4) - composition or mechanism drift'
+                           % abs(s2 / cj['s2'] - 1.0))
+    if Pa <= 0.0:
+        raise ValueError('axial_calc: Pa must be > 0 (the SP march and the '
+                         'matched-exit tabulation need a finite back pressure)')
 
     def _state(P):
         if eq:
@@ -233,12 +267,22 @@ def axial_calc(cj, fuel, ox, mech=None, nstep=90, pfloor=0.012, chem='eq', Pa=PA
     a2tab = np.gradient(Ps, Rho)                                 # (dP/drho) along s = s2
     atab = np.sqrt(np.maximum(a2tab, 1.0))
     # --- limiting (stagnation) pressure P_m : h(P_m,s2) = h1
-    im = np.where(H < h1)[0][0]
+    _im = np.where(H < h1)[0]
+    if not len(_im):
+        raise RuntimeError('axial_calc: the isentrope never crosses h1 down '
+                           'to pfloor*P2 = %.3g Pa - lower pfloor (=%g)'
+                           % (pfloor * P2, pfloor))
+    im = _im[0]
     Pm = float(np.interp(h1, [H[im], H[im - 1]], [Ps[im], Ps[im - 1]]))
     # --- sonic point: w = a
     w = np.sqrt(np.maximum(2.0 * (h1 - H), 0.0))
     fs = w - atab
-    js = np.where((Ps < 0.98 * Pm) & (fs > 0))[0][0]             # first supersonic node
+    _js = np.where((Ps < 0.98 * Pm) & (fs > 0))[0]
+    if not len(_js):
+        raise RuntimeError('axial_calc: no supersonic node on the grid '
+                           '(nstep=%d, pfloor=%g) - refine the march' %
+                           (nstep, pfloor))
+    js = _js[0]                                                  # first supersonic node
     Plo, Phi = Ps[js], Ps[js - 1]
     for _ in range(40):                                          # bisection, exact evals
         Pmid = np.sqrt(Plo * Phi)
@@ -256,8 +300,17 @@ def axial_calc(cj, fuel, ox, mech=None, nstep=90, pfloor=0.012, chem='eq', Pa=PA
     # --- pressure-matched exit P = Pa
     _state(Pa)
     w_pa = float(np.sqrt(max(2.0 * (h1 - gas.enthalpy_mass), 0.0)))
-    # --- flatness of T/Mdot over supersonic branch (SK Fig. 8b argument)
-    sel = (Ps <= Pst) & (Ps > min(Pa * 0.8, 0.02 * P2)) & (w > 1)   # supersonic branch
+    # --- flatness of T/Mdot over supersonic branch (SK Fig. 8b argument).
+    # DIAGNOSTIC window (declared, recorded below, used in no verdict):
+    # from P* down to min(WF_PA*Pa, WF_P2*P2), excluding near-stagnant nodes
+    # w <= WF_WMIN; SK give no canonical window, so the specific percentage
+    # is window-dependent by construction.
+    WF_PA, WF_P2, WF_WMIN = 0.8, 0.02, 1.0
+    sel = (Ps <= Pst) & (Ps > min(Pa * WF_PA, WF_P2 * P2)) & (w > WF_WMIN)
+    if not sel.any():
+        raise RuntimeError('axial_calc: empty supersonic window for the '
+                           'flatness diagnostic (Pa=%.3g vs P*=%.3g)'
+                           % (Pa, Pst))
     FvM = w[sel] + (Ps[sel] - Pa) / (Rho[sel] * w[sel])
     flat = float((FvM.max() - FvM.min()) / FvM.mean() * 100)
     ax = dict(Pm=Pm, Pm_over_P2=Pm / P2, Pm_over_P1=Pm / cj['cond']['P1'],
@@ -266,13 +319,14 @@ def axial_calc(cj, fuel, ox, mech=None, nstep=90, pfloor=0.012, chem='eq', Pa=PA
               FovM_sonic=float(F_sonic), Ispf_sonic=float(F_sonic / (cj['Yf'] * G0)),
               Isp_tot_sonic=float(F_sonic / G0),
               w_matched=w_pa, FovM_matched=w_pa, Ispf_matched=float(w_pa / (cj['Yf'] * G0)),
-              flatness_pct=flat, Pa=Pa)
+              flatness_pct=flat, flatness_window=[WF_PA, WF_P2, WF_WMIN],
+              Pa=Pa)
     if not eq:
         ax['chem'] = chem        # tag only the non-default branch: keeps the
     return ax                    # shipped JSON schema byte-stable
 
 def stage_axial(key, nstep=90, pfloor=0.012):
-    d = load(); cj = d['cases'][key]['cj']; c = CASES[key]
+    d = load(); cj = _need_cj(d, key, 'axial'); c = CASES[key]
     ax = axial_calc(cj, c['fuel'], c['ox'], mech=c['mech'], nstep=nstep, pfloor=pfloor)
     d = load(); d['cases'][key]['axial'] = ax; save(d)
     print('%s AX: Pm/P2=%.3f P*=%.2fatm w*=%.0f F/M=%.1f Ispf=%.0f (matched %.0f) flat=%.1f%%'
@@ -302,7 +356,7 @@ def stech_calc(ge, Rgas, PR, Pin, Tcj, Pa=PA, n=20001):
                 cstar_mw=float(np.trapz(md * cst, xi) / np.trapz(md, xi)))
 
 def stage_stech(key):
-    d = load(); cj = d['cases'][key]['cj']
+    d = load(); cj = _need_cj(d, key, 'stech')
     ge = cj['gamma_e']; Rgas = ct.gas_constant / cj['M2w']
     st = stech_calc(ge, Rgas, cj['p2p1'], cj['cond']['P1'], cj['T2'])
     st.update(gamma=ge, R=Rgas, PR=cj['p2p1'], Tcj=cj['T2'],

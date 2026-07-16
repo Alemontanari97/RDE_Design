@@ -57,7 +57,7 @@ Internal computation is SI everywhere (Pa, K, kg, J/kg). Edges:
 
 | suite | fill/chamber reference | ambient | notes |
 |---|---|---|---|
-| thrust (`sk_models`, `tables`) | **P1 = 101325 Pa** (1 atm), T1 = 300 K; SKREP 1.5 atm / 255 K | Pa = 101325 Pa | as SK Table 1 |
+| thrust (`sk_models`, `tables`) | **P1 = 101325 Pa** (1 atm), T1 = 300 K; SKREP 0.15 MPa / 255 K (A6, re-bless 2026-07-16) | Pa = 101325 Pa | as SK Table 1 |
 | cycles (`cycles`, `q_mapping`, `q_formal`) | **P1 = 1e5 Pa** (1 bar), T1 = 300 K | — (closed cycle) | as the W&S validation build |
 | Stechmann nozzle | `Pcp_atm`, `Pinit` converted at boundary (`* ATM`); Ti = 200 K (Table 1) / user | Pa = 1 atm or vacuum | paper protocol |
 | display | `P_CJ_bar` (cycles JSON, bar), `P0a/Pinita` (atm), MJ/kg for q | — | conversions only at print/JSON edges |
