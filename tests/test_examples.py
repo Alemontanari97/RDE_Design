@@ -7,6 +7,8 @@ and asserts the golden digits in their stdout:
   example_thrust.py        'live 237.1 s | shipped 237.1 s' + OK
   example_design_study.py  'U_CJ = 2373.5 m/s', bell 'Isp = 233.6 s',
                            aerospike 'Isp = 245.3 s', final OK
+  example_headtohead.py    SL optima + LIVE throatless/nozzled closures
+  example_design_10kN.py   mission-fill detonability + wave-head band + closure
 """
 import os
 import subprocess
@@ -22,6 +24,12 @@ CASES = [
     ('example_design_study.py', ['U_CJ = 2373.5 m/s',
                                  'Isp = 233.6 s', 'Isp = 245.3 s',
                                  'OK: design study complete']),
+    ('example_headtohead.py', ['Isp=233.6 s', 'Isp=245.3 s',
+                               'R_bar=22.6 mm',
+                               'OK: head-to-head complete']),
+    ('example_design_10kN.py', ['W=3.14 central', 'Isp=268.0 s',
+                                'Isp=278.4 s',
+                                'OK: 10 kN example complete']),
 ]
 
 

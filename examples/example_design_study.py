@@ -152,7 +152,9 @@ print('\n(b) injection: rho1 = %.3f kg/m3, Vdot = %.3f m3/s, axial fill speed '
          100 * wn['l_fill'] / LCH, W, Wlo, Whi, max(1, int(Wlo)), int(Whi)))
 assert abs(wn['W'] - wn['l_fill'] / lcr) < 1e-12          # Eq. 5 == fill-height form
 assert W >= 1.0, 'W < 1: galloping/failing design — raise mdot or shrink chamber'
-assert GAP > lam, 'channel gap below one detonation cell — wave cannot fit'
+assert GAP > 2.4 * lam, ('channel gap below the documented ~2.4*lambda '
+                         'detonability criterion (docstring / headtohead)')
+assert 2 * RBAR >= 28 * lam, 'mean diameter below the D_bar >= 28*lambda criterion'
 assert wn['l_fill'] < LCH, 'chamber shorter than the fresh fill layer'
 
 # ---------------- (c) specific thrust and Isp_f: SK pressure-history + axial

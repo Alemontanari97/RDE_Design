@@ -71,12 +71,25 @@ print(f"VAC RDE: bell {bell(EPS_VAC, Pa_VAC):.1f} s | spike {spik(EPS_VAC, Pa_VA
 assert abs(Isp_cp-227.4) < 0.5 and abs(eps[i]-2.44) < 0.05
 assert abs(ob['Isp']-233.6) < 0.7 and abs(os_['Isp']-245.3) < 0.7
 
-# --- Throatless sizing closure (SK CVs assume a free annulus exit) ---------
+# --- Throatless sizing closure, LIVE (SK CVs assume a free annulus exit) ---
 # A_ann = mdot/G* with G* = rho*·w* at the validated sonic state: the DIAMETER
-# follows the mass flow, R_bar = mdot/(2*pi*gap*G*). 600 N / C2H4/O2, gap 5 mm,
-# at the SK nozzle-less mdot = F/(F/Mdot)_PH = 303 g/s: G* = 428 kg/m2s ->
-# R_bar = 22.6 mm (throatless engine). The 45-mm annulus is the NOZZLED
-# configuration (aft-restriction throat A_t = mdot·cbar/<Pc> = 4.3 cm2 at the
-# 249 g/s mission closure).
-# Cross-validation, 10 kN CH4/O2 (gap 15 mm): closure R_bar = 142.1 mm vs
-# chosen 140 mm (-1.5%) - already throatless-consistent.
+# follows the mass flow, R_bar = mdot/(2*pi*gap*G*), gap 5 mm, at the SK
+# nozzle-less mdot = F/(F/Mdot)_PH. The 45-mm annulus is the NOZZLED
+# configuration (aft-restriction throat A_t = mdot/<mdot/A>). The 10 kN
+# CH4/O2 cross-validation (R_bar closure vs chosen 140 mm) is computed live
+# in example_design_10kN.py.
+from src.thrust.sk_models import cj_calc, ph_calc, axial_calc, CASES
+cjs = cj_calc('C2H4/O2'); phs = ph_calc(cjs, CASES['C2H4/O2']['K'])
+axs = axial_calc(cjs, 'C2H4', 'O2')
+GAP_TL = 0.005                          # throatless-closure channel gap [m]
+Gs = axs['rhostar'] * axs['wstar']      # validated sonic mass flux [kg/m2 s]
+mdot_sk = F / phs['FovM']               # SK nozzle-less bracket
+Rbar_tl = mdot_sk / (2*np.pi*GAP_TL*Gs)
+k_m = (gd + 1) / (2 * gd)
+At_noz = (F/(os_['Isp']*G0)) / ((s['P0']/s['cstar0']) * stn.Ik(s['PR'], k_m))
+print(f"CLOSURES (live): throatless G*={Gs:.0f} kg/m2s, R_bar={Rbar_tl*1e3:.1f} mm "
+      f"(gap 5 mm, SK mdot {mdot_sk*1e3:.0f} g/s) | nozzled A_t={At_noz*1e4:.2f} cm2 "
+      f"(mission mdot {F/(os_['Isp']*G0)*1e3:.0f} g/s)")
+assert abs(Gs - 428) < 5 and abs(Rbar_tl*1e3 - 22.6) < 0.5
+assert abs(At_noz*1e4 - 4.3) < 0.2
+print("OK: head-to-head complete")
