@@ -76,3 +76,68 @@ T3 [F1/OP-0-gamma tail], T4 [F1/P-2 polish, optional], T5 [LEADS, optional].
    (**) occurrences; all four "naive" occurrences are correct usages
    (rejected forms). Skeleton header updated with DRAFT TEXT STATUS
    pointer to the new file. VERDICT: T1 coherence PASS.
+
+5. ⚠️ CONCURRENCY DETECTED (FIFTH interleaving) + RECONCILIATION —
+   the mandatory pre-commit check for T1 surfaced three untracked
+   files NOT present at session open and NOT mine:
+   docs/rde_nozzle_G12_S1.md, validation/PROGRESS_2026-07-16_rigore_G12.md,
+   validation/g12_shock_linearization.py — a "rigore G12" session is
+   ACTIVE IN PARALLEL on this tree (shock-linearization / mesh-limit
+   work, G12 frontier). No foreign COMMITS and no foreign STAGED
+   files; the T1 commit a4e4964 was already PATH-LIMITED to the three
+   S8 files, so the index was not contaminated. MITIGATION ADOPTED for
+   the rest of S8 (per handoff mandate): every commit stays
+   path-limited to S8 files; the G12 files are NEVER added; status +
+   log re-checked before every commit. DECLARED RISK: the G12 session
+   may touch shared theory docs (M0/D3) — my T3 R4 edits will be
+   hunk-checked against upstream changes before committing. TOPIC
+   OVERLAP NOTE: T2's shock-point extension (spike, P-B1/O3.1
+   discharge) is a DIFFERENT deliverable from G12's mesh-limit
+   linearization; file sets are disjoint (g0_spike_* vs g12_*).
+   T1 commit: a4e4964.
+
+6. T2 [F2-prep/G0] EXECUTED — spike extension written as TWIN file
+   validation/g0_spike_axisym_shock.py (S5 spike untouched, its 52/52
+   record stands). BRICK A (axisymmetric source term): compatibility
+   d(th-nu) = -S+ dx / d(th+nu) = +S- dx with S+- = sin(th)sin(al)/
+   (y cos(th+-al)) DERIVED IN-HOUSE from the potential-equation
+   characteristic system (left-eigenvector route; planar limit
+   re-verified in the derivation); interior + inverse-wall axisym unit
+   processes in custom_vjp implicit form; VERIFICATION DUAL-ROUTE
+   against the independent Zucrow-Hoffman conservative (u,v)
+   compatibility form with order-scaling rejector (route difference
+   must scale ~h^3, structural band [4,16] per halving). Results:
+   planar-reduction known-answer EXACT (0.0); gradients 36/36 + 16/16
+   in derived tol (worst err/tol 6.3e-2); dual-route clean ratios
+   4.20/5.82 IN BAND; NEGATIVE CONTROLS: source-sign flip -> ratios
+   1.70/1.80 OUT of band, REJECTED; corrupted vjp 36/36 out, REJECTED.
+   BRICK B (fitted shock point, RH implicit): z = [beta, M2] on
+   theta-beta-M + RH normal-Mach; Newton residual 2.2e-16; gradient
+   6/6 in derived tol; Lax certificate margins M1n-1 = +0.26,
+   1-M2n = +0.20; O3.1 DOT-PRODUCT IDENTITY err 3.4e-12 vs derived tol
+   1.2e-9 -> P-B1 DISCHARGED AT BRICK LEVEL; negative controls:
+   corrupted vjp breaks O3.1 (REJECTED), defl = 1.02*delta_max not
+   certified (REJECTED — Lax/Majda rejector); transversality collapse
+   at the detachment FOLD verified with DERIVED exponent-1/2 scaling
+   band (ratio 1.777 in [1.414, 2.828]). DEVIATION FOUND-AND-FIXED
+   (declared): first version used an arbitrary 10x collapse factor —
+   replaced by the fold-scaling law (sigma_min ~ sqrt(1 - defl/dmax)),
+   which is the derived form; the 10x form FAILED honestly (4x
+   measured at 0.999 dmax) and was WRONG-BY-CONSTRUCTION, not tuned
+   into passing. BRICK C (GENO cross-code interop, READ-ONLY file
+   exchange with CASES/tocnoz): throat min-y = yt exact at x = 0; eps
+   from contour 29.9547 vs 30 (err 0.045 <= derived tol 0.134 from
+   endpoint slope x last grid step); maxtheta recomputed from the
+   contour 37.4113 deg vs GENO performance.dat 37.4117 deg (err 4e-4
+   deg); negative control 5%-rescaled contour REJECTED. DECLARED
+   LIMIT: full O3.4 flowfield cross-check requires the GENO binary
+   (reference x/y/u/v/p.dat exist only as checksums; gfortran ABSENT
+   on this host, verified) -> stays in NEXT for the G0 decision.
+   GENO NOT touched, NOT staged. Overall VERDICT: PASS (exit 0).
+
+7. T2 R4 (same session) — Lemma B PENDING register updated in
+   docs/rde_nozzle_P2_lemmaB.md: P-B1 marked DISCHARGED AT BRICK LEVEL
+   with numbers + rejectors + declared residual (full-march identity =
+   A1 engine); P-B2 annotated with its first brick-level instance
+   (dual-route order-scaling test). No class changed (THEOREM rows were
+   self-contained; discipline preserved).

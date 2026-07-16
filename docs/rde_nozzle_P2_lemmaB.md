@@ -292,7 +292,21 @@ discipline of M0 VI.4. This is the statement P-1 consumes in its §5.
 | Transpose identity is EOS-general (closure-agnostic) | THEOREM | DERIVED §4.0/§4.2 (blocks never opened) | O3.1 failure under a gamma(T) backend |
 
 PENDING register (named): P-B1 = O3.1 at the SHOCK-POINT unit process
-(needs the shock brick — T5 spike extension or A1 engine); P-B2 =
-O3.2/O3.3 order tests (A1 engine); neither blocks the classes as
-stated (the finite-dim THEOREMs are self-contained; the SCHEMA rows
-are declared as SCHEMA).
+— DISCHARGED AT BRICK LEVEL 2026-07-16 (session S8, [F2-prep/G0]):
+validation/g0_spike_axisym_shock.py Brick B implements the fitted
+shock point as an implicit unit process on the RH relations
+(z = [beta, M2], custom_vjp + implicit rule, never unrolled) and
+verifies (i) the O3.1 dot-product identity <w, dz/dp v> = <vjp(w), v>
+against Richardson-derived FD tolerance (err 3.4e-12 vs tol 1.2e-9;
+corrupted vjp REJECTED), (ii) the Lax certificate (M1n > 1, M2n < 1,
+measured margins), (iii) the Lax/Majda == J_k-nonsingular
+correspondence of §4.3 EXECUTABLY: beyond detachment Newton cannot
+certify (rejected), and approaching the fold sigma_min(J_k)
+degenerates with the fold exponent 1/2 (derived scaling band PASS).
+Residual of P-B1 (declared): the same identity inside a full MARCH
+with an inherited fitted sheet = A1 engine (Fase 2). P-B2 =
+O3.2/O3.3 order tests (A1 engine) — still pending; the dual-route
+order-scaling test of the S8 spike (Brick A, axisym source, band
+[4,16] per halving) is its first brick-level instance. Neither blocks
+the classes as stated (the finite-dim THEOREMs are self-contained;
+the SCHEMA rows are declared as SCHEMA).
