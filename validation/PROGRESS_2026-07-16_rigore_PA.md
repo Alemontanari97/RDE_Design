@@ -181,3 +181,11 @@ from S5 and re-declared here.
     gamma(T) MOC; Johnson-Boney sensitivity); oracle registry
     O-b1..O-b7 (R5: scripts+rejectors required before adoption);
     program actions A1-A7.
+19. [R3 CHIUSURA] Commits of record: T4/P-A1' = 86e6d6d, T-LIT =
+    0fdbe7d. PROGRESS updated (ORA = S6 rigor closure with the class
+    upgrades itemized; NEXT for S7 = Lemma B first + leads + the S5
+    operational list; LOG entry S6). Memory updated
+    (research-cycle-averaged-rao: S6 state). T4/T5 of the rigor
+    prompt (feed-closure quantification; Lemma-B mesh-limit) NOT
+    executed — declared, deferred to S7 (time). SESSION 6 CLOSED at
+    step 19.

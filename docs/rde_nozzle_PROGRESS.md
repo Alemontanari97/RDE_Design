@@ -4,8 +4,58 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 5 — "Fase 1: P-1 skeleton + P-2
-## Lemma A + G0 spike"; interleaved con S4 "G5 dispatch + venue")
+## ORA (2026-07-16, chiusura Sessione 6 — DEDICATA RIGORE: "P-A1/P-A2/
+## P3 + studio corpus letteratura")
+
+Branch `rde-nozzle-program`, HEAD = 0fdbe7d (T1 = 5ec62ef, T2 =
+36db818, T3 = b5590f0, T4/P-A1' = 86e6d6d, T-LIT = 0fdbe7d). Log a
+ordine totale: validation/PROGRESS_2026-07-16_rigore_PA.md (passi
+1-19, gate PASS al passo 4). UPGRADE DI CLASSE ottenuti:
+
+- **Lemma A (P-2): (ii) ora THEOREM** nello scope irrotazionale
+  omentropico, EOS-generale — P-A1 e P-A1' SCARICATI: Prop. A2
+  (risolubilità del nucleo: i covettori di flusso annichilano il
+  nucleo tangente ⇒ la risolubilità non impone nulla; l'invariante
+  NON vive nell'algebra puntuale al bordo) + Prop. A3 (f2 =
+  invariante aggiunto TRASPORTATO: PDE dei moltiplicatori ri-derivate
+  in-house, coppia chiusa HTH-1971 le risolve per ogni flusso
+  ammissibile, trasversalità terminale ⇒ V cos(θ∓α)/cosα = cost).
+  Carrier: validation/pa1_symbolic_lemmaA.py, PASS 19/19 con tre
+  rejector (incl. verifica macchina dell'INTERA derivazione classica
+  §3.2). Ancore pubblicate trovate in-house: HTH AIAA J 9(8):1581
+  (1971) p. 1583; JOTA 10(3):133 (1972) Eqs. (21)-(26). Scope
+  rotazionale dichiarato nel draft (domanda utente): framework
+  rotazionale-generale, forma chiusa a due campi irrotazionale;
+  estensione = sistema a quattro campi di Hoffman + scuola Kraiko.
+- **P-A2 SCARICATO**: lettura integrale pagina-per-pagina di Hoffman
+  1967 (PDF in-house, pypdf): mappa componenti esplicita
+  equation-numbered nel draft §3.4(iv) (upgrade SCHEMA→THEOREM*);
+  correzione simboli (h_1..h_4, g_i, C_1, C_2); p. 673 = antenato
+  1967 della Prop. A2; Eq. (54) = trasporto aggiunto pubblicato;
+  E (Eq. 78) == relazione (32) non usata. Resta P-A3/O3.2 (numerico,
+  motore A1).
+- **P3 (gap di T7): da OPEN a THEOREM*** nella classe S1 senza urti
+  (docs/rde_nozzle_P3_multipliers.md): lambda2(xi) esiste, unico (CQ
+  scalare via la contrazione di Prop. A2), = -f2(dati al lip)
+  (EOS-generale), misurabile + L^inf(dmu) con bound esplicito;
+  residui R-P3.1/2/3 nominati; D3 §9 + M0 T7 aggiornati.
+- **[F1/D2-b0bis] STUDIO CORPUS COMPLETO** (direttiva utente,
+  5 agenti paralleli, sintesi docs/rde_nozzle_lit_b0bis.md):
+  novelty sweep PULITO su tutto GENO/literature (nessun obiettivo
+  variazionale mediato/multi-punto; un lead esterno: van Meerbeeck
+  EUCASS 2013); "variable inlet" RISOLTO (JTH 1974 = inlet
+  GEOMETRICO variazionale con ambiente-come-output; Rao 1961 free
+  lip — DOF geometrici a stato singolo, nessuna minaccia); oracoli
+  verificati alla fonte (G2 2290 lbf con precisazione diagonale;
+  RaoPlug C_F 1.5804 + discrepanza 2.428/2.433 di record; frontiera
+  Sternin/Rao-Beck); JOTA p. 138 = dichiarazione EOS-general
+  primaria; LEAD gamma-variabile: Rao 1958 IAF Amsterdam (da
+  acquisire); correzioni C1-C6; registro oracoli O-b1..O-b7 (gate R5
+  prima dell'adozione); Zucrow Vol. 2 illeggibile in-macchina (buco
+  dichiarato).
+
+Stato precedente (chiusura Sessione 5 — "Fase 1: P-1 skeleton + P-2
+Lemma A + G0 spike"; interleaved con S4 "G5 dispatch + venue")
 
 Branch `rde-nozzle-program`, HEAD = b07b47e (S5: T1 = 6263c22,
 T2 = 18c9d88, T3 = b07b47e; S4 interleaved: f6a5112/5540fe2/cd903d1).
@@ -158,7 +208,17 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 6)
+## NEXT (passo atomico, Sessione 7)
+
+0. [F1/P-2] Stesura Lemma B (§4 del paper) — ORA CON LE ANCORE: la
+   catena Prop. A2/A3 + mappa Hoffman è pronta; il §3 del paper è
+   sostanzialmente scritto (draft + derivazioni macchina). Aggiungere
+   il footnote "adjoint constraints" (94-3264, trappola lessicale).
+0b. [LEADS, query-bounded] Acquisire/verificare: Rao 1958 IAF
+   Amsterdam (precedente var-gamma, HIGH — tocca il wording gamma di
+   P-1/P-2); van Meerbeeck EUCASS 2013 (LOW, parametrico).
+[La lista sotto era il NEXT della vecchia "Sessione 6" operativa,
+resta valida per la S7:]
 
 1. [F0/G5-2a] Spoglio DIGITALE dei TOC PMM 1957-1990 sull'archivio
    ufficiale pmm.ipmnet.ru/ru/Issues.php (Item 2a della commissione,
@@ -215,6 +275,25 @@ vecchio NEXT-3 è rescopato nel nuovo punto 4).]
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S6 (2026-07-16, DEDICATA RIGORE: "P-A1/P-A2/P3 + corpus")** —
+  Stessa conversazione di S5, su richiesta utente ("attaccalo in
+  questa sessione"). Gate pre-esecuzione PASS (passo 4, con estensione
+  NEXT dichiarata). Esecuzione T1→T2→T3→T4→T-LIT, log passi 1-19
+  (validation/PROGRESS_2026-07-16_rigore_PA.md): T1 (5ec62ef) verifica
+  macchina della derivazione classica + Prop. A2 + SCOPERTA (il
+  conteggio di dimensioni del draft era lasco → raffinato, P-A1
+  ristretto); T2 (36db818) P-A2 scaricato (lettura integrale Hoffman
+  1967, mappa componenti, correzione simboli); T3 (b5590f0) P3
+  THEOREM* in S1 senza urti; T4 (86e6d6d) P-A1' scaricato (Prop. A3,
+  trasporto, PASS 19/19); T-LIT (0fdbe7d) studio corpus 5-agenti +
+  sintesi b0bis (novelty PULITO, variable-inlet risolto, oracoli
+  alla fonte, lead Rao 1958 IAF). Deviazioni dichiarate: nessuna di
+  merito; un fix tecnico sympy dichiarato (derivata wrt espressione
+  composta); domande utente in-sessione (rotazionale) risposte con
+  nota di scope nel draft. Verdetti: Lemma A (i)-(iii) ora
+  THEOREM/THEOREM* con rotte oneste; (iv) THEOREM*; residuo numerico
+  unico P-A3/O3.2 (motore A1).
 
 - **S5 (2026-07-16, "Fase 1: P-1 skeleton + P-2 Lemma A + G0 spike")** —
   Esecuzione T1→T2→T3 con gate di pre-esecuzione (PASS, passo 7) e log
