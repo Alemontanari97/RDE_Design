@@ -60,7 +60,7 @@ mathematics, declared as contributions.
 | E2 | P1 "sensitivity ⟺ stability" biconditional | verification | P1a/P1b (degeneracy at neutral modes; stability = physical license) |
 | E3 | "Rao applies verbatim in 3-D" | verification | weakened; N6 open |
 | E4 | T1 labeled a theorem | verification | definition + conjecture (P4) |
-| E5 | §5.1b measured numbers without committed script | asset audit | re-derive or strike (A0.3) |
+| E5 | §5.1b measured numbers without committed script | asset audit | re-derive or strike (A0.3) — CLOSED 2026-07-16: re-derived in-repo, γ confirmed, ε* shift corrected −1.9% → −0.56%, penalty −0.001% → −0.00028% (D3 §5.2) |
 | E6 | relative-Mach/spacelikeness conflation ("the sweep helps" for interfaces) | user challenge + granular re-derivation | N-SW lemma: u_x > c frame-invariant; C1-C4 hierarchy explicit |
 | E7 | "Mo, Huang" citation conflation; Rao 1960/1961 dates; Sternin scope | survey b1/b2 | corrected of record |
 | E8 | S1 canonicity via weak-strong uniqueness overstated for shocked solutions (theorem requires Lipschitz strong solution) | citation verification of Brenier-De Lellis-Székelyhidi CMP 305 (2011) during the convergence pass | canonicity downgraded: exact shock-free, declared-conditional across fronts (D1 §6, M0 D2.5) |

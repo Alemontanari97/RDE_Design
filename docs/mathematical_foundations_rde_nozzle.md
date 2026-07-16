@@ -366,8 +366,9 @@ P6. STABILITY OF THE COLLAPSE. Quantitative version of T3: the distance
     hypothesis violations (separation measure of the cycle, inlet
     nonuniformity amplitude, gamma excursion). Turns "is mean design
     wrong?" from a binary into a perturbation estimate - and the
-    gamma-channel probe (engineering note Sec. 5.1b: eps* shift -1.9%,
-    Isp penalty -0.001%) is its first measured instance.
+    gamma-channel probe (corrected in-repo numbers of record, D3 §5.2 /
+    examples/gamma_cycle_probe.py: eps* shift -0.56%, Isp penalty
+    -0.00028%) is its first measured instance.
 P7. EXISTENCE in uniform C^{1,alpha} graph classes with uniform
     MOC-regularity (Sec. 4.3), with the failure boundary identified as
     loss of regularity (wall shock formation).

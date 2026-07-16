@@ -222,12 +222,25 @@ the collapse fails in principle; first-order closure γ_eff =
 ⟨Pc γ⟩/⟨Pc⟩ (pressure-weighted). This retro-identifies S-H "freeze γ AT
 CJ" as the correct first-order closure, since the Pc-weighting
 concentrates on early phases. VERIFIED as mathematics.
-The internal note's MEASURED numbers (γ_s 1.154→1.210 over the blowdown;
-ε* shift −1.9%; Isp penalty of frozen-γ design −0.001%) came from
-`gamma_cycle_probe.py`, which is NOT in the repository: they are
-UNVERIFIABLE as they stand (D4 action item: re-derive in-repo or strike).
-The second-order (envelope-theorem) character of the design-penalty claim
-is correct mathematics regardless.
+MEASURED IN-REPO (2026-07-16, A0.3 closed: examples/gamma_cycle_probe.py
++ tests/test_gamma_probe.py + data/gamma_cycle_probe.json, on the blessed
+det|CH4|20|1.64 state, equilibrium SP family anchored at CJ):
+γ_s = 1.1537 (ξ=0, T0 = 3727 K) → 1.2093 (ξ=1, T0 = 2228 K), with a
+single shallow interior minimum at ξ ≈ 0.1 (depth 4e-4); frozen-
+composition γ_tp = 1.2223 → 1.2286. The stale note numbers are hereby
+CORRECTED: "γ_s → 1.210" confirmed to its own rounding (1.209);
+"ε* shift −1.9%" is STRUCK — the measured shift of the bell optimum is
+−0.56% (ε* 3.980 → 3.958), and the γ_eff = ⟨Pc γ⟩/⟨Pc⟩ closure
+(γ_eff = 1.1577) reproduces it to −0.57%, its first executable
+confirmation; the UNWEIGHTED mean γ gives −2.39% — the wrong-averaging
+class the stale −1.9% most plausibly came from, now rejected by test.
+"Isp penalty −0.001%" corrected in magnitude: measured −0.00028%
+(second-order, envelope theorem: penalty 2.8e-6 ≤ shift² = 3.1e-5 —
+the structure itself is now a test gate). Per-phase CF deviation from
+the frozen closure at ε*_fr: < 0.3% over the thrust-dominant early
+half-cycle, ~1.3% at ξ = 0.75, formally unbounded only across the
+late-cycle zero-crossing of the overexpanded frozen CF (Pc-weighted
+mean 0.36%).
 Classical support for the channel's structure (in-house corpus, D2 §b0):
 Hoffman 1967 p.676 PROVES that for genuinely reacting (finite-rate) gas
 the algebraic corner bijection is no longer sufficient — the optimality
@@ -339,8 +352,9 @@ P5 (symmetry trichotomy, perturbative δ ≠ 0): SCHEMA; Floquet
 P6 (quantitative stability of the collapse): SCHEMA; the natural route is
    the envelope theorem around the T3 point + explicit violation
    measures (separation measure of the cycle, inlet-profile amplitude,
-   γ excursion); its "first measured instance" is currently UNVERIFIABLE
-   (missing probe script, §5.2) — re-derive before citing numbers.
+   γ excursion); its "first measured instance" is now IN-REPO (§5.2:
+   ε* shift −0.56%, penalty −0.00028% ≤ shift², γ_eff closure confirmed
+   — examples/gamma_cycle_probe.py, tests/test_gamma_probe.py).
 P7 (existence in uniform C^{1,α} ∩ uniform-MOC-regular classes): SCHEMA;
    compactness (Chenais-type, verified available in D2 §b5) + continuity
    of Σ ↦ U_ξ in the S1 class uniform in ξ + dominated convergence; the

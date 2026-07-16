@@ -30,7 +30,10 @@ all mandatory for every shipped result:
 Rule of the shop (unchanged, enforced): no number without a committed
 script + test; no novelty claim without a query list; no "Fixed" without
 a passed gate. The one standing counterexample (the missing
-gamma_cycle_probe.py) is Action A0.3 below.
+gamma_cycle_probe.py) was Action A0.3 below — CLOSED 2026-07-16
+(examples/gamma_cycle_probe.py + tests/test_gamma_probe.py; numbers of
+record in D3 §5.2: gamma confirmed, eps* shift corrected to -0.56%,
+penalty corrected to -0.00028%).
 
 ------------------------------------------------------------------------------
 ## 1. Critical path (revised)
@@ -61,10 +64,16 @@ A0.1 Propagate D4 §6 fixes (Mo/Huang → Mo 2015 + Li-Xu-Huang 2022; S-H
 A0.2 Freeze D1 as the problem book of record; map every ledger row to a
      CI check where executable.
 A0.3 Re-derive the gamma-channel numbers with a COMMITTED probe script +
-     test, or strike them from all docs.
+     test, or strike them from all docs. [DONE 2026-07-16: examples/
+     gamma_cycle_probe.py + tests/test_gamma_probe.py; D3 §5.2 corrected]
 A0.4 OP-0: bound ladder at eps-level on the Table-1 states (S-H closed
      forms + ideal-adaptation bound + shared-wall relaxation). One
      module, one test, immediate value calibration of N1-N4.
+     [DONE 2026-07-16: src/thrust/bounds.py + tests/test_bounds.py +
+     data/bounds_ladder.{json,md}; chain verified 18/18; DISCOVERY: the
+     naive G-B rung needs the sonic (choking) cap — M0 Prop. 7 and D3
+     Prop. G-B sharpened; M1 gap-zero attainment confirmed on the 8
+     supercritical sea-level rows]
 A0.5 Human due diligence kickoff: Kraiko 1979 monograph TOC + PMM pass
      (library access); required before any submission (D4 §3).
 

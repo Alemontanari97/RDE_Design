@@ -38,7 +38,7 @@ LENGTH multiplier (f₃ = cot φ).
 | T2 (averaged stationarity system) | SURVIVES as SCHEMA, with one CORRECTION: averaged transversality must be the weighted (**') not the unweighted (**) | any implementation (WP2/WP3, `raocore` modification) MUST implement (**'); (**) is exact only in the T3 class |
 | T3 (collapse theorem) | SURVIVES — proof re-verified; SHARPENED (Lemma A holds across transversal shocks and for γ(T)) | none; T3 is the strongest single result of the notes |
 | T3 novelty ("not published") | SURVIVES query-bounded (D2 G2: only empirical echoes + stochastic-control certainty equivalence; b2 confirms zero hits on averaged optimality conditions) | cite Dambrine-Dapogny-Harbrecht 2015 and certainty-equivalence as nearest relatives when publishing |
-| §5.1b measured γ-channel numbers (1.154→1.210; ε* −1.9%; Isp −0.001%) | UNVERIFIABLE-IN-REPO: `gamma_cycle_probe.py` does not exist in the repository | re-derive in-repo with a committed script + test, or STRIKE the numbers; the in-principle counterexample and the γ_eff = ⟨Pcγ⟩/⟨Pc⟩ closure survive as mathematics |
+| §5.1b measured γ-channel numbers (1.154→1.210; ε* −1.9%; Isp −0.001%) | RESOLVED 2026-07-16 (A0.3): re-derived in-repo — `examples/gamma_cycle_probe.py` + `tests/test_gamma_probe.py` + `data/gamma_cycle_probe.json`. γ_s 1.1537→1.2093 CONFIRMED (to the stale note's own rounding); ε* shift CORRECTED to −0.56% (stale −1.9% STRUCK; unweighted-mean closure reproduces −2.39% — the likely wrong-averaging source, now rejected by test); Isp penalty CORRECTED to −0.00028% (second order confirmed: penalty ≤ shift²); γ_eff = ⟨Pcγ⟩/⟨Pc⟩ closure gets its first executable confirmation (−0.57% vs −0.56%) | numbers of record now in D3 §5.2; cite only those |
 | T4 (plug at peak) | SURVIVES as THEOREM* (closure-conditional); nesting argument verified. b2 addendum: the ideal-adaptation CLOSURE has published precedent as a detonation-cycle performance BOUND (Kraiko-Egoryan 2018/2020) — the shape-level nested-argmax theorem remains unfound | cite Kraiko-Egoryan next to the closure; keep the caveat prominent; the off-design plug march is what retires it |
 | N1-N6 channel taxonomy | SURVIVES with the D1§8 restructuring (D1 ⊃ D2; N5 governs) | update note |
 | Measure remark (log-uniform) | SURVIVES (trivially verified, D3 O2) | none |
@@ -63,7 +63,7 @@ LENGTH multiplier (f₃ = cot φ).
 | P1 statement (a)-(c) | SURVIVES as SCHEMA | none |
 | P1 corollary "design sensitivity well-posed ⟺ spectrally robust" | FALLS as a biconditional — corrected to P1a/P1b (D3 §7): IFT needs only spectral NON-DEGENERACY at 0; instability does not destroy sensitivity, it destroys its physical license | rewrite; the corrected version is still novel (D2 G9) and still the organizing structural fact |
 | P2 "folklore-adjacent, never written down" | WEAKENED and SHARPENED: quasi-1D adjoints PUBLISHED (Giles-Pierce JFM 2001); 2-D supersonic ANALYTIC adjoints with characteristic structure PUBLISHED (Lozano-Ponsin, Aerospace 12(6):494 (2025) — the resolved "MDPI 2025 hit"), with NO mention of Rao/Guderley/Kraiko: both banks of the bridge exist, the bridge does not | rewrite P2 as the identification lemma anchored on Giles-Pierce (1-D) and Lozano-Ponsin (2-D) |
-| P3-P7 | SURVIVE as SCHEMA/targets; P7 confirmed novel even restricted (D2 G17); P6's "first measured instance" inherits the §5.1b unverifiability | P6: re-derive numbers before citing |
+| P3-P7 | SURVIVE as SCHEMA/targets; P7 confirmed novel even restricted (D2 G17); P6's "first measured instance" is now IN-REPO (A0.3 closed: shift −0.56%, penalty −0.00028% ≤ shift²) | P6: cite the D3 §5.2 numbers of record |
 | §8 placement claim (six-field intersection, empty center) | SURVIVES query-bounded, now with a verified populated-edges map (D2 §7) | none |
 | Newton-problem symmetry-breaking cautionary tale | SURVIVES, references verified (Brock-Ferone-Kawohl 1996; Lachand-Robert-Peletier 2001; Lachand-Robert-Oudet 2005) | none |
 | Wasserstein-DRO as "SOTA frame" suggestion | SURVIVES with attribution duty: DRO shape optimization EXISTS (Dapogny et al. 2023; Chen-Gauger CMAME 2024) — method known, RDE application new | cite when used |
@@ -213,6 +213,9 @@ Second-pass addenda (D3 §10bis, adversarial self-review of the method):
 2. Fix the S-H title everywhere it is cited informally.
 3. Re-derive or strike the §5.1b numbers; if re-derived, commit the
    probe script + a test (repo no-unverifiable-numbers culture).
+   [DONE 2026-07-16: examples/gamma_cycle_probe.py, tests/test_gamma_probe.py,
+   data/gamma_cycle_probe.json; γ confirmed, ε* shift corrected to −0.56%,
+   penalty corrected to −0.00028%; see D3 §5.2 and §1 row above.]
 4. Patch the notes: T1 relabel, (**)→(**'), P1 biconditional →
    P1a/P1b, "verbatim 3-D" weakening — or mark the two notes as
    superseded by D1/D3 (chosen route: supersession notice added at top
