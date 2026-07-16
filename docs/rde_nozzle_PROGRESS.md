@@ -340,6 +340,25 @@ vedi voci precedenti.]
 
 ## LOG SESSIONI
 
+- **S8-rigore (2026-07-16, "attacco G12", concorrente alla S8
+  operativa — file disgiunti, quinto interleave dichiarato)** — Su
+  direttiva utente ("attacchiamolo"), primo bersaglio della lista di
+  attaccabilità: G12 nella classe S1. Commit 9722b9a
+  (docs/rde_nozzle_G12_S1.md + validation/g12_shock_linearization.py,
+  PASS 9/9 con due rejector; log
+  validation/PROGRESS_2026-07-16_rigore_G12.md, passi 1-9, gate PASS
+  al passo 3). RISULTATO: il gap G12 (derivata di forma multi-D con
+  urti) è RIDOTTO alla teoria 1-D verificata dentro la classe S1 via
+  lettura x-come-tempo (Lemma G12-L1, autostruttura machine-verified
+  EOS-general) + mattone-fronte (Lemma G12-L2: RH linearizzata non
+  singolare strettamente dentro Lax, degenerazione ESATTAMENTE ai
+  fronti caratteristici = legge di nucleo della Prop. A2); THEOREM
+  G12-S1 (THEOREM*, residui R-G12.1..3 nominati; il limite di mesh
+  del Lemma B ha ora il bersaglio continuo enunciato — circolarità
+  rotta). M0 T7 G12 aggiornato (R4). Prossimi attacchi del filone
+  rigore (ordine valutato): N6 (nucleo 3-D + cinque campi swirl),
+  unicità S1-interna, P4 periodico liscio.
+
 - **S7 (2026-07-16, OPERATIVA: "Lemma B + OP-0-gamma + G5-2a";
   lanciata come S6-op, rinumerata alla riconciliazione)** — Gate
   pre-esecuzione PASS (log passo 3). T1 (9966552): Lemma B draft di

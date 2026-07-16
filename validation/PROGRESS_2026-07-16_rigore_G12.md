@@ -81,3 +81,16 @@ the attackability assessment given in-conversation).
    Disjoint files; this session commits ONLY its own artifacts
    (G12 doc, carrier, this log, M0 targeted edit) and leaves theirs
    untouched. Fifth interleave of the day — declared.
+9. [T1 COMMIT] 9722b9a. [R3 CHIUSURA MINIMALE] Because the
+   operational S8 is ACTIVE and owns the next PROGRESS ORA update,
+   this rigor thread closes with the minimal footprint: LOG SESSIONI
+   entry appended to PROGRESS (S8-rigore), memory updated
+   (research-cycle-averaged-rao: G12 attack state), this log CLOSED
+   at step 9. NEXT of the rigor track (for a future dedicated
+   session, in the assessed order): (2) N6 attack — 3-D kernel lemma
+   (Prop. A2 analogue, symbolic) + axisymmetric-swirl five-field
+   system (+ possible negative theorem on 3-D Rao-type integrals);
+   (3) S1-internal uniqueness (patched weak-strong + Majda);
+   (4) P4 smooth periodic (steady sweep perturbation, spectral
+   hypothesis = P1a/P1b margin). Leads to verify for G12-S1:
+   Bressan-Guerra-class shift-differentiability citation (R-G12.2).
