@@ -224,3 +224,21 @@ from S5 and re-declared here.
     initializer (P3); (v) robust CVaR/DRO layer OPTIONAL (out of
     baseline scope by the periodicity assumption; flatness monitor
     mandatory).
+22. [POST-CLOSURE ADDENDUM — user clarification, AMENDMENT] "non
+    farti condizionare dall'informazione che il segnale è sempre
+    periodico, algoritmo sempre pienamente generale": M0 VI.4bis
+    AMENDED — periodicity sets THEORY priorities and runtime
+    opportunities, never structure: (i) general Gauss+switch-split
+    quadrature is the BASELINE, circle rule = opportunistic upgrade
+    gated by flatness+harmonic-decay certificates; (ii) both
+    corrector routes live in the pipeline (steady sweep solve engaged
+    when T0 certified; O5 always available); (v) CVaR/DRO layer part
+    of the general architecture, idle (not absent) on certified-
+    periodic data. (iii)-(iv) unconditional as before. Memory
+    periodic-wave-data-scope.md amended with the clarification.
+    NOTE: a concurrent S7 session is ACTIVE on this tree (commits
+    1d762f8 OP-0-gamma purge, fb82846 PMM sweep 204/204 with top flag
+    Kraiko-Osipov 1970; Lemma B draft in progress untracked) — third
+    one-session-rule violation, reconciled so far without content
+    conflicts; this session makes NO further edits to files S7 has
+    open (P2_lemmaA.md left untouched).

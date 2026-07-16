@@ -679,27 +679,41 @@ adaptation, sheet-entry) by root-finding; SPLIT Gauss panels there
 (else O(1/N) + noisy outer gradient — the practical convergence trap);
 Leibniz terms cancel by continuity of F (verified).
 VI.4bis Algorithmic consequences of the standing scopings (2026-07-16,
-S5/S6 directives; the skeleton of VI.1-VI.7 is UNCHANGED — these pin
-down choices inside it): (i) PERIODIC DATA (standing assumption,
-monitor = T0 flatness): quadrature in xi = trapezoid-on-the-circle
-(spectrally accurate for smooth periodic data) COMPOSED with the VI.4
-switch-split rule (splits still mandatory at xi*(Sigma)); (ii) the
-O(St) corrector is computed as ONE STEADY LINEARIZED SOLVE on the
-wave-frame anchor with the sweep term -Omega_w r d_theta' as source
-(C-T1 periodic re-scoping, D3 §3) — unsteady simulation (O5) demoted
-to independent confirmation; (iii) GAMMA DIRECTIVE: thermo backend
-EOS-general (Cantera h(s,P) class) mandatory; the gamma=const
-corner<->eps bijection is FORBIDDEN as a solver step (enforce
-f2 = const actively; E4/G2 oracle gates any closed-form shortcut);
-(iv) ROTATIONAL DATA: per-phase adjoint at the FIELD level (reverse-AD
-of the fitted march = discrete adjoint sweep, Lemma B); the two-field
-closed form (Prop. A3) serves as ORACLE/INITIALIZER only; NEW cheap
-per-phase certificates: f2-drift and Hoffman-E residual along each
-phase's terminal characteristic, and lambda2(xi) = -f2(lip data) as
-the closed-form multiplier initializer (P3 theorem); (v) the robust
-CVaR/DRO layer is OPTIONAL (multistability out of baseline scope by
-the periodicity assumption; it re-enters only if the flatness monitor
-rejects).
+S5/S6 directives; AMENDED same day on user clarification: the
+periodicity assumption describes the EXPECTED DATA and sets theory
+priorities — it must NOT condition the algorithm, which stays FULLY
+GENERAL; periodic structure is EXPLOITED AT RUNTIME when certified,
+never assumed structurally. The skeleton of VI.1-VI.7 is UNCHANGED —
+these pin down choices inside it):
+ (i)  QUADRATURE IN xi: the GENERAL rule of VI.4 (Gauss panels +
+      mandatory switch-splits at xi*(Sigma)) is the baseline for
+      arbitrary mu; WHEN the data are certified periodic and smooth
+      (T0 flatness certificate + harmonic-decay audit) the layer MAY
+      switch opportunistically to trapezoid-on-the-circle (spectral
+      accuracy), still composed with the switch-splits. Data-driven
+      selection, never a structural assumption.
+ (ii) O(St) CORRECTOR: BOTH routes live in the pipeline — the general
+      route (unsteady comparison, O5) always available; the steady
+      sweep-perturbation solve on the wave-frame anchor (one
+      linearized solve, C-T1 periodic re-scoping D3 §3) engaged WHEN
+      T0 applies (certified single/k-wave mode). The cheap route is a
+      licensed specialization, not a replacement.
+ (iii) GAMMA DIRECTIVE (unconditional): thermo backend EOS-general
+      (Cantera h(s,P) class) mandatory; the gamma=const corner<->eps
+      bijection is FORBIDDEN as a solver step (enforce f2 = const
+      actively; E4/G2 oracle gates any closed-form shortcut).
+ (iv) ROTATIONAL DATA (unconditional): per-phase adjoint at the FIELD
+      level (reverse-AD of the fitted march = discrete adjoint sweep,
+      Lemma B); the two-field closed form (Prop. A3) serves as
+      ORACLE/INITIALIZER only; cheap per-phase certificates: f2-drift
+      and Hoffman-E residual along each phase's terminal
+      characteristic, lambda2(xi) = -f2(lip data) as the closed-form
+      multiplier initializer (P3 theorem).
+ (v)  ROBUST LAYER (CVaR/DRO over the mode measure): PART OF THE
+      GENERAL ARCHITECTURE, engaged whenever the data warrant it
+      (multistability declared, or the flatness monitor rejects mode
+      purity); idle — not absent — on certified-periodic data. The
+      flatness monitor itself is mandatory in every data contract.
 
 VI.5 Optimizer: TR-SQP on spline DOFs; gradients Riesz-represented in
 a Sobolev/Steklov-Poincare metric (mesh-independence); active-set

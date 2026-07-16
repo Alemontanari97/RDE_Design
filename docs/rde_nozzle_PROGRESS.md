@@ -4,8 +4,79 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 6 — DEDICATA RIGORE: "P-A1/P-A2/
-## P3 + studio corpus letteratura")
+## ORA (2026-07-16, chiusura Sessione 7 — OPERATIVA: "Lemma B +
+## OP-0-gamma + G5-2a"; CONCORRENTE con la S6 rigore, riconciliata)
+
+Branch `rde-nozzle-program`. Sessione lanciata come "S6 operativa"
+(prompt handoff-1 di S5), RINUMERATA S7 alla riconciliazione: la S6
+rigore (handoff-2, stessa giornata) ha lavorato e committato in
+parallelo sullo stesso tree — TERZA violazione della regola
+una-sessione-alla-volta, rilevata PRIMA dei commit come da mandato,
+riconciliata senza conflitti di contenuto (hunks disgiunti; log S7
+passo 10). Log a ordine totale S7:
+validation/PROGRESS_2026-07-16_fase1_S7.md (gate pre-esecuzione PASS
+al passo 3). Commit: T2 = 1d762f8, T3 = fb82846, T1 = (vedi log).
+
+- FASE 1 — **[F1/P-2] LEMMA B DRAFT DI RECORD SCRITTO**
+  (docs/rde_nozzle_P2_lemmaB.md = §4 del paper, implementa outline
+  §4): march MOC fitted = sistema block-triangolare (B.1)-(B.3),
+  THEOREM B0/B1/B2 (reverse-AD con regole implicite == back-
+  substitution trasposta lungo le STESSE caratteristiche discrete;
+  gemello discreto di Prop. A1), identità dot-product (B.7) = O3.1
+  col g0-spike come dimostratore citabile; fronte fitted = incognita
+  ESPLICITA con trasversalità Lax/Majda == non-singolarità del J_k
+  locale (THEOREM finito-dim; corrispondenza col b.c. interno di
+  Giles-Pierce = SCHEMA); trappola Giles-Ulbrich bypassata PER
+  COSTRUZIONE (clausola di onestà: il limite di mesh resta SCHEMA,
+  frontiera G12); assemblaggio ciclico = (**') PESATA, mai naive
+  (THEOREM a quadratura fissa); stato gamma: identità trasposta
+  CLOSURE-AGNOSTIC = EOS-general per costruzione. PENDING P-B1
+  (O3.1 al mattone shock), P-B2 (test d'ordine, motore A1).
+- FASE 1 — **[F1/P-2] verifica DUAL-ROUTE di Prop. A2**
+  (validation/p2_pA1_symbolic_adjoint.py): il pass simbolico
+  operativo, scritto in concorrenza, RICONCILIATO col filone rigore —
+  non ri-reclama lo scarico P-A1' (fatto da Prop. A3): verifica
+  indipendente della stessa identità di annichilazione in variabili
+  CONSERVATIVE (chiusura Grueneisen EOS-general c^2 = a + b h, test
+  di zero esatti via Weierstrass, covettore nullo sinistro esplicito,
+  certificato rank-3, bookkeeping (L.20) eseguibile, 3 controlli
+  negativi) + lemma di LETTURA DEL DATO AL BORDO psi.(K w) = -lambda2
+  per OGNI soluzione aggiunta (metà "costanti<->dati" della (ii) in
+  forma eseguibile; il trasporto resta Prop. A3). Nota dual-route
+  registrata nel draft Lemma A sotto Prop. A2.
+- FASE 1 — **[F1/OP-0-gamma] PURGA ESEGUITA A LIVELLO LADDER**
+  (1d762f8): route PRIMARIA del ceiling ora EOS-general (Cantera
+  h(s,P) su isentropa a composizione CJ congelata; cap sonico esatto
+  via inversione di w(P) = h + c^2/2); forme chiuse DECLASSATE a
+  oracoli dichiarati; barre derivate (Richardson + probe exact-flash
+  + rumore misurato al punto sonico); rejector known-answer (gas
+  cp=const, 4.7e-7 vs tol 1e-6; route corrotta rigettata); cap
+  ri-verificato ESEGUIBILMENTE a gamma(T) (scan delle uscite
+  ammissibili + perdita naive stretta alla fase subcritica profonda).
+  NUMERI DI RECORD: ceiling reale -4.4% (H2) .. -7.9% (RP-1) sotto
+  l'oracolo gamma_s=const sulle 12 righe a Pa finita (barre ~0.002%,
+  tutti significativi); righe vuoto = strumenti LOWER-BOUND a T-floor
+  200 K dichiarati. Test = run_all gruppo (xi), 18/18. R4 stessa
+  sessione: M0 Prop. 7 (GAMMA-PURGE INSTANCE) + D3 §8. DEVIAZIONE
+  DICHIARATA: diagramma di fase su route reale RINVIATO a NEXT.
+- FASE 0 (coda) — **[F0/G5-2a] SPOGLIO DIGITALE PMM COMPLETO**
+  (fb82846, validation/G5_pmm_toc_sweep_1957-1990.md): 204/204
+  fascicoli 1957-90, ~4300 titoli, metodo HTML-grezzo con verifica
+  conteggi (SCOPERTA DI METODO: il summarizer WebFetch FABBRICA i
+  contenuti di queste pagine windows-1251 — tutto l'output
+  riassunto scartato). VERDETTI: aggiunto x contornatura = ZERO hit
+  in 34 anni -> G14/P-2 REGGE; nessuna ottimizzazione di forma vs
+  inflow mediato/periodico, MA TOP FLAG dichiarato subito:
+  Kraiko-Osipov PMM 34(6) 1970 (contorno per condizioni di volo
+  VARIABILI — il cugino multi-regime della media di ciclo);
+  wording G6 di P-1 CONTINGENTE alla lettura full-text (contingenza
+  D4 §3 ARMATA, non attivata). Lista di lettura Item 2b prodotta.
+- NON eseguiti (dichiarato): T4 (P-1 §2/§4) e T5 (estensione spike)
+  — budget tempo/token assorbito da riconciliazione e purga; restano
+  in NEXT.
+
+Stato precedente (chiusura Sessione 6 — DEDICATA RIGORE: "P-A1/P-A2/
+P3 + studio corpus letteratura")
 
 Branch `rde-nozzle-program`, HEAD = 0fdbe7d (T1 = 5ec62ef, T2 =
 36db818, T3 = b5590f0, T4/P-A1' = 86e6d6d, T-LIT = 0fdbe7d). Log a
