@@ -103,6 +103,56 @@ refutation of relative-entropy certificates for shocked orbits. S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 
+D2.6 (THE PROBLEM OF RECORD (P) — canonical fusion of Part II + Part IV).
+GIVEN: envelope E (axisymmetric, L_E, R_E), attachment set Λ, constant
+Pa > 0; interface contract (Gamma_d, D, mu) with the stage-A admission
+audits passed (characteristic completeness on axially supersonic
+patches per Lemma 4; Crocco compatibility; per-phase spacelikeness
+margin; declared closure O1/O2/O3 on subsonic patches); constraint
+vector c = (L, eps_max, L_p, curvature/angle bounds, symmetry class).
+ADMISSIBLE SET: A_gen(c) = {S ⊂ E compact solid: uniform cone condition
+(h0, omega); attachment on Λ; g_i(S) <= c_i}, with its FINITE topology-
+sector decomposition (configurations = outputs) and working spline
+class A_h per sector.
+STATE (mu-a.e. xi): the unique S1 solution U_xi of steady Euler in
+E \ S with data s(xi), slip walls, supersonic outflow; S1 membership
+certified a posteriori (boundary-function margin >= delta_S1 > 0
+uniformly in xi); canonicity per D2.5 (exact shock-free, declared
+conditional across fronts).
+OBJECTIVE: J[S] = Int_Xi F[S; s(xi)] dmu(xi), legitimacy chain
+Theorem 0 -> T0 -> P4.
+PROBLEM (P): find the PAIR (S*, delta) such that
+ (i)   S* ∈ argmax_{A_h(c)} J (existence; P7 = function-class target
+       with monitored failure boundary);
+ (ii)  S* satisfies the averaged system T7: per-phase closed-form
+       adjoint (Rao/Kraiko) conditions + mu-averaged wall condition +
+       WEIGHTED transversality (**') + active-constraint
+       complementarity with multipliers = marginal values;
+ (iii) reduced Hessian ⪯ 0 on the active tangent cone;
+ (iv)  GLOBALITY, certified: a declared mechanism M1-M5 delivering
+       J[S*] >= sup_{A_gen(c)} J - delta with delta COMPUTED
+       (delta = B - J[S*], B = min of the bound ladder: int-max,
+       sonic-capped J_ideal, B_EK), and delta = 0 PROVEN in the
+       structured classes (M1 duality-gap zero: T4, numerically
+       attained on the supercritical rows; M2 pointwise T3 transfer —
+       valid for EVERY S in the sector, not only stationary ones;
+       M3 unimodality: the 1-DOF theorems);
+ (v)   declared bars: |J_exact - J[S*]| <= St|J1| + D2 residual + DWR.
+"Search for the global optimum of the defined problem" = compute
+(S*, delta) with the least available delta; "global optimum PROVEN"
+<=> delta = 0.
+MAXIMALITY (why this is the strongest truthful form): (a) no
+admissible-set-free version exists (vacuum theorem: sup unattained);
+(b) no solution-concept-free version exists (multi-D non-uniqueness);
+(c) unconditional global optimality on nonconvex infinite-dimensional
+shape sets with PDE constraints exists for NO ONE (J non-concave —
+deflation can exhibit multiple stationary contours; no convexification
+known; G13/G17 verified open) — the certified-(S*, delta) form is
+maximal w.r.t. the provable state of the art, achieves delta = 0
+exactly where structure exists (T3/T4/unimodal), and is designed to
+absorb future progress on the named residues (R5-R8, G12) without
+changing form.
+
 ==============================================================================
 PART III — THEOREMS WITH PROOFS
 
