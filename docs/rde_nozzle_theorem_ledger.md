@@ -364,7 +364,17 @@ along the isentrope + c^2 = dp/drho|_s): holds for frozen gamma(T) and
 arbitrary convex EOS in homentropic homenthalpic flow — THEOREM (audit
 trace in the draft §3.0). The true gamma = const boundaries remain:
 corner<->eps bijection (E4, oracle S-H 1971 Table 2), T3 Lemma B
-(calorically perfect), S-H eps-rung closed forms.
+(calorically perfect), S-H eps-rung closed forms. STRENGTHENED
+DIRECTIVE (same day, user): gamma = const may appear ONLY as declared
+oracle instances or demoted corollaries — never as a load-bearing
+hypothesis of a deliverable; the primary objects are the EOS-general
+ones (per-phase stationarity system, T7/(**') adjoint-level, V_id in
+h(s,Pa) form, sonic-cap criterion, gamma(T) A1 backend); T3's exact
+collapse is PROVABLY gamma=const-only (two-gamma counterexample) and
+is therefore presented as the demoted corollary rung, never
+generalized. Executable purge item: PROGRESS NEXT 5 [F1/OP-0-gamma]
+(Cantera h(s,P) evaluation of the ladder ceiling; closed forms ->
+declared oracles; dual-route rejector).
 
 ------------------------------------------------------------------------------
 ## 9. P3-P7 — status after this session

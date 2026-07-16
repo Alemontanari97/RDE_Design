@@ -176,6 +176,12 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
    (termine sorgente) + shock point (regola implicita su RH), e primo
    confronto cross-code col caso TOC GENO (criterio interop del gate
    G0, decisione utente S5: GENO resta Fortran).
+5. [F1/OP-0-gamma] Purga di gamma=const dal ceiling ESEGUIBILE
+   (direttiva rafforzata S5): valutare V_id = sqrt(2[h0 - h(s,Pa)]) e
+   il cap sonico via termochimica reale (Cantera h(s,P)) invece delle
+   forme chiuse gamma=const; ri-derivare ladder + diagramma di fase e
+   confrontare (le forme chiuse restano come oracoli dichiarati);
+   rejector: divergenza oltre barre dichiarate tra le due route.
 [FATTO in S3: ex-NEXT-1 OP-11-ε → 1438b1b; ex-NEXT-2 outline P-2 →
 05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08. FATTO in S4:
 pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).

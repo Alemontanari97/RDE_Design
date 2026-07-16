@@ -360,8 +360,16 @@ falsifier + carrier inline; (b) every claim appears in this map; (c)
 coherence grep vs M0/D3 passes — no sentence reads a §7 winner as a
 hardware verdict; (d) submission blocked until M1 + G5 (declared in
 the cover letter if asked); (e) GAMMA STATUS (standing user directive
-2026-07-16): every claim declares whether it holds for variable
-gamma / general EOS or requires gamma = const — of the map above:
+2026-07-16, STRENGTHENED same day): every claim declares whether it
+holds for variable gamma / general EOS or requires gamma = const, AND
+gamma = const may appear ONLY as a declared oracle instance or a
+demoted corollary of the general statement — never as a load-bearing
+hypothesis of a paper claim (the general form is primary: T7/(**') at
+the adjoint level, EOS-general per-phase stationarity, V_id in
+h(s, Pa) form; the T3 collapse and gamma_eff closure are presented as
+the calorically-perfect corollary rung, with the two-gamma
+counterexample stating why no stronger form exists) — of the map
+above:
 EOS-general given frozen homentropic flow: C1, C3-C9, C14 (V_id via
 h(s, Pa), EOS-general); calorically-perfect-only: T3's Lemma B inside
 C8 (declared boundary), the S-H closed forms carrying C15-C22 at the

@@ -247,3 +247,35 @@ RATIFICATION — no implementation).
     MEMORY.md index). Session log CLOSED at step 24. Deviations
     declared: concurrency with S4 (reconciled); JAX install (declared,
     reversible); no other deviations from the plan.
+
+25. [POST-CLOSURE ADDENDUM — user challenge on gamma generality]
+    User rejected any load-bearing gamma=const: "tutto deve essere
+    completamente generale, no traccia di ipotesi gamma costante in
+    nessuna parte". Response of record (honesty preserved): T3's EXACT
+    collapse is PROVABLY false for gamma(T) (two-gamma counterexample,
+    M0) — it cannot be generalized, only DEMOTED. Directive codified
+    as ARCHITECTURE INVERSION: primary objects = the EOS-general ones
+    (per-phase stationarity (L.6)-(L.16), T7/(**') at adjoint level,
+    V_id in h(s,Pa) form, sonic-cap criterion, gamma(T) A1 backend);
+    gamma=const admitted ONLY as declared oracle instances or demoted
+    corollaries (T3 collapse, gamma_eff closure, S-H eps forms), never
+    as a hypothesis a deliverable needs. Edits: memory
+    gamma-variable-generality.md STRENGTHENED; PROGRESS NEXT 5 added
+    ([F1/OP-0-gamma]: purge gamma=const from the executable ceiling
+    via Cantera h(s,P) evaluation of V_id + sonic cap, closed forms
+    demoted to declared oracles, dual-route rejector); P-1 skeleton
+    rule (e) strengthened; D3 §8 gamma paragraph extended.
+26. [POST-CLOSURE ADDENDUM — user question on GENO/JAX] User asked
+    whether the original plan involved TRANSLATING GENO to JAX and
+    whether "GENO stays Fortran" steered the program suboptimally.
+    Answer of record: NO translation was ever planned — M0 VI.7 and
+    D6 (A1-A3) have always specified the differentiable engine as NEW
+    code (JAX or Julia/Enzyme, gate G0) with GENO-Fortran kept as the
+    INDEPENDENT reference (dual-code discipline, oracle O3.4,
+    dual-route B1/B2). A port would DESTROY the certification value:
+    independence is what makes cross-validation meaningful (shared
+    bugs cancel in a port). GENO's role stays: reference + known-bug
+    fixes IN FORTRAN (RaoPlug S1/S2 gated by the Rao-1961 Table-1
+    oracle). The user decision coincides with the plan of record and
+    ADDS an explicit G0 interop criterion — an improvement, zero
+    deviation.
