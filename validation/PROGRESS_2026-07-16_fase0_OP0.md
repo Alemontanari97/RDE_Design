@@ -31,7 +31,20 @@ corrections get a new entry referencing the old one).
 | 15 | note | CONCURRENT SESSION detected on the same branch/working tree: commits `f4cd429`, `ae9f109` (CLAUDE.md rules R1-R6 + living `docs/rde_nozzle_PROGRESS.md`), `9b2bcde` are its checkpoints of the shared tree. No content conflict; governance files adopted from here on | — | RECONCILED |
 | 16 | T2 fixes | Inline biblio corrections in the historical notes: (a) `cycle_averaged_variational_nozzle.md` §survey passage now carries the CORRECT split citations (Li-Xu-Huang JPP 38(5):849 (2022) RDE; Mo et al. Acta Astronautica 108:92 (2015) scramjet) with the conflation note; (b) `mathematical_foundations_rde_nozzle.md` Sternin now carries the two-phase caveat (general treatise = Pirumov-Roslyakov). Rao 1958/1960/1961 usage audited: already consistent everywhere; S-H title correct at every full citation | `cycle_averaged_variational_nozzle.md` [.md MOD], `mathematical_foundations_rde_nozzle.md` [.md MOD] | DONE |
 | 17 | T2 gate | Control greps (A0.1 acceptance): (1) `Mo,\s*Huang` outside correction contexts → 0 hits; (2) `Performance Model` not preceded by exact title → only line-wrap false positives of correct citations; (3) `Rao 1961` without spike/review context → 0 hits; (4) Sternin caveat present at the one general-text citation site. GATE CLEAN | — (gate record here) | PASS |
-| 18 | T2 commit | One commit for T2 | git | see hash below |
+| 18 | T2 commit | One commit for T2 | git | DONE: commit `92cb8ea` |
+| 19 | T4 decision | Optional T4 (OP-11-eps scaffold) deliberately NOT attempted: closure discipline over volume; full spec handed to Session-3 NEXT 1 in `docs/rde_nozzle_PROGRESS.md` (reuse `ladder_row`/`check_chain`; CAPPED ceiling in subcritical cells) | — (declared deviation) | DECLINED, declared |
+| 20 | closure | Definition of Done: living `docs/rde_nozzle_PROGRESS.md` updated (ORA→92cb8ea, S2 log entry, NEXT re-ordered) [.md MOD]; project memory `research-cycle-averaged-rao` updated (corrections-of-record paragraph + session-2 state + NEXT); THIS log closed; final closure commit | `docs/rde_nozzle_PROGRESS.md`, memory, this file | DONE (hash = closure commit) |
+
+## Session-2 verdict (closing)
+
+Fase 0 FORMALLY CLOSED (A0.1+A0.3+A0.4 all with committed script+test+
+rejector); Fase 1 running with OP-0 delivered. Full fast suite 9/9 PASS.
+Commits of this session's work: `1a4ff7b` (T3), `f4cd429`+`9b2bcde`+
+`e77f63b` (T1, partly checkpointed by the concurrent session), `92cb8ea`
+(T2), plus this closure commit. Discoveries back-propagated same-session
+(rule R4): sonic cap on G-B (M0 Prop. 7, D3); gamma numbers of record
+(D3 §5.2). The next session restarts from memory + M0 +
+docs/rde_nozzle_PROGRESS.md alone.
 
 ## Deliverable map (filled as work completes)
 

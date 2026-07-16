@@ -4,9 +4,22 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 1)
+## ORA (2026-07-16, chiusura Sessione 2 — "Fase 0-chiusura + OP-0")
 
-Branch `rde-nozzle-program`, HEAD = f4cd429. Stato per fase (piano D6):
+Branch `rde-nozzle-program`, HEAD = 92cb8ea. Stato per fase (piano D6):
+
+- FASE 0: **CHIUSA FORMALMENTE**. A0.1 completata: citazioni corrette
+  propagate INLINE nelle note storiche (Li-Xu-Huang 2022 / Mo 2015
+  spaccate con nota di conflazione; caveat Sternin→Pirumov-Roslyakov)
+  e gate grep-di-controllo PASSATO fuori dai banner (92cb8ea; record
+  del gate in validation/PROGRESS_2026-07-16_fase0_OP0.md, passo 17).
+  Suite completa 9/9 PASS (59 s), incl. i due nuovi gruppi (viii)
+  bounds e (ix) gamma probe, entrambi con rejector.
+- Sessioni 1 e 2 hanno lavorato in concorrenza sullo stesso working
+  tree (checkpoints f4cd429/ae9f109/9b2bcde vs 1a4ff7b/e77f63b/92cb8ea):
+  nessun conflitto di contenuto; da ora una sola sessione alla volta.
+
+Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 
 - FASE 0 (consolidamento): **COMPLETA**.
   - Baseline M0 + D1-D7 committata (4565a6b/4565be6).
@@ -38,16 +51,18 @@ Branch `rde-nozzle-program`, HEAD = f4cd429. Stato per fase (piano D6):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 2)
+## NEXT (passo atomico, Sessione 3)
 
-1. [F1/T2] Grep di controllo bonifiche bibliografiche fuori dai banner
-   (chiusura formale A0.1).
-2. [F1/OP-11-ε] Diagramma di fase quasi-1D: griglia (vincolo) ×
-   (spread di μ via PR), topologia vincente per cella dai closed form
-   + bound ladder; figure per P-1.
-3. [F1/P-2] Outline del lemma-ponte Rao=aggiunto (TIME-SENSITIVE:
+1. [F1/OP-11-ε] Diagramma di fase quasi-1D (era il T4 opzionale della
+   Sessione 2, DECLINATO deliberatamente per disciplina di chiusura):
+   griglia (ε_max o L) × (spread di μ via PR), topologia vincente per
+   cella dai closed form + bound ladder di src/thrust/bounds.py
+   (riusare ladder_row/check_chain; attenzione al regime subcritico:
+   usare il ceiling CAPPATO, mai il naive); figure per P-1.
+2. [F1/P-2] Outline del lemma-ponte Rao=aggiunto (TIME-SENSITIVE:
    Lozano-Ponsin 2025 ha costruito la sponda 2-D).
-4. [F0/G5] Commissionare il passaggio biblioteca Kraiko 1979 / PMM.
+3. [F0/G5] Commissionare il passaggio biblioteca Kraiko 1979 / PMM.
+[FATTO in S2: ex-NEXT-1 grep di controllo A0.1 → gate PASS, 92cb8ea.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -68,3 +83,18 @@ Branch `rde-nozzle-program`, HEAD = f4cd429. Stato per fase (piano D6):
   Deviazioni dal piano: nessuna; T1/T3 della Sessione 2 anticipati.
   Verdetti: novità query-bounded confermata su tutti i filoni;
   residuo esterno = G5.
+
+- **S2 (2026-07-16, "Fase 0-chiusura + OP-0")** — Esecuzione T3→T1→T2
+  con rendicontazione a ordine totale
+  (validation/PROGRESS_2026-07-16_fase0_OP0.md, passi 1-18):
+  T3/OP-0 bound ladder (1a4ff7b): catena bell ≤ int-max == ideal ≤ B_EK
+  su 18/18 righe, dual-route, 7 controlli negativi, SCOPERTA del cap
+  sonico su G-B retro-propagata a M0/D3 (R4); regimi 8 supercritiche
+  (M1 gap-zero) / 4 subcritiche (naive VIOLATO) / 6 vuoto.
+  T1/A0.3 gamma probe (f4cd429+9b2bcde+e77f63b): γ_s confermato,
+  ε* −0.56% (−1.9% eliminato, origine = media non pesata −2.39%),
+  penalità −0.00028% ≤ shift²; conferma eseguibile di γ_eff.
+  T2/A0.1 (92cb8ea): correzioni inline nelle note storiche + gate grep
+  PASS. Suite 9/9. Deviazioni dichiarate: T4/OP-11-ε opzionale NON
+  eseguito (→ NEXT 1); lavoro in concorrenza con S1 sullo stesso tree,
+  riconciliato senza conflitti.
