@@ -147,12 +147,16 @@ tool outside a Verdict.
 ------------------------------------------------------------------------------
 ## 3. Theory/publication stream (updated, with the time-sensitive item)
 
-P-1 (submit after M1): Formulation + collapse dichotomy. T0
-    (strengthened: instantaneous constancy), T1-as-definition + P4
-    statement, T2 with (**'), T3/T4 with verified proofs, oracles,
-    altitude-duality corollary, N1-N6, the measure lemma. Prior-art
-    citations per D4 (mandatory list). This paper EXPLAINS the field's
-    time-averaged design practice — the citable clarification.
+P-1 (submit after M1; TARGET VENUE: JPP class): Formulation + collapse
+    dichotomy. T0 (strengthened: instantaneous constancy),
+    T1-as-definition + P4 statement, T2 with (**'), T3/T4 with verified
+    proofs, oracles, altitude-duality corollary, N1-N6, the measure
+    lemma. Prior-art citations per D4 (mandatory list) + the two
+    concordance bridges (EAP and S-H remarks in M0 Part III: the
+    field's own metric and model are contained and completed — their
+    numerical findings become corollaries of T3/T4/vacuum theorems).
+    This paper EXPLAINS the field's time-averaged design practice —
+    the citable clarification.
 P-2 (TIME-SENSITIVE, can precede or accompany P-1): the P2' bridge
     lemma — Rao/Kraiko conditions ≡ closed-form adjoint characteristics;
     three published banks (Hoffman 1967; Giles-Pierce 2001;

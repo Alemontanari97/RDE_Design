@@ -63,6 +63,7 @@ mathematics, declared as contributions.
 | E5 | §5.1b measured numbers without committed script | asset audit | re-derive or strike (A0.3) |
 | E6 | relative-Mach/spacelikeness conflation ("the sweep helps" for interfaces) | user challenge + granular re-derivation | N-SW lemma: u_x > c frame-invariant; C1-C4 hierarchy explicit |
 | E7 | "Mo, Huang" citation conflation; Rao 1960/1961 dates; Sternin scope | survey b1/b2 | corrected of record |
+| E8 | S1 canonicity via weak-strong uniqueness overstated for shocked solutions (theorem requires Lipschitz strong solution) | citation verification of Brenier-De Lellis-Székelyhidi CMP 305 (2011) during the convergence pass | canonicity downgraded: exact shock-free, declared-conditional across fronts (D1 §6, M0 D2.5) |
 
 No further known-wrong item remains at the time of this audit. The
 statement "nothing non-SOTA, non-general, or fundamentally wrong" holds
@@ -74,9 +75,13 @@ adversarial passes (self-verification, six-strand survey, 16-agent
 red-teamed panel).
 
 Standing external gates (not errors, but obligations before print):
-G5 Kraiko-1979/PMM human pass; the Brenier-De Lellis-Székelyhidi
-weak-strong citation re-verification; O5/G2/G3 empirical gates as the
-program runs.
+G5 Kraiko-1979/PMM human pass; O5/G2/G3 empirical gates as the program
+runs. RESOLVED 2026-07-16: Brenier-De Lellis-Székelyhidi weak-strong
+citation VERIFIED (CMP 305:351-361 (2011), doi:10.1007/s00220-011-1267-0)
+— and the verification IMPROVED the documents: the theorem's Lipschitz
+hypothesis forced the canonicity claim to be downgraded to "exact
+shock-free, declared-conditional across fronts" (D1 §6, M0 D2.5) —
+error E8 of the found-and-fixed register.
 
 ------------------------------------------------------------------------------
 ## 4. The decision matrix: total vision of the alternatives per layer

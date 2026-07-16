@@ -85,10 +85,21 @@ I4 single mean state.
 
 D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
 many transversal fronts, no wall-shock formation): classically
-well-posed (Li Ta-tsien semi-global framework), CANONICAL by
-weak-strong uniqueness (any admissible weak/measure-valued solution
-coincides with the S1 solution where the latter exists), membership
-checkable a posteriori (Sternin/Rao-Beck boundary function). S2:
+well-posed (Li Ta-tsien semi-global framework), membership checkable a
+posteriori (Sternin/Rao-Beck boundary function). CANONICITY (corrected,
+precision pass 2026-07-16): in SHOCK-FREE (locally Lipschitz) regions
+and regimes, weak-strong uniqueness (Dafermos relative entropy;
+measure-valued version Brenier-De Lellis-Székelyhidi, Comm. Math.
+Phys. 305:351-361 (2011), doi:10.1007/s00220-011-1267-0 — VERIFIED)
+makes the classical solution THE solution of every admissible concept.
+ACROSS transversal shocks the strong comparison solution is not
+Lipschitz and the general multi-D weak-strong property is OPEN;
+partial support: 1-D uniqueness of BV/piecewise-smooth solutions
+(Bressan school) and shift/a-contraction shock stability (Vasseur-
+Krupa line, essentially 1-D). S1 canonicity WITH shocks is therefore a
+DECLARED conditional (backed by Majda stability of the fitted fronts),
+not a theorem — ledger-grade honesty, consistent with the panel's
+refutation of relative-entropy certificates for shocked orbits. S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 
@@ -243,11 +254,12 @@ rho e(T) scales by k), and the entropy-jump and Lax/Majda transversality
 conditions are k-invariant. Uniqueness (H4) makes the scaled solution
 THE solution. Hence M(x), theta(x), T(x) are phase-independent and
 p_xi(x) = Pc(xi) · PI(x; Sigma) for one fixed field PI.
-Lemma B (T0-similarity; REQUIRES calorically perfect gas). At fixed P0,
-T0 -> T0' rescales u by sqrt(T0'/T0) and leaves (M, theta, p, T/T0)
-invariant; the thrust contains T0 nowhere (CF is T0-blind). Dies for
-gamma(T): no similarity variable in T — this is exactly where the
-collapse's boundary sits.
+Lemma B (stagnation-temperature similarity; REQUIRES calorically
+perfect gas; named "T0-similarity" in earlier notes — renamed here to
+avoid collision with Theorem 3/T0). At fixed P0, T0 -> T0' rescales u
+by sqrt(T0'/T0) and leaves (M, theta, p, T/T0) invariant; the thrust
+contains T0 nowhere (CF is T0-blind). Dies for gamma(T): no similarity
+variable in T — this is exactly where the collapse's boundary sits.
 Lemma C (affinity). Per phase F[Sigma; s(xi)] = a[Sigma]·Pc(xi)
 - Pa·b[Sigma]: the wall integral Int (p - Pa) n_x dA = Pc Int PI n_x dA
 - Pa (A_e - A_t), and the throat momentum flux scales with P0.
@@ -291,7 +303,11 @@ NPR (area-Mach monotonicity on the supersonic branch). Nesting: the
 argmax set of phase xi is [l(xi), inf); the intersection over xi is
 [l(xi_peak), inf), nonempty; on it every phase attains its max, so the
 integral attains the integral of maxima, which is an upper bound by
-monotonicity of the integral. QED.
+monotonicity of the integral. Attainment/measurability: l(xi) is finite
+for each xi (finite NPR), xi -> l(xi) is monotone in Pc(xi) hence
+mu-measurable, and sup_xi l(xi) = l(xi_peak) is ATTAINED because Pc
+attains its maximum on the (compact) cycle at the wave-passage phase.
+QED.
 Sharpness: a length cap L < l(xi_peak), a base-pressure model at a
 truncation plane, or non-ideal adaptation break the nesting: then
 max Int < Int max STRICTLY and the optimum satisfies the averaged
@@ -307,16 +323,21 @@ Claim: for ANY solid set S in ANY topology, under choked frozen feed:
     J[S] <= J_ideal = Int F_id(s(xi); Pa) dmu(xi),
 F_id = thrust of complete isentropic per-streamtube expansion of phase
 xi to Pa.
-PROOF (sketch, rigorous). Fix a phase and a streamtube with data
-(mdot, h0, s). Any adiabatic inviscid slip-wall evolution can only
-increase entropy (shocks) and misalign momentum; at given exit pressure
-Pa the axial momentum flux + pressure thrust is maximized by the
-isentropic, axially aligned, fully expanded state: entropy rise lowers
-exit velocity at fixed (h0, p_exit); misalignment loses the axial
-projection; incomplete/over-expansion loses the (p_e - Pa) term against
-the momentum gain by the classical dF/dA_e = (P_e - Pa) argument.
-Integrate over streamtubes and phases. QED (integral-flux relaxation:
-Efremov-Kraiko 2004, a weaker published bound).
+PROOF (sketch, rigorous). Hypotheses: adiabatic, inviscid, slip walls,
+exhaust to quiescent ambient Pa. Fix a phase and a streamtube with data
+(mdot, h0, s). Explicitly, F_id = mdot · V_id with
+    V_id = sqrt( 2 [ h0 - h(s, Pa) ] )
+(complete isentropic expansion to Pa, axially aligned). Any admissible
+evolution can only increase entropy (shocks) and misalign momentum; at
+given exit pressure Pa the axial momentum flux + pressure thrust is
+maximized by the isentropic, axially aligned, fully expanded state:
+entropy rise lowers exit velocity at fixed (h0, p_exit) since
+dh/ds|_p = T > 0; misalignment loses the axial projection; incomplete/
+over-expansion loses against full expansion by the classical
+dF/dA_e = (P_e - Pa) sign argument on the supersonic branch. Integrate
+over streamtubes and phases (measurability of xi -> F_id from R3).
+QED (integral-flux relaxation: Efremov-Kraiko 2004, a weaker published
+bound; axial-only energy variant = the EAP_i baseline, see Remark).
 COROLLARY (mechanism M1: duality-gap-zero globality). Under the T4
 closure with generous envelope, the untruncated peak-designed plug
 ATTAINS J_ideal ⇒ it is GLOBALLY optimal over all topologies. This is
@@ -350,6 +371,48 @@ J_ideal - J(Sigma*) is the honest discount factor on advertised
 pressure gain (cf. Paxson 2022: real truncated plug at 58-70% of the
 notional ideal). The formalization CONTAINS and COMPLETES the EAP
 doctrine rather than competing with it — a citable bridge for P-1.
+
+REMARK (relation to the Stechmann-Heister-Harroun model — verified
+against the full-text-derived granular spec, JSR 56(3):887-898 (2019),
+doi:10.2514/1.A34313; local page renders + text in
+`../project_build/tmp_st`, spec in `../project_build/specs/
+stechmann_spec.md`; model mechanics independently validated in-repo
+18/18 on Table 1). Concordances:
+ (1) their Eq. (4) cycle Isp = total impulse / cycle propellant mass
+     ≡ Def. 3.2 + Prop. O1: their mass-flux weighting of the
+     instantaneous Isp is algebraically our time integral of F
+     (numerator A_t Int Pc·CF dt via mdot·c* = Pc·A_t — the same pivot
+     as the in-repo proof);
+ (2) their F(t) = mdot·CF·c* is the PURE rung-2/I3 quasi-steady proxy;
+     no momentum-storage discussion anywhere: Theorem 0 supplies the
+     missing license, P4 the missing error bar — and their own flagged
+     open item ("two timescales... the community has substantial work
+     to do") is precisely what P4 answers;
+ (3) their assumption list maps 1:1 onto the hypothesis ledger:
+     asm 2 (M, gamma frozen) = H-T3.1; asm 3 (choked at all times,
+     exit plane = thermal throat) = H2; asm 1 (exponential blowdown,
+     complete fill) = the O2 measure generator; Eq. (9) validity
+     (full-flowing bell) = H-T3.2; Eqs. (10)-(12) (ideal spike,
+     Pe = Pa below max expansion) = the H-T4 closure verbatim;
+ (4) THEIR NUMERICAL FINDINGS ARE INSTANCES OF THE THEOREMS HERE:
+     bell eps_opt unchanged det-vs-CP (their Fig. 9, dotted optimum at
+     the same eps in both panels) = the T3 collapse (repo Theorem 1);
+     det aerospike sized by the PEAK with monotone-saturating Isp(eps)
+     (Figs. 10/12: eps_opt 9.2-12.2 vs CP 3.6-3.9) = the T4 knee/
+     plateau (repo Theorem 2); vacuum area ratios reported as "maximum
+     values used in the simulation", not optima (Table 1 note) = the
+     vacuum no-finite-optimum theorem (repo Theorem 3);
+ (5) their Conclusion-7 loss ledger maps onto the violation channels:
+     oblique-shock loss -> N3, gamma variation -> N4, off-design/
+     separated nozzle -> N1, transient swirl -> N6, finite-rate
+     kinetics -> the Hoffman boundary (N4 finite-rate rung).
+The formalization therefore EXPLAINS the paper's empirical
+regularities (its three nozzle findings are corollaries), CLOSES its
+two flagged gaps (timescale license = Theorem 0 + P4; fair-metric
+question = the bound ladder), and inherits its comparison protocol
+(equal cycle mass + throat area) as the frozen-family normalization.
+Together with the EAP remark above, this is the second citable bridge
+for paper P-1 (target venue: JPP class).
 
 ------------------------------------------------------------------------------
 THEOREM-SCHEMA 8 (T7/T2 — the averaged stationarity system). SCHEMA.
@@ -515,4 +578,10 @@ license (G3) + wave-frame anchor (G4; papers P-4, P-5) -> Fase 5
 robust/coupled/tool. Thesis mapping: Ch.1-2 = Parts I-III; Ch.3 =
 Fase 1; Ch.4 = Fasi 2-3; Ch.5 = Fase 4A; Ch.6 = Fase 4B; Ch.7 =
 horizon (OP list). External standing gates: G5 (Kraiko/PMM pass before
-any submission); weak-strong measure-valued citation re-verification.
+any submission). RESOLVED 2026-07-16: the weak-strong measure-valued
+citation is VERIFIED (Brenier-De Lellis-Székelyhidi, CMP 305:351-361
+(2011), doi:10.1007/s00220-011-1267-0) — with the Lipschitz caveat now
+incorporated in D2.5 (canonicity conditional across shocks).
+Target venue of record for P-1/P-3 (methodological + first results):
+JPP class (Journal of Propulsion and Power), with the mathematics
+papers (P-4/P-5) aimed at applied-mathematics venues.

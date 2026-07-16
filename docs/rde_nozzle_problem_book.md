@@ -375,15 +375,20 @@ perturbatively by P5 (symmetry trichotomy), not by habit.
      (transversality + regularity monitors; the Sternin/Rao-Beck boundary
      function is the in-code instance) — S1 is an a-posteriori
      certificate class, not a wish.
-     CANONICITY (why S1 is not a convenience restriction): by WEAK-STRONG
-     UNIQUENESS (Dafermos relative-entropy argument; measure-valued
-     version Brenier-De Lellis-Székelyhidi, CMP 2011 — citation to be
-     re-verified at print), wherever an S1 solution exists, EVERY
-     admissible weak or measure-valued solution coincides with it. Inside
-     S1 the solution-concept ambiguity of (S2) is closed: the MOC
-     solution is THE solution of every concept. The S2 minefield lives
-     strictly outside S1 — which is exactly what the regularity monitors
-     detect.
+     CANONICITY (corrected, precision pass 2026-07-16): by WEAK-STRONG
+     UNIQUENESS (Dafermos relative entropy; measure-valued version
+     Brenier-De Lellis-Székelyhidi, Comm. Math. Phys. 305:351-361
+     (2011), doi:10.1007/s00220-011-1267-0 — VERIFIED), in SHOCK-FREE
+     (locally Lipschitz) regions and regimes every admissible weak or
+     measure-valued solution coincides with the classical one: there the
+     MOC solution is THE solution of every concept. ACROSS transversal
+     shocks the strong comparison solution is not Lipschitz and the
+     general multi-D weak-strong property is OPEN (partial support:
+     1-D BV uniqueness, Bressan school; shift/a-contraction shock
+     stability, Vasseur-Krupa line, essentially 1-D): S1 canonicity
+     WITH shocks is a DECLARED conditional backed by Majda front
+     stability, not a theorem. The S2 minefield lives strictly outside
+     S1 either way — which is what the regularity monitors detect.
 (S2) ENTROPY WEAK (multi-D): non-uniqueness by convex integration
      (De Lellis-Székelyhidi; Chiodaroli-De Lellis-Kreml) makes
      "J[Σ] = thrust of THE solution" ILL-DEFINED without selection.
