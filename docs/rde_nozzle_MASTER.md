@@ -597,7 +597,19 @@ docs/rde_nozzle_P3_multipliers.md; residues R-P3.1/R-P3.2 named
 there; across fitted shocks it inherits the D2.5 conditional);
 G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
 [Bressan-Marson; Ulbrich]; quasi-1D design rigor [Cliff-Heinkenschloss-
-Shenoy]; 2-D practice [Baeza et al.]).
+Shenoy]; 2-D practice [Baeza et al.]) — ATTACKED 2026-07-16
+([F1/G12-S1], docs/rde_nozzle_G12_S1.md): within the S1 marching
+class the gap REDUCES to the 1-D-in-time theory via the x-as-time
+reading (Lemma G12-L1, eigenstructure machine-verified EOS-general:
+det A_p ∝ u^2(u^2-c^2), pencil factorization, Mach-line roots) plus
+the front brick (Lemma G12-L2, machine-verified with rejectors:
+linearized RH nonsingular strictly inside Lax, degeneration EXACTLY
+at characteristic fronts = the Prop. A2 kernel law); THEOREM G12-S1
+(THEOREM*, residues R-G12.1..3 named: D2.5-inherited regularity
+conditional, shift-differentiability citation TO-VERIFY, mesh limit
+= Lemma B clause with target now stated). Carrier:
+validation/g12_shock_linearization.py, PASS with derived equilibrated
+tolerances.
 Executable reduction (verified in-repo): quasi-1D, only exit-area DOF:
 (b)-(c) degenerate to <p_e(xi)> = Pa, i.e. NPR(eps*) = <Pc>/Pa — the
 repo's Theorem 1 with its wrong-averaging rejector test.
