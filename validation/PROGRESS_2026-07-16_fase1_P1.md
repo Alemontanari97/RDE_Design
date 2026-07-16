@@ -1,4 +1,5 @@
-# SESSION LOG — 2026-07-16, Sessione 4: "Fase 1: P-1 skeleton + P-2 Lemma A (+ G0 spike)"
+# SESSION LOG — 2026-07-16, Sessione 5: "Fase 1: P-1 skeleton + P-2 Lemma A (+ G0 spike)"
+# [renumbered S4 -> S5 at step 15: a concurrent session claimed S4; see steps 14-15]
 
 Append-only, total-order log (CLAUDE.md R3 + standing user directive).
 One numbered row per step, per generated/modified .md, per codebase
@@ -114,3 +115,72 @@ RATIFICATION — no implementation).
     ranking only"); NO sentence reads a winner as a hardware verdict.
     VERDICT: T1 acceptance PASS (class+falsifier+carrier per section;
     zero orphans; grep clean).
+
+11. [T1 COMMIT] 6263c22 "[F1/P-1] (T1): paper skeleton of record (JPP)
+    with claim map C1-C26" (skeleton + this log, steps 1-10).
+12. [T2 prep] Read GENO/docs/theory_variational_understanding.md
+    (in-house corpus of record, page-verified vs primary PDFs; GENO
+    read-only, never committed here): Rao 1958 Eqs [1]-[15] with pages,
+    Hoffman 1967 anchors (fields lambda1..lambda5, single isoperimetric
+    multiplier p. 672, E Eq. 78, corner death p. 676), C+/C- naming
+    trap (Rao's "C+" = Zucrow C-), corner sign doctrine (CSTR_PA '-',
+    CSTR_PB '+', sign from characteristic TYPE), normalization
+    conventions.
+13. [T2 EXEC] IN-SESSION RE-DERIVATION of the full classical
+    stationarity system from the Rao Lagrangian (L.4): d/dphi, d/dtheta,
+    d/dW conditions; combination collapses to
+    sin(theta)[(M^2-1)sin^2psi - cos^2psi] = 0 => phi = theta +/- alpha
+    (Eq. [11] as RESULT); lambda2 elimination => f2 = W cos(theta -/+
+    alpha)/cos(alpha) = -lambda2 (Eq. [12]); (L.6) => q rho W^2 sin^2
+    theta tan alpha = -lambda3 (Eq. [13], 2pi-normalization declared);
+    free-endpoint density-vanishing => sin(2 theta_E) = (p-pa)cot
+    alpha/(0.5 rho W^2) (Eq. [14] == CSTR_PA) and C- mirror by
+    alpha -> -alpha (== CSTR_PB). ALL rows MATCH the page-verified
+    corpus table — NO discrepancy found (no corrective R4 needed; the
+    derivation itself is new written theory). WROTE
+    docs/rde_nozzle_P2_lemmaA.md (paper §3 draft of record): §3.0
+    scope/conventions (Zucrow naming, Rao translation declared), §3.1
+    equation-numbered recall, §3.2 the eight-step derivation (THEOREM),
+    §3.3 adjoint problem + Prop. A1 (adjoint characteristics = flow
+    characteristics, det argument, THEOREM), §3.4 identifications
+    (i)-(iii) THEOREM* (structure derived; explicit B2/B3 component
+    match PENDING O3.3) and (iv) SCHEMA (Hoffman anchors verified;
+    component map PENDING page re-read — NO equation numbers invented),
+    §3.5 downstream yield, §3.6 claim register + PENDING register
+    P-A1..P-A3. Acceptance: no "si vede che" — every identity carries
+    its justification or a PENDING mark with falsifier.
+14. [CONCURRENCY — DECLARED DEVIATION] After step 13, discovered a
+    CONCURRENT session on the same tree (violates the one-session
+    discipline of PROGRESS S2 note; reconciled): commits f6a5112 (G5
+    dispatch package), 5540fe2 (P-2 VENUE DECISION OF RECORD: AIAA
+    Journal primary + arXiv preprint at (G5 pass AND Lemma-A draft
+    ready); fallback Aerospace with declared triggers; outline §7
+    rewritten proposal->DECISION), cd903d1 (its log
+    validation/PROGRESS_2026-07-16_S4_G5venue.md, claiming the name
+    S4). Reconciliation: content disjoint from this session's work (my
+    edits touch outline §4 pointer + D3 §8 + new files); my uncommitted
+    edits applied cleanly on top; BLOCCATO row "venue P-2" is now
+    RESOLVED by that session. NOTE: the P-2 venue decision plus the
+    Lemma-A draft of step 13 together arm the "arXiv at G5" trigger
+    (draft ready = half the condition; G5 pass still pending with
+    user).
+15. [RENUMBER] This session renumbered Sessione 4 -> SESSIONE 5 (S4
+    taken by the concurrent session). Header annotated; numbering of
+    steps unchanged (append-only preserved).
+16. [USER DIRECTIVE — mid-session] "un'altra accertazione di tutta la
+    teoria è che sia sempre generale a gamma variabile": recorded as
+    STANDING AUDIT CRITERION. Actions, same session (R4):
+    (a) gamma-variable audit of the §3.2 derivation: uses ONLY
+    dh = dp/rho along the isentrope + c^2 = dp/drho|_s => (L.6)-(L.16)
+    are EOS-GENERAL (frozen gamma(T), arbitrary convex EOS,
+    homentropic) — THEOREM, audit trace written into
+    docs/rde_nozzle_P2_lemmaA.md §3.0 (new block) + claim-register row;
+    true gamma=const boundaries named: corner<->eps bijection (E4,
+    oracle S-H 1971 Table 2/G2), T3 Lemma B (calorically perfect), S-H
+    eps-rung closed forms.
+    (b) D3 §8: gamma-variable audit paragraph appended to the Lemma-A
+    status upgrade.
+    (c) P-1 skeleton acceptance rule extended with item (e): every
+    claim declares its gamma status (map C1-C26 classified).
+    (d) memory/gamma-variable-generality.md written + MEMORY.md index
+    line (standing directive, applies at every future gate (B)).

@@ -337,6 +337,35 @@ march at machine precision, then term-by-term match with Rao's conditions
 on one TOC case — plus Hoffman's E-residual computed along a
 GENO-optimized contour (must vanish).
 
+LEMMA A DRAFT OF RECORD (2026-07-16, [F1/P-2]:
+docs/rde_nozzle_P2_lemmaA.md — the paper's §3, implementing outline
+§4). Status upgrade within the S1/supersonic/homentropic scope: the
+CLASSICAL side is now DERIVED IN FULL in eight verifiable steps from
+the single Rao Lagrangian (Eq. [5]) — Eq. [11] (characteristic surface,
+from the sin(theta)[(M^2-1)sin^2 psi - cos^2 psi] = 0 factorization),
+Eq. [12] (f2 = -lambda2), Eq. [13] (second integral, 2pi-normalization
+convention declared), Eq. [14]/CSTR_PA + C- mirror CSTR_PB (corner =
+vanishing of the augmented density at the free endpoint, alpha ->
+-alpha symmetry argument) — each step CHECKED against the page-verified
+corpus rows (D2 §b0): THEOREM. Adjoint side: duality bookkeeping +
+Prop. A1 (adjoint characteristics = flow characteristics, det(M^T) =
+det(M)): THEOREM. Identifications (i)-(iii): THEOREM* — structure
+derived (dimension-counting closure argument for (i); constants <->
+adjoint boundary data for (ii); endpoint transversality for (iii));
+explicit B2/B3 component match PENDING O3.3 (P-A1). Identification
+(iv) Hoffman: SCHEMA — anchors verified (Eq. 78, p. 672, p. 676),
+component map lambda_i <-> psi_j PENDING page re-read (P-A2; no
+equation numbers cited beyond the verified anchors). PENDING register
+P-A1..P-A3 named in the draft §3.6; none blocks the classes as stated.
+GAMMA-VARIABLE AUDIT (same session, standing user directive: every
+theory piece states its variable-gamma status): the derived classical
+stationarity system (L.6)-(L.16) is EOS-GENERAL (uses only dh = dp/rho
+along the isentrope + c^2 = dp/drho|_s): holds for frozen gamma(T) and
+arbitrary convex EOS in homentropic homenthalpic flow — THEOREM (audit
+trace in the draft §3.0). The true gamma = const boundaries remain:
+corner<->eps bijection (E4, oracle S-H 1971 Table 2), T3 Lemma B
+(calorically perfect), S-H eps-rung closed forms.
+
 ------------------------------------------------------------------------------
 ## 9. P3-P7 — status after this session
 

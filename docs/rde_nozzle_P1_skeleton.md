@@ -359,4 +359,12 @@ Acceptance rule for every draft: (a) each section names its class +
 falsifier + carrier inline; (b) every claim appears in this map; (c)
 coherence grep vs M0/D3 passes — no sentence reads a §7 winner as a
 hardware verdict; (d) submission blocked until M1 + G5 (declared in
-the cover letter if asked).
+the cover letter if asked); (e) GAMMA STATUS (standing user directive
+2026-07-16): every claim declares whether it holds for variable
+gamma / general EOS or requires gamma = const — of the map above:
+EOS-general given frozen homentropic flow: C1, C3-C9, C14 (V_id via
+h(s, Pa), EOS-general); calorically-perfect-only: T3's Lemma B inside
+C8 (declared boundary), the S-H closed forms carrying C15-C22 at the
+eps rung and the corner<->eps bijection (E4 risk, oracle S-H 1971
+Table 2 = gate G2); first-order repair where gamma varies per phase:
+C10 (gamma_eff closure with certified second-order penalty).

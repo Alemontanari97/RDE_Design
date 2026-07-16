@@ -125,6 +125,10 @@ exactly the G5 human pass (§7).
     region; identify — term by term, with Rao's/Hoffman's equation
     numbers — conditions (i)-(iv) of §1. Corollary: Hoffman's E ≡
     adjoint residual (the 1967 certificate is Level-C avant la lettre).
+    [DRAFTED 2026-07-16: docs/rde_nozzle_P2_lemmaA.md — classical side
+    fully derived (8 steps, corpus-checked, THEOREM); adjoint structure
+    + Prop. A1 THEOREM; (i)-(iii) THEOREM* with O3.3 PENDING; (iv)
+    SCHEMA with PENDING page re-read. See D3 §8 status upgrade.]
  §4 Lemma B proof: MOC march as triangular system; reverse AD =
     transposed sweep; fitted-front differentiation (implicit-function
     rules on RH + Lax/Majda transversality); dot-product identity;
