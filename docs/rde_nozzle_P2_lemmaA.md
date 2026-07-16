@@ -322,6 +322,24 @@ W cos(alpha) cos(theta+alpha) on the C+ surface — it does NOT
 reproduce f2: the invariant does not live in the pointwise boundary
 algebra.
 
+INDEPENDENT DUAL-ROUTE VERIFICATION of Prop. A2 (2026-07-16, session
+S7 — operational session run concurrently, reconciled; carrier
+validation/p2_pA1_symbolic_adjoint.py): the same annihilation
+identity re-verified in CONSERVATIVE variables (the variable set the
+Lemma-B discrete engine transposes), with a general-EOS Grueneisen
+closure (p(rho, rho e); a, b free; exact c^2 = a + b h),
+Weierstrass-exact zero tests, the explicit LEFT null covector
+l.dU = dp - rho u_n du_n (l^T K = 0), the rank-3 certificate, three
+negative controls (non-characteristic surface det K != 0; corrupted
+datum; corrupted kernel), and the executable (L.20) bookkeeping
+check (g ds = f1 dy, rho u_n ds = f2^i dy). It also records the
+BOUNDARY-DATUM READING lemma (weaker than Prop. A3 by design,
+consistent with Prop. A2): for any probe w with <grad m, w> = 1,
+<grad g, w> = 0, the gauge-independent combination psi.(K w) equals
+-lambda2 for EVERY adjoint solution — the constants <-> boundary
+data half of (ii) in executable form; the transport half remains
+Prop. A3's content, already of record.
+
 ------------------------------------------------------------------------------
 ## §3.4 The identification, term by term (the lemma proper)
 

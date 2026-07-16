@@ -468,6 +468,27 @@ declared T-floor lower-bound instruments). Full statement in M0
 Prop. 7 (GAMMA-PURGE INSTANCE OF RECORD). Residual declared: phase
 diagram on the real route; equilibrium-expansion bracket.
 
+LEMMA B DRAFT OF RECORD (2026-07-16, S7 operational session,
+[F1/P-2]: docs/rde_nozzle_P2_lemmaB.md = the paper's §4, implementing
+outline §4). The discrete bridge is now WRITTEN with classes: B0/B1/B2
+THEOREM (fitted MOC march = block-triangular system; reverse AD with
+implicit custom rules = the transposed back-substitution along the
+SAME discrete characteristics — the discrete twin of Prop. A1;
+dot-product identity (B.7) = O3.1, demonstrator g0 spike), fitted
+front as EXPLICIT unknown with Lax/Majda transversality ==
+nonsingularity of the local shock-point Jacobian (THEOREM finite-dim),
+Giles-Ulbrich trap bypassed BY CONSTRUCTION (honesty clause: mesh
+limit SCHEMA, G12 frontier), cycle assembly = weighted (**') at fixed
+quadrature (THEOREM). Gamma status: the transpose identity is
+closure-agnostic, EOS-general by construction. PENDING P-B1 (O3.1 at
+the shock brick), P-B2 (order tests, A1 engine). Companion executable
+(same session): validation/p2_pA1_symbolic_adjoint.py = independent
+DUAL-ROUTE verification of Prop. A2 in CONSERVATIVE variables
+(general-EOS Grueneisen closure; Weierstrass-exact zero tests;
+explicit left covector; rank-3 certificate; boundary-datum reading
+lemma psi.(K w) = -lambda2; three negative controls) — VERDICT PASS,
+recorded under Prop. A2 in the Lemma-A draft.
+
 ------------------------------------------------------------------------------
 ## 9. P3-P7 — status after this session
 
