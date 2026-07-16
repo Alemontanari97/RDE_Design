@@ -248,3 +248,10 @@
    (21 files, 0 unlisted). Suite therefore 11/11 (groups (i)-(vi),
    (viii)-(xi) all PASS in the same run; (vii) PASS after the
    classification, no src/ code changed).
+
+14. [HANDOFF] Session-8 prompt delivered to the user (Fase 1 closure:
+   P-1 text + OP-0-gamma tail; F2-prep spike extension instructing
+   gate G0; tasks = PROGRESS NEXT S8 items 1-5; one-session warning
+   QUADRUPLED with the shared-index caveat; WebFetch-fabrication
+   warning made standing for any web verification). Log S7
+   definitively closed at step 14.
