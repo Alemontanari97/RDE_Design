@@ -99,3 +99,31 @@ before any submission.
    Item 1 beyond the TOC (bring the transliterated keyword list:
    "variatsionnye zadachi", "sopryazhennye uravneniya", "osrednennyi",
    "periodicheskii", "impul's"); Item 2 benefits from a Russian reader.
+
+## 6. DISPATCH SCOPING OF RECORD (2026-07-16, web-verified — supersedes
+##    the practical notes above where they differ)
+
+Web verification performed before dispatch (evidence = URLs in the
+session log validation/PROGRESS_2026-07-16_S4_G5venue.md):
+ 6.1 PMM HAS AN OFFICIAL ONLINE ARCHIVE: pmm.ipmnet.ru/ru/Issues.php,
+     issues/TOCs digitized 1933-2025, covering the whole 1957-1990
+     window. CONSEQUENCE — Item 2 is RESCOPED:
+       Item 2a (DIGITAL, in-house, no library needed): systematic TOC
+       sweep of PMM 1957-1990 on the official archive, author list +
+       keyword list of §3; deliverable = list of indexes swept +
+       flagged papers. Schedulable as a next-session task.
+       Item 2b (LIBRARY/ILL, human): full-text read of the flagged
+       papers only, plus Izv. AN SSSR MZhG Russian originals where the
+       Fluid Dynamics translation is insufficient.
+ 6.2 Kraiko 1979 (Nauka, 448 pp) is NOT freely digitized (verified
+     negative on the major Russian digital-library indexes today);
+     other Kraiko volumes are (e.g. Teoreticheskaya gazovaya dinamika
+     2010 on techlibrary.ru — usable for the §5 second-edition
+     fallback checklist). CONSEQUENCE — Item 1 stays a physical
+     consultation/ILL request: route via the Sapienza library system
+     (NILDE/ILL document delivery; suggested first stop: Biblioteca
+     Centrale della Facolta di Ingegneria "G. Boaga"), WorldCat/KVK
+     lookup by the librarian.
+ 6.3 Ready-to-send request: validation/G5_dispatch_email.md (Italian
+     cover message + this document as the technical annex). Sending
+     remains a USER action (institutional account).
