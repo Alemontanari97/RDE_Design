@@ -367,6 +367,26 @@ proven limits: spread->0 ⇒ sectors tie at the Rao value (T3);
 generous envelope ⇒ free boundary attains the ceiling (T4/M1);
 vacuum ⇒ no finite optimum; tight length + large spread ⇒ duty split
 (C1, open).
+EPS-LEVEL INSTANCE OF RECORD (2026-07-16, [F1/OP-11-eps];
+src/thrust/phase_diagram.py + rejector tests + data/phase_diagram.json
++ figs/phase_diagram_op11.png; full statement D3 §10quater). The OP-11
+interpolation is COMPUTED AND CERTIFIED at the eps rung (90-cell
+eps_max x PR grid at fixed <Pc>, blessed CH4/O2 anchor, OP-0 ladder
+embedded per cell). Two THEOREM-grade additions: (i) under the
+SONIC-CAPPED adaptation closure (this proposition's cap applied to the
+T4/H-T4 closure) the plug family weakly dominates the fixed bell
+POINTWISE — no strict bell region exists at eps level; (ii) at
+eps_max >= knee the capped plug coincides pointwise with the per-phase
+argmax and ATTAINS the capped ceiling: M1 gap-zero on every Pa > 0
+cycle INCLUDING subcritical ones — the supercritical hypothesis is
+needed only by the NAIVE closure, which loses strictly on subcritical
+tails and, at the sonic-annulus cap eps_max = 1, even inverts the
+bell/plug ranking (executable artifact, test-rejected). Tie region
+characterized: eps_max <= eps*(Pc_min) ⇒ the plug never releases and
+equals the bell as a member (plus the PR = 1 column, T3, and the
+vacuum no-optimum sweep, both asserted as oracles). Duty splitting is
+not expressible with the single shared eps DOF: at contour level OP-11
+remains CONJECTURE.
 
 REMARK (relation to EAP — verified against Kaemming-Paxson, AIAA
 2018-4567, NTRS 20180006890, full text read 2026-07-16). The industry's

@@ -30,6 +30,11 @@ CASES = [
     ('example_design_10kN.py', ['W=3.14 central', 'Isp=268.0 s',
                                 'Isp=278.4 s',
                                 'OK: 10 kN example complete']),
+    ('example_phase_diagram.py',
+     ['winner map 90 cells: 24 tie / 36 plug-capped / 30 plug-knee',
+      'M1 gap-zero (capped ceiling attained) on 36 cells',
+      'ceiling 495.6 s unattained',
+      'OK: phase diagram example complete']),
 ]
 
 

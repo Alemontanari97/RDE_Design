@@ -205,6 +205,15 @@ Second-pass addenda (D3 §10bis, adversarial self-review of the method):
        (constraints) × (spread of μ). PB-2/PB-3 reclassified as
        SECTIONS of this diagram. Quasi-1D diagram traceable NOW from
        the S-H closed forms on Table-1 states.
+       [ε-LEVEL INSTANCE DONE 2026-07-16, [F1/OP-11-eps]:
+       src/thrust/phase_diagram.py + tests/test_phase_diagram.py +
+       data/phase_diagram.{json,md} + figs/phase_diagram_op11.png.
+       Two THEOREM-grade additions of record (full statement D3
+       §10quater): capped-closure plug dominance (no strict bell region
+       at ε level) and M1 gap-zero attainment extended to SUBCRITICAL
+       cycles via the sonic-capped closure; published S-H closure's
+       naive branch inverts the ranking at ε_max = 1 (test-rejected
+       artifact). Contour-level OP-11 (duty split) remains OPEN.]
 
 ## 6. Immediate repo actions (mechanical, this week)
 

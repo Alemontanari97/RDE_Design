@@ -170,6 +170,15 @@
     "101325.0": {"cls": "SPEC", "note": "atm conversions in prints/records (twin of constants.P_ATM)"}
    }
   },
+  "src/thrust/phase_diagram.py": {
+   "exempt_assignments": {
+    "ANCHOR": {"note": "SPEC: gas anchor of record = the blessed D3-S5.2/gamma-probe state det|CH4|20|1.64 (data/st_nozzle_opt.json key)"},
+    "PR_GRID": {"note": "SPEC: spread-axis grid, octave rungs 1..64 + 90 = largest rung keeping min-cycle Pc >= Pa at <Pc> ~ 20.9 atm (validity edge documented in module docstring); blessed PR inserted at build time"},
+    "EPS_MAX_GRID": {"note": "SPEC: envelope-axis grid from the sonic annulus (1.0) past the largest knee on the grid (~12.9 at PR=90), populating tie / capped / attained regimes"},
+    "VAC_EPS_GRID": {"note": "SPEC: vacuum-oracle geometric eps ladder (x4 rungs) exposing the strictly-increasing, ceiling-unattained tail (Theorem 3)"}
+   },
+   "values": {}
+  },
   "src/thrust/stechmann_nozzle.py": {
    "exempt_assignments": {
     "TABLE1": {"note": "SPEC: Stechmann Table 1 verbatim (p. 896) - validation targets only"},

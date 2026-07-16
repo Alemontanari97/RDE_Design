@@ -37,7 +37,8 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(vi)  bell/spike optimality proofs', 'test_bell_optimality'),
         ('(vii) numeric lint (no magic numbers)', 'test_numeric_lint'),
         ('(viii) OP-0 eps-level bound ladder', 'test_bounds'),
-        ('(ix)  A0.3 gamma-channel probe', 'test_gamma_probe')]
+        ('(ix)  A0.3 gamma-channel probe', 'test_gamma_probe'),
+        ('(x)   OP-11-eps phase diagram', 'test_phase_diagram')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
 
 

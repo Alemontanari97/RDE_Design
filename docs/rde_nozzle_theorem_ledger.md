@@ -572,6 +572,48 @@ contour-level points via the sector tournament with certificates M1-M5.
 PB-2 (truncated plug) and PB-3 (duty split) are SECTIONS of this
 diagram, not standalone categories — reclassification of record.
 
+OP-11-ε RESULT OF RECORD (2026-07-16, [F1/OP-11-eps]:
+src/thrust/phase_diagram.py, tests/test_phase_diagram.py,
+data/phase_diagram.{json,md}, figs/phase_diagram_op11.png). The ε-level
+instance is now COMPUTED AND CERTIFIED on the blessed CH4/O2 20-atm
+anchor: 90 cells (ε_max × PR at fixed ⟨Pc⟩, PR = 1 … 90) + vacuum
+sweep, the OP-0 ladder embedded per cell (chain C re-verified cell by
+cell; at PR = 1 the degenerate strictness signature of check_chain is
+asserted EXACTLY, not skipped). Statements, with rigor classes:
+ (1) THEOREM (ε-level closed forms; carriers = the executable dominance
+     check + rejector tests): under the CAPPED-adaptation plug closure
+     (S-H Eqs. 10-12 with the free branch replaced by the sonic-capped
+     per-phase ideal of the Prop. G-B sharpening), the plug family
+     weakly DOMINATES the fixed bell pointwise in every phase, hence in
+     every μ-average: NO cell of the ε-level diagram has a strict bell
+     winner. Mechanism: below release the two candidates coincide as
+     members (same ε, Theorem-1 unimodality orders the bell branch);
+     after release the capped ideal is the per-phase argmax (int-max
+     rung), pointwise ≥ any fixed member.
+ (2) THEOREM (same carriers): at ε_max ≥ knee the capped plug equals
+     the int-max relaxation POINTWISE, hence ATTAINS the capped
+     ceiling — M1 duality-gap-zero on EVERY Pa > 0 cell, INCLUDING
+     subcritical cycles (9 such cells in the record). This EXTENDS the
+     OP-0 attainment (8 supercritical Table-1 rows) to the whole capped
+     class: the "min-cycle NPR ≥ critical" hypothesis is needed by the
+     NAIVE/published closure only, not by the capped one.
+ (3) Artifact of record (executable, REJECTED as a topology verdict):
+     the PUBLISHED S-H spike closure is strictly suboptimal wherever
+     the cycle has subcritical phases (30 strip cells in the record),
+     and at the sonic-annulus cap ε_max = 1 it INVERTS the bell/plug
+     ranking (bell "wins" by 1.7e-2 s at PR = 90): the OP-0 sonic-cap
+     discovery surfacing at topology level. tests/test_phase_diagram.py
+     detects the flip and check_cell rejects it (negative control among
+     eight, incl. explicit T3/T4 controls).
+ (4) Structure of the computed map (record): tie region = {PR = 1}
+     ∪ {ε_max = 1} ∪ {ε_max ≤ ε*(Pc_min): the capped plug never
+     releases and coincides with the capped bell AS A MEMBER}; a
+     cap-bound plug band with gap > 0 (the genuinely averaged regime —
+     PB-2's section); the M1 region ε_max ≥ knee. The duty-split /
+     mixed region of the general conjecture is NOT expressible at the
+     ε rung (one shared ε DOF cannot encode duty splitting): OP-11 at
+     contour level remains CONJECTURE.
+
 ------------------------------------------------------------------------------
 ## 11. Falsifiable-criterion index (one line each)
 
