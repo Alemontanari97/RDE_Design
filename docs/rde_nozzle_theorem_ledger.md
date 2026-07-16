@@ -681,6 +681,36 @@ asserted EXACTLY, not skipped). Statements, with rigor classes:
      Persisted per cell ('premium_bound', identity-guarded by
      check_cell + rejector; max 64.7 s at (PR = 90, ε_max = 1) on the
      record grid, shrinking to the M1 gap elsewhere).
+ (6) MULTIPLICITY READING of the PR axis (remark of record, 2026-07-16,
+     S5 post-closure Q&A; user question "does the wave count change the
+     optimum?"). Two-sided formal answer:
+     (a) THEOREM (corollary of T3 affinity, Lemma C): within the
+     collapse class H1-H4 the averaged objective depends on μ ONLY
+     through ⟨Pc⟩ (J = a[Σ]·⟨Pc⟩ − Pa·b[Σ]); hence any two modes
+     (wave counts) with equal mean pressure have the IDENTICAL optimal
+     fixed wall — mode multiplicity is invisible to the T3-class
+     optimum beyond its effect on ⟨Pc⟩ (which mass balance pins to
+     leading order). "The number of waves does not matter" is a
+     THEOREM exactly here.
+     (b) SCHEMA (model-level corollary of the O2 generator; feed-
+     closure caveat declared): k co-rotating identical waves shorten
+     the per-wave blowdown to 1/k of the single-wave one, so under the
+     exponential O2 model PR_k = PR_1^(1/k): multiplicity MOVES THE
+     CYCLE ALONG THE PR AXIS of the ε-level diagram toward PR → 1
+     (the T3 tie column) as k grows — at the diagram's fixed-⟨Pc⟩
+     normalization, higher multiplicity = tighter spread = smaller
+     adaptation premium (premium_bound decreases along the axis) and
+     lower per-phase peak (T4 knee ε*(P_peak) decreases). Hence OUTSIDE
+     the collapse class (free boundary, truncation, subcritical tails)
+     the optimum IS genuinely k-dependent, and the ε-level diagram
+     already QUANTIFIES the dependence: the PR axis is (under O2) the
+     multiplicity axis. Caveat: the exact (P_CJ, ⟨Pc⟩) renormalization
+     under mode change depends on the feed closure (fixed-mean vs
+     fixed-peak readings differ); mode-dependent inflow SHAPE changes
+     (fill fraction, shock-tail geometry) are H3-channel effects on
+     top, outside the ε rung. Mode multiplicity/multistability as a
+     DESIGN uncertainty stays with the robust layer (CVaR/DRO over the
+     mode measure, M0 Part V).
 
 ------------------------------------------------------------------------------
 ## 11. Falsifiable-criterion index (one line each)

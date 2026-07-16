@@ -286,3 +286,16 @@ RATIFICATION — no implementation).
     gate pre-esecuzione now includes the gamma-status question per the
     strengthened directive; one-session-at-a-time rule made EXPLICIT
     after two violations). SESSION 5 DEFINITIVELY CLOSED at step 27.
+28. [POST-CLOSURE ADDENDUM — R4, multiplicity question] User asked
+    whether wave multiplicity changes the optimal contour or whether
+    mode-independence can be proven. NEW remark of record written to
+    D3 §10quater(6): (a) THEOREM (T3-affinity corollary): within
+    H1-H4 the optimum depends on μ only through ⟨Pc⟩ — modes with
+    equal mean pressure share the SAME optimal fixed wall; (b) SCHEMA
+    (O2 corollary, feed-closure caveat): k co-rotating waves give
+    PR_k = PR_1^(1/k) — multiplicity moves the cycle along the PR
+    axis of the ε-level phase diagram toward the T3 tie column, so
+    outside the collapse class (free boundary/truncation/subcritical)
+    the optimum IS k-dependent and the diagram already quantifies it
+    (premium_bound and T4 knee decrease with k). H3 shape-channel and
+    multistability (CVaR/DRO) declared on top.
