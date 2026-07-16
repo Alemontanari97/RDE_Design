@@ -338,6 +338,22 @@ dF/dA_e = (P_e - Pa) sign argument on the supersonic branch. Integrate
 over streamtubes and phases (measurability of xi -> F_id from R3).
 QED (integral-flux relaxation: Efremov-Kraiko 2004, a weaker published
 bound; axial-only energy variant = the EAP_i baseline, see Remark).
+SHARPENING OF RECORD (2026-07-16, OP-0 ladder, src/thrust/bounds.py):
+the dF/dA_e sign argument covers only the supersonic branch, so the
+"complete expansion to Pa" form of F_id is the streamtube supremum only
+for Pc/Pa >= ((g+1)/2)^(g/(g-1)). On subcritical phases
+(1 < Pc/Pa < critical) the exit matching Pa is subsonic and the SONIC
+exit strictly beats it (dF/dA_e = Pe - Pa < 0 along the subsonic branch
+from the sonic point; jet matching Pe = Pa holds only at its endpoint):
+executable counterexample g = 1.15, Pc/Pa = 1.3, dCF = +0.0070. F_id
+must be CAPPED AT THE SONIC STATE; with the cap the bound is restored
+and, at eps level, exactly attained by the per-phase relaxation
+(int-max = ceiling, dual-route verified); the naive form is rejected by
+tests/test_bounds.py on the four subcritical Table-1 rows
+(choke_margin < 1). This proposition, the E-K comparison and the T4
+closure (whose S-H spike form uses the naive branch on subcritical
+tails) carry "min-cycle NPR >= critical" as an explicit hypothesis, or
+the cap.
 COROLLARY (mechanism M1: duality-gap-zero globality). Under the T4
 closure with generous envelope, the untruncated peak-designed plug
 ATTAINS J_ideal ⇒ it is GLOBALLY optimal over all topologies. This is

@@ -502,6 +502,27 @@ redistribution allowed): Efremov-Kraiko 2004 — B_EK ≥ J_ideal ≥ J.
 J_ideal depends only on (cycle family, Pa): the ceiling of the bound
 ladder, independent of shape AND of topology.
 
+SHARPENING OF RECORD (2026-07-16, OP-0 executable ladder:
+src/thrust/bounds.py, tests/test_bounds.py, data/bounds_ladder.json).
+As stated, F_id (complete isentropic expansion to Pa) is the streamtube
+supremum ONLY where the phase clears the critical pressure ratio,
+Pc/Pa ≥ ((γ+1)/2)^(γ/(γ−1)). For 1 < Pc/Pa < critical the exit that
+matches Pa is SUBSONIC, and moving from the sonic exit toward it along
+the subsonic branch loses thrust monotonically (dF/dA_e = Pe − Pa < 0
+there; the jet-matching condition Pe = Pa is enforceable only at the
+endpoint): the sonic exit strictly beats naive full expansion —
+executable counterexample γ = 1.15, Pc/Pa = 1.3, ΔCF = +0.0070. The
+correct per-streamtube ceiling is complete expansion CAPPED AT THE
+SONIC STATE; with the cap, at ε level, int-max == ceiling exactly
+(quasi-1D exhaustiveness; dual-route agreement ≤ NQ·ε_mach in the
+ladder), and the naive form is REJECTED by test on the four subcritical
+Table-1 rows (choke_margin < 1: CH4/RP-1 at 20 atm, sea level — cycle-
+level violation small, 2e-7…7e-3 s, but structural). G-B, the
+Efremov–Kraiko comparison and the T4/H-T4 closure (whose S-H spike form
+uses the naive branch, hence attains the naive value, NOT the capped
+ceiling, on subcritical tails) inherit "min-cycle NPR ≥ critical" as an
+explicit hypothesis, or carry the cap.
+
 Cor. G-T4 (global-over-topologies optimality in the generous-envelope
 limit). Under the ideal-adaptation closure and unbounded envelope, the
 untruncated free-boundary (plug) family ATTAINS J_ideal (T4 + duality-
