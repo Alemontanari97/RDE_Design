@@ -362,7 +362,26 @@ theory piece states its variable-gamma status): the derived classical
 stationarity system (L.6)-(L.16) is EOS-GENERAL (uses only dh = dp/rho
 along the isentrope + c^2 = dp/drho|_s): holds for frozen gamma(T) and
 arbitrary convex EOS in homentropic homenthalpic flow — THEOREM (audit
-trace in the draft §3.0). The true gamma = const boundaries remain:
+trace in the draft §3.0).
+RIGOR-SESSION UPGRADE (2026-07-16, Sessione 6 dedicata, P-A1 attack;
+carrier validation/pa1_symbolic_lemmaA.py, VERDICT PASS 14/14 with two
+rejectors): (a) the ENTIRE §3.2 classical derivation is now
+MACHINE-VERIFIED in sympy under the EOS-general closure rules ((L.6),
+(L.7), (L.10) factorization incl. the identity (M^2-1)sin^2 psi -
+cos^2 psi == M^2 sin^2 psi - 1, (L.12) both families, (L.13), (L.15),
+(L.16)); (b) NEW Prop. A2 (kernel solvability, THEOREM, EOS-general):
+on a Mach-characteristic surface the thrust- and mass-flux trace
+covectors annihilate the tangent-family kernel IDENTICALLY
+(<grad g, r-> = rho(u_n - c)(u - c n_x), <grad m, r-> = rho(u_n - c))
+=> the adjoint b.c. is solvable for EVERY lambda2: solvability imposes
+NO pointwise condition. DISCOVERY: the first draft's dimension-count
+justification of identification (i) was TOO LOOSE — refined in the
+draft; the invariant f2 provably does NOT live in the pointwise
+boundary algebra (kernel ratio computed: W cos(alpha) cos(theta+alpha)
+!= f2), so P-A1 is NARROWED to P-A1': derive the adjoint transport
+relation along the tangent characteristic and exhibit f2 as its first
+integral. Identifications (i)-(iii) remain THEOREM* with the refined
+(honest) route. The true gamma = const boundaries remain:
 corner<->eps bijection (E4, oracle S-H 1971 Table 2), T3 Lemma B
 (calorically perfect), S-H eps-rung closed forms. STRENGTHENED
 DIRECTIVE (same day, user): gamma = const may appear ONLY as declared
