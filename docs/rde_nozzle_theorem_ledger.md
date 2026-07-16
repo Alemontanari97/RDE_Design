@@ -105,6 +105,36 @@ order; D2 survives as a subdominant profile-mixing condition.
 Falsifier (oracle O5): direct unsteady quasi-1D/2-D simulation of a
 designed nozzle under the blowdown vs J_avg + St·J_1.
 
+PERIODIC-MODE SCOPING OF C-T1 (remark of record, 2026-07-16, S6
+post-closure; STANDING USER ASSUMPTION: the interface data are always
+a PURE PERIODIC rotating wave — single/k-wave mode; clapping/counter-
+rotating/non-periodic regimes are OUT OF SCOPE by declaration, with
+the T0 thrust-trace-flatness diagnostic as the standing monitor).
+Consequences for the corrector, each following from results of record:
+ (1) the statistical-stationarity hypothesis (D2.2, the program's
+     weakest) REDUCES to the T0-covered case: J_exact is EXACTLY the
+     steady wave-frame value, the storage term vanishes exactly over
+     one period — no Birkhoff limits;
+ (2) C-T1 RE-SCOPES from two-scale TIME-homogenization of quasilinear
+     hyperbolic IBVPs (no such theorem exists, gap b6) to a STEADY
+     singular-perturbation expansion of the wave-frame BVP in the
+     sweep parameter (the O(St_n) term IS -Omega_w r d_theta', per
+     N-SW/D1 §8) — classical steady-perturbation territory; the
+     natural verification anchor becomes rung 3a / oracle O4, with
+     O5 as independent confirmation;
+ (3) the corrector's data content has DISCRETE spectrum (harmonics
+     n·Omega only): per-phase transfer functions evaluated on a
+     lattice, solvability Fredholm-on-the-circle, NO secular terms,
+     NO small divisors (exactly what quasi-periodic clapping would
+     reintroduce and chaotic data would destroy);
+ (4) the regularity needed for convergence = harmonic decay of
+     s(xi), MEASURABLE at the data-contract audit (replaces
+     unverifiable ergodic hypotheses).
+What does NOT change: the O(St) sweep error itself is physical and
+remains; C-T1 remains CONJECTURE (now in an easier class); the
+generality-ladder rows for RPO/multistable/chaotic remain the honest
+fallback should the flatness monitor reject the standing assumption.
+
 ------------------------------------------------------------------------------
 ## 4. T2 — averaged stationarity system. SCHEMA, with one CORRECTION.
 
@@ -425,9 +455,18 @@ ones (per-phase stationarity system, T7/(**') adjoint-level, V_id in
 h(s,Pa) form, sonic-cap criterion, gamma(T) A1 backend); T3's exact
 collapse is PROVABLY gamma=const-only (two-gamma counterexample) and
 is therefore presented as the demoted corollary rung, never
-generalized. Executable purge item: PROGRESS NEXT 5 [F1/OP-0-gamma]
-(Cantera h(s,P) evaluation of the ladder ceiling; closed forms ->
-declared oracles; dual-route rejector).
+generalized. Executable purge item: DONE (2026-07-16, S7 operational session,
+[F1/OP-0-gamma]: src/thrust/bounds_gamma.py + tests group (xi)) —
+the ladder ceiling's primary route is now Cantera h(s,P) on the
+frozen-CJ-products isentrope (frozen gamma(T) rung), closed forms
+demoted to declared oracles with a constant-cp known-answer rejector;
+sonic cap re-verified executably at gamma(T) (exit-scan probe +
+strict naive loss at the deepest subcritical phase); MEASURED purge
+delta of record: real ceiling 4.4-7.9% below the gamma_s = const
+oracle on the 12 finite-Pa rows (derived bars ~0.002%; vacuum rows =
+declared T-floor lower-bound instruments). Full statement in M0
+Prop. 7 (GAMMA-PURGE INSTANCE OF RECORD). Residual declared: phase
+diagram on the real route; equilibrium-expansion bracket.
 
 ------------------------------------------------------------------------------
 ## 9. P3-P7 — status after this session

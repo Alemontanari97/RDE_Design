@@ -404,6 +404,30 @@ tests/test_bounds.py on the four subcritical Table-1 rows
 closure (whose S-H spike form uses the naive branch on subcritical
 tails) carry "min-cycle NPR >= critical" as an explicit hypothesis, or
 the cap.
+GAMMA-PURGE INSTANCE OF RECORD (2026-07-16, [F1/OP-0-gamma], session
+S6; src/thrust/bounds_gamma.py + tests group (xi); strengthened
+gamma directive). The ceiling's executable PRIMARY route is now
+EOS-GENERAL: V_id = sqrt(2[h0 - h(s, Pa)]) and the sonic cap evaluated
+on the Cantera frozen-CJ-products isentrope (frozen-composition
+gamma(T) rung of the N4 ladder; cap located exactly by inverting the
+monotone w(P) = h + c^2/2 at w(P*) = h0), with the closed forms of
+this proposition DEMOTED to declared oracles. The cap criterion is
+executably RE-VERIFIED at gamma(T): a scan of all admissible exits
+never beats the capped formula (within measured table-noise bars),
+and on the four subcritical Table-1 rows the naive uncapped form
+strictly LOSES at the deepest subcritical phase — the g = 1.15
+counterexample generalized beyond calorically perfect gas. Known-
+answer rejector: a constant-cp synthetic gas through the same route
+reproduces the closed forms to 4.7e-7 (derived tol 1e-6) and a
+corrupted route is rejected. MEASURED PURGE DELTA of record: on the
+12 finite-Pa rows the real gamma(T) ceiling sits 4.4-7.9% BELOW the
+frozen-gamma_s closed-form oracle (bars ~0.002%, all significant) —
+the price of the caloric idealization at ceiling level, now a number
+with a rejector instead of a hypothesis. Vacuum rows: T-floor (200 K)
+truncated LOWER-BOUND instruments, declared. Residual (declared,
+PROGRESS NEXT): re-derive the OP-11-eps phase diagram itself on the
+real route; equilibrium-expansion (shifting) route as the upper
+bracket companion of the frozen rung.
 COROLLARY (mechanism M1: duality-gap-zero globality). Under the T4
 closure with generous envelope, the untruncated peak-designed plug
 ATTAINS J_ideal ⇒ it is GLOBALLY optimal over all topologies. This is
