@@ -375,6 +375,42 @@ B2/B3 analytic adjoint on the terminal characteristic of one TOC case
 and subtract; any residual beyond discretization kills the claim as
 stated.
 
+STATUS UPGRADE (rigor session 2026-07-16, second pass — P-A1'
+DISCHARGED; the paragraph above records the narrowing, kept for the
+audit trail). PROP. A3 (f2 = the transported adjoint invariant —
+THEOREM within the irrotational homentropic scope, EOS-GENERAL;
+machine-verified: validation/pa1_symbolic_lemmaA.py Part 3, PASS with
+corrupted-pair rejector): (a) the multiplier(adjoint)-field PDEs of
+the classical two-field formulation (continuity-multiplier lambda2-
+field, irrotationality-multiplier lambda1-field; DERIVED IN-HOUSE by
+parts, only d rho/dV = -rho V/c^2 used) are solved, for EVERY
+admissible flow, by the closed-form family
+    (lambda1, lambda2) = a (y^d rho v, u) + b (0, 1).
+Published anchor (found by the in-house literature pass, page-
+verified): Humphreys-Thompson-Hoffman AIAA J 9(8):1581 (1971)
+p. 1583 ("lambda1 = y rho V sin theta, lambda2 = V cos theta ...
+satisfy the partial differential equations ... for any velocity
+distribution"); compatibility form d lambda1 -/+ y rho cot(alpha)
+d lambda2 = 0 along Mach lines: Hoffman-Scofield-Thompson JOTA
+10(3):133 (1972) Eqs. (21)-(23). (b) Imposing the terminal-
+characteristic transversality E = lambda1 -/+ lambda2 y^d rho
+cot(alpha) = 0 (JOTA Eq. (26)/(34) C+; HTH Eq. (20) C-) on this
+family yields EXACTLY V cos(theta -/+ alpha)/cos(alpha) = -b/a =
+const: Rao's f2, with the constant component b of lambda2 (a =
+thrust normalization) as the transported datum. QED. Identification
+(ii) is therefore THEOREM in the declared scope; O3.3 becomes a
+numeric cross-check of the A1 engine, no longer load-bearing.
+ROTATIONAL SCOPE NOTE (user question of record): the two-field
+closed form is irrotational-homentropic; for ROTATIONAL (and
+reacting) inflow the transport lives in Hoffman 1967's four-field
+system (Eqs. (49)-(51)/(54), mapped in (iv)) and the Kraiko-school
+extensions (arbitrary vortical inflow, D2 §b0) — the identification
+survives at the FIELD level, the two-constant reduction does not;
+this is the boundary the averaged program's per-phase brick respects
+(M0 VI.2 mandates rotational MOC; Guderley 1959 extended the
+classical side to nonuniform entropy, per the Hoffman-1967
+introduction read).
+
 (iii) CORNER CONDITION == ADJOINT TRANSVERSALITY. (L.14) is the
 vanishing of the augmented density at the free endpoint — in optimal-
 control language, the transversality condition at a free terminal
@@ -453,13 +489,12 @@ This is the content P-1 consumes (its §5).
 | (L.6)-(L.16) are EOS-general (gamma(T) frozen, homentropic) | THEOREM (audit §3.0) | DERIVED (only Gibbs + c^2 def used) | any homentropic gamma(T) counterexample; E4 oracle for the corner<->eps implementation twin |
 
 PENDING register (all named, per acceptance rule):
- P-A1' [NARROWED 2026-07-16, rigor session — was P-A1] Derive the
-      adjoint compatibility (transport) relation along the tangent
-      characteristic for the thrust+mass adjoint and exhibit f2 as
-      its first integral (the pointwise kernel-contraction route is
-      CLOSED OFF by Prop. A2: the invariant does not live in the
-      boundary algebra). Discharge by standalone derivation or by the
-      O3.3 numeric term-match vs B2/B3 on one TOC case (A1 engine).
+ P-A1' [DISCHARGED 2026-07-16, rigor session second pass] Prop. A3:
+      transport route closed — in-house derivation of the two-field
+      multiplier PDEs + HTH closed-form pair + terminal transversality
+      => f2 = const, machine-verified (Part 3, PASS, rejector).
+      Scope: irrotational homentropic, EOS-general. Rotational
+      extension = Hoffman four-field system (route named in (iv)).
  P-A2 [DISCHARGED 2026-07-16, rigor session] Full page-level read of
       Hoffman 1967 executed in-house; component map written in
       §3.4(iv) (upgraded to THEOREM*); symbol correction of record

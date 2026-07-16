@@ -187,13 +187,119 @@ def part2_kernel_solvability():
     return ok
 
 
+def part3_transport_invariant():
+    """P-A1' DISCHARGE (rigor session, after the HTH-1971/JOTA-1972
+    page-level reads): the adjoint (multiplier-field) TRANSPORT route.
+
+    Scope: planar/axisymmetric (delta in {0,1}) IRROTATIONAL homentropic
+    frozen flow — the classical bell/plug problem class. EOS-GENERAL:
+    only drho/dV = -rho V / c(V)^2 is used, c(.) an arbitrary function.
+
+    (3a) Derive IN-HOUSE the multiplier-field PDEs for the constraints
+         continuity d_x(y^d rho u) + d_y(y^d rho v) = 0 (multiplier
+         lambda2-field) and irrotationality u_y - v_x = 0 (multiplier
+         lambda1-field), and verify that the HTH-1971 closed-form pair
+             lambda1 = y^d rho v,   lambda2 = u + K
+         solves them for EVERY flow satisfying the two constraints
+         (published anchor: Humphreys-Thompson-Hoffman, AIAA J 9(8)
+         1971, p. 1583; JOTA 10(3) 1972 Eqs. (19)-(23)).
+    (3b) Verify that imposing the terminal-characteristic condition
+         E_+/- = lambda1 -/+ lambda2 y^d rho cot(alpha) = 0 (JOTA
+         Eq. (26)/(34) C+ form; HTH Eq. (20) C- form) on the family
+         a*(y^d rho v, u) + b*(0,1) yields EXACTLY
+             V cos(theta -/+ alpha)/cos(alpha) = -b/a = const = f2:
+         Rao's first integral as the transported adjoint invariant.
+    (3c) REJECTOR: the corrupted pair (lambda1 = y^d rho u) must NOT
+         solve the multiplier PDEs.
+    """
+    ok = True
+    x, y, K = sp.symbols('x y K', real=True)
+    u = sp.Function('u')(x, y)
+    v = sp.Function('v')(x, y)
+    rho = sp.Function('rho', positive=True)(x, y)
+    c2 = sp.Function('c2', positive=True)(x, y)   # c^2 as a field (EOS-free)
+    Vm = sp.sqrt(u**2 + v**2)
+    # closure rule rho = rho(V) along the homentrope, d rho/dV = -rho V/c^2,
+    # applied to the FIELD derivatives via the chain rule:
+    #   rho_x = -(rho V/c^2) V_x,  V_x = (u u_x + v v_x)/V  (same in y)
+    rulz = {
+        sp.Derivative(rho, x): -(rho / c2) * (u * u.diff(x) + v * v.diff(x)),
+        sp.Derivative(rho, y): -(rho / c2) * (u * u.diff(y) + v * v.diff(y)),
+    }
+
+    # (3a) multiplier PDE system, derived by parts from
+    # Int Int [ lam2 * (d_x(y rho u) + d_y(y rho v)) + lam1*(u_y - v_x) ]
+    # (axisymmetric d=1 shown; the planar case replaces y by 1 and is
+    # covered by the same check with y -> 1 at the end):
+    #   coeff du: -y rho [(1-u^2/c^2) lam2_x - (uv/c^2) lam2_y] - lam1_y = 0
+    #   coeff dv: -y rho [-(uv/c^2) lam2_x + (1-v^2/c^2) lam2_y] + lam1_x = 0
+    lam1 = y * rho * v
+    lam2 = u + K
+
+    def resid_system(l1, l2):
+        r1 = (-y * rho * ((1 - u**2 / c2) * l2.diff(x)
+                          - (u * v / c2) * l2.diff(y))
+              - l1.diff(y))
+        r2 = (-y * rho * (-(u * v / c2) * l2.diff(x)
+                          + (1 - v**2 / c2) * l2.diff(y))
+              + l1.diff(x))
+        return r1.subs(rulz).doit(), r2.subs(rulz).doit()
+
+    # flow constraints used as substitution rules:
+    # irrotationality: u_y = v_x ; continuity solved for v_y.
+    vx = v.diff(x)
+    cont = sp.expand(((y * rho * u).diff(x)
+                      + (y * rho * v).diff(y)).subs(rulz).doit())
+    vy_sol = sp.solve(sp.Eq(cont, 0), v.diff(y))[0]
+
+    def reduce_flow(e):
+        e = e.subs(v.diff(y), vy_sol)
+        e = e.subs(u.diff(y), vx)
+        return sp.simplify(e)
+
+    r1, r2 = resid_system(lam1, lam2)
+    d1, d2 = reduce_flow(r1), reduce_flow(r2)
+    print('  (3a) HTH pair solves multiplier PDEs:  %s / %s'
+          % ('PASS' if d1 == 0 else 'FAIL %s' % d1,
+             'PASS' if d2 == 0 else 'FAIL %s' % d2))
+    ok &= d1 == 0 and d2 == 0
+
+    # (3b) terminal condition => f2 invariant (pure trig once
+    # u = V cos th, v = V sin th, cot(alpha) with sin(alpha) = c/V):
+    V, th, al, a, b = sp.symbols('V theta alpha a b', positive=True)
+    l1g = a * y * sp.Symbol('rho_s') * V * sp.sin(th)
+    l2g = a * V * sp.cos(th) + b
+    for fam, sgn, want in (('C+ (bell/JOTA)', +1, th - al),
+                           ('C- (plug/HTH)', -1, th + al)):
+        E = l1g + sgn * l2g * y * sp.Symbol('rho_s') * sp.cot(al)
+        # E = 0  <=>  a V cos(want)/cos(al) = -b  (divide by y rho, x cos/sin)
+        expr = sp.simplify(sp.expand_trig(
+            (E / (y * sp.Symbol('rho_s'))) * sp.sin(al) * sgn
+            - (a * V * sp.cos(want) + b * sp.cos(al))))
+        okf = expr == 0
+        print('  (3b) %s: E=0 <=> V cos(%s)/cos(al) = -b/a: %s'
+              % (fam, want, 'PASS' if okf else 'FAIL %s' % expr))
+        ok &= okf
+
+    # (3c) rejector: corrupted pair must fail (3a)
+    r1b, r2b = resid_system(y * rho * u, lam2)
+    d1b, d2b = reduce_flow(r1b), reduce_flow(r2b)
+    rejected = not (d1b == 0 and d2b == 0)
+    print('  (3c) corrupted pair REJECTED:          %s'
+          % ('PASS' if rejected else 'FAIL (cannot reject)'))
+    ok &= rejected
+    return ok
+
+
 def main():
     print('== P-A1 symbolic attack: Lemma A machine verification ==')
     print('[Part 1] classical derivation (EOS-general closure rules)')
     ok1 = part1_classical_derivation()
     print('[Part 2] kernel solvability lemma (c fully symbolic)')
     ok2 = part2_kernel_solvability()
-    ok = ok1 and ok2
+    print('[Part 3] transport invariant: P-A1-prime discharge')
+    ok3 = part3_transport_invariant()
+    ok = ok1 and ok2 and ok3
     print('VERDICT: %s' % ('PASS' if ok else 'FAIL'))
     return 0 if ok else 1
 

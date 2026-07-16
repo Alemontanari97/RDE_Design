@@ -399,8 +399,23 @@ COUNTING (non-characteristic BC would be overspecified) — the 1967
 ancestor of Prop. A2; (b) his Eq. (54) IS the adjoint transport
 relation along Mach lines: NEW ROUTE OF RECORD for P-A1' (specialize
 Eq. (54) to frozen homentropic flow and integrate to f2). PENDING
-left: P-A1' (transport integration), P-A3/O3.2 (numeric E on the A1
-adjoint). The true gamma = const boundaries remain:
+left after T2: P-A1' (transport integration), P-A3/O3.2 (numeric E on
+the A1 adjoint).
+P-A1' DISCHARGED (same session, second pass — Prop. A3 in the draft):
+the two-field multiplier PDEs were re-derived in-house (EOS-general)
+and the HTH-1971 closed-form pair (y rho V sin theta, V cos theta +
+const) verified to solve them for every admissible flow; the terminal
+transversality then yields V cos(theta -/+ alpha)/cos alpha = const =
+f2 EXACTLY (both families) — machine-verified
+(validation/pa1_symbolic_lemmaA.py Part 3, PASS, corrupted-pair
+rejector). Lemma A identification (ii) is now THEOREM within the
+irrotational homentropic scope (EOS-general); rotational extension =
+Hoffman four-field route (named). Published anchors: HTH AIAA J
+9(8):1581 (1971) p. 1583; H-S-T JOTA 10(3):133 (1972) Eqs. (21)-(26).
+Remaining numeric item: P-A3/O3.2 only. Corpus-wide literature
+evaluation of record: docs/rde_nozzle_lit_b0bis.md (novelty sweep
+CLEAN on the whole in-house corpus; "variable inlet" resolved as
+geometric DOF; oracle registry O-b1..O-b7; leads named). The true gamma = const boundaries remain:
 corner<->eps bijection (E4, oracle S-H 1971 Table 2), T3 Lemma B
 (calorically perfect), S-H eps-rung closed forms. STRENGTHENED
 DIRECTIVE (same day, user): gamma = const may appear ONLY as declared

@@ -134,3 +134,50 @@ from S5 and re-declared here.
     ZK + Kuratowski-Ryll-Nardzewski route, SCHEMA), R-P3.3 (interior
     field = P-2/G12). R4 same session: D3 §9 P3 row upgraded, M0 T7
     named-gap list updated. Falsifier written in the doc.
+15. [T3 COMMIT] b5590f0 "[F1/P3] (rigore-T3): averaged multiplier gap
+    ATTACKED - THEOREM* in shock-free S1".
+16. [T-LIT RESULTS] All five agents returned (full reports in the
+    task outputs; synthesized in step 18). Headlines: novelty sweep
+    CLEAN corpus-wide (every objective is single-operating-point;
+    nearest non-threats quoted verbatim); "variable inlet" RESOLVED =
+    JTH 1974 variable inlet GEOMETRY (cowl-lip radius as variational
+    DOF; ambient-as-output transversality) + Rao-1961 free lip — both
+    geometric DOF at one state, no threat to the state-family claim;
+    G2 oracle 2290 lbf VERIFIED VERBATIM at source (S-H 1971 AIAA J
+    9(9), Table 2 diagonal, precision correction recorded); RaoPlug
+    oracle verified at source (p. 95 + Table 3, C_F 1.5804);
+    Sternin/Rao-Beck boundary page-verified (94-3264 Eq. 4, 99-2584
+    Eq. 6); JOTA 1972 identity pinned + EXPLICIT EOS-general quote
+    (p. 138); var-gamma optimization LEAD: Rao 1958 IAF Amsterdam
+    (review ref. 21) — to acquire; misfile correction ADA455494 =
+    Onofri RTO/AVT; Zucrow Vol. 2 unreadable in-machine (no text
+    layer, declared hole); Veen Eq. (9) page correction (p. 1195).
+17. [P-A1' DISCHARGE — user question on rotational scope answered in
+    the same pass] Extended validation/pa1_symbolic_lemmaA.py with
+    Part 3: (3a) multiplier-field PDEs DERIVED IN-HOUSE (only
+    d rho/dV = -rho V/c^2; c^2 a free field => EOS-general) and the
+    HTH closed-form pair (y rho v, u + K) verified to solve them for
+    EVERY flow satisfying continuity + irrotationality (constraints
+    substituted symbolically); (3b) terminal transversality on the
+    family a(y rho v, u) + b(0,1) yields V cos(theta -/+ alpha)/cos
+    alpha = -b/a = f2 EXACTLY, both families; (3c) corrupted-pair
+    rejector PASS. Full suite PASS 19/19. One declared debug: sympy
+    cannot differentiate wrt a compound expression — closure rules
+    rewritten on field derivatives (chain rule); no math change.
+    R4: draft §3.4(ii) STATUS UPGRADE paragraph (Prop. A3, THEOREM in
+    scope; narrowing paragraph kept for audit trail), PENDING P-A1'
+    marked DISCHARGED, D3 §8 upgraded. ROTATIONAL scope note written
+    into the draft (user question): framework rotational-general
+    (T0/T3-LemmaA/G-B/T7/(P) and the data contract carry rotational
+    inflow; M0 VI.2 mandates rotational MOC); the two-field closed
+    form is irrotational-homentropic; rotational transport = Hoffman
+    four-field system + Kraiko school (identification survives at
+    FIELD level; two-constant reduction does not).
+18. [T-LIT SYNTHESIS] WROTE docs/rde_nozzle_lit_b0bis.md — corpus
+    evaluation of record: verdicts V1 (novelty CLEAN, one external
+    lead: van Meerbeeck EUCASS 2013), V2 (variable-inlet resolution),
+    V3 (bridge anchors); corrections C1-C6; gamma-ledger additions
+    (JOTA EOS-general quote; Rao 1958 IAF var-gamma lead; Migdal
+    gamma(T) MOC; Johnson-Boney sensitivity); oracle registry
+    O-b1..O-b7 (R5: scripts+rejectors required before adoption);
+    program actions A1-A7.
