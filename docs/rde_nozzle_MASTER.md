@@ -436,7 +436,18 @@ since their per-column optima re-optimize phi (changing PR and gamma
 between columns) while the closed-form check holds phi fixed. Their
 CEA-swept optima are thus reproduced by two one-line theorem
 evaluations: independent numerical corroboration (their computations
-predate this theory; no circularity).
+predate this theory; no circularity). The FULL-FIDELITY version of
+this check, with phi re-optimized per column as they do, already
+exists in-repo: the 18/18 Table-1 validation reproduces their JOINT
+(phi, eps) optima via `phi_opt` (certified 0.01-lattice search with
+strict-neighbor certificate and global unimodality scan — no closed
+form exists in phi since Isp(phi) passes through Cantera equilibrium
+states) × `bell_opt` (closed form). Formal placement of phi: an OUTER,
+non-variational design parameter of the DATA GENERATOR — it moves the
+family s(xi; phi) and the measure mu(phi), not Sigma; the joint problem
+is NESTED, max_phi max_Sigma J, with T3/T4 valid at each fixed phi and
+the outer loop certified by the lattice — not to be confused with the
+bilevel PB-4 (shape-to-chamber feedback).
 The formalization therefore EXPLAINS the paper's empirical
 regularities (its three nozzle findings are corollaries, now checked
 NUMERICALLY, not only structurally), CLOSES its two flagged gaps
