@@ -299,3 +299,11 @@ RATIFICATION — no implementation).
     the optimum IS k-dependent and the diagram already quantifies it
     (premium_bound and T4 knee decrease with k). H3 shape-channel and
     multistability (CVaR/DRO) declared on top.
+29. [HANDOFF 2] User requested a DEDICATED rigor session for the
+    attackable open points; prompt delivered (tasks: P-A1 symbolic
+    discharge, P-A2 Hoffman page-level read on the in-house PDF, P3
+    measurable-selection attack, remark-(6) feed-closure
+    quantification, Lemma-B mesh-limit sharpening; the session must
+    ADD these as PROGRESS NEXT entries at open — declared plan
+    extension serving the P-1/P-2 rigor upgrades). Runs INSTEAD of or
+    BEFORE S6 at the user's choice; one session at a time.
