@@ -86,10 +86,14 @@ nonuniform inflow; aerospike-RDE optimization; multipoint/adjoint nozzle
 design; trajectory-averaged dual-bell work) the cycle-averaged VARIATIONAL
 formulation - T0-T4 and the averaged Rao conditions - has not been
 published. Existing RDE nozzle work designs on time-averaged flow
-quantities or optimizes parametrically with CFD; none of it states the
-shape-functional problem, and none of it contains T3, which incidentally
-EXPLAINS why "design on the time-averaged flow" heuristics work as well as
-they do (they are exact precisely under the S-H hypotheses).
+quantities (Li-Xu-Huang, J. Prop. Power 38(5):849-865 (2022): MOC on the
+time-averaged state — NOT "Mo, Huang", which conflated it with the
+scramjet nonuniform-inflow MOC of Mo et al., Acta Astronautica 108:92
+(2015); correction of record, D2 §b1) or optimizes parametrically with
+CFD; none of it states the shape-functional problem, and none of it
+contains T3, which incidentally EXPLAINS why "design on the time-averaged
+flow" heuristics work as well as they do (they are exact precisely under
+the S-H hypotheses).
 
 ------------------------------------------------------------------------------
 ## 1. Notation and the two pillars

@@ -408,7 +408,9 @@ fields:
    the chamber coupling.
 
 Classical variational gasdynamics (Rao 1958-61; Guderley-Armitage;
-Sternin; the Kraiko school through the 1982-2007 nonuniform/rotational
+Sternin — caveat of record: his books are TWO-PHASE nozzle gasdynamics,
+the general single-phase treatise is Pirumov-Roslyakov (D2 §b0) —; the
+Kraiko school through the 1982-2007 nonuniform/rotational
 generalizations) is the exactly-solvable core that every rung must
 reproduce - the role the harmonic oscillator plays in quantum
 mechanics. The RDE contributes the three genuinely new structural
