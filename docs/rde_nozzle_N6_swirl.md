@@ -100,22 +100,45 @@ known; falsifier: exhibit one).
 ## §4 The five-field variational system (SCHEMA — function space,
 ##     beyond symbolic; derivation route named)
 
-For general swirl the per-phase optimality system is the Hoffman-type
-FIELD formulation with FIVE multiplier fields (continuity, x-mom,
-r-mom, theta-transport, energy row), sources included (centrifugal
-couples r-mom; -vw/r couples the transport). Route (named, per the
-Hoffman-1967 map of record): adjoin the five quasilinear rows, vary
-(u, v, w, P, rho), Green's theorem, boundary counting on the terminal
-MERIDIONAL Mach line via the N6-1 kernel degeneracy (one condition
-lost — the same Hoffman-p.673/Prop.-A2 mechanism, now machine-
-verified in the swirl pencil), wall and endpoint transversality with
-the centrifugal contributions. Deliverables when discharged: the
-swirl corner conditions and the five-field terminal data (the
-analogue of Eqs. (31)-(34)). CLASS: SCHEMA until derived; the
-COUNTING ingredient is already THEOREM (N6-1(c)). Algorithmic note:
-this is the only rigor item with real (contained) implementation
-delta — one unknown/equation per unit process + one adjoint row +
-a swirl oracle (M0 VI.4bis(iv) unchanged).
+UPGRADED (second pass, same session; carrier
+validation/n6_fivefield_adjoint.py, PASS 6/6 with Lagrange-identity
+rejector — symbolic SUFFICES for every item below, each a finite
+identity):
+ (a) THE FORMAL ADJOINT STRUCTURE IS NOW OF RECORD, machine-derived:
+     linearization L dV = A dV_x + B dV_r + M dV of the five-equation
+     swirl system (continuity with the r-weight, both meridional
+     momenta with the centrifugal source, the theta-transport with
+     its geometric coupling, entropy transport with EOS-general
+     c2(P, rho)); the zeroth-order matrix M — the record content,
+     carrying base-flow gradients and ALL source couplings — is
+     extracted symbolically with zero leftover.
+ (b) ADJOINT CHARACTERISTICS: det(B - lam A) = r rho^3 x the N6-1
+     pencil EXACTLY (row weights verified): the five-field adjoint
+     propagates along the same streamline (triple) + meridional Mach
+     lines, sources included — the Prop. A1 statement at the swirl
+     level, now with the weights pinned.
+ (c) LAGRANGE IDENTITY: h.(L dV) - dV.(L* h) is an EXACT divergence
+     with L* h = -d_x(A^T h) - d_r(B^T h) + M^T h — the transposition
+     bookkeeping is certified (a corrupted centrifugal coupling in M
+     BREAKS the identity: rejector).
+ (d) TERMINAL GAUGE DIRECTION IN CLOSED FORM: at a meridional Mach
+     front (u_n = c) the transposed symbol has the ONE-dimensional
+     kernel
+         l(n) = (1, -r n_x / c, -r n_r / c, 0, r / c^2),
+     verified (l^T K == 0) with the rank-4 certificate (the 4x4
+     momentum/transport/energy minor has det = rho^3 c^4 /= 0). The
+     SWIRL COMPONENT OF l IS ZERO: the swirl multiplier h_4 does not
+     enter the terminal gauge — the Hoffman-counting object with
+     swirl, in closed form.
+WHAT REMAINS SCHEMA (function space / bookkeeping to write, named):
+the assembly of (a)-(d) into the complete optimality system — wall
+transversality with the centrifugal contribution, corner conditions,
+and the identification of the optimality residual E_sw with the
+l(n)-gauge component of the adjoint boundary data (the swirl analogue
+of Hoffman Eq. (32)/(78)); plus per-phase well-posedness of L* h = K
+(inherits the D2.5 conditional). Algorithmic note unchanged: one more
+unknown/equation per unit process + one adjoint row + a swirl oracle
+(M0 VI.4bis(iv)).
 
 ------------------------------------------------------------------------------
 ## §5 Claim register (with verification-sufficiency column)

@@ -189,3 +189,37 @@ the attackability assessment given in-conversation).
     (D2.5 uniform estimates) carries everything — writing it is the
     single most valuable remaining function-space task. SESSION 8
     RIGOR THREAD CLOSED at step 17.
+
+18. [RIAPERTURA 2 — user directive "puoi attaccare anche i punti
+    rimanenti?"] Final pass on the remaining five items.
+19. [N6-5F EXEC] WROTE validation/n6_fivefield_adjoint.py (PASS 6/6
+    with Lagrange-identity rejector): the five-field swirl adjoint
+    STRUCTURE machine-derived — linearization (A, B, M) with all
+    sources and EOS-general c2(P, rho) (M = the record content, zero
+    leftover); det(B - lam A) = r rho^3 x the N6-1 pencil (weights
+    pinned); Lagrange identity = exact divergence (transposition
+    certified; corrupted centrifugal coupling BREAKS it); TERMINAL
+    GAUGE DIRECTION IN CLOSED FORM l(n) = (1, -r n_x/c, -r n_r/c, 0,
+    r/c^2) with rank-4 certificate (minor det = rho^3 c^4) — swirl
+    component ZERO. One declared debug: sympy nullspace fails to
+    simplify — replaced by closed-form candidate + machine
+    verification (more pristine). N6 §4 UPGRADED: formal adjoint
+    structure of record; remaining SCHEMA = assembly into
+    wall/corner/E_sw identification + per-phase well-posedness
+    (D2.5-U). docs/rde_nozzle_N6_swirl.md updated (R4).
+20. [REMAINING CONDITIONALS EXEC] WROTE
+    docs/rde_nozzle_remaining_conditionals.md — pristine statements +
+    proof architectures for the four last named gaps: LEMMA D2.5-U
+    (the ONE shared conditional, stated once with constant
+    dependencies (delta, L_x, C_geo, C_dat) and steps U1-U4 named;
+    discharging it converts T7-FS/P7-S1/P3 to THEOREM in the
+    shock-free class); P4-FREDHOLM reduced to a MONODROMY condition
+    (1 not in spec(Pi)) identifying the spectral hypothesis with the
+    P1a/P1b neutral-mode margin of record; LEMMA-B MESH LIMIT as a
+    Lax-equivalence instantiation (consistency h^2 + stability by
+    D2.5-U margins + exact finite-dim transpose), O3 oracles as
+    falsifiers; SECOND ORDER honestly declared an instrument (no
+    sufficiency theory claimed, out of scope). All four declared
+    NO-symbolic-carrier per the sufficiency discipline. CAMPAIGN NOW
+    COMPLETE over every point of the attackability assessment.
+    SESSION 8 RIGOR THREAD FINALLY CLOSED at step 20.
