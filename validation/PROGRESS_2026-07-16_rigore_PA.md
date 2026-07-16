@@ -72,3 +72,33 @@ from S5 and re-declared here.
    discharged (solvability half = THEOREM machine-verified; transport
    half = P-A1', precisely stated, open). Classes (i)-(iii) stay
    THEOREM* with the refined route — no overclaim.
+
+9. [T1 COMMIT] 5ec62ef "[F1/P-2] (rigore-T1): P-A1 attack - machine
+   verification + kernel solvability lemma, P-A1 narrowed".
+10. [T2 EXEC] Hoffman 1967 FULL page-level read: PDF renderer absent
+    (no poppler) -> text extraction via pypdf 6.14.2 (already present,
+    no install) to UTF-8 file, read in full (7 pages, pp. 670-676).
+    Page-verified facts of record: fields h_1..h_4 (one per flow PDE,
+    Eq. 17) + g_i species (Eq. 15) + constants C_1 (isoperimetric,
+    Eq. 12) and C_2 (streamline multiplier; h_1 = C_2 on AC, Eq. 29);
+    interior multiplier PDEs Eqs. (35)-(39) with sources (42)-(44)/
+    (55)-(57); hyperbolic (8+2n) system, characteristics = streamlines
+    + Mach lines; multiplier compatibility Eqs. (49)-(51) (streamline)
+    and (54) (Mach lines); terminal-characteristic data Eqs. (31),
+    (33), (34) (g_i = 0 on BC); the FIFTH relation Eq. (32) NOT
+    imposed (p. 673: five would OVERSPECIFY unless BC is a
+    left-running Mach line — the control surface is selected by b.c.
+    counting); endpoint/wall data Eqs. (60)-(65), constant-length
+    case Eq. (68); E = y h_1 - (u y' - v) h_3 (Eq. 78 == unused
+    Eq. 32) as the a-posteriori optimality check (p. 676).
+11. [T2 DISCOVERY + R4] (a) SYMBOL CORRECTION of record: program docs
+    paraphrased "lambda1..lambda4 (+lambda5)" — corrected to
+    Hoffman's real notation in the draft §3.4(iv) and D3 §8.
+    (b) Hoffman p. 673 = the 1967 ANCESTOR of Prop. A2 (surface
+    selected by boundary-condition counting): recorded in the map.
+    (c) Eq. (54) = the published adjoint transport relation along
+    Mach lines -> NEW ROUTE OF RECORD for P-A1' (specialize to frozen
+    homentropic, integrate to f2). Draft §3.4(iv) UPGRADED SCHEMA ->
+    THEOREM* with the full component-map table (every row
+    equation-numbered post-read); P-A2 marked DISCHARGED in the
+    PENDING register (numeric half remains in P-A3/O3.2).

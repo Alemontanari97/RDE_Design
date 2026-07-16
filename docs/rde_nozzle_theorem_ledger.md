@@ -381,7 +381,26 @@ boundary algebra (kernel ratio computed: W cos(alpha) cos(theta+alpha)
 != f2), so P-A1 is NARROWED to P-A1': derive the adjoint transport
 relation along the tangent characteristic and exhibit f2 as its first
 integral. Identifications (i)-(iii) remain THEOREM* with the refined
-(honest) route. The true gamma = const boundaries remain:
+(honest) route.
+P-A2 DISCHARGED (same rigor session): FULL page-level read of Hoffman
+1967 executed (in-house PDF; text extraction of record). SYMBOL
+CORRECTION: the fields are h_1..h_4 + g_i (species) + constants C_1
+(isoperimetric) and C_2 (streamline/wall), not "lambda1..lambda5" as
+paraphrased earlier. Component map now EXPLICIT and page-verified in
+the draft §3.4(iv) (upgraded SCHEMA -> THEOREM*): h-fields = the
+primitive-form adjoint 4-vector; interior PDEs Eqs. (35)-(39) = L*h =
+K; characteristics = streamlines + Mach lines with multiplier
+compatibility Eqs. (49)-(51)/(54); terminal data Eqs. (31)/(33)/(34)
+with g_i = 0 on BC; wall/endpoint data Eqs. (29)/(63)/(65); E
+(Eq. 78) == the deliberately unused BC relation Eq. (32) = the
+a-posteriori adjoint-residual certificate. TWO structural finds:
+(a) Hoffman p. 673 selects the control surface by boundary-condition
+COUNTING (non-characteristic BC would be overspecified) — the 1967
+ancestor of Prop. A2; (b) his Eq. (54) IS the adjoint transport
+relation along Mach lines: NEW ROUTE OF RECORD for P-A1' (specialize
+Eq. (54) to frozen homentropic flow and integrate to f2). PENDING
+left: P-A1' (transport integration), P-A3/O3.2 (numeric E on the A1
+adjoint). The true gamma = const boundaries remain:
 corner<->eps bijection (E4, oracle S-H 1971 Table 2), T3 Lemma B
 (calorically perfect), S-H eps-rung closed forms. STRENGTHENED
 DIRECTIVE (same day, user): gamma = const may appear ONLY as declared

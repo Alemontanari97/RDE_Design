@@ -386,30 +386,42 @@ of the tangent characteristic. Class THEOREM* (same status as (i):
 structure complete, explicit adjoint-component check PENDING O3.3).
 
 (iv) HOFFMAN'S MULTIPLIER FIELDS == INTERIOR CONTINUOUS ADJOINT;
-E == ADJOINT RESIDUAL. Verified anchors (page-level, in-house corpus):
-Hoffman 1967 formulates reacting-flow nozzle optimization with
-Lagrange-multiplier FIELDS lambda1..lambda4 (+lambda5 per species)
-satisfying PDEs along the SAME characteristics as the flow (his
-single isoperimetric constraint carries the constant multiplier,
-p. 672); his a-posteriori residual E (Eq. 78) vanishes on optimal
-contours; p. 676 proves the algebraic corner dies for reacting gas
-(E = 0 replaces it). The identification: his field system is the
-continuous adjoint system L* psi = 0 (with source/species terms) in
-multiplier notation — "the 1967 paper contains the continuous adjoint
-avant la lettre" — and E is the adjoint-PDE residual functional, i.e.
-the ancestor of the Level-C stationarity certificate (M0 VI.6, O3.2).
-Class SCHEMA at the component level: the STRUCTURAL identification is
-carried by Prop. A1 (fields on flow characteristics = adjoint
-characteristics) + the constraint-multiplier reading above; the
-COMPONENT-BY-COMPONENT map lambda_i <-> psi_j (including his
-normalization and his Eq. 78 written as a weighted L* residual) is
-PENDING a page-level re-read of Hoffman's Eqs. beyond the verified
-anchors (only Eq. 78 / p. 672 / p. 676 are page-verified in-house;
-per the radical-honesty rule we cite NO further equation numbers
-until read). Falsifier: O3.2 — evaluate E (Eq. 78 specialized to
-frozen gas) on the AD-computed adjoint field of the A1 engine;
-nonvanishing E on a converged optimum, or wrong convergence order,
-kills the identification.
+E == ADJOINT RESIDUAL. [UPGRADED 2026-07-16, rigor session: FULL
+page-level read of Hoffman 1967 (AIAA J 5(4):670-676) executed on the
+in-house PDF; every equation number below is post-read verified.
+SYMBOL CORRECTION of record: earlier program docs paraphrased the
+fields as "lambda1..lambda4 (+lambda5)"; Hoffman's actual notation is
+h_1..h_4 (field multipliers, one per flow PDE), g_i (i = 1..n, one
+field per species equation), C_1 (constant isoperimetric multiplier),
+C_2(x) (streamline-constraint multiplier along the wall AC).]
+
+THE COMPONENT MAP (page-verified):
+| Hoffman object (his Eq., page) | Adjoint reading |
+|---|---|
+| h_1 = multiplier of continuity L_1; h_2, h_3 = x-/y-momentum; h_4 = pressure/energy operator (his Eq. 4); augmented functional Eq. (17), p. 672 | the PRIMITIVE-FORM adjoint 4-vector (conjugate to (mass, mom-x, mom-y, energy); conservative psi via the (dU/dV)^T transform of Prop. A2's bookkeeping) |
+| g_i, multiplier of species M_i (Eq. 15); g_i = 0 along BC (Eq. 34, p. 673) | adjoint species components with ZERO terminal data |
+| C_1 (constant, Eqs. 12/17) | isoperimetric multiplier (general G: length Eq. 67, surface area Eq. 70, arc length Eq. 73, weight Eq. 76) |
+| h_1 = C_2 on the wall AC (Eq. 29); h_1(X_C) = C_2(X_C) via Eq. (63); h_1[x, eta(x)] along AC Eq. (65) (constant-length case Eq. 68) | wall adjoint boundary condition + endpoint transversality (the reacting-gas corner analogue) |
+| interior multiplier PDEs Eqs. (35)-(39), nonhomogeneous terms K_3, K_4, J_i Eqs. (42)-(44)/(55)-(57), p. 673-674 | the adjoint PDE system L* h = K (nonhomogeneous through reaction sources) |
+| combined (8+2n) system hyperbolic; characteristics = gas streamlines AND gas Mach lines (p. 674); multiplier compatibility along streamlines Eqs. (49)-(51), along Mach lines Eq. (54) | adjoint characteristics = flow characteristics (Prop. A1, INSTANCED in print in 1967); Eq. (54) IS the adjoint transport relation along C+/- |
+| BC data on the terminal characteristic: Eqs. (31), (33), (34); the FIFTH relation Eq. (32) deliberately NOT imposed (p. 673) | adjoint terminal data; the redundant relation = transversality surplus |
+| E := y h_1 - (u y' - v) h_3 (Eq. 78 == the unused Eq. 32), evaluated along BC; "if E is everywhere zero along BC ... the contour is indeed the optimum" (p. 676) | a-posteriori ADJOINT RESIDUAL certificate — the 1967 ancestor of the Level-C stationarity certificate (M0 VI.6, O3.2) |
+| p. 673: with BC non-characteristic, FIVE independent boundary relations arise -> "the problem would be overspecified"; forcing BC = left-running Mach line leaves four -> "the choice of the control surface BC is not arbitrary" | the CLASSICAL ANCESTOR of Prop. A2's refined route for identification (i): the characteristic surface is selected by the count of imposable adjoint boundary conditions — published in 1967, in multiplier language |
+
+Class THEOREM* (component map explicit and page-verified at the
+operator level; the identification is now two-sided in print). What
+remains PENDING: (P-A3/O3.2) numeric — evaluate E on the AD-computed
+adjoint field of the A1 engine, convergence at the unit-process order;
+falsifier unchanged (nonvanishing E on a converged optimum kills).
+NEW ROUTE OF RECORD FOR P-A1' (from this read): specialize Hoffman
+Eq. (54) (multiplier compatibility along Mach lines) to frozen
+homentropic flow (g_i = 0, sources K, J -> inert limit) and integrate
+along the terminal characteristic with data (31)/(33)/(63): the first
+integral must be Rao's f2 = -lambda2 (Eq. [12]). Discharging this
+derivation completes the transport half of (ii) with a PUBLISHED
+transport equation as the starting point — strongest possible form of
+the bridge (Rao 1958 <- Hoffman 1967 -> modern adjoint, all
+equation-numbered).
 
 ------------------------------------------------------------------------------
 ## §3.5 What the lemma yields downstream (one paragraph for the paper)
@@ -448,9 +460,10 @@ PENDING register (all named, per acceptance rule):
       CLOSED OFF by Prop. A2: the invariant does not live in the
       boundary algebra). Discharge by standalone derivation or by the
       O3.3 numeric term-match vs B2/B3 on one TOC case (A1 engine).
- P-A2 Hoffman component map lambda_i <-> psi_j — needs page-level
-      re-read of Hoffman 1967 beyond the verified anchors (human/G5-
-      adjacent library task; NO equation numbers to be cited before).
+ P-A2 [DISCHARGED 2026-07-16, rigor session] Full page-level read of
+      Hoffman 1967 executed in-house; component map written in
+      §3.4(iv) (upgraded to THEOREM*); symbol correction of record
+      (h_1..h_4, g_i, C_1, C_2). Residual numeric half lives in P-A3.
  P-A3 O3.2 E-residual evaluation on the AD adjoint field — A1 engine.
 None of P-A1..P-A3 blocks Lemma A as classed above; they discharge the
 THEOREM*->THEOREM upgrades and the (iv) SCHEMA->THEOREM* upgrade.
