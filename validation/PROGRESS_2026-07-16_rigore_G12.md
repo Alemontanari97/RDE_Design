@@ -181,3 +181,11 @@ the attackability assessment given in-conversation).
     pristine writing everywhere; verification-sufficiency
     declarations on every claim; always anchor to the objective (P),
     never more.
+17. [CHIUSURA CAMPAGNA] Commits: G12 = 9722b9a, N6+S1U+P4 = 6d10df7,
+    T7-FS+P7 = da4cc31. PROGRESS LOG entry extended to the full
+    campaign. CAMPAIGN VERDICT of record: no load-bearing SCHEMA
+    remains between the definition of (P) and its certified solution
+    in the shock-free S1 class; across fronts, ONE named conditional
+    (D2.5 uniform estimates) carries everything — writing it is the
+    single most valuable remaining function-space task. SESSION 8
+    RIGOR THREAD CLOSED at step 17.

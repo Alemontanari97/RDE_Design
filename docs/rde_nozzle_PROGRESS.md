@@ -355,9 +355,27 @@ vedi voci precedenti.]
   fronti caratteristici = legge di nucleo della Prop. A2); THEOREM
   G12-S1 (THEOREM*, residui R-G12.1..3 nominati; il limite di mesh
   del Lemma B ha ora il bersaglio continuo enunciato — circolarità
-  rotta). M0 T7 G12 aggiornato (R4). Prossimi attacchi del filone
-  rigore (ordine valutato): N6 (nucleo 3-D + cinque campi swirl),
-  unicità S1-interna, P4 periodico liscio.
+  rotta). M0 T7 G12 aggiornato (R4). CAMPAGNA ESTESA su direttiva
+  utente (stesso log, passi 10-17; commit 6d10df7 + da4cc31):
+  N6 ATTACCATO (docs/rde_nozzle_N6_swirl.md, carrier 16/16:
+  THEOREM N6-1 struttura swirl — Mach lines meridiane invariate,
+  nucleo con componente swirl nulla, G12-S1 si estende; THEOREM N6-2
+  estensione VERBATIM di Rao al vortice libero — nuova classe
+  positiva; THEOREM N6-3 negativo affilato — chiusura puntuale fallisce
+  sse non-vortice-libero, livello di campo NECESSARIO; cinque-campi =
+  SCHEMA nominato); UNICITÀ S1-U architettata (mattoni THEOREM, passi
+  di funzione nominati); P4-PERIODICO enunciato con formula aggiunta
+  J1 = -<psi_J, S_sweep U0> e ipotesi spettrale verificabile (D3 §3);
+  T7-FS + P7-S1 (docs/rde_nozzle_T7_P7_functionspace.md, ancorati a
+  (P)): derivazione sotto integrale di ciclo THEOREM* — (P)(ii) è
+  condizione necessaria rigorosa; esistenza dell'argmax THEOREM* sui
+  level set certificati — (P)(i) attaccato, frontiera di fallimento =
+  bordo dei compatti. VERDETTO DI CAMPAGNA: nessuno SCHEMA portante
+  resta tra la definizione di (P) e la sua soluzione certificata
+  nella classe S1 senza urti; attraverso i fronti tutto eredita UN
+  solo condizionale nominato (D2.5). Direttive permanenti registrate:
+  scrittura pristine; dichiarazione di sufficienza simbolico-vs-
+  funzione su ogni claim; àncora sempre (P).
 
 - **S7 (2026-07-16, OPERATIVA: "Lemma B + OP-0-gamma + G5-2a";
   lanciata come S6-op, rinumerata alla riconciliazione)** — Gate
