@@ -112,3 +112,48 @@ Reading rule: a tool absent from the "Adopted" column is either in
 silent category. Together with §1-§3, this closes the audit: the
 pipeline contains no undeclared choice, no known error, and no
 alternative that was ignored rather than weighed.
+
+------------------------------------------------------------------------------
+## 5. Inverse (de-biasing) audit: re-deriving the pipeline from the bare
+##    problem, history removed
+
+Exercise (2026-07-16, closing): state the problem nakedly (D2.6: find
+(S*, delta) in the envelope under constraints, thrust-mean objective,
+certified globality gap) and ask what a 2026 team with NO inheritance
+(no Rao lineage, no S-H, no GENO) would build. Option space swept:
+end-to-end differentiable simulation (killed: shadowing invalid across
+shocks + Giles-Ulbrich capturing-adjoint theorem); ML surrogates/BO
+(accelerator only: no certificates, truth still needed); direct 3-D
+HB/time-spectral adjoint (contingency C1, gate G4: unknown frequency →
+LCO treatment, mode discontinuities); wave-frame steady 3-D + bordered
+adjoint (IN THE CORE, rung 3a — see bias B1); level-set topology
+optimization (killed: supersonic infinitesimal germ = pure wave drag;
+cone condition ⇒ finite sector tournament); metaheuristics/RL
+(dominated); moment-SOS (killed: scale). Every elimination is by
+theorem or verified fact, never by heritage. Surviving "classical"
+components re-derive from scratch: MOC is the optimal S1 algorithm for
+steady 2-D supersonic flow AND its adjoint has closed form (P2) — a
+fresh team discovering that closed form would use it; the T3/T4
+oracles are PROPERTIES OF THE PROBLEM (exactly solvable limits), and
+any serious team would adopt them as rejection tests upon discovery.
+
+DECLARED RESIDUAL BIASES (the honest yield of the exercise):
+ B1 SCHEDULING BIAS (asset-driven, declared, gated): rung-2-first vs
+    wave-frame-first for the single-mode class. A history-free team
+    might lead with the exact steady 3-D wave-frame solve (no O(St)
+    bar, no D2 residual; 2026-feasible at sector scale). Non-historical
+    justification for the factorized engine: (i) per-channel
+    attribution (N1..N4 one switch at a time) exists ONLY in the
+    factorized reading; (ii) topology tournament + phase diagram need
+    thousands of cheap evaluations; (iii) the O(St) bar must be
+    computed anyway to judge the field's quasi-steady practice (EAP
+    included). Architecture already contains the de-biased branch:
+    gate G4 PROMOTES the wave-frame solve to engine if the D2 error
+    dominates. Bias of schedule, not of architecture.
+ B2 PRESENTATION BIAS: per-phase optimality exposed Rao-first
+    (control surface, f2, corner) rather than adjoint-first —
+    mathematically equivalent by P2; the P-2 outline adopts the
+    adjoint-first double exposition for the modern reader.
+No other historical imprint found under this pass. VERDICT: the
+pipeline re-derives from the bare problem with modern tools; the
+treatment is maximal-rigor in the D2.6 sense, forward AND inverse.
