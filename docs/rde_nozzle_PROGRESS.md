@@ -279,46 +279,34 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 7)
+## NEXT (passo atomico, Sessione 8)
 
-0. [F1/P-2] Stesura Lemma B (§4 del paper) — ORA CON LE ANCORE: la
-   catena Prop. A2/A3 + mappa Hoffman è pronta; il §3 del paper è
-   sostanzialmente scritto (draft + derivazioni macchina). Aggiungere
-   il footnote "adjoint constraints" (94-3264, trappola lessicale).
-0b. [LEADS, query-bounded] Acquisire/verificare: Rao 1958 IAF
-   Amsterdam (precedente var-gamma, HIGH — tocca il wording gamma di
-   P-1/P-2); van Meerbeeck EUCASS 2013 (LOW, parametrico).
-[La lista sotto era il NEXT della vecchia "Sessione 6" operativa,
-resta valida per la S7:]
-
-1. [F0/G5-2a] Spoglio DIGITALE dei TOC PMM 1957-1990 sull'archivio
-   ufficiale pmm.ipmnet.ru/ru/Issues.php (Item 2a della commissione,
-   rescopato in-house nella S4: autori Kraiko/Shmyglevskii/Tillyaeva/
-   Egoryan + parole chiave §3 della commissione); deliverable
-   query-bounded (indici passati + articoli flaggati per l'Item 2b).
-2. [F1/P-2] Stesura Lemma B (§4 del paper: ponte discreto, AD del
-   march fitted = sweep aggiunto trasposto) sull'outline §4 + scarico
-   di P-A1 (pass simbolico: componenti dell'aggiunto analitico B2/B3
-   sulla caratteristica terminale vs f2 — non richiede il motore A1).
-3. [F1/P-1] Prima stesura testuale delle sezioni §2 (Theorem 0 + O1/O2)
+1. [F1/P-1] Prima stesura testuale delle sezioni §2 (Theorem 0 + O1/O2)
    e §4 (dicotomia) dello skeleton 6263c22, con la regola
-   d'accettazione (a)-(e) applicata sezione per sezione.
-4. [F2-prep/G0] Estensione dello spike: variante assialsimmetrica
-   (termine sorgente) + shock point (regola implicita su RH), e primo
-   confronto cross-code col caso TOC GENO (criterio interop del gate
-   G0, decisione utente S5: GENO resta Fortran).
-5. [F1/OP-0-gamma] Purga di gamma=const dal ceiling ESEGUIBILE
-   (direttiva rafforzata S5): valutare V_id = sqrt(2[h0 - h(s,Pa)]) e
-   il cap sonico via termochimica reale (Cantera h(s,P)) invece delle
-   forme chiuse gamma=const; ri-derivare ladder + diagramma di fase e
-   confrontare (le forme chiuse restano come oracoli dichiarati);
-   rejector: divergenza oltre barre dichiarate tra le due route.
-[FATTO in S3: ex-NEXT-1 OP-11-ε → 1438b1b; ex-NEXT-2 outline P-2 →
-05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08. FATTO in S4:
-pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).
-FATTO in S5: ex-NEXT-1 P-1 skeleton → 6263c22; ex-NEXT-2 Lemma A →
-18c9d88; ex-NEXT-3 spike JAX → b07b47e (il confronto vs GENO del
-vecchio NEXT-3 è rescopato nel nuovo punto 4).]
+   d'accettazione (a)-(e) applicata sezione per sezione (T4 di S7,
+   non eseguito — dichiarato).
+2. [F2-prep/G0] Estensione dello spike: variante assialsimmetrica
+   (termine sorgente) + shock point (regola implicita su RH; scarica
+   P-B1/O3.1 al mattone shock), e primo confronto cross-code col caso
+   TOC GENO (criterio interop G0; GENO resta Fortran, decisione S5).
+3. [F1/OP-0-gamma, coda] Diagramma di fase OP-11-eps sulla route
+   REALE (il condizionale "se regge" di S7: la ladder regge, il
+   diagramma è rinviato) + route a espansione di EQUILIBRIO come
+   bracket superiore del rung frozen (M0 Prop. 7, residuo dichiarato).
+4. [F1/P-2, rifiniture] Footnote "adjoint constraints" (94-3264,
+   trappola lessicale — NEXT-0 della S6 rigore, non ancora inserito
+   nei draft); integrare nel §4 il riferimento a Prop. A2/A3 di
+   record; consolidare i due script P-A (pa1_symbolic_lemmaA.py +
+   p2_pA1_symbolic_adjoint.py) in un runner unico o gruppo test.
+5. [LEADS, query-bounded, ereditati dalla S6 rigore] Rao 1958 IAF
+   Amsterdam (precedente var-gamma, HIGH); van Meerbeeck EUCASS 2013
+   (LOW, parametrico).
+[FATTO in S7 (operativa): ex-NEXT-1 spoglio PMM → fb82846 (G14 regge;
+top flag Kraiko-Osipov 1970 → Item 2b); ex-NEXT-2 Lemma B →
+docs/rde_nozzle_P2_lemmaB.md + verifica dual-route Prop. A2 → 9966552
+(lo scarico P-A1/P-A1' era già della S6 rigore, Prop. A3);
+ex-NEXT-5 purga gamma (livello ladder) → 1d762f8. FATTO in S3-S6:
+vedi voci precedenti.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -329,7 +317,12 @@ vecchio NEXT-3 è rescopato nel nuovo punto 4).]
   credenziali IDEM-GARR). RESIDUO UTENTE: solo l'invio dall'account
   istituzionale (l'assistente non ha canale email autorizzato; per
   invii diretti futuri autorizzare il connettore Gmail su claude.ai).
-  Item 2a (spoglio TOC PMM) RESCOPATO in-house → NEXT 4.
+  Item 2a (spoglio TOC PMM): **FATTO in S7** (fb82846,
+  validation/G5_pmm_toc_sweep_1957-1990.md — 204/204 fascicoli;
+  G14 regge; wording G6 di P-1 CONTINGENTE alla lettura full-text di
+  Kraiko-Osipov PMM 34(6) 1970, TOP FLAG). Item 2b: lista di lettura
+  RANKED pronta nel deliverable — da allegare alla richiesta
+  biblioteca insieme all'Item 1 (TOC Kraiko 1979).
 - Venue P-2: **DECISA (S4, delega utente)** — AIAA Journal primaria +
   preprint arXiv a (G5 pass ∧ bozza Lemma A pronta); fallback
   Aerospace con trigger dichiarati; JOTA terziaria. Decisione di
@@ -346,6 +339,35 @@ vecchio NEXT-3 è rescopato nel nuovo punto 4).]
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S7 (2026-07-16, OPERATIVA: "Lemma B + OP-0-gamma + G5-2a";
+  lanciata come S6-op, rinumerata alla riconciliazione)** — Gate
+  pre-esecuzione PASS (log passo 3). T1 (9966552): Lemma B draft di
+  record (§4 del paper: B0/B1/B2 THEOREM, fronte fitted esplicito con
+  Lax/Majda == J_k non singolare, bypass Giles-Ulbrich per
+  costruzione con clausola d'onestà, (**') pesata a quadratura fissa)
+  + verifica DUAL-ROUTE di Prop. A2 in variabili conservative
+  (p2_pA1_symbolic_adjoint.py, VERDICT PASS, 3 controlli negativi
+  rigettati) — riposizionata dopo la riconciliazione: NON ri-reclama
+  P-A1' (Prop. A3 della S6 rigore). T2 (1d762f8): purga gamma dal
+  ceiling eseguibile — route primaria EOS-general via Cantera h(s,P),
+  forme chiuse declassate a oracoli, cap sonico ri-verificato a
+  gamma(T), delta di record -4.4..-7.9% (12 righe Pa finita, barre
+  ~0.002%), test run_all (xi) 18/18 con rejector; R4 in M0 Prop. 7 +
+  D3 §8. T3 (fb82846): spoglio digitale PMM 204/204 — G14 regge (zero
+  hit aggiunto x contornatura in 34 anni); TOP FLAG Kraiko-Osipov
+  34(6) 1970 dichiarato subito (wording G6 di P-1 contingente alla
+  lettura full-text; contingenza D4 §3 armata, non attivata);
+  SCOPERTA DI METODO: WebFetch fabbrica i contenuti delle pagine
+  windows-1251 dell'archivio — sweep rifatto a HTML grezzo con
+  verifica dei conteggi. DEVIAZIONI DICHIARATE: T4/T5 non eseguiti
+  (→ NEXT 1-2); diagramma di fase su route reale rinviato (→ NEXT 3);
+  QUARTA interleaving rilevata post-riconciliazione (63ba44c,
+  addendum S6-rigore atterrato tra i commit T3 e T1; l'index git era
+  CONDIVISO con la sessione rigore ancora attiva — chiusura eseguita
+  con commit path-limitato dei soli file S7). Verdetti: gate PASS;
+  pass simbolico PASS; ladder reale 18/18; sweep query-bounded
+  completo.
 
 - **S6 (2026-07-16, DEDICATA RIGORE: "P-A1/P-A2/P3 + corpus")** —
   Stessa conversazione di S5, su richiesta utente ("attaccalo in
