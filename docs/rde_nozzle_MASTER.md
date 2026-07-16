@@ -331,6 +331,26 @@ generous envelope ⇒ free boundary attains the ceiling (T4/M1);
 vacuum ⇒ no finite optimum; tight length + large spread ⇒ duty split
 (C1, open).
 
+REMARK (relation to EAP — verified against Kaemming-Paxson, AIAA
+2018-4567, NTRS 20180006890, full text read 2026-07-16). The industry's
+Equivalent Available Pressure EAP_i is, verbatim from its Eqs. 1-8, the
+PRESSURE-COORDINATE of J_ideal: each exit segment expanded
+isentropically to ambient SEPARATELY (expand-then-average, never
+mixed-out-then-expand), mass-flux-weighted specific quantities
+(algebraically identical to our time-integrated fluxes, O1), computed
+in the detonation frame where "area average = time average" — i.e. our
+T0(i) used tacitly as a fact, proved here as a theorem. Deltas:
+(1) baseline EAP_i declares non-axial energy unavailable (V_x only),
+its +6% variant includes it: two adjacent ladder rungs,
+EAP_i(axial) <= J_ideal(total); (2) EAP carries the quasi-steady and
+azimuthal-decoupling hypotheses (our D1+D2) UNSTATED and UNPRICED —
+the P4 corrector is, among other things, EAP's missing error bar;
+(3) EAP is the combustor-alone CEILING: the program's bound gap
+J_ideal - J(Sigma*) is the honest discount factor on advertised
+pressure gain (cf. Paxson 2022: real truncated plug at 58-70% of the
+notional ideal). The formalization CONTAINS and COMPLETES the EAP
+doctrine rather than competing with it — a citable bridge for P-1.
+
 ------------------------------------------------------------------------------
 THEOREM-SCHEMA 8 (T7/T2 — the averaged stationarity system). SCHEMA.
 Maximize J over Sigma in a restricted class, per-phase steady Euler
