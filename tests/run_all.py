@@ -11,6 +11,10 @@ Tests (see each module's docstring):
   (iii) test_axial_bound       SK axial sonic vs independent eq. bound (~0%)
   (iv)  test_q_roundtrip       M_CJ -> q~ -> M_CJ exact inversion (<=1e-6)
   (v)   test_golden            blessed digits from shipped data + reports
+  (vi)  test_bell_optimality   executable eps-optimality proofs (Euler lemma,
+                               stationarity/globality, averaging discrimination)
+  (vii) test_numeric_lint      no-magic-number invariant: every src/ literal
+                               classified in validation/numeric_allowlist.json
         test_examples [slow]   live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
@@ -29,7 +33,9 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(ii)  Stechmann CP collapse', 'test_stechmann_collapse'),
         ('(iii) SK axial vs eq. bound', 'test_axial_bound'),
         ('(iv)  q~ round-trip', 'test_q_roundtrip'),
-        ('(v)   golden numbers', 'test_golden')]
+        ('(v)   golden numbers', 'test_golden'),
+        ('(vi)  bell/spike optimality proofs', 'test_bell_optimality'),
+        ('(vii) numeric lint (no magic numbers)', 'test_numeric_lint')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
 
 
