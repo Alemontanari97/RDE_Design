@@ -184,3 +184,40 @@ RATIFICATION — no implementation).
     claim declares its gamma status (map C1-C26 classified).
     (d) memory/gamma-variable-generality.md written + MEMORY.md index
     line (standing directive, applies at every future gate (B)).
+
+17. [T2 COMMIT] 18c9d88 "[F1/P-2] (T2): Lemma A draft of record" (draft
+    + outline §4 pointer + D3 §8 upgrade + skeleton rule (e) + log
+    steps 11-16).
+18. [USER DECISION — mid-session] "GENO lo lasceremo in Fortran, se ciò
+    non altera la funzionalità dell'intera pipeline": recorded. This
+    RATIFIES the dual-code plan of record (M0 VI.7: differentiable
+    engine = NEW code, GENO-Fortran = independent reference, oracle
+    O3.4 cross-code). Condition carried into gate G0: the stack
+    decision must include GENO-interop feasibility (file-based
+    exchange + cross-code oracles) so the WHOLE pipeline keeps
+    functioning with GENO untouched.
+19. [T3 EXEC] Environment check: JAX absent; pip dry-run showed
+    jax 0.11.0 (CPU) installable WITHOUT touching the numpy 2.2.6 pin.
+    DECLARED user-level install executed: jax 0.11.0 + jaxlib 0.11.0 +
+    ml_dtypes 0.5.4 + opt_einsum 3.4.0; verified numpy 2.2.6 intact,
+    CPU device up. (Rollback: pip uninstall of the four packages.)
+20. [T3 EXEC] WROTE validation/g0_spike_jax_moc.py — G0 spike: interior
+    point + inverse/design-mode wall point as Newton-solved implicit
+    residual systems wrapped in jax.custom_vjp with the implicit-
+    function rule (adjoint solve on Jz^T, Newton NEVER unrolled, per
+    M0 VI.3); planar, calorically perfect PM closure with GAMMA STATUS
+    declared (structure EOS-general, closure gamma=const, A1 engine =
+    gamma(T) backend); TOC-regime states (gamma = 1.23, M ~ 2.2-2.35);
+    full Jacobian via jax.jacrev vs central FD at two steps with
+    DERIVED tolerance (Richardson two-step error estimate + roundoff
+    floor, constants derived in-comment from the FD error balance);
+    Newton self-certification rejector; NEGATIVE CONTROL (corrupted
+    vjp must fail).
+21. [T3 VERDICT] Run PASS: Newton residuals 1.1e-16 / 2.8e-17 (tol
+    ~4e-14); Jacobians 36/36 + 16/16 entries within derived tolerance
+    (worst err/tol 3.3e-2 / 4.6e-2); negative control REJECTED as
+    required (35/36 entries out, worst err/tol 2.3e4). G0 feasibility
+    VERDICT: JAX stack viable on this machine (CPU, f64) with the
+    numpy pin intact; implicit-vjp discipline demonstrated; decision
+    G0 remains formally at Fase 2 per plan, now INSTRUCTED by an
+    executable artifact.
