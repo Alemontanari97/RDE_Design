@@ -4,10 +4,69 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 3 — "Fase 1: OP-11-eps + P-2 + G5")
+## ORA (2026-07-16, chiusura Sessione 5 — "Fase 1: P-1 skeleton + P-2
+## Lemma A + G0 spike"; interleaved con S4 "G5 dispatch + venue")
 
-Branch `rde-nozzle-program`, HEAD = e23bb08 (T1 = 1438b1b, T2 = 05001a5,
-T3 = e23bb08). Stato per fase (piano D6):
+Branch `rde-nozzle-program`, HEAD = b07b47e (S5: T1 = 6263c22,
+T2 = 18c9d88, T3 = b07b47e; S4 interleaved: f6a5112/5540fe2/cd903d1).
+Log a ordine totale S5: validation/PROGRESS_2026-07-16_fase1_P1.md
+(passi 1-21, gate pre-esecuzione PASS al passo 7). Stato per fase:
+
+- FASE 1 — **P-1 SKELETON DI RECORD SCRITTO** (6263c22,
+  docs/rde_nozzle_P1_skeleton.md): struttura §1-§9 + appendici, venue
+  JPP, submission gated M1+G5; MAPPA DEI CLAIM C1-C26 (classe +
+  falsificatore + carrier eseguibile per ognuno, gruppi run_all
+  (i)-(x) + dati di record); §7 diagramma di fase SEMANTICS-FIRST
+  (D3 §10quater(5): winner = chiusure, premium_bound = dispositivo del
+  torneo, (P) in forma D2.6); grep di coerenza PASS (nessun winner
+  letto come hardware); regola d'accettazione (a)-(e), incl. (e) =
+  STATO GAMMA per claim (direttiva permanente, sotto).
+- FASE 1 — **P-2 LEMMA A DRAFT DI RECORD SCRITTO** (18c9d88,
+  docs/rde_nozzle_P2_lemmaA.md = §3 del paper): lato classico DERIVATO
+  PER INTERO (8 passi verificabili dalla sola Lagrangiana di Rao:
+  Eq. [11] superficie caratteristica come RISULTATO, Eq. [12]
+  f2 = -lambda2, Eq. [13], Eq. [14] corner == CSTR_PA + specchio C-
+  == CSTR_PB) — ogni riga CONFERMATA contro il corpus page-verified
+  D2 §b0, zero discrepanze; lato aggiunto: Prop. A1 (caratteristiche
+  aggiunte = caratteristiche del flusso) THEOREM + bookkeeping di
+  dualità; identificazioni (i)-(iii) THEOREM* (struttura derivata,
+  match di componente B2/B3 PENDING O3.3), (iv) Hoffman SCHEMA (ancore
+  verificate Eq. 78/p.672/p.676, mappa componenti PENDING rilettura —
+  nessun numero d'equazione inventato). Registro PENDING P-A1..P-A3.
+  Con la venue decisa (S4), la bozza Lemma A arma metà del trigger
+  "arXiv a (G5 ∧ bozza pronta)".
+- **DIRETTIVA PERMANENTE UTENTE (S5): GENERALITÀ A GAMMA VARIABILE** —
+  ogni pezzo di teoria dichiara il proprio stato gamma (EOS-general vs
+  gamma=const) con confine nominato e falsificatore. Primo audit di
+  record: il sistema di stazionarietà classico derivato (L.6)-(L.16) è
+  EOS-GENERAL (usa solo Gibbs lungo l'isentropa + def. di c²) —
+  THEOREM in docs/rde_nozzle_P2_lemmaA.md §3.0 + D3 §8; confini
+  gamma=const veri: biiezione corner<->eps (E4, oracolo S-H 1971
+  Table 2/G2), Lemma B di T3, forme chiuse S-H a livello eps.
+  Memoria: gamma-variable-generality.md.
+- **DECISIONE UTENTE (S5): GENO RESTA IN FORTRAN**, a condizione che
+  la funzionalità dell'INTERA pipeline sia preservata — ratifica il
+  dual-code di record (M0 VI.7: motore differenziabile = codice NUOVO,
+  GENO = riferimento indipendente); l'interop GENO (scambio file +
+  oracolo O3.4 cross-code) diventa criterio esplicito del gate G0.
+- FASE 2-prep — **SPIKE G0 JAX ESEGUITO, PASS** (b07b47e,
+  validation/g0_spike_jax_moc.py): interior point + inverse wall come
+  sistemi impliciti Newton avvolti in custom_vjp con regola implicita
+  (mai unrolled); Jacobiano completo vs differenze centrali con
+  TOLLERANZA DERIVATA (Richardson a due passi + floor di roundoff):
+  52/52 entrate entro tolleranza (worst err/tol 4.6e-2), residui
+  Newton ~1e-16, CONTROLLO NEGATIVO rigettato (vjp corrotto: 35/36
+  fuori). Ambiente: jax 0.11.0 CPU user-level, pin numpy 2.2.6 INTATTO
+  (install dichiarata, reversibile). Decisione G0 resta a Fase 2, ora
+  istruita da artefatto eseguibile.
+- CONCORRENZA (deviazione dichiarata, passi 14-15 del log S5): S4 ha
+  lavorato in parallelo sullo stesso tree (di nuovo, malgrado la
+  regola una-sessione-alla-volta); riconciliata senza conflitti
+  (contenuti disgiunti); questa sessione rinumerata S4->S5.
+
+Stato precedente (chiusura Sessione 3 — "Fase 1: OP-11-eps + P-2 +
+G5"): HEAD = e23bb08 (T1 = 1438b1b, T2 = 05001a5, T3 = e23bb08).
+Stato per fase (piano D6):
 
 - FASE 1 (fondazioni quasi-1D): **OP-11-ε CHIUSO** (1438b1b).
   - Diagramma di fase quasi-1D di record: src/thrust/phase_diagram.py,
@@ -99,26 +158,30 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 4)
+## NEXT (passo atomico, Sessione 6)
 
-1. [F1/P-1] Skeleton della stesura P-1 (venue JPP): la teoria è pronta
-   (M0 Parti I-III + i due ponti EAP/S-H + numeri OP-0 + figura e
-   teoremi OP-11-ε di questa sessione); partire dallo scheletro
-   sezione-per-sezione con la mappa claim→(classe, falsificatore,
-   carrier eseguibile).
-2. [F1/P-2] Stesura Lemma A §3 (identificazione termine-a-termine,
-   equation-numbered vs corpus b0) sull'outline 05001a5.
-3. [F2-prep/G0] Spike JAX: UN unit process MOC (interior + inverse
-   wall) con custom_vjp + regola implicita; gradiente vs differenze
-   centrali e vs GENO su un caso TOC (90-day plan item 2).
-4. [F0/G5-2a] Spoglio DIGITALE dei TOC PMM 1957-1990 sull'archivio
+1. [F0/G5-2a] Spoglio DIGITALE dei TOC PMM 1957-1990 sull'archivio
    ufficiale pmm.ipmnet.ru/ru/Issues.php (Item 2a della commissione,
    rescopato in-house nella S4: autori Kraiko/Shmyglevskii/Tillyaeva/
    Egoryan + parole chiave §3 della commissione); deliverable
    query-bounded (indici passati + articoli flaggati per l'Item 2b).
+2. [F1/P-2] Stesura Lemma B (§4 del paper: ponte discreto, AD del
+   march fitted = sweep aggiunto trasposto) sull'outline §4 + scarico
+   di P-A1 (pass simbolico: componenti dell'aggiunto analitico B2/B3
+   sulla caratteristica terminale vs f2 — non richiede il motore A1).
+3. [F1/P-1] Prima stesura testuale delle sezioni §2 (Theorem 0 + O1/O2)
+   e §4 (dicotomia) dello skeleton 6263c22, con la regola
+   d'accettazione (a)-(e) applicata sezione per sezione.
+4. [F2-prep/G0] Estensione dello spike: variante assialsimmetrica
+   (termine sorgente) + shock point (regola implicita su RH), e primo
+   confronto cross-code col caso TOC GENO (criterio interop del gate
+   G0, decisione utente S5: GENO resta Fortran).
 [FATTO in S3: ex-NEXT-1 OP-11-ε → 1438b1b; ex-NEXT-2 outline P-2 →
 05001a5; ex-NEXT-3 testo commissioning G5 → e23bb08. FATTO in S4:
-pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).]
+pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).
+FATTO in S5: ex-NEXT-1 P-1 skeleton → 6263c22; ex-NEXT-2 Lemma A →
+18c9d88; ex-NEXT-3 spike JAX → b07b47e (il confronto vs GENO del
+vecchio NEXT-3 è rescopato nel nuovo punto 4).]
 
 ## BLOCCATO / GATE APERTI
 
@@ -138,11 +201,45 @@ pacchetto d'invio G5 + decisione venue P-2 (delegati dall'utente).]
 - ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
   committato): IN ATTESA DI RATIFICA UTENTE — nessuna implementazione
   avviata, per disciplina.
-- G0 (stack JAX/Julia): decisione a Fase 2 (lo spike NEXT-3 la
-  istruisce).
+- G0 (stack JAX/Julia): decisione a Fase 2 — lo spike S5 (b07b47e) è
+  PASS su JAX 0.11.0 CPU (implicit-vjp, tolleranze derivate, rejector);
+  criterio aggiunto (decisione utente S5): interop con GENO-Fortran
+  (pipeline intera funzionante, O3.4 cross-code) — il punto NEXT 4 lo
+  esercita prima della decisione formale.
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S5 (2026-07-16, "Fase 1: P-1 skeleton + P-2 Lemma A + G0 spike")** —
+  Esecuzione T1→T2→T3 con gate di pre-esecuzione (PASS, passo 7) e log
+  a ordine totale (validation/PROGRESS_2026-07-16_fase1_P1.md, passi
+  1-21). T1/P-1 (6263c22): skeleton di record con mappa claim C1-C26
+  (classe+falsificatore+carrier ciascuno), scope discipline §7
+  semantics-first, grep di coerenza PASS. T2/P-2 (18c9d88): Lemma A
+  §3 draft di record — lato classico DERIVATO in 8 passi dalla sola
+  Lagrangiana (Eq. [11] come risultato, [12], [13], [14]==CSTR_PA/PB),
+  tutte le righe confermate contro il corpus (zero discrepanze);
+  Prop. A1 + dualità THEOREM; (i)-(iii) THEOREM* con O3.3 PENDING;
+  (iv) SCHEMA con ancore verificate. T3/G0 (b07b47e): spike JAX PASS
+  (implicit custom_vjp, 52/52 entrate entro tolleranza derivata,
+  controllo negativo rigettato; jax 0.11.0 user-level, pin numpy
+  intatto). DUE DIRETTIVE/DECISIONI UTENTE registrate: (1) generalità
+  a GAMMA VARIABILE = accertamento permanente (audit di record: il
+  sistema classico derivato è EOS-general; confini gamma=const
+  nominati; memoria + regola (e) dello skeleton); (2) GENO RESTA IN
+  FORTRAN se la pipeline intera resta funzionale (dual-code M0 VI.7;
+  interop = criterio G0). Deviazioni dichiarate: concorrenza con S4
+  sullo stesso tree (riconciliata, contenuti disgiunti, sessione
+  rinumerata S4->S5); install JAX dichiarata (reversibile). Verdetti:
+  gate pre-esecuzione PASS senza delta; Lemma A: nessuna discrepanza
+  teoria/corpus; spike: VERDICT PASS.
+
+- **S4 (2026-07-16, "G5 dispatch + venue P-2", concorrente a S5)** —
+  Log proprio: validation/PROGRESS_2026-07-16_S4_G5venue.md (6 passi).
+  f6a5112: pacchetto d'invio G5 pronto (email completa, destinatario
+  web-verificato Boaga, Item 2a rescopato in-house); 5540fe2: venue
+  P-2 DECISA su delega (AIAA J + arXiv a (G5 ∧ Lemma A pronta),
+  fallback Aerospace con trigger, JOTA terziaria); cd903d1: chiusura.
 
 - **S1 (2026-07-16)** — Formalizzazione + survey + audit completi:
   M0 (Teorema 0 catena della spinta; O1/O2; T0 rafforzato; N-SW;

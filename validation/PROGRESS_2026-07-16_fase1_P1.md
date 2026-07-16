@@ -221,3 +221,29 @@ RATIFICATION — no implementation).
     numpy pin intact; implicit-vjp discipline demonstrated; decision
     G0 remains formally at Fase 2 per plan, now INSTRUCTED by an
     executable artifact.
+22. [T3 COMMIT] b07b47e "[F2-prep/G0] (T3): JAX spike - differentiable
+    MOC unit processes with implicit custom_vjp, PASS".
+23. [USER Q&A — logged] User asked (mid-session) for the formal
+    restatement of what/how/why JAX and for the gamma-variable status
+    of the whole chain (incl. Rankine-Hugoniot). Answered in the
+    session summary with pointers of record: RH jump conditions =
+    EOS-general conservation statements, and T3's Lemma A scaling is
+    verified ACROSS transversal shocks for gamma(T) (M0 Theorem 5
+    proof, degree-1 homogeneity of RH fluxes at fixed (u,T)); V_id of
+    Prop. G-B is EOS-general (h(s, Pa)); the sonic-CAP criterion is
+    EOS-general while its closed-form critical-ratio EVALUATION in the
+    executable ladder is gamma = const (declared); gamma = const
+    boundaries of record: T3 Lemma B, corner<->eps bijection (E4,
+    oracle S-H 1971 Table 2/G2), S-H eps-rung closed forms, spike PM
+    function (declared in-file); A1 engine = gamma(T) backend by
+    design (M0 VI.2), REACTING gas is the separate N4 rung (Hoffman
+    p. 676: corner dies, E = 0 replaces it). No new record needed —
+    all statuses already written in M0/D3/draft/memory.
+24. [R3 CHIUSURA] PROGRESS updated (new ORA = S5 closure with S4
+    interleave; NEXT 1-4 for S6; BLOCCATO: G0 row updated with spike
+    verdict + GENO-interop criterion; LOG: S5 + S4 entries added).
+    Project memory updated (research-cycle-averaged-rao: S5 state +
+    two user directives; new memory gamma-variable-generality.md +
+    MEMORY.md index). Session log CLOSED at step 24. Deviations
+    declared: concurrency with S4 (reconciled); JAX install (declared,
+    reversible); no other deviations from the plan.
