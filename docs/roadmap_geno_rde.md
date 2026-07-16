@@ -138,7 +138,8 @@ vs GENO, dot-product test (oracle O3) at machine precision.
   N3: per-phase nonuniform inlet (M, theta profiles from the detonation
       chain): gain/loss vs clean-blowdown assumption;
   N4: per-phase gamma(T): contour-level confirmation of the quasi-1D
-      -0.001% estimate (expected null; publishes as a bound).
+      -0.00028% measurement (A0.3 in-repo number of record, D3 §5.2;
+      expected null; publishes as a bound).
   Each number ships with its hypothesis-ledger row and oracle record.
 
 Milestone M2 (month ~12): certified first-of-their-kind quantitative
