@@ -146,7 +146,7 @@ unknown/equation per unit process + one adjoint row + a swirl oracle
 | Claim | Class | Symbolic suffices? | Carrier / residue |
 |---|---|---|---|
 | N6-1(a,b,c) swirl structure (pencil, kernel, laws) | THEOREM (EOS-general) | YES — finite algebraic identities | n6_swirl_kernel.py Part A |
-| G12-S1 extension to swirl (marching + front) | THEOREM* | structure YES; Li-Yu import NO (function space, inherits D2.5) | G12-S1 doc + Part A |
+| G12-S1 extension to swirl (marching + front) | THEOREM* | structure YES; Li-Yu import NO (function space, inherits D2.5 [C-D25U]) | G12-S1 doc + Part A |
 | N6-2 free-vortex verbatim extension | THEOREM | YES (identities) + one-line closure justification | Part B1-B2 + rejector R1 |
 | N6-3 obstruction identity (closure fails iff not free vortex) | THEOREM | YES | Part B3 (double control) |
 | N6-3 strong only-if (no alternative reduction) | SCHEMA | NO — needs a classification argument | falsifier: exhibit a reduction |

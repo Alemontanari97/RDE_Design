@@ -118,7 +118,7 @@ FRECHET-differentiable in w even though the state derivative is only
 a shift-derivative.
 
 THEOREM G12-S1 (shape differentiability in the marching class —
-THEOREM* ; conditionals NAMED below). Under (H1) uniform axial
+THEOREM* [C-D25U, C-MAJDA]; conditionals NAMED below). Under (H1) uniform axial
 spacelikeness margin, (H2) certified S1 reference (finitely many
 noninteracting Lax fronts with uniform strength margin, transversal
 wall/front intersections), (H3) wall perturbations in C^2 with the
@@ -175,8 +175,8 @@ verification tasks, not new mathematics.
 | Claim | Class | Carrier / falsifier |
 |---|---|---|
 | G12-L1 eigenstructure (det A_p ∝ u^2(u^2−c^2); pencil factorization; completeness) | THEOREM (EOS-general) | carrier Part 1 (symbolic, c^2 free) |
-| G12-L1 evolution reading => D2.5 theory applies with x as time | THEOREM* (imports D2.5 of record) | — (framework identification) |
+| G12-L1 evolution reading => D2.5 theory applies with x as time | THEOREM* (imports D2.5 of record [C-D25U]) | — (framework identification) |
 | G12-L2(a) linearized RH nonsingular strictly inside Lax | THEOREM | carrier Part 2 numeric + det identity; rejector R1 |
 | G12-L2(c) degeneration exactly characteristic (= Prop. A2 kernel) | THEOREM | carrier Part 2 limit check |
 | G12-L3 assembly = fitted-AD objects | SCHEMA (derived; regularity conditional) | O3 oracles (A1) |
-| THEOREM G12-S1 | THEOREM* (R-G12.1..3 named) | F1-F3 above |
+| THEOREM G12-S1 | THEOREM* (R-G12.1..3 named; inherits [C-D25U, C-MAJDA]) | F1-F3 above |

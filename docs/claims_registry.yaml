@@ -127,7 +127,7 @@ entries:
   class: SCHEMA
   scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat)"
   statement: "On the certified set D(delta, L_x, C_geo, C_dat) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — proof architecture U1-U4 named, none written."
-  doc: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
+  doc: "docs/rde_nozzle_conditionals.md#C-D25U"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
   inherits: []
   carrier: []
@@ -140,7 +140,7 @@ entries:
   class: SCHEMA
   scope: "THE shared front conditional (L4 ledger); S1 canonicity and front regularity across fitted shocks"
   statement: "Fitted transversal fronts are Majda-stable (uniform linearized RH nonsingularity with margins), licensing S1 canonicity and shift-differentiability across shocks."
-  doc: "docs/rde_nozzle_MASTER.md#D2.5"
+  doc: "docs/rde_nozzle_conditionals.md#C-MAJDA"
   proof: "docs/rde_nozzle_G12_S1.md#§2 The front brick"
   inherits: []
   carrier: ["X-G12"]

@@ -22,7 +22,7 @@ supersonicity M(xi, .) >= M_min > 1 on the terminal characteristics
 (both part of the D2.6 admission audits).
 
 THEOREM P3-S1 (averaged multiplier regularity, shock-free S1 class;
-class THEOREM* — conditional exactly on the declared P7 continuity
+class THEOREM* [C-D25U] — conditional exactly on the declared P7 continuity
 hypothesis, see step (iii) and §3). Under the above, for mu-a.e. xi
 the per-phase mass multiplier lambda2(xi) exists, is UNIQUE, satisfies
 the closed form
@@ -87,7 +87,7 @@ lambda2 in L^infinity(dmu). QED (iv), and the theorem.
         still expected continuous (Majda stability), but the rigorous
         continuous-dependence statement in the S1-with-shocks class is
         part of the same declared conditional as D2.5 canonicity:
-        P3-S1 inherits it. Class stays THEOREM* (conditional),
+        P3-S1 inherits it [C-MAJDA]. Class stays THEOREM* (conditional),
         degrading to SCHEMA if the front count changes on a
         mu-positive set (topology-switch phases are mu-null by T7's
         own hypothesis — consistent).

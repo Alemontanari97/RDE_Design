@@ -9,7 +9,7 @@ Verification-sufficiency discipline: this item is intrinsically
 FUNCTION-SPACE — no symbolic carrier can close it; what the machine
 HAS closed are its two finite-dimensional bricks (G12-L1 structure,
 G12-L2 front nonsingularity). Honest class: SCHEMA with proven
-bricks; target THEOREM* under the D2.5 estimates.
+bricks; target THEOREM* under the D2.5 estimates [C-D25U, C-MAJDA].
 
 ------------------------------------------------------------------------------
 ## §1 Statement (target)

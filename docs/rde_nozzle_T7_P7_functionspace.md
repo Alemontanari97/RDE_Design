@@ -78,7 +78,7 @@ PROOF (steps, each classed).
  (d): w(xi) is an explicit algebraic factor in the same bounded
       quantities (M0 T7(c)); measurable by (ii), bounded by (iii).
 
-CLASS: THEOREM* — conditionals: R-T7.1 (uniform Lipschitz/derivative
+CLASS: THEOREM* — conditionals: R-T7.1 [C-D25U] (uniform Lipschitz/derivative
 stability of the S1 solution map: the SAME D2.5 semiglobal-estimate
 conditional the whole program declares — nothing new is assumed),
 R-T7.2 (Frechet vs Gateaux modulus), R-G12.1..3 inherited at shocked
@@ -132,7 +132,7 @@ always relative to the certified class — which is the only class the
 certificates cover anyway. (P)(i)'s "monitored failure boundary"
 language is hereby the boundary of the compact sets of this theorem.
 
-CLASS: THEOREM* — conditional R-P7.1 (continuity of the solution map
+CLASS: THEOREM* — conditional R-P7.1 [C-D25U] (continuity of the solution map
 and of the margins: D2.5-inherited, same as R-T7.1); residue R-P7.2
 (the certified argmax may differ from the uncertified sup — declared
 and REPORTED, never hidden). Falsifier: a certified maximizing

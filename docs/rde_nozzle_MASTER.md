@@ -465,7 +465,7 @@ sits +6.3..+7.0% ABOVE the frozen ceiling on every PR (bars <= 0.003
 s; constant-cp known-answer through the eq machinery PASS, corrupted
 route rejected): the pair [frozen, equilibrium] is the executable
 MODEL BRACKET of the caloric closure at ceiling level (THEOREM*
-within the ideal-gas mixture closure pair; the frozen rung of the N4
+within the ideal-gas mixture closure pair [C-IGMIX]; the frozen rung of the N4
 ladder now carries its upper companion). Winner semantics UNCHANGED
 (closures, never hardware — D3 §10quater(5) applies verbatim to the
 real-route diagram).
@@ -632,10 +632,10 @@ Non-smoothness: topology-switch phases are mu-measure-zero with F
 continuous across them: Leibniz survives moving switches (boundary
 terms cancel); persistent kinks: Clarke subdifferentials.
 Named rigor gaps: [T-P3] P3 (lambda2 in L^2(dmu)) — UPGRADED 2026-07-16:
-THEOREM* in the shock-free S1 class (lambda2(xi) = -f2(lip data),
+THEOREM* [C-D25U] in the shock-free S1 class (lambda2(xi) = -f2(lip data),
 unique by scalar CQ, measurable + L^inf by margins; proof of record
 docs/rde_nozzle_P3_multipliers.md; residues R-P3.1/R-P3.2 named
-there; across fitted shocks it inherits the D2.5 conditional);
+there; across fitted shocks it inherits the D2.5 conditional [C-MAJDA]);
 T7 ITSELF UPGRADED same day ([F1/T7-FS],
 docs/rde_nozzle_T7_P7_functionspace.md §1): differentiation under the
 cycle integral is now THEOREM* — per-phase derivatives exist
@@ -645,7 +645,7 @@ condition + (**') are genuine L^1(dmu) statements (conditionals
 R-T7.1/2 named: the shared D2.5 uniform-estimate conditional [C-D25U]).
 [T-P7S1] P7 EXISTENCE attacked same day (same doc §2, THEOREM*): argmax exists
 on every margin-certified level set A_h^delta (finite-dim compactness
-+ closed margins + continuity via R-P7.1); the monitored failure
++ closed margins + continuity via R-P7.1 [C-D25U]); the monitored failure
 boundary of record IS the boundary of those level sets;
 [T-G12S1] G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
 [Bressan-Marson; Ulbrich]; quasi-1D design rigor [Cliff-Heinkenschloss-
@@ -658,7 +658,7 @@ the front brick (Lemma G12-L2, machine-verified with rejectors:
 linearized RH nonsingular strictly inside Lax, degeneration EXACTLY
 at characteristic fronts = the Prop. A2 kernel law); THEOREM G12-S1
 (THEOREM*, residues R-G12.1..3 named: D2.5-inherited regularity
-conditional, shift-differentiability citation TO-VERIFY, mesh limit
+conditional [C-D25U], shift-differentiability citation TO-VERIFY, mesh limit
 = Lemma B clause with target now stated). Carrier:
 validation/g12_shock_linearization.py, PASS with derived equilibrated
 tolerances.
