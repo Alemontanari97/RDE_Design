@@ -434,10 +434,41 @@ corrupted route is rejected. MEASURED PURGE DELTA of record: on the
 frozen-gamma_s closed-form oracle (bars ~0.002%, all significant) —
 the price of the caloric idealization at ceiling level, now a number
 with a rejector instead of a hypothesis. Vacuum rows: T-floor (200 K)
-truncated LOWER-BOUND instruments, declared. Residual (declared,
-PROGRESS NEXT): re-derive the OP-11-eps phase diagram itself on the
-real route; equilibrium-expansion (shifting) route as the upper
-bracket companion of the frozen rung.
+truncated LOWER-BOUND instruments, declared. Residual (declared S7):
+DISCHARGED 2026-07-17 (session S8 operativa, [F1/OP-0-gamma tail]) by
+the REAL-ROUTE DIAGRAM INSTANCE below and its equilibrium bracket.
+REAL-ROUTE DIAGRAM INSTANCE OF RECORD (2026-07-17, [F1/OP-0-gamma
+tail], session S8; src/thrust/phase_diagram_real.py + tests group
+(xii) + data/phase_diagram_real.{json,md}). The OP-11-eps phase
+diagram itself is now re-derived on the EOS-general primary route
+(same 90-cell grid, same anchor; closed forms NOWHERE in the primary
+computations): (i) the executable quasi-1D reduction of T7 (b)-(c)
+acquires its first EOS-GENERAL carrier — eps* solves the weighted
+condition <P_E(eps; xi)>_mu = Pa by inverting the REAL area-ratio map
+per phase (the closed form NPR(eps*) = <Pc>/Pa is demoted to its
+gamma = const oracle); real eps* = 3.49-3.52 across the grid vs the
+oracle's value at gamma_s (numbers of record in the JSON); (ii) the
+real adaptation knee sits BELOW the closed-form knee (10.38 vs ~12.9
+at PR = 90 — the caloric idealization overestimates the envelope the
+peak design needs, of record with bars); (iii) the map STRUCTURE is
+CONFIRMED at gamma(T): tie column at PR = 1, capped band, no bell
+cell, M1 attainment at eps_max >= knee_real on all 41 knee-fitting
+cells INCLUDING the 11 subcritical ones — the M1 duality-gap-zero
+extension is now certified EOS-GENERALLY, not only in closed forms;
+(iv) the naive-adaptation instrument never beats the cap and loses
+STRICTLY beyond the bar at the deepest-spread cells (two-level metric,
+PR = 90 gap 1.9e-2 s vs bar 1.4e-2 s) — the subcritical artifact
+generalized to the diagram level. EQUILIBRIUM BRACKET of record (same
+instance): the shifting-equilibrium ceiling (SP-equilibrate isentrope,
+Gibbs solver; eq sound speed from c^2 = dP/drho along the table)
+sits +6.3..+7.0% ABOVE the frozen ceiling on every PR (bars <= 0.003
+s; constant-cp known-answer through the eq machinery PASS, corrupted
+route rejected): the pair [frozen, equilibrium] is the executable
+MODEL BRACKET of the caloric closure at ceiling level (THEOREM*
+within the ideal-gas mixture closure pair; the frozen rung of the N4
+ladder now carries its upper companion). Winner semantics UNCHANGED
+(closures, never hardware — D3 §10quater(5) applies verbatim to the
+real-route diagram).
 COROLLARY (mechanism M1: duality-gap-zero globality). Under the T4
 closure with generous envelope, the untruncated peak-designed plug
 ATTAINS J_ideal ⇒ it is GLOBALLY optimal over all topologies. This is

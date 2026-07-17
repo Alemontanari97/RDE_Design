@@ -490,7 +490,26 @@ delta of record: real ceiling 4.4-7.9% below the gamma_s = const
 oracle on the 12 finite-Pa rows (derived bars ~0.002%; vacuum rows =
 declared T-floor lower-bound instruments). Full statement in M0
 Prop. 7 (GAMMA-PURGE INSTANCE OF RECORD). Residual declared: phase
-diagram on the real route; equilibrium-expansion bracket.
+diagram on the real route; equilibrium-expansion bracket —
+DISCHARGED 2026-07-17 (S8 operativa, [F1/OP-0-gamma tail]:
+src/thrust/phase_diagram_real.py + tests group (xii) +
+data/phase_diagram_real.{json,md}): the OP-11-eps diagram re-derived
+on the primary route (90 cells, closed forms nowhere): eps* from the
+EXECUTABLE weighted reduction <P_E(eps)>_mu = Pa (first EOS-general
+carrier of T7's quasi-1D reduction; closed form demoted to oracle),
+real knee BELOW the closed-form knee (10.38 vs ~12.9 at PR = 90), map
+structure confirmed at gamma(T) (tie column, capped band, no bell
+cell), M1 attainment EOS-generally certified on all 41 knee-fitting
+cells incl. 11 subcritical, naive instrument strictly rejected at the
+deepest-spread cells (two-level metric); PLUS the equilibrium
+(shifting) ceiling bracket: +6.3..+7.0% above the frozen rung on
+every PR (Gibbs-solver SP-equilibrate isentrope, derived bars,
+constant-cp known-answer + corrupted-route rejector) — the [frozen,
+equilibrium] pair is the executable model bracket of the caloric
+closure at ceiling level (THEOREM* within the ideal-gas mixture
+closure pair). Full statement in M0 Prop. 7 (REAL-ROUTE DIAGRAM
+INSTANCE OF RECORD). Winner semantics unchanged (§10quater(5)
+applies verbatim).
 
 LEMMA B DRAFT OF RECORD (2026-07-16, S7 operational session,
 [F1/P-2]: docs/rde_nozzle_P2_lemmaB.md = the paper's §4, implementing

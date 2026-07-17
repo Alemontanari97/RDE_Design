@@ -141,3 +141,98 @@ T3 [F1/OP-0-gamma tail], T4 [F1/P-2 polish, optional], T5 [LEADS, optional].
    A1 engine); P-B2 annotated with its first brick-level instance
    (dual-route order-scaling test). No class changed (THEOREM rows were
    self-contained; discipline preserved).
+
+8. ⚠️ SECOND CONCURRENCY EVENT + RECONCILIATION — between commits
+   a4e4964 (T1) and 001aecc (T2) the parallel rigor campaign COMMITTED
+   THREE times (da4cc31 T7-FS/P7 function space + M0 delta; ff97778
+   its closure incl. shared docs/rde_nozzle_PROGRESS.md; d94f033
+   N6 five-field + remaining-conditionals). Verified: (a) my T2 commit
+   diff on docs/rde_nozzle_P2_lemmaB.md contains ONLY my PENDING-
+   register hunk (no foreign content swept in — path-limited discipline
+   held); (b) file sets disjoint (their targets: M0 T0-caution/N6, M0
+   T7, new G12/N6/T7-FS docs; mine: P-1 sections, spike twin, lemmaB
+   register); (c) NAMING RECONCILED: their PROGRESS entry already
+   declares "S8-rigore ... concorrente alla S8 operativa" — THIS
+   session keeps the S8-OPERATIVA label, no renumbering needed
+   (precedent S6/S7 pattern, applied by them). CONSEQUENCE for T3/
+   closure: M0 and docs/rde_nozzle_PROGRESS.md must be RE-READ before
+   my edits (their T0/T7 hunks landed after my session-open read; my
+   T3 target = Prop. 7 GAMMA-PURGE paragraph, disjoint from their
+   hunks — verified in the diff). T2 commit: 001aecc.
+
+9. T3 [F1/OP-0-gamma tail] EXECUTED (session crossed midnight: steps
+   9+ dated 2026-07-17) — src/thrust/phase_diagram_real.py: the
+   OP-11-eps diagram RE-DERIVED ON THE PRIMARY EOS-GENERAL ROUTE
+   (bounds_gamma reuse: Cantera h(s,P) frozen-CJ isentrope, sonic cap
+   w(P*) = h0; ONE shared table re-anchored at the highest grid P0 —
+   all cells share the anchor entropy s0), 90 cells, closed forms
+   NOWHERE in the primary computations. NEW EXECUTABLE OBJECTS:
+   (a) eps*_real from the weighted-transversality quasi-1D reduction
+   <P_E(eps; xi)>_mu = Pa solved by bisection on the REAL area-ratio
+   inversion — FIRST EOS-GENERAL CARRIER of T7's executable reduction
+   (closed form NPR(eps*) = <Pc>/Pa demoted to its oracle);
+   (b) knee_real = real adaptation area ratio of the peak phase.
+   RESULTS OF RECORD (data/phase_diagram_real.{json,md}): eps* =
+   3.494..3.519 across PR 1..90; knee_real 3.49..10.38 — BELOW the
+   closed-form knee (~12.9 at PR = 90): the caloric idealization
+   overestimates the envelope needed by the peak design; map structure
+   CONFIRMED at gamma(T): PR = 1 column all tie, capped band, ZERO
+   bell cells, M1 attainment on all 41 knee-fitting cells INCLUDING
+   11 subcritical (EOS-general certification of the M1 extension);
+   naive instrument never beats the cap, strict loss beyond bar at
+   the deepest-spread cells (PR = 90: gap 1.88e-2 s vs bar 1.43e-2 s).
+   EQUILIBRIUM BRACKET: shifting-equilibrium ceiling (SP-equilibrate,
+   Gibbs solver — ChemEquil warned outside its 3000 K guess range and
+   was REPLACED, deviation declared-and-fixed; eq sound speed from
+   c^2 = dP/drho on the table) sits +6.34..+6.97% ABOVE the frozen
+   ceiling on every PR, bars <= 0.003 s; constant-cp known-answer
+   through the eq machinery rel 1.0e-8 vs tol 1.6e-5 PASS, corrupted
+   route REJECTED. Executable fix found-and-declared during bring-up:
+   table floor Pa/8 (ceiling-only margin) insufficient for the
+   area-ratio inversion at PR >= 32 — extended to Pa/64 with derived
+   rationale; the eps_star_real RuntimeError guard remains as the
+   grid-outrun rejector. Two sub-bar honesty items: near-critical
+   cells (PR 49.21/64) have naive-capped gaps GENUINELY below the
+   derived bar — the per-cell invariant is two-level (never-beats
+   everywhere + strictness at the deepest cells), bounds_gamma
+   precedent, NOT a tolerance retune.
+
+10. T3 tests + lint — NEW GROUP (xii) tests/test_phase_diagram_real.py
+    (E1-E8: fresh invariants on 90 cells, declared live-recompute
+    subset = blessed-PR block, T3/T4-M1 oracles, two-level naive
+    metric, eq bracket + LIVE corrupted known-answer rejection, 6
+    negative controls, cross-anchor to bounds_ladder_real within
+    summed bars diff 6.0e-4 s vs 1.3e-2 s): 20/20 PASS. run_all.py
+    registered (suite now 12 groups). Numeric lint (vii): 7 new
+    literals classified in validation/numeric_allowlist.json
+    (NUMERIC/SPEC with rationale), lint PASS 22 files / 0 unlisted.
+
+11. T3 R4 (same session) — M0 Prop. 7: S7 residual marked DISCHARGED
+    + new REAL-ROUTE DIAGRAM INSTANCE OF RECORD paragraph (eps*
+    carrier, knee-below-oracle, EOS-general M1, two-level naive
+    metric, equilibrium bracket THEOREM* with winner-semantics
+    reaffirmation); D3 §8 purge item: residual discharged with the
+    same content. Edits verified disjoint from the S8-rigore hunks
+    (T0-caution/N6 and T7 areas untouched by me).
+
+12. FULL SUITE GREEN — python tests/run_all.py: 13/13 groups PASS in
+    201 s (the 12 expected fast groups (i)-(xii) + slow live
+    examples). Group (xii) = 20/20 checks, E5 restructured to the
+    two-level naive metric after the honest sub-bar finding (step 9),
+    both negative-control paths verified firing.
+
+13. T4 [F1/P-2 rifiniture] EXECUTED — (a) LEXICAL-TRAP FOOTNOTE
+    inserted in docs/rde_nozzle_P2_lemmaA.md §3.0 (AIAA 94-3264
+    "adjoint constraints" = ADJOINED isoperimetric constraints, not
+    the adjoint PDE; NEXT-0 inherited from S6 rigore, now discharged);
+    (b) CONTINUOUS ANCHORS cross-reference inserted in
+    docs/rde_nozzle_P2_lemmaB.md after the Prop.-A1-twin remark:
+    (B.6) transports Prop. A3's invariant, J_k^{-T} solvability uses
+    Prop. A2's off-kernel nondegeneracy (explicit pointers to lemmaA
+    §3.3-§3.4 + the dual-route carrier); (c) P-A script consolidation
+    EVALUATED, decision DEFERRED with data: measured runtimes
+    pa1_symbolic_lemmaA.py 5.4 s + p2_pA1_symbolic_adjoint.py 51.0 s
+    (both PASS standalone today) -> a combined suite group (xiii)
+    would add ~1 min and exceed the declared 12-group S8 target;
+    proposal for NEXT: subprocess group '(xiii) P-A symbolic
+    carriers' running both scripts, cost ~56 s.

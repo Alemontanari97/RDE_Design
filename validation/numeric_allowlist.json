@@ -802,6 +802,38 @@
      "note": "known-answer corruption amplitude 1e-4: two decades above TOL_KA, so the rejector MUST fire (and does, 8.7e-5 measured)"
     }
    }
+  },
+  "src/thrust/phase_diagram_real.py": {
+   "values": {
+    "401": {
+     "cls": "NUMERIC",
+     "note": "per-cell phase grid (odd for nested Richardson at 201); quadrature error carried as the derived bar_quad per PR block, Richardson-checked"
+    },
+    "241": {
+     "cls": "NUMERIC",
+     "note": "equilibrium isentrope table density (odd for nested Richardson at 121); table error carried as the measured bar_tab per bracket row"
+    },
+    "60": {
+     "cls": "NUMERIC",
+     "note": "eps* bisection budget: 2^-60 interval reduction << all derived bars (same rationale as bounds_gamma bisections)"
+    },
+    "64.0": {
+     "cls": "NUMERIC",
+     "note": "two sites, both derived: (i) roundoff floor factor C_RND (ops-count scale, same as bounds_gamma); (ii) table floor Pa/64 - branch depth for the area-ratio inversion at the deepest PR=90 phase (docstring + comment rationale; eps_star_real RuntimeError guard rejects an outrun grid)"
+    },
+    "3000.0": {
+     "cls": "SPEC",
+     "note": "known-answer oracle chamber temperature (same synthetic constant-cp KA case as bounds_gamma)"
+    },
+    "20.0": {
+     "cls": "SPEC",
+     "note": "known-answer oracle chamber pressure 20 atm (same synthetic KA case as bounds_gamma)"
+    },
+    "0.0001": {
+     "cls": "NUMERIC",
+     "note": "known-answer corruption scale (1+1e-4 on the eq enthalpy column): far above TOL_KA, far below O(1) - the rejector must fire (mirrors bounds_gamma corrupted-route scale)"
+    }
+   }
   }
  }
 }
