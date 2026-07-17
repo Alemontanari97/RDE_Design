@@ -1,0 +1,21 @@
+# validation/INDEX.md — session-log index (audit trail, never normative)
+
+One line per total-order session log (CLAUDE.md R3 + standing
+directive). Sessions S1-S2 predate the standing one-log-per-session
+rule in part; concurrency events are declared inside the logs
+themselves. Ordering = session number (calendar order broke down on
+2026-07-16: six concurrent interleavings, all reconciled — see each
+log's declarations). The registry (docs/claims_registry.yaml) and
+PROGRESS are the normative layers; these logs are evidence.
+
+| Session | Log | Content (one line) |
+|---|---|---|
+| S2 (+S1 gate record) | PROGRESS_2026-07-16_fase0_OP0.md | Fase 0 closure + OP-0 bound ladder (sonic-cap discovery); gamma probe A0.3; suite 9/9 |
+| S3 | PROGRESS_2026-07-16_fase1_OP11.md | OP-11-eps phase diagram 90 cells + P-2 outline + G5 commissioning text |
+| S4 | PROGRESS_2026-07-16_S4_G5venue.md | G5 dispatch package + P-2 venue decision (delegated) |
+| S5 | PROGRESS_2026-07-16_fase1_P1.md | P-1 skeleton (claim map C1-C26) + P-2 Lemma A draft + G0 JAX spike 52/52 |
+| S6 (rigore) | PROGRESS_2026-07-16_rigore_PA.md | P-A1/P-A1'/P-A2 discharged (Prop. A2/A3, Hoffman page-read); P3 THEOREM*; corpus study b0bis |
+| S7 (operativa) | PROGRESS_2026-07-16_fase1_S7.md | Lemma B draft + dual-route A2 + gamma purge at ladder level + PMM sweep 204/204 (Kraiko-Osipov flag) |
+| S8-rigore | PROGRESS_2026-07-16_rigore_G12.md | G12-S1 theorem (x-as-time) + N6 swirl campaign + S1-U bricks + T7-FS/P7-S1 + conditionals doc |
+| S8-operativa | PROGRESS_2026-07-16_fase1_S8.md | P-1 §2/§4 full text + spike axisym/shock/interop (P-B1 brick) + real-route diagram + eq bracket |
+| S9 (ordine) | PROGRESS_2026-07-17_S9_ordine.md | SCAFFOLD migration M-1..M-5: claims registry + lint (xv) + M0 spine + L4 ledger + carrier tiers (xiii)/(xiv); D6 delta-pass; cleanup |

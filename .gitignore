@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+# ad-hoc console redirects (reproducible ephemera; S9 T7 rule)
+scratch_*.txt
