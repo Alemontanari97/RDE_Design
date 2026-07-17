@@ -223,3 +223,25 @@ the attackability assessment given in-conversation).
     NO-symbolic-carrier per the sufficiency discipline. CAMPAIGN NOW
     COMPLETE over every point of the attackability assessment.
     SESSION 8 RIGOR THREAD FINALLY CLOSED at step 20.
+
+21. [SCAFFOLD — user architectural request, 2026-07-17] "come
+    rivedresti tutta la pipeline in un documento perfetto": WROTE
+    docs/rde_nozzle_SCAFFOLD.md — architecture of record for the
+    theory corpus: §0 honest diagnosis (complete but distributed);
+    §1 six-layer target (L0 anchor incl. standing directives ->
+    L1 definitions -> L2 statements-by-ID -> L3 proofs -> L4
+    conditionals ledger (C-D25U + C-MAJDA stated once) -> L5
+    implementation pins -> L6 open register; session logs = audit
+    trail, never normative); §2 THE CLAIM REGISTRY (theory-as-code):
+    YAML schema (id/kind/class/scope/inherits/carrier/
+    suffices_symbolic/falsifier/gamma) + CLAIM LINT test with
+    rejector + the FULL SEED INVENTORY of the graph as of today
+    (~40 IDs: definitions, conditionals, theorems, schemas,
+    conjectures, carriers, oracles, directives); §3 maintainer
+    contract (model-agnostic, 6 rules: registry-first, ID-before-
+    citation, R4-to-registry, conditional parsimony, R5/honesty
+    unchanged, code-never-front-runs-registry); §4 bounded migration
+    plan M-1..M-5 with acceptance criteria (zero mathematical risk,
+    lint-guarded); §5 what it buys (two-page onboarding; drift
+    machine-rejected; papers cite IDs; the C-D25U+C-MAJDA-only
+    residual honesty stays structurally visible).
