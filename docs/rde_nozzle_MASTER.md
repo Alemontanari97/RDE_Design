@@ -53,7 +53,7 @@ due diligence: Kraiko-1979/PMM human pass (gate G5) before submission.
 ==============================================================================
 PART II — FORMAL DEFINITIONS
 
-D2.1 (Domain and constraint). Reactive compressible Euler (viscous
+[D-DOM] D2.1 (Domain and constraint). Reactive compressible Euler (viscous
 closure = declared model layer) in Omega(S) = E \ S, E an envelope
 cylinder downstream of the annulus, S the SOLID SET (design variable)
 with attachment at the chamber lip(s) and uniform cone condition.
@@ -61,19 +61,19 @@ Configurations (bell / plug / shrouded / E-D / ...) are the topology
 sectors of S — outputs, not inputs. Working class A: spline manifolds
 in uniform C^{1,1} per sector.
 
-D2.2 (Exact objective). J_exact[S] = lim_{T->inf} (1/T) Int_0^T F_S(t)dt,
+[D-JEX] D2.2 (Exact objective). J_exact[S] = lim_{T->inf} (1/T) Int_0^T F_S(t)dt,
 F_S(t) = Int_S [rho u_x (u.n) + (p - Pa) n_x] dA on any enclosing
 axisymmetric control surface; requires an attractor with invariant
 measure (statistical stationarity — the weakest standing hypothesis)
 and a solution concept (D2.5). Pa constant.
 
-D2.3 (Operating measure and averaged objective). mu = pushforward of
+[D-MU] D2.3 (Operating measure and averaged objective). mu = pushforward of
 normalized cycle time under t -> xi; averaged (rung-2) objective
 J[Sigma] = Int F[Sigma; s(xi)] dmu(xi), with F the steady per-state
 thrust (wall form or Rao control-surface form; equal by the momentum
 theorem in the S1 class).
 
-D2.4 (Design interface Gamma_d). A fixed axisymmetric surface
+[D-CONTRACT] D2.4 (Design interface Gamma_d). A fixed axisymmetric surface
 downstream of all heat release carrying the data family s(xi); the
 CONTRACT is (Gamma_d, data class, validity): R1 causal separation;
 R2 well-posed data (full state only on axially supersonic patches —
@@ -83,7 +83,7 @@ Idealization ladder: I0 coupled bilevel / I1 wave-frame steady field /
 I2 per-phase meridional profiles / I3 sonic family (P0,T0)(xi) /
 I4 single mean state.
 
-D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
+[D-S1] D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
 many transversal fronts, no wall-shock formation): classically
 well-posed (Li Ta-tsien semi-global framework), membership checkable a
 posteriori (Sternin/Rao-Beck boundary function). CANONICITY (corrected,
@@ -97,13 +97,13 @@ Lipschitz and the general multi-D weak-strong property is OPEN;
 partial support: 1-D uniqueness of BV/piecewise-smooth solutions
 (Bressan school) and shift/a-contraction shock stability (Vasseur-
 Krupa line, essentially 1-D). S1 canonicity WITH shocks is therefore a
-DECLARED conditional (backed by Majda stability of the fitted fronts),
+DECLARED conditional (backed by Majda stability of the fitted fronts [C-MAJDA]),
 not a theorem — ledger-grade honesty, consistent with the panel's
 refutation of relative-entropy certificates for shocked orbits. S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 
-D2.6 (THE PROBLEM OF RECORD (P) — canonical fusion of Part II + Part IV).
+[D-P] D2.6 (THE PROBLEM OF RECORD (P) — canonical fusion of Part II + Part IV).
 GIVEN: envelope E (axisymmetric, L_E, R_E), attachment set Λ, constant
 Pa > 0; interface contract (Gamma_d, D, mu) with the stage-A admission
 audits passed (characteristic completeness on axially supersonic
@@ -157,7 +157,7 @@ changing form.
 PART III — THEOREMS WITH PROOFS
 
 ------------------------------------------------------------------------------
-THEOREM 0 (the definition chain of RDE thrust — why the phase integral
+[T-TH0] THEOREM 0 (the definition chain of RDE thrust — why the phase integral
 is legitimate). THEOREM (exact links) + one declared choice + one
 priced approximation.
 DEFINITION (mechanical thrust): F_wall(t) = Int_W (p - Pa) n_x dA over
@@ -209,7 +209,7 @@ quasi-steady step is exact, and "kHz unsteadiness" does NOT imply the
 mean thrust needs unsteady corrections at the balance level.
 
 ------------------------------------------------------------------------------
-PROPOSITION 1 (O1 — objective equivalence at frozen choked feed). THEOREM.
+[T-O1] PROPOSITION 1 (O1 — objective equivalence at frozen choked feed). THEOREM.
 Hypotheses: (i) the cycle family, period and A_t are Sigma-independent
 (frozen family H-F1); (ii) mdot(t) = Pc(t) A_t / c*(t) (choked feed H2).
 Claim: argmax_Sigma Isp_cycle = argmax_Sigma J, and the Isp numerator
@@ -224,7 +224,7 @@ Note: with a fully axially supersonic data interface (L4), (i) and the
 mdot-independence hold EXACTLY without invoking upstream choking.
 
 ------------------------------------------------------------------------------
-LEMMA 2 (O2 — log-uniform measure). THEOREM.
+[T-O2] LEMMA 2 (O2 — log-uniform measure). THEOREM.
 For the exponential blowdown Pc(xi) = P_CJ · PR^(-xi), xi ~ U[0,1):
 xi = -ln(Pc/P_CJ)/ln PR, so dmu_P = dPc/(Pc ln PR) on [P_CJ/PR, P_CJ]:
 the engine's canonical operating measure is LOG-UNIFORM in pressure.
@@ -232,7 +232,7 @@ QED. (Any measured cycle simply replaces mu_P; the theory is
 measure-agnostic.)
 
 ------------------------------------------------------------------------------
-THEOREM 3 (T0 — wave-frame exactness, strengthened). THEOREM.
+[T-T0] THEOREM 3 (T0 — wave-frame exactness, strengthened). THEOREM.
 Hypotheses: rotating-pattern flow q(x,r,theta,t) = q~(x,r,theta - W t)
 (W := Omega_w; piecewise-smooth, transversal fronts); S fixed
 axisymmetric; Pa constant.
@@ -259,15 +259,15 @@ UPGRADE (2026-07-16, [F1/N6-S1], docs/rde_nozzle_N6_swirl.md +
 machine-verified carrier): the boundary is now THEOREM-grade SHARP —
 (i) the swirl STRUCTURE theorems hold (meridional Mach lines
 unchanged, swirl = triple streamline transport, kernel laws
-identical: N6-1, symbolic-sufficient); (ii) Rao's machinery DOES
+identical: N6-1 [T-N6-1], symbolic-sufficient); (ii) Rao's machinery DOES
 extend verbatim to FREE-VORTEX swirl (uniform r·u_theta, h0, s) with
-W = meridional speed (N6-2, THEOREM); (iii) beyond free vortex the
+W = meridional speed (N6-2 [T-N6-2], THEOREM); (iii) beyond free vortex the
 pointwise control-surface closure fails by an exact obstruction
-identity (N6-3) — field-level (five-field/AD) machinery NECESSARY;
-the five-field optimality system is the named SCHEMA.
+identity (N6-3 [T-N6-3]) — field-level (five-field/AD) machinery NECESSARY;
+the five-field optimality system is the named SCHEMA [S-5F].
 
 ------------------------------------------------------------------------------
-LEMMA 4 (N-SW — spacelikeness is frame-invariant; the swirl audit). THEOREM.
+[T-NSW] LEMMA 4 (N-SW — spacelikeness is frame-invariant; the swirl audit). THEOREM.
 In the wave frame w_theta ~ u_theta - W r ~ -D_CJ: streamlines are
 strongly helical. Distinguish:
  (a) TYPE: the steady operator is hyperbolic where |w| > c (real Mach
@@ -291,7 +291,7 @@ Newton-Krylov), which marches nothing. The huge relative swirl never
 enters rung 2: it IS the O(St) sweep term.
 
 ------------------------------------------------------------------------------
-THEOREM 5 (T3 — the collapse, fixed wall). THEOREM.
+[T-T3] THEOREM 5 (T3 — the collapse, fixed wall). THEOREM.
 Hypotheses: H1 one frozen gamma common to all phases; H2' fixed wall,
 full-flowing, supersonic exit at every phase (ambient-blind interior);
 H3 phase-independent nondimensional inflow shape (phases differ only
@@ -336,7 +336,7 @@ collapses to <Pa> — cycle average and altitude average are one
 mathematics (the dual-bell literature exists because SEPARATION breaks
 the linearity); (C3) oracle O1: any ensemble machinery run under
 H1-H4 MUST return Rao-at-<Pc> with Delta-Isp = 0.
-Sharpness: two-phase two-gamma counterexample — J = (1/2)[a(g1)Pc1 +
+Sharpness [T-T3-CE]: two-phase two-gamma counterexample — J = (1/2)[a(g1)Pc1 +
 a(g2)Pc2] - Pa b is not of the collapsed form; first-order closure
 gamma_eff = <Pc gamma>/<Pc> (~ gamma_CJ under blowdown weighting: the
 S-H freeze-at-CJ choice retro-justified); design penalty second order
@@ -346,8 +346,8 @@ it) — the N4 ladder: frozen ⊂ gamma(T) (fails in principle, small in
 practice, E4 oracle pending) ⊂ finite-rate (adjoint-level mandatory).
 
 ------------------------------------------------------------------------------
-THEOREM 6 (T4 — plug simultaneous optimizability). THEOREM* (under the
-ideal-adaptation closure: wall pressure clamps to Pa downstream of each
+[T-T4] THEOREM 6 (T4 — plug simultaneous optimizability). THEOREM* (under the
+ideal-adaptation closure [C-HT4]: wall pressure clamps to Pa downstream of each
 phase's full-expansion point; upstream, T3-class scaling).
 Claim: per phase, F[Sigma_l; s(xi)] is nondecreasing in plug extension l
 and exactly constant for l >= l(xi), with l(xi) increasing in Pc(xi);
@@ -377,7 +377,7 @@ duty: the ideal-adaptation closure is published as a BOUND for
 detonation cycles (Kraiko-Egoryan) — cite next to the closure.
 
 ------------------------------------------------------------------------------
-PROPOSITION 7 (G-B — geometry-free upper bound) and COROLLARY (global
+[T-GB] PROPOSITION 7 (G-B — geometry-free upper bound) and COROLLARY (global
 optimality over ALL topologies). THEOREM-grade / mechanism M1.
 Claim: for ANY solid set S in ANY topology, under choked frozen feed:
     J[S] <= J_ideal = Int F_id(s(xi); Pa) dmu(xi),
@@ -458,7 +458,7 @@ extension is now certified EOS-GENERALLY, not only in closed forms;
 (iv) the naive-adaptation instrument never beats the cap and loses
 STRICTLY beyond the bar at the deepest-spread cells (two-level metric,
 PR = 90 gap 1.9e-2 s vs bar 1.4e-2 s) — the subcritical artifact
-generalized to the diagram level. EQUILIBRIUM BRACKET of record (same
+generalized to the diagram level. EQUILIBRIUM BRACKET [T-EQBR] of record (same
 instance): the shifting-equilibrium ceiling (SP-equilibrate isentrope,
 Gibbs solver; eq sound speed from c^2 = dP/drho along the table)
 sits +6.3..+7.0% ABOVE the frozen ceiling on every PR (bars <= 0.003
@@ -482,7 +482,7 @@ proven limits: spread->0 ⇒ sectors tie at the Rao value (T3);
 generous envelope ⇒ free boundary attains the ceiling (T4/M1);
 vacuum ⇒ no finite optimum; tight length + large spread ⇒ duty split
 (C1, open).
-EPS-LEVEL INSTANCE OF RECORD (2026-07-16, [F1/OP-11-eps];
+[T-OP11e] EPS-LEVEL INSTANCE OF RECORD (2026-07-16, [F1/OP-11-eps];
 src/thrust/phase_diagram.py + rejector tests + data/phase_diagram.json
 + figs/phase_diagram_op11.png; full statement D3 §10quater). The OP-11
 interpolation is COMPUTED AND CERTIFIED at the eps rung (90-cell
@@ -607,7 +607,7 @@ remark above, this is the second citable bridge for paper P-1 (target
 venue: JPP class).
 
 ------------------------------------------------------------------------------
-THEOREM-SCHEMA 8 (T7/T2 — the averaged stationarity system). SCHEMA.
+[T-T7FS] THEOREM-SCHEMA 8 (T7/T2 — the averaged stationarity system). SCHEMA.
 Maximize J over Sigma in a restricted class, per-phase steady Euler
 constraints (adjoint psi_xi per phase), per-phase mass flow fixed
 (function-valued multiplier lambda2(xi) in the control-surface
@@ -631,7 +631,7 @@ Stationarity structure (verified formally):
 Non-smoothness: topology-switch phases are mu-measure-zero with F
 continuous across them: Leibniz survives moving switches (boundary
 terms cancel); persistent kinks: Clarke subdifferentials.
-Named rigor gaps: P3 (lambda2 in L^2(dmu)) — UPGRADED 2026-07-16:
+Named rigor gaps: [T-P3] P3 (lambda2 in L^2(dmu)) — UPGRADED 2026-07-16:
 THEOREM* in the shock-free S1 class (lambda2(xi) = -f2(lip data),
 unique by scalar CQ, measurable + L^inf by margins; proof of record
 docs/rde_nozzle_P3_multipliers.md; residues R-P3.1/R-P3.2 named
@@ -642,12 +642,12 @@ cycle integral is now THEOREM* — per-phase derivatives exist
 (classical + G12-S1), are measurable (P3 composition) and uniformly
 dominated by the audited margins, so dJ = Int F' dmu and the wall
 condition + (**') are genuine L^1(dmu) statements (conditionals
-R-T7.1/2 named: the shared D2.5 uniform-estimate conditional).
-P7 EXISTENCE attacked same day (same doc §2, THEOREM*): argmax exists
+R-T7.1/2 named: the shared D2.5 uniform-estimate conditional [C-D25U]).
+[T-P7S1] P7 EXISTENCE attacked same day (same doc §2, THEOREM*): argmax exists
 on every margin-certified level set A_h^delta (finite-dim compactness
 + closed margins + continuity via R-P7.1); the monitored failure
 boundary of record IS the boundary of those level sets;
-G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
+[T-G12S1] G12 (multi-D fitted-shock shape derivative: theorem only in 1-D
 [Bressan-Marson; Ulbrich]; quasi-1D design rigor [Cliff-Heinkenschloss-
 Shenoy]; 2-D practice [Baeza et al.]) — ATTACKED 2026-07-16
 ([F1/G12-S1], docs/rde_nozzle_G12_S1.md): within the S1 marching
@@ -662,7 +662,7 @@ conditional, shift-differentiability citation TO-VERIFY, mesh limit
 = Lemma B clause with target now stated). Carrier:
 validation/g12_shock_linearization.py, PASS with derived equilibrated
 tolerances.
-Executable reduction (verified in-repo): quasi-1D, only exit-area DOF:
+[T-T7RED] Executable reduction (verified in-repo): quasi-1D, only exit-area DOF:
 (b)-(c) degenerate to <p_e(xi)> = Pa, i.e. NPR(eps*) = <Pc>/Pa — the
 repo's Theorem 1 with its wrong-averaging rejector test.
 
