@@ -1,12 +1,77 @@
 # PROGRESS — cycle-averaged variational nozzle program (living state)
 
 > Single source of truth della progressione. Aggiornare a OGNI chiusura
-> di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
-> qui + memoria + M0, senza ricostruire nulla.
+> di sessione/fase (CLAUDE.md R3). PROTOCOLLO DI APERTURA (dalla S10,
+> ordine S9): memoria di progetto + L0 (SCAFFOLD §1: obiettivo e
+> regole) + docs/claims_registry.yaml (l'INDICE della teoria, lintato
+> dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
+> del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-17, chiusura Sessione 8 — OPERATIVA: "P-1 §2/§4 +
-## spike axisym/shock + diagramma route reale"; CONCORRENTE con la
-## S8-rigore E col filone SCAFFOLD, riconciliata due volte)
+## ORA (2026-07-17, chiusura Sessione 9 — ORDINE DI PROGETTO
+## [F1/SCAFFOLD-M]: migrazione M-1..M-5 + riallineamento D6 + pulizia;
+## NESSUNA concorrenza rilevata — prima sessione pulita dopo sei
+## violazioni)
+
+Branch `rde-nozzle-program`. Log a ordine totale:
+validation/PROGRESS_2026-07-17_S9_ordine.md (gate pre-esecuzione PASS
+al passo 4; 17 passi). Commit: M-1 = 898f480, M-5 = 8a2c946,
+M-2 = 5aa71dd, M-3 = 605306c, M-4 = 7e1dfa9, T6 = b2b3570,
+T7 = 2fc6222. Rischio matematico ZERO rispettato: ogni diff sui doc
+di teoria è structure-only (ispezione hunk-per-hunk a log).
+
+- **[M-1] REGISTRO DEI CLAIM** (`docs/claims_registry.yaml`): 83 voci
+  tipizzate (schema SCAFFOLD §2: id/kind/class/scope/statement/doc/
+  proof/inherits/carrier/suffices_symbolic/falsifier/gamma) — seed §2
+  trascritto e COMPLETATO contro il tree reale (novità S8-op censite:
+  T-EQBR, T-T7RED, X-G0AX, X-P2A1, gruppi suite come carrier;
+  identificazioni Lemma A (i)/(ii)/(iii) da upgrade S6; condizionali
+  di chiusura C-HT4/C-IGMIX/C-O33 giustificati per contratto §3.4;
+  direttive e record paper). Ogni ancora risolve; YAML subset stretto
+  dichiarato (niente dipendenza PyYAML).
+- **[M-2] CLAIM LINT** (`tests/test_claims_lint.py`, gruppo (xv)):
+  parse + ancore + riferimenti + appartenenza-suite (esenzione
+  on-demand sintatticamente vincolata per gli spike jax) + vincoli di
+  schema + grep ID orfani; REJECTOR DIMOSTRATO AD OGNI RUN (tre
+  violazioni seminate in-memory → tutte rigettate, o il gruppo
+  fallisce). La teoria non può più derivare silenziosamente dal suo
+  indice.
+- **[M-3] SPINE ID SU M0**: 29 righe, tutte pure inserzioni di tag
+  ([D-P], [T-TH0], ..., [T-T7FS]; tag inline solo nei siti non
+  ambigui); prove intatte al loro posto; grep di coerenza PASS.
+- **[M-4] LEDGER L4** (`docs/rde_nozzle_conditionals.md`): C-D25U e
+  C-MAJDA enunciati UNA volta (trascrizione dalle fonti di record) con
+  dischargers ed eredi per ID; pass di riferimenti sul proof layer
+  (22 inserzioni): ogni dichiarazione THEOREM* punta a un ID.
+  TROVATO-E-ALLINEATO (dichiarato): due righe di classe stantie in
+  lemmaA vs gli scarichi S6 ((ii) THEOREM, (iv) THEOREM*) — annotate
+  con supersessione datata secondo la convenzione del corpus, zero
+  matematica nuova.
+- **[M-5] CARRIER IN SUITE** (eseguito PRIMA di M-2, deviazione
+  d'ordine dichiarata: il check (c) del lint presuppone la
+  promozione): gruppo (xiii) fast = X-PA1/X-G12/X-N6/X-5F
+  (subprocess, exit-0 + verdict line; 1.4-4.4 s misurati); TIER RIGOR
+  dichiarato nel runner = gruppo (xiv) X-P2A1 (44.7 s misurati), nei
+  run pieni, saltato da --fast.
+- **SUITE**: 16/16 gruppi PASS exit 0 (run pieno; wall 1818 s sotto
+  contention auto-inflitta dichiarata a log passo 9 — non tempo di
+  record); --fast pulito 14/14 in 448 s con CAVEAT host degradato di
+  record (il gruppo (i) da solo 368 s vs i 201 s dell'INTERA suite
+  S8; la decisione di tier poggia sui runtime standalone, non
+  affetti). Lezione operativa a log: tasklist (mai ps MSYS), mai
+  run di suite concorrenti.
+- **[T6] D6 DELTA-PASS** (solo stati): A0 CHIUSA (incl. route reale),
+  A1 avviata a livello spike con dossier G0 e residuo toolchain
+  nominato, stream P-1/P-2 aggiornato (draft di record, trigger arXiv
+  mezzo armato), G0 ISTRUITO col criterio interop S5, G5 con 2a fatto
+  e flag Kraiko-Osipov, 90-giorni item-per-item. Un lettore di
+  D6+PROGRESS ricostruisce lo stato senza i LOG.
+- **[T7] PULIZIA**: scratch_{out,err}.txt ispezionati (riproducibili)
+  e rimossi + regola gitignore; validation/INDEX.md = indice a una
+  riga dei nove log di sessione. GENO/ e ADR panel non toccati.
+
+Stato precedente (chiusura Sessione 8 — OPERATIVA: "P-1 §2/§4 +
+spike axisym/shock + diagramma route reale"; CONCORRENTE con la
+S8-rigore E col filone SCAFFOLD, riconciliata due volte)
 
 Branch `rde-nozzle-program`. QUINTA e SESTA interleaving rilevate e
 riconciliate in-sessione (S8-rigore attiva in parallelo + commit
@@ -362,37 +427,36 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 9)
+## NEXT (Sessione 10 — LISTA UNICA CONSOLIDATA, ordine S9: le tre
+## stratificazioni di chiusura S7/S8/S9 sono state fuse; ogni voce è
+## un passo atomico con carrier/criterio già nominato)
 
-1. [F2/G0] DECISIONE FORMALE G0 (stack differenziabile): il dossier è
-   ora completo lato spike (interior + inverse-wall planari S5;
-   axisym + shock point + dual-route S8; interop file-exchange GENO
-   S8). Residuo pratico per il criterio O3.4 cross-code: compilare
-   GENO (gfortran assente su questo host — installare MinGW/WSL o
-   usare altro host) ed eseguire il confronto flowfield sul caso
-   tocnoz (x/y/u/v/p.dat vs unit process nostro, cella per cella).
-2. [F1/P-1] Stesura delle sezioni §5 (sistema mediato T7/(**')), §6
-   (bounds + cap sonico) e §7 (diagramma semantics-first) — ora
-   citabili ANCHE il carrier EOS-general della riduzione (**')
-   (eps*_real, gruppo (xii)) e il bracket di equilibrio.
-3. [F1/P-2] Gruppo suite (xiii) "P-A symbolic carriers": subprocess
-   runner dei due script P-A (5.4 + 51.0 s misurati in S8) — proposta
-   pronta nel log S8 passo 13.
-4. [LEADS, query-bounded] Rao 1958 IAF Amsterdam (HIGH — tocca il
+1. [F2/G0] DECISIONE FORMALE G0 (stack differenziabile): dossier
+   COMPLETO (D6 §5 stato di record). Residuo unico per il criterio
+   O3.4 cross-code: toolchain Fortran (MinGW/WSL o altro host) per
+   compilare GENO ed eseguire il confronto flowfield sul caso tocnoz
+   (x/y/u/v/p.dat vs unit process, cella per cella). La decisione può
+   essere presa dichiarando il residuo, se l'utente lo accetta.
+2. [F1/P-1] Sezioni §5 (sistema mediato T7/(**')), §6 (bounds + cap
+   sonico), §7 (diagramma semantics-first): ora citabili il carrier
+   EOS-general della riduzione (**') (eps*_real, gruppo (xii)), il
+   bracket di equilibrio [T-EQBR] e gli ID di registro (i claim si
+   citano per ID — SCAFFOLD §5).
+3. [LEADS, query-bounded] Rao 1958 IAF Amsterdam (HIGH — tocca il
    wording gamma di P-1/P-2); van Meerbeeck EUCASS 2013 (LOW).
    VINCOLO DI METODO (S7): raw HTML + verifica conteggi, mai il
    summarizer.
-5. [F0/G5] Invio email biblioteca (SOLO UTENTE) con lista Item 2b
-   allegata; alla risposta: lettura full-text Kraiko-Osipov 34(6)
-   1970 e scioglimento della contingenza G6 di P-1 (§4.5 del testo
-   di record la dichiara esplicitamente).
-[FATTO in S8 (operativa): ex-NEXT-1 → a4e4964 (P-1 §2/§4 testo di
-record); ex-NEXT-2 → 001aecc (spike axisym + shock, P-B1 scaricato a
-brick, interop GENO parziale con limite dichiarato); ex-NEXT-3 →
-528e033 (diagramma reale + bracket equilibrio, residuo M0 Prop. 7
-scaricato); ex-NEXT-4 → eab6cf5 (footnote + ancore A2/A3;
-consolidamento valutato→rinviato). FATTO in S3-S7: vedi voci
-precedenti.]
+4. [F0/G5, SOLO UTENTE] Invio email biblioteca (pacchetto pronto,
+   validation/G5_dispatch_email.md + lista Item 2b); alla risposta:
+   lettura full-text Kraiko-Osipov PMM 34(6) 1970 e scioglimento
+   della contingenza §4.5/G6 di P-1.
+5. [L6, opzionale] Carrier simbolico banale per T-NSW (dichiarato nel
+   registro come candidato L6) — chiude l'unico teorema a catena
+   elementare senza carrier.
+[FATTO in S9: ex-NEXT-3 (gruppo P-A nella suite) → M-5, gruppi (xiii)
+fast + (xiv) tier rigor, commit 8a2c946. La migrazione SCAFFOLD
+M-1..M-5 è COMPLETA: registro + lint + spine + ledger + tier.
+FATTO in S3-S8: vedi voci precedenti.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -430,6 +494,34 @@ precedenti.]
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S9 (2026-07-17, ORDINE DI PROGETTO [F1/SCAFFOLD-M]: "migrazione
+  M-1..M-5 + riallineamento D6 + pulizia"; UNICA SESSIONE ATTIVA —
+  nessuna interleaving rilevata ai sette check pre-commit)** — Gate
+  pre-esecuzione PASS (log passo 4: aderenza piena T1-T7; audit del
+  seed §2 contro il tree con OTTO delta di completamento dichiarati e
+  poi censiti in M-1). Esecuzione M-1 → M-5 → M-2 → M-3 → M-4 → T6 →
+  T7 (deviazione d'ordine M-5<M-2 DICHIARATA al passo 6: il check
+  carrier-in-suite del lint presuppone la promozione; mai suite rossa
+  committata). Commit: 898f480 (M-1 registro 83 voci), 8a2c946 (M-5
+  gruppi (xiii)/(xiv), runtime standalone misurati), 5aa71dd (M-2
+  lint gruppo (xv), rejector triplo dimostrato ad ogni run), 605306c
+  (M-3 spine su M0, 29 righe solo-tag, diff ispezionato), 7e1dfa9
+  (M-4 ledger L4 + pass riferimenti THEOREM* 22 inserzioni +
+  TROVATO-E-ALLINEATO: due righe di classe stantie in lemmaA vs gli
+  scarichi S6, annotate con supersessione datata), b2b3570 (T6 D6
+  delta-pass solo-stati), 2fc6222 (T7 pulizia + INDEX.md). SUITE:
+  16/16 PASS exit 0 (run pieno; wall gonfiato da contention
+  auto-inflitta dichiarata al passo 9 — incidente operativo con
+  lezioni pinnate: tasklist mai ps MSYS, mai run concorrenti, output
+  su file); --fast pulito 14/14 in 448 s con caveat host degradato
+  (gruppo (i) 368 s da solo; tier decisi sui runtime standalone).
+  DEVIAZIONI DICHIARATE: kind `paper` e tag n/a nel registro (passo
+  5); esenzione on-demand per gli spike jax; T-NSW declassato a
+  suffices=no con candidato L6 nominato. CLAUDE.md R2 NON toccato
+  (non mandato): il nuovo protocollo d'apertura vive nell'header di
+  questo file + memoria. Verdetti: migrazione COMPLETA, lint verde,
+  zero violazioni, zero matematica toccata.
 
 - **S8-operativa (2026-07-16/17, "P-1 §2/§4 + spike axisym/shock +
   diagramma reale"; concorrente con S8-rigore e coi commit SCAFFOLD —
