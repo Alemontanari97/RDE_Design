@@ -6,7 +6,7 @@
 #  step 4). This file is the INDEX of the theory corpus (SCAFFOLD §1, layer
 #  L2 mirror): one entry per citable object; it never carries content — the
 #  normative statements and proofs live in the referenced documents.
-#  Machine-checked by tests/test_claims_lint.py (suite group (xiii)).
+#  Machine-checked by tests/test_claims_lint.py (suite group (xv)).
 #
 # SCHEMA (SCAFFOLD §2, exact field set):
 #   id, kind, class, scope, statement, doc, proof, inherits, carrier,

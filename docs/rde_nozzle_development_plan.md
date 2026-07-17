@@ -1,11 +1,18 @@
 # Development plan: from formalized idea to a formally optimal, certified methodology (D6)
 
-Status: DELIVERABLE D6 (2026-07-16). Integrates and AMENDS
+Status: DELIVERABLE D6 (2026-07-16; STATUS DELTA-PASS 2026-07-17, S9
+[F1/SCAFFOLD-M] — states/gates/90-days refreshed against the real
+tree, plan substance unchanged). Integrates and AMENDS
 `docs/roadmap_geno_rde.md` (WP0-WP8, gates G0-G4) with everything this
 session established: D1-D5, the corrected optimality system ((**')),
 the bound ladder, the panel scheme and its refutations, the
 prescribed-profile convergent pipeline (D5 Annex A), and the literature
 gates. Where this plan and the old roadmap differ, THIS plan wins.
+WORK-PLAN LAYER NOTE (2026-07-17): the theory corpus now has its typed
+INDEX — docs/claims_registry.yaml + suite group (xv) lint (SCAFFOLD
+migration M-1..M-5 executed, S9); this plan remains the WORK index
+(phases/gates/90-days); a maintainer opens SCAFFOLD §1 (L0), the
+registry, then THIS plan + PROGRESS.
 
 ------------------------------------------------------------------------------
 ## 0. What "formally optimal methodology" means here (the certainty model)
@@ -59,6 +66,11 @@ review — with these amendments baked in:
 ## 2. Phases, with SOTA tool bindings
 
 ### Phase A0 — Consolidation (weeks 0-6, mechanical, no research risk)
+[STATUS 2026-07-17: PHASE CLOSED (formally, session S2 2026-07-16).
+A0.1-A0.4 done (see items); A0.5 partially discharged in-house (see
+item); OP-0/OP-11-eps closed INCLUDING the EOS-general real-thermo
+route (suite groups (xi)/(xii): real ceiling + real-route diagram +
+equilibrium bracket, S7/S8).]
 A0.1 Propagate D4 §6 fixes (Mo/Huang → Mo 2015 + Li-Xu-Huang 2022; S-H
      title; Rao 1960/1961 split; Sternin→Pirumov-Roslyakov caveat).
 A0.2 Freeze D1 as the problem book of record; map every ledger row to a
@@ -76,8 +88,25 @@ A0.4 OP-0: bound ladder at eps-level on the Table-1 states (S-H closed
      supercritical sea-level rows]
 A0.5 Human due diligence kickoff: Kraiko 1979 monograph TOC + PMM pass
      (library access); required before any submission (D4 §3).
+     [STATUS 2026-07-17: Item 2a (PMM TOC sweep) DONE IN-HOUSE, S7:
+     204/204 issues 1957-90, raw-HTML method of record — G14/P-2
+     novelty HOLDS; TOP FLAG Kraiko-Osipov PMM 34(6) 1970 declared
+     (P-1 §4.5/G6 wording CONTINGENT on its full text, D4 §3 armed).
+     Item 1 (Kraiko 1979 TOC) + Item 2b (ranked reading list, ready in
+     validation/G5_pmm_toc_sweep_1957-1990.md): dispatch package
+     COMPLETE (validation/G5_dispatch_email.md, recipient verified);
+     RESIDUAL = the user's send. See gate G5.]
 
 ### Phase A1 — Differentiable per-phase engine (months 1-6) [= WP1 amended]
+[STATUS 2026-07-17: STARTED EARLY at spike level — S5 planar spike
+(interior + inverse-wall, implicit custom_vjp, 52/52) and S8 twin
+(axisymmetric source DUAL-ROUTE, fitted shock point on RH with O3.1
+dot-product => P-B1 discharged at brick level, Lax/Majda executable,
+first GENO read-only interop brick). G0 decision dossier COMPLETE on
+the spike side; residual named under gate G0 (Fortran toolchain).
+Rigor bricks of the phase's shape calculus already THEOREM-grade:
+G12-S1, N6-1/2/3, five-field structure (registry IDs, carriers in
+suite groups (xiii)/(xiv)).]
 Stack decision (gate G0): default JAX (custom_vjp/custom_jvp per unit
 process; implicit-function rules for iterative inner solves — never
 unrolled; jaxopt-style implicit diff), Julia+Enzyme as alternate;
@@ -166,6 +195,15 @@ P-1 (submit after M1; TARGET VENUE: JPP class): Formulation + collapse
     numerical findings become corollaries of T3/T4/vacuum theorems).
     This paper EXPLAINS the field's time-averaged design practice —
     the citable clarification.
+    [STATUS 2026-07-17: SKELETON OF RECORD written (S5,
+    docs/rde_nozzle_P1_skeleton.md, claim map C1-C26, acceptance rules
+    (a)-(e)); FULL TEXT §2 + §4 of record written (S8,
+    docs/rde_nozzle_P1_sections_2_4.md; §4.5 novelty wording
+    CONTINGENT on Kraiko-Osipov PMM 34(6) 1970 full text — D4 §3
+    armed). Registry note: paper claims now cite registry IDs
+    (SCAFFOLD §5 — papers assemble by query). Remaining: §5-§7 text
+    (now citable: eps*_real carrier group (xii) + equilibrium
+    bracket), then §1/§3/§8/§9.]
 P-2 (TIME-SENSITIVE, can precede or accompany P-1): the P2' bridge
     lemma — Rao/Kraiko conditions ≡ closed-form adjoint characteristics;
     three published banks (Hoffman 1967; Giles-Pierce 2001;
@@ -178,6 +216,14 @@ P-2 (TIME-SENSITIVE, can precede or accompany P-1): the P2' bridge
     VENUE DECIDED 2026-07-16 (delegated, evidence-based): AIAA Journal
     primary + arXiv preprint at (G5 pass ∧ draft ready); Aerospace
     fallback with declared triggers; JOTA tertiary — outline §7.]
+    [STATUS 2026-07-17: BOTH LEMMA DRAFTS OF RECORD WRITTEN — Lemma A
+    (S5, docs/rde_nozzle_P2_lemmaA.md; S6 rigor upgrades: (ii) THEOREM
+    via Prop. A2 + A3, P-A1/P-A1'/P-A2 discharged, carrier X-PA1 19/19
+    in suite group (xiii)) and Lemma B (S7,
+    docs/rde_nozzle_P2_lemmaB.md; P-B1 discharged at brick level S8,
+    dual-route conservative carrier X-P2A1 in suite group (xiv)).
+    The arXiv trigger is HALF-ARMED (draft ready; G5 pass pending).
+    Residual numeric half: O3.2/O3.3 on the A1 engine (P-A3).]
 P-3 (after M3): first certified cycle-averaged optima (N1/N2 numbers
     with dual-route certificates and bound gaps; truncated plug vs
     peak/mean baselines and vs Paxson parametric benchmark).
@@ -206,7 +252,19 @@ Gating: A0.5 (Kraiko human pass) before ANY of P-1/P-2/P-3 submits.
 ------------------------------------------------------------------------------
 ## 5. Gates and kill criteria (updated)
 
-G0 (wk 4)   stack decision — criteria: gradient fidelity, loop speed.
+G0 (wk 4)   stack decision — criteria: gradient fidelity, loop speed,
+            AND (user decision of record, S5) GENO interop: GENO stays
+            Fortran provided the whole pipeline stays functional —
+            file exchange + O3.4 cross-code oracle are explicit G0
+            criteria (dual-code M0 VI.7).
+            [STATUS 2026-07-17: INSTRUCTED, decision pending (NEXT 1).
+            Dossier: S5 planar spike PASS 52/52; S8 twin PASS (axisym
+            dual-route, shock point with O3.1, Lax/Majda executable,
+            GENO read-only file-exchange brick on CASES/tocnoz).
+            NAMED RESIDUAL for the O3.4 flowfield criterion: the GENO
+            binary is not buildable on this host (gfortran ABSENT,
+            verified S8; reference x/y/u/v/p.dat exist only as
+            checksums) — needs MinGW/WSL toolchain or another host.]
 G1 (M1+)    ORACLE GATE (absolute): O1/O2/O3 or no science.
 G2 (M2)     VALUE GATE, now theorem-grade: bound-ladder gap per channel;
             gap < ~1% Isp on all of N1-N4 → pivot to certification/
@@ -214,27 +272,47 @@ G2 (M2)     VALUE GATE, now theorem-grade: bound-ladder gap per channel;
 G3 (M4)     UNSTEADINESS GATE: St|J1| large → rung-3 correction loop.
 G4 (M5)     DECOUPLING GATE: D2 error dominates → wave-frame objective.
 G5 (new)    LITERATURE GATE: A0.5 pass before any submission.
+            [STATUS 2026-07-17: Item 2a DONE in-house (S7 PMM digital
+            sweep 204/204; G14 holds; TOP FLAG Kraiko-Osipov PMM 34(6)
+            1970 — multi-regime cousin; P-1 §4.5/G6 wording contingent
+            on its full text). Dispatch package READY (email +
+            verified recipient + Item 2b ranked list); RESIDUAL = user
+            send from institutional account, then the full-text read.
+            Blocks SUBMISSIONS only, never the work.]
 G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
             (Crocco, completeness, H-I2) is rejected loud — no design on
             inconsistent data.
 
 ------------------------------------------------------------------------------
-## 6. First 90 days (concrete, amended)
+## 6. First 90 days (concrete, amended; STATUS REFRESH 2026-07-17)
 
 1. A0.1-A0.4 (fix docs; bound ladder eps-level; probe script).   (wk 1-3)
+   [DONE — S1/S2; ladder extended to the real-thermo route S7/S8.]
 2. G0 spike: ONE unit process (interior + inverse-wall) in JAX with
    custom implicit rule; gradient vs central differences AND vs GENO
    on one TOC case.                                              (wk 2-5)
+   [DONE AND EXCEEDED — S5 planar 52/52 + S8 axisym/shock/interop
+   twin; GENO comparison = file-exchange brick done, flowfield O3.4
+   blocked on the Fortran toolchain (gate G0 residual).]
 3. RaoPlug S1/S2 fix in GENO + Rao 1961-spike Table-1 oracle
    (M_E=2.4, theta_E=-8.25 deg, gamma=1.23 -> eps=3.81,
    X_D/R_E=1.164, C_F=1.58).                                     (wk 3-8)
+   [NOT STARTED — prerequisite of OP-2/PB-2.]
 4. Plug off-design jet-boundary march prototype (RK1 front-load). (wk 4-10)
+   [NOT STARTED.]
 5. CycleFamily v0 with the stage-A data contract + loud rejects;
    generators: matched-cycle (exists) + file-based.              (wk 4-8)
+   [NOT STARTED as a module; contract pins of record in M0 VI.1/VI.4bis.]
 6. Oracle harness: O1/O2 as executable tests BEFORE the optimizer
    exists (test-first).                                          (wk 6-10)
+   [PARTIAL — T3/T4 oracles executable in suite groups (vi)/(x)/(xii);
+   O3.1 dot-product executable at brick level (spikes); full O1/O2
+   harness lands with the A1 engine.]
 7. P-2 bridge-lemma draft (time-sensitive) + P-1 outline.        (wk 6-12)
+   [DONE AND EXCEEDED — P-2 Lemma A/B drafts of record; P-1 skeleton
+   + §2/§4 full text (see §3 stream).]
 8. Kraiko 1979/PMM library pass commissioned.                    (wk 1-12)
+   [PMM 2a done in-house; dispatch package ready, user send pending.]
 
 ------------------------------------------------------------------------------
 ## 7. Risk register deltas (vs roadmap)
