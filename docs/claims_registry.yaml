@@ -895,6 +895,32 @@ entries:
   falsifier: "its six negative controls"
   gamma: "EOS-general"
 
+- id: X-GRP13
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xiii), fast tier (M-5 promotion, S9); CI harness of the four fast rigor carriers"
+  statement: "Subprocess execution of X-PA1, X-G12, X-N6, X-5F with exit-0 + verdict-line acceptance per carrier."
+  doc: "tests/test_rigor_carriers.py"
+  proof: "tests/test_rigor_carriers.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any promoted carrier exiting nonzero or losing its VERDICT: PASS line"
+  gamma: "n/a"
+
+- id: X-GRP14
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xiv), DECLARED rigor tier (M-5 promotion, S9; measured 44.7 s beyond the fast budget); skipped by --fast, run in every full/CI run"
+  statement: "Subprocess execution of X-P2A1 with exit-0 + verdict-line acceptance."
+  doc: "tests/test_rigor_dualroute.py"
+  proof: "tests/test_rigor_dualroute.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "X-P2A1 exiting nonzero or losing its VERDICT: PASS line"
+  gamma: "n/a"
+
 # -------------------------------------------------------------------- oracles
 
 - id: O-G2

@@ -1,21 +1,34 @@
 #!/usr/bin/env python3
 """run_all.py — the package coherence & non-regression suite (simple runner).
 
-    python tests/run_all.py           # everything (fast tier + live examples)
-    python tests/run_all.py --fast    # skip the slow tier (examples subprocesses)
+    python tests/run_all.py           # everything: fast + rigor + slow tiers
+    python tests/run_all.py --fast    # fast tier only (skip rigor + slow)
+
+Tiers ([F1/SCAFFOLD-M] M-5): FAST = seconds-scale groups, always run;
+RIGOR = the declared rigor tier (registry carriers beyond the fast
+budget; measured runtimes in each module's docstring), run in every
+full/CI run, skipped by --fast; SLOW = live examples subprocesses.
 
 Tests (see each module's docstring):
-  (i)   test_cj_coherence      one CJ from all canonical paths (<=1e-9 rel)
-                               + independent solvers within 2e-3
-  (ii)  test_stechmann_collapse blowdown -> steady CP identity (<=1e-6)
-  (iii) test_axial_bound       SK axial sonic vs independent eq. bound (~0%)
-  (iv)  test_q_roundtrip       M_CJ -> q~ -> M_CJ exact inversion (<=1e-6)
-  (v)   test_golden            blessed digits from shipped data + reports
-  (vi)  test_bell_optimality   executable eps-optimality proofs (Euler lemma,
-                               stationarity/globality, averaging discrimination)
-  (vii) test_numeric_lint      no-magic-number invariant: every src/ literal
-                               classified in validation/numeric_allowlist.json
-        test_examples [slow]   live examples + design study, digits EXACT
+  (i)    test_cj_coherence      one CJ from all canonical paths (<=1e-9 rel)
+                                + independent solvers within 2e-3
+  (ii)   test_stechmann_collapse blowdown -> steady CP identity (<=1e-6)
+  (iii)  test_axial_bound       SK axial sonic vs independent eq. bound (~0%)
+  (iv)   test_q_roundtrip       M_CJ -> q~ -> M_CJ exact inversion (<=1e-6)
+  (v)    test_golden            blessed digits from shipped data + reports
+  (vi)   test_bell_optimality   executable eps-optimality proofs (Euler lemma,
+                                stationarity/globality, averaging discrimination)
+  (vii)  test_numeric_lint      no-magic-number invariant: every src/ literal
+                                classified in validation/numeric_allowlist.json
+  (viii) test_bounds            OP-0 eps-level bound ladder (sonic cap)
+  (ix)   test_gamma_probe       A0.3 gamma-channel probe
+  (x)    test_phase_diagram     OP-11-eps phase diagram
+  (xi)   test_bounds_gamma      OP-0-gamma real-thermo ceiling
+  (xii)  test_phase_diagram_real OP-11 real-route diagram + eq bracket
+  (xiii) test_rigor_carriers    registry rigor carriers, fast four
+                                (X-PA1, X-G12, X-N6, X-5F)
+  (xiv)  test_rigor_dualroute   X-P2A1 dual-route carrier [rigor tier]
+        test_examples [slow]    live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
 final verdict (exit code 0 iff all PASS).
@@ -41,12 +54,14 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(x)   OP-11-eps phase diagram', 'test_phase_diagram'),
         ('(xi)  OP-0-gamma real-thermo ceiling', 'test_bounds_gamma'),
         ('(xii) OP-11 real-route diagram + eq bracket',
-         'test_phase_diagram_real')]
+         'test_phase_diagram_real'),
+        ('(xiii) rigor carriers (symbolic, fast four)', 'test_rigor_carriers')]
+RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]', 'test_rigor_dualroute')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
 
 
 def main(argv):
-    tests = FAST + ([] if '--fast' in argv else SLOW)
+    tests = FAST + ([] if '--fast' in argv else RIGOR + SLOW)
     results = []
     t00 = time.time()
     for label, mod in tests:
