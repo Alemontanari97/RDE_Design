@@ -121,7 +121,20 @@ characteristics the flow information came forward on. This is the
 discrete twin of Prop. A1 of the Lemma-A draft (adjoint
 characteristics = flow characteristics), obtained here by pure linear
 algebra: det(M^T) = det(M) there, "transpose of triangular is
-triangular the other way" here.
+triangular the other way" here. CONTINUOUS ANCHORS NOW OF RECORD
+(cross-references inserted S8, per PROGRESS NEXT-4): the continuous
+counterparts of this discrete structure are THEOREM-grade since the
+S6 rigor session — Prop. A2 (kernel solvability: the flux covectors
+annihilate the tangent kernel on characteristic surfaces, so
+solvability constrains nothing pointwise; dual-route verified in
+conservative variables, validation/p2_pA1_symbolic_adjoint.py) and
+Prop. A3 (f2 = TRANSPORTED adjoint invariant: the HTH-1971 two-field
+closed pair solves the in-house-re-derived multiplier PDEs for every
+admissible flow; terminal transversality fixes the constant). What
+(B.6) transports discretely is exactly Prop. A3's invariant; what the
+J_k^{-T} solvability uses pointwise is exactly Prop. A2's
+nondegeneracy off the kernel. See docs/rde_nozzle_P2_lemmaA.md
+§3.3-§3.4.
 
 THEOREM B2 (reverse AD computes exactly (B.6)). Reverse-mode AD of the
 march, with each unit process wrapped in an implicit-function custom

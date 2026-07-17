@@ -34,6 +34,16 @@ corpus D2 §b0 performed and verified the translation page-by-page).
 Bell/shroud terminal surface: C+ (slope theta + alpha). Plug/spike
 terminal surface: C- (slope theta - alpha).
 
+LEXICAL TRAP OF RECORD (footnote for the paper, D2 §b0bis finding,
+inserted S8 per PROGRESS NEXT-4): Rao-Beck AIAA 94-3264 speaks of
+"variational calculus with ADJOINT constraints" — there "adjoint"
+means ADJOINED (isoperimetric constraints appended to the functional
+with constant multipliers), NOT the adjoint PDE problem of this
+lemma. The two usages are unrelated; a reader (or referee) equating
+them would read the bridge lemma as already published, which it is
+not. The paper carries this as a footnote at the first occurrence of
+"adjoint" in §3.
+
 NORMALIZATION: Rao's integrands carry 2*pi*y (axisymmetric); we write
 q := 2*pi*y^delta so planar and axisymmetric read identically. The
 length multiplier lambda3 as derived below absorbs the 2*pi (see
