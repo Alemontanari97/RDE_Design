@@ -51,6 +51,16 @@ machine-checkable REGISTRY plus a layered reading order.
     and falsifier (today: remaining_conditionals §5 + the OP list).
  SESSION LOGS: unchanged, append-only, the audit trail (never
     normative).
+ WORK-PLAN LAYER (orthogonal to L0-L6, referenced from L0): the
+    DIVISION OF WORK lives where it already does and stays there —
+    D6 (`rde_nozzle_development_plan.md`): phases A0-A7 with time and
+    tool bindings, critical path, publication stream, gates G0-G6,
+    90-day plan, risk register; PROGRESS: the live position inside
+    the phases (ORA/NEXT/BLOCCATO); M0 Part VII: phase-to-thesis map.
+    The registry indexes THEORY objects; D6 indexes WORK — a
+    maintainer opens L0 for the objective and rules, the registry for
+    the truth, D6+PROGRESS for what to do next. The three never
+    duplicate each other.
  CONFLICT RULE (unchanged): L0-L6 of record beat any historical note;
  within the layers, the registry is the INDEX, never the content.
 
