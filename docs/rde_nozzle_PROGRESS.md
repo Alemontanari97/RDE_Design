@@ -4,8 +4,91 @@
 > di sessione/fase (CLAUDE.md R3). La sessione successiva riparte da
 > qui + memoria + M0, senza ricostruire nulla.
 
-## ORA (2026-07-16, chiusura Sessione 7 — OPERATIVA: "Lemma B +
-## OP-0-gamma + G5-2a"; CONCORRENTE con la S6 rigore, riconciliata)
+## ORA (2026-07-17, chiusura Sessione 8 — OPERATIVA: "P-1 §2/§4 +
+## spike axisym/shock + diagramma route reale"; CONCORRENTE con la
+## S8-rigore E col filone SCAFFOLD, riconciliata due volte)
+
+Branch `rde-nozzle-program`. QUINTA e SESTA interleaving rilevate e
+riconciliate in-sessione (S8-rigore attiva in parallelo + commit
+SCAFFOLD atterrati tra i miei; TUTTI i commit S8-op path-limitati;
+audit hunk post-commit PULITO: nessun contenuto estero spazzato nei
+miei commit, nessun mio hunk nei loro — log S8 passi 5, 8 e audit
+post-T3). Log a ordine totale:
+validation/PROGRESS_2026-07-16_fase1_S8.md (gate pre-esecuzione PASS
+al passo 2; la sessione ha scavalcato la mezzanotte: passi 9+ datati
+2026-07-17). Commit: T1 = a4e4964, T2 = 001aecc, T3 = 528e033,
+T4 = eab6cf5.
+
+- FASE 1 — **[F1/P-1] TESTO PIENO §2 E §4 DI RECORD** (a4e4964,
+  docs/rde_nozzle_P1_sections_2_4.md): §2.1-§2.5 (Theorem 2.1 media
+  esatta + distinzione storage-vs-O(St) verbatim; (2.3) = UNICA
+  approssimazione; O1 con canali di rottura; O2 log-uniforme; contratto
+  I0-I4) e §4.1-§4.5 (dicotomia con scope per-lemma T3-A/B/C, riga
+  pedagogica concordata del Lemma T3-C, dualità di quota, sharpness coi
+  numeri di record INCLUSO il delta di purga -4.4..-7.9% ora citabile,
+  T4 THEOREM* con dovere-di-citazione K-E, spiegazione della pratica).
+  Regole (a)-(e) applicate per sottosezione (audit line [Class |
+  Falsifier | Carrier | Gamma status]); claim-map cross-check C1-C4/
+  C8-C11/C26; wording di novità §4.5 QUERY-BOUNDED e CONDIZIONALE su
+  Kraiko-Osipov 34(6) 1970 (contingenza D4 §3 ribadita); naming guard
+  Lemma T3-A/B/C vs P-2 Lemma A/B dichiarato; grep di coerenza PASS.
+- FASE 2-prep — **[F2-prep/G0] SPIKE ESTESO: AXISYM + SHOCK + INTEROP
+  GENO** (001aecc, validation/g0_spike_axisym_shock.py, gemello — lo
+  spike S5 resta intatto): Brick A termine sorgente assialsimmetrico
+  DERIVATO IN-HOUSE (rotta autovettore-sinistro, limite planare esatto
+  0.0) con verifica DUAL-ROUTE contro la forma conservativa (u,v)
+  Zucrow-Hoffman e rejector di scaling d'ordine (banda [4,16] per
+  dimezzamento; sign-flip rigettato a ratio ~1.7); gradienti 36/36 +
+  16/16 in tolleranza derivata. Brick B shock point fitted = processo
+  implicito su RH (theta-beta-M + Mach normale): identità dot-product
+  O3.1 a 3.4e-12 vs tol 1.2e-9 ⇒ **P-B1 SCARICATO A LIVELLO BRICK**
+  (registro Lemma B aggiornato, R4 stessa sessione); certificato Lax
+  con margini misurati; Lax/Majda == J_k non singolare ESEGUIBILE
+  (oltre il distacco Newton non certifica ⇒ rigetto; collasso di
+  sigma_min al fold con esponente 1/2 in banda derivata). Brick C
+  primo mattone interop GENO (criterio G0, scambio file READ-ONLY con
+  CASES/tocnoz): throat/eps/maxtheta ricalcolati dal contorno di
+  riferimento vs ini + performance.dat (err 4e-4 deg su maxtheta),
+  tolleranze derivate, contorno riscalato rigettato. LIMITE DICHIARATO:
+  cross-check flowfield O3.4 richiede il binario GENO (gfortran ASSENTE
+  su questo host) → BLOCCATO/NEXT. VERDICT PASS complessivo.
+- FASE 1 — **[F1/OP-0-gamma] DIAGRAMMA DI FASE SULLA ROUTE REALE +
+  BRACKET DI EQUILIBRIO** (528e033, src/thrust/phase_diagram_real.py +
+  gruppo test (xii) + data/phase_diagram_real.{json,md}): OP-11-eps
+  ri-derivato sulla route primaria EOS-general (riuso bounds_gamma;
+  forme chiuse in NESSUN calcolo primario) — residuo S7 di M0 Prop. 7
+  SCARICATO. eps*_real dalla riduzione (**') ESEGUIBILE
+  <P_E(eps;xi)>_mu = Pa (primo carrier EOS-general della riduzione
+  quasi-1D di T7; forma chiusa declassata a oracolo): eps* =
+  3.494..3.519 su PR 1..90; knee_real 3.49..10.38, SOTTO il knee di
+  forma chiusa (~12.9 a PR=90) — l'idealizzazione calorica sovrastima
+  l'envelope del peak design; struttura della mappa CONFERMATA a
+  gamma(T) (colonna tie, banda cappata, zero celle bell); attainment
+  M1 certificato EOS-GENERALMENTE su tutte le 41 celle knee-fitting
+  INCLUSE le 11 subcritiche; strumento naive mai vincente e perdita
+  stretta alle celle a spread massimo (metrica a due livelli,
+  precedente bounds_gamma — onestà: gap genuinamente sotto-barra a
+  PR 49/64). BRACKET DI EQUILIBRIO (shifting, solver Gibbs, c^2 =
+  dP/drho su tabella): ceiling +6.34..+6.97% sopra il rung frozen su
+  ogni PR (barre <= 0.003 s; known-answer cp=const PASS 1e-8, route
+  corrotta rigettata) — coppia [frozen, equilibrium] = bracket di
+  modello eseguibile della chiusura calorica a livello ceiling
+  (THEOREM* nella coppia di chiusure ideal-gas mixture). R4 stessa
+  sessione: M0 Prop. 7 REAL-ROUTE DIAGRAM INSTANCE + D3 §8. Suite
+  13/13 in 201 s (12 gruppi fast attesi + esempi). Lint (vii): 7
+  letterali classificati.
+- FASE 1 — **[F1/P-2] RIFINITURE** (eab6cf5): footnote trappola
+  lessicale 94-3264 in Lemma A §3.0 (NEXT-0 S6-rigore scaricato);
+  ancore continue Prop. A2/A3 esplicite nel Lemma B (§B.6 trasporta
+  l'invariante di A3; J_k^{-T} usa la non-degenerazione di A2);
+  consolidamento script P-A VALUTATO e rinviato con dati (5.4 s +
+  51.0 s misurati, proposta gruppo (xiii)).
+- NON eseguito (dichiarato): T5 leads (Rao 1958 IAF, van Meerbeeck)
+  — priorità T1>T2>T3 rispettata; resta in NEXT col vincolo di metodo
+  raw-HTML.
+
+Stato precedente (chiusura Sessione 7 — OPERATIVA: "Lemma B +
+OP-0-gamma + G5-2a"; CONCORRENTE con la S6 rigore, riconciliata)
 
 Branch `rde-nozzle-program`. Sessione lanciata come "S6 operativa"
 (prompt handoff-1 di S5), RINUMERATA S7 alla riconciliazione: la S6
@@ -279,34 +362,37 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (passo atomico, Sessione 8)
+## NEXT (passo atomico, Sessione 9)
 
-1. [F1/P-1] Prima stesura testuale delle sezioni §2 (Theorem 0 + O1/O2)
-   e §4 (dicotomia) dello skeleton 6263c22, con la regola
-   d'accettazione (a)-(e) applicata sezione per sezione (T4 di S7,
-   non eseguito — dichiarato).
-2. [F2-prep/G0] Estensione dello spike: variante assialsimmetrica
-   (termine sorgente) + shock point (regola implicita su RH; scarica
-   P-B1/O3.1 al mattone shock), e primo confronto cross-code col caso
-   TOC GENO (criterio interop G0; GENO resta Fortran, decisione S5).
-3. [F1/OP-0-gamma, coda] Diagramma di fase OP-11-eps sulla route
-   REALE (il condizionale "se regge" di S7: la ladder regge, il
-   diagramma è rinviato) + route a espansione di EQUILIBRIO come
-   bracket superiore del rung frozen (M0 Prop. 7, residuo dichiarato).
-4. [F1/P-2, rifiniture] Footnote "adjoint constraints" (94-3264,
-   trappola lessicale — NEXT-0 della S6 rigore, non ancora inserito
-   nei draft); integrare nel §4 il riferimento a Prop. A2/A3 di
-   record; consolidare i due script P-A (pa1_symbolic_lemmaA.py +
-   p2_pA1_symbolic_adjoint.py) in un runner unico o gruppo test.
-5. [LEADS, query-bounded, ereditati dalla S6 rigore] Rao 1958 IAF
-   Amsterdam (precedente var-gamma, HIGH); van Meerbeeck EUCASS 2013
-   (LOW, parametrico).
-[FATTO in S7 (operativa): ex-NEXT-1 spoglio PMM → fb82846 (G14 regge;
-top flag Kraiko-Osipov 1970 → Item 2b); ex-NEXT-2 Lemma B →
-docs/rde_nozzle_P2_lemmaB.md + verifica dual-route Prop. A2 → 9966552
-(lo scarico P-A1/P-A1' era già della S6 rigore, Prop. A3);
-ex-NEXT-5 purga gamma (livello ladder) → 1d762f8. FATTO in S3-S6:
-vedi voci precedenti.]
+1. [F2/G0] DECISIONE FORMALE G0 (stack differenziabile): il dossier è
+   ora completo lato spike (interior + inverse-wall planari S5;
+   axisym + shock point + dual-route S8; interop file-exchange GENO
+   S8). Residuo pratico per il criterio O3.4 cross-code: compilare
+   GENO (gfortran assente su questo host — installare MinGW/WSL o
+   usare altro host) ed eseguire il confronto flowfield sul caso
+   tocnoz (x/y/u/v/p.dat vs unit process nostro, cella per cella).
+2. [F1/P-1] Stesura delle sezioni §5 (sistema mediato T7/(**')), §6
+   (bounds + cap sonico) e §7 (diagramma semantics-first) — ora
+   citabili ANCHE il carrier EOS-general della riduzione (**')
+   (eps*_real, gruppo (xii)) e il bracket di equilibrio.
+3. [F1/P-2] Gruppo suite (xiii) "P-A symbolic carriers": subprocess
+   runner dei due script P-A (5.4 + 51.0 s misurati in S8) — proposta
+   pronta nel log S8 passo 13.
+4. [LEADS, query-bounded] Rao 1958 IAF Amsterdam (HIGH — tocca il
+   wording gamma di P-1/P-2); van Meerbeeck EUCASS 2013 (LOW).
+   VINCOLO DI METODO (S7): raw HTML + verifica conteggi, mai il
+   summarizer.
+5. [F0/G5] Invio email biblioteca (SOLO UTENTE) con lista Item 2b
+   allegata; alla risposta: lettura full-text Kraiko-Osipov 34(6)
+   1970 e scioglimento della contingenza G6 di P-1 (§4.5 del testo
+   di record la dichiara esplicitamente).
+[FATTO in S8 (operativa): ex-NEXT-1 → a4e4964 (P-1 §2/§4 testo di
+record); ex-NEXT-2 → 001aecc (spike axisym + shock, P-B1 scaricato a
+brick, interop GENO parziale con limite dichiarato); ex-NEXT-3 →
+528e033 (diagramma reale + bracket equilibrio, residuo M0 Prop. 7
+scaricato); ex-NEXT-4 → eab6cf5 (footnote + ancore A2/A3;
+consolidamento valutato→rinviato). FATTO in S3-S7: vedi voci
+precedenti.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -331,14 +417,50 @@ vedi voci precedenti.]
 - ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
   committato): IN ATTESA DI RATIFICA UTENTE — nessuna implementazione
   avviata, per disciplina.
-- G0 (stack JAX/Julia): decisione a Fase 2 — lo spike S5 (b07b47e) è
-  PASS su JAX 0.11.0 CPU (implicit-vjp, tolleranze derivate, rejector);
-  criterio aggiunto (decisione utente S5): interop con GENO-Fortran
-  (pipeline intera funzionante, O3.4 cross-code) — il punto NEXT 4 lo
-  esercita prima della decisione formale.
+- G0 (stack JAX/Julia): decisione a Fase 2 — spike S5 (b07b47e) PASS
+  + estensione S8 (001aecc) PASS: axisym dual-route, shock point con
+  O3.1 e trasversalità Lax/Majda eseguibile, interop file-exchange
+  GENO (throat/eps/maxtheta cross-verificati sul tocnoz di
+  riferimento). RESIDUO TECNICO per il criterio O3.4 cross-code
+  FLOWFIELD: il binario GENO non è compilabile su questo host
+  (gfortran ASSENTE, verificato S8; i reference x/y/u/v/p.dat
+  esistono solo come checksum) → serve toolchain Fortran o host
+  alternativo. La decisione formale G0 è ora ISTRUITA su tutto il
+  resto (NEXT 1).
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S8-operativa (2026-07-16/17, "P-1 §2/§4 + spike axisym/shock +
+  diagramma reale"; concorrente con S8-rigore e coi commit SCAFFOLD —
+  quinta e sesta interleaving, riconciliate)** — Gate pre-esecuzione
+  PASS (log passo 2, cinque ancore di rigore ri-verificate senza
+  delta). T1 (a4e4964): testo pieno di record P-1 §2+§4
+  (docs/rde_nozzle_P1_sections_2_4.md, regole (a)-(e) per
+  sottosezione, riga pedagogica Lemma T3-C, novità §4.5 condizionale
+  su Kraiko-Osipov, naming guard, grep coerenza PASS). T2 (001aecc):
+  spike gemello g0_spike_axisym_shock.py VERDICT PASS — axisym
+  dual-route con rejector d'ordine, shock point RH implicito con
+  O3.1 (P-B1 SCARICATO a livello brick, registro Lemma B aggiornato
+  R4), trasversalità Lax/Majda == J_k eseguibile (fold exponent 1/2
+  in banda derivata; il fattore arbitrario 10x della prima stesura
+  FALLIVA onestamente ed è stato sostituito dalla legge di scaling
+  derivata — deviazione dichiarata), interop GENO read-only
+  (limite flowfield dichiarato: gfortran assente). T3 (528e033):
+  diagramma di fase sulla route REALE + bracket di equilibrio
+  (phase_diagram_real.py, gruppo (xii) 20/20, eps*_real = primo
+  carrier EOS-general della riduzione (**'), knee reale sotto
+  l'oracolo, M1 EOS-general su 41 celle incl. 11 subcritiche,
+  bracket +6.3..+7.0%; fix dichiarati: floor tabella Pa/8→Pa/64
+  derivato, ChemEquil→Gibbs solver, metrica naive a due livelli
+  dopo scoperta sub-barra onesta); R4 in M0 Prop. 7 + D3 §8. T4
+  (eab6cf5): footnote 94-3264 + ancore A2/A3 nel Lemma B +
+  consolidamento P-A valutato/rinviato con runtime misurati.
+  DEVIAZIONI DICHIARATE: T5 non eseguito (→ NEXT 4); suite 13/13 in
+  201 s (12 fast + esempi); due eventi di concorrenza riconciliati
+  con audit hunk pulito (passi 5, 8; commit sempre path-limitati;
+  q_mapping.* modificati da altri MAI toccati né staged). Verdetti:
+  gate PASS; spike PASS; diagramma 90/90 + bracket OK; suite verde.
 
 - **S8-rigore (2026-07-16, "attacco G12", concorrente alla S8
   operativa — file disgiunti, quinto interleave dichiarato)** — Su

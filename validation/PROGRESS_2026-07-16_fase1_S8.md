@@ -236,3 +236,25 @@ T3 [F1/OP-0-gamma tail], T4 [F1/P-2 polish, optional], T5 [LEADS, optional].
     would add ~1 min and exceed the declared 12-group S8 target;
     proposal for NEXT: subprocess group '(xiii) P-A symbolic
     carriers' running both scripts, cost ~56 s.
+
+14. ⚠️ THIRD CONCURRENCY EVENT + POST-COMMIT AUDIT — two further
+    foreign commits (8e24060, 36de0a5, "[F1/SCAFFOLD]") landed before
+    the T3 commit, and the shared tree carried foreign UNCOMMITTED
+    modifications (data/q_mapping.{json,md}). Audit results: (a) my
+    path-limited T3 add did NOT stage q_mapping.*; (b) the SCAFFOLD
+    commits touched only their own files (no M0/D3); (c) my T3 commit
+    contains exactly ONE hunk in M0 (line 434, Prop. 7) and ONE in D3
+    (line 490) — both mine; no cross-contamination in either
+    direction. T3 = 528e033, T4 = eab6cf5.
+
+15. SESSION CLOSE (R3) — docs/rde_nozzle_PROGRESS.md updated on top
+    of the S8-rigore-committed version: new ORA (S8-operativa closure,
+    both concurrency events declared), NEXT rewritten for Sessione 9
+    (G0 formal decision first, with the GENO-toolchain residual named;
+    P-1 §5-§7; group (xiii) proposal; leads with the raw-HTML method
+    pin; G5 user dispatch), BLOCCATO G0 entry updated (flowfield
+    cross-code blocked on absent gfortran), LOG SESSIONI entry
+    S8-operativa added above S8-rigore. Project memory updated
+    (research state + gamma-generality purge completion). TASKS
+    DELIVERED: T1, T2, T3, T4 (T5 declared not executed). Suite
+    13/13. LOG DEFINITIVELY CLOSED at step 15.
