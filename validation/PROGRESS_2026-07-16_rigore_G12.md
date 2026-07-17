@@ -245,3 +245,9 @@ the attackability assessment given in-conversation).
     lint-guarded); §5 what it buys (two-page onboarding; drift
     machine-rejected; papers cite IDs; the C-D25U+C-MAJDA-only
     residual honesty stays structurally visible).
+22. [HANDOFF] User approved the plan ("pianifichiamolo"); Session-9
+    prompt delivered for the dedicated PROJECT-ORDER session:
+    SCAFFOLD migration M-1..M-5 (registry YAML, claim lint with
+    rejector, M0 ID spine, conditionals ledger, carrier promotion)
+    + D6/PROGRESS refresh against the campaign results + repo
+    housekeeping. Thread closed at step 22.
