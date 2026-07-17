@@ -921,6 +921,19 @@ entries:
   falsifier: "X-P2A1 exiting nonzero or losing its VERDICT: PASS line"
   gamma: "n/a"
 
+- id: X-GRP15
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xv), fast tier (M-2, S9); the registry's own lint — code-lint class, non-mathematical"
+  statement: "Claims-registry lint: strict-subset parse (+ optional PyYAML dual-route), anchor resolution, suite membership, schema constraints, orphan-ID grep, with three seeded violations REJECTED on every run."
+  doc: "tests/test_claims_lint.py"
+  proof: "tests/test_claims_lint.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a seeded violation accepted (the rejector demo fails the group), or any registry drift"
+  gamma: "n/a"
+
 # -------------------------------------------------------------------- oracles
 
 - id: O-G2
