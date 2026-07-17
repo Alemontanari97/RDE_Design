@@ -1,0 +1,1097 @@
+# claims_registry.yaml — THE CLAIM REGISTRY (theory-as-code)
+# ============================================================================
+# Created 2026-07-17, session S9, [F1/SCAFFOLD-M] task M-1
+# (docs/rde_nozzle_SCAFFOLD.md §2 seed, COMPLETED against the real tree;
+#  completion deltas declared in validation/PROGRESS_2026-07-17_S9_ordine.md
+#  step 4). This file is the INDEX of the theory corpus (SCAFFOLD §1, layer
+#  L2 mirror): one entry per citable object; it never carries content — the
+#  normative statements and proofs live in the referenced documents.
+#  Machine-checked by tests/test_claims_lint.py (suite group (xiii)).
+#
+# SCHEMA (SCAFFOLD §2, exact field set):
+#   id, kind, class, scope, statement, doc, proof, inherits, carrier,
+#   suffices_symbolic, falsifier, gamma
+#
+# ENUMS AND CONVENTIONS (deviations from the seed DECLARED, structure-only):
+#   kind:  theorem | definition | conditional | conjecture | schema |
+#          carrier | oracle | directive | paper
+#          (`paper` is a declared extension: the S9 project order mandates
+#           registry IDs for the paper-layer documents of record.)
+#   class: THEOREM | THEOREM* | SCHEMA | CONJECTURE | PRACTICE
+#   gamma: EOS-general | gamma-const-oracle | perfect-gas-oracle | n/a
+#          (`n/a` admitted ONLY for kinds directive/paper and for declared
+#           non-mathematical carriers (code lint); enforced by the lint.)
+#   suffices_symbolic: yes | no | n/a
+#          (yes = finite algebraic identity, machine check = proof;
+#           no = function-space content, analytic steps named;
+#           n/a = not a mathematical claim. THEOREM with yes REQUIRES a
+#           nonempty carrier; enforced by the lint.)
+#   doc/proof: "path" or "path#anchor" where anchor is a literal substring
+#          of the file (lint-resolved). carrier: list of carrier-entry IDs.
+#          inherits: list of conditional-entry IDs (THEOREM* must be
+#          nonempty; model closures and numeric residuals are conditional
+#          entries too, justified per SCAFFOLD §3 rule 4 in their scope).
+#
+# STRICT YAML SUBSET (parser in tests/test_claims_lint.py; PyYAML, when
+# present, is used as a dual-route cross-check): top-level `entries:` list;
+# items start with `- id:`; scalar values double-quoted or bare single
+# tokens; lists inline `["a", "b"]` or `[]`; comments only on full lines.
+# ============================================================================
+
+entries:
+
+# ---------------------------------------------------------------- definitions
+
+- id: D-P
+  kind: definition
+  class: THEOREM
+  scope: "canonical problem of record; anchor of every task"
+  statement: "Problem (P): find the pair (S*, delta) — argmax of the averaged thrust over the admissible set with certified globality gap delta, per M0 D2.6 (i)-(v), with declared maximality rationale."
+  doc: "docs/rde_nozzle_MASTER.md#D2.6"
+  proof: "docs/rde_nozzle_MASTER.md#D2.6"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any deliverable claiming more than (S*, delta) or bypassing the certified-globality contract"
+  gamma: "EOS-general"
+
+- id: D-DOM
+  kind: definition
+  class: THEOREM
+  scope: "domain and design variable"
+  statement: "Design domain Omega(S) = E \\ S with S the compact solid set (uniform cone condition, lip attachment); configurations are topology sectors of S — outputs, not inputs."
+  doc: "docs/rde_nozzle_MASTER.md#D2.1"
+  proof: "docs/rde_nozzle_MASTER.md#D2.1"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any pipeline step that fixes the nozzle configuration a priori"
+  gamma: "EOS-general"
+
+- id: D-JEX
+  kind: definition
+  class: THEOREM
+  scope: "exact objective (roof definition)"
+  statement: "J_exact[S] = long-time average of the control-surface thrust flux; requires statistical stationarity (weakest standing hypothesis) and a solution concept."
+  doc: "docs/rde_nozzle_MASTER.md#D2.2"
+  proof: "docs/rde_nozzle_MASTER.md#D2.2"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "an attractor without invariant measure in the operating book (then J_exact is undefined and only bounds ship)"
+  gamma: "EOS-general"
+
+- id: D-MU
+  kind: definition
+  class: THEOREM
+  scope: "operating measure and averaged (rung-2) objective"
+  statement: "mu = pushforward of normalized cycle time; J[Sigma] = Int F[Sigma; s(xi)] dmu(xi) with F the steady per-state thrust."
+  doc: "docs/rde_nozzle_MASTER.md#D2.3"
+  proof: "docs/rde_nozzle_MASTER.md#D2.3"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "measured cycle whose empirical measure changes a Verdict beyond its declared bars"
+  gamma: "EOS-general"
+
+- id: D-CONTRACT
+  kind: definition
+  class: THEOREM
+  scope: "design interface Gamma_d; data class I0-I4; audits R1-R3"
+  statement: "The interface is a CONTRACT: causal separation, well-posed data (full state only on axially supersonic patches; declared closure on subsonic patches), measurability — with executable admission audits."
+  doc: "docs/rde_nozzle_MASTER.md#D2.4"
+  proof: "docs/rde_nozzle_problem_book.md"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "data passing the audits on which the per-phase problem is ill-posed"
+  gamma: "EOS-general"
+
+- id: D-S1
+  kind: definition
+  class: THEOREM
+  scope: "solution class S1 + canonicity status; across fitted fronts the canonicity is a DECLARED conditional"
+  statement: "S1 = piecewise-smooth MOC-regular solutions (finitely many transversal fronts); canonicity exact in shock-free regions (weak-strong uniqueness), conditional across fronts (C-MAJDA)."
+  doc: "docs/rde_nozzle_MASTER.md#D2.5"
+  proof: "docs/rde_nozzle_MASTER.md#D2.5"
+  inherits: ["C-MAJDA"]
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "an admissible solution concept whose optimum differs from the S1 one in a certified shock-free regime"
+  gamma: "EOS-general"
+
+# --------------------------------------------------------------- conditionals
+
+- id: C-D25U
+  kind: conditional
+  class: SCHEMA
+  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat)"
+  statement: "On the certified set D(delta, L_x, C_geo, C_dat) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — proof architecture U1-U4 named, none written."
+  doc: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a certified family in D with solution-map Lipschitz constant blowing up while all margins stay >= delta"
+  gamma: "EOS-general"
+
+- id: C-MAJDA
+  kind: conditional
+  class: SCHEMA
+  scope: "THE shared front conditional (L4 ledger); S1 canonicity and front regularity across fitted shocks"
+  statement: "Fitted transversal fronts are Majda-stable (uniform linearized RH nonsingularity with margins), licensing S1 canonicity and shift-differentiability across shocks."
+  doc: "docs/rde_nozzle_MASTER.md#D2.5"
+  proof: "docs/rde_nozzle_G12_S1.md#§2 The front brick"
+  inherits: []
+  carrier: ["X-G12"]
+  suffices_symbolic: "no"
+  falsifier: "a certified-Lax front family with degenerating linearized RH (would contradict the G12-L2 margin law)"
+  gamma: "EOS-general"
+
+- id: C-HT4
+  kind: conditional
+  class: SCHEMA
+  scope: "declared MODEL CLOSURE (not an analytic gap — justification per SCAFFOLD §3 rule 4): sonic-capped ideal adaptation"
+  statement: "Wall pressure clamps to Pa downstream of each phase's full-expansion point (capped at the sonic state on subcritical phases); published as a bound precedent (Kraiko-Egoryan)."
+  doc: "docs/rde_nozzle_MASTER.md#THEOREM 6"
+  proof: "docs/rde_nozzle_MASTER.md#SHARPENING OF RECORD"
+  inherits: []
+  carrier: ["X-GRP08", "X-GRP11"]
+  suffices_symbolic: "n/a"
+  falsifier: "PB-2 truncation/base-pressure band showing the closure's premium unreachable by any real plug beyond bars"
+  gamma: "EOS-general"
+
+- id: C-IGMIX
+  kind: conditional
+  class: SCHEMA
+  scope: "declared MODEL CLOSURE (caloric): ideal-gas mixture pair [frozen, shifting-equilibrium]"
+  statement: "The caloric closure is bracketed by the frozen-composition and shifting-equilibrium ideal-gas-mixture routes; results classed within the pair."
+  doc: "docs/rde_nozzle_MASTER.md#EQUILIBRIUM BRACKET"
+  proof: "docs/rde_nozzle_MASTER.md#EQUILIBRIUM BRACKET"
+  inherits: []
+  carrier: ["X-GRP12"]
+  suffices_symbolic: "n/a"
+  falsifier: "finite-rate computation leaving the [frozen, equilibrium] bracket beyond bars"
+  gamma: "EOS-general"
+
+- id: C-O33
+  kind: conditional
+  class: SCHEMA
+  scope: "declared NUMERIC residual (not an analytic gap — justification per SCAFFOLD §3 rule 4): adjoint component match"
+  statement: "Term-by-term match of the closed-form multiplier components against the AD adjoint field on a TOC case (oracle O3.3 / P-A3) awaits the A1 engine."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.6"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "O3.3 run with component mismatch beyond derived tolerance"
+  gamma: "EOS-general"
+
+# ------------------------------------------------------------------- theorems
+
+- id: T-TH0
+  kind: theorem
+  class: THEOREM
+  scope: "exact links + one declared choice + one priced approximation; storage vs O(St) disambiguated"
+  statement: "Mean wall thrust equals mean flux exactly (periodic storage cancellation), is constant in time for a single rotating mode, and the ONLY approximation in the chain is the quasi-steady per-phase factorization, priced O(St)."
+  doc: "docs/rde_nozzle_MASTER.md#THEOREM 0"
+  proof: "docs/rde_nozzle_MASTER.md#THEOREM 0"
+  inherits: []
+  carrier: ["X-GRP02"]
+  suffices_symbolic: "no"
+  falsifier: "O5 unsteady simulation with mean thrust off J_avg + St J1 beyond bars"
+  gamma: "EOS-general"
+
+- id: T-O1
+  kind: theorem
+  class: THEOREM
+  scope: "objective equivalence at frozen choked feed (H-F1 + H2)"
+  statement: "argmax Isp_cycle = argmax J and the Isp numerator equals Int F dt identically, via mdot c* = Pc A_t; failure channels: bilevel coupling, unchoked tails, subsonic interface patches."
+  doc: "docs/rde_nozzle_MASTER.md#PROPOSITION 1"
+  proof: "docs/rde_nozzle_MASTER.md#PROPOSITION 1"
+  inherits: []
+  carrier: ["X-GRP02"]
+  suffices_symbolic: "no"
+  falsifier: "a frozen-choked case where thrust-max and Isp-max contours differ"
+  gamma: "EOS-general"
+
+- id: T-O2
+  kind: theorem
+  class: THEOREM
+  scope: "canonical operating measure under exponential blowdown"
+  statement: "The blowdown cycle measure is log-uniform in pressure: dmu_P = dPc/(Pc ln PR); the theory is measure-agnostic beyond this canonical instance."
+  doc: "docs/rde_nozzle_MASTER.md#LEMMA 2"
+  proof: "docs/rde_nozzle_MASTER.md#LEMMA 2"
+  inherits: []
+  carrier: ["X-GRP02"]
+  suffices_symbolic: "yes"
+  falsifier: "measured cycle whose pushforward deviates from log-uniform beyond declared drift bars while blowdown holds"
+  gamma: "EOS-general"
+
+- id: T-T0
+  kind: theorem
+  class: THEOREM
+  scope: "single rotating mode; axisymmetric surfaces; N6 boundary declared sharp"
+  statement: "For a rotating-pattern flow the instantaneous thrust is CONSTANT and equals the steady wave-frame value (frame forces close with zero axial component); steadification does NOT transfer Rao's 2-D closed forms to swirl beyond free vortex."
+  doc: "docs/rde_nozzle_MASTER.md#THEOREM 3"
+  proof: "docs/rde_nozzle_MASTER.md#THEOREM 3"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "thrust-trace flatness diagnostic failing on certified single-mode data"
+  gamma: "EOS-general"
+
+- id: T-NSW
+  kind: theorem
+  class: THEOREM
+  scope: "interface spacelikeness audit; frame-invariant; proof = elementary equivalence chain in M0 (a symbolic carrier would be trivial — declared L6 candidate, none exists today)"
+  statement: "An axial interface is spacelike iff u_x > c, in every frame; CJ-sonicity licenses no axial MOC (condition hierarchy C1-C4)."
+  doc: "docs/rde_nozzle_MASTER.md#LEMMA 4"
+  proof: "docs/rde_nozzle_MASTER.md#LEMMA 4"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "audited margin min(M_x - 1) > 0 with an ill-posed axial data problem"
+  gamma: "EOS-general"
+
+- id: T-T3
+  kind: theorem
+  class: THEOREM
+  scope: "fixed full-flowing wall, H1-H4; Lemma T3-A EOS-general across shocks, Lemma T3-B calorically perfect = THE boundary, Lemma T3-C affinity; demoted corollary rung per the gamma directive"
+  statement: "Under H1-H4 the averaged problem collapses pointwise to the classical design at the mean pressure: J[Sigma] = F[Sigma; <Pc>_mu]."
+  doc: "docs/rde_nozzle_MASTER.md#THEOREM 5"
+  proof: "docs/rde_nozzle_MASTER.md#THEOREM 5"
+  inherits: []
+  carrier: ["X-GRP02", "X-GRP06"]
+  suffices_symbolic: "no"
+  falsifier: "oracle O1: ensemble machinery under H1-H4 returning anything but Rao-at-<Pc> with Delta-Isp = 0"
+  gamma: "perfect-gas-oracle"
+
+- id: T-T3-CE
+  kind: theorem
+  class: THEOREM
+  scope: "sharpness of the collapse boundary; first-order repair"
+  statement: "A two-phase two-gamma counterexample breaks the collapse for gamma(T); the repair gamma_eff = <Pc gamma>/<Pc> carries a certified second-order design penalty (numbers of record: shift -0.56%, penalty -0.00028%)."
+  doc: "docs/rde_nozzle_MASTER.md#two-gamma counterexample"
+  proof: "docs/rde_nozzle_theorem_ledger.md#5.2 Sharpness"
+  inherits: []
+  carrier: ["X-GRP09"]
+  suffices_symbolic: "no"
+  falsifier: "gamma-probe rejector: penalty exceeding shift^2 order, or the stale -1.9% class reappearing"
+  gamma: "EOS-general"
+
+- id: T-T4
+  kind: theorem
+  class: THEOREM*
+  scope: "free-boundary plug under the declared sonic-capped ideal-adaptation closure; K-E citation duty"
+  statement: "Per-phase argmax sets over plug extension are nested half-lines, so max Int = Int max is attained by the untruncated PEAK-phase design; truncation/length caps break nesting and open the first genuinely averaged shape problem (PB-2)."
+  doc: "docs/rde_nozzle_MASTER.md#THEOREM 6"
+  proof: "docs/rde_nozzle_MASTER.md#THEOREM 6"
+  inherits: ["C-HT4"]
+  carrier: ["X-GRP06", "X-GRP10", "X-GRP12"]
+  suffices_symbolic: "no"
+  falsifier: "oracle O2: ideal-plug machinery not returning the peak design; or a capped cell where extension strictly loses"
+  gamma: "EOS-general"
+
+- id: T-GB
+  kind: theorem
+  class: THEOREM
+  scope: "geometry-free ceiling, ANY topology, choked frozen feed; SONIC CAP mandatory on subcritical phases; primary route EOS-general (Cantera h(s,P)), closed forms demoted to oracles"
+  statement: "J[S] <= J_ideal = Int F_id dmu with F_id the complete isentropic expansion CAPPED AT THE SONIC STATE below critical NPR; measured purge delta of record: real gamma(T) ceiling 4.4-7.9% below the gamma_s oracle."
+  doc: "docs/rde_nozzle_MASTER.md#PROPOSITION 7"
+  proof: "docs/rde_nozzle_MASTER.md#PROPOSITION 7"
+  inherits: []
+  carrier: ["X-GRP08", "X-GRP11", "X-GRP12"]
+  suffices_symbolic: "no"
+  falsifier: "any admissible exit scan beating the capped formula beyond table-noise bars (executable rejector in groups (viii)/(xi))"
+  gamma: "EOS-general"
+
+- id: T-EQBR
+  kind: theorem
+  class: THEOREM*
+  scope: "ceiling-level caloric model bracket within the ideal-gas mixture closure pair (S8-op novelty)"
+  statement: "The shifting-equilibrium ceiling sits +6.3..+7.0% above the frozen ceiling on every PR (bars <= 0.003 s): the pair [frozen, equilibrium] is the executable model bracket of the caloric closure."
+  doc: "docs/rde_nozzle_MASTER.md#EQUILIBRIUM BRACKET"
+  proof: "docs/rde_nozzle_MASTER.md#EQUILIBRIUM BRACKET"
+  inherits: ["C-IGMIX"]
+  carrier: ["X-GRP12"]
+  suffices_symbolic: "no"
+  falsifier: "constant-cp known-answer through the equilibrium machinery failing, or corrupted-route rejector not firing (both live in group (xii))"
+  gamma: "EOS-general"
+
+- id: T-OP11e
+  kind: theorem
+  class: THEOREM
+  scope: "eps-rung phase diagram; winners rank CLOSURES at equal eps_max, never hardware (D3 §10quater(5) semantics binding); structure confirmed at gamma(T) on the real route"
+  statement: "Under the sonic-capped closure the plug family weakly dominates the bell pointwise, attains the capped ceiling at eps_max >= knee on every Pa > 0 cycle including subcritical, with the tie region characterized and the premium_bound tournament device certified per cell."
+  doc: "docs/rde_nozzle_theorem_ledger.md#10quater"
+  proof: "docs/rde_nozzle_MASTER.md#EPS-LEVEL INSTANCE"
+  inherits: []
+  carrier: ["X-GRP10", "X-GRP12"]
+  suffices_symbolic: "no"
+  falsifier: "negative controls of groups (x)/(xii): wrong winning topology, naive closure not rejected, or premium_bound rejector firing"
+  gamma: "EOS-general"
+
+- id: T-T7RED
+  kind: theorem
+  class: THEOREM
+  scope: "executable quasi-1D reduction of T7 (b)-(c); first EOS-general carrier eps*_real (S8-op novelty)"
+  statement: "With only the exit-area DOF the averaged wall+endpoint conditions degenerate to the weighted condition <P_E(eps; xi)>_mu = Pa, solved on the real area-ratio inversion (closed form NPR(eps*) = <Pc>/Pa demoted to gamma-const oracle)."
+  doc: "docs/rde_nozzle_MASTER.md#Executable reduction"
+  proof: "docs/rde_nozzle_MASTER.md#REAL-ROUTE DIAGRAM INSTANCE"
+  inherits: []
+  carrier: ["X-GRP06", "X-GRP10", "X-GRP12"]
+  suffices_symbolic: "no"
+  falsifier: "wrong-averaging rejector: the unweighted mean reproducing the weighted eps* beyond bars"
+  gamma: "EOS-general"
+
+- id: T-LEMA-CL
+  kind: theorem
+  class: THEOREM
+  scope: "classical stationarity system (L.6)-(L.16) derived from the single Rao Lagrangian; EOS-general (only Gibbs along the isentrope + c^2 definition used)"
+  statement: "The characteristic surface, the f2/lambda3 first integrals and the corner conditions follow in eight verifiable steps from the Lagrangian, each row corpus-confirmed."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.2"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.2"
+  inherits: []
+  carrier: ["X-PA1"]
+  suffices_symbolic: "yes"
+  falsifier: "any homentropic gamma(T) counterexample to a derivation row; E4 oracle for the corner<->eps implementation twin"
+  gamma: "EOS-general"
+
+- id: T-A2
+  kind: theorem
+  class: THEOREM
+  scope: "kernel solvability on characteristic surfaces; EOS-general, c symbolic; dual-route verified in conservative variables"
+  statement: "The flux covectors annihilate the tangent kernel on a characteristic surface, so the adjoint boundary condition is solvable for ANY lambda2 and the invariant does not live in the pointwise boundary algebra."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#Prop. A2"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.3"
+  inherits: []
+  carrier: ["X-PA1", "X-P2A1"]
+  suffices_symbolic: "yes"
+  falsifier: "any state where the kernel contractions fail to vanish at u_n = c (executable rejectors in both carriers)"
+  gamma: "EOS-general"
+
+- id: T-A3
+  kind: theorem
+  class: THEOREM
+  scope: "irrotational homentropic, EOS-general; rotational extension = Hoffman four-field route"
+  statement: "f2 is the TRANSPORTED adjoint invariant: the two-field multiplier PDEs are solved by the HTH-1971 closed pair for every admissible flow, and terminal transversality forces f2 = const."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#Prop. A3"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.3"
+  inherits: []
+  carrier: ["X-PA1"]
+  suffices_symbolic: "yes"
+  falsifier: "an admissible irrotational homentropic flow where the closed pair fails the multiplier PDEs (rejector in carrier Part 3)"
+  gamma: "EOS-general"
+
+- id: T-LEMA-i
+  kind: theorem
+  class: THEOREM*
+  scope: "identification (i): Rao's optimal control surface = adjoint closure surface"
+  statement: "The classical characteristic-surface condition and the adjoint characteristic closure select the same surface; structure derived, component combination pending O3.3."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  inherits: ["C-O33"]
+  carrier: ["X-PA1"]
+  suffices_symbolic: "no"
+  falsifier: "O3.3 term-match failure on a TOC case"
+  gamma: "EOS-general"
+
+- id: T-LEMA-ii
+  kind: theorem
+  class: THEOREM
+  scope: "identification (ii), irrotational homentropic EOS-general (P-A1/P-A1' discharged via T-A2 + T-A3)"
+  statement: "f2 is the adjoint invariant and lambda2/lambda3 are boundary data read at the lip: the constants<->data half executable, the transport half by Prop. A3."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  inherits: []
+  carrier: ["X-PA1", "X-P2A1"]
+  suffices_symbolic: "yes"
+  falsifier: "an adjoint solution violating psi.(K w) = -lambda2 at the boundary (executable lemma in X-P2A1)"
+  gamma: "EOS-general"
+
+- id: T-LEMA-iii
+  kind: theorem
+  class: THEOREM*
+  scope: "identification (iii): corner conditions = adjoint endpoint transversality"
+  statement: "The classical corner residuals CSTR_PA/PB are the adjoint transversality conditions at the contour endpoints; structure derived, component combination pending O3.3."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  inherits: ["C-O33"]
+  carrier: ["X-PA1"]
+  suffices_symbolic: "no"
+  falsifier: "O3.3 term-match failure on a TOC case"
+  gamma: "EOS-general"
+
+- id: T-LEMA-iv
+  kind: theorem
+  class: THEOREM*
+  scope: "Hoffman component map, page-verified (h_1..h_4, g_i, C_1, C_2 of record); field-level inheritance"
+  statement: "Hoffman's 1967 multiplier fields are the interior adjoint and his E-residual is the adjoint residual, by the explicit equation-numbered component map."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
+  inherits: ["C-D25U"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "O3.2: Hoffman E-residual not vanishing at O(h^2) on a converged optimized contour"
+  gamma: "EOS-general"
+
+- id: T-LEMB
+  kind: theorem
+  class: THEOREM
+  scope: "finite-dimensional, closure-agnostic (EOS-general by construction); mesh limit EXCLUDED (lives in S-LBML); P-B1 discharged at brick level (S8-op)"
+  statement: "The fitted MOC march is block-triangular and reverse-mode AD with implicit rules IS the transposed adjoint sweep along the same discrete characteristics, with the fitted front an explicit unknown whose solvability is Lax/Majda == J_k nonsingular."
+  doc: "docs/rde_nozzle_P2_lemmaB.md#§4.2"
+  proof: "docs/rde_nozzle_P2_lemmaB.md#§4.2"
+  inherits: []
+  carrier: ["X-G0", "X-G0AX"]
+  suffices_symbolic: "yes"
+  falsifier: "O3.1 dot-product identity failure on any brick (both carriers reject corrupted vjp)"
+  gamma: "EOS-general"
+
+- id: T-P3
+  kind: theorem
+  class: THEOREM*
+  scope: "shock-free S1 class; across fitted fronts inherits the front conditional"
+  statement: "The averaged multiplier lambda2(xi) exists, is unique (scalar CQ via the Prop. A2 contraction), equals -f2(lip data), and is measurable with explicit L^inf(dmu) bound."
+  doc: "docs/rde_nozzle_P3_multipliers.md#1. Statement"
+  proof: "docs/rde_nozzle_P3_multipliers.md#2. Proof"
+  inherits: ["C-D25U", "C-MAJDA"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "computed lambda2(xi) drifting from -f2(lip) beyond margins on certified data"
+  gamma: "EOS-general"
+
+- id: T-G12S1
+  kind: theorem
+  class: THEOREM*
+  scope: "S1 marching class; residues R-G12.1..3 named (regularity conditional, shift-differentiability citation to-verify, mesh limit)"
+  statement: "Within S1 the multi-D fitted-shock shape-derivative gap reduces to the verified 1-D theory via the x-as-time reading (G12-L1 eigenstructure + G12-L2 front brick)."
+  doc: "docs/rde_nozzle_G12_S1.md#§3 Assembly"
+  proof: "docs/rde_nozzle_G12_S1.md#§3 Assembly"
+  inherits: ["C-D25U", "C-MAJDA"]
+  carrier: ["X-G12"]
+  suffices_symbolic: "no"
+  falsifier: "F1-F3 of the G12 doc; executable rejectors R1/R2 in the carrier"
+  gamma: "EOS-general"
+
+- id: T-N6-1
+  kind: theorem
+  class: THEOREM
+  scope: "swirl structure; symbolic sufficed (finite algebraic identities)"
+  statement: "With swirl the meridional Mach lines are unchanged, the kernel has zero swirl component, and the kernel laws are identical — G12-S1 extends."
+  doc: "docs/rde_nozzle_N6_swirl.md#§1 THEOREM N6-1"
+  proof: "docs/rde_nozzle_N6_swirl.md#§1 THEOREM N6-1"
+  inherits: []
+  carrier: ["X-N6"]
+  suffices_symbolic: "yes"
+  falsifier: "any state where the pencil factorization or kernel laws fail (carrier Part A)"
+  gamma: "EOS-general"
+
+- id: T-N6-2
+  kind: theorem
+  class: THEOREM
+  scope: "free-vortex swirl (uniform r u_theta, h0, s); one-line analytic closure justification declared"
+  statement: "Rao's closed-form machinery extends VERBATIM to free-vortex swirl with W the meridional speed — a new positive class."
+  doc: "docs/rde_nozzle_N6_swirl.md#§2 THEOREM N6-2"
+  proof: "docs/rde_nozzle_N6_swirl.md#§2 THEOREM N6-2"
+  inherits: []
+  carrier: ["X-N6"]
+  suffices_symbolic: "yes"
+  falsifier: "carrier rejector R1 (identity failure off the free-vortex manifold)"
+  gamma: "EOS-general"
+
+- id: T-N6-3
+  kind: theorem
+  class: THEOREM
+  scope: "the obstruction identity (the strong only-if beyond it is S-N6SO)"
+  statement: "Beyond free vortex the pointwise control-surface closure fails by an exact obstruction identity vanishing exactly at free vortex — field-level machinery NECESSARY."
+  doc: "docs/rde_nozzle_N6_swirl.md#§3 THEOREM N6-3"
+  proof: "docs/rde_nozzle_N6_swirl.md#§3 THEOREM N6-3"
+  inherits: []
+  carrier: ["X-N6"]
+  suffices_symbolic: "yes"
+  falsifier: "carrier Part B3 double control (extra term must vanish exactly at free vortex and only there)"
+  gamma: "EOS-general"
+
+- id: T-N6-5F
+  kind: theorem
+  class: THEOREM
+  scope: "five-field adjoint STRUCTURE only ((A,B,M), Lagrange identity, gauge closed form); assembly = S-5F"
+  statement: "The axisymmetric-swirl five-field system has the verified adjoint structure: pencil (A,B,M), executable Lagrange identity, closed-form gauge l(n)."
+  doc: "docs/rde_nozzle_N6_swirl.md#§4 The five-field variational system"
+  proof: "docs/rde_nozzle_N6_swirl.md#§4 The five-field variational system"
+  inherits: []
+  carrier: ["X-5F"]
+  suffices_symbolic: "yes"
+  falsifier: "carrier rejector R1 (corrupted M breaks the Lagrange identity)"
+  gamma: "EOS-general"
+
+- id: T-T7FS
+  kind: theorem
+  class: THEOREM*
+  scope: "S1 class; conditionals R-T7.1/2 = the shared uniform estimate"
+  statement: "Differentiation under the cycle integral holds: dJ = Int F' dmu, and the averaged wall condition + weighted transversality (**') are genuine L^1(dmu) statements — (P)(ii) is a rigorous necessary condition."
+  doc: "docs/rde_nozzle_T7_P7_functionspace.md#§1 THEOREM T7-FS"
+  proof: "docs/rde_nozzle_T7_P7_functionspace.md#§1 THEOREM T7-FS"
+  inherits: ["C-D25U"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "certified margins with a phase family whose derivative dominates no L^1 envelope (would contradict the uniform estimate)"
+  gamma: "EOS-general"
+
+- id: T-P7S1
+  kind: theorem
+  class: THEOREM*
+  scope: "margin-certified level sets A_h^delta; the monitored failure boundary IS the level-set boundary"
+  statement: "The argmax of J exists on every margin-certified level set (finite-dimensional compactness + closed margins + continuity) — (P)(i) attacked."
+  doc: "docs/rde_nozzle_T7_P7_functionspace.md#§2 THEOREM P7-S1"
+  proof: "docs/rde_nozzle_T7_P7_functionspace.md#§2 THEOREM P7-S1"
+  inherits: ["C-D25U"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a maximizing sequence escaping every certified level set while margins hold"
+  gamma: "EOS-general"
+
+# --------------------------------------------------- schemas and conjectures
+
+- id: S-S1U
+  kind: schema
+  class: SCHEMA
+  scope: "S1-internal uniqueness across fitted shocks; bricks B1/B2 proven (machine-verified), assembly steps named"
+  statement: "Uniqueness of the S1 solution across fitted fronts reduces to a front-distance Gronwall over the 1-D-in-x evolution; the two quantitative bricks are proven, the assembly is function-space work."
+  doc: "docs/rde_nozzle_S1_uniqueness.md#§1 Statement"
+  proof: "docs/rde_nozzle_S1_uniqueness.md#§3 The assembly"
+  inherits: ["C-D25U", "C-MAJDA"]
+  carrier: ["X-G12"]
+  suffices_symbolic: "no"
+  falsifier: "two distinct S1 solutions with identical data and certified margins"
+  gamma: "EOS-general"
+
+- id: S-5F
+  kind: schema
+  class: SCHEMA
+  scope: "five-field assembly (wall/corner/E_sw terms); derivation route named"
+  statement: "The full five-field optimality system (beyond the verified structure of T-N6-5F) is calculus of variations in function space with the route named."
+  doc: "docs/rde_nozzle_N6_swirl.md#§4 The five-field variational system"
+  proof: "docs/rde_nozzle_N6_swirl.md#§4 The five-field variational system"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "assembled system disagreeing with the AD adjoint on a certified swirl case"
+  gamma: "EOS-general"
+
+- id: S-N6SO
+  kind: schema
+  class: SCHEMA
+  scope: "the strong only-if of N6-3 (no alternative closed-form reduction exists)"
+  statement: "Beyond the obstruction identity, excluding EVERY alternative pointwise reduction needs a classification argument — named, not claimed."
+  doc: "docs/rde_nozzle_N6_swirl.md#§3 THEOREM N6-3"
+  proof: "docs/rde_nozzle_N6_swirl.md#§3 THEOREM N6-3"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "exhibit a closed-form reduction for non-free-vortex swirl"
+  gamma: "EOS-general"
+
+- id: S-P4F
+  kind: theorem
+  class: THEOREM*
+  scope: "statement-level reduction under the periodic scoping; remaining analysis named (Riesz theory + quantitative IFT)"
+  statement: "Solvability of the O(St) corrector system reduces to a Fredholm alternative on the circle: 1 not in spec(Pi) with Pi the cycle monodromy — the spectral hypothesis IS the P1a/P1b neutral-mode margin."
+  doc: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
+  inherits: ["C-D25U"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "O5: computed J1 = -<psi_J, S_sweep U0> diverging from unsteady simulation beyond bars at certified spectral margin"
+  gamma: "EOS-general"
+
+- id: S-LBML
+  kind: schema
+  class: SCHEMA
+  scope: "Lemma-B mesh limit; Lax-equivalence route (i)-(v) named; the G12 frontier"
+  statement: "The discrete fitted-AD gradient converges at order h^2 to the continuum shift-derivative of G12-S1 on certified references — architecture named, not written."
+  doc: "docs/rde_nozzle_remaining_conditionals.md#§3 LEMMA-B MESH LIMIT"
+  proof: "docs/rde_nozzle_P2_lemmaB.md#§4.5 The mesh limit"
+  inherits: ["C-D25U"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "O3.2 order check, O3.3 term match, F2 FD-vs-AD at fitted shocks"
+  gamma: "EOS-general"
+
+- id: J-CT1
+  kind: conjecture
+  class: CONJECTURE
+  scope: "O(St) corrector, re-scoped to the steady sweep-perturbation expansion on periodic data (standing scope)"
+  statement: "The quasi-steady error admits the one-term corrector St J1 with J1 from one linearized wave-frame solve, uniformly on the certified data class."
+  doc: "docs/rde_nozzle_theorem_ledger.md#3. T1"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "O5/O4: unsteady or continued-wave comparison off J_avg + St J1 beyond bars"
+  gamma: "EOS-general"
+
+- id: J-OP11
+  kind: conjecture
+  class: CONJECTURE
+  scope: "contour level; the duty split is NOT expressible at eps level (proven)"
+  statement: "The operating measure selects the optimal topology of S*(c) at contour level, with duty-split regions at tight length + large spread."
+  doc: "docs/rde_nozzle_theorem_ledger.md#10quater"
+  proof: "docs/rde_nozzle_MASTER.md#EPS-LEVEL INSTANCE"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "sector tournament with certified delta-bands contradicting the selected topology"
+  gamma: "EOS-general"
+
+# ------------------------------------------------------------------- carriers
+
+- id: X-PA1
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic carrier of the Lemma-A classical derivation + Prop. A2 + Prop. A3; PASS 19/19 of record (3 rejectors), re-verified 2026-07-17 (3.3 s)"
+  statement: "Machine verification (sympy, EOS-general closure rules) of the ENTIRE classical stationarity derivation, the kernel solvability and the transported invariant."
+  doc: "validation/pa1_symbolic_lemmaA.py"
+  proof: "validation/pa1_symbolic_lemmaA.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its three built-in rejectors (corrupted pair, non-characteristic surface, broken derivation row)"
+  gamma: "EOS-general"
+
+- id: X-P2A1
+  kind: carrier
+  class: PRACTICE
+  scope: "dual-route verification of Prop. A2 in CONSERVATIVE variables (Grueneisen closure); PASS + 3 negative controls, re-verified 2026-07-17 (44.7 s)"
+  statement: "Independent symbolic verification of the annihilation identity, the rank-3 certificate, the executable (L.20) bookkeeping and the boundary-data reading lemma psi.(K w) = -lambda2."
+  doc: "validation/p2_pA1_symbolic_adjoint.py"
+  proof: "validation/p2_pA1_symbolic_adjoint.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its three negative controls (pressure term dropped, non-characteristic surface, corrupted covector)"
+  gamma: "EOS-general"
+
+- id: X-G12
+  kind: carrier
+  class: PRACTICE
+  scope: "G12 front brick; PASS 9/9 of record (2 rejectors, equilibrated derived tolerances), re-verified 2026-07-17 (1.4 s)"
+  statement: "Machine verification of the G12-L1 eigenstructure and the G12-L2 linearized-RH nonsingularity/degeneration law."
+  doc: "validation/g12_shock_linearization.py"
+  proof: "validation/g12_shock_linearization.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors R1 (characteristic front must be detected singular) and R2 (corrupted RH row)"
+  gamma: "EOS-general"
+
+- id: X-N6
+  kind: carrier
+  class: PRACTICE
+  scope: "N6 swirl kernel; PASS 16/16 of record, re-verified 2026-07-17 (2.6 s)"
+  statement: "Machine verification of the swirl structure identities, the free-vortex verbatim extension and the obstruction identity with double control."
+  doc: "validation/n6_swirl_kernel.py"
+  proof: "validation/n6_swirl_kernel.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejector R1 and the Part-B3 double control"
+  gamma: "EOS-general"
+
+- id: X-5F
+  kind: carrier
+  class: PRACTICE
+  scope: "five-field adjoint structure; PASS 6/6 of record, re-verified 2026-07-17 (1.6 s)"
+  statement: "Machine verification of the five-field pencil structure, rank certificate and Lagrange identity."
+  doc: "validation/n6_fivefield_adjoint.py"
+  proof: "validation/n6_fivefield_adjoint.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejector R1 (corrupted M breaks the Lagrange identity)"
+  gamma: "EOS-general"
+
+- id: X-G0
+  kind: carrier
+  class: PRACTICE
+  scope: "G0 spike (S5): planar interior + inverse-wall implicit unit processes in jax custom_vjp; PASS 52/52 of record; on-demand carrier (env: jax), outside CI tiers by declaration"
+  statement: "Full Jacobian vs central FD with derived tolerance on Newton-implicit MOC unit processes; negative control rejected."
+  doc: "validation/g0_spike_jax_moc.py"
+  proof: "validation/g0_spike_jax_moc.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its corrupted-vjp negative control"
+  gamma: "perfect-gas-oracle"
+
+- id: X-G0AX
+  kind: carrier
+  class: PRACTICE
+  scope: "G0 spike twin (S8-op): axisym source dual-route + fitted shock point on RH with O3.1 + Lax/Majda executable + GENO read-only interop; VERDICT PASS of record; on-demand carrier (env: jax), outside CI tiers by declaration"
+  statement: "Axisymmetric source derived in-house with order-scaling rejector; O3.1 dot-product at the shock brick (3.4e-12 vs tol 1.2e-9) discharging P-B1 at brick level; fold-exponent-1/2 transversality collapse in derived band."
+  doc: "validation/g0_spike_axisym_shock.py"
+  proof: "validation/g0_spike_axisym_shock.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its negative controls (source-sign flip out of band, corrupted vjp, uncertified detachment, rescaled contour)"
+  gamma: "perfect-gas-oracle"
+
+- id: X-GRP01
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (i); suite-green of record 13/13 (S8-op)"
+  statement: "One CJ state from all canonical paths (<= 1e-9 rel) + independent solvers within 2e-3."
+  doc: "tests/test_cj_coherence.py"
+  proof: "tests/test_cj_coherence.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its coherence tolerances (derived)"
+  gamma: "EOS-general"
+
+- id: X-GRP02
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (ii)"
+  statement: "Blowdown -> steady CP identity (<= 1e-6): the executable instance of the collapse chain and the O1/O2 pivots."
+  doc: "tests/test_stechmann_collapse.py"
+  proof: "tests/test_stechmann_collapse.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "identity failure beyond 1e-6"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP03
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (iii)"
+  statement: "SK axial sonic vs independent equation bound (~0%)."
+  doc: "tests/test_axial_bound.py"
+  proof: "tests/test_axial_bound.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "bound violation"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP04
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (iv)"
+  statement: "M_CJ -> q~ -> M_CJ exact inversion (<= 1e-6)."
+  doc: "tests/test_q_roundtrip.py"
+  proof: "tests/test_q_roundtrip.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "round-trip failure beyond 1e-6"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP05
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (v) + slow tier live examples"
+  statement: "Blessed digits from shipped data + reports; live examples digits EXACT in the slow tier."
+  doc: "tests/test_golden.py"
+  proof: "tests/test_golden.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any golden digit drift"
+  gamma: "EOS-general"
+
+- id: X-GRP06
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (vi)"
+  statement: "Executable eps-optimality proofs (Euler lemma, stationarity/globality, averaging discrimination — the wrong-averaging rejector lives here)."
+  doc: "tests/test_bell_optimality.py"
+  proof: "tests/test_bell_optimality.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its averaging-discrimination rejector"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP07
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (vii); code lint, non-mathematical"
+  statement: "No-magic-number invariant: every src/ literal classified in validation/numeric_allowlist.json."
+  doc: "tests/test_numeric_lint.py"
+  proof: "tests/test_numeric_lint.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any unclassified literal"
+  gamma: "n/a"
+
+- id: X-GRP08
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (viii); OP-0 ladder with rejectors, 18 Table-1 rows"
+  statement: "eps-level bound ladder bell <= int-max == ideal <= B_EK with the sonic cap enforced; naive form rejected on the four subcritical rows."
+  doc: "tests/test_bounds.py"
+  proof: "tests/test_bounds.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its seven negative controls"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP09
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (ix); PASS 12/12 of record"
+  statement: "A0.3 gamma-channel probe: gamma_s shift, eps* shift -0.56% (unweighted-mean class rejected), second-order penalty."
+  doc: "tests/test_gamma_probe.py"
+  proof: "tests/test_gamma_probe.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its unweighted-mean rejector"
+  gamma: "EOS-general"
+
+- id: X-GRP10
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (x); 22 checks + 8 negative controls of record"
+  statement: "OP-11-eps phase diagram invariants (T3/T4 oracles explicit, wrong-topology rejectors, premium_bound device)."
+  doc: "tests/test_phase_diagram.py"
+  proof: "tests/test_phase_diagram.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its eight negative controls"
+  gamma: "gamma-const-oracle"
+
+- id: X-GRP11
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xi); PASS 18/18 of record"
+  statement: "OP-0-gamma real-thermo ceiling: EOS-general primary route, sonic cap at gamma(T), known-answer constant-cp rejector, corrupted route rejected."
+  doc: "tests/test_bounds_gamma.py"
+  proof: "tests/test_bounds_gamma.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its known-answer and corrupted-route rejectors"
+  gamma: "EOS-general"
+
+- id: X-GRP12
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xii); PASS 20/20 of record (S8-op)"
+  statement: "Real-route diagram + equilibrium bracket: eps*_real carrier, two-level naive metric, live corrupted known-answer rejection, six negative controls, cross-anchor to the real ladder."
+  doc: "tests/test_phase_diagram_real.py"
+  proof: "tests/test_phase_diagram_real.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its six negative controls"
+  gamma: "EOS-general"
+
+# -------------------------------------------------------------------- oracles
+
+- id: O-G2
+  kind: oracle
+  class: PRACTICE
+  scope: "the var-gamma contour oracle (E4 gate); TO RUN (GENO gate G2)"
+  statement: "Scofield-Hoffman 1971 Table 2 Case 1 diagonal (2290 lbf) gates any corner<->eps closed-form shortcut and the E4 risk."
+  doc: "docs/rde_nozzle_literature_map.md"
+  proof: "docs/rde_nozzle_lit_b0bis.md"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "in-repo reproduction missing the diagonal beyond declared tolerance"
+  gamma: "EOS-general"
+
+- id: O-RAOPLUG
+  kind: oracle
+  class: PRACTICE
+  scope: "RaoPlug S1/S2 fix gate; discrepancy 2.428/2.433 of record"
+  statement: "Rao 1961 spike Table (M_E = 2.4, theta_E = -8.25 deg, gamma = 1.23, eps = 3.81, C_F = 1.5804) gates the GENO RaoPlug fix."
+  doc: "docs/rde_nozzle_lit_b0bis.md"
+  proof: "docs/rde_nozzle_lit_b0bis.md"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "fixed RaoPlug not reproducing the Table row"
+  gamma: "gamma-const-oracle"
+
+- id: O-OB
+  kind: oracle
+  class: PRACTICE
+  scope: "lit_b0bis oracle registry O-b1..O-b7; each R5-gated before adoption"
+  statement: "The corpus-study oracle candidates (S-H diagonal precision, Sternin/Rao-Beck boundary, etc.) enter the suite only through R5 (script + rejector + derived tolerance)."
+  doc: "docs/rde_nozzle_lit_b0bis.md#4. ORACLE REGISTRY"
+  proof: "docs/rde_nozzle_lit_b0bis.md#4. ORACLE REGISTRY"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "adoption of any O-b row without script + rejector (R5 violation)"
+  gamma: "n/a"
+
+# ----------------------------------------------------------------- directives
+
+- id: DIR-GAMMA
+  kind: directive
+  class: PRACTICE
+  scope: "standing user directive (strengthened form)"
+  statement: "Every claim states its variable-gamma status; gamma = const only as declared oracle or demoted corollary, never load-bearing in a deliverable."
+  doc: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  proof: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a load-bearing gamma=const hypothesis found in any deliverable (lint/audit grep)"
+  gamma: "EOS-general"
+
+- id: DIR-PRISTINE
+  kind: directive
+  class: PRACTICE
+  scope: "standing user directive"
+  statement: "Every document, proof, log and commit is written cleanly and precisely: structured statements, declared classes, no informal residue in documents of record."
+  doc: "docs/rde_nozzle_SCAFFOLD.md#§1 Target architecture"
+  proof: "docs/rde_nozzle_SCAFFOLD.md#§1 Target architecture"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "an undeclared class or informal residue in a document of record"
+  gamma: "n/a"
+
+- id: DIR-SUFF
+  kind: directive
+  class: PRACTICE
+  scope: "standing user directive"
+  statement: "Every claim declares whether symbolic verification suffices (finite algebraic identity: machine check = proof) or the content is function-space (analytic steps named, classed separately)."
+  doc: "docs/rde_nozzle_SCAFFOLD.md#§1 Target architecture"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§5 Register"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a claim without a sufficiency declaration (registry lint enforces the tag)"
+  gamma: "n/a"
+
+- id: DIR-PERIODIC
+  kind: directive
+  class: PRACTICE
+  scope: "standing user assumption + algorithmic clarification"
+  statement: "Interface data are a pure periodic rotating wave BY DECLARATION (monitor = T0 flatness), but periodicity is a runtime opportunity, never algorithm structure."
+  doc: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  proof: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a code path hard-coding periodicity without a runtime certificate"
+  gamma: "n/a"
+
+- id: DIR-ANCHOR
+  kind: directive
+  class: PRACTICE
+  scope: "standing user clarification"
+  statement: "Every task and claim anchors to (P) of M0 D2.6 — never more."
+  doc: "docs/rde_nozzle_MASTER.md#D2.6"
+  proof: "docs/rde_nozzle_MASTER.md#D2.6"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a deliverable promising more than the pair (S*, delta)"
+  gamma: "n/a"
+
+- id: DIR-SESSION
+  kind: directive
+  class: PRACTICE
+  scope: "standing rule, violated six times in two days — enforced"
+  statement: "One session at a time; total-order append-only session logs; pre-execution gate before any task; git state re-checked before every commit."
+  doc: "docs/rde_nozzle_SCAFFOLD.md#one-session-at-a-time"
+  proof: "CLAUDE.md#R2"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a commit landing without the pre-commit git-state check logged"
+  gamma: "n/a"
+
+- id: DIR-CITE
+  kind: directive
+  class: PRACTICE
+  scope: "standing rule (R5 + radical citation honesty)"
+  statement: "No number without committed script + rejector; no citation beyond what was read; novelty claims always query-bounded."
+  doc: "CLAUDE.md#R5"
+  proof: "CLAUDE.md#R5"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a number without carrier or a citation without page-level verification"
+  gamma: "n/a"
+
+# --------------------------------------------------------- paper-layer records
+
+- id: PAP-P1SK
+  kind: paper
+  class: PRACTICE
+  scope: "P-1 skeleton of record (venue JPP; submission gated M1 + G5); claim map C1-C26"
+  statement: "Paper P-1 skeleton with per-claim rigor class, falsifier and executable carrier; acceptance rules (a)-(e) including the per-claim gamma status."
+  doc: "docs/rde_nozzle_P1_skeleton.md#§CM"
+  proof: "docs/rde_nozzle_P1_skeleton.md#§CM"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "an orphan claim (claim-map row without class + falsifier + carrier) — coherence grep"
+  gamma: "n/a"
+
+- id: PAP-P1S24
+  kind: paper
+  class: PRACTICE
+  scope: "P-1 sections §2 and §4 full text of record (S8-op); §4.5 novelty wording CONTINGENT on Kraiko-Osipov PMM 34(6) 1970 full text"
+  statement: "Full text of P-1 §2 (objective chain) and §4 (collapse dichotomy) with the audit line [Class | Falsifier | Carrier | Gamma status] closing every subsection."
+  doc: "docs/rde_nozzle_P1_sections_2_4.md#§2 The objective"
+  proof: "docs/rde_nozzle_P1_sections_2_4.md#§2 The objective"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a subsection without its audit line, or novelty wording exceeding the query bounds — coherence grep"
+  gamma: "n/a"
+
+- id: PAP-P2OUT
+  kind: paper
+  class: PRACTICE
+  scope: "P-2 outline of record; venue DECIDED (AIAA J primary + arXiv at (G5 AND Lemma-A draft); Aerospace fallback; JOTA tertiary)"
+  statement: "P-2 bridge-paper outline: Lemmas A/B with rigor classes, falsifiers, three cited banks, O3 oracle plan."
+  doc: "docs/rde_nozzle_P2_outline.md"
+  proof: "docs/rde_nozzle_P2_outline.md"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "outline claims drifting from the registry classes"
+  gamma: "n/a"
+
+- id: PAP-P2LA
+  kind: paper
+  class: PRACTICE
+  scope: "P-2 Lemma A draft of record (= paper §3); PENDING register P-A1/P-A1'/P-A2 DISCHARGED, P-A3 numeric residual open"
+  statement: "Term-by-term identification of the Rao/Kraiko machinery with the continuous adjoint on the terminal characteristic; claims indexed by T-LEMA-*, T-A2, T-A3."
+  doc: "docs/rde_nozzle_P2_lemmaA.md#§3.6"
+  proof: "docs/rde_nozzle_P2_lemmaA.md#§3.6"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a draft row not corpus-confirmed or a class drifting from the registry"
+  gamma: "n/a"
+
+- id: PAP-P2LB
+  kind: paper
+  class: PRACTICE
+  scope: "P-2 Lemma B draft of record (= paper §4); P-B1 discharged at brick level (S8-op), P-B2 order test = A1 engine"
+  statement: "Reverse-mode AD of a shock-fitted MOC march IS the discrete adjoint characteristic sweep; claims indexed by T-LEMB, S-LBML."
+  doc: "docs/rde_nozzle_P2_lemmaB.md#§4.7"
+  proof: "docs/rde_nozzle_P2_lemmaB.md#§4.7"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "the honesty clause (mesh limit stays SCHEMA) weakened anywhere in the draft — coherence grep"
+  gamma: "n/a"
