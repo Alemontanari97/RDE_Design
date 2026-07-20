@@ -7,10 +7,84 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-17, chiusura Sessione 9 — ORDINE DI PROGETTO
-## [F1/SCAFFOLD-M]: migrazione M-1..M-5 + riallineamento D6 + pulizia;
-## NESSUNA concorrenza rilevata — prima sessione pulita dopo sei
-## violazioni)
+## ORA (2026-07-20, chiusura Sessione 10 — "APERTURA FASE 2: decisione
+## G0 col criterio GENO ESERCITATO + coda Fase 1 P-1 §5-§7 + leads";
+## sessione UNICA, nessuna concorrenza ai tre check pre-commit)
+
+Branch `rde-nozzle-program`. Log a ordine totale:
+validation/PROGRESS_2026-07-17_fase2_S10.md (gate pre-esecuzione PASS
+al passo 3; 14 passi; aperta il 17, chiusa il 20 — pause utente, mai
+due sessioni). Commit: T1 = bfd0063, T2 = 570b38c, T3 = 0fb6a21,
+chiusura = (questo commit).
+
+- **[F2/G0] G0 DECISO — IL RESIDUO TOOLCHAIN È CHIUSO CON EVIDENZA**
+  (bfd0063; dossier docs/rde_nozzle_G0_decision.md, registro [DIR-G0]
+  + [X-GENOXC]): (a) GENO COMPILATO in WSL Ubuntu (gfortran 11.4.0,
+  CMake, Cantera/Sundials/Tecio OFF, LAPACK dall'env conda ct-env
+  preesistente — ZERO installazioni nuove; submodule clonati via
+  HTTPS con override non-persistente, ramo cantera/sundials saltato;
+  GENO MAI modificato/committato, output gitignored); (b) tocnoz
+  rigenerato: exit 0, performance fisiche sane, CONTORNO TOC
+  riprodotto al riferimento committato a max |Δ| = 1e-10; convenzione
+  checksum N-36 letta in-sessione e confermata (md5 field
+  toolchain-dipendenti, scalari stampati identici) ⇒ confronto
+  scientifico a valore; (c) NUOVO CARRIER CROSS-CODE
+  validation/g0_geno_crosscode.py [X-GENOXC], on-demand (env:
+  gfortran): test a RESIDUO EOS-general (banda di troncamento
+  per-cella DERIVATA |R_trap| ≤ 4(|R_trap−R_end|+floor): 218/218
+  celle core supersonico dentro) + RIPRODUZIONE letterale "due punti
+  → punto nuovo" (chiusura energetica γ-di-cella dichiarata oracolo:
+  95% in banda); controlli negativi rigettano (figlio/piede corrotto
+  100%→0%, accoppiamento errato 84×); metodo onesto a log (fit
+  d'ordine cross-field ABBANDONATO perché mal posto su griglia fissa
+  — dichiarato); (d) DECISIONE: JAX primario (fedeltà 52/52 + O3.1;
+  loop-speed standalone: solve ~322 µs, +adjoint ~327 µs ⇒
+  grad/solve ~1.01 host-invariante), Julia+Enzyme alternate
+  dichiarata (non benchmarcata — detto), GENO riferimento dual-code;
+  falsificatore loop-speed ARMATO. R4 stessa sessione: M0 VI.7
+  addendum + D6 (G0 ISTRUITO→DECISO; **FASE A1 APERTA**, primo
+  mattone = unit process gamma(T) + X-GENOXC regressione permanente).
+  SCOPE ONESTO (challenge utente in-sessione, scritto in registro/
+  dossier): il cross-code certifica l'INTERIOR UNIT PROCESS, NON la
+  machinery di generazione profili — NESSUN contorno è stato generato
+  con jax; quella è A1 brick 1.
+- **[F1/P-1] §5-§7 TESTO PIENO DI RECORD** (570b38c,
+  docs/rde_nozzle_P1_sections_5_7.md): §5 sistema mediato (blocchi
+  (a)(b)(c), fattorizzazione (**') R(ξ)w(ξ), BOXED WARNING media
+  naive, riduzione quasi-1D col carrier EOS-general eps*_real
+  [T-T7RED] gruppo (xii), forma chiusa declassata a oracolo, pin
+  VI.4bis(iii)); §6 ceiling [T-GB] + cap sonico (controesempio
+  γ=1.15, 4 righe subcritiche rigettano il naive) + ladder + DELTA
+  DI PURGA −4.4..−7.9% + BRACKET DI EQUILIBRIO +6.3..+7.0% [T-EQBR];
+  §7 SEMANTICS-FIRST (D3 §10quater(5) verbatim), blocco (P),
+  statement (1)-(4) [T-OP11e], warning artefatto chiusura pubblicata,
+  ISTANZA ROUTE REALE §7.5bis, premium_bound, molteplicità, vuoto.
+  Regole (a)-(e) per sottosezione; claim per ID di registro; CLASS
+  REFRESH vs skeleton DICHIARATO (SCHEMA→THEOREM* per upgrade S6/S8);
+  novità CONDIZIONALE (Kraiko-Osipov). Grep coerenza PASS; skeleton
+  aggiornato (restano §1, §3, §8, §9 + appendici).
+- **[LEADS] ENTRAMBI I LEAD CHIUSI ALLA FONTE** (0fb6a21, metodo
+  raw-HTML/raw-PDF, mai il summarizer): Rao 1958 "IAF Amsterdam"
+  IDENTIFICATO = "Contoured Rocket Nozzles", Proc. IX IAC Amsterdam
+  1958, Springer (DOI 10.1007/978-3-7091-4745-0_18), abstract
+  verificato su HTML grezzo con conteggi: il precedente var-gamma è
+  Rao stesso, 1958, STATO SINGOLO ⇒ citazione obbligatoria nella
+  genealogia gamma di P-1/P-2, novità cycle-averaged INTATTA (full
+  text paywalled → coda G5, dichiarato); van Meerbeeck EUCASS 2013
+  LETTO INTEGRALE (15 pp): procedura puntuale TOP (TDK, sea level),
+  conteggi average/trajectory/weighted/flight = 0 ⇒ G14 REGGE,
+  lead CHIUSO. R4 in lit_b0bis (V1)+(A7).
+- **SUITE**: 16/16 gruppi PASS exit 0 in 213 s (host sano; run pieno
+  incl. tier rigor (xiv) 31.8 s ed esempi live 99.2 s). q_mapping.*
+  datestamp rigenerati dagli esempi due volte in-sessione: ripristinati
+  entrambe le volte (diff 2 righe, contenuto identico, dichiarato).
+- NON eseguiti (dichiarato): T4 (brick PM generalizzata — confluisce
+  in A1 brick 1) e T5 (carrier T-NSW) — priorità T1>T2>T3 rispettata.
+
+Stato precedente (chiusura Sessione 9 — ORDINE DI PROGETTO
+[F1/SCAFFOLD-M]: migrazione M-1..M-5 + riallineamento D6 + pulizia;
+NESSUNA concorrenza rilevata — prima sessione pulita dopo sei
+violazioni)
 
 Branch `rde-nozzle-program`. Log a ordine totale:
 validation/PROGRESS_2026-07-17_S9_ordine.md (gate pre-esecuzione PASS
@@ -427,36 +501,37 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (Sessione 10 — LISTA UNICA CONSOLIDATA, ordine S9: le tre
-## stratificazioni di chiusura S7/S8/S9 sono state fuse; ogni voce è
-## un passo atomico con carrier/criterio già nominato)
+## NEXT (Sessione 11)
 
-1. [F2/G0] DECISIONE FORMALE G0 (stack differenziabile): dossier
-   COMPLETO (D6 §5 stato di record). Residuo unico per il criterio
-   O3.4 cross-code: toolchain Fortran (MinGW/WSL o altro host) per
-   compilare GENO ed eseguire il confronto flowfield sul caso tocnoz
-   (x/y/u/v/p.dat vs unit process, cella per cella). La decisione può
-   essere presa dichiarando il residuo, se l'utente lo accetta.
-2. [F1/P-1] Sezioni §5 (sistema mediato T7/(**')), §6 (bounds + cap
-   sonico), §7 (diagramma semantics-first): ora citabili il carrier
-   EOS-general della riduzione (**') (eps*_real, gruppo (xii)), il
-   bracket di equilibrio [T-EQBR] e gli ID di registro (i claim si
-   citano per ID — SCAFFOLD §5).
-3. [LEADS, query-bounded] Rao 1958 IAF Amsterdam (HIGH — tocca il
-   wording gamma di P-1/P-2); van Meerbeeck EUCASS 2013 (LOW).
-   VINCOLO DI METODO (S7): raw HTML + verifica conteggi, mai il
-   summarizer.
-4. [F0/G5, SOLO UTENTE] Invio email biblioteca (pacchetto pronto,
-   validation/G5_dispatch_email.md + lista Item 2b); alla risposta:
-   lettura full-text Kraiko-Osipov PMM 34(6) 1970 e scioglimento
+1. [F2/A1 — BRICK 1, priorità massima; aspettativa utente ESPLICITA
+   S10] MACHINERY DI GENERAZIONE PROFILI in JAX: assemblare gli unit
+   process validati in una marcia MoC differenziabile completa
+   (IVL → interior/inverse-wall/asse → flowfield + streamline di
+   parete). Primo target: UGELLO IDEALE fino a M_e prescritto
+   (marcia diretta, nessuna ottimalità — gemello del nozzle_type 0)
+   con confronto END-TO-END del contorno generato vs GENO
+   (idealnoz/tocnoz; X-GENOXC come regressione permanente del
+   mattone); poi il TOC alla Rao IMPOSTO VARIAZIONALMENTE (obiettivo
+   spinta + vincoli {eps, L, lip}, trasversalità (**')/corner come
+   condizione di stazionarietà via gradiente dJ/dΣ, MAI outer-loop
+   hard-coded). Backend gamma(T) Cantera (VI.4bis(iii)); l'ex-T4
+   (brick PM generalizzata su isentropa tabulata) confluisce qui.
+   Carrier con rejector + voce di registro per ogni mattone.
+2. [F1/P-1] Sezioni restanti: §1 (intro, citazioni D2 + NUOVO dovere
+   Rao 1958 IAC nella genealogia var-gamma), §3, §8 (bridge EAP/S-H),
+   §9 + appendici; poi assembly del paper con claim-map completa.
+3. [F0/G5, SOLO UTENTE] Invio email biblioteca (pacchetto pronto,
+   validation/G5_dispatch_email.md + lista Item 2b); AGGIUNTA S10:
+   acquisire anche il full text di Rao 1958 IAC "Contoured Rocket
+   Nozzles" (Springer, paywalled — abstract-verified finora). Alla
+   risposta: Kraiko-Osipov PMM 34(6) 1970 full-text e scioglimento
    della contingenza §4.5/G6 di P-1.
-5. [L6, opzionale] Carrier simbolico banale per T-NSW (dichiarato nel
-   registro come candidato L6) — chiude l'unico teorema a catena
-   elementare senza carrier.
-[FATTO in S9: ex-NEXT-3 (gruppo P-A nella suite) → M-5, gruppi (xiii)
-fast + (xiv) tier rigor, commit 8a2c946. La migrazione SCAFFOLD
-M-1..M-5 è COMPLETA: registro + lint + spine + ledger + tier.
-FATTO in S3-S8: vedi voci precedenti.]
+4. [L6, opzionale] Carrier simbolico banale per T-NSW (candidato L6
+   nel registro).
+[FATTO in S10: ex-NEXT-1 (decisione G0, residuo CHIUSO con evidenza,
+non dichiarato) = bfd0063; ex-NEXT-2 (P-1 §5-§7) = 570b38c;
+ex-NEXT-3 (leads, entrambi chiusi alla fonte) = 0fb6a21.
+FATTO in S3-S9: vedi voci precedenti.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -481,19 +556,45 @@ FATTO in S3-S8: vedi voci precedenti.]
 - ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
   committato): IN ATTESA DI RATIFICA UTENTE — nessuna implementazione
   avviata, per disciplina.
-- G0 (stack JAX/Julia): decisione a Fase 2 — spike S5 (b07b47e) PASS
-  + estensione S8 (001aecc) PASS: axisym dual-route, shock point con
-  O3.1 e trasversalità Lax/Majda eseguibile, interop file-exchange
-  GENO (throat/eps/maxtheta cross-verificati sul tocnoz di
-  riferimento). RESIDUO TECNICO per il criterio O3.4 cross-code
-  FLOWFIELD: il binario GENO non è compilabile su questo host
-  (gfortran ASSENTE, verificato S8; i reference x/y/u/v/p.dat
-  esistono solo come checksum) → serve toolchain Fortran o host
-  alternativo. La decisione formale G0 è ora ISTRUITA su tutto il
-  resto (NEXT 1).
+- G0: **DECISO in S10** (bfd0063; dossier
+  docs/rde_nozzle_G0_decision.md, [DIR-G0]): JAX primario,
+  Julia+Enzyme alternate, GENO dual-code; il residuo toolchain è
+  stato CHIUSO (GENO compilato in WSL, contorno 1e-10, X-GENOXC
+  PASS). NON PIÙ BLOCCANTE. Ratifica utente attesa SOLO se emergono
+  trade-off fuori dai criteri D6 (es. preferenza strategica
+  single-language); falsificatore loop-speed armato (flip a
+  Julia/Enzyme se il loop A1 assemblato è impraticabile).
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S10 (2026-07-17/20, "APERTURA FASE 2: G0 + P-1 §5-§7 + leads";
+  sessione UNICA, tre check pre-commit puliti; log
+  validation/PROGRESS_2026-07-17_fase2_S10.md, 14 passi, gate PASS
+  al passo 3)** — T1 (bfd0063): G0 DECISO — GENO compilato in WSL
+  (gfortran 11.4.0, zero installazioni: toolchain e LAPACK conda
+  preesistenti; submodule via HTTPS non-persistente, GENO mai
+  toccato/committato), tocnoz rigenerato (contorno = riferimento a
+  1e-10; convenzione md5 N-36 letta e confermata), carrier
+  cross-code X-GENOXC (residuo EOS-general 218/218 in banda di
+  troncamento derivata + riproduzione due-punti→punto 95%, controlli
+  negativi rigettano; onestà di metodo a log: fit d'ordine
+  cross-field abbandonato perché mal posto), decisione JAX primario
+  (grad/solve ~1.01 misurato standalone) con falsificatore armato;
+  R4: M0 VI.7 + D6 (A1 APERTA). SCOPE dichiarato su challenge
+  utente: certificato l'interior unit process, NON la generazione
+  profili (nessun contorno jax esiste ancora → A1 brick 1, NEXT 1).
+  T2 (570b38c): P-1 §5-§7 testo pieno (boxed warning naive, purga
+  −4.4..−7.9%, bracket +6.3..+7.0%, §7 semantics-first + route
+  reale §7.5bis; class refresh dichiarato; grep coerenza PASS).
+  T3 (0fb6a21): lead chiusi — Rao 1958 IAC identificato e
+  abstract-verificato (var-gamma precedente 1958 a stato singolo ⇒
+  citazione obbligatoria, novità intatta, full text in coda G5);
+  van Meerbeeck EUCASS 2013 letto integrale (puntuale, zero
+  obiettivo mediato, G14 regge). SUITE 16/16 in 213 s (host sano).
+  Deviazioni dichiarate: T4/T5 non eseguiti; q_mapping datestamp
+  ripristinati due volte; cambio modello in-sessione su comando
+  utente.
 
 - **S9 (2026-07-17, ORDINE DI PROGETTO [F1/SCAFFOLD-M]: "migrazione
   M-1..M-5 + riallineamento D6 + pulizia"; UNICA SESSIONE ATTIVA —
