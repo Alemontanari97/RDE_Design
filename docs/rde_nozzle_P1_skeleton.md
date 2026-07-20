@@ -13,7 +13,14 @@ DRAFT TEXT STATUS: sections §2 and §4 have FULL TEXT OF RECORD in
 docs/rde_nozzle_P1_sections_2_4.md (2026-07-16, session S8, rules
 (a)-(e) applied per subsection, claim-map cross-check included; §4.5
 novelty wording CONDITIONAL on Kraiko-Osipov PMM 34(6) 1970 full text,
-D4 §3 contingency armed). Other sections: skeleton only.
+D4 §3 contingency armed). Sections §5, §6 and §7 have FULL TEXT OF
+RECORD in docs/rde_nozzle_P1_sections_5_7.md (2026-07-17, session S10,
+same rules; claims cited by registry ID; class refresh vs this skeleton
+DECLARED there: §5.1 SCHEMA -> THEOREM* per the S6/S8 rigor upgrades
+[T-T7FS]/[T-P3]/[T-G12S1]; §5.2 carries the EOS-general eps*_real
+carrier [T-T7RED] group (xii); §6 adds the purge delta -4.4..-7.9% and
+the equilibrium bracket [T-EQBR]; §7 includes the real-route instance
+§7.5bis). Other sections (§1, §3, §8, §9, appendices): skeleton only.
 
 Rigor legend as in M0: THEOREM / THEOREM* (within a declared closure) /
 SCHEMA / CONJECTURE / PRACTICE. Every claim in this paper carries a
