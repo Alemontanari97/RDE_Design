@@ -35,6 +35,18 @@ Meerbeeck-Zandbergen-Souverein, EUCASS 2013 (Viviano ref. [23]) —
 parametric altitude/weight/size optimization of TOP parabolas; by
 title parametric multi-criterion, not a variational averaged
 functional; VERIFY AT SOURCE before P-1 submission.
+CLOSED 2026-07-17 (S10, [LEADS], full text read in-house — 15-page
+EUCASS PDF, pypdf extraction, keyword counts of record): "A Procedure
+for Altitude Optimization of Parabolic Nozzle Contours Considering
+Thrust, Weight and Size", W.B.A. van Meerbeeck, B.T.C. Zandbergen,
+L.J. Souverein, 5th EUCASS, 2013 (TU Delft). POINT-DESIGN parametric
+TOP procedure (MMH-NTO, sea-level operation, TDK toolchain,
+thrust/weight/size trade). Averaged-objective keyword scan over the
+full text: "average" 0, "trajectory" 0, "weighted" 0, "flight" 0,
+"mission" 1 (title-page boilerplate only). NO averaged or multi-point
+variational functional anywhere -> the cycle-averaged novelty claim
+(G14) is UNTHREATENED; the paper is citable at most as a modern
+TOP/TDK design-procedure reference. Lead CLOSED.
 
 (V2) "VARIABLE INLET", RESOLVED. The corpus contains exactly two
 inlet-freedom notions, NEITHER of which is variable inlet STATES:
@@ -207,6 +219,28 @@ pass found, in-house, the exact objects P-2 needed:
     Vol. 2 remains UNREAD in-machine (image-only scan, no text layer
     - declared hole; its content reaches us via the theses and the
     Purdue papers).
+    STATUS 2026-07-17 (S10, [LEADS], raw-HTML/raw-PDF method of record
+    — never the summarizer):
+    (a) Rao 1958 IAF Amsterdam IDENTIFIED AND ABSTRACT-VERIFIED:
+        G. V. R. Rao, "Contoured Rocket Nozzles", Proc. IXth
+        International Astronautical Congress (Amsterdam 1958),
+        Springer Vienna (chapter DOI 10.1007/978-3-7091-4745-0_18).
+        Abstract (extracted from raw Springer HTML; phrase counts
+        verified: "varying gas properties" x2, "equilibrium" x5)
+        states VERBATIM: "The varying gas properties associated with
+        chemical equilibrium are accounted for in the thrust
+        optimization method." => the var-gamma thrust-optimization
+        precedent is Rao HIMSELF, 1958, at a SINGLE steady state
+        (no operating measure, no averaging). Consequence: MANDATORY
+        CITATION in the P-1/P-2 var-gamma lineage (with S-H 1971 and
+        JOTA 1972); the cycle-averaged novelty claim is NOT touched
+        (single-state). RESIDUAL (declared): full text paywalled —
+        page-level verification joins the G5-class human queue; until
+        then the citation is abstract-verified only, and P-1/P-2
+        gamma-narrative wording must not attribute more than the
+        abstract states.
+    (b) van Meerbeeck EUCASS 2013 CLOSED — see the (V1) entry above
+        (full-text read, zero averaged objective, G14 holds).
 
 Gamma status of this document: reporting layer; every imported
 closed-form result carries the gamma tag noted per item.
