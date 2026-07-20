@@ -803,6 +803,27 @@ multiplier + 2nd DOF) gated by the Rao-1961 spike Table-1 oracle
 (M_E = 2.4, theta_E = -8.25 deg, gamma = 1.23 -> eps = 3.81,
 X_D/R_E = 1.164, C_F = 1.58).
 
+G0 DECISION AND DUAL-CODE EXERCISE OF RECORD (2026-07-17, [F2/G0],
+session S10; work-layer, registry [DIR-G0]; D6 gate G0 = DECIDED):
+the tool choice above is now DECIDED — JAX primary (custom_vjp +
+implicit rules), Julia+Enzyme declared alternate, GENO-Fortran the
+independent dual-code reference. The dual-code interop that this
+section asserts is now EXERCISED, not deferred: GENO was built
+(WSL gfortran 11.4.0, CMake, Cantera/Sundials/Tecio OFF, LAPACK from
+the host conda env — GENO never modified/committed) and the TOC case
+tocnoz regenerated; the design contour reproduces the committed
+reference to 1e-10 (printed precision, toolchain-invariant), while the
+full-precision field dumps differ only by the documented toolchain md5
+convention (N-36) — same physics. The FLOWFIELD cross-code oracle
+[X-GENOXC] certifies that GENO's Fortran MoC nodes satisfy OUR
+EOS-general second-order axisymmetric (u,v) unit process within the
+derived per-cell truncation band (100% of the clean supersonic core;
+two negative controls reject) — i.e. the differentiable engine's cell
+map and the Fortran reference discretize the SAME continuum. Full
+decision dossier: docs/rde_nozzle_G0_decision.md. Consequence: Phase
+A1 (differentiable per-phase engine) OPENS, with [X-GENOXC] as its
+standing cross-code regression.
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

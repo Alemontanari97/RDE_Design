@@ -739,6 +739,19 @@ entries:
   falsifier: "its negative controls (source-sign flip out of band, corrupted vjp, uncertified detachment, rescaled contour)"
   gamma: "perfect-gas-oracle"
 
+- id: X-GENOXC
+  kind: carrier
+  class: PRACTICE
+  scope: "G0 cross-code oracle at the INTERIOR UNIT PROCESS ONLY (not the profile-generation machinery): GENO tocnoz MoC field vs our axisym unit process; VERDICT PASS; on-demand carrier (env: gfortran), outside CI tiers by declaration"
+  statement: "OUR axisym second-order (u,v) unit process agrees with GENO's structured-grid nodes two ways: (residual, EOS-general, local a=sqrt(gamma p/rho)) 218/218 clean-core cells inside |R_trap|<=4(|R_trap-R_end|+floor); (reproduction, 'two feet->new point', declared gamma=const energy closure) 207/218=95% of solved children within the derived band. Negative controls reject (corrupted child/foot 100%->0%, wrong pairing 84x). SCOPE: interior unit process, clean supersonic core — NOT the wall/corner/shock unit processes nor any assembled contour."
+  doc: "validation/g0_geno_crosscode.py"
+  proof: "validation/g0_geno_crosscode.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its two negative controls (corrupted child inside the band, or wrong pairing not separated); or GENO nodes leaving the truncation band in the clean supersonic core"
+  gamma: "EOS-general"
+
 - id: X-GRP01
   kind: carrier
   class: PRACTICE
@@ -1066,6 +1079,19 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "a number without carrier or a citation without page-level verification"
+  gamma: "n/a"
+
+- id: DIR-G0
+  kind: directive
+  class: PRACTICE
+  scope: "standing work-layer decision of record (gate G0, D6 §5, session S10)"
+  statement: "G0 DECIDED: differentiable stack = JAX (custom_vjp + implicit rules) primary, Julia+Enzyme declared alternate, GENO-Fortran independent dual-code reference; interop criterion MET (GENO built + tocnoz contour reproduced to 1e-10 + cross-code flowfield oracle X-GENOXC PASS) => Phase A1 OPENS."
+  doc: "docs/rde_nozzle_G0_decision.md#1. The decision"
+  proof: "docs/rde_nozzle_G0_decision.md#2. Criteria, evidence, verdict"
+  inherits: []
+  carrier: ["X-G0", "X-G0AX", "X-GENOXC"]
+  suffices_symbolic: "n/a"
+  falsifier: "the loop-speed falsifier (§4): assembled A1 engine impractical on the JAX route at production mesh => flip to Julia+Enzyme"
   gamma: "n/a"
 
 # --------------------------------------------------------- paper-layer records

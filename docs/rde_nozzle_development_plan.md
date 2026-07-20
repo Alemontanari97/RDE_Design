@@ -98,6 +98,12 @@ A0.5 Human due diligence kickoff: Kraiko 1979 monograph TOC + PMM pass
      RESIDUAL = the user's send. See gate G5.]
 
 ### Phase A1 — Differentiable per-phase engine (months 1-6) [= WP1 amended]
+[STATUS 2026-07-17 (S10): OPEN — gate G0 DECIDED (JAX primary; dossier
+docs/rde_nozzle_G0_decision.md, registry [DIR-G0]). Stack fixed, GENO
+dual-code interop exercised (cross-code oracle X-GENOXC PASS). First A1
+brick = gamma(T) backend unit process with X-GENOXC as standing
+cross-code regression; then fitted single transversal sheet + plug
+free-boundary march (content below). Prior spike record retained:]
 [STATUS 2026-07-17: STARTED EARLY at spike level — S5 planar spike
 (interior + inverse-wall, implicit custom_vjp, 52/52) and S8 twin
 (axisymmetric source DUAL-ROUTE, fitted shock point on RH with O3.1
@@ -257,14 +263,23 @@ G0 (wk 4)   stack decision — criteria: gradient fidelity, loop speed,
             Fortran provided the whole pipeline stays functional —
             file exchange + O3.4 cross-code oracle are explicit G0
             criteria (dual-code M0 VI.7).
-            [STATUS 2026-07-17: INSTRUCTED, decision pending (NEXT 1).
-            Dossier: S5 planar spike PASS 52/52; S8 twin PASS (axisym
-            dual-route, shock point with O3.1, Lax/Majda executable,
-            GENO read-only file-exchange brick on CASES/tocnoz).
-            NAMED RESIDUAL for the O3.4 flowfield criterion: the GENO
-            binary is not buildable on this host (gfortran ABSENT,
-            verified S8; reference x/y/u/v/p.dat exist only as
-            checksums) — needs MinGW/WSL toolchain or another host.]
+            [STATUS 2026-07-17: DECIDED (S10; registry [DIR-G0]; dossier
+            docs/rde_nozzle_G0_decision.md). Verdict: JAX primary
+            (custom_vjp + implicit rules), Julia+Enzyme declared
+            alternate, GENO-Fortran independent dual-code reference.
+            Criteria met: (i) gradient fidelity — spikes 52/52 + O3.1
+            machine precision (X-G0/X-G0AX); (ii) loop speed MEASURED
+            STANDALONE — solve ~322 us, solve+adjoint ~327 us (grad/solve
+            ratio ~1.01, host-invariant; absolute us host-caveated per S9);
+            (iii) GENO interop NAMED RESIDUAL now CLOSED — GENO BUILT
+            (WSL gfortran 11.4.0, CMake, Cantera/Sundials/Tecio OFF,
+            LAPACK from host conda env; GENO never modified/committed),
+            tocnoz regenerated, contour reproduced to 1e-10, md5 field
+            convention N-36 confirmed, and the FLOWFIELD cross-code oracle
+            [X-GENOXC] PASS (100% of the clean supersonic core inside the
+            derived per-cell truncation band; both negative controls
+            reject). Loop-speed falsifier kept: if the assembled A1 loop
+            is impractical on JAX at production mesh, flip to Julia+Enzyme.]
 G1 (M1+)    ORACLE GATE (absolute): O1/O2/O3 or no science.
 G2 (M2)     VALUE GATE, now theorem-grade: bound-ladder gap per channel;
             gap < ~1% Isp on all of N1-N4 → pivot to certification/
