@@ -7,9 +7,65 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-20, chiusura Sessione 10 — "APERTURA FASE 2: decisione
-## G0 col criterio GENO ESERCITATO + coda Fase 1 P-1 §5-§7 + leads";
-## sessione UNICA, nessuna concorrenza ai tre check pre-commit)
+## ORA (2026-07-21, chiusura Sessione 11 — "FASE 2/A1 BRICK 1: la
+## machinery di generazione profili ESISTE ed è certificata + P-1 body
+## text COMPLETO"; sessione UNICA, check pre-commit puliti)
+
+Branch `rde-nozzle-program`. Log a ordine totale:
+validation/PROGRESS_2026-07-20_fase2_S11.md (gate pre-esecuzione PASS
+al passo 3; 14 passi; aperta il 20, chiusa il 21 — pause utente, mai
+due sessioni). Commit: T1 = 8fc815e, T2 = c0065af, chiusura = (questo
+commit).
+
+- **[F2/A1] BRICK 1 FATTO — LA MACHINERY DI GENERAZIONE PROFILI È DI
+  RECORD, VERDICT PASS** (8fc815e; carrier [X-A1IM]
+  validation/a1_ideal_march_jax.py, on-demand env: jax + binario GENO
+  WSL): la marcia MoC differenziabile ASSEMBLATA genera l'ugello
+  IDEALE end-to-end (IVL di Sauer → fan → espansione in gola su arco
+  con inverse-wall/piede-su-corda/righe-void → regione uniforme con
+  PARETE = STREAMLINE DI PORTATA), gemello del nozzle_type 0 di GENO;
+  ogni cella = processo implicito custom_vjp (regola implicita, MAI
+  unrolled) ⇒ il reverse-AD della marcia È lo sweep aggiunto discreto
+  del Lemma B, eseguibilmente. VERDETTO (caso ridotto NI=21, da=0.5°,
+  Ne=41, eps=4, CH4/O2 frozen; 14/14 check incl. 4 controlli
+  negativi): contorno vs GENO 62/62 in banda Richardson derivata,
+  max|Δy| = 7.6e-9 (banda 4.5e-3), Me gemello-identico a 8.4e-9,
+  maxtheta 16.265° = GENO; O3.1 sull'INTERA marcia 2.7e-10 vs tol
+  5.1e-8 (replay fidelity 1.6e-13), vjp corrotto rigettato;
+  certificazione Newton per cella UNIT-CONSISTENT in spazio z (2756
+  celle, worst 1.4e-2); sorgente corrotta rigettata PER RIFIUTO;
+  tabella/gamma corrotte rigettate. BACKEND THERMO A TABELLE
+  ([DIR-THERMOTAB], direttiva utente S11 + decisione: CANTERA UNICO
+  GENERATORE DI PRODUZIONE; generatore NASA-poly GENO confinato a
+  istanza oracolo cross-code, dual-route nel budget di costanti
+  fisiche DERIVATO 5.3e-6 ≤ 2.5e-4·K con rejector 1e-3; gamma=const
+  solo oracolo). R4 stessa sessione: M0 VI "A1 BRICK 1 OF RECORD" +
+  pin DIR-THERMOTAB; D6 A1 STATUS S11; Lemma B §4.7 istanza
+  march-level; registro +4 voci ([X-A1IM], [DIR-THERMOTAB],
+  [PAP-P1S1389], [PAP-P1S57] found-and-aligned S10) + T-LEMB carriers.
+  SCOPE ONESTO: guardia DIR-G0 SCARICATA per il tipo ideale (marcia
+  diretta); il mattone TOC VARIAZIONALE ((**')/corner via dJ/dSigma
+  con TR-SQP) NON è in questo carrier → NEXT S12; falsificatore
+  loop-speed G0 ancora armato (scala di produzione non riaggiudicata).
+- **[F1/P-1] §1, §3, §8, §9 TESTO PIENO DI RECORD — BODY TEXT
+  COMPLETO** (c0065af, docs/rde_nozzle_P1_sections_1_3_8_9.md,
+  [PAP-P1S1389]): §1 genealogia var-gamma con CITAZIONE OBBLIGATORIA
+  Rao 1958 IAC Amsterdam (ABSTRACT-VERIFIED ONLY, attribuzione
+  limitata all'abstract); §1.4 novità query-bounded contingente su
+  Kraiko-Osipov; §3 T0/N-SW + confine N6 theorem-grade (class refresh
+  dichiarato); §8 bridge EAP/S-H (mappe termine-a-termine, tre
+  finding = istanze dei teoremi, no circolarità); §9
+  limiti/outlook (spina condizionale unica). Regole (a)-(e), claim
+  per ID (21, lint-risolti), grep coerenza PASS. Skeleton: restano
+  SOLO appendici A1-A7 + assembly.
+- **SUITE**: run completo in chiusura (verdetto nel log passo 14).
+- Non mio, non toccato (dichiarato): directory `literature/`
+  untracked comparsa nel tree (materiale utente); ADR panel sempre
+  in attesa di ratifica, non committato.
+
+Stato precedente (chiusura Sessione 10 — "APERTURA FASE 2: decisione
+G0 col criterio GENO ESERCITATO + coda Fase 1 P-1 §5-§7 + leads";
+sessione UNICA, nessuna concorrenza ai tre check pre-commit)
 
 Branch `rde-nozzle-program`. Log a ordine totale:
 validation/PROGRESS_2026-07-17_fase2_S10.md (gate pre-esecuzione PASS
@@ -501,37 +557,31 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (Sessione 11)
+## NEXT (Sessione 12)
 
-1. [F2/A1 — BRICK 1, priorità massima; aspettativa utente ESPLICITA
-   S10] MACHINERY DI GENERAZIONE PROFILI in JAX: assemblare gli unit
-   process validati in una marcia MoC differenziabile completa
-   (IVL → interior/inverse-wall/asse → flowfield + streamline di
-   parete). Primo target: UGELLO IDEALE fino a M_e prescritto
-   (marcia diretta, nessuna ottimalità — gemello del nozzle_type 0)
-   con confronto END-TO-END del contorno generato vs GENO
-   (idealnoz/tocnoz; X-GENOXC come regressione permanente del
-   mattone); poi il TOC alla Rao IMPOSTO VARIAZIONALMENTE (obiettivo
-   spinta + vincoli {eps, L, lip}, trasversalità (**')/corner come
-   condizione di stazionarietà via gradiente dJ/dΣ, MAI outer-loop
-   hard-coded). Backend gamma(T) Cantera (VI.4bis(iii)); l'ex-T4
-   (brick PM generalizzata su isentropa tabulata) confluisce qui.
-   Carrier con rejector + voce di registro per ogni mattone.
-2. [F1/P-1] Sezioni restanti: §1 (intro, citazioni D2 + NUOVO dovere
-   Rao 1958 IAC nella genealogia var-gamma), §3, §8 (bridge EAP/S-H),
-   §9 + appendici; poi assembly del paper con claim-map completa.
+1. [F2/A1 — BRICK 2, il mattone VARIAZIONALE] TOC alla Rao IMPOSTO
+   ALLA FORMULAZIONE sul motore [X-A1IM]: obiettivo spinta + vincoli
+   {eps, L, lip}, con la trasversalità (**')/corner come condizione
+   di stazionarietà raggiunta VIA GRADIENTE dJ/dSigma (reverse-AD
+   della marcia = Lemma B, già certificato O3.1) dentro TR-SQP —
+   MAI outer-loop hard-coded (il Mrao/eps loop di GENO type 2 è solo
+   riferimento cross-code). Oracolo: contorno tocnoz di GENO
+   (riferimento committato 1e-10) + kernel; tolleranze derivate
+   (Richardson di marcia); X-GENOXC regressione permanente. Poi:
+   sheet trasversale fitted ereditata (residuo P-B1 march-level) e
+   plug free-boundary.
+2. [F1/P-1] Appendici A1-A7 (import prove da M0) + ASSEMBLY del paper
+   con la claim-map completa (il body text è COMPLETO).
 3. [F0/G5, SOLO UTENTE] Invio email biblioteca (pacchetto pronto,
-   validation/G5_dispatch_email.md + lista Item 2b); AGGIUNTA S10:
-   acquisire anche il full text di Rao 1958 IAC "Contoured Rocket
-   Nozzles" (Springer, paywalled — abstract-verified finora). Alla
-   risposta: Kraiko-Osipov PMM 34(6) 1970 full-text e scioglimento
-   della contingenza §4.5/G6 di P-1.
+   validation/G5_dispatch_email.md + lista Item 2b + full text Rao
+   1958 IAC). Alla risposta: Kraiko-Osipov PMM 34(6) 1970 full-text e
+   scioglimento della contingenza §4.5/G6 di P-1.
 4. [L6, opzionale] Carrier simbolico banale per T-NSW (candidato L6
    nel registro).
-[FATTO in S10: ex-NEXT-1 (decisione G0, residuo CHIUSO con evidenza,
-non dichiarato) = bfd0063; ex-NEXT-2 (P-1 §5-§7) = 570b38c;
-ex-NEXT-3 (leads, entrambi chiusi alla fonte) = 0fb6a21.
-FATTO in S3-S9: vedi voci precedenti.]
+[FATTO in S11: ex-NEXT-1 (brick 1: marcia assemblata + ugello ideale
++ confronto GENO end-to-end + backend tabulato + O3.1 marcia intera)
+= 8fc815e; ex-NEXT-2 (P-1 §1/§3/§8/§9 — body text completo)
+= c0065af. FATTO in S3-S10: vedi voci precedenti.]
 
 ## BLOCCATO / GATE APERTI
 
@@ -567,6 +617,32 @@ FATTO in S3-S9: vedi voci precedenti.]
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S11 (2026-07-20/21, "FASE 2/A1 BRICK 1: machinery di generazione
+  profili + P-1 body text completo"; sessione UNICA; log
+  validation/PROGRESS_2026-07-20_fase2_S11.md, 14 passi, gate PASS al
+  passo 3)** — T1 (8fc815e): [X-A1IM] marcia MoC differenziabile
+  ASSEMBLATA che GENERA l'ugello ideale end-to-end (gemello GENO
+  type 0), VERDICT PASS 14/14: contorno vs GENO 7.6e-9 (62/62 in
+  banda derivata), Me a 8.4e-9, O3.1 marcia intera 2.7e-10 vs 5.1e-8,
+  2756 celle certificate z-space, 4 rejector (incl. rigetto PER
+  RIFIUTO della sorgente corrotta); backend a TABELLE
+  [DIR-THERMOTAB] (Cantera unico generatore di produzione; NASA-poly
+  solo istanza interop; ordine NasaPoly2 determinato empiricamente;
+  budget di costanti derivato). R4: M0 VI addendum + D6 A1 BRICK 1
+  DONE + Lemma B march-level + registro 89 voci (PAP-P1S57
+  found-and-aligned). Trail onesto a log: NaN celle soniche →
+  predictor GENO + Newton smorzato; compile XLA → fori_loop; probe
+  cella-per-cella vs griglia GENO (fan ≡ GENO 3.5e-4, colonna 22 ≡
+  GENO 1e-6); metrica di certificazione resa unit-consistent; N1
+  crash scambiato per SKIP → struttura except corretta e verdetto
+  rilanciato pulito. T2 (c0065af): P-1 §1/§3/§8/§9 di record
+  ([PAP-P1S1389]; Rao 1958 IAC abstract-verified-only in genealogia;
+  confine N6 theorem-grade; bridge EAP/S-H; grep PASS) — BODY TEXT
+  COMPLETO, restano appendici + assembly. Deviazioni dichiarate:
+  caso GENO ridotto (NI=21) per il confronto end-to-end (risoluzione
+  di produzione = falsificatore loop-speed G0, armato); T3 (L6
+  T-NSW) non eseguito; `literature/` untracked non mio, non toccato.
 
 - **S10 (2026-07-17/20, "APERTURA FASE 2: G0 + P-1 §5-§7 + leads";
   sessione UNICA, tre check pre-commit puliti; log

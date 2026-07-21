@@ -20,3 +20,4 @@ PROGRESS are the normative layers; these logs are evidence.
 | S8-operativa | PROGRESS_2026-07-16_fase1_S8.md | P-1 §2/§4 full text + spike axisym/shock/interop (P-B1 brick) + real-route diagram + eq bracket |
 | S9 (ordine) | PROGRESS_2026-07-17_S9_ordine.md | SCAFFOLD migration M-1..M-5: claims registry + lint (xv) + M0 spine + L4 ledger + carrier tiers (xiii)/(xiv); D6 delta-pass; cleanup |
 | S10 (fase 2) | PROGRESS_2026-07-17_fase2_S10.md | G0 DECIDED (GENO built in WSL, tocnoz contour 1e-10, cross-code unit-process oracle X-GENOXC PASS, JAX primary) => A1 OPEN; P-1 §5-§7 full text; leads Rao-1958-IAC + EUCASS-2013 closed; suite 16/16 |
+| S11 (fase 2/A1) | PROGRESS_2026-07-20_fase2_S11.md | A1 BRICK 1 DONE: assembled differentiable march generates the ideal contour end-to-end ([X-A1IM] VERDICT PASS 14/14: GENO 7.6e-9, O3.1 whole-march 2.7e-10, tables backend [DIR-THERMOTAB] Cantera-sole); P-1 §1/§3/§8/§9 => body text COMPLETE; suite 16/16 |
