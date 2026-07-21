@@ -110,6 +110,17 @@ audits passed (characteristic completeness on axially supersonic
 patches per Lemma 4; Crocco compatibility; per-phase spacelikeness
 margin; declared closure O1/O2/O3 on subsonic patches); constraint
 vector c = (L, eps_max, L_p, curvature/angle bounds, symmetry class).
+PER-PHASE STATE CONSTRAINT (addendum 2026-07-21, S12, [D-GSEP]):
+the constraint set also carries the separation-margin state
+constraint g_sep(S; s(xi)) <= 0 for mu-a.e. xi (criterion class R2,
+declared empirical closure; runtime detector = the S1 boundary-
+function monitor): certified optima keep EVERY phase attached, the
+active-set multiplier is the marginal value of the attachment
+margin, and the temporal dual-bell question (N1) becomes a decidable
+active-set question at rung 2; deliberately separated designs exit
+the certified class (separation reopens the subsonic feedback
+channel and carries its own non-rotating dynamics — out of the
+single-mode scope by physics, not only by declaration).
 ADMISSIBLE SET: A_gen(c) = {S ⊂ E compact solid: uniform cone condition
 (h0, omega); attachment on Λ; g_i(S) <= c_i}, with its FINITE topology-
 sector decomposition (configurations = outputs) and working spline
@@ -207,6 +218,20 @@ the per-phase steady factorization of the (exact) mean flux, NOT in the
 momentum balance. "Storage averages to zero" does NOT imply the
 quasi-steady step is exact, and "kHz unsteadiness" does NOT imply the
 mean thrust needs unsteady corrections at the balance level.
+T3-QS SWEEP-PROTECTION REMARK (2026-07-21, S12, [T-T3QS]; carrier
+X-T3QS, suite group (xvi); full statement docs/rde_nozzle_T3QS.md):
+within the P4 first-order framework, on a T3 RAY family (Pc-only
+cycles; EOS-general) the first-order term of the quasi-steady error
+VANISHES on the smooth part of the cycle — flux Jacobians and the
+thrust-adjoint source are invariant along the conservative ray, so
+the sweep acts as a pure phase shift and the mean is unchanged; the
+entire first-order correction concentrates at the wave-passage jump
+(the physics the fitted inherited sheet represents), and off-ray
+cycles contribute a computable AREA (hysteresis) term. The collapse
+class is thus SECOND-ORDER protected — the quantitative reason the
+field's quasi-steady practice outperforms naive St estimates. This
+remark does not weaken the paragraph above: the storage bookkeeping
+is untouched; T3-QS refines the FLUX-factorization error only.
 
 ------------------------------------------------------------------------------
 [T-O1] PROPOSITION 1 (O1 — objective equivalence at frozen choked feed). THEOREM.
@@ -712,6 +737,22 @@ impedance ladder (compact linear -> O(He) -> full-frequency ->
 compact-nonlinear -> state-space time-domain), exact for GRADIENTS by
 definition of linearization; DC part = differentiated matched-cycle
 response map; degrades declaredly at mode transitions (robust layer).
+RUNG 3a-LITE (B-lite) — addendum of record (2026-07-21, S12,
+[S-BLITE]): on the NOZZLE-ONLY domain with certified axial margin
+u_x - c >= delta > 0 (interface data class I1, Omega an INPUT from
+the data), Lemma 4's condition C2 is SATISFIED and the exact
+wave-frame field is computable by 3-D helical SPACE-MARCHING (fitted
+sheet as per-station unknown, Lax in the x-as-time reading = G12-L2)
+at marching cost — no Newton-Krylov global solve, no camera, no
+Omega eigenvalue; the adjoint lifts verbatim by Lemma B
+(x-block-triangular march => reverse-AD = transposed sweep). B-lite
+is the cheap exact meter of the rung-2 sweep/D2 residual; the FULL
+anchor of this Part remains necessary exactly where the camera
+enters (Omega as output, subsonic pockets, reaction, R10). Named
+brick to verify first: the 3-D axial-flux eigenstructure
+(G12-L1-3D, symbolic carrier candidate). "Marches nothing" (Lemma 4)
+remains true for the camera-included anchor; B-lite is C2 exercised
+in 3-D, not an exception to it.
 
 ==============================================================================
 PART VI — IMPLEMENTATION FORMULATION (what the coder builds)

@@ -1212,3 +1212,70 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "the honesty clause (mesh limit stays SCHEMA) weakened anywhere in the draft — coherence grep"
   gamma: "n/a"
+
+# ------------------- S12 additions (R4 back-propagation, 2026-07-21) --------
+
+- id: T-T3QS
+  kind: theorem
+  class: THEOREM
+  scope: "quasi-steady protection of the collapse class; ray families (Pc-only cycles), EOS-general (arbitrary caloric e(T)); interpretation INSIDE the P4 first-order framework [J-CT1] — a statement about the corrector J1, not an independent expansion; boundary: off-ray cycles give the area (hysteresis) term, cap-binding phases are off-ray by construction"
+  statement: "On a T3 ray family the first-order sweep correction factorizes as J1 = -<psi_hat, Z> Int k'(xi) dxi: it VANISHES exactly on the smooth part of the cycle and concentrates at the wave-passage jump ([k]_jump), because flux Jacobians and the thrust-adjoint source are invariant along the conservative ray (degree-1 homogeneity + Euler's theorem)."
+  doc: "docs/rde_nozzle_T3QS.md#§1 Setting and statement"
+  proof: "docs/rde_nozzle_T3QS.md#§1 Setting and statement"
+  inherits: []
+  carrier: ["X-T3QS"]
+  suffices_symbolic: "yes"
+  falsifier: "carrier rejectors R1-R3; O5-lite pre-registered predictions (D6 Phase A4): smooth ray cycle must show O(St^2) not O(St) deviation; off-ray residue must scale with the data-loop area"
+  gamma: "EOS-general"
+
+- id: X-T3QS
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic carrier of T-T3QS: proof chain P1-P6 (conservative ray, degree-1 homogeneity incl. RH, Jacobian invariance dual-route symbolic+numeric, objective-gradient invariance, sweep factorization, cycle integral) + rejectors R1 (non-ray), R2 (H3 violated), R3 (non-affine objective); VERDICT PASS, 8.6 s clean host (29.1 s first run under load)"
+  statement: "Machine verification (sympy + numeric dual-route) of the T3-QS algebraic core, EOS-general via arbitrary symbolic e(T)."
+  doc: "validation/t3qs_sweep_protection.py"
+  proof: "validation/t3qs_sweep_protection.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its three rejectors (each must fire)"
+  gamma: "EOS-general"
+
+- id: X-GRP16
+  kind: carrier
+  class: PRACTICE
+  scope: "run_all group (xvi), fast tier (S12); CI harness of X-T3QS"
+  statement: "Subprocess execution of X-T3QS with exit-0 + verdict-line acceptance."
+  doc: "tests/test_t3qs.py"
+  proof: "tests/test_t3qs.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "X-T3QS exiting nonzero or losing its VERDICT: PASS line"
+  gamma: "n/a"
+
+- id: S-BLITE
+  kind: schema
+  class: SCHEMA
+  scope: "rung 3a-lite (B-lite): exact wave-frame field of the NOZZLE-ONLY domain by 3-D helical space-marching where u_x - c >= delta > 0 (M0 Lemma 4 condition C2 exercised in 3-D in the rotating frame; Omega an INPUT from the data, I1 class); adjoint = Lemma B lifted verbatim (x-block-triangular march => reverse-AD = transposed sweep); named brick to verify: 3-D axial-flux eigenstructure (G12-L1-3D, symbolic carrier candidate); start surface must be spacelike (the axially-sonic surface itself is characteristic — post-throat data or transonic patch)"
+  statement: "The exact sweep/D2 residual of rung 2 is measurable at MARCHING cost on the axially supersonic nozzle domain — no Newton-Krylov global solve, no camera, no Omega eigenvalue; the full anchor (A5) remains necessary only for camera-included physics (Omega output, subsonic pockets, reaction)."
+  doc: "docs/rde_nozzle_MASTER.md#RUNG 3a-LITE"
+  proof: "docs/rde_nozzle_G12_S1.md#§1 The observation"
+  inherits: ["C-MAJDA"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a nozzle-only case with certified margin u_x - c >= delta where the 3-D march diverges from the implicit-BVP solve beyond discretization bars"
+  gamma: "EOS-general"
+
+- id: D-GSEP
+  kind: definition
+  class: PRACTICE
+  scope: "per-phase separation-margin STATE constraint added to (P) (S12 addendum to M0 D2.6): g_sep(S; s(xi)) <= 0 mu-a.e., criterion class R2 (Summerfield/Schmucker, declared empirical); its active-set multiplier = marginal value of the attachment margin; makes the temporal dual-bell question (N1) decidable at rung 2"
+  statement: "Certified optima keep every phase attached by constraint (the S1 monitor is the runtime detector); deliberately separated designs exit the certified class into N1/PB territory with declared closure and unsteady-anchored mean effects (hysteresis area, rectification, Reynolds terms)."
+  doc: "docs/rde_nozzle_MASTER.md#PER-PHASE STATE CONSTRAINT"
+  proof: "docs/rde_nozzle_T3QS.md#§3 Boundary"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "an optimum reported as certified with any phase beyond the declared separation-criterion margin"
+  gamma: "EOS-general"

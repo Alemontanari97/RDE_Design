@@ -31,6 +31,8 @@ Tests (see each module's docstring):
   (xv)   test_claims_lint       claims-registry lint (theory-as-code):
                                 anchors, suite membership, schema, orphans;
                                 seeded-violation rejector proven every run
+  (xvi)  test_t3qs              T3-QS sweep-protection proof chain P1-P6
+                                (ray family => J1 smooth-part = 0) + R1-R3
         test_examples [slow]    live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
@@ -59,7 +61,8 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xii) OP-11 real-route diagram + eq bracket',
          'test_phase_diagram_real'),
         ('(xiii) rigor carriers (symbolic, fast four)', 'test_rigor_carriers'),
-        ('(xv)  claims registry lint', 'test_claims_lint')]
+        ('(xv)  claims registry lint', 'test_claims_lint'),
+        ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs')]
 RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]', 'test_rigor_dualroute')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
 

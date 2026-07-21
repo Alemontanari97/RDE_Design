@@ -130,6 +130,26 @@ Consequences for the corrector, each following from results of record:
  (4) the regularity needed for convergence = harmonic decay of
      s(xi), MEASURABLE at the data-contract audit (replaces
      unverifiable ergodic hypotheses).
+T3-QS SWEEP-PROTECTION OF THE COLLAPSE CLASS (result of record,
+2026-07-21, S12, [T-T3QS]; carrier X-T3QS PASS, suite group (xvi);
+full statement + physical anatomy docs/rde_nozzle_T3QS.md): within
+this section's first-order frame, on a T3 RAY family (Pc-only cycle,
+EOS-general — arbitrary caloric e(T)) the corrector integrand
+factorizes as c·k'(xi) with a PHASE-INDEPENDENT rate (conservative-
+ray linearity; degree-1 flux homogeneity incl. RH => Jacobian and
+adjoint-source invariance by Euler's theorem), hence J_1 = 0 exactly
+on the smooth part of the cycle and the whole first-order sweep
+correction is LOCALIZED at the wave-passage jump ([k]_jump); off-ray
+cycles ((P0,T0) both varying, phase-dependent shapes, cap-binding
+subcritical phases) contribute the area integral of a non-exact
+1-form over the data loop — quasi-steady HYSTERESIS, computable.
+Consequences: the collapse class is second-order protected (explains
+the empirical quality of the field's quasi-steady practice); O5
+measurements are TARGETED (jump window + two-parameter cycles);
+the single-cycle PDE severity (maximal jump + maximal loop area) is
+explained. Falsifiers: carrier rejectors R1-R3 + the pre-registered
+O5-lite predictions of D6 Phase A4.
+
 P4-PERIODIC FIRST-ORDER SYSTEM (attack of record, 2026-07-16,
 Sessione 8-rigore; class THEOREM* at the STATEMENT level in the
 smooth scope — the proof is a function-space implicit-function
