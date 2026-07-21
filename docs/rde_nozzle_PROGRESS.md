@@ -7,9 +7,64 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-21, chiusura Sessione 11 — "FASE 2/A1 BRICK 1: la
-## machinery di generazione profili ESISTE ed è certificata + P-1 body
-## text COMPLETO"; sessione UNICA, check pre-commit puliti)
+## ORA (2026-07-21, chiusura Sessione 12 — RIGORE/R4: "retro-
+## propagazione della review-conversation + piano rafforzato";
+## sessione UNICA, check pre-commit puliti)
+
+Branch `rde-nozzle-program`. Log a ordine totale:
+validation/PROGRESS_2026-07-21_S12_rigoreR4.md (gate PASS al passo 3).
+Commit: C1+C2 = 981c620, C3 = 4f12068, chiusura = (questo commit).
+MANDATO UTENTE: nessuna scoperta della conversazione di review
+2026-07-20/21 può vivere solo in chat — tutto registrato a norma.
+
+- **[F4-prep/T3QS] T3-QS DI RECORD** (981c620): protezione
+  quasi-steady della classe del collasso — sulla famiglia-raggio
+  (ciclo solo-Pc, EOS-general con e(T) arbitraria) la correzione di
+  sweep al PRIMO ordine si annulla sulla parte liscia del ciclo
+  (Jacobiani e sorgente adjoint invarianti lungo il raggio
+  conservativo; lo sweep agisce da puro sfasamento) e si concentra
+  al salto di passaggio d'onda; fuori-raggio = termine d'AREA
+  (isteresi) calcolabile. Carrier validation/t3qs_sweep_protection.py
+  (catena P1-P6 + rejector R1-R3, PASS 8.6/6.6 s) = gruppo suite
+  (xvi); doc docs/rde_nozzle_T3QS.md (con l'anatomia fisica
+  dell'operatore trascurato e il lag acustico dell'urto interno);
+  remark in M0 Teorema 0 e D3 §3; registro [T-T3QS]/[X-T3QS]/
+  [X-GRP16]. Conseguenze: la classe del collasso è protetta al
+  secondo ordine (spiega la qualità empirica della pratica
+  quasi-steady del campo); le misure O5 sono MIRATE (finestra del
+  salto + cicli a due parametri).
+- **[F2-prep/BLITE] B-LITE DI RECORD** ([S-BLITE], M0 Parte V): rung
+  3a-lite — campo wave-frame esatto del SOLO ugello per marching
+  elicoidale 3-D dove u_x − c ≥ δ (C2 del Lemma 4 esercitata in 3-D;
+  Ω input dal dato I1; adjoint = Lemma B sollevato verbatim); il
+  metro esatto del residuo sweep/D2 a costo di marching; mattone da
+  verificare: autostruttura G12-L1-3D (carrier candidato). L'ancora
+  completa resta il tier per Ω-output/camera/reazione.
+- **[F1/D-GSEP] SEPARAZIONE COME VINCOLO DI STATO in (P)** (M0 D2.6
+  addendum): g_sep(S; s(ξ)) ≤ 0 μ-q.o. (classe criterio R2,
+  empirico dichiarato; detector runtime = monitor S1); moltiplicatore
+  attivo = valore marginale del margine di attaccamento; la
+  dual-bell temporale (N1) diventa decidibile ad active-set a rung 2;
+  la separazione deliberata ESCE dalla classe certificata (riapre il
+  canale subsonico di feedback + dinamica propria non-rotante — fuori
+  scope per fisica, non solo per dichiarazione).
+- **[F0-coda/D2 + PIANO/D6] GONZÁLEZ-VIANA + PIANO RAFFORZATO**
+  (4f12068): Aerospace 12:502 (2025) LETTO FULL-TEXT (PDF in
+  literature/) con attribuzione a tre vie di record (vincoli attivi /
+  effetti di MISURA — rung-2 ne predice l'ottimo qualitativo:
+  divergente piccolo, ⟨p_out⟩ ≫ Pa / residuo genuinamente unsteady
+  da start-stop = ancora O5); D6: O5-LITE come esperimento di
+  falsificazione PRE-REGISTRATO delle tre predizioni T3-QS (A4),
+  B-lite primo item di A5, benchmark GV in A2, 90-giorni item 9-14
+  (brick TOC S13 → sblocca O3.3/P-2; GV+O5-lite; B-lite;
+  registro acquisizioni con priorità; ANCORA SPERIMENTALE = gap
+  industriale #1; PIANO COMPUTE = gap #2), rischi +RK-E/+RK-F.
+- **SUITE: 15/15 PASS in 101 s** (fast tier, host sano; nuovo gruppo
+  (xvi) incluso; lint (xv) 0 violazioni con le 5 voci nuove).
+
+Stato precedente (chiusura Sessione 11 — "FASE 2/A1 BRICK 1: la
+machinery di generazione profili ESISTE ed è certificata + P-1 body
+text COMPLETO"; sessione UNICA, check pre-commit puliti)
 
 Branch `rde-nozzle-program`. Log a ordine totale:
 validation/PROGRESS_2026-07-20_fase2_S11.md (gate pre-esecuzione PASS
@@ -557,7 +612,25 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (Sessione 12)
+## NEXT (Sessione 13 — consolidato S12; ogni voce con criterio già nominato)
+
+1. [F2/A1 — BRICK 2, il mattone VARIAZIONALE] invariato da S11 (voce
+   sotto, era NEXT-1): TOC via dJ/dSigma + TR-SQP + (**')/corner sul
+   motore [X-A1IM]. IN PIÙ (S12): questo brick SBLOCCA O3.3 (match
+   forma-chiusa vs adjoint AD su un caso TOC = metà numerica di P-2,
+   scarico di C-O33) — eseguirlo per primo.
+2. [F1/GV + F4-prep/O5-lite] Riproduzione rung-2 di González-Viana
+   con la LORO misura (D6 A2, macchina eps-level esistente) + build
+   O5-lite col protocollo PRE-REGISTRATO (D6 A4: predizioni P-i/P-ii/
+   P-iii + rejector, dichiarate PRIMA di girare).
+3. [F2-prep/BLITE] Mattone simbolico G12-L1-3D (carrier stile pa1),
+   poi dimostratore di marching elicoidale (D6 A5).
+4. [LEADS] Sessione page-verify al rientro dei PDF (registro
+   acquisizioni in D2/D6 item 12; Kraiko-Osipov = priorità 1).
+5. [F1/P-1] Appendici A1-A7 + assembly (body text completo; wording
+   §4.5 resta CONTINGENTE a Kraiko-Osipov).
+6. [L6, opzionale] Carrier T-NSW.
+[VOCE S11 ORIGINALE del brick 2, invariata nel merito:]
 
 1. [F2/A1 — BRICK 2, il mattone VARIAZIONALE] TOC alla Rao IMPOSTO
    ALLA FORMULAZIONE sul motore [X-A1IM]: obiettivo spinta + vincoli
@@ -617,6 +690,24 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S12 (2026-07-21, RIGORE/R4 su ordine utente: "retro-propagazione
+  della review-conversation + piano rafforzato"; UNICA sessione,
+  check pre-commit puliti)** — Gate PASS (log passo 3; il "sessione"
+  retro-propagata è la conversazione di review 2026-07-20/21, con
+  carrier scratchpad promosso a norma). C1+C2 (981c620): T3-QS
+  [T-T3QS] con carrier X-T3QS (P1-P6 + R1-R3, EOS-general, PASS) =
+  gruppo (xvi); doc T3QS con anatomia fisica e confini; addenda M0
+  (Teorema 0, D2.6 [D-GSEP], Parte V [S-BLITE]) + D3 §3; registro +5
+  voci, lint 0 violazioni. C3 (4f12068): D6 rafforzato (O5-lite
+  PRE-REGISTRATO su tre predizioni T3-QS; B-lite primo item A5;
+  benchmark GV in A2; 90-giorni 9-14 con ancora sperimentale e piano
+  compute; rischi RK-E/RK-F) + D2 (riga GV full-text con attribuzione
+  a tre vie + registro acquisizioni con priorità e stati di
+  verifica). SUITE 15/15 in 101 s. DEVIAZIONE DICHIARATA: NEXT-1 di
+  S11 (brick TOC) ri-prioritizzato a S13 su ordine utente; commit
+  C1+C2 combinato (i tre addenda condividono M0). Verdetti: lint
+  verde, carrier PASS, nessuna concorrenza.
 
 - **S11 (2026-07-20/21, "FASE 2/A1 BRICK 1: machinery di generazione
   profili + P-1 body text completo"; sessione UNICA; log
