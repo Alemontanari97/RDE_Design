@@ -323,3 +323,17 @@ order-scaling test of the S8 spike (Brick A, axisym source, band
 [4,16] per halving) is its first brick-level instance. Neither blocks
 the classes as stated (the finite-dim THEOREMs are self-contained;
 the SCHEMA rows are declared as SCHEMA).
+
+MARCH-LEVEL INSTANCE OF RECORD (2026-07-20/21, session S11, [F2/A1],
+carrier [X-A1IM] validation/a1_ideal_march_jax.py): the SHOCK-FREE
+half of the residual above is now EXERCISED AT MARCH LEVEL — the
+assembled ideal-nozzle march (Sauer IVL -> fan -> arc expansion ->
+bounding-streamline wall; ~2.8e3 implicit cells, GENO nozzle_type 0
+twin) satisfies the O3.1 dot-product identity END-TO-END
+(|<w,Jv> - <J^T w,v>| = 2.7e-10 vs derived tol 5.1e-8, corrupted vjp
+rejected), i.e. Theorem B1's transposed sweep is executable on a
+COMPLETE march, not only per brick; the generated contour agrees with
+the independent Fortran reference to 7.6e-9 (inside the derived
+Richardson band). Still open and declared: the march-level identity
+ACROSS AN INHERITED FITTED SHEET (the P-B1 residual proper) and the
+P-B2 order tests — both remain A1-engine items.

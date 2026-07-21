@@ -98,6 +98,19 @@ A0.5 Human due diligence kickoff: Kraiko 1979 monograph TOC + PMM pass
      RESIDUAL = the user's send. See gate G5.]
 
 ### Phase A1 — Differentiable per-phase engine (months 1-6) [= WP1 amended]
+[STATUS 2026-07-21 (S11): BRICK 1 DONE — profile-generation machinery
+of record ([X-A1IM], validation/a1_ideal_march_jax.py, VERDICT PASS):
+assembled differentiable MoC march (ideal-nozzle twin of GENO
+nozzle_type 0) generating the contour end-to-end from the Sauer IVL to
+the bounding-streamline wall; GENO cross-code contour agreement 7.6e-9
+(62/62 inside the derived Richardson band) on the reduced case; O3.1
+dot-product over the ENTIRE march 2.7e-10 vs tol 5.1e-8 (= Lemma B
+adjoint executably); tabulated thermo backend per [DIR-THERMOTAB]
+(Cantera SOLE production table generator; GENO NASA-poly generator
+confined to cross-code oracle instances). NEXT bricks: variational TOC
+((**')/corner transversality via dJ/dSigma with TR-SQP — never a
+hard-coded outer loop), fitted single transversal sheet, plug
+free-boundary march; G0 loop-speed falsifier stays armed.]
 [STATUS 2026-07-17 (S10): OPEN — gate G0 DECIDED (JAX primary; dossier
 docs/rde_nozzle_G0_decision.md, registry [DIR-G0]). Stack fixed, GENO
 dual-code interop exercised (cross-code oracle X-GENOXC PASS). First A1

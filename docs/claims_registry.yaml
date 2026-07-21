@@ -444,9 +444,9 @@ entries:
   doc: "docs/rde_nozzle_P2_lemmaB.md#§4.2"
   proof: "docs/rde_nozzle_P2_lemmaB.md#§4.2"
   inherits: []
-  carrier: ["X-G0", "X-G0AX"]
+  carrier: ["X-G0", "X-G0AX", "X-A1IM"]
   suffices_symbolic: "yes"
-  falsifier: "O3.1 dot-product identity failure on any brick (both carriers reject corrupted vjp)"
+  falsifier: "O3.1 dot-product identity failure on any brick or on the assembled march (all carriers reject corrupted vjp)"
   gamma: "EOS-general"
 
 - id: T-P3
@@ -750,6 +750,19 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "its two negative controls (corrupted child inside the band, or wrong pairing not separated); or GENO nodes leaving the truncation band in the clean supersonic core"
+  gamma: "EOS-general"
+
+- id: X-A1IM
+  kind: carrier
+  class: PRACTICE
+  scope: "A1 BRICK 1 (S11): PROFILE-GENERATION MACHINERY — assembled differentiable MoC march (IVL -> fan -> arc throat expansion -> bounding-streamline wall) generating the ideal-nozzle contour end-to-end, GENO nozzle_type 0 twin; VERDICT PASS of record (2026-07-21, all 14 checks incl. four negative controls); tabulated-isentrope backend (DIR-THERMOTAB: Cantera primary generator, GENO NASA-poly interop instance, gconst declared oracle); on-demand carrier (env: jax + WSL gfortran GENO binary), outside CI tiers by declaration"
+  statement: "The assembled march is the executable Lemma-B block-triangular system: every cell an implicit custom_vjp unit process (never unrolled); end-to-end contour vs a GENO reduced-case run inside the derived Richardson band (measured: max|dy| ~ 7.6e-9 over 63 wall points, Me twin-identical to 7 digits, max wall angle 16.265 deg = GENO); O3.1 dot-product over the ENTIRE march; per-cell z-space Newton certification; four negative controls."
+  doc: "validation/a1_ideal_march_jax.py"
+  proof: "validation/a1_ideal_march_jax.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its negative controls (corrupted source leaves the GENO band; corrupted whole-march vjp breaks O3.1; corrupted table rejected; corrupted gamma rejected); any march cell failing the z-space Newton certification"
   gamma: "EOS-general"
 
 - id: X-GRP01
@@ -1081,6 +1094,19 @@ entries:
   falsifier: "a number without carrier or a citation without page-level verification"
   gamma: "n/a"
 
+- id: DIR-THERMOTAB
+  kind: directive
+  class: PRACTICE
+  scope: "standing user directive (2026-07-20, S11)"
+  statement: "JAX thermo backends READ TABLES (GENO backend-1 / ATLAS-FLINT model): the differentiable march consumes interpolated tables (h(T), s0(T), cp(T) class) with derived table-density floors; Cantera is the SOLE PRODUCTION table generator (user decision S11); the GENO NASA-poly generator is confined to declared cross-code oracle instances; gamma=const tables only as declared known-answer oracles."
+  doc: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  proof: "docs/rde_nozzle_MASTER.md#VI.4bis"
+  inherits: []
+  carrier: ["X-A1IM"]
+  suffices_symbolic: "n/a"
+  falsifier: "closed-form or non-tabulated thermo found in a solver step of any A1+ engine module (audit grep)"
+  gamma: "EOS-general"
+
 - id: DIR-G0
   kind: directive
   class: PRACTICE
@@ -1120,6 +1146,32 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "a subsection without its audit line, or novelty wording exceeding the query bounds — coherence grep"
+  gamma: "n/a"
+
+- id: PAP-P1S57
+  kind: paper
+  class: PRACTICE
+  scope: "P-1 sections §5-§7 full text of record (S10); FOUND-AND-ALIGNED S11: the S10 session omitted this registry entry (precedent PAP-P1S24) — added structure-only, no content change"
+  statement: "Full text of P-1 §5 (averaged system with (**') and boxed naive-average warning), §6 (capped ceiling + ladder + purge delta + equilibrium bracket) and §7 (semantics-first phase diagram incl. real-route instance), audit lines per subsection."
+  doc: "docs/rde_nozzle_P1_sections_5_7.md#§5 The averaged optimality system"
+  proof: "docs/rde_nozzle_P1_sections_5_7.md#§5 The averaged optimality system"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a subsection without its audit line, or a §7 winner read as a hardware verdict — coherence grep"
+  gamma: "n/a"
+
+- id: PAP-P1S1389
+  kind: paper
+  class: PRACTICE
+  scope: "P-1 sections §1, §3, §8, §9 full text of record (S11); Rao 1958 IAC cited ABSTRACT-VERIFIED ONLY in the var-gamma genealogy; §3.2 upgraded to the N6 theorem-grade boundary (class refresh declared); novelty CONTINGENT on Kraiko-Osipov PMM 34(6) 1970"
+  statement: "Full text of P-1 §1 (intro + var-gamma genealogy with the Rao 1958 IAC citation duty), §3 (steadification T0/N-SW + sharp N6 boundary), §8 (EAP/S-H containment bridges) and §9 (limits/outlook), audit lines per subsection."
+  doc: "docs/rde_nozzle_P1_sections_1_3_8_9.md#§1 Introduction"
+  proof: "docs/rde_nozzle_P1_sections_1_3_8_9.md#§1 Introduction"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "attributing anything beyond the abstract to Rao 1958 IAC; a subsection without its audit line; novelty wording exceeding the query bounds — coherence grep"
   gamma: "n/a"
 
 - id: PAP-P2OUT

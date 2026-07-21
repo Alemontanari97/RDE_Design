@@ -824,6 +824,44 @@ decision dossier: docs/rde_nozzle_G0_decision.md. Consequence: Phase
 A1 (differentiable per-phase engine) OPENS, with [X-GENOXC] as its
 standing cross-code regression.
 
+A1 BRICK 1 OF RECORD (2026-07-20/21, [F2/A1], session S11;
+work-layer; registry [X-A1IM], standing directive [DIR-THERMOTAB]):
+the PROFILE-GENERATION MACHINERY exists and is certified. The
+assembled differentiable MoC march (validation/a1_ideal_march_jax.py)
+GENERATES the ideal-nozzle contour end-to-end — Sauer IVL ->
+characteristic fan -> circular-arc throat expansion (inverse-wall unit
+process with GENO's chord-foot search and void-row bookkeeping,
+wall-angle refinement to axis M = Me) -> uniform-exit region with the
+WALL AS THE BOUNDING MASS-FLOW STREAMLINE — as the twin of GENO
+nozzle_type 0, with every cell an implicit custom_vjp unit process
+(implicit-function rule, never unrolled), so reverse-mode AD of the
+assembled march IS the Lemma-B discrete adjoint sweep, executably.
+Verdict of record (reduced case NI = 21, da = 0.5 deg, Ne = 41,
+eps = 4, CH4/O2 frozen): generated contour vs the GENO WSL run inside
+the derived two-resolution Richardson band at 62/62 samples with
+max |dy| = 7.6e-9 (band 4.5e-3; median err/band 0.000) — agreement at
+GENO's own predictor-corrector tolerance, far below truncation;
+achieved Me twin-identical to 8.4e-9; O3.1 dot-product over the
+ENTIRE march |<w,Jv> - <J^T w,v>| = 2.7e-10 vs derived tolerance
+5.1e-8 (replay fidelity 1.6e-13); per-cell UNIT-CONSISTENT Newton
+certification in z-space (2756 cells, worst step/tol 1.4e-2);
+negative controls reject (corrupted source cannot reproduce GENO,
+corrupted whole-march vjp breaks O3.1, corrupted thermo table and
+corrupted gamma rejected). THERMO BACKEND PIN of record (standing
+user directive S11, [DIR-THERMOTAB], strengthening VI.4bis(iii)):
+JAX engines READ TABLES (the GENO backend-1 / ATLAS-FLINT model) —
+the march consumes interpolated (h, s0, cp)(T) tables with derived
+table-density floors; CANTERA is the SOLE PRODUCTION table generator
+(the GENO NASA-polynomial generator is confined to declared
+cross-code oracle instances; gamma = const tables only as declared
+known-answer oracles). Consequence: DIR-G0's honest scope guard ("no
+JAX-generated contour exists yet") is DISCHARGED for the ideal
+(direct-march) nozzle type; the VARIATIONAL TOC brick — thrust
+objective + {eps, L, lip} constraints with the (**')/corner
+transversality imposed through the dJ/dSigma gradient, never a
+hard-coded outer loop — is the NEXT A1 brick; the G0 loop-speed
+falsifier stays armed (production-scale march not re-adjudicated).
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 
