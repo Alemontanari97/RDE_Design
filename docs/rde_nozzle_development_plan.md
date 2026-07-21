@@ -154,6 +154,24 @@ Paxson AIAA 2022-4107 benchmark (needs RaoPlug S1/S2 fixed + Rao
 (GENO IVL chain); N4 gamma(T) contour-level (expected null → publish as
 bound; Scofield-Hoffman Table-2 frozen-thrust 2290 lbf as the only
 known-answer var-gamma oracle).
+[NEW BENCHMARK 2026-07-21 (S12): GONZALEZ-VIANA REPRODUCTION —
+Aerospace 12:502 (2025) full-text read, PDF in literature/. Their
+single-cycle PDE multi-objective optimization finds optimum
+divergent nozzles of SMALL area ratio (A9/A8 = 1.13-1.31 with up to
+15 available) with time-averaged exit pressure 1.4-2.1 bar >> Pa —
+"steady criteria invalid". Three-way attribution of record:
+(a) constraint effects (their length bound ACTIVE at all
+performance optima — classical); (b) MEASURE effects — rung-2
+predicts their qualitative result (tail-dominated mu + sonic cap +
+weighted (**') => small eps*, mean-underexpanded optimum): the
+eps-level reproduction with THEIR blowdown measure is a days-scale
+task on existing machinery and arms P-1 sections 7-8 against the
+"steady-theory-invalid" objection; (c) genuinely unsteady residue
+(start-stop transit, air-filled nozzle) = the O5 anchor content —
+maximal in single-cycle PDE, structurally absent in continuous-
+rotation RDE (T3-QS explains the severity ranking). Their dataset
+is "available on request" — an external-validation contact worth
+making.]
 
 ### Phase A3 — Dual-route certification (months 8-14) [= WP3 amended]
 B2: direct collocation of the averaged optimality system — per-phase
@@ -172,8 +190,30 @@ quasi-1D/2-D simulation; anchor against the PDE-literature unsteady vs
 quasi-steady competition data (Cooper-Shepherd). Gate G3: if St|J1| =
 O(several %), elevate WP5 to correction loop (design rung 2, correct
 rung 3, iterate).
+[STRENGTHENED 2026-07-21 (S12, [T-T3QS]): the license test is now a
+PRE-REGISTERED falsification experiment, not a blind measurement.
+O5-LITE (quasi-1D unsteady solver, Morris/Gonzalez-Viana class,
+days-scale build) tests the three declared T3-QS predictions BEFORE
+any tuning: (P-i) smooth ray cycle => |J_unsteady - J_rung2| =
+O(St^2), NOT O(St); (P-ii) blowdown sawtooth => first-order residue
+proportional to [k]_jump and LOCALIZED in the wave-passage transit
+window; (P-iii) two-parameter cycle => residue scales with the
+data-loop area. Each prediction ships with its rejector; failure of
+any is a discovery, not a calibration. Anchors: Cooper-Shepherd
+(identification J. Propulsion Power 24(1):81-87 (2008), TO
+PAGE-VERIFY on acquisition) + Owens-Hanson JPP 23(2):325-337 (2007)
++ the Gonzalez-Viana benchmark of the Phase-A2 science note.]
 
 ### Phase A5 — Wave-frame anchor (months 12-22, parallel) [= WP5 + OP-5]
+[FIRST ITEM 2026-07-21 (S12, [S-BLITE]): B-LITE DEMONSTRATOR before
+the full anchor — (a) verify the 3-D axial-flux eigenstructure brick
+(G12-L1-3D, symbolic carrier, days); (b) 3-D helical space-marching
+of the NOZZLE-ONLY wave-frame field (u_x - c >= delta certified, I1
+data, Omega input, fitted sheet per station, adjoint = Lemma B
+lifted) — the exact rung-2 sweep/D2 residual at MARCHING cost. The
+full camera-included anchor below stays the tier for Omega-output,
+subsonic pockets and reaction; B-lite de-risks it and delivers the
+license meter years earlier.]
 2-D unrolled-annulus reactive Euler in the co-rotating frame; freezing
 (phase condition, unknown Omega_w); Newton-Krylov (matrix-free,
 PETSc-SNES/KrylovKit class) + Arnoldi spectra (SLEPc/ARPACK); HYBRID
@@ -341,6 +381,34 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
    + §2/§4 full text (see §3 stream).]
 8. Kraiko 1979/PMM library pass commissioned.                    (wk 1-12)
    [PMM 2a done in-house; dispatch package ready, user send pending.]
+[ADDED 2026-07-21 (S12) — the strengthening sequence of record:]
+9.  Variational TOC brick (A1 brick 2: dJ/dSigma + TR-SQP + (**')/
+    corner on the assembled march) — UNLOCKS O3.3 = P-2's numeric
+    half; then P-2 submission-ready (modulo G5).        [S13, NEXT-1]
+10. Gonzalez-Viana rung-2 reproduction (Phase-A2 note) + O5-LITE
+    build with the three PRE-REGISTERED T3-QS predictions (Phase-A4
+    note).                                              [days-scale]
+11. B-lite: G12-L1-3D symbolic brick, then the 3-D helical march
+    demonstrator (Phase-A5 note).                       [after 9]
+12. LITERATURE ACQUISITIONS (user upload to literature/, then a
+    page-verify session): PRIORITY 1 Kraiko-Osipov PMM 34(6) 1970
+    (P-1 wording contingency); PRIORITY 2 Giles-Ulbrich SINUM
+    48:882-904 and 48:905-921 (2010) + Lozano "Watch Your Adjoints!"
+    AIAA J 57(9) 2019 (P-2 cites, incl. the "near the shock" locus
+    check); PRIORITY 3 Cooper-Shepherd JPP 24(1):81-87 (2008, year
+    TO-VERIFY vs D2) + Owens-Hanson JPP 23(2):325-337 (2007) +
+    Morris JPP 21(3):527-538 (2005). Optional: Ma-Choi-Yang JPP
+    21(3):512-526 (2005); Kailasanath AIAA J 41(2):145-159 (2003);
+    Ransom/Hoffman/Thompson 3-D MOC (to locate; B-lite).
+13. EXPERIMENTAL ANCHOR line (ESA-review finding): name and acquire
+    at least one PUBLIC RDE dataset (thrust/Isp/frequency with
+    nozzle) as the case-C calibration target — the program currently
+    validates against models (S-H 18/18) and code (GENO), never yet
+    against test data; declared industrial gap #1.
+14. COMPUTE PLAN note (ESA-review finding): census LES (Step 1) and
+    the full A5 anchor need HPC access not currently evidenced;
+    until secured, A4/A5 scope = O5-lite + B-lite (laptop-scale),
+    DECLARED; industrial gap #2.
 
 ------------------------------------------------------------------------------
 ## 7. Risk register deltas (vs roadmap)
@@ -356,6 +424,12 @@ RK-C (new): data-contract violations from URANS/experimental profiles
 RK-D (carried): plug off-design march (RK1), autodiff-through-iteration
   (RK2), multi-D shock calculus boundary (RK3, declared), mode-measure
   scarcity (RK4), bus factor (RK5), URANS scope creep (RK6).
+RK-E (new, S12): NO experimental anchor yet — all validation is
+  model/code-level; mitigate via 90-days item 13 (public dataset as
+  case-C target) before any industrial claim.
+RK-F (new, S12): compute for census/A5 unfunded — mitigate via the
+  B-lite/O5-lite laptop-scale scope (items 10-11) and a declared HPC
+  plan before A4/A5 full scale (item 14).
 
 ------------------------------------------------------------------------------
 ## ANNEX B — Input taxonomy for the CFD-free design tool (rde-lecture-code

@@ -90,6 +90,33 @@ al., Aerospace 12(6):502 (2025) (doi:10.3390/aerospace12060502), which
 states explicitly that classical steady nozzle-optimization criteria are
 INVALID for detonation exhaust — the field knows the problem, and answers
 it numerically, never variationally.
+[FULL-TEXT READ 2026-07-21 (S12; PDF in
+literature/aerospace-12-00502.pdf): Gonzalez-Viana-Sastre-Martin-
+Velazquez, Aerospace 12:502 (2025), doi:10.3390/aerospace12060502 —
+single-cycle H2-air PDE (tube 1 m + Con-Di), quasi-1D unsteady
+reactive Euler (OpenFOAM rhoReactingCentralFoam variant, one-step
+kinetics, CJ vs CEA 1.5-3%), 5 design variables, 13,860 cases +
+HOSVD surrogate + GA/gradient, five objective mixes (I_SPF, I_T,
+A_N). FINDINGS: optimum always divergent with SMALL ratio (A9/A8 =
+1.13-1.31 of 15 available), length bound ACTIVE; time-averaged exit
+pressure at optimum 1.4-2.1 bar >> Pa (their Fig. 8) — "the unsteady
+character disallows conventional steady-state nozzle flow theory".
+ATTRIBUTION OF RECORD (three-way, S12): constraint effects
+(classical) + MEASURE effects (rung-2 reproduces the qualitative
+optimum: tail-dominated mu + sonic cap + weighted (**') — benchmark
+row in D6 Phase A2) + genuinely unsteady start-stop residue (O5
+anchor; maximal in single-cycle PDE, absent in continuous-rotation
+RDE — T3-QS explains the severity ranking). Their "steady invalid"
+convicts the NAIVE reading that our T7/(**') already rejects by
+theorem; the averaged theory survives and prices the rest.]
+PENDING ACQUISITIONS REGISTER (S12; upload target literature/, then
+page-verify): Kraiko-Osipov PMM 34(6) 1970 [PRIORITY 1 — P-1
+contingency]; Giles-Ulbrich SINUM 48:882 and 905 (2010) and Lozano
+AIAA J 57(9) 2019 [P-2 cites — verify the "near the shock"
+divergence locus vs stagnation-streamline]; Cooper-Shepherd JPP
+24(1):81-87 (2008) [year of this identification TO-VERIFY vs the
+"JPP ~2008 UNVERIFIED" row above]; Owens-Hanson JPP 23(2):325-337
+(2007); Morris JPP 21(3):527-538 (2005).
 
 What b1 does NOT contain (all NOT-FOUND(q)): the shape-functional
 formulation (G1); the collapse theorem (G2); peak-design optimality proof
