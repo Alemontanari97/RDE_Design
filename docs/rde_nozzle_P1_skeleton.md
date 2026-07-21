@@ -20,7 +20,15 @@ DECLARED there: §5.1 SCHEMA -> THEOREM* per the S6/S8 rigor upgrades
 [T-T7FS]/[T-P3]/[T-G12S1]; §5.2 carries the EOS-general eps*_real
 carrier [T-T7RED] group (xii); §6 adds the purge delta -4.4..-7.9% and
 the equilibrium bracket [T-EQBR]; §7 includes the real-route instance
-§7.5bis). Other sections (§1, §3, §8, §9, appendices): skeleton only.
+§7.5bis). Sections §1, §3, §8 and §9 have FULL TEXT OF RECORD in
+docs/rde_nozzle_P1_sections_1_3_8_9.md (2026-07-20, session S11,
+registry [PAP-P1S1389]): §1 carries the UPDATED var-gamma genealogy
+with the MANDATORY Rao 1958 IAC Amsterdam citation (abstract-verified
+ONLY — attribution strictly bounded to the abstract); §3.2 upgraded to
+the N6 theorem-grade boundary ([T-N6-2]/[T-N6-3], class refresh
+declared); §8 = EAP/S-H containment bridges; §9 = limits/outlook.
+BODY TEXT COMPLETE — remaining: appendices A1-A7 (proof imports from
+M0) + assembly pass with the claim map.
 
 Rigor legend as in M0: THEOREM / THEOREM* (within a declared closure) /
 SCHEMA / CONJECTURE / PRACTICE. Every claim in this paper carries a
