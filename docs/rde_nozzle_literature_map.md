@@ -166,7 +166,16 @@ solutions) — ACQUIRED, read queued; Lozano-Ponsin Aerospace 12:494
 argument = our Prop. A1; adjoint Riemann invariants (32)-(34) =
 O3.3 oracle bank; characteristic-crossing jump conditions = the
 analytic mirror of Prop. A2; shocks explicitly excluded from scope;
-reference-list check queued); Cooper-Shepherd JPP 24(1):81-87
+REFERENCE LIST FULLY VERIFIED S14 2026-07-22: all 42 references read
+— ZERO citations to Rao/Guderley/Kraiko/Shmyglevskii or any
+classical thrust-optimal contouring (closest items: Anderson's
+textbook, Zubov JAMM 1997 low-AoA optimum airfoils, Prince 1982 MOC
+perspective, Baeza et al. AIAA J 47:552 (2009) adjoint-RH design
+[already of record], Ancourt-Peter Aerospace 2023 characteristic
+adjoints, L-P 2023 shock-jump companion Aerospace 10:267) — the G14
+"both banks exist, no bridge" gap claim is now PAGE-VERIFIED at the
+B3 end; §4 conclusions confirm the benchmark purpose and the
+diamond-airfoil analytic solution structure); Cooper-Shepherd JPP 24(1):81-87
 (2008) — ACQUIRED + PAGE-VERIFIED (row above); Owens-Hanson JPP
 23(2):325-337 (2007) — ACQUIRED, read queued; Morris JPP
 21(3):527-538 (2005) — ACQUIRED, read queued.

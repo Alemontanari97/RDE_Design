@@ -1,0 +1,16 @@
+# S14 — Total-order session log (2026-07-22)
+
+Session: S14, USER ORDER — (A) complete the reading queue; (B) deep
+CONVERGENT, BIAS-FREE, GRANULAR panel review by world-expert personas
+of EVERY aspect of the plan against the bare problem "optimal nozzle
+for RDE flow": roads taken and not taken, every studied document,
+every built theory piece. The variational-TOC brick is re-prioritized
+AGAIN by user order (third deferral, declared). Precedents: D5
+16-agent panel (S1), D7 de-biasing audit, S6 5-agent corpus study.
+
+| # | Step |
+|---|------|
+| 1 | SESSION OPEN: HEAD = 8059995 (S13 + coda closed), tree clean. Reading queue of record (S13 step 10-12): Owens-Hanson JPP 23(2):325-337 (2007); Morris JPP 21(3):527-538 (2005); Lozano AIAA J 56(11) (2018); Lozano-Ponsin 2025 pp. 9-23 incl. reference-list check. PLAN: three extraction agents (verbatim-quote discipline) + L-P tail read personally; then panel launch (diverse personas: hyperbolic-PDE analyst, adjoint-methods expert, classical-contouring/Kraiko-school reader, RDE practitioner/experimentalist, numerics/HPC feasibility, maverick/bias-hunter, industrial PM), synthesis-at-convergence by the main session, verdict document of record + R4 + plan deltas. |
+| 2 | GATE — (A) adherence: user-ordered mandate (this log's header); D6 placement: the panel is a governance/verification act (D7-class, [PIANO/panel]); readings = [LEADS coda]. TOC brick deferral #3 DECLARED (PROGRESS NEXT will be re-consolidated at close). (B) upstream: panel terms of reference pinned — anchor always (P) of D2.6 (DIR-ANCHOR); winners = closures never hardware; novelty claims stay query-bounded; K-O containment adjudication of record must not be re-litigated without new evidence; personas must report roads-NOT-taken and disconfirming evidence explicitly (bias-hunting is part of the mandate). (C) VERDICT: gate PASS. |
+| 3 | LOZANO-PONSIN 2025 pp. 20-23 READ PERSONALLY: §4 conclusions (benchmark purpose; near-wall analytic solution over the diamond airfoil: adjoint vanishes downstream of two trailing-edge Mach lines, constant patches, fan patching via adjoint Riemann invariants + jump conditions) + FULL 42-entry reference list — ZERO citations to Rao/Guderley/Kraiko/Shmyglevskii or any classical thrust-optimal contouring. G14 'no bridge' claim now PAGE-VERIFIED at the B3 end. Bonus mapping: ref [36] = Baeza 2009 (already of record as '2-D practice'); ref [37] = L-P 2023 shock-jump companion (Aerospace 10:267, candidate acquisition); refs [26,27] = Peter/Ancourt characteristic-adjoint ODE line (bank-adjacent, candidate citations for P-2). D2 register updated. |
+| 4 | SESSION HANDOFF (user order: conversation full — 'chiudila e dammi il prompt'): three extraction agents (Owens-Hanson, Morris, Lozano-2018) LAUNCHED in the parent conversation but results NOT collected here — the resuming session must collect from the task output dir or RE-RUN the extractions (same verbatim discipline). The PANEL mandate (header + gate step 2) transfers to the resuming session via the handoff prompt delivered to the user. This log STAYS OPEN at step 4 — the resuming session continues from step 5 (collect/redo reads -> D2 -> panel -> synthesis -> D8 doc -> R4 -> close). Committing steps 1-4 now so the resuming session finds the state in-repo. |
