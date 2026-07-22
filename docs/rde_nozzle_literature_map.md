@@ -144,8 +144,20 @@ above); Giles-Ulbrich SINUM 48:882-904 (2010) Part 1 — ACQUIRED +
 PAGE-VERIFIED (eps = h^alpha interior-smearing repair; p. 884
 counterexample lineage [Gil03]; p. 886 adjoint interior BC at the
 shock; capturing-vs-FITTING contrast explicit in the intro);
-**Part 2 (SINUM 48:905-921, the adjoint convergence proof) STILL
-MISSING — priority acquisition**; Lozano AIAA J 57(9):3991-4006
+Part 2 (SINUM 48:905-921, doi 10.1137/09078078X) — ACQUIRED +
+PAGE-VERIFIED (S13-coda, 2026-07-22): the adjoint convergence
+theorem proper — with eps = h^alpha, 2/3 < alpha < 1 (Part 2
+sharpens the range), the discrete adjoint converges pointwise a.e.
+INCLUDING the correct uniform value on characteristics entering the
+shock; extensions to multiple/merging shocks; the COUNTEREXAMPLE
+demonstrated: at fixed points-across-shock the discrete adjoint
+grid-converges to a NONZERO i.e. WRONG value (p. 907), and p. 910
+states the strong negative — for ANY discretization with fixed
+points across the shock a functional exists whose approximation
+does not converge; mechanism: [G(u)] must be approximated by
+integrating G'(u) across the smear (error c1 exp(-c2 eps/h) +
+c3 eps). "The trap is a theorem" is now fully page-verified on both
+parts; Lozano AIAA J 57(9):3991-4006
 (2019) — ACQUIRED + PAGE-VERIFIED, locus CORRECTED (wall/trailing-
 edge-driven divergence, NOT the shock; Lemma B §4.4 fixed S13);
 Lozano AIAA J 56(11) (2018, singular/discontinuous adjoint
