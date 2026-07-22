@@ -78,9 +78,30 @@ Li-Xu-Huang above.
 
 PDE (pulse-detonation) precedent — the periodic-inflow nozzle question is
 OLDER than the RDE: Cambier-Tegnér JPP (doi:10.2514/2.5305) single- vs
-multi-cycle nozzle optimization diverge; Morris JPP 21:527 (2005) MOC
-without quasi-steady-nozzle assumption; Owens-Hanson JPP 23:325 (2007)
-single-cycle unsteady nozzle phenomena; Cooper & Shepherd, "Single-Cycle
+multi-cycle nozzle optimization diverge; Morris JPP 21(3):527-538 (2005),
+doi:10.2514/1.7875 [PAGE-VERIFIED S14; METHOD CORRECTION of this
+row's earlier wording: NOT MOC — quasi-1D unsteady finite-rate
+FV-CFD (Yee symmetric TVD + Roe + Strang splitting, 9-species H2/O2,
+0.1 mm grid); the nozzle is solved FULLY UNSTEADY in-domain (no
+quasi-steady nozzle sub-model anywhere); the constant-gamma unsteady
+MOC is his earlier AIAA 2002-3715. Anchors of record: CJ 2837.1 m/s
+CEA + grid-convergence ladder; optimized-CD gains +53-57% (psi 1-10),
++20-21% (10-100), +10% (100-1000); machine-checkable Table 2;
+beneficial early cutoff of blowdown]; Owens-Hanson JPP 23(2):325-337
+(2007), doi:10.2514/1.22415 [PAGE-VERIFIED S14, experiments +
+quasi-1D finite-rate CFD: 11 distinct single-cycle unsteady nozzle
+phenomena catalogued (transverse waves from converging sections,
+nozzle starting/unstarting with expelled normal shock, detonation
+diffraction, turbulent separation); quasi-1D declared inadequate for
+CONVERGING sections (2-D transverse waves, fortuitous cancellation)
+but adequate for straight/diverging; PRECEDENT DUTY for P-1: their
+abstract result — "the optimal expansion area ratio is shown to be
+well-predicted by using isentropic theory and the time-averaged head
+wall pressure as the stagnation condition" — is a published 2007
+empirical precursor of the mean-pressure design rule at eps level
+(no variational formulation, no measure, no theorem; cite next to
+S-H in the T3 practice-explanation line); exp Table 1 anchor with
+declared limits (DDT/plateau contamination, CD case unreliable)]; Cooper & Shepherd, "Single-Cycle
 Impulse from Detonation Tubes with Nozzles", JPP 24(1):81-87 (2008),
 doi:10.2514/1.30192 [PAGE-VERIFIED 2026-07-22, S13]: +72%/+43%
 CONFIRMED verbatim (abstract) — both vs the plain-tube baseline for
@@ -177,8 +198,21 @@ adjoints, L-P 2023 shock-jump companion Aerospace 10:267) — the G14
 B3 end; §4 conclusions confirm the benchmark purpose and the
 diamond-airfoil analytic solution structure); Cooper-Shepherd JPP 24(1):81-87
 (2008) — ACQUIRED + PAGE-VERIFIED (row above); Owens-Hanson JPP
-23(2):325-337 (2007) — ACQUIRED, read queued; Morris JPP
-21(3):527-538 (2005) — ACQUIRED, read queued.
+23(2):325-337 (2007) — ACQUIRED + PAGE-VERIFIED (S14, row above);
+Morris JPP 21(3):527-538 (2005) — ACQUIRED + PAGE-VERIFIED (S14,
+row above, incl. METHOD CORRECTION of the old record wording);
+Lozano AIAA J 56(11):4437-4452 (2018), doi:10.2514/1.J056523 —
+ACQUIRED + PAGE-VERIFIED (S14): objective-dependent taxonomy of
+adjoint shock/sonic behavior (lift adjoint continuous zero-gradient
+at shock + log singularity at sonic throat; nonlinear-in-p cost =>
+discontinuous adjoint derivatives at the shock and discontinuity at
+the shock FOOT; entropy adjoint jumps at shocks; farfield entropy
+adjoint jumps at the throat); 2-D adjoint shock equations
+(continuity + internal shock equation + shock-foot condition, from
+Baeza et al. 2009); "for oblique shocks the situation is not clear"
+= DECLARED OPEN in 2018 (directly relevant to our fitted-sheet
+scope); gradients accurate despite inaccurate adjoint fields;
+anticipates the 2019 mesh-divergence paper (trailing-edge cause).
 
 What b1 does NOT contain (all NOT-FOUND(q)): the shape-functional
 formulation (G1); the collapse theorem (G2); peak-design optimality proof
