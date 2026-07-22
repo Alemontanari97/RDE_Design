@@ -138,14 +138,26 @@ anchor; maximal in single-cycle PDE, absent in continuous-rotation
 RDE — T3-QS explains the severity ranking). Their "steady invalid"
 convicts the NAIVE reading that our T7/(**') already rejects by
 theorem; the averaged theory survives and prices the rest.]
-PENDING ACQUISITIONS REGISTER (S12; upload target literature/, then
-page-verify): Kraiko-Osipov PMM 34(6) 1970 [PRIORITY 1 — P-1
-contingency]; Giles-Ulbrich SINUM 48:882 and 905 (2010) and Lozano
-AIAA J 57(9) 2019 [P-2 cites — verify the "near the shock"
-divergence locus vs stagnation-streamline]; Cooper-Shepherd JPP
-24(1):81-87 (2008) [year of this identification TO-VERIFY vs the
-"JPP ~2008 UNVERIFIED" row above]; Owens-Hanson JPP 23(2):325-337
-(2007); Morris JPP 21(3):527-538 (2005).
+ACQUISITIONS REGISTER (S12; STATUS UPDATE S13, 2026-07-22):
+Kraiko-Osipov PMM 34(6) 1970 — ACQUIRED + READ + ADJUDICATED (row
+above); Giles-Ulbrich SINUM 48:882-904 (2010) Part 1 — ACQUIRED +
+PAGE-VERIFIED (eps = h^alpha interior-smearing repair; p. 884
+counterexample lineage [Gil03]; p. 886 adjoint interior BC at the
+shock; capturing-vs-FITTING contrast explicit in the intro);
+**Part 2 (SINUM 48:905-921, the adjoint convergence proof) STILL
+MISSING — priority acquisition**; Lozano AIAA J 57(9):3991-4006
+(2019) — ACQUIRED + PAGE-VERIFIED, locus CORRECTED (wall/trailing-
+edge-driven divergence, NOT the shock; Lemma B §4.4 fixed S13);
+Lozano AIAA J 56(11) (2018, singular/discontinuous adjoint
+solutions) — ACQUIRED, read queued; Lozano-Ponsin Aerospace 12:494
+(2025) — ACQUIRED + PAGE-VERIFIED through §2 (their det-transpose
+argument = our Prop. A1; adjoint Riemann invariants (32)-(34) =
+O3.3 oracle bank; characteristic-crossing jump conditions = the
+analytic mirror of Prop. A2; shocks explicitly excluded from scope;
+reference-list check queued); Cooper-Shepherd JPP 24(1):81-87
+(2008) — ACQUIRED + PAGE-VERIFIED (row above); Owens-Hanson JPP
+23(2):325-337 (2007) — ACQUIRED, read queued; Morris JPP
+21(3):527-538 (2005) — ACQUIRED, read queued.
 
 What b1 does NOT contain (all NOT-FOUND(q)): the shape-functional
 formulation (G1); the collapse theorem (G2); peak-design optimality proof
