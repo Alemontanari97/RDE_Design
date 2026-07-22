@@ -93,6 +93,15 @@ system, the program's novelty restates as the RDE instantiation + T0
 exactness + the T3/T4 dichotomy + the O(St) bridge — still a paper,
 smaller claim.
 
+ADJUDICATION ADDENDUM (2026-07-22, S13): the Kraiko-Osipov PMM 34(6)
+1970 contingency (armed via the S7 PMM sweep; wired into P-1 §4.5) is
+RESOLVED in containment mode — full text read; trajectory-averaged
+weighted variational contouring with characteristic multiplier fields
+and an averaged-weight collapse case CONFIRMED; P-1 §4.5 reworded to
+the pre-planned containment statement with mandatory citation; M0
+T3-C2/T7 precedent notes added; P-2 novelty (adjoint bridge)
+UNAFFECTED. Record: D2 adjudication row + S13 log.
+
 ## 3bis. Verdict on the GENO variational corpus (per-nozzle methods)
 
 Read in full: `GENO/docs/theory_variational_understanding.md` (19-agent

@@ -359,7 +359,9 @@ Corollaries: (C1) the repo's 1-DOF Theorem 1 is the rank-1 shadow;
 (C2) Pa enters linearly too: trajectory-averaged fixed-bell design
 collapses to <Pa> — cycle average and altitude average are one
 mathematics (the dual-bell literature exists because SEPARATION breaks
-the linearity); (C3) oracle O1: any ensemble machinery run under
+the linearity) [PRECEDENT DUTY, 2026-07-22 S13: the trajectory-
+averaged variational instance is Kraiko-Osipov PMM 34(6) 1970,
+page-verified; see the T7 precedent note; mandatory citation]; (C3) oracle O1: any ensemble machinery run under
 H1-H4 MUST return Rao-at-<Pc> with Delta-Isp = 0.
 Sharpness [T-T3-CE]: two-phase two-gamma counterexample — J = (1/2)[a(g1)Pc1 +
 a(g2)Pc2] - Pa b is not of the collapsed form; first-order closure
@@ -653,6 +655,19 @@ Stationarity structure (verified formally):
      EXACTLY in the T3 class (there (**') reduces to the naive average
      — everywhere else the naive form is WRONG; every implementation
      must use (**')).
+TRAJECTORY-AVERAGED PRECEDENT (page-verified 2026-07-22, S13):
+Kraiko-Osipov PMM 34(6):1067-1075 (1970) derive, for the TRAJECTORY
+instance of this structure (aircraft flight conditions in place of
+the cycle), the time-integrated weighted wall condition (their
+(3.2), weight = trajectory-adjoint W(t)), multiplier fields on the
+flow characteristics with jump relations, and the collapse of the
+averaged conditions to the classical single-state family with
+time-averaged weight under invariant dimensionless inlet (their §4)
+— the 1970 ancestor of (b), of the weighted structure of (c), and
+of T3's averaged-family reading. Not present there: the cycle
+measure, exactness (T0), the priced O(St) step, the sharpened
+pointwise collapse with proven boundary, certificates, and the
+adjoint identification of P-2. Mandatory citation.
 Non-smoothness: topology-switch phases are mu-measure-zero with F
 continuous across them: Leibniz survives moving switches (boundary
 terms cancel); persistent kinks: Clarke subdifferentials.
