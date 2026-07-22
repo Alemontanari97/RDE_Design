@@ -21,6 +21,10 @@
 #   gamma: EOS-general | gamma-const-oracle | perfect-gas-oracle | n/a
 #          (`n/a` admitted ONLY for kinds directive/paper and for declared
 #           non-mathematical carriers (code lint); enforced by the lint.)
+#   class-on-definitions convention (DECLARED S14, [PAN-S14] F-CLASSES):
+#          for kind: definition the class records the rigor status of the
+#          definitional CONTENT — exact definitions of record = THEOREM,
+#          empirical-criterion definitions = PRACTICE (cf. D-GSEP).
 #   suffices_symbolic: yes | no | n/a
 #          (yes = finite algebraic identity, machine check = proof;
 #           no = function-space content, analytic steps named;
@@ -125,8 +129,8 @@ entries:
 - id: C-D25U
   kind: conditional
   class: SCHEMA
-  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat)"
-  statement: "On the certified set D(delta, L_x, C_geo, C_dat) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — proof architecture U1-U4 named, none written."
+  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat); COMPONENT STRUCTURE DECLARED (S14, [PAN-S14] F-D25USPLIT): -a estimates/Lipschitz (dischargers U1-U4), -b well-definedness/uniqueness (discharged BY the S-S1U assembly, which uses only -a), -c shift-C^1 differentiability (discharger U5 NAMED MISSING: linearized well-posedness + quadratic remainder; Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2); heirs conservatively inherit the full triple pending per-heir re-adjudication"
+  statement: "On the certified set D(delta, L_x, C_geo, C_dat) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — proof architecture U1-U4 named for the -a/-b components, U5 (-c) named missing, none written; discharge cost re-priced S14: -a/-b classical two-variable estimates, -c research-grade."
   doc: "docs/rde_nozzle_conditionals.md#C-D25U"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
   inherits: []
@@ -491,7 +495,7 @@ entries:
 - id: T-N6-2
   kind: theorem
   class: THEOREM
-  scope: "free-vortex swirl (uniform r u_theta, h0, s); one-line analytic closure justification declared"
+  scope: "free-vortex swirl (uniform r u_theta, h0, s); one-line analytic closure justification declared; novelty wording QUERY-BOUNDED (S14, [PAN-S14] F-N6TILL): 'new' relative to the Western Rao line and the program's prior N6-open status; named unacquired antecedent Tillyaeva Izv. AN MZhG 1975 no. 3 (nonuniform and swirling flows) — content check pending G5 item 2.2(f)"
   statement: "Rao's closed-form machinery extends VERBATIM to free-vortex swirl with W the meridional speed — a new positive class."
   doc: "docs/rde_nozzle_N6_swirl.md#§2 THEOREM N6-2"
   proof: "docs/rde_nozzle_N6_swirl.md#§2 THEOREM N6-2"
@@ -597,11 +601,11 @@ entries:
 - id: S-P4F
   kind: theorem
   class: THEOREM*
-  scope: "statement-level reduction under the periodic scoping; remaining analysis named (Riesz theory + quantitative IFT)"
+  scope: "statement-level reduction under the periodic scoping; remaining analysis MINTED as conditional C-P4RZ (S14, X2 exchange: the cycle monodromy is a linear hyperbolic transport operator, generically non-smoothing hence non-compact — Riesz theory is genuine analysis); the P1a/P1b eigenvalue margin is a MONITORED SURROGATE of the full spectral condition, not its equivalent"
   statement: "Solvability of the O(St) corrector system reduces to a Fredholm alternative on the circle: 1 not in spec(Pi) with Pi the cycle monodromy — the spectral hypothesis IS the P1a/P1b neutral-mode margin."
   doc: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
-  inherits: ["C-D25U"]
+  inherits: ["C-D25U", "C-P4RZ"]
   carrier: []
   suffices_symbolic: "no"
   falsifier: "O5: computed J1 = -<psi_J, S_sweep U0> diverging from unsteady simulation beyond bars at certified spectral margin"
@@ -1138,7 +1142,7 @@ entries:
 - id: PAP-P1S24
   kind: paper
   class: PRACTICE
-  scope: "P-1 sections §2 and §4 full text of record (S8-op); §4.5 novelty wording CONTINGENT on Kraiko-Osipov PMM 34(6) 1970 full text"
+  scope: "P-1 sections §2 and §4 full text of record (S8-op); K-O contingency ADJUDICATED 2026-07-22 (containment mode, full text read, mandatory citation; §4.5 reworded to structure-level containment S14); novelty stays query-bounded; submission gates M1 + G5 standing"
   statement: "Full text of P-1 §2 (objective chain) and §4 (collapse dichotomy) with the audit line [Class | Falsifier | Carrier | Gamma status] closing every subsection."
   doc: "docs/rde_nozzle_P1_sections_2_4.md#§2 The objective"
   proof: "docs/rde_nozzle_P1_sections_2_4.md#§2 The objective"
@@ -1164,7 +1168,7 @@ entries:
 - id: PAP-P1S1389
   kind: paper
   class: PRACTICE
-  scope: "P-1 sections §1, §3, §8, §9 full text of record (S11); Rao 1958 IAC cited ABSTRACT-VERIFIED ONLY in the var-gamma genealogy; §3.2 upgraded to the N6 theorem-grade boundary (class refresh declared); novelty CONTINGENT on Kraiko-Osipov PMM 34(6) 1970"
+  scope: "P-1 sections §1, §3, §8, §9 full text of record (S11); Rao 1958 IAC cited ABSTRACT-VERIFIED ONLY in the var-gamma genealogy; §3.2 upgraded to the N6 theorem-grade boundary (class refresh declared); K-O contingency ADJUDICATED 2026-07-22 (containment; §1.4 + header synced S14); Kraiko 1963 added TITLE-VERIFIED to the §1.1 genealogy (S14); G5 residual (Kraiko 1979 TOC + PMM texts) standing"
   statement: "Full text of P-1 §1 (intro + var-gamma genealogy with the Rao 1958 IAC citation duty), §3 (steadification T0/N-SW + sharp N6 boundary), §8 (EAP/S-H containment bridges) and §9 (limits/outlook), audit lines per subsection."
   doc: "docs/rde_nozzle_P1_sections_1_3_8_9.md#§1 Introduction"
   proof: "docs/rde_nozzle_P1_sections_1_3_8_9.md#§1 Introduction"
@@ -1279,3 +1283,31 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "an optimum reported as certified with any phase beyond the declared separation-criterion margin"
   gamma: "EOS-general"
+
+# ------------------- S14 additions (panel of record, 2026-07-22) ------------
+
+- id: C-P4RZ
+  kind: conditional
+  class: SCHEMA
+  scope: "declared ANALYTIC residual of S-P4F (minted S14, [PAN-S14] F-CLASSES + X2 exchange): Riesz/compactness theory for the cycle monodromy Pi + quantitative IFT remainder — converts '1 not an eigenvalue' into bounded invertibility; the monodromy of a linear hyperbolic phase transport is generically non-smoothing, so compactness is genuine analysis, not bookkeeping"
+  statement: "1 not in spec(Pi) yields bounded invertibility of (I - Pi) on the periodic corrector space — pending the named Riesz/compactness step; until then the computed P1a/P1b eigenvalue margin is a monitored surrogate."
+  doc: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§2 P4-FREDHOLM"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a certified-margin case where (I - Pi) is not boundedly invertible (1 in the approximate/essential spectrum without eigenvector) — the O5 corrector solve would then diverge at healthy computed margin"
+  gamma: "EOS-general"
+
+- id: PAN-S14
+  kind: paper
+  class: PRACTICE
+  scope: "convergence panel of record (S14, 2026-07-22, D8 class): 7 personas + granular finder loop (descoped, declared) + inter-agent exchange + 16 two-lens convergence teams (16/16 CONFIRMED, 0 dissent); R4 register E9a-E9j executed same session"
+  statement: "Panel verdict of record on the whole program vs the bare problem 'optimal nozzle for RDE flow': architecture survives seven hostile lenses; 16 wording/status/protocol defects confirmed and fixed; two structural findings of record (concentrated analytic risk at the S1 boundary; falsifier asymmetry) with priced mitigations."
+  doc: "docs/rde_nozzle_panel_2026-07-22.md"
+  proof: "docs/rde_nozzle_panel_2026-07-22.md"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any §5 R4 row whose executed fix is absent from the named record doc — coherence grep"
+  gamma: "n/a"
