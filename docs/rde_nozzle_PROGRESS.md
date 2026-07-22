@@ -7,9 +7,44 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-21, chiusura Sessione 12 — RIGORE/R4: "retro-
-## propagazione della review-conversation + piano rafforzato";
-## sessione UNICA, check pre-commit puliti)
+## ORA (2026-07-22, chiusura Sessione 13 — LEADS/PAGE-VERIFY:
+## "contingenza Kraiko-Osipov AGGIUDICATA + verifiche di pagina";
+## sessione UNICA)
+
+Branch `rde-nozzle-program`. Log:
+validation/PROGRESS_2026-07-21_S13_leads.md (gate PASS passo 2, 11
+passi). Commit: T1 = d951d4c + riparazione b2771a3 (deviazione di
+processo dichiarata al passo 7), T2 = 022b9b2, chiusura = (questo).
+
+- **CONTINGENZA K-O 1970: AGGIUDICATA (modalità containment, come
+  pre-armata)** — full text letto personalmente: contouring
+  variazionale MEDIATO SU TRAIETTORIA per un contorno condiviso
+  (condizione di parete integrata nel tempo con peso W(t) del
+  moltiplicatore di traiettoria; campi moltiplicatori sulle
+  caratteristiche con salti; caso di COLLASSO alla famiglia classica
+  con peso MEDIATO W° sotto similarità d'ingresso; quasi-steady
+  dichiarato ma non prezzato). AZIONI: P-1 §4.5 riscritta
+  (containment + citazione obbligatoria), M0 T3-C2 + T7 note di
+  precedente, D2 riga di aggiudicazione, D4 §3 addendum. P-2
+  INTATTA.
+- **VERIFICHE DI PAGINA**: Cooper-Shepherd JPP 24(1):81-87 (2008)
+  doi 10.2514/1.30192 — +72%/+43% confermati verbatim (ruoli
+  precisati: vs plain tube, regime tamper vs quasi-steady); Lozano
+  2019 — divergenza in mesh CONFERMATA ma locus CORRETTO
+  (parete/trailing edge, NON l'urto; Lemma B §4.4 corretto,
+  trovato-e-fixato); G-U Part 1 SINUM 48:882-904 — riparazione
+  eps = h^alpha e lineage del controesempio confermati, contrasto
+  capturing-vs-FITTING esplicito (Part 2 MANCANTE — acquisizione
+  prioritaria); Lozano-Ponsin 2025 — il loro det-trasposto È la
+  Prop. A1, invarianti aggiunti (32)-(34) = banco oracoli O3.3,
+  jump conditions = specchio analitico di Prop. A2, urti esclusi
+  dal loro scope (Lemma B/G12 intatti).
+- CODA DICHIARATA: Owens-Hanson, Morris, Lozano-2018, check
+  reference-list L-P (pp. 9-23), G-U Part 2 (upload utente).
+
+Stato precedente (chiusura Sessione 12 — RIGORE/R4: "retro-
+propagazione della review-conversation + piano rafforzato";
+sessione UNICA, check pre-commit puliti)
 
 Branch `rde-nozzle-program`. Log a ordine totale:
 validation/PROGRESS_2026-07-21_S12_rigoreR4.md (gate PASS al passo 3).
@@ -612,7 +647,19 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (Sessione 13 — consolidato S12; ogni voce con criterio già nominato)
+## NEXT (Sessione 14 — consolidato S13)
+
+1. [F2/A1 — BRICK 2] TOC variazionale (invariato; sblocca O3.3 — ora
+   col banco oracoli L-P 2025 page-verified: invarianti (32)-(34)).
+2. [LEADS coda] Owens-Hanson + Morris + Lozano-2018 + reference-list
+   L-P; G-U Part 2 = upload utente (SINUM 48:905-921).
+3. [F1/GV + F4-prep/O5-lite] riproduzione GV + build pre-registrato
+   (D6 A4).
+4. [F2-prep/BLITE] mattone G12-L1-3D poi march.
+5. [F1/P-1] appendici + assembly (§4.5 AGGIUDICATA — un blocco in
+   meno; resta G5).
+[VOCE PRECEDENTE S12→S13:]
+
 
 1. [F2/A1 — BRICK 2, il mattone VARIAZIONALE] invariato da S11 (voce
    sotto, era NEXT-1): TOC via dJ/dSigma + TR-SQP + (**')/corner sul
@@ -690,6 +737,17 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 - RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
 
 ## LOG SESSIONI
+
+- **S13 (2026-07-21/22, LEADS/PAGE-VERIFY su ordine utente)** — Gate
+  PASS (passo 2). K-O 1970 letto personalmente e AGGIUDICATO
+  (containment; P-1 §4.5 riscritta, M0/D2/D4 aggiornati); C-S e
+  Lozano-2019 verificati via agenti con quote a pagina (locus Lemma B
+  §4.4 corretto — trovato-e-fixato); G-U Part 1 e L-P 2025 verificati
+  personalmente (Prop. A1 = loro det-trasposto; oracoli O3.3 pronti;
+  Part 2 G-U mancante). Deviazione di processo dichiarata e riparata
+  (passo 7: commit chain non guardata). Tre agenti persi per session
+  limit (rifatti in proprio). Commit: d951d4c, b2771a3, 022b9b2 +
+  chiusura. Coda dichiarata ai passi 10-11.
 
 - **S12 (2026-07-21, RIGORE/R4 su ordine utente: "retro-propagazione
   della review-conversation + piano rafforzato"; UNICA sessione,
