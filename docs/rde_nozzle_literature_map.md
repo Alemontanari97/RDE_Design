@@ -80,10 +80,39 @@ PDE (pulse-detonation) precedent — the periodic-inflow nozzle question is
 OLDER than the RDE: Cambier-Tegnér JPP (doi:10.2514/2.5305) single- vs
 multi-cycle nozzle optimization diverge; Morris JPP 21:527 (2005) MOC
 without quasi-steady-nozzle assumption; Owens-Hanson JPP 23:325 (2007)
-single-cycle unsteady nozzle phenomena; Cooper-Shepherd (Caltech reprint;
-JPP ~2008, year UNVERIFIED): unsteady vs quasi-steady competition (+72%
-unsteady benefit near sea level vs +43% quasi-steady near vacuum) —
-directly relevant to N5/P4 expectations. Modern black-box shape
+single-cycle unsteady nozzle phenomena; Cooper & Shepherd, "Single-Cycle
+Impulse from Detonation Tubes with Nozzles", JPP 24(1):81-87 (2008),
+doi:10.2514/1.30192 [PAGE-VERIFIED 2026-07-22, S13]: +72%/+43%
+CONFIRMED verbatim (abstract) — both vs the plain-tube baseline for
+the largest nozzle (12 deg, 0.6 m, area ratio 16.7): +72% at P0 =
+100 kPa where UNSTEADY nozzle-air tamper effects dominate (Gurney/
+partial-fill model — no unsteady CFD in the paper), +43% at 1.4 kPa
+where the nozzle quasi-steadily expands from the AVERAGE upstream
+pressure; nozzle-dependent transition pressure (5.2 kPa for the
+largest); nozzle startup 6-12% of cycle time — directly relevant to
+N5/P4 expectations.
+KRAIKO-OSIPOV ADJUDICATION (2026-07-22, S13; full text READ,
+literature/0021-8928(70)90164-4.pdf, JAMM pp. 1005-1013): the 1970
+paper IS a trajectory-averaged variational contouring problem for a
+single shared contour — time-integrated WEIGHTED wall condition
+(their (3.2), weight W(t) = lambda2 k/m from the trajectory
+adjoint), multiplier FIELDS on flow characteristics with transport
+and jump relations ((3.6)-(3.10)), quasi-stationary approximation
+declared (validity footnote, unpriced), and a §4 COLLAPSE CASE:
+invariant dimensionless inlet (nozzle starting at its throat) =>
+reduction to the CLASSICAL optimum family with time-AVERAGED weight
+W-degree. CONTAINMENT (per the pre-armed plan): our formulation
+contains K-O as the trajectory instance of the general measure (the
+altitude-duality corollary T3-C2 is the bridge); beyond it: cycle
+measure + exact steadification (T0), PRICED quasi-steady step (P4
+answers their footnote), sharpened collapse with proven boundary,
+RDE physics, EOS-general executables, bounds/(S*, delta), topology-
+as-output, and the modern-adjoint bridge (P-2 unaffected; their
+native multiplier fields are additional bank-B1 material).
+MANDATORY CITATION in P-1/P-2. Lozano 2018 (AIAA J 56(11), singular/
+discontinuous adjoint solutions) and Lozano-Ponsin Aerospace
+12(6):494 (2025) now ALSO uploaded — page-verification queued (S13
+continuation). Modern black-box shape
 optimization under detonation pulses: Ornano-Braun-Saracoglu-Paniagua,
 Adv. Mech. Eng. 2017 (doi:10.1177/1687814017690955); Gonzalez-Viana et
 al., Aerospace 12(6):502 (2025) (doi:10.3390/aerospace12060502), which

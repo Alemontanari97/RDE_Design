@@ -217,9 +217,23 @@ THE TRAP (published): for shock-CAPTURED conservative discretizations,
 the discrete adjoint is adjoint-consistent at the shock only if the
 scheme enforces, in the limit, an interior smearing condition — the
 counterexamples and the repaired conditions are Giles-Ulbrich, SINUM
-48:882-904 and 48:905-921 (2010); Lozano's mesh-divergent inviscid
-adjoints (AIAA J 2018/2019 line) show the practical bite: refining the
-mesh makes the captured adjoint WORSE near the shock. Mechanism: AD of
+48:882-904 and 48:905-921 (2010); Lozano's mesh-divergence findings
+(AIAA J 57(9):3991-4006 (2019), PAGE-VERIFIED 2026-07-22, S13) show
+the practical bite of trusting captured adjoint FIELDS: wall and
+near-wall inviscid adjoint values fail to converge — and can grow
+without bound — under refinement, across the ENTIRE wall, driven by
+the trailing-edge adjoint singularity (lift adjoints at any flow
+condition including shock-free; drag adjoints in transonic lifting
+flow; both continuous and discrete formulations; gradients stay
+accurate). The shock-REGION adjoint error under insufficient
+dissipation is the separate internal-boundary-condition failure
+documented in the literature Lozano cites — the Giles-Ulbrich trap
+proper. Both pathologies live at the field level our identification
+needs; the fitted march bypasses the smear entirely. [Locus
+correction of record, S13: an earlier draft of this sentence placed
+Lozano's divergence "near the shock" — page-verification relocated
+it to the wall/trailing-edge structure; the trap statement above is
+unchanged.] Mechanism: AD of
 a captured march differentiates the numerical smear — an internal
 layer whose width and internal structure are mesh artifacts — so the
 discrete adjoint accumulates O(1) spurious content in the layer

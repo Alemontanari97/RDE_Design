@@ -388,25 +388,41 @@ machinery (P-2 Lemma A, now theorem-grade in the irrotational
 homentropic scope; P-2 Lemma B for the discrete march) is built to
 optimize in.
 
-On priority: to our knowledge — query-bounded to the six-strand survey
-of record (D2, 2026-07-16) and to a 204/204-issue title sweep of PMM
-1957-1990 — no published variational nozzle treatment couples a cycle
-MEASURE to a single shared contour with the collapse/peak dichotomy
-stated, proved, and bounded. The closest published relative surfaced
-by the sweep is Kraiko & Osipov, PMM 34(6) 1970 — nozzle contouring
-for VARYING FLIGHT CONDITIONS, a multi-regime cousin of the cycle
-average. Its full text is pending acquisition (gate G5, reading-list
-item 2b); the priority wording of this paragraph is CONTINGENT on that
-reading and will be weakened to a containment statement if the 1970
-paper's variational structure overlaps (contingency plan D4 §3,
-armed). No stronger novelty claim is made anywhere in this paper.
+On priority: the contingency declared in the first draft of this
+paragraph has been ADJUDICATED (full text read, 2026-07-22), and the
+pre-planned containment statement now applies. Kraiko & Osipov, PMM
+34(6):1067-1075 (1970), IS a trajectory-averaged variational
+contouring problem for a single shared contour: a time-integrated
+wall condition weighted by the trajectory adjoint, multiplier fields
+propagating on the flow characteristics, a declared (but unpriced)
+quasi-stationary approximation, and — under invariant dimensionless
+inlet conditions — a collapse of the averaged problem to the
+classical single-state optimum family with a time-averaged weight.
+Our formulation CONTAINS that structure as its trajectory instance:
+the altitude-duality corollary of §4.2 is precisely the bridge
+(cycle average and trajectory average are one mathematics), and
+Kraiko-Osipov 1970 is its mandatory citation. What remains — to our
+knowledge, query-bounded to the six-strand survey of record (D2,
+2026-07-16), a 204/204-issue title sweep of PMM 1957-1990, and the
+1970 full text — is everything this paper adds to that ancestor: the
+CYCLE measure with exact steadification (Theorem 2.1: the averaging
+step itself is exact for a rotating mode, where the 1970 setting
+must assume quasi-stationarity throughout), the PRICED quasi-steady
+step (their validity footnote, made quantitative by the O(St)
+program), the collapse sharpened to a pointwise functional equality
+at the mean pressure with its boundary proven (two-gamma
+counterexample), certified bounds with the sonic cap, the (S*,
+delta) globality contract, the topology-as-output diagram, and the
+EOS-general executable route. No stronger novelty claim is made
+anywhere in this paper.
 
-[Class: expository synthesis + QUERY-BOUNDED novelty statement |
-Falsifier: any surfaced prior statement — explicitly including the
-pending Kraiko-Osipov 1970 full text and the G5 human pass | Carrier:
-D2 query record; validation/G5_pmm_toc_sweep_1957-1990.md (204/204
-issues, raw-HTML method of record) | Gamma status: inherits the split
-declared in §§4.1-4.4; no new claim.]
+[Class: expository synthesis + QUERY-BOUNDED novelty statement with
+ADJUDICATED containment | Falsifier: any surfaced prior statement
+narrowing the declared deltas — the G5 human pass remains the
+standing gate | Carrier: D2 query record + adjudication row
+(2026-07-22); validation/G5_pmm_toc_sweep_1957-1990.md (204/204
+issues, raw-HTML method of record); literature/ full text | Gamma
+status: inherits the split declared in §§4.1-4.4; no new claim.]
 
 ==============================================================================
 ## Claim-map cross-check (rule (b) — zero orphan claims)
@@ -421,7 +437,7 @@ declared in §§4.1-4.4; no new claim.]
 | C9 (§4.2) | altitude-duality corollary | THEOREM | dual-bell positioning kept |
 | C10 (§4.3) | two-gamma counterexample + gamma_eff + purge delta | THEOREM + numbers of record | adds the S7 ladder-level purge delta (-4.4..-7.9%, group (xi)) to the skeleton's list — carrier exists, no new orphan |
 | C11 (§4.4) | Theorem 4.2 + sharpness + PB-2 pointer | THEOREM* | closure cited as K-E bound |
-| C26 (§1.4, partial) | §4.5 priority paragraph | QUERY-BOUNDED | CONDITIONAL wording (Kraiko-Osipov 2b) as mandated |
+| C26 (§1.4, partial) | §4.5 priority paragraph | QUERY-BOUNDED | contingency ADJUDICATED 2026-07-22: containment statement in force, K-O 1970 mandatory citation |
 
 Rule (c) coherence: no sentence above reads a §7 winner as a hardware
 verdict (§4.4/§4.5 point to §7 as a diagram over CLOSURES only).
