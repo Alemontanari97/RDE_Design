@@ -55,7 +55,10 @@ s (homenergetic, homentropic) — the COMPLETE classical stationarity
 system of Lemma A ((L.6), (L.7), (L.10) characteristic factorization,
 (L.12) both families, (L.13), corner (L.15)) holds VERBATIM with W =
 MERIDIONAL speed: Rao's control-surface machinery extends to this
-swirl class UNCHANGED.
+swirl class UNCHANGED. [Novelty bound S14 (PAN-S14 F-N6TILL): the
+"new positive class" wording of the registry is query-bounded against
+the named unacquired antecedent Tillyaeva, Izv. AN MZhG 1975 no. 3
+(nonuniform and swirling flows) — content check = G5 item 2.2(f).]
 Proof, two steps:
  (i) CLOSURE (analytic, one line, machine-checked): the meridional
      Bernoulli h = h0 - W^2/2 - Gamma_0^2/(2 y^2) gives, AT FIXED y,

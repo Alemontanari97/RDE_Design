@@ -109,7 +109,12 @@ of the response, and a phase shift does not change a mean
     jump window, where fitting takes over).
  B4 CONSEQUENCES: (i) explains why the field's quasi-steady practice
     (S-H, EAP) outperforms naive St ~ 0.1-0.3 estimates — the
-    collapse class is SECOND-ORDER protected; (ii) explains the
+    collapse class is SECOND-ORDER protected on smooth ray cycles
+    (P6); on the canonical blowdown sawtooth the residue is
+    first-order, jump-localized, and its absorption by the fitted
+    inherited sheet is the pre-registered O5 prediction P-ii,
+    conjectural until measured (B3; S14 restatement, PAN-S14
+    F-T3QSHEAD); (ii) explains the
     severity of the single-cycle PDE case (start-stop = maximal jump
     + maximal data-loop area; Gonzalez-Viana 2025, Cooper-Shepherd);
     (iii) TARGETS the O5 measurements: the wave-passage window and

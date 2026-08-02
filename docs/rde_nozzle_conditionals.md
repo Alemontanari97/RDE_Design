@@ -29,13 +29,27 @@ well-defined and LIPSCHITZ into piecewise-C^1 x C^1-graphs, and C^1
 (in the shift sense across fronts), with ALL constants depending ONLY
 on (delta, L_x, C_geo, C_dat) — never on the individual solution.
 
+COMPONENT STRUCTURE (declared S14, PAN-S14 F-D25USPLIT; mirrored in
+the source §1 and the registry): C-D25U-a = the semiglobal
+estimates/Lipschitz claim (dischargers U1-U4 below); C-D25U-b =
+well-definedness/uniqueness (discharged BY the S-S1U assembly, which
+uses only the -a estimates — killing the formal circularity of S-S1U
+inheriting its own conclusion); C-D25U-c = the shift-C^1
+differentiability of the map — a DISTINCT theorem (linearized
+well-posedness + quadratic remainder) whose discharger U5 is NAMED
+MISSING (Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2).
+Heirs conservatively inherit the full triple pending per-heir
+re-adjudication.
+
 DISCHARGERS (named, none written; source §1): U1 smooth regions
 (Li-Yu semiglobal instantiation, Gronwall along characteristics);
 U2 slip-wall reflection estimates; U3 fronts (local straightening +
 the G12-L2 certified equilibrated s_min, uniform by strength
 margins); U4 composition (finitely many regions/fronts, constants
-multiply). Discharge cost: bounded classical two-variable
-bookkeeping, not research risk.
+multiply); U5 (-c component) MISSING — see above. Discharge cost,
+re-priced S14: -a/-b classical two-variable estimates; -c
+research-grade (the "not research risk" wording of the S9
+transcription is SUPERSEDED, this dated note is the correction).
 
 FALSIFIER: a certified family in D with solution-map Lipschitz
 constant blowing up while all margins stay >= delta.

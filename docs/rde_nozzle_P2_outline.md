@@ -102,7 +102,19 @@ B2 ANALYTIC ADJOINTS, QUASI-1D + SHOCK RULES. Giles-Pierce, JFM
    426:327-345 (2001): closed-form quasi-1D adjoint, adjoint continuous
    across the shock with an interior b.c. along it, sonic-throat log
    singularity (the transonic caveat we inherit, D1 §6).
-B3 ANALYTIC ADJOINTS, 2-D SUPERSONIC. Lozano-Ponsin (2025), above.
+B3 ANALYTIC ADJOINTS, 2-D SUPERSONIC — widened S14 to the
+CHARACTERISTIC-STRUCTURE ADJOINT BANK (PAN-S14 F-PETERANC,
+arbiter-confirmed): Lozano-Ponsin (2025), above, PLUS the
+characteristic-compatibility line its Eq. (30) "can be shown to agree
+with" (p. 7): Peter-Desideri, Phys. Fluids 34:086113 (2022, adjoint
+Euler ODEs along characteristics); Ancourt-Peter-Atinault, Aerospace
+10:797 (2023, adjoint + direct characteristic equations, 2-D); and
+the L-P 2023 shock-jump companion (Aerospace 10:267). All three:
+MANDATORY-CITE class, ACQUISITION-PENDING — no content claim until
+page-verified; the distinction paragraph must cite this bank and
+keep the claim = the three-way identification (classical constants =
+adjoint data; f2 = the integrable invariant; reverse-AD of the FITTED
+primal march = the transposed sweep, with certificates).
 Query-bounded novelty claim (restate D2 §G14 verdict + queries, date
 2026-07-16): no publication states Rao/Kraiko conditions ≡ closed-form
 adjoint, and none states reverse-AD-of-MOC ≡ discrete characteristic
@@ -164,6 +176,31 @@ S1/S2 is fixed.
       perturbed-contour family around the optimum (the D3 §11 P2
       falsifier line: "O3: AD-MOC dot-product + term match with Rao
       conditions"). REJECTOR: mismatch beyond discretization bars.
+ PRE-REGISTERED NORMS AND LOCI (S14, PAN-S14 F-LIP, three-lens
+ convergent — binding BEFORE the A1 engine produces its first number):
+ (a) field-level checks (O3.2, any pointwise psi comparison) are
+ evaluated in norms EXCLUDING shrinking neighborhoods of the lip/
+ corner, of the sonic line/Sauer IVL, and of the axis (or weighted-L1
+ downweighting them): the inviscid adjoint is generically singular at
+ such loci (Lozano 2019 trailing-edge mechanism; L-P 2025 p. 3 lists
+ "nozzle lips"), the sonic-neighborhood exclusion precautionary per
+ Lozano-2018 pp. 4450-4451; a max-norm-to-the-lip O3.2 could FALSE-KILL
+ while gradients stay accurate. O3.2 REMAINS a rejector under the
+ registered norm. (b) O3.3 (gradient-level) is the PRIMARY kill
+ criterion; oracle coordinates = compatibility residuals (L-P 2025
+ Eqs. (30)/(31)) + the Prop. A3 f2 drift — NOT the constant-flow
+ invariants (33)-(34) (valid only on uniform patches); R1^psi =
+ psi1 - H psi4 retained (streamline-valid in general). (c) wrong-family
+ rejector: the r+ combination must NOT be conserved. (d) NEW O3-tier
+ audit: wall-adjacent adjoint convergence under refinement with a
+ declared lip-exponent probe — fitted march vs the capturing control
+ run scored on THESE field-level oracles (X1 exchange outcome:
+ gradient-only capturing control declined as non-discriminating).
+ (e) S-LBML limit target now includes the shock-FOOT adjoint condition
+ (form-qualified: the control-surface thrust integrand is nonlinear in
+ the state, so the Lozano-2018 taxonomy makes the foot b.c. nontrivial)
+ and the characteristic-borne adjoint discontinuities of L-P 2025 —
+ which the characteristic-ALIGNED fitted march can represent natively.
  O3.4 Cross-code: JAX gradient vs GENO finite differences on the same
       case (dual-route agreement).
 Precedent in-repo NOW (citable as method demonstrator before A1): the

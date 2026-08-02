@@ -24,9 +24,10 @@ march lemma, draft of record docs/rde_nozzle_P2_lemmaB.md). No
 occurrence of "Lemma A/B" below is left unqualified.
 
 SUBMISSION DISCIPLINE (rule (d)): submission remains gated by M1 + G5;
-the novelty wording in §4.5 is CONTINGENT on the pending full-text
-reading of Kraiko & Osipov, PMM 34(6) 1970 (gate G5 Item 2b; D4 §3
-contingency ARMED). Query-bounded formulas are used throughout.
+the §4.5 Kraiko-Osipov contingency is ADJUDICATED (full text read
+2026-07-22, containment mode, mandatory citation; D4 §3 addendum;
+status sync of record S14). Query-bounded formulas are used
+throughout; G5 remains the standing gate.
 
 ==============================================================================
 ## §2 The objective: from wall force to phase integral
@@ -377,7 +378,15 @@ of RDE nozzle practice. Average-then-design is EXACT for fixed
 full-flowing walls in the T3 class: the field's habit is a theorem,
 not an approximation — and its hypotheses (one frozen gamma,
 full-flowing, shape-invariant inflow profile) are precisely the fine
-print practitioners should check before trusting it. Peak design is
+print practitioners should check before trusting it. The habit also
+has an empirical precursor of record in the pulse-detonation
+literature: Owens & Hanson, J. Propulsion Power 23(2):325-337 (2007),
+found the optimal expansion ratio "well-predicted by using isentropic
+theory and the time-averaged, head wall pressure as the stagnation
+condition" (abstract, page-verified) — a 2007 mean-pressure rule at
+eps level, measured in the single-cycle regime where quasi-steadiness
+is weakest; T3 supplies the exactness, the boundary and the price
+that rule lacked. Peak design is
 the theorem for free boundaries within a closure the Kraiko school
 already legitimized as a bound. Between the horns — truncated plugs,
 base flows, binding length constraints, per-phase gamma variation —
@@ -398,10 +407,21 @@ propagating on the flow characteristics, a declared (but unpriced)
 quasi-stationary approximation, and — under invariant dimensionless
 inlet conditions — a collapse of the averaged problem to the
 classical single-state optimum family with a time-averaged weight.
-Our formulation CONTAINS that structure as its trajectory instance:
-the altitude-duality corollary of §4.2 is precisely the bridge
-(cycle average and trajectory average are one mathematics), and
-Kraiko-Osipov 1970 is its mandatory citation. What remains — to our
+Our formulation shares that STRUCTURE — a time-integrated wall
+condition under a weight, multiplier fields on characteristics, and
+an averaged-weight collapse — via the altitude-duality bridge of
+§4.2 (cycle average and trajectory average are one mathematics at
+stationarity level), with neither problem an instance of the other:
+in Kraiko-Osipov the weight W(t) = lambda2 k/m is ENDOGENOUS (their
+trajectory adjoint (3.3)-(3.5)) and the fuel control G(t) may be
+prescribed or co-optimized with the shape, while our cycle measure is
+fixed by the rotating mode. Kraiko-Osipov 1970 is the mandatory
+citation for the shared structure. Their §5 (transl. p. 1012) adds a
+second, degenerate collapse case — plane "short" nozzle, uniform
+supersonic inlet, straight generatrix — in which the FIRST of their
+conditions (3.2) holds at every instant: the 1970 partial ancestor,
+at stationarity level only, of §4.4's simultaneous-optimality
+mechanism. What remains — to our
 knowledge, query-bounded to the six-strand survey of record (D2,
 2026-07-16), a 204/204-issue title sweep of PMM 1957-1990, and the
 1970 full text — is everything this paper adds to that ancestor: the
@@ -437,7 +457,7 @@ status: inherits the split declared in §§4.1-4.4; no new claim.]
 | C9 (§4.2) | altitude-duality corollary | THEOREM | dual-bell positioning kept |
 | C10 (§4.3) | two-gamma counterexample + gamma_eff + purge delta | THEOREM + numbers of record | adds the S7 ladder-level purge delta (-4.4..-7.9%, group (xi)) to the skeleton's list — carrier exists, no new orphan |
 | C11 (§4.4) | Theorem 4.2 + sharpness + PB-2 pointer | THEOREM* | closure cited as K-E bound |
-| C26 (§1.4, partial) | §4.5 priority paragraph | QUERY-BOUNDED | contingency ADJUDICATED 2026-07-22: containment statement in force, K-O 1970 mandatory citation |
+| C26 (§1.4, partial) | §4.5 priority paragraph | QUERY-BOUNDED | contingency ADJUDICATED 2026-07-22: STRUCTURE-LEVEL containment statement in force (both directions stated, S14), K-O 1970 mandatory citation |
 
 Rule (c) coherence: no sentence above reads a §7 winner as a hardware
 verdict (§4.4/§4.5 point to §7 as a diagram over CLOSURES only).

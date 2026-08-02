@@ -38,7 +38,12 @@ processo dichiarata al passo 7), T2 = 022b9b2, chiusura = (questo).
   prioritaria); Lozano-Ponsin 2025 — il loro det-trasposto È la
   Prop. A1, invarianti aggiunti (32)-(34) = banco oracoli O3.3,
   jump conditions = specchio analitico di Prop. A2, urti esclusi
-  dal loro scope (Lemma B/G12 intatti).
+  dal loro scope (Lemma B/G12 intatti). [CORREZIONE S14, PAN-S14
+  F-O33BENCH: il banco O3.3 di record = match componente-per-
+  componente C-O33; righe supplementari = compatibilità (30)/(31) +
+  drift f2 (Prop. A3); gli invarianti (32)-(34) valgono SOLO su
+  patch a flusso costante (loro p. 7), salvo R1^psi = psi1 - H psi4
+  che resta valido lungo le streamline.]
 - CODA DICHIARATA: Owens-Hanson, Morris, Lozano-2018, check
   reference-list L-P (pp. 9-23), G-U Part 2 (upload utente).
 
@@ -649,8 +654,10 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 
 ## NEXT (Sessione 14 — consolidato S13)
 
-1. [F2/A1 — BRICK 2] TOC variazionale (invariato; sblocca O3.3 — ora
-   col banco oracoli L-P 2025 page-verified: invarianti (32)-(34)).
+1. [F2/A1 — BRICK 2] TOC variazionale (invariato; sblocca O3.3 — col
+   banco oracoli CORRETTO S14: compatibilità L-P 2025 (30)/(31) +
+   drift f2, protocollo pre-registrato in P2_outline §5; gli
+   invarianti (32)-(34) solo su patch a flusso costante).
 2. [LEADS coda] Owens-Hanson + Morris + Lozano-2018 + reference-list
    L-P; G-U Part 2 = upload utente (SINUM 48:905-921).
 3. [F1/GV + F4-prep/O5-lite] riproduzione GV + build pre-registrato

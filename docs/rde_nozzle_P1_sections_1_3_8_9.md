@@ -29,9 +29,11 @@ ABSTRACT-VERIFIED ONLY — no claim below attributes to it anything
 beyond its abstract.
 
 SUBMISSION DISCIPLINE (rule (d)): submission gated by M1 + G5; all
-novelty wording is QUERY-BOUNDED and CONTINGENT on the pending
-full-text reading of Kraiko & Osipov, PMM 34(6) 1970 (gate G5 Item 2b;
-D4 contingency ARMED).
+novelty wording is QUERY-BOUNDED; the Kraiko & Osipov PMM 34(6) 1970
+contingency is ADJUDICATED (full text read 2026-07-22, containment
+mode, mandatory citation — see §4.5; status sync of record S14).
+G5 residual due diligence (Kraiko 1979 TOC, PMM/MZhG items) remains a
+standing gate.
 
 ==============================================================================
 ## §1 Introduction
@@ -71,15 +73,24 @@ method" — variable-gamma thrust optimization is Rao himself, 1958,
 for a SINGLE steady state (abstract-verified only; full text pending
 acquisition, G5). The explicit EOS-general statement of the design
 equations is classical as well (JOTA 10(3):133, 1972, p. 138; Hoffman
-1967 for the rotational four-field machinery). What is NOT classical
-is the cycle: none of this line averages over a family of states.
+1967 for the rotational four-field machinery), and the Soviet line
+states it earlier still: Kraiko 1963, Trudy VTs AN SSSR,
+"Variational problems of supersonic flows of gas with arbitrary
+thermodynamic properties" — TITLE-VERIFIED via the Kraiko-Osipov 1970
+bibliography (ref. [2], transl. p. 1013; full text unacquired, queued
+G5), so the attribution here is of FORMULATION per the translated
+title, not of verified content. The exact variational-contour line
+itself opens with Shmyglevskii (PMM 21(2), 1957). What is NOT
+classical is the cycle: none of this line averages over a family of
+states.
 
 [Class: expository, every historical claim cited per D2 at verified
 depth | Falsifier: any misattributed citation (the coherence grep
 checks depth qualifiers) | Carrier: D2 + lit_b0bis verification
 records | Gamma status: the genealogy paragraph IS the gamma record —
 EOS-general formulation classical (Rao 1958 IAC abstract-verified,
-JOTA 1972 page-verified), cycle-averaging new.]
+JOTA 1972 page-verified, Kraiko 1963 title-verified), cycle-averaging
+new.]
 
 ### §1.2 Prior art contained, not competed with
 
@@ -128,17 +139,21 @@ collapse dichotomy + weighted averaged transversality + capped ceiling
 + closure-semantics diagram) is unpublished as of the 2026-07-16
 six-strand query set of D2, extended by the S7 PMM table-of-contents
 sweep (204/204 issues, 1957-1990: zero adjoint-x-contouring hits) and
-the S10 lead closures. The statement is QUERY-BOUNDED and CONTINGENT:
-the closest known cousin is Kraiko & Osipov, PMM 34(6) 1970 (nozzle
-contouring for VARYING FLIGHT CONDITIONS — a multi-regime average),
-whose full text is pending (G5); the wording here will be revised
-against it before submission. Residual due diligence (Kraiko 1979
-book TOC, PMM full texts) is declared, not hidden.
+the S10 lead closures. The statement is QUERY-BOUNDED, and its
+Kraiko-Osipov contingency is DISCHARGED: the closest known cousin,
+Kraiko & Osipov, PMM 34(6) 1970 (nozzle contouring for varying flight
+conditions — a trajectory-averaged shared contour), has been read in
+full (2026-07-22) and ADJUDICATED in containment mode; §4.5 carries
+the structure-level containment statement and the mandatory citation,
+and this revision IS the one promised against that reading. Residual
+due diligence (Kraiko 1979 book TOC, PMM full texts, MZhG items) is
+declared, not hidden; G5 remains the standing submission gate.
 
 [Class: QUERY-BOUNDED novelty [PAP-P1SK context] | Falsifier: any
-surfaced prior composition, in particular the pending Kraiko-Osipov
-full text | Carrier: D2 query record + G5_pmm_toc_sweep deliverable |
-Gamma status: n/a.]
+surfaced prior composition narrowing the declared deltas (the K-O
+1970 full text is READ and adjudicated; the G5 human pass remains
+standing) | Carrier: D2 query record + adjudication row 2026-07-22 +
+G5_pmm_toc_sweep deliverable | Gamma status: n/a.]
 
 ==============================================================================
 ## §3 Exact steadification and its limits

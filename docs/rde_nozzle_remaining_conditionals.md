@@ -6,8 +6,10 @@ pass; [F1/D25U + F1/P4F + F1/LBML + F1/SO]). ANCHOR: (P) of M0 D2.6.
 These four items are the LAST named function-space gaps of the
 theory; none admits a symbolic carrier (declared per the sufficiency
 discipline) — the deliverable here is, for each, a PRISTINE statement
-with its proof architecture, constant dependencies, and falsifier,
-so that discharging each is bounded work, not research risk.
+with its proof architecture, constant dependencies, and falsifier.
+[Cost re-pricing of record, S14 (PAN-S14 F-D25USPLIT): "bounded work,
+not research risk" is SUPERSEDED for the -c component of §1 — see the
+component note there; it stands for the -a/-b components.]
 
 ------------------------------------------------------------------------------
 ## §1 LEMMA D2.5-U (the shared uniform-stability conditional)
@@ -54,6 +56,14 @@ PROOF ARCHITECTURE (steps named; each classical, none yet written):
  U4 Composition: finitely many regions and fronts on [0, L_x];
     constants compose multiplicatively — total constant explicit in
     (delta, L_x, C_geo, C_dat). QED (architecture).
+ [COMPONENT NOTE OF RECORD, S14 (PAN-S14 F-D25USPLIT): U1-U4 as named
+ deliver the -a (estimates/Lipschitz) component only; -b
+ (well-definedness/uniqueness) is discharged BY the S1-U assembly,
+ which uses only -a; the -c component (shift-C^1 of the MAP:
+ linearized well-posedness + quadratic remainder) has NO named
+ discharger — U5 is hereby NAMED MISSING, lead Bressan-Guerra/Ulbrich
+ (TO-VERIFY, R-G12.2 status). -a/-b = classical two-variable
+ estimates; -c = research-grade.]
 FALSIFIER: a certified family in D with solution-map Lipschitz
 constant blowing up while all margins stay >= delta (would contradict
 U1-U4; executable once A1 computes solution sensitivities).
@@ -82,7 +92,12 @@ P1a/P1b neutral-mode margin OF RECORD: a neutral rotating-mode
 perturbation is exactly a fixed point of Pi. Remaining analysis
 (named): compactness/Riesz theory for Pi on the appropriate C^1
 class (to convert "1 not eigenvalue" into bounded invertibility) and
-the quantitative IFT remainder. FALSIFIER: O5 — the computed
+the quantitative IFT remainder — MINTED as registered conditional
+[C-P4RZ] (S14, PAN-S14 F-CLASSES + X2 exchange: Pi is the monodromy
+of a linear hyperbolic transport, generically non-smoothing, hence
+non-compact — the Riesz step is genuine analysis; until discharged,
+the computed eigenvalue margin is a MONITORED SURROGATE of the full
+spectral condition). FALSIFIER: O5 — the computed
 J_1 = -<psi_J, S_sweep(U_0)> against unsteady simulation; divergence
 beyond bars at certified spectral margin kills the reduction.
 

@@ -27,10 +27,11 @@ the lemmas inside Theorem T3's proof; "P-2 Lemma A"/"P-2 Lemma B" = the
 companion paper's bridge lemmas. No unqualified "Lemma A/B" below.
 
 SUBMISSION DISCIPLINE (rule (d)): submission gated by M1 + G5; all
-novelty wording is QUERY-BOUNDED and CONTINGENT on the pending full-text
-reading of Kraiko & Osipov, PMM 34(6) 1970 (gate G5 Item 2b; D4 §3
-contingency ARMED — their "varying flight conditions" contouring is the
-closest known multi-regime cousin of the cycle average).
+novelty wording is QUERY-BOUNDED; the Kraiko & Osipov PMM 34(6) 1970
+contingency is ADJUDICATED (full text read 2026-07-22, containment
+mode, mandatory citation — see §4.5; status sync of record S14). Their
+"varying flight conditions" contouring remains the closest known
+multi-regime cousin of the cycle average; G5 remains the standing gate.
 
 ==============================================================================
 ## §5 The averaged optimality system and the weighted transversality (**')

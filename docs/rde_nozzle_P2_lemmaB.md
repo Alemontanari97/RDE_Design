@@ -166,8 +166,19 @@ oracle O3.1 of the certificate stack; its derived tolerance
 demonstrated in validation/g0_spike_jax_moc.py: 52/52 Jacobian entries
 within the two-step-Richardson derived tolerance, Newton residuals
 ~1e-16, corrupted-vjp negative control REJECTED (35/36 out).
-Class of B0-B3: THEOREM (finite-dimensional; the only hypothesis is
-the named S1/J_k-invertibility). Falsifier: O3.1 failure at any unit
+Class of B0-B3: THEOREM (finite-dimensional; TWO named hypotheses —
+S1/J_k-invertibility, and, named of record S14 (PAN-S14 F-TOPO,
+two-lens convergent): FIXED MARCH TOPOLOGY. The dependency DAG itself
+(cell counts, void rows, shock-cell identity, chord-foot branches)
+depends on the design d; AD differentiates the FIXED-topology map, so
+dJ/dd of (B.5) is the exact gradient of the fixed-topology objective
+and is ONE-SIDED at DAG re-record boundaries. Instance of record: the
+[X-A1IM] Sched record/replay ("branch decision replayed as a frozen
+constant"). §4.6's switch-splitting covers quadrature-level switches
+only; the design-side topology-kink policy for the TR-SQP engine is
+risk RK-G of D6 §7 — fixed topology within a trust region, re-record
+on acceptance, kink detection on predicted-vs-actual reduction).
+Falsifier: O3.1 failure at any unit
 process of the A1 engine.
 
 ------------------------------------------------------------------------------
@@ -264,6 +275,16 @@ al.]), cited as such in paper §6.
 
 ------------------------------------------------------------------------------
 ## §4.5 The mesh limit (class SCHEMA, falsifiers named)
+
+[NORM PRE-REGISTRATION OF RECORD, S14 (PAN-S14 F-LIP): the falsifier
+norms and loci for O3.2/O3.3, the lip-exponent audit, and the two
+additions to this schema's limit target (shock-foot adjoint condition,
+form-qualified; characteristic-borne adjoint discontinuities of L-P
+2025) are pre-registered in docs/rde_nozzle_P2_outline.md §5 — binding
+before the A1 engine's first number; field-level checks near lip/
+corner/sonic loci are norm-excluded there, O3.3 gradient-level is the
+primary kill criterion, O3.2 remains a rejector under the registered
+norm.]
 
 CLAIM (SCHEMA): on a smooth contour family within the S1 class, as the
 characteristic mesh h -> 0 the discrete adjoint field of §4.2

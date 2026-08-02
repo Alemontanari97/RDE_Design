@@ -11,6 +11,15 @@ Rigor legend: THEOREM (proof here, verified line-by-line this session);
 THEOREM* (proof within a declared model closure); SCHEMA (correct formal
 structure, rigor gap named); CONJECTURE (precise + falsifier);
 PRACTICE (no theorem, instrumented).
+[Legend extension of record, S14 (PAN-S14 F-CLASSES, dated
+supersession per the S9 convention): THEOREM* = proof complete modulo
+the conditional-entry IDs in the registry `inherits` field — declared
+model closures (C-HT4/C-IGMIX/C-O33), numeric residuals, or the named
+ANALYTIC conditionals (C-D25U/C-MAJDA); the closure-conditional vs
+analysis-conditional distinction lives in the L4 ledger
+(docs/rde_nozzle_conditionals.md). "THEOREM* at statement level" is
+sanctioned usage when the remaining analysis is itself a registered
+conditional (instance: S-P4F with C-P4RZ).]
 
 ==============================================================================
 PART I — THE IDEA (and why it is new)
@@ -228,7 +237,12 @@ the sweep acts as a pure phase shift and the mean is unchanged; the
 entire first-order correction concentrates at the wave-passage jump
 (the physics the fitted inherited sheet represents), and off-ray
 cycles contribute a computable AREA (hysteresis) term. The collapse
-class is thus SECOND-ORDER protected — the quantitative reason the
+class is thus SECOND-ORDER protected ON SMOOTH RAY CYCLES; on the
+canonical blowdown sawtooth (T-O2) the first-order residue
+<psi_hat, Z>[k]_jump is jump-localized, and its absorption by the
+fitted inherited sheet is the pre-registered O5 prediction P-ii
+(conjectural until measured) [status restatement S14, PAN-S14
+F-T3QSHEAD] — the quantitative reason the
 field's quasi-steady practice outperforms naive St estimates. This
 remark does not weaken the paragraph above: the storage bookkeeping
 is untouched; T3-QS refines the FLUX-factorization error only.
@@ -400,6 +414,14 @@ truncation plane, or non-ideal adaptation break the nesting: then
 max Int < Int max STRICTLY and the optimum satisfies the averaged
 system (T7) with the mu-averaged plug corner condition. THE TRUNCATED
 PLUG IS THE FIRST GENUINELY AVERAGED SHAPE PROBLEM (PB-2). Precedent
+caveat (page-verified, S14 PAN-S14 F-PB2FIRST): Kraiko-Osipov PMM
+34(6) 1970 already poses TIME-AVERAGED endpoint conditions for a
+length-capped nozzle with base pressure on the end face (their (1.4)
+and (3.2) cont., transl. pp. 1007-1008; (4.4), p. 1011) — trajectory
+measure in place of the cycle measure; "first" is program-internal
+wording: first CYCLE-averaged instance for the RDE plug, not first
+averaged shape problem tout court; K-O 1970 mandatory citation here
+too (cross-ref the T7 precedent note). Precedent
 duty: the ideal-adaptation closure is published as a BOUND for
 detonation cycles (Kraiko-Egoryan) — cite next to the closure.
 
@@ -662,7 +684,13 @@ the cycle), the time-integrated weighted wall condition (their
 (3.2), weight = trajectory-adjoint W(t)), multiplier fields on the
 flow characteristics with jump relations, and the collapse of the
 averaged conditions to the classical single-state family with
-time-averaged weight under invariant dimensionless inlet (their §4)
+time-averaged weight under invariant dimensionless inlet (their §§4-5:
+§4 = the averaged-weight collapse under inlet similarity; §5, transl.
+p. 1012, = the degenerate second case — plane "short" nozzle, uniform
+supersonic inlet, straight generatrix — where the FIRST of their
+conditions (3.2) holds at every instant: stationarity-level partial
+ancestor of T4's simultaneous-optimality mechanism [S14, PAN-S14
+F-KO5])
 — the 1970 ancestor of (b), of the weighted structure of (c), and
 of T3's averaged-family reading. Not present there: the cycle
 measure, exactness (T0), the priced O(St) step, the sharpened
@@ -776,7 +804,9 @@ VI.1 CycleFamily (contract C1): {P0, T0, thermo handle gamma(.;xi) |
 M_in(y;xi), theta_in(y;xi), s(y;xi), [vorticity]} + mu weights +
 provenance + stage-A audit results (characteristic completeness; Crocco
 residual; spacelikeness margin min(M_x - 1) per phase; H-I2/choking
-margins; projection norm if applied). Generators: matched-cycle (case
+margins; projection norm if applied; T0 flatness/harmonic-decay
+certificate [S14 F-FLAT: carrier + derived threshold = plan item D6
+§6.5-bis; field named here so the contract cannot ship without it]). Generators: matched-cycle (case
 A, exists), wave-structure model (case B, the one new physics module),
 calibrated/mission/DRO variants (cases C-F), file-based CFD.
 GENERATED data passes the same audits as imported data.

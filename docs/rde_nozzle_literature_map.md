@@ -122,9 +122,18 @@ and jump relations ((3.6)-(3.10)), quasi-stationary approximation
 declared (validity footnote, unpriced), and a §4 COLLAPSE CASE:
 invariant dimensionless inlet (nozzle starting at its throat) =>
 reduction to the CLASSICAL optimum family with time-AVERAGED weight
-W-degree. CONTAINMENT (per the pre-armed plan): our formulation
-contains K-O as the trajectory instance of the general measure (the
-altitude-duality corollary T3-C2 is the bridge); beyond it: cycle
+W-degree; PLUS a §5 SECOND collapse case (transl. p. 1012, added
+S14/PAN-S14 F-KO5: plane "short" nozzle, uniform supersonic inlet,
+straight generatrix — the FIRST of conditions (3.2) satisfied at
+every instant; stationarity-level partial ancestor of T4's
+simultaneous optimality). CONTAINMENT, direction fixed S14
+(F-CONTAINDIR): our formulation shares the STRUCTURE — weighted
+time-integrated wall condition, characteristic multiplier fields,
+averaged-weight collapse — via the altitude-duality bridge T3-C2,
+with NEITHER problem an instance of the other (K-O: endogenous
+weight W(t) from the trajectory adjoint (3.3)-(3.5), G(t) prescribed
+or co-optimized; ours: measure fixed by the rotating mode); beyond
+the shared structure: cycle
 measure + exact steadification (T0), PRICED quasi-steady step (P4
 answers their footnote), sharpened collapse with proven boundary,
 RDE physics, EOS-general executables, bounds/(S*, delta), topology-
@@ -184,8 +193,14 @@ edge-driven divergence, NOT the shock; Lemma B §4.4 fixed S13);
 Lozano AIAA J 56(11) (2018, singular/discontinuous adjoint
 solutions) — ACQUIRED, read queued; Lozano-Ponsin Aerospace 12:494
 (2025) — ACQUIRED + PAGE-VERIFIED through §2 (their det-transpose
-argument = our Prop. A1; adjoint Riemann invariants (32)-(34) =
-O3.3 oracle bank; characteristic-crossing jump conditions = the
+argument = our Prop. A1; O3.3 oracle bank CORRECTED S14 (PAN-S14
+F-O33BENCH): bench of record = the C-O33 term-by-term component
+match, with SUPPLEMENTARY rows = adjoint compatibility relations
+Eqs. (30)/(31) + the Prop. A3 f2 drift — the adjoint Riemann
+invariants (32)-(34) hold ONLY in constant-flow supersonic patches
+(their p. 7; e.g. the §4 diamond-airfoil benchmark), except
+R1^psi = psi1 - H psi4 which is streamline-valid in general and is
+retained; characteristic-crossing jump conditions = the
 analytic mirror of Prop. A2; shocks explicitly excluded from scope;
 REFERENCE LIST FULLY VERIFIED S14 2026-07-22: all 42 references read
 — ZERO citations to Rao/Guderley/Kraiko/Shmyglevskii or any
@@ -193,7 +208,13 @@ classical thrust-optimal contouring (closest items: Anderson's
 textbook, Zubov JAMM 1997 low-AoA optimum airfoils, Prince 1982 MOC
 perspective, Baeza et al. AIAA J 47:552 (2009) adjoint-RH design
 [already of record], Ancourt-Peter Aerospace 2023 characteristic
-adjoints, L-P 2023 shock-jump companion Aerospace 10:267) — the G14
+adjoints, L-P 2023 shock-jump companion Aerospace 10:267 — the
+characteristic-compatibility line RECLASSED S14 (PAN-S14 F-PETERANC,
+arbiter): Peter-Desideri Phys. Fluids 34:086113 (2022), Ancourt-
+Peter-Atinault Aerospace 10:797 (2023), L-P 2023 Aerospace 10:267 =
+MANDATORY-CITE for P-2 (L-P 2025 p. 7: Eq. (30) "can be shown to
+agree with the results obtained in [26,27]"), ACQUISITION-PENDING —
+no content claim until page-verified) — the G14
 "both banks exist, no bridge" gap claim is now PAGE-VERIFIED at the
 B3 end; §4 conclusions confirm the benchmark purpose and the
 diamond-airfoil analytic solution structure); Cooper-Shepherd JPP 24(1):81-87
@@ -240,6 +261,16 @@ not 1961; "Rao 1961" is the SPIKE paper, Planet. Space Sci. 4:92-101
 Symposium (1962) + Ch. 11 of Miele (ed.), Theory of Optimum Aerodynamic
 Shapes (1965) — the "exact" full-contour variational problem.
 Shmyglevskii: PMM 21 (1957), PMM 26(1) (1962), book VTs AN SSSR (1963).
+KRAIKO 1963 — NEW REGISTER ROW (S14, PAN-S14 F-KRAIKO63,
+TITLE-VERIFIED depth): Kraiko A.N., "Variational problems of
+supersonic flows of gas with arbitrary thermodynamic properties",
+Trudy VTs AN SSSR, 1963 — anchor = K-O 1970 bibliography ref [2]
+(in-repo PDF, transl. p. 1013); the EOS-general variational
+FORMULATION attribution per translated title only, full text
+UNACQUIRED (acquisition duty on the G5/Item-2b human list); cited at
+this depth in P-1 §1.1 (S14). Companion duty already of record:
+Kraiko PMM 28(2) 1964 (nonequilibrium/equilibrium, K-O ref [8]) —
+"2b read" duty in the G5 sweep list.
 Sternin CAVEAT: his books are TWO-PHASE nozzle gasdynamics
 (Mashinostroenie 1974); the general Russian nozzle-theory textbook is
 Pirumov-Roslyakov, "Gazovaya dinamika sopel" (1990) — fix internal

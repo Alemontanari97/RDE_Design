@@ -6,6 +6,12 @@ Every item carries a CLASS tag:
   THEOREM      — statement + proof verified line-by-line in this session;
   THEOREM*     — proof verified within a declared model closure (the
                  closure itself is a modeling assumption, not mathematics);
+                 [legend extension of record S14, PAN-S14 F-CLASSES:
+                 operative rule = proof complete modulo the conditional
+                 IDs in the registry `inherits` field — model closures,
+                 numeric residuals, OR the named analytic conditionals
+                 C-D25U/C-MAJDA; distinction ledgered in
+                 docs/rde_nozzle_conditionals.md];
   SCHEMA       — correct formal structure, rigor gap named and isolated;
   CONJECTURE   — precise statement, no proof, falsifiable criterion given;
   HEURISTIC    — organizing idea, not yet a precise statement;
@@ -143,7 +149,11 @@ correction is LOCALIZED at the wave-passage jump ([k]_jump); off-ray
 cycles ((P0,T0) both varying, phase-dependent shapes, cap-binding
 subcritical phases) contribute the area integral of a non-exact
 1-form over the data loop — quasi-steady HYSTERESIS, computable.
-Consequences: the collapse class is second-order protected (explains
+Consequences: the collapse class is second-order protected ON SMOOTH
+RAY CYCLES — on the canonical blowdown sawtooth the first-order
+residue is jump-localized and its fitted-sheet absorption is the
+pre-registered P-ii, conjectural until measured [S14 restatement,
+mirror of M0] — (explains
 the empirical quality of the field's quasi-steady practice); O5
 measurements are TARGETED (jump window + two-parameter cycles);
 the single-cycle PDE severity (maximal jump + maximal loop area) is
@@ -343,7 +353,10 @@ plane, or non-ideal adaptation break the nesting; then max∫ < ∫max
 STRICTLY and the optimum satisfies §4(a)-(c) with the plug corner
 condition (GENO `Rao_m.f90:762-764`) replaced by its μ-averaged (**')
 form. THE TRUNCATED PLUG IS THE FIRST GENUINELY AVERAGED SHAPE PROBLEM
-(PB-2). Caveat, declared: H-T4 is an engineering closure — the theorem's
+(PB-2). [Precedent caveat S14, mirror of M0: K-O 1970 already poses
+time-averaged endpoint conditions under a length cap with base
+pressure ((1.4), (3.2) cont., (4.4)); "first" = first CYCLE-averaged
+instance for the RDE plug.] Caveat, declared: H-T4 is an engineering closure — the theorem's
 physical content is only as good as ideal adaptation, and the OFF-DESIGN
 plug march (WP1c-i) is what replaces it with computed truth.
 
