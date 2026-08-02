@@ -338,15 +338,30 @@ G2 (M2)     VALUE GATE, now theorem-grade: bound-ladder gap per channel;
             gap < ~1% Isp on all of N1-N4 → pivot to certification/
             operability/duty-split value proposition (honest death).
 G3 (M4)     UNSTEADINESS GATE: St|J1| large → rung-3 correction loop.
+            [S14 duty (PAN-S14, PM lens): the trigger "large" must be
+            a NUMBER with a derivation before A4 starts — currently
+            the only gate whose kill threshold cannot reject.]
 G4 (M5)     DECOUPLING GATE: D2 error dominates → wave-frame objective.
 G5 (new)    LITERATURE GATE: A0.5 pass before any submission.
             [STATUS 2026-07-17: Item 2a DONE in-house (S7 PMM digital
             sweep 204/204; G14 holds; TOP FLAG Kraiko-Osipov PMM 34(6)
-            1970 — multi-regime cousin; P-1 §4.5/G6 wording contingent
-            on its full text). Dispatch package READY (email +
-            verified recipient + Item 2b ranked list); RESIDUAL = user
-            send from institutional account, then the full-text read.
-            Blocks SUBMISSIONS only, never the work.]
+            1970 — multi-regime cousin). Dispatch package READY (email
+            + verified recipient + Item 2b ranked list); RESIDUAL =
+            user send from institutional account, then the full-text
+            read. Blocks SUBMISSIONS only, never the work.]
+            [STATUS S14: K-O 1970 contingency ADJUDICATED 2026-07-22
+            (containment, in-repo full text) — the 2b list SHRINKS by
+            its top item. SCOPE EXTENSIONS of record (PAN-S14, Kraiko
+            lens + teams): (a) PMM/Fluid Dyn./MZhG title sweep
+            1991-2010 (school active through 2007); (b) K-O 1970
+            bibliography back-chase (refs [1],[2],[8],[9],[11] —
+            Kraiko 1963 Trudy VTs now a register row, TITLE-VERIFIED);
+            (c) Kraiko 2010 "Teoreticheskaya gazovaya dinamika" TOC
+            alongside the 1979 monograph; (d) NEW content row 2.2(f):
+            swirling-flow control-surface contouring — Tillyaeva Izv.
+            AN MZhG 1975 no. 3 full-text check against T-N6-2's
+            free-vortex closure. GOVERNANCE (PM lens, opinion-class):
+            time-box the user send + declare a fallback channel.]
 G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
             (Crocco, completeness, H-I2) is rejected loud — no design on
             inconsistent data.
@@ -360,8 +375,10 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
    custom implicit rule; gradient vs central differences AND vs GENO
    on one TOC case.                                              (wk 2-5)
    [DONE AND EXCEEDED — S5 planar 52/52 + S8 axisym/shock/interop
-   twin; GENO comparison = file-exchange brick done, flowfield O3.4
-   blocked on the Fortran toolchain (gate G0 residual).]
+   twin; GENO comparison = file-exchange brick done; O3.4 flowfield
+   leg CLOSED S10 ([X-GENOXC] PASS, see gate G0 — stale "blocked"
+   clause corrected S14, W2 of PAN-S14); the gradient leg of O3.4
+   lands with the A1 engine.]
 3. RaoPlug S1/S2 fix in GENO + Rao 1961-spike Table-1 oracle
    (M_E=2.4, theta_E=-8.25 deg, gamma=1.23 -> eps=3.81,
    X_D/R_E=1.164, C_F=1.58).                                     (wk 3-8)
@@ -371,6 +388,14 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
 5. CycleFamily v0 with the stage-A data contract + loud rejects;
    generators: matched-cycle (exists) + file-based.              (wk 4-8)
    [NOT STARTED as a module; contract pins of record in M0 VI.1/VI.4bis.]
+   5-bis (S14, PAN-S14 F-FLAT arbiter): T0 FLATNESS MONITOR carrier —
+   committed script + threshold DERIVED from the pattern-rotation
+   tolerance / harmonic-decay audit (R5, no magic numbers) + rejector
+   that fails on impure-mode data; X-carrier ID registered and
+   T-T0/DIR-PERIODIC carrier fields pointed at it WHEN the script
+   lands (not before — lint truthfulness). Experimental mode
+   identification enters via case-C inputs only (piezo-census numbers
+   = PRACTICE, external citation required).
 6. Oracle harness: O1/O2 as executable tests BEFORE the optimizer
    exists (test-first).                                          (wk 6-10)
    [PARTIAL — T3/T4 oracles executable in suite groups (vi)/(x)/(xii);
@@ -384,10 +409,30 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
 [ADDED 2026-07-21 (S12) — the strengthening sequence of record:]
 9.  Variational TOC brick (A1 brick 2: dJ/dSigma + TR-SQP + (**')/
     corner on the assembled march) — UNLOCKS O3.3 = P-2's numeric
-    half; then P-2 submission-ready (modulo G5).        [S13, NEXT-1]
+    half; then P-2 submission-ready (modulo G5).
+    [NEXT-1 since S11; THREE user-ordered deferrals declared
+    (S12/S13/S14) — tag corrected S14 (W1 of PAN-S14): PROTECTED
+    NEXT-1 for S15, no fourth deferral short of a gate failure.
+    Honest both ways: the deferred brick lands RICHER (corrected
+    O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
+    RK-G topology policy, X1 capturing control design). KICKOFF
+    DUTIES bundled: quantified loop-speed falsifier threshold
+    (clean-host protocol, S9 lesson) + scan/vmap column architecture
+    (the restructure IS brick-2's architecture, not a retrofit) +
+    RK-G trust-region/re-record policy.]
 10. Gonzalez-Viana rung-2 reproduction (Phase-A2 note) + O5-LITE
     build with the three PRE-REGISTERED T3-QS predictions (Phase-A4
     note).                                              [days-scale]
+    [S14 notes: implementation basis of record = Morris JPP 21(3)
+    p. 531 exit-BC (Poinsott-Lele MOC; choked/supersonic interior-
+    determined, subsonic Pa, reverse-flow inflow) + unstart check
+    (W3 of PAN-S14). Interim anchors relabeled of record: "PDE
+    SINGLE-CYCLE falsification bench" (O-H/Morris/C-S/GV — zero RDE
+    data; the bench licenses the corrector STRUCTURE, never hardware
+    numbers: the bench's own model class is 20-28% off absolute Isp,
+    O-H p. 335). Measurement-projection annex duty: P-ii is the only
+    hardware-falsifiable prediction at realistic instrumentation;
+    P-i/P-iii in-silico-only at +-3-4% stand accuracy.]
 11. B-lite: G12-L1-3D symbolic brick, then the 3-D helical march
     demonstrator (Phase-A5 note).                       [after 9]
 12. LITERATURE ACQUISITIONS (user upload to literature/, then a
@@ -415,6 +460,13 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
 
 RK-A (new): P2' scoop risk — Lozano-Ponsin 2025 built the 2-D adjoint
   bank; mitigate by fast-tracking P-2.
+  [S14 annotation (W1 of PAN-S14, two-lens verified): PARTIALLY
+  REALIZED — the declared mitigation was contradicted in fact by
+  three consecutive user-ordered preemptions of item 9 (the brick
+  that unlocks P-2's numeric half); deferral count now carried on
+  item 9, which is PROTECTED for S15. The characteristic-
+  compatibility bank (Peter-Desideri 2022, Ancourt 2023, L-P 2023)
+  is now MANDATORY-CITE, sharpening the same risk.]
 RK-B (new): quadrature-switch neglect — silent O(1/N) degradation +
   noisy outer gradients; mitigate: switch localization is a REQUIRED
   feature of the cycle layer, with a test that detects an unsplit run.
@@ -430,6 +482,18 @@ RK-E (new, S12): NO experimental anchor yet — all validation is
 RK-F (new, S12): compute for census/A5 unfunded — mitigate via the
   B-lite/O5-lite laptop-scale scope (items 10-11) and a declared HPC
   plan before A4/A5 full scale (item 14).
+RK-G (new, S14; PAN-S14 F-TOPO, two-lens convergent): MARCH-TOPOLOGY
+  NON-DIFFERENTIABILITY — the march DAG (cell counts, void rows,
+  shock-cell identity, chord-foot branches) depends on the design;
+  AD gives one-sided gradients at DAG re-record boundaries (fixed-
+  march-topology hypothesis now NAMED in Lemma B §4.1; instance =
+  [X-A1IM] frozen Sched replay). Brick-2 policy: fixed topology
+  within a trust region + re-record on step acceptance + kink
+  detection (reject when predicted-vs-actual reduction degrades
+  across a re-record). Distinct from RK-B (xi-quadrature switches)
+  and RK-D/RK2 (AD-through-iteration); cross-links the existing
+  Clarke/proximal-bundle machinery (tool matrix; general_scheme row E
+  "between topology events").
 
 ------------------------------------------------------------------------------
 ## ANNEX B — Input taxonomy for the CFD-free design tool (rde-lecture-code
