@@ -114,7 +114,7 @@ entries:
 - id: D-S1
   kind: definition
   class: THEOREM
-  scope: "solution class S1 + canonicity status; across fitted fronts the canonicity is a DECLARED conditional"
+  scope: "solution class S1 + canonicity status; across fitted fronts the canonicity is a DECLARED conditional; falsifier debtors NAMED [PAN-S14 §8 residue, synced 2026-08-05]: shock-free half = T-XWS (BVP-native weak-strong, M0 D2.5 BVP-NATIVE UPGRADE S15; carrier X-XBVP, numeric falsifier on the A1 engine); across fronts = the inherited C-MAJDA (carrier X-G12)"
   statement: "S1 = piecewise-smooth MOC-regular solutions (finitely many transversal fronts); canonicity exact in shock-free regions (weak-strong uniqueness), conditional across fronts (C-MAJDA)."
   doc: "docs/rde_nozzle_MASTER.md#D2.5"
   proof: "docs/rde_nozzle_MASTER.md#D2.5"
@@ -1023,7 +1023,7 @@ entries:
 - id: DIR-PRISTINE
   kind: directive
   class: PRACTICE
-  scope: "standing user directive"
+  scope: "standing user directive; [PAN-S14 §8 residue, verified 2026-08-05] falsifier status DECLARED: the 'undeclared class' half is machine-rejectable (registry lint); the 'informal residue' half has NO operational definition anywhere in the corpus and is therefore a human-review channel, not a machine rejector — an operational definition would be new minting (dedicated session if wanted)"
   statement: "Every document, proof, log and commit is written cleanly and precisely: structured statements, declared classes, no informal residue in documents of record."
   doc: "docs/rde_nozzle_SCAFFOLD.md#§1 Target architecture"
   proof: "docs/rde_nozzle_SCAFFOLD.md#§1 Target architecture"
@@ -1114,7 +1114,7 @@ entries:
 - id: DIR-G0
   kind: directive
   class: PRACTICE
-  scope: "standing work-layer decision of record (gate G0, D6 §5, session S10)"
+  scope: "standing work-layer decision of record (gate G0, D6 §5, session S10); [PAN-S14 §8 residue, verified 2026-08-05] the falsifier's 'impractical' is UNQUANTIFIED as written — the derived threshold is a bundled brick-2 kickoff duty (D6 §6 item 9: quantified loop-speed falsifier threshold, clean-host protocol, S9 lesson); until that duty executes the falsifier is armed but not machine-rejectable"
   statement: "G0 DECIDED: differentiable stack = JAX (custom_vjp + implicit rules) primary, Julia+Enzyme declared alternate, GENO-Fortran independent dual-code reference; interop criterion MET (GENO built + tocnoz contour reproduced to 1e-10 + cross-code flowfield oracle X-GENOXC PASS) => Phase A1 OPENS."
   doc: "docs/rde_nozzle_G0_decision.md#1. The decision"
   proof: "docs/rde_nozzle_G0_decision.md#2. Criteria, evidence, verdict"

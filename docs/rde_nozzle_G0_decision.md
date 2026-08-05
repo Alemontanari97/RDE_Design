@@ -138,6 +138,9 @@ third route (beyond GENO) if a differentiation cross-check is ever needed.
   sizes, the decision flips to Julia+Enzyme (the alternate is kept warm
   for exactly this). The standalone unit-process timing does not bound the
   assembled loop — declared.
+  [Dated note 2026-08-05, PAN-S14 §8 residue: 'impractical' carries no
+  number here BY DESIGN of record — the quantified threshold (clean-host
+  protocol) is a D6 §6 item-9 kickoff duty, pending brick-2 kickoff.]
 - JULIA/ENZYME NOT BENCHMARKED on this host: the "JAX over Julia" verdict
   rests on JAX being EXERCISED and Julia not, plus interop/ecosystem fit —
   not on a head-to-head speed number. Stated plainly.
