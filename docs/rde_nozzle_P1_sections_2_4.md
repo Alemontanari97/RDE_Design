@@ -378,7 +378,29 @@ of RDE nozzle practice. Average-then-design is EXACT for fixed
 full-flowing walls in the T3 class: the field's habit is a theorem,
 not an approximation — and its hypotheses (one frozen gamma,
 full-flowing, shape-invariant inflow profile) are precisely the fine
-print practitioners should check before trusting it. The habit also
+print practitioners should check before trusting it.
+[EVIDENCE-BOUNDING NOTE, dated 2026-08-05 (S15, user challenge of
+record: "who actually does average-then-design?"). The RDE-specific
+anchors for the habit, with their verification level (D2 §b1 rows):
+Li-Xu-Huang JPP 38(5):849-865 (2022), doi:10.2514/1.B38539 — MOC +
+maximum-thrust theory ON a time-averaged exit state (content-read at
+the A0.1 correction level, not page-verified); Liu-Cheng-Zhang-Wang
+AST 120:107300 (2022) — states the design axiom verbatim
+("time-averaged quantities are reasonable for design"; quotation
+level per D2 row, page-verify PENDING); Harroun-Heister-Ruf JPP
+37(5) (2021), doi:10.2514/1.B38244 — performance driver =
+near-perfect time-averaged expansion ("empirical echo" grade, D2 G2
+row). Page-verified anchors of record remain the PDE precursor
+below (O-H 2007) and the EAP steady-equivalent bookkeeping (§8.1).
+Bounds on the claim, stated plainly: (i) the documented habit is a
+DECLARED AXIOM or empirical rule in those papers, never a derived
+method — T3 is what turns it into a theorem with named hypotheses;
+(ii) the habit is NOT universal (Morris 2005 solves the nozzle fully
+unsteady; Gonzalez-Viana 2025 argues steady criteria invalid in the
+single-cycle regime); (iii) NOBODY does averaged VARIATIONAL
+contouring (G14 novelty, query-bounded: PMM sweep 204/204 + b0bis).
+ACQUISITION DUTY added: page-verify Liu 2022 (the verbatim axiom
+quote) and Harroun 2021 before submission.] The habit also
 has an empirical precursor of record in the pulse-detonation
 literature: Owens & Hanson, J. Propulsion Power 23(2):325-337 (2007),
 found the optimal expansion ratio "well-predicted by using isentropic
