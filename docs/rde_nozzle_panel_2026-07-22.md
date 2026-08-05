@@ -284,3 +284,73 @@ document). Log of record: validation/PROGRESS_2026-07-22_S14_panel.md
 (steps 1-<close>). Verdict format note (R5): this panel produced no new
 NUMBERS; every numeric statement above carries its source anchor from the
 page-verified record or is marked OPINION in the archived reports.
+
+------------------------------------------------------------------------------
+## §8 ADDENDUM OF RECORD (S14 reopening, 2026-08-02..04) — workflow-1b
+##    gap-closure outcomes, R4-bis register, declared residue
+
+Execution: workflow-1b (run wf_0b5a6a0c-05d) closed the §0 declared
+gaps across three passes interrupted twice by account usage walls
+(journal cache monotone — nothing lost; 51 agent results harvested
+integrally; the round-2 exploration wave was cut by user cost order
+with all VERIFICATIONS kept; two lost arbiters + one falsifier-census
+verification completed as direct agents, 2026-08-04).
+
+R4-LANDING AUDIT: 22/22 rows LANDED (four independent auditors over
+the §5 register + W1/W2 + the O-H practice-line citation; includes
+diff-verification that registry T-T3QS stayed byte-identical, as
+adjudicated). The §5 "ALL EXECUTED" claim is hereby machine-audited,
+not just declared. Claims lint re-run live post-surgery: PASS, 0
+violations, rejectors fired (recorded by the census finder).
+
+R4-BIS REGISTER (all two-lens or arbiter-confirmed; fixes executed
+2026-08-04, dated in situ):
+| ID | Defect | Fix site |
+|---|---|---|
+| ME-1 (E9k) | D-JEX falsifier non-rejectable as written (Krylov-Bogolyubov: the falsifying object is non-exhibitable); wrong fault channel; dangling D1 §2->§6 ergodicity cross-ref | registry falsifier re-pointed to the running-average non-convergence monitor; M0 D2.2 scope-discharge note; D1 §2 cross-ref repaired |
+| JEX-FB (E9l) | D2.2 fallback "only bounds ship" had no declared target when the limit fails (arbiter: grep liminf/limsup = zero matches repo-wide) | M0 D2.2: fallback targets J_exact^± := liminf/limsup defined (pure definition; collapses to J_exact under the standing hypothesis) |
+| ME-3 (E9m) | T-O2 "measure-agnostic" silent on the mu-hypotheses (probability, mu-a.e. audits, SWITCH-NULL phases — atomic empirical measures can charge a switch phase); falsifier cited "declared drift bars" that existed nowhere | M0 Lemma-2 QED note scoped; registry statement + falsifier: W1/KS metric in ln Pc, threshold derived from the mu-linearity bar, carrier = D6 item 15 (named IOU) |
+| ME-5 | all three measure-layer falsifiers non-executable today; J LINEAR in mu makes the sensitivity report free (|dJ| <= osc_xi(F)·TV or Lip_xi(F)·W1) | D6 item 15: mu-instruments bundle (F(xi) profile + bars; drift metric; convergence monitor), before any case-C Verdict |
+| PP-1 (E9n) | MAXIMALITY(a) anchored its necessity on the vacuum theorem — a Pa->0 instance outside (P)'s Pa>0 GIVEN (arbiter: no in-hypothesis witness exists anywhere; surrounding P7/Chenais structure is sufficiency-direction only) | M0 D2.6 MAXIMALITY(a): anchor corrected (vacuum = limiting instance; Pa>0 necessity = cone condition + envelope compactness, P7/Chenais route) |
+| PP-2 (E9o) | chaotic-tier row promises a bound whose upper wall (Prop. G-B) is proven steady-per-streamtube only; no lemma transfers it to the ergodic average (arbiter-confirmed) | M0 Parte V row + D5 Step 8: named missing lemma (Birkhoff + bounded momentum) or de-rate; Step 5(f) quasi-steady-only label carried |
+| PP-6 | R1 (causal separation) was the only interface-contract clause with no executable rejector; afterburning through Gamma_d documented in RDEs | D1 §9: H-R1 ledger row minted (channel -> N4; falsifier = total-enthalpy flux residual across Gamma_d, or declared residual-release bound) |
+| REG-1 (E9p) | T-P7S1 registry falsifier quantified over the infinite level-set family — never finitely certifiable — and mismatched the per-level-set claim; source doc had the correct falsifier | registry re-synced to the doc verbatim (fixed-level-set maximizing sequence) |
+| REG-2 (E9q) | T-T7FS registry falsifier = negative existential over all L^1 envelopes (not observable; vacuous on the certified set); doc had the executable O3-class two-route falsifier | registry re-synced to the doc verbatim (dJ vs Int F' dmu beyond bars, IOU on A1) |
+| U-NS (E9r) | U1-U5 names TWO different live lists (ledger §10bis method upgrades vs D2.5-U proof architecture) — verified collision, no disambiguation anywhere | dated namespace notes at BOTH list sites ("10bis U*" vs "D2.5-U U*"); no rename (would rewrite minted panel language) |
+| THERMOTAB | tabulated-backend pin declares accuracy floors only; C-D25U wants C^1 coefficients; the live carrier interpolates cp independently of h (piecewise-linear) => cp != dh/dT between knots, Jacobian jumps at knots | D6 item 9 kickoff duty: C^1/Hermite class + consistency invariants (cp=dh/dT, s0'=cp/T) with derived floors + rejector; node crossings under RK-G |
+
+NEW CONFIRMED CONTEXT (no fix required): the measure-ergodic and
+problem-proposition definitional chains otherwise HOLD (compressed
+CONFERMA lists in the archived finder summaries: T-O2 mathematics,
+T-P3 measurability chain, the declared-choice anchor for averaging
+at [T-TH0], the interface-contract audits).
+
+DECLARED RESIDUE (UNVERIFIED or unexecuted — open panel debt, carried
+to NEXT; nothing here is of record until verified):
+- Single-lens findings awaiting second-lens/arbiter: the D5/D4
+  currency wave (12 dated-annotation candidates: Annex-A rigor labels
+  vs T-G12S1/T-P7S1 of record; D4 OP-row status markers; D4 header
+  Eq.[14] supersession; M0 Part-VII map missing a D8 row), the
+  shape-topology facet (9: sector definition/finiteness class, A_gen
+  attachment quantifier, single-wall hypothesis of T-P3, T7/P7 scope
+  strings, M1-witness admissibility vs cone condition at the tip,
+  C-N2 minting for the PB-2 falsifier, J-OP11 tournament
+  dependency, census-lemma session scheduling), roads-atlas
+  completions (Breitkopf-Ulbrich 2025 as the on-point U5/-c lead;
+  E-D/DEF sector disposition; Kilque/CGW fallback for C-P4RZ;
+  L-M-M 2010 benchmark row; Veen S4/S5 note; side-load CVaR
+  disposition), DIR-G0 "impractical" quantification, DIR-PRISTINE
+  vague clause, D-S1 falsifier debtor naming, lint group (xvii)
+  audit-grep carriers proposal, mu-mode-transition scope line (ME-2),
+  g_sep mu-a.e.-vs-pointwise alignment (ME-4), D-JEX physical/SRB
+  wording (PP-3), c-vector heat/mass proxy line (PP-4), D2.6(v)
+  asymptotic-bar annotation (PP-5).
+- Unexecuted exploration angles (critic round 2, cut by cost order):
+  carrier-rejector meta-audit; provenance/custody audit; per-paper
+  verifier closure (L-P 2025 §3+, K-O against the record row,
+  GU-part1, Lozano-2018, O-H, GV); unexamined-registry-entries
+  census; D8-evidence-archive durability; pre-program inheritance
+  boundary audit.
+Method lesson (for the canonical loop): sort dedupe keys before
+embedding them in critic prompts — nondeterministic insertion order
+caused a cache miss on the critic call across resumes.
