@@ -1416,6 +1416,19 @@ entries:
   falsifier: "the C-D25U falsifier plus the h_min channel: a certified family with fixed (delta, L_x, C_geo, C_dat), h_min -> 0 and BOUNDED Lipschitz constant would show the amendment unnecessary; one with blowup at fixed h_min > 0 kills the estimate"
   gamma: "EOS-general"
 
+- id: PAP-D9HL
+  kind: paper
+  class: PRACTICE
+  scope: "hypothesis-minimization ledger, pass 1 (S15, [RIGOR/B], D9 candidate): mandatory verdict {DISCHARGED / WEAKENED / NECESSARY(counterexample) / PRICED} for all 17 D1 §9 rows + all 7 registry conditionals; adjudication-only pass (no new mathematics), every cell cites its record site"
+  statement: "Pass-1 totals: 0 DISCHARGED / 6 WEAKENED / 5 NECESSARY (all with cited counterexamples, 4 executable/machine-checked + 1 published page-verified) / 13 PRICED, zero rows unadjudicated; pass-2 targets named with discharge mechanisms."
+  doc: "docs/rde_nozzle_hypothesis_ledger.md#§1 The D1 §9 rows"
+  proof: "docs/rde_nozzle_hypothesis_ledger.md#§2 The registry conditionals"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any ledger row whose cited grounds do not support its verdict (grep-checkable citations); a hypothesis or conditional in the tree absent from the ledger"
+  gamma: "n/a"
+
 - id: PAN-S14
   kind: paper
   class: PRACTICE
