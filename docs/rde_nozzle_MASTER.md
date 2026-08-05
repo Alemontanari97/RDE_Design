@@ -131,6 +131,15 @@ audits passed (characteristic completeness on axially supersonic
 patches per Lemma 4; Crocco compatibility; per-phase spacelikeness
 margin; declared closure O1/O2/O3 on subsonic patches); constraint
 vector c = (L, eps_max, L_p, curvature/angle bounds, symmetry class).
+[SIDE-LOAD DISPOSITION, dated 2026-08-05 (S15, [T-SLRW]): the rotating
+side load is a DECLARED SECONDARY OUTPUT, not a c-slot — inside the
+certified n >= 2 pure-periodic scope it is zero BY THEOREM (a slot
+would carry a structurally-zero multiplier), and the m = 1 wall trace
+lives in the D2 azimuthal residual channel that rung-2 states cannot
+evaluate; data-level impurity metric rides the T0 flatness monitor's
+m = 1 line; declared upgrade path to a CVaR c-slot at the A6 robust
+layer (mode transitions) — full grounds in
+docs/rde_nozzle_side_load.md §4.]
 PER-PHASE STATE CONSTRAINT (addendum 2026-07-21, S12, [D-GSEP]):
 the constraint set also carries the separation-margin state
 constraint g_sep(S; s(xi)) <= 0 for mu-a.e. xi (criterion class R2,
@@ -326,6 +335,23 @@ W = meridional speed (N6-2 [T-N6-2], THEOREM); (iii) beyond free vortex the
 pointwise control-surface closure fails by an exact obstruction
 identity (N6-3 [T-N6-3]) — field-level (five-field/AD) machinery NECESSARY;
 the five-field optimality system is the named SCHEMA [S-5F].
+TRANSVERSE COMPANION (added 2026-08-05, S15 [RIGOR/A], [T-SLRW]
+docs/rde_nozzle_side_load.md, carrier X-SLRW in suite group (xiii)):
+T0 classifies the AXIAL line (m = 0: constant in t); the rotating
+side-load lemma classifies the TRANSVERSE lines — the transverse
+force/moment resultants on any surface of revolution read ONLY the
+m = 1 azimuthal harmonic of the trace (kinematic proof, no EOS, jumps
+admitted), so n >= 2 identical equally-spaced co-rotating waves give
+IDENTICALLY ZERO transverse load density (every station, every
+instant: no side force, no shear, no bending), while n = 1 gives a
+constant-modulus vector rotating rigidly at Omega (zero mean, but
+undiminished magnitude — bearing duty, never "averages away");
+pressure exerts NO axial torque on a surface of revolution (M_x == 0,
+only shear can torque the wall). Together the two lemmas classify all
+six rigid-load resultants of a rotating pattern. Breakage channels
+(counter-rotating admixture, unequal waves, mode transitions) are the
+T0-flatness impurity channels — a measured side load on a nominally
+n >= 2 engine is a mode-impurity detector with a theorem behind it.
 
 ------------------------------------------------------------------------------
 [T-NSW] LEMMA 4 (N-SW — spacelikeness is frame-invariant; the swirl audit). THEOREM.

@@ -1299,6 +1299,32 @@ entries:
   falsifier: "a certified-margin case where (I - Pi) is not boundedly invertible (1 in the approximate/essential spectrum without eigenvector) — the O5 corrector solve would then diverge at healthy computed margin"
   gamma: "EOS-general"
 
+- id: T-SLRW
+  kind: theorem
+  class: THEOREM
+  scope: "rigid surface of revolution + rotating-pattern wall trace p = f(x, theta - Omega t), f L^1 in azimuth (jumps/shocks admitted); KINEMATIC — no Euler equations, no EOS, no smoothness (S15, [RIGOR/A], user question of record)"
+  statement: "m = 1 selection rule: transverse force/moment resultants read only the first azimuthal harmonic of the trace; n >= 2 identical equally-spaced co-rotating waves give IDENTICALLY zero transverse load density at every station and instant; n = 1 gives a constant-modulus vector rotating rigidly at Omega (zero mean, undiminished magnitude); axial force constant in t ([T-T0] companion); pressure axial torque M_x == 0 on any surface of revolution."
+  doc: "docs/rde_nozzle_side_load.md#2. Statement"
+  proof: "docs/rde_nozzle_side_load.md#PROOF"
+  inherits: []
+  carrier: [X-SLRW]
+  suffices_symbolic: "yes"
+  falsifier: "carrier rejectors R1-R3: an undetected nonzero transverse resultant for a pure n >= 2 co-rotating pattern (or a detected one produced by the certified class) kills the lemma; breakage channels B1-B4 declared in doc §3"
+  gamma: "EOS-general"
+
+- id: X-SLRW
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic + numeric carrier of T-SLRW; PASS 10/10 of record (S1-S4 symbolic incl. geometric kernels, N1-N3 full-vector quadrature with derived roundoff floors + FFT dual route, rejectors R1-R3), first run 2026-08-05 (~4 s); suite group (xiii)"
+  statement: "Machine verification of the m = 1 selection rule: exact symbolic selection/null/rigid-rotation identities, full surface-integral numerics with jump (shock-like) azimuthal traces, and three breakage detections (counter-rotating, unequal amplitudes, corrupted kernel)."
+  doc: "validation/side_load_rotating_lemma.py"
+  proof: "validation/side_load_rotating_lemma.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its three rejectors R1-R3 (each must DETECT its breakage or the carrier fails)"
+  gamma: "EOS-general"
+
 - id: PAN-S14
   kind: paper
   class: PRACTICE

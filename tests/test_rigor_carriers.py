@@ -2,10 +2,11 @@
 
 Promotes the machine-verification carriers of the theory registry
 (docs/claims_registry.yaml) from on-demand validation/ scripts into the
-suite ([F1/SCAFFOLD-M] task M-5). Fast tier = the four carriers whose
+suite ([F1/SCAFFOLD-M] task M-5). Fast tier = the carriers whose
 measured runtime is seconds-scale (S9 measurements of record:
-pa1 3.3 s, g12 1.4 s, n6 2.6 s, 5F 1.6 s; the 44.7 s dual-route
-carrier lives in the (xiv) rigor tier, tests/test_rigor_dualroute.py).
+pa1 3.3 s, g12 1.4 s, n6 2.6 s, 5F 1.6 s; slrw ~4 s added S15;
+the 44.7 s dual-route carrier lives in the (xiv) rigor tier,
+tests/test_rigor_dualroute.py).
 
 Each carrier is run as a subprocess exactly as a human would run it.
 ACCEPTANCE per carrier: exit code 0 AND the literal terminal line
@@ -31,6 +32,7 @@ CARRIERS = [
     ('X-G12', 'validation/g12_shock_linearization.py'),
     ('X-N6',  'validation/n6_swirl_kernel.py'),
     ('X-5F',  'validation/n6_fivefield_adjoint.py'),
+    ('X-SLRW', 'validation/side_load_rotating_lemma.py'),
 ]
 
 VERDICT_LINE = 'VERDICT: PASS'
