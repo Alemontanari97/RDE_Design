@@ -7,10 +7,77 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-04, chiusura Sessione 14 — PANEL DI RECORD D8 +
-## R4/R4-bis; sessione UNICA aperta 2026-07-22, ripresa 2026-08-02/04
-## su ordine utente; log a ordine totale:
-## validation/PROGRESS_2026-07-22_S14_panel.md, 24 passi)
+## ORA (2026-08-05, chiusura Sessione 15 — CAMPAGNA "FONDAZIONI
+## PROFONDE", PRIMA TRANCHE; log a ordine totale:
+## validation/PROGRESS_2026-08-04_S15_fondazioni.md, 12 passi;
+## gate PASS + waiver brick-2 ereditati dal passo 2)
+
+Branch `rde-nozzle-program`. Commit: T1a = a046303, T1b = 044db90,
+T1c = b8f3e17, T3 = 4b19307, T2-parziale = 8e6b891, T4 = ab3cf38,
+chiusura = (questo). Lint (xv) verde a ogni commit (107 voci).
+
+- **[RIGOR/A] T1a — LEMMA CARICO LATERALE ROTANTE DI RECORD**
+  ([T-SLRW], docs/rde_nozzle_side_load.md, carrier [X-SLRW] PASS
+  10/10 in suite (xiii)): regola di selezione m=1 per risultanti
+  trasversali (forze E momenti) su superfici di rivoluzione, prova
+  cinematica (2 ipotesi, nessuna EOS, salti ammessi); n>=2 onde
+  co-rotanti identiche => densità di carico trasversale
+  IDENTICAMENTE nulla; n=1 => vettore a modulo costante rotante a
+  Omega; corollario M_x == 0 (la pressione non può dare coppia
+  assiale). DISPOSIZIONE DI RECORD: output secondario dichiarato,
+  non slot in c (upgrade path CVaR a A6). R4: M0 T0 companion +
+  D2.6 nota.
+- **[RIGOR/A] T1b — TRASFERIMENTO CAUCHY->BVP SCRITTO** (il soft
+  spot della canonicità shock-free; docs/
+  rde_nozzle_cauchy_bvp_transfer.md, carrier [X-XBVP] PASS, (xiii)):
+  [T-XSON] biiezione sonica THEOREM a EOS astratta; [T-XWALL] LEMMA
+  DI PARETE THEOREM (flusso di entropia relativa a slip
+  IDENTICAMENTE nullo, ogni g, ogni EOS — la perturbazione ammessa a
+  parete è isentropica a flusso di massa costante); [S-XCONV]
+  convessità dal margine ASSIALE (200/200 sul box, pinza sonica
+  netta; finding: traccia u_x > c, non |u| > c); [T-XWS] THEOREM*
+  weak-strong sul BVP (alternative shockate ESCLUSE PER TEOREMA a
+  dato uguale) con condizionale nuovo [C-XBVP](a,b) nel ledger
+  §1bis. C-MAJDA separato pulito.
+- **[RIGOR/A] T1c — U1 DI D2.5-U SCRITTA PER DAVVERO**
+  ([S-D25U-U1], docs/rde_nozzle_D25U_U1.md): stime C^0/C^1 +
+  Lipschitz a due soluzioni (componente -a, livello liscio, costanti
+  esplicite) + -b corollario; VERDETTO SUL CLAIM DI COSTO:
+  CONFERMATO bounded; SCOPERTA: il set certificato richiede il
+  floor di larghezza h_min (quinta costante NOMINATA — senza, il
+  conteggio rimbalzi rende falsa l'uniformità); emendamento eseguito
+  (ledger §1 + registro C-D25U). -c/U5 intatto research-grade.
+- **[RIGOR/B] T3 — LEDGER MINIMIZZAZIONE IPOTESI, PASSATA 1**
+  ([PAP-D9HL], docs/rde_nozzle_hypothesis_ledger.md): verdetto
+  obbligatorio per TUTTE le 17 righe H-* di D1 §9 + 7 condizionali
+  (24/24): 0 SCARICATE / 6 INDEBOLITE / 5 NECESSARIE tutte con
+  controesempio citato (H-A1/H-A2 ora MACHINE-EXHIBITED da X-SLRW) /
+  13 PREZZATE con canale eseguibile. Target di passata 2 nominati.
+- **[RIGOR/A] T2 — SWEEP SECONDA LENTE: PARZIALE (muro di usage)**:
+  workflow canonico wf_c0bbb1d8-f73 (5 batch, 27 item, 2 lenti +
+  arbitro) fermato dal limite account a 3/14 agenti; journal cache
+  MONOTONA, zero perdite, evento dichiarato (log passo 10). HARVEST:
+  batch B4 3/3 CONFIRMED a doppia lente, fix ESEGUITI (DIR-G0
+  quantificazione cross-ref; DIR-PRISTINE split del falsificatore;
+  D-S1 debitori nominati = sync del T1b). RIGORE: gli
+  UNRECONSTRUCTABLE-da-fallimento NON sono verdetti; 24/27 item
+  RESTANO residuo dichiarato. RESUME deterministico da cache al
+  reset (istruzioni nel log passo 10).
+- **[RIGOR/C] T4 — DOSSIER MASSIMO GLOBALE APERTO** ([PAP-GMAX],
+  docs/rde_nozzle_global_maximum_dossier.md): censimento con schede
+  (interval B&B / momenti-SOS / deflazione+esclusione / torneo di
+  settori), NESSUN adopt senza carrier; FINDING STRUTTURALE: le tre
+  vie certificate collassano su UN mattone abilitante condiviso
+  (enclosure intervallare della marcia) + porta SOS nativa dal duty
+  THERMOTAB; programma delta->0 assemblato a 5 livelli; sinergia: il
+  primo mattone scarica anche C-XBVP(a).
+- Suite: lint (xv) verde ad ogni commit; run --fast di chiusura nel
+  log passo 12.
+
+Stato precedente (chiusura Sessione 14 — PANEL DI RECORD D8 +
+R4/R4-bis; sessione UNICA aperta 2026-07-22, ripresa 2026-08-02/04
+su ordine utente; log a ordine totale:
+validation/PROGRESS_2026-07-22_S14_panel.md, 24 passi)
 
 Branch `rde-nozzle-program`. Commit: reads = c0298d2 (passi 5-7),
 D8+registro = 7be8b98, R4 E9a-E9j = 20b4007, T5 = 901bbb3,
@@ -703,6 +770,35 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
+## NEXT (aggiornato 2026-08-05, chiusura S15 — campagna in corso,
+## SECONDA TRANCHE)
+
+1. [RIGOR/A — T2 resume, PRIMO] Resume del workflow seconda-lente
+   wf_c0bbb1d8-f73 DOPO il reset usage (11am NY): stessa scriptPath +
+   resumeFromRunId (log S15 passo 10) — la cache journal rigioca i 3
+   agenti completati; poi esecuzione dei soli fix confermati a doppia
+   lente (structure/status) e chiusura del residuo D8 §8 (24/27 item
+   ancora aperti; lensB:B1 in cache, non di record).
+2. [RIGOR/A — registro aperto, depth-first] U2 lemma standalone di
+   riflessione (mattone simbolico candidato: degenerazione del solve
+   == glancing, stile X-G12) + U3/U4 (composizione: costo bounded,
+   prezzato dall'esecuzione U1); attacco a-contraction a C-MAJDA/U3;
+   census lemma settori (sblocca il torneo, card 4 del dossier);
+   lemma G-B ergodico o de-rate; S-LBML; acquisizioni -> G5
+   (+ Li-Yu page anchors, + query di novità T-XWALL doc §8).
+3. [RIGOR/C — dossier] MATTONE SUBSTRATO condiviso: certificato
+   interval/SOS di S-XCONV sul box (= scarico C-XBVP(a), head-to-head
+   interval vs SOS di record) + spike fattibilità interval-Newton su
+   UNA cella MoC (numero go/no-go per le card 1/2a/3).
+4. [RIGOR/B] Ledger ipotesi passata 2 (target nominati in [PAP-D9HL]
+   §3: L4-default, promozione caso D, C-XBVP(a), U3/U4).
+5. [BLOCCATO->utente] invariati: G5 send (time-box); ratifiche ADR +
+   census; email dataset GV; dataset RDE pubblico (RK-E); decisione
+   preprint (RK-A, armata durante il waiver).
+6. [POI] BRICK 2 con duties vincolate (D6 item 9) — ri-aggiudicazione
+   del rinvio a fine campagna, invariata.
+
+[VOCE PRECEDENTE (apertura S15, eseguita nella prima tranche):]
 ## NEXT (ri-fondato 2026-08-04, ordine utente S15 — CAMPAGNA
 ## "FONDAZIONI PROFONDE"; waiver della protezione brick-2 ESERCITATO
 ## e loggato con RK-A citato + controlli compensativi: log S15 passo 2)
