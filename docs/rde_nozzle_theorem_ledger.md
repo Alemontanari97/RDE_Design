@@ -633,6 +633,11 @@ N-SW (swirl audit, second pass) — LEMMA + CORRECTION, D1 §4.3bis: an
 ## 10bis. Method upgrades from the adversarial self-review (2026-07-16,
 ##        second pass — "is this the best the SOTA allows?")
 
+[NAMESPACE NOTE, S14 2026-08-04 (PAN-S14 addendum, verified): this
+U1-U5 method-upgrade list is DISTINCT from the D2.5-U proof-
+architecture steps U1-U5 of remaining_conditionals.md §1; cite
+qualified — "10bis U*" vs "D2.5-U U*".]
+
 U1 (BOUND LADDER — new pillar). Alongside lower bounds (computed optima),
    report RIGOROUS UPPER BOUNDS by relaxation at every stage:
    (i) shared-wall relaxation: max_Σ ∫F dμ ≤ ∫ max_Σ F dμ — the right side

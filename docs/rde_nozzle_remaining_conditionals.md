@@ -33,6 +33,10 @@ ONLY on (delta, L_x, C_geo, C_dat) — never on the individual
 solution.
 
 PROOF ARCHITECTURE (steps named; each classical, none yet written):
+ [NAMESPACE NOTE, S14 2026-08-04 (PAN-S14 addendum, verified): these
+ D2.5-U proof-architecture steps U1-U5 are DISTINCT from the theorem-
+ ledger §10bis method-upgrade list U1-U5; cite qualified — "D2.5-U U*"
+ vs "10bis U*".]
  U1 Smooth regions: characteristic-ODE reformulation of the
     x-evolution (G12-L1 structure); C^0 and C^1 bounds by Gronwall
     along the three characteristic families on x-intervals bounded by

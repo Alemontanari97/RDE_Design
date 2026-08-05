@@ -82,7 +82,7 @@ entries:
   inherits: []
   carrier: []
   suffices_symbolic: "n/a"
-  falsifier: "an attractor without invariant measure in the operating book (then J_exact is undefined and only bounds ship)"
+  falsifier: "running-average non-convergence monitor on case-C data: Cauchy criterion of (1/T) Int F_S dt over growing windows with derived bars + realization/window-dependence check (declared fallback targets J_exact^± per D2.2; falsifier re-pointed S14 — the former 'attractor without invariant measure' object is non-exhibitable by Krylov-Bogolyubov and was retired, PAN-S14 addendum ME-1)"
   gamma: "EOS-general"
 
 - id: D-MU
@@ -223,13 +223,13 @@ entries:
   kind: theorem
   class: THEOREM
   scope: "canonical operating measure under exponential blowdown"
-  statement: "The blowdown cycle measure is log-uniform in pressure: dmu_P = dPc/(Pc ln PR); the theory is measure-agnostic beyond this canonical instance."
+  statement: "The blowdown cycle measure is log-uniform in pressure: dmu_P = dPc/(Pc ln PR); the theory is measure-agnostic beyond this canonical instance WITHIN the declared mu-hypotheses (probability; mu-a.e. audits; switch-null phases — re-verified per imported measure, obligatory for atomic/empirical mu; scope note S14, PAN-S14 addendum ME-3)."
   doc: "docs/rde_nozzle_MASTER.md#LEMMA 2"
   proof: "docs/rde_nozzle_MASTER.md#LEMMA 2"
   inherits: []
   carrier: ["X-GRP02"]
   suffices_symbolic: "yes"
-  falsifier: "measured cycle whose pushforward deviates from log-uniform beyond declared drift bars while blowdown holds"
+  falsifier: "measured cycle whose pushforward deviates from log-uniform beyond DERIVED drift bars while blowdown holds — metric W1 (or KS) in ln Pc between empirical and log-uniform pushforward, threshold derived from the mu-linearity sensitivity bar |dJ| <= Lip_xi(F)·W1 (carrier = the mu-instruments bundle, D6 item 15, named IOU; bars defined S14, PAN-S14 addendum ME-3 — none existed before)"
   gamma: "EOS-general"
 
 - id: T-T0
@@ -541,7 +541,7 @@ entries:
   inherits: ["C-D25U"]
   carrier: []
   suffices_symbolic: "no"
-  falsifier: "certified margins with a phase family whose derivative dominates no L^1 envelope (would contradict the uniform estimate)"
+  falsifier: "a certified cycle family (margins uniform) where the exchanged derivative dJ /= Int F' dmu beyond bars (executable once A1 computes both sides independently — an O3-class oracle) [registry falsifier re-synced to the source doc verbatim S14, PAN-S14 addendum: the former negative-existential-over-envelopes form was not finitely observable]"
   gamma: "EOS-general"
 
 - id: T-P7S1
@@ -554,7 +554,7 @@ entries:
   inherits: ["C-D25U"]
   carrier: []
   suffices_symbolic: "no"
-  falsifier: "a maximizing sequence escaping every certified level set while margins hold"
+  falsifier: "a certified maximizing sequence in a fixed level set with no convergent-subsequence limit attaining the sup (would contradict compactness/continuity — checks R-P7.1) [re-synced to the source doc verbatim S14, PAN-S14 addendum: the former escaping-every-level-set form quantified over the infinite family and could never be certified by observation]"
   gamma: "EOS-general"
 
 # --------------------------------------------------- schemas and conjectures

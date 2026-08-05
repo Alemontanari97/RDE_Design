@@ -419,7 +419,15 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     DUTIES bundled: quantified loop-speed falsifier threshold
     (clean-host protocol, S9 lesson) + scan/vmap column architecture
     (the restructure IS brick-2's architecture, not a retrofit) +
-    RK-G trust-region/re-record policy.]
+    RK-G trust-region/re-record policy + THERMOTAB C^1 duty (S14
+    addendum, two-lens confirmed: the pin declares accuracy floors
+    only, but C-D25U wants C^1 coefficients and the live carrier
+    interpolates cp INDEPENDENTLY of h with piecewise-linear
+    jnp.interp — cp != dh/dT between knots, Jacobian jumps at knots;
+    fix at kickoff: C^1/Hermite-monotone interpolant class +
+    consistency invariants (cp = dh/dT, s0' = cp/T) within derived
+    floors + rejector; node crossings under the RK-G one-sided
+    policy).]
 10. Gonzalez-Viana rung-2 reproduction (Phase-A2 note) + O5-LITE
     build with the three PRE-REGISTERED T3-QS predictions (Phase-A4
     note).                                              [days-scale]
@@ -454,6 +462,17 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     the full A5 anchor need HPC access not currently evidenced;
     until secured, A4/A5 scope = O5-lite + B-lite (laptop-scale),
     DECLARED; industrial gap #2.
+15. MU-INSTRUMENTS BUNDLE (S14, PAN-S14 addendum ME-5, two-lens
+    confirmed; single session, BEFORE any case-C Verdict): (a)
+    per-phase F(xi) profile + derived TV/W1 sensitivity bar in every
+    Verdict (J is LINEAR in mu — the sensitivity report is free:
+    |J(mu')-J(mu)| <= osc_xi(F)·||mu'-mu||_TV, or Lip_xi(F)·W1 on the
+    smooth part + jump term); (b) empirical-vs-log-uniform drift
+    metric (W1/KS in ln Pc) with threshold derived from the same bar
+    — closes the T-O2 falsifier; (c) running-average convergence
+    monitor for case-C data — closes the D-JEX falsifier; register
+    the three carriers so the falsifier fields become true. Natural
+    hook: the GV Table-8 mu-testbed already in A2.
 
 ------------------------------------------------------------------------------
 ## 7. Risk register deltas (vs roadmap)

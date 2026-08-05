@@ -75,6 +75,18 @@ F_S(t) = Int_S [rho u_x (u.n) + (p - Pa) n_x] dA on any enclosing
 axisymmetric control surface; requires an attractor with invariant
 measure (statistical stationarity — the weakest standing hypothesis)
 and a solution concept (D2.5). Pa constant.
+[S14 additions (PAN-S14 addendum, 2026-08-04; ME-1 + a-Jexact-fallback,
+both team/arbiter-confirmed): (1) FALLBACK TARGET (definition): if no
+invariant measure exists, the declared objects are J_exact^-/J_exact^+
+[S] := liminf/limsup_{T->inf} (1/T) Int_0^T F_S(t)dt (always defined);
+"only bounds ship" means certified brackets of [J_exact^-, J_exact^+],
+collapsing to J_exact under the standing hypothesis. (2) SCOPE
+DISCHARGE: within the declared periodic scope the hypothesis
+discharges exactly (D3 remark (1), "no Birkhoff limits"); outside it
+the OBSERVABLE failure channel is running-average non-convergence /
+realization dependence — not the non-existence of an invariant
+measure, which is non-exhibitable (Krylov-Bogolyubov where "attractor"
+is well-posed). The D-JEX falsifier is re-pointed accordingly.]
 
 [D-MU] D2.3 (Operating measure and averaged objective). mu = pushforward of
 normalized cycle time under t -> xi; averaged (rung-2) objective
@@ -162,7 +174,11 @@ PROBLEM (P): find the PAIR (S*, delta) such that
 (S*, delta) with the least available delta; "global optimum PROVEN"
 <=> delta = 0.
 MAXIMALITY (why this is the strongest truthful form): (a) no
-admissible-set-free version exists (vacuum theorem: sup unattained);
+admissible-set-free version exists (vacuum theorem: sup unattained —
+the Pa -> 0 limiting instance, outside (P)'s Pa > 0 GIVEN; at Pa > 0
+the class is needed for existence itself: uniform cone condition +
+envelope compactness, the P7/Chenais route of Part IV [anchor
+corrected S14, PAN-S14 addendum, arbiter-confirmed]);
 (b) no solution-concept-free version exists (multi-D non-uniqueness);
 (c) unconditional global optimality on nonconvex infinite-dimensional
 shape sets with PDE constraints exists for NO ONE (J non-concave —
@@ -268,7 +284,13 @@ For the exponential blowdown Pc(xi) = P_CJ · PR^(-xi), xi ~ U[0,1):
 xi = -ln(Pc/P_CJ)/ln PR, so dmu_P = dPc/(Pc ln PR) on [P_CJ/PR, P_CJ]:
 the engine's canonical operating measure is LOG-UNIFORM in pressure.
 QED. (Any measured cycle simply replaces mu_P; the theory is
-measure-agnostic.)
+measure-agnostic WITHIN the declared mu-hypotheses [scope note S14,
+PAN-S14 addendum ME-3]: mu a probability measure; the mu-a.e. audits;
+switch phases mu-NULL (T7 standing hypothesis) — the last must be
+RE-VERIFIED for every imported measure, trivially but obligatorily
+for ATOMIC/empirical measures, which can charge a switch phase; for
+atomic mu the cycle quadrature becomes the exact weighted sum, not
+Gauss panels.)
 
 ------------------------------------------------------------------------------
 [T-T0] THEOREM 3 (T0 — wave-frame exactness, strengthened). THEOREM.
@@ -769,7 +791,7 @@ The flow — not the method — selects the reduction, per design point:
 | single/k-wave rotating mode | T0 steadification (exact); rung 2 averaged + O(St) bar; wave-frame implicit BVP anchor | Sigma* + full certificate; per-phase THEOREMS, bridge CONJECTURE-with-falsifier |
 | modulated / counter-rotating (RPO) | periodic BVP, unknown (Omega,T), doubly bordered adjoint; 2-D+t demonstrator | PRACTICE (space-time tracking 3-D absent) |
 | multistable mode set | per-branch optimization + CVaR/DD-DRO outer layer over the mode measure | robust Sigma*; SCHEMA/PRACTICE |
-| chaotic / mode-hopping | bounds + robust surrogates ONLY (shadowing refused: hypotheses fail across shocks) | honest refusal of certificates |
+| chaotic / mode-hopping | bounds + robust surrogates ONLY (shadowing refused: hypotheses fail across shocks) | honest refusal of certificates [S14 note, arbiter-confirmed: the ladder's upper wall (Prop. G-B) is PROVEN in the steady per-streamtube setting only — its transfer to the ergodic average [J_exact^-, J_exact^+] (targets per D2.2) is a NAMED MISSING LEMMA (Birkhoff + bounded momentum route) or the bound de-rates to SCHEMA on this row; cf. D5 Step 5(f) quasi-steady-only labeling] |
 Licensing instruments: thrust-trace flatness (distance from
 steadifiability); census refresh per accepted optimizer step (tier-flip
 detection); St_n and drift numbers from the data (D1 ⊃ D2: one Strouhal

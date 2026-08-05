@@ -63,7 +63,11 @@ flow settles onto an attractor with (assumed) physical invariant measure
 
 S any fixed control surface enclosing the engine (S-independence by steady
 momentum balance in the mean). Well-definedness of J_exact presupposes a
-solution concept and an ergodicity assumption; both are catalogued in §6
+solution concept (catalogued in §6) and an ergodicity assumption — the
+latter is NOT catalogued in §6 [cross-ref repaired S14, PAN-S14 addendum
+ME-1: within the declared periodic scope it discharges exactly (ledger
+H-A1 + D3 remark (1)); outside it, see M0 D2.2 fallback targets
+J_exact^± and the running-average non-convergence falsifier]
 (this is not a footnote: multi-D entropy solutions are non-unique, §6/S2).
 
 The nominal operating regime is a SINGLE steadily rotating wave (or an
@@ -497,6 +501,7 @@ or falsifier (executable where possible).
 | H-μ | μ known (nominal blowdown log-uniform) | (AVG) | waveform misspecification → DRO ball (PB-5) | sensitivity-to-μ report |
 | H-E4 | per-phase Rao/corner theory valid for γ(T) frozen (form γ-agnostic; justification derived only for γ = const; finite-rate PROVEN to break it — Hoffman 1967 Eq. 78) | rung-2 per-phase brick with γ(ξ) families | strong γ(T) variation, finite-rate chemistry → adjoint-level formulation | Scofield-Hoffman 1971 Table-2 frozen-thrust oracle (GENO gate G2); Hoffman E-residual along optimized contour |
 | H-Pa | Pa constant over the cycle | T0, T3 affinity | altitude transients (slow: OK); plume feedback | — (declared) |
+| H-R1 | causal separation: heat release complete upstream of Gamma_d (R1, §4.2) [row minted S14, PAN-S14 addendum PP-6 — R1 was the only interface-contract clause without an executable rejector] | interface contract D2.4; frozen/equilibrium design region | afterburning / secondary deflagration downstream of Gamma_d (documented in RDEs) → N4 | total-enthalpy/energy-flux conservation residual between Gamma_d and a downstream section in the data generator; or declared residual-release fraction bound from the case-B wave model |
 
 Every ledger row is also a NOVELTY CHANNEL (N1-N6 of the engineering
 note): T3 is a conservation law for research effort — genuine gains over
