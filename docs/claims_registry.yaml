@@ -1429,6 +1429,19 @@ entries:
   falsifier: "any ledger row whose cited grounds do not support its verdict (grep-checkable citations); a hypothesis or conditional in the tree absent from the ledger"
   gamma: "n/a"
 
+- id: PAP-GMAX
+  kind: paper
+  class: PRACTICE
+  scope: "global-maximum dossier, census + first screening (S15, [RIGOR/C]): certified routes on the finite-dim class — interval B&B, moment/SOS, deflation+exclusion, sector tournament — each with cost/hypotheses/preliminary-verdict card; NO adopt without carrier (first bricks named, VERDICT-gated)"
+  statement: "Structural finding: all three certified routes reduce at their first new brick to ONE shared capability (interval enclosure through the per-phase march) + the THERMOTAB Hermite duty opens the native-SOS door; the delta->0 program assembled as a five-layer mechanism ladder (structured classes / bound ladder / interval B&B on reductions / certified enumeration / sector tournament)."
+  doc: "docs/rde_nozzle_global_maximum_dossier.md#§2 Route cards"
+  proof: "docs/rde_nozzle_global_maximum_dossier.md#§5 Structural finding"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a route card whose declared needs are shown unmet by its own named first brick (VERDICT FAIL on the brick = documented non-adoption, the dossier's own discipline)"
+  gamma: "n/a"
+
 - id: PAN-S14
   kind: paper
   class: PRACTICE
