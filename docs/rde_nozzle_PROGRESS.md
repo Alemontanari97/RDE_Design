@@ -7,9 +7,60 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-07-22, chiusura Sessione 13 — LEADS/PAGE-VERIFY:
-## "contingenza Kraiko-Osipov AGGIUDICATA + verifiche di pagina";
-## sessione UNICA)
+## ORA (2026-08-04, chiusura Sessione 14 — PANEL DI RECORD D8 +
+## R4/R4-bis; sessione UNICA aperta 2026-07-22, ripresa 2026-08-02/04
+## su ordine utente; log a ordine totale:
+## validation/PROGRESS_2026-07-22_S14_panel.md, 24 passi)
+
+Branch `rde-nozzle-program`. Commit: reads = c0298d2 (passi 5-7),
+D8+registro = 7be8b98, R4 E9a-E9j = 20b4007, T5 = 901bbb3,
+R4-bis E9k-E9r = dcbc5f9, addendum §8 = acf38cd, chiusura = (questo).
+
+- **[PIANO/panel] D8 DI RECORD** (docs/rde_nozzle_panel_2026-07-22.md,
+  [PAN-S14]): panel a convergenza in 4 round (7 personae indipendenti +
+  loop granulare finder/per-paper + scambio inter-agente + 16 team a
+  doppia lente con arbitro: 16/16 CONFIRMED, 0 dissensi). L'architettura
+  del programma REGGE sette lenti ostili; due finding strutturali di
+  record: (i) rischio analitico residuo CONCENTRATO al confine S1
+  (C-D25U-c senza discharger nominato; il salto d'onda è esattamente
+  ciò che la classe esclude); (ii) asimmetria dei falsificatori
+  (gli strumenti che possono far male ritardano su quelli che
+  confermano) — co-posseduta e ora prezzata (brick 2 PROTETTO).
+- **[LEADS/R4] E9a-E9j + R4-bis E9k-E9r**: 48 correzioni datate su 17
+  doc di record, TUTTE team-verificate prima dell'esecuzione e
+  AUDITATE dopo (22/22 LANDED, quattro auditor indipendenti).
+  Punte: sync P-1 §1.4/§4.5 (contraddizione K-O); Kraiko 1963
+  title-verified in genealogia; K-O §5 secondo caso di collasso;
+  banco O3.3 corretto ((30)/(31)+f2, MAI (32)-(34) fuori flusso
+  costante); split C-D25U a/b/c con U5 NOMINATO MANCANTE; C-P4RZ
+  coniato (Riesz non banale: monodromia non-compatta); ipotesi
+  FIXED-MARCH-TOPOLOGY nominata nel Lemma B + rischio RK-G; norme
+  O3.2/O3.3 PRE-REGISTRATE (esclusione lip/corner/sonic — 3 lenti
+  convergenti sul pericolo false-kill); D-JEX/T-O2/T-T7FS/T-P7S1
+  falsificatori resi rigettabili (K-B retirement, barre W1 derivate,
+  sync doc-verbatim); fallback target J_exact^± definito;
+  MAXIMALITY(a) ri-ancorata; H-R1 coniata; note namespace U1-U5.
+- **[PIANO] Delta D6**: item 9 PROTETTO per S15 (tre rinvii dichiarati,
+  niente quarto senza gate failure) con duties di kickoff (soglia
+  loop-speed derivata, architettura scan/vmap, policy RK-G, duty
+  THERMOTAB C^1); item 15 bundle strumenti-mu (J lineare in mu =>
+  barre di sensibilità gratis); RK-A PARZIALMENTE REALIZZATO; RK-G
+  coniato; G5 esteso (sweep 1991-2010, back-chase refs K-O, Kraiko
+  2010 TOC, Tillyaeva 2.2(f)); banco riletichettato "PDE single-cycle
+  falsification bench"; G3 duty di quantificazione.
+- **RESIDUO PANEL DICHIARATO** (D8 §8): finding a lente singola in
+  attesa di seconda lente (onda D5/D4 currency, facet shape-topology,
+  completamenti roads-atlas, ME-2/ME-4/PP-3/PP-4/PP-5, gruppo lint
+  (xvii) proposto) + angoli di esplorazione r2 mai eseguiti (tagliati
+  per ordine costo). NULLA di ciò è di record finché non verificato.
+- **Suite**: lint (xv) verde ad ogni commit (96 voci, rejector
+  provati); lint numerico (vii) PASS live in-audit. Eventi
+  infrastrutturali (3 muri di usage, 1 morte di processo) tutti
+  dichiarati a log con resume da cache journal — zero perdite.
+
+Stato precedente (chiusura Sessione 13 — LEADS/PAGE-VERIFY:
+"contingenza Kraiko-Osipov AGGIUDICATA + verifiche di pagina";
+sessione UNICA)
 
 Branch `rde-nozzle-program`. Log:
 validation/PROGRESS_2026-07-21_S13_leads.md (gate PASS passo 2, 11
@@ -652,6 +703,31 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
+## NEXT (Sessione 15 — consolidato S14)
+
+1. [F2/A1 — BRICK 2, PROTETTO] FINALMENTE il TOC variazionale
+   (dJ/dSigma + TR-SQP + (**')/corner su [X-A1IM]): NESSUN quarto
+   rinvio senza gate failure (D6 item 9, regola di record). KICKOFF
+   DUTIES vincolate (D6 item 9): soglia loop-speed DERIVATA
+   (protocollo clean-host), architettura scan/vmap di colonna,
+   policy RK-G (topologia fissa in trust region + re-record +
+   kink detection), duty THERMOTAB C^1 (interpolante Hermite +
+   invarianti cp=dh/dT, s0'=cp/T + rejector). Sblocca O3.3 col
+   protocollo PRE-REGISTRATO (P2_outline §5: coordinate (30)/(31)+f2,
+   norme lip-escluse, controllo capturing a livello campo).
+2. [F1/mu + F4-prep] BUNDLE STRUMENTI-MU (D6 item 15, una sessione):
+   chiude l'eseguibilità dei falsificatori D-JEX/T-O2/D-MU; aggancio
+   GV Table-8 testbed. Poi O5-lite + riproduzione GV (item 10, basi
+   Morris exit-BC).
+3. [PANEL-residuo] Verifica a seconda lente del residuo D8 §8
+   (onda D5/D4, shape-topology, roads-atlas, lint (xvii)) — una
+   sessione di verifica bounded, deterministica (finding embedded).
+4. [BLOCCATO->utente] G5 send (time-box + estensioni di record);
+   ratifica ADR + census topologico; email dataset GV; dataset RDE
+   pubblico (RK-E).
+5. [F2-prep/BLITE] mattone G12-L1-3D (invariato, dopo il brick 2).
+
+[VOCE PRECEDENTE:]
 ## NEXT (Sessione 14 — consolidato S13)
 
 1. [F2/A1 — BRICK 2] TOC variazionale (invariato; sblocca O3.3 — col
