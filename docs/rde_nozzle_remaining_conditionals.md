@@ -24,7 +24,15 @@ the certified set: wall in C^2 with norm <= C_geo; data on the inflow
 segment with C^1 norm <= C_dat; axial spacelikeness margin
 M_x - 1 >= delta; boundary-function margin >= delta; on shocked
 references, Lax front-strength margins >= delta with transversal
-wall/front angles >= delta. CLAIM: on D, for x-intervals of length
+wall/front angles >= delta.
+[AMENDMENT OF RECORD, S15 2026-08-05 ([S-D25U-U1], discovered by
+EXECUTING U1): the certified set is D(delta, L_x, C_geo, C_dat,
+h_min) — the DUCT-WIDTH FLOOR w_+ - w_- >= h_min > 0 is a NAMED
+constant. Without it the acoustic bounce count Lambda L_x / h_min is
+unbounded and, with reflection factors > 1 (possible in converging
+geometry), the uniform-constants claim below is FALSE as written.
+Physically free (throat height > 0); every C-D25U-derived statement
+carries the fifth constant from now on.] CLAIM: on D, for x-intervals of length
 <= L_x, the S1 solution map
     (wall, data) -> (U, fronts)
 is well-defined and LIPSCHITZ into piecewise-C^1 x C^1-graphs, and
@@ -45,6 +53,12 @@ PROOF ARCHITECTURE (steps named; each classical, none yet written):
     uniformly Lipschitz). [Li-Yu semiglobal machinery of record,
     instantiated — the writing task is bookkeeping, not new
     mathematics.]
+    [U1 STATUS, S15 2026-08-05: WRITTEN — docs/rde_nozzle_D25U_U1.md
+    ([S-D25U-U1]): C^0 (§3), C^1 (§4), two-solution Lipschitz -a
+    (§5, explicit LIP(delta, L_x, C_geo, C_dat, h_min)), -b smooth
+    corollary (§6); wall reflection exercised at U1's level; cost
+    claim CONFIRMED bounded, with the h_min discovery (amendment
+    above). U2 standalone lemma, U3, U4 remain named.]
  U2 Slip-wall reflection: the wall is characteristic for the
     streamline family and reflecting for the acoustic families;
     uniform reflection estimates need the C^2 wall bound and the
@@ -170,7 +184,7 @@ conditions is OUT OF SCOPE of the current phases and declared such.
 
 | Item | Class now | Symbolic suffices? | Discharge cost |
 |---|---|---|---|
-| D2.5-U statement + architecture | THEOREM* target; steps U1-U4 named | NO (function space) | bounded: classical 2-variable bookkeeping |
+| D2.5-U statement + architecture | THEOREM* target; U1 WRITTEN S15 ([S-D25U-U1], h_min amendment); U2 exercised, U3/U4 named | NO (function space) | bounded: classical 2-variable bookkeeping — CONFIRMED by execution (U1 one session) |
 | C-XBVP (transfer residuals, S15) | conditional; algebraic bricks T-XSON/T-XWALL are THEOREM | (a) interval-proof candidate; (b) NO (function space) | (a) bounded: interval arithmetic over the certified box; (b) bounded: Dafermos-class trace bookkeeping |
 | P4-Fredholm reduction to monodromy | THEOREM* (statement) | NO | Riesz theory + quantitative IFT |
 | Lemma-B mesh limit | THEOREM* target; steps (i)-(v) named | NO (numerical analysis; O3 oracles as falsifiers) | bounded: Lax-equivalence instantiation |

@@ -129,8 +129,8 @@ entries:
 - id: C-D25U
   kind: conditional
   class: SCHEMA
-  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat); COMPONENT STRUCTURE DECLARED (S14, [PAN-S14] F-D25USPLIT): -a estimates/Lipschitz (dischargers U1-U4), -b well-definedness/uniqueness (discharged BY the S-S1U assembly, which uses only -a), -c shift-C^1 differentiability (discharger U5 NAMED MISSING: linearized well-posedness + quadratic remainder; Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2); heirs conservatively inherit the full triple pending per-heir re-adjudication"
-  statement: "On the certified set D(delta, L_x, C_geo, C_dat) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — proof architecture U1-U4 named for the -a/-b components, U5 (-c) named missing, none written; discharge cost re-priced S14: -a/-b classical two-variable estimates, -c research-grade."
+  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat, h_min) [h_min = duct-width floor, DISCOVERED-AND-NAMED S15 by executing U1: the acoustic bounce count is Lambda L_x / h_min and reflection factors can exceed 1 — without the floor the uniformity claim is false as written]; COMPONENT STRUCTURE DECLARED (S14, [PAN-S14] F-D25USPLIT): -a estimates/Lipschitz (dischargers U1-U4; U1 WRITTEN S15 at smooth-region level, [S-D25U-U1]), -b well-definedness/uniqueness (discharged BY the S-S1U assembly, which uses only -a; smooth-level corollary of -a in S-D25U-U1 §6), -c shift-C^1 differentiability (discharger U5 NAMED MISSING: linearized well-posedness + quadratic remainder; Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2); heirs conservatively inherit the full triple pending per-heir re-adjudication"
+  statement: "On the certified set D(delta, L_x, C_geo, C_dat, h_min) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — U1 (-a smooth level + -b corollary) WRITTEN S15 with explicit constants (docs/rde_nozzle_D25U_U1.md); U2 exercised at U1's level, U3/U4 named, U5 (-c) named missing; cost verdict S15: -a/-b CONFIRMED bounded, -c untouched research-grade."
   doc: "docs/rde_nozzle_conditionals.md#C-D25U"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
   inherits: []
@@ -1401,6 +1401,19 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "its rejectors R1/R2 (subsonic definiteness or a broken sonic pincer must be detected) plus the symbolic P1/P2 zero-identities"
+  gamma: "EOS-general"
+
+- id: S-D25U-U1
+  kind: schema
+  class: SCHEMA
+  scope: "D2.5-U step U1 EXECUTED (S15, [RIGOR/A]; S14 panel recommendation 7): smooth-region-with-wall semiglobal estimates, Li-Yu machinery instantiated self-containedly (book-level citation only, page anchors = acquisition IOU); function space, no carrier by the sufficiency discipline; algebra rests on X-G12/X-N6 verified eigenstructure"
+  statement: "On the AMENDED certified set D(delta, L_x, C_geo, C_dat, h_min): C^0 and C^1 bounds by characteristic Gronwall with bounce-count composition (N_b <= Lambda L_x/h_min + 1), two-solution Lipschitz estimate (component -a, smooth level) with explicit LIP constant, -b as corollary; cost claim CONFIRMED bounded; DISCOVERY: the width floor h_min is a required NAMED constant (uniformity false without it)."
+  doc: "docs/rde_nozzle_D25U_U1.md#§5 Two-solution Lipschitz"
+  proof: "docs/rde_nozzle_D25U_U1.md#§3 C^0 estimate"
+  inherits: [C-D25U]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the C-D25U falsifier plus the h_min channel: a certified family with fixed (delta, L_x, C_geo, C_dat), h_min -> 0 and BOUNDED Lipschitz constant would show the amendment unnecessary; one with blowup at fixed h_min > 0 kills the estimate"
   gamma: "EOS-general"
 
 - id: PAN-S14
