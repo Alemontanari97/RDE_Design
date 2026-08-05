@@ -77,6 +77,30 @@ shock-free class, and sharpens the across-front conditional to the
 single Majda-stability ingredient.
 
 ------------------------------------------------------------------------------
+## §1bis C-XBVP (Cauchy->BVP transfer residuals; minted S15 2026-08-05)
+
+Inherited by [T-XWS] (docs/rde_nozzle_cauchy_bvp_transfer.md — the
+x-as-time weak-strong transfer that gives shock-free canonicity a
+BVP-native proof skeleton). Stated ONCE here; two components:
+ (a) S-XCONV DISCHARGE: strict convexity of the x-entropy
+     eta = -rho u g(S) as a function of the x-flux vector m on the
+     WHOLE certified compact K with axial margin u - c >= delta
+     (currently instance-certified: 200/200 randomized margin-box
+     states definite, subsonic rejector 60/60 indefinite, sonic
+     pincer sharp — carrier X-XBVP). Natural discharger: interval
+     arithmetic over the box (connects to the S15 global-maximum
+     dossier toolbox); EOS-general statement, ideal-gas instance.
+ (b) WEAK-SIDE TECHNICALITIES: x-slice normal traces and wall traces
+     for the entropy-solution class of T-XWS (Dafermos-class
+     bookkeeping; strong traces available in BV; the strong side is
+     C^1 and free).
+Neither component touches the algebraic content (T-XSON sonic
+bijection, T-XWALL wall annihilation, pair identity) — those are
+THEOREM at abstract EOS. FALSIFIER: see the T-XWS row of the
+registry (two distinct entropy solutions on identical certified
+inflow data inside K).
+
+------------------------------------------------------------------------------
 ## §2 P4-FREDHOLM (reduction to a monodromy condition)
 
 STATEMENT (reduction — class THEOREM* at statement level). Under the
@@ -147,6 +171,7 @@ conditions is OUT OF SCOPE of the current phases and declared such.
 | Item | Class now | Symbolic suffices? | Discharge cost |
 |---|---|---|---|
 | D2.5-U statement + architecture | THEOREM* target; steps U1-U4 named | NO (function space) | bounded: classical 2-variable bookkeeping |
+| C-XBVP (transfer residuals, S15) | conditional; algebraic bricks T-XSON/T-XWALL are THEOREM | (a) interval-proof candidate; (b) NO (function space) | (a) bounded: interval arithmetic over the certified box; (b) bounded: Dafermos-class trace bookkeeping |
 | P4-Fredholm reduction to monodromy | THEOREM* (statement) | NO | Riesz theory + quantitative IFT |
 | Lemma-B mesh limit | THEOREM* target; steps (i)-(v) named | NO (numerical analysis; O3 oracles as falsifiers) | bounded: Lax-equivalence instantiation |
 | Second order | declared instrument, no theory claimed | — | out of scope, declared |

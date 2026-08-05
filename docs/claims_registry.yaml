@@ -1325,6 +1325,84 @@ entries:
   falsifier: "its three rejectors R1-R3 (each must DETECT its breakage or the carrier fails)"
   gamma: "EOS-general"
 
+- id: T-XSON
+  kind: theorem
+  class: THEOREM
+  scope: "steady 2-D Euler as x-as-time system, ABSTRACT EOS p(rho,S) with Gibbs closure (S15, [RIGOR/A])"
+  statement: "det(dm/dU) of the x-flux map vanishes identically at u = c and u = 0; on the axially supersonic branch u > c the map U -> m is a local diffeomorphism — the sonic line is simultaneously the marching boundary and the state-space fold."
+  doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§1 Setting"
+  proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§1 Setting"
+  inherits: []
+  carrier: [X-XBVP]
+  suffices_symbolic: "yes"
+  falsifier: "carrier P1: a nonvanishing symbolic det at u = c (any EOS) or a vanishing numeric det at a margin state kills the lemma"
+  gamma: "EOS-general"
+
+- id: T-XWALL
+  kind: theorem
+  class: THEOREM
+  scope: "slip wall y = w(x) of the x-as-time steady Euler BVP; ABSTRACT EOS, EVERY entropy weight g(S) (S15, [RIGOR/A]) — the decisive boundary brick of the Cauchy->BVP transfer"
+  statement: "The relative-entropy flux of the pair (-rho u g(S), -rho v g(S)) through a slip wall vanishes IDENTICALLY: the admissible flux perturbation at slip is isentropic at constant mass flux (induced dS = 0, d(rho u) = 0), so every g(S)-entropy is blind to it — walls cost nothing in the weak-strong budget."
+  doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§4 The wall lemma"
+  proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§4 The wall lemma"
+  inherits: []
+  carrier: [X-XBVP]
+  suffices_symbolic: "yes"
+  falsifier: "carrier P2: a nonzero symbolic dS_slip or d(rho u) at abstract EOS kills the lemma"
+  gamma: "EOS-general"
+
+- id: S-XCONV
+  kind: schema
+  class: SCHEMA
+  scope: "convexity of the x-entropy eta = -rho u S in the x-flux vector m from the AXIAL supersonic margin; structure symbolic (EOS-general), definiteness instance-certified on ideal gas gamma = 1.4 (declared oracle role)"
+  statement: "eta is strictly convex in m on the axially supersonic branch uniformly on margin compacts (200/200 randomized margin-box states definite; subsonic 60/60 indefinite; sonic pincer sharp at eps = 1e-3); instance finding: definiteness tracks u_x > c, not |u| > c."
+  doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§2 The entropy structure"
+  proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§2 The entropy structure"
+  inherits: [C-XBVP]
+  carrier: [X-XBVP]
+  suffices_symbolic: "no"
+  falsifier: "carrier P4a/R1/R2: a definite subsonic Hessian or an indefinite margin-box state; discharge path = interval proof over the certified box (C-XBVP(a))"
+  gamma: "EOS-general"
+
+- id: T-XWS
+  kind: theorem
+  class: THEOREM*
+  scope: "weak-strong uniqueness for the steady BVP in x-as-time: C^1 shock-free solution with axial margin vs entropy weak solutions (branch-valued, same inflow data, slip walls); planar 2-D of record, axisym extension declared bookkeeping (S15, [RIGOR/A])"
+  statement: "With a C^1 margin solution present, EVERY entropy weak solution of the BVP with the same inflow data coincides with it — shocked alternatives excluded BY THEOREM; Dafermos relative entropy transplanted to x with inflow (data match) + walls (T-XWALL) + Gronwall; gives D2.5 shock-free canonicity a BVP-native proof skeleton."
+  doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§5 The transfer theorem"
+  proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§5 The transfer theorem"
+  inherits: [C-XBVP]
+  carrier: [X-XBVP]
+  suffices_symbolic: "no"
+  falsifier: "a certified numerical BVP case (A1 engine, capturing-mode control) exhibiting two distinct entropy solutions on identical inflow data inside the certified compact K"
+  gamma: "EOS-general"
+
+- id: C-XBVP
+  kind: conditional
+  class: SCHEMA
+  scope: "the two named residuals of the Cauchy->BVP transfer (minted S15): (a) S-XCONV convexity discharge over the whole certified compact (interval-arithmetic candidate, links to the global-maximum dossier toolbox); (b) weak-side trace technicalities (Dafermos-class bookkeeping)"
+  statement: "T-XWS is THEOREM once (a) the x-entropy convexity is proven on all of K with margin and (b) x-slice/wall normal traces hold for the weak class; neither touches the algebraic bricks T-XSON/T-XWALL (THEOREM at abstract EOS)."
+  doc: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
+  proof: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "component (a): the S-XCONV rejectors; component (b): a branch-valued entropy solution class provably without x-slice traces on a certified geometry"
+  gamma: "EOS-general"
+
+- id: X-XBVP
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic + numeric carrier of the Cauchy->BVP transfer bricks; PASS of record 2026-08-05 (P1/P2 symbolic at ABSTRACT EOS via LUsolve, P3 pair identity 40 states, P4a 200-state margin box, rejectors R1 subsonic 60/60 + R2 sonic pincer; 2.1 s); suite group (xiii)"
+  statement: "Machine verification: sonic degeneracy of det(dm/dU), slip-wall flux annihilation (dS = 0, d(rho u) = 0 at abstract EOS), x-entropy pair identity, and the instance certificate + sharp rejectors for convexity-from-margin."
+  doc: "validation/xbvp_entropy_transfer.py"
+  proof: "validation/xbvp_entropy_transfer.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors R1/R2 (subsonic definiteness or a broken sonic pincer must be detected) plus the symbolic P1/P2 zero-identities"
+  gamma: "EOS-general"
+
 - id: PAN-S14
   kind: paper
   class: PRACTICE

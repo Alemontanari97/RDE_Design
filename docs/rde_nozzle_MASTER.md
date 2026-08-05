@@ -120,7 +120,22 @@ partial support: 1-D uniqueness of BV/piecewise-smooth solutions
 Krupa line, essentially 1-D). S1 canonicity WITH shocks is therefore a
 DECLARED conditional (backed by Majda stability of the fitted fronts [C-MAJDA]),
 not a theorem — ledger-grade honesty, consistent with the panel's
-refutation of relative-entropy certificates for shocked orbits. S2:
+refutation of relative-entropy certificates for shocked orbits.
+[BVP-NATIVE UPGRADE, dated 2026-08-05 (S15 [RIGOR/A], [T-XWS]
+docs/rde_nozzle_cauchy_bvp_transfer.md, carrier X-XBVP): the
+shock-free weak-strong citation above is TIME-formulation (its Cauchy
+datum = the whole field at t = 0, which presupposes the solution);
+the transfer to the steady BVP is now WRITTEN — relative entropy in
+x-as-time with the pair (-rho u g(S), -rho v g(S)): sonic bijection
+[T-XSON] (THEOREM, abstract EOS), slip-wall relative-entropy flux
+annihilation [T-XWALL] (THEOREM, abstract EOS, every g: the slip flux
+perturbation is isentropic at constant mass flux), convexity from the
+AXIAL margin [S-XCONV] (SCHEMA, instance-certified; sonic line =
+exact definiteness boundary), assembling to weak-strong uniqueness on
+the BVP [T-XWS] (THEOREM* inheriting [C-XBVP](a,b), ledger §1bis):
+with a C^1 margin solution present, shocked alternatives on the same
+inflow data are excluded BY THEOREM in the class. Canonicity across
+fronts stays with C-MAJDA, now cleanly separated.] S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 

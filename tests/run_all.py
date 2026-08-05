@@ -25,8 +25,9 @@ Tests (see each module's docstring):
   (x)    test_phase_diagram     OP-11-eps phase diagram
   (xi)   test_bounds_gamma      OP-0-gamma real-thermo ceiling
   (xii)  test_phase_diagram_real OP-11 real-route diagram + eq bracket
-  (xiii) test_rigor_carriers    registry rigor carriers, fast five
-                                (X-PA1, X-G12, X-N6, X-5F, X-SLRW)
+  (xiii) test_rigor_carriers    registry rigor carriers, fast six
+                                (X-PA1, X-G12, X-N6, X-5F, X-SLRW,
+                                X-XBVP)
   (xiv)  test_rigor_dualroute   X-P2A1 dual-route carrier [rigor tier]
   (xv)   test_claims_lint       claims-registry lint (theory-as-code):
                                 anchors, suite membership, schema, orphans;
@@ -60,7 +61,7 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xi)  OP-0-gamma real-thermo ceiling', 'test_bounds_gamma'),
         ('(xii) OP-11 real-route diagram + eq bracket',
          'test_phase_diagram_real'),
-        ('(xiii) rigor carriers (symbolic, fast five)', 'test_rigor_carriers'),
+        ('(xiii) rigor carriers (symbolic, fast six)', 'test_rigor_carriers'),
         ('(xv)  claims registry lint', 'test_claims_lint'),
         ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs')]
 RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]', 'test_rigor_dualroute')]
