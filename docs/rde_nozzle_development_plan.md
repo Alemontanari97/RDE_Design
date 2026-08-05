@@ -172,6 +172,13 @@ maximal in single-cycle PDE, structurally absent in continuous-
 rotation RDE (T3-QS explains the severity ranking). Their dataset
 is "available on request" — an external-validation contact worth
 making.]
+[BENCHMARK ROW, 2026-08-05 (D8 §8 roads-atlas residue, second-lens):
+Levin-Manuilovich-Markov 2010 (Combust. Expl. Shock Waves
+46(4):418-425, doi:10.1007/s10573-010-0056-y; lit map b2 MANDATORY
+CITATION, closest artifact to PB-1/PB-2 — cycle-averaged impulse of a
+PDE duct by DIRECT parametric search) is recorded as a third external
+anchor candidate alongside Paxson AIAA 2022-4107 and Gonzalez-Viana;
+reproduction/comparison VERDICT-gated at A2, adoption not implied.]
 
 ### Phase A3 — Dual-route certification (months 8-14) [= WP3 amended]
 B2: direct collocation of the averaged optimality system — per-phase
@@ -479,6 +486,15 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     monitor for case-C data — closes the D-JEX falsifier; register
     the three carriers so the falsifier fields become true. Natural
     hook: the GV Table-8 mu-testbed already in A2.
+16. LINT GROUP (xvii) — AUDIT-GREP CARRIERS (status: PROPOSED;
+    PAN-S14 §8 residue item, two-lens verified 2026-08-05; dedicated
+    session required for the mechanization itself): mechanize the
+    registry's declared hand-run grep falsifiers (census at kickoff;
+    today at least DIR-GAMMA "lint/audit grep", carrier: [], and
+    DIR-THERMOTAB "audit grep") as an executable suite group (xvii),
+    then point the corresponding carrier/falsifier fields at it so
+    those rejectors can fire in CI — same closure pattern as item 15
+    (ME-5).
 
 ------------------------------------------------------------------------------
 ## 7. Risk register deltas (vs roadmap)

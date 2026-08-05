@@ -114,3 +114,12 @@ quasi-steady license — an I2 family carries the O(St) obligation (P4
 bar); an I1 single-mode field makes the average exact (T0) but makes the
 per-phase 2-D reading an approximation of the 3-D swirling problem (D2
 residual). One chooses which error to carry, and measures it.
+[Currency note 2026-08-05 (S15, D8 §8 residue, two-lens): the two
+named exceptions have since been narrowed of record — within the S1
+marching class the multi-D fitted-shock shape-derivative gap is
+THEOREM* T-G12S1 (docs/rde_nozzle_G12_S1.md §3 Assembly; residues
+R-G12.1..3 named; the general multi-D theorem stays SCHEMA, cf.
+Stage B row), and existence holds as THEOREM* T-P7S1 on
+margin-certified level sets (docs/rde_nozzle_T7_P7_functionspace.md
+§2). Registry classes govern current status; the 2026-07-16 labels
+above are the panel's historical record.]

@@ -21,6 +21,15 @@ m[Sigma; s(xi)] = mdot(xi); uniform S1 margin delta_S1 > 0 and uniform
 supersonicity M(xi, .) >= M_min > 1 on the terminal characteristics
 (both part of the D2.6 admission audits).
 
+[SINGLE-WALL SCOPE NOTE, dated 2026-08-05 (D8 §8 residue s8, second
+lens): the setting, the scalar constraint qualification of §2(i) and
+the closed form (P3.1) are written for a SINGLE attached design wall
+(one lip, one terminal-characteristic trace). The multi-wall sectors
+of the class of record (shrouded plug / ED — D2.6 sector
+decomposition; PB-3) are not covered by this text as written; the
+per-wall multiplier structure there is owed to a dedicated session.
+Hypothesis hereby NAMED (previously silent).]
+
 THEOREM P3-S1 (averaged multiplier regularity, shock-free S1 class;
 class THEOREM* [C-D25U] — conditional exactly on the declared P7 continuity
 hypothesis, see step (iii) and §3). Under the above, for mu-a.e. xi

@@ -86,13 +86,27 @@ discharges exactly (D3 remark (1), "no Birkhoff limits"); outside it
 the OBSERVABLE failure channel is running-average non-convergence /
 realization dependence — not the non-existence of an invariant
 measure, which is non-exhibitable (Krylov-Bogolyubov where "attractor"
-is well-posed). The D-JEX falsifier is re-pointed accordingly.]
+is well-posed). The D-JEX falsifier is re-pointed accordingly.
+(3) WORDING NOTE, dated 2026-08-05 (PAN-S14 §8 residue PP-3,
+second-lens verified): 'attractor with invariant measure' =>
+realized-orbit stationarity additionally presumes the invariant
+measure is the PHYSICAL (SRB-type) one for the observed data — a
+DECLARED hypothesis, not a theorem; 'weakest standing hypothesis'
+reads 'weakest DECLARED hypothesis', operationally subsumed by the
+running-average monitor of (2).]
 
 [D-MU] D2.3 (Operating measure and averaged objective). mu = pushforward of
 normalized cycle time under t -> xi; averaged (rung-2) objective
 J[Sigma] = Int F[Sigma; s(xi)] dmu(xi), with F the steady per-state
 thrust (wall form or Rao control-surface form; equal by the momentum
 theorem in the S1 class).
+[Scope note, dated 2026-08-05 (PAN-S14 §8 residue ME-2, second-lens
+verified): mu and the rung-2 integrand are declared WITHIN the
+standing pure-periodic single-mode scope (fixed wave count n;
+monitor = T0 flatness, VI.4bis): a phase containing a MODE
+TRANSITION (n changes) has no steady per-state F and is OUTSIDE
+this definition — it violates H-A1 (D1 §9) and is routed to the
+robust layer (VI.4bis(v), A6/PB-5), never silently averaged.]
 
 [D-CONTRACT] D2.4 (Design interface Gamma_d). A fixed axisymmetric surface
 downstream of all heat release carrying the data family s(xi); the
@@ -146,6 +160,13 @@ audits passed (characteristic completeness on axially supersonic
 patches per Lemma 4; Crocco compatibility; per-phase spacelikeness
 margin; declared closure O1/O2/O3 on subsonic patches); constraint
 vector c = (L, eps_max, L_p, curvature/angle bounds, symmetry class).
+[PROXY NOTE, dated 2026-08-05 (PAN-S14 §8 residue PP-4, second-lens
+verified): industrial heat-load and mass constraints enter (P) at
+rung 2 ONLY through these geometric c-slots as declared PROXIES
+(L/L_p/eps_max bound wetted length and size); no flux-level thermal
+or mass model is a c-slot today — declared upgrade path: a dedicated
+c-slot with its own multiplier, same pattern as the side-load CVaR
+disposition below.]
 [SIDE-LOAD DISPOSITION, dated 2026-08-05 (S15, [T-SLRW]): the rotating
 side load is a DECLARED SECONDARY OUTPUT, not a c-slot — inside the
 certified n >= 2 pure-periodic scope it is zero BY THEOREM (a slot
@@ -166,10 +187,35 @@ active-set question at rung 2; deliberately separated designs exit
 the certified class (separation reopens the subsonic feedback
 channel and carries its own non-rotating dynamics — out of the
 single-mode scope by physics, not only by declaration).
+[Alignment note, dated 2026-08-05 (PAN-S14 §8 residue ME-4,
+second-lens verified): the reading of record is mu-a.e. — 'every
+phase' means every xi up to a mu-null set; the readings coincide on
+the atomic/empirical measures and quadrature nodes actually audited
+(mu-hypotheses of Lemma 2 / T-O2, ME-3), and the D-GSEP falsifier's
+'any phase' is read on supp(mu) accordingly.]
 ADMISSIBLE SET: A_gen(c) = {S ⊂ E compact solid: uniform cone condition
 (h0, omega); attachment on Λ; g_i(S) <= c_i}, with its FINITE topology-
 sector decomposition (configurations = outputs) and working spline
 class A_h per sector.
+[ATTACHMENT-QUANTIFIER PIN PENDING, dated 2026-08-05 (D8 §8 residue
+s1, second lens): the clause 'attachment on Λ' (and D2.1's
+'attachment at the chamber lip(s)') does not fix the quantifier over
+connected components — permissive (only lip-touching components
+constrained; detached D-family admissible) vs strict (every component
+anchored) is undecidable from the present text: census advisory open
+point O1, sibling carrier question O9
+(validation/PANEL_topology_census_2026-07-22.md §7, ADVISORY). USER
+PIN + census-lemma session required (PROGRESS NEXT: "decisioni A_gen
+(utente)"); until pinned, no sector-count or D-family claim may
+silently assume a reading.]
+[SECTOR-FINITENESS STATUS, dated 2026-08-05 (D8 §8 residue s6,
+second lens): "FINITE" here carries NO declared rigor class at this
+site of record. Current grounds: problem book §5 sector decomposition
+(SCHEMA) + the two-clause counting theorem of the census advisory
+(THEOREM-sketch, conditional on O1/O2/O3/O9;
+validation/PANEL_topology_census_2026-07-22.md §3 — ADVISORY, not of
+record). Class label + proof owed to the census-lemma session
+(global-maximum dossier Card 4; PROGRESS NEXT).]
 STATE (mu-a.e. xi): the unique S1 solution U_xi of steady Euler in
 E \ S with data s(xi), slip walls, supersonic outflow; S1 membership
 certified a posteriori (boundary-function margin >= delta_S1 > 0
@@ -194,6 +240,12 @@ PROBLEM (P): find the PAIR (S*, delta) such that
        valid for EVERY S in the sector, not only stationary ones;
        M3 unimodality: the 1-DOF theorems);
  (v)   declared bars: |J_exact - J[S*]| <= St|J1| + D2 residual + DWR.
+[BAR-CLASS NOTE, dated 2026-08-05 (PAN-S14 §8 residue PP-5,
+second-lens verified): the (v) bars are ESTIMATED/ASYMPTOTIC
+indicators — St|J1| is the first-order [J-CT1] term (it does not by
+itself bound the remainder, T3QS §3 B3) and DWR is an estimate —
+NOT certified bounds; certified brackets ship only via the D2.2
+fallback targets [J_exact^-, J_exact^+].]
 "Search for the global optimum of the defined problem" = compute
 (S*, delta) with the least available delta; "global optimum PROVEN"
 <=> delta = 0.
@@ -594,6 +646,16 @@ proven limits: spread->0 ⇒ sectors tie at the Rao value (T3);
 generous envelope ⇒ free boundary attains the ceiling (T4/M1);
 vacuum ⇒ no finite optimum; tight length + large spread ⇒ duty split
 (C1, open).
+[M1-WITNESS ADMISSIBILITY, dated 2026-08-05 (D8 §8 residue s5, second
+lens): the untruncated peak-designed plug closes on the axis; whether
+an axis-closing tip satisfies the uniform cone condition (h0, omega)
+of A_gen is the unpinned census question O2
+(validation/PANEL_topology_census_2026-07-22.md §5/§7, ADVISORY: full
+spike in-class iff O2 resolves tip-admissible, else a
+class-boundary/ceiling object). This corollary is hereby
+O2-CONDITIONAL as an IN-CLASS attainment statement; as a bound
+statement (ideal-as-bound discipline) it is unaffected. Pin owed to
+the census-lemma session.]
 [T-OP11e] EPS-LEVEL INSTANCE OF RECORD (2026-07-16, [F1/OP-11-eps];
 src/thrust/phase_diagram.py + rejector tests + data/phase_diagram.json
 + figs/phase_diagram_op11.png; full statement D3 §10quater). The OP-11
@@ -1030,6 +1092,10 @@ Deliverables of record (depth per topic):
     convergent pipeline (Annex A).
  D6 `rde_nozzle_development_plan.md` — certainty model C1-C4, phases
     A0-A7, tool matrix, gates G0-G6, 90 days, input taxonomy (Annex B).
+ D8 `rde_nozzle_panel_2026-07-22.md` — S14 convergence panel of record
+    [PAN-S14]: 16 team verdicts (§5), workflow-1b addendum + R4-bis
+    register + declared residue (§8). [row added 2026-08-05, S15,
+    D8 §8 residue]
  D7 `rde_nozzle_pipeline_audit.md` — per-step triple verdict, declared
     residues R1-R10, errors found-and-fixed E1-E7, decision matrix.
 Work phases (operational plan): Fase 0 consolidation -> Fase 1

@@ -76,7 +76,7 @@ entries:
   kind: definition
   class: THEOREM
   scope: "exact objective (roof definition)"
-  statement: "J_exact[S] = long-time average of the control-surface thrust flux; requires statistical stationarity (weakest standing hypothesis) and a solution concept."
+  statement: "J_exact[S] = long-time average of the control-surface thrust flux; requires statistical stationarity (weakest DECLARED hypothesis; physical/SRB-type wording note in M0 D2.2, 2026-08-05) and a solution concept."
   doc: "docs/rde_nozzle_MASTER.md#D2.2"
   proof: "docs/rde_nozzle_MASTER.md#D2.2"
   inherits: []
@@ -88,7 +88,7 @@ entries:
 - id: D-MU
   kind: definition
   class: THEOREM
-  scope: "operating measure and averaged (rung-2) objective"
+  scope: "operating measure and averaged (rung-2) objective; single-mode (fixed n) scope declared — mode-transition phases outside, robust layer (ME-2 scope note in M0 D2.3, 2026-08-05)"
   statement: "mu = pushforward of normalized cycle time; J[Sigma] = Int F[Sigma; s(xi)] dmu(xi) with F the steady per-state thrust."
   doc: "docs/rde_nozzle_MASTER.md#D2.3"
   proof: "docs/rde_nozzle_MASTER.md#D2.3"
@@ -162,7 +162,7 @@ entries:
   inherits: []
   carrier: ["X-GRP08", "X-GRP11"]
   suffices_symbolic: "n/a"
-  falsifier: "PB-2 truncation/base-pressure band showing the closure's premium unreachable by any real plug beyond bars"
+  falsifier: "PB-2 truncation/base-pressure band showing the closure's premium unreachable by any real plug beyond bars [named IOU, dated 2026-08-05 (D8 §8 two-lens): executable only under a declared base-pressure closure p_b (pipeline-audit row R3, EMPIRICAL closure N2) — registry conditional (proposed C-N2) to be minted at PB-2/OP-2 kickoff]"
   gamma: "EOS-general"
 
 - id: C-IGMIX
@@ -456,7 +456,7 @@ entries:
 - id: T-P3
   kind: theorem
   class: THEOREM*
-  scope: "shock-free S1 class; across fitted fronts inherits the front conditional"
+  scope: "shock-free S1 class, single attached wall (hypothesis named 2026-08-05, D8 §8 residue s8; multi-wall sectors owed to a dedicated session); across fitted fronts inherits the front conditional"
   statement: "The averaged multiplier lambda2(xi) exists, is unique (scalar CQ via the Prop. A2 contraction), equals -f2(lip data), and is measurable with explicit L^inf(dmu) bound."
   doc: "docs/rde_nozzle_P3_multipliers.md#1. Statement"
   proof: "docs/rde_nozzle_P3_multipliers.md#2. Proof"
@@ -534,7 +534,7 @@ entries:
 - id: T-T7FS
   kind: theorem
   class: THEOREM*
-  scope: "S1 class; conditionals R-T7.1/2 = the shared uniform estimate"
+  scope: "S1 class, fixed topology sector, working spline class A_h(c) (uniform C^{1,1}), switch phases mu-null; conditionals R-T7.1/2 = the shared uniform estimate; R-G12.1..3 inherited at shocked phases [scope re-synced to the source doc 2026-08-05, D8 §8 residue s7]"
   statement: "Differentiation under the cycle integral holds: dJ = Int F' dmu, and the averaged wall condition + weighted transversality (**') are genuine L^1(dmu) statements — (P)(ii) is a rigorous necessary condition."
   doc: "docs/rde_nozzle_T7_P7_functionspace.md#§1 THEOREM T7-FS"
   proof: "docs/rde_nozzle_T7_P7_functionspace.md#§1 THEOREM T7-FS"
@@ -547,7 +547,7 @@ entries:
 - id: T-P7S1
   kind: theorem
   class: THEOREM*
-  scope: "margin-certified level sets A_h^delta; the monitored failure boundary IS the level-set boundary"
+  scope: "margin-certified level sets A_h^delta(c), finite-dimensional spline class per topology sector; the monitored failure boundary IS the level-set boundary; residue R-P7.2 (certified argmax vs uncertified sup) declared and reported [scope re-synced to the source doc 2026-08-05, D8 §8 residue s7]"
   statement: "The argmax of J exists on every margin-certified level set (finite-dimensional compactness + closed margins + continuity) — (P)(i) attacked."
   doc: "docs/rde_nozzle_T7_P7_functionspace.md#§2 THEOREM P7-S1"
   proof: "docs/rde_nozzle_T7_P7_functionspace.md#§2 THEOREM P7-S1"
@@ -640,7 +640,7 @@ entries:
 - id: J-OP11
   kind: conjecture
   class: CONJECTURE
-  scope: "contour level; the duty split is NOT expressible at eps level (proven)"
+  scope: "contour level; the duty split is NOT expressible at eps level (proven); falsifier depends on the sector tournament, itself blocked on the census lemma (finiteness + definition class — global-maximum dossier Card 4; census advisory conditional O1/O2/O3/O9) [dependency declared 2026-08-05, D8 §8 residue s4]"
   statement: "The operating measure selects the optimal topology of S*(c) at contour level, with duty-split regions at tight length + large spread."
   doc: "docs/rde_nozzle_theorem_ledger.md#10quater"
   proof: "docs/rde_nozzle_MASTER.md#EPS-LEVEL INSTANCE"
@@ -1274,7 +1274,7 @@ entries:
 - id: D-GSEP
   kind: definition
   class: PRACTICE
-  scope: "per-phase separation-margin STATE constraint added to (P) (S12 addendum to M0 D2.6): g_sep(S; s(xi)) <= 0 mu-a.e., criterion class R2 (Summerfield/Schmucker, declared empirical); its active-set multiplier = marginal value of the attachment margin; makes the temporal dual-bell question (N1) decidable at rung 2"
+  scope: "per-phase separation-margin STATE constraint added to (P) (S12 addendum to M0 D2.6): g_sep(S; s(xi)) <= 0 mu-a.e., criterion class R2 (Summerfield/Schmucker, declared empirical); its active-set multiplier = marginal value of the attachment margin; makes the temporal dual-bell question (N1) decidable at rung 2; reading of record mu-a.e. ('every phase' = mu-a.e. — ME-4 alignment note in M0 D2.6, 2026-08-05)"
   statement: "Certified optima keep every phase attached by constraint (the S1 monitor is the runtime detector); deliberately separated designs exit the certified class into N1/PB territory with declared closure and unsteady-anchored mean effects (hysteresis area, rectification, Reynolds terms)."
   doc: "docs/rde_nozzle_MASTER.md#PER-PHASE STATE CONSTRAINT"
   proof: "docs/rde_nozzle_T3QS.md#§3 Boundary"

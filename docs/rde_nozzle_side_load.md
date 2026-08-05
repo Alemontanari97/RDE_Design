@@ -178,8 +178,10 @@ UPGRADE PATH (declared, so the disposition absorbs future work
 without changing form): if n = 1 designs enter scope, or when the A6
 robust layer prices mode-transition transients, the side load enters
 c as a CVaR constraint over the mode measure — this connects to the
-roads-atlas "side-load CVaR disposition" residue item (D8 §8, to be
-second-lens verified; not of record until then).
+roads-atlas "side-load CVaR disposition" residue item (D8 §8
+residue; second-lens verified 2026-08-05 — connection of record; the
+CVaR c-slot itself remains the declared A6 upgrade path, not a
+current constraint).
 
 ------------------------------------------------------------------------------
 ## 5. Relation to the corpus

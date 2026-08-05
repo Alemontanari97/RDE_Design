@@ -82,6 +82,11 @@ PROOF ARCHITECTURE (steps named; each classical, none yet written):
  discharger — U5 is hereby NAMED MISSING, lead Bressan-Guerra/Ulbrich
  (TO-VERIFY, R-G12.2 status). -a/-b = classical two-variable
  estimates; -c = research-grade.]
+ [LEAD SYNC, 2026-08-05 (D8 §8 roads-atlas residue, second-lens): the
+ on-point U5/-c lead is Breitkopf-Ulbrich arXiv:2509.22076 (2025) —
+ C^1 control-to-state for the generalized Riemann problem — alongside
+ Bressan-Guerra/Ulbrich; already of record in lit map b3, hypothesis
+ ledger C-D25U row, and D25U_U1 §8; acquisition pending.]
 FALSIFIER: a certified family in D with solution-map Lipschitz
 constant blowing up while all margins stay >= delta (would contradict
 U1-U4; executable once A1 computes solution sensitivities).

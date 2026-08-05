@@ -243,6 +243,23 @@ Roads register (full adjudications in the persona reports; disposition here):
 | Short empirical-rule note (sonic cap) publication path | no declared reason found (maverick) — pure taste | OPTION surfaced to user, undecided |
 | Ejector/augmented sector; kinetic formulations; vanishing viscosity; Tapenade | skips justified | none |
 
+[ROADS-ATLAS COMPLETION, 2026-08-05 (D8 §8 residue, arbiter-confirmed,
+batch B3): E-D and DEF dispositions exist only in the ADVISORY
+topology census (validation/PANEL_topology_census_2026-07-22.md §5:
+ED = S0 two-wall stratum, internal-dominant; DEF (Rao-Beck) = S0 +
+fitted-sheet REGION coordinate, not a sector) — NOT of record until
+census ratification + census-lemma rigor session (BLOCCATO, user;
+PROGRESS). Note of tension held open, not adjudicated: M0 and problem
+book (iv) name E-D among the sectors of record; the census would
+demote it to a stratum. No adjudication minted here.]
+[ROADS-ATLAS COMPLETION, 2026-08-05 (D8 §8 residue, second-lens):
+Veen type-7 S4/S5 repair (S4 masses over-imposed, S5 Eq. 9
+base-pressure loop dropped — claims_verdict §3, lit map b0 inventory)
+is the recorded blocker road for the PB-3 duty-split carrier (OP-8),
+the shrouded twin of the RaoPlug S1/S2 critical-path item already in
+D6; disposition: A2-adjacent candidate, unscheduled — no adjudication
+minted.]
+
 Recommendations by leverage (deduped across lenses; owner in brackets):
 1. A1 BRICK 2 NEXT, protected — no fourth deferral short of a gate failure
    [S15; standing rule in NEXT]. Architecture = scan/vmap column restructure

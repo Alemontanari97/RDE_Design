@@ -22,7 +22,11 @@ is ARS J. 30(6):561 (1960), not 1961; "Rao 1961" = the SPIKE paper,
 Planet. Space Sci. 4:92-101; the "Eq. 14" label is UNVERIFIED against
 the 1958 original (structure confirmed via NASA TM-103175; cite the
 condition, not the equation number — GENO CLAUDE.md reference-honesty
-rule applies); Sternin's books are two-phase nozzle gasdynamics — the
+rule applies) [SUPERSEDED within this doc — see §3bis row "Rao 1958
+'Eq. [14] p.379' corner label": VERIFIED in-house against RAO.pdf
+(page-level, multi-agent read), equation numbers citable;
+supersession marker added 2026-08-05, S15, D8 §8 residue];
+Sternin's books are two-phase nozzle gasdynamics — the
 general Russian nozzle textbook is Pirumov-Roslyakov (1990); λ₃ is the
 LENGTH multiplier (f₃ = cot φ).
 
@@ -147,6 +151,16 @@ the E-residual falsifier.
 
 Ranking criterion: (novelty confidence after D2) × (feasibility with
 in-house tools) × (load-bearing-ness for the program).
+
+[Status-currency note 2026-08-05 (S15, D8 §8 residue, two-lens): the
+rows below carry 2026-07-16 status only. Of record since, per
+PROGRESS and the claims registry: OP-0 executed at ε-level with
+rejector test ([F1/OP-0-gamma], commit 1a4ff7b); OP-1 in flight as
+paper P-1 (docs/rde_nozzle_P1_*.md); OP-4 advanced by T-P3 (THEOREM*,
+docs/rde_nozzle_P3_multipliers.md); OP-6 advanced by T-P7S1 (THEOREM*,
+docs/rde_nozzle_T7_P7_functionspace.md §2); OP-7 advanced by the P-2
+corpus (docs/rde_nozzle_P2_*.md). PROGRESS + registry govern current
+status; row text is the D4 historical record.]
 
 1. OP-1 [T3/T4 papers-grade formalization + oracles]. The collapse
    dichotomy with the verified proofs (D3 §5-6), the altitude-duality
