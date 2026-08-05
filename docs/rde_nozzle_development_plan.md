@@ -413,6 +413,12 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     [NEXT-1 since S11; THREE user-ordered deferrals declared
     (S12/S13/S14) — tag corrected S14 (W1 of PAN-S14): PROTECTED
     NEXT-1 for S15, no fourth deferral short of a gate failure.
+    WAIVER EXERCISED 2026-08-04 (S15 log step 2): deferral #4 by
+    explicit user order (deep-foundations campaign, axes A-D), RK-A
+    cited; compensating controls declared (O3.3 protocol stays
+    pre-registered; preprint decision stays armed with the user;
+    re-adjudication at campaign end). The kickoff duties below are
+    UNCHANGED and waiting.
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF

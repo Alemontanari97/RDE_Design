@@ -703,8 +703,38 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
-## NEXT (Sessione 15 — consolidato S14)
+## NEXT (ri-fondato 2026-08-04, ordine utente S15 — CAMPAGNA
+## "FONDAZIONI PROFONDE"; waiver della protezione brick-2 ESERCITATO
+## e loggato con RK-A citato + controlli compensativi: log S15 passo 2)
 
+1. [RIGOR/A — registro aperto, depth-first] U1-U4 scritte per davvero
+   (test del claim di costo) -> scarico C-D25U-a/-b; U5 via
+   Breitkopf-Ulbrich 2025 (acquisire) + Bressan-Guerra/Ulbrich;
+   attacco a-contraction a C-MAJDA/U3; rotta C-P4RZ (Riesz vs
+   Kilque/CGW); lemma Cauchy->BVP (entropia relativa in x); lemma G-B
+   ergodico o de-rate; S-LBML scritto; census lemma settori + decisioni
+   A_gen (utente); LEMMA CARICO LATERALE ROTANTE (regola di selezione
+   m=1; carrier simbolico; disposizione in c o output secondario);
+   sweep seconda-lente del residuo D8 §8; acquisizioni -> G5.
+2. [RIGOR/B — minimizzazione ipotesi] ledger con verdetto obbligatorio
+   {SCARICATA / INDEBOLITA / NECESSARIA(controesempio) / PREZZATA}
+   per OGNI ipotesi H-* e condizionale — teoria autosussistente.
+3. [RIGOR/C — massimo globale] dossier di record: ladder più stretta;
+   ricerca globale CERTIFICATA sulla classe finito-dim certificata
+   (B&B Lipschitz/intervallare, gerarchie momenti/SOS, deflazione) —
+   ogni via fino in fondo con verdetto adopt/kill; non-convessità
+   quantificata; torneo di settori (dipende dal census lemma).
+4. [ORDINE/D] SCAFFOLD L0-L6 completo; banner currency D4/D5; mappa
+   M0 VII + riga D8; docstring con ID; indice carrier; lint (xvii);
+   X-A1IM-lite in tier rigor; mappa-tesi (capitoli <-> ID registro).
+5. [BLOCCATO->utente] G5 send (time-box); ratifiche ADR + census;
+   email dataset GV; dataset RDE pubblico (RK-E); decisione preprint
+   (RK-A, resta armata durante il waiver).
+6. [POI] BRICK 2 (ri-aggiudicazione del rinvio a fine campagna,
+   dichiarata): riparte con banco O3.3 pre-registrato, norme, RK-G,
+   duty THERMOTAB — tutto già vincolato in D6 item 9.
+
+[VOCE PRECEDENTE (S14, superseduta dal waiver — conservata):]
 1. [F2/A1 — BRICK 2, PROTETTO] FINALMENTE il TOC variazionale
    (dJ/dSigma + TR-SQP + (**')/corner su [X-A1IM]): NESSUN quarto
    rinvio senza gate failure (D6 item 9, regola di record). KICKOFF
