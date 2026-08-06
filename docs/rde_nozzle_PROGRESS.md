@@ -7,11 +7,67 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-06, chiusura Sessione 17 — RI-AGGIUDICAZIONE BRICK-2
-## + KICKOFF ESEGUITO; log a ordine totale:
-## validation/PROGRESS_2026-08-06_S17_brick2.md, 12 passi;
-## gate PASS al passo 2, VERDETTO passo 3: rinvio #4 SCADUTO,
-## BRICK 2 PARTITO)
+## ORA (2026-08-06, chiusura Sessione 18 — PRODUCTION CODE + RUN
+## END-TO-END: **BRICK 2 CHIUSO, O3.3 SBLOCCATO**; log a ordine
+## totale: validation/PROGRESS_2026-08-06_S18_brick2run.md, 9 passi;
+## gate PASS al passo 2)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = 9ca859a,
+P1 = dfb169f, P2 = 85453c3, P3+P4 = a1cd786, run di record =
+d1fbdec, R4 = 01c41a6, chiusura = (questo). Lint (xv) verde a ogni
+commit (122 voci). Suite --fast di chiusura 15/15 in 100 s.
+
+- **[F2/A1] LEVE DI PRODUZIONE P1-P4 ESEGUITE, OGNI GATE RI-PASSATO**:
+  P1 while-Newton sulla metrica di certificazione (X-SCANM 8.9e-16
+  invariata); P2 bucket-per-fase + whole-loop jit con guardia
+  safe-where (jit==python 6.2e-15 bit-level, compile 4.9 s, O3.1/jit
+  4.9e-11 = leak detector pulito; **T2a RI-RUN clean-host PASS:
+  t_solve 0.116 s (era 39.8: 343x), grad/solve 1.593 — IL GATE DI
+  PRODUZIONE È APERTO**, nota datata G0_decision §4); P3 chiusura C^1
+  a due binari (X-THC1 primaria del brick, gap di chiusura 1.0e-07 vs
+  banda 5.7e-01 — sette ordini sub-risoluzione; twin GENO resta
+  'nasa' lineare); P4 floor di margine d'istanza delta = 0.1202 m/s
+  (min_margin(W0)/K_RICH) con rejector + audit sul design finale.
+- **[F2/A1] RUN END-TO-END DI RECORD: VERDICT PASS — BRICK 2 CHIUSO**
+  (X-TOCV completo, exit 0; 4 tentativi dichiarati nel log, nessun
+  numero dai run uccisi): da partenza perturbata 1.5%, TR-SQP sotto
+  policy DIR-RKG (segmentazione + Jacobi misurato + HESSIANA PIENA
+  MISURATA per base di segmento — clausola R-3 attivata sui numeri)
+  converge status 1 con **KKT 7.745e-02 <= tol derivata 1.156e-01 =
+  ISTANZA DI TRASVERSALITÀ PASS (le condizioni di Rao raggiunte VIA
+  GRADIENTE)**; J* = 2.7761688e+07 (+1.06e+04 sul seed
+  GENO-proiettato); **ORACOLO 91/91 in banda derivata cross-code**
+  (max|dy| 1.86e-03, mediana err/banda 0.102; termini: cross-res
+  GENO + rappresentazione di classe + ricampionamento, inviluppo di
+  vicinato); N3 discrimina; audit margine PASS; lettura
+  moltiplicatore lambda_eps = 1.055e+07 (Pa implicita 8.40e+05 vs
+  p_lip 1.41e+06, ratio 0.595 — istanza per O3.3). **T2 FIRED di
+  record** (121.6 s vs 35.9 s; decomposizione = misura di curvatura
+  + re-record RK-G, NON throughput di linguaggio — T1/T2a passano
+  con margine) => **REVIEW G0 IN CODA** per flip clause D6.
+- **[F2/A1] FINDING DI DRIVER di record** (dai tentativi dichiarati):
+  flip di wall-search ~1/passo accettato => un segmento = un passo
+  produttivo e la curvatura ESTERNA è obbligatoria (fresh-BFGS è
+  vincolo di policy); xtol-con-KKT-aperto = collasso da modello
+  stantio => continuazione a segmento fresco; patologia degli
+  stimatori puntuali |proxy| (zeri isolati) => inviluppo; leve di
+  scala NOMINATE nel kickoff doc (regole implicite second'ordine,
+  Hessiane colorate/sparse, emendamento flip-benigni).
+- **R4 STESSA SESSIONE** (01c41a6): M0 Parte VI "A1 BRICK 2 OF
+  RECORD"; D6 item 9 CHIUSO (+G0 review in coda); kickoff doc §5bis
+  status completo; registro X-SCANM/X-LSG0/DIR-G0/DIR-RKG
+  (carrier=[X-TOCV])/X-TOCV aggiornati.
+- **NEXT-1 = CAMPAGNA O3.2/O3.3** (protocollo PRE-REGISTRATO
+  P2_outline §5, intatto — la metà numerica di P-2). Poi in coda,
+  ordine relativo da decidere: census-lemma session, [PAP-RIM],
+  review G0 (T2), panchina rigore (B1 intervallare s_L, C-XBVP(b),
+  g-scan B3, concavità GBE — non toccati, budget esaurito dal brick).
+
+Stato precedente (chiusura Sessione 17 — RI-AGGIUDICAZIONE BRICK-2
++ KICKOFF ESEGUITO; log a ordine totale:
+validation/PROGRESS_2026-08-06_S17_brick2.md, 12 passi;
+gate PASS al passo 2, VERDETTO passo 3: rinvio #4 SCADUTO,
+BRICK 2 PARTITO)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = 3b4b602,
 ri-aggiudicazione = c5f0eee, duty(c) = 4a912b5, duty(d) = 0934313,
