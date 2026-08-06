@@ -59,9 +59,10 @@ commit (122 voci). Suite --fast di chiusura 15/15 in 100 s.
   (carrier=[X-TOCV])/X-TOCV aggiornati.
 - **NEXT-1 = CAMPAGNA O3.2/O3.3** (protocollo PRE-REGISTRATO
   P2_outline §5, intatto — la metà numerica di P-2). Poi in coda,
-  ordine relativo da decidere: census-lemma session, [PAP-RIM],
-  review G0 (T2), panchina rigore (B1 intervallare s_L, C-XBVP(b),
-  g-scan B3, concavità GBE — non toccati, budget esaurito dal brick).
+  ordine relativo da decidere: census-lemma session, PAP-RIM (matrice
+  strade x inserzioni, pin utente 2026-08-06), review G0 (T2),
+  panchina rigore (B1 intervallare s_L, C-XBVP(b), g-scan B3,
+  concavità GBE — non toccati, budget esaurito dal brick).
 
 Stato precedente (chiusura Sessione 17 — RI-AGGIUDICAZIONE BRICK-2
 + KICKOFF ESEGUITO; log a ordine totale:
