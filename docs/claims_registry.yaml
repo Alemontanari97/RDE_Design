@@ -1124,6 +1124,19 @@ entries:
   falsifier: "the loop-speed falsifier (§4): assembled A1 engine impractical on the JAX route at production mesh => flip to Julia+Enzyme"
   gamma: "n/a"
 
+- id: DIR-RKG
+  kind: directive
+  class: PRACTICE
+  scope: "binding policy for every brick-2 optimizer (S17 kickoff duty c, D6 item 9); grounded in the two record statements it operationalizes: S-D25U-U34 discovery D2 (within-stratum scope, clause c2) and S-LBML clause LB-c2 (fixed march topology; re-record events = statement boundaries)"
+  statement: "RK-G policy P1-P4: fixed march topology (frozen schedule) inside each trust region; re-record the adaptive march on step acceptance with re-record events logged and the TR model rebuilt; kink monitors (replay fidelity, per-cell certification on trials, decision-flip probe, model/actual kink) rejector-grade; acceptance gated on certification; table-knot crossings are NOT topology events once the closure is C^1 (duty d)."
+  doc: "docs/rde_nozzle_brick2_kickoff.md#§1 Duty (c)"
+  proof: "docs/rde_nozzle_brick2_kickoff.md#§1 Duty (c)"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a brick-2 run that mixes gradients across a re-record event, omits the re-record count from its Verdict, or accepts a step failing the P4 certification gate is NONCONFORMING; monitors (i)/(ii) are machine rejectors in the brick carrier (registered here when it lands)"
+  gamma: "n/a"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK
