@@ -25,9 +25,9 @@ Tests (see each module's docstring):
   (x)    test_phase_diagram     OP-11-eps phase diagram
   (xi)   test_bounds_gamma      OP-0-gamma real-thermo ceiling
   (xii)  test_phase_diagram_real OP-11 real-route diagram + eq bracket
-  (xiii) test_rigor_carriers    registry rigor carriers, fast seven
+  (xiii) test_rigor_carriers    registry rigor carriers, fast eight
                                 (X-PA1, X-G12, X-N6, X-5F, X-SLRW,
-                                X-XBVP, X-U2RG)
+                                X-XBVP, X-U2RG, X-U3BD)
   (xiv)  test_rigor_dualroute   X-P2A1 dual-route carrier [rigor tier]
   (xviii) test_rigor_interval   X-IVXC interval certificate (S-XCONV
                                 box + T-XRED reduction) [rigor tier]
@@ -63,7 +63,7 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xi)  OP-0-gamma real-thermo ceiling', 'test_bounds_gamma'),
         ('(xii) OP-11 real-route diagram + eq bracket',
          'test_phase_diagram_real'),
-        ('(xiii) rigor carriers (symbolic, fast seven)',
+        ('(xiii) rigor carriers (symbolic, fast eight)',
          'test_rigor_carriers'),
         ('(xv)  claims registry lint', 'test_claims_lint'),
         ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs')]

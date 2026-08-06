@@ -82,6 +82,26 @@ PROOF ARCHITECTURE (steps named; each classical, none yet written):
  U4 Composition: finitely many regions and fronts on [0, L_x];
     constants compose multiplicatively — total constant explicit in
     (delta, L_x, C_geo, C_dat). QED (architecture).
+    [U3/U4 STATUS, S16 2026-08-06: WRITTEN — docs/rde_nozzle_D25U_U3U4.md
+    ([S-D25U-U34], carrier [X-U3BD] suite (xiii)): bordered front
+    solve (RH + impinging characteristic, Lax count 5 = n+1 machine-
+    verified), uniform floors by compactness (U3-L1: s_min, |dH/ds'|,
+    |s_L|, entropy jump), front C^2 self-supplied, counting lemmas
+    (front count from the entropy budget, U4-A; per-path crossings,
+    U4-B), composed two-solution estimate with LIP_shocked explicit
+    in the five constants. Component -a chain COMPLETE at class
+    level. CONDITIONAL INVENTORY (priced, doc §5): c1 = U3-H1
+    Lopatinskii scalar s_L /= 0 on K_delta (THE sharpened C-MAJDA
+    content, instance-certified s_L = 1.8685); c2 = same
+    front-topology stratum (cross-topology = census/RK-G layer, not
+    an estimate); c3 = front-origination Lipschitz clause; c4 =
+    genuine nonlinearity (G > 0) for the entropy floor. READING OF
+    RECORD (dated clarification of the STATEMENT above): the clause
+    "transversal wall/front angles >= delta" is read as WALL
+    ATTACHMENT — every certified front has a transversal wall foot;
+    under this reading the front count is DERIVED
+    (N_F <= 4 C_0/s_j); relaxing it would cost a SIXTH named
+    constant.]
  [COMPONENT NOTE OF RECORD, S14 (PAN-S14 F-D25USPLIT): U1-U4 as named
  deliver the -a (estimates/Lipschitz) component only; -b
  (well-definedness/uniqueness) is discharged BY the S1-U assembly,
@@ -205,7 +225,7 @@ conditions is OUT OF SCOPE of the current phases and declared such.
 
 | Item | Class now | Symbolic suffices? | Discharge cost |
 |---|---|---|---|
-| D2.5-U statement + architecture | THEOREM* target; U1 WRITTEN S15 ([S-D25U-U1], h_min amendment); U2 exercised, U3/U4 named | NO (function space) | bounded: classical 2-variable bookkeeping — CONFIRMED by execution (U1 one session) |
+| D2.5-U statement + architecture | THEOREM* target; U1 WRITTEN S15 ([S-D25U-U1], h_min amendment); U2 EXECUTED S15 ([T-U2RG]); U3/U4 WRITTEN S16 ([S-D25U-U34], carrier X-U3BD) — component -a COMPLETE at class level, inventory c1-c4 declared (U3-H1 scalar = sharpened C-MAJDA); -c/U5 untouched | NO (function space; front-solve structure carried by X-U3BD) | bounded: classical 2-variable bookkeeping — CONFIRMED three times (U1, U2, U3/U4 one session each); -c research-grade unchanged |
 | C-XBVP (transfer residuals, S15) | conditional; algebraic bricks T-XSON/T-XWALL are THEOREM | (a) interval-proof candidate; (b) NO (function space) | (a) bounded: interval arithmetic over the certified box; (b) bounded: Dafermos-class trace bookkeeping |
 | P4-Fredholm reduction to monodromy | THEOREM* (statement) | NO | Riesz theory + quantitative IFT |
 | Lemma-B mesh limit | THEOREM* target; steps (i)-(v) named | NO (numerical analysis; O3 oracles as falsifiers) | bounded: Lax-equivalence instantiation |

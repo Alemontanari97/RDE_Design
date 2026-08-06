@@ -263,6 +263,11 @@ COST-CLAIM VERDICT (the S14 open question this doc answers):
    hypothesis inputs; the remaining U2 residue is only the composed
    ESTIMATE bookkeeping inside U3/U4.]
  - U3 (fronts) and U4 (composition): untouched, as scoped.
+   [EXECUTED 2026-08-06 (S16): docs/rde_nozzle_D25U_U3U4.md
+   ([S-D25U-U34], carrier [X-U3BD]) — component -a chain complete at
+   class level; conditional inventory c1-c4 declared there (U3-H1
+   Lopatinskii scalar = sharpened C-MAJDA; topology stratum;
+   origination; genuine nonlinearity).]
  - U5 / -c: untouched, priced research-grade, lead unchanged
    (Bressan-Guerra/Ulbrich + Breitkopf-Ulbrich arXiv:2509.22076,
    acquisition pending).

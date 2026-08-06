@@ -50,6 +50,18 @@ multiply); U5 (-c component) MISSING — see above. Discharge cost,
 re-priced S14: -a/-b classical two-variable estimates; -c
 research-grade (the "not research risk" wording of the S9
 transcription is SUPERSEDED, this dated note is the correction).
+[DISCHARGER STATUS, dated S15/S16: U1 WRITTEN S15 ([S-D25U-U1],
+h_min amendment); U2 EXECUTED S15 ([T-U2RG]/[X-U2RG]); U3/U4 WRITTEN
+S16 2026-08-06 ([S-D25U-U34], carrier [X-U3BD], docs/
+rde_nozzle_D25U_U3U4.md) — the component -a estimate chain is
+COMPLETE at class level with LIP_shocked explicit in the
+five-constant certificate, under the DECLARED inventory c1-c4 of
+that doc's §5 (U3-H1 Lopatinskii scalar = the sharpened C-MAJDA
+content; front-topology stratum; origination clause; genuine
+nonlinearity) and the WALL-ATTACHMENT reading of the front-angle
+clause (front count then DERIVED, else sixth constant). -b =
+within-stratum corollary + S-S1U assembly as before; -c/U5
+untouched, research-grade.]
 
 FALSIFIER: a certified family in D with solution-map Lipschitz
 constant blowing up while all margins stay >= delta.
@@ -84,6 +96,21 @@ reference is a measured, certified number. WHAT REMAINS CONDITIONAL:
 uniformity over the certified family (the function-space step —
 strength margins => uniform s_min), i.e. the U3 ingredient of
 C-D25U.
+[SHARPENING OF RECORD, dated S16 2026-08-06 ([S-D25U-U34] §2/§6;
+the "WHAT REMAINS" sentence above is SUPERSEDED in-class by this
+note): U3 is now WRITTEN. Inside the planar x-as-time S1 class the
+quantitative content of C-MAJDA is EXACTLY: (i) the G12-L2 blocks
+(machine-verified, X-G12) + (ii) the single scalar condition U3-H1 —
+the 1-D Lopatinskii-Schur scalar s_L = w_imp^T (dH/dV+)^{-1}
+dH/dsigma' nonvanishing on the compact certified front set K_delta;
+uniformity then follows by compactness (U3-L1, no longer
+conditional). U3-H1 is instance-certified (carrier [X-U3BD], suite
+(xiii): s_L = 1.8685 at the reference, bordered Lax count 5 = n+1,
+rejectors active); its class-level discharge route is NAMED
+(interval certification over K_delta, X-IVXC substrate). What keeps
+the full C-MAJDA name: configurations beyond the class (genuinely
+multi-D fronts, interactions/reflections) and the per-heir
+re-adjudication of the THEOREM* heirs, both untouched.]
 
 FALSIFIER: a certified-Lax front family with degenerating linearized
 RH margin (would contradict the G12-L2 margin law).

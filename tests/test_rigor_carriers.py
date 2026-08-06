@@ -5,7 +5,7 @@ Promotes the machine-verification carriers of the theory registry
 suite ([F1/SCAFFOLD-M] task M-5). Fast tier = the carriers whose
 measured runtime is seconds-scale (S9 measurements of record:
 pa1 3.3 s, g12 1.4 s, n6 2.6 s, 5F 1.6 s; slrw ~4 s + xbvp ~2 s
-added S15;
+added S15; u3bd sub-second added S16;
 the 44.7 s dual-route carrier lives in the (xiv) rigor tier,
 tests/test_rigor_dualroute.py).
 
@@ -36,6 +36,7 @@ CARRIERS = [
     ('X-SLRW', 'validation/side_load_rotating_lemma.py'),
     ('X-XBVP', 'validation/xbvp_entropy_transfer.py'),
     ('X-U2RG', 'validation/u2_reflection_glancing.py'),
+    ('X-U3BD', 'validation/u3_bordered_front_solve.py'),
 ]
 
 VERDICT_LINE = 'VERDICT: PASS'

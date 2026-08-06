@@ -149,7 +149,20 @@ exact definiteness boundary), assembling to weak-strong uniqueness on
 the BVP [T-XWS] (THEOREM* inheriting [C-XBVP](a,b), ledger §1bis):
 with a C^1 margin solution present, shocked alternatives on the same
 inflow data are excluded BY THEOREM in the class. Canonicity across
-fronts stays with C-MAJDA, now cleanly separated.] S2:
+fronts stays with C-MAJDA, now cleanly separated.]
+[FRONT-CHAIN COMPLETION, dated 2026-08-06 (S16 [RIGOR/A],
+[S-D25U-U34] docs/rde_nozzle_D25U_U3U4.md, carrier X-U3BD): the
+C-D25U component -a estimate chain (U1 smooth + U2 wall + U3 front +
+U4 composition) is now WRITTEN at whole-class level with the
+Lipschitz constant explicit in the five-constant certificate; and
+C-MAJDA is SHARPENED in-class to a single scalar condition (U3-H1:
+the 1-D Lopatinskii-Schur scalar of the bordered front solve,
+nonvanishing on the compact certified front set — instance-certified
+s_L = 1.8685, uniformity by compactness once pointwise). Declared
+inventory: same-front-topology stratum (cross-topology = census/RK-G
+layer), wall-attachment reading (front count DERIVED from the
+entropy budget), origination clause, genuine nonlinearity for the
+entropy floor. Shift-C^1 of the map (-c/U5) untouched.] S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 
