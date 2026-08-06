@@ -129,7 +129,7 @@ entries:
 - id: C-D25U
   kind: conditional
   class: SCHEMA
-  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat, h_min) [h_min = duct-width floor, DISCOVERED-AND-NAMED S15 by executing U1: the acoustic bounce count is Lambda L_x / h_min and reflection factors can exceed 1 — without the floor the uniformity claim is false as written]; COMPONENT STRUCTURE DECLARED (S14, [PAN-S14] F-D25USPLIT): -a estimates/Lipschitz (dischargers U1-U4; U1 WRITTEN S15 at smooth-region level, [S-D25U-U1]), -b well-definedness/uniqueness (discharged BY the S-S1U assembly, which uses only -a; smooth-level corollary of -a in S-D25U-U1 §6), -c shift-C^1 differentiability (discharger U5 NAMED MISSING: linearized well-posedness + quadratic remainder; Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2); heirs conservatively inherit the full triple pending per-heir re-adjudication"
+  scope: "THE shared analytic conditional (L4 ledger); uniform semiglobal stability of the S1 solution map with constants (delta, L_x, C_geo, C_dat, h_min) [h_min = duct-width floor, DISCOVERED-AND-NAMED S15 by executing U1: the acoustic bounce count is Lambda L_x / h_min and reflection factors can exceed 1 — without the floor the uniformity claim is false as written]; COMPONENT STRUCTURE DECLARED (S14, [PAN-S14] F-D25USPLIT): -a estimates/Lipschitz (dischargers U1-U4; U1 WRITTEN S15 at smooth-region level, [S-D25U-U1]; U2 reflection brick EXECUTED S15 reopened segment, [T-U2RG]: no-glancing-at-slip + sonic solvability locus, machine-verified at abstract EOS), -b well-definedness/uniqueness (discharged BY the S-S1U assembly, which uses only -a; smooth-level corollary of -a in S-D25U-U1 §6), -c shift-C^1 differentiability (discharger U5 NAMED MISSING: linearized well-posedness + quadratic remainder; Bressan-Guerra/Ulbrich lead, TO-VERIFY status per R-G12.2); heirs conservatively inherit the full triple pending per-heir re-adjudication"
   statement: "On the certified set D(delta, L_x, C_geo, C_dat, h_min) the S1 solution map (wall, data) -> (U, fronts) is Lipschitz and C^1 in the shift sense, with constants depending only on the certificate — U1 (-a smooth level + -b corollary) WRITTEN S15 with explicit constants (docs/rde_nozzle_D25U_U1.md); U2 exercised at U1's level, U3/U4 named, U5 (-c) named missing; cost verdict S15: -a/-b CONFIRMED bounded, -c untouched research-grade."
   doc: "docs/rde_nozzle_conditionals.md#C-D25U"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1 LEMMA D2.5-U"
@@ -1428,6 +1428,32 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "any ledger row whose cited grounds do not support its verdict (grep-checkable citations); a hypothesis or conditional in the tree absent from the ledger"
   gamma: "n/a"
+
+- id: T-U2RG
+  kind: theorem
+  class: THEOREM
+  scope: "slip wall of the x-as-time steady 2-D Euler BVP, ABSTRACT EOS (symbolic); ideal-gas numeric instance (declared oracle role); D2.5-U step-U2 brick, executed S15 reopened segment ([RIGOR/A])"
+  statement: "At a slip wall: (i) glancing is IMPOSSIBLE (acoustic bracket at lambda = w' equals -c^2(1+w'^2) != 0 — boundary non-characteristic wherever c > 0, no C_geo/C_dat input: hypothesis reduction vs U1 (T2)); (ii) the acoustic eigenvector has the closed front-normal form (-rho(v-lam u)/c^2, -lam, 1, 0) modulo the bracket; (iii) the slip-BC pairing s = 1 + w' lam degenerates EXACTLY at total-sonic q = c, hence the reflection solve is uniformly solvable on the axial branch u > c, with closed-form reflection coefficient R = -(1+w'lam_+)/(1+w'lam_-); slip hypothesis NECESSARY (off-slip glancing counterexample exhibited)."
+  doc: "docs/rde_nozzle_D25U_U1.md#SHARPENED 2026-08-05"
+  proof: "validation/u2_reflection_glancing.py"
+  inherits: []
+  carrier: [X-U2RG]
+  suffices_symbolic: "yes"
+  falsifier: "carrier rejectors: R1 wrong-locus covector must be detected; R2 the off-slip glancing state must show a characteristic boundary (kills (i) if not); R3 near-sonic exponent 1/2 (kills (iii) scaling)"
+  gamma: "EOS-general"
+
+- id: X-U2RG
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic + numeric carrier of T-U2RG; PASS 8/8 of record 2026-08-05 (P0 pencil factorization, P1 no-glancing-at-slip, P2 eigenvector divisibility, P3 sonic degeneracy locus — all abstract EOS; N1 margin floor, rejectors R1-R3; 1.4 s); suite group (xiii)"
+  statement: "Machine verification of the slip-wall reflection brick: bracket identities and eigenvector divisibility at abstract EOS, margin uniformity, wrong-locus detection, off-slip glancing counterexample, near-sonic exponent."
+  doc: "validation/u2_reflection_glancing.py"
+  proof: "validation/u2_reflection_glancing.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors R1-R3 (wrong-locus covector, off-slip glancing detection, exponent band)"
+  gamma: "EOS-general"
 
 - id: PAP-GMAX
   kind: paper

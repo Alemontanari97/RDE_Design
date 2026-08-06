@@ -64,6 +64,14 @@ PROOF ARCHITECTURE (steps named; each classical, none yet written):
     uniform reflection estimates need the C^2 wall bound and the
     margin (no glancing: spacelikeness keeps the acoustic families
     uniformly transversal to the wall). [Standard; must be written.]
+    [U2 BRICK STATUS, S15 2026-08-05 ([T-U2RG], carrier X-U2RG,
+    suite (xiii), PASS 8/8): the algebraic core is machine-verified
+    at abstract EOS — glancing at slip IMPOSSIBLE (no C_geo/C_dat
+    input needed: hypothesis reduction), reflection-solve degeneracy
+    exactly at total-sonic q = c (excluded by the axial margin
+    alone), closed-form R with margin bound, slip necessity by
+    counterexample. Residue: only the composed estimate bookkeeping
+    inside U3/U4.]
  U3 Fronts: local straightening; the front ODE and downstream traces
     are Lipschitz in the upstream traces UNIFORMLY by the certified
     equilibrated s_min of the linearized RH (G12-L2 — the

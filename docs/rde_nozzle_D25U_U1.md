@@ -69,6 +69,17 @@ UNIFORM transversality facts everything below uses:
       from 0 by a function of delta and the angle bounds — the Mach
       lines meet the wall at angles >= angle_min(delta, C_geo, C_dat)
       > 0.
+      [SHARPENED 2026-08-05, U2 brick EXECUTED ([T-U2RG]/[X-U2RG]):
+      at slip walls glancing is IMPOSSIBLE outright — the acoustic
+      bracket at lambda = w' on the slip manifold equals
+      -c^2(1+w'^2) != 0 at abstract EOS, so the wall is
+      non-characteristic wherever c > 0, with NO (C_geo, C_dat)
+      input: a hypothesis-input REDUCTION vs the sufficient statement
+      above. The reflection-SOLVE degeneracy sits elsewhere: exactly
+      at total-sonic q = c (T-U2RG P3) — excluded on the axial branch
+      by the same single margin. R_0 is now the closed form
+      |R| = |(1+w'lambda_+)/(1+w'lambda_-)|, finite by the axial
+      margin alone.]
 
 Complete left eigenvector set l_0a, l_0b, l_+, l_- (G12-L1 structure;
 diagonalizable including the double family: S and H are independent
@@ -242,6 +253,15 @@ COST-CLAIM VERDICT (the S14 open question this doc answers):
    SYMBOLIC BRICK (not built, declared): the degeneracy locus of the
    reflection solve == glancing locus, at abstract EOS — X-G12-class
    carrier, seconds-scale, would make (T2) machine-verified.
+   [EXECUTED 2026-08-05 (reopened segment): [T-U2RG] with carrier
+   [X-U2RG] (suite group (xiii)), VERDICT PASS 8/8 — with a
+   DISCOVERY correcting the candidate's own conjecture: the
+   degeneracy locus is NOT glancing (glancing at slip is impossible,
+   P1) but the TOTAL-SONIC line q = c (P3); slip-hypothesis
+   necessity exhibited by counterexample (off-slip glancing state,
+   R2). (T2) is now machine-verified at abstract EOS with reduced
+   hypothesis inputs; the remaining U2 residue is only the composed
+   ESTIMATE bookkeeping inside U3/U4.]
  - U3 (fronts) and U4 (composition): untouched, as scoped.
  - U5 / -c: untouched, priced research-grade, lead unchanged
    (Bressan-Guerra/Ulbrich + Breitkopf-Ulbrich arXiv:2509.22076,

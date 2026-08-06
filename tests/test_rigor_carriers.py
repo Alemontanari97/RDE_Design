@@ -35,6 +35,7 @@ CARRIERS = [
     ('X-5F',  'validation/n6_fivefield_adjoint.py'),
     ('X-SLRW', 'validation/side_load_rotating_lemma.py'),
     ('X-XBVP', 'validation/xbvp_entropy_transfer.py'),
+    ('X-U2RG', 'validation/u2_reflection_glancing.py'),
 ]
 
 VERDICT_LINE = 'VERDICT: PASS'
