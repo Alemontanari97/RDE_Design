@@ -150,6 +150,13 @@ gap, within this class, reduces to the two named conditionals:
      oracles as its falsifiers. The circularity is BROKEN: Lemma B's
      honesty clause no longer points at an open frontier but at a
      stated continuum theorem.
+     [WRITTEN, dated 2026-08-06 (S16 T4b, [S-LBML] docs/
+     rde_nozzle_LBML.md): the five-step Lax-equivalence argument is
+     executed at written level — stability = the D2.5-U five-constant
+     machinery (U1-U4 written), front step = the S16 bordered-solve
+     bricks (U3-L1/U3-H1); clauses LB-c1 (regularity for the h^2
+     rate, self-monitoring via O3.2) and LB-c2 (fixed topology)
+     declared.]
 
 Falsifiers: (F1) carrier rejectors (§2); (F2) O3.3-class numeric — FD
 shape gradient vs AD gradient at a fitted-shock case (A1 engine): a

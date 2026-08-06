@@ -207,6 +207,14 @@ the dual norm is inherited (finite-dimensional transpose, exact);
 whose continuum limit is nonsingular (certified s_min) — front-shift
 convergence at the same order. FALSIFIERS: O3.2 (order), O3.3 (term
 match), F2 of G12-S1 (FD-vs-AD at fitted shocks).
+[S-LBML STATUS, S16 2026-08-06: WRITTEN — docs/rde_nozzle_LBML.md
+(the five steps executed at written level; stability constants =
+the D2.5-U five-constant machinery with U1-U4 now all written;
+discrete front solve invertible for h <= h_0 by U3-L1/U3-H1). Two
+clauses surfaced and declared: LB-c1 (interior C^3 along
+characteristics for the h^2 RATE — self-monitoring via O3.2) and
+LB-c2 (fixed march topology = S-D25U-U34 c2, RK-G companion).
+Registry S-LBML entry upgraded.]
 
 ------------------------------------------------------------------------------
 ## §4 SECOND-ORDER (one honest paragraph)

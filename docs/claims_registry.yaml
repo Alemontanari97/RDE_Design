@@ -614,11 +614,11 @@ entries:
 - id: S-LBML
   kind: schema
   class: SCHEMA
-  scope: "Lemma-B mesh limit; Lax-equivalence route (i)-(v) named; the G12 frontier"
-  statement: "The discrete fitted-AD gradient converges at order h^2 to the continuum shift-derivative of G12-S1 on certified references — architecture named, not written."
-  doc: "docs/rde_nozzle_remaining_conditionals.md#§3 LEMMA-B MESH LIMIT"
-  proof: "docs/rde_nozzle_P2_lemmaB.md#§4.5 The mesh limit"
-  inherits: ["C-D25U"]
+  scope: "Lemma-B mesh limit; Lax-equivalence route (i)-(v) WRITTEN S16 2026-08-06 (docs/rde_nozzle_LBML.md): consistency (tangent, h^2 under the LB-c1 interior-regularity clause), stability with the D2.5-U five-constant machinery (U1-U4 consumed; discrete front solve invertible for h <= h_0 by U3-L1/U3-H1), Lax equivalence on the tangent, exact transpose (T-LEMB, O3.1), front-shift convergence; fixed march topology (LB-c2 = S-D25U-U34 c2, RK-G companion)"
+  statement: "On a certified reference at fixed front topology the discrete fitted-AD tangent converges to the continuum shift-derivative of G12-S1 — order h^2 under LB-c1 (C^3 along characteristics on smooth regions; without it convergence survives, the rate de-rates) — and the discrete gradient converges in the dual pairing at the same order (exact finite-dim transpose loses nothing); the O3.2 oracle measures the actual order, making LB-c1 self-monitoring."
+  doc: "docs/rde_nozzle_LBML.md#§2 The five steps, written"
+  proof: "docs/rde_nozzle_LBML.md#§2 The five steps, written"
+  inherits: ["C-D25U", "C-MAJDA"]
   carrier: []
   suffices_symbolic: "no"
   falsifier: "O3.2 order check, O3.3 term match, F2 FD-vs-AD at fitted shocks"
