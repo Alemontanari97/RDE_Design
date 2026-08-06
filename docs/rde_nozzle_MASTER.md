@@ -1138,6 +1138,45 @@ transversality imposed through the dJ/dSigma gradient, never a
 hard-coded outer loop — is the NEXT A1 brick; the G0 loop-speed
 falsifier stays armed (production-scale march not re-adjudicated).
 
+A1 BRICK 2 OF RECORD (2026-08-06, [F2/A1], sessions S17-S18;
+work-layer; registry [X-TOCV], policy [DIR-RKG]; logs S17 steps 4-11
++ S18 steps 3-7): the VARIATIONAL TOC ROAD EXISTS END-TO-END and is
+certified. The specified-wall TOC march (design vector W = attachment
+angle theta_B + clamped-spline wall nodes; arc-kernel geometry rtu/
+rtd as fixed inputs, GENO-twin contract) is recorded adaptively with
+per-cell Newton certification AND the per-cell AXIAL-MARGIN rejector
+(u_x - c > floor — the x-as-time causality the L-DoD truncation
+lemma requires; instance floor delta = min_margin(base)/K_RICH =
+0.1202 m/s on the reduced twin case), replayed by the bucketed
+whole-loop-jit production engine (bit-level equivalence to the
+certified replay; O3.1 transpose identity = the Lemma-B guarantee,
+executably), and optimized by scipy trust-constr under the RK-G
+segmentation policy with measured Jacobi scaling + a measured full
+Hessian at every segment base (freshly measured per stratum — no
+curvature carry-over, DIR-RKG-conformant). VERDICT OF RECORD
+(reduced twin case, C^1 quintic closure primary): from a 1.5%
+PERTURBED start the optimizer RECOVERS AND EXCEEDS the
+GENO-projected seed (J* = 2.7761688e+07, +1.06e+04) and reaches
+in-stratum stationarity KKT = 7.745e-02 <= derived gtol 1.156e-01 —
+the TRANSVERSALITY INSTANCE: the Rao optimality conditions REACHED
+VIA THE GRADIENT, never imposed by an outer loop; the optimum
+contour agrees with the INDEPENDENT classical route (GENO type-2
+Mrao/eps bisection) at 91/91 samples inside the derived cross-code
+band (GENO cross-resolution + spline-class representation +
+reference-resampling terms, neighborhood-enveloped; max|dy| =
+1.861e-03, median err/band 0.102), with the N3 wrong-design
+discriminator firing. DECLARED GOVERNANCE RESIDUE: the T2
+practicality falsifier FIRED on the twin case (121.6 s vs 35.9 s;
+decomposition = curvature measurement + RK-G re-record cost, NOT
+language throughput — T1 = 1.593 and T2a = 0.116 s vs 1.197 s both
+PASS with margin) => G0 re-decision review queued per the D6 flip
+clause; named levers for scale: second-order implicit rules (exact
+Hessian-vector products), colored/sparse FD Hessians, benign-flip
+refinement of DIR-RKG (each a declared future brick, none executed
+silently). CONSEQUENCE: D6 item 9 CLOSES; **O3.3 IS UNLOCKED** (the
+pre-registered bench protocol P2_outline §5, untouched, becomes
+executable against this engine — P-2's numeric half).
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

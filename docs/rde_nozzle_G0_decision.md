@@ -157,6 +157,18 @@ third route (beyond GENO) if a differentiation cross-check is ever needed.
   CLAUSE adjudication: NOT triggered — the failure is dispatch-
   overhead class while the theorem-relevant T1 passes; the flip
   re-arms if T1 or post-remediation T2a fails on a clean host.]
+  [Dated note 2026-08-06, S18 — REMEDIATION EXECUTED, T2a RE-RUN
+  PASS, PRODUCTION GATE OPEN: the single-bucket-per-phase padded
+  scans + whole-loop jit landed (make_run_scan_jit in the X-SCANM
+  module; safe-where guard with a certification-verified recorded
+  dummy cell; equivalence to the certified replay at 6.2e-15 =
+  Newton-floor bit-level; O3.1 on the jit path 4.9e-11 = the
+  NaN-leak detector, clean). Clean-host re-measurement (X-LSG0):
+  t_solve 0.116 s (was 39.8 as-implemented), t_grad 0.185 s,
+  grad/solve 1.593 <= 4 (T1 PASS), t_GENO 0.299 s, T2a 0.116 <=
+  1.197 s PASS. The production gate CLOSED at the S17 note above is
+  hereby OPEN of record; a future T2a failure on this path would be
+  STRUCTURAL and triggers the flip clause directly.]
 - JULIA/ENZYME NOT BENCHMARKED on this host: the "JAX over Julia" verdict
   rests on JAX being EXERCISED and Julia not, plus interop/ecosystem fit —
   not on a head-to-head speed number. Stated plainly.

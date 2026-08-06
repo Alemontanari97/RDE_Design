@@ -486,6 +486,61 @@ j+i = const; datacenter-FP64 only) on numbers -> P6 declarative
 constraint sets. Wavefront note: record stays sequential (decisions
 are concrete by construction); only the replay wavefronts.
 
+[EXECUTION STATUS, dated 2026-08-06 S18 (log
+validation/PROGRESS_2026-08-06_S18_brick2run.md):
+ P1 EXECUTED — while_loop on the certification metric, damping
+    retained, cap 30; X-SCANM gate RE-PASSED (equivalence 8.9e-16
+    unchanged, O3.1 1.0e-08 vs 5.0e-08).
+ P2 EXECUTED — make_run_scan_jit: three padded scan modules (fan/
+    arc/straightening) in ONE whole-loop jit; safe-where guard with
+    an EXACT recorded dummy cell, certification-verified at build
+    time (no gradient path to the design vector); bucketed jit ==
+    python replay at 6.2e-15; whole-loop compile 4.9 s (the S17
+    module-blowup fear resolved by the 3-module design); O3.1/jit
+    4.9e-11 = the NaN-leak detector, clean. T2a RE-RUN clean-host
+    PASS: t_solve 0.116 s (was 39.8), t_grad 0.185 s, grad/solve
+    1.593, T2a 0.116 <= 1.197 s => THE PRODUCTION GATE IS OPEN
+    (G0_decision.md §4 dated note; a future T2a failure on this
+    path is STRUCTURAL = flip clause).
+ P3 EXECUTED — two-track wiring on the brick carrier: [X-THC1]
+    quintic = the brick PRIMARY closure (record + replay share one
+    closure and one solver set per run); GENO twin regression stays
+    on 'nasa' linear. GATE (declared flow-level: the wall geometry
+    of a specified-wall march is resolution-independent, so the C5
+    contour reading is vacuous — the closure shows in the wall
+    SPEED profile): max|u_c1 - u_lin| = 1.0e-07 vs the 5.7e-01
+    two-resolution Richardson band (0/98 out) — seven orders
+    sub-resolution.
+ P4-margin SHARPENED — margin_floor parameter on the record
+    rejector; DECLARED INSTANCE FLOOR delta_inst =
+    min_margin(base)/K_RICH (reused two-level constant) audited on
+    every converged design; instance value 0.4809/4 = 0.1202 m/s —
+    the L-DoD uniform-margin hypothesis now carries an executable
+    instance constant.
+ opt-run EXECUTED, VERDICT PASS (S18 log step 7; brick 2 CLOSED,
+    O3.3 unlocked): TR-SQP under DIR-RKG converged from a 1.5%
+    perturbed start to KKT 7.7e-02 (transversality instance),
+    oracle 91/91 in the derived cross-code band, T2 falsifier
+    FIRED (G0 review queued). DRIVER FINDINGS of record (each from
+    a declared failed attempt): wall-search flips ~1/accepted step
+    => segments are single-step and EXTERNAL curvature is mandatory
+    (fresh-BFGS is policy-bound): measured Jacobi scaling
+    (kappa_diag 5.4, stiff direction thB) + measured FULL Hessian
+    per segment base (R-3 activated on numbers; n+1 forward
+    differences of the exact adjoint gradient, frozen per segment);
+    xtol-with-KKT-open = stale-model collapse => fresh-segment
+    continuation. ORACLE-BAND constructions of record: GENO
+    cross-resolution term + spline-class representation term
+    (pre-registered) + reference-resampling term + neighborhood
+    envelope (both cause-verified by diagnostics — estimator zero
+    crossings; the pointwise-|proxy| pathology is now named).
+ P5 SCALE LEVERS (named, none executed): second-order implicit
+    rules for exact Hessian-vector products (custom_vjp cells are
+    first-order today — the true SOTA path at large n);
+    colored/sparse FD Hessians (banded spline structure, CPR);
+    benign-flip refinement of DIR-RKG (formal policy amendment
+    required). P6 unchanged.]
+
 ------------------------------------------------------------------------------
 ## §5 Registry deltas (S17 kickoff)
 

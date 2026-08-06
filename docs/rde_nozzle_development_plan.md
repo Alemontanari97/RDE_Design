@@ -436,6 +436,22 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     brick; preprint decision re-presented to the user, lock
     unchanged). Any further deferral would need a NEW explicit user
     order with RK-A re-weighed.
+    CLOSED 2026-08-06 (S18 log steps 3-7, M0 Part VI "A1 BRICK 2 OF
+    RECORD"): production levers P1-P4 executed with gates re-passed
+    (T2a production gate OPEN, 343x), end-to-end OPT run of record
+    PASS — transversality instance KKT 7.7e-02 <= derived tol, oracle
+    91/91 in the derived cross-code band, P4 margin floor audit,
+    re-record accounting per DIR-RKG. **O3.3 UNLOCKED** (next
+    session: the pre-registered O3.2/O3.3 campaign = P-2's numeric
+    half). GOVERNANCE RESIDUE of record: T2 practicality falsifier
+    FIRED on the twin case (decomposition = curvature + re-record
+    cost; T1/T2a pass with margin) => **G0 RE-DECISION REVIEW
+    QUEUED** per the flip clause below (a review of the T2 anchor
+    semantics at production scale with the measured evidence, NOT a
+    silent acceptance and NOT an automatic language flip — the
+    measured failure is not language-throughput); named scale levers
+    in the kickoff doc (2nd-order implicit rules, colored Hessians,
+    benign-flip policy refinement).
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF
