@@ -372,21 +372,39 @@ def make_implicit_solver(resid_fn):
 
     @jax.jit
     def newton(z0, p, ta):
-        # lax.fori_loop: ONE iteration body compiled, N_NEWTON runtime
-        # trips (an unrolled damped loop makes XLA compile times
-        # explode — measured in-session).
+        # lax.while_loop on the CERTIFICATION METRIC (S18, kickoff doc
+        # §5bis R-1 amendment of record): terminate when the undamped
+        # Newton step at the current iterate — exactly the per-cell
+        # certification metric — falls below the certification bound
+        # NEWTON_TOL_FACTOR * eps * scale(z), capped at N_NEWTON trips.
+        # Damping RETAINED (bad trial points keep full robustness);
+        # base-point replays exit in O(1) trips. Licit because solve is
+        # custom_vjp: AD NEVER traces this primal loop (while_loop has
+        # no reverse rule — the implicit rule is the transpose).
         tvec = jnp.array(TRIALS)
 
-        def body(_, z):
+        def cond(carry):
+            z, it, step = carry
+            sc = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
+            return jnp.logical_and(
+                it < N_NEWTON, step > NEWTON_TOL_FACTOR * EPS * sc)
+
+        def body(carry):
+            z, it, _ = carry
             r = resid_fn(z, p, ta)
             Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
             dz = jnp.linalg.solve(Jz, r)
             dz = jnp.where(jnp.isnan(dz), 0.0, dz)
             cands = z[None, :] - tvec[:, None] * dz[None, :]
             norms = jax.vmap(lambda zc: _norm(zc, p, ta))(cands)
-            return cands[jnp.argmin(norms)]
+            # metric = the size of the (undamped) Newton step at z —
+            # the same quantity step_norm certifies post-hoc.
+            return (cands[jnp.argmin(norms)], it + 1,
+                    jnp.max(jnp.abs(dz)))
 
-        return jax.lax.fori_loop(0, N_NEWTON, body, z0)
+        z, _, _ = jax.lax.while_loop(
+            cond, body, (z0, jnp.array(0), jnp.array(jnp.inf)))
+        return z
 
     @jax.jit
     def bwd_solve(z, p, ta, zbar):
