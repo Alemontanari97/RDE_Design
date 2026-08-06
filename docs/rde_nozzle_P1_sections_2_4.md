@@ -385,9 +385,15 @@ anchors for the habit, with their verification level (D2 §b1 rows):
 Li-Xu-Huang JPP 38(5):849-865 (2022), doi:10.2514/1.B38539 — "Nozzle
 Design for Rotating Detonation Engine", Rui Li, Jinglei Xu, Shuai
 Huang (metadata + the +11.3/27.6% abstract figures VERIFIED
-2026-08-05, Crossref + AIAA dual route; the method characterization
-"MOC + maximum-thrust theory ON a time-averaged exit state" remains
-content-read grade, page-verify pending); Liu-Cheng-Zhang-Wang
+2026-08-05, Crossref + AIAA dual route; METHOD ATTRIBUTION
+QUARANTINED same day, user challenge #3: the former "MOC +
+maximum-thrust theory ON a time-averaged exit state" is unsupported
+at verifiable-abstract level — the verified fragment supports a
+quasi-2-D area-variational-source-term simulation procedure with a
+parametric thrust optimum; as an average-then-design anchor this
+paper is PENDING page-verify, and the habit's citable support
+currently rests on O-H 2007 (page-verified, PDE), Liu 2022 (axiom
+verbatim, row grade) and Harroun 2021 (row grade)); Liu-Cheng-Zhang-Wang
 AST 120:107300 (2022) — states the design axiom verbatim
 ("time-averaged quantities are reasonable for design"; quotation
 level per D2 row, page-verify PENDING); Harroun-Heister-Ruf JPP

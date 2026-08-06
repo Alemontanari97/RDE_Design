@@ -53,7 +53,7 @@ LENGTH multiplier (f₃ = cot φ).
 | Claim map "Rung 2 all NEW" | SURVIVES query-bounded — b2 landed: the per-phase brick exists at full generality (Kraiko 1982/1994/2002/2007, all verified), the averaged wall/corner system does not; the closest artifacts are Efremov-Kraiko 2004 (bound, not shared wall) and Levin-Manuilovich-Markov 2010 (direct search, no optimality system) | mandatory citations: the four Kraiko papers, Efremov-Kraiko 2004, Levin et al. 2010 |
 | Claim map "Bridge 2↔3 O(St) NEW" | SURVIVES sharpened (D2 G10): linear O(He) correctors exist for reflection coefficients; nonlinear COMPACT map exists (Huet-Giauque) — what is new is the corrector FOR THE THRUST FUNCTIONAL at finite amplitude | reframe P4 as the two-direction extension (D2 §b6 closing) |
 | Claim map "Coupling (b) response map NEW" | SURVIVES query-bounded | none |
-| "Mo, Huang" citation | FALLS — bibliographic conflation | replace with: Mo et al. Acta Astronautica 108:92 (2015) [scramjet, nonuniform-inflow MOC]; Li-Xu-Huang JPP 38:849 (2022) [RDE, MOC on time-averaged state] |
+| "Mo, Huang" citation | FALLS — bibliographic conflation | replace with: Mo et al. Acta Astronautica 108:92 (2015) [scramjet, nonuniform-inflow MOC]; Li-Xu-Huang JPP 38:849 (2022) [RDE; method attribution "MOC on time-averaged state" QUARANTINED 2026-08-05, user challenge #3 — unsupported at abstract level, candidate residual conflation with the Mo MOC attribute; see lit map b1 row; page-verify required] |
 | S-H paper title as cited | MINOR FIX: actual title "Rotating Detonation Engine Performance Model for Rocket Applications", JSR 56(3):887-898 | fix in all docs |
 
 ## 2. Claim-by-claim verdict on `docs/mathematical_foundations_rde_nozzle.md`
