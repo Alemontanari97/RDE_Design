@@ -235,6 +235,50 @@ def build_plan(sched_d, cfg):
 # ======================================================================
 # the scan replay
 # ======================================================================
+def inlet_admissibility(pts_state, ta, rel_band, state_fn=None):
+    """THERMODYNAMIC DATA GUARD (S17, user catch of record): the
+    two-family (acoustic-only, Ch.16-twin) cells of this engine are
+    EXACT only on HOMENTHALPIC + HOMENTROPIC data — uniform total
+    enthalpy h0 AND uniform entropy s across the inlet profile; by
+    Crocco (u x omega = grad h0 - T grad s) the pair is exactly the
+    irrotationality of the S1 class. Stratified data (RDE-realistic
+    per-phase interface profiles) carries per-streamline s/h0 and
+    REQUIRES the three-family cell (streamline transport) — a NAMED
+    ENGINE EXTENSION SLOT (kickoff doc §3 note; ledger channel c3),
+    NOT something to march silently.
+
+    ADMISSIBILITY CRITERION (derived, no magic): a spread is
+    admissible iff its first-order field effect sits BELOW the
+    march's own measured resolution band rel_band (two-resolution
+    Richardson, contour-relative): sub-truncation non-uniformity is
+    indistinguishable from uniform data at the certified resolution.
+    First-order transfer: d(contour)/y ~ dq/q ~ dh0/q^2  =>
+    h0 spread bound = rel_band * q_ref^2;  dp/p ~ ds/Rg  =>
+    s spread bound = rel_band * Rg. Machine floor added for the
+    exactly-uniform case.
+
+    pts_state: (n, 4) array of per-point (T, p, u, v) PRIMITIVE data
+    (independent per-point thermo — the case-C interface contract
+    form). Returns dict(ok, spreads, bounds) — caller REJECTS on
+    not ok."""
+    Tg, hg, sg, cpg, Rg, h0_ref, s0_ref = ta
+    T, p = pts_state[:, 0], pts_state[:, 1]
+    q2 = pts_state[:, 2] ** 2 + pts_state[:, 3] ** 2
+    h = jnp.interp(T, Tg, hg)
+    s = jnp.interp(T, Tg, sg) - Rg * jnp.log(p / A1.PREF)
+    h0 = h + 0.5 * q2
+    q2ref = float(jnp.max(q2))
+    d_h0 = float(jnp.max(h0) - jnp.min(h0))
+    d_s = float(jnp.max(s) - jnp.min(s))
+    floor_h0 = 100.0 * EPS * float(jnp.max(jnp.abs(h0)))
+    floor_s = 100.0 * EPS * float(jnp.max(jnp.abs(s)))
+    b_h0 = rel_band * q2ref + floor_h0
+    b_s = rel_band * float(Rg) + floor_s
+    return dict(ok=bool(d_h0 <= b_h0 and d_s <= b_s),
+                spread_h0=d_h0, bound_h0=b_h0,
+                spread_s=d_s, bound_s=b_s)
+
+
 _SOLVER_CACHE = {}
 
 

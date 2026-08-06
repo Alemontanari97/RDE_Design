@@ -1176,6 +1176,19 @@ entries:
   falsifier: "its own checks: clean-host contention rejector, T1 bound, corrupted-timing negative control; T2a firing closes the production gate (binding remediation before production mesh)"
   gamma: "EOS-general"
 
+- id: X-TOCV
+  kind: carrier
+  class: PRACTICE
+  scope: "BRICK 2 carrier (A1 brick 2, D6 item 9); on-demand carrier (env: jax + WSL gfortran GENO binary); STAGED PASS 2026-08-06 S17 (thermo data guard admits uniform IVL at floor + REJECTS stratified data; specified-wall TOC record CERTIFIED: 4343 cells worst 1.65e-02, 98 wall pts, GENO-seeded W0 thB 18.85 deg; replay fidelity 2.7e-12 vs 5.6e-10 Newton floor; O3.1 on dJ/dW: 6.8e+01 vs derived tol 1.6e+02, corrupted-gradient N1 rejected); DESIGN RULE OF RECORD minted in-carrier: domain-of-dependence truncation (supersonic causality: cells at x > L cannot influence the wall on x <= L — columns truncate at the lip frontier, axis followed only while inside; removes the measured axis-chasing degeneracy); OPT stage (TR-SQP from perturbed start + GENO type-2 oracle + transversality instance) = the run in flight at commit time, adjudicated in the S17 log"
+  statement: "The variational-TOC engine: specified-wall direct march (adaptive record with per-cell certification + scan replay) under the RK-G policy, thrust objective J = wall pressure integral (Pa-free on the {eps, L} feasible set), dJ/dSigma by reverse-AD of the march (Lemma B) verified by O3.1, TR-SQP via scipy trust-constr in the RK-G segmentation driver; oracle = GENO nozzle_type 2 on the reduced twin case."
+  doc: "validation/a1_toc_variational_jax.py"
+  proof: "validation/a1_toc_variational_jax.py"
+  inherits: [C-D25U, C-MAJDA]
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its checks: P4 certification gate, replay-fidelity monitor, O3.1 with corrupted-gradient rejector, thermo data guard with stratified rejector; opt stage adds the GENO-contour band oracle with the N3 wrong-design discriminator"
+  gamma: "EOS-general"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK
