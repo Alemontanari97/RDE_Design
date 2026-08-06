@@ -261,6 +261,63 @@ X-LSG0; measured numbers + verdict in the S17 log, step 7; DIR-G0
 falsifier field updated; G0_decision.md §4 mirror note).
 
 ------------------------------------------------------------------------------
+## §4bis TR-SQP IMPLEMENTATION STANDARD — SOTA library survey of
+##       record (S17, standing user directive
+##       sota-library-survey-directive)
+
+Directive applied: before implementing the brick-2 optimizer, the
+open reliable implementations of TR-SQP were surveyed with current
+(2026) sources; the adoption decision and honest trade-offs are
+recorded here. This is an IMPLEMENTATION-STANDARD choice inside the
+already-adopted I5 slot machinery (D6 item 9 binds dJ/dSigma +
+TR-SQP); it mints no road verdict (PAP-RIM discipline untouched).
+
+SURVEYED (web-verified 2026-08-06):
+ - SciPy `minimize(method='trust-constr')`: Byrd-Omojokun TR-SQP for
+   equality constraints, switching to a trust-region interior-point
+   method when inequalities are present (Byrd-Hribar-Nocedal
+   lineage); mature (in SciPy since 2018, actively maintained in
+   v1.18), dense-friendly, accepts exact external gradients/Hessian
+   operators, per-iteration callback, exposed trust radius.
+ - OpenSQP (arXiv 2512.05392): modular reconfigurable Python SQP,
+   promising but young (2025) — not yet the reliability tier the
+   directive asks for.
+ - Uno / Argonot (Vanaret et al.): open C++ unified SQP framework
+   (funnel/filter/TR strategies) — heavier native dependency, no
+   added capability for a small dense problem.
+ - IPOPT/cyipopt: the open large-scale interior-point standard —
+   binary dependency, line-search interior point (not TR-SQP);
+   overkill for O(10) dense dofs and weaker fit to the RK-G radius
+   semantics.
+ - JAX ecosystem: jaxopt in maintenance mode, optimistix current for
+   unconstrained/least-squares/rootfind — NO general nonlinearly-
+   constrained SQP: not applicable as the outer engine.
+
+DECISION OF RECORD: ADOPT SciPy `trust-constr` as the brick-2 TR-SQP
+engine, wrapped in an RK-G SEGMENTATION DRIVER that enforces §1:
+objective/gradient callables evaluate the FROZEN-schedule replay
+(P1); the driver runs trust-constr in per-stratum SEGMENTS — on a
+detected re-record event (decision-vector change at an accepted
+iterate) the current run is stopped via callback, the march is
+re-recorded, and a FRESH trust-constr instance restarts warm from
+the current iterate (P2's "model rebuilt" implemented literally: no
+Hessian/multiplier carry-over across strata); monitors P3(i)/(ii)
+live in the wrapper as rejectors, P4 gates segment acceptance.
+RATIONALE: trust-region semantics are exactly the RK-G excursion
+bound; the implementation is the field's reference open TR-SQP with
+years of production hardening — hand-rolling one would be the rigor
+risk the directive exists to prevent. DECLARED trade-off: scipy's
+inner iterates are not under our control between callbacks; the RK-G
+guarantees are enforced at the evaluation boundary (every objective/
+gradient call IS a frozen-replay call — there is no way for the
+engine to see cross-stratum mixtures), which is where they are
+load-bearing. Sources: SciPy trust-constr docs + source
+(minimize_trustregion_constr), OpenSQP arXiv:2512.05392, Uno/Argonot
+(optimization-online), IPOPT docs. Hand-rolled fallback licensed
+ONLY if the segmentation driver proves incompatible in practice —
+that would be a declared deviation with its own log step.
+
+------------------------------------------------------------------------------
 ## §5 Registry deltas (S17 kickoff)
 
  [DIR-RKG]  directive, PRACTICE — the §1 policy P1-P4; falsifier as
