@@ -877,7 +877,11 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## COMPLETA; la campagna fondazioni ha esaurito la coda [RIGOR/A]
 ## nominata: ORA TOCCA ALLA RI-AGGIUDICAZIONE DEL BRICK 2)
 
-1. [PRIMA COSA — RI-AGGIUDICAZIONE RINVIO BRICK-2] Il waiver S15
+1. [FATTO 2026-08-06, S17 log passo 3 — VERDETTO: rinvio #4 SCADUTO,
+   BRICK 2 PARTITO in S17 con le duties (a)-(d) + aggiunta c4/G>0;
+   RK-A ripesato e decisione preprint ripresentata all'utente (lock
+   invariato); D6 item 9 annotato con la ri-aggiudicazione datata.]
+   [PRIMA COSA — RI-AGGIUDICAZIONE RINVIO BRICK-2] Il waiver S15
    (rinvio #4, RK-A citato, controlli compensativi i-iii) vincolava la
    ri-aggiudicazione alla FINE della campagna fondazioni: con la
    seconda tranche completa (U3/U4, a-contraction, ledger p2, G-B

@@ -426,6 +426,16 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     pre-registered; preprint decision stays armed with the user;
     re-adjudication at campaign end). The kickoff duties below are
     UNCHANGED and waiting.
+    RE-ADJUDICATED 2026-08-06 (S17 log step 3, campaign end reached —
+    S15+S16 [RIGOR/A] queue exhausted; compensating controls i-iii
+    verified held): VERDICT = deferral #4 EXPIRED, BRICK 2 STARTED in
+    S17 with the kickoff duties below binding BEFORE optimization,
+    plus the S16 addition to the THERMOTAB duty (EOS G > 0 audit on
+    the state box — ledger c4 channel). RK-A re-weighed at the same
+    step (risk grew during the waiver; mitigation resumes with the
+    brick; preprint decision re-presented to the user, lock
+    unchanged). Any further deferral would need a NEW explicit user
+    order with RK-A re-weighed.
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF
