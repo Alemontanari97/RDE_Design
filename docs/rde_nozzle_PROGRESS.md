@@ -813,10 +813,18 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 2. [FATTO 2026-08-05, log passo 15] U2 brick ESEGUITO ([T-U2RG],
    b2610d1: no-glancing a slip + locus sonico + R chiuso). RESTANO di
    questa voce: U3/U4 (composizione, costo bounded); attacco
-   a-contraction a C-MAJDA/U3; census lemma settori (sblocca il
-   torneo, card 4; pin utente O1/O2); lemma G-B ergodico o de-rate;
-   S-LBML; acquisizioni -> G5 (+ Li-Yu page anchors, + query di
-   novità T-XWALL, + page-verify Liu 2022/Harroun 2021 dal passo 13).
+   a-contraction a C-MAJDA/U3; lemma G-B ergodico o de-rate; S-LBML;
+   acquisizioni -> G5 (+ Li-Yu page anchors, + query di novità
+   T-XWALL, + page-verify Liu 2022/Harroun 2021/L-X-H 2022 dai passi
+   13/19).
+   [AGGIORNAMENTO 2026-08-06, log passo 20 — CENSIMENTO COMPLETO:
+   la sessione censimento è chiusa con TUTTI i pin utente decisi
+   2026-08-02 (advisory §7pin + memoria topology-census-pins: cono
+   su Omega/Chenais; O1 PERMISSIVA; O10 NONBLOCK+; O11 Lambda =
+   cerchi di labbro; O2/O9 dissolti). La sessione census-lemma
+   (lemma + emendamenti D2.1/D2.6 + C1/C2/C3 + prove CEN-O4/O5 +
+   carrier + registro) è IN CODA DOPO IL BRICK 2 per sequenza decisa
+   dal censimento; ratifica advisory = lock utente.]
 3. [FATTO 2026-08-05, log passo 16] MATTONE SUBSTRATO ESEGUITO
    ([X-IVXC] PASS + [T-XRED], ab7725b: C-XBVP(a) scaricata a
    istanza; Card 1 eseguita). RESTANO: head-to-head SOS (gate env:

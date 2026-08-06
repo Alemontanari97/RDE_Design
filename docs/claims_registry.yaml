@@ -640,7 +640,7 @@ entries:
 - id: J-OP11
   kind: conjecture
   class: CONJECTURE
-  scope: "contour level; the duty split is NOT expressible at eps level (proven); falsifier depends on the sector tournament, itself blocked on the census lemma (finiteness + definition class — global-maximum dossier Card 4; census advisory conditional O1/O2/O3/O9) [dependency declared 2026-08-05, D8 §8 residue s4]"
+  scope: "contour level; the duty split is NOT expressible at eps level (proven); falsifier depends on the sector tournament, itself blocked on the census lemma (finiteness + definition class — global-maximum dossier Card 4) [dependency declared 2026-08-05, D8 §8 residue s4; UPDATE 2026-08-06: census pins ALL DECIDED 2026-08-02 (advisory §7pin: O1 permissive, O10 NONBLOCK+, O11 lip circles; O2/O9 dissolved by the Omega cone-carrier pin) — the census-lemma session (queued after brick 2) is the remaining blocker, no longer the pins]"
   statement: "The operating measure selects the optimal topology of S*(c) at contour level, with duty-split regions at tight length + large spread."
   doc: "docs/rde_nozzle_theorem_ledger.md#10quater"
   proof: "docs/rde_nozzle_MASTER.md#EPS-LEVEL INSTANCE"

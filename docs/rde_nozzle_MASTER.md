@@ -208,6 +208,13 @@ point O1, sibling carrier question O9
 PIN + census-lemma session required (PROGRESS NEXT: "decisioni A_gen
 (utente)"); until pinned, no sector-count or D-family claim may
 silently assume a reading.]
+[PINS SINCE DECIDED — note added 2026-08-06: the census thread closed
+with ALL pins decided 2026-08-02 (advisory §7pin + memory bridge
+topology-census-pins): CEN-O1 = PERMISSIVE (bare annulus in;
+detached members via anchor classes/strut bands/tournament filter).
+The D2.1/D2.6 amendments the pins imply are QUEUED to the
+census-lemma rigor session (after brick 2, census sequencing) — this
+note is a state pointer, not the amendment.]
 [SECTOR-FINITENESS STATUS, dated 2026-08-05 (D8 §8 residue s6,
 second lens): "FINITE" here carries NO declared rigor class at this
 site of record. Current grounds: problem book §5 sector decomposition
@@ -216,6 +223,13 @@ site of record. Current grounds: problem book §5 sector decomposition
 validation/PANEL_topology_census_2026-07-22.md §3 — ADVISORY, not of
 record). Class label + proof owed to the census-lemma session
 (global-maximum dossier Card 4; PROGRESS NEXT).]
+[SINCE 2026-08-06: the counting theorem's pin-conditionals are now
+DECIDED (census §7pin, 2026-08-02): O1 permissive, O10 NONBLOCK+,
+O11 lip circles; the old O2/O9 are DISSOLVED by the Omega-side
+Chenais cone-carrier pin. Headline of the advisory: the classical
+taxonomy collapses to ONE clopen sector S0 + the detached family
+D(m,n); P(h)/BR empty. Still ADVISORY until the census-lemma session
+promotes it (ratification = user lock).]
 STATE (mu-a.e. xi): the unique S1 solution U_xi of steady Euler in
 E \ S with data s(xi), slip walls, supersonic outflow; S1 membership
 certified a posteriori (boundary-function margin >= delta_S1 > 0
@@ -656,6 +670,13 @@ class-boundary/ceiling object). This corollary is hereby
 O2-CONDITIONAL as an IN-CLASS attainment statement; as a bound
 statement (ideal-as-bound discipline) it is unaffected. Pin owed to
 the census-lemma session.]
+[SINCE 2026-08-06: the O2 question is DISSOLVED at pin level — the
+Omega-side Chenais cone-carrier pin (census §7pin, 2026-08-02)
+places tangent tips / sharp TEs IN class: the full-spike M1 witness
+is admissible under the pinned carrier. The in-record proof (cone
+condition on the fluid side at an axis-closing tip) lands with the
+census-lemma session; until then the attainment statement is
+pin-decided, record-proof pending.]
 [T-OP11e] EPS-LEVEL INSTANCE OF RECORD (2026-07-16, [F1/OP-11-eps];
 src/thrust/phase_diagram.py + rejector tests + data/phase_diagram.json
 + figs/phase_diagram_op11.png; full statement D3 §10quater). The OP-11
