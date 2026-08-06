@@ -53,7 +53,22 @@ chiusura = (questo). Lint (xv) verde a ogni commit (107 voci).
   (24/24): 0 SCARICATE / 6 INDEBOLITE / 5 NECESSARIE tutte con
   controesempio citato (H-A1/H-A2 ora MACHINE-EXHIBITED da X-SLRW) /
   13 PREZZATE con canale eseguibile. Target di passata 2 nominati.
-- **[RIGOR/A] T2 — SWEEP SECONDA LENTE: PARZIALE (muro di usage)**:
+- **[RIGOR/A] T2 — SWEEP SECONDA LENTE: COMPLETATO (riapertura
+  2026-08-05, log passi 13-14, commit b1b088b + 1f51da2)**: resume da
+  cache 12/12 agenti 0 errori; 27/27 item aggiudicati a doppia lente
+  (2 via arbitro): 22 CONFIRMED con fix structure/status ESEGUITI
+  (M0 ×8 incl. pin-pending quantificatore attaccamento + status
+  finitezza settori + M1-witness O2-condizionale; D4 ×2; D5; registro
+  ×9; P3; ledger; D8 §6 ×2 senza adjudicazione; D6 ×2 incl. item 16
+  gruppo (xvii) PROPOSTO; side_load), 4 ALREADY-FIXED, 1 IOU nominata
+  (C-N2 al kickoff PB-2). Il residuo a lente singola di D8 §8 è
+  CHIUSO; debiti restanti = le IOU dichiarate dentro i fix (pin
+  census O1/O2 all'utente, C-N2, meccanizzazione (xvii)) + gli angoli
+  di esplorazione mai eseguiti. IN PIÙ (passo 13, sfida utente di
+  record): claim "average-then-design" DELIMITATO in P-1 §4.5 con le
+  àncore RDE nominate a livello di verifica graduato + duty di
+  acquisizione (page-verify Liu 2022 + Harroun 2021).
+  [Stato precedente del punto:] PARZIALE (muro di usage):
   workflow canonico wf_c0bbb1d8-f73 (5 batch, 27 item, 2 lenti +
   arbitro) fermato dal limite account a 3/14 agenti; journal cache
   MONOTONA, zero perdite, evento dichiarato (log passo 10). HARVEST:
@@ -773,12 +788,10 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## NEXT (aggiornato 2026-08-05, chiusura S15 — campagna in corso,
 ## SECONDA TRANCHE)
 
-1. [RIGOR/A — T2 resume, PRIMO] Resume del workflow seconda-lente
-   wf_c0bbb1d8-f73 DOPO il reset usage (11am NY): stessa scriptPath +
-   resumeFromRunId (log S15 passo 10) — la cache journal rigioca i 3
-   agenti completati; poi esecuzione dei soli fix confermati a doppia
-   lente (structure/status) e chiusura del residuo D8 §8 (24/27 item
-   ancora aperti; lensB:B1 in cache, non di record).
+1. [FATTO 2026-08-05, log passi 13-14] T2 resume ESEGUITO: 27/27
+   aggiudicati, 21 fix eseguiti, residuo D8 §8 CHIUSO (commit
+   1f51da2). Debiti nuovi nominati dentro i fix: pin census O1/O2
+   (utente), C-N2 (kickoff PB-2), meccanizzazione gruppo (xvii).
 2. [RIGOR/A — registro aperto, depth-first] U2 lemma standalone di
    riflessione (mattone simbolico candidato: degenerazione del solve
    == glancing, stile X-G12) + U3/U4 (composizione: costo bounded,
