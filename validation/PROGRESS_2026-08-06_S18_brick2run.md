@@ -1,0 +1,37 @@
+# S18 — Total-order session log (2026-08-06; PRODUCTION CODE + END-TO-
+# END RUN — BRICK 2 CLOSURE)
+
+Session: S18, per the S17 step-12 handoff and PROGRESS NEXT-1 of
+2026-08-06. Mandate (user order, this session's header): (1) S10+
+opening; (2) pre-execution GATE; (3) the AMENDED PRODUCTION LEVERS of
+the S17 adversarial pass (kickoff doc §5bis), each with its rejector
+gate: P1 while-loop Newton on the certification metric (damping
+retained, cap 30; licit because custom_vjp shields the primal loop
+from AD) gated on X-SCANM equivalence RE-PASS; P2 bucket-per-phase +
+whole-loop jit with the SAFE-WHERE guard (where-NaN-gradient trap
+declared §5bis; dummy cells on a fixed problem with NO gradient path
+to W) gated on the T2a clean-host RE-RUN (X-LSG0 — the PRODUCTION
+GATE stays CLOSED until it passes; O3.1 = leak detector); P3
+two-track C^1 closure (X-THC1 primary for the brick, linear 'nasa'
+for the GENO twin; record and replay share one closure) gated on the
+X-THC1 C5 band; P4 axial-margin rejector sharpening (instance floor
+delta from the certified base design's min_margin, not just > 0).
+THEN the end-to-end [X-TOCV] OPT run (S17 attempt died OOM on the
+unjitted path — infrastructure, not method; NO inherited numbers,
+R5): perturbed start -> TR-SQP (RK-G driver on trust-constr,
+source-verified semantics) -> GENO type-2 contour oracle in the
+double-resolution Richardson band + N3 -> transversality instance
+(KKT + multiplier reading: eps = implicit p_a vs corner combination).
+Mandatory run improvements: unbuffered output (verbose trust-constr +
+tee to file), margin audit on the final design, T2 evaluated with the
+MEASURED N_TR (constants in X-LSG0). Brick-2 Verdict + R4 same
+session (kickoff doc + M0/D6 delta) -> UNLOCKS O3.3 (pre-registered
+protocol P2_outline §5, intact; the O3.2/O3.3 campaign is the NEXT
+session, P-2's numeric half). Bench items (B1 interval s_L, C-XBVP(b),
+g-scan B3, GBE concavity) ONLY if budget survives the brick; NO
+census-lemma, NO PAP-RIM (queued after, relative order decided then).
+
+| # | Step |
+|---|------|
+| 1 | SESSION OPEN: HEAD = eae6bce (S17 closed at total order 1-12), branch rde-nozzle-program, no foreign commits, single-session rule verified. Tree state declared: known untracked unchanged (GENO/, literature/, ADR + census advisories, user mailmap artifacts, stray user files) — none touched. S10+ opening executed in full: project memory (MANDATORY five read: s17-brick2-kickoff — duties (a)-(d) ALL DONE with carriers, do-not-redo honored, NEXT-1 = this production mini-session then the run; moc-critical-independent-invariants — GENO is not gospel, critical list of mirrored quirks, truth rests on GENO-independent invariants (per-cell Newton certification, O3.1 transpose exactness, X-THC1 structural invariants, margin rejector); sota-library-survey-directive — survey + read-the-source + toolchain currency for EVERY complex step; general-vision-nondivergence — program picture at every fork; s15-foundations-campaign — campaign items do-not-redo; plus python-env-cantera for the live env). L0 = SCAFFOLD §1 read (six layers + registry; anchor = (P) of D2.6). claims_registry.yaml lint-verified LIVE this session: 122 entries parsed, 0 violations, 3 rejectors REJECTED (PASS) — matches the S17 closure count. D6 read (item 9 = brick STARTED annotation of record, duties bundled and executed S17). PROGRESS ORA (S17 block) + NEXT (NEXT-1 = this session) read. S17 log read COMPLETE (steps 1-12, incl. step 11 adversarial harvest). Kickoff doc docs/rde_nozzle_brick2_kickoff.md read ENTIRE (§5bis = this session's plan; adopted sequence P1 -> P2 -> P3 -> measure -> P4/P5 on numbers -> P6). ENV verified live: numpy 2.5.1, jax 0.11.0, scipy 1.18.0 (unpin of record holds); XLA persistent cache expected at TEMP/rde_jax_cache. TERMS OF REFERENCE BOUND: anchor (P) of D2.6; winner = closures NEVER hardware; novelty query-bounded; S14/S15/S16/S17 verdicts NOT re-litigated (incl. re-adjudication, the four duties, L-DoD with uniform-margin + h_min hypotheses, the T2a gate closure); L-X-H 2022 method attribution in quarantine; no numbers without committed carrier + rejector; R5: the S17 dead-run numbers DO NOT EXIST; R4 same session; one commit per task, path-limited, git log -3 + status before, hunk audit after, lint (xv) green at every commit. USER LOCKS untouched and not blocking: G5 send (time-boxed); ADR + census ratifications; literature uploads (page-verify L-X-H/Liu/Harroun); GV email; RDE dataset; PREPRINT DECISION (RK-A re-weighed S17, recommendation of record = arm the arXiv trigger when O3.3 numbers land — decision stays with the user); SDP = DECIDED (Clarabel primary, MOSEK fallback), not re-asked. |
+| 2 | GATE (pre-execution, standing directive gate-pre-esecuzione) — (A) PLAN ADHERENCE: this session = D6 item 9 (A1 brick 2, F2/A1) CLOSURE leg: the production levers P1-P4 are the ADOPTED SEQUENCE of the kickoff doc §5bis (each already adjudicated in the S17 adversarial pass — this session EXECUTES, does not re-litigate); the end-to-end OPT run is the brick's own definition (D6 item 9: dJ/dSigma + TR-SQP + (**')/corner on the assembled march); the T2a re-run closes the PRODUCTION GATE opened (closed) at S17 step 9; O3.3 unlock = D6 item 9 "UNLOCKS O3.3 = P-2's numeric half" -> next session per PROGRESS NEXT. Tags [F2/A1][PIANO/S18]. Census-lemma + PAP-RIM EXCLUDED (queued after brick 2 by user pin, order decided then); bench items conditional on budget. (B) UPSTREAM RIGOR AUDIT (points this session rests on, re-read live): (i) X-SCANM equivalence 8.9e-16 vs Newton floor 1.6e-12 + O3.1 7.2e-09 vs 4.1e-08 — the P1 gate has its of-record baseline; (ii) X-LSG0 constants of record (t_record 18.0 s, t_solve 39.8 s, t_grad 119.6 s, grad/solve 3.004 T1 PASS, t_GENO 0.286 s, T2a FAIL-as-implemented, K_prac = 4) — the T2a gate is armed with derived thresholds, nothing re-derived here; (iii) §5bis R-1 amendment: while_loop is licit ONLY because every cell is custom_vjp (AD never traces the primal loop) — damping RETAINED, cap 30; (iv) §5bis R-4 trap: jnp.where does NOT shield gradients from NaN in the masked branch — dummy cells must be a fixed well-conditioned problem with NO gradient path to W; O3.1 is the leak detector; (v) §5bis R-5: the staged X-TOCV carrier still defaults to the LINEAR closure — the P3 fix is scheduled, record and replay must share ONE closure, the GENO twin regression STAYS on 'nasa' linear (bit-level data contract); (vi) X-THC1 C5 dual-route band of record: max|dT| = 9.1e-07 K inside 1.5e-05 K — the P3 gate; (vii) margin rejector as-committed checks u_x - c > 0; the S17 sharpening note binds the P4 floor to the certified base design's min_margin (instance floor, declared); (viii) trust-constr semantics source-verified S17 (equality-only Byrd-Omojokun; callback(state) with legacy (xk, state) arity fixed; fresh BFGS per segment; status 4 = failure) — reused, not re-read; (ix) L-DoD hypotheses (uniform axial margin delta + h_min) = two D2.5-U constants — the truncation in the record path is lemma-backed; (x) O3.3 protocol PRE-REGISTERED intact (P2_outline §5): this session UNLOCKS, does not run it. DISCREPANCIES: none found against the record; the §5bis plan maps 1:1 onto this session's mandate. (C) VERDICT: **gate pre-esecuzione PASS** — proceed to P1. |
