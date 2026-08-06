@@ -1558,3 +1558,29 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "its rejectors: R1 (reversed-front feasibility = broken probe) and R2 (dead correction term); supersedable by the B1 interval certificate"
   gamma: "perfect-gas-oracle"
+
+- id: S-GBE
+  kind: schema
+  class: SCHEMA
+  scope: "ergodic transfer of the G-B geometry-free ceiling (S16 T4, [RIGOR/A]; resolves PAN-S14 PP-2 named missing lemma): fully 3-D, any topology, unsteady adiabatic inviscid slip-wall flow; declared hypotheses E1-E5 (admissibility; bounded storage; axially-sonic exhaust surface u_x >= c — load-bearing, sup infinite without it; EOS convexity d2h/ds2 = T/cp > 0; Cesaro flux limits or bracket over the limit set); EOS-general skeleton, sonic-branch closed forms + carrier = perfect-gas instance"
+  statement: "J_exact^+ <= F_env(mean interface fluxes M, E, Sigma_in), F_env = perspective of the sonic-capped ideal envelope V_env; pointwise brick GBE-L1: thrust flux <= m V_env(e/m, sigma/m) with the OP-0 sonic cap re-derived as the exact constrained sup over the axially-sonic-or-faster state set; concavity: symbolic per branch, composite numeric on the scanned box (off-box: concave-hull de-rate, ceiling loosens, lemma survives); no Birkhoff needed (finite-T Cesaro + bounded storage); on the periodic scope the ergodic wall is Jensen-looser than the per-phase wall (gap reportable)."
+  doc: "docs/rde_nozzle_GB_ergodic.md#§4 The transfer"
+  proof: "docs/rde_nozzle_GB_ergodic.md#§2 The pointwise flux lemma"
+  inherits: []
+  carrier: ["X-GBE"]
+  suffices_symbolic: "no"
+  falsifier: "carrier rejectors R1/R2; a dataset with bounded storage and axially-sonic exhaust whose measured mean thrust exceeds F_env(mean fluxes) beyond bars kills the lemma (and the admissibility of the data)"
+  gamma: "EOS-general"
+
+- id: X-GBE
+  kind: carrier
+  class: PRACTICE
+  scope: "symbolic + numeric carrier of the S-GBE envelope bricks; PASS of record 2026-08-06 (S1 supercritical Hessian identities EXACT: V_h0h0 = -W^(-3/2), det = E/(cp^2 W^2); S2 sonic-branch structure symbolic incl. Pa-part log-convexity; S3 composite perspective concave 400/400 across the seam, max scaled eig 8.7e-06 vs floor 1.5e-05; S4 envelope == OP-0 ladder closed forms worst rel 3.4e-16 at 6 NPRs incl. critical seam; R1 corrupted envelope detected 400/400; R2 uncapped rule rejected at subcritical; 2.1 s); suite group (xiii)"
+  statement: "Machine verification of the ergodic-G-B finite-dimensional bricks: capped-envelope identity against the independent tested OP-0 ladder, branch concavity (symbolic), composite concavity (numeric scan with derived FD floors), with discrimination rejectors."
+  doc: "validation/gbe_ergodic_envelope.py"
+  proof: "validation/gbe_ergodic_envelope.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors: R1 (convexified envelope must be detected) and R2 (uncapped cap rule must break the ladder cross-check)"
+  gamma: "perfect-gas-oracle"

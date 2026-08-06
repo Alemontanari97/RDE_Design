@@ -93,7 +93,12 @@ realized-orbit stationarity additionally presumes the invariant
 measure is the PHYSICAL (SRB-type) one for the observed data — a
 DECLARED hypothesis, not a theorem; 'weakest standing hypothesis'
 reads 'weakest DECLARED hypothesis', operationally subsumed by the
-running-average monitor of (2).]
+running-average monitor of (2).
+(4) UPPER WALL, dated 2026-08-06 (S16, [S-GBE]): the fallback targets
+now carry a certified geometry-free upper wall — J_exact^+ <=
+F_env(mean interface fluxes) under bounded storage + axially-sonic
+exhaust + admissibility (docs/rde_nozzle_GB_ergodic.md): the "only
+bounds ship" clause has its bound.]
 
 [D-MU] D2.3 (Operating measure and averaged objective). mu = pushforward of
 normalized cycle time under t -> xi; averaged (rung-2) objective
@@ -954,7 +959,7 @@ The flow — not the method — selects the reduction, per design point:
 | single/k-wave rotating mode | T0 steadification (exact); rung 2 averaged + O(St) bar; wave-frame implicit BVP anchor | Sigma* + full certificate; per-phase THEOREMS, bridge CONJECTURE-with-falsifier |
 | modulated / counter-rotating (RPO) | periodic BVP, unknown (Omega,T), doubly bordered adjoint; 2-D+t demonstrator | PRACTICE (space-time tracking 3-D absent) |
 | multistable mode set | per-branch optimization + CVaR/DD-DRO outer layer over the mode measure | robust Sigma*; SCHEMA/PRACTICE |
-| chaotic / mode-hopping | bounds + robust surrogates ONLY (shadowing refused: hypotheses fail across shocks) | honest refusal of certificates [S14 note, arbiter-confirmed: the ladder's upper wall (Prop. G-B) is PROVEN in the steady per-streamtube setting only — its transfer to the ergodic average [J_exact^-, J_exact^+] (targets per D2.2) is a NAMED MISSING LEMMA (Birkhoff + bounded momentum route) or the bound de-rates to SCHEMA on this row; cf. D5 Step 5(f) quasi-steady-only labeling] |
+| chaotic / mode-hopping | bounds + robust surrogates ONLY (shadowing refused: hypotheses fail across shocks) | honest refusal of certificates [S14 note, arbiter-confirmed: the ladder's upper wall (Prop. G-B) is PROVEN in the steady per-streamtube setting only — its transfer to the ergodic average [J_exact^-, J_exact^+] (targets per D2.2) is a NAMED MISSING LEMMA (Birkhoff + bounded momentum route) or the bound de-rates to SCHEMA on this row; cf. D5 Step 5(f) quasi-steady-only labeling] [RESOLVED 2026-08-06 (S16 T4, [S-GBE] docs/rde_nozzle_GB_ergodic.md, carrier X-GBE): the lemma is WRITTEN — under declared hypotheses (bounded storage; axially-sonic exhaust surface; admissibility) J_exact^+ <= F_env(mean interface fluxes), with the OP-0 sonic cap re-derived as the exact constrained sup (the axial margin is what makes a pointwise ceiling exist) and NO Birkhoff needed (finite-T Cesàro + bounded storage suffice — the named route was stronger than necessary). The upper wall's quasi-steady-only label is LIFTED; lower rungs (attainability) stay steady-setting; the ergodic wall is Jensen-looser than the per-phase wall where phases exist (gap reportable).] |
 Licensing instruments: thrust-trace flatness (distance from
 steadifiability); census refresh per accepted optimizer step (tier-flip
 detection); St_n and drift numbers from the data (D1 ⊃ D2: one Strouhal
