@@ -48,12 +48,28 @@ they are the SAME expressions on the same ta arrays (equivalence
 case); the brick engine plugs the [X-THC1] C^1 closure — same
 machinery, C^1 coefficients.
 
+P2 PRODUCTION PATH (S18, kickoff §5bis R-4 lever, T2a remediation of
+record): make_run_scan_jit builds the SINGLE-BUCKET-PER-PHASE padded
+engine — THREE lax.scan modules (fan / arc / straightening) inside
+ONE jitted function of P: no Python dispatch and no re-trace per
+evaluation. SAFE-WHERE GUARD (the declared where-NaN-gradient trap:
+the vjp of jnp.where propagates NaN from the masked branch): padded
+lanes solve a FIXED well-conditioned dummy problem taken from the
+RECORDED march itself (an exact recorded cell problem with its
+recorded solution as seed — numpy constants, NO gradient path to P),
+so both where-branches are always finite; the dummy is
+certification-VERIFIED at build time. O3.1 on this path is the leak
+detector (a masked-branch NaN would break the transpose identity).
+Equivalence to the per-column run_scan (and hence to the [X-A1IM]
+Python replay) is rejector-gated in main().
+
 ON-DEMAND CARRIER (env: jax): outside the CI tiers by declaration,
 like X-A1IM. Exit code 0 iff ALL checks pass INCLUDING the negative
 controls.
 """
 import os
 import sys
+import time
 
 import numpy as np
 import jax
@@ -477,6 +493,298 @@ def run_scan(P, tab, cfg, plan, state_fn=None, solvers=None):
 
 
 # ======================================================================
+# P2 (S18): single-bucket-per-phase padded scans + whole-loop jit —
+# the PRODUCTION replay path (spec: kickoff §5bis R-4; T2a remediation
+# of record from X-LSG0). Design notes in the module docstring.
+# ======================================================================
+def make_run_scan_jit(tab, cfg, plan, state_fn=None, solvers=None):
+    """Build the whole-loop jitted bucketed replay for a FIXED plan.
+    Returns a jitted callable P -> dict(wall_x, wall_y, Me, mdot).
+    All plan-derived arrays are numpy constants (baked into the jit,
+    stop-gradient by nature); P is the only traced input."""
+    if state_fn is None:
+        state_fn = A1.state_q
+        if solvers is None:
+            solvers = cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
+    if solvers is None:
+        raise ValueError("explicit state_fn requires explicit solvers")
+    ta = A1.tab_arrays(tab)
+    s_int = solvers["interior"][0]
+    s_axi = solvers["axis"][0]
+    s_wal = solvers["wall"][0]
+    s_leg = solvers["legge"][0]
+    s_qme = solvers["qofM"][0]
+
+    NI, Ne, da = cfg["NI"], cfg["Ne"], cfg["da_deg"] * d2r
+
+    # ---- bucket arrays (numpy constants)
+    fan = plan["fan"]
+    nmaxF = max(c["n"] for c in fan)              # 2 NI - 3
+    WF = 2 * NI - 1
+    fan_n = np.array([c["n"] for c in fan], dtype=np.int32)
+    fan_seeds = np.zeros((len(fan), nmaxF, 4))
+    for i, c in enumerate(fan):
+        fan_seeds[i, : c["n"]] = c["seeds"]
+    fan_ax = np.stack([np.asarray(c["axis_seed"]) for c in fan])
+    head_idx = np.array([NI - i for i in range(2, NI + 1)],
+                        dtype=np.int32)
+
+    arc = plan["arc"]
+    nmaxA = max(max(c["n"] for c in arc), 1)
+    WA = int(plan["j2_exit"])                     # final row count
+    arc_n = np.array([c["n"] for c in arc], dtype=np.int32)
+    arc_N = np.array([c["N"] for c in arc], dtype=np.int32)
+    arc_Nv = np.array([c["Nv"] for c in arc], dtype=np.int32)
+    arc_j2 = np.array([c["j2"] for c in arc], dtype=np.int32)
+    arc_int = np.array([c["code"] == "interp" for c in arc])
+    arc_narc = np.array([c["n_arc"] for c in arc], dtype=np.float64)
+    arc_ws = np.stack([np.asarray(c["wall_seed"]) for c in arc])
+    arc_as = np.stack([np.asarray(c["axis_seed"]) for c in arc])
+    arc_seeds = np.zeros((len(arc), nmaxA, 4))
+    for i, c in enumerate(arc):
+        if c["n"]:
+            arc_seeds[i, : c["n"]] = c["seeds"]
+    valid_idx = np.array([i for i, c in enumerate(arc)
+                          if c["code"] != "interp"], dtype=np.int32)
+
+    stra = plan["stra"]
+    nmaxS = max(c["n"] for c in stra)
+    st_n = np.array([c["n"] for c in stra], dtype=np.int32)
+    st_Ns = np.array([c["N_stop"] for c in stra], dtype=np.int32)
+    st_Nv = np.array([c["Nv"] for c in stra], dtype=np.int32)
+    st_seeds = np.zeros((len(stra), nmaxS, 4))
+    for i, c in enumerate(stra):
+        st_seeds[i, : c["n"]] = c["seeds"]
+
+    # ---- SAFE-WHERE dummy: an EXACT recorded cell problem (fan col
+    # k, cell 1: carry = its cell 0, pt2 = previous column's cell 0)
+    # with the recorded solution as seed — well-conditioned by record,
+    # certification-VERIFIED here at build time; numpy constants =>
+    # no gradient path to P through the masked branch.
+    P_DUM = np.concatenate([np.asarray(fan[-1]["seeds"][0]),
+                            np.asarray(fan[-2]["seeds"][0])])
+    Z_DUM = np.asarray(fan[-1]["seeds"][1])
+    zd = s_int(jnp.asarray(Z_DUM), jnp.asarray(P_DUM), ta)
+    stp = float(solvers["interior"][2](zd, jnp.asarray(P_DUM), ta))
+    scd = max(1.0, float(jnp.max(jnp.abs(zd))))
+    if not stp <= A1.NEWTON_TOL_FACTOR * EPS * scd:
+        raise RuntimeError("safe-where dummy cell failed certification "
+                           "(step %.3e)" % stp)
+    PAD = np.asarray(zd)
+
+    gm = tab["gammamedio"]
+    delta = 1.0
+    as_ = tab["_as"]
+    z_leg0 = np.asarray(plan["z_legge"])
+    z_qme0 = np.asarray(plan["z_qme"])
+
+    @jax.jit
+    def run(P):
+        yt, rtu, rtd, eps_ar = P[0], P[1], P[2], P[3]
+        PADj = jnp.asarray(PAD)
+        PDUMj = jnp.asarray(P_DUM)
+        ZDUMj = jnp.asarray(Z_DUM)
+
+        # ---------- IVL (identical to run_scan)
+        alpha = jnp.sqrt((1.0 + delta) / ((gm + 1.0) * rtu * yt))
+        c1 = -(gm + 1.0) * alpha / (2.0 * (3.0 + delta))
+        c2 = (gm + 1.0) * alpha**2 / (2.0 * (1.0 + delta))
+        eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
+        jj = jnp.arange(NI)
+        y_ivl = yt * (1.0 - jj / (NI - 1.0))
+        x_raw = c1 * y_ivl**2 + 0.000001
+        u_ivl = as_ * (1.0 + alpha * x_raw + c2 * y_ivl**2)
+        x_ivl = x_raw - eshift
+        ivl = jnp.stack([x_ivl, y_ivl, u_ivl, jnp.zeros(NI)], axis=1)
+
+        _, _, rho_ivl, _, _, _ = state_fn(u_ivl, ta)
+        f_m = rho_ivl * u_ivl * y_ivl
+        yy = y_ivl[::-1]
+        ff = f_m[::-1]
+        hgrid = yy[1] - yy[0]
+        w = np.ones(NI)
+        w[1:-1:2] = 4.0
+        w[2:-1:2] = 2.0
+        mdot = 2.0 * jnp.pi * hgrid / 3.0 * jnp.sum(jnp.array(w) * ff)
+
+        target = mdot / (jnp.pi * yt**2 * eps_ar)
+        qe = s_leg(jnp.asarray(z_leg0), jnp.array([target]), ta)[0]
+        Me = state_fn(qe, ta)[5]
+
+        def cell_step(carry, xsk):
+            seed, pt2, active = xsk
+            p_real = jnp.concatenate([carry, pt2])
+            p = jnp.where(active, p_real, PDUMj)
+            sd = jnp.where(active, seed, ZDUMj)
+            zc = s_int(sd, p, ta)
+            return (jnp.where(active, zc, carry),
+                    jnp.where(active, zc, PADj))
+
+        def axis_solve(seed, pt1):
+            zc = s_axi(seed, pt1, ta)
+            return jnp.array([zc[0], 0.0, zc[1], 0.0])
+
+        # ---------- FAN bucket (one scan module)
+        prevF0 = jnp.concatenate(
+            [ivl[NI - 1][None, :],
+             jnp.tile(PADj[None, :], (WF - 1, 1))], axis=0)
+        ksF = jnp.arange(nmaxF, dtype=jnp.int32)
+        rowsF = jnp.arange(WF, dtype=jnp.int32)
+
+        def fan_body(prev, xs):
+            seeds, n_i, aseed, hidx = xs
+            head = ivl[hidx]
+            act = ksF < n_i
+            last, cells = jax.lax.scan(
+                cell_step, head, (seeds, prev[:nmaxF], act))
+            ax = axis_solve(aseed, last)
+            shifted = jnp.concatenate([head[None, :], cells], axis=0)
+            if shifted.shape[0] < WF:
+                shifted = jnp.concatenate(
+                    [shifted, jnp.tile(PADj[None, :],
+                                       (WF - shifted.shape[0], 1))],
+                    axis=0)
+            newp = jnp.where((rowsF == n_i + 1)[:, None],
+                             ax[None, :], shifted)
+            return newp, None
+
+        prevF, _ = jax.lax.scan(
+            fan_body, prevF0,
+            (jnp.asarray(fan_seeds), jnp.asarray(fan_n),
+             jnp.asarray(fan_ax), jnp.asarray(head_idx)))
+
+        # ---------- ARC bucket (one scan module)
+        prevA0 = jnp.concatenate(
+            [prevF, jnp.tile(PADj[None, :], (WA - WF, 1))], axis=0)
+        ksA = jnp.arange(nmaxA, dtype=jnp.int32)
+        rowsA = jnp.arange(WA, dtype=jnp.int32)
+
+        def arc_body(carry, xs):
+            prev, flag, hasf = carry
+            (seeds, n_i, N_i, Nv_i, j2_i, wseed, aseed, isint,
+             narc) = xs
+            wall_angle = jnp.where(hasf, flag, da * narc)
+            x4 = rtd * jnp.sin(wall_angle)
+            y4 = yt + rtd * (1.0 - jnp.cos(wall_angle))
+            l0 = -x4 / (y4 - (rtd + yt))
+            pt1 = prev[Nv_i]
+            pt3 = prev[N_i - 1]
+            p_w = jnp.concatenate([pt1, pt3, jnp.stack([x4, y4, l0])])
+            zw = s_wal(wseed, p_w, ta)
+            u4 = zw[1]
+            wall_pt = jnp.stack([x4, y4, u4, l0 * u4])
+            act = ksA < n_i
+            pt2s = prev[jnp.clip(Nv_i + ksA, 0, WA - 1)]
+            last, cells = jax.lax.scan(
+                cell_step, wall_pt, (seeds, pt2s, act))
+            ax = axis_solve(aseed, last)
+            Max = state_fn(ax[2], ta)[5]
+            # interp flag update (safe-where: den = 1 on non-interp
+            # lanes so newflag is finite EVERYWHERE — the vjp of the
+            # select below would propagate a masked-branch NaN)
+            prev_ax = prev[j2_i - 1]
+            Mj2 = state_fn(jnp.sqrt(prev_ax[2]**2 + prev_ax[3]**2),
+                           ta)[5]
+            thw_i = jnp.arctan2(wall_pt[3], wall_pt[2])
+            thw_p = jnp.arctan2(prev[0][3], prev[0][2])
+            den = jnp.where(isint, Max - Mj2, 1.0)
+            newflag = (thw_i - thw_p) / den * (Me - Mj2) + thw_p
+            flag_out = jnp.where(isint, newflag, flag)
+            hasf_out = jnp.logical_or(hasf, isint)
+            cellsel = cells[jnp.clip(rowsA - Nv_i, 0, nmaxA - 1)]
+            base = jnp.where(
+                (rowsA == 0)[:, None], wall_pt[None, :],
+                jnp.where((rowsA < Nv_i)[:, None], prev,
+                          jnp.where((rowsA < Nv_i + n_i)[:, None],
+                                    cellsel,
+                                    jnp.where((rowsA == Nv_i + n_i)
+                                              [:, None],
+                                              ax[None, :],
+                                              PADj[None, :]))))
+            prev_out = jnp.where(isint, prev, base)
+            return (prev_out, flag_out, hasf_out), (wall_pt, Max)
+
+        (prevA, _, _), (wallA, MaxA) = jax.lax.scan(
+            arc_body, (prevA0, jnp.float64(0.0), jnp.array(False)),
+            (jnp.asarray(arc_seeds), jnp.asarray(arc_n),
+             jnp.asarray(arc_N), jnp.asarray(arc_Nv),
+             jnp.asarray(arc_j2), jnp.asarray(arc_ws),
+             jnp.asarray(arc_as), jnp.asarray(arc_int),
+             jnp.asarray(arc_narc)))
+        Me_ach = MaxA[-1]                        # exit attempt is last
+
+        # ---------- uniform-exit + STRAIGHTENING bucket
+        z = s_qme(jnp.asarray(z_qme0), jnp.array([Me_ach]), ta)
+        qq = z[0]
+        _, _, rexit, _, _, _ = state_fn(qq, ta)
+        ye = jnp.sqrt(mdot / (jnp.pi * rexit * qq))
+        K_pt = prevA[WA - 1]
+        xe = K_pt[0] + ye * jnp.sqrt(Me_ach**2 - 1.0)
+        dxe = (xe - K_pt[0]) / (Ne - 1.0)
+
+        def rho_th(pt):
+            q = jnp.sqrt(pt[2]**2 + pt[3]**2)
+            _, _, r, _, _, _ = state_fn(q, ta)
+            return r, jnp.arctan2(pt[3], pt[2]), q
+
+        def massflow(pa, pb):
+            ra, Aa, qa = rho_th(pa)
+            rb, Ab, qb = rho_th(pb)
+            dx = pb[0] - pa[0]
+            dy = pb[1] - pa[1]
+            fna = dy * jnp.cos(Aa) - dx * jnp.sin(Aa)
+            fnb = dy * jnp.cos(Ab) - dx * jnp.sin(Ab)
+            return jnp.pi * (ra * qa * fna * pa[1]
+                             + rb * qb * fnb * pb[1])
+
+        ksS = jnp.arange(nmaxS, dtype=jnp.int32)
+        rS = WA - 1 - ksS                        # solved row per k
+        rowsS = jnp.arange(WA, dtype=jnp.int32)
+
+        def st_body(carry, xs):
+            prev, m2 = carry
+            seeds, n_i, Nst, Nv_i = xs
+            mach_prev = prev[WA - 1]
+            mach_new = jnp.stack(
+                [mach_prev[0] + dxe,
+                 mach_prev[1] + dxe / jnp.sqrt(Me_ach**2 - 1.0),
+                 qq, 0.0 * qq])
+            m2n = m2 + massflow(mach_prev, mach_new)
+            act = ksS < n_i
+            pt2s = jnp.where((rS == Nv_i)[:, None], prev[0][None, :],
+                             prev[jnp.clip(rS - 1, 0, WA - 1)])
+            last, cells = jax.lax.scan(
+                cell_step, mach_new, (seeds, pt2s, act))
+            above = jnp.concatenate([mach_new[None, :], cells[:-1]],
+                                    axis=0)
+            dms = jnp.where(act, jax.vmap(massflow)(above, cells), 0.0)
+            mdot1 = jnp.sum(dms)
+            dm_last = dms[n_i - 1]
+            D = (mdot - (mdot1 - dm_last + m2n)) / dm_last
+            pt_above = above[n_i - 1]
+            w_pt = pt_above + D * (cells[n_i - 1] - pt_above)
+            cellsel = cells[jnp.clip(WA - 2 - rowsS, 0, nmaxS - 1)]
+            base = jnp.where(
+                (rowsS == 0)[:, None], w_pt[None, :],
+                jnp.where((rowsS <= Nst - 2)[:, None], prev,
+                          jnp.where((rowsS <= WA - 2)[:, None],
+                                    cellsel, mach_new[None, :])))
+            return (base, m2n), w_pt
+
+        (_, _), wallS = jax.lax.scan(
+            st_body, (prevA, jnp.float64(0.0)),
+            (jnp.asarray(st_seeds), jnp.asarray(st_n),
+             jnp.asarray(st_Ns), jnp.asarray(st_Nv)))
+
+        wall = jnp.concatenate([wallA[jnp.asarray(valid_idx)], wallS],
+                               axis=0)
+        return dict(wall_x=wall[:, 0], wall_y=wall[:, 1], Me=Me_ach,
+                    mdot=mdot)
+
+    return run
+
+
+# ======================================================================
 # checks
 # ======================================================================
 def check(label, ok):
@@ -557,6 +865,47 @@ def main():
     print("  [O3.1] <w,Jv> = %.10e  <J^Tw,v> = %.10e  |diff| = %.3e "
           "(tol %.3e)" % (lhs, rhs, err_dp, tol_dp))
     ok &= check("O3.1 dot-product on the scan path", err_dp <= tol_dp)
+
+    print("-- P2 production path: whole-loop jit, bucketed scans "
+          "(S18, safe-where guard) --")
+    runj = make_run_scan_jit(tab, cfg, plan)
+
+    def f_jit(Pv):
+        o = runj(Pv)
+        return jnp.concatenate([o["wall_x"], o["wall_y"],
+                                jnp.array([o["Me"]])])
+
+    t0 = time.perf_counter()
+    base_j = jax.block_until_ready(f_jit(P))
+    t_comp = time.perf_counter() - t0
+    err_j = float(jnp.max(jnp.abs(base_py - base_j)))
+    print("  first call (incl. whole-loop compile) %.1f s; "
+          "max|jit - python| = %.3e (Newton-floor tol %.3e)"
+          % (t_comp, err_j, tol_eq))
+    ok &= check("bucketed jit replay == python replay at Newton floor",
+                err_j <= tol_eq)
+
+    def dirder_j(hsc):
+        h = EPS ** (1.0 / 3.0) * hsc
+        return (f_jit(P + h * v) - f_jit(P - h * v)) / (2.0 * h)
+
+    dvj_h, dvj_h2 = dirder_j(1.0), dirder_j(0.5)
+    lhs_j = float(wv @ dvj_h2)
+    _, vjp_j = jax.vjp(f_jit, P)
+    (JTwj,) = vjp_j(wv)
+    rhs_j = float(JTwj @ v)
+    tol_dpj = A1.K_RICH * (abs(float(wv @ (dvj_h - dvj_h2)))
+                           + A1.C_FLOOR * EPS ** (2.0 / 3.0) * scale)
+    err_dpj = abs(lhs_j - rhs_j)
+    print("  [O3.1/jit] <w,Jv> = %.10e  <J^Tw,v> = %.10e  |diff| = "
+          "%.3e (tol %.3e)  [the safe-where NaN-leak detector]"
+          % (lhs_j, rhs_j, err_dpj, tol_dpj))
+    ok &= check("O3.1 on the whole-loop jit path (leak detector)",
+                err_dpj <= tol_dpj)
+    rhs_jc = float((JTwj * (1.0 + 1e-5)
+                    + 1e-5 * jnp.max(jnp.abs(JTwj))) @ v)
+    ok &= check("N3 corrupted jit vjp rejected",
+                abs(lhs_j - rhs_jc) > tol_dpj)
 
     print("-- negative controls --")
     # N1: mis-indexed plan (shift one straightening crossing row)

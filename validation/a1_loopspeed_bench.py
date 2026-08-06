@@ -35,13 +35,15 @@ processes on the host before timing; nonzero -> FAIL (measurements
 under contention are not record-grade). Timings: perf_counter,
 1 warmup + median of N_REP, jax results block_until_ready.
 
-MEASUREMENT OBJECT: the duty-(b) scan replay engine ([X-SCANM]) on
-the reduced twin case (the brick's inner loop = replay + gradient at
-fixed schedule; record cost is ALSO measured and reported — it is
-the RK-G P2 re-record cost, paid once per accepted step, not per
-evaluation). Scalar functional for the gradient = a fixed random
-projection of the contour (representative of J's structure: a
-contour functional).
+MEASUREMENT OBJECT (S18 update, P2 executed): the PRODUCTION replay
+path — the [X-SCANM] bucketed whole-loop jit engine
+(make_run_scan_jit; T2a remediation of record) on the reduced twin
+case (the brick's inner loop = replay + gradient at fixed schedule;
+record cost is ALSO measured and reported — it is the RK-G P2
+re-record cost, paid once per accepted step, not per evaluation).
+One-time compile cost reported separately. Scalar functional for the
+gradient = a fixed random projection of the contour (representative
+of J's structure: a contour functional).
 
 PRODUCTION PROJECTION (DECLARED, not a gate): measured per-cell
 replay cost x the production cell-count estimate; the T1/T2a gates
@@ -169,30 +171,41 @@ def main():
     print("  t_record = %.2f s (adaptive march, %d cells; includes "
           "one-time jit)" % (t_record, n_cells))
 
-    print("-- replay solve / gradient timings (scan engine) --")
+    print("-- replay solve / gradient timings (production engine) --")
     proj = jnp.array(np.random.default_rng(0).standard_normal(1000))
 
+    # MEASUREMENT OBJECT (S18, supersedes the S17 as-implemented
+    # measurement): the P2 PRODUCTION path — single-bucket-per-phase
+    # padded scans inside ONE whole-loop jit (SC.make_run_scan_jit,
+    # the named T2a remediation executed; equivalence + O3.1 on this
+    # path are rejector-gated in [X-SCANM]). Evaluations after warmup
+    # pay NO Python re-trace; the one-time compile cost is reported
+    # separately (not part of the per-evaluation anchor).
+    runj = SC.make_run_scan_jit(tab, cfg, plan)
+
     def scalar_f(Pv):
-        o = SC.run_scan(Pv, tab, cfg, plan)
+        o = runj(Pv)
         vec = jnp.concatenate([o["wall_x"], o["wall_y"],
                                jnp.array([o["Me"]])])
         return jnp.dot(vec, proj[: vec.shape[0]])
 
-    # MEASUREMENT OBJECT = the implementation AS IT STANDS (found
-    # in-session, both deviations declared in the S17 log): a whole-
-    # march outer jit is NOT compilable today (XLA module blowup —
-    # ~100 inlined Newton scan bodies; measured crash), so each
-    # evaluation pays a Python re-trace over cached compiled pieces.
-    # The bench measures that honestly; the T2a consequence and the
-    # named remediation (single-bucket-per-phase padding => 3 scan
-    # modules, outer jit compilable) are adjudicated in the Verdict.
-    grad_f = jax.grad(scalar_f)
+    scalar_jit = jax.jit(scalar_f)
+    grad_jit = jax.jit(jax.grad(scalar_f))
+
+    t0 = time.perf_counter()
+    jax.block_until_ready(scalar_jit(P))
+    t_comp_s = time.perf_counter() - t0
+    t0 = time.perf_counter()
+    jax.block_until_ready(grad_jit(P))
+    t_comp_g = time.perf_counter() - t0
+    print("  one-time compile: solve %.1f s, grad %.1f s (whole-loop "
+          "jit; persistent XLA cache)" % (t_comp_s, t_comp_g))
 
     def run_solve():
-        return float(scalar_f(P))
+        return float(scalar_jit(P))
 
     def run_grad():
-        return np.asarray(grad_f(P))
+        return np.asarray(grad_jit(P))
 
     t_solve = median_time(run_solve)
     t_grad = median_time(run_grad)
@@ -215,17 +228,16 @@ def main():
     ok &= check("T1 cheap-gradient bound", ratio <= OMEGA_REV)
     # T2a is a PRODUCTION-GATE INDICATOR, not a bench exit-fail (the
     # bench's own rejectors are clean-host, T1 and the negative
-    # control): if T2a fails, the PRODUCTION GATE is CLOSED — the
-    # named remediation (single-bucket-per-phase padding, outer jit)
-    # is BINDING before any production-mesh use, and T2a re-runs
-    # after it. Adjudication recorded in the S17 log.
+    # control). S18: the named remediation (single-bucket-per-phase
+    # padding, whole-loop jit) is EXECUTED and is the measurement
+    # object above — a T2a failure now is STRUCTURAL and triggers the
+    # D6 flip clause (Julia/Enzyme re-decision session), not silence.
     t2a_pass = t_solve <= K_PRAC * t_geno
     print("  T2a: t_solve = %.3f s <= K_prac x t_GENO = %.3f s : %s"
           % (t_solve, K_PRAC * t_geno,
              "PASS (production gate OPEN)" if t2a_pass else
-             "FAIL-AS-IMPLEMENTED (per-eval Python re-trace over "
-             "cached kernels; PRODUCTION GATE CLOSED until the "
-             "single-bucket remediation lands and T2a re-passes)"))
+             "FAIL post-remediation (STRUCTURAL: D6 flip clause "
+             "armed — Julia/Enzyme re-decision session due)"))
     print("  T2 (ARMED for the brick run): N_TR x (%.3f + %.3f) s <= "
           "%.1f x N_outer x %.3f s   [N_TR from the brick TR-SQP run; "
           "N_outer from the GENO type-2 outer loop]"
