@@ -208,8 +208,14 @@ ARCHITECTURE OF RECORD (brick engine, module a1_march_scan):
        and O3.1 must hold on the scan path with the same derived
        tolerance. A scan engine that only "roughly" matches is
        REJECTED — it would silently change the certified machinery.
-Status: EXECUTED S17 (module validation/a1_march_scan.py, carrier
-id X-SCANM; verdict in the S17 log, step 6).
+Status: EXECUTED S17 (module validation/a1_march_scan.py [X-SCANM],
+VERDICT PASS: equivalence at 8.9e-16 vs the 1.6e-12 Newton-floor
+band — bit-level agreement; O3.1 on the scan path 7.2e-09 vs 4.1e-08;
+both negative controls DETECT; numbers of record in the registry
+scope and the S17 log, step 8. Load-bearing performance note: the
+solver cache (cached_solvers) is part of the architecture —
+rebuilding jitted solvers per call forces full XLA recompilation,
+measured in-session at multi-GB / tens of minutes).
 
 ------------------------------------------------------------------------------
 ## §4 Duty (a) — DERIVED LOOP-SPEED THRESHOLD (G0 falsifier
@@ -272,6 +278,43 @@ recorded here. This is an IMPLEMENTATION-STANDARD choice inside the
 already-adopted I5 slot machinery (D6 item 9 binds dJ/dSigma +
 TR-SQP); it mints no road verdict (PAP-RIM discipline untouched).
 
+GENERAL METHOD (user clarification, same session): the survey duty
+applies to EVERY complex algorithmic step, not only the optimizer —
+adopt the mature open implementation or DECLARE why not, at design
+time. Retroactive declarations for this session's own steps:
+ - Duty (d) interpolant: SciPy's PchipInterpolator /
+   CubicHermiteSpline are the open standards for monotone/Hermite
+   interpolation — NOT adopted, declared reasons: (i) not
+   JAX-differentiable (the closure sits inside the reverse-AD march),
+   (ii) cubic class only (C^1 h => C^0 cp — exactly the defect §2
+   fixes), (iii) the structural cp = dh/dT + invariant machinery is
+   the point of the duty and no library offers it; the quintic
+   evaluator is ~40 lines against machine-verified invariants
+   (X-THC1 C2) — the risk the directive targets is covered by the
+   rejectors.
+ - Duty (b) engine: jax.lax.scan IS the library-standard idiom for
+   sequential chains in JAX (no external alternative exists at this
+   layer); the implicit cells reuse the certified [X-A1IM]
+   custom_vjp machinery unchanged.
+ - Linear algebra / root-finding inside cells: jnp.linalg.solve +
+   the certified Newton of [X-A1IM] (already library-grade and
+   certified; no change).
+
+TOOLCHAIN CURRENCY (user directive, same session: being limited by
+old versions of anything is inadmissible). Verified current
+2026-08-06 (web sources): Python 3.13 (supported by JAX >= July
+2028; 3.14 = newest stable, adopt-with-testing), jax 0.11.0
+(current), scipy 1.18.0 (current, June 2026), Cantera 3.2. ONE stale
+constraint found and DECLARED AS DEBT: numpy pinned to 2.2.6 solely
+because src/thrust/st_core.py:46 and src/cycles/q_formal.py:56 use
+a getattr fallback to the REMOVED np.trapz (numpy >= 2.3 breaks at
+import). Discharge plan (named task): replace the fallback with
+np.trapezoid (available since numpy 2.0), unpin, upgrade numpy to
+current, revalidate with the full suite — a mechanical fix +
+revalidation session-tail item, NOT a reason to sit on numpy 2.2.
+Until discharged, the pin is a declared exception to the currency
+directive, not policy.
+
 SURVEYED (web-verified 2026-08-06):
  - SciPy `minimize(method='trust-constr')`: Byrd-Omojokun TR-SQP for
    equality constraints, switching to a trust-region interior-point
@@ -324,7 +367,8 @@ that would be a declared deviation with its own log step.
             §1; carrier: brick-2 TR-SQP carrier when it lands.
  [X-THC1]   carrier — §2 (thermotab C^1 + invariants + G>0 audit);
             MINTED S17 with the artifact, PASS.
- X-SCANM    carrier — §3 (scan engine equivalence + O3.1).
+ [X-SCANM]  carrier — §3 (scan engine equivalence + O3.1); MINTED
+            S17 with the artifact, PASS.
  X-LSG0     carrier — §4 (loop-speed thresholds T1/T2).
 Each entry lands in claims_registry.yaml IN THE SAME COMMIT as the
 artifact it indexes (lint truthfulness).

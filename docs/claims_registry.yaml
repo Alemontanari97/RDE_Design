@@ -1150,6 +1150,19 @@ entries:
   falsifier: "its rejectors: R1 corrupted cp row (structural invariant vs data slopes), R2 doctored non-monotone h, R3 BZT-doctored table (G floor), R4 corrupted inverse (roundtrip)"
   gamma: "EOS-general"
 
+- id: X-SCANM
+  kind: carrier
+  class: PRACTICE
+  scope: "brick-2 kickoff duty (b) carrier of record; on-demand carrier (env: jax), outside CI tiers like X-A1IM; PASS 2026-08-06 S17 (record certified worst 1.41e-02; plan reconstruction 20 fan + 25 arc attempts incl. 2 interp + 40 straightening cols, 2684 interior cells; EQUIVALENCE scan-vs-python replay max delta 8.9e-16 vs Newton-floor tol 1.6e-12; O3.1 on the scan path 7.2e-09 vs derived tol 4.1e-08; N1 mis-indexed plan DETECTED at 1.6e-03, N2 corrupted vjp DETECTED); performance note of record: solver-cache is load-bearing (rebuilding jitted solvers per call forces full XLA recompilation — measured multi-GB/tens-of-minutes in-session)"
+  statement: "The brick-2 replay engine: per-column jax.lax.scan over the [X-A1IM] implicit custom_vjp cells with the march plan reconstructed from the recorded schedule (column-array representation); reproduces the certified Python replay at the Newton floor and preserves the Lemma B transpose (O3.1) — the duty-(b) restructure moves no number beyond roundoff."
+  doc: "validation/a1_march_scan.py"
+  proof: "validation/a1_march_scan.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors: N1 (a mis-indexed plan must break the equivalence check) and N2 (a corrupted whole-march vjp must break O3.1)"
+  gamma: "EOS-general"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK
