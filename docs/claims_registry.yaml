@@ -1137,6 +1137,19 @@ entries:
   falsifier: "a brick-2 run that mixes gradients across a re-record event, omits the re-record count from its Verdict, or accepts a step failing the P4 certification gate is NONCONFORMING; monitors (i)/(ii) are machine rejectors in the brick carrier (registered here when it lands)"
   gamma: "n/a"
 
+- id: X-THC1
+  kind: carrier
+  class: PRACTICE
+  scope: "brick-2 kickoff duty (d) carrier of record; on-demand carrier (env: jax), outside CI tiers like X-A1IM; PASS 2026-08-06 S17 (C1 monotone-verified min cp 1786.46 with derived dip margin; C2 structural cp = dh/dT at 3.5e-07 vs derived intermediate-magnitude tol 2.9e-05; C3 s0' = cp/T at 5.2e-11 vs derived floor 1.0e-06; C4 gconst known-answers incl. G -> (gamma+1)/2 at 4.9e-09; C5 dual-route gap vs the X-A1IM linear closure 9.1e-07 K inside the derived 1.5e-05 K band; C6 inverse roundtrip 2.8e-09 vs 1.7e-07 floor; C7 G > 0 audit: gamma in [1.1854, 1.2557], certified Lipschitz-margin floor G >= 1.089444 on the full table box, both nasa and cantera routes; rejectors R1-R4 all DETECT)"
+  statement: "The brick-2 C^1 tabulated closure of record: QUINTIC Hermite h(T)/s0(T) with node data (h, cp, cp') and (s0, cp/T, (cp/T)'), cp := d/dT h-interpolant (structural invariant), monotone-verified, Newton-inverted with roundtrip certification; plus the ledger-c4 EOS audit G(T) = (gamma+1)/2 + (gamma-1) T gamma'/(2 gamma) > 0 certified on the declared state box."
+  doc: "validation/thermotab_c1_jax.py"
+  proof: "validation/thermotab_c1_jax.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors: R1 corrupted cp row (structural invariant vs data slopes), R2 doctored non-monotone h, R3 BZT-doctored table (G floor), R4 corrupted inverse (roundtrip)"
+  gamma: "EOS-general"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK

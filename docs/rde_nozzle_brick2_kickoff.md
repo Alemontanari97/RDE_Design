@@ -100,8 +100,7 @@ TR-SQP carrier when it lands (lint truthfulness: the registry
 carrier field stays empty until then).
 
 ------------------------------------------------------------------------------
-## §2 Duty (d) — THERMOTAB C^1 (carrier id X-THC1 minted with the
-##    artifact) + EOS G > 0 AUDIT (c4)
+## §2 Duty (d) — THERMOTAB C^1 [X-THC1] + EOS G > 0 AUDIT (c4)
 
 DEFECT OF RECORD (S14 two-lens, D6 item 9 text): the live closure
 interpolates cp INDEPENDENTLY of h with piecewise-linear jnp.interp
@@ -109,26 +108,36 @@ interpolates cp INDEPENDENTLY of h with piecewise-linear jnp.interp
 against the C^1 coefficients C-D25U's machinery assumes, and a
 gratuitous source of RK-G false kinks.
 
-NORMATIVE FIX (this duty): the brick-2 closure interpolates h(T) and
-s0(T) by MONOTONE CUBIC HERMITE interpolants whose NODE DERIVATIVES
-are the thermodynamic identities themselves:
-    h:  node values h_i,  node derivatives cp_i        (cp = dh/dT)
-    s0: node values s0_i, node derivatives cp_i / T_i  (s0' = cp/T)
-and then DEFINES the interpolated cp(T) := d/dT [h-interpolant](T).
-Consequences, by construction: cp = dh/dT EXACTLY everywhere (the
-invariant is structural, not a tolerance); s0' = cp/T exact at nodes
-and within a DERIVED inter-node floor (both sides are the cubic's
-derivative vs the h-cubic's derivative over T — bounded by the
-standard Hermite remainder with the table spacing, no magic);
-closure C^1 in the state everywhere including knots. Monotonicity:
-h strictly increasing (cp > 0 data) — the carrier VERIFIES the
-Fritsch-Carlson monotonicity condition on every interval (dense
-tables: expected to hold with margin) so the inverse T(h) exists;
-T(h) is computed by Newton on the cubic (monotone, C^1), certified
-at the roundoff floor per call batch. REJECTORS: (R1) corrupted cp
-row breaks cp = dh/dT at nodes / the dual-route budget; (R2)
-non-monotone doctored h detected; (R3) inverse-closure roundtrip
-|h(T(h*)) - h*| beyond derived floor detected when corrupted.
+NORMATIVE FIX (this duty). KICKOFF DISCOVERY (S17, declared): the
+naive reading — cubic Hermite on h with node derivatives cp_i —
+delivers cp = dh/dT structurally but leaves cp = h' only C^0
+(piecewise quadratic with slope jumps at knots): the MoC
+COEFFICIENT fields (c, gamma, mu enter through cp) would still be
+merely continuous, against the C^1-coefficients requirement the
+duty exists to serve (D6: "C-D25U wants C^1 coefficients"). The
+interpolant class of record is therefore QUINTIC HERMITE (still the
+Hermite class D6 names, one smoothness order up):
+    h:  node data (h_i, cp_i, cp'_i)         => h in C^2
+    s0: node data (s0_i, cp_i/T_i, (cp'T - cp)_i/T_i^2) => s0 in C^2
+with cp'_i estimated from the dense cp table by 4th-order central
+differences (2nd-order one-sided at the two edges; estimator error
+O(dT^4), far below the physical-constants budget). The interpolated
+cp(T) := d/dT [h-interpolant](T) — the EXACT derivative polynomial,
+so cp = dh/dT is STRUCTURAL (roundoff-exact, machine-verified
+against AD) and cp is C^1: coefficient fields c, gamma, M are C^1
+in the state, table knots are invisible to RK-G (§1 note).
+s0' = cp/T: exact at nodes by construction, inter-node within a
+DERIVED Hermite-remainder floor (table-spacing power bound, no
+magic). Monotonicity: h' = cp interpolant VERIFIED positive on a
+dense probe with derived margin (monotone-verified class: the
+carrier proves it for the data rather than clamping — clamping
+would break the invariant); the inverse T(h) then exists and is
+computed by Newton on the quintic (seeded by linear interp,
+fixed-trip loop), roundtrip-certified at the derived floor.
+REJECTORS: (R1) corrupted cp row breaks the structural invariant /
+dual-route budget; (R2) non-monotone doctored h detected; (R3)
+BZT-doctored table breaks the G-floor (below); (R4) corrupted
+inverse breaks the roundtrip certification.
 Accuracy: the C^1 closure must agree with the certified linear
 closure of [X-A1IM] within the DERIVED interpolation-class band
 (spacing^2 curvature bound) — the twin-contour regression stays
@@ -138,10 +147,16 @@ the brick engine uses X-THC1, the record carrier stays untouched).
 EOS G > 0 AUDIT (S16 addition, ledger §4.2 channel c4): the entropy
 floor of U4's counting lemma and the a-contraction convexity budget
 assume GENUINE NONLINEARITY (fundamental derivative G > 0). For the
-tabulated ideal-gas frozen mixture, G = (gamma + 1)/2 + T-derivative
-corrections through gamma(T); the audit evaluates G on the DECLARED
-state box (the table's T range at the march's realized states, box
-declared in the carrier) via AD of the C^1 closure and CERTIFIES
+tabulated ideal-gas frozen mixture (derived in-carrier from
+G = 1 + (rho/c)(dc/drho)_s with the ideal-gas isentrope
+(dT/drho)_s = (gamma-1) T/rho):
+    G(T) = (gamma+1)/2 + (gamma-1) T gamma'(T) / (2 gamma),
+which reduces to the classical (gamma+1)/2 at gamma' = 0 (the
+carrier verifies that reduction as a known-answer); the audit
+evaluates G on the DECLARED state box (the table's full T range,
+which contains every march-realized state) via AD of the C^1
+closure (gamma' needs cp' — defined BECAUSE the closure is C^1:
+the audit is only possible in this interpolant class) and CERTIFIES
 G >= floor > 0 with the floor derived from the audit grid spacing
 and the closure's Lipschitz bound on the box. REJECTOR: a doctored
 BZT-like table (locally concave isentrope) is DETECTED. Scope
@@ -150,8 +165,9 @@ Lipschitz safety), not an interval certificate; the interval upgrade
 rides the [PAP-GMAX] substrate if c4 is ever load-bearing at class
 level.
 
-Status: EXECUTED S17 (carrier validation/thermotab_c1_jax.py, id
-X-THC1; verdict in the S17 log, step 5).
+Status: EXECUTED S17 (carrier validation/thermotab_c1_jax.py
+[X-THC1], VERDICT PASS 14/14 incl. 4 negative controls; numbers of
+record in the registry scope field and the S17 log, step 5).
 
 ------------------------------------------------------------------------------
 ## §3 Duty (b) — SCAN COLUMN ARCHITECTURE (the brick engine)
@@ -249,7 +265,8 @@ falsifier field updated; G0_decision.md §4 mirror note).
 
  [DIR-RKG]  directive, PRACTICE — the §1 policy P1-P4; falsifier as
             §1; carrier: brick-2 TR-SQP carrier when it lands.
- X-THC1     carrier — §2 (thermotab C^1 + invariants + G>0 audit).
+ [X-THC1]   carrier — §2 (thermotab C^1 + invariants + G>0 audit);
+            MINTED S17 with the artifact, PASS.
  X-SCANM    carrier — §3 (scan engine equivalence + O3.1).
  X-LSG0     carrier — §4 (loop-speed thresholds T1/T2).
 Each entry lands in claims_registry.yaml IN THE SAME COMMIT as the
