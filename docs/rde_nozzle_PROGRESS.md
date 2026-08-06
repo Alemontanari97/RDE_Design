@@ -7,10 +7,80 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-05, chiusura Sessione 15 — CAMPAGNA "FONDAZIONI
-## PROFONDE", PRIMA TRANCHE; log a ordine totale:
-## validation/PROGRESS_2026-08-04_S15_fondazioni.md, 12 passi;
-## gate PASS + waiver brick-2 ereditati dal passo 2)
+## ORA (2026-08-06, chiusura Sessione 16 — CAMPAGNA "FONDAZIONI
+## PROFONDE", SECONDA TRANCHE; log a ordine totale:
+## validation/PROGRESS_2026-08-06_S16_fondazioni2.md, 8 passi;
+## gate PASS al passo 2, waiver brick-2 ereditato — ri-aggiudicazione
+## ADESSO DOVUTA, vedi NEXT-1)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = a898c24,
+T1 = 20e41eb, T2 = 3b6db3a, T3 = 0b26dc7, T4a = 13f6ea4,
+T4b = 084756e, chiusura = (questo). Lint (xv) verde a ogni commit
+(117 voci, da 111). Suite --fast di chiusura nel log passo 8.
+
+- **[RIGOR/A] T1 — U3+U4 SCRITTE: C-D25U COMPONENTE -a COMPLETA A
+  LIVELLO CLASSE** ([S-D25U-U34], docs/rde_nozzle_D25U_U3U4.md,
+  carrier [X-U3BD] PASS in (xiii)): il fronte fittato è un genuino
+  shock di Lax 1-D in x-as-time; solve di bordo = sistema BORDATO
+  (RH + riga caratteristica impingente; conteggio di Lax 5 = n+1
+  machine-verified); SCOPERTA: C-MAJDA in-classe si AFFILA allo
+  scalare di Lopatinskii-Schur U3-H1 (certificato a istanza
+  s_L = 1.8685; uniformità per compattezza una volta puntuale);
+  fronte C^2 auto-fornito; conteggio fronti DERIVATO dal budget di
+  entropia sotto la lettura WALL-ATTACHMENT (altrimenti sesta
+  costante — dichiarato); LIP_shocked esplicita nelle cinque
+  costanti; stima ENTRO-STRATO (c2: cross-topology = census/RK-G).
+  Inventario c1-c4 prezzato; -c/U5 intatto research-grade.
+- **[RIGOR/A] T2 — ATTACCO A-CONTRACTION: ROTTA VIABLE-IN-CLASS A
+  ISTANZA, ADOTTATA-COME-NOMINATA** ([S-ACFR], probe [X-ACFR] PASS,
+  dichiarato probe non certificato): linea Vasseur-Krupa trapiantata
+  in x-as-time con tre doni strutturali (solo fronti estremali;
+  pareti GRATIS per T-XWALL; shift = il dof del fronte fittato) e un
+  prezzo (clausola di CONFINAMENTO al box di convessità certificato);
+  ostruzione di fronte ridotta alla condizione sul balance set
+  psi_r >= 0 (sigma'-free); FATTIBILE all'oracolo su finestra pesi
+  r ~ [3.2, 47], fronte invertito INFATTIBILE per ogni r
+  (discriminazione); completamento gated su B1 (certificazione
+  intervallare su K_delta — terzo payoff del substrato), B2
+  (assembly), B3 (g-scan). NESSUNO scarico di C-MAJDA rivendicato.
+- **[RIGOR/B] T3 — LEDGER PASSATA 2** ([PAP-D9HL] §4): 3 SCARICHI —
+  H2/H-I2 sul nuovo default L4 DICHIARATO di record (nota M0 D2.4:
+  sul default T-TH0 esatto + T-NSW teorema; patch subsoniche =
+  case-class D1 §4.3bis coi monitor esistenti) e H-Pa per
+  riclassificazione a istanza (misura prodotto caso D di record;
+  testo (P) INTATTO per disciplina d'àncora); C-XBVP PRICED ->
+  WEAKENED; 5 clausole post-passata-1 aggiudicate (tutte PRICED con
+  canale eseguibile). Totali viventi: 29 righe, 3 D / 4 W / 5 N /
+  17 P, zero non aggiudicate; target passata 3 nominati (B1,
+  C-XBVP(b), C-P4RZ/fallback).
+- **[RIGOR/A] T4a — LEMMA G-B ERGODICO SCRITTO, PP-2 RISOLTO SENZA
+  DE-RATE** ([S-GBE], carrier [X-GBE] PASS 2.1 s): il soffitto
+  geometry-free [T-GB] TRASFERISCE ai target ergodici —
+  J_exact^+ <= F_env(flussi medi d'interfaccia) — 3-D pieno, ogni
+  topologia, sotto E1-E5 dichiarate (storage limitato; superficie di
+  scarico ASSIALMENTE SONICA u_x >= c — NECESSARIA, sup infinito
+  senza; convessità EOS; Cesàro). Scoperte: il CAP SONICO OP-0 =
+  esattamente il sup vincolato sull'insieme u >= c (non una pezza);
+  NIENTE Birkhoff (Cesàro a T finito + storage limitato bastano —
+  minimizzazione d'ipotesi sulla nostra stessa rotta nominata).
+  Concavità: simbolica per ramo, composita 400/400 sul seam;
+  inviluppo == ladder OP-0 a 3.4e-16. Etichetta quasi-steady-only di
+  D5 Step 5(f)/8 RIMOSSA per la parete superiore; gap di Jensen vs
+  parete per-fase dichiarato riportabile.
+- **[RIGOR/A] T4b — S-LBML SCRITTO** (docs/rde_nozzle_LBML.md,
+  registry upgrade): limite di mesh Lemma-B a cinque passi (Lax
+  equivalence sul tangente; stabilità = ESATTAMENTE il certificato a
+  cinque costanti D2.5-U con U1-U4 ora tutte scritte; solve di
+  fronte discreto invertibile per h <= h_0 via U3-L1/U3-H1;
+  trasposta esatta T-LEMB senza perdite; fronte C^2 auto-fornito).
+  Clausole dichiarate: LB-c1 (regolarità per il RATE h^2,
+  auto-monitorante via O3.2) + LB-c2 (topologia fissa = c2, RK-G).
+  Nessun carrier nuovo (falsificatori = oracoli O3 pre-registrati).
+
+Stato precedente (chiusura Sessione 15 — CAMPAGNA "FONDAZIONI
+PROFONDE", PRIMA TRANCHE; log a ordine totale:
+validation/PROGRESS_2026-08-04_S15_fondazioni.md, 12 passi poi
+riaperta fino a 21; gate PASS + waiver brick-2 ereditati dal passo 2)
 
 Branch `rde-nozzle-program`. Commit: T1a = a046303, T1b = 044db90,
 T1c = b8f3e17, T3 = 4b19307, T2-parziale = 8e6b891, T4 = ab3cf38,
@@ -803,6 +873,41 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
+## NEXT (aggiornato 2026-08-06, chiusura S16 — seconda tranche
+## COMPLETA; la campagna fondazioni ha esaurito la coda [RIGOR/A]
+## nominata: ORA TOCCA ALLA RI-AGGIUDICAZIONE DEL BRICK 2)
+
+1. [PRIMA COSA — RI-AGGIUDICAZIONE RINVIO BRICK-2] Il waiver S15
+   (rinvio #4, RK-A citato, controlli compensativi i-iii) vincolava la
+   ri-aggiudicazione alla FINE della campagna fondazioni: con la
+   seconda tranche completa (U3/U4, a-contraction, ledger p2, G-B
+   ergodico, S-LBML) la campagna dichiarata S15-S16 è ESAURITA nella
+   sua coda [RIGOR/A] di registro. La prossima sessione APRE con la
+   ri-aggiudicazione ai termini del waiver (S15 log passo 2): atteso
+   verdetto = BRICK 2 PARTE (TOC variazionale, D6 item 9, kickoff
+   duties vincolate: soglia loop-speed derivata, scan/vmap, policy
+   RK-G, duty THERMOTAB C^1 — a cui S16 aggiunge il canale c4/G>0);
+   ogni ulteriore rinvio richiederebbe un NUOVO ordine utente
+   esplicito con RK-A ripesato.
+2. [RIGOR, dopo/durante brick 2 — mattoni nominati dalla S16]
+   B1 = certificazione intervallare di s_L su K_delta (scarica U3-H1
+   E arma S-ACFR-B1 con la stessa macchina — terzo/quarto payoff del
+   substrato condiviso [PAP-GMAX]); C-XBVP(b) (tracce Dafermos);
+   B3 g-scan (economico); concavità composita GBE globale (piccolo
+   brick simbolico/intervallare); C-P4RZ o fallback Kilque/CGW.
+3. [CODA INVARIATA] census-lemma session (emendamenti D2.1/D2.6 +
+   C1-C3 + CEN-O4/O5 + carrier; DOPO il brick 2 per sequenza decisa);
+   head-to-head SOS (gate env: solver SDP = decisione utente); spike
+   interval-Newton cella MoC; meccanizzazione lint (xvii) (D6 item
+   16 PROPOSED); acquisizioni -> G5 (+ page-verify L-X-H/Liu/Harroun
+   dai passi S15-13/19; Li-Yu page anchors; query novità T-XWALL +
+   a-contraction-BVP dichiarata in S-ACFR §6).
+4. [BLOCCATO->utente] invariati: G5 send (time-box); ratifiche ADR +
+   census; email dataset GV; dataset RDE pubblico (RK-E); decisione
+   preprint (RK-A, armata durante il waiver — NOTA: la
+   ri-aggiudicazione di NEXT-1 la ripesa).
+
+[VOCE PRECEDENTE (chiusura S15, eseguita nella seconda tranche):]
 ## NEXT (aggiornato 2026-08-05, chiusura S15 — campagna in corso,
 ## SECONDA TRANCHE)
 
