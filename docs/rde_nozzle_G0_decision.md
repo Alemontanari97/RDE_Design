@@ -141,6 +141,22 @@ third route (beyond GENO) if a differentiation cross-check is ever needed.
   [Dated note 2026-08-05, PAN-S14 §8 residue: 'impractical' carries no
   number here BY DESIGN of record — the quantified threshold (clean-host
   protocol) is a D6 §6 item-9 kickoff duty, pending brick-2 kickoff.]
+  [Dated note 2026-08-06, S17 duty (a) EXECUTED — the falsifier is now
+  QUANTIFIED and machine-rejectable (carrier X-LSG0, clean host):
+  T1 = grad/solve <= 4 (cheap-gradient theorem constant; MEASURED
+  3.004 on the scan engine — inside the [3,4] theory window, PASS);
+  T2a = t_solve <= 4 x t_GENO at same case/resolution (measured
+  39.8 s vs 4 x 0.286 s: FAIL-AS-IMPLEMENTED, root cause measured =
+  per-evaluation Python re-trace over cached kernels; whole-march
+  outer jit not compilable today — XLA module blowup, crash measured)
+  => PRODUCTION GATE CLOSED: the named remediation (single-bucket-
+  per-phase padded scans => 3 XLA modules, outer jit compilable,
+  topology re-records stop generating new shapes) is BINDING before
+  any production-mesh use, then T2a re-runs; T2 whole-loop bound
+  armed with the measured constants for the brick-2 Verdict. FLIP
+  CLAUSE adjudication: NOT triggered — the failure is dispatch-
+  overhead class while the theorem-relevant T1 passes; the flip
+  re-arms if T1 or post-remediation T2a fails on a clean host.]
 - JULIA/ENZYME NOT BENCHMARKED on this host: the "JAX over Julia" verdict
   rests on JAX being EXERCISED and Julia not, plus interop/ecosystem fit —
   not on a head-to-head speed number. Stated plainly.

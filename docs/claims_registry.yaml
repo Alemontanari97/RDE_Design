@@ -1114,7 +1114,7 @@ entries:
 - id: DIR-G0
   kind: directive
   class: PRACTICE
-  scope: "standing work-layer decision of record (gate G0, D6 §5, session S10); [PAN-S14 §8 residue, verified 2026-08-05] the falsifier's 'impractical' is UNQUANTIFIED as written — the derived threshold is a bundled brick-2 kickoff duty (D6 §6 item 9: quantified loop-speed falsifier threshold, clean-host protocol, S9 lesson); until that duty executes the falsifier is armed but not machine-rejectable"
+  scope: "standing work-layer decision of record (gate G0, D6 §5, session S10); [QUANTIFIED 2026-08-06 S17, duty (a) executed] the loop-speed falsifier now carries DERIVED thresholds via X-LSG0: T1 grad/solve <= 4 (measured 3.004, PASS), T2a per-eval anchor (FAIL-as-implemented => PRODUCTION GATE CLOSED until the single-bucket remediation; flip clause NOT triggered — the theorem-relevant ratio passes), T2 whole-loop bound armed for the brick Verdict — machine-rejectable from this session on"
   statement: "G0 DECIDED: differentiable stack = JAX (custom_vjp + implicit rules) primary, Julia+Enzyme declared alternate, GENO-Fortran independent dual-code reference; interop criterion MET (GENO built + tocnoz contour reproduced to 1e-10 + cross-code flowfield oracle X-GENOXC PASS) => Phase A1 OPENS."
   doc: "docs/rde_nozzle_G0_decision.md#1. The decision"
   proof: "docs/rde_nozzle_G0_decision.md#2. Criteria, evidence, verdict"
@@ -1161,6 +1161,19 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "its rejectors: N1 (a mis-indexed plan must break the equivalence check) and N2 (a corrupted whole-march vjp must break O3.1)"
+  gamma: "EOS-general"
+
+- id: X-LSG0
+  kind: carrier
+  class: PRACTICE
+  scope: "brick-2 kickoff duty (a) carrier of record; on-demand carrier (env: jax + WSL gfortran GENO binary); PASS 2026-08-06 S17 clean host (0 concurrent): t_record 18.0 s / t_solve 39.8 s / t_grad 119.6 s => grad/solve = 3.004 inside the [3,4] cheap-gradient window (T1 PASS); t_GENO 0.286 s (EPOCHREALTIME median); T2a INDICATOR = FAIL-AS-IMPLEMENTED (per-eval Python re-trace over cached kernels; whole-march outer jit crashes XLA — measured): PRODUCTION GATE CLOSED until the single-bucket-per-phase padding remediation lands and T2a re-passes; T2 whole-loop bound ARMED with these constants for the brick run's Verdict; negative control PASS"
+  statement: "The DIR-G0 loop-speed falsifier QUANTIFIED with derived thresholds: T1 grad/solve <= 4 (Baur-Strassen/Griewank constant, executable rejector), T2a per-evaluation t_solve <= 4 x t_GENO at same case+resolution (production-gate indicator), T2 whole-loop N_TR(t_solve+t_grad) <= 4 N_outer t_GENO (armed for the brick Verdict), under the clean-host protocol with a contention rejector."
+  doc: "validation/a1_loopspeed_bench.py"
+  proof: "validation/a1_loopspeed_bench.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its own checks: clean-host contention rejector, T1 bound, corrupted-timing negative control; T2a firing closes the production gate (binding remediation before production mesh)"
   gamma: "EOS-general"
 
 # --------------------------------------------------------- paper-layer records

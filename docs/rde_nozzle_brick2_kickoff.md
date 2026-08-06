@@ -208,6 +208,28 @@ ARCHITECTURE OF RECORD (brick engine, module a1_march_scan):
        and O3.1 must hold on the scan path with the same derived
        tolerance. A scan engine that only "roughly" matches is
        REJECTED — it would silently change the certified machinery.
+DATA-CLASS NOTE OF RECORD (S17, user catch — dated addition): the
+engine's cells are the GENO Ch.16-twin ACOUSTIC-ONLY processes,
+exact ONLY on HOMENTHALPIC + HOMENTROPIC data (uniform h0 AND s; by
+Crocco the pair = the S1 irrotationality). The brick-2 instance
+satisfies this BY DATA (uniform Sauer IVL). General RDE per-phase
+interface data is STRATIFIED (per-streamline s and h0): marching it
+with these cells would be WRONG, not just inaccurate. Three
+consequences, all executable: (i) THERMODYNAMIC DATA GUARD
+`inlet_admissibility` in the engine module — admissibility iff the
+h0/s spreads sit below the march's own measured Richardson band
+(first-order transfer dh0 ~ band*q^2, ds ~ band*Rg — derived, no
+magic; sub-truncation non-uniformity is indistinguishable from
+uniform data), REJECT otherwise; (ii) NAMED EXTENSION SLOT: the
+three-family cell (2 acoustic + streamline with s/h0 transport,
+GENO Ch.17-equivalent) — additive in this architecture (pluggable
+cell residual + streamline-foot chord fraction solved implicitly =
+differentiable, foot index = recorded decision, same machinery); it
+becomes DUE when the stage-A data contract (ledger channel c3)
+delivers stratified per-phase profiles; (iii) until that cell
+exists AND is certified, the guard is the boundary of the engine's
+validity — no silent marching of stratified data.
+
 Status: EXECUTED S17 (module validation/a1_march_scan.py [X-SCANM],
 VERDICT PASS: equivalence at 8.9e-16 vs the 1.6e-12 Newton-floor
 band — bit-level agreement; O3.1 on the scan path 7.2e-09 vs 4.1e-08;
@@ -262,9 +284,16 @@ cited theorem constant or a measured quantity):
 Both thresholds are ARMED as machine checks in the loop-speed
 carrier; the measured numbers and the verdict live with the carrier
 (R5: no numbers in prose without the committed script).
-Status: EXECUTED S17 (carrier validation/a1_loopspeed_bench.py, id
-X-LSG0; measured numbers + verdict in the S17 log, step 7; DIR-G0
-falsifier field updated; G0_decision.md §4 mirror note).
+Status: EXECUTED S17 (carrier validation/a1_loopspeed_bench.py
+[X-LSG0], VERDICT PASS on clean host: t_record 18.0 s, t_solve
+39.8 s, t_grad 119.6 s, grad/solve = 3.004 — INSIDE the [3,4]
+cheap-gradient window, T1 PASS; t_GENO 0.286 s; T2a
+FAIL-AS-IMPLEMENTED => PRODUCTION GATE CLOSED with the
+single-bucket-per-phase remediation BINDING before production mesh
+(measured root cause: per-eval Python re-trace; whole-march outer
+jit crashes XLA today); T2 armed with the measured constants; flip
+clause NOT triggered — adjudication in G0_decision.md §4 dated note
+and the S17 log, step 9).
 
 ------------------------------------------------------------------------------
 ## §4bis TR-SQP IMPLEMENTATION STANDARD — SOTA library survey of
@@ -299,6 +328,28 @@ time. Retroactive declarations for this session's own steps:
  - Linear algebra / root-finding inside cells: jnp.linalg.solve +
    the certified Newton of [X-A1IM] (already library-grade and
    certified; no change).
+
+READ-THE-SOURCE FINDINGS (user directive, same session: adoption is
+not trust — the installed scipy 1.18.0 trust-constr source was READ
+before wiring the driver; minimize_trustregion_constr.py, verified
+at line level): (1) METHOD SELECTION: equality constraints ONLY and
+NO bounds => the pure Byrd-Omojokun 'equality_constrained_sqp' path;
+ANY inequality or bounds switches to 'tr_interior_point' — the
+brick-2 driver therefore passes the eps constraint as the single
+LINEAR equality and NO bounds (class monitors stay monitors) to stay
+on the TR-SQP path of record. (2) CALLBACK: callback(state)
+returning True or raising StopIteration terminates cleanly with
+status 3 — the RK-G segmentation mechanism is supported natively.
+(3) HESSIAN: default = a FRESH BFGS() instance per minimize() call —
+P2's "model rebuilt across segments" holds literally at source
+level. (4) STATE: state.x/.grad/.v (multipliers)/.optimality
+(KKT residual)/.tr_radius are updated ONLY on accepted iterations —
+the callback sees exactly the accepted iterates (the P2 re-record
+hook), and state.optimality is the executable KKT residual for the
+O3 transversality instance; status 4 = converged-but-infeasible and
+MUST be treated as failure by the driver. Findings recorded; no
+disqualifying magic tolerances found (gtol/xtol are caller-supplied;
+we pass derived values).
 
 TOOLCHAIN CURRENCY (user directive, same session: being limited by
 old versions of anything is inadmissible). Verified current
@@ -369,6 +420,8 @@ that would be a declared deviation with its own log step.
             MINTED S17 with the artifact, PASS.
  [X-SCANM]  carrier — §3 (scan engine equivalence + O3.1); MINTED
             S17 with the artifact, PASS.
- X-LSG0     carrier — §4 (loop-speed thresholds T1/T2).
+ [X-LSG0]   carrier — §4 (loop-speed thresholds T1/T2); MINTED S17
+            with the artifact, PASS (T2a production gate CLOSED,
+            remediation binding).
 Each entry lands in claims_registry.yaml IN THE SAME COMMIT as the
 artifact it indexes (lint truthfulness).
