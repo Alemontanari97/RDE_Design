@@ -162,7 +162,20 @@ s_L = 1.8685, uniformity by compactness once pointwise). Declared
 inventory: same-front-topology stratum (cross-topology = census/RK-G
 layer), wall-attachment reading (front count DERIVED from the
 entropy budget), origination clause, genuine nonlinearity for the
-entropy floor. Shift-C^1 of the map (-c/U5) untouched.] S2:
+entropy floor. Shift-C^1 of the map (-c/U5) untouched.]
+[A-CONTRACTION ROUTE, dated 2026-08-06 (S16 T2, [S-ACFR] docs/
+rde_nozzle_acontraction_attack.md, probe X-ACFR): the "shift/
+a-contraction (Vasseur-Krupa line)" partial support named above is
+now TRANSPLANTED to the x-as-time BVP frame as a named route:
+extremal fronts only (structural), walls free by T-XWALL, shift =
+the fitted-front dof, entropy family -rho u g(S) on the certified
+convexity box (CONFINEMENT CLAUSE load-bearing). The front
+obstruction reduces to a balance-set condition, INSTANCE-FEASIBLE at
+the certified oracle with weight window r = a_-/a_+ ~ [3.2, 47]
+(probe, not certificate; reversed front infeasible for every r —
+the condition discriminates). Route ADOPTED-AS-NAMED, completion
+gated on bricks B1-B3 (interval certification over K_delta;
+assembly; g-scan). No C-MAJDA discharge claimed.] S2:
 entropy weak — non-unique in multi-D (convex integration), never used
 as a constraint. S3: statistical — roof definition only.
 

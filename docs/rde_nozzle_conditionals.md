@@ -111,6 +111,15 @@ rejectors active); its class-level discharge route is NAMED
 the full C-MAJDA name: configurations beyond the class (genuinely
 multi-D fronts, interactions/reflections) and the per-heir
 re-adjudication of the THEOREM* heirs, both untouched.]
+[COMPLEMENTARY WEAK-LEVEL ROUTE, dated S16 2026-08-06 ([S-ACFR]
+docs/rde_nozzle_acontraction_attack.md): the a-contraction line
+(shifted relative entropy, x-as-time) is a NAMED ROUTE toward the
+C-MAJDA licensing at the WEAK level (arbitrary in-box competitors —
+also the cross-topology gap of [S-D25U-U34] c2): front obstruction
+reduced to a balance-set condition, instance-FEASIBLE (probe X-ACFR,
+weight window r ~ [3.2, 47], reversed front discriminated);
+completion gated on bricks B1-B3 there. Route status: adopted-as-
+named, NOT a discharge.]
 
 FALSIFIER: a certified-Lax front family with degenerating linearized
 RH margin (would contradict the G12-L2 margin law).

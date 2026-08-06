@@ -1532,3 +1532,29 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "its rejectors: R1 (characteristic front must be detected singular) and R2 (corrupted RH row must break the known-answer oracle)"
   gamma: "perfect-gas-oracle"
+
+- id: S-ACFR
+  kind: schema
+  class: SCHEMA
+  scope: "a-contraction attack on C-MAJDA/U3 (S16 T2, [RIGOR/A]): shifted relative entropy transplanted to the x-as-time BVP frame — extremal fronts only, walls free by T-XWALL, shift = fitted-front dof, entropy family -rho u g(S) on the certified convexity box (CONFINEMENT CLAUSE load-bearing); derivation self-contained, method-line pointer only (no external theorem attributions; G5-class novelty sweep = declared IOU)"
+  statement: "The a-contraction front term is absorbable by the shift EXCEPT on the balance set B_r = {eta_rel(u;V+) = r eta_rel(u;V-)}, r = a_-/a_+, where contraction requires psi_r(u) = q_rel(u;V+) - r q_rel(u;V-) >= 0; route ADOPTED-AS-NAMED (no C-MAJDA discharge claimed), completion gated on bricks B1 (interval certification of psi_r over K_delta — shared substrate), B2 (assembly Gronwall + U4 counting), B3 (g-family scan)."
+  doc: "docs/rde_nozzle_acontraction_attack.md#§3 The front term, derived"
+  proof: "docs/rde_nozzle_acontraction_attack.md#§5 What a completed a-contraction buys"
+  inherits: [C-MAJDA, C-XBVP]
+  carrier: ["X-ACFR"]
+  suffices_symbolic: "no"
+  falsifier: "brick B1 returning INFEASIBLE over K_delta (kills the route class-level); the carrier rejectors (a probe that certifies the reversed front is broken); assembly failure at B2"
+  gamma: "EOS-general"
+
+- id: X-ACFR
+  kind: carrier
+  class: PRACTICE
+  scope: "sampling PROBE (declared: not a certificate) of the a-contraction front condition; PASS of record 2026-08-06 (P0 pair compatibility 1.65e-16, P1 convexity cross-check 20000 samples, P2 RH sanity, P3 payload: LAX FRONT FEASIBLE with weight window r ~ [3.2, 47], best margin +4.33e-02 scaled at r = 6.8; R1 reversed front infeasible for every r — discrimination; R2 Deta-correction live; deterministic seed, derived floors; 1.4 s); suite group (xiii)"
+  statement: "Machine probe of the balance-set front condition at the certified oracle: samples B_r by in-box bisection, scans the weight ratio on a log grid, reports min psi_r/scale; discriminates the Lax front (feasible window) from the reversed entropy-violating front (infeasible for all r)."
+  doc: "validation/acontraction_front_probe.py"
+  proof: "validation/acontraction_front_probe.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors: R1 (reversed-front feasibility = broken probe) and R2 (dead correction term); supersedable by the B1 interval certificate"
+  gamma: "perfect-gas-oracle"
