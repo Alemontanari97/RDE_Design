@@ -68,7 +68,15 @@ optimization, 58.1%→70.0% of a "notional ideal shape-shifting nozzle"
 bound; notes the choked chamber exit decouples cycle from nozzle);
 Li-Xu-Huang JPP 38(5):849-865 (2022), doi:10.2514/1.B38539 (MOC +
 maximum-thrust theory on a time-averaged exit state; +11.3%/27.6% axial
-thrust/Isp vs partial nozzles); Liu-Cheng-Zhang-Wang AST 120:107300
+thrust/Isp vs partial nozzles) [METADATA VERIFIED 2026-08-05, user
+challenge #2, dual route Crossref API + AIAA index: title of record
+"Nozzle Design for Rotating Detonation Engine", byline Rui LI,
+Jinglei XU, Shuai HUANG — the shorthand "Li-Xu-Huang" is a surname
+chain, NOT a compound name (search by title or DOI, not by the
+shorthand); the +11.3/27.6% figures appear verbatim in the AIAA
+abstract (vs diverging/converging nozzles); the "MOC +
+maximum-thrust theory on a time-averaged exit state" METHOD
+characterization remains content-read grade, page-verify pending]; Liu-Cheng-Zhang-Wang AST 120:107300
 (2022) (aerospike design for annular RDE; states the field's design
 axiom verbatim: time-averaged quantities are "reasonable" for design).
 BIBLIOGRAPHIC CORRECTION to the internal notes: "Mo, Huang" conflates
