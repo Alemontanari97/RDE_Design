@@ -347,13 +347,15 @@ def stech_calc(ge, Rgas, PR, Pin, Tcj, Pa=PA, n=20001):
     Cf1 = np.sqrt(base * (1 - (1 / NPR) ** ((ge - 1) / ge))) + (1 / NPR - Pa / Pc)   # Eq. 9
     Cfs = np.sqrt(base * np.clip(1 - np.minimum(Pa / Pc, 1.0) ** ((ge - 1) / ge), 0, None))  # Eq. 10
     Cfv = np.sqrt(base * (1 - (1 / NPR) ** ((ge - 1) / ge))) + 1 / NPR               # vacuum
-    mw = lambda Cf: float(np.trapz(md * Cf * cst, xi) / np.trapz(md, xi) / G0)
-    ta = lambda Cf: float(np.trapz(Cf * cst, xi) / G0)
+    mw = lambda Cf: float(np.trapezoid(md * Cf * cst, xi)
+                          / np.trapezoid(md, xi) / G0)   # numpy>=2.0 (S17)
+    ta = lambda Cf: float(np.trapezoid(Cf * cst, xi) / G0)
     return dict(NPR=NPR,
                 Isp_sl_e1=mw(Cf1), Isp_sl_spike=mw(Cfs), Isp_vac_e1=mw(Cfv),
                 Isp_ta_sl_e1=ta(Cf1), Isp_ta_spike=ta(Cfs),
                 frac_choked=float(np.mean(Pc / Pa >= NPR)),
-                cstar_mw=float(np.trapz(md * cst, xi) / np.trapz(md, xi)))
+                cstar_mw=float(np.trapezoid(md * cst, xi)
+                               / np.trapezoid(md, xi)))
 
 def stage_stech(key):
     d = load(); cj = _need_cj(d, key, 'stech')

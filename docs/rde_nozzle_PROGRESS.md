@@ -7,11 +7,75 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-06, chiusura Sessione 16 — CAMPAGNA "FONDAZIONI
-## PROFONDE", SECONDA TRANCHE; log a ordine totale:
-## validation/PROGRESS_2026-08-06_S16_fondazioni2.md, 8 passi;
-## gate PASS al passo 2, waiver brick-2 ereditato — ri-aggiudicazione
-## ADESSO DOVUTA, vedi NEXT-1)
+## ORA (2026-08-06, chiusura Sessione 17 — RI-AGGIUDICAZIONE BRICK-2
+## + KICKOFF ESEGUITO; log a ordine totale:
+## validation/PROGRESS_2026-08-06_S17_brick2.md, 12 passi;
+## gate PASS al passo 2, VERDETTO passo 3: rinvio #4 SCADUTO,
+## BRICK 2 PARTITO)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = 3b4b602,
+ri-aggiudicazione = c5f0eee, duty(c) = 4a912b5, duty(d) = 0934313,
+riconciliazione = 903b2d6, survey = 52d07aa, duty(b) = c47f865,
+duty(a) = 8b8c695, brick stadiato = b255840, adjudicazione+review =
+6c2ff8f, chiusura = (questo). Lint (xv) verde a ogni commit
+(122 voci, da 117). Suite --fast di chiusura (su numpy 2.5.1,
+rivalidazione unpin) nel log passo 12.
+
+- **[F2/A1] RI-AGGIUDICAZIONE ESEGUITA — BRICK 2 PARTITO** (passo 3:
+  termini waiver S15 verificati, campagna completa, controlli i-iii
+  tenuti; RK-A ripesato, decisione preprint ripresentata all'utente;
+  D6 item 9 annotato). **TUTTE E 4 LE KICKOFF DUTIES ESEGUITE**:
+  (c) policy RK-G di record [DIR-RKG] P1-P4; (d) THERMOTAB C^1
+  [X-THC1] PASS 14/14 (classe QUINTICA di Hermite — scoperta: la
+  cubica lascia cp C^0; cp=dh/dT STRUTTURALE; audit EOS G>=1.089
+  sul box, canale c4); (b) engine scan [X-SCANM] PASS (equivalenza
+  8.9e-16 bit-level, O3.1 7.2e-9, cache solver load-bearing);
+  (a) soglie loop-speed [X-LSG0] PASS clean-host (grad/solve=3.004
+  nella finestra [3,4] del teorema T1; T2a FAIL-as-implemented =>
+  GATE DI PRODUZIONE CHIUSO con rimediazione bucket VINCOLANTE;
+  T2 armata; flip G0 non scattato).
+- **[F2/A1] BRICK: ENGINE + PRIMO GRADIENTE DI FORMA DI RECORD**
+  ([X-TOCV] staged PASS, b255840): marcia TOC a parete specificata
+  (record adattivo certificato 4343 celle worst 1.65e-2 + replay
+  scan fedele a 2.7e-12); GUARD TERMODINAMICO (omentalpico+
+  omentropico via Crocco, dato stratificato RIGETTATO, slot cella
+  3-famiglie nominato, hook c3); LEMMA L-DoD (troncatura al dominio
+  di dipendenza: ipotesi = margine assiale UNIFORME u_x-c >= delta
+  + h_min anti-Zeno — due costanti del certificato D2.5-U);
+  **O3.1 su dJ/dW PASS** (diff 6.8e1 vs tol 1.6e2, N1 rigetta);
+  driver RK-G su scipy trust-constr (semantiche verificate A
+  SORGENTE: equality-only=Byrd-Omojokun, callback(xk,state), BFGS
+  fresco per segmento, status-4=failure); oracolo GENO tipo 2
+  ridotto FUNZIONA (eps 4.0016). RUN OPT end-to-end: 2 tentativi
+  (fix callback; poi OOM a 46 min per churn di grafi sul path
+  unjitted) — COMPLETAMENTO = NEXT-1, gated sulla mini-sessione
+  production-code (P1/P2 già vincolanti). Nessun numero dal run
+  morto (R5).
+- **[RIGOR] PASS AVVERSARIALE (ordine utente) + FINDING GENO**
+  (kickoff doc §5bis, 6c2ff8f): 2 leve CONFUTATE ed emendate
+  (Newton replay a giri fissi -> while_loop su metrica di
+  certificazione; GPU FP64-only), 1 ridimensionata (Hessiana),
+  bucket con guardia safe-where (trappola where-NaN-gradient
+  nominata, O3.1 = detector); **REJECTOR DI MARGINE ASSIALE per
+  cella AGGIUNTO** (finding: stati M>1 con u_x<c calcolano FINITI
+  e causalmente falsi — nessun NaN; GENO Interior_m NON ha alcun
+  guard: caratteristiche all'indietro usate in silenzio, sentinella
+  y<0 muta, PC senza segnale di convergenza — sano per le SUE
+  costruzioni margine-compatibili, NON per un ottimizzatore che
+  sonda pareti arbitrarie); memoria moc-critical aggiornata.
+- **[TOOLCHAIN] direttive utente in memoria permanente** (survey
+  SOTA per OGNI passo complesso + leggere-il-sorgente; toolchain
+  currency; visione generale): trust-constr adottato con lettura a
+  sorgente; **pin numpy SCARICATO** (np.trapezoid nei 4 siti,
+  requirements numpy>=2.0, env a 2.5.1, rivalidazione = suite di
+  chiusura); cache XLA persistente attiva; DECISIONE UTENTE:
+  solver SDP = Clarabel primario, MOSEK accademico fallback (lock
+  BLOCCATO sciolto).
+
+Stato precedente (chiusura Sessione 16 — CAMPAGNA "FONDAZIONI
+PROFONDE", SECONDA TRANCHE; log a ordine totale:
+validation/PROGRESS_2026-08-06_S16_fondazioni2.md, 8 passi + 9
+post-chiusura; gate PASS al passo 2, waiver brick-2 ereditato)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = a898c24,
 T1 = 20e41eb, T2 = 3b6db3a, T3 = 0b26dc7, T4a = 13f6ea4,
@@ -873,6 +937,38 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   - OP-11-ε (diagramma di fase): NON iniziato.
   - P-1 stesura: NON iniziata (outline P-2 nemmeno — è time-sensitive).
 
+## NEXT (ri-fondato 2026-08-06, chiusura S17 — brick 2 APERTO,
+## kickoff completo; il completamento del brick è gated sulla
+## mini-sessione production-code)
+
+1. [PRIMA COSA — PRODUCTION-CODE MINI-SESSION, poi RUN FINALE DEL
+   BRICK] Le leve emendate dal pass avversariale (kickoff doc
+   §5bis), OGNUNA col suo gate: P1 Newton replay -> lax.while_loop
+   su metrica di certificazione, damping conservato (gate: X-SCANM
+   equivalenza ri-passa); P2 bucket-per-fase + whole-loop jit con
+   guardia safe-where (gate: T2a ri-run — il GATE DI PRODUZIONE
+   resta CHIUSO finché non passa; O3.1 = detector di leak); P3
+   cablaggio due-binari della chiusura C^1 (X-THC1 primaria per il
+   brick, lineare per il twin GENO; gate: banda C5); sharpening del
+   rejector di margine (floor delta d'istanza, non solo > 0). POI:
+   run end-to-end OPT+oracolo+trasversalità (morto OOM in S17 —
+   infrastruttura, non metodo) => chiusura brick 2 e SBLOCCO O3.3
+   (protocollo pre-registrato P2_outline §5, intatto).
+2. [RIGOR, panchina invariata] B1 certificazione intervallare s_L
+   su K_delta (scarica U3-H1, arma S-ACFR-B1); C-XBVP(b); B3
+   g-scan; concavita' composita GBE; C-P4RZ/fallback.
+3. [CODA decisa] census-lemma session + PAP-RIM (ordine relativo da
+   decidere allora); head-to-head SOS (solver DECISO S17: Clarabel
+   primario, MOSEK accademico fallback — lock utente sciolto);
+   meccanizzazione lint (xvii); acquisizioni -> G5.
+4. [BLOCCATO->utente] G5 send (time-box); ratifiche ADR + census;
+   email dataset GV; dataset RDE pubblico (RK-E); DECISIONE
+   PREPRINT (RK-A ripesato in S17 passo 3 e RIPRESENTATO: con
+   O3.3 a un passo, la finestra-scoop si stringe — la
+   raccomandazione di record è armare il trigger arXiv appena i
+   numeri O3.3 atterrano; la decisione resta tua).
+
+[VOCE PRECEDENTE (chiusura S16, ri-aggiudicazione ESEGUITA in S17):]
 ## NEXT (aggiornato 2026-08-06, chiusura S16 — seconda tranche
 ## COMPLETA; la campagna fondazioni ha esaurito la coda [RIGOR/A]
 ## nominata: ORA TOCCA ALLA RI-AGGIUDICAZIONE DEL BRICK 2)
