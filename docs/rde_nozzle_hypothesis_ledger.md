@@ -61,7 +61,7 @@ not adjudication — the pass-2 targets are named at the end.
 | C-IGMIX caloric closure pair | PRICED | Bracketed by the EXECUTABLE pair [frozen, shifting-equilibrium]: [T-EQBR] +6.34..+6.97% ceiling bracket with bars (group (xii)); falsifier = finite-rate leaving the bracket. |
 | C-O33 adjoint component match | PRICED | Numeric residual by contract; protocol PRE-REGISTERED (P2_outline §5: (30)/(31)+f2 compatibility rows, lip-excluded norms) — S15 waiver compensating control (i) keeps it ready; lands with brick 2. |
 | C-P4RZ monodromy Riesz/compactness | PRICED | The monodromy of a linear hyperbolic phase transport is generically NON-smoothing (S14 X2 exchange) — the Riesz step is genuine analysis, not bookkeeping; until discharged the computed eigenvalue margin is a declared MONITORED SURROGATE; fallback route (Kilque/CGW class) flagged in the roads atlas (residue, T2 pending). |
-| C-XBVP transfer residuals (minted S15) | PRICED | (a) convexity discharge: instance-certified now (200/200 + sharp rejectors), interval-arithmetic proof priced bounded (links to the T4 global-maximum toolbox); (b) trace bookkeeping priced bounded (Dafermos-class); the algebraic core (T-XSON/T-XWALL) is already THEOREM at abstract EOS. |
+| C-XBVP transfer residuals (minted S15) | PRICED | (a) convexity discharge: DISCHARGED AT INSTANCE LEVEL same session (X-IVXC interval certificate, whole box, all (rho,S) via T-XRED — the priced interval route EXECUTED; abstract-EOS residue = schema); (b) trace bookkeeping priced bounded (Dafermos-class); the algebraic core (T-XSON/T-XWALL) is already THEOREM at abstract EOS. |
 
 ------------------------------------------------------------------------------
 ## §3 Reading, and pass-2 targets (named, so the ledger is actionable)

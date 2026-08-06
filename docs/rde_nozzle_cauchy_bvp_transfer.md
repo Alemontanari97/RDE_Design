@@ -96,6 +96,35 @@ EVIDENCE OF RECORD (carrier, ideal-gas instance gamma = 1.4):
 STATUS: structure symbolic, definiteness instance-certified =>
 SCHEMA; the discharge to THEOREM (a proof over the whole certified
 compact, interval-arithmetic candidate) is component (a) of [C-XBVP].
+[STATUS UPGRADE, dated 2026-08-05 (S15 reopened segment): the
+interval candidate EXECUTED — [X-IVXC] certifies strict definiteness
+over the WHOLE declared (M, V) box, and by the [T-XRED] reduction
+below for EVERY (rho, S): C-XBVP(a) DISCHARGED at the ideal-gas
+instance level (43199 boxes, deterministic budget, VERDICT PASS;
+declared libm assumption in the carrier). The abstract-EOS statement
+remains the schema residue.]
+
+[REDUCTION LEMMA, dated 2026-08-05 (S15 reopened segment, [T-XRED],
+carrier X-IVXC P4/P5 — the substrate brick's own discovery): on the
+ideal-gas instance the definiteness of H_m(eta) is a function of the
+MACH PAIR (M, V) = (u/c, v/c) ALONE. Proof: two scaling groups act
+on the state — s_alpha (pressure-density scaling at fixed c:
+rho -> alpha rho, S -> S - (gamma-1) ln alpha) gives m -> alpha m
+and eta -> alpha eta + (gamma-1)(ln alpha) m_1; s_beta
+(velocity-sound scaling: u,v -> beta u, beta v, S -> S + 2 ln beta)
+gives m -> diag(beta, beta^2, beta^2, beta^3) m and eta ->
+beta eta - 2 (ln beta) m_1. In both cases eta gains only a term
+LINEAR in m (zero m-Hessian), so H_m(eta) transforms by POSITIVE
+DIAGONAL CONGRUENCE — definiteness invariant along both orbits,
+which sweep all (rho, S) at fixed (M, V). Both identity sets are
+machine-verified symbolically (X-IVXC P4/P5, corrupted-diagonal
+rejector R4). CONSEQUENCES: (i) the §2 instance FINDING
+("definiteness tracks u_x > c, not |u| > c") is now EXPLAINED — the
+invariant content lives in the Mach pair; (ii) the C-XBVP(a)
+certification domain collapses from the 4-D box to its 2-D
+(M, V)-slice at one representative (rho, S) = (1, 0) — measured to
+be the difference between an infeasible and a feasible interval
+certificate (method record in the carrier docstring).]
 
 ------------------------------------------------------------------------------
 ## §3 Boundary inventory for the BVP

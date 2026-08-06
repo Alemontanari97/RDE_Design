@@ -29,6 +29,8 @@ Tests (see each module's docstring):
                                 (X-PA1, X-G12, X-N6, X-5F, X-SLRW,
                                 X-XBVP, X-U2RG)
   (xiv)  test_rigor_dualroute   X-P2A1 dual-route carrier [rigor tier]
+  (xviii) test_rigor_interval   X-IVXC interval certificate (S-XCONV
+                                box + T-XRED reduction) [rigor tier]
   (xv)   test_claims_lint       claims-registry lint (theory-as-code):
                                 anchors, suite membership, schema, orphans;
                                 seeded-violation rejector proven every run
@@ -65,7 +67,10 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
          'test_rigor_carriers'),
         ('(xv)  claims registry lint', 'test_claims_lint'),
         ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs')]
-RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]', 'test_rigor_dualroute')]
+RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]',
+          'test_rigor_dualroute'),
+         ('(xviii) X-IVXC interval certificate [rigor tier]',
+          'test_rigor_interval')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
 
 

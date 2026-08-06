@@ -62,6 +62,21 @@ screener only).
    spirit; NOT viable directly on the full spline class. SYNERGY OF
    RECORD: the same interval substrate discharges C-XBVP(a) (the
    S-XCONV convexity box proof) — one investment, two payoffs.
+ [FIRST BRICK EXECUTED, 2026-08-05 (S15 reopened segment): X-IVXC
+   VERDICT PASS — the S-XCONV box certificate delivered (43199
+   boxes, deterministic budget), C-XBVP(a) discharged at instance
+   level. MEASURED METHOD RECORD for this card (the go/no-go data
+   the spike owed): naive expanded-polynomial forms are DEAD for
+   plain interval arithmetic (dependency amplification ~1.6e3
+   measured); Gershgorin is infeasible on ~53% of the box at exact
+   arithmetic; interval Gauss ~15x over-wide; the FEASIBLE
+   combination is value-scale pieces + Krawczyk verified solve +
+   MEAN-VALUE form + an EXACT SYMMETRY REDUCTION of the domain
+   (T-XRED, 4D -> 2D — found because the brick forced it). CARD
+   LESSON of record: interval certification on this problem class
+   is won by reformulation (congruence, symmetry quotients,
+   centered forms), not by budget — directly reusable for the
+   Card-3 exclusion sweeps and any future c-slot certificates.]
 
 CARD 2 — MOMENT/SOS HIERARCHIES (Lasserre; sparse TSSOS/chordal
 variants).
@@ -163,7 +178,7 @@ census's main payoff.
 
 | Route | Preliminary verdict | First brick (named, VERDICT-gated) |
 |---|---|---|
-| Interval B&B | VIABLE-ON-REDUCTIONS | X-IVXC candidate: interval certificate of the S-XCONV Hessian over the declared margin box (= C-XBVP(a) discharge; small, decisive, reuses the S15 T1b object) |
+| Interval B&B | VIABLE-ON-REDUCTIONS — first brick EXECUTED, VERDICT PASS (2026-08-05) | X-IVXC DELIVERED: S-XCONV box certificate + C-XBVP(a) instance discharge + T-XRED reduction lemma + measured method record (see Card 1 note) |
 | Moment/SOS | PROMISING-SMALL | same target by SOS (PSD certificate over the box) — head-to-head with X-IVXC on cost/tightness; loser documented, not adopted |
 | Deflation + exclusion | ADOPTED-CLASS (local, A3); certification pending substrate | Krawczyk exclusion sweep on the eps-level 2-D problem (machinery exists, groups (x)/(xii)) |
 | Sector tournament | MECHANISM OF RECORD | census lemma writing (NEXT-1 register; T2 residue s2/s6 second lens pending) |

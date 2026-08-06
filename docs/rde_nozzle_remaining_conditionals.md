@@ -117,6 +117,14 @@ BVP-native proof skeleton). Stated ONCE here; two components:
      pincer sharp — carrier X-XBVP). Natural discharger: interval
      arithmetic over the box (connects to the S15 global-maximum
      dossier toolbox); EOS-general statement, ideal-gas instance.
+     [(a) DISCHARGED AT INSTANCE LEVEL, 2026-08-05 (S15 reopened
+     segment): X-IVXC interval certificate — outward-rounded
+     arithmetic, Krawczyk solve, mean-value form, interval LDL^T,
+     43199 boxes, VERDICT PASS — certifies strict definiteness over
+     the whole declared (M, V) box, and by the T-XRED scaling
+     reduction for EVERY (rho, S): stronger than the declared
+     target. Residue of (a): the abstract-EOS statement only
+     (schema). The libm-1ulp assumption is DECLARED in the carrier.]
  (b) WEAK-SIDE TECHNICALITIES: x-slice normal traces and wall traces
      for the entropy-solution class of T-XWS (Dafermos-class
      bookkeeping; strong traces available in BV; the strong side is

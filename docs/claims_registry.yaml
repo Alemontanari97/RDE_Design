@@ -1354,14 +1354,14 @@ entries:
 - id: S-XCONV
   kind: schema
   class: SCHEMA
-  scope: "convexity of the x-entropy eta = -rho u S in the x-flux vector m from the AXIAL supersonic margin; structure symbolic (EOS-general), definiteness instance-certified on ideal gas gamma = 1.4 (declared oracle role)"
-  statement: "eta is strictly convex in m on the axially supersonic branch uniformly on margin compacts (200/200 randomized margin-box states definite; subsonic 60/60 indefinite; sonic pincer sharp at eps = 1e-3); instance finding: definiteness tracks u_x > c, not |u| > c."
+  scope: "convexity of the x-entropy eta = -rho u S in the x-flux vector m from the AXIAL supersonic margin; structure symbolic (EOS-general); ideal-gas instance now BOX-CERTIFIED (S15 reopened segment: X-IVXC interval certificate over the whole declared box, extended to ALL (rho, S) by T-XRED)"
+  statement: "eta is strictly convex in m on the axially supersonic branch uniformly on margin compacts; ideal-gas instance CERTIFIED of record: strict definiteness over (M, V) in [1.15, 3] x [-0.8, 0.8] for EVERY (rho, S) (interval arithmetic + T-XRED reduction; 43199 boxes); subsonic 60/60 indefinite, sonic pincer sharp; the finding that definiteness tracks u_x > c is now EXPLAINED by T-XRED."
   doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§2 The entropy structure"
   proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§2 The entropy structure"
   inherits: [C-XBVP]
   carrier: [X-XBVP]
   suffices_symbolic: "no"
-  falsifier: "carrier P4a/R1/R2: a definite subsonic Hessian or an indefinite margin-box state; discharge path = interval proof over the certified box (C-XBVP(a))"
+  falsifier: "carrier P4a/R1/R2: a definite subsonic Hessian or an indefinite margin-box state; discharge path EXECUTED at instance level (X-IVXC certificate; the abstract-EOS statement remains the schema residue)"
   gamma: "EOS-general"
 
 - id: T-XWS
@@ -1380,8 +1380,8 @@ entries:
 - id: C-XBVP
   kind: conditional
   class: SCHEMA
-  scope: "the two named residuals of the Cauchy->BVP transfer (minted S15): (a) S-XCONV convexity discharge over the whole certified compact (interval-arithmetic candidate, links to the global-maximum dossier toolbox); (b) weak-side trace technicalities (Dafermos-class bookkeeping)"
-  statement: "T-XWS is THEOREM once (a) the x-entropy convexity is proven on all of K with margin and (b) x-slice/wall normal traces hold for the weak class; neither touches the algebraic bricks T-XSON/T-XWALL (THEOREM at abstract EOS)."
+  scope: "the two named residuals of the Cauchy->BVP transfer (minted S15): (a) S-XCONV convexity discharge — DISCHARGED AT INSTANCE LEVEL (S15 reopened segment: X-IVXC interval certificate over the whole declared box, all (rho,S) by T-XRED; abstract-EOS statement = the remaining schema residue); (b) weak-side trace technicalities (Dafermos-class bookkeeping)"
+  statement: "T-XWS is THEOREM once (a) the x-entropy convexity is proven on all of K with margin — DONE for the ideal-gas instance/box of record (X-IVXC + T-XRED), open at abstract EOS — and (b) x-slice/wall normal traces hold for the weak class; neither touches the algebraic bricks T-XSON/T-XWALL (THEOREM at abstract EOS)."
   doc: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
   inherits: []
@@ -1454,6 +1454,32 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "its rejectors R1-R3 (wrong-locus covector, off-slip glancing detection, exponent band)"
   gamma: "EOS-general"
+
+- id: T-XRED
+  kind: theorem
+  class: THEOREM
+  scope: "ideal-gas instance (gamma = 1.4, c_v = 1) of the x-entropy convexity problem; the substrate brick's own discovery (S15 reopened segment, [RIGOR/A]+[RIGOR/C])"
+  statement: "Definiteness of H_m(eta), eta = -rho u S, is a function of the Mach pair (M, V) = (u/c, v/c) ALONE: the pressure-density scaling s_alpha (fixed c) gives m -> alpha m with eta shifted by a term linear in m, and the velocity-sound scaling s_beta gives m -> diag(b, b^2, b^2, b^3) m with eta shifted linearly in m — both act on H_m(eta) by POSITIVE DIAGONAL CONGRUENCE, and their orbits sweep all (rho, S) at fixed (M, V); explains the S-XCONV finding that definiteness tracks u_x > c."
+  doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#REDUCTION LEMMA"
+  proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#REDUCTION LEMMA"
+  inherits: []
+  carrier: [X-IVXC]
+  suffices_symbolic: "yes"
+  falsifier: "carrier P4/P5 group identities (any EOS instance where they fail kills the reduction for that instance) + rejector R4 (corrupted diagonal must be rejected)"
+  gamma: "gamma-const-oracle"
+
+- id: X-IVXC
+  kind: carrier
+  class: PRACTICE
+  scope: "interval certificate machinery (suite group (xviii), rigor tier; measured 59.3 s; PASS of record 2026-08-05): outward-rounded interval arithmetic (1-ulp ops, 8-ulp libm guard, DECLARED libm-1ulp assumption), Krawczyk verified linear solve, mean-value form on the (M,V) slice, interval LDL^T, deterministic adaptive bisection (1M-box budget)"
+  statement: "CERTIFIED of record: G = H_eta - sum lam_k Hm_k is strictly positive definite over the WHOLE (M,V) box [1.15,3] x [-0.8,0.8] at (rho,S) = (1,0) — hence over the ENTIRE declared 4-D S-XCONV box AND every (rho, S), by T-XRED — in 43199 boxes; three rejectors (subsonic box not certifiable + midpoint indefinite; corrupted diagonal; containment) + P4/P5/R4 symbolic group checks; METHOD RECORD kept in the docstring (expanded-adjugate NO-GO ~1.6e3 amplification; Gershgorin infeasible on ~53%; interval-Gauss ~15x over-wide; Krawczyk ~2x gain; mean-value + 4D->2D reduction = the feasible combination)."
+  doc: "validation/ivxc_interval_certificate.py"
+  proof: "validation/ivxc_interval_certificate.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors R1-R4 + the containment test; a certified-box counterexample state (definite claim false at any in-box state) would kill the certificate and the arithmetic"
+  gamma: "gamma-const-oracle"
 
 - id: PAP-GMAX
   kind: paper
