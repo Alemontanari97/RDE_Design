@@ -1419,8 +1419,8 @@ entries:
 - id: PAP-D9HL
   kind: paper
   class: PRACTICE
-  scope: "hypothesis-minimization ledger, pass 1 (S15, [RIGOR/B], D9 candidate): mandatory verdict {DISCHARGED / WEAKENED / NECESSARY(counterexample) / PRICED} for all 17 D1 §9 rows + all 7 registry conditionals; adjudication-only pass (no new mathematics), every cell cites its record site"
-  statement: "Pass-1 totals: 0 DISCHARGED / 6 WEAKENED / 5 NECESSARY (all with cited counterexamples, 4 executable/machine-checked + 1 published page-verified) / 13 PRICED, zero rows unadjudicated; pass-2 targets named with discharge mechanisms."
+  scope: "hypothesis-minimization ledger, pass 1 (S15) + pass 2 (S16 §4) ([RIGOR/B], D9 candidate): mandatory verdict {DISCHARGED / WEAKENED / NECESSARY(counterexample) / PRICED} for all D1 §9 rows + registry conditionals + every clause minted after pass 1; adjudication-only passes (no new mathematics), every cell cites its record site"
+  statement: "Pass-2 living totals (2026-08-06): 29 rows (24 original + 5 minted clauses), zero unadjudicated — 3 DISCHARGED (H2/H-I2 on the L4-default class, M0 D2.4 dated note; H-Pa by instance reclassification, (P) untouched) / 4 WEAKENED (incl. C-XBVP upgraded) / 5 NECESSARY (all with cited counterexamples) / 17 PRICED; pass-3 targets named (B1 interval brick, C-XBVP(b), C-P4RZ or fallback). Pass-1 totals preserved in the header."
   doc: "docs/rde_nozzle_hypothesis_ledger.md#§1 The D1 §9 rows"
   proof: "docs/rde_nozzle_hypothesis_ledger.md#§2 The registry conditionals"
   inherits: []

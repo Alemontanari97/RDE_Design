@@ -507,6 +507,17 @@ Every ledger row is also a NOVELTY CHANNEL (N1-N6 of the engineering
 note): T3 is a conservation law for research effort — genuine gains over
 "Rao at ⟨Pc⟩ / plug at peak" enter ONLY through a violated row.
 
+[PASS-2 NOTE, dated 2026-08-06 (S16, [PAP-D9HL] §4): H2 and H-I2 are
+DISCHARGED on the L4-DEFAULT interface class (M0 D2.4 dated default
+note): on the default they are exact/theorem ([T-TH0] L4 note,
+[T-NSW]); they survive only as case-class assumptions inside the
+§4.3bis subsonic options (O2/O3 — "row H2 revived" is now the
+canonical wording), same monitors. H-Pa is DISCHARGED as a theory
+hypothesis: constant Pa = declared instance of the case-D product
+measure of record (T3 Corollary-2, D6 Annex B case D); the (P) text
+is untouched by anchor discipline. Living ledger totals and the new
+clause rows (U3-H1, c2-c4, ACFR confinement): [PAP-D9HL] §4.]
+
 ------------------------------------------------------------------------------
 ## 10. The problem statements (precise)
 

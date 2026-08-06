@@ -117,6 +117,19 @@ choking closure, decision tree in D1 §4.3bis); R3 measurability.
 Idealization ladder: I0 coupled bilevel / I1 wave-frame steady field /
 I2 per-phase meridional profiles / I3 sonic family (P0,T0)(xi) /
 I4 single mean state.
+[L4-DEFAULT OF RECORD, dated 2026-08-06 (S16 [RIGOR/B], ledger pass 2
+[PAP-D9HL] §4 items 1-2): the certified interface DEFAULT is the L4
+class — every patch of Gamma_d axially supersonic with margin. On
+the default: mdot-independence is EXACT ([T-TH0] L4 note, no choking
+assumption) and mean upstream influence is EXCLUDED BY THEOREM
+([T-NSW]) — the former hypotheses H2/H-I2 are DISCHARGED there.
+Subsonic patches remain admissible as a DECLARED CASE-CLASS (D1
+§4.3bis options O1-O4) whose closures carry H2/H-I2 as class
+assumptions with the existing monitors (choking margin, R2
+characteristic-direction audit) and the documented Verdict
+downgrades. This names the class the certified apparatus already
+lives on (the u_x - c >= delta margin is the standing certificate);
+no theorem's scope changes.]
 
 [D-S1] D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
 many transversal fronts, no wall-shock formation): classically
