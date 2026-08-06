@@ -833,10 +833,21 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
                              % (n_arc, float(wall_angle) / d2r,
                                 float(Max), float(Me), Nv, j2))
             sys.stderr.flush()
-        # exit / overshoot decisions (GENO constants mirrored)
+        # exit / overshoot decisions (GENO constants mirrored).
+        # m_stop PARAMETERIZED (S19, O3.2 campaign): this is item 3 of
+        # the CRITICAL LIST of deliberately mirrored GENO quirks (memory
+        # moc-critical-independent-invariants) and it is an ACCURACY
+        # FLOOR on the achieved exit Mach, hence a candidate ceiling on
+        # any measured convergence order. The knob exists so the
+        # pre-declared O3.2 diagnostic (tighten the constant, re-measure
+        # the exponent) is executable WITHOUT editing the carrier
+        # mid-verdict. DEFAULT 1e-5 = the mirrored GENO value, so the
+        # record behaviour is bit-identical unless a caller asks
+        # otherwise.
+        m_stop = cfg.get("m_stop", 1.0e-5)
         code = S.dec(lambda: (
-            "exit" if (abs(float(Max - Me)) < 1e-5 or it_ref > 30)
-            else ("interp" if (float(Max) > float(Me) + 1e-5 or flag == 1)
+            "exit" if (abs(float(Max - Me)) < m_stop or it_ref > 30)
+            else ("interp" if (float(Max) > float(Me) + m_stop or flag == 1)
                   else "step")))
         if code == "exit":
             valid_cols.append(i)
