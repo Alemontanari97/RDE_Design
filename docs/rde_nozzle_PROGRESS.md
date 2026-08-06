@@ -86,8 +86,26 @@ chiusura = (questo). Lint (xv) verde a ogni commit (107 voci).
   (enclosure intervallare della marcia) + porta SOS nativa dal duty
   THERMOTAB; programma delta->0 assemblato a 5 livelli; sinergia: il
   primo mattone scarica anche C-XBVP(a).
+- **[RIGOR/A] SEGMENTO RIAPERTO (2026-08-05, log passi 13-17) — U2 +
+  MATTONE SUBSTRATO**: (i) sfida utente di record aggiudicata
+  (evidence-bounding P-1 §4.5, b1b088b); (ii) T2 COMPLETATO (27/27,
+  21 fix, 1f51da2); (iii) U2 BRICK [T-U2RG] (b2610d1): a parete slip
+  il glancing è IMPOSSIBILE (nessun input C_geo/C_dat — riduzione di
+  ipotesi su U1 (T2)); la solvibilità della riflessione degenera
+  ESATTAMENTE al sonico totale q=c (esclusa dal solo margine
+  assiale); R chiuso in forma; necessità di slip esibita per
+  controesempio; carrier X-U2RG PASS 8/8 in (xiii) "fast seven";
+  (iv) MATTONE SUBSTRATO [X-IVXC] (ab7725b): convessità S-XCONV
+  CERTIFICATA A INTERVALLI sull'intero box (M,V) e, per il nuovo
+  LEMMA DI RIDUZIONE [T-XRED] (definitezza = funzione della sola
+  coppia di Mach, per congruenza diagonale positiva sotto due gruppi
+  di scaling), per OGNI (rho,S) — C-XBVP(a) SCARICATA a livello
+  istanza; Card 1 del dossier ESEGUITA con method record misurato
+  (forma polinomiale espansa morta ~1.6e3; Gershgorin infattibile
+  53%; vince riformulazione: Krawczyk + mean-value + quoziente di
+  simmetria); suite +gruppo (xviii) rigor (59.3 s misurati).
 - Suite: lint (xv) verde ad ogni commit; run --fast di chiusura nel
-  log passo 12.
+  log passo 12 (prima tranche) e passo 17 (segmento riaperto).
 
 Stato precedente (chiusura Sessione 14 — PANEL DI RECORD D8 +
 R4/R4-bis; sessione UNICA aperta 2026-07-22, ripresa 2026-08-02/04
@@ -792,17 +810,19 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
    aggiudicati, 21 fix eseguiti, residuo D8 §8 CHIUSO (commit
    1f51da2). Debiti nuovi nominati dentro i fix: pin census O1/O2
    (utente), C-N2 (kickoff PB-2), meccanizzazione gruppo (xvii).
-2. [RIGOR/A — registro aperto, depth-first] U2 lemma standalone di
-   riflessione (mattone simbolico candidato: degenerazione del solve
-   == glancing, stile X-G12) + U3/U4 (composizione: costo bounded,
-   prezzato dall'esecuzione U1); attacco a-contraction a C-MAJDA/U3;
-   census lemma settori (sblocca il torneo, card 4 del dossier);
-   lemma G-B ergodico o de-rate; S-LBML; acquisizioni -> G5
-   (+ Li-Yu page anchors, + query di novità T-XWALL doc §8).
-3. [RIGOR/C — dossier] MATTONE SUBSTRATO condiviso: certificato
-   interval/SOS di S-XCONV sul box (= scarico C-XBVP(a), head-to-head
-   interval vs SOS di record) + spike fattibilità interval-Newton su
-   UNA cella MoC (numero go/no-go per le card 1/2a/3).
+2. [FATTO 2026-08-05, log passo 15] U2 brick ESEGUITO ([T-U2RG],
+   b2610d1: no-glancing a slip + locus sonico + R chiuso). RESTANO di
+   questa voce: U3/U4 (composizione, costo bounded); attacco
+   a-contraction a C-MAJDA/U3; census lemma settori (sblocca il
+   torneo, card 4; pin utente O1/O2); lemma G-B ergodico o de-rate;
+   S-LBML; acquisizioni -> G5 (+ Li-Yu page anchors, + query di
+   novità T-XWALL, + page-verify Liu 2022/Harroun 2021 dal passo 13).
+3. [FATTO 2026-08-05, log passo 16] MATTONE SUBSTRATO ESEGUITO
+   ([X-IVXC] PASS + [T-XRED], ab7725b: C-XBVP(a) scaricata a
+   istanza; Card 1 eseguita). RESTANO: head-to-head SOS (gate env:
+   serve un solver SDP — decisione utente/ambiente); spike
+   interval-Newton su UNA cella MoC (go/no-go card 2a/3, ora
+   de-rischiato dal method record).
 4. [RIGOR/B] Ledger ipotesi passata 2 (target nominati in [PAP-D9HL]
    §3: L4-default, promozione caso D, C-XBVP(a), U3/U4).
 5. [BLOCCATO->utente] invariati: G5 send (time-box); ratifiche ADR +
