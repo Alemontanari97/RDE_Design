@@ -899,8 +899,18 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
    substrato condiviso [PAP-GMAX]); C-XBVP(b) (tracce Dafermos);
    B3 g-scan (economico); concavità composita GBE globale (piccolo
    brick simbolico/intervallare); C-P4RZ o fallback Kilque/CGW.
-3. [CODA INVARIATA] census-lemma session (emendamenti D2.1/D2.6 +
+3. [CODA] census-lemma session (emendamenti D2.1/D2.6 +
    C1-C3 + CEN-O4/O5 + carrier; DOPO il brick 2 per sequenza decisa);
+   [NUOVO 2026-08-06, ordine utente post-chiusura (log S16 passo 9;
+   memoria roads-insertion-matrix-directive)] sessione PAP-RIM (ID
+   da coniare al suo kickoff, pattern C-N2):
+   censimento formale strade x punti-di-inserzione (11 slot x famiglie
+   classiche+ML+esotiche; 4 campi obbligatori per cella: contratto
+   dello slot / test formale citabile / verdetto / falsificatore;
+   niente matematica nuova salvo richiesta dal contratto — DIR-SUFF
+   riaffermata) — IN CODA DOPO IL BRICK 2 (pin utente), ordine
+   relativo con census-lemma da decidere allora; fino ad allora
+   NESSUN verdetto di strada coniato in chat;
    head-to-head SOS (gate env: solver SDP = decisione utente); spike
    interval-Newton cella MoC; meccanizzazione lint (xvii) (D6 item
    16 PROPOSED); acquisizioni -> G5 (+ page-verify L-X-H/Liu/Harroun
