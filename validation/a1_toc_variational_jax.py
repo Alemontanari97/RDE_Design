@@ -162,10 +162,17 @@ def wall_geometry(W, P_geom, L):
 # ======================================================================
 # record: adaptive specified-wall march (concrete), emits plan
 # ======================================================================
-def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
+def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
+                   margin_floor=0.0):
     """Adaptive TOC march at concrete W. Returns (out, plan).
     Structure mirrors [X-A1IM] run_march phases 1-4 with the wall
-    given by (arc up to theta_B) + spline; certification enforced."""
+    given by (arc up to theta_B) + spline; certification enforced.
+    margin_floor (P4 sharpening, S18): the axial-margin rejector
+    fires at u_x - c <= margin_floor instead of 0 — the DECLARED
+    INSTANCE FLOOR delta (derived from the certified base design's
+    min_margin / K_RICH, the repo's reused two-level safety constant)
+    for converged-design audits; 0.0 = the hard causality bound for
+    in-optimization records."""
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
@@ -180,6 +187,9 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
     n_B = max(1, int(np.ceil(thB / da)))     # frozen arc-station count
 
     cert = dict(worst=0.0, n=0, min_margin=np.inf)
+    # jitted once per run: the eager per-cell closure call is pure
+    # dispatch overhead (measured S18 on the quintic closure)
+    sound_of_q = jax.jit(lambda q: state_fn(q, ta)[3])
 
     def margin_of(pt):
         """AXIAL-MARGIN REJECTOR (S17 finding, user adversarial
@@ -191,7 +201,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         (== |theta| + mu < 90 deg) CHECKED per cell, never assumed."""
         u, v = float(pt[2]), float(pt[3])
         q = float(np.hypot(u, v))
-        c = float(state_fn(jnp.float64(q), ta)[3])
+        c = float(sound_of_q(jnp.float64(q)))
         return u - c
 
     def cell(kind, p, z0, pt_of_z=None):
@@ -205,11 +215,12 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         if pt_of_z is not None:
             m = margin_of(pt_of_z(z))
             cert["min_margin"] = min(cert["min_margin"], m)
-            if m <= 0.0:
+            if m <= margin_floor:
                 raise RuntimeError(
-                    "axial-margin rejector: u_x - c = %.3e <= 0 "
-                    "(x-as-time causality violated at a solved cell)"
-                    % m)
+                    "axial-margin rejector: u_x - c = %.3e <= floor "
+                    "%.3e (x-as-time causality / L-DoD uniform-margin "
+                    "hypothesis violated at a solved cell)"
+                    % (m, margin_floor))
         return z
 
     # ---------- IVL + fan (as [X-A1IM]; plan reuses SC column arrays)
@@ -433,6 +444,206 @@ def run_toc_scan(W, tab, cfg, plan, state_fn=A1.state_q, solvers=None):
 
 
 # ======================================================================
+# P2 (S18): bucketed whole-loop jitted TOC replay — the PRODUCTION
+# inner-loop path (kickoff §5bis R-4; the S17 OPT run died OOM on the
+# unjitted path's per-evaluation graph churn — this is the executed
+# remediation). Two scan modules (fan / design-wall) inside ONE jitted
+# function of W; SAFE-WHERE guard as in [X-SCANM] make_run_scan_jit:
+# padded lanes solve a FIXED recorded cell problem (numpy constants,
+# no gradient path to W), so both where-branches stay finite; O3.1 on
+# this path is the NaN-leak detector.
+# ======================================================================
+def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
+                          solvers=None):
+    """Whole-loop jitted bucketed TOC replay for a FIXED plan.
+    Returns a jitted callable W -> wall (n_B + Nw, 4)."""
+    ta = A1.tab_arrays(tab)
+    if solvers is None:
+        solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
+    s_int = solvers["interior"][0]
+    s_axi = solvers["axis"][0]
+    s_wal = solvers["wall"][0]
+    NI, Nw = cfg["NI"], cfg["Nw"]
+    yt, rtu, rtd = cfg["yt"], cfg["rtu"], cfg["rtd"]
+    L = cfg["xtronc"]
+    P_geom = jnp.array([yt, rtu, rtd])
+    n_B = plan["n_B"]
+
+    # ---- bucket arrays (numpy constants)
+    fan = plan["fan"]
+    nmaxF = max(c["n"] for c in fan)
+    WF = 2 * NI - 1
+    fan_n = np.array([c["n"] for c in fan], dtype=np.int32)
+    fan_seeds = np.zeros((len(fan), nmaxF, 4))
+    for i, c in enumerate(fan):
+        fan_seeds[i, : c["n"]] = c["seeds"]
+    fan_ax = np.stack([np.asarray(c["axis_seed"]) for c in fan])
+    head_idx = np.array([NI - i for i in range(2, NI + 1)],
+                        dtype=np.int32)
+
+    arc = plan["arc"]
+    nmaxA = max(max(c["n"] for c in arc), 1)
+    WT = max(WF, max(1 + (c["Nv"] - 1) + c["n"]
+                     + (1 if c["has_axis"] else 0) for c in arc) + 1)
+    arc_n = np.array([c["n"] for c in arc], dtype=np.int32)
+    arc_N = np.array([c["N"] for c in arc], dtype=np.int32)
+    arc_Nv = np.array([c["Nv"] for c in arc], dtype=np.int32)
+    arc_hax = np.array([c["has_axis"] for c in arc])
+    arc_ws = np.stack([np.asarray(c["wall_seed"]) for c in arc])
+    arc_seeds = np.zeros((len(arc), nmaxA, 4))
+    for i, c in enumerate(arc):
+        if c["n"]:
+            arc_seeds[i, : c["n"]] = c["seeds"]
+    # station index (1-based within its family) + family flag
+    arc_kk = np.array([k + 1 if k < n_B else k + 1 - n_B
+                       for k in range(len(arc))], dtype=np.float64)
+    arc_isarc = np.array([k < n_B for k in range(len(arc))])
+
+    # ---- safe-where dummies (exact recorded problems, constants)
+    P_DUM = np.concatenate([np.asarray(fan[-1]["seeds"][0]),
+                            np.asarray(fan[-2]["seeds"][0])])
+    Z_DUM = np.asarray(fan[-1]["seeds"][1])
+    zd = s_int(jnp.asarray(Z_DUM), jnp.asarray(P_DUM), ta)
+    stp = float(solvers["interior"][2](zd, jnp.asarray(P_DUM), ta))
+    scd = max(1.0, float(jnp.max(jnp.abs(zd))))
+    if not stp <= A1.NEWTON_TOL_FACTOR * EPS * scd:
+        raise RuntimeError("safe-where dummy cell failed certification "
+                           "(step %.3e)" % stp)
+    PAD = np.asarray(zd)
+    PT_DAX = np.asarray(fan[-1]["seeds"][-1])     # axis-solve dummy pt1
+    SD_DAX = np.asarray(fan[-1]["axis_seed"])     # + its recorded seed
+    # axis dummy: certification-verified at build time like the
+    # interior dummy (exact recorded axis problem + recorded seed)
+    za_d = s_axi(jnp.asarray(SD_DAX), jnp.asarray(PT_DAX), ta)
+    stp_a = float(solvers["axis"][2](za_d, jnp.asarray(PT_DAX), ta))
+    sca_d = max(1.0, float(jnp.max(jnp.abs(za_d))))
+    if not stp_a <= A1.NEWTON_TOL_FACTOR * EPS * sca_d:
+        raise RuntimeError("safe-where axis dummy failed certification "
+                           "(step %.3e)" % stp_a)
+    # axis dummy fillers for no-axis columns
+    ax_fill = np.stack([np.asarray(c["axis_seed"]) if c["has_axis"]
+                        else SD_DAX for c in arc])
+
+    gm = tab["gammamedio"]
+    delta = 1.0
+    as_ = tab["_as"]
+
+    @jax.jit
+    def run(W):
+        PADj = jnp.asarray(PAD)
+        PDUMj = jnp.asarray(P_DUM)
+        ZDUMj = jnp.asarray(Z_DUM)
+        thB = W[0]
+        xB, yB, xs, ys, Msp = wall_geometry(W, P_geom, L)
+
+        # ---------- IVL (identical to run_toc_scan)
+        alpha = jnp.sqrt((1.0 + delta) / ((gm + 1.0) * rtu * yt))
+        c1 = -(gm + 1.0) * alpha / (2.0 * (3.0 + delta))
+        c2 = (gm + 1.0) * alpha**2 / (2.0 * (1.0 + delta))
+        eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
+        jj = jnp.arange(NI)
+        y_ivl = yt * (1.0 - jj / (NI - 1.0))
+        x_raw = c1 * y_ivl**2 + 0.000001
+        u_ivl = as_ * (1.0 + alpha * x_raw + c2 * y_ivl**2)
+        x_ivl = x_raw - eshift
+        ivl = jnp.stack([x_ivl, y_ivl, u_ivl, jnp.zeros(NI)], axis=1)
+
+        def cell_step(carry, xsk):
+            seed, pt2, active = xsk
+            p_real = jnp.concatenate([carry, pt2])
+            p = jnp.where(active, p_real, PDUMj)
+            sd = jnp.where(active, seed, ZDUMj)
+            zc = s_int(sd, p, ta)
+            return (jnp.where(active, zc, carry),
+                    jnp.where(active, zc, PADj))
+
+        # ---------- FAN bucket
+        prevF0 = jnp.concatenate(
+            [ivl[NI - 1][None, :],
+             jnp.tile(PADj[None, :], (WF - 1, 1))], axis=0)
+        ksF = jnp.arange(nmaxF, dtype=jnp.int32)
+        rowsF = jnp.arange(WF, dtype=jnp.int32)
+
+        def fan_body(prev, xs):
+            seeds, n_i, aseed, hidx = xs
+            head = ivl[hidx]
+            act = ksF < n_i
+            last, cells = jax.lax.scan(
+                cell_step, head, (seeds, prev[:nmaxF], act))
+            za = s_axi(aseed, last, ta)
+            ax = jnp.array([za[0], 0.0, za[1], 0.0])
+            shifted = jnp.concatenate([head[None, :], cells], axis=0)
+            if shifted.shape[0] < WF:
+                shifted = jnp.concatenate(
+                    [shifted, jnp.tile(PADj[None, :],
+                                       (WF - shifted.shape[0], 1))],
+                    axis=0)
+            newp = jnp.where((rowsF == n_i + 1)[:, None],
+                             ax[None, :], shifted)
+            return newp, None
+
+        prevF, _ = jax.lax.scan(
+            fan_body, prevF0,
+            (jnp.asarray(fan_seeds), jnp.asarray(fan_n),
+             jnp.asarray(fan_ax), jnp.asarray(head_idx)))
+
+        # ---------- DESIGN-WALL bucket (arc sector + contour)
+        prevT0 = jnp.concatenate(
+            [prevF, jnp.tile(PADj[None, :], (WT - WF, 1))], axis=0)
+        ksA = jnp.arange(nmaxA, dtype=jnp.int32)
+        rowsT = jnp.arange(WT, dtype=jnp.int32)
+
+        def wall_body(prev, col):
+            (seeds, n_i, N_i, Nv_i, hax, wseed, aseed, kk,
+             isarc) = col
+            th = thB * kk / n_B
+            x4a = rtd * jnp.sin(th)
+            y4a = yt + rtd * (1.0 - jnp.cos(th))
+            sla = jnp.tan(th)
+            x4c = xB + (L - xB) * kk / Nw
+            yvc, ypc = spline_eval(x4c, xs, ys, Msp)
+            x4 = jnp.where(isarc, x4a, x4c)
+            y4 = jnp.where(isarc, y4a, yvc)
+            sl = jnp.where(isarc, sla, ypc)
+            pt1 = prev[Nv_i]
+            pt3 = prev[jnp.clip(N_i - 1, 0, WT - 1)]
+            p_w = jnp.concatenate([pt1, pt3, jnp.stack([x4, y4, sl])])
+            zw = s_wal(wseed, p_w, ta)
+            u4 = zw[1]
+            wall_pt = jnp.stack([x4, y4, u4, sl * u4])
+            act = ksA < n_i
+            pt2s = prev[jnp.clip(Nv_i + ksA, 0, WT - 1)]
+            last, cells = jax.lax.scan(
+                cell_step, wall_pt, (seeds, pt2s, act))
+            p_ax = jnp.where(hax, last, jnp.asarray(PT_DAX))
+            sd_ax = jnp.where(hax, aseed, jnp.asarray(SD_DAX))
+            za = s_axi(sd_ax, p_ax, ta)
+            ax = jnp.array([za[0], 0.0, za[1], 0.0])
+            cellsel = cells[jnp.clip(rowsT - Nv_i, 0, nmaxA - 1)]
+            base = jnp.where(
+                (rowsT == 0)[:, None], wall_pt[None, :],
+                jnp.where((rowsT < Nv_i)[:, None], prev,
+                          jnp.where((rowsT < Nv_i + n_i)[:, None],
+                                    cellsel,
+                                    jnp.where(((rowsT == Nv_i + n_i)
+                                               [:, None]) & hax,
+                                              ax[None, :],
+                                              PADj[None, :]))))
+            return base, wall_pt
+
+        _, wallT = jax.lax.scan(
+            wall_body, prevT0,
+            (jnp.asarray(arc_seeds), jnp.asarray(arc_n),
+             jnp.asarray(arc_N), jnp.asarray(arc_Nv),
+             jnp.asarray(arc_hax), jnp.asarray(arc_ws),
+             jnp.asarray(ax_fill), jnp.asarray(arc_kk),
+             jnp.asarray(arc_isarc)))
+        return wallT
+
+    return run
+
+
+# ======================================================================
 # objective (wall pressure-thrust integral, Pa-free by {eps, L})
 # ======================================================================
 def thrust_J(wall, tab, state_fn=A1.state_q):
@@ -459,7 +670,8 @@ def check(label, ok):
 # iterations only; status 4 = converged-but-infeasible = failure)
 # ======================================================================
 def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
-              maxiter_per_seg=40):
+              maxiter_per_seg=40, state_fn=A1.state_q, solvers=None,
+              verbose=0):
     from scipy.optimize import minimize, LinearConstraint
 
     n = W0.shape[0]
@@ -471,16 +683,25 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
     events = []                          # re-record events (P2 log)
     n_rec = 0
     nit_total = 0
+    n_eval = 0
     result = None
     for seg in range(max_segments):
-        out_rec, plan = run_toc_record(W, tab, cfg)
+        out_rec, plan = run_toc_record(W, tab, cfg, state_fn=state_fn,
+                                       solvers=solvers)
         n_rec += 1
         if out_rec["cert_worst"] > 1.0:
             raise RuntimeError(
                 "P4 gate: record at segment base not certified "
                 "(worst %.3e)" % out_rec["cert_worst"])
-        # monitor (i): replay fidelity at the base point
-        wall_sc = run_toc_scan(jnp.asarray(W), tab, cfg, plan)
+        # P2 production path (S18): whole-loop jitted bucketed replay
+        # built ONCE per segment (fixed plan); every objective/
+        # gradient call is a compiled call — no per-eval re-trace
+        # (the S17 OOM mechanism is structurally removed).
+        runj = make_run_toc_scan_jit(tab, cfg, plan,
+                                     state_fn=state_fn,
+                                     solvers=solvers)
+        # monitor (i): replay fidelity at the base point (jit path)
+        wall_sc = runj(jnp.asarray(W))
         dev = float(jnp.max(jnp.abs(wall_sc - out_rec["wall"])))
         scale = float(jnp.max(jnp.abs(out_rec["wall"])))
         if dev > A1.NEWTON_TOL_FACTOR * EPS * scale * 10.0:
@@ -489,11 +710,12 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
         dec_base = [(c["N"], c["Nv"]) for c in plan["arc"]]
 
         def scalar_J(Wv):
-            wall = run_toc_scan(Wv, tab, cfg, plan)
-            return -thrust_J(wall, tab)          # minimize -J
-        val_grad = jax.value_and_grad(scalar_J)
+            return -thrust_J(runj(Wv), tab, state_fn=state_fn)
+        val_grad = jax.jit(jax.value_and_grad(scalar_J))
 
         def f_np(x):
+            nonlocal n_eval
+            n_eval += 1
             v, _ = val_grad(jnp.asarray(x))
             v = float(v)
             return v if np.isfinite(v) else 1e30  # monitor-lite NaN guard
@@ -502,18 +724,27 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
             g = np.asarray(g)
             return np.where(np.isfinite(g), g, 0.0)
 
-        seg_state = dict(stop=False)
+        seg_state = dict(stop=False, last_rec=np.asarray(W).copy())
 
         def cb(xk, state):
-            # P2: re-record at every ACCEPTED iterate; end the segment
-            # on a decision change (topology moved). Signature: the
+            # P2: re-record on ACCEPTANCE; end the segment on a
+            # decision change (topology moved). Signature: the
             # trust-constr legacy callback(xk, state) (scipy wraps by
             # arity — read at source, _optimize.py wrapped_callback).
+            # S18: skip the re-record when x has not moved since the
+            # last one (state.x updates only on accepted iterations —
+            # re-recording an unchanged iterate is a no-op by P2's own
+            # semantics and costs a full adaptive march).
             nonlocal n_rec
+            xk_now = np.asarray(state.x)
+            if np.array_equal(xk_now, seg_state["last_rec"]):
+                return False
             try:
-                _, plan_new = run_toc_record(np.asarray(state.x),
-                                             tab, cfg)
+                _, plan_new = run_toc_record(xk_now, tab, cfg,
+                                             state_fn=state_fn,
+                                             solvers=solvers)
                 n_rec += 1
+                seg_state["last_rec"] = xk_now.copy()
             except RuntimeError:
                 seg_state["stop"] = True     # record failed: shrink via
                 return True                  # segment restart from last W
@@ -532,7 +763,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
                        constraints=[lip_eq], callback=cb,
                        options=dict(gtol=gtol, xtol=xtol,
                                     maxiter=maxiter_per_seg,
-                                    initial_tr_radius=0.05))
+                                    initial_tr_radius=0.05,
+                                    verbose=verbose))
         nit_total += int(res.nit)
         W = np.asarray(res.x)
         result = res
@@ -546,12 +778,14 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
             break                            # iteration budget exhausted
     return dict(W=W, res=result, n_segments=seg + 1,
                 re_records=n_rec, re_record_events=events,
-                nit_total=nit_total)
+                nit_total=nit_total, n_eval=n_eval)
 
 
-def geno_type2_reference(scratch):
+def geno_type2_reference(scratch, NI_over=None, Ne_over=None):
     """Run GENO nozzle_type=2 on the reduced twin case (file
-    exchange; GENO never modified) and read its wall."""
+    exchange; GENO never modified) and read its wall. NI_over/Ne_over
+    (S18): resolution overrides for the cross-resolution oracle band
+    (the GENO self-truncation scale on the twin case)."""
     ini = os.path.join(scratch, "input.ini")
     if not os.path.exists(ini):
         os.makedirs(scratch, exist_ok=True)
@@ -569,7 +803,7 @@ def geno_type2_reference(scratch):
                     "[GENO-solver]\nNI = %d\nNe = %d\n"
                     % (TCASE["yt"], TCASE["rtu"], TCASE["rtd"],
                        TCASE["da_deg"], TCASE["eps"], TCASE["xtronc"],
-                       TCASE["NI"], TCASE["Ne"]))
+                       NI_over or TCASE["NI"], Ne_over or TCASE["Ne"]))
     if not os.path.exists(os.path.join(scratch, "dimensions.dat")):
         geno_bin = A1.win_to_wsl(os.path.join(A1.GENO_DIR, "bin",
                                               "GENO"))
@@ -596,17 +830,57 @@ def geno_type2_reference(scratch):
     return wx[keep], wy[keep]
 
 
+def _time_geno_type2(scratch, n=3):
+    """Median wall time of the WHOLE GENO type-2 run (the classical
+    outer loop the brick replaces) — EPOCHREALTIME protocol as in
+    [X-LSG0] (bash `time` keyword trap declared there)."""
+    import statistics
+    geno_bin = A1.win_to_wsl(os.path.join(A1.GENO_DIR, "bin", "GENO"))
+    cmd = ("cd '%s' && export LD_LIBRARY_PATH="
+           "/home/alessandro/miniconda3/envs/ct-env/lib && "
+           "S=$EPOCHREALTIME; '%s' > /dev/null 2>&1; "
+           "E=$EPOCHREALTIME; echo $S $E"
+           % (A1.win_to_wsl(scratch), geno_bin))
+    ts = []
+    for _ in range(n):
+        r = subprocess.run(["wsl.exe", "-e", "bash", "-lc", cmd],
+                           capture_output=True, text=True, timeout=600)
+        toks = r.stdout.split()
+        if len(toks) >= 2:
+            try:
+                ts.append(float(toks[-1]) - float(toks[-2]))
+            except ValueError:
+                pass
+    if not ts:
+        raise RuntimeError("GENO type-2 timing failed")
+    return statistics.median(ts)
+
+
 def main():
     print("== BRICK 2 [X-TOCV]: variational TOC via dJ/dSigma + TR-SQP "
           "(JAX %s, SciPy trust-constr) ==" % jax.__version__)
-    print("  (main() staged: S17 lands the engine + O3.1 + first "
-          "optimization segment; see the S17 log for the staging "
-          "declaration)")
+    print("  (S18 production wiring: C^1 closure primary two-track, "
+          "bucketed whole-loop jit inner loop, P4 margin floor; OPT "
+          "stage behind A1_TOCV_OPT=1 — see the S18 log)")
     ok = True
     tab = A1.prep_tab(A1.build_tab_nasa())
     cfg = dict(NI=TCASE["NI"], Nw=NW, da_deg=TCASE["da_deg"],
                yt=TCASE["yt"], rtu=TCASE["rtu"], rtd=TCASE["rtd"],
                xtronc=TCASE["xtronc"])
+
+    # P3 (S18): TWO-TRACK CLOSURE WIRING of record (kickoff §5bis
+    # R-5) — the brick's PRIMARY closure is the [X-THC1] C^1 quintic;
+    # record AND replay share it (same state_fn, same solver set: one
+    # closure per run, never mixed). The GENO twin regression
+    # ([X-A1IM] ideal march + its contour oracle) STAYS on the 'nasa'
+    # linear closure (bit-level data contract) — two tracks, each
+    # internally consistent.
+    c1 = TH.build_c1(tab)
+
+    def state_c1(q, ta_ignored):
+        return TH.state_q_c1(q, c1)
+
+    solv_c1 = SC.cached_solvers(("thc1_nasa", 1.0), state_c1, 1.0)
 
     # INITIAL DESIGN = GENO-SEEDED (deviation history declared in the
     # S17 log: attempt 1 straight taper -> spline oscillation at the
@@ -660,9 +934,10 @@ def main():
     ok &= check("guard REJECTS stratified (non-homenthalpic/entropic)"
                 " data", not g_bad["ok"])
 
-    print("-- record at W0 (adaptive, certified) --")
+    print("-- record at W0 (adaptive, certified; C^1 closure primary) --")
     t0 = time.perf_counter()
-    out0, plan0 = run_toc_record(W0, tab, cfg)
+    out0, plan0 = run_toc_record(W0, tab, cfg, state_fn=state_c1,
+                                 solvers=solv_c1)
     print("  record: %.1f s, %d cells, cert worst %.3e; wall pts %d; "
           "min axial margin u_x - c = %.4f m/s"
           % (time.perf_counter() - t0, out0["cert_n"],
@@ -672,18 +947,60 @@ def main():
     ok &= check("axial margin positive on every solved cell "
                 "(x-as-time causality, truncation-lemma hypothesis)",
                 out0["min_margin"] > 0.0)
+    # P4 sharpening (S18): DECLARED INSTANCE FLOOR delta for the
+    # L-DoD uniform-margin hypothesis — from the certified base
+    # design's own min margin over the reused two-level safety
+    # constant (K_RICH = 4); the converged design must be audited
+    # against THIS floor, not just > 0.
+    delta_inst = float(out0["min_margin"]) / A1.K_RICH
+    print("  [P4] instance margin floor delta = min_margin(W0)/K_RICH "
+          "= %.4f m/s" % delta_inst)
 
-    print("-- replay fidelity (RK-G monitor i) --")
-    wall_sc = run_toc_scan(jnp.asarray(W0), tab, cfg, plan0)
+    print("-- P3 gate: closure two-track vs [X-THC1] C5 band "
+          "(flow-level: the wall geometry is SPECIFIED, so the "
+          "closure shows in the wall SPEED profile u4) --")
+    out_lin, _ = run_toc_record(W0, tab, cfg)      # linear twin track
+    cfg2 = dict(cfg)
+    cfg2["NI"] = 2 * cfg["NI"] - 1
+    cfg2["Nw"] = 2 * cfg["Nw"]
+    out_lin2, _ = run_toc_record(W0, tab, cfg2)    # linear, double res
+    wx1 = np.asarray(out_lin["wall"][:, 0])
+    u1 = np.asarray(out_lin["wall"][:, 2])
+    wx2 = np.asarray(out_lin2["wall"][:, 0])
+    u2 = np.asarray(out_lin2["wall"][:, 2])
+    e_rich_u = np.abs(u1 - np.interp(wx1, wx2, u2))
+    band_u = A1.K_RICH * (e_rich_u + 64.0 * EPS * np.abs(u1))
+    gap_u = np.abs(np.asarray(out0["wall"][:, 2]) - u1)
+    nbad_u = int(np.sum(gap_u > band_u))
+    print("  wall-speed profile: max|u_c1 - u_lin| = %.3e, max "
+          "Richardson band = %.3e, out-of-band %d/%d"
+          % (gap_u.max(), band_u.max(), nbad_u, len(gap_u)))
+    ok &= check("C^1-vs-linear closure gap sub-resolution on the "
+                "wall speed (X-THC1 C5 at march level)", nbad_u == 0)
+
+    print("-- replay fidelity (RK-G monitor i; per-column + jit) --")
+    wall_sc = run_toc_scan(jnp.asarray(W0), tab, cfg, plan0,
+                           state_fn=state_c1, solvers=solv_c1)
     dev = float(jnp.max(jnp.abs(wall_sc - out0["wall"])))
     scale = float(jnp.max(jnp.abs(out0["wall"])))
     tol_rep = A1.NEWTON_TOL_FACTOR * EPS * scale * 10.0
     print("  max|scan - record| = %.3e (tol %.3e)" % (dev, tol_rep))
     ok &= check("replay fidelity at Newton floor", dev <= tol_rep)
+    t0 = time.perf_counter()
+    runj0 = make_run_toc_scan_jit(tab, cfg, plan0, state_fn=state_c1,
+                                  solvers=solv_c1)
+    wall_j = jax.block_until_ready(runj0(jnp.asarray(W0)))
+    t_comp = time.perf_counter() - t0
+    dev_j = float(jnp.max(jnp.abs(wall_j - out0["wall"])))
+    print("  jit path: first call (incl. whole-loop compile) %.1f s; "
+          "max|jit - record| = %.3e (tol %.3e)"
+          % (t_comp, dev_j, tol_rep))
+    ok &= check("bucketed jit replay fidelity at Newton floor",
+                dev_j <= tol_rep)
 
-    print("-- O3.1 on the TOC gradient chain --")
+    print("-- O3.1 on the TOC gradient chain (PRODUCTION jit path) --")
     def scalar_J(Wv):
-        return thrust_J(run_toc_scan(Wv, tab, cfg, plan0), tab)
+        return thrust_J(runj0(Wv), tab, state_fn=state_c1)
 
     Wj = jnp.asarray(W0)
     J0 = float(scalar_J(Wj))
@@ -703,9 +1020,10 @@ def main():
                           + A1.C_FLOOR * EPS ** (2.0 / 3.0)
                           * max(abs(J0), 1.0))
     print("  J(W0) = %.6e;  FD dirder = %.10e  <g,v> = %.10e  "
-          "|diff| = %.3e (tol %.3e)"
+          "|diff| = %.3e (tol %.3e)  [= the safe-where leak detector]"
           % (J0, lhs, rhs, abs(lhs - rhs), tol_dp))
-    ok &= check("O3.1 dot-product on dJ/dW", abs(lhs - rhs) <= tol_dp)
+    ok &= check("O3.1 dot-product on dJ/dW (jit path, leak detector)",
+                abs(lhs - rhs) <= tol_dp)
     # N1: corrupted gradient must break the identity
     gbad = g.copy()
     gbad[1] = -gbad[1]
@@ -719,7 +1037,8 @@ def main():
     # transversality instance. Staged separately for budget control.
     # ------------------------------------------------------------------
     if os.environ.get("A1_TOCV_OPT") == "1" and ok:
-        print("-- OPT: TR-SQP (trust-constr, RK-G segmentation) --")
+        print("-- OPT: TR-SQP (trust-constr, RK-G segmentation, "
+              "PRODUCTION jit path, verbose) --")
         rng = np.random.default_rng(7)
         Wp = W0.copy()
         # feasible perturbation: interior nodes only (lip pinned),
@@ -727,23 +1046,34 @@ def main():
         bump = 0.015 * y0[:-1] * np.sin(
             np.pi * (xsn[:-1] - xB0) / (Lx - xB0))
         Wp[1:-1] = Wp[1:-1] + bump * rng.standard_normal(1)[0]
-        J_seed = float(thrust_J(run_toc_scan(
-            jnp.asarray(W0), tab, cfg, plan0), tab))
+        J_seed = J0
         # derived optimizer tolerances: gtol from the O3.1 FD noise
         # scale (the gradient is trustworthy down to tol_dp/|v| per
         # component), xtol from the Newton floor on W scale
         gscale = float(np.linalg.norm(g))
         gtol = max(tol_dp, 1e-8 * gscale)
         xtol = 1e-10
+        # per-evaluation production timings (T2 constants, this case)
+        t0 = time.perf_counter()
+        float(scalar_J(Wj))
+        t_solve = time.perf_counter() - t0
+        gjit = jax.jit(jax.grad(scalar_J))
+        jax.block_until_ready(gjit(Wj))          # compile
+        t0 = time.perf_counter()
+        jax.block_until_ready(gjit(Wj))
+        t_grad = time.perf_counter() - t0
+        print("  per-eval (jit, this case): t_solve = %.3f s, "
+              "t_grad = %.3f s" % (t_solve, t_grad))
         t_opt = time.perf_counter()
-        opt = run_trsqp(Wp, tab, cfg, yL, gtol=gtol, xtol=xtol)
+        opt = run_trsqp(Wp, tab, cfg, yL, gtol=gtol, xtol=xtol,
+                        state_fn=state_c1, solvers=solv_c1, verbose=2)
         t_opt = time.perf_counter() - t_opt
         res = opt["res"]
         print("  segments %d, re-records %d, re-record events %s, "
-              "nit %d, %.0f s" % (opt["n_segments"],
-                                  opt["re_records"],
-                                  opt["re_record_events"],
-                                  opt["nit_total"], t_opt))
+              "nit %d, evals %d, %.0f s"
+              % (opt["n_segments"], opt["re_records"],
+                 opt["re_record_events"], opt["nit_total"],
+                 opt["n_eval"], t_opt))
         print("  status %d (%s); KKT optimality %.3e (gtol %.3e); "
               "constr violation %.3e" % (res.status, res.message,
                                          res.optimality, gtol,
@@ -759,43 +1089,109 @@ def main():
                     "at optimum below derived tol)",
                     res.optimality <= 10.0 * gtol)
         W_star = opt["W"]
-        J_star = float(thrust_J(run_toc_scan(
-            jnp.asarray(W_star), tab, cfg,
-            run_toc_record(W_star, tab, cfg)[1]), tab))
+        # P4 sharpening: converged-design margin AUDIT against the
+        # DECLARED instance floor (rejector-grade: the record itself
+        # fires below delta_inst)
+        out_s, plan_s = run_toc_record(W_star, tab, cfg,
+                                       state_fn=state_c1,
+                                       solvers=solv_c1,
+                                       margin_floor=delta_inst)
+        print("  [P4] final-design margin audit: min u_x - c = %.4f "
+              "m/s >= instance floor %.4f m/s"
+              % (out_s["min_margin"], delta_inst))
+        ok &= check("P4 margin floor audit on the converged design",
+                    out_s["min_margin"] >= delta_inst)
+        runj_s = make_run_toc_scan_jit(tab, cfg, plan_s,
+                                       state_fn=state_c1,
+                                       solvers=solv_c1)
+        J_star = float(thrust_J(runj_s(jnp.asarray(W_star)), tab,
+                                state_fn=state_c1))
         print("  J(seed W0) = %.7e  J(perturbed start) -> J* = %.7e "
               "(dJ vs seed %.2e)" % (J_seed, J_star, J_star - J_seed))
 
+        # KKT multiplier reading (transversality instance, declared):
+        # the lip-height equality multiplier lambda = dJ*/dy_L; the
+        # implied ambient of the free-eps problem is Pa_impl =
+        # lambda / (2 pi y_L) (the eps constraint prices lip area);
+        # compared with the achieved lip pressure — the FULL corner-
+        # combination term-match is the pre-registered O3.3 campaign,
+        # NOT claimed here (instance reading only).
+        # scipy trust-constr multiplier convention (source-read S17):
+        # optimality = ||grad f + A^T v|| with f = -J, so
+        # v = dJ/dy_L at the optimum; reported RAW (with sign), the
+        # implied-ambient reading uses |v| and is DECLARED an
+        # instance reading (full corner term-match = O3.3).
+        lam = float(np.atleast_1d(np.asarray(res.v[0]))[0])
+        Pa_impl = abs(lam) / (2.0 * np.pi * yL)
+        q_lip = float(np.hypot(out_s["wall"][-1, 2],
+                               out_s["wall"][-1, 3]))
+        p_lip = float(state_c1(jnp.float64(q_lip), None)[1])
+        print("  [O3 multiplier reading] lambda_eps = %.6e; implied "
+              "Pa = |lambda|/(2 pi yL) = %.6e Pa; achieved lip "
+              "pressure = %.6e Pa; ratio %.3f  [instance reading, "
+              "declared: full corner term-match = O3.3 campaign]"
+              % (lam, Pa_impl, p_lip, Pa_impl / p_lip))
+
+        # T2 whole-loop bound (ARMED in X-LSG0, EVALUATED here with
+        # the measured N_TR): the classical loop it replaces is the
+        # GENO type-2 run itself (outer Mrao bisection x inner xsol
+        # marches) — cost anchor = the measured wall time of the
+        # WHOLE type-2 run; N_outer and the inner-march count are
+        # parsed from its log and reported.
+        slog = os.path.join(scratch2, "solver.log")
+        with open(slog) as f:
+            slines = f.readlines()
+        n_outer = sum(1 for ln in slines if "TOC" in ln and "iter" in ln)
+        n_inner = sum(1 for ln in slines if "err inner" in ln)
+        t_g2 = _time_geno_type2(scratch2)
+        lhs_T2 = opt["n_eval"] * (t_solve + t_grad)
+        rhs_T2 = 4.0 * t_g2                       # K_prac (X-LSG0)
+        print("  [T2] N_eval x (t_solve + t_grad) = %d x %.3f s = "
+              "%.1f s  <=  K_prac x t_GENO_type2 = 4 x %.3f s = "
+              "%.1f s  [GENO log: %d outer iters, %d inner marches]"
+              % (opt["n_eval"], t_solve + t_grad, lhs_T2, t_g2,
+                 rhs_T2, n_outer, n_inner))
+        ok &= check("T2 whole-loop practicality bound", lhs_T2 <= rhs_T2)
+
         # GENO cross-code oracle: our optimum wall vs the GENO Rao
-        # wall inside the derived two-resolution Richardson band
-        print("-- OPT oracle: contour vs GENO type-2 (derived band) --")
-        out_s, plan_s = run_toc_record(W_star, tab, cfg)
-        cfg2 = dict(cfg)
-        cfg2["NI"] = 2 * cfg["NI"] - 1
-        cfg2["Nw"] = 2 * cfg["Nw"]
-        out_s2, _ = run_toc_record(W_star, tab, cfg2)
+        # wall. FOUND-AND-FIXED (S18, declared): the S17-staged band
+        # (two-resolution Richardson on OUR wall y) is VACUOUS for a
+        # specified-wall march — the wall geometry is W-determined,
+        # resolution-independent, so that band collapses to the eps
+        # floor. The derived band of record is GENO's OWN
+        # two-resolution wall delta (the cross-code reference's
+        # truncation scale on the twin case, K_RICH-safetied), which
+        # is the honest scale of "same Rao contour at this
+        # resolution".
+        print("-- OPT oracle: contour vs GENO type-2 (derived "
+              "cross-resolution band) --")
         wx1 = np.asarray(out_s["wall"][:, 0])
         wy1 = np.asarray(out_s["wall"][:, 1])
-        wx2 = np.asarray(out_s2["wall"][:, 0])
-        wy2 = np.asarray(out_s2["wall"][:, 1])
-        lo = max(wx1.min(), wx2.min(), gwx.min())
-        hi = min(wx1.max(), wx2.max(), gwx.max())
+        gwx2, gwy2 = geno_type2_reference(scratch2 + "_hr",
+                                          NI_over=2 * TCASE["NI"] - 1,
+                                          Ne_over=2 * TCASE["Ne"] - 1)
+        lo = max(wx1.min(), gwx.min(), gwx2.min())
+        hi = min(wx1.max(), gwx.max(), gwx2.max())
         m = (wx1 >= lo) & (wx1 <= hi)
-        e_rich = np.abs(wy1[m] - np.interp(wx1[m], wx2, wy2))
-        band = A1.K_RICH * (e_rich + 64.0 * EPS * TCASE["yt"])
+        e_geno = np.abs(np.interp(wx1[m], gwx, gwy)
+                        - np.interp(wx1[m], gwx2, gwy2))
+        band = A1.K_RICH * (e_geno + 64.0 * EPS * TCASE["yt"])
         err_g = np.abs(wy1[m] - np.interp(wx1[m], gwx, gwy))
         nbad = int(np.sum(err_g > band))
         print("  %d samples, out-of-band %d, max|dy| %.3e, max band "
               "%.3e, median err/band %.3f"
               % (int(m.sum()), nbad, err_g.max(), band.max(),
-                 float(np.median(err_g / band))))
+                 float(np.median(err_g / np.maximum(band, 1e-300)))))
         ok &= check("optimum contour matches GENO Rao inside "
                     "derived band", nbad == 0)
-        # N3: a shrunken-L design must NOT match (oracle discriminates)
+        # N3: a shrunken design must NOT match (oracle discriminates)
         W_short = W_star.copy()
         W_short[1:] = W_star[1:] * 0.98
         W_short[-1] = yL
         try:
-            out_n3, _ = run_toc_record(W_short, tab, cfg)
+            out_n3, _ = run_toc_record(W_short, tab, cfg,
+                                       state_fn=state_c1,
+                                       solvers=solv_c1)
             err_n3 = np.abs(np.asarray(out_n3["wall"][:, 1])[m]
                             - np.interp(wx1[m], gwx, gwy))
             ok &= check("N3 oracle discriminates a wrong design",
