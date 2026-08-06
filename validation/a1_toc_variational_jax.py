@@ -179,9 +179,22 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
     thB = float(Wj[0])
     n_B = max(1, int(np.ceil(thB / da)))     # frozen arc-station count
 
-    cert = dict(worst=0.0, n=0)
+    cert = dict(worst=0.0, n=0, min_margin=np.inf)
 
-    def cell(kind, p, z0):
+    def margin_of(pt):
+        """AXIAL-MARGIN REJECTOR (S17 finding, user adversarial
+        review): a state with M > 1 but u_x < c (large theta at
+        moderate M) solves in FINITE arithmetic — tan(theta+mu)
+        simply flips sign, the C+ points BACKWARD in x, and Newton
+        certification passes on a causally wrong cell. The x-as-time
+        semantics (and the truncation lemma) require u_x > c
+        (== |theta| + mu < 90 deg) CHECKED per cell, never assumed."""
+        u, v = float(pt[2]), float(pt[3])
+        q = float(np.hypot(u, v))
+        c = float(state_fn(jnp.float64(q), ta)[3])
+        return u - c
+
+    def cell(kind, p, z0, pt_of_z=None):
         sol, _, stepn = solvers[kind]
         z = sol(jnp.asarray(z0, dtype=jnp.float64), jnp.asarray(p), ta)
         step = float(stepn(z, jnp.asarray(p), ta))
@@ -189,6 +202,14 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         cert["worst"] = max(cert["worst"], step
                             / (A1.NEWTON_TOL_FACTOR * EPS * sc))
         cert["n"] += 1
+        if pt_of_z is not None:
+            m = margin_of(pt_of_z(z))
+            cert["min_margin"] = min(cert["min_margin"], m)
+            if m <= 0.0:
+                raise RuntimeError(
+                    "axial-margin rejector: u_x - c = %.3e <= 0 "
+                    "(x-as-time causality violated at a solved cell)"
+                    % m)
         return z
 
     # ---------- IVL + fan (as [X-A1IM]; plan reuses SC column arrays)
@@ -216,12 +237,14 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         newcol = [head]
         for k in range(len(prev)):
             z0 = A1.predict_interior(carry, prev[k], ta, 1.0)
-            z = cell("interior", jnp.concatenate([carry, prev[k]]), z0)
+            z = cell("interior", jnp.concatenate([carry, prev[k]]), z0,
+                     pt_of_z=lambda zz: zz)
             seeds.append(np.asarray(z))
             carry = z
             newcol.append(z)
         z0a = A1.predict_axis(carry, ta, 1.0)
-        za = cell("axis", carry, z0a)
+        za = cell("axis", carry, z0a,
+                  pt_of_z=lambda zz: [0.0, 0.0, float(zz[1]), 0.0])
         ax = jnp.array([za[0], 0.0, za[1], 0.0])
         newcol.append(ax)
         plan["fan"].append(dict(n=len(seeds), seeds=np.stack(seeds),
@@ -267,7 +290,9 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
             p = jnp.concatenate([pt1, pt3,
                                  jnp.array([x4, y4, sl])])
             z0 = A1.predict_wall(pt1, pt3, x4, y4, sl, ta, 1.0)
-            zt = cell("wall", p, z0)
+            zt = cell("wall", p, z0,
+                      pt_of_z=lambda zz, _s=sl: [0.0, 0.0, float(zz[1]),
+                                                 _s * float(zz[1])])
             if float(zt[0]) > float(pt1[0]):
                 N = Nv_loc
                 Nv_loc += 1
@@ -285,7 +310,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         for j in range(Nv + 1, n_avail + 1 + (1 if has_axis else 0)):
             pt2 = prev[j - 1]
             z0 = A1.predict_interior(carry, pt2, ta, 1.0)
-            z = cell("interior", jnp.concatenate([carry, pt2]), z0)
+            z = cell("interior", jnp.concatenate([carry, pt2]), z0,
+                     pt_of_z=lambda zz: zz)
             seeds.append(np.asarray(z))
             carry = z
             newcol.append(z)
@@ -296,7 +322,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         col_axis = False
         if has_axis and not truncated:
             z0a = A1.predict_axis(carry, ta, 1.0)
-            za = cell("axis", carry, z0a)
+            za = cell("axis", carry, z0a,
+                      pt_of_z=lambda zz: [0.0, 0.0, float(zz[1]), 0.0])
             if float(za[0]) <= float(L):
                 newcol.append(jnp.array([za[0], 0.0, za[1], 0.0]))
                 axis_seed = np.asarray(za)
@@ -311,7 +338,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None):
         prev = newcol
 
     out = dict(wall=jnp.stack(wall_pts), cert_worst=cert["worst"],
-               cert_n=cert["n"])
+               cert_n=cert["n"], min_margin=cert["min_margin"])
     return out, plan
 
 
@@ -477,9 +504,11 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=8,
 
         seg_state = dict(stop=False)
 
-        def cb(state):
+        def cb(xk, state):
             # P2: re-record at every ACCEPTED iterate; end the segment
-            # on a decision change (topology moved)
+            # on a decision change (topology moved). Signature: the
+            # trust-constr legacy callback(xk, state) (scipy wraps by
+            # arity — read at source, _optimize.py wrapped_callback).
             nonlocal n_rec
             try:
                 _, plan_new = run_toc_record(np.asarray(state.x),
@@ -634,10 +663,15 @@ def main():
     print("-- record at W0 (adaptive, certified) --")
     t0 = time.perf_counter()
     out0, plan0 = run_toc_record(W0, tab, cfg)
-    print("  record: %.1f s, %d cells, cert worst %.3e; wall pts %d"
+    print("  record: %.1f s, %d cells, cert worst %.3e; wall pts %d; "
+          "min axial margin u_x - c = %.4f m/s"
           % (time.perf_counter() - t0, out0["cert_n"],
-             out0["cert_worst"], out0["wall"].shape[0]))
+             out0["cert_worst"], out0["wall"].shape[0],
+             out0["min_margin"]))
     ok &= check("record certified (P4 gate)", out0["cert_worst"] <= 1.0)
+    ok &= check("axial margin positive on every solved cell "
+                "(x-as-time causality, truncation-lemma hypothesis)",
+                out0["min_margin"] > 0.0)
 
     print("-- replay fidelity (RK-G monitor i) --")
     wall_sc = run_toc_scan(jnp.asarray(W0), tab, cfg, plan0)

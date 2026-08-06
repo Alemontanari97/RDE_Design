@@ -412,6 +412,81 @@ ONLY if the segmentation driver proves incompatible in practice —
 that would be a declared deviation with its own log step.
 
 ------------------------------------------------------------------------------
+## §5bis PRODUCTION-CODE REVIEW OF RECORD (S17, user order: full
+##       end-to-end critique + ADVERSARIAL SELF-REFUTATION pass —
+##       every lever attacked before adoption; two proposals broke)
+
+Measured baseline (X-LSG0/X-TOCV, reduced case, as-implemented):
+t_solve 39.8 s / t_grad 119.6 s (Python re-trace dominated; compiled
+kernels are the small fraction), t_record 18-20 s, GENO forward
+0.286 s. The speed layer is NOT SOTA today — BY SEQUENCED CHOICE
+(correctness and certification first); the SOTA-ization levers below
+are each gated by an existing rejector.
+
+REFUTATION OUTCOMES (the pass that matters):
+ R-1 "replay Newton with 3 fixed undamped trips" — REFUTED: trial
+     points sit O(||dW|| x LIP) from the recorded seeds and the
+     march's Lipschitz constants COMPOSE EXPONENTIALLY in x (U1);
+     fixed undamped trips can diverge. AMENDED LEVER: since every
+     cell is custom_vjp (AD never traces the primal loop), replace
+     fori(30) with lax.while_loop on the certification metric,
+     damping RETAINED, cap 30 — base points exit in O(1) trips (the
+     ~10x compiled-compute win survives), bad trials keep full
+     robustness. Gate: X-SCANM equivalence must re-pass.
+ R-2 "GPU is nearly free" — REFUTED: the discipline requires
+     float64; consumer GPUs run FP64 at ~1/32 throughput. GPU only
+     with datacenter-class FP64 hardware, or mixed precision WITH
+     certified compensation (research-grade, not a default).
+ R-3 exact Hessian via jax.hessian — DOWNGRADED: costs n x grad
+     (senseless before the whole-loop jit); with 9 dofs BFGS is not
+     the bottleneck (est. 2-4x iterations saved). Measure after
+     bucket remediation; adopt only on numbers.
+ R-4 bucket padding + whole-loop jit — STANDS with a NAMED TRAP:
+     jnp.where masking does NOT protect gradients from NaN in the
+     masked branch (the vjp of where propagates it). Guard: dummy
+     cells on a fixed well-conditioned constant problem (no gradient
+     path to W) + the safe-where pattern; the leak detector already
+     exists (O3.1 would fail). Compilability of the 3-scan module is
+     a HYPOTHESIS — the T2a re-run is the gate, not an assertion.
+ R-5 C^1 closure as brick primary — STANDS with the two-track
+     clarification: the GENO twin regression STAYS on the 'nasa'
+     linear closure (bit-level data contract), the brick's gradient
+     machinery moves to [X-THC1]; record and replay must share one
+     closure. (Found by this review: the staged carrier still runs
+     the linear closure as default — INCONSISTENT with §2's intent;
+     fix scheduled with the two-track wiring.)
+ R-6 domain-of-dependence truncation — SURVIVES and is PROMOTED to
+     a lemma with its hypothesis made exact by the review (user
+     challenge): dx > 0 along ALL characteristic families
+     <=> |theta| + mu < 90 deg <=> u_x > c — EXACTLY the class
+     axial margin (same boundary as S-XCONV/T-XSON), NOT |u| > c
+     and NOT "supersonic therefore forward". CRITICAL SUB-FINDING
+     (the review's second real bug): a state with M > 1 but
+     u_x < c computes in FINITE arithmetic (tan(theta+mu) flips
+     sign, the C+ points backward in x) — Newton certifies a
+     causally WRONG cell with NO NaN: the margin was NOT
+     self-monitoring. FIX EXECUTED: explicit per-cell AXIAL-MARGIN
+     REJECTOR in the record path (u_x - c > 0 checked from the
+     solved state; reported as min_margin; main() gate) + post-hoc
+     margin audit for runs predating the rejector.
+ R-7 declarative constraints/objectives — STANDS in minimal form
+     (functions + targets list with AD jacobians; no framework).
+     The {p_e = Pa, L} family costs one NonlinearConstraint and the
+     Pa term restored in J (with eps free the ambient term is no
+     longer constant on the feasible set — sign of care).
+ Honest residue: the perturbed-start test (1.5%) demonstrates
+ LOCAL in-stratum recovery; global claims belong to the PAP-GMAX
+ program, not to this brick.
+
+ADOPTED SEQUENCE (each step gated): P1 while-loop Newton (X-SCANM
+gate) -> P2 bucket + whole-loop jit with safe-where (T2a gate) ->
+P3 two-track closure wiring (X-THC1 C5 band gate) -> measure ->
+P4/P5 (Hessian, wavefront vmap incl. anti-diagonal independence
+j+i = const; datacenter-FP64 only) on numbers -> P6 declarative
+constraint sets. Wavefront note: record stays sequential (decisions
+are concrete by construction); only the replay wavefronts.
+
+------------------------------------------------------------------------------
 ## §5 Registry deltas (S17 kickoff)
 
  [DIR-RKG]  directive, PRACTICE — the §1 policy P1-P4; falsifier as

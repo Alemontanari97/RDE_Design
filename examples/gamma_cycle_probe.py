@@ -91,7 +91,7 @@ def main():
         gf[i] = gas.density * a_fr * a_fr / gas.P
         R[i] = ct.gas_constant / gas.mean_molecular_weight
         cs[i] = cstar_fn(gs[i], R[i], gas.T)
-    TR = getattr(np, 'trapezoid', np.trapz)
+    TR = np.trapezoid   # numpy >= 2.0 (toolchain-currency directive, S17)
 
     # cross-check: the probe's chamber exponent must BE the blessed one.
     # Tolerance 1e-4: TP re-equilibration of the stored (TCJ, P0) floats

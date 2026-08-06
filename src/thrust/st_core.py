@@ -43,7 +43,7 @@ if _ROOT not in _sys.path:
 from src.common.constants import G0, P_ATM as ATM        # shared constants
 
 PA = 1.0 * ATM            # sea-level ambient (default of cf_bell / cf_spike)
-TR = getattr(np, 'trapezoid', np.trapz)
+TR = np.trapezoid   # numpy >= 2.0 (toolchain-currency directive, S17)
 
 
 # ------------------------------------------------------------------ gas model

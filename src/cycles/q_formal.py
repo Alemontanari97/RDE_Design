@@ -53,7 +53,7 @@ CASES = [
     ('CH4/air', 'CH4:1,O2:2,N2:7.52', 'CO2:1,H2O:2,N2:7.52',  ('CO2', 'H2O', 'N2')),
 ]
 
-trapz = getattr(np, 'trapezoid', np.trapz)
+trapz = np.trapezoid   # numpy >= 2.0 (toolchain-currency directive, S17)
 
 def ydict(gas):
     return {s: y for s, y in zip(gas.species_names, gas.Y) if y > 0.0}

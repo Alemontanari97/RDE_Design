@@ -39,7 +39,7 @@ from src.common.constants import G0, P_ATM as ATM
 from src.thrust.st_core import Ik, cf_bell, npr_of_eps
 from src.thrust.stechmann_nozzle import dkey, eps_of_npr, load
 
-TR = getattr(np, 'trapezoid', np.trapz)
+TR = np.trapezoid   # numpy >= 2.0 (toolchain-currency directive, S17)
 PROBE = os.path.join(ROOT, 'data', 'gamma_cycle_probe.json')
 
 
