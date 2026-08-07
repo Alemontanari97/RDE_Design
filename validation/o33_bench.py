@@ -126,6 +126,10 @@ d2r = np.pi / 180.0
 W_STAR = np.array([15.5527 * d2r,
                    1.17537, 1.33823, 1.49032, 1.62539,
                    1.74344, 1.84421, 1.92953, 2.0])
+# S20: the S18/S19 8-node instance kept under its own name — in
+# design-loaded mode (A1_O33_DESIGN) it is the live-marched BASELINE
+# of the pre-declared [D1] kill test.
+W_STAR8 = W_STAR.copy()
 STENCIL_RADIUS = 2
 
 
@@ -413,25 +417,30 @@ def geno_design(cfg, n_nodes):
     W = np.concatenate([[thB], cs(xs)])
     # REPRESENTATION CHECK: the node class must reproduce GENO's own
     # wall points, else the row measures our spline, not GENO's design
-    old = TV.M_NODES
+    old = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES = n_nodes
+    TV.KNOT_XI = None                    # GENO designs: uniform class
     try:
         _, _, nx, ny, Msp = TV.wall_geometry(
             jnp.asarray(W), jnp.array([yt, cfg["rtu"], rtd]), L)
         yr = np.array([float(TV.spline_eval(jnp.float64(t), nx, ny,
                                             Msp)[0]) for t in gx[sel]])
     finally:
-        TV.M_NODES = old
+        TV.M_NODES, TV.KNOT_XI = old
     return W, thB, float(np.max(np.abs(yr - gy[sel])))
 
 
 def march_design(W, n_nodes, tab, cfg, state_fn, solvers, grad=False):
     """Record + (optionally) the AD gradient for an arbitrary design in
-    an n_nodes node class. M_NODES is a module constant of [X-TOCV];
-    it is set and RESTORED around the call so no other caller can see
-    a mutated class."""
-    old = TV.M_NODES
+    an n_nodes UNIFORM node class. M_NODES/KNOT_XI are module
+    constants of [X-TOCV]; they are set and RESTORED around the call
+    so no other caller can see a mutated class (S20: KNOT_XI = None
+    here because the GENO comparison designs live in the uniform
+    class; the AMBIENT class — possibly adaptive, env A1_O33_DESIGN —
+    is restored on exit)."""
+    old = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES = n_nodes
+    TV.KNOT_XI = None
     try:
         out, plan = TV.run_toc_record(W, tab, cfg, state_fn=state_fn,
                                       solvers=solvers,
@@ -492,11 +501,17 @@ def surface_report(out, state_fn, label):
 def perturbation_direction(cfg):
     """Feasible design direction: interior nodes only (lip pinned by
     the eps equality, attachment angle untouched), smooth bump — the
-    same shape family the S18 run used for its perturbed start."""
+    same shape family the S18 run used for its perturbed start.
+    S20: the bump is sampled at the AMBIENT class's own knots
+    (uniform by default; adaptive when a design of record is loaded
+    via A1_O33_DESIGN), so the family stays feasible in that class."""
     thB = W_STAR[0]
     xB = cfg["rtd"] * np.sin(thB)
     L = cfg["xtronc"]
-    xs = xB + (L - xB) * np.arange(1, len(W_STAR)) / (len(W_STAR) - 1)
+    m = len(W_STAR) - 1
+    xi = (np.asarray(TV.KNOT_XI) if TV.KNOT_XI is not None
+          else np.arange(1, m + 1) / m)
+    xs = xB + (L - xB) * xi
     dW = np.zeros_like(W_STAR)
     dW[1:-1] = np.sin(np.pi * (xs[:-1] - xB) / (L - xB)) * W_STAR[1:-1]
     return dW / np.linalg.norm(dW)
@@ -508,6 +523,25 @@ def main():
     nfam = int(os.environ.get("A1_O33_NFAM", "7"))
     print("== ORACLE O3.3 [X-O33B]: pre-registered term-match bench "
           "(JAX %s) ==" % jax.__version__)
+    # S20 (T3 re-measure): an ADAPTIVE-CLASS design of record can be
+    # loaded via A1_O33_DESIGN (the [X-AKNO] JSON artifact). The
+    # bench's rows, bands and verdict rules are UNCHANGED — only the
+    # instance (W*, knot class) is swapped, with provenance printed.
+    # Default (env unset): the S18/S19 instance, bit-identical.
+    global W_STAR
+    des_path = os.environ.get("A1_O33_DESIGN")
+    if des_path:
+        import json as _json
+        with open(des_path) as f:
+            art = _json.load(f)
+        W_STAR = np.array([float(w) for w in art["W"]])
+        TV.M_NODES = len(W_STAR) - 1
+        TV.KNOT_XI = (np.array([float(t) for t in art["xi"]])
+                      if art.get("xi") else None)
+        print("  [instance] ADAPTIVE design loaded from %s: m = %d "
+              "dofs, thB = %.4f deg, provenance: %s"
+              % (des_path, TV.M_NODES, W_STAR[0] / d2r,
+                 art.get("provenance", "(none)")))
     ok = True
     tab = A1.prep_tab(A1.build_tab_nasa())
     state_c1, solv, cfg = make_case(tab)
@@ -704,9 +738,31 @@ def main():
           "(N=60, Rao wall)" % (rel, relN[60]))
     print("    mesh limit at N=60 : %.4e (r=1) -> %.4e (r=2)"
           % (relN[60], rel_g2))
-    ok &= check("R3 corner identity shrinks under design-class "
-                "enrichment toward the continuum optimum",
-                relN[60] < 0.5 * rel)
+    # INSTANCE-CONDITIONAL CHECK SELECTION (S20, committed BEFORE the
+    # decisive re-run — R5): the directional check "GENO N=60 beats
+    # our instance by 2x" encodes the 8-NODE baseline's position on
+    # the class ladder; on an ADAPTIVE instance that direction is not
+    # a claim of record (the adaptive optimum may legitimately beat
+    # the uniform N=60 wall). In design-loaded mode the row's verdict
+    # is the PRE-DECLARED [D1] kill test of the S20 gate: the
+    # adaptive optimum must pull the corner mismatch BELOW the 8-node
+    # baseline, both sides marched IN THIS PROCESS (same mesh, same
+    # thermo, same band machinery). The mesh-limit check at N=60 is
+    # instance-independent and runs in both modes.
+    if des_path:
+        o8, g8 = march_design(W_STAR8, 8, tab, cfg, state_c1, solv,
+                              grad=True)
+        cd8, _ = corner_density(np.asarray(o8["wall"][-1]), state_c1)
+        rel8 = abs(g8[-1] - cd8) / abs(cd8)
+        print("    [D1] live 8-node baseline mismatch: %.4e ; "
+              "adaptive instance: %.4e" % (rel8, rel))
+        ok &= check("R3 [D1] the adaptive-class optimum falls BELOW "
+                    "the 8-node baseline (else the design-class "
+                    "diagnosis is FALSIFIED)", rel < rel8)
+    else:
+        ok &= check("R3 corner identity shrinks under design-class "
+                    "enrichment toward the continuum optimum",
+                    relN[60] < 0.5 * rel)
     ok &= check("R3 corner identity shrinks under mesh refinement at "
                 "the near-continuum design", rel_g2 < relN[60])
 

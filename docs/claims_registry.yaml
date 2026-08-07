@@ -1215,6 +1215,19 @@ entries:
   falsifier: "R6 (primary): gradient stationarity and the Rao condition vanishing at DIFFERENT designs beyond the derived bar; R5/R4 wrong-family and wrong-sign rejectors; R7 disagreement of the Rao constant across the two designs; the (33)-(34) guard admitting a varying patch"
   gamma: "EOS-general"
 
+- id: X-AKNO
+  kind: carrier
+  class: PRACTICE
+  scope: "ADAPTIVE DESIGN CLASS carrier (S20 2026-08-07, residue (a) of the S19 closure — the discharge procedure of C-O33's design-class residual); on-demand carrier (env: jax); the AFEM/FITPACK skeleton adopted by the S20 survey (D6 item 9 S20 annotation): solve -> per-knot-interval GOAL indicator (f2 drift per control-surface segment attributed to the emitting wall station via the march topology / owner array — adjudicated DWR-conformant since f2 = -lambda2 IS the adjoint variable, Prop. A3) -> Doerfler bulk marking (theta = 1/2 declared; theta in {0.3,0.5,0.7} sets printed) -> insertion at the residual-mass median station (equidistribution; degenerate-interval guard) -> warm-started TR-SQP re-optimization under the UNCHANGED DIR-RKG policy stack -> repeat under a MEASURED stopping rule (improvement below K_RICH x the goal metric's own measured mesh dependence, rise, empty set, or the declared budget). Basis class UNCHANGED (clamped-left natural cubic = U1 C_geo; knots via the KNOT_XI knob of X-TOCV, bit-identical None default)"
+  statement: "An error-indicator-driven adaptive knot class for the TOC wall, warm-started from the incumbent optimum, re-optimized per cycle with every gate of record (per-cell Newton certification, axial-margin rejector, P4 instance floor, RK-G replay monitor, O3.1 spot checks), whose goal metric is the R3 corner mismatch; the pre-declared [D1] kill link: the final goal must fall below the S19 8-node baseline, else the design-class diagnosis of C-O33 is falsified."
+  doc: "validation/adaptive_knot_optimize.py"
+  proof: "validation/adaptive_knot_optimize.py"
+  inherits: [C-O33, C-D25U]
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rejectors: the known-answer indicator selftest (single-jump concentration + flat-drift anti-concentration + empty-set refusal), the strict-subset marking requirement on the live design, per-cycle certification/P4/O3.1 gates, and the [D1] check itself (goal not below baseline = FAIL)"
+  gamma: "EOS-general"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK

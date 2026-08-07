@@ -104,6 +104,16 @@ TCASE = dict(NI=21, Ne=41, da_deg=0.5, eps=4.0, xtronc=4.0,
              yt=1.0, rtu=1.5, rtd=0.45)
 M_NODES = 8          # interior+lip wall nodes (design dofs y_1..y_m)
 NW = 60              # contour wall stations (march resolution)
+# S20 (adaptive design class, log step 4): normalized interior knot
+# abscissae xi in (0, 1], length M_NODES, LAST ENTRY = 1.0 (the lip).
+# None (default) = the uniform class xi_k = k/M — bit-identical to
+# every record that predates the knob (same parameterization pattern
+# as the S19 m_stop knob of [X-A1IM]). The knots are NOT design dofs
+# (free-knot optimization rejected in the S20 survey, D6 item 9):
+# they are set by the outer adaptive loop and FROZEN during each
+# optimization, moving affinely with xB exactly as the uniform class
+# does.
+KNOT_XI = None
 
 
 # ======================================================================
@@ -152,7 +162,11 @@ def wall_geometry(W, P_geom, L):
     thB = W[0]
     xB = rtd * jnp.sin(thB)
     yB = yt + rtd * (1.0 - jnp.cos(thB))
-    xs = xB + (L - xB) * jnp.arange(1, M_NODES + 1) / M_NODES
+    if KNOT_XI is None:
+        xi = jnp.arange(1, M_NODES + 1) / M_NODES
+    else:
+        xi = jnp.asarray(KNOT_XI)
+    xs = xB + (L - xB) * xi
     xs = jnp.concatenate([jnp.array([xB]), xs])
     ys = jnp.concatenate([jnp.array([yB]), W[1:]])
     M = spline_coeffs(xs, ys, jnp.tan(thB))
