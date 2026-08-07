@@ -458,10 +458,20 @@ def main():
         ok &= check("cycle %d O3.1 at warm start" % cyc, dp <= tol_dp)
         gtol = max(tol_dp, 1e-8 * float(np.linalg.norm(g_w)))
         t_opt = time.perf_counter()
-        with design_class(xi_new):
-            opt = TV.run_trsqp(W_warm, tab, cfg, yL, gtol=gtol,
-                               xtol=1e-10, state_fn=state_c1,
-                               solvers=solv, verbose=0)
+        try:
+            with design_class(xi_new):
+                opt = TV.run_trsqp(W_warm, tab, cfg, yL, gtol=gtol,
+                                   xtol=1e-10, state_fn=state_c1,
+                                   solvers=solv, verbose=0)
+        except RuntimeError as err:
+            # honest stop: a genuine gate failure (reject-and-shrink
+            # exhausted down to the radius floor) ends the enrichment
+            # loop with the incumbent best kept — reported, never
+            # masked (general-vision-nondivergence).
+            print("  [cycle %d] TR-SQP gate failure of record: %s -> "
+                  "enrichment stopped, best design kept from cycle %d"
+                  % (cyc, err, best["cycle"]))
+            break
         t_opt = time.perf_counter() - t_opt
         res = opt["res"]
         print("  [cycle %d] TR-SQP: segments %d, re-records %d, nit "

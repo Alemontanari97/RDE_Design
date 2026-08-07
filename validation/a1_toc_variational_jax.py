@@ -768,14 +768,42 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     result = None
     tr0 = 0.05                           # carried across segments
     Dv = None                            # Jacobi scaling (measured once)
+    W_cert = None                        # last CERTIFIED segment base
     for seg in range(max_segments):
-        out_rec, plan = run_toc_record(W, tab, cfg, state_fn=state_fn,
-                                       solvers=solvers)
-        n_rec += 1
-        if out_rec["cert_worst"] > 1.0:
-            raise RuntimeError(
-                "P4 gate: record at segment base not certified "
-                "(worst %.3e)" % out_rec["cert_worst"])
+        # S20 REJECT-AND-SHRINK (defect found by [X-AKNO] cycle 1, log
+        # S20 step 5; brings the code INTO conformance with the
+        # DECLARED policy, changing no gate): DIR-RKG P3(ii) requires
+        # per-cell certification at EVERY accepted iterate, but the
+        # callback below only re-recorded without checking cert_worst,
+        # and its failure path restarted from res.x — exactly the
+        # failed iterate (comment promised "restart from last W";
+        # unexercised until the adaptive class hit a marginally
+        # uncertifiable accepted step, worst 1.170). Standard
+        # trust-region semantics (Conn-Gould-Toint): a step whose
+        # record fails ANY record gate is REJECTED — revert to the
+        # last certified base and shrink the radius; at the radius
+        # floor the failure is genuine and raises honestly.
+        try:
+            out_rec, plan = run_toc_record(W, tab, cfg,
+                                           state_fn=state_fn,
+                                           solvers=solvers)
+            n_rec += 1
+            if out_rec["cert_worst"] > 1.0:
+                raise RuntimeError(
+                    "P4 gate: record at segment base not certified "
+                    "(worst %.3e)" % out_rec["cert_worst"])
+        except RuntimeError as err:
+            if (W_cert is not None and not np.array_equal(W, W_cert)
+                    and tr0 > 1e-3):
+                tr_new = max(1e-3, 0.5 * tr0)
+                print("  [seg %d] base REJECTED (%s) -> revert to "
+                      "last certified base, radius %.3e -> %.3e"
+                      % (seg, err, tr0, tr_new), flush=True)
+                W = W_cert.copy()
+                tr0 = tr_new
+                continue
+            raise
+        W_cert = W.copy()
         # P2 production path (S18): whole-loop jitted bucketed replay
         # built ONCE per segment (fixed plan); every objective/
         # gradient call is a compiled call — no per-eval re-trace
@@ -880,14 +908,24 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             if np.array_equal(xk_now, seg_state["last_rec"]):
                 return False
             try:
-                _, plan_new = run_toc_record(xk_now, tab, cfg,
-                                             state_fn=state_fn,
-                                             solvers=solvers)
+                out_new, plan_new = run_toc_record(xk_now, tab, cfg,
+                                                   state_fn=state_fn,
+                                                   solvers=solvers)
                 n_rec += 1
+                # S20: P3(ii) conformance — the DECLARED policy
+                # certifies the record at EVERY accepted iterate, not
+                # only at segment bases. An uncertified accepted
+                # iterate ends the segment; the outer reject-and-
+                # shrink then reverts to the last certified base.
+                if out_new["cert_worst"] > 1.0:
+                    raise RuntimeError(
+                        "P3(ii): accepted iterate not certified "
+                        "(worst %.3e)" % out_new["cert_worst"])
                 seg_state["last_rec"] = xk_now.copy()
             except RuntimeError:
-                seg_state["stop"] = True     # record failed: shrink via
-                return True                  # segment restart from last W
+                seg_state["stop"] = True     # record failed: segment
+                return True                  # ends; outer loop reverts
+                                             # to the certified base
             dec_new = [(c["N"], c["Nv"]) for c in plan_new["arc"]]
             if dec_new != dec_base:
                 events.append(dict(segment=seg, nit=int(state.nit),
