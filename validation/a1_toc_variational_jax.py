@@ -163,7 +163,7 @@ def wall_geometry(W, P_geom, L):
 # record: adaptive specified-wall march (concrete), emits plan
 # ======================================================================
 def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
-                   margin_floor=0.0):
+                   margin_floor=0.0, return_field=False):
     """Adaptive TOC march at concrete W. Returns (out, plan).
     Structure mirrors [X-A1IM] run_march phases 1-4 with the wall
     given by (arc up to theta_B) + spline; certification enforced.
@@ -172,7 +172,15 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     INSTANCE FLOOR delta (derived from the certified base design's
     min_margin / K_RICH, the repo's reused two-level safety constant)
     for converged-design audits; 0.0 = the hard causality bound for
-    in-optimization records."""
+    in-optimization records.
+    return_field (S19, O3.3 campaign): additionally return the
+    design-wall COLUMNS of the march. Each column is a C- line (its
+    successive points are linked by the lm = tan(theta - mu) leg of
+    the interior unit process) and point j of column k is linked to
+    point j-1 of column k-1 by the C+ leg — i.e. the field carries
+    BOTH characteristic connectivities explicitly, which is what the
+    O3.3 compatibility rows are evaluated on. Purely additive: with
+    the default False the record path is unchanged."""
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
@@ -240,12 +248,14 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
            for k in range(NI)]
 
     plan = dict(fan=[], arc=[], n_B=n_B)
+    fan_cols = []
     prev = [ivl[NI - 1]]
     for i in range(2, NI + 1):
         head = ivl[NI - i]
         seeds = []
         carry = head
         newcol = [head]
+        cplus_f = []
         for k in range(len(prev)):
             z0 = A1.predict_interior(carry, prev[k], ta, 1.0)
             z = cell("interior", jnp.concatenate([carry, prev[k]]), z0,
@@ -253,6 +263,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
             seeds.append(np.asarray(z))
             carry = z
             newcol.append(z)
+            cplus_f.append(prev[k])
         z0a = A1.predict_axis(carry, ta, 1.0)
         za = cell("axis", carry, z0a,
                   pt_of_z=lambda zz: [0.0, 0.0, float(zz[1]), 0.0])
@@ -260,6 +271,12 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         newcol.append(ax)
         plan["fan"].append(dict(n=len(seeds), seeds=np.stack(seeds),
                                 axis_seed=np.asarray(za)))
+        if return_field:
+            fan_cols.append(dict(
+                cline=np.stack([np.asarray(pt) for pt in newcol]),
+                cplus=(np.stack([np.asarray(pt) for pt in cplus_f])
+                       if cplus_f else np.zeros((0, 4))),
+                has_axis=True))
         prev = newcol
 
     # ---------- design-wall columns: n_B arc stations + Nw contour
@@ -286,6 +303,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     # removes the degenerate axis-chasing wedge (cells at x ~ 4.9
     # with y < 0 measured before the rule).
     wall_pts = []
+    field_cols = []
     has_axis = True
     for (x4, y4, sl) in stations:
         # wall_search: chord-foot descent (identical to [X-A1IM])
@@ -315,6 +333,13 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         wall_pts.append(wall_pt)
         seeds = []
         carry = wall_pt
+        # C- chain and C+ partners of THIS column (S19 O3.3 field
+        # export): newcol also carries over prev[1:Nv] void-region
+        # points, which are NOT on this column's C- line — the chain
+        # must be recorded as it is built, never reconstructed from
+        # newcol by index arithmetic.
+        cline = [wall_pt]
+        cplus = []
         newcol = [wall_pt] + prev[1:Nv]
         truncated = False
         n_avail = len(prev) - (1 if has_axis else 0)
@@ -326,6 +351,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
             seeds.append(np.asarray(z))
             carry = z
             newcol.append(z)
+            cline.append(z)
+            cplus.append(pt2)
             if float(z[0]) > float(L):
                 truncated = True
                 break
@@ -336,7 +363,9 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
             za = cell("axis", carry, z0a,
                       pt_of_z=lambda zz: [0.0, 0.0, float(zz[1]), 0.0])
             if float(za[0]) <= float(L):
-                newcol.append(jnp.array([za[0], 0.0, za[1], 0.0]))
+                ax_pt = jnp.array([za[0], 0.0, za[1], 0.0])
+                newcol.append(ax_pt)
+                cline.append(ax_pt)
                 axis_seed = np.asarray(za)
                 col_axis = True
         has_axis = col_axis
@@ -347,9 +376,22 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
                                 axis_seed=axis_seed,
                                 has_axis=col_axis))
         prev = newcol
+        if return_field:
+            field_cols.append(dict(
+                cline=np.stack([np.asarray(pt) for pt in cline]),
+                cplus=(np.stack([np.asarray(pt) for pt in cplus])
+                       if cplus else np.zeros((0, 4))),
+                has_axis=col_axis))
 
     out = dict(wall=jnp.stack(wall_pts), cert_worst=cert["worst"],
                cert_n=cert["n"], min_margin=cert["min_margin"])
+    if return_field:
+        # fan columns FIRST: the C+ chain traced upstream from the lip
+        # crosses out of the design-wall region into the kernel, and
+        # the Rao control surface runs all the way to the axis.
+        out["cols"] = fan_cols + field_cols
+        out["n_fan"] = len(fan_cols)
+        out["n_arc"] = n_B
     return out, plan
 
 
