@@ -208,6 +208,62 @@ eps-level machinery already runs the same discipline — dual-route
 int-max == capped ideal at NQ·eps_mach (OP-0), phase-diagram rejectors
 (OP-11-eps) — the paper's certificate culture is already executable.
 
+ADDENDUM (2026-08-06, S19 — EXECUTION NOTE, changes NO criterion and
+NO band of the protocol above; it records the LOCUS on which the
+protocol's own objects are defined, and one correction of record).
+ (i) THE CONTROL SURFACE, stated because the campaign initially got it
+ wrong. Rao's control surface is NOT the whole C+ characteristic
+ through the lip: it is the piece of that C+ running from the LAST C-
+ emitted by the circular throat arc — the kernel boundary, where the
+ variational contour begins — up to the lip; equivalently, the C+
+ traced BACK from the lip and STOPPED at the kernel boundary. The
+ stationarity system (L.5) varies the control-surface data, and those
+ data are free only downstream of that boundary; upstream the fixed
+ throat arc determines them, so no optimality condition holds there
+ and none is claimed. Measured consequence, S19 [X-O33B]: evaluated on
+ the FULL C+ down to the axis, f2 drifts ~29% and the row looks
+ falsified; evaluated on the classical surface it is constant to
+ 9.5e-03 for the S18 optimum and to 8.0e-03 for GENO's own Rao
+ contour — the SAME residual for two independently obtained designs,
+ i.e. the instance's discretization, not a property of either design.
+ The boundary is read from the march's own topology (which wall
+ segment emits the C- through each node), never from the invariants.
+ (ii) NORMS. The pre-registered exclusions (lip/corner, sonic/Sauer,
+ axis) are unchanged and were applied; the kernel boundary is not a
+ new exclusion but the surface's own endpoint.
+ (iii) SECOND FIRST INTEGRAL. (L.13), q rho W^2 sin^2(theta) tan(alpha)
+ = -lambda3, is carried in the bench alongside f2 as an independent
+ optimality coordinate: our instance fixes the LENGTH, so lambda3 is
+ the multiplier our formulation actually owns.
+ (iv) THE CORNER ROW. With the exit ordinate CONSTRAINED (the eps
+ equality) the free-endpoint transversality (L.14) becomes "augmented
+ density at E = multiplier of that constraint", and by the envelope
+ theorem applied to the value function shared by the control-surface
+ and wall formulations that multiplier IS the AD derivative
+ dJ/dy_lip. The executable identity is therefore
+   dJ/dy_lip == 2 pi y_E [ p_E - (1/2) rho_E W_E^2 sin(2 theta_E)
+                           tan(alpha_E) ]   (pa = 0, vacuum-equivalent
+ objective of record). DECLARED HONESTLY: this is an identity of the
+ CONTINUUM optimum tested on a FINITE-DIMENSIONAL design, so a
+ Richardson band on one instance cannot confirm it; the falsifiable
+ statement of record is two-knob convergence (enrich the design class
+ toward the continuum optimum; refine the mesh at a design already at
+ that optimum) — see [X-O33B] and the S19 log.
+ DESIGN-CLASS RESIDUE, with its procedure named (standing directive:
+ procedures must be GENERAL, not case-dependent, and economical): the
+ brick's wall class — 8 UNIFORMLY spaced nodes carrying a natural
+ cubic spline clamped at the attachment — is an instance-tuned choice,
+ and S19 measured that it, not the physics, sets the corner row's
+ accuracy (6.6e-02 in that class vs 2.0e-02 on a faithful Rao wall at
+ the SAME mesh). The discharge is therefore NOT "more uniform nodes":
+ it is an adaptive, error-indicator-driven knot construction
+ (free-knot / a-posteriori insertion, basis class fixed by the
+ regularity the downstream estimate consumes), so that the class
+ refines where the Rao residual actually lives and nowhere else.
+ (v) CAPTURING CONTROL (item (d)). Vacuous on shock-free twins (zero
+ fitted fronts); the wall/lip-adjacent probe half IS executed. The
+ control proper is deferred, declared, to the shock-bearing instance.
+
 ------------------------------------------------------------------------------
 ## 6. Risks and dependencies (declared)
 

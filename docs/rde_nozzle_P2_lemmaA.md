@@ -533,3 +533,70 @@ PENDING register (all named, per acceptance rule):
  P-A3 O3.2 E-residual evaluation on the AD adjoint field — A1 engine.
 None of P-A1..P-A3 blocks Lemma A as classed above; they discharge the
 THEOREM*->THEOREM upgrades and the (iv) SCHEMA->THEOREM* upgrade.
+
+------------------------------------------------------------------------------
+## §3.7 NUMERIC STATUS OF RECORD (2026-08-06, session S19 — the
+##      pre-registered O3.2/O3.3 campaign; carriers [X-O32], [X-O33B])
+
+Class of everything below: PRACTICE (measurement); it moves no claim's
+rigor class by itself, it discharges or fails the numeric conditionals.
+
+(a) LOCUS CORRECTION OF RECORD. Rao's control surface is the C+
+through the lip traced BACK and STOPPED at the kernel boundary (the
+last C- emitted by the fixed throat arc), not the whole C+ down to the
+axis. On the full chain f2 drifts 2.9e-01 and (ii) looks falsified; on
+the classical surface f2 is constant to 9.5e-03. The campaign's first
+implementation had the locus wrong — recorded because the wrong number
+is the one a reader would otherwise reproduce. See P2_outline §5
+addendum (i).
+
+(b) IDENTIFICATION (ii), f2 = -lambda2, MEASURED ON TWO INDEPENDENT
+DESIGNS. On the S18 converged design f2 = 2665.38 with drift 9.5e-03
+along the control surface; on GENO's own type-2 (Rao) contour, marched
+by the same engine, f2 = 2666.03 with drift 8.0e-03. The two Rao
+constants agree to 2.4e-04 relative — an order of magnitude tighter
+than either drift, i.e. the residual is the instance's discretization,
+identical for both designs, and NOT a property of either. The
+wrong-family combination u - v tan(alpha) drifts 8.6x more on the same
+surface (pre-registration item (c), fired as intended).
+
+(c) THE ADJOINT COMPATIBILITY RELATION on our field, in the Prop. A3
+two-field gauge (lambda1 = y rho v, lambda2 = u): the corpus relation
+d(lambda1) -/+ y rho cot(alpha) d(lambda2) = 0 cancels to a mean
+fraction 1.6e-04 on the C+ family and 2.3e-04 on the C- family with
+the sign that belongs to each family, and saturates at EXACTLY 1.0
+with the other sign. This is the compatibility-residual coordinate the
+O3.3 protocol registers, and its wrong-sign control is the sharpest
+rejector in the bench.
+
+(d) IDENTIFICATION (iii), the corner row. With the exit ordinate
+constrained, (L.14) reads dJ/dy_lip = 2 pi y_E [p_E - (1/2) rho_E W_E^2
+sin(2 theta_E) tan(alpha_E)] (pa = 0). Measured: the AD side
+1.054906e+07 against the classical side 9.893197e+06 = 6.6e-02
+relative on the 8-node design, MESH-INDEPENDENT (6.6295e-02 at r=1 vs
+6.6368e-02 at r=2), and 2.0e-02 on a faithful Rao wall at the same
+mesh, falling further under refinement there. Reading of record: the
+identity is SUPPORTED and converging in both limits that separate our
+instance from the continuum optimum, and is NOT confirmed at a
+Richardson band on any single finite-dimensional instance — which is
+what an identity of the continuum optimum should do. [C-O33] therefore
+stays OPEN with its residual now QUANTIFIED and its dominant term
+IDENTIFIED as the design class, not the discretization.
+
+(e) THE PRIMARY KILL CRITERION PASSED. On a feasible one-parameter
+family around the optimum the AD directional derivative and the
+classical Rao residual vanish at the SAME design within the derived
+bar — the gradient-level term match that P2_outline §5(b) designates
+as primary.
+
+(f) O3.2 / P-A3 STATUS, honestly bounded. The mesh-convergence half
+ran ([X-O32]): the objective's exponent is 2.53 on the fine triple,
+the apparatus is validated by a first-order control that reads 0.9997
++/- 6e-04, and the ADJOINT exponent is NOT MEASURABLE on a refinement
+ladder because refinement cannot hold the march topology fixed — this
+is clause LB-c2 of [S-LBML] biting, not a failure of the transpose.
+The Hoffman-E evaluation proper (E on the pointwise AD adjoint FIELD)
+is NOT executed: it needs the adjoint field extracted by residual
+injection (a source tau added through the custom_vjp solver's p
+argument, so that dJ/dtau is the discrete multiplier of that cell's
+compatibility row). P-A3 stays open with that procedure named.

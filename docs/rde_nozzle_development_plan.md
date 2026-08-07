@@ -452,6 +452,25 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     measured failure is not language-throughput); named scale levers
     in the kickoff doc (2nd-order implicit rules, colored Hessians,
     benign-flip policy refinement).
+    O3.2/O3.3 CAMPAIGN EXECUTED 2026-08-06 (S19, [F1/P-2], carriers
+    [X-O32]/[X-O33B]; M0 Part VI + P2_lemmaA §3.7): the PRIMARY kill
+    criterion PASSED (gradient stationarity and the Rao condition
+    vanish at the same design); f2 = -lambda2 constant on the control
+    surface for our optimum AND for GENO's own Rao contour, the two
+    constants agreeing to 2.4e-04; adjoint compatibility cancelling to
+    1.6e-04 with the family-correct sign and saturating at 1.0 with
+    the wrong one; the corner identity of (iii) converging in BOTH the
+    design-class and mesh limits but NOT confirmed at a Richardson
+    band on a finite-dimensional instance, so [C-O33] stays OPEN with
+    the residual quantified. FOUR RESIDUES ADDED TO THE QUEUE, each
+    with its lever named: (a) re-optimize in a RICHER, ADAPTIVE design
+    class (error-driven knot construction, not more uniform nodes) and
+    re-measure the corner row; (b) the lambda3 twin of that row (our
+    instance fixes the LENGTH, so -dJ/dL must reproduce (L.13)'s
+    constant — needs L traced through the replay); (c) a FIXED-TOPOLOGY
+    experiment for the adjoint exponent, which a refinement ladder
+    cannot deliver (clause LB-c2); (d) adjoint-field extraction by
+    residual injection, for the pointwise psi rows.
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF

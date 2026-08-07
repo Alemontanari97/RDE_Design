@@ -1189,6 +1189,32 @@ entries:
   falsifier: "its checks: P4 certification gate, replay-fidelity monitor, O3.1 with corrupted-gradient rejector, thermo data guard with stratified rejector; opt stage adds the GENO-contour band oracle with the N3 wrong-design discriminator"
   gamma: "EOS-general"
 
+- id: X-O32
+  kind: carrier
+  class: PRACTICE
+  scope: "ORACLE O3.2 carrier (P-2 numerics, S19 2026-08-06); on-demand carrier (env: jax); refinement ladder r = 1..4 on BOTH twins at fixed design, measuring the PRIMAL and the ADJOINT (dual-pairing) exponents that S-LBML §2 predicts; three-level estimator inverted exactly for non-integer ratios, known-answer tested to 1.67e-13 with a monotonicity assertion; uncertainty = measured noise (accumulated Newton certification floor over the certified cell count) + measured model drift between the two triples; BINDING verdict = the S16 one-sided falsifier of [S-LBML] (order < 2 - tol kills), conclusiveness cap at the constant its own derivation yields; APPARATUS VALIDATED by the foot-coefficient (explicit-Euler) march: measured order 0.9997 with dp_tot 6e-04, correctly killed by the h^2 claim"
+  statement: "On the reduced twin instances the objective functional J of the TOC engine converges at measured order 2.53 (fine triple, dp_tot 0.67); the ADJOINT rows are NOT USABLE on a refinement ladder because refinement cannot hold the march topology fixed — precisely clause LB-c2 — and the ideal twin's rows are capped by the mirrored GENO exit constant |M - Me| < 1e-5 acting as an accuracy floor on the achieved exit Mach (|dMe| up to 1.5e-05, non-monotone)."
+  doc: "validation/o32_mesh_convergence.py"
+  proof: "validation/o32_mesh_convergence.py"
+  inherits: [C-D25U]
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "its rows: measured order below 2 - dp_tot on a conclusive triple kills the S-LBML rate claim; the first-order negative control must be killed by the same band; per-level replay-vs-record fidelity at the Newton floor"
+  gamma: "EOS-general"
+
+- id: X-O33B
+  kind: carrier
+  class: PRACTICE
+  scope: "ORACLE O3.3 carrier (the pre-registered term-match bench, P2_outline §5 + its S19 execution addendum); on-demand carrier (env: jax); rows R1/R2 (Rao first integrals f2 and f3* on the CLASSICAL control surface = the C+ traced back from the lip and stopped at the kernel boundary), R3 (corner/transversality identity dJ/dy_lip == the classical corner density), R4/R5 (two-field multiplier compatibility along both families, both signs, with the wrong sign saturating), R6 (the pre-registered gradient-vs-Rao family test), R7 (cross-DESIGN check on GENO's own Rao wall, instance only), plus an executable guard refusing the constant-flow invariants (33)-(34) off uniform patches. LOCUS CORRECTION OF RECORD: evaluated on the full C+ down to the axis f2 drifts 2.9e-01 and the row looks falsified; on the classical surface it is 9.5e-03 (S18 optimum) and 8.0e-03 (GENO Rao contour)"
+  statement: "On the S18 converged design the Rao first integral f2 = -lambda2 is constant along the control surface to 9.5e-03, its VALUE agrees with the one measured on GENO's independently obtained Rao contour to 2.4e-04, the wrong-family combination drifts 8.6x more, the adjoint compatibility relation cancels to 1.6e-04 with the correct sign per family and saturates at 1.0 with the wrong one, and the gradient's stationary design coincides with the Rao condition's zero within the derived bar (R6, the primary kill criterion)."
+  doc: "validation/o33_bench.py"
+  proof: "validation/o33_bench.py"
+  inherits: [C-O33]
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "R6 (primary): gradient stationarity and the Rao condition vanishing at DIFFERENT designs beyond the derived bar; R5/R4 wrong-family and wrong-sign rejectors; R7 disagreement of the Rao constant across the two designs; the (33)-(34) guard admitting a varying patch"
+  gamma: "EOS-general"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK

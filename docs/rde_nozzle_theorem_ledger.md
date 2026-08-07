@@ -444,6 +444,27 @@ explicit B2/B3 component match PENDING O3.3 (P-A1). Identification
 component map lambda_i <-> psi_j PENDING page re-read (P-A2; no
 equation numbers cited beyond the verified anchors). PENDING register
 P-A1..P-A3 named in the draft §3.6; none blocks the classes as stated.
+NUMERIC STATUS 2026-08-06 (S19, the pre-registered O3.2/O3.3 campaign;
+carriers [X-O32]/[X-O33B]; full account in the draft §3.7 and M0 Part
+VI): the PRIMARY kill criterion of P2_outline §5(b) PASSED — on a
+feasible family around the optimum the AD directional derivative and
+the classical Rao residual vanish at the same design within the
+derived bar. (ii) is measured on TWO independent designs (ours and
+GENO's own Rao contour, same engine): f2 constant to 9.5e-03 and
+8.0e-03 respectively, the two Rao CONSTANTS agreeing to 2.4e-04, with
+the wrong-family rejector firing (8.6x). The compatibility coordinate
+cancels to 1.6e-04/2.3e-04 with the family-correct sign and saturates
+at 1.0 with the wrong one. (iii)'s corner identity is SUPPORTED and
+converging in both the design-class and mesh limits (6.6e-02 on the
+8-node design, mesh-INDEPENDENT; 2.0e-02 on a faithful Rao wall, still
+falling under refinement) but is NOT confirmed at a Richardson band on
+a finite-dimensional instance — [C-O33] stays OPEN, residual
+quantified, dominant term identified as the DESIGN CLASS. Classes of
+(i)-(iii) therefore UNCHANGED (THEOREM*), which is the honest outcome:
+the campaign sharpened the conditional instead of discharging it.
+LOCUS CORRECTION OF RECORD (S19): the control surface is the C+ traced
+back from the lip and STOPPED at the kernel boundary; on the full C+
+to the axis f2 drifts 2.9e-01 and the row looks falsified.
 GAMMA-VARIABLE AUDIT (same session, standing user directive: every
 theory piece states its variable-gamma status): the derived classical
 stationarity system (L.6)-(L.16) is EOS-GENERAL (uses only dh = dp/rho

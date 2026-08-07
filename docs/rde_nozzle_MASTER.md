@@ -1177,6 +1177,63 @@ silently). CONSEQUENCE: D6 item 9 CLOSES; **O3.3 IS UNLOCKED** (the
 pre-registered bench protocol P2_outline §5, untouched, becomes
 executable against this engine — P-2's numeric half).
 
+O3.2/O3.3 CAMPAIGN OF RECORD (2026-08-06, [F1/P-2], session S19;
+carriers [X-O32], [X-O33B]; full numbers and the honest residues in
+P2_lemmaA §3.7 and the S19 log). Class of the campaign: PRACTICE
+(measurement) — it discharges numeric conditionals, it does not by
+itself move a rigor class.
+ THE LOCUS, first, because the campaign got it wrong before it got it
+right: Rao's control surface is the C+ through the lip traced BACK and
+STOPPED AT THE KERNEL BOUNDARY (the last C- emitted by the fixed
+throat arc), not the whole C+ down to the axis. Measured on the full
+chain, f2 drifts 2.9e-01 and identification (ii) looks falsified;
+measured on the classical surface it is constant to 9.5e-03. The wrong
+number is recorded alongside the right one because it is the one a
+reader repeating the experiment would otherwise reproduce.
+ WHAT THE BENCH ESTABLISHED. (1) f2 = -lambda2 is constant along the
+control surface for the S18 converged design (2665.38, drift 9.5e-03)
+AND for GENO's own Rao contour marched by the same engine (2666.03,
+drift 8.0e-03), the two Rao CONSTANTS agreeing to 2.4e-04 — an order
+of magnitude inside either drift, so the residual is the instance's
+discretization, common to both designs. (2) The adjoint compatibility
+relation of the classical corpus cancels to 1.6e-04 (C+) and 2.3e-04
+(C-) in the Prop. A3 gauge on our field, and saturates at exactly 1.0
+with the wrong sign per family — the sharpest rejector in the bench.
+(3) THE PRIMARY KILL CRITERION PASSED: on a feasible family around the
+optimum the AD directional derivative and the classical Rao residual
+vanish at the SAME design inside the derived bar. (4) The corner
+identity of identification (iii), dJ/dy_lip = 2 pi y_E [p_E - (1/2)
+rho W^2 sin(2 theta) tan(alpha)], holds to 6.6e-02 on the 8-node
+design — MESH-INDEPENDENT — and to 2.0e-02 on a faithful Rao wall at
+the same mesh, falling further under refinement there: an identity of
+the CONTINUUM optimum, converging in both limits, NOT confirmed at a
+Richardson band on a finite-dimensional instance. [C-O33] stays open
+with its residual quantified and its dominant term identified as the
+DESIGN CLASS.
+ THE HONEST RESIDUES. (i) The adjoint's convergence EXPONENT is not
+measurable on a refinement ladder: refinement cannot hold the march
+topology fixed, which is exactly clause LB-c2 of [S-LBML]; a
+fixed-topology experiment is owed. (ii) The ideal twin's rows are
+capped IN PART by a mirrored GENO algorithmic constant (the
+|M - Me| < 1e-5 exit test) acting as an accuracy FLOOR on the achieved
+exit Mach — critical-list item 3, now measured rather than suspected.
+Its PRE-DECLARED diagnostic ran (hypothesis and test committed before
+any four-level rate existed): tightening the constant 100x collapses
+|dMe| from 1.5e-05 to 1.1e-08 and makes it monotone, so the floor is
+REAL; but the rows do NOT recover (primal dp_tot 2.12 -> 1.46, still
+non-conclusive; adjoint still not usable), so the constant is
+ATTRIBUTED as a floor and EXONERATED as the binding cause, leaving the
+topology mechanism of (i) as the only candidate standing for the ideal
+twin too. No band was amended in either direction. (iii) The
+design class (8 uniformly spaced nodes, natural cubic spline) is
+instance-tuned and is what limits the corner row; its discharge is an
+adaptive error-driven knot construction, not more uniform nodes.
+(iv) Two data defects of GENO's profile output, found while consuming
+it: the exit wall point is emitted twice 3.8e-6 apart in x (poisons
+any spline fit at the lip), and the ATTACHMENT angle is not the
+maximum wall angle (16.90 deg vs a peak of 18.83 deg) — the S18 seed
+recipe took the peak.
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

@@ -7,10 +7,77 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-06, chiusura Sessione 18 — PRODUCTION CODE + RUN
-## END-TO-END: **BRICK 2 CHIUSO, O3.3 SBLOCCATO**; log a ordine
-## totale: validation/PROGRESS_2026-08-06_S18_brick2run.md, 9 passi;
-## gate PASS al passo 2)
+## ORA (2026-08-06, chiusura Sessione 19 — CAMPAGNA O3.2/O3.3, LA
+## METÀ NUMERICA DI P-2: **BENCH O3.3 PASS, CRITERIO PRIMARIO
+## SODDISFATTO**; log a ordine totale:
+## validation/PROGRESS_2026-08-06_S19_o33.md, 8 passi; gate PASS al
+## passo 2)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = 2664f95,
+carrier O3.2 + pre-dichiarazioni = 6ea29e3, bench O3.3 = ceae2ae,
+verdetto O3.2 = (passo 4), R4 = (passo 6), chiusura = (questo).
+Lint (xv) verde sull'EXIT CODE a ogni commit (122 -> 124 voci: due
+nuovi carrier).
+
+- **[F1/P-2] O3.3 — BENCH PRE-REGISTRATO ESEGUITO, VERDICT PASS**
+  (`validation/o33_bench.py`, [X-O33B], exit 0). **CRITERIO DI KILL
+  PRIMARIO SODDISFATTO**: sulla famiglia di contorni perturbati
+  attorno all'ottimo, la derivata direzionale AD e il residuo di Rao
+  si annullano sullo STESSO design — |t_grad - t_Rao| = 6.80e-03
+  contro barra derivata 3.56e-02, e il drift di f2 è una V pulita
+  col minimo dove il gradiente si annulla. f2 = -lambda2 costante
+  sulla superficie di controllo a **9.48e-03** (nostro ottimo S18) e
+  **7.99e-03** (contorno Rao di GENO marciato dal NOSTRO motore); le
+  due COSTANTI di Rao concordano a **2.42e-04** e la lettura di
+  trasversalità al labbro a **2.80e-03** — il residuo è la
+  discretizzazione dell'istanza, comune ai due design. Compatibilità
+  aggiunta: cancella a 1.65e-04 (C+) e 2.34e-04 (C-) col segno della
+  famiglia, satura a **esattamente 1.0** col segno sbagliato.
+  Guardia (33)-(34) eseguibile: RIFIUTA il campo vero, ACCETTA la
+  patch uniforme.
+- **[F1/P-2] ERRORE DI LOCUS CORRETTO IN SESSIONE (utente)**: la
+  superficie di controllo di Rao NON è tutta la C+ per il labbro, ma
+  il tratto dall'ULTIMA C- emessa dall'arco di gola (confine del
+  nucleo) fino al labbro. Sulla catena intera f2 deriva **2.89e-01**
+  e la (ii) sembra falsificata. Entrambi i numeri restano a record.
+- **[F1/P-2] O3.2 — ESITO PARZIALE, ONESTO** ([X-O32], exit 1 per
+  costruzione: "exit 0 sse TUTTE le righe passano", e non tutte
+  concludono). PASSA la riga dell'obiettivo J (p_fine = 2.5347,
+  dp_tot = 0.6704, conclusiva). NON CONCLUSIVE: Q_u (limitata dal
+  rumore) e il twin ideale. **LA RIGA AGGIUNTA NON È MISURABILE su
+  una scala di raffinamento**: le differenze si fermano
+  (-2.20e+04, -2.33e+03, -1.94e+03) — meccanismo = clausola LB-c2
+  (il limite è a topologia FISSA, e raffinare non la tiene fissa);
+  monitor di topologia MISURATO (33/92, 66/183, 99/274, 131/365,
+  frazione non monotona con inversione a r=4). Apparato validato dal
+  controllo negativo a primo ordine: p = 0.9997 +/- 6e-04, RIGETTATO.
+  Sonda al labbro PUNTUALE: p_fine = 0.7630, conclusivamente sotto 2
+  => **il pin S14 di esclusione del labbro è empiricamente
+  SOSTENUTO**.
+- **R4 STESSA SESSIONE**: M0 Parte VI (blocco campagna), P2_lemmaA
+  §3.7 (sei voci), P2_outline §5 addendum (cinque voci, nessuna
+  banda toccata), LBML §5 (nota EXECUTED su LB-c2), D3, D6 item 9
+  (quattro residui in coda con la leva nominata), ledger ipotesi
+  (C-O33 con residuo QUANTIFICATO), registro (+[X-O32], +[X-O33B]).
+- **[C-O33] RESTA APERTA, ma con numero e causa**: l'identità del
+  corner chiude a 6.63e-02 sul design a 8 nodi ed è
+  MESH-INDIPENDENTE, a 1.998e-02 su una parete Rao fedele e a
+  1.487e-02 lì a r=2 — converge su ENTRAMBI i limiti, non è
+  confermabile a banda Richardson su un'istanza finito-dimensionale;
+  il termine dominante è la CLASSE DI DESIGN.
+- **NEXT-1 = da decidere con l'utente** tra: (a) ri-ottimizzazione
+  in classe di design ADATTIVA (costruzione di nodi guidata da
+  indicatore d'errore — NON più nodi uniformi) e ri-misura della
+  riga corner; (b) gemello lambda3/lunghezza della stessa riga
+  (serve L tracciato nel replay); (c) esperimento a TOPOLOGIA FISSA
+  per l'esponente dell'aggiunto; (d) estrazione del campo aggiunto
+  per iniezione di residuo. Restano in coda: census-lemma, PAP-RIM,
+  review G0/T2, panchina rigore.
+
+Stato precedente (chiusura Sessione 18 — PRODUCTION CODE + RUN
+END-TO-END: **BRICK 2 CHIUSO, O3.3 SBLOCCATO**; log a ordine
+totale: validation/PROGRESS_2026-08-06_S18_brick2run.md, 9 passi;
+gate PASS al passo 2)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = 9ca859a,
 P1 = dfb169f, P2 = 85453c3, P3+P4 = a1cd786, run di record =

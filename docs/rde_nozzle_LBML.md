@@ -155,6 +155,43 @@ brick-2 territory, untouched).
  - The O3.2/O3.3 executions on the assembled A1 engine remain the
    EXECUTABLE half (pre-registered, brick-2 kickoff unlocks O3.3) —
    this doc is the continuum half only.
+   [EXECUTED 2026-08-06, S19, carrier [X-O32]. What came back, and it
+   is a sharper statement about LB-c2 than the clause anticipated:
+   the PRIMAL exponent is measurable and lands where §2(i) says it
+   should (2.53 on the fine triple for the TOC objective, with the
+   apparatus validated by a first-order control that reads 0.9997 +/-
+   6e-04, so the estimator is demonstrably capable of three-decimal
+   resolution when a scheme has a clean order). The ADJOINT exponent
+   is NOT MEASURABLE ON A REFINEMENT LADDER AT ALL: the differences
+   stop shrinking and leave the estimator's bracket. The mechanism is
+   LB-c2 itself — the limit of §1's CLAIM is taken AT FIXED MARCH
+   TOPOLOGY, and a refinement ladder cannot hold the topology fixed
+   (the L-DoD truncation decides per column whether a cell lands past
+   the lip, and the wall-search indices are re-recorded at each
+   level), so the gradient sequence carries stratum-transition terms
+   that no order estimator can absorb. This does NOT falsify step
+   (iv) — the exact transpose is a machine fact, O3.1 — it says the
+   EXPERIMENT that would measure the gradient's order has to be
+   designed differently: a fixed-topology family, or a functional
+   insensitive to the truncation count. That experiment is owed and
+   is named in D6 item 9's S19 annotation. Until it runs, the h^2
+   rate for the GRADIENT stays a written claim with its executable
+   half deferred, and the paper must say so.
+   Second measured item, and its diagnostic ran too: on the IDEAL
+   twin the rows are capped in part by a mirrored GENO algorithmic
+   constant (the |M - Me| < 1e-5 exit test) acting as an accuracy
+   FLOOR on the achieved exit Mach — |dMe| up to 1.5e-05 and
+   NON-MONOTONE along the ladder. The hypothesis was pre-declared and
+   committed before the decisive run, and the constant was
+   parameterized so the test could run without editing the carrier
+   mid-verdict. Tightening it 100x collapses |dMe| to 8.5e-08,
+   2.3e-08, 1.1e-08 and makes it monotone — so the floor is REAL and
+   is now a measured fact — but the rows do NOT recover (primal
+   dp_tot 2.12 -> 1.46, still non-conclusive; adjoint still not
+   usable). The constant is therefore ATTRIBUTED as a floor and
+   EXONERATED as the binding cause, which leaves the topology
+   mechanism above as the only candidate standing for the ideal twin
+   as well. No band was amended in either direction.]
  - Axisymmetric source terms: zeroth-order, change no step —
    declared (same scope note as U3/U4).
  - A quantitative h_0(delta, C_0) (the mesh threshold below which
