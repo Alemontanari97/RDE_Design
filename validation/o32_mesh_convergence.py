@@ -219,7 +219,28 @@ def estimator_selftest():
 
 def verdict_row(label, f, h, ncell, scale_hint=None):
     """Full O3.2 row from four levels: rate, derived band, verdict.
-    Returns (ok, conclusive, p_fine, dp_tot)."""
+    Returns (ok, conclusive, p_fine, dp_tot).
+
+    WHICH RULE DECIDES — declared, because two texts exist and they
+    differ, and the difference must not be able to move a verdict
+    silently:
+     * BINDING (this is the one the verdict uses): the falsifier
+       committed in S16 with [S-LBML] itself, docs/rde_nozzle_LBML.md
+       audit line — "O3.2 (measured order < 2 - tol on smooth
+       certified references kills the rate claim)". It is ONE-SIDED:
+       an order ABOVE 2 does not falsify a claim of order h^2. Here
+       tol := dp_tot, the run's own derived uncertainty (measured
+       noise + measured model drift) — no free constant.
+     * REPORTED, not binding: the two-sided rule written in this
+       session's step-3 text (|p - 2| <= dp_tot). It is STRICTER than
+       the text that binds, so it is reported alongside and never used
+       to decide.
+    The conclusiveness cap is reported at BOTH constants: the coded
+    0.5 and the 1.0 that the cap's own stated derivation ("the band
+    must not touch the adjacent integer orders 1 and 3") actually
+    yields — the step-3 text asserted the derivation and coded 0.5,
+    which is an inconsistency of mine, declared here rather than
+    silently resolved. Every exponent is printed either way."""
     scale = scale_hint if scale_hint is not None else max(
         abs(v) for v in f)
     if len(f) < 4:
@@ -245,12 +266,25 @@ def verdict_row(label, f, h, ncell, scale_hint=None):
         return False, False, p_f, None
     dpm = abs(p_c - p_f)
     dpt = dpn + dpm
-    concl = dpt < SEP_ADJACENT
-    ok = concl and abs(p_f - 2.0) <= dpt
+    # conclusiveness at the constant the cap's own derivation yields
+    # (the band must not reach the adjacent integer orders 1 and 3);
+    # the coded 0.5 of the step-3 text is reported, not used.
+    concl = dpt < 2.0 * SEP_ADJACENT
+    killed = p_f < 2.0 - dpt              # the BINDING S16 falsifier
+    ok = concl and (not killed)
+    two_sided = abs(p_f - 2.0) <= dpt     # reported, stricter, not used
     print("  %-34s : p(coarse) = %.4f  p(fine) = %.4f  "
           "dp_noise = %.2e  dp_model = %.4f  dp_tot = %.4f  -> %s"
           % (label, p_c, p_f, dpn, dpm, dpt,
-             ("PASS" if ok else ("FAIL" if concl else "NON-CONCLUSIVE"))))
+             ("PASS" if ok else
+              ("RATE CLAIM KILLED" if concl else "NON-CONCLUSIVE"))))
+    print("  %-34s   [readings] binding one-sided (p >= 2 - dp_tot): "
+          "%s | two-sided |p-2| <= dp_tot: %s | conclusive at cap 1.0: "
+          "%s, at cap 0.5: %s"
+          % ("", "pass" if not killed else "KILL",
+             "pass" if two_sided else "fail",
+             "yes" if concl else "NO",
+             "yes" if dpt < SEP_ADJACENT else "no"))
     return ok, concl, p_f, dpt
 
 
@@ -449,8 +483,8 @@ def toc_ladder(tab, state_fn, solvers, rmax, label, window=None,
     v = np.asarray(np.random.default_rng(320).standard_normal(len(W_STAR)))
     v /= np.linalg.norm(v)
 
-    res = dict(h=[], Q=[], J=[], G=[], Qlip=[], n=[], t=[], rep=[],
-               window=window)
+    res = dict(h=[], Q=[], J=[], G=[], Qlip=[], qlip=[], topo=[],
+               n=[], t=[], rep=[], window=window)
     for r in range(1, rmax + 1):
         cfg = dict(base)
         cfg["NI"] = r * (base["NI"] - 1) + 1
@@ -490,6 +524,26 @@ def toc_ladder(tab, state_fn, solvers, rmax, label, window=None,
         res["J"].append(J)
         res["G"].append(G)
         res["Qlip"].append(Qlip)
+        # POINTWISE wall-adjacent probe (pre-registration item (d)):
+        # the lip station sits at x = L exactly and EXISTS AT EVERY
+        # LEVEL, so its wall speed is a genuine pointwise field value —
+        # no quadrature, unlike the lip-WINDOW functional, whose
+        # coarsest level is supported on ~2 stations and therefore
+        # conflates quadrature error with wall-adjacent behaviour.
+        res["qlip"].append(float(np.hypot(wall[-1, 2], wall[-1, 3])))
+        # TOPOLOGY MONITOR (clause LB-c2 made measurable): S-LBML takes
+        # the mesh limit AT FIXED MARCH TOPOLOGY, but a refinement
+        # ladder cannot hold the topology fixed — the L-DoD truncation
+        # decides per column whether a cell lands past the lip, and the
+        # wall-search indices are re-recorded at every level. If the
+        # fraction of columns carrying an axis point does not vary
+        # smoothly with r, the ladder is crossing strata and the
+        # gradient sequence carries stratum-transition terms that no
+        # order estimator can absorb. Asserted mechanisms are worth
+        # nothing; this is the number that supports or refutes it.
+        arc = plan["arc"]
+        res["topo"].append((sum(1 for c in arc if c["has_axis"]),
+                            len(arc)))
         res["n"].append(int(outr["cert_n"]))
         res["t"].append(time.perf_counter() - t0)
         print("    r=%d  NI=%-4d Nw=%-4d cells=%-7d  Q_u = %.12e  "
@@ -601,19 +655,37 @@ def main():
               "process is first order by construction)"
               % (pQ if pQ is not None else float("nan")))
 
-        print("-- S5: lip-window probe (pre-registration item (d); the "
-              "half of the X1 audit executable on a shock-free twin) --")
+        print("-- S5: wall/lip-adjacent probes (pre-registration item "
+              "(d); the half of the X1 audit executable on a "
+              "shock-free twin) --")
+        print("  [topology monitor, clause LB-c2] columns carrying an "
+              "axis point / design-wall columns, per level: %s"
+              % " ".join("%d/%d" % t for t in rt["topo"]))
+        # The POINT probe is the one that decides: the lip station is
+        # at x = L exactly and exists at EVERY level, so its wall speed
+        # is a genuine pointwise field value. The lip-WINDOW functional
+        # is reported too but its coarsest level is supported on ~2
+        # stations, so it conflates quadrature error with wall-adjacent
+        # behaviour and is expected to be unusable.
+        _, conclP, pP, dpP = verdict_row("lip-POINT wall speed q(x=L)",
+                                         rt["qlip"], rt["h"], rt["n"])
         _, conclL, pL, dpL = verdict_row("lip-window Q_lip", rt["Qlip"],
                                          rt["h"], rt["n"])
-        print("      lip-window exponent = %s vs registered-norm "
-              "exponent %s -> the pre-registered exclusion is %s on "
-              "this instance (REPORTED; the S14 pin is not "
-              "re-litigated either way)"
-              % ("%.4f" % pL if pL is not None else "n/a",
+        print("      lip-POINT exponent = %s (conclusive: %s) vs "
+              "registered-norm exponent %s -> the pre-registered "
+              "lip exclusion is %s on this instance (REPORTED; the S14 "
+              "pin is not re-litigated either way). lip-WINDOW row: %s"
+              % ("%.4f" % pP if pP is not None else "n/a",
+                 "yes" if conclP else "no",
                  "%.4f" % pR if pR is not None else "n/a",
-                 "LOAD-BEARING" if (pL is not None and pR is not None
-                                    and pL < pR - 0.25)
-                 else "not load-bearing"))
+                 "EMPIRICALLY SUPPORTED — the wall-adjacent field "
+                 "converges at a degraded order while the registered "
+                 "norm does not"
+                 if (pP is not None and conclP and pP < 2.0 - dpP)
+                 else "not supported by this probe",
+                 "%.4f" % pL if pL is not None else "unusable "
+                 "(quadrature-limited at the coarsest level, as "
+                 "expected)"))
 
     print("VERDICT: %s" % ("PASS" if ok else "FAIL"))
     return 0 if ok else 1
