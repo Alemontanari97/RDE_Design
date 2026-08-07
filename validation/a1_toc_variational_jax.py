@@ -767,6 +767,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     n_eval = 0
     result = None
     tr0 = 0.05                           # carried across segments
+    TR_FLOOR = 1e-3                      # radius floor (S18 clip)
+    tr_cap = 0.25                        # S20 RATCHET: only decreases
     Dv = None                            # Jacobi scaling (measured once)
     W_cert = None                        # last CERTIFIED segment base
     for seg in range(max_segments):
@@ -783,25 +785,82 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         # record fails ANY record gate is REJECTED — revert to the
         # last certified base and shrink the radius; at the radius
         # floor the failure is genuine and raises honestly.
+        worst_seen = float("nan")
         try:
             out_rec, plan = run_toc_record(W, tab, cfg,
                                            state_fn=state_fn,
                                            solvers=solvers)
             n_rec += 1
+            worst_seen = float(out_rec["cert_worst"])
             if out_rec["cert_worst"] > 1.0:
                 raise RuntimeError(
                     "P4 gate: record at segment base not certified "
                     "(worst %.3e)" % out_rec["cert_worst"])
         except RuntimeError as err:
+            # OPTIONAL CERTIFIABILITY DIAGNOSTIC (S20, env
+            # A1_RKG_CERTDIAG=1, default OFF, purely reporting):
+            # cert_worst > 1 has TWO possible causes and they are
+            # distinguishable by one measurement — (i) the cell is
+            # genuinely non-convergent on that wall (physics/geometry:
+            # the rejection IS the verdict), or (ii) the while-Newton
+            # hit its TRIP CAP N_NEWTON (a compute budget, NOT a
+            # tolerance) and returned a step still above the
+            # certification floor. Test: re-record with the cap raised
+            # and the FLOOR UNTOUCHED. Reported, never acted on here.
+            if os.environ.get("A1_RKG_CERTDIAG") == "1":
+                n_old = A1.N_NEWTON
+                try:
+                    A1.N_NEWTON = 10 * n_old
+                    solv_d = SC.cached_solvers(
+                        ("certdiag_%d" % A1.N_NEWTON, 1.0), state_fn,
+                        1.0)
+                    o_d, _ = run_toc_record(W, tab, cfg,
+                                            state_fn=state_fn,
+                                            solvers=solv_d)
+                    print("  [certdiag] same design with N_NEWTON "
+                          "%d -> %d (floor UNCHANGED): cert_worst "
+                          "%.3e -> %.3e => %s"
+                          % (n_old, A1.N_NEWTON, worst_seen,
+                             o_d["cert_worst"],
+                             "TRIP-CAP artifact" if
+                             o_d["cert_worst"] <= 1.0 else
+                             "GENUINE non-convergence"), flush=True)
+                except Exception as e_d:                # pragma: no cover
+                    print("  [certdiag] unavailable: %s" % e_d)
+                finally:
+                    A1.N_NEWTON = n_old
+            # STICKY SHRINK (S20 second defect, log step 6): setting
+            # tr0 alone does NOT shrink anything — the next segment's
+            # callback re-captures scipy's own grown radius and the
+            # driver proposes the identical point forever (measured
+            # livelock: J, KKT and cert_worst bit-identical over
+            # segments 7-17). The bound must RATCHET: tr_cap only ever
+            # decreases on rejection and clips every later carry.
             if (W_cert is not None and not np.array_equal(W, W_cert)
-                    and tr0 > 1e-3):
-                tr_new = max(1e-3, 0.5 * tr0)
+                    and tr_cap > TR_FLOOR):
+                tr_cap = max(TR_FLOOR, 0.5 * min(tr0, tr_cap))
                 print("  [seg %d] base REJECTED (%s) -> revert to "
-                      "last certified base, radius %.3e -> %.3e"
-                      % (seg, err, tr0, tr_new), flush=True)
+                      "last certified base, radius cap -> %.3e"
+                      % (seg, err, tr_cap), flush=True)
                 W = W_cert.copy()
-                tr0 = tr_new
+                tr0 = tr_cap
                 continue
+            if W_cert is not None:
+                # REJECT-AND-SHRINK EXHAUSTED at the radius floor:
+                # the honest reading is that the design sits at the
+                # CERTIFIABILITY BOUNDARY of its class, not at a
+                # stationary point. Return the last CERTIFIED base
+                # with the flag set and the KKT reported OPEN — a
+                # declared outcome, never a silent success.
+                print("  [seg %d] reject-and-shrink EXHAUSTED at the "
+                      "radius floor (%s) -> returning the last "
+                      "CERTIFIED base; KKT reported OPEN "
+                      "(certifiability-limited)" % (seg, err),
+                      flush=True)
+                return dict(W=W_cert, res=result, n_segments=seg + 1,
+                            re_records=n_rec, re_record_events=events,
+                            nit_total=nit_total, n_eval=n_eval,
+                            certifiability_limited=True)
             raise
         W_cert = W.copy()
         # P2 production path (S18): whole-loop jitted bucketed replay
@@ -949,7 +1008,10 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         W = np.asarray(res.x) * Dv               # back to physical
         result = res
         if seg_state["radius"] is not None:
-            tr0 = float(np.clip(seg_state["radius"], 1e-3, 0.25))
+            # S20: the carry is clipped by the RATCHETED cap, so a
+            # shrink forced by a certification rejection cannot be
+            # undone by scipy's own radius growth (the livelock).
+            tr0 = float(np.clip(seg_state["radius"], TR_FLOOR, tr_cap))
         print("  [seg %d] nit %d  J = %.7e  KKT %.3e  radius -> %.3e"
               "  flips %d" % (seg, int(res.nit), -float(res.fun),
                               float(res.optimality), tr0,
@@ -975,7 +1037,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             break                            # iteration budget exhausted
     return dict(W=W, res=result, n_segments=seg + 1,
                 re_records=n_rec, re_record_events=events,
-                nit_total=nit_total, n_eval=n_eval)
+                nit_total=nit_total, n_eval=n_eval,
+                certifiability_limited=False)
 
 
 def geno_type2_reference(scratch, NI_over=None, Ne_over=None):
