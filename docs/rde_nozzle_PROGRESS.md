@@ -15,9 +15,9 @@
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = 2664f95,
 carrier O3.2 + pre-dichiarazioni = 6ea29e3, bench O3.3 = ceae2ae,
-verdetto O3.2 = (passo 4), R4 = (passo 6), chiusura = (questo).
-Lint (xv) verde sull'EXIT CODE a ogni commit (122 -> 124 voci: due
-nuovi carrier).
+verdetto O3.2 = 514e267, R4 + diagnosi = bbde42f, chiusura =
+(questo). Lint (xv) verde sull'EXIT CODE a ogni commit (122 -> 124
+voci: due nuovi carrier). Suite --fast di chiusura 15/15 in 178 s.
 
 - **[F1/P-2] O3.3 — BENCH PRE-REGISTRATO ESEGUITO, VERDICT PASS**
   (`validation/o33_bench.py`, [X-O33B], exit 0). **CRITERIO DI KILL
