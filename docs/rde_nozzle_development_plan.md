@@ -471,6 +471,45 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     experiment for the adjoint exponent, which a refinement ladder
     cannot deliver (clause LB-c2); (d) adjoint-field extraction by
     residual injection, for the pointwise psi rows.
+    S20 RESIDUE-(a) SURVEY DECISION (2026-08-07, per the standing
+    survey + generality directives; log S20 step 3): the adaptive
+    knot construction is ADOPTED as the AFEM/FITPACK skeleton —
+    solve -> per-interval goal indicator -> Doerfler bulk marking ->
+    knot insertion -> re-optimize — with the indicator = the
+    classical f2 (Rao multiplier) drift per control-surface segment
+    mapped to the emitting wall interval via the march topology (the
+    `owner` array of [X-O33B]); the S19 candidate is thereby
+    ADJUDICATED as DWR-conformant, not merely classical: f2 IS the
+    adjoint variable -lambda2 (Prop. A3), so its drift is an
+    adjoint-weighted optimality residual of the goal, which is
+    exactly what Becker-Rannacher weighting would construct. Basis
+    class UNCHANGED (clamped-left natural cubic spline = the U1
+    C_geo class; knot insertion preserves the C^2 regularity
+    statement on any strictly increasing knot set). REJECTED with
+    declared reasons: joint free-knot optimization (Jupp-1978
+    lethargy — spurious stationary points + knot coalescence — and
+    the RK-G cost: continuous knot motion flips march decisions, and
+    one segment already equals one productive step); hierarchical/
+    THB B-splines (they solve a >=2D tensor-product locality problem
+    a 1D wall graph does not have — plain knot insertion is already
+    local and exact in 1D); a control-point B-spline basis switch
+    (IGA-standard but requires re-validating the entire certified
+    stack, while the S19 measurement locates the defect in knot
+    PLACEMENT, not parametrization conditioning — which the driver
+    already handles by measured Jacobi + full segment Hessian).
+    READ-THE-SOURCE findings (scipy 1.18 _fitpack_repro.py, the
+    readable FITPACK reimplementation, read this session): insertion
+    = interval of maximum residual mass, new knot AT A DATA SITE
+    inside it (never a knot-averaging construction), possibly
+    several per pass (the nplus doubling heuristic); hidden
+    constants TOL = 1e-3 and MAXIT = 20 hardcoded from curfit.f and
+    a smoothing-criterion (fp <= s) termination — NONE adopted: our
+    outer loop stops on the pre-declared measured-quantity rule
+    (S20 gate [D3]) and inserts a Doerfler-marked set per cycle
+    (theta = 1/2 declared as the method's canonical bulk fraction;
+    marking sets for theta in {0.3, 0.5, 0.7} printed so the choice
+    is auditable), because each outer cycle costs a re-optimization
+    (~400 s, S18) and dof economy is part of correctness here.
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF
