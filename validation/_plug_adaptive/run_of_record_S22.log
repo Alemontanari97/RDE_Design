@@ -1,0 +1,168 @@
+== A1 S22: adaptive knots on the spike ([X-AKNO] -> [X-PSPL]) [F2/A1] ==
+  class-0: m = 10 uniform knots; working resolution K = 61, N = 51; budget 3 cycles / 2 insertions per cycle / 10800 s
+-- A-1: known-answer indicator/marking selftest --
+  single-interval residual: mass fraction 1.000, marks [5]
+  [PASS] A-1a >= 99% of mass in the residual interval and Doerfler marks exactly it
+  flat residual: Doerfler(0.5) marks 4 intervals
+  [PASS] A-1b flat residual marks MORE THAN ONE interval (no false concentration)
+  [PASS] A-1c zero residual yields an empty marked set
+
+-- A-2: record check against the S21 checkpoint --
+  checkpoint class does not match (m or K or knots) — cold start, A-2 skipped as N/A (declared)
+
+-- class-0 optimum (m = 10 uniform) --
+    [seg  0] J = 1.15588925e+08  |grad| = 1.060e+07  cert = 0.111
+    [seg  1] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.070
+    [seg  2] trial J = 1.15655421e+08 REJECTED (worse than 1.15680509e+08) -> revert, radius -> 5.625e-02
+    [seg  3] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.070
+    [seg 4] base REJECTED (record not certified (worst 6.621e+00)) -> revert, radius -> 4.219e-02
+    [seg  5] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.070
+    [seg  6] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.049
+    [seg  7] trial J = 1.15203320e+08 REJECTED (worse than 1.15715554e+08) -> revert, radius -> 4.746e-02
+    [seg  8] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.049
+    [seg  9] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.247
+    [seg 10] trial J = 1.15024562e+08 REJECTED (worse than 1.15730723e+08) -> revert, radius -> 5.339e-02
+    [seg 11] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.247
+    [seg 12] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.305
+    [seg 13] trial J = 1.15027605e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 6.007e-02
+    [seg 14] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.305
+    [seg 15] trial J = 1.15363281e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 4.505e-02
+    [seg 16] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.305
+    [seg 17] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.201
+    [seg 18] trial J = 1.15017911e+08 REJECTED (worse than 1.15738602e+08) -> revert, radius -> 5.068e-02
+    [seg 19] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.201
+    [seg 20] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.093
+    [seg 21] trial J = 1.15038186e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 5.702e-02
+    [seg 22] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.093
+    [seg 23] trial J = 1.15355875e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 4.276e-02
+    [seg 24] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.093
+    [seg 25] trial J = 1.14739742e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 3.207e-02
+    [seg 26] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.093
+    [seg 26] no motion -> stop
+  [class-0] optimum: J = 1.15739431e+08  cert = 0.093  (17 segments, 27 records)
+
+-- cycle 1: indicator at the incumbent optimum (m = 10) --
+  enriched-class warm-start wall deviation 4.441e-16 m (measured, declared); J(enriched warm) = 1.15739431e+08
+  [cycle 1] indicator mass per knot interval (total 7.9321e+06):
+      [ 0.350,  0.565) : 7.1560e+06  ( 90.2%)
+      [ 0.565,  0.780) : 1.7992e+05  (  2.3%)
+      [ 0.780,  0.995) : 3.2266e+05  (  4.1%)
+      [ 0.995,  1.210) : 1.1951e+05  (  1.5%)
+      [ 1.210,  1.425) : 4.7235e+04  (  0.6%)
+      [ 1.425,  1.640) : 2.9337e+04  (  0.4%)
+      [ 1.640,  1.855) : 6.8373e+02  (  0.0%)
+      [ 1.855,  2.070) : 9.4755e+03  (  0.1%)
+      [ 2.070,  2.285) : 2.0039e+04  (  0.3%)
+      [ 2.285,  2.500) : 4.7221e+04  (  0.6%)
+      Doerfler theta=0.3 marks [0]
+      Doerfler theta=0.5 marks [0]
+      Doerfler theta=0.7 marks [0]
+  [PASS] A-6 cycle 1: marking is a strict subset of intervals
+  insert 1 knot(s) at [0.4575] -> m = 11; warm-start wall deviation 2.220e-16 m
+    [seg  0] J = 1.15739431e+08  |grad| = 3.747e+07  cert = 0.088
+    [seg  1] J = 1.15961756e+08  |grad| = 1.664e+06  cert = 0.121
+    [seg  1] no motion -> stop
+  [cycle 1] optimum: J = 1.15961756e+08  cert = 0.121  (2 segments, 2 records)
+  [cycle 1] node  0: AD +1.558108e+06  FD +1.558108e+06  |d| = 1.269e-02 (band 2.527e+01)
+  [cycle 1] node 10: AD -2.304210e+05  FD -2.304209e+05  |d| = 8.506e-02 (band 2.599e+01)
+  [PASS] A-3 cycle 1: adjoint matches the FD ladder at the optimum
+  cycle 1: J 1.15739431e+08 -> 1.15961756e+08  (dJ/J = +1.921e-03, floor 1.0e-05)
+
+-- cycle 2: indicator at the incumbent optimum (m = 11) --
+  enriched-class warm-start wall deviation 6.661e-16 m (measured, declared); J(enriched warm) = 1.15961756e+08
+  [cycle 2] indicator mass per knot interval (total 7.6077e+06):
+      [ 0.350,  0.457) : 6.0366e+06  ( 79.3%)
+      [ 0.457,  0.565) : 6.1159e+05  (  8.0%)
+      [ 0.565,  0.780) : 6.4329e+05  (  8.5%)
+      [ 0.780,  0.995) : 1.6261e+05  (  2.1%)
+      [ 0.995,  1.210) : 4.7614e+04  (  0.6%)
+      [ 1.210,  1.425) : 2.2585e+04  (  0.3%)
+      [ 1.425,  1.640) : 2.4515e+03  (  0.0%)
+      [ 1.640,  1.855) : 8.5236e+03  (  0.1%)
+      [ 1.855,  2.070) : 4.7359e+03  (  0.1%)
+      [ 2.070,  2.285) : 1.2685e+04  (  0.2%)
+      [ 2.285,  2.500) : 5.4973e+04  (  0.7%)
+      Doerfler theta=0.3 marks [0]
+      Doerfler theta=0.5 marks [0]
+      Doerfler theta=0.7 marks [0]
+  [PASS] A-6 cycle 2: marking is a strict subset of intervals
+  insert 1 knot(s) at [0.4037] -> m = 12; warm-start wall deviation 4.441e-16 m
+    [seg  0] J = 1.15961756e+08  |grad| = 6.477e+07  cert = 0.037
+    [seg  0] no motion -> stop
+  [cycle 2] optimum: J = 1.15961756e+08  cert = 0.037  (1 segments, 1 records)
+  [cycle 2] node  0: AD +5.921709e+07  FD +5.921709e+07  |d| = 4.187e-02 (band 6.128e+02)
+  [cycle 2] node 11: AD -2.304285e+05  FD -2.304285e+05  |d| = 2.940e-03 (band 2.090e+01)
+  [PASS] A-3 cycle 2: adjoint matches the FD ladder at the optimum
+  cycle 2: J 1.15961756e+08 -> 1.15961756e+08  (dJ/J = -1.285e-16, floor 1.0e-05)
+  [stop] goal FELL (reported honestly; best design kept from cycle 1)
+
+  best design: cycle 1, m = 11, J = 1.15961756e+08  (class-0 1.15739431e+08, total gain +0.1921 %)
+  [PASS] A-7 the enrichment does not lose to its own start
+
+-- A-4 / A-5: the final design re-audited --
+  cert = 0.121; y 1.5051 -> 0.8297 m; descending = True, clears = True
+  [PASS] A-4 final design Newton-certified and admissible
+  start-line mdot rel err 5.459e-11  (band 1.462e-04) — knots cannot reach the start line, re-measured not assumed
+  [PASS] A-5 mass constraint on the march's own quadrature
+
+-- A-8: the gain vs the fan streamline, band from a 3-point ladder --
+    rung (K= 61, N= 51): J_inc 1.15600201e+08  J_opt 1.15961756e+08  gain +0.31276 %  (26 s)
+    rung (K=121, N=101): J_inc 1.15810339e+08  J_opt 1.16026100e+08  gain +0.18631 %  (274 s)
+E0810 01:32:10.321108    9640 slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+E0810 01:37:45.697676    9637 slow_operation_alarm.cc:140] The operation took 7m35.376684339s
+
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+    rung (K=241, N=201): J_inc 1.15916766e+08  J_opt 1.16009157e+08  gain +0.07970 %  (4327 s)
+    d12 = 1.265e-03  d23 = 1.066e-03  -> converging: quote g3, band = K_RICH*d23
+  gain quoted +0.07970 %   band 0.42641 %
+  [FAIL] A-8 THE VERDICT: the adaptive free-form spike's gain over the fan streamline exceeds the band its own 3-point ladder supports
+
+-- A-9: uniform control at the same dof count (m = 11) --
+    [seg  0] J = 1.15591972e+08  |grad| = 1.229e+07  cert = 0.190
+    [seg  1] trial J = 1.15507735e+08 REJECTED (worse than 1.15591972e+08) -> revert, radius -> 3.750e-02
+    [seg  2] J = 1.15591972e+08  |grad| = 1.229e+07  cert = 0.190
+    [seg  3] trial J = 1.15278337e+08 REJECTED (worse than 1.15591972e+08) -> revert, radius -> 2.813e-02
+    [seg  4] J = 1.15591972e+08  |grad| = 1.229e+07  cert = 0.190
+    [seg  5] trial J = 1.15514613e+08 REJECTED (worse than 1.15591972e+08) -> revert, radius -> 2.109e-02
+    [seg  6] J = 1.15591972e+08  |grad| = 1.229e+07  cert = 0.190
+    [seg  7] trial J = 1.15585830e+08 REJECTED (worse than 1.15591972e+08) -> revert, radius -> 1.582e-02
+    [seg  8] J = 1.15591972e+08  |grad| = 1.229e+07  cert = 0.190
+    [seg  9] J = 1.15655607e+08  |grad| = 7.211e+06  cert = 0.037
+    [seg 10] trial J = 1.15482017e+08 REJECTED (worse than 1.15655607e+08) -> revert, radius -> 1.780e-02
+    [seg 11] J = 1.15655607e+08  |grad| = 7.211e+06  cert = 0.037
+    [seg 12] J = 1.15706207e+08  |grad| = 1.504e+06  cert = 0.038
+    [seg 13] trial J = 1.15669754e+08 REJECTED (worse than 1.15706207e+08) -> revert, radius -> 2.002e-02
+    [seg 14] J = 1.15706207e+08  |grad| = 1.504e+06  cert = 0.038
+    [seg 15] J = 1.15726482e+08  |grad| = 1.895e+06  cert = 0.044
+    [seg 16] base REJECTED (record not certified (worst 5.222e+10)) -> revert, radius -> 2.253e-02
+    [seg 17] J = 1.15726482e+08  |grad| = 1.895e+06  cert = 0.044
+    [seg 18] J = 1.15739172e+08  |grad| = 1.229e+06  cert = 0.176
+    [seg 19] base REJECTED (record not certified (worst 8.038e+00)) -> revert, radius -> 2.534e-02
+    [seg 20] J = 1.15739172e+08  |grad| = 1.229e+06  cert = 0.176
+    [seg 20] no motion -> stop
+  [uniform-11] optimum: J = 1.15739172e+08  cert = 0.176  (13 segments, 21 records)
+  uniform-11 ladder:
+    rung (K= 61, N= 51): J_inc 1.15591972e+08  J_opt 1.15739172e+08  gain +0.12734 %  (18 s)
+    rung (K=121, N=101): J_inc 1.15804518e+08  J_opt 1.15883506e+08  gain +0.06821 %  (315 s)
+E0810 03:46:41.649130    9640 slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+E0810 03:52:24.552580    9637 slow_operation_alarm.cc:140] The operation took 7m42.903616672s
+
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+    rung (K=241, N=201): J_inc 1.15913178e+08  J_opt 1.15946824e+08  gain +0.02903 %  (4335 s)
+    d12 = 5.914e-04  d23 = 3.918e-04  -> converging: quote g3, band = K_RICH*d23
+  uniform gain +0.02903 % (band 0.15673 %) vs adaptive +0.07970 % (band 0.42641 %)
+  [PASS] A-9 THE CONTROL: adaptive does not lose to uniform at equal dofs beyond the ladder band
+
+  design of record written to /data10/falco/RDE/RDE_Design/validation/_plug_adaptive/design.json
+
+== 11/12 PASS  (12211.0 s) ==
