@@ -198,15 +198,21 @@ which is an argument for adaptive knot placement rather than for more
 knots.
 
 \begin{enumerate}[itemsep=2pt]
-\item \textbf{Resolve the free-form spike's gain}. The band has now
-  been re-derived at the carrier's own resolution and it is LARGER
-  than the gain (\S\ref{sec:notresolved}), so the effect is not yet
-  distinguishable from its own discretization error. Wanted: a
-  resolution at which the band falls below the effect, and knots
-  placed where the contour bends rather than uniformly.
-\item \textbf{Adaptive knot placement} on the spike, pointing the
-  bell's existing machinery at this wall --- the direct consequence of
-  Section~\ref{sec:reprladder}.
+\item \textbf{Resolve the free-form spike's gain}. Both remedies
+  proposed by \S\ref{sec:notresolved} have now been run
+  (\S\ref{sec:adaptive}): adaptive placement works --- one indicated
+  knot buys $+0.19\%$ where a matched uniform knot buys nothing ---
+  but on a three-point ladder to $(241,201)$ the gain falls
+  monotonically ($0.313 \to 0.186 \to 0.080\%$) and stays inside the
+  band ($0.426\%$). Still open, with the diagnosis sharpened: the
+  coarse-grid gain is largely optimizer fit to the march's
+  discretization error, and what is wanted next is a better
+  \emph{instrument} (an incumbent optimized at the finer rung, or an
+  extrapolation of the paired ladder), not more knots and not a
+  longer ladder.
+\item \textbf{Adaptive knot placement} on the spike --- DONE
+  (\S\ref{sec:adaptive}); retained here because its verdict check is
+  the previous item.
 \item \textbf{Re-run the configuration comparison} with both sides
   free-form, now that the plug has a basis --- and only once the
   previous item is settled, since a margin quoted against an

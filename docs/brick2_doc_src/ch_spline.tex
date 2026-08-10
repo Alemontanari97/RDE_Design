@@ -403,6 +403,96 @@ Section~\ref{sec:notresolved} shows the gain is not resolved by this
 carrier's own refinement, so it is a measurement awaiting a sharper
 experiment rather than a result.
 
+\section{The sharper experiment: knots bought where the contour bends}
+\label{sec:adaptive}
+
+Both routes proposed at the end of Section~\ref{sec:notresolved} have
+now been run: knots placed by an error indicator rather than
+uniformly, and the gain re-graded on a three-point resolution ladder
+of the march that produced it. This section reports both, and the
+second one is the result.
+
+\paragraph{The indicator.} The adaptive procedure is the bell's
+--- solve, mark the knot intervals that carry the residual, insert,
+re-optimize, repeat --- with one substitution that the plug makes
+possible. The bell reads its optimality residual off the flow, as the
+drift of an adjoint-equal quantity along a control surface, because
+that is the only access it has. The plug carrier owns its discrete
+adjoint outright, so the same object is available directly: enrich
+the basis with a candidate node at the midpoint of every knot
+interval, re-interpolate the incumbent wall (for a cubic spline on a
+knot superset with the same end conditions this reproduces the wall
+\emph{exactly}, by uniqueness --- measured at $4\times10^{-16}$ m),
+and read the gradient of thrust at the candidate nodes from one march
+and one reverse-mode pass. At a class optimum the gradient at the
+\emph{existing} nodes is negligible, so a candidate's component
+measures precisely the freedom the current class cannot express.
+The interval whose candidate carries $84.8\%$ of the total indicator
+mass is the first one, $x \in [0.350, 0.565)$ --- the same
+neighbourhood the representation ladder of
+Section~\ref{sec:reprladder} identified from geometry alone.
+
+\paragraph{One knot pays; a matched uniform knot does not.} Inserting
+the marked candidate at $x = 0.4575$ m and re-optimizing from the
+(exact) warm start raises the thrust by $+0.1921\%$ at the working
+resolution. The control experiment gives that number its meaning: the
+\emph{uniform} class at the same node count, optimized by the same
+driver from the same kind of start, gains $+0.0002\%$ --- the extra
+uniform knot lands where the contour is nearly straight and buys
+nothing. Placement, not node count, is what pays. A second adaptive
+insertion (at $x = 0.4037$) buys nothing further: the driver cannot
+extract even one part in $10^{15}$, and the procedure stops itself
+honestly. Whatever this basis can reach at this length, one
+well-placed knot reaches it.
+
+\paragraph{The ladder, and the verdict.} The gain of the adaptive
+optimum over the fan streamline was then graded the way
+Section~\ref{sec:notresolved} demands: both designs frozen, the march
+refined twice, each rung re-posing its own start line, the band
+derived from the ladder itself.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+march resolution & adaptive ($m=11$) & uniform control ($m=11$) \\
+\midrule
+$(K, N) = (61, 51)$    & $+0.313\,\%$ & $+0.127\,\%$ \\
+$(121, 101)$           & $+0.186\,\%$ & $+0.068\,\%$ \\
+$(241, 201)$           & $+0.080\,\%$ & $+0.029\,\%$ \\
+\midrule
+band the ladder supports & $0.426\,\%$ & $0.157\,\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The band is still larger than the gain, at sixteen times
+the cost of the original experiment. The claim that the free-form
+spike beats the fan streamline remains \emph{not established} --- and
+the ladder now says something sharper than ``not yet''. The measured
+gain \emph{falls monotonically} under refinement, for the adaptive
+design and for the uniform control alike, with a rung-to-rung decay
+ratio near $0.84$. The reading: a large share of any coarse-grid gain
+is the optimizer fitting the march's own discretization error ---
+the design was tuned at the coarse resolution, so it is flattered by
+exactly the error it was tuned against --- and the march converges
+too slowly on this differential quantity for brute-force refinement
+to win; each halving of the grid spacing removes only a sixth of the
+remaining artifact while multiplying the cost by six.
+
+\paragraph{What follows.} More knots are ruled out (the second
+insertion bought nothing), and a longer ladder is a losing race (the
+decay ratio says so). What remains is a better \emph{instrument}: an
+incumbent optimized at the finer resolution, so that it is not tuned
+to the coarse march's error; or an extrapolation of the paired
+difference down the existing ladder, whose own band would settle
+whether anything survives at the limit; or the exact two-route thrust
+functional of Chapter~\ref{ch:status}, once its field residual is
+understood. Until one of those runs, the honest summary of the
+free-form spike is unchanged in verdict and sharpened in diagnosis:
+the machinery is verified, the placement principle is demonstrated,
+and the headline gain is a property of the instrument's resolution,
+not yet of the nozzle.
+
 \section{Against Rao's own construction}
 \label{sec:vsrao}
 
