@@ -1,0 +1,130 @@
+\chapter{The wall becomes an input}
+\label{ch:wallinput}
+
+So far the solver has drawn its own nozzle wall: the shape came out of
+the computation, and the only way to change it was to change the few
+knobs that steer the construction. An optimizer that is to explore
+free-form shapes needs the data flow reversed --- hand it any wall,
+get the flow on that wall. This chapter performs that inversion using
+the same verified building blocks, checks the new engine against the
+old one on the one wall both can handle, and certifies the derivative
+of thrust with respect to an arbitrary wall deformation. That
+derivative is what every later optimization in this document steers by.
+
+\section{The question}
+
+Brick~1's march \emph{draws} its wall: the contour is computed as a
+\emph{streamline} --- a line everywhere tangent to the local velocity,
+the path a gas particle follows --- chosen so that exactly the throat's
+mass flow passes inside it. In other words the wall is an output.
+Free-form design needs the opposite: hand in \emph{any} wall, get the
+flow on it. Can the same verified cells compute the flow on a
+prescribed wall?
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{sch_inversion.png}
+\caption{The structural inversion, drawn in nozzle coordinates ($x$
+[m] along the axis, $y$ [m] radius). Left: the generator decides its
+own wall by following a mass-flow streamline, so the shape is a result.
+Right: the optimizer hands in an arbitrary wall and the inverse-wall
+cells compute the flow on it, so the shape is data. Look at the arrows:
+what changes is only the direction in which wall position and flow
+state are determined --- everything upstream, and every cell interior
+to the flow, is unchanged. That is why the new engine inherits the old
+one's certification.}
+\label{fig:inversion}
+\end{figure}
+
+\section{How it works, in full}
+
+The engine keeps everything upstream of the wall unchanged --- the same
+throat start, the same initial expansion fan --- and changes only how
+each column of computed points ends. In the generator, the wall point
+is \emph{produced}: the march integrates the mass-flow streamline and
+the wall is wherever it goes. In the inverse mode the wall point's
+\emph{position is given} (it must sit on the prescribed contour at that
+station, with the contour's local slope supplied as data), so the wall
+cell works backwards, exactly as described in Chapter~\ref{ch:moc}: it
+finds the \emph{foot} of the arriving \emph{characteristic} --- the
+point on the previous column from which the line carrying information
+to the wall point set out --- by a chord search, scanning the stored
+segments of that column for the one whose data brackets the
+characteristic condition. It then closes the compatibility relation
+along the chord from foot to wall point, with the prescribed wall slope
+supplying the flow direction there~\cite{zucrow}. One march column is
+built per prescribed wall station.
+
+Two consequences shape the rest of the engine. First, an arbitrary wall
+does not produce a uniform, axial exit, so nothing downstream may
+assume one: thrust is always evaluated by the wall route
+\eqref{eq:route2}, which needs only the wall pressures and the throat
+flux. Second, the whole construction remains differentiable --- the
+foot search, the chord closure, the thrust quadrature --- so
+reverse-mode automatic differentiation supplies
+$\mathrm{d}J/\mathrm{d}({\rm wall})$, the sensitivity of thrust to a
+free-form wall change, at the cost of roughly one extra march.
+
+That gradient is certified by the \emph{envelope identity}, which is
+the fundamental theorem of calculus used as a test: the average of a
+derivative over an interval must equal the secant slope across it,
+$\overline{\mathrm{d}J/\mathrm{d}a} = [J(a_2)-J(a_1)]/(a_2-a_1)$. So
+the test deforms the wall by a smooth localized bump of amplitude $a$,
+sweeps $a$ over a range, fits a straight line to the AD gradient
+samples, and requires the fitted mean slope to match a wide secant of
+$J$ itself within a derived band. Why not the obvious pointwise
+comparison of AD against a small-step finite difference? Because the
+gas properties are read from tables interpolated piecewise-linearly, so
+the code's exact derivative carries a microscopic sawtooth at the
+table-cell scale, and a small-step difference straddles those kinks:
+that test is ill-posed here. The finding and its diagnosis are in
+Appendix~\ref{app:ripple}; the envelope certificate is its resolution
+and Figure~\ref{fig:ripple} its one-picture summary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_grad_ripple.pdf}
+\caption{Why the gradient is certified by envelope rather than
+pointwise. Horizontal axis: amplitude $a$ [m] of the smooth bump added
+to the wall, from indented to bulged. Vertical axis: the thrust
+sensitivity $\mathrm{d}J/\mathrm{d}a$ [N/m] returned by automatic
+differentiation, i.e.\ newtons of thrust gained per metre of bump.
+Look at the two things superposed: a straight smooth trend (line;
+fitted curvature $J'' = -7.3\times10^{7}$~N/m$^2$), which is the
+physics, and a tiny scatter about it (red $4\sigma$ bars;
+$\sigma = 44$~N/m, 0.010\% of the gradient), which is the kink pattern
+of the piecewise-linear property tables. Both are real properties of
+the discrete objective --- AD reports the code's exact derivative,
+sawtooth included --- but only the trend is physical, which is why the
+certificate averages over the ripple instead of sampling it. Full story
+in Appendix~\ref{app:ripple}.}
+\label{fig:ripple}
+\end{figure}
+
+\section{What was built}
+
+\carrier{validation/a1\_wall\_march.py}: the prescribed-wall engine
+(\code{wall\_march}), the station extractor
+(\code{stations\_from\_wall}), the wall-route thrust
+(\code{J\_wall}), per-column mass flux, the envelope-identity
+gradient certificate, and rejectors (a wall whose slope data is
+corrupted must crash the march).
+
+\section{Results of record}
+
+\textbf{Twin stage, 5/5 PASS.} Fed Brick~1's own contour as a
+prescribed wall, the new engine reproduces Brick~1's thrust through a
+completely different computation --- $J_{\rm wall} = 1.25534\times
+10^{8}$~N against $J_{\rm exit} = 1.25521\times10^{8}$~N, a difference
+of $1.37\times10^{4}$ inside a derived band of $1.58\times10^{5}$. The
+mass flow through the last computed column equals the throat mass flow
+to 12.3~kg/s (band 152), an independent conservation check the twin
+comparison does not contain; the minimum Mach number along the wall is
+1.20, so the flow stays supersonic everywhere and the method remains
+applicable; 17{,}221 cells are Newton-certified, i.e.\ every local
+solve converged inside its derived residual band; and the
+slope-corrupted wall crashes the march --- rejected.
+\textbf{Gradient stage, 2/2 PASS} via the envelope identity:
+$|{\rm AD} - {\rm secant}| = 29$ against a derived band of 109, and the
+sensitivity is itself far larger than that band, so the wall
+demonstrably matters.

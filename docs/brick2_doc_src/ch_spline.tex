@@ -1,0 +1,457 @@
+\chapter{The free-form spike: a shape basis and a gradient}
+\label{ch:spline}
+
+Every plug computed so far in this document inherited its shape. The
+spike was a \emph{streamline} of the expansion fan at the cowl lip:
+you start at a radius and integrate the flow direction downstream, and
+the contour is whatever comes out. Nothing was ever chosen. The only
+two knobs were the angle at which the flow arrives
+(Chapter~\ref{ch:compare}) and the station at which the spike is cut
+(Chapter~\ref{ch:plugcycle}).
+
+This chapter gives the spike a \emph{shape}: a family of contours with
+free parameters, a derivative of thrust with respect to each of them,
+and an optimizer that moves them. It is the last structural piece of
+the program, and it is what finally makes the plug and the bell
+comparable at equal freedom.
+
+\section{Why the inherited contour is not the answer}
+\label{sec:whynotstreamline}
+
+The streamline construction is not arbitrary --- it solves a real
+problem, exactly. Take the centred expansion fan that springs from the
+cowl lip and let the spike follow a streamline through it: every
+characteristic completes its turning, the flow leaves axially, and the
+exit pressure lands exactly on ambient. That is the \emph{ideal},
+full-length plug, and for that problem the streamline is optimal.
+
+Then the spike is cut at a finite length. The contour was shaped to
+deliver a downstream state that is now never reached, and nothing in
+its construction knows the cut exists. The criterion that produced it
+is no longer the criterion being maximized.
+
+What the fixed-length problem rewards is visible in the thrust
+integral itself. The axial force the spike collects is
+\begin{equation}
+  J_{\text{wall}} \;=\; \int (p - p_a)\, 2\pi y \,(-\mathrm{d}y),
+  \label{eq:wallpush}
+\end{equation}
+and the weight is $2\pi y$: a given overpressure is worth far more
+where the spike is still \emph{fat} than near its tip, simply because
+there is more area there for it to act on. Under a length constraint
+the right move is therefore to bias the expansion --- hold the
+pressure up early, at large radius, and accept a worse state at the
+end that is about to be discarded anyway. The streamline cannot do
+this. It distributes its turning as though the whole contour mattered
+equally, because it is not choosing: it is being traced.
+
+This is Rao's argument for the bell (Chapter~\ref{ch:referee}),
+transposed. His problem \emph{is} the length-constrained one, and the
+multiplier $\lambda_3$ that Section~\ref{sec:o33} certified against
+the automatic adjoint is precisely the shadow price of that length
+constraint. The plug carries the same variational structure. What was
+missing was not the theory but the machinery to act on it.
+
+\section{The basis is borrowed, deliberately}
+
+The wall is a \textbf{clamped-left natural cubic spline}: a curve
+assembled from cubic pieces joined so that value, slope and curvature
+are continuous across every join, pinned at its left end to a
+prescribed height and slope. Its free parameters are the heights
+$y_1, \dots, y_m$ at $m$ fixed stations, called \emph{knots}.
+
+This is not a new basis written for the plug. It is the same routine
+the bell optimizer uses, called directly. That choice is deliberate on
+three counts. A bell-versus-plug comparison is only honest if both
+sides have the \emph{same} shape freedom, which requires the same
+basis. Any property already established for that basis --- in
+particular that adding knots eventually represents any smooth contour
+--- transfers without re-argument. And the adaptive-knot machinery
+built for the bell, which decides \emph{where} knots should go rather
+than accepting them evenly spaced, applies to this wall unchanged.
+Section~\ref{sec:reprladder} shows that the plug needs it more than
+the bell does.
+
+\section{What is free, and what is not}
+
+The design vector is
+\begin{equation}
+  W \;=\; [\,y_1,\; y_2,\; \dots,\; y_m\,],
+\end{equation}
+the spike radius at $m$ frozen stations spanning the contour, with the
+last knot sitting exactly at the design length $L$.
+
+Three quantities are \emph{not} free, and each for a reason.
+
+\emph{The length} is fixed by placing the final knot at $L$. Without
+it the optimization has a trivial answer: a longer spike always
+collects more, so the optimizer would simply run away. Fixing the
+length is what makes the problem well posed, and it is the same
+constraint Rao imposed.
+
+\emph{The mass flow} is fixed by construction. The starting radius of
+the spike is found by a root search so that the flow crossing the
+inlet station carries the reference mass flow. That station lies
+\emph{upstream} of every knot, and the data on it are built from the
+fan alone, so no shape parameter can reach it: the mass constraint and
+the shape parameters are exactly independent. This is a structural
+fact about the construction, not a numerical coincidence, and it means
+the optimizer never has to trade thrust against mass.
+
+\emph{The slope at the start} is fixed by physics. A wall is a
+streamline, so where the incoming flow meets it the wall must run
+along the flow. The clamped left slope is therefore the local flow
+angle, not a design choice.
+
+The inlet angle itself --- the inclination of the straight line by
+which the engine delivers its flow --- remains the outer variable that
+Chapter~\ref{ch:compare} swept, and it is not re-optimized here. The
+two freedoms are kept apart so that a gain in thrust is attributable
+to one of them rather than to their sum.
+
+\section{The gradient: an adjoint through a frozen schedule}
+
+The optimizer needs $\partial J/\partial y_k$ for every knot. Finite
+differences would cost two marches per knot and would inherit the
+step-size dilemma; the program has a better instrument.
+
+The march makes \emph{decisions} as it goes --- which stations bracket
+a wall point, how the cells are wired together. Those decisions are
+discrete, and a derivative cannot be taken through them. The device,
+used already by the bell optimizer, is to \textbf{record} them: one
+march runs with concrete arithmetic and writes down every decision it
+made, and every later evaluation \emph{replays} that record, treating
+the decisions as frozen constants while the arithmetic stays
+differentiable. The result is the exact derivative of the flow
+\emph{at fixed topology}, obtained in one reverse pass regardless of
+how many knots there are.
+
+The record is refreshed whenever the optimizer accepts a step, so the
+frozen topology is never allowed to drift far from the true one. The
+agreement between this adjoint and central finite differences is
+measured at every run and is reported in Section~\ref{sec:splineres}.
+
+\section{The driver, and two defects it exposed}
+\label{sec:splinedriver}
+
+The optimizer is a trust-region method: at each stage it trusts its
+local model only within a radius around the current design, takes a
+step inside it, and grows or shrinks that radius according to whether
+the step was any good. One \emph{segment} is one frozen record; the
+walk proceeds on that record, and acceptance triggers a fresh one.
+
+Two defects surfaced on the first runs, and both are worth recording
+because both produced plausible output while being wrong.
+
+\textbf{No acceptance test.} The first version adopted the endpoint of
+every segment unconditionally. A segment walks a local model on a
+frozen record, so a long segment can walk clean past the region where
+that model is valid and return a design that is genuinely worse. The
+first run did exactly that: segment~1 improved the thrust, segment~2
+overshot, and the carrier reported the overshoot as the answer --- a
+\emph{loss} of $0.21\%$ presented as the outcome of a maximization. A
+segment endpoint is a \emph{trial} point, and the fix is the standard
+one: if the trial does not beat the incumbent, revert to the best
+certified design and shrink the radius.
+
+\textbf{A radius that undid its own shrinks.} With the acceptance test
+in place the walk stopped losing, but it also stopped improving: it
+oscillated between one good design and a succession of overshoots. The
+cause was that the outer loop read its trust radius back from the
+inner optimizer after each segment. That inner radius tracks the inner
+method's own model, and adopting it silently overwrote every shrink
+the outer loop had just ordered. Once the outer radius was kept as the
+outer loop's own property --- grown only on an accepted design,
+shrunk only on a rejected one --- the walk resumed and the gradient
+fell by a further order of magnitude.
+
+Neither defect announced itself. The first produced a confident wrong
+sign; the second produced a plausible-looking plateau that would have
+been easy to report as convergence.
+
+A third gate is inherited rather than new: a design whose march cannot
+be Newton-certified is rejected outright and the radius shrunk. This
+fires in practice --- one segment of the run of record hit a record
+with a worst residual of $2.3$, and the rejector reverted it --- so it
+is load-bearing rather than decorative.
+
+\section{Does the basis contain the incumbent?}
+\label{sec:reprladder}
+
+Before any gain can be believed, one thing must be checked: can the
+spline family even \emph{express} the contour it is starting from? If
+not, an apparent improvement might only be the optimizer climbing back
+out of a hole its own basis dug.
+
+A spline on finitely many knots cannot reproduce the streamline
+exactly, so the honest question is not whether the error is zero but
+whether it \emph{falls} as knots are added. Measured on a ladder of
+$6, 12, 24, 48$ knots, the largest deviation between the spline and
+the streamline behaves as follows:
+
+\begin{center}
+\begin{tabular}{rccl}
+\toprule
+knots & max deviation & \% of spike drop & where it sits \\
+\midrule
+ 6 & $6.536\times10^{-4}$ m & 0.0843\,\% & $x = 2.343$ m \\
+12 & $4.451\times10^{-4}$ m & 0.0574\,\% & $x = 0.612$ m \\
+24 & $3.418\times10^{-5}$ m & 0.0044\,\% & $x = 2.448$ m \\
+48 & $2.309\times10^{-5}$ m & 0.0030\,\% & $x = 0.560$ m \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The total reduction across the ladder is a factor of $28$, so the
+basis is dense in the sense required. But the ladder is not clean, and
+its untidiness is the interesting part. From $6$ to $12$ knots the
+error falls by only $1.5\times$, which for cubic interpolation of a
+smooth curve is far too slow --- and taking that single ratio as the
+verdict, as a first version of this check did, produces a failure
+report about a basis that is in fact perfectly adequate.
+
+Two different errors are competing, and the last column shows which
+one is winning. One lives at the \emph{right} end, where the spline's
+free end condition is imposed; the other sits at $x \approx 0.56$ to
+$0.61$ m, the station where the streamline's curvature climbs from
+essentially zero at the clamped start to its peak --- the one stretch
+of the contour that genuinely bends. Neither dominates uniformly:
+the location of the maximum alternates between them as knots are
+added, which is exactly why no two adjacent counts can be trusted to
+report a rate.
+
+The lesson is a design lesson. Evenly spaced knots spend their budget
+uniformly along a contour that is nearly straight over most of its
+length, and starve the single region that curves. That is precisely
+the situation the adaptive-knot machinery answers, and since this wall
+uses the bell's basis, that machinery can be pointed at it without
+modification. It is the natural next step and is listed as such in
+Chapter~\ref{ch:status}.
+
+One control matters here: the streamline being compared against is
+itself a numerical integration, so it could in principle be the
+inaccurate party. Refining its step size moves its endpoint by
+$5.4\times10^{-8}$ m, nearly three orders of magnitude below the
+smallest deviation on the ladder. The reference is not the
+limitation.
+
+\section{What the optimizer finds}
+\label{sec:splineres}
+
+The run of record uses six free knots on a spike of length $2.5$ m, at
+the inlet angle Chapter~\ref{ch:compare} selected, in the same posed
+world as every other configuration comparison.
+
+The mass constraint is met to $4.8\times10^{-12}$ relative --- machine
+precision, once the constraint is set and graded by the same
+functional (Appendix~\ref{app:twoinstruments}) --- inside a derived
+band of $3.8\times10^{-4}$.
+
+The adjoint is verified next, and doing so honestly required
+abandoning the obvious instrument. A finite difference cannot simply
+be trusted here: the replayed march is only \emph{piecewise} smooth
+in the design vector, because the wall-search topology is frozen at
+the record and a perturbed design can sit fractionally on the wrong
+side of a decision that record already made. Shrinking the step does
+not fix this. Measured over steps of $10^{-4}$ down to $10^{-8}$, the
+difference between the finite difference and the adjoint does not
+fall as $h^2$; it \emph{wanders} --- for one node it runs
+$-197, +61, +1.8, +0.63, -0.42$, and for another it never settles
+below a fixed level at all. That is noise, not truncation, and a band
+estimated from two steps describes none of it. An earlier version of
+this check did exactly that and reported a correct adjoint as a
+failure.
+
+The reliable reading is the scatter itself. Taking central
+differences on a ladder of steps small enough that truncation is
+negligible, the spread across the ladder measures the difference's
+own reliability, and that is what the adjoint may be graded against:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+node & adjoint & difference & $|$discrepancy$|$ (band) \\
+\midrule
+0 & $+5.569035\times10^{6}$ & $+5.568800\times10^{6}$ &
+  $2.4\times10^{2}$ $(5.2\times10^{2})$ \\
+3 & $-3.523614\times10^{5}$ & $-3.523618\times10^{5}$ &
+  $4.6\times10^{-1}$ $(6.3\times10^{1})$ \\
+5 & $-1.119305\times10^{6}$ & $-1.119305\times10^{6}$ &
+  $7.5\times10^{-4}$ $(2.1\times10^{1})$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent and the directional identity $\langle \nabla J, v\rangle$
+reads $9.63322\times10^{5}$ against $9.63302\times10^{5}$, a
+discrepancy of $2.1\times10^{1}$ inside a band of
+$1.6\times10^{2}$. Two of the three nodes agree with the adjoint far
+below any plausible noise floor; the third is the one whose
+difference was measured to be unreliable.
+
+The walk then proceeds through seven accepted segments and nine
+records:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & $J$ [N] & $|\nabla J|$ \\
+\midrule
+streamline (start) & $1.15378731\times10^{8}$ & $5.844\times10^{6}$ \\
+segment 1          & $1.15430463\times10^{8}$ & $1.837\times10^{6}$ \\
+segment 4          & $1.15471843\times10^{8}$ & $1.681\times10^{6}$ \\
+segment 5          & $1.15482085\times10^{8}$ & $2.306\times10^{5}$ \\
+final              & $1.15483517\times10^{8}$ & $1.472\times10^{5}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The gradient falls by a factor of $40$ and the thrust rises by
+\begin{equation}
+  \frac{J_{\text{spline}}}{J_{\text{streamline}}} - 1
+  \;=\; +0.0908\,\%.
+\end{equation}
+In coefficient terms $C_F$ moves from $1.45163$ to $1.45295$. The
+final spike descends monotonically from $1.4936$ m to $0.8330$ m and
+clears the axis, so it remains a physically admissible inward-turning
+contour.
+
+\section{The gain is not resolved, and how that was found out}
+\label{sec:notresolved}
+
+The paragraph above states a gain. It does not state that the gain is
+\emph{real}, and on the evidence of this carrier it is not yet
+established.
+
+An earlier version of this chapter compared the $+0.0908\%$ against a
+thrust band of $0.0094\%$ and concluded it was ``about ten times the
+band''. That band was inherited: it was derived in
+Chapter~\ref{ch:compare} at a different resolution, on a different
+computation. Quoting it here is the same error this program has now
+met three times --- grading a result with an instrument that did not
+produce it --- and it was flagged as a caveat before it was tested.
+
+Testing it is cheap and the carrier now does it as check C-6: refine
+the march that produced \emph{both} thrusts and let it measure its own
+discretization error on the \emph{same} two designs, so whatever
+cancellation the difference enjoys is preserved. On a run with ten
+knots and twenty-six accepted segments:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+ & gain over the streamline \\
+\midrule
+at the carrier's resolution $(K, N)$      & $+0.1302\,\%$ \\
+refined to $(2K-1,\; 2N-1)$               & $+0.0820\,\%$ \\
+\midrule
+band this refinement supports             & $0.1930\,\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The band is \emph{larger than the gain}. C-6 therefore
+FAILS, and the honest reading is:
+
+\begin{quote}
+\textbf{It is not established that the free-form spike beats the fan
+streamline. The measured gain lies inside the discretization error of
+the computation that measured it.}
+\end{quote}
+
+This does not overturn the machinery, which is verified independently:
+the adjoint against its finite differences, the basis against its
+refinement ladder, the mass constraint to $5\times10^{-12}$, the
+driver against its own rejector. Nor does it say the gain is absent
+--- both evaluations are positive, and the refined one is still
+$+0.082\%$. It says the experiment is not yet sharp enough to
+distinguish a real gain of this size from its own noise, which is a
+statement about resolution rather than about nozzles.
+
+Two routes would sharpen it, and both are ordinary work: run at a
+resolution where the band falls below the effect, and place the knots
+where the contour bends (Section~\ref{sec:reprladder}) so that fewer
+of them buy more shape. What should \emph{not} be done is to quote the
+gain against a band borrowed from elsewhere, which is how the claim
+came to look ten times stronger than it is.
+
+\section{How much of this to believe}
+
+The gain is small, and it should be. The exit speed of the exhaust is
+fixed by energy alone, so a perfectly expanded design already sits
+close to a ceiling that geometry cannot raise
+(Chapter~\ref{ch:compare}). Against a near-optimal incumbent, a
+recovery of one part in a thousand is the right order of magnitude; a
+gain of several percent would have been evidence of a defect, not of a
+better nozzle.
+
+The measurement is also a \emph{differential} one, which is its main
+protection: both thrust values come from the same march at the same
+resolution, so discretization error largely cancels between them. The
+band it is quoted against, however, was derived at the production
+resolution of Chapter~\ref{ch:compare} and should be re-derived at
+this carrier's resolution before the ratio is treated as final.
+
+Three limitations are stated plainly. The final gradient is
+$1.47\times10^{5}$, not zero, so this is a design the optimizer was
+still improving when the segment budget ran out. Six knots is a small
+basis, and Section~\ref{sec:reprladder} gives reason to expect that
+adaptive placement would do better than more of them. And the result
+stands at a single design point: one length, one inlet angle, one
+ambient pressure. Above all,
+Section~\ref{sec:notresolved} shows the gain is not resolved by this
+carrier's own refinement, so it is a measurement awaiting a sharper
+experiment rather than a result.
+
+\section{Against Rao's own construction}
+\label{sec:vsrao}
+
+The obvious question is whether this machinery agrees with the
+classical construction it is competing with. The independent Fortran
+code designs Rao spikes directly, so the comparison is available ---
+and posing it turned out to be more informative than the answer.
+
+Posed in this document's world (same gas, chamber, mass flow and lip
+radius) and asked for the spike that expands to \emph{our} ambient,
+the classical construction returns a design of length $5.825$ m with
+area ratio $5.148$, whose exhaust leaves at
+\begin{equation}
+  \theta_E = 0.025^{\circ}.
+\end{equation}
+That number is worth pausing on. Chapter~\ref{ch:compare} swept the
+inlet angle blind, knowing nothing of Rao's construction, and its
+optimum landed at $\theta_E = 0$ --- the divergence argument's
+prediction. The classical construction, from an entirely different
+code and an entirely different method, puts the perfectly expanded
+design at $0.025^{\circ}$. Our sweep resolves $\theta_E$ only to
+$\pm 2^{\circ}$, so this is a consistency check rather than a
+precision match, but it is a check between two independent routes and
+it passes.
+
+It also reframes this chapter's design point. The ideal spike for
+these conditions is $5.825$ m; the $2.5$ m contour optimized above is
+a \textbf{57\% truncation} of it. That is a heavily cut plug, which is
+exactly the regime Chapter~\ref{ch:plugcycle} studies and exactly
+where the streamline construction has least claim to optimality.
+
+What could \emph{not} be done is the direct thrust comparison at a
+common length. Rao's spike family has two degrees of freedom, so
+fixing mass and length consumes both and the ambient becomes an
+output: at $2.5$ m the classical design implies an ambient of
+$1.7\times10^{6}$ Pa, against our $7.6\times10^{5}$. Its wall barely
+tapers over that length ($1.630 \to 1.548 \to 1.636$ m, $\varepsilon =
+2.47$) while ours falls monotonically to $0.833$ m. Same nominal mass,
+same nominal length, different machines --- so their thrusts are not
+comparable, and comparing them would have measured the mismatch in
+expansion state rather than the merits of two design methods. The
+comparison that would settle it is at $5.825$ m with both mass and
+ambient matched, and it is listed in Chapter~\ref{ch:status}.
+
+What has changed structurally is nonetheless permanent. The spike is
+no longer a contour the construction hands over, but one the program
+computes; every stretch of the wall now carries a number saying what
+it is worth; and the plug and the bell can at last be set against each
+other with the same shape freedom on both sides. Chapter~\ref{ch:compare}
+found the bell ahead by $0.282\%$ with an optimized bell facing a
+constructed plug. Roughly a third of that margin is recovered here.
+The gap narrows; on this evidence it does not close.

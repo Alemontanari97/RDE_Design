@@ -1119,7 +1119,17 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False,
     wall = wall_cols + wall_str
     wx = jnp.stack([w[0] for w in wall])
     wy = jnp.stack([w[1] for w in wall])
-    out = dict(wall_x=wx, wall_y=wy, Me=Me_ach, mdot=mdot,
+    # [F2/A1 brick-2 addition, ADDITIVE ONLY: expose the wall state
+    #  vectors (u, v) already computed above, needed by the thrust
+    #  referee route of a1_thrust_functional.py and by every plug /
+    #  cycle / comparison carrier of the brick-2 line. G nodes are
+    #  [x, y, u, v] (cf. the unit-process return), so this reads two
+    #  components that the march already carries. No numerics changed:
+    #  nothing here feeds back into any decision, residual or state.]
+    wu = jnp.stack([w[2] for w in wall])
+    wv = jnp.stack([w[3] for w in wall])
+    out = dict(wall_x=wx, wall_y=wy, wall_u=wu, wall_v=wv,
+               Me=Me_ach, mdot=mdot,
                n_arc_cols=len(wall_cols), n_str_cols=len(wall_str),
                cert_worst=cert["worst"], cert_n=cert["n"],
                exit_capped=exit_capped, me_gap=me_gap)

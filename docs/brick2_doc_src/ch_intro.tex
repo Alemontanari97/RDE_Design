@@ -1,0 +1,178 @@
+\chapter{Introduction}
+\label{ch:intro}
+
+\section{What this document is}
+
+This is the record of building a \emph{nozzle optimizer}: a program
+that does not merely compute the flow through a given rocket
+nozzle, but searches for the nozzle shape that produces the most
+thrust --- and can certify that what it found satisfies the
+mathematical conditions of an optimum.
+
+The target application is the rotating detonation engine (RDE), in
+which combustion runs continuously around an annular chamber
+instead of sitting still. That makes the design problem harder in a
+specific way: the nozzle is handed not one operating condition but
+a periodic family of them, thousands of times a second. Everything
+this document builds is aimed at that difficulty.
+
+The work is organized in two \emph{bricks}. Brick~1, completed
+earlier, is the flow solver: a method-of-characteristics march
+written in a differentiable programming language, checked against
+closed-form solutions and against an independent Fortran design
+code. Brick~2 --- this document --- is the climb from a solver to
+an optimizer, step by step, each step carrying its own certified
+test suite.
+
+\section{Who this document is written for}
+
+No prior exposure to nozzle design, gasdynamics, the method of
+characteristics, optimization theory, or rotating detonation
+engines is assumed. The three chapters that follow supply all of
+it:
+
+\begin{itemize}[itemsep=2pt]
+\item Chapter~\ref{ch:nozzle} --- what a nozzle is and does, what
+  the design variables are, why an optimum exists at all, what an
+  RDE is and why it creates a cycle, and what a gradient and an
+  adjoint buy you.
+\item Chapter~\ref{ch:moc} --- how the solver computes: the method
+  of characteristics, cells, columns, boundaries, and why sharp
+  corners must be handled separately.
+\item Chapter~\ref{ch:method} --- how this program decides that
+  something is true, and the symbol table
+  (Table~\ref{tab:notation}) for the whole document.
+\end{itemize}
+
+Readers already fluent in these can start at
+Chapter~\ref{ch:score}. Every later chapter opens with a short
+plain-language statement of what it adds, and defines any new term
+where it first appears.
+
+\section{The two ground rules}
+
+Two rules apply to every test suite in this program, and they are
+what makes the results claims rather than demonstrations. They are
+stated fully in Chapter~\ref{ch:method}; in brief:
+
+\begin{enumerate}[itemsep=2pt]
+\item \textbf{No tolerance is chosen by hand.} Every pass band is
+  \emph{derived} --- usually by running the same computation at two
+  resolutions and letting the scheme measure its own error. A test
+  that passes inside a hand-picked tolerance certifies nothing.
+\item \textbf{Every suite must be able to say no.} Alongside the
+  positive checks, each suite plants deliberate corruptions that it
+  is required to catch. If the corrupted run does not fail, the
+  suite is worthless and the step does not count as done.
+\end{enumerate}
+
+A consequence worth stating: in this program the bugs the tests
+catch are results too. The main chapters present each step as it
+now works; everything that went wrong on the way --- every trap and
+measured structural lesson, with its diagnosis and fix --- is
+collected in Appendix~\ref{ch:appendix}, cross-referenced from the
+step it belongs to.
+
+\section{The independent referee}
+
+One further principle shapes the work. Alongside this program there
+is GENO~\cite{geno}, an independent Fortran nozzle design code:
+different language, different discretization, different
+thermodynamics, written by other people. By standing decision it is
+\emph{never modified and never differentiated}. It plays two roles:
+as a \emph{generator} it produces reference contours and flowfields
+that our optimizer did not make, and as a \emph{referee} its fields
+are required to satisfy our own equations, and ours its numbers.
+Two independently built programs agreeing on one physical problem
+is evidence that neither can produce alone.
+
+\section{The road through this document}
+
+Figure~\ref{fig:pipeline} maps the whole of Brick~2: each box is a
+chapter, in the order the work was done and certified.
+
+The engine is assembled in this order. Chapter~\ref{ch:score}
+builds the score (thrust, computed two independent ways) and the
+optimality certificate. Chapter~\ref{ch:firstopt} closes the first
+optimization loop and checks it against a case whose answer is
+known in closed form. Chapter~\ref{ch:wallinput} inverts the
+solver so that the wall shape becomes an \emph{input} --- the
+structural change free-form design requires --- and records a
+finding about differentiating tabulated gas properties.
+Chapter~\ref{ch:referee} brings the independent referee online and
+confronts Rao's 1958 hand-derived optimality conditions with the
+automatic-differentiation engine, term by term, on a real
+thrust-optimized contour.
+
+Chapter~\ref{ch:cycle} adds the cycle layer that makes the engine
+an RDE tool, with a theorem-level test the implementation cannot
+pass by accident. Chapter~\ref{ch:plug} builds the plug (aerospike)
+nozzle march, whose free exhaust boundary is genuinely new physics,
+and certifies it against a closed-form solution.
+Chapter~\ref{ch:plugcycle} takes the certified plug into the cycle
+and measures where a truncated plug should be cut ---
+and why that is \emph{not} the design for the average condition.
+Chapter~\ref{ch:genotwin} runs the strongest external check the
+program owns, our march on the independent code's own designed
+spike, and reports one honest unresolved finding.
+Chapter~\ref{ch:swirl} extends the march to swirling exhaust and
+states plainly what that extension does and does not model.
+Chapter~\ref{ch:status} is the ledger: the status of every suite,
+what a design run can fix, what remains, and the reproduction
+commands.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, minimum height=1.55cm,
+    minimum width=2.1cm, align=center, font=\footnotesize,
+    text width=1.9cm, thick},
+  done/.style={box, draw=stepdone, text=stepdone},
+  ahead/.style={box, draw=stepahead, text=stepahead},
+  arr/.style={-{Stealth[length=2mm]}, thick, color=black!60},
+  node distance=0.32cm]
+\node[box, draw=black!55, text=black!55] (b1)
+  {diff.\ march\\(Brick 1)};
+\node[done, right=of b1] (s1) {score $J$,\\two routes\\8/8};
+\node[done, right=of s1] (s2) {gradient +\\corner meter\\5/5};
+\node[done, right=of s2] (s3) {optimizer vs\\closed form\\4/4};
+\node[done, right=of s3] (s4) {wall as\\INPUT\\5/5 + 2/2};
+\node[done, right=of s4] (s5) {referee\\GENO + Rao\\9/9};
+\node[done, right=of s5] (s6) {cycle layer\\+ oracles\\5/5, 6/6, 8/8};
+\node[done, right=of s6] (s7) {plug march:\\cell, oracle, axi\\6/6, 6/6, 5/5};
+\node[done, right=of s7] (s8) {truncated plug\\under cycle\\5/5, 9/9};
+\node[done, right=of s8] (s9) {full-field\\plug twin\\8/8};
+\node[done, right=of s9] (s10) {free-vortex\\swirl\\9/9};
+\node[ahead, right=of s10] (s11) {measured cycle,\\TR-SQP\\(ahead)};
+\draw[arr] (b1) -- (s1);
+\draw[arr] (s1) -- (s2);
+\draw[arr] (s2) -- (s3);
+\draw[arr] (s3) -- (s4);
+\draw[arr] (s4) -- (s5);
+\draw[arr] (s5) -- (s6);
+\draw[arr] (s6) -- (s7);
+\draw[arr] (s7) -- (s8);
+\draw[arr] (s8) -- (s9);
+\draw[arr] (s9) -- (s10);
+\draw[arr] (s10) -- (s11);
+\end{tikzpicture}%
+}
+\caption{The Brick-2 pipeline. Each box is a chapter of this
+document and carries its own certified test suite, with its pass
+count shown. Blue: done and certified. Red: the road ahead. Grey:
+Brick~1, the prerequisite solver.}
+\label{fig:pipeline}
+\end{figure}
+
+\section{Environment and provenance}
+
+Work of record ran on host \code{s2} in
+\code{RDE\_Design-rde-nozzle-program/} (environment \code{.venv-a1}:
+JAX 0.10.2, SciPy, Cantera 3.2.0, Matplotlib). This host's tree is
+not a version-controlled checkout: files are ported to the
+repository for commit, with a handoff note in \code{validation/}.
+The referee code GENO was rebuilt from source on this host
+(Chapter~\ref{ch:referee}). Every ``results of record'' block quotes
+the carrier script whose output it is, and
+Chapter~\ref{ch:status} lists the one-command reproduction for each.

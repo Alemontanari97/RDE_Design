@@ -1,0 +1,88 @@
+\input{preamble}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+This document records the construction of a certified nozzle
+\emph{optimizer} for rotating detonation engines. Its starting
+point is a flow solver, delivered earlier, that computes the
+supersonic flow through a given nozzle and --- because it is
+written in a differentiable language --- also returns the exact
+derivative of any computed result with respect to any input, at
+roughly the cost of one extra solve. This report is the climb from
+that solver to an optimizer: a thrust objective computed by two
+independent routes, its gradient, a classical optimality condition
+turned into a working instrument, a first blind optimization
+checked against a closed-form answer, the structural inversion that
+makes the wall shape an input rather than an output, an independent
+Fortran code brought in as referee, a term-by-term confrontation of
+Rao's 1958 hand-derived optimality conditions with the automatic
+adjoint on a real thrust-optimized contour, the cycle layer that
+makes the engine an RDE tool, the plug (aerospike) march with its
+free exhaust boundary, the question of where to cut a truncated
+plug when the chamber pressure swings, a full-field confrontation
+with the independent code on its own designed spike, and the
+extension to swirling exhaust.
+
+Every step carries its own certified test suite. Every tolerance is
+derived --- typically by the computation measuring its own
+discretization error --- rather than chosen; every suite contains
+deliberate corruptions that it must catch. All numbers quoted are
+results of record from actual runs.
+
+The first three chapters assume no background whatsoever: what a
+nozzle is and why it has an optimum, how the solver computes, and
+how this program decides that something is true. The engine
+chapters follow, then a status ledger; every problem met on the way
+--- the bugs the tests caught, with diagnosis and fix --- is
+collected in the appendix.
+\end{abstract}
+
+\tableofcontents
+
+\input{ch_intro}
+\input{ch_nozzle}
+\input{ch_moc}
+\input{ch_method}
+\input{ch_score}
+\input{ch_firstopt}
+\input{ch_wallinput}
+\input{ch_referee}
+\input{ch_cycle}
+\input{ch_plug}
+\input{ch_plugcycle}
+\input{ch_geno_twin}
+\input{ch_swirl}
+\input{ch_compare}
+\input{ch_spline}
+\input{ch_status}
+
+\appendix
+\input{ch_appendix}
+
+\begin{thebibliography}{9}
+\bibitem{rao} G.~V.~R.~Rao, ``Exhaust Nozzle Contour for Optimum
+Thrust,'' \emph{Jet Propulsion}, Vol.~28, No.~6, 1958. (The corner
+condition, the multipliers $\lambda_2,\lambda_3$, and the terminal
+characteristic as control surface.)
+\bibitem{raospike} G.~V.~R.~Rao, ``Spike Nozzle Contour for Optimum
+Thrust,'' \emph{Planetary and Space Science}, Vol.~4, 1961.
+\bibitem{zucrow} M.~J.~Zucrow and J.~D.~Hoffman, \emph{Gas Dynamics,
+Volume 2: Multidimensional Flow}, Wiley, 1977. (Unit processes; the
+inverse-wall point.)
+\bibitem{geno} \emph{GENO: A Method-of-Characteristics Design Code for
+Supersonic Nozzles --- Theory and Implementation}, DIMA, 2026.
+(\code{GENO/docs/GENO\_theory\_and\_implementation.pdf} --- the
+independent referee of Chapter~5, and the format model of this
+document.)
+\bibitem{theory} \emph{RDE Nozzle Program: Theory}, this repository,
+\code{RDE\_Design\_NozzleProgram\_Theory.pdf}. (The collapse
+dichotomy, the averaged corner condition, the swirl identities,
+and the conditional registry --- corpus tags T3/T4, T7, N6,
+C-O33.)
+\end{thebibliography}
+
+\end{document}

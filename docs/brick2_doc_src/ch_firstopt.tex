@@ -1,0 +1,107 @@
+\chapter{The first optimization, against a known answer}
+\label{ch:firstopt}
+
+The previous chapter gave the engine a score and a compass. This one
+closes the loop for the first time: a search that proposes designs,
+scores them with the march, and keeps going until it cannot improve.
+The point is not the answer but the audit --- the problem is posed so
+small that its solution is known in advance on paper, so the machine
+can be judged against it. A loop that lands on a known answer while
+knowing nothing about it can be trusted on problems whose answer is not
+known.
+
+\section{The question}
+
+Does the loop close? Propose, score, search --- and land where theory
+says the optimum is?
+
+\section{How it works, in full}
+
+The first optimization is deliberately one-dimensional, so that its
+answer exists in closed form (an exact formula, as opposed to a number
+obtained by iteration). The single knob is the \emph{area ratio}
+$\varepsilon = A_e/A_t$ --- the exit area divided by the throat area,
+the one number that says how much the nozzle lets the gas expand
+(Chapter~\ref{ch:nozzle}). Everything else is held fixed.
+
+The known answer comes from the exit-area lemma. Differentiate the
+thrust~\eqref{eq:route1} with respect to the exit area of an ideal
+(uniform-exit) nozzle: enlarging the exit by $\mathrm{d}A_e$ adds a
+ring of wall on which the local exit pressure $p_e$ pushes forward,
+while the ambient pressure $p_a$ pushes back on the same ring, so
+\begin{equation}
+\frac{\mathrm{d}J}{\mathrm{d}A_e} \;=\; p_e - p_a
+\qquad\Longrightarrow\qquad
+\text{optimum exactly where } p_e(\varepsilon^{*}) = p_a .
+\label{eq:arealemma}
+\end{equation}
+A nozzle whose gas is still above ambient at the exit ($p_e > p_a$) is
+called \emph{underexpanded}: it has not finished expanding, and is
+worth lengthening. Once the gas has been expanded below ambient
+($p_e < p_a$) the nozzle is \emph{overexpanded}: the surroundings now
+push back harder than the gas pushes forward on each new ring, and
+every extra ring costs thrust. The optimum is the crossover. Posing an
+ambient pressure therefore fixes $\varepsilon^{*}$ analytically --- the
+march only has to be inverted for the area ratio at which its exit
+pressure equals that ambient.
+
+The search itself knows none of this. It is a \emph{golden-section
+search}: a derivative-free method that keeps a bracket $[a,b]$ known to
+contain the maximum, evaluates the objective at two interior points
+placed by the golden ratio, discards the end that cannot hold the
+maximum, and repeats until the bracket is narrower than a set
+tolerance. Each shrink reuses one of the two previous evaluations,
+which is what the golden ratio buys. Its only inputs are calls to the
+march and readings of $J$ --- no gradient, no knowledge of the lemma.
+Every march evaluation is cached to disk keyed by $\varepsilon$, so an
+interrupted run resumes at no cost, and the landscape in
+Figure~\ref{fig:jeps} is drawn from the search's own evaluations rather
+than from a separate sweep.
+
+The suite then closes three independent loops around the answer. The
+area ratio found by the blind search must match the closed form. The
+exit pressure there must equal the posed ambient, within a band derived
+from the march's own two-resolution error estimate plus the width of
+the bracket the search stopped on. And the corner meter of
+Section~\ref{sec:corner} --- built two steps earlier, never consulted
+by the search --- must independently read zero at the design that was
+found.
+
+\section{What was built}
+
+\carrier{validation/a1\_driver\_eps.py}: the golden-section driver,
+the disk cache, the three closure checks, and a rejector --- a
+deliberately corrupted objective, with the pressure--area term
+$(p_e-p_a)A_e$ deleted, which must then run monotonically to the edge
+of the bracket instead of finding an interior optimum, because without
+that term nothing ever penalizes over-expansion.
+
+\section{Results of record}
+
+\textbf{4/4 PASS} (231~s, 13 march evaluations). The blind search lands
+at $\varepsilon = 5.1551$ against the analytic $5.1506$; the exit
+pressure at the found optimum matches the posed ambient to 916~Pa,
+inside a derived band of 7958~Pa; the corner meter independently reads
+$\approx 0$ there, so the optimality condition of Rao's theory is
+satisfied at a design the search reached without ever evaluating it;
+and the corrupted objective runs to the bracket edge --- rejected.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_jeps.pdf}
+\caption{The optimization landscape and the physics behind its
+peak, both drawn from the driver's own 13 cached march evaluations.
+(a)~Thrust against shape: area ratio $\varepsilon$ [--] on the
+horizontal axis, objective $J$ [MN] on the vertical. Look at how flat
+the top is --- the closed-form optimum (red dashed) and the blind
+search's landing point (blue dotted) differ by 0.09\% in $\varepsilon$
+on a curve that is flat to parts in $10^{5}$, so the blind search gives
+up less than $10^{-5}$ of the thrust. (b)~Why the peak sits there: exit
+pressure $p_e$ [bar] against the same $\varepsilon$ [--], falling
+across the ambient pressure line $p_a$. The crossing --- gas leaving
+above ambient to the left (underexpanded, lengthen), below ambient to
+the right (overexpanded, shorten) --- lands on the same $\varepsilon$
+as the peak in (a). That is the exit-area lemma, measured rather than
+assumed.}
+\label{fig:jeps}
+\end{figure}

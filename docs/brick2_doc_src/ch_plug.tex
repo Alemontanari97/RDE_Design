@@ -1,0 +1,302 @@
+\chapter{The plug march}
+\label{ch:plug}
+
+Every nozzle in this document so far has been a bell: a solid tube
+that wraps the gas on all sides. This chapter builds the other kind.
+A plug nozzle keeps solid metal only \emph{under} the flow and lets
+the outside of the jet touch the atmosphere directly --- one change
+that buys the nozzle the ability to adapt itself to its
+surroundings, and costs the solver a boundary it has never had to
+handle. The step adds that boundary, assembles a complete plug
+march around it, and certifies the assembly against a flow whose
+answer is known exactly on paper.
+
+\section{The question}
+
+The deepest results in the RDE nozzle theory are about plugs
+(the corpus's plug theorem, its T4)~\cite{theory} --- in particular
+about what a plug does when the chamber pressure swings over a
+cycle, which is Chapter~\ref{ch:plugcycle}. None of them can
+be tested until the engine can march a plug at all. So: what does
+the solver need that it does not yet have, and can the new assembly
+be checked against an exact answer rather than only against itself?
+
+\section{How it works, in full}
+
+\subsection{The topology, and the one new piece of physics}
+
+A plug (or \emph{aerospike}) nozzle is a bell turned inside out. In
+a bell the gas is enclosed by wall all the way to the exit. In a
+plug the wall lies only below the flow --- a central body, the
+\emph{spike} --- and above the flow there is nothing but the
+surrounding atmosphere. The outer surface of the exhaust is
+therefore a \emph{free jet edge}: a boundary of the gas that no
+hardware holds in place.
+
+That is the whole appeal of the shape. Because the outer boundary
+is free, the jet widens or narrows on its own until its pressure
+matches the atmosphere. A bell has one fixed exit area, so it is
+correctly expanded at exactly one ambient pressure and wrong at
+every other; a plug re-shapes its own jet as the ambient pressure
+falls with altitude. That is the classical
+\emph{altitude-compensation} argument for plugs
+(Chapter~\ref{ch:nozzle}) --- and it is why plugs matter here for a
+second reason: an RDE swings its chamber pressure every cycle,
+which the nozzle feels the same way it feels a change of altitude.
+
+The free edge is the one new piece of physics the solver must
+learn. On a wall, the \emph{position} is known and the pressure
+comes out as a result; on a free edge it is exactly the reverse.
+The pressure is prescribed --- $p = p_a$, the ambient pressure,
+because the atmosphere pushes back and nothing else does --- and
+the \emph{position} is what gets solved. In the cell language of
+Chapter~\ref{ch:moc}, the free-edge cell is fed by the previous
+edge point (the edge is a \emph{streamline}: a line the flow runs
+along and no gas crosses) and by the $C^{+}$ characteristic rising
+from the interior point below it in its own column. The prescribed
+pressure fixes the speed modulus $q_{p_a}$ through the gas tables,
+so the two remaining unknowns are the new position and the turning
+angle $\theta_4$, with
+$(u,v) = q_{p_a}(\cos\theta_4, \sin\theta_4)$
+(Figure~\ref{fig:freejet}). The assembly then mirrors the bell
+march upside down: spike wall below (the inverse-wall cell of
+Chapter~\ref{ch:wallinput}, mirrored to the $C^{-}$ family that a
+bottom wall receives), free edge above, no axis~\cite{raospike}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_freejet.pdf}
+\caption{The free-boundary cell, drawn in the physical plane:
+$x$ axial [m] against $y$ radial [m]. (a)~The new edge point pt4 is
+built from two known states --- the previous edge point pt3, whose
+flow direction sets the direction of the edge segment because the
+edge is a streamline, and the interior neighbour pt1 in the same
+column, which sends the $C^{+}$ characteristic. What to look at is
+which quantity is held and which floats: the pressure is
+\emph{imposed}, $p = p_a$ exactly, which fixes the speed modulus
+$q_{p_a}$ through the tables, while the position $(x_4,y_4)$ and
+the turning angle $\theta_4$ are solved. That inversion --- the
+opposite of a wall cell, where position is given and pressure comes
+out --- is what makes a plug a plug. (b)~The same cell with the
+sign trap it survived on the way to certification: writing the
+boundary condition as $v = +\sqrt{q_{p_a}^2-u^2}$ admits only
+outward turns (Appendix~\ref{app:signtrap}).}
+\label{fig:freejet}
+\end{figure}
+
+\subsection{Why the lip fan is constructed, not marched}
+
+At the \emph{cowl lip} --- the sharp outer edge of the channel that
+feeds the plug --- the gas leaves the internal duct and turns
+around a corner into the open. A supersonic gas turning away from
+itself expands through a \emph{Prandtl--Meyer fan}: a continuous
+sheaf of straight rays, each carrying one intermediate state,
+across which the flow accelerates, its pressure falls, and its
+direction rotates smoothly from the incoming angle to the outgoing
+one. When the corner is sharp, every ray starts from the same
+geometric point and the fan is \emph{centered} on it. That point is
+\emph{singular}: all the intermediate states coexist there at once,
+so the flow has no single value at the lip and its gradients are
+infinite (Figure~\ref{fig:fansing}).
+
+This violates exactly the assumptions an ordinary cell rests on. A
+cell whose segment spans the fan closes its compatibility relation
+with a midpoint average of two states that differ by the whole turn
+--- an order-one error, not a second-order one --- and near the lip
+all the $C^{-}$ characteristics meet at one point, so the position
+crossing degenerates. Measured: a certification residual of
+$8.9\times10^{9}$ when an early build tried exactly this.
+
+The cure costs nothing, because a centered fan is self-similar: the
+state on each ray depends only on the ray angle and is given
+exactly by the Prandtl--Meyer function. So the corner is never
+marched, it is \emph{constructed} --- seed the fan as data, then
+resume ordinary cells between rays, where the flow is smooth again.
+Brick 1 does precisely this at its sharp throat corner (the initial
+expansion fan); the oracle below goes one step further and places
+the start line downstream of the lip with the exact fan field
+written on it, so the singular point lives in the data and never
+inside a cell.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_fan_singularity.pdf}
+\caption{Why the lip fan cannot be marched through. All panels are
+the physical plane, $x$ [m] against $y$ [m]. (a)~The lip as a
+singular point: a uniform stream at $M_1$ and a uniform stream at
+$M_2$ meet across a centered fan whose every ray emanates from one
+geometric point, so at the lip every state between $M_1$ and $M_2$
+coexists and the gradient is infinite. (b)~An ordinary cell asked
+to step across it: its segment spans the fan, so the midpoint
+closure averages two states separated by the whole turn, and the
+$C^{-}$ crossings degenerate as they converge on the lip ---
+measured, a certification residual of $8.9\times10^{9}$. (c)~The
+cure: each ray is seeded with its exact Prandtl--Meyer state and
+ordinary cells resume between rays; the oracle puts the start line
+downstream, carrying the exact field. What this proves is that the
+singularity is handled by construction, not by refinement --- no
+mesh is fine enough to march through a point where the solution is
+multivalued.}
+\label{fig:fansing}
+\end{figure}
+
+\subsection{The march: columns, growth at the edge, consumption at
+the wall}
+
+Each column is swept \emph{bottom-up}: first the wall point at the
+prescribed station, then the interior points, each fed by the
+$C^{+}$ from the point just solved below it and the $C^{-}$ from
+its partner on the previous column, and finally the free-edge point
+on top, fed from its own column (why it must be its own column is a
+lesson the oracle taught: Appendix~\ref{app:edgeroot}).
+
+The wall cell finds its foot --- the point on the previous column
+where the characteristic arriving at the wall started --- by a
+\emph{multi-column search}: it scans the whole previous column,
+stepping further columns back if needed, for the segment whose data
+brackets its arriving $C^{-}$ (the bracketing function is positive
+at the previous wall point and decreases with row height, so the
+first sign change marks the foot segment). This lets the march run
+at fine prescribed stations with short compatibility chords; the
+earlier scheme, which confined the foot to the first segment of the
+adjacent column, had to stretch its columns and paid for it in
+accuracy (Appendix~\ref{app:footbias}).
+
+Row bookkeeping closes the topology, one characteristic at a time,
+at both boundaries. At the \emph{edge}, each column's free-edge
+point becomes a new top row: the widening jet gains one crossing
+per column (the mirrored $j_2{+}{=}1$ of the bell march; what
+happens without it is Appendix~\ref{app:pluglessons}, lesson 2).
+At the \emph{wall}, rows are instead \emph{consumed}: the incoming
+$C^{-}$ family terminates on a solid wall, so any previous-column
+rows lying below the new wall point's foot have already met the
+wall between stations and must not be prolonged --- the new
+column's interiors are partnered with the previous rows \emph{from
+the foot up}, re-indexed. Prolonging them was the last defect the
+oracle caught: the terminated characteristics kept marching as
+ghost rows below the spike --- for such a row the only crossing
+Newton can still find is the backward one, a valid root of the
+equations on the wrong branch --- and the mass check exposed the
+ghost limb at $+9\%$. With consumption, mass closes to 0.026\%.
+
+\subsection{The oracle}
+
+The march is certified against a flow whose \emph{entire field} is
+known in closed form, so the marched answer can be compared with
+the truth rather than with itself. The flow is a planar corner jet:
+uniform $M_1 = 1.5$, a centered fan at the lip, uniform $M_2 = 2.2$
+turned by $\Delta\nu = 23.9^{\circ}$, with the ambient set to
+$p_a = p(M_2)$. The prescribed spike is the exact streamline of
+that field, obtained by fine-step RK4 integration --- an
+independent reference, not another method-of-characteristics run
+--- and the start line carries the exact field on a vertical cut.
+
+The marched solution must then reproduce four things, each within a
+tolerance derived from the scheme's own convergence order rather
+than chosen by hand (Chapter~\ref{ch:method}): the edge's
+asymptotic angle and speed (P-1), the wall pressure distribution
+station by station (P-2), mass conservation through the final
+column (P-3), and a \emph{momentum balance} (P-4). The last one is
+worth spelling out. Draw a closed \emph{control surface} around the
+gas --- an imaginary boundary whose faces are the start line, the
+final column, the spike surface and the free edge --- and require
+that the momentum flowing out equals the momentum flowing in plus
+the push the pressures exert on the faces, every pressure measured
+relative to ambient. On the free edge the pressure \emph{is}
+ambient, so measured that way the free face pushes exactly zero:
+the plug's defining property, here tested rather than assumed.
+Alongside these, a deliberately corrupted ambient (R-1) must leave
+the bands --- a check that the checks can fail. Every cell is
+Newton-certified.
+
+\subsection{The axisymmetric stage}
+
+For the axisymmetric plug on the real-gas tables no closed form
+exists, so that stage certifies by \emph{internal} closures ---
+conservation laws the solution must satisfy whatever the answer is.
+The start-line data is a tables-consistent corner fan
+($\mathrm{d}\theta = \sqrt{M^2-1}\,\mathrm{d}q/q$ integrated on the
+tables' own $M(q)$), the prescribed spike is a streamline of that
+data, and the checks are: Newton certification (A-1); mass
+conservation with the $2\pi y$ flux weight of an axisymmetric ring
+(A-2); the same ambient-gauge momentum balance (A-3); a
+\emph{source-alive} control --- the same data marched with the
+axisymmetric source term switched off ($\delta = 0$, planar) must
+differ by more than the axisymmetric pair's own tolerance band,
+which guards against an axisymmetric mode that is silently running
+planar (A-4); and a corrupted-spike rejector (A-5).
+
+\section{What was built}
+
+\carrier{validation/a1\_freejet\_unit.py}: the free-jet cell alone,
+against unit known answers. \carrier{validation/a1\_plug\_march.py}:
+the assembly --- bottom-up columns at prescribed stations, the
+mirrored inverse-wall cell, the multi-column foot search, row
+growth at the edge and row consumption at the wall --- plus the
+conservation instruments (\code{col\_fluxes},
+\code{wall\_push\_poly}), the closed-form oracle with its rejector
+(\code{STAGE=oracle}), and the axisymmetric internal-closure stage
+(\code{STAGE=axi}).
+
+\section{Results of record}
+
+\textbf{The free-jet cell: 6/6 PASS.} A uniform jet already at
+ambient pressure is an exact fixed point; a turned jet is preserved
+exactly in planar flow --- in axisymmetric flow the source term
+legitimately changes a turned uniform state, a physics point the
+first test tripped over; a compressing edge turns inward; and the
+Prandtl--Meyer corner known answer lands at machine precision ---
+edge speed vs.\ closed form $1.9\times10^{-9}$, edge angle equal to
+the exact turn angle to $1.9\times10^{-16}$.
+
+\textbf{The assembly vs the oracle: 6/6 PASS} (66~s, stations
+41/81, start rows 21/41). Every cell Newton-certified --- worst
+residual 0.019 (coarse, 1253 cells) and 0.017 (fine, 4870 cells) of
+the allowed tolerance. P-1: the marched edge's tail angle is
+0.41809 vs.\ the exact $\Delta\nu = 0.41777$ --- $|d| =
+3.2\times10^{-4}$ against a band of $4.5\times10^{-3}$, with the
+edge speed equal to the closed form to all printed digits. P-2:
+98\% of wall stations inside the derived band, maximum deviation
+$9.8\times10^{-3}\,p_a$. P-3: mass through the final column 8869.98
+vs.\ start-line 8867.65 --- $|d| = 2.33$ (0.026\%) against a band
+of 26. P-4: momentum closure $6.9\times10^{3}$ on
+$F_{\rm in} = 2.0\times10^{7}$ ($3.4\times10^{-4}$ relative; band
+$7.2\times10^{4}$; coarse/fine ratio 3.6, confirming the scheme's
+second order), with the free edge contributing zero by
+construction. R-1: a 1\% corruption of the ambient moves the edge
+angle $20\times$ outside the P-1 band --- rejected.
+Figure~\ref{fig:plug} shows the certified march; the road here ---
+four structural lessons, each measured --- is
+Appendix~\ref{app:pluglessons}.
+
+\textbf{The axisymmetric stage: 5/5 PASS} (39~s, stations 33/65,
+start rows 17/33, NASA real-gas tables, tables-fan turn
+0.4395~rad). A-1: all cells Newton-certified, worst residuals
+0.017/0.022. A-2: mass with the $2\pi y$ weight, $|d| = 505$ on
+$1.085\times10^{5}$ (0.47\%) against a band of 986. A-3: momentum
+closure $-2.4\times10^{6}$ on $F_{\rm in} = 2.4\times10^{8}$
+($1.0\times10^{-2}$ relative, inside its band). A-4: the
+axisymmetric source is alive --- the wall speed at the last station
+differs from the planar run by 156~m/s, $9\times$ the band. A-5: a
+corrupted spike slope breaks the momentum closure at $5\times$ the
+band --- rejected.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_plug.pdf}
+\caption{The certified march against the closed-form oracle.
+(a)~The physical plane, $x$ [m] against $y$ [m]: the exact world
+--- spike (red), exact jet edge (blue dashed), lip fan rays (grey),
+start line (dotted) --- overlaid with the marched characteristic
+mesh (light dots) and the marched free edge (orange). Look at how
+the orange edge tracks the blue line: told only the pressure on
+that surface, the solver found where the surface is. (b)~Wall
+pressure along the spike, $x$ [m] against $p_w$ [bar]: marched
+values against the closed form, with the derived tolerance band ---
+98\% of stations inside it, worst deviation
+$9.8\times10^{-3}\,p_a$. The two panels together are the
+certificate: the free surface and the solid surface are both right.
+Compare with the state before the fixes,
+Figure~\ref{fig:plugbefore}.}
+\label{fig:plug}
+\end{figure}

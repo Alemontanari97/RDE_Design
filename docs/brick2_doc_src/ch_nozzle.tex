@@ -1,0 +1,270 @@
+\chapter{What a nozzle does, and what ``optimal'' means}
+\label{ch:nozzle}
+
+This chapter assumes no background at all. It explains what the
+machine under study is, what it is for, which numbers describe it,
+why there is anything to optimize, and what makes rotating
+detonation engines a harder design problem than ordinary rockets.
+A reader who already designs nozzles can skip to
+Chapter~\ref{ch:moc}; everyone else should read it, because every
+later chapter uses this vocabulary without re-explaining it.
+
+\section{The machine}
+
+A rocket burns propellant in a chamber, producing gas at high
+pressure and high temperature but going nowhere in particular. The
+nozzle is the part that converts that stored pressure into
+directed, high-speed exhaust --- and by Newton's third law, the
+reaction to throwing that exhaust backwards is thrust.
+
+The shape that does this is the \emph{converging--diverging}
+nozzle of Figure~\ref{fig:nozzleprimer}a: the passage narrows to a
+minimum area, the \emph{throat}, then opens out again. The
+narrowing accelerates the gas to exactly the local speed of sound
+at the throat; past the throat, in supersonic flow, the behaviour
+inverts --- widening the passage accelerates the gas further. So
+the diverging part, which is what this document designs, keeps
+converting pressure into speed all the way to the exit.
+
+Three consequences matter throughout.
+
+\emph{The throat sets the mass flow.} When the flow reaches the
+speed of sound at the throat, the passage is \emph{choked}: the
+mass of gas per second, $\dot m$, is fixed by the throat area and
+the chamber state, and nothing downstream can change it. Holding
+the throat radius $y_t$ fixed is therefore the same thing as
+holding the mass flow fixed --- a fact this document uses as a
+design constraint.
+
+\emph{The chamber state is quoted as a stagnation state.} The
+chamber pressure $P_0$ and temperature $T_0$ (the \emph{stagnation}
+values --- what the gas would have if brought to rest) are the
+boundary data of the whole problem. Everything downstream is the
+same gas, expanded.
+
+\emph{The exit is a compromise with the outside world.} The gas
+leaves at some pressure $p_e$, into an atmosphere at pressure
+$p_a$. These need not be equal, and whether they are is exactly
+what makes design non-trivial.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_nozzle_primer.pdf}
+\caption{The machine, what it does, and why it has an optimum.
+(a)~A converging--diverging nozzle: gas from the chamber (left)
+accelerates to sonic conditions at the throat and then supersonic
+in the diverging part; axes are axial position $x$ [m] and radius
+$y$ [m], with the throat radius $y_t = 1$~m in this reference
+case. (b)~What the nozzle actually does to the gas, measured on
+this document's own solver along the wall: Mach number (blue, left
+axis, dimensionless) rises while static pressure (green, right
+axis, bar, logarithmic) falls by two orders of magnitude ---
+pressure is being traded for speed. (c)~Why an optimum exists at
+all: the exit pressure $p_e$ [bar] falls as the area ratio
+$\varepsilon$ [--] grows. Above the ambient line the nozzle is
+still worth lengthening; below it, extra length costs thrust. The
+star marks where they cross --- the optimum, which
+Chapter~\ref{ch:firstopt} finds \emph{blindly} and checks against
+this crossing.}
+\label{fig:nozzleprimer}
+\end{figure}
+
+\section{The numbers that describe a design}
+
+Only a handful of quantities are needed to state a design problem,
+and this document keeps to them (the full symbol list is
+Table~\ref{tab:notation}).
+
+The \emph{area ratio} $\varepsilon = A_e/A_t$ --- exit area divided
+by throat area --- is the single most important number: it says how
+far the gas is expanded. A larger $\varepsilon$ means a longer,
+wider nozzle, a faster and colder exhaust, and a lower exit
+pressure. The \emph{wall contour} is the shape itself, the curve
+$y(x)$ from throat to exit. The \emph{length} $L$ is where that
+curve stops. And $p_a$, the ambient pressure, is the environment:
+about 1~bar at sea level, essentially zero in vacuum.
+
+\section{Thrust, and why there is an optimum}
+
+Thrust is a momentum balance. Written at the exit plane it is
+\begin{equation}
+J \;=\; \dot m\,u_e \;+\; (p_e - p_a)\,A_e ,
+\label{eq:thrustintro}
+\end{equation}
+the first term being the momentum carried out by the exhaust
+(mass flow times exit speed) and the second the net pressure force
+on the exit area. Chapter~\ref{ch:score} computes this two
+independent ways as a self-check, but the physics of the optimum is
+already visible in~\eqref{eq:thrustintro}.
+
+Suppose the nozzle is made slightly longer, adding one thin ring of
+wall. Gas inside pushes on that ring with pressure $p$; the
+atmosphere pushes back with $p_a$. The net gain is proportional to
+$p - p_a$. So while the exhaust is still at higher pressure than
+its surroundings --- the flow is \emph{under-expanded} --- extra
+length pays. Once the flow has expanded past ambient ---
+\emph{over-expanded} --- each additional ring pushes the wrong way
+and costs thrust. The best design sits exactly at the changeover:
+\begin{equation}
+p_e(\varepsilon^{*}) \;=\; p_a .
+\label{eq:matchintro}
+\end{equation}
+Figure~\ref{fig:nozzleprimer}c is that statement, measured. This
+single idea --- extend the wall while the local pressure exceeds
+ambient, stop when it does not --- reappears throughout the
+document in increasingly general form: as an endpoint condition at
+the nozzle lip (Chapter~\ref{ch:score}), as a condition averaged
+over a cycle (Chapter~\ref{ch:cycle}), and as the rule that decides
+where to cut a plug nozzle short (Chapter~\ref{ch:plugcycle}).
+
+An important special case: in vacuum, $p_a = 0$, so $p - p_a$ is
+positive everywhere and \emph{longer is always better}. There is no
+interior optimum, only whatever length the vehicle can carry. Any
+optimizer worth trusting must reproduce that behaviour, and several
+tests in this document check precisely that.
+
+\section{Three families of nozzle, and why the third is hard}
+
+\emph{The ideal (minimum-length) nozzle} is the textbook shape:
+its contour is drawn so that the exhaust comes out perfectly
+uniform and parallel. It is easy to characterize and serves here as
+a reference; Brick~1 generates it.
+
+\emph{The thrust-optimized contour}, following Rao's 1958
+solution~\cite{rao}, gives up the perfectly uniform exit and asks a
+better question: of all walls of a \emph{given length}, which
+produces the most thrust? The answer is a shorter, fuller shape,
+and it is what real rockets use. Rao solved it with the calculus of
+variations --- the mathematics of optimizing over a whole curve
+rather than over a few numbers --- and Chapter~\ref{ch:referee}
+confronts his hand-derived conditions with this program's automatic
+machinery on exactly such a contour.
+
+\emph{The plug (or aerospike) nozzle} turns the geometry inside
+out (Figure~\ref{fig:bellvsplug}). Instead of the gas being
+enclosed by a wall, the solid surface --- the \emph{spike} --- sits
+underneath, and the outer boundary of the exhaust is nothing but
+the surrounding atmosphere. That free boundary is what makes the
+plug interesting: it is not fixed by the hardware, so the plume
+re-shapes itself when the ambient pressure changes. A bell is
+optimal at one altitude; a plug is roughly right over a range,
+because the exhaust always ends up at exactly $p_a$ on its outer
+edge, by definition. Figure~\ref{fig:bellvsplug}c shows this
+computed. Real plugs are always \emph{truncated} --- cut short and
+closed with a flat base --- because the long thin tail carries
+almost no pressure but all of the weight, and where to cut is a
+genuine design variable (Chapter~\ref{ch:plugcycle}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_bell_vs_plug.pdf}
+\caption{The two nozzle families this document builds, and the one
+physical difference between them. Axes throughout are axial
+position $x$ [m] and radius $y$ [m]. (a)~The bell: the exhaust is
+enclosed by a solid wall, so the exit state is fixed by the
+geometry, whatever the altitude. (b)~The plug (aerospike): the
+solid spike is below and the outer edge of the jet is a
+\emph{free boundary} at ambient pressure. The spike shown is a
+real designed contour (from the independent code of
+Chapter~\ref{ch:genotwin}); the plume boundary is computed by the
+march of Chapter~\ref{ch:plug}; the red face is the base where the
+spike is cut short. (c)~Altitude compensation, computed on that
+same gas: the plume boundary angle $\theta_E$ [deg] against
+ambient pressure $p_a$ [bar]. At high ambient the jet barely
+expands and hugs the spike; as the ambient falls the boundary
+swings outward --- the nozzle adapting itself, with no moving
+parts.}
+\label{fig:bellvsplug}
+\end{figure}
+
+\section{The rotating detonation engine, and the cycle}
+\label{sec:rdeintro}
+
+Everything above assumed one operating point: one chamber pressure,
+one ambient. A \emph{rotating detonation engine} (RDE) breaks that
+assumption, and it is the reason this document has a cycle layer.
+
+In an RDE, combustion does not sit still and burn steadily. A
+detonation --- a combustion wave travelling faster than sound ---
+runs continuously \emph{around} an annular chamber, lapping it a
+few thousand times a second (Figure~\ref{fig:rdecycle}a). Fresh
+propellant is injected behind the wave and consumed on the next
+lap. The attraction is thermodynamic: detonative combustion raises
+the pressure as it burns, so an RDE promises more work from the
+same propellant than steady burning does.
+
+The consequence for the nozzle is severe. A fixed cross-section of
+the exhaust does not see a constant chamber state; it sees the
+pressure spike as the wave sweeps past and then decay until the
+next lap --- over and over, thousands of times a second. What the
+nozzle is handed is therefore not one stagnation state but a
+\emph{periodic family} of them, $(P_0(\xi), T_0(\xi))$, labelled by
+the position in the cycle, the \emph{phase} $\xi \in [0,1]$
+(Figure~\ref{fig:rdecycle}b).
+
+Because gas crosses the nozzle far faster than the chamber
+conditions change, each phase can be treated as its own steady
+flow, and the performance of the whole cycle is the average of the
+steady performances over the phases. That assumption is called
+\emph{quasi-steady}; it is what makes the problem tractable with
+the machinery of this document, it is stated explicitly wherever it
+is used, and its limits are discussed honestly in
+Section~\ref{sec:spiral}.
+
+The design difficulty is then immediate and is the whole subject of
+Chapters~\ref{ch:cycle} and~\ref{ch:plugcycle}: each phase would
+want a different nozzle (Figure~\ref{fig:rdecycle}c), and only one
+piece of hardware gets built. What is the right compromise --- and
+is it simply the nozzle for the average chamber condition? For one
+kind of nozzle the answer turns out to be yes, exactly; for another
+it is emphatically no. Measuring both is what this document does.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_rde_cycle.pdf}
+\caption{Why an RDE nozzle is a harder design problem.
+(a)~The source of the cycle: a detonation wave runs around an
+annular chamber (axes are chamber cross-section coordinates
+$x, y$ [m]); a fixed nozzle section sees it sweep past once per
+lap, a few thousand times a second. (b)~What the nozzle is
+therefore handed: not one operating point but a periodic family.
+Cycle phase $\xi$ [--] on the horizontal axis ($\xi = 0$ at wave
+passage), chamber pressure $P_0$ [bar] on the left axis
+(logarithmic, blue) and chamber temperature $T_0$ [K] on the right
+(red) --- the five discrete phases actually marched by the
+carriers. (c)~The resulting design problem: for each phase, the
+area ratio $\varepsilon$ [--] that would be perfectly matched for
+\emph{that} phase, computed with the program's own gas tables. They
+spread by a factor of three, and only one nozzle gets built.}
+\label{fig:rdecycle}
+\end{figure}
+
+\section{What ``optimizing'' means here, and what an adjoint buys}
+
+An \emph{optimizer} needs three things a flow solver does not have.
+A \emph{score}: one number saying how good a design is --- here the
+thrust $J$, built in Chapter~\ref{ch:score}. A \emph{compass}: the
+derivative of that score with respect to every design variable, the
+\emph{gradient}, which says which way to move. And a
+\emph{certificate}: a condition that recognizes an optimum when it
+is reached, so that ``the search stopped'' and ``the design is
+optimal'' are different statements.
+
+The gradient is where the technology of Brick~1 matters. If a
+design has only one knob, the gradient can be estimated by
+\emph{finite differences} --- change the knob a little, see how $J$
+changes. With a whole wall shape as the unknown, that costs one
+extra flow solution per degree of freedom, which is hopeless.
+\emph{Automatic differentiation} (AD) avoids this. Because the
+solver is written in a language that records the arithmetic it
+performs, the chain rule can be applied backwards through the
+entire computation, yielding the derivative of $J$ with respect to
+\emph{all} inputs at once, for roughly the cost of one extra
+solve, and to machine accuracy rather than to the accuracy of a
+difference quotient. This backwards pass is mathematically the same
+object as the \emph{discrete adjoint} of classical optimal-control
+theory --- hence the name of this work package --- but it is
+obtained for free rather than derived and coded by hand.
+
+That is the engine. The rest of the document builds an optimizer
+around it, one certified piece at a time.

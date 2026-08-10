@@ -1,0 +1,195 @@
+\chapter{How this program decides that something is true}
+\label{ch:method}
+
+A design code is only as good as the evidence that it is right.
+This chapter states the two rules every test suite in this document
+obeys, explains why they were chosen, and defines the handful of
+terms used to report results. It closes with the symbol table for
+the whole document.
+
+\section{Rule one: no tolerance is chosen by hand}
+
+Every check in this document compares a computed number against a
+band, and \emph{no band is picked by a human}. The reason is
+simple: a tolerance chosen after seeing the answer certifies
+nothing. It always exists, and it always passes.
+
+Instead, the band is \emph{derived}, and in almost every case the
+computation derives it about itself. The same quantity is computed
+twice, once on a coarse discretization and once on a fine one. The
+difference between the two is a measurement of the error the scheme
+is still making. The band is that difference, multiplied by a fixed
+safety factor $K_{\rm RICH} = 4$, plus a floor at the level of
+floating-point roundoff:
+\begin{equation}
+\text{band} \;=\; K_{\rm RICH}\,
+\bigl|\,\text{coarse} - \text{fine}\,\bigr|
+\;+\; \text{roundoff floor}.
+\label{eq:band}
+\end{equation}
+This is the classical idea of \emph{Richardson extrapolation} used
+as an error estimate rather than as an accelerator, and the
+resulting number is called a \emph{Richardson band} throughout
+(Figure~\ref{fig:method}b). Because the method is second order
+(Chapter~\ref{ch:moc}), halving the step should cut the error by
+about four; when a suite reports a ``coarse/fine ratio of 4.52'' it
+is reporting that the scheme is converging at the rate it should,
+which is itself evidence that the band means something.
+
+Not every quantity has a discretization to refine. Where it does
+not, the band is derived from something else measurable --- the
+scatter of the reference data itself, or the physical scale of the
+quantity --- and the source is always stated. One chapter
+(Chapter~\ref{ch:genotwin}) uses \emph{declared} thresholds rather
+than derived ones; it says so explicitly, gives their provenance,
+and explains why refinement would be the wrong ruler there. That
+exception is deliberate and visible, which is the point.
+
+\section{Rule two: every suite must be able to say no}
+
+A test that has never failed may be measuring nothing. So alongside
+the positive checks, each suite contains deliberate corruptions ---
+called \emph{rejectors} --- which the suite is required to catch: a
+sign flipped, a term dropped, a wrong ambient pressure, a wrong
+characteristic foot, a geometry perturbed by a fraction of a
+percent. If a rejector does \emph{not} fail, the corresponding
+positive check is worthless and the step does not count as done.
+
+Rejectors do real work in this document. They are what makes a
+declared threshold trustworthy (they show the instrument resolves
+defects an order of magnitude above the gap being measured), and
+several of them caught genuine errors in the program before they
+could reach a result.
+
+Figure~\ref{fig:method}a puts both rules on one picture: every
+check in this document, expressed as its measured deviation divided
+by its own band, together with every deliberate corruption. The
+positive checks must land left of one; the rejectors must land
+right of it. Nothing is close to the line by accident.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_method.pdf}
+\caption{The method of this document, in one picture.
+(a)~Every certified check (blue) and every deliberate corruption
+(red), plotted as the measured deviation divided by that check's
+\emph{own} derived band --- so the horizontal axis is
+dimensionless and the vertical line at one is the pass/fail
+threshold for all of them at once. Positive checks land far left
+(most by two to six orders of magnitude); rejectors land far right.
+(b)~Where a band comes from: the same quantity is computed on a
+coarse and a fine grid, the difference measures the error the
+scheme is still making, and the band is that difference times a
+safety factor of four plus a roundoff floor. Axes are the grid
+spacing $h$ and the residual of the check, both relative and
+logarithmic; the dashed line is the second-order slope the method
+should follow.}
+\label{fig:method}
+\end{figure}
+
+\section{How results are reported}
+
+A few conventions recur.
+
+\emph{``$m/n$ PASS''} counts the checks in a suite, rejectors
+included: a suite of six positive checks and two corruptions that
+behaves correctly reports 8/8.
+
+\emph{``Newton-certified''} means every cell's converged residual
+was verified to sit at roundoff level, scaled to the size of its
+unknowns (Chapter~\ref{ch:moc}). The number quoted (``worst
+residual 0.019'') is a fraction of the allowed tolerance, so
+anything below one passes.
+
+\emph{``Result of record''} means the number is quoted verbatim
+from an actual run of the named carrier script, not recomputed for
+the document. Chapter~\ref{ch:status} lists the one command that
+reproduces each.
+
+\emph{An oracle} is a case whose answer is known independently of
+the program --- a closed-form solution, an exact conservation
+identity, or a second code --- against which the program can be
+judged. Where no oracle exists, a suite falls back on
+\emph{internal closures}: conservation statements (mass, momentum)
+that must hold whatever the answer is, plus \emph{alive controls},
+which check that a term the program claims to include actually
+changes the answer when removed.
+
+Finally, and deliberately: \textbf{in this program the bugs the
+tests caught are results too.} The main chapters describe each step
+as it now works; every trap, wrong turn, and measured structural
+lesson is collected in Appendix~\ref{ch:appendix}, cross-referenced
+from the step it belongs to. A caught bug is evidence that the
+instrument has teeth.
+
+\section{Symbols used throughout}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}llp{7.4cm}@{}}
+\toprule
+Symbol & Units & Meaning \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Geometry and flow}}\\
+$x$, $y$ & m & axial position, radius \\
+$u$, $v$ & m/s & axial and radial velocity components \\
+$q$ & m/s & flow speed, $\sqrt{u^2+v^2}$ (written $W$ in Rao's
+  papers) \\
+$\theta$ & rad, deg & flow direction, $\arctan(v/u)$ \\
+$p$, $\rho$, $T$ & Pa, kg/m$^3$, K & static pressure, density,
+  temperature \\
+$c$ & m/s & local speed of sound \\
+$M$ & -- & Mach number, $q/c$ \\
+$\alpha$ & rad & Mach angle, $\sin\alpha = 1/M$ \\
+$C^{+}$, $C^{-}$ & -- & the two characteristic families, at
+  $\theta+\alpha$ and $\theta-\alpha$ \\
+$\nu(M)$ & rad & Prandtl--Meyer function (the turn a corner
+  expansion produces) \\
+$\delta$ & -- & 0 for planar flow, 1 for axisymmetric \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{The machine and its operating point}}\\
+$y_t$ & m & throat radius (holding it fixes the mass flow) \\
+$r_{tu}$, $r_{td}$ & m & throat arc radii, upstream and downstream \\
+$A_t$, $A_e$ & m$^2$ & throat and exit area \\
+$\varepsilon$ & -- & area ratio, $A_e/A_t$ \\
+$L$ & m & wall length \\
+$P_0$, $T_0$ & Pa, K & chamber (stagnation) pressure and
+  temperature \\
+$p_a$ & Pa & ambient (back) pressure \\
+$p_e$, $u_e$ & Pa, m/s & exit pressure and speed \\
+$\dot m$ & kg/s & mass flow \\
+$J$, $F$ & N & thrust (the objective being optimized) \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{The cycle (rotating detonation engine)}}\\
+$\xi$ & -- & cycle phase, $0$ at wave passage to $1$ at the end of
+  the blowdown \\
+$\mu$ & -- & the measure that weights the phases in the cycle
+  average \\
+$PR$, $TR$ & -- & pressure and temperature ratio across the cycle \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Plug nozzle and swirl}}\\
+$l$ & m & truncation length: where the spike is cut short \\
+$D$ & -- & the truncation point itself \\
+$w$ & m/s & azimuthal (swirl) velocity \\
+$\Gamma$ & m$^2$/s & circulation, $y\,w$; constant in a free vortex \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Instruments}}\\
+$R_{\rm mom}$ & N & disagreement between the two independent thrust
+  routes \\
+$R_{\rm corner}$ & Pa & endpoint (corner) residual: zero at an
+  optimal lip \\
+$f_2$ & m/s & Rao's first integral,
+  $q\cos(\theta-\alpha)/\cos\alpha$, constant along the terminal
+  characteristic of an optimal nozzle \\
+$\lambda_2$, $\lambda_3$ & -- & Rao's constant Lagrange multipliers
+  ($f_2 = -\lambda_2$) \\
+$K_{\rm RICH}$ & -- & Richardson safety factor, fixed at 4 \\
+\bottomrule
+\end{tabular}
+\caption{Symbols used throughout this document. Lengths are quoted
+in metres; the reference cases are posed with a throat radius
+$y_t = 1$~m, so numerical values of $x$ and $y$ are also
+multiples of the throat radius.}
+\label{tab:notation}
+\end{table}

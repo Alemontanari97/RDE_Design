@@ -1,0 +1,221 @@
+\chapter{The score and the compass}
+\label{ch:score}
+
+The solver of Brick~1 answers ``what does the gas do in this nozzle?''.
+An optimizer needs two further things: a single number that says how
+good a nozzle is, and the derivative of that number with respect to
+every shape knob, which tells it which way to move. This chapter builds
+both and, more importantly, makes both checkable --- the number by
+computing it twice along two completely different paths, the derivative
+by comparing it with brute-force re-runs of the solver. It then adds a
+second instrument that does not score a design but \emph{certifies} it:
+a dial that reads zero exactly when the nozzle wall ends where an
+optimal wall must end.
+
+\section{The thrust functional, by two routes}
+
+\subsection{The question}
+
+An optimizer needs exactly two things the flow solver did not have.
+First a \emph{number} that says how good one design is --- the
+\emph{objective} $J$, here the thrust in newtons, the axial force the
+nozzle produces. Second its \emph{gradient}: the list of partial
+derivatives of that number with respect to each design knob, i.e.\ how
+much $J$ changes per metre of change in each knob. The gradient is the
+compass; it points uphill.
+
+\subsection{How it works, in full}
+
+Thrust is a \emph{momentum balance}: Newton's second law applied not to
+a body but to a region of gas. Draw a \emph{control surface} --- an
+imaginary closed surface enclosing the nozzle flow --- and add up two
+things on it: the momentum the gas carries through the surface, and the
+pressure force pushing on it. The sum is the force the machine feels.
+Nothing physical depends on where that surface is drawn, and that
+freedom is exploited twice, by computing $J$ on two surfaces that share
+no data:
+\begin{align}
+J &= \dot m\, u_e + (p_e - p_a)\, A_e
+  &&\text{(route 1: read the exit),} \label{eq:route1}\\
+J &= F_{\rm throat} + \int_{\rm wall} (p - p_a)\, 2\pi y \,\mathrm{d}y
+  &&\text{(route 2: read the wall).} \label{eq:route2}
+\end{align}
+Route 1 closes the surface at the exit plane, where an ideal nozzle
+delivers flow that is uniform and parallel to the axis. There the
+balance is elementary: the mass flow $\dot m$ [kg/s] times the exit
+speed $u_e$ [m/s], plus the mismatch between the exit static pressure
+$p_e$ and the ambient (surrounding) pressure $p_a$ acting on the exit
+area $A_e$.
+
+Route 2 closes the same surface along the machine itself. Its first
+term is the momentum flux entering through the \emph{throat} --- the
+narrowest cross-section, where the gas reaches exactly the local speed
+of sound. A throat in that state is called \emph{choked}: the mass flow
+through it is then set by the throat area and the chamber conditions
+alone, and nothing downstream can increase it. The carrier evaluates
+this flux on the march's initial-value line, the short line across the
+throat where the solver starts. The second term is the axial push of
+the wall: every ring of wall of radius $y$ and radial width
+$\mathrm{d}y$ presents an axial projected area $2\pi y\,\mathrm{d}y$ on
+which the pressure excess $(p - p_a)$ pushes forward. The two routes
+share no intermediate quantity: route~1 never reads a wall pressure,
+route~2 never reads the exit state.
+
+Newton's law forces the two answers to agree, so their difference
+$R_{\rm mom}$ [N] is a mechanical error meter --- if the discretization
+is wrong anywhere, the two routes stop matching. How large is it
+allowed to be? Not a number chosen by taste. The march is run twice, at
+one resolution and at double resolution; the \emph{change} in
+$R_{\rm mom}$ between the two runs is the scheme's own estimate of its
+discretization error. That change, multiplied by the safety factor
+$K_{\rm RICH} = 4$ and added to a floor for floating-point roundoff, is
+the allowed band --- a \emph{Richardson band}, named after the
+two-resolution extrapolation idea it comes from.
+
+Two further instruments complete the step. The \emph{gauge test}: add
+the same constant to the pressure everywhere and the thrust must not
+move, because a constant pressure integrates to zero over any closed
+surface. That is an identity of the \emph{formulas}, not of the flow,
+so it isolates errors in the surface bookkeeping from errors in the
+flow --- and it caught one (Appendix~\ref{app:sliver}). And the
+\emph{gradient}: because the march is written in a differentiable
+language, \emph{reverse-mode automatic differentiation} (AD) --- the
+technique that differentiates the program itself, propagating
+derivatives backwards through every operation it performed, which is
+mathematically the same as solving the discrete adjoint equations ---
+returns $\mathrm{d}J/\mathrm{d}P$ for all design parameters
+$P = (y_t, r_{tu}, r_{td}, \varepsilon)$ in a single backward pass, at
+about the cost of one extra march. Each of the four components is then
+checked against a \emph{central finite difference}: re-run the march
+with that knob nudged up by $h$ and down by $h$, and divide the
+difference of the two thrusts by $2h$. Halving $h$ gives the second
+estimate the Richardson band is built from.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\textwidth]{sch_two_routes.png}
+\caption{Two independent routes to one thrust, drawn in the nozzle's
+own coordinates ($x$ [m] along the axis, $y$ [m] radius). Route~1
+(right) closes the control surface at the exit plane and needs only the
+uniform exit state: mass flow times exit speed plus
+$(p_e-p_a)A_e$. Route~2 (left and along the wall) closes it on the
+machine: momentum flux through the choked throat plus the axial
+pressure push $(p-p_a)\,2\pi y\,\mathrm{d}y$ of each ring of wall.
+Look at what the two paths do \emph{not} share: no quantity is used by
+both, so their difference $R_{\rm mom}$ [N] is a genuine error meter
+rather than an identity. The red circle marks the sliver of surface
+that was accidentally left open at first, and whose story is told in
+Appendix~\ref{app:sliver}.}
+\label{fig:tworoutes}
+\end{figure}
+
+\subsection{What was built}
+
+\carrier{validation/a1\_thrust\_functional.py}: both routes, the
+momentum residual $R_{\rm mom}$ with its Richardson band, the gauge
+test, reverse-mode $\mathrm{d}J/\mathrm{d}P$ checked against central
+finite differences knob by knob, and three rejectors --- deliberately
+corrupted versions of the computation (dropped pressure--area term,
+un-closed surface, corrupted flux) that the suite must catch.
+
+\subsection{Results of record}
+
+\textbf{8/8 PASS.} $J = 1.2552079\times10^{8}$~N; $R_{\rm mom} =
++2.85\times10^{3}$ against a derived band of $4.01\times10^{4}$
+($3.2\times10^{-4}$ of $J$), so the two routes agree to about three
+parts in ten thousand of the thrust; the coarse/fine residual ratio of
+4.52 is the $\approx 4$ expected of a second-order scheme when the
+resolution is doubled, confirming that what is left is discretization
+error and not a mistake. Gauge delta $3.35\times10^{-8}$ vs.\ allowed
+$1.78\times10^{-6}$: adding a constant pressure really does change
+nothing. All four gradient components fall inside their
+finite-difference bands ($\mathrm{d}J/\mathrm{d}y_t$ agreeing to 9
+significant figures), and all rejectors fire.
+
+The gradient signs also behave as theory predicts:
+$\mathrm{d}J/\mathrm{d}\varepsilon > 0$ against a vacuum, i.e.\ with
+nothing pushing back a longer nozzle is always worth building; and
+$\mathrm{d}J/\mathrm{d}r_{td}$ is tiny, i.e.\ the curvature of the
+short arc just downstream of the throat barely matters. One real bug
+was caught and fixed on the way: Appendix~\ref{app:sliver}.
+
+\section{The optimality meter}
+\label{sec:corner}
+
+\subsection{The question}
+
+A score and a compass find better designs. What \emph{certifies} that a
+given design already satisfies the condition an optimum must satisfy?
+
+\subsection{How it works, in full}
+
+Choosing the best nozzle wall is not a problem of finding the best
+value of a few numbers but of finding the best \emph{curve}; the branch
+of mathematics for that is the \emph{calculus of variations}, which
+asks what must be true of a curve if no small deformation of it can
+improve the objective. Rao~\cite{rao} solved that problem for a nozzle
+and found, among the conditions, one exact scalar statement that must
+hold at the lip --- the point where the wall stops. It is an
+\emph{endpoint} (or transversality) condition:
+\begin{equation}
+R_{\rm corner}(p_a) \;=\; (p - p_a)\;-\;\tfrac{1}{2}\rho W^{2}
+\sin(2\theta)\tan\alpha .
+\label{eq:corner}
+\end{equation}
+Read it as the balance of the two effects of moving the lip one step
+further downstream. The first term is the direct gain: one more ring of
+wall, worth building as long as the pressure on it exceeds ambient. The
+second is the price: the extra wall forces the flow to keep turning,
+and the cost of that turning is written through the local flow angle
+$\theta$ (the direction of the velocity relative to the axis) and the
+Mach angle $\alpha$ (the tilt of the lines along which supersonic
+disturbances travel, Chapter~\ref{ch:moc}). $R_{\rm corner} = 0$ means
+``the wall stops in exactly the right place'': one more ring would gain
+as much as it costs. The meter evaluates this from the march's own lip
+data, so any design the engine produces can be certified and not merely
+scored. Averaged over the engine cycle it becomes the lip condition
+that a rotating detonation engine's nozzle must satisfy (statement T7
+of~\cite{theory}), which Chapter~\ref{ch:cycle} puts on a meter of its
+own.
+
+The companion instrument is the \emph{first integral}
+\begin{equation}
+f_2 \;=\; \frac{W\cos(\theta-\alpha)}{\cos\alpha} \;=\; -\lambda_2 ,
+\label{eq:f2}
+\end{equation}
+where a first integral means a combination of flow quantities that the
+governing equations force to stay constant along some particular curve,
+even though each ingredient varies. Rao's theory makes $f_2$ constant
+along the \emph{terminal characteristic} of an optimal nozzle --- the
+last of the two families of lines along which supersonic information
+travels, the one that closes the flowfield at the lip. Its constant
+value is $-\lambda_2$, a \emph{Lagrange multiplier}: the number that
+prices a constraint in a constrained optimization, here telling how
+much thrust would be gained per extra unit of mass flow allowed. Along
+any other curve --- in particular along the wall, which is a
+\emph{streamline}, a line everywhere tangent to the velocity and hence
+the path a gas particle follows --- $f_2$ is \emph{not} constant. That
+supplies the natural negative control: an implementation that made
+$f_2$ look constant everywhere would be broken, and must be caught.
+
+\subsection{What was built}
+
+\carrier{validation/a1\_corner\_instrument.py}: the corner meter and
+the $f_2$ instrument, tested against three known answers on the
+ideal-nozzle case (axial exit, matched ambient, vacuum), with the
+non-constancy rejector on the wall.
+
+\subsection{Results of record}
+
+\textbf{5/5 PASS} (82~s). The flow angle at the lip is machine-zero
+($\theta = -10^{-16}$~rad: the exit really is axial, as the ideal
+nozzle assumes). With the ambient set equal to the exit pressure the
+meter reads $3.7\times10^{-10}$ against an allowed 42.8~Pa --- the
+nozzle is certified stationary at its design ambient. Against a vacuum
+it reads exactly $+p_e$, i.e.\ ``lengthen me'', the statement that no
+finite nozzle is optimal in vacuum, now on a dial; and its sign agrees
+with an independently recomputed $\mathrm{d}J/\mathrm{d}\varepsilon$,
+so meter and gradient tell the same story. The first integral $f_2$ at
+the lip equals the exit speed to $4.6\times10^{-13}$~m/s, while along
+the wall it varies by 1173~m/s --- the non-constancy rejector, firing
+as designed.

@@ -1,0 +1,231 @@
+\chapter{The referee, and Rao's multipliers vs the adjoint}
+\label{ch:referee}
+
+So far the program has only checked itself. This chapter brings in two
+outside judges: a nozzle design code written by other people in
+another language, whose whole flowfields we audit against our
+equations, and the 1958 pencil-and-paper theory of the optimal nozzle,
+whose predictions we measure on a shape our optimizer did not make.
+Passing both means the engine solves the right problem, not merely a
+self-consistent one.
+
+\section{The referee comes back online}
+
+\subsection{What you need to know first}
+
+An \emph{ideal}, or \emph{minimum-length}, nozzle gives a perfectly
+uniform, purely axial exit flow in the shortest length that can do it
+(Chapter~\ref{ch:nozzle}). A \emph{thrust-optimized contour} (Rao's
+TOC~\cite{rao}) answers a different question: for a \emph{given}
+length, which shape produces the most thrust? It is shorter and
+fuller, its exit flow deliberately non-uniform, and it buys more
+thrust per kilogram of nozzle. Both shapes here reach the same
+\emph{area ratio} $\varepsilon = A_e/A_t = 4$: exit area four times
+throat area, the number saying how much the nozzle expands the gas.
+Throughout, tolerances are \emph{derived bands} computed from the
+discretization rather than chosen, and every test carries
+\emph{rejectors}: corrupted inputs it must fail
+(Chapter~\ref{ch:method}; symbols in Table~\ref{tab:notation}).
+
+\subsection{The question}
+
+Everything so far checks our code against itself and against closed
+forms. Where is the \emph{independent} program that can referee whole
+flowfields?
+
+\subsection{How it works, in full}
+
+GENO~\cite{geno} is that program: an independent Fortran nozzle
+designer --- separate code base, separate discretization, separate
+thermodynamic backend --- and, by standing decision, never modified by
+us and never differentiated. As \emph{generator} it produces reference
+contours and flowfields, in particular the thrust-optimized nozzle
+Section~\ref{sec:o33} needs: a genuinely optimal shape our optimizer
+had no hand in. As \emph{referee} its fields are put on trial against
+\emph{our} equations. Our solver builds a flow on a mesh of
+intersecting wave lines, enforcing a fixed set of algebraic relations
+at each mesh point --- its \emph{unit process} (Chapter~\ref{ch:moc});
+those relations are now evaluated on GENO's own node values, where
+they must hold within the derived band. The control is a set of
+deliberately wrong \emph{feet} --- the upstream points on the two wave
+lines from which a mesh point is built --- which must \emph{not} hold.
+Agreement then means the two codes solve the same equations cell by
+cell, not just that their outputs look alike.
+
+GENO's old binary predated this host's toolchain, so it was rebuilt
+from source; the regenerated reference case is the type-2 TOC at
+$\varepsilon = 4$ ($874\times2885$ nodes).
+
+\subsection{Results of record}
+
+\begin{itemize}[itemsep=2pt]
+\item \textbf{Cross-code oracle: PASS.} 218/218 sampled
+  cells of the regenerated field satisfy our unit-process relations
+  inside the derived band, with $84\times$ discrimination between
+  correct and deliberately wrong characteristic feet.
+\item \textbf{Brick 1's last SKIP closed.} A Brick-1 test was
+  unrunnable while the referee would not build here. It now runs
+  live, comparing our ideal contour with GENO's station by station:
+  62/62 samples in band, maximum error $7.6\times10^{-9}$~m.
+\item \textbf{The $f_2$ positive control landed} (the one
+  declared-pending test of Section~\ref{sec:corner}). $f_2$ combines
+  local flow speed and flow direction, and the theory forces it to be
+  constant along one line of an optimal nozzle --- the \emph{terminal
+  characteristic}, defined below. On the genuine Rao-optimal contour
+  it is constant there to a relative spread of $4.0\times10^{-3}$
+  while along the wall it varies by 0.60 --- a $149\times$ separation.
+  The \emph{truncated} reference case correctly showed no constancy:
+  cut short, an optimal contour no longer contains its own control
+  surface.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_contours.pdf}
+\caption{The two protagonists, drawn to scale: axial distance $x$ [m]
+against radius $y$ [m], axis of symmetry at $y = 0$, throat at
+$x = 0$, $y = y_t = 1$~m (so metres and throat radii coincide here).
+Both walls reach area ratio $\varepsilon = 4$; look at the
+\emph{lengths}. Brick 1's ideal (minimum-length) nozzle runs to
+$L = 7.3409$~m, GENO's Rao thrust-optimized contour stops at 5.5~m:
+shorter by design (best thrust for a \emph{given} length). An
+unplanned cross-check: GENO refused a longer TOC request, quoting the
+ideal length $L = 7.3409$ --- exactly our twin's, from a code that
+never saw ours.}
+\label{fig:contours}
+\end{figure}
+
+\section{Rao's multipliers vs our adjoint, on a real optimal contour}
+\label{sec:o33}
+
+\subsection{The question}
+
+Rao solved the optimal-nozzle problem in 1958 with paper and the
+calculus of variations. This program solves it by \emph{automatic
+differentiation}: the machine propagates derivatives through every
+operation the solver performs, giving the exact sensitivity of thrust
+to every shape parameter --- and run backwards (an \emph{adjoint}) one
+pass returns \emph{all} of them at once, for about the cost of one
+extra flow solve. The registry's oldest open item (its C-O33
+in~\cite{theory}) asks whether the two answers agree, term by term, on
+a real thrust-optimized contour.
+
+\subsection{How it works, in full}
+
+The meeting ground is GENO's optimal contour, marched by \emph{our}
+prescribed-wall engine (Chapter~\ref{ch:wallinput}). When something is
+maximized subject to constraints, each constraint enters the solution
+with a constant that prices it --- a \emph{Lagrange multiplier}. Rao's
+solution~\cite{rao} carries two: $\lambda_2$, the price of holding the
+mass flow fixed, and $\lambda_3$, the price of holding the length
+fixed. Each is falsifiable, because the theory names a combination of
+local flow quantities that must equal it at every point of one curve
+--- a \emph{first integral}, a quantity the equations keep constant
+there. That curve is the \emph{terminal characteristic}: the last
+$C^{-}$ wave line of the nozzle, from the axis to the lip, the control
+surface the calculus of variations selects because thrust and mass
+flow are evaluated across it. There:
+\begin{equation}
+f_2 = \frac{W\cos(\theta-\alpha)}{\cos\alpha} = -\lambda_2 ,
+\qquad
+2\pi y\,\rho W^{2}\sin^{2}\theta\,\tan\alpha = -\lambda_3 ,
+\label{eq:firstintegrals}
+\end{equation}
+with $W$ the flow speed [m/s] (the $q$ of Table~\ref{tab:notation}),
+$\theta$ the flow angle, $\alpha$ the Mach angle, $\rho$ the density,
+$y$ the radius --- both \emph{constant along that curve} if and only
+if the contour is optimal. The test samples both quantities on GENO's
+own terminal-characteristic nodes and demands constancy within derived
+bands in our field \emph{and} in GENO's, plus agreement between the
+codes on the same nodes.
+
+The adjoint side tests \emph{stationarity}, the calculus statement of
+sitting on a peak: at a maximum the derivative in every \emph{allowed}
+direction vanishes, so small allowed changes cost nothing to first
+order. The allowed directions are wall deformations keeping the length
+and both endpoints fixed --- six endpoint-pinned Gaussian bumps
+(centers at $0.20L\ldots0.85L$). A bump moving the lip probes a
+direction the theory does not protect (a bigger nozzle always pays a
+little more) and must give a large gradient; the same six bumps on a
+deliberately perturbed wall are the positive control. Every AD
+projection is cross-checked against finite differences, i.e.\ against
+recomputing the thrust with the shape nudged by hand.
+
+\subsection{Results of record}
+
+\textbf{9/9 PASS across two stages}
+(\carrier{validation/a1\_o33\_toc.py}). \emph{Integrals}: our field
+on GENO's terminal-characteristic nodes shows $f_2$ constant with
+relative spread $4.045\times10^{-3}$ (GENO's own:
+$4.04\times10^{-3}$), and the level matches across codes to 0.235~m/s
+in 2634.7~m/s --- $9\times10^{-5}$ relative (Figure~\ref{fig:f2});
+$\lambda_3$ matches pointwise (its constancy is honestly declared
+unresolvable at this surface precision: $\lambda_3 \sim
+\sin^{2}\theta$ is small and steep near the axis).
+\emph{Stationarity}: the six interior gradients sit $1000\times$ below
+the lip direction and $40\times$ below the perturbed-wall gradients,
+AD${}={}$FD to ${\sim}1\%$ throughout, and the optimal contour
+outscores the perturbed one, $J({\rm TOC}) > J({\rm perturbed})$
+(Figure~\ref{fig:stationarity}). One rejector was itself corrected
+by physics along the way: Appendix~\ref{app:f2rejector}. The formal
+registry discharge (YAML and suite wiring) is a commit-time
+act on the WSL repository; the numerical content exists.
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_rao_construction.pdf}
+\caption{How Rao's optimal control surface is actually constructed,
+drawn on the real thrust-optimized field (axes: axial position and
+radius in metres; the faint grey lines are the reference code's own
+characteristic mesh). (a)~Two characteristic families that
+\emph{cross}: the kernel edge (orange), a $C^{-}$ running from the end
+of the initial expansion at B down to the axis, and the control
+surface (blue), a $C^{+}$ running from D on the axis up to the lip E.
+The red dot is the launch point, where the control surface leaves the
+region the throat already determines. Everything inside the shaded
+kernel is ordinary marching, computed once. (b)~The one-parameter
+family: each launch point on the kernel edge gives a different
+candidate nozzle. Solid inside the kernel --- the same known flow for
+every candidate; dashed beyond it, where each generates its own flow
+and ends at its own lip. The search slides the launch point along
+that edge. (c)~Why this one curve can be traced without knowing the
+flow around it: an ordinary characteristic has two unknowns to
+advance and only the compatibility relation to advance them, so it
+needs a partner from the other family; Rao's optimality condition
+supplies the missing second relation, and the system closes.}
+\label{fig:raoconstruction}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_f2.pdf}
+\caption{The first integral, measured. (a)~Where the two curves live:
+$x$ [m] against $y$ [m] on GENO's thrust-optimized nozzle --- the wall
+(grey) and the sampled segment of the terminal characteristic, its
+last wave line (blue). (b)~$f_2$ [m/s] against arc length [m] along
+each curve: it climbs 64\% along the wall --- no invariant there, and
+the theory says it must not be --- and lies flat along the terminal
+characteristic. (c)~Zoom on that flat line, same units: our field
+(circles) sits on GENO's (crosses) at the same nodes. Flatness to a
+relative $4\times10^{-3}$ with cross-code agreement to
+$9\times10^{-5}$: Rao's constant $-\lambda_2$ exists in a computed
+flow, and two unrelated codes find the same value for it.}
+\label{fig:f2}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_stationarity.pdf}
+\caption{Stationarity, on a log scale. Horizontal axis: the wall
+deformation applied --- six Gaussian bumps, labelled by their center
+as a fraction $x/L$ [--] of the wall length, plus the lip-moving
+deformation. Vertical axis: $|\mathrm{d}J/\mathrm{d}a|$ [N/m], thrust
+change per metre of bump amplitude, logarithmic. On the optimal
+contour (blue) the gradient sits $40\times$ below the same bumps on a
+deliberately perturbed wall (grey) and $1000\times$ below the lip
+direction (red): flat in the allowed directions, steep in the one
+direction the theory does not protect. That is what an optimum looks
+like to the adjoint.}
+\label{fig:stationarity}
+\end{figure}

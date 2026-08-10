@@ -1,0 +1,596 @@
+\chapter{The problems met, and how they were fixed}
+\label{ch:appendix}
+
+A document of record that showed only the working version would be
+hiding its best evidence. Every test in this program is built to be
+able to say \emph{no}: its pass band is derived from the scheme's
+own measured error rather than chosen by hand, and each suite plants
+deliberate corruptions --- \emph{rejectors} --- that must make it
+fail. A bug the suite caught is therefore not an embarrassment but a
+measurement: proof that the instrument has teeth, and a record of
+what the physics does when it is got wrong. The main chapters show
+each step as it now works; this appendix collects, step by step,
+what went wrong on the way, how it was diagnosed, and what was
+changed. Nothing here is anecdote --- every item was caught by a
+test and closed by a measured fix.
+
+\section{Step 1: the unclosed control surface}
+\label{app:sliver}
+
+Thrust is computed as a balance over a \emph{control surface}: an
+imaginary closed surface drawn around the flow, over which the
+momentum carried through and the pressure pushing on it are added
+up. One test of that bookkeeping is the \emph{gauge test} --- add
+the same constant to the pressure everywhere and nothing may
+change, because a constant integrates to zero over a surface that
+is genuinely closed. It failed on its very first run
+(Chapter~\ref{ch:score}).
+
+Cause: the wall integral of route 2 started at the first wall
+\emph{point} of the mesh, leaving a microscopic sliver of wall
+between the throat lip and that point uncovered. The surface was
+not closed, so a constant no longer integrated to zero (the red
+circle in Figure~\ref{fig:tworoutes}). Fix: close the surface at
+the throat lip. The momentum residual $R_{\rm mom}$ --- the
+disagreement between the two independent thrust routes --- got
+\emph{tighter} once the sliver stopped hiding inside it: the bug
+had been absorbing part of the mechanical balance.
+
+\section{Step 6: the rejector corrected by physics}
+\label{app:f2rejector}
+
+A rejector is only useful if the corrupted case it poses is one the
+test could plausibly fail. The first negative control for the
+first-integral test of Section~\ref{sec:o33} --- the check that a
+particular combination $f_2$ of speed and angle is constant along
+the last characteristic of an optimal nozzle --- used an arbitrary
+vertical cut through the flowfield, expecting $f_2$ to vary along
+it. It barely did: much of the smooth tail of a nozzle is nearly
+$f_2$-flat, so a vertical cut is a \emph{weak} negative control.
+The sharp one is the \emph{wall}, a streamline along which $f_2$
+climbs by $64\%$; the rejector was rebuilt on it. Lesson: even
+rejectors must be chosen by physics, not by convenience.
+
+\section{Step 4: the table-kink ripple}
+\label{app:ripple}
+
+The gradient stage of Chapter~\ref{ch:wallinput} first posed the
+obvious test: compare the derivative produced by automatic
+differentiation (AD) with a finite difference --- the objective
+recomputed after nudging one input --- at shrinking nudge sizes,
+expecting agreement to improve. It failed in a way no step size
+could fix. The finite difference diverged as the step fell below
+the width of one cell of the gas-property tables, while the AD
+value oscillated.
+
+Diagnosis: the tables are interpolated piecewise-linearly, so the
+function the code actually implements has small kinks at every
+table cell boundary, and the \emph{exact} derivative of that
+function carries a genuine ripple at the table-cell scale ---
+measured at a standard deviation of $44$, i.e.\ $0.010\%$ of the
+gradient and $1.2\times10^{-8}$ of the thrust $J$
+(Figure~\ref{fig:ripple}). Neither number was wrong; the
+\emph{test} was. A pointwise AD-versus-finite-difference test on
+tabulated thermodynamics is ill-posed.
+
+The honest certificate separates the smooth curvature of $J$
+(physics) from the ripple (interpolation) by fitting a straight
+line over a sweep of nudge amplitudes and testing the resulting
+envelope identity instead --- the certificate the suite now
+carries. A first analysis also mislabeled a smooth $2.25\%$
+curvature as ``ripple''; the linear-fit separation corrected that
+to the true $0.010\%$. Cubic table interpolation would remove the
+ripple at the source. The same trap awaits any differentiable
+solver built on tabulated properties, the CFD-adjoint track
+included.
+
+\section{Step 7: three cycle-layer traps}
+\label{app:cycletraps}
+
+The cycle layer (Chapter~\ref{ch:cycle}) --- which represents an
+RDE by a family of steady chamber states, one per phase $\xi$ of
+the wave's passage --- met three traps, each now guarded by a
+rejector.
+
+\begin{enumerate}[itemsep=2pt]
+\item \textbf{The enthalpy zero-point.} Enthalpy has no absolute
+  zero: every table fixes its own reference state, and only
+  differences are physical. Building each phase's chamber state
+  \emph{absolutely}, as $h_0 = h(T_0)$ read straight off the raw
+  table, mis-stated the state by $19\%$. Fix: build phase states
+  \emph{relative} to the tables' own reference
+  ($h_0 = h_0^{\rm tab} + h(T_0) - h(T_s^{\rm tab})$, and likewise
+  for entropy with its $R\ln(P_0/p_s)$ term). Guard: doubling the
+  chamber pressure must exactly double every pressure in the field,
+  $p(2P_0)/p(P_0) = 2$, now verified to $1.6\times10^{-15}$.
+\item \textbf{The pressure-blind peak design.} The first attempt to
+  ``design at the peak phase'' held the exit Mach number fixed ---
+  which is not designing at the peak at all, because it ignores
+  where that phase's own exit pressure would match the ambient.
+  Fix: the peak design solves $p_e(\varepsilon) = p_a$ for the peak
+  phase's own state (\code{eps\_star\_at\_pa}).
+\item \textbf{The silent table clamp.} A first mock-RDE run posed a
+  peak chamber temperature $T_0 = 4162$~K --- past the 3900~K edge
+  of the tables --- and the interpolation routine
+  \code{np.interp} \emph{clamps silently} at the edge instead of
+  complaining. The run completed, with quietly flattened
+  thermodynamics. Fix: the mock cycle was re-posed inside table
+  validity (peak 3850~K), and a table-range rejector now fails any
+  phase whose $T_0$ leaves the tables --- the first thing to check
+  when a measured cycle is fed in.
+\end{enumerate}
+
+\section{Step 7 (assembly): the free-jet sign trap}
+\label{app:signtrap}
+
+On the free jet edge --- the boundary where the exhaust meets the
+atmosphere, on which the pressure is prescribed and the position is
+solved --- the first version of the cell wrote the speed condition
+by substituting moduli,
+$v = +\sqrt{q_{p_a}^2 - u^2}$ (Figure~\ref{fig:freejet}b). That
+form silently allows only outward turns, because the square root is
+never negative; a \emph{compressing} jet must turn inward. The
+unit-test rejector U-3 --- a compressing edge posed on exact data
+--- caught the clamped spurious root. The cell was reformulated
+with the turning \emph{angle} $\theta_4$ as the unknown, so the
+sign of the turn lives inside the unknown itself and both
+directions are reachable --- the formulation certified 6/6 in
+Chapter~\ref{ch:plug}.
+
+\section{The plug assembly: four structural lessons}
+\label{app:pluglessons}
+
+The plug march of Chapter~\ref{ch:plug} reached its certified form
+through four measured structural failures. Each was caught by the
+closed-form oracle --- an exactly known answer the march must
+reproduce --- diagnosed to a mechanism, and closed by a design
+change. The design presented in Chapter~\ref{ch:plug} \emph{is} the
+sum of these fixes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_plug_lessons.pdf}
+\caption{The three measured lessons, drawn in the exactly known
+test world; all panels are axial coordinate $x$ [m] horizontally
+against radial coordinate $y$ [m] vertically, with the mesh the
+march actually built. (1)~The degenerate edge root: successive edge
+points pile up at one place instead of advancing
+(Section~\ref{app:edgeroot}). (2)~With a fixed number of mesh rows
+per column, the top of the mesh falls away from the widening jet
+(red); adding one row per column --- the same device the bell march
+uses --- keeps the mesh filling the jet (green). (3)~The
+characteristic arriving at the wall is a straight ray from the lip:
+the state is constant along it and varies strongly across it. With
+the foot of that ray forced onto the neighbouring column, the
+compatibility relation was closed by a single midpoint rule over a
+long chord whose end states are interpolated \emph{across} rays ---
+systematically biased. The fix is the multi-column foot search of
+Chapter~\ref{ch:plug}.}
+\label{fig:pluglessons}
+\end{figure}
+
+\subsection{Lesson 1: the degenerate edge root}
+\label{app:edgeroot}
+
+In the first assembly the free-edge cell was fed from the
+\emph{previous} column, and on straight stretches of the edge the
+Newton solve returned the new point exactly on top of the old one
+(pt4 = pt3) --- a zero step, repeated at every column: the edge
+piled up and never advanced.
+
+The mechanism (Figure~\ref{fig:edgeroot}) is worth stating because
+it is generic. Newton does not march, it \emph{solves}: anything
+that zeroes the residuals is a valid root, including a useless one.
+At pt4 = pt3 the streamline condition is satisfied identically
+($0=0$), the pressure condition already holds (pt3 is on the free
+boundary by construction), and the third equation turns on what pt3
+\emph{is} in the mesh. It was created, one step earlier, as the
+exit of a characteristic segment launched from the previous
+column's top data --- the mesh literally records a characteristic
+terminating at pt3. A sender taken from that same data therefore
+lies on pt3's own characteristic (exactly so where flow and edge
+are straight, since there the discrete segments lie exactly on the
+straight characteristics; to second order where they curve --- which
+is why the bug hid until the edge ran straight), and re-drawing
+that line can only re-find its recorded exit.
+
+The fix: sweep each column from the bottom up and feed the edge
+from its \emph{own} column's top interior point --- a point on the
+\emph{next} characteristic of the family, whose line is not asked
+to hit pt3 at all but to cross the \emph{streamline} through pt3.
+That is a shallower line, which a steeper line from below catches
+strictly downstream.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_edge_root_geometry.pdf}
+\caption{The geometry of the degenerate edge root; both panels are
+axial coordinate $x$ [m] against radial coordinate $y$ [m], drawn
+at the scale of two mesh cells. (a)~The broken feed: pt3 exists in
+the mesh only as the recorded exit of a characteristic segment from
+the previous column's top data, so a sender taken from there sits
+on pt3's own characteristic --- re-drawing that line can only
+re-find its recorded exit, giving pt4 = pt3 and a zero step.
+(b)~The fix: the current column's top interior point sits on the
+\emph{next} characteristic, and its line must cross the
+\emph{streamline} through pt3 --- a shallower target, caught
+strictly downstream, so the root is genuinely advanced. What to
+compare: the angle between the two lines in each panel.}
+\label{fig:edgeroot}
+\end{figure}
+
+\subsection{Lesson 2: rows must grow with the jet}
+
+The first mesh carried a fixed number of rows per column. But the
+jet widens downstream: the nearly horizontal characteristics of one
+family dragged the fixed rows down while the free edge climbed away
+from them, until the top of the mesh fell out of the jet altogether
+and the two families tangled (Figure~\ref{fig:pluglessons},
+panel~2). The bell march survives the same geometry by adding one
+row per column; the plug march now does the mirrored same --- each
+column's free-edge point becomes a new top row, so every column
+brings one new characteristic and the mesh keeps filling the jet.
+
+\subsection{Lesson 3: foot adjacency vs step accuracy}
+\label{app:footbias}
+
+With the edge and the rows fixed, the wall cell still failed its
+pressure check downstream, and a probe \emph{named} the defect:
+wall angles exact to four decimals everywhere, but wall speeds
+biased and drifting once the segments grew long.
+
+The first scheme confined the wall cell's \emph{foot} --- the point
+on the previous column from which the arriving characteristic
+departed --- to the first segment of the adjacent column. To keep
+the foot there the columns had to be paced, with the axial spacing
+allowed to grow up to a clamp of $0.30$. A single midpoint closure
+over a chord that long, crossing the expansion fan, is
+systematically biased: the chord itself lies along a straight ray
+from the lip, along which the state is constant, but its end states
+are interpolated \emph{across} rays on the column, and the midpoint
+rule compounds that transverse error over the whole long segment.
+Intermediate rounds (aligned columns, row growth, pacing) raised
+the wall-pressure agreement from $22\%$ to $55\%$ of stations and
+made the failure reproducible at the same station at both
+resolutions --- the signature of a systematic closure defect rather
+than noise.
+
+The fix is the multi-column foot search now in the march
+(Chapter~\ref{ch:plug}): columns are placed at the fine prescribed
+stations, and the wall cell searches the whole previous column,
+stepping further back if needed, for the segment that brackets its
+arriving characteristic. Chords shrink from the $0.30$ clamp to the
+station spacing, and a midpoint closure's error falls with the
+square of the chord. That single change took the wall-pressure
+agreement from $55\%$ to $98\%$ of stations and brought the edge
+angle into band.
+
+\subsection{Lesson 4: the ghost rows, and why one oracle is not
+enough}
+\label{app:ghostrows}
+
+With the foot search in place the suite still read 3/5: every cell
+Newton-certified, edge and wall pressure in band --- and mass
+conservation off by $+9\%$. The probe found a whole limb of mesh
+\emph{below the spike}, carrying the upstream uniform state
+(Figure~\ref{fig:plugbefore}).
+
+Mechanism: with fine stations, a near-wall row's characteristic
+terminates on the wall \emph{between} two stations. The march kept
+prolonging that row anyway, and for such a row the only crossing
+Newton can still find is the \emph{backward} one --- a perfectly
+valid root of the cell's equations, converged and certified, on the
+wrong branch. (The foot search was already detecting the
+terminations --- its foot row climbed one row per column --- but
+nothing acted on them.) The fix is the row \emph{consumption} of
+Chapter~\ref{ch:plug}: at a solid wall the incoming family
+terminates, so rows of the previous column below the new foot are
+retired and the column re-indexed --- the exact dual of the edge
+adding one row per column. Mass then closes to $0.026\%$.
+
+The methodological lesson is the reason this appendix exists. The
+defect was invisible to the pointwise oracles (P-1, P-2) and to
+Newton certification, because every individual cell really had been
+solved correctly; only the \emph{global} mass balance saw it.
+Suites need conservation checks precisely because wrong-branch
+roots certify locally.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_plug_before.pdf}
+\caption{The ghost-limb regression, reproduced live with the
+carrier's diagnostic switch (\code{consume=False}). (a)~Axial
+coordinate $x$ [m] against radial coordinate $y$ [m]: characteristics
+that should have terminated at the wall are prolonged past it and
+grow a limb of mesh below the spike (red points) --- every cell of
+it Newton-certified, all of it on the wrong branch. (b)~The same
+run measured on the wall: $x$ [m] against wall pressure [bar],
+against the closed-form answer. The two lie on top of each other
+--- which is the point: the defect is invisible to the pointwise
+checks and was caught only by the mass balance, off by $+9\%$.
+Compare with the certified state, Figure~\ref{fig:plug}.}
+\label{fig:plugbefore}
+\end{figure}
+
+\section{Step 10: the posing lessons of the plug cycle}
+\label{app:plugcycleposing}
+
+The truncated-plug study (Chapter~\ref{ch:plugcycle}) reached its
+certified form through three measured corrections --- two about how
+the problem must be \emph{posed}, and one where the theory itself
+rejected a wrongly transplanted test. All three are drawn in
+Figure~\ref{fig:plugposing}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_plug_posing.pdf}
+\caption{The three posing lessons of step 10, drawn from the
+engine's own machinery and the numbers of record. (a)~Axial
+coordinate $x$ [m] against radial coordinate $y$ [m]: the valley
+spike. Posing the same lip fan at $M_{p_a}=2.35$ turns the flow
+past axial ($\theta_E=+15^{\circ}$) and the ``spike'' streamline
+climbs \emph{above} the lip instead of descending; the corrected
+posing ($M_{p_a}=1.95$, $\theta_E\approx0$) gives a genuinely
+descending spike. (b)~Cycle phase (the five phases, from wave
+passage to tail) against the wall pressure each phase produces at
+the start line [bar], with the shared ambient $p_a$ drawn as a
+line. At a chamber pressure ratio of $2.5$ every phase sits
+\emph{above} the ambient --- underexpanded, and free to adapt
+inside the domain. Rescaling the same ladder to the certified
+$PR=10$ mock cycle puts the low phases far \emph{below} $p_a$: a
+shocked start, which the shock-free march cannot represent. That
+gap is what bounds the usable cycle. (c)~The truncation length $l$
+[m] as a number line, marking where each candidate answer falls:
+the expectation transplanted from the bell (design at the mean
+phase, red cross) is refuted by the measured cycle optimum
+$l^{*}=2.103$ --- an interior compromise sitting near, but strictly
+short of, the peak design --- with the per-phase optima
+($\triangledown$) spread out in the order the plug theorem
+predicts.}
+\label{fig:plugposing}
+\end{figure}
+
+\subsection{The valley spike}
+
+The first world posed the ambient pressure too low (the mean-phase
+pressure at Mach $2.35$). The fan at the cowl lip then turned the
+flow by $+40^{\circ}$ --- past axial --- and the streamline meant
+to be the spike dived, reversed and climbed \emph{above the lip}: a
+valley, not a spike, with the wall approaching the free edge and
+every downstream check breaking on the geometry. The fix is the
+classic plug design condition: pose the ambient so that the fan
+turn roughly cancels the incoming flow angle, i.e.\
+$\theta_E \approx 0$ (the flow leaves axially, adapted to the
+ambient), which makes the streamline genuinely descending.
+
+\subsection{The plug feels the ambient: the shock-free cycle bound}
+
+A bell nozzle never feels the ambient: its flow is computed to a
+fixed exit whatever the outside pressure, and $p_a$ enters only the
+score. A plug feels it directly, through the free edge where
+$p = p_a$ is imposed on the flow itself.
+
+Running the certified mock cycle, whose chamber pressure ratio
+between the strongest and weakest phase is $PR = 10$, against one
+shared ambient put the low phases $6\times$ overexpanded already
+\emph{at the start line} --- a regime with shocks, outside what an
+isentropic march can represent. The failure was measured, not
+hypothetical: the free-edge cells blew up and the garbage descended
+row by row to the wall. Newton certification caught it, and the
+scaling-law check read a spread of $14.6$ where it should have read
+machine zero.
+
+A cycle for a plug study must therefore be posed \emph{shock-free}:
+every phase underexpanded at the start and adapting within the
+domain. With one shared ambient that bounds the usable pressure
+ratio --- here $PR = 2.5$. The theory's statements do not depend on
+$PR$, and the corpus already conditions on shock-free flow; but the
+bound is a real modeling limit worth stating, because cycles as
+violent as $PR = 10$ put their low phases into shocked plug
+operation that this engine cannot yet represent.
+
+\subsection{The theory rejecting the wrong test, twice}
+
+Two of the first draft's checks failed --- and both failures were
+the theory working, not the code.
+
+First, the draft transplanted the bell's collapse result (``the
+cycle optimum is the design for the mean-pressure phase'') to the
+plug. It failed: the measured optimum sits at $l^{*} = 2.10$
+against a mean-phase design of $1.28$. That is the
+\emph{anti-collapse} --- the opposite side of the theory's
+dichotomy --- because the collapse result is proved only for a
+fixed, fully flowing wall, which a truncated plug with a free edge
+is not. The check was inverted into the anti-collapse oracle now in
+Chapter~\ref{ch:plugcycle}.
+
+Second, the draft required the per-phase votes at $l^{*}$ --- each
+phase's wall pressure minus the ambient at the truncation plane ---
+to vary monotonically with phase and change sign once, as certified
+for the bell in Chapter~\ref{ch:cycle}. They do not: on a plug the
+adaptation waves make the wall pressure oscillate about $p_a$, so
+pointwise votes sample an oscillation and the wave-passage phase
+can vote negative at a length below its own optimum. The theory
+claims only the averaged balance and the compromise structure, and
+exactly those pass; the over-specified checks were replaced by
+theorem-faithful ones (a genuine spread of the per-phase optima;
+$l^{*}$ a strict interior compromise).
+
+The lesson generalizes: an oracle may be transplanted from one
+problem class to another only together with the hypotheses that
+prove it.
+\section{Step 15: two instruments, one constraint}
+\label{app:twoinstruments}
+
+The inlet-angle sweep held its mass constraint by a root search: move
+the spike's start radius until the flow crossing the start line
+carries the reference mass flow. It then graded itself by measuring
+that same mass flow. For several sessions the grade came back at
+$7\times10^{-5}$ relative --- small, but an order above the band the
+refinement supported, so the check failed and the failure resisted
+the obvious fixes. Widening the band would have buried it; refining
+the quadrature did nothing.
+
+The residue was not an error at all. The constraint was being
+\emph{set} with one rule and \emph{graded} with another. Sizing used
+the trapezoid of the product $\rho\, u\, 2\pi y$; the verdict used
+the march's own column functional, which multiplies midpoint means,
+$\rho_m u_m\, 2\pi y_m$. Both are second-order, both are correct, and
+they differ on every interval by a quarter of the product of the
+increments --- which on $61$ rows is exactly the $7\times10^{-5}$
+that would not go away.
+
+Sizing with the functional that grades removes it at the source: the
+mass residue falls to between $10^{-15}$ and $3\times10^{-10}$, i.e.
+the constraint is satisfied to machine precision, and the derived
+band ($2.9\times10^{-4}$) is no longer being asked to cover a
+disagreement between two instruments.
+
+A second failure dissolved with it. One outward-turning candidate had
+been failing Newton certification at a worst residual of $6.5$, and
+had been read as a marching limit of that configuration. It was not:
+with the annulus correctly sized, the same candidate certifies at
+$0.05$. A mis-set constraint had been quietly deforming the geometry
+that the march was then blamed for.
+
+The lesson is the sharper form of the one in
+Chapter~\ref{ch:compare}: it is not enough for a constraint and its
+verdict to measure the same \emph{quantity}. They must be the same
+\emph{functional}. Two correct rules for one integral will disagree
+at their common order of accuracy, and that disagreement will present
+itself as a physical defect.
+\section{Step 16: three ways to mismeasure with two points}
+\label{app:twopoints}
+
+Building the free-form spike produced the same error three times in
+one session, in three disguises. It is worth stating once.
+
+\emph{First}, the check that the spline basis can represent the
+contour it starts from compared two knot counts and read their ratio
+as a convergence rate. The ratio was $1.5\times$, far too slow for
+cubic interpolation, and the check failed. But two competing errors
+are present --- one at the spline's free right end, one at the
+station where the contour actually bends --- and which of them
+dominates alternates as knots are added. Two adjacent counts sample
+whichever happens to be winning. Across a ladder of four counts the
+basis reduces its error by $28\times$ and is perfectly adequate.
+
+\emph{Second}, the mass constraint was set with one quadrature rule
+and graded with another (Appendix~\ref{app:twoinstruments}). Two
+correct second-order rules for the same integral disagree at their
+common order, and that disagreement presented itself as a physical
+defect that no amount of refinement removed.
+
+\emph{Third}, the adjoint was graded against a central difference
+whose error band was estimated by halving the step once. That
+estimate assumes the error is truncation. Here it is not: the
+replayed march is only piecewise smooth in the design vector, so the
+difference carries noise that does not shrink with the step. Measured
+across five steps the discrepancy wanders instead of falling as
+$h^2$. The two-point band therefore described nothing, and a correct
+adjoint was reported as a failure.
+
+The common structure is this. \textbf{Two points can measure a
+difference, but never a rate, and never the reliability of the
+instrument that produced them.} Wherever this program grades something
+against a derived band, the band must come from a ladder --- three
+points at least --- and the ladder must be inspected rather than
+reduced to a single ratio. Where the underlying quantity is not
+smooth, the ladder measures scatter rather than truncation, and that
+scatter \emph{is} the honest band.
+
+The corollary is worth keeping too: all three failures pointed at the
+wrong culprit. In the first the basis was blamed, in the second the
+flow, in the third the adjoint. In every case the instrument was at
+fault, and in every case the instrument was the thing not being
+measured.
+\section{The referee's own defects, and a binary that could not be rebuilt}
+\label{app:geno}
+
+Posing the classical construction in this document's world
+(Section~\ref{sec:vsrao}) required running the independent Fortran
+code at a mass and a length it had never been asked for, and that
+exposed three defects and one environment failure. They are recorded
+because two of the three were ours, and because the environment
+failure is the kind that invalidates a referee silently.
+
+\emph{A NaN where a refusal belonged.} The code's design-curve
+integrator can exhaust its step budget without reaching a corner, an
+axis or its mass target; that is base behaviour and it used to degrade
+quietly. The mass accumulator this program added propagated straight
+through it and returned a mass of NaN. A caller then compared that NaN
+against a target and got a residual that is neither positive nor
+negative, which silently poisoned a bisection and finally surfaced as
+a NaN entropy in the thermodynamics. The fix tests the increments
+\emph{before} accumulating --- adding and then subtracting a NaN does
+not undo it --- and stops with a distinct reason the caller can
+reject.
+
+\emph{A solution to the wrong problem.} With the guard in place the
+length bisection ran, and returned a design that met the length exactly
+while missing the mass by $63.6\%$: it had found the root on a branch
+where the curve stops at its corner instead of at its mass target.
+Both roots exist; only one solves the two-constraint problem that was
+posed. The validity test now requires termination on mass whenever
+mass matching is on.
+
+\emph{A budget mistaken for a limit.} The step cap of $500$ was
+binding on long curves. The design that expands to this document's
+ambient runs to $5.8$ m and needs several thousand steps; at $500$ it
+stopped mid-curve and reported whatever length it had reached, which
+is why the classical spike for our conditions appeared not to exist.
+Raising the cap cannot affect a curve that already terminates, and the
+reference case reproducing exactly is what proves it.
+
+\emph{The binary could not be rebuilt.} The working executable had
+been compiled with a compiler and a linear-algebra library that are no
+longer installed. Rebuilding from the same source with the current
+toolchain produces a binary that \textbf{fails the code's own
+reference case} --- the exit-angle scan collapses and the prescribed
+exit Mach becomes unreachable --- while the same source at $-O0$
+reproduces the reference exactly. The code is therefore
+optimization-fragile under the current compiler, in a way its previous
+one tolerated.
+
+The attribution matters more than the fix. The failure appeared
+immediately after our edits, and the obvious inference was that we had
+broken it. What settled the question was removing our edits entirely
+and rebuilding: the failure reproduced identically. Only then was it
+legitimate to say the compiler was at fault --- and only then was it
+safe to keep the fix.
+
+\section{An instrument that guessed instead of refusing}
+\label{app:silentclamp}
+
+The field meter of Chapter~\ref{ch:status} measures mass and momentum
+through a vertical cut, and its first version reported a mass excess
+of $6$--$7\%$ that decayed downstream. The shape of the error was
+persuasive: it looked like a near-field resolution defect, and the
+obvious suspect --- the first marched column's known coverage gap ---
+was tested first. Filling that gap changed nothing at all, at any
+setting.
+
+The cause was that the meter did not know where the jet was. A
+characteristics march emits free-boundary points only once the
+marching front reaches the boundary, so its boundary polyline begins
+at $x = 2.69$ and does not exist upstream of that. The routine that
+looks up the jet radius used a standard interpolation, which
+\emph{clamps} silently outside its data range and returned the
+polyline's first value as though it were the local radius. Every cut
+upstream then spanned a phantom outer band, and because area goes as
+$y^{2}$, an extra $0.07$ m of radius at $y \approx 2.3$ is several
+percent of the mass.
+
+The diagnosis was a single number: at a station essentially on the
+start line, where the answer is known by construction to twelve
+digits, the meter read $+6.35\%$. An instrument that is wrong where
+the answer is known is wrong everywhere.
+
+The repair is not a better guess but a refusal: the lookup now raises
+outside its span. Restricted to the window where the boundary actually
+exists, the mass residual is $0.6$--$1.0\%$ rather than $7\%$. An
+upper envelope of the mesh was tried as a way to extend the boundary
+and is recorded here as \emph{wrong}: a vertical cut through a
+characteristics mesh is sparsely populated, so a per-station maximum
+reads the near-wall nodes and under-reports the jet radius by up to
+$96\%$.

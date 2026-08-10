@@ -1,0 +1,241 @@
+\chapter{The truncated plug under the cycle}
+\label{ch:plugcycle}
+
+Chapter~\ref{ch:plug} can march one plug at one chamber condition.
+A rotating detonation engine never offers one condition: its
+detonation wave sweeps the annulus and a fixed cross-section sees
+the chamber pressure spike and blow down, over and over. This
+chapter cuts the spike short --- real plugs are always truncated,
+because the long thin tail weighs a great deal and produces almost
+no thrust --- and asks where to cut when the chamber pressure
+swings like that. The answer turns out not to be ``design for the
+average condition'', and the difference is measurable.
+
+\section{The question}
+
+Two nozzle types behave in opposite ways over a cycle. The fixed
+bell \emph{averages}: its cycle optimum is the design for the
+single mean-pressure condition, which the engine certified in
+Chapter~\ref{ch:cycle}. The full plug instead \emph{maximizes}:
+every phase's optimum contains every longer plug, so the ideal plug
+is sized at the strongest phase. The \emph{truncated} plug is where
+both mechanisms fail at once --- ``the first genuinely averaged
+shape problem''~\cite{theory}. Can the engine measure all three
+claims: the ordering, its break, and the averaged optimality
+condition that replaces it?
+
+\section{How it works, in full}
+
+\subsection{What the theory claims, and what it assumes}
+
+Two pieces of vocabulary first. A \emph{cycle phase}
+$\xi \in [0,1]$ labels where you are in the repeating chamber
+history --- $\xi$ near the wave passage is the high-pressure part,
+$\xi$ near the end of the blowdown is the low-pressure part
+(Chapter~\ref{ch:cycle}); the cycle mean $\mu$ is the time-like
+average over those phases. And a plug is \emph{truncated} at length
+$l$ when the spike is cut off there and closed with a flat base:
+the whole design question is what $l$ should be.
+
+The corpus's plug result (its T-T4) is proved under an
+\emph{ideal-adaptation} closure --- an assumption made to keep the
+proof tractable: that downstream of each phase's full-expansion
+point the wall pressure clamps exactly to the ambient $p_a$, and
+upstream of it scales with the chamber pressure. Under that
+assumption the thrust of a given phase, $F(l;\xi)$, never decreases
+as the plug is extended and becomes exactly constant beyond a
+phase-dependent length $l(\xi)$, with $l(\xi)$ larger for stronger
+phases. Each phase's set of optimal lengths is then a half-line
+$[l(\xi), \infty)$, and these half-lines are \emph{nested}: the
+strongest phase's half-line sits inside all the others. Nesting is
+what makes the problem collapse --- one length is optimal for
+everybody at once, so the best average equals the average of the
+bests,
+$\max_\Sigma \int F\,\mathrm{d}\mu = \int \max F\,\mathrm{d}\mu$,
+attained by the untruncated plug sized at the peak phase.
+
+The sharpness caveat attached to that theorem says what destroys
+the nesting: a cap on length, a base-pressure model, or adaptation
+that is not ideal. Once nesting is gone the equality becomes a
+strict inequality, $\max\int < \int\max$, and the optimum instead
+satisfies an \emph{averaged corner condition} at the truncation
+plane --- the per-phase wall-pressure votes there must balance in
+the cycle mean. What the engine adds is precisely the quantity the
+closure assumes away: the real marched wall pressure does not
+clamp. Downstream of adaptation it undershoots and overshoots
+$p_a$, and the size of that departure \emph{is} the adaptation
+break, measurable phase by phase.
+
+\subsection{Averaging the problem is not averaging the condition}
+\label{sec:avgnotavg}
+
+The cycle mean $\mu$ is a time-like average over the phases, and it
+is tempting to conclude that the ``$\mu$-averaged corner
+condition'' is just the mean-pressure design in disguise. It is
+not, and the distinction is the whole content of the dichotomy.
+\emph{Mean-pressure design} means: build the single steady flow of
+the averaged \emph{state} --- the phase whose chamber pressure is
+$\bar P_0$ --- and optimize that one flow. For the fixed bell this
+is legitimate, because the bell's flow and thrust are \emph{linear}
+in the phase pressure: the scaling law (Lemma~A) says the whole
+field scales with $P_0$ on a fixed geometry, with the ambient
+entering only additively through the pressure gauge. For a linear
+problem the average of the solutions is the solution of the
+average --- average-then-solve equals solve-then-average. That is
+exactly why the bell collapses.
+
+\emph{The averaged corner condition} instead solves each phase as
+its \emph{own nonlinear flow}, lets each cast its own vote
+$p_w(l^{*};\xi) - p_a$ at the truncation plane --- positive means
+that phase is still pushing there and wants more plug, negative
+means it is being dragged and wants less --- and averages the
+\emph{optimality condition}:
+$\int (p_w(l^{*};\xi) - p_a)\,\mathrm{d}\mu = 0$. The two
+coincide only if the map from phase to vote is affine --- and the
+plug breaks that affinity through its free edge: the ambient is
+\emph{shared and fixed}, it does not scale with the phase, so each
+phase's wall pressure saturates toward the \emph{same} $p_a$ at its
+\emph{own} adaptation point. Mean-of-votes is not
+vote-at-the-mean. The suite below measures the difference
+directly: the mean-pressure design gives $l = 1.280$~m, the
+averaged condition puts the optimum at $l^{*} = 2.103$~m ---
+nowhere near. In one line: the bell result averages the
+\emph{problem}; the plug result averages the \emph{condition}, and
+averaging commutes with linear problems only.
+
+\subsection{One march per phase covers every truncation}
+
+In supersonic flow, disturbances cannot travel upstream: what
+happens at a point is set entirely by a bounded region behind it,
+its \emph{domain of dependence}. On a \emph{fixed} spike,
+truncating at $l$ removes wall only downstream of $l$, so nothing
+at $x < l$ can feel the cut. One full-spike march per phase
+therefore yields the whole family of truncations in closed form,
+\begin{equation}
+J(l;\xi) \;=\; F_{\rm in}(\xi)
+\;+\; \int_{x_0}^{l} \left(p_w(x;\xi) - p_a\right)
+\,2\pi y_w\,(-\mathrm{d}y_w),
+\label{eq:trunc}
+\end{equation}
+where every pressure is measured relative to ambient, so the free
+edge contributes zero (the pressure on it \emph{is} $p_a$) and a
+base plane at $p_b = p_a$ contributes zero as well. Differentiating
+in $l$ gives the marginal condition $\mathrm{d}J/\mathrm{d}l = 0$,
+i.e.\ $p_w(l) = p_a$ --- the plug corner condition at the
+truncation plane: extend the plug exactly as far as its wall is
+still pushing harder than the atmosphere. Its cycle average over
+phases is the averaged corner condition above. The five-phase
+truncation study therefore costs five marches, and every check
+below reads the cached wall-pressure curves.
+
+\subsection{The world}
+
+Axisymmetric, real-gas NASA tables, one fixed piece of hardware
+marched by every phase. Cowl lip at $(0, 2)$; annular flow arrives
+at $M_i = 1.2$ aimed toward the axis ($\theta_i = -25^{\circ}$);
+the lip fan --- the corner expansion of Chapter~\ref{ch:plug},
+built per phase and consistent with the tables --- expands it down
+to the shared ambient. The ambient is posed so that the fan turn is
+about $|\theta_i|$, i.e.\ the flow leaves roughly axially
+($\theta_E \approx 0$): the classic plug design condition, which
+makes the spike --- one streamline of the mean phase's fan field
+--- genuinely \emph{descending} toward the axis. The start line
+poses the same $(M,\theta)(y)$ profile for every phase with each
+phase's own thermodynamics: exact scaling-law data for the
+pressure-only cycle, and the natural ``same injector Mach profile''
+posing for the mock cycle. Each phase runs through the certified
+plug march of Chapter~\ref{ch:plug} (prescribed wall, multi-column
+foot search, row bookkeeping); the cycle itself is the certified
+construction of Chapter~\ref{ch:cycle} (five log-uniform phases,
+pressure ratio $PR = 10$, mock temperature ratio $TR = 1.306$).
+
+\section{What was built}
+
+\carrier{validation/a1\_plug\_cycle.py}: the world builder
+(per-phase tables-consistent fan, mean-field spike streamline), the
+per-phase march kits with disk cache, the closed-form truncation
+family~\eqref{eq:trunc}, and two stages --- \code{t3} (pressure-only
+cycle: the wall-level scaling law and the truncation-level
+anti-collapse) and \code{mock} ($P$ and $T$ profiles: the ordering
+of the per-phase optima, the measured adaptation break, the
+averaged corner votes, the strict $\int\max > \max\int$ gap, the
+peak-design penalty) --- plus a corrupted-ambient rejector.
+
+\section{Results of record}
+
+\textbf{Pressure-only cycle (the plug anti-collapse): 5/5 PASS.}
+All phase marches Newton-certified. The wall-level scaling law
+appears live exactly where it must and only there: on the part of
+the wall still shielded from the ambient --- upstream of the first
+edge-arrival, $x < 0.81$, found by tracing the edge's $C^{-}$ back
+to the wall --- the scaled wall pressures $p_w/P_0$ collapse to one
+curve to $4.7\times10^{-15}$, machine zero. Beyond that station the
+collapse breaks, and that break \emph{is} the adaptation mechanism,
+cleanly localized. The truncations then measure the dichotomy: the
+cycle-optimal $l^{*} = 2.103$ sits far \emph{above} the
+mean-pressure design ($l = 1.280$) and just below the peak design
+($l = 2.336$) --- the plug does \emph{not} average, it shifts
+toward the peak, held short of it only by the real adaptation
+break. The per-phase optima
+$l(\xi) = 2.336, 2.061, 1.125, 1.047, 1.006$ increase with the
+phase pressure: the nesting \emph{order} of the plug theorem,
+live.
+
+\textbf{Mock RDE ($P$ and $T$ profiles), the genuine average: 9/9
+PASS.} The same ordering appears again ($l(\xi) = 2.336 \ldots
+1.012$). The non-ideal adaptation is \emph{measured}: each interior
+phase loses thrust past its own $l(\xi)$ (relative losses
+$1.6\times10^{-4}$ to $2.0\times10^{-3}$) --- the ideal clamp does
+not hold in the real flow, and that loss is exactly the quantity
+that breaks the ideal nesting. Consequently the strict inequality
+of the sharpness caveat is resolved:
+$\int\max - \max\int = 1.07\times10^{4}$ N ($2.3\times10^{-4}$ of
+$J$), beyond its derived band; the penalty for designing at the
+peak is $2.2\times10^{-4}$ of $J$, also resolved. At the blind
+cycle optimum the averaged corner condition holds: the vote mean is
+$+1.8\times10^{4}$ Pa against a balance band of $3.1\times10^{5}$,
+while individual votes reach $\pm1.4\times10^{6}$ --- and the
+optimum is a strict interior compromise (the per-phase optima
+spread over 1.32 in $l$; no extreme phase owns $l^{*}$). A
+corrupted ambient moves the vote mean $2.3\times$ outside the band
+--- rejected. The road here --- two posing lessons and two checks
+the theory itself rejected --- is Appendix~\ref{app:plugcycleposing}.
+
+\textbf{A measured lesson that is new physics, not a bug.} The
+bell's pointwise vote structure --- monotone in phase, exactly one
+sign change (Chapter~\ref{ch:cycle}) --- does \emph{not} carry over
+to the plug. Downstream of adaptation the wall pressure
+\emph{oscillates} around $p_a$, because the lip fan reflects off
+the free edge and comes back down onto the wall. Pointwise votes
+therefore sample an oscillation, and the wave-passage phase can
+vote negative at a length below its own optimum. Only the averaged
+balance and the compromise structure survive --- which is exactly,
+and only, what the sharpness caveat claims.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_plug_cycle.pdf}
+\caption{The truncated plug under the cycle, measured. (a)~Wall
+pressure along the fixed spike for each phase: $x$ [m] against
+$p_w$ [bar], with the shared ambient $p_a$ drawn as a horizontal
+line. Look downstream of the shielded region: the curves do not
+clamp to $p_a$, they \emph{oscillate} about it --- the lip fan
+reflecting off the free edge back onto the wall. That oscillation
+is the real, non-ideal adaptation the theory's closure assumes
+away. (b)~The truncation families of Equation~\eqref{eq:trunc}:
+truncation length $l$ [m] against each curve's thrust deviation
+from its own maximum, $J(l;\xi) - \max_l J(l;\xi)$, in kN, so zero
+means ``at this phase's own optimum''. The per-phase maxima
+($\nabla$) spread from $l = 1.01$ to $2.34$~m in order of phase
+pressure, and each curve \emph{falls} past its own maximum --- the
+measured break of the ideal nesting, which would have kept them
+flat. The cycle mean $J_{\rm cycle}(l)$ (black) peaks at a
+compromise $l^{*}$ that no single phase owns. (c)~The votes at that
+optimum: cycle phase $\xi$ [--] against $p_w(l^{*};\xi) - p_a$
+[bar]. They are scrambled in sign order by the adaptation
+oscillation --- the bell's monotone vote structure does not
+transfer --- yet their cycle mean (dashed) balances at zero inside
+the derived band. That is the whole claim: not that any phase is
+satisfied, but that their average is.}
+\label{fig:plugcycle}
+\end{figure}

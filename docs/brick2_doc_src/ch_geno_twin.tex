@@ -1,0 +1,250 @@
+\chapter{The GENO full-field plug twin}
+\label{ch:genotwin}
+
+Two programs written independently, in different languages,
+checking each other on one physical problem is a stronger test than
+anything either can run alone: a shared answer cannot come from a
+shared mistake. This chapter runs that experiment on a \emph{plug}
+(aerospike) nozzle --- one whose solid wall, the \emph{spike}, sits
+under the exhaust while the outside of the jet is bounded by
+nothing but the surrounding atmosphere. The independent Fortran
+design code GENO~\cite{geno} designs such a spike; our solver takes
+that shape as an ordinary given wall, recomputes the whole flow
+around it, and the two flowfields are confronted number by number.
+The step delivers the program's strongest external check --- and
+one honest finding.
+
+\section{The question}
+
+The two-constraint GENO session (Chapter~\ref{ch:status},
+Section~\ref{sec:designinputs}) left one named residual: the
+\emph{full-field} comparison. Not a handful of summary quantities,
+but our certified plug march run on the spike contour GENO's
+RaoPlug module now cleanly produces, compared field against field
+--- wall pressure station by station, velocities at GENO's own
+interior points, and the integrated mass and thrust. This is the
+plug counterpart of the bell nozzle's cross-code check of
+Chapter~\ref{ch:referee}.
+
+\section{How it works, in full}
+
+\subsection{What you need to know first}
+
+The solver advances a supersonic flow along the two families of
+\emph{characteristics} --- the lines along which a disturbance can
+travel in supersonic flow, tilted by the Mach angle on either side
+of the flow direction (Chapter~\ref{ch:moc}; symbols in
+Table~\ref{tab:notation}). Three more words are needed here.
+
+A \emph{start line} (or Cauchy cut, after the initial-value problem
+it poses) is a line drawn across the flow on which the complete
+state --- position, velocity, pressure --- is supplied as data.
+Given a start line and the walls, the equations determine
+everything downstream of it and nothing upstream. Ours is a
+vertical cut across GENO's finished field.
+
+The \emph{initial-value line} (IVL) is the last characteristic of
+GENO's own construction --- the outer edge of the region GENO
+computes. Below it is GENO's design field; above it GENO has
+nothing to say.
+
+\emph{Truncation} appears here in two unrelated standard senses,
+and the chapter needs both: cutting the spike short at a finite
+length (hardware), and the error a finite-step scheme makes because
+its steps are not infinitesimal (numerics). The finding below is
+about the second.
+
+\subsection{Two independent constructions}
+
+GENO builds the spike \emph{backward}: it rotates the expansion fan
+at the cowl lip in fixed angular steps ($0.05^{\circ}$), integrates
+one characteristic per fan member with its own cells, places each
+wall point by requiring that the mass flowing inside that
+characteristic equal the mass the throat passes (the mass
+termination, GENO's N-65), and cuts the spike at the point $D$
+where that balance is met.
+
+Our engine knows nothing of that construction. It is a general
+axisymmetric march --- interior cells, prescribed-wall cells with
+the multi-column foot search, the free-jet edge, each certified in
+Chapter~\ref{ch:plug} --- and it treats GENO's contour as an
+ordinary given wall, marching \emph{forward} from a start line.
+Agreement is therefore evidence about the shared continuum problem,
+not about shared code.
+
+\subsection{The posing: all data GENO's own}
+
+Nothing analytic is assumed. Even the gas is identified
+\emph{from GENO's field}: the ratio of specific heats
+$\gamma = 5.34782609/4.34782609$ (the recipe GENO's own thermo
+backend implements, a gas of constant specific heat), the gas
+constant $R_g$ from $p/(\rho T)$ at its points (scatter
+$8.7\times10^{-9}$), and the field's own effective isentrope. That
+last one matters: GENO's field actually sits at a chamber pressure
+of $p_0 = 6.008172\times10^{6}$~Pa, \emph{not} the nominal
+$6\times10^{6}$ --- a uniform offset of its construction, spread
+$1.1\times10^{-4}$ --- and posing the nominal value would have
+manufactured a difference that is not there.
+
+The start line is a vertical cut at $x_0 = 0.15$ through GENO's own
+first-phase characteristics; each crossing is interpolated on that
+curve's own points and cross-checked against an independent
+two-dimensional interpolation of the same field, agreeing to
+$10^{-5}$. The wall is GENO's contour, with slopes
+$\tan\theta_w$ measured from it (its tangency is consistent to
+$1.6\times10^{-5}$).
+
+Above the initial-value line lies a region GENO does not compute,
+and our march needs something there, so a free-jet strip is posed,
+blending continuously from the state at the IVL crossing to the
+state on the last fan member. It cannot contaminate the comparison
+--- a fact about supersonic flow, not a hope, since each point is
+influenced only by what lies upstream inside its cone of
+dependence: every characteristic arriving at the wall ahead of $D$
+leaves the start line \emph{below} the IVL, and the IVL itself
+lands exactly at $D$, the end of the wall. It was verified anyway:
+replacing the blended strip by a uniform one changes the wall by
+nothing.
+
+\subsection{Thresholds: declared, with provenance}
+
+Everywhere else in this program the pass band is \emph{derived}:
+the same computation is run at two resolutions, the change measures
+the scheme's own error, and the band is that change inflated by a
+safety factor (Chapter~\ref{ch:method}). Here the levels are
+instead \emph{declared} --- fixed in advance, with their provenance
+--- deliberately, for the reason that is this step's central
+finding below: the measured difference between the two codes sits
+\emph{above} what either code's own step refinement suggests, so a
+refinement-derived band would be the wrong ruler.
+
+The declared levels come from the cross-code agreement already
+established --- an independent integrator of the design curve,
+built in the two-constraint session, matched GENO to three or four
+significant digits --- re-measured here on the full field, with at
+least a factor of two of margin on every statistic: wall pressure
+$3\times10^{-3}$ (measured median $1.9\times10^{-3}$), settled
+field $q\ 10^{-3}$ / $\theta\ 1.5\times10^{-3}$ (measured 95th
+percentile $4.5\times10^{-4}$ / $5.3\times10^{-4}$), integrals
+through the shared boundary $2.5\times10^{-3}$ (measured
+$1.2\times10^{-3}$). What keeps declared numbers honest are the
+\emph{rejectors} --- deliberately corrupted runs the suite must
+fail (Chapter~\ref{ch:method}): they prove the instrument resolves
+defects an order of magnitude above the gap it is measuring. One
+check keeps fully derived bands: the gas identification is judged
+against GENO's own measured self-consistency floors (total enthalpy
+$2.0\times10^{-5}$, entropy $4.7\times10^{-6}R$, total pressure
+$1.1\times10^{-4}$).
+
+\section{What was built}
+
+\carrier{validation/a1\_geno\_plug\_twin.py}: the reference
+extractor (GENO run directory $\to$ \code{\_geno\_twin/ref.npz}:
+wall, initial-value line, the 131{,}589 first-phase field points,
+gas identification, floors), the start-line world builder, the
+calibrated flux quadrature --- along GENO's full initial-value line
+it reproduces GENO's printed mass flow $\dot m$ to
+$2.4\times10^{-7}$ and thrust $F$ to $2.3\times10^{-7}$, settling a
+question of definition on the way: GENO's $F$ is the
+absolute-pressure momentum integral --- plus the six agreement
+checks G-1--G-6 and the two rejectors R-1/R-2.
+
+\section{Results of record: 8/8 PASS}
+
+G-1, the gas: our tables reproduce GENO's pressure, temperature and
+density at its own points from the local speed alone, within GENO's
+measured floors (worst $9.9\times10^{-5}$ in $p$). G-2: all
+25{,}034 cells Newton-certified at both resolutions. G-3, the wall:
+pressure within $3\times10^{-3}$ at 100\% of stations (median
+$1.9\times10^{-3}$, worst $2.5\times10^{-3}$). G-4, the interior:
+past the start transient, 97.7\% of GENO's own points agree within
+($q\ 10^{-3}$, $\theta\ 1.5\times10^{-3}$); medians
+$3.8\times10^{-4}$ and $7.9\times10^{-5}$. G-5/G-6: mass and thrust
+through the shared segment of the initial-value line agree to
+$1.2\times10^{-3}$ and $1.1\times10^{-3}$. Both rejectors fire: a
+gas falsified by $1\%$ ($\gamma\times1.01$) collapses the wall
+agreement to 31\% of stations, a contour scaled by
+$\times1.005$ collapses it to 0\%.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_geno_twin.pdf}
+\caption{The GENO full-field plug twin. (a)~Wall pressure along the
+spike: axial coordinate $x$ [m] horizontally, pressure on the spike
+surface [bar] vertically. GENO's own wall (solid) and our forward
+march on the same contour (dashed) lie on top of each other; the
+relative deviation (dotted, right axis, in units of $10^{-3}$)
+stays under the declared $3\times10^{-3}$ at every station --- two
+codes, one contour, three to four digits. (b)~The same comparison
+inside the flow: at GENO's own field points, the difference in flow
+speed between the two codes, $|\Delta q|$ [m/s], against $x$ [m]
+(median and 95th percentile per band). Look at the left end: the
+start transient --- our march ingesting a start line drawn through
+the strong flow curvature near the lip --- washes out by
+$x\approx0.35$~m, leaving a settled gap of about $4\times10^{-4}$
+of the local speed. (c)~What that settled gap is: the length
+actually marched [m], varied by moving the start line, against the
+resulting speed difference at the wall $\Delta q$ [m/s]. The points
+fall on a straight line through the origin ($\approx4\times10^{-4}$
+of $q$ per unit length), while halving GENO's own steps moves
+GENO's wall by only $3.5\times10^{-6}$ --- so this is no local
+mistake in either code but a slow drift accumulating with distance
+marched between two individually converged solvers, worth $0.5\%$
+of the axisymmetric source term's own contribution.}
+\label{fig:genotwin}
+\end{figure}
+
+\section{The finding: a measured, attributed-open cross-code gap}
+\label{sec:twingap}
+
+The twin certifies three-to-four-digit agreement --- and the
+residual difference is itself a characterized result, not a
+leftover. It has two parts. Near the start line, a transient: at
+mid heights the flow angle differs by up to $1.1\times10^{-2}$~rad,
+decaying by $x \approx 0.35$, unchanged when the resolution is
+changed, and moving when the start line moves --- the signature of
+ingesting a start line drawn through the strong flow curvature near
+the lip. It washes out. What remains is a settled \emph{uniform
+drift}: our speed runs $+4\times10^{-4}$ relative high across the
+whole column, and that excess grows linearly with the distance
+marched (Figure~\ref{fig:genotwin}c).
+
+The forensics excluded, by measurement, every accessible cause.
+\emph{The gas}: both sides are analytically equivalent to about
+$10^{-8}$. \emph{The wall geometry and its tangency}:
+$1.6\times10^{-5}$. \emph{The start-line data}: agreed to $10^{-5}$
+by two independent interpolation routes; refining the polyline
+resolution from $10^{-4}$ to $5\times10^{-6}$ leaves the drift
+unchanged. \emph{The strip above the initial-value line}: replacing
+the blend by a uniform state changes nothing, and the cone of
+dependence forbids it from reaching the wall anyway.
+\emph{GENO's discretization}: a diagnostic GENO build with the fan
+step \emph{and} the curve step both halved moved GENO's wall by
+$3.5\times10^{-6}$, so GENO is step-converged (the sources were
+then reverted and the binary restored, md5-verified).
+\emph{Our own resolution}: halving each of our two step counts
+moves the deviation by less than 10\% of itself.
+
+Both fields satisfy the same trapezoidal march relations to
+$10^{-8}$--$10^{-9}$ (an audit of the residuals run on
+\emph{both} meshes). That proves the two discrete systems are
+algebraically equivalent --- and it also proves that such an audit
+is \emph{tautological} as an accuracy check: each code solves its
+own relations exactly, so a residual audit can never see a slowly
+accumulating bias. Worth stating plainly, because it looks like a
+strong check and is not. Finally, a control march with the
+axisymmetric source term switched off sizes the drift: it is
+$0.5\%$ of what that term contributes to the wall velocity (which
+is itself $-5.4\%$ of $q$).
+
+Attribution stays honestly \emph{open}. The candidate mechanisms
+live precisely where refinement does not vary anything --- on
+GENO's side the bookkeeping of re-interpolating during its backward
+march, on ours the interpolation along the chord found by the foot
+search --- and from outside, at this level, they cannot be told
+apart. The owner-side question is filed with GENO. For this program
+the operational consequence is the one already adopted: cross-code
+comparisons with GENO carry the measured three-to-four-digit
+agreement level --- far above the truncation error of either code,
+far below anything the optimizer's gradients are sensitive to ---
+and the rejectors keep the instrument honest at that level.

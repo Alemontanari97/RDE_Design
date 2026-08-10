@@ -1,0 +1,300 @@
+\chapter{Status, what remains, and reproduction}
+\label{ch:status}
+
+This chapter is the ledger. It lists every test suite the program
+owns and its verdict, states exactly which quantities a design run
+may fix and which it may move, says what is not yet built, and
+gives the command that re-runs each result from scratch. Nothing
+here is new physics: it is the part a reader needs in order to
+check the rest.
+
+\section{Status of every suite}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Step & Carrier (\code{validation/}) & Verdict & Chapter \\
+\midrule
+Brick 1 march & \code{a1\_ideal\_march\_jax.py} & certified &
+  (prereq.) \\
+Thrust functional & \code{a1\_thrust\_functional.py} & 8/8 PASS &
+  \ref{ch:score} \\
+Corner instrument & \code{a1\_corner\_instrument.py} & 5/5 PASS &
+  \ref{ch:score} \\
+$\varepsilon$-driver vs closed form & \code{a1\_driver\_eps.py} &
+  4/4 PASS & \ref{ch:firstopt} \\
+Prescribed-wall march & \code{a1\_wall\_march.py} & 5/5 + 2/2 PASS &
+  \ref{ch:wallinput} \\
+GENO cross-code (O3.4) & \code{g0\_geno\_crosscode.py} & PASS &
+  \ref{ch:referee} \\
+Rao multipliers vs AD (O3.3) & \code{a1\_o33\_toc.py} & 9/9 PASS &
+  \ref{ch:referee} \\
+Cycle layer (collapse + mock RDE) & \code{a1\_cycle\_layer.py} &
+  5/5 + 6/6 PASS & \ref{ch:cycle} \\
+Cycle corner meter (votes) & \code{a1\_cycle\_corner.py} & 8/8 PASS &
+  \ref{ch:cycle} \\
+Free-jet cell & \code{a1\_freejet\_unit.py} & 6/6 PASS &
+  \ref{ch:plug} \\
+Plug march (oracle + axi) & \code{a1\_plug\_march.py} & 6/6 + 5/5 PASS &
+  \ref{ch:plug} \\
+Truncated plug under cycle & \code{a1\_plug\_cycle.py} & 5/5 + 9/9 PASS &
+  \ref{ch:plugcycle} \\
+GENO full-field plug twin & \code{a1\_geno\_plug\_twin.py} & 8/8 PASS &
+  \ref{ch:genotwin} \\
+Free-vortex swirl march & \code{a1\_swirl\_march.py} & 9/9 PASS &
+  \ref{ch:swirl} \\
+Radial-flow oracle ($v<0$) & \code{a1\_source\_flow\_oracle.py} & 6/6 PASS &
+  \ref{ch:compare} \\
+Configuration comparison & \code{a1\_config\_compare.py} & 7/10
+  (3 open) & \ref{ch:compare} \\
+Inlet angle as a variable & \code{a1\_inlet\_angle\_opt.py} & 6/6 PASS &
+  \ref{ch:compare} \\
+Free-form spike (spline + TR-SQP) & \code{a1\_plug\_spline\_opt.py} &
+  7/8 (gain unresolved) & \ref{ch:spline} \\
+Field meter, two routes (CFD P0) & \code{a1\_field\_meter.py} &
+  3/4 (1 open) & \ref{sec:fmeter} \\
+\bottomrule
+\end{tabular}
+\caption{Every certified suite of Brick 2, its carrier script and its
+verdict of record. ``$m/n$ PASS'' counts the suite's checks,
+rejectors included. Three suites carry open checks rather than
+absorbing them into widened bands: the configuration comparison's mass
+and momentum closures for the descending plug, the field meter's
+two-route agreement, and the free-form spike's unresolved gain
+(\S\ref{sec:notresolved}). The first two are the same physics, and
+\S\ref{sec:fmeter} sharpens the earlier diagnosis: the old figure was
+inflated by the meter, but a residual near $1\%$ survives on a surface
+fit to be integrated over and survives refinement, so it is a property
+of the field and not only of the bookkeeping.
+\code{a1\_flux\_meter.py} carries no verdict of its own --- it is the
+instrument module those checks are to be re-plumbed onto, not a
+suite.}
+\label{tab:status}
+\end{table}
+
+\section{Design inputs and constraints, as of today}
+\label{sec:designinputs}
+
+\subsection{What a design run can fix}
+
+Designing means holding some quantities fixed and letting the
+optimizer move the rest. Every item below can be held fixed
+independently for a run; whatever is not held is what the
+optimization is allowed to change.
+
+\emph{Gas and chamber}: the property tables (any gas model inside
+their range of validity), the chamber conditions $(P_0, T_0)$ ---
+the pressure and temperature the gas would have at rest --- and,
+for RDE runs, the whole cycle $P_0(\xi), T_0(\xi)$ with the weight
+given to each phase $\xi$ of the cycle.
+
+\emph{Environment}: the ambient pressure $p_a$ the nozzle exhausts
+into, vacuum included. For a plug nozzle it is not merely
+bookkeeping: it enters the flow itself, since the free jet boundary
+is the surface on which $p = p_a$.
+
+\emph{Throat geometry}: the throat radius $y_t$ and the two arc
+radii $r_{tu}, r_{td}$ that round the throat, all differentiable
+knobs. Holding $y_t$ \emph{is} the mass-flow constraint: a choked
+throat passes a fixed mass flow $\dot m$, so fixing its radius
+fixes the engine's flow rate.
+
+\emph{Overall size}: the area ratio $\varepsilon$ --- the exit area
+divided by the throat area, the single number saying how much the
+nozzle expands the gas (the one-knob driver of
+Chapters~\ref{ch:firstopt} and~\ref{ch:cycle}).
+
+\emph{The wall}: an output when the engine generates a contour; a
+fully given input in the inverse bell and plug modes; and a
+parameterized unknown when it is being optimized --- today small
+bumps whose ends are pinned, spline control points next. Pinning
+the endpoint \emph{is} the fixed-length constraint: it is exactly
+the problem Rao posed, and exactly what the stationarity test of
+Section~\ref{sec:o33} held fixed.
+
+\emph{Modes}: planar or axisymmetric; a single steady operating
+point or a cycle average. \emph{Resolution}: the number of fan
+rays, stations and start rows --- not design variables, but fixed
+per run and part of every derived error band.
+
+\subsection{Which constraints can be held simultaneously}
+
+On the JAX side, constraints are today imposed \emph{by
+construction} rather than by a general constrained optimizer: mass
+flow by holding the throat, length by pinning the lip, ambient as
+posed data --- and the optimizer moves whatever is left (today
+$\varepsilon$, or the wall through its bump basis). Holding several
+nonlinear constraints at once against the AD gradient needs the
+general machinery: a trust-region SQP driver --- a standard
+constrained optimizer that takes a limited-size step each iteration
+and enforces the constraints to first order --- which is on the
+remaining-work list, and for which the certified prescribed-wall
+paths were built.
+
+On the GENO side, the RaoPlug module (its case type 8) accepts,
+since the
+two-constraint session, exactly \emph{two} simultaneous
+constraints. The first is the \emph{mass constraint}, always on:
+the design curve is terminated where the mass accumulated inside it
+equals the throat's target $p_c\,\pi y_t^2/c^{*}$, and that
+condition is consumed by the point $D$ at which the spike is cut.
+The second is \emph{one} user-chosen design constraint, consumed by
+a bisection on the exit angle $\theta_E$ --- area ratio, plug
+length, exit angle, thrust, exit Mach number, ambient pressure at
+the lip, or the base pressure $p_b$ (matched against the value the
+corner condition implies at the mass-set cut, the meaningful
+pairing with the mass constraint).
+
+Two is not an implementation limit but a \emph{theoretical} one.
+Rao's spike family has exactly two degrees of freedom at a fixed
+lip radius --- the exit angle $\theta_E$ and the cut point $D$ ---
+so two conditions exhaust it, and a third would be over-determined.
+The one honest route to a third simultaneous constraint is to free
+the lip radius $y_E$ as a scale degree of freedom, an outer
+bisection already sketched in GENO's design notes and not yet
+built.
+
+\section{What remains, in order}
+
+The GENO thread is now closed end to end. The owner's decision was
+to solve the two-constraint problem, and the GENO session landed
+it: the design curve terminates at the prescribed throat mass, the
+cut point supplies the second degree of freedom with the corner
+condition returning the base pressure it implies, four rigor
+defects were fixed on the way, and three independent checks PASS
+(the duality between the two ways of writing the endpoint
+condition, $2\times10^{-5}$; the exact planar limit, bit for bit;
+an independent Python integration of the design curve, three to
+four digits). One item did not close: the numbers tabulated in the
+1961 spike paper as the registry quotes them proved unverifiable
+and internally inconsistent (GENO's N-74), so the owner must
+procure the original paper. The full-field comparison --- our plug
+march run on GENO's own spike --- is now certified 8/8 in
+Chapter~\ref{ch:genotwin}, with the measured three-to-four-digit
+difference between the two codes characterized and its cause filed
+as an open question on GENO's side (Section~\ref{sec:twingap}).
+
+The free-vortex swirl extension is certified at march level in
+Chapter~\ref{ch:swirl}: the structural guarantee measured rather
+than assumed, an exact duct solution reproduced, and the
+switch-off regression at $10^{-13}$. Using it inside the plug and
+cycle studies is now a posing choice, not new machinery. Beyond the
+free vortex the flow is rotational and belongs to the CFD-adjoint
+track.
+
+The free-form wall, listed here for several sessions as the last
+missing piece, is now built: Chapter~\ref{ch:spline} gives the spike a
+cubic-spline basis, an adjoint gradient and a trust-region driver, and
+the result is a contour the program computes rather than inherits. Two
+things follow from how it was built. It uses the \emph{bell}
+optimizer's spline routines directly rather than a basis of its own,
+so bell and plug now carry the same shape freedom and the comparison
+of Chapter~\ref{ch:compare} becomes an equal-terms one. And the
+representation ladder of Section~\ref{sec:reprladder} shows the plug's
+error concentrating in the single region where its contour bends,
+which is an argument for adaptive knot placement rather than for more
+knots.
+
+\begin{enumerate}[itemsep=2pt]
+\item \textbf{Resolve the free-form spike's gain}. The band has now
+  been re-derived at the carrier's own resolution and it is LARGER
+  than the gain (\S\ref{sec:notresolved}), so the effect is not yet
+  distinguishable from its own discretization error. Wanted: a
+  resolution at which the band falls below the effect, and knots
+  placed where the contour bends rather than uniformly.
+\item \textbf{Adaptive knot placement} on the spike, pointing the
+  bell's existing machinery at this wall --- the direct consequence of
+  Section~\ref{sec:reprladder}.
+\item \textbf{Re-run the configuration comparison} with both sides
+  free-form, now that the plug has a basis --- and only once the
+  previous item is settled, since a margin quoted against an
+  unresolved gain would inherit its problem.
+\item \textbf{The Rao comparison at full expansion}: pose the
+  classical construction and this optimizer at the SAME length
+  ($5.825$ m) with mass AND ambient matched (\S\ref{sec:vsrao}). At
+  $2.5$ m the two codes describe different machines and their thrusts
+  are not comparable.
+\item \textbf{The plug's $1\%$ momentum residual}
+  (\S\ref{sec:fmeter}): measured now on a good surface and surviving
+  refinement, so it is the branch's outstanding physical question.
+\item \textbf{The control surface in the O3.3 bench}: our terminal
+  characteristic is taken as a whole grid column, selected by
+  minimising the very spread the check then reports. The measured
+  spread ($4.0\times10^{-3}$) shows no pathology, but the locus should
+  be fixed \emph{a priori} and stopped at the kernel boundary rather
+  than chosen by the statistic it feeds.
+\item \textbf{Measured-cycle input}: a data swap --- mind the
+  table-range rejector of Chapter~\ref{ch:cycle}.
+\end{enumerate}
+
+\section{Which solver these numbers stand on}
+\label{sec:rebase}
+
+Every result in this document was originally produced on one version
+of the underlying flow solver, and has since been re-run on another.
+The solver's Newton loop was changed independently: where it once took
+a fixed number of iterations per cell, it now stops when the step
+falls below the cell's own certification bound. That is a real change
+to how the arithmetic terminates, and it sits underneath every number
+here, so it was not assumed harmless.
+
+It was measured instead. Re-running the case that fixes the common
+basis on both versions gives mass flow agreeing \emph{bit for bit},
+and thrust, exit Mach, exit speed, exit pressure and lip radius
+agreeing to between $10^{-15}$ and $10^{-13}$ relative --- machine
+precision, across four area ratios. The interpretation is
+straightforward: the fixed-iteration loop was already converging past
+the point where the new stopping rule halts, so the two agree to the
+last digit either can carry.
+
+No number in this document moves as a result. Every suite listed in
+Table~\ref{tab:status} was re-run on the new solver and returned its
+recorded verdict.
+
+\section{Reproduction}
+
+Each carrier script is self-contained and prints its own verdict;
+runs are cached where noted, so re-runs are cheap. On host
+\code{s2}:
+
+\begin{lstlisting}
+cd RDE_Design-rde-nozzle-program
+.venv-a1/bin/python validation/a1_ideal_march_jax.py    # Brick 1
+.venv-a1/bin/python validation/a1_thrust_functional.py  # the score and the compass
+.venv-a1/bin/python validation/a1_corner_instrument.py  # the score and the compass
+.venv-a1/bin/python validation/a1_driver_eps.py         # the first optimization
+.venv-a1/bin/python validation/a1_wall_march.py         # the wall becomes an input
+.venv-a1/bin/python validation/g0_geno_crosscode.py     # the referee
+.venv-a1/bin/python validation/a1_o33_toc.py            # the referee
+.venv-a1/bin/python validation/a1_cycle_layer.py        # the cycle layer
+.venv-a1/bin/python validation/a1_cycle_corner.py       # the cycle layer
+.venv-a1/bin/python validation/a1_freejet_unit.py       # the plug march (cell)
+.venv-a1/bin/python validation/a1_plug_march.py         # the plug march
+.venv-a1/bin/python validation/a1_plug_cycle.py         # truncated plug + cycle
+.venv-a1/bin/python validation/a1_geno_plug_twin.py     # the GENO plug twin
+.venv-a1/bin/python validation/a1_swirl_march.py        # free-vortex swirl
+.venv-a1/bin/python validation/a1_source_flow_oracle.py # the radial oracle
+.venv-a1/bin/python validation/a1_config_compare.py     # configurations
+.venv-a1/bin/python validation/a1_inlet_angle_opt.py    # the inlet angle
+.venv-a1/bin/python validation/a1_plug_spline_opt.py    # the free-form spike
+\end{lstlisting}
+
+Two of these need data the scripts do not generate themselves. The
+GENO plug twin reads a cached field from the independent Fortran code
+(\code{validation/\_geno\_twin/}), and the O3.3 bench reads a designed
+contour from the same source. Both are products of a code this
+document does not modify, so they are inputs rather than results. The
+O3.3 bench also carries a second stage that the default invocation
+does not run:
+
+\begin{lstlisting}
+STAGE=stationarity .venv-a1/bin/python validation/a1_o33_toc.py
+\end{lstlisting}
+
+This document itself is built from
+\code{docs/brick2\_doc\_src/}: \code{make\_figures.py} regenerates
+the data figures from the cached run data, and \code{build.sh}
+compiles \code{main.tex} (Tectonic engine) and installs the PDF as
+\code{docs/rde\_nozzle\_A1\_brick2\_thrust.pdf}.

@@ -1,0 +1,204 @@
+\chapter{The cycle layer: the engine becomes an RDE tool}
+\label{ch:cycle}
+
+Until now the nozzle had one operating point: one chamber pressure,
+one chamber temperature, one design. A rotating detonation engine does
+not offer one. This chapter teaches the optimizer to design against a
+whole periodic cycle of chamber conditions --- and then proves it did
+so correctly, by making it reproduce, blindly, two answers the theory
+already knows and a shortcut-taking implementation could not find.
+
+\section{Cycle-averaged optimization and its oracles}
+
+\subsection{What you need to know first}
+
+A \emph{rotating detonation engine} (RDE) burns its propellant in a
+ring-shaped (annular) chamber around which one or more
+\emph{detonation waves} --- supersonic combustion fronts, a shock with
+the flame locked to it --- run continuously, typically a few thousand
+times per second, fresh propellant refilling the gap behind each wave.
+The consequence for the nozzle is the point of this chapter: a nozzle
+cross-section never sees steady conditions. Once per revolution the
+pressure jumps sharply as the wave sweeps past, then falls
+(\emph{blows down}) until the next wave arrives.
+
+What the nozzle responds to is the \emph{stagnation state}
+$(P_0, T_0)$: the pressure and temperature the chamber gas would have
+if brought smoothly to rest, the reservoir condition that fixes
+everything downstream. In an RDE it is a periodic \emph{family}
+$(P_0(\xi), T_0(\xi))$ indexed by the \emph{cycle phase}
+$\xi \in [0,1]$, one full revolution of the wave; the \emph{phase
+measure} $\mathrm{d}\mu(\xi)$ says how much of the cycle each phase
+occupies, hence its weight in an average. And \emph{quasi-steady}
+means the gas crosses the nozzle in far less time than the wave takes
+to come round again --- so at each instant the flow is simply the
+steady flow of that instant's chamber state. The design variable
+throughout is the area ratio $\varepsilon = A_e/A_t$, exit area over
+throat area (Chapter~\ref{ch:nozzle}).
+
+\subsection{The question}
+
+An RDE hands the nozzle a periodic \emph{family} of chamber states,
+not one. Can the engine optimize the cycle-averaged thrust --- and
+prove it does so correctly?
+
+\subsection{How it works, in full}
+
+Because the expansion is quasi-steady, the cycle-averaged thrust is
+simply the phase average of steady thrusts:
+\begin{equation}
+J_{\rm cycle}(\varepsilon) \;=\; \int_0^1
+F\!\left(\varepsilon;\, P_0(\xi),\, T_0(\xi)\right)\mathrm{d}\mu(\xi).
+\label{eq:jcycle}
+\end{equation}
+The layer implements this \emph{honestly}: the integral is a
+quadrature over a finite set of phases, and each phase gets its own
+stagnation state built on the same gas tables, its own full march
+through the nozzle, and its own thrust. No shortcut exploiting a
+similarity between phases is coded anywhere --- deliberately, because
+the theory's hardest test is about what an honest implementation must
+then reproduce on its own.
+
+That test is the collapse theorem for the fixed bell (its
+T3)~\cite{theory}. It says: if only the pressure varies over the cycle
+and the temperature does not (a \emph{pressure-only} blowdown, fixed
+$T_0$), the whole cycle problem collapses to a classical steady design
+at the mean pressure --- so cycle-aware optimization must buy
+\emph{exactly nothing}. The reason is a similarity: at fixed $T_0$ and
+fixed geometry, scaling $P_0$ scales every pressure in the nozzle by
+the same factor and moves no wall and no Mach number, so
+$J_{\rm cycle}$ is the steady $J$ at $\langle P_0\rangle$, exactly. An
+engine marching each phase independently has no way to know this ---
+unless it is correct, in which case the zero gain \emph{emerges}. That
+emergence is the test.
+
+The second stage poses the first mock RDE (user-posed): exponential
+$P_0$ \emph{and} $T_0$ profiles in phase (peak-to-trough pressure
+ratio $PR = 10$, temperature ratio $TR = 1.306$, peak 3850~K, five
+phases spaced uniformly in the logarithm of pressure). With $T_0$
+varying, the collapse is no longer exact, and the question becomes
+quantitative: how close does the best \emph{one-number} design --- an
+ordinary single-point design at one representative chamber state ---
+come to the blind cycle optimum, and which state is the right one?
+The theory's answer --- the mean pressure at the
+\emph{pressure-weighted} temperature
+$\langle P T\rangle/\langle P\rangle$ --- is tested against the
+log-mean alternative in a derived comparison, and a design made at the
+peak-pressure phase supplies the deliberately wrong reference.
+
+Building a phase's stagnation state on tabulated real-gas
+properties has traps of its own; the three that were met (and the
+rejectors that now guard them) are Appendix~\ref{app:cycletraps}.
+
+\subsection{Results of record}
+
+\textbf{The zero-gain collapse oracle: 5/5 PASS}
+(\carrier{validation/a1\_cycle\_layer.py}, stage \code{t3}). The
+optimizer, told nothing about the theorem and spending five full
+marches per objective evaluation, lands on the design-at-the-mean
+within its window: the gain it finds over that design is $-475$~N out
+of $1.16\times10^{8}$~N, against a derived band of
+$9.6\times10^{3}$~N --- zero, to the precision the test can resolve.
+The deliberately wrong peak-pressure design loses $4.8\times10^{6}$~N,
+$500\times$ the band, so a real gain would have been seen. And the
+similarity shows up live: at fixed geometry the five per-phase walls
+coincide to $8.9\times10^{-16}$ --- pressure scaling does not move the
+wall, measured at machine zero.
+
+\textbf{The mock RDE: 6/6 PASS} (stage \code{mock}). The blind
+optimum lands within $-0.74\%$ in $\varepsilon$ of the best
+one-number design --- which is indeed mean pressure at the
+pressure-weighted temperature $\langle PT\rangle/\langle P\rangle$,
+beating the log-mean reference in a derived comparison (the theory's
+weighted-average lesson, confirmed at engine level); the thrust
+penalty of that one-number design is $2.5\times10^{-6}$ relative
+(second order, as predicted), while the peak design loses 4\% of $J$.
+The practical reading: for this class of cycle one well-chosen state
+is enough, and the theory says which.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_cycle.pdf}
+\caption{The cycle layer, measured. Axes in both panels: area ratio
+$\varepsilon$ [--] (exit over throat area, the design variable)
+against cycle-averaged thrust of Equation~\eqref{eq:jcycle},
+plotted as the shortfall below that curve's own maximum, in kN
+(zero is the best design on the curve; the absolute level is
+$J_{\rm cycle} \approx 116$~MN). Each point costs five full nozzle
+marches, one per phase; vertical lines mark candidate designs.
+(a)~Pressure-only blowdown: the blind cycle optimum
+($\varepsilon = 5.1685$) sits on the classical mean-pressure design
+($\varepsilon = 5.1506$) within the derived window --- the zero-gain
+collapse, reproduced by an engine never told it should happen.
+(b)~Mock RDE, pressure \emph{and} temperature varying: the blind
+optimum ($\varepsilon = 5.1395$) and the one-number design at the
+pressure-weighted mean state ($\varepsilon = 5.1778$) differ by
+$0.74\%$ in $\varepsilon$ and $2.5\times10^{-6}$ in $J$; the
+peak-pressure design ($\varepsilon = 10.29$) loses 4\% and lies far
+off scale. Note how flat the curves are near their peaks: the story
+lives in the last digits, which is why the thresholds are derived
+rather than eyeballed.}
+\label{fig:cycle}
+\end{figure}
+
+\section{The brokered compromise, on a meter}
+\label{sec:votes}
+
+\subsection{The question}
+
+The theory's most quotable claim about RDE nozzles~\cite{theory} is
+the averaged corner condition: ``no phase satisfies its own corner
+condition; the cycle average does.'' Can that be measured?
+
+\subsection{How it works, in full}
+
+Recall the corner condition of Section~\ref{sec:corner}: the exact
+statement that a nozzle's wall stops at the right place, whose leading
+term is the mismatch between the pressure the gas reaches at the exit
+and the ambient pressure it exhausts into. At the cycle optimum every
+phase $\xi$ casts a \emph{vote} through that same meter:
+its own exit-pressure mismatch $R(\xi) = p_e(\xi) - p_a$. A phase with
+$R > 0$ leaves the nozzle still pushing harder than its surroundings
+--- \emph{underexpanded}, voting ``lengthen me''. A phase with
+$R < 0$ has expanded below ambient --- \emph{overexpanded}, voting
+``shorten me''. The claim is that the optimum satisfies no phase
+individually: it is a brokered compromise in which the
+$\mu$-weighted mean of the votes is zero while each vote is not.
+
+The meter reads the votes off the cached cycle runs, and every
+threshold is derived. The balance band around zero comes from the
+objective's own curvature and the width of the window where the
+optimizer stopped --- how far from zero the mean could legitimately
+sit. Each phase's vote must then individually exceed that band;
+otherwise ``no phase satisfies its own condition'' would be an
+assertion rather than a measurement.
+
+\subsection{Results of record}
+
+\textbf{8/8 PASS on both cycles}
+(\carrier{validation/a1\_cycle\_corner.py}, an analysis of the cached
+cycle runs --- 0.4~s). At the mock-RDE optimum the five phases' votes
+run from $+7.9\times10^{5}$ down to $-5.1\times10^{5}$~Pa ---
+monotone in phase, with exactly one sign change, each individually
+2.8--3.2$\times$ the balance band and 14--90$\times$ the achieved
+average --- while their \emph{mean} sits at zero within the derived
+band. At the wrong (peak-pressure) design the meter pins at
+$-4.6\times10^{5}$~Pa: every phase overexpanded, no compromise at
+all. A wrong design is visible at a glance.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_votes.pdf}
+\caption{The theorem on a dial. Horizontal axis: cycle phase $\xi$
+[--], one revolution of the wave from passage to blowdown tail.
+Vertical axis: each phase's corner vote $p_e - p_a$ [bar], the amount
+by which its exit pressure exceeds (positive: underexpanded,
+``lengthen me'') or falls short of (negative: overexpanded, ``shorten
+me'') the ambient pressure. Blue: votes at the cycle optimum --- large
+and of both signs, yet their mean (blue dashed) sits inside the shaded
+balance band at zero. That is the averaged corner condition, measured:
+no phase is individually satisfied, the cycle is. Grey: the same votes
+at the peak-pressure design --- every phase overexpanded, the mean
+(grey dashed) far below zero: a wrong design, at a glance.}
+\label{fig:votes}
+\end{figure}

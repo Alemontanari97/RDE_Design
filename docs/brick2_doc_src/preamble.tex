@@ -1,0 +1,46 @@
+% Preamble for the A1 Brick 2 document — same format as
+% GENO/docs/theory_doc_src/preamble.tex (the GENO theory document).
+\documentclass[11pt,a4paper]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\graphicspath{{figs/}}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{stepdone}{RGB}{31,78,122}
+\definecolor{stepahead}{RGB}{178,58,18}
+
+\lstdefinestyle{shellstyle}{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  framerule=0.3pt,
+  breaklines=true,
+  showstringspaces=false
+}
+\lstset{style=shellstyle}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\carrier}[1]{\texttt{#1}}
+
+\numberwithin{equation}{chapter}
+\emergencystretch=2em
+
+\title{\textbf{A1 Brick 2}\\[0.5em]\Large From a Nozzle Generator to a
+Nozzle Optimizer\\[0.3em]\large The MOC-adjoint engine on the
+differentiable march \quad [F2/A1]}
+\author{DIMA -- Sapienza University of Rome}
+\date{\today}
