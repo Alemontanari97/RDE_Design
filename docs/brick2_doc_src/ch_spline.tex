@@ -443,7 +443,10 @@ nothing. Placement, not node count, is what pays. A second adaptive
 insertion (at $x = 0.4037$) buys nothing further: the driver cannot
 extract even one part in $10^{15}$, and the procedure stops itself
 honestly. Whatever this basis can reach at this length, one
-well-placed knot reaches it.
+well-placed knot reaches it. Figure~\ref{fig:spikedesigns}
+draws the designs as objects: the bulge the knot bought, the tail
+both optimizers surrender, and the two classical machines the next
+section compares against.
 
 \paragraph{The ladder, and the verdict.} The gain of the adaptive
 optimum over the fan streamline was then graded the way
@@ -478,6 +481,33 @@ exactly the error it was tuned against --- and the march converges
 too slowly on this differential quantity for brute-force refinement
 to win; each halving of the grid spacing removes only a sixth of the
 remaining artifact while multiplying the cost by six.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_spike_designs.pdf}
+\caption{The designs this chapter compares, drawn as objects.
+(a)~Three machines in one world, $x$ axial against $y$ radial [m]:
+the fan-streamline spike with $\theta_E = 0$, cut at $L = 2.5$ m
+(solid), with the free-form optimum of this section dashed --- the
+two coincide over most of the length and separate at the tail, which
+the optimizer pulls $87$ mm lower; the classical Rao construction
+expanded to the same ambient (GENO, posed by exit Mach), whose spike
+runs to the axis near $x = 5.9$ m --- the shaded region is the $57\%$
+of it our fixed length removes; and the mass-plus-length design at
+$2.5$ m, the machine of the void A/B of
+Section~\ref{sec:vsrao}: with both of Rao's degrees of freedom
+consumed, ambient becomes an output and its wall barely tapers.
+(b)~What shape freedom actually bought at $L=2.5$ m: the adaptive
+($m=11$) and uniform ($m=11$) optima minus the streamline, in
+millimetres --- a $+16$ mm bulge bought by the inserted knot at
+$x = 0.4575$ where the indicator put $84.8\%$ of its mass, then a
+monotone dive to $-87$ mm at the exit. The two optimizers agree on
+the story (raise the wall where pressure is high and large-radius,
+surrender radius at the tail) and differ in how sharply the bulge is
+resolved --- which is the $+0.19\%$-vs-$+0.0002\%$ difference of the
+control experiment. Thin vertical lines mark the adaptive knot set.}
+\label{fig:spikedesigns}
+\end{figure}
 
 \paragraph{What follows.} More knots are ruled out (the second
 insertion bought nothing), and a longer ladder is a losing race (the
@@ -530,7 +560,9 @@ fixing mass and length consumes both and the ambient becomes an
 output: at $2.5$ m the classical design implies an ambient of
 $1.7\times10^{6}$ Pa, against our $7.6\times10^{5}$. Its wall barely
 tapers over that length ($1.630 \to 1.548 \to 1.636$ m, $\varepsilon =
-2.47$) while ours falls monotonically to $0.833$ m. Same nominal mass,
+2.47$) while ours falls monotonically to $0.833$ m ---
+Figure~\ref{fig:spikedesigns}(a) draws both, and the full-length Rao
+construction they are both being compared against. Same nominal mass,
 same nominal length, different machines --- so their thrusts are not
 comparable, and comparing them would have measured the mismatch in
 expansion state rather than the merits of two design methods. The

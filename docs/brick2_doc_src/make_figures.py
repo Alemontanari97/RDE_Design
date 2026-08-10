@@ -2169,6 +2169,93 @@ def fig_method():
     save(fig, "fig_method.pdf")
 
 
+
+# ------------------------------------------------- the designs, side by side
+def fig_spike_designs():
+    """S22: the designs as physical contours. (a) our theta_E = 0
+    truncated spike at L = 2.5 m against GENO's Rao construction
+    expanded to the same ambient (the full-length machine ours is a
+    57% truncation of) and against GENO's mass+length design at 2.5 m
+    (the VOID A/B: ambient becomes an output and the wall barely
+    tapers). (b) what the optimizers actually moved at L = 2.5:
+    adaptive and uniform optima minus the fan streamline, in mm.
+    GENO walls from figs/data_rao_walls.npz (S21 gate-verified -O0
+    build; provenance string inside)."""
+    d = np.load(os.path.join(OUT, "data_rao_walls.npz"))
+    import a1_config_compare as CC
+    import a1_plug_spline_opt as PS
+    import a1_plug_adaptive as AD
+
+    w = CC.build_world()
+    c = PS.build_case(w)
+    art = json.load(open(os.path.join(ROOT, "validation",
+                                      "_plug_adaptive", "design.json")))
+    xk_a = np.array([float(eval(v)) for v in art["design"]["xk"]])
+    W_a = np.array([float(eval(v)) for v in art["design"]["W"]])
+    xk_u = np.array(art["control"]["xk"], dtype=float)
+    W_u = np.array(art["control"]["W"], dtype=float)
+
+    xg = np.linspace(PS.X0, PS.L, 500)
+    y_str = np.interp(xg, c["sx"], c["sy"])
+    y_ada = AD.respline(W_a, xk_a, c, xg)
+    y_uni = AD.respline(W_u, xk_u, c, xg)
+
+    fig, (a1, a2) = plt.subplots(
+        1, 2, figsize=(9.6, 3.4),
+        gridspec_kw=dict(width_ratios=[1.45, 1.0]))
+
+    # (a) the machines, full view
+    a1.plot(d["ideal_x"], d["ideal_y"], color="tab:green", lw=1.4,
+            label=r"Rao construction, same ambient (GENO), $\theta_E \approx 0.03^\circ$")
+    a1.plot(d["masslen_x"], d["masslen_y"], color="tab:red", lw=1.2,
+            ls=":", label="mass+length at 2.5 m (GENO): the void A/B")
+    sx, sy = c["sx"], c["sy"]
+    keep = sx <= PS.L
+    a1.plot(sx[keep], sy[keep], color="tab:blue", lw=1.6,
+            label=r"fan streamline, $\theta_E = 0$, cut at $L=2.5$ m")
+    a1.plot(xg, y_ada, color="tab:blue", lw=0.9, ls="--",
+            label="free-form optimum ($m=11$): tail drops 87 mm")
+    a1.plot([0.0], [w["RMAX"]], marker="o", ms=4, color="k")
+    a1.annotate("lip", (0.0, w["RMAX"]), textcoords="offset points",
+                xytext=(4, 4))
+    a1.axvline(PS.L, color="0.55", lw=0.7, ls="-.")
+    a1.axvspan(PS.L, float(d["ideal_x"].max()), color="tab:green",
+               alpha=0.08)
+    a1.annotate("the 57% the truncation removes",
+                (0.5 * (PS.L + float(d["ideal_x"].max())), 0.45),
+                ha="center", fontsize=8, color="tab:green")
+    a1.set_xlabel("x [m]")
+    a1.set_ylabel("y [m]")
+    a1.set_title("(a) three machines, one world")
+    a1.legend(loc="upper right", fontsize=7.2)
+    a1.grid(**GRID)
+    a1.set_xlim(-0.15, 6.1)
+    a1.set_ylim(0.0, 2.75)
+
+    # (b) what the optimizer moved, in mm
+    a2.axhline(0.0, color="0.4", lw=0.7)
+    a2.plot(xg, 1e3 * (y_ada - y_str), color="tab:blue", lw=1.4,
+            label="adaptive optimum $-$ streamline ($m=11$)")
+    a2.plot(xg, 1e3 * (y_uni - y_str), color="tab:orange", lw=1.2,
+            ls="--", label="uniform optimum $-$ streamline ($m=11$)")
+    for xkk in xk_a:
+        a2.axvline(xkk, color="0.75", lw=0.4, zorder=0)
+    x_new = float(art["history"][1]["sites"][0])
+    a2.axvline(x_new, color="tab:blue", lw=0.8, ls=":")
+    a2.annotate("inserted knot\n$x = %.4f$" % x_new, (x_new, None
+                if False else 1e3 * (AD.respline(W_a, xk_a, c,
+                np.array([x_new]))[0]
+                - np.interp(x_new, c["sx"], c["sy"]))),
+                textcoords="offset points", xytext=(10, 8),
+                fontsize=7.5, color="tab:blue")
+    a2.set_xlabel("x [m]")
+    a2.set_ylabel(r"$\Delta y$ [mm]")
+    a2.set_title("(b) what shape freedom bought at $L = 2.5$ m")
+    a2.legend(fontsize=7.2)
+    a2.grid(**GRID)
+    fig.tight_layout()
+    save(fig, "fig_spike_designs.pdf")
+
 if __name__ == "__main__":
     fig_nozzle_primer()
     fig_bell_vs_plug()
@@ -2192,4 +2279,5 @@ if __name__ == "__main__":
     fig_fan_singularity()
     fig_freejet()
     fig_edge_root_geometry()
+    fig_spike_designs()
     print("ALL FIGURES DONE ->", OUT)
