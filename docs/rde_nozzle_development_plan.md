@@ -13,6 +13,209 @@ INDEX — docs/claims_registry.yaml + suite group (xv) lint (SCAFFOLD
 migration M-1..M-5 executed, S9); this plan remains the WORK index
 (phases/gates/90-days); a maintainer opens SCAFFOLD §1 (L0), the
 registry, then THIS plan + PROGRESS.
+RATIFICATION NOTE (2026-08-11, S21): the WORK index is now the F0-F6
+spine of §0-pre (plan v3, panel-converged 2026-08-07, ratified by
+user decision); A0-A7 in §2 remain the historical/status ledger.
+
+------------------------------------------------------------------------------
+## 0-pre. PLAN v3 OF RECORD (ratified 2026-08-11, S21 F0 — user decision)
+
+RATIFICATION. The phase plan v3 (adjudicated by the phase-reorder
+panel, round 1 CONVERGED, 2026-08-07; advisory
+validation/ADVISORY_plan_v3_panel_2026-08-07.md; supersedes the v2
+draft) is hereby RATIFIED into D6 by user decision (S21 session
+order, 2026-08-11; log validation/PROGRESS_2026-08-11_S21_order.md).
+F0-F6 below SUPERSEDES the A0-A7 spine as the WORK index; §2 (A0-A7)
+is retained as the historical/status ledger of what was built, and
+its per-item statuses remain the record of those deliverables. Where
+this section and older phase text differ, THIS section wins (same
+precedence rule as the D6 header).
+
+### Phase spine F0-F6 (each phase: objective / exit gate / budget /
+### named fallback; measured-anchor budgets, no silent extension)
+
+F0  ORDER + INSTRUMENTATION (S21, 1-2 sessions; 2nd pre-authorized).
+    Audit P0 closed WITH rejectors (C2 cert-stack: NaN cert-drop,
+    record-path-only certification, silently zeroed nonfinite
+    gradients, silent refinement-cap exits; certdiag KAT landed AND
+    the S20 crawl's 8/8 GENUINE adjudication RETRO-VALIDATED under
+    it; C7 corner-row rejector row) + P1 executed (C1 scope
+    qualifiers + named field-level rejector as P-2 freeze blocker;
+    C7 lip/drift wording; C8 C-O33 staleness; C3 f2-drift tolerance
+    derived) + minimal C4 fix OR every later "suite green" gate
+    annotated carrier-exclusive; panel R4 retro-propagation (EQ-v2
+    with rigor tags, Lambda-form with BOTH scope bounds, lambda_e =
+    dJ/dy_lip bookkeeping, Rao-vs-Zucrow naming translation); O1-O5
+    + G1 ledgered with phase owners; localization instrumentation +
+    Eq. (4)/Sternin validity monitor ARMED; GENO flagdef KAT + DEF
+    regression DISPATCHED (GENO's own repo/protocol); G5 dated
+    decision re-presented + acquisitions dispatched. FALLBACK: P0 +
+    R4 + ratification minimum; P1/C4 remainder to scheduled rows
+    with phase tags.
+F1  GOVERNOR + P-2 CAPTURE (2-3 sessions). Margin-constrained A'
+    re-optimization on the bell tier-0 with the (G) Lambda-form
+    margin (KS-aggregated, derived floor, AD gradient); ENTRY:
+    derived implementation bands (dV_pert FD step, den-guard, PM
+    landing window) with the gamma=const closed-form Lambda KAT +
+    the [D1]-CONSTRAINED variant derived BEFORE the decisive run +
+    the validity monitor running along the walk. EXIT
+    (BRANCH-ADJUDICATED, every branch a valid exit): constrained-KKT
+    closure with margin-ACTIVE outcome ADMITTED (the panel-predicted
+    signature), mu >= 0 measured on a pre-registered floor sequence;
+    OR certifiability-limited-under-constraint declared with
+    localization evidence; binding locus CLASSIFIED via the
+    mandatory logs (terminal-characteristic same-family cusp /
+    interior binding = H2-kill routed to tier-1 / multi-cusp =
+    H1-kill). C-O33 closed or falsified as byproduct. Max 2 decisive
+    campaigns (anchor ~1046 s/campaign, S20), then fallback
+    auto-fires. P-2 freeze on a DATED trigger at F1 close (default =
+    S19 two-knob numbers BY RULE); NO driver work (S20 pre-named
+    boundary). FALLBACK: P-2 publishes on S19 two-knob numbers.
+F1b DEF ADJUDICATION (1 session, current engine). The panel's
+    pre-registered twin falsifier VERBATIM (branches F1-F7; GENO
+    flagdef=1 leg vs direct margin-constrained leg at same (eps,L))
+    + companion mu-prediction test (GENO deeper-jump family);
+    O5 (h->0 vs mu_0->0 limit order) carried as NAMED CONDITIONAL
+    or discharged by a cheap floor-ladder study; EQ-v2
+    promotion/demotion recorded with rigor tags, R4 same session.
+    FALLBACK: twin blocked-with-named-cause; Direction-A-only
+    content published with the recorded branch.
+F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
+    milestones F2a/F2b; C6 promoted to pre-entry). Three-family MoC
+    (C+/C-/streamline transport of s, h0), thermo backend on the
+    (q; s, h0) manifold, generalized data guard. F2a: certified
+    stratified-data FORWARD march + stage-A data-contract audits
+    (Crocco, completeness, H-I2) + T0 flatness monitor with DERIVED
+    threshold — G6 loud-reject operative from HERE. F2b: adjoint/
+    O3.1 at machine precision on the stratified march; GENO moc_gen
+    twin agreement in derived bands PLUS independent invariants
+    (cross-code agreement != truth); EXTENDED (q; s, h0) fold/
+    validity margin delivered WITH rejector (the owner of stratified
+    margin governance); P-1 theory-half + general-engine methods
+    freeze at exit. FALLBACK: two-family transport (s only), h0
+    family a NAMED residual carried into F3/F4b gates.
+F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
+    RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao
+    1961 spike Table-1) declared; plug/C- mirror Lambda-form margin
+    PROVEN or declared PRACTICE conditional. EXIT: certified plug
+    optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived
+    bands; at least ONE var-gamma or stratified plug instance;
+    T-GB de-rated to THEOREM* with named hypothesis OR the 2-D
+    truncated-plug shape falsifier executed BEFORE the first
+    certified plug optimum ships. Spike-level plug-march de-risk
+    AUTHORIZED parallel to F2 (RK1 front-load); two-wall Veen =
+    conditional stretch. FALLBACK: spike-only capture.
+F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
+    into F1b). Data-borne / boundary-entering fitted fronts (U3
+    bordered solve + G12 linearization + adjoint jump conditions);
+    ENTRY: F2 exit + Giles-Ulbrich SINUM 2010 x2 + Lozano 2019
+    PAGE-VERIFIED (until then the captured-shock-adjoint rejection
+    is a named training-knowledge conditional). EXIT: certified
+    optimum on >= 1 fitted-front instance, jump-condition
+    dot-product test, X1 capturing-control rejection demonstrated;
+    tier-1/DEF paper with claim gates (classical-optimality claims
+    O3-GATED; O1 discharged or B-stationarity declared; O2 as this
+    paper's theory obligation; every "coincides" carries the
+    multi-KKT selection hypothesis). NO interior-shock
+    birth-fitting. FALLBACK: single inherited-front instance (S8
+    fitted-sheet class).
+F5  RDE MACHINE (re-budget MANDATORY at entry; C5 closed pre-entry;
+    case-B per-phase profile generator with its OWN validation
+    oracle = named blocking conditional, buildable in the F3/F4b
+    window; G1 re-affirmed ABSOLUTE). F5a: quasi-steady sweep T3-QS
+    + certified cycle-averaged design + mu-instruments bundle (D6
+    item 15) IN the Verdict = RDE application paper (hardware
+    claims P-ii only). F5b: G3 unsteadiness trigger derived as a
+    NUMBER BEFORE the corrector; corrector (VI.4bis scope); O5-lite
+    single-cycle PDE bench (may run earlier in idle windows).
+    FALLBACK: F5a-only claim, corrector a declared residual.
+F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
+    march demonstrator; experimental anchor (RK-E) landed or its
+    absence declared industrial gap #1 in every claim. FALLBACK:
+    laptop-scale B-lite/O5-lite until HPC secured (RK-F).
+
+### G-gate -> F-phase mapping (ratification artifact; NO gate lost)
+
+| Gate | Content | Where it now bites |
+|------|---------|--------------------|
+| G0   | stack decision + loop-speed falsifier | DECIDED (S10); T2-fired re-decision REVIEW = F2 entry (counted in F2 budget) |
+| G1   | ORACLE GATE (absolute): O1/O2/O3 or no science | every science phase — F2/F3/F5 gates re-affirm it; unchanged, absolute |
+| G2   | VALUE GATE (bound-ladder gap) | F5a (cycle-averaged design Verdict) |
+| G3   | UNSTEADINESS GATE (trigger as a NUMBER, S14 duty) | F5b entry — derived BEFORE the corrector stage |
+| G4   | DECOUPLING GATE (D2 error -> wave-frame objective) | F5b/F6 horizon (unchanged content) |
+| G5   | LITERATURE GATE (Kraiko 1979/PMM human pass) | time-boxed DATED user decision at F0; blocks SUBMISSIONS only, never work; P-2 draft-freeze achievable independent of G5 |
+| G6   | DATA-CONTRACT GATE (stage-A audits, loud reject) | OPERATIVE FROM F2a (moved up from F5: stratified consumption begins at F2) |
+
+### Front taxonomy of record (updated at ratification)
+
+ (a) design-generated coalescence parkable at the exit -> DEF sector
+     (direct frame: fold margin active on the domain boundary; no
+     interior shock ever). Equivalence direct-margin-active <-> DEF
+     classical = CONVERGED as EQ-v2 (panel 2026-08-07): split
+     statement, Directions A/B CONJECTURE under H1-H6 with one
+     THEOREM component (S4: Lambda-form == Rao-Beck Eq. (4), perfect
+     gas) and the pre-registered twin falsifier (F1b) — the
+     unqualified equivalence is REFUTED and may not be cited.
+ (b) data-borne / boundary-entering fronts (RDE oblique wave system
+     per phase; plug/shroud lip shocks) -> classical fitted fronts,
+     declared topology, well-posed; consumes the general engine +
+     U3/G12 machinery (F4b).
+ (c) emergent interior coalescence not parkable -> EXCLUDED by the
+     margin governor. The governor is recorded HOMENTROPIC-SCOPED
+     until the F2 extended (q; s, h0) margin lands (panel S4 bound
+     (a): the Lambda-form is EOS-general but NOT data-general);
+     birth-fitting only if a concrete case demands it, after
+     Moretti/Salas acquisition + page-verify.
+
+### TIER-INVARIANT CLAUSE (binding text, user pin 2026-08-11 — not
+### practice, REQUIREMENT of every margin of every tier/class)
+
+ (i)  REQ-NONSTALL: the search for the optimum must NEVER stall
+      because a trial design's flow field cannot be computed in the
+      current tier's class (e.g. an interior shock in a shock-free
+      tier). Every margin implementation must let the optimizer
+      CONTINUE — steer (constraint with gradient), survive
+      (certification gate + ordered rejection), and report — at
+      every trial point, in every tier, for every geometry class.
+ (ii) G1-SURROGATE: every margin constraint must return a FINITE
+      NEGATIVE SURROGATE at a failed march (computed from the
+      partial march up to the failure), continuously extending the
+      margin across the frontier, REJECTOR-GATED: a deliberate
+      beyond-frontier trial must yield a finite surrogate and a
+      recovered optimizer step; stall/crash = FAIL. (Ledger row G1,
+      owner F1.)
+ (iii) TRANSITION DUTY: every tier or geometry-class transition
+      (S0 -> S1, bell -> plug/C-, homentropic -> stratified data)
+      carries the duty "margin vector RE-DERIVED for the new class +
+      surrogate re-verified + KAT against a closed-form or
+      independent oracle" BEFORE the first decisive run in the new
+      class. Generality is binding text: a margin valid only on the
+      class it was derived in is a DEFECT to declare, never a
+      default to inherit silently.
+
+### Cross-cutting (ratified with the phases)
+
+- BUDGET CLAUSE (uniform): measured per-run anchors (S18 ~400 s,
+  S20 ~1046 s/campaign), wall-clock cap per decisive run, max
+  decisive-campaign count with auto-firing fallback; every phase
+  carries a named fallback; no silent extension.
+- PAPER STREAM: P-2 (F1 close, dated trigger); DEF/twin verdict
+  (F1b); general-engine methods freeze (F2 exit) + showcase (F3);
+  tier-1/DEF paper (F4b, O3-gated claims); RDE/P-1-numeric (F5a);
+  P-1 theory half = parallel low-compute track from F2, freeze at
+  F2 exit.
+- HYPOTHESIS-COVERAGE MAP: of record in
+  validation/ADVISORY_plan_v3_panel_2026-08-07.md (ingested S21);
+  every phase assumption is covered by a prior exit gate or carried
+  as a NAMED conditional with an owner — the map is part of this
+  ratification by reference.
+- AUDIT P2 REMAINDER, phase-tagged (checkable scheduling): C4 ->
+  F0/F1 (minimal fix or carrier-exclusive annotations); C5 ->
+  pre-F5 entry; C6 -> pre-F2 entry; remaining C3 rows -> the phase
+  consuming each tolerance; C8 remainder -> F0 hygiene.
+- EXPERIMENTAL ANCHOR (RK-E, item 13): acquisition started
+  cross-cutting at F2-F3 (external lead time) so F5a has a named
+  case-C target.
 
 ------------------------------------------------------------------------------
 ## 0. What "formally optimal methodology" means here (the certainty model)
