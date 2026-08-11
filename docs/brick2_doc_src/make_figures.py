@@ -2256,6 +2256,176 @@ def fig_spike_designs():
     fig.tight_layout()
     save(fig, "fig_spike_designs.pdf")
 
+
+# --------------------------------------------- S23: the resolved ladder
+def fig_s23_ladder():
+    """The gain resolution of [X-PGRS], drawn from the committed
+    verdict.json. (a) both designs' thrust vs march resolution: the
+    streamline converges monotonically at first order onto its
+    extrapolated limit; the fine-tuned optimum overshoots (the
+    de-tuning transient) and descends onto the SAME limit. (b) the
+    paired gain minus its extrapolated limit, log scale: a straight
+    line = geometric convergence at the march's own order; the open
+    marker is the model's prediction of rung 6 made before rung 6
+    ran."""
+    v = json.load(open(os.path.join(ROOT, "validation", "_plug_gain",
+                                    "verdict.json")))
+    Ji, Jf, g = (np.array(v["Ji"]), np.array(v["Jf"]),
+                 np.array(v["gains"]))
+    rungs = ["(61,51)", "(121,101)", "(241,201)", "(481,401)",
+             "(961,801)", "(1921,1601)"]
+    x = np.arange(1, 7)
+    # limits of record (verdict.json): gain limit and band; inc limit
+    # from its last window
+    d45 = Ji[-2] - Ji[-3]; d56 = Ji[-1] - Ji[-2]
+    r_i = d56 / d45
+    Ji_lim = Ji[-1] + d56 * r_i / (1 - r_i)
+    g_lim, band = float(v["gain"]), float(v["band"])
+
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(9.6, 3.5))
+    a1.axhline(Ji_lim / 1e6, color="0.45", lw=0.8, ls="--")
+    a1.annotate("common limit %.5f MN" % (Ji_lim / 1e6),
+                (0.98, Ji_lim / 1e6), xycoords=("axes fraction",
+                                                "data"),
+                ha="right", va="bottom", fontsize=7.5, color="0.35")
+    a1.plot(x, Ji / 1e6, "o-", color="tab:blue", lw=1.3,
+            label="fan streamline (ratios 0.51, 0.50, 0.50, 0.50)")
+    a1.plot(x, Jf / 1e6, "s-", color="tab:orange", lw=1.3,
+            label="free-form optimum, tuned at rung 2")
+    a1.annotate("tuning rung", (2, Jf[1] / 1e6),
+                textcoords="offset points", xytext=(8, -14),
+                fontsize=7.5, color="tab:orange")
+    a1.annotate("the de-tuning transient:\novershoot, then descent\n"
+                "onto the same limit", (4.6, 115.90),
+                fontsize=7.5, color="tab:orange", ha="center",
+                xytext=(4.6, 115.90), xycoords="data",
+                textcoords="data")
+    a1.set_xticks(x, rungs, rotation=30, fontsize=7)
+    a1.set_ylabel("thrust J [MN]")
+    a1.set_xlabel("march resolution (K, N)")
+    a1.set_title("(a) two designs, one limit")
+    a1.legend(fontsize=7.2, loc="lower right")
+    a1.grid(**GRID)
+
+    a2.semilogy(x, 100 * (g - g_lim), "o-", color="tab:blue", lw=1.3,
+                label=r"measured gain $-$ limit")
+    # the model's prediction of rung 6 from rungs 3-5, made first
+    dg = np.diff(g)
+    g6_pred = g[4] + dg[3] * (dg[3] / dg[2])
+    a2.semilogy([6], [100 * (g6_pred - g_lim)], "o", mfc="none",
+                mec="tab:red", ms=9,
+                label="rung 6 as PREDICTED before it ran")
+    for k in range(1, 5):
+        r = dg[k] / dg[k - 1]
+        a2.annotate("%.2f" % r, (x[k] + 0.08,
+                    100 * (g[k] - g_lim)), fontsize=7,
+                    color="0.35")
+    a2.set_xticks(x, rungs, rotation=30, fontsize=7)
+    a2.set_xlabel("march resolution (K, N)")
+    a2.set_ylabel(r"gain $-$ extrapolated limit  [%]")
+    a2.set_title("(b) geometric convergence of the paired gain")
+    a2.annotate("limit $%+.3f\\%%$, band $%.3f\\%%$\n"
+                r"$\Rightarrow$ ZERO within band"
+                % (100 * g_lim, 100 * band),
+                (0.03, 0.06), xycoords="axes fraction", fontsize=8,
+                bbox=dict(boxstyle="round", fc="white", ec="0.6"))
+    a2.legend(fontsize=7.2, loc="upper right")
+    a2.grid(**GRID, which="both")
+    fig.tight_layout()
+    save(fig, "fig_s23_ladder.pdf")
+
+
+# --------------------------------------- S23: the driver, seen working
+def fig_s23_driver():
+    """The segmented TR-SQP driver at work, from the committed
+    run-of-record log. (a) the accepted staircase of the (121,101)
+    re-optimization with every rejection mechanism marked. (b) the
+    no-motion wedge, measured: thrust along +grad on a step ladder is
+    smooth and improving up to the fold at h ~ 3e-3; the first trial
+    at radius 0.05 lands far past it (numbers of record, S23 probe)."""
+    import re
+    logp = os.path.join(ROOT, "validation", "_plug_gain",
+                        "run_of_record_S23_fineopt.log")
+    seg_re = re.compile(r"\[seg\s*(\d+)\] J = ([\d.e+]+)\s")
+    rej_re = re.compile(r"\[seg\s*(\d+)\] trial J = ([\d.e+]+) REJ")
+    nom_re = re.compile(r"\[seg\s*(\d+)\] no motion at radius")
+    cer_re = re.compile(r"\[seg\s*(\d+)\] base REJECTED \(record not")
+    acc, rej, nom, cer = [], [], [], []
+    in_fine = False
+    for ln in open(logp):
+        if "fine optimization at" in ln:
+            in_fine = True
+        if "fresh ladders" in ln:
+            break
+        if not in_fine:
+            continue
+        m = seg_re.search(ln)
+        if m:
+            acc.append((int(m.group(1)), float(m.group(2))))
+        m = rej_re.search(ln)
+        if m:
+            rej.append((int(m.group(1)), float(m.group(2))))
+        if nom_re.search(ln):
+            nom.append(int(nom_re.search(ln).group(1)))
+        if cer_re.search(ln):
+            cer.append(int(cer_re.search(ln).group(1)))
+    J0 = acc[0][1]
+    kN = lambda J: (J - J0) / 1e3
+
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(9.6, 3.5))
+    xs = [s for s, _ in acc]
+    ys = [kN(J) for _, J in acc]
+    a1.step(xs, ys, where="post", color="tab:blue", lw=1.4)
+    a1.plot(xs, ys, "o", color="tab:blue", ms=4,
+            label="certified base (accepted)")
+    for s, J in rej:
+        a1.annotate("", (s, min(kN(J), -1.5)), (s, 0.0),
+                    arrowprops=dict(arrowstyle="->", color="tab:red",
+                                    lw=1.1))
+        a1.annotate("%.0f" % kN(J), (s, -1.9), ha="center",
+                    fontsize=6.5, color="tab:red")
+    a1.plot([], [], marker=r"$\downarrow$", ls="none",
+            color="tab:red", label="trial rejected (J shown, kN)")
+    a1.plot(nom, [0.4] * len(nom), "^", color="tab:orange", ms=6,
+            label="no-motion retry (radius halved, same record)")
+    a1.plot(cer, [-0.6] * len(cer), "x", color="tab:purple", ms=7,
+            label="base rejected: not Newton-certified")
+    a1.set_ylim(-2.4, 13)
+    a1.set_xlabel("segment")
+    a1.set_ylabel(r"$J - J_{\mathrm{start}}$ [kN]")
+    a1.set_title("(a) the segmented walk at (121,101)")
+    a1.legend(fontsize=6.8, loc="center right")
+    a1.grid(**GRID)
+
+    # (b) the wedge probe, numbers of record (S23 step 2)
+    h = np.array([1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 5e-2])
+    dJ = np.array([6.01738e-1, 6.01627e0, 6.00474e1, 5.87754e2,
+                   7.09353e4, -7.51098e4, -1.62450e6])
+    pred = 6.01751e6 * h
+    a2.plot(h, pred, "--", color="0.5", lw=1.0,
+            label=r"linear prediction $|\nabla J|\,h$")
+    up = dJ > 0
+    a2.plot(h[up], dJ[up], "o", color="tab:blue",
+            label=r"measured $\Delta J$ along $+\nabla J$ ($>0$)")
+    a2.plot(h[~up], -dJ[~up], "v", color="tab:red",
+            label=r"measured $-\Delta J$ (fold: worse)")
+    a2.set_xscale("log")
+    a2.set_yscale("log")
+    a2.axvspan(3e-3, 5e-2, color="tab:red", alpha=0.07)
+    a2.annotate("the fold:\nevery step here\nlooks worse",
+                (1.2e-2, 3e1), fontsize=7.5, color="tab:red",
+                ha="center")
+    a2.annotate("first trial,\nradius 0.05", (5e-2, 1.62450e6),
+                textcoords="offset points", xytext=(-52, -6),
+                fontsize=7.5, color="tab:red")
+    a2.set_xlabel(r"step size $h$ along $+\nabla J/|\nabla J|$")
+    a2.set_ylabel(r"$|\Delta J|$ [N]")
+    a2.set_title("(b) the no-motion wedge, measured")
+    a2.legend(fontsize=7.2, loc="upper left")
+    a2.grid(**GRID, which="both")
+    fig.tight_layout()
+    save(fig, "fig_s23_driver.pdf")
+
 if __name__ == "__main__":
     fig_nozzle_primer()
     fig_bell_vs_plug()
@@ -2280,4 +2450,6 @@ if __name__ == "__main__":
     fig_freejet()
     fig_edge_root_geometry()
     fig_spike_designs()
+    fig_s23_ladder()
+    fig_s23_driver()
     print("ALL FIGURES DONE ->", OUT)

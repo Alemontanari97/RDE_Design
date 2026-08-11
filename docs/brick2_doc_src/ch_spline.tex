@@ -131,17 +131,98 @@ frozen topology is never allowed to drift far from the true one. The
 agreement between this adjoint and central finite differences is
 measured at every run and is reported in Section~\ref{sec:splineres}.
 
-\section{The driver, and two defects it exposed}
+\section{The driver: trust-region SQP, in full}
 \label{sec:splinedriver}
 
-The optimizer is a trust-region method: at each stage it trusts its
-local model only within a radius around the current design, takes a
-step inside it, and grows or shrinks that radius according to whether
-the step was any good. One \emph{segment} is one frozen record; the
-walk proceeds on that record, and acceptance triggers a fresh one.
+The optimizer deserves a complete description, both because every
+number in this chapter and the next was produced by it and because
+three of its defects --- each yielding plausible output while being
+wrong --- are lessons in themselves.
 
-Two defects surfaced on the first runs, and both are worth recording
-because both produced plausible output while being wrong.
+\paragraph{What SQP is.} Sequential quadratic programming attacks a
+nonlinear optimization by solving a sequence of tractable stand-ins:
+at the current design $W$ it builds a \emph{quadratic model} of the
+objective --- the measured gradient plus a curvature matrix
+accumulated from successive gradient differences (BFGS: the model
+learns curvature as it walks, no second derivatives are ever
+computed) --- and, when constraints are present, a linear model of
+those; the model problem is solved exactly, the true objective is
+evaluated at the proposed step, and the cycle repeats. In the
+\emph{trust-region} variant the model problem is solved only within
+a radius $\Delta$ around $W$ --- the region where the model is
+trusted --- and the ratio of \emph{actual} to \emph{predicted}
+improvement governs $\Delta$: a step that delivers what the model
+promised grows the radius, a step that does not shrinks it and is
+rejected. This is the standard machinery for smooth nonconvex
+problems, and the implementation underneath is scipy's
+\code{trust-constr}.
+
+\paragraph{Why the constrained problem arrives unconstrained.} The
+three constraints of Section~15.3 --- mass, length, tangency ---
+are imposed \emph{by construction} (the start radius by root
+search, the last knot pinned at $L$, the clamped slope), so the SQP
+never sees them: what remains is bound-free maximization over the
+knot heights, and the sequential-quadratic machinery reduces to
+trust-region quasi-Newton. The structure that makes the driver
+nontrivial is not the constraints but the \emph{objective}: $J$ is
+differentiable only through a frozen march record
+(Section~15.4), and the record is itself position-dependent.
+
+\paragraph{The segmented walk.} The driver therefore proceeds in
+\emph{segments}:
+
+\begin{enumerate}
+\item \textbf{Record} at the current base $W$: one concrete march,
+  writing down every discrete decision. The record must be
+  \emph{Newton-certified} (every cell converged to round-off); an
+  uncertified record rejects the base outright.
+\item \textbf{Walk on the record}: one \code{trust-constr} call,
+  limited to a few model iterations, maximizes the \emph{replayed}
+  $J$ --- exact value and exact adjoint gradient at frozen topology
+  --- inside the driver's own radius.
+\item \textbf{Treat the endpoint as a trial, not an answer.} The
+  fresh record at the endpoint must certify, and the replayed $J$
+  there must beat the incumbent. Acceptance re-records and grows
+  the radius ($\times 1.5$, capped); rejection reverts to the best
+  certified design and halves the radius toward a floor.
+\item \textbf{Stop} when a trial is worse at the radius floor, when
+  the walk stops moving at the floor, or at the segment budget. The
+  answer is the \emph{best certified design ever seen}, never the
+  last endpoint.
+\end{enumerate}
+
+Figure~\ref{fig:s23driver}(a) shows a production walk in this
+discipline --- fifteen accepted bases, three trials rejected for
+thrust, two bases rejected by the certification gate, five
+no-motion retries --- worth a thousand words of pseudocode.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_s23_driver.pdf}
+\caption{The driver at work, from the run of record. (a)~The
+segmented trust-region SQP re-optimizing the spike at the doubled
+resolution: the staircase is the accepted thrust (relative to the
+start, in kN); red arrows mark trials the acceptance test rejected
+(their thrust printed below, in kN --- the worst overshoot is
+$-687$ kN, which the old driver would have adopted); purple crosses
+mark bases rejected by the per-cell Newton certification gate;
+orange triangles mark no-motion retries, where the inner solver
+returned its start point and the outer driver halved the radius and
+tried again on the same record. (b)~The mechanism behind those
+retries, measured: thrust along the gradient direction is smooth and
+matches the linear prediction (dashed) over five decades of step
+size, then \emph{folds} near $h \sim 3\times10^{-3}$; a first
+trial at the full radius $0.05$ lands deep in the fold, and the
+inner solver's quadratic model, poisoned by that single rejected
+step's spurious curvature, stops evaluating the objective and
+returns the start point unchanged --- while $+7\times10^{4}$ N was
+available at $h = 10^{-3}$.}
+\label{fig:s23driver}
+\end{figure}
+
+Three defects surfaced across the campaigns, and all three are worth
+recording because all three produced plausible output while being
+wrong.
 
 \textbf{No acceptance test.} The first version adopted the endpoint of
 every segment unconditionally. A segment walks a local model on a
@@ -165,15 +246,41 @@ outer loop's own property --- grown only on an accepted design,
 shrunk only on a rejected one --- the walk resumed and the gradient
 fell by a further order of magnitude.
 
-Neither defect announced itself. The first produced a confident wrong
-sign; the second produced a plausible-looking plateau that would have
-been easy to report as convergence.
+\textbf{The no-motion wedge.} The third defect waited for the
+sharper instrument of Section~\ref{sec:gainresolved}. Started from a
+converged coarse optimum at doubled resolution, the inner solver
+returned its start point unchanged --- ``no motion'' --- with a
+gradient of $6\times10^{6}$ in hand, and the driver, reading no
+motion as convergence, stopped. The probe in
+Figure~\ref{fig:s23driver}(b) exonerated the objective: smooth,
+matching its linear prediction over five decades of step size,
+folding over only beyond $h \sim 3\times10^{-3}$. The wedge is the
+inner solver's: its first trial at the full radius lands past the
+fold, the rejected step teaches its curvature model a violently
+wrong lesson, and the poisoned model proposes nothing further worth
+evaluating --- while $+7\times10^{4}$ N of improvement stood one
+$10^{-3}$-step away. The repair stays inside the driver's own
+semantics: no motion above the radius floor is treated exactly like
+a rejected base --- halve the radius, retry on the same record ---
+and only no motion \emph{at} the floor is convergence. Every
+previously recorded walk reproduces bit-for-bit under the repaired
+driver; the retries can be seen doing their work in
+Figure~\ref{fig:s23driver}(a).
 
-A third gate is inherited rather than new: a design whose march cannot
-be Newton-certified is rejected outright and the radius shrunk. This
-fires in practice --- one segment of the run of record hit a record
-with a worst residual of $2.3$, and the rejector reverted it --- so it
-is load-bearing rather than decorative.
+None of the three defects announced itself. The first produced a
+confident wrong sign; the second a plausible-looking plateau easy to
+report as convergence; the third a false ``converged'' verdict with
+an order of magnitude of gradient still standing. One theme: the
+optimizer's bookkeeping is part of the experiment, and it is graded
+by the same standard as the physics.
+
+A further gate is inherited rather than new: a design whose march
+cannot be Newton-certified is rejected outright and the radius
+shrunk. This fires in practice --- one segment of the S21 run of
+record hit a record with a worst residual of $2.3$ and was reverted;
+the purple crosses of Figure~\ref{fig:s23driver}(a) are the same
+gate firing at the doubled resolution --- so it is load-bearing
+rather than decorative.
 
 \section{Does the basis contain the incumbent?}
 \label{sec:reprladder}
@@ -564,25 +671,38 @@ spending its high-resolution hours inside a single degenerate
 tensor-stacking compilation, which a one-line change (bit-identical,
 gated on the record) reduced from hours to minutes:
 
-\begin{center}
-\begin{tabular}{lcc}
-\toprule
-march resolution & gain over the streamline & diff ratio \\
-\midrule
-$(61,51)$      & $+0.303\,\%$ & \\
-$(121,101)$    & $+0.196\,\%$ & $0.829$ \\
-$(241,201)$    & $+0.108\,\%$ & $0.622$ \\
-$(481,401)$    & $+0.053\,\%$ & $0.554$ \\
-$(961,801)$    & $+0.022\,\%$ & $0.524$ \\
-$(1921,1601)$  & $+0.006\,\%$ & \\
-\bottomrule
-\end{tabular}
-\end{center}
+Figure~\ref{fig:s23ladder} carries the result. Panel~(a) is the
+whole story in one frame: the streamline's thrust climbs
+monotonically onto its extrapolated limit with ratios locked at the
+march's first order, while the optimum --- tuned at the second rung
+--- overshoots there and then descends onto the \emph{same} limit;
+the two designs are one nozzle measured two ways. Panel~(b) shows
+the paired gain minus its extrapolated limit falling as a straight
+line on a log scale --- geometric convergence, ratios printed at
+each rung --- and the open marker is the sixth rung as the model
+\emph{predicted it before it ran}: the miss is eighteen times
+smaller than the step it predicted, which is the model earning its
+extrapolation. That limit is
 
-\noindent The ratios settle onto the march's own first order, the
-model predicted the sixth rung before seeing it ($+0.0053\%$
-predicted, $+0.0062\%$ measured --- a miss eighteen times smaller
-than the step it predicted), and the extrapolated limit is
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_s23_ladder.pdf}
+\caption{The resolution of the gain, from the run of record.
+(a)~Thrust of both designs against march resolution on the six-rung
+ladder, spacing halving per rung: the fan streamline (blue)
+converges monotonically at first order (successive-difference
+ratios $0.51, 0.50, 0.50, 0.50$) onto the dashed extrapolated
+limit; the free-form optimum (orange), tuned at the second rung,
+is flattered there by the instrument's own discretization error and
+descends onto the same limit as the march sharpens --- the
+de-tuning transient. (b)~The paired gain minus its extrapolated
+limit: a straight line on the log scale is geometric convergence,
+with the ratio settling onto the march order $0.5$; the open red
+circle is rung six as predicted from rungs three through five
+before the rung was computed. The extrapolated limit,
+$-0.011\% \pm 0.017\%$, is zero within its band.}
+\label{fig:s23ladder}
+\end{figure}
 \begin{equation}
   \text{gain}^{*} \;=\; -0.011\,\% \;\pm\; 0.017\,\%
   \qquad\text{(band from the limit's own window stability)}.
