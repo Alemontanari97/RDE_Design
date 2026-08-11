@@ -200,3 +200,55 @@ RT-1 wording question independently. Registry count seen by our
 lint (131) matches the S22 registration (+X-LOCD, +X-MGOV).
 Remaining working-tree modifications (data/q_mapping.*) belong to
 the F line — untouched.
+
+## STEP 11 — USER-ORDERED IN-SESSION CLOSURE (absorption executed)
+
+USER ORDERS (2026-08-11, of record): close the session's open items
+HERE; SCOPE PINS P1 (frozen thermally-perfect mixture, gamma(T)
+free), P2 (no two-phase for now), P3 (anti-divergence); praxis
+reminder: verification/adjudication ALWAYS via workflow.
+EXECUTED: pins registered (memory + M0 + D6); duty package RATIFIED
+under pins (ledger advisory ratification appendix: every DUTY-1..15
+accepted/rescoped/rejected WITH reason; two-fluid architecture,
+condensation corrector, transient machinery, real-gas machinery
+REJECTED-FOR-NOW by pin); deltas DELTA-A1..A6 EXECUTED (M0 Lemma-A
+thermal pin, [T-T3-SI], [T-T3-MAP], PROTOCOL T3-CONTROL; registry
+131->133; hypothesis ledger 29->33; P1 echo fix; choking 2-ter(a)
+correction; D6 addendum; PROGRESS block) — commit 5dc9a90.
+
+## STEP 12 — ABSORPTION VERIFIED TO CONVERGENCE (workflow
+## wf_bc13080d-65f, 4 default-REFUTED lenses + judge)
+
+FIX-LIST: 11 items (1 high: unadjudicated necessity parenthetical in
+(b); 6 medium incl. DELTA-A6 silent drop, PROGRESS structural
+parenting, Harroun clause missing, T-T3-MAP gamma inflation,
+DUTY-1(b) drop, truncated sea-level verdict; 4 low). ALL FIXED —
+commit 8f860c5; lint (xv) EXIT 0. Lesson landed to memory: judges
+read FILES, never inline slices.
+
+## STEP 13 — PAGE-VERIFY OF EVERY PAPER-ANCHORED CLAIM (workflow
+## wf_a4a8ce3f-aa8, user challenge "checked textually?"; 4 PDF
+## verifiers + judge, verbatim standard, default-REFUTED)
+
+15 claims across Stechmann/K-P/Harroun/P-M/Kraiko-Osipov: 8
+VERBATIM-CONFIRMED, 7 FAITHFUL-PARAPHRASE (all acceptable — none
+presented as quotation), 0 NOT-FOUND. CORRECTIONS REQUIRED: 4, all
+in the untracked advisories, NONE in M0 — (1) Stechmann p.889 quote
+"also"->"thus" + completed tail; (2) Harroun separation delay
+DOWNGRADED measured->computed-CFD-only (experimentally unconfirmed
+at the separation location, p.670 verbatim caveat quoted); (3)
+Stechmann quote range 892-895 -> 893-895; (4) K-P p.7 quote
+completed ("or for turbine work"). All four APPLIED. M0's shipped
+claims independently re-verified consistent with page evidence.
+
+## STEP 14 — FINAL R3 CLOSE
+
+Session COMPLETE: gauntlet verdict + collapse verdict + absorption +
+verification + page-verify all landed and committed (e5f8f64,
+3bd7180, 5dc9a90, 8f860c5, + this log commit). Post-22 restart is
+CLEAN: S23 opens on the F1 early-close user decision (PROGRESS ORA
+note + D6 duty rows ready; recommendation of record given in chat:
+early-close with three riders). Residuals for S23+: S18 five-line
+hypothesis audit (named precondition), Lemma-B across-shocks
+adjudication (tier-2 promotion), X-T3SI-conv corner dry-run (idle
+window), a-B2 assignment at F3 entry.
