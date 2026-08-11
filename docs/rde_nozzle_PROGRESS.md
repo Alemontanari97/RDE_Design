@@ -7,14 +7,121 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-11, chiusura Sessione 21 — **F0 "ORDER +
-## INSTRUMENTATION" del piano v3 RATIFICATO: P0 chiusi con rejector,
-## certdiag KAT retro-valida il verdetto S20, bench o33 riparato e
-## FULL PASS, addendum utente (red-team + use-case + choking U3')
-## eseguito, EQ-v2/Λ-form/ledger a registro col footing corretto,
-## strumentazione ARMATA**; log:
-## validation/PROGRESS_2026-08-11_S21_order.md, 8 passi; gate PASS
-## al passo 2)
+## ORA (2026-08-11, chiusura Sessione 22 — **F1 "GOVERNOR + P-2
+## CAPTURE", sessione 1: O4 SCARICATA per l'istanza S20 (ramo (c)
+## UNANIME — meccanismo NON-FOLD, entrambe le letture del standoff
+## FALSIFICATE), il falsificatore del bridge K_disc~A_0 SPARA,
+## governor [X-MGOV] costruito/derivato/rejector-provato, campagna
+## decisiva A' 1/2 ESEGUITA = certifiability-limited-under-constraint
+## con margine INATTIVO (predizione pre-registrata TENUTA, stop per
+## monotonia)**; log: validation/PROGRESS_2026-08-11_S22_governor.md,
+## 8 passi; gate PASS al passo 2)
+
+**CONTATORE F1 (ISS-5, obbligatorio): F1 campaign 1/2, session 1/3.**
+
+Branch `rde-nozzle-program`. Commit: apertura+gate+T0+T1 = aec2c9f,
+T2+T3 = 0174bb9, chiusura = (questo). Lint (xv) verde sull'EXIT CODE
+a ogni commit (129 -> 131: +[X-LOCD], +[X-MGOV]). Suite di chiusura
+nel log passo 8 (carrier-esclusiva per l'annotazione C4 di record;
+i carrier on-demand esercitati in sessione con run diretti:
+[X-A1IM] exit 0, [X-LOCD] exit 0, [X-MGOV] derive exit 0 +
+campaign exit 0).
+
+- **[F1] T0 DECISIONE UTENTE (2026-08-11)**: sgancio P-2 = opzione
+  (b) DEFAULT RATIFICATO (freeze a trigger datato a chiusura F1);
+  opzione (a) declinata. BLOCCATO-4 chiusa.
+- **[F1] T1 IGIENE con FINDING**: il bookkeeping S21 C2-F4 (me_gap)
+  rompeva la vjp S6 di [X-A1IM] (float su tracer) — fix
+  tracer-guarded, main FULL PASS end-to-end; righe S2 exit_cap / S6
+  CERT_PLAY verificate CAPACI di rigettare (STIM-1 indurito a
+  m_stop=0, STIM-2 a cap 0 spara a 5.4e+07, controlli tengono).
+- **[F1] T2 RETRO-DIAGNOSI S20 = O4 SCARICATA, ramo (c) 5/5**:
+  camminata rigenerata DETERMINISTICAMENTE (firma {1.170, 2.458x4,
+  1.060, 1.455, 1.698}, artefatto bit-identico); campo val SANO su
+  tutti i design rigettati (min 0.612-0.620 vs soglia 0.172; celle
+  failing a val 0.65-0.86, zona NEAR-AXIS colonne 23-30) => lettura
+  DEF **e** caustica interna FALSIFICATE per l'istanza; meccanismo =
+  COSTRUZIONE DI CLASSE (identificazione = owner F2); **il
+  falsificatore del bridge K_disc~A_0 SPARA** (bd(K) qui è
+  numerico-di-classe, NON il confine di validità fisico) — la
+  congettura come formulata è morta, regola nuova: ogni claim di
+  bridge richiede il test per-istanza. RT-1 risolto: lo standoff era
+  un artefatto di classe. Carrier [X-LOCD] (KAT-CLS 5/5, BASE-CTRL,
+  determinismo PASS).
+- **[F1] T3 DERIVAZIONI PRE-RUN TUTTE SCARICATE ([X-MGOV] derive
+  FULL PASS)**: margine KS su campo val tracciato (val_diag
+  additivo), rho DERIVATO = K_RICH ln(N)/mu0_min = 766.83 (N=3498,
+  m_ref=0.6810298), scala mu0 = m_ref/2^k pre-registrata;
+  G1-SURROGATO REJECTOR-PROVATO (finito-negativo -3.96e+02 al
+  design rotto, gradiente zeroed+counted, camminata vincolata corta
+  recuperata senza stallo) — duty tier-invariant F1 SCARICATO;
+  metrica [D1]-VINCOLATA derivata (corollario del KKT col
+  moltiplicatore); bande magic GENO derivate contro ricetta
+  SOURCE-VERIFIED (Rao_m.f90: FD centrale dV_pert=1.0; FD in banda
+  a 0.371; den-guard NON può mordere in-range); survey KS adattiva
+  adopt-or-declare (adottato KS standard con rho derivato).
+- **[F1] T4 CAMPAGNA A' 1/2 = BRANCH ADJUDICATED**: dal base
+  outcome-II, rung più stretto mu0=0.3405: 7 rejection (worst
+  1.531, un sesto design di frontiera), ratchet al floor, EXHAUSTED
+  -> **certifiability-limited-under-constraint** (uscita VALIDA
+  dichiarata del gate F1) con MARGINE INATTIVO (censimento cuspidi
+  attive: 0 lane, 0 cluster; min val 0.6186 interno; contatori
+  nonfiniti 0/0) — predizione pre-registrata TENUTA, falsificatore
+  non sparato; STOP PER MONOTONIA: rung 2-4 vacui, mu = 0
+  identicamente (RT-4 sign test banale); [D1] non licenziata (no
+  outcome-I) => [C-O33] resta APERTA-QUANTIFICATA. Dual-proof
+  completa sul claim centrale (il governor non cattura QUESTA
+  frontiera): derivazione + campagna eseguita. 498 s (anchor ok).
+- **NEXT-1 (S23) = DECISIONE UTENTE: CHIUSURA ANTICIPATA DI F1**
+  (vedi BLOCCATO 6). Le condizioni di uscita F1 sono RAGGIUNTE
+  (branch valido + locus classificato + logs obbligatori); una 2a
+  campagna è misurabilmente VACUA (monotonia). La chiusura fa
+  scattare il freeze P-2 datato PER REGOLA e richiede
+  l'aggiudicazione della riga BLOCKER C1 del freeze (rejector
+  field-level, carrier unbuilt, owner F2 — S21 passo 6): freeze con
+  conditional dichiarata nel paper vs attesa F2. In coda dopo: F1b
+  (twin DEF, conditional esterna GENO), F2 (motore generale — ORA
+  ANCHE owner dell'identificazione del meccanismo near-axis di
+  classe trovato da T2), U3' [F2a], residui S19 (b)/(c)/(d),
+  census-lemma, PAP-RIM, review G0/T2.
+
+STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S22):
+ 1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
+    del dispatch (validation/G5_dispatch_email.md) dall'account
+    istituzionale + canale di fallback; blocca SOLO le submission.
+ 2. **Acquisizioni (F0 dispatch)**: Sternin 1962; Shmyglevskii 1981
+    (gate O3); Giles-Ulbrich SINUM 2010 x2; Lozano 2019 (entry
+    F4b); Moretti/Salas CONDIZIONALE; residuo fetch AIAA 2019-0197.
+ 3. **Decisione preprint/arXiv**: raccomandazione invariata (armare
+    il trigger); la decisione resta all'utente.
+ 4. **SGANCIO P-2 (ISS-2): CHIUSA 2026-08-11** — decisione utente =
+    (b) default ratificato (trigger datato a chiusura F1).
+ 5. **DISPATCH GENO (protocollo SUO, sessione separata, MAI da
+    qui)**: flagdef KAT + un caso di regressione DEF; conditional
+    esterna nominata del gate F1b. NOTA S22: [X-MGOV] fornisce
+    anche la BANDA derivata per la leg di cross-check (dV_pert).
+ 6. **NUOVO — CHIUSURA ANTICIPATA F1 (decisione utente, S23)**:
+    uscita F1 raggiunta alla campagna 1/2 (branch
+    certifiability-limited-under-constraint + evidenza di
+    localizzazione); 2a campagna vacua per monotonia. Se si chiude:
+    freeze P-2 datato PER REGOLA (contenuto = two-knob S19) +
+    aggiudicazione della riga BLOCKER C1 (freeze con conditional
+    dichiarata vs attesa del carrier F2). Se non si chiude: budget
+    F1 resta (session 2-3/3) ma senza contenuto decisivo nominato.
+ 7. **NOTA ALBERO (S22)**: tre advisory untracked NUOVE atterrate
+    inter-sessione, NON ingerite (fuori mandato):
+    ADVISORY_Scollapse_prompt_2026-08-11,
+    ADVISORY_Sgauntlet_prompt_2026-08-11,
+    ADVISORY_mean_swirl_panel_2026-08-11 — ownership da assegnare.
+
+Stato precedente (chiusura Sessione 21 — **F0 "ORDER +
+INSTRUMENTATION" del piano v3 RATIFICATO: P0 chiusi con rejector,
+certdiag KAT retro-valida il verdetto S20, bench o33 riparato e
+FULL PASS, addendum utente (red-team + use-case + choking U3')
+eseguito, EQ-v2/Λ-form/ledger a registro col footing corretto,
+strumentazione ARMATA**; log:
+validation/PROGRESS_2026-08-11_S21_order.md, 8 passi; gate PASS
+al passo 2)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = e73f370,
 ratifica T1 = 0dd0d69, addendum = 7decfec, T2/T3-carrier = 89c3400,
