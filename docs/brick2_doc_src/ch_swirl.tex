@@ -1,240 +1,254 @@
-\chapter{Free-vortex swirl}
+\chapter{Swirl a vortice libero}
 \label{ch:swirl}
 
-Everything so far assumed the gas moves in a plane containing the
-axis: forward and outward, never around. A rotating detonation
-engine (RDE) --- a combustor in which a detonation wave runs
-continuously around an annular chamber --- does not oblige: its
-exhaust comes out \emph{spinning}. This chapter adds that spin to
-the solver in the one form that costs no new assumptions, shows by
-proof and by measurement that the whole certified machinery
-survives it, and states plainly what the extension does and does
-not model.
+Tutto quanto precede ha assunto che il gas si muova in un piano
+contenente l'asse: in avanti e verso l'esterno, mai attorno. Un
+motore a detonazione rotante (RDE) --- un combustore in cui un'onda
+di detonazione corre di continuo attorno a una camera anulare --- non
+è così accomodante: il suo scarico esce \emph{ruotando}. Questo
+capitolo aggiunge quella rotazione al solutore nell'unica forma che
+non costa nuove ipotesi, mostra per dimostrazione e per misura che
+l'intera macchina certificata le sopravvive, e dichiara con chiarezza
+che cosa l'estensione modella e che cosa no.
 
-\section{The question}
+\section{La domanda}
 
-Because the detonation wave sweeps around the chamber, it drags the
-gas with it: the exhaust carries an \emph{azimuthal velocity} $w$
---- the component of velocity that goes \emph{around} the axis,
-perpendicular to the plane through the axis in which the solver
-works (that plane is called the \emph{meridional} plane, and $q_m$
-denotes the speed in it). The theory corpus guarantees (its
-statement N6-2) that for one particular swirl profile --- the
-\emph{free vortex} --- the entire certified march structure
-survives untouched, and that anything beyond it is a class of flow
-this method cannot represent at all, and which belongs to the
-CFD-adjoint track.
+Poiché l'onda di detonazione spazza la camera, trascina con sé il
+gas: lo scarico porta una \emph{velocità azimutale} $w$ --- la
+componente di velocità che gira \emph{attorno} all'asse,
+perpendicolare al piano passante per l'asse in cui il solutore lavora
+(quel piano si chiama piano \emph{meridiano}, e $q_m$ indica la
+velocità in esso). Il corpus della teoria garantisce (la sua
+affermazione N6-2) che per un particolare profilo di swirl --- il
+\emph{vortice libero} --- l'intera struttura della marcia certificata
+sopravvive intatta, e che qualunque cosa oltre esso è una classe di
+flusso che questo metodo non può rappresentare affatto, e che
+appartiene alla linea dell'aggiunto CFD.
 
-A free vortex is the swirl of a bathtub drain far from its core:
-the product of radius and azimuthal velocity, $\Gamma = y\,w$, is
-\emph{one and the same number everywhere in the flow}. That product
-is called the \emph{circulation}; it measures how much the gas
-circles the axis, and physically it is the angular momentum per
-unit mass. So the swirl is fastest near the axis and dies away
-outward, and it is fixed by a single scalar $\Gamma$.
+Un vortice libero è la rotazione dello scarico di una vasca lontano
+dal suo nucleo: il prodotto del raggio per la velocità azimutale,
+$\Gamma = y\,w$, è \emph{uno e lo stesso numero ovunque nel flusso}.
+Quel prodotto si chiama \emph{circolazione}; misura quanto il gas
+gira attorno all'asse e fisicamente è il momento angolare per unità
+di massa. Lo swirl è dunque più veloce vicino all'asse e si spegne
+verso l'esterno, ed è fissato da un solo scalare $\Gamma$.
 
-The question of this chapter: can the engine carry swirl, with the
-guarantee \emph{measured} rather than assumed --- and with the
-swirl turned off ($\Gamma \to 0$) recovering the certified
-swirl-free march exactly?
+La domanda di questo capitolo: il motore sa portare lo swirl, con la
+garanzia \emph{misurata} anziché assunta --- e con lo swirl spento
+($\Gamma \to 0$) che recupera esattamente la marcia certificata senza
+swirl?
 
-\section{How it works, in full}
+\section{Come funziona, per esteso}
 
-\subsection{Why free vortex is the one free extension}
+\subsection{Perché il vortice libero è l'unica estensione gratuita}
 
-Three exact facts make the free vortex special.
+Tre fatti esatti rendono speciale il vortice libero.
 
-First, the equation for momentum around the axis says that
-$y\,w$ is carried unchanged along each streamline. If it is one
-constant \emph{everywhere}, that equation is satisfied identically
-and $w = \Gamma/y$ is known from position alone --- no new unknown
-enters the march.
+Primo, l'equazione della quantità di moto attorno all'asse dice che
+$y\,w$ è trasportato invariato lungo ciascuna linea di corrente. Se è
+una sola costante \emph{ovunque}, quell'equazione è soddisfatta
+identicamente e $w = \Gamma/y$ è noto dalla sola posizione ---
+nessuna nuova incognita entra nella marcia.
 
-Second, the flow stays \emph{irrotational}: fluid parcels are
-carried along and deformed, but they do not spin about their own
-centres. This is the property the whole solver rests on --- it is
-what makes the flow describable by the two characteristic families
-of Chapter~\ref{ch:moc}; a flow whose parcels do spin is called
-\emph{rotational}, and for it the method of characteristics no
-longer applies. That is exactly what lies beyond the free vortex.
-Crocco's theorem, which ties
-vorticity to gradients of total enthalpy and entropy, leaves only
-an azimuthal component possible when both are uniform, and the
-condition $V \times \omega = 0$ then forces even that to vanish. So
-the meridional flow stays irrotational, and the certified
-two-characteristic structure is not an approximation here but
-exact.
+Secondo, il flusso resta \emph{irrotazionale}: le particelle di
+fluido vengono trasportate e deformate, ma non ruotano attorno al
+proprio centro. È questa la proprietà su cui posa l'intero solutore
+--- è ciò che rende il flusso descrivibile con le due famiglie
+caratteristiche del Capitolo~\ref{ch:moc}; un flusso le cui
+particelle ruotano si dice \emph{rotazionale}, e per esso il metodo
+delle caratteristiche non è più applicabile. È esattamente ciò che
+sta oltre il vortice libero. Il teorema di Crocco, che lega la
+vorticità ai gradienti di entalpia totale ed entropia, lascia
+possibile solo una componente azimutale quando entrambe sono
+uniformi, e la condizione $V \times \omega = 0$ costringe poi anche
+quella ad annullarsi. Il flusso meridiano resta dunque irrotazionale,
+e la struttura certificata a due caratteristiche non è qui
+un'approssimazione ma è esatta.
 
-Third, working the gas-dynamic equations through with
-$w = \Gamma/y$ shows that the meridional problem changes in exactly
-two places and nowhere else:
+Terzo, svolgendo le equazioni della gasdinamica con $w = \Gamma/y$ si
+vede che il problema meridiano cambia in esattamente due punti e in
+nessun altro:
 \begin{itemize}[itemsep=1pt]
-\item \textbf{the state}: the kinetic energy of the spin joins the
-  energy budget, $h = h_0 - q_m^2/2 - \Gamma^2/(2y^2)$, so the
-  thermodynamic state now depends on the radius $y$ as well as on
-  the meridional speed $q_m$;
-\item \textbf{the source}: spinning gas must be held in by a
-  pressure gradient pointing inward, and that centrifugal
-  contribution adds to the term that axisymmetric flow already
-  carries --- the \emph{axisymmetric source term}, the extra piece
-  in the compatibility relations that accounts for the flow area
-  opening out as $y$ grows, absent in planar flow. It becomes
+\item \textbf{lo stato}: l'energia cinetica della rotazione entra nel
+  bilancio energetico, $h = h_0 - q_m^2/2 - \Gamma^2/(2y^2)$, quindi
+  lo stato termodinamico dipende ora dal raggio $y$ oltre che dalla
+  velocità meridiana $q_m$;
+\item \textbf{la sorgente}: un gas che ruota dev'essere trattenuto da
+  un gradiente di pressione diretto verso l'interno, e quel
+  contributo centrifugo si somma al termine che il flusso
+  assialsimmetrico già porta --- il \emph{termine sorgente
+  assialsimmetrico}, il pezzo aggiuntivo nelle relazioni di
+  compatibilità che tiene conto dell'area di flusso che si allarga al
+  crescere di $y$, assente nel flusso piano. Diventa
   $c^2 v/y \;\to\; (c^2 + \Gamma^2/y^2)\,v/y$.
 \end{itemize}
-The characteristic directions keep their form, now at the
-\emph{meridional} Mach angle, and the compatibility coefficients in
-$(u, v)$ are untouched.
+Le direzioni caratteristiche mantengono la loro forma, ora
+all'angolo di Mach \emph{meridiano}, e i coefficienti di
+compatibilità in $(u, v)$ restano intatti.
 
-\subsection{The implementation is two changes, and only two}
+\subsection{L'implementazione sono due modifiche, e soltanto due}
 
-The state change costs nothing new. With the augmented speed
-$q_{\rm eff} = \sqrt{q_m^2 + \Gamma^2/y^2}$ the energy closure
-reads $h = h_0 - q_{\rm eff}^2/2$, exactly the swirl-free form, so
-the certified thermodynamic machinery applies verbatim to
-$q_{\rm eff}$ and only the Mach number is rebuilt from the
-meridional speed. The free jet edge --- the boundary where the
-exhaust meets the atmosphere, on which the pressure is prescribed
---- keeps its certified parameterization: $p = p_a$ fixes the
-\emph{total} speed, the same scalar as without swirl, so the edge's
-meridional speed follows an explicit law,
-$q_m(y) = \sqrt{q_{p_a}^2 - \Gamma^2/y^2}$.
+Il cambiamento di stato non costa nulla di nuovo. Con la velocità
+aumentata $q_{\rm eff} = \sqrt{q_m^2 + \Gamma^2/y^2}$ la chiusura
+energetica si legge $h = h_0 - q_{\rm eff}^2/2$, esattamente la forma
+senza swirl, quindi la macchina termodinamica certificata si applica
+alla lettera a $q_{\rm eff}$ e solo il numero di Mach viene
+ricostruito dalla velocità meridiana. Il bordo di getto libero --- la
+frontiera dove lo scarico incontra l'atmosfera, sulla quale la
+pressione è assegnata --- mantiene la sua parametrizzazione
+certificata: $p = p_a$ fissa la velocità \emph{totale}, lo stesso
+scalare che senza swirl, quindi la velocità meridiana del bordo segue
+una legge esplicita, $q_m(y) = \sqrt{q_{p_a}^2 - \Gamma^2/y^2}$.
 
-The three cell types are mirrored with the swirl state and source
-and then run through the \emph{unchanged} certified march driver
-through an additive seam, whose defaults reproduce the certified
-path exactly --- both plug-march suites were re-run after the seam
-and still PASS.
+I tre tipi di cella sono rispecchiati con lo stato e la sorgente di
+swirl e poi eseguiti attraverso il driver di marcia certificato
+\emph{invariato} tramite una giunzione additiva, i cui valori
+predefiniti riproducono esattamente il percorso certificato ---
+entrambe le suite della marcia del plug sono state rieseguite dopo la
+giunzione e continuano a passare.
 
-One numerical lesson surfaced and is fixed in the swirl cells. The
-cell's small nonlinear system mixes rows of very different size:
-geometry rows of order one against compatibility rows of order
-$u^2$. The damped Newton iteration --- which accepts a step only if
-a norm of the residual decreases --- can then stall one step short
-of the root, because the step that fixes the position trades a tiny
-increase in the compatibility rows against a geometry correction of
-order $10^{-7}$, and the damping rejects it forever. Dividing the
-compatibility rows by a constant reference speed --- a pure
-rescaling of the equations that moves no solution --- restores
-certified convergence (worst cell $0.009$ of tolerance).
+È emersa una lezione numerica, ora corretta nelle celle di swirl. Il
+piccolo sistema non lineare della cella mescola righe di dimensioni
+molto diverse: righe geometriche di ordine uno contro righe di
+compatibilità di ordine $u^2$. L'iterazione di Newton smorzata ---
+che accetta un passo solo se una norma del residuo diminuisce ---
+può allora arenarsi a un passo dalla radice, perché il passo che
+sistema la posizione baratta un aumento minuscolo nelle righe di
+compatibilità contro una correzione geometrica di ordine $10^{-7}$, e
+lo smorzamento lo rigetta per sempre. Dividere le righe di
+compatibilità per una velocità di riferimento costante --- un puro
+riscalamento delle equazioni che non muove alcuna soluzione ---
+ripristina la convergenza certificata (cella peggiore $0.009$ della
+tolleranza).
 
-\subsection{What this is, and is not: the spiral phase pattern}
+\subsection{Che cosa questo è e che cosa non è: il motivo di fase a
+spirale}
 \label{sec:spiral}
 
-The free vortex models the \emph{time-mean} azimuthal velocity of
-the exhaust. It does not model the \emph{spiraling of the phase
-pattern}: in a real RDE the surfaces of constant phase are helices
---- at one instant, different axial stations (and different
-azimuths) are at different points of the cycle, because the wave
-rotates while the flow transits. The cycle layer of
-Chapter~\ref{ch:cycle} is deliberately \emph{quasi-steady}: each
-phase fills the whole nozzle as a steady flow, and the cycle is an
-average over the phases with no clock. Two distinct physical
-effects are set aside by that closure. First,
-\emph{unsteadiness within a meridional ray}: the phase seen at
-station $x$ lags the injector phase by the transit time, and if the
-cycle period is comparable to the time gas spends in the nozzle,
-the flow never equilibrates to any phase --- the quasi-steady model
-is the limit of vanishing reduced frequency, and for representative
-RDE numbers (kHz rotation against sub-millisecond residence) that
-frequency is of order one, so this is a real modeling limit,
-stated. Second, \emph{azimuthal coupling}: the helical arrangement
-tilts wave fronts out of the meridional plane --- genuinely
-three-dimensional gasdynamics that no per-phase axisymmetric model
-can see. Both effects carry a partial mitigation and a clean escape
-route. The mitigation: if meridional rays were decoupled and
-quasi-steady, the \emph{time average} at each station would equal
-the average over phases regardless of how the phases are arranged
-in space --- the spiral reshuffles \emph{when}, not \emph{what};
-the cycle-averaged objective is insensitive to the arrangement at
-that order. The escape route: both departures live exactly where
-the corpus already points --- the unsteady three-dimensional CFD
-track, whose simulations contain the spiral natively and for which
-this engine is the oracle bank.
+Il vortice libero modella la velocità azimutale \emph{media nel
+tempo} dello scarico. Non modella lo \emph{svolgersi a spirale del
+motivo di fase}: in un RDE reale le superfici a fase costante sono
+eliche --- in un dato istante, stazioni assiali diverse (e azimut
+diversi) si trovano in punti diversi del ciclo, perché l'onda ruota
+mentre il flusso transita. Lo strato di ciclo del
+Capitolo~\ref{ch:cycle} è deliberatamente \emph{quasi-stazionario}:
+ogni fase riempie l'intero ugello come flusso stazionario, e il ciclo
+è una media sulle fasi senza orologio. Quella chiusura mette da parte
+due effetti fisici distinti. Primo, la \emph{non stazionarietà entro
+un raggio meridiano}: la fase vista alla stazione $x$ è in ritardo
+sulla fase all'iniettore del tempo di transito, e se il periodo del
+ciclo è confrontabile con il tempo che il gas passa nell'ugello, il
+flusso non si equilibra mai ad alcuna fase --- il modello
+quasi-stazionario è il limite di frequenza ridotta nulla, e per
+numeri rappresentativi di un RDE (rotazione a kHz contro tempi di
+residenza sub-millisecondo) quella frequenza è di ordine uno, quindi
+questo è un limite reale del modello, dichiarato. Secondo,
+l'\emph{accoppiamento azimutale}: la disposizione elicoidale inclina
+i fronti d'onda fuori dal piano meridiano --- gasdinamica
+genuinamente tridimensionale che nessun modello assialsimmetrico per
+fase può vedere. Entrambi gli effetti portano con sé una mitigazione
+parziale e una via d'uscita pulita. La mitigazione: se i raggi
+meridiani fossero disaccoppiati e quasi-stazionari, la \emph{media
+temporale} in ogni stazione eguaglierebbe la media sulle fasi
+indipendentemente da come le fasi sono disposte nello spazio --- la
+spirale rimescola il \emph{quando}, non il \emph{che cosa};
+l'obiettivo mediato sul ciclo è insensibile alla disposizione a
+quell'ordine. La via d'uscita: entrambe le deviazioni vivono
+esattamente dove il corpus già indica --- la linea CFD non
+stazionaria tridimensionale, le cui simulazioni contengono
+nativamente la spirale e per le quali questo motore è la banca degli
+oracoli.
 
-\subsection{The worlds}
+\subsection{I mondi}
 
-Two test worlds, both on the real-gas tables, both under a strong
-swirl ($w/u = 0.35$ at the inner radius).
+Due mondi di prova, entrambi sulle tabelle di gas reale, entrambi con
+uno swirl forte ($w/u = 0.35$ al raggio interno).
 
-The \emph{radial-equilibrium duct} is an exact known answer. In a
-straight annular duct the swirling solution has \emph{uniform}
-axial speed and no radial velocity at all: differentiating the
-energy closure along $y$ and subtracting the radial balance between
-pressure gradient and centrifugal force,
-$\mathrm{d}p/\mathrm{d}y = \rho\Gamma^2/y^3$, gives
-$\mathrm{d}u/\mathrm{d}y = 0$ exactly --- while the entire radial
-structure of pressure, temperature, sound speed and Mach number is
-carried by the swirl term (Figure~\ref{fig:swirl}a). The march must
-\emph{preserve} that state, and any drift is pure error.
+Il \emph{condotto a equilibrio radiale} è una risposta nota esatta.
+In un condotto anulare rettilineo la soluzione con swirl ha velocità
+assiale \emph{uniforme} e velocità radiale nulla: derivando la
+chiusura energetica lungo $y$ e sottraendo il bilancio radiale fra
+gradiente di pressione e forza centrifuga,
+$\mathrm{d}p/\mathrm{d}y = \rho\Gamma^2/y^3$, si ottiene
+$\mathrm{d}u/\mathrm{d}y = 0$ esattamente --- mentre l'intera
+struttura radiale di pressione, temperatura, velocità del suono e
+numero di Mach è portata dal termine di swirl
+(Figura~\ref{fig:swirl}a). La marcia deve \emph{conservare} quello
+stato, e ogni deriva è puro errore.
 
-The \emph{expansion world} drops the wall smoothly under the same
-stream, so the flow is genuinely two-dimensional ($v \neq 0$) and
-the centrifugal source actually acts. The duct alone cannot see
-that source, because there $v = 0$ multiplies it away.
+Il \emph{mondo in espansione} fa scendere dolcemente la parete sotto
+la stessa corrente, così il flusso è genuinamente bidimensionale
+($v \neq 0$) e la sorgente centrifuga agisce davvero. Il solo
+condotto non può vedere quella sorgente, perché lì $v = 0$ la
+annulla.
 
-\section{What was built}
+\section{Che cosa è stato costruito}
 
-\carrier{validation/a1\_swirl\_march.py}: the swirl state
-(augmented speed) and its coefficients, the three mirrored cell
-processes with the row scaling, swirl-aware flux and wall-push
-integrals, the two worlds, and the suite below. The certified
-driver gained the additive seam (\code{cells=}, \code{q\_edge=});
-its own oracle and axisymmetric suites re-ran 6/6 and 5/5 after the
-change.
+\carrier{validation/a1\_swirl\_march.py}: lo stato con swirl
+(velocità aumentata) e i suoi coefficienti, i tre processi di cella
+rispecchiati con il riscalamento delle righe, gli integrali di flusso
+e di spinta di parete consapevoli dello swirl, i due mondi e la suite
+qui sotto. Il driver certificato ha acquisito la giunzione additiva
+(\code{cells=}, \code{q\_edge=}); le sue suite di oracolo e
+assialsimmetrica sono state rieseguite 6/6 e 5/5 dopo la modifica.
 
-\section{Results of record: 9/9 PASS}
+\section{Risultati di riferimento: 9/9 PASS}
 
-W-1, the switch-off regression: at zero circulation the swirl cells
-reproduce the certified cells' march to $2.1\times10^{-13}$,
-against a band of $10^{-9}$ relative --- the certified per-cell
-Newton tolerance, meaning every cell's nonlinear system was solved
-to a residual inside a derived band. The only arithmetic difference
-is the augmented-speed square root.
+W-1, la regressione a swirl spento: a circolazione nulla le celle di
+swirl riproducono la marcia delle celle certificate a meno di
+$2.1\times10^{-13}$, contro una banda di $10^{-9}$ relativi --- la
+tolleranza certificata di Newton per cella, il che significa che il
+sistema non lineare di ogni cella è stato risolto a un residuo dentro
+una banda derivata. L'unica differenza aritmetica è la radice
+quadrata della velocità aumentata.
 
-W-2, the exact duct: all cells Newton-certified (worst $0.009$ of
-tolerance), and the equilibrium is preserved to machine zero ---
-axial-speed drift $1.6\times10^{-15}$, $|v|/u\ 2.3\times10^{-15}$,
-wall pressure $4.9\times10^{-15}$, edge position exact --- inside
-Richardson bands, the allowed errors obtained by re-running with
-the station spacing halved and letting the scheme measure its own
-truncation error (Chapter~\ref{ch:method}).
+W-2, il condotto esatto: tutte le celle certificate da Newton
+(peggiore $0.009$ della tolleranza), e l'equilibrio è conservato allo
+zero di macchina --- deriva della velocità assiale
+$1.6\times10^{-15}$, $|v|/u\ 2.3\times10^{-15}$, pressione di parete
+$4.9\times10^{-15}$, posizione del bordo esatta --- dentro bande di
+Richardson, gli errori ammessi ottenuti rieseguendo con la spaziatura
+delle stazioni dimezzata e lasciando che lo schema misuri il proprio
+errore di troncamento (Capitolo~\ref{ch:method}).
 
-W-3, the expansion world: mass closes to $7.8$ out of
-$4.3\times10^{4}$ (band $16$), and the momentum theorem in the
-axial direction closes within band --- unchanged by swirl, because
-the centrifugal force is radial and the momentum around the axis
-decouples from it; checked, not assumed.
+W-3, il mondo in espansione: la massa chiude a $7.8$ su
+$4.3\times10^{4}$ (banda $16$), e il teorema della quantità di moto
+in direzione assiale chiude in banda --- invariato dallo swirl,
+perché la forza centrifuga è radiale e la quantità di moto attorno
+all'asse ne è disaccoppiata; verificato, non assunto.
 
-W-4, the two live controls: switching the swirl off moves the wall
-speed $8.6\times$ beyond the pair's own band, and dropping
-\emph{only} the centrifugal source while keeping $\Gamma$ in the
-state moves it $12\times$ beyond --- so the new term is genuinely
-wired in and genuinely material (Figure~\ref{fig:swirl}b). R-1, the
-rejector: cells fed a corrupted circulation ($\Gamma^2 \times
-1.10$) but marched on true equilibrium data leave the preservation
-bands by twelve orders of magnitude --- caught, as required.
+W-4, i due controlli di vitalità: spegnere lo swirl sposta la
+velocità di parete $8.6\times$ oltre la banda propria della coppia, e
+lasciar cadere \emph{solo} la sorgente centrifuga mantenendo $\Gamma$
+nello stato la sposta $12\times$ oltre --- quindi il nuovo termine è
+genuinamente collegato e genuinamente rilevante
+(Figura~\ref{fig:swirl}b). R-1, il rigettatore: celle alimentate con
+una circolazione corrotta ($\Gamma^2 \times 1.10$) ma marciate su
+dati di equilibrio veri escono dalle bande di conservazione di dodici
+ordini di grandezza --- colte, come richiesto.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_swirl.pdf}
-\caption{Free-vortex swirl, measured. (a)~The radial-equilibrium
-duct, an exact known answer: radius $y$ [m] vertically, static
-pressure $p$ [bar] and meridional Mach number $M$ [--] horizontally
-(two scales). Pressure rises and Mach number falls toward the outer
-radius even though the axial speed is uniform and the radial
-velocity is zero --- the whole radial structure is carried by the
-swirl term in the energy budget. The march preserves this state to
-$10^{-15}$. (b)~The expansion world: axial coordinate $x$ [m]
-against wall pressure $p_w$ [bar], for three runs --- full swirl,
-swirl with the centrifugal source deliberately dropped, and no
-swirl. The three curves separate far beyond the allowed error bands
-($8.6\times$ and $12\times$), which is what proves both the swirl
-and its source term are wired in and material. (c)~What the free
-vortex actually models: radius $y$ [m] against azimuthal velocity
-$w = \Gamma/y$ [m/s] --- the time-mean spin of the annular exhaust,
-fastest at the inner radius and decaying outward. It is a
-\emph{mean}, not the spiraling phase pattern of the real engine,
-which is unsteady three-dimensional physics and belongs to the CFD
-track (Section~\ref{sec:spiral}).}
+\caption{Swirl a vortice libero, misurato. (a)~Il condotto a
+equilibrio radiale, una risposta nota esatta: raggio $y$ [m] in
+verticale, pressione statica $p$ [bar] e numero di Mach meridiano $M$
+[--] in orizzontale (due scale). La pressione sale e il numero di
+Mach cala verso il raggio esterno benché la velocità assiale sia
+uniforme e la velocità radiale sia nulla --- l'intera struttura
+radiale è portata dal termine di swirl nel bilancio energetico. La
+marcia conserva questo stato a $10^{-15}$. (b)~Il mondo in
+espansione: coordinata assiale $x$ [m] contro pressione di parete
+$p_w$ [bar], per tre esecuzioni --- swirl completo, swirl con la
+sorgente centrifuga deliberatamente eliminata, e nessuno swirl. Le
+tre curve si separano molto oltre le bande d'errore ammesse
+($8.6\times$ e $12\times$), il che dimostra che sia lo swirl sia il
+suo termine sorgente sono collegati e rilevanti. (c)~Che cosa il
+vortice libero modella davvero: raggio $y$ [m] contro velocità
+azimutale $w = \Gamma/y$ [m/s] --- la rotazione media nel tempo dello
+scarico anulare, più veloce al raggio interno e in decadimento verso
+l'esterno. È una \emph{media}, non il motivo di fase a spirale del
+motore reale, che è fisica tridimensionale non stazionaria e
+appartiene alla linea CFD (Sezione~\ref{sec:spiral}).}
 \label{fig:swirl}
 \end{figure}

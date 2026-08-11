@@ -1,107 +1,118 @@
-\chapter{The first optimization, against a known answer}
+\chapter{La prima ottimizzazione, contro una risposta nota}
 \label{ch:firstopt}
 
-The previous chapter gave the engine a score and a compass. This one
-closes the loop for the first time: a search that proposes designs,
-scores them with the march, and keeps going until it cannot improve.
-The point is not the answer but the audit --- the problem is posed so
-small that its solution is known in advance on paper, so the machine
-can be judged against it. A loop that lands on a known answer while
-knowing nothing about it can be trusted on problems whose answer is not
-known.
+Il capitolo precedente ha dato al motore un punteggio e una bussola.
+Questo chiude l'anello per la prima volta: una ricerca che propone
+progetti, li valuta con la marcia e prosegue finché non riesce più a
+migliorare. Il punto non è la risposta ma la verifica --- il
+problema è posto così piccolo che la sua soluzione è nota in anticipo
+sulla carta, così la macchina può esservi confrontata. Un anello che
+atterra su una risposta nota pur non sapendone nulla è degno di
+fiducia su problemi la cui risposta non è nota.
 
-\section{The question}
+\section{La domanda}
 
-Does the loop close? Propose, score, search --- and land where theory
-says the optimum is?
+L'anello si chiude? Proporre, valutare, cercare --- e atterrare dove
+la teoria dice che sta l'ottimo?
 
-\section{How it works, in full}
+\section{Come funziona, per esteso}
 
-The first optimization is deliberately one-dimensional, so that its
-answer exists in closed form (an exact formula, as opposed to a number
-obtained by iteration). The single knob is the \emph{area ratio}
-$\varepsilon = A_e/A_t$ --- the exit area divided by the throat area,
-the one number that says how much the nozzle lets the gas expand
-(Chapter~\ref{ch:nozzle}). Everything else is held fixed.
+La prima ottimizzazione è deliberatamente unidimensionale, così che
+la sua risposta esista in forma chiusa (una formula esatta, in
+contrapposizione a un numero ottenuto per iterazione). L'unica
+manopola è il \emph{rapporto di espansione} $\varepsilon = A_e/A_t$
+--- l'area di uscita divisa per l'area di gola, l'unico numero che
+dice quanto l'ugello lascia espandere il gas
+(Capitolo~\ref{ch:nozzle}). Tutto il resto è tenuto fisso.
 
-The known answer comes from the exit-area lemma. Differentiate the
-thrust~\eqref{eq:route1} with respect to the exit area of an ideal
-(uniform-exit) nozzle: enlarging the exit by $\mathrm{d}A_e$ adds a
-ring of wall on which the local exit pressure $p_e$ pushes forward,
-while the ambient pressure $p_a$ pushes back on the same ring, so
+La risposta nota viene dal lemma dell'area di uscita. Si derivi la
+spinta~\eqref{eq:route1} rispetto all'area di uscita di un ugello
+ideale (a uscita uniforme): allargare l'uscita di $\mathrm{d}A_e$
+aggiunge un anello di parete su cui la pressione locale di uscita
+$p_e$ spinge in avanti, mentre la pressione ambiente $p_a$ spinge
+all'indietro sullo stesso anello, quindi
 \begin{equation}
 \frac{\mathrm{d}J}{\mathrm{d}A_e} \;=\; p_e - p_a
 \qquad\Longrightarrow\qquad
-\text{optimum exactly where } p_e(\varepsilon^{*}) = p_a .
+\text{ottimo esattamente dove } p_e(\varepsilon^{*}) = p_a .
 \label{eq:arealemma}
 \end{equation}
-A nozzle whose gas is still above ambient at the exit ($p_e > p_a$) is
-called \emph{underexpanded}: it has not finished expanding, and is
-worth lengthening. Once the gas has been expanded below ambient
-($p_e < p_a$) the nozzle is \emph{overexpanded}: the surroundings now
-push back harder than the gas pushes forward on each new ring, and
-every extra ring costs thrust. The optimum is the crossover. Posing an
-ambient pressure therefore fixes $\varepsilon^{*}$ analytically --- the
-march only has to be inverted for the area ratio at which its exit
-pressure equals that ambient.
+Un ugello il cui gas è ancora sopra l'ambiente all'uscita
+($p_e > p_a$) si dice \emph{sotto-espanso}: non ha finito di
+espandersi e conviene allungarlo. Una volta che il gas è stato
+espanso sotto l'ambiente ($p_e < p_a$) l'ugello è
+\emph{sovra-espanso}: l'ambiente circostante spinge ora all'indietro
+più forte di quanto il gas spinga in avanti su ogni nuovo anello, e
+ogni anello aggiuntivo costa spinta. L'ottimo è il punto di
+attraversamento. Porre una pressione ambiente fissa dunque
+$\varepsilon^{*}$ analiticamente --- la marcia deve solo essere
+invertita per trovare il rapporto di espansione a cui la sua
+pressione di uscita eguaglia quell'ambiente.
 
-The search itself knows none of this. It is a \emph{golden-section
-search}: a derivative-free method that keeps a bracket $[a,b]$ known to
-contain the maximum, evaluates the objective at two interior points
-placed by the golden ratio, discards the end that cannot hold the
-maximum, and repeats until the bracket is narrower than a set
-tolerance. Each shrink reuses one of the two previous evaluations,
-which is what the golden ratio buys. Its only inputs are calls to the
-march and readings of $J$ --- no gradient, no knowledge of the lemma.
-Every march evaluation is cached to disk keyed by $\varepsilon$, so an
-interrupted run resumes at no cost, and the landscape in
-Figure~\ref{fig:jeps} is drawn from the search's own evaluations rather
-than from a separate sweep.
+La ricerca in sé non sa nulla di tutto questo. È una \emph{ricerca a
+sezione aurea}: un metodo senza derivate che mantiene un intervallo
+$[a,b]$ noto per contenere il massimo, valuta l'obiettivo in due
+punti interni collocati secondo la sezione aurea, scarta l'estremo
+che non può contenere il massimo e ripete finché l'intervallo non è
+più stretto di una tolleranza fissata. Ogni restringimento riusa una
+delle due valutazioni precedenti, ed è questo che la sezione aurea
+fa guadagnare. I suoi unici ingressi sono chiamate alla marcia e
+letture di $J$ --- nessun gradiente, nessuna conoscenza del lemma.
+Ogni valutazione della marcia è memorizzata su disco con chiave
+$\varepsilon$, così un'esecuzione interrotta riprende a costo nullo,
+e il paesaggio della Figura~\ref{fig:jeps} è disegnato dalle
+valutazioni della ricerca stessa anziché da una spazzata separata.
 
-The suite then closes three independent loops around the answer. The
-area ratio found by the blind search must match the closed form. The
-exit pressure there must equal the posed ambient, within a band derived
-from the march's own two-resolution error estimate plus the width of
-the bracket the search stopped on. And the corner meter of
-Section~\ref{sec:corner} --- built two steps earlier, never consulted
-by the search --- must independently read zero at the design that was
-found.
+La suite chiude poi tre anelli indipendenti attorno alla risposta.
+Il rapporto di espansione trovato dalla ricerca alla cieca deve
+coincidere con la forma chiusa. La pressione di uscita lì deve
+eguagliare l'ambiente posto, entro una banda derivata dalla stima
+d'errore a due risoluzioni della marcia stessa più l'ampiezza
+dell'intervallo su cui la ricerca si è fermata. E il misuratore di
+spigolo della Sezione~\ref{sec:corner} --- costruito due passi
+prima, mai consultato dalla ricerca --- deve leggere zero in modo
+indipendente sul progetto trovato.
 
-\section{What was built}
+\section{Che cosa è stato costruito}
 
-\carrier{validation/a1\_driver\_eps.py}: the golden-section driver,
-the disk cache, the three closure checks, and a rejector --- a
-deliberately corrupted objective, with the pressure--area term
-$(p_e-p_a)A_e$ deleted, which must then run monotonically to the edge
-of the bracket instead of finding an interior optimum, because without
-that term nothing ever penalizes over-expansion.
+\carrier{validation/a1\_driver\_eps.py}: il driver a sezione aurea,
+la cache su disco, le tre verifiche di chiusura e un rigettatore ---
+un obiettivo deliberatamente corrotto, con il termine
+pressione--area $(p_e-p_a)A_e$ cancellato, che deve allora correre
+monotonamente fino al bordo dell'intervallo invece di trovare un
+ottimo interno, perché senza quel termine nulla penalizza mai la
+sovra-espansione.
 
-\section{Results of record}
+\section{Risultati di riferimento}
 
-\textbf{4/4 PASS} (231~s, 13 march evaluations). The blind search lands
-at $\varepsilon = 5.1551$ against the analytic $5.1506$; the exit
-pressure at the found optimum matches the posed ambient to 916~Pa,
-inside a derived band of 7958~Pa; the corner meter independently reads
-$\approx 0$ there, so the optimality condition of Rao's theory is
-satisfied at a design the search reached without ever evaluating it;
-and the corrupted objective runs to the bracket edge --- rejected.
+\textbf{4/4 PASS} (231~s, 13 valutazioni della marcia). La ricerca
+alla cieca atterra a $\varepsilon = 5.1551$ contro il valore
+analitico $5.1506$; la pressione di uscita all'ottimo trovato
+coincide con l'ambiente posto a meno di 916~Pa, dentro una banda
+derivata di 7958~Pa; il misuratore di spigolo legge lì
+indipendentemente $\approx 0$, quindi la condizione di ottimalità
+della teoria di Rao è soddisfatta su un progetto raggiunto dalla
+ricerca senza che essa l'abbia mai valutata; e l'obiettivo corrotto
+corre fino al bordo dell'intervallo --- rigettato.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{fig_jeps.pdf}
-\caption{The optimization landscape and the physics behind its
-peak, both drawn from the driver's own 13 cached march evaluations.
-(a)~Thrust against shape: area ratio $\varepsilon$ [--] on the
-horizontal axis, objective $J$ [MN] on the vertical. Look at how flat
-the top is --- the closed-form optimum (red dashed) and the blind
-search's landing point (blue dotted) differ by 0.09\% in $\varepsilon$
-on a curve that is flat to parts in $10^{5}$, so the blind search gives
-up less than $10^{-5}$ of the thrust. (b)~Why the peak sits there: exit
-pressure $p_e$ [bar] against the same $\varepsilon$ [--], falling
-across the ambient pressure line $p_a$. The crossing --- gas leaving
-above ambient to the left (underexpanded, lengthen), below ambient to
-the right (overexpanded, shorten) --- lands on the same $\varepsilon$
-as the peak in (a). That is the exit-area lemma, measured rather than
-assumed.}
+\caption{Il paesaggio di ottimizzazione e la fisica dietro al suo
+picco, entrambi disegnati dalle 13 valutazioni della marcia
+memorizzate dal driver stesso. (a)~Spinta contro forma: rapporto di
+espansione $\varepsilon$ [--] sull'asse orizzontale, obiettivo $J$
+[MN] su quello verticale. Si osservi quanto è piatta la sommità ---
+l'ottimo in forma chiusa (rosso tratteggiato) e il punto di
+atterraggio della ricerca alla cieca (blu punteggiato) differiscono
+dello 0.09\% in $\varepsilon$ su una curva piatta a parti su
+$10^{5}$, quindi la ricerca alla cieca rinuncia a meno di $10^{-5}$
+della spinta. (b)~Perché il picco stia lì: pressione di uscita $p_e$
+[bar] contro lo stesso $\varepsilon$ [--], in calo attraverso la
+linea della pressione ambiente $p_a$. L'attraversamento --- gas che
+esce sopra l'ambiente a sinistra (sotto-espanso, allungare), sotto
+l'ambiente a destra (sovra-espanso, accorciare) --- cade sullo
+stesso $\varepsilon$ del picco in (a). È il lemma dell'area di
+uscita, misurato anziché assunto.}
 \label{fig:jeps}
 \end{figure}

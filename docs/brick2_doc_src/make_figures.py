@@ -2555,6 +2555,75 @@ def fig_worked_example():
     fig.tight_layout()
     save(fig, "fig_worked_example.pdf")
 
+
+# ------------------------------------------ S24: the general inlet
+def fig_s24_rotational():
+    """The general (rotational) inlet [X-RMAR]: (a) the stratified
+    initial line in primitives and in invariants; (b) the entropy
+    field the march transports through the spike — layers riding
+    streamlines; (c) the verification ladder, bulk vs the reported
+    topology band."""
+    d = np.load(os.path.join(OUT, "data_s24_rot.npz"))
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(10.4, 3.3))
+
+    # (a) the inlet: every stratified profile on one axis, each
+    # normalized to its own span (printed in the legend) — the
+    # message is THAT the inlet varies across the jet, and by how
+    # much in its own units.
+    y = d["y_in"]
+    prof = [
+        (d["s_in"] - d["s0"], r"$s - s_0$", "%.0f J/kg K",
+         "tab:blue", "-"),
+        (100.0 * (d["h_in"] / d["h0"] - 1.0), r"$h_0$", "%.1f %%",
+         "tab:green", "--"),
+        (d["T_in"], r"$T$", "%.0f K", "tab:red", ":"),
+        (d["M_in"], r"$M$", "%.2f", "tab:purple", "-."),
+    ]
+    for vals, name, fmt, col, ls in prof:
+        lo, hi = float(np.min(vals)), float(np.max(vals))
+        a1.plot((vals - lo) / (hi - lo), y, color=col, lw=1.4, ls=ls,
+                label=(name + ":  " + fmt + r" $\to$ " + fmt)
+                % (lo, hi))
+    a1.set_xlabel("each profile normalized to its own span")
+    a1.set_ylabel("y [m]")
+    a1.set_title("(a) the stratified initial line")
+    a1.legend(fontsize=7, loc="center left")
+    a1.grid(**GRID)
+
+    # (b) the transported entropy field
+    mesh = d["mesh"]
+    sc = a2.scatter(mesh[:, 0], mesh[:, 1], c=mesh[:, 4] - d["s0"],
+                    s=2.2, cmap="plasma", rasterized=True)
+    a2.plot(d["wall"][:, 0], d["wall"][:, 1], color="k", lw=1.0)
+    a2.plot(d["edge"][:, 0], d["edge"][:, 1], color="0.3", lw=1.0,
+            ls="--")
+    plt.colorbar(sc, ax=a2, label=r"$s - s_0$ [J/kg K]")
+    a2.set_xlabel("x [m]")
+    a2.set_ylabel("y [m]")
+    a2.set_title("(b) entropy layers ride the streamlines")
+    a2.grid(**GRID)
+
+    # (c) the ladder
+    Ns, bulk, band = d["Ns"], d["bulk"], d["band"]
+    a3.loglog(Ns, bulk, "o-", color="tab:blue", lw=1.4,
+              label="transport error (bulk)")
+    a3.loglog(Ns, band, "s--", color="tab:orange", lw=1.2,
+              label="crammed-band artifact (reported)")
+    ref = bulk[0] * (Ns[0] / Ns) ** 2
+    a3.loglog(Ns, ref, ":", color="0.5", lw=1.0,
+              label=r"2nd order ($N^{-2}$)")
+    a3.set_xlabel("start-line rows N")
+    a3.set_ylabel(r"max $|\Delta u|/u$ on the last column")
+    a3.set_title("(c) it converges; the artifact does not")
+    from matplotlib.ticker import NullFormatter, FixedLocator
+    a3.xaxis.set_major_locator(FixedLocator(list(map(float, Ns))))
+    a3.xaxis.set_minor_formatter(NullFormatter())
+    a3.set_xticklabels([str(int(n)) for n in Ns])
+    a3.legend(fontsize=7, loc="lower left")
+    a3.grid(**GRID, which="both")
+    fig.tight_layout()
+    save(fig, "fig_s24_rotational.pdf")
+
 if __name__ == "__main__":
     fig_nozzle_primer()
     fig_bell_vs_plug()
@@ -2582,4 +2651,5 @@ if __name__ == "__main__":
     fig_s23_ladder()
     fig_s23_driver()
     fig_worked_example()
+    fig_s24_rotational()
     print("ALL FIGURES DONE ->", OUT)

@@ -1,307 +1,365 @@
-\chapter{Status, what remains, and reproduction}
+\chapter{Stato, che cosa resta, e riproduzione}
 \label{ch:status}
 
-This chapter is the ledger. It lists every test suite the program
-owns and its verdict, states exactly which quantities a design run
-may fix and which it may move, says what is not yet built, and
-gives the command that re-runs each result from scratch. Nothing
-here is new physics: it is the part a reader needs in order to
-check the rest.
+Questo capitolo è il registro. Elenca ogni suite di test che il
+programma possiede e il suo verdetto, dichiara esattamente quali
+grandezze un'esecuzione di progetto può fissare e quali può muovere,
+dice che cosa non è ancora stato costruito e fornisce il comando che
+riesegue ogni risultato da zero. Nulla qui è fisica nuova: è la parte
+che serve a un lettore per verificare il resto.
 
-\section{Status of every suite}
+\section{Stato di ogni suite}
 
 \begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{llll}
 \toprule
-Step & Carrier (\code{validation/}) & Verdict & Chapter \\
+Passo & Carrier (\code{validation/}) & Verdetto & Capitolo \\
 \midrule
-Brick 1 march & \code{a1\_ideal\_march\_jax.py} & certified &
+Marcia del Mattone 1 & \code{a1\_ideal\_march\_jax.py} & certificata &
   (prereq.) \\
-Thrust functional & \code{a1\_thrust\_functional.py} & 8/8 PASS &
+Funzionale di spinta & \code{a1\_thrust\_functional.py} & 8/8 PASS &
   \ref{ch:score} \\
-Corner instrument & \code{a1\_corner\_instrument.py} & 5/5 PASS &
+Strumento di spigolo & \code{a1\_corner\_instrument.py} & 5/5 PASS &
   \ref{ch:score} \\
-$\varepsilon$-driver vs closed form & \code{a1\_driver\_eps.py} &
+Driver in $\varepsilon$ vs forma chiusa & \code{a1\_driver\_eps.py} &
   4/4 PASS & \ref{ch:firstopt} \\
-Prescribed-wall march & \code{a1\_wall\_march.py} & 5/5 + 2/2 PASS &
+Marcia a parete assegnata & \code{a1\_wall\_march.py} & 5/5 + 2/2 PASS &
   \ref{ch:wallinput} \\
-GENO cross-code (O3.4) & \code{g0\_geno\_crosscode.py} & PASS &
+Verifica fra codici GENO (O3.4) & \code{g0\_geno\_crosscode.py} & PASS &
   \ref{ch:referee} \\
-Rao multipliers vs AD (O3.3) & \code{a1\_o33\_toc.py} & 9/9 PASS &
+Moltiplicatori di Rao vs AD (O3.3) & \code{a1\_o33\_toc.py} & 9/9 PASS &
   \ref{ch:referee} \\
-Cycle layer (collapse + mock RDE) & \code{a1\_cycle\_layer.py} &
+Strato di ciclo (collasso + RDE simulato) & \code{a1\_cycle\_layer.py} &
   5/5 + 6/6 PASS & \ref{ch:cycle} \\
-Cycle corner meter (votes) & \code{a1\_cycle\_corner.py} & 8/8 PASS &
+Misuratore di spigolo di ciclo (voti) & \code{a1\_cycle\_corner.py} & 8/8 PASS &
   \ref{ch:cycle} \\
-Free-jet cell & \code{a1\_freejet\_unit.py} & 6/6 PASS &
+Cella di getto libero & \code{a1\_freejet\_unit.py} & 6/6 PASS &
   \ref{ch:plug} \\
-Plug march (oracle + axi) & \code{a1\_plug\_march.py} & 6/6 + 5/5 PASS &
+Marcia del plug (oracolo + assi) & \code{a1\_plug\_march.py} & 6/6 + 5/5 PASS &
   \ref{ch:plug} \\
-Truncated plug under cycle & \code{a1\_plug\_cycle.py} & 5/5 + 9/9 PASS &
+Plug troncato sotto ciclo & \code{a1\_plug\_cycle.py} & 5/5 + 9/9 PASS &
   \ref{ch:plugcycle} \\
-GENO full-field plug twin & \code{a1\_geno\_plug\_twin.py} & 8/8 PASS &
+Gemello GENO a campo intero & \code{a1\_geno\_plug\_twin.py} & 8/8 PASS &
   \ref{ch:genotwin} \\
-Free-vortex swirl march & \code{a1\_swirl\_march.py} & 9/9 PASS &
+Marcia con swirl a vortice libero & \code{a1\_swirl\_march.py} & 9/9 PASS &
   \ref{ch:swirl} \\
-Radial-flow oracle ($v<0$) & \code{a1\_source\_flow\_oracle.py} & 6/6 PASS &
+Ingresso generale (rotazionale) & \code{a1\_rot\_march.py} & 8/8 PASS &
+  \ref{ch:generalinlet} \\
+Oracolo di flusso radiale ($v<0$) & \code{a1\_source\_flow\_oracle.py} & 6/6 PASS &
   \ref{ch:compare} \\
-Configuration comparison & \code{a1\_config\_compare.py} & 7/10
-  (3 open) & \ref{ch:compare} \\
-Inlet angle as a variable & \code{a1\_inlet\_angle\_opt.py} & 6/6 PASS &
+Confronto fra configurazioni & \code{a1\_config\_compare.py} & 7/10
+  (3 aperte) & \ref{ch:compare} \\
+Angolo di ingresso come variabile & \code{a1\_inlet\_angle\_opt.py} & 6/6 PASS &
   \ref{ch:compare} \\
-Free-form spike (spline + TR-SQP) & \code{a1\_plug\_spline\_opt.py} &
-  7/8 (see below) & \ref{ch:spline} \\
-Adaptive knots on the spike & \code{a1\_plug\_adaptive.py} &
-  11/12 (see below) & \ref{sec:adaptive} \\
-Gain resolution (paired ladder) & \code{a1\_plug\_gain\_resolve.py} &
-  RESOLVED: gain $= 0$ in band & \ref{sec:gainresolved} \\
-Field meter, two routes (CFD P0) & \code{a1\_field\_meter.py} &
-  3/4 (1 open) & \ref{sec:fmeter} \\
+Spina a forma libera (spline + TR-SQP) & \code{a1\_plug\_spline\_opt.py} &
+  7/8 (vedi sotto) & \ref{ch:spline} \\
+Nodi adattivi sulla spina & \code{a1\_plug\_adaptive.py} &
+  11/12 (vedi sotto) & \ref{sec:adaptive} \\
+Risoluzione del guadagno (scala appaiata) & \code{a1\_plug\_gain\_resolve.py} &
+  RISOLTO: guadagno $= 0$ in banda & \ref{sec:gainresolved} \\
+Misuratore di campo, due vie (CFD P0) & \code{a1\_field\_meter.py} &
+  3/4 (1 aperta) & \ref{sec:fmeter} \\
 \bottomrule
 \end{tabular}
-\caption{Every certified suite of Brick 2, its carrier script and its
-verdict of record. ``$m/n$ PASS'' counts the suite's checks,
-rejectors included. Two suites carry open checks rather than
-absorbing them into widened bands: the configuration comparison's mass
-and momentum closures for the descending plug, and the field meter's
-two-route agreement. The free-form spike's once-open gain (its 7/8 and
-the adaptive carrier's 11/12 record the verdicts of their sessions) is
-now RESOLVED by the paired-ladder carrier: zero within a $0.017\%$
-band (\S\ref{sec:gainresolved}). The first two are the same physics, and
-\S\ref{sec:fmeter} sharpens the earlier diagnosis: the old figure was
-inflated by the meter, but a residual near $1\%$ survives on a surface
-fit to be integrated over and survives refinement, so it is a property
-of the field and not only of the bookkeeping.
-\code{a1\_flux\_meter.py} carries no verdict of its own --- it is the
-instrument module those checks are to be re-plumbed onto, not a
-suite.}
+\caption{Ogni suite certificata del Mattone~2, il suo carrier e il suo
+verdetto di riferimento. ``$m/n$ PASS'' conta le verifiche della
+suite, rigettatori inclusi. Due suite portano verifiche aperte anziché
+assorbirle in bande allargate: le chiusure di massa e quantità di moto
+del confronto fra configurazioni per il plug discendente, e l'accordo
+fra le due vie del misuratore di campo. Il guadagno un tempo aperto
+della spina a forma libera (il suo 7/8 e l'11/12 del carrier adattivo
+registrano i verdetti delle rispettive sessioni) è ora RISOLTO dal
+carrier a scala appaiata: zero entro una banda dello $0.017\%$
+(\S\ref{sec:gainresolved}). Le prime due sono la stessa fisica, e la
+\S\ref{sec:fmeter} affina la diagnosi precedente: la vecchia cifra era
+gonfiata dal misuratore, ma un residuo vicino all'$1\%$ sopravvive su
+una superficie adatta a essere integrata e sopravvive al raffinamento,
+quindi è una proprietà del campo e non solo della contabilità.
+\code{a1\_flux\_meter.py} non porta un verdetto proprio --- è il modulo
+strumento su cui quelle verifiche vanno ricablate, non una suite.}
 \label{tab:status}
 \end{table}
 
-\section{Design inputs and constraints, as of today}
+\section{Ingressi di progetto e vincoli, a oggi}
 \label{sec:designinputs}
 
-\subsection{What a design run can fix}
+\subsection{Che cosa un'esecuzione di progetto può fissare}
 
-Designing means holding some quantities fixed and letting the
-optimizer move the rest. Every item below can be held fixed
-independently for a run; whatever is not held is what the
-optimization is allowed to change.
+Progettare significa tenere fisse alcune grandezze e lasciare che
+l'ottimizzatore muova le altre. Ogni voce qui sotto può essere tenuta
+fissa in modo indipendente per un'esecuzione; ciò che non è tenuto
+fisso è ciò che l'ottimizzazione è autorizzata a cambiare.
 
-\emph{Gas and chamber}: the property tables (any gas model inside
-their range of validity), the chamber conditions $(P_0, T_0)$ ---
-the pressure and temperature the gas would have at rest --- and,
-for RDE runs, the whole cycle $P_0(\xi), T_0(\xi)$ with the weight
-given to each phase $\xi$ of the cycle.
+\emph{Gas e camera}: le tabelle di proprietà (qualunque modello di gas
+entro il suo intervallo di validità), le condizioni di camera
+$(P_0, T_0)$ --- la pressione e la temperatura che il gas avrebbe a
+riposo --- e, per le esecuzioni RDE, l'intero ciclo
+$P_0(\xi), T_0(\xi)$ con il peso assegnato a ciascuna fase $\xi$ del
+ciclo.
 
-\emph{Environment}: the ambient pressure $p_a$ the nozzle exhausts
-into, vacuum included. For a plug nozzle it is not merely
-bookkeeping: it enters the flow itself, since the free jet boundary
-is the surface on which $p = p_a$.
+\emph{Ambiente}: la pressione ambiente $p_a$ in cui l'ugello scarica,
+vuoto compreso. Per un ugello a spina non è mera contabilità: entra
+nel flusso stesso, poiché la frontiera di getto libero è la superficie
+su cui $p = p_a$.
 
-\emph{Throat geometry}: the throat radius $y_t$ and the two arc
-radii $r_{tu}, r_{td}$ that round the throat, all differentiable
-knobs. Holding $y_t$ \emph{is} the mass-flow constraint: a choked
-throat passes a fixed mass flow $\dot m$, so fixing its radius
-fixes the engine's flow rate.
+\emph{Geometria di gola}: il raggio di gola $y_t$ e i due raggi di
+raccordo $r_{tu}, r_{td}$ che arrotondano la gola, tutte manopole
+differenziabili. Tenere fisso $y_t$ \emph{è} il vincolo di portata:
+una gola bloccata lascia passare una portata fissa $\dot m$, quindi
+fissarne il raggio fissa la portata del motore.
 
-\emph{Overall size}: the area ratio $\varepsilon$ --- the exit area
-divided by the throat area, the single number saying how much the
-nozzle expands the gas (the one-knob driver of
-Chapters~\ref{ch:firstopt} and~\ref{ch:cycle}).
+\emph{Dimensione complessiva}: il rapporto di espansione $\varepsilon$
+--- l'area di uscita divisa per l'area di gola, l'unico numero che
+dice quanto l'ugello espande il gas (il driver a una manopola dei
+Capitoli~\ref{ch:firstopt} e~\ref{ch:cycle}).
 
-\emph{The wall}: an output when the engine generates a contour; a
-fully given input in the inverse bell and plug modes; and a
-parameterized unknown when it is being optimized --- today small
-bumps whose ends are pinned, spline control points next. Pinning
-the endpoint \emph{is} the fixed-length constraint: it is exactly
-the problem Rao posed, and exactly what the stationarity test of
-Section~\ref{sec:o33} held fixed.
+\emph{La parete}: un'uscita quando il motore genera un contorno; un
+ingresso interamente assegnato nelle modalità inverse a campana e a
+plug; e un'incognita parametrizzata quando viene ottimizzata --- oggi
+piccole protuberanze con gli estremi bloccati, punti di controllo
+spline in seguito. Bloccare l'estremo \emph{è} il vincolo di lunghezza
+fissa: è esattamente il problema che Rao pose, ed esattamente ciò che
+il test di stazionarietà della Sezione~\ref{sec:o33} teneva fisso.
 
-\emph{Modes}: planar or axisymmetric; a single steady operating
-point or a cycle average. \emph{Resolution}: the number of fan
-rays, stations and start rows --- not design variables, but fixed
-per run and part of every derived error band.
+\emph{Modalità}: piana o assialsimmetrica; un singolo punto di
+funzionamento stazionario o una media di ciclo. \emph{Risoluzione}: il
+numero di raggi del ventaglio, di stazioni e di righe iniziali --- non
+variabili di progetto, ma fissate per ogni esecuzione e parte di ogni
+banda d'errore derivata.
 
-\subsection{Which constraints can be held simultaneously}
+\subsection{Quali vincoli si possono tenere simultaneamente}
 
-On the JAX side, constraints are today imposed \emph{by
-construction} rather than by a general constrained optimizer: mass
-flow by holding the throat, length by pinning the lip, ambient as
-posed data --- and the optimizer moves whatever is left (today
-$\varepsilon$, or the wall through its bump basis). Holding several
-nonlinear constraints at once against the AD gradient needs the
-general machinery: a trust-region SQP driver --- a standard
-constrained optimizer that takes a limited-size step each iteration
-and enforces the constraints to first order --- which is on the
-remaining-work list, and for which the certified prescribed-wall
-paths were built.
+Sul lato JAX i vincoli sono oggi imposti \emph{per costruzione}
+anziché da un ottimizzatore vincolato generale: la portata tenendo la
+gola, la lunghezza bloccando il labbro, l'ambiente come dato posto ---
+e l'ottimizzatore muove ciò che resta (oggi $\varepsilon$, o la parete
+attraverso la sua base di protuberanze). Tenere più vincoli non
+lineari insieme contro il gradiente AD richiede la macchina generale:
+un driver SQP a regione di fiducia --- un ottimizzatore vincolato
+standard che a ogni iterazione compie un passo di dimensione limitata
+e impone i vincoli al primo ordine --- che è nella lista del lavoro
+restante, e per il quale sono stati costruiti i percorsi certificati a
+parete assegnata.
 
-On the GENO side, the RaoPlug module (its case type 8) accepts,
-since the
-two-constraint session, exactly \emph{two} simultaneous
-constraints. The first is the \emph{mass constraint}, always on:
-the design curve is terminated where the mass accumulated inside it
-equals the throat's target $p_c\,\pi y_t^2/c^{*}$, and that
-condition is consumed by the point $D$ at which the spike is cut.
-The second is \emph{one} user-chosen design constraint, consumed by
-a bisection on the exit angle $\theta_E$ --- area ratio, plug
-length, exit angle, thrust, exit Mach number, ambient pressure at
-the lip, or the base pressure $p_b$ (matched against the value the
-corner condition implies at the mass-set cut, the meaningful
-pairing with the mass constraint).
+Sul lato GENO il modulo RaoPlug (il suo caso di tipo 8) accetta, dalla
+sessione a due vincoli, esattamente \emph{due} vincoli simultanei. Il
+primo è il \emph{vincolo di massa}, sempre attivo: la curva di
+progetto è terminata dove la massa accumulata al suo interno eguaglia
+il bersaglio della gola $p_c\,\pi y_t^2/c^{*}$, e quella condizione è
+consumata dal punto $D$ in cui la spina viene tagliata. Il secondo è
+\emph{un} vincolo di progetto a scelta dell'utente, consumato da una
+bisezione sull'angolo di uscita $\theta_E$ --- rapporto di espansione,
+lunghezza del plug, angolo di uscita, spinta, numero di Mach di
+uscita, pressione ambiente al labbro o pressione di base $p_b$
+(confrontata con il valore che la condizione di spigolo implica al
+taglio fissato dalla massa, l'accoppiamento sensato con il vincolo di
+massa).
 
-Two is not an implementation limit but a \emph{theoretical} one.
-Rao's spike family has exactly two degrees of freedom at a fixed
-lip radius --- the exit angle $\theta_E$ and the cut point $D$ ---
-so two conditions exhaust it, and a third would be over-determined.
-The one honest route to a third simultaneous constraint is to free
-the lip radius $y_E$ as a scale degree of freedom, an outer
-bisection already sketched in GENO's design notes and not yet
-built.
+Due non è un limite implementativo ma \emph{teorico}. La famiglia di
+spine di Rao ha esattamente due gradi di libertà a raggio di labbro
+fissato --- l'angolo di uscita $\theta_E$ e il punto di taglio $D$ ---
+quindi due condizioni la esauriscono, e una terza sarebbe
+sovradeterminata. L'unica via onesta a un terzo vincolo simultaneo è
+liberare il raggio di labbro $y_E$ come grado di libertà di scala, una
+bisezione esterna già abbozzata nelle note di progetto di GENO e non
+ancora costruita.
 
-\section{What remains, in order}
+\section{Che cosa resta, in ordine}
 
-The GENO thread is now closed end to end. The owner's decision was
-to solve the two-constraint problem, and the GENO session landed
-it: the design curve terminates at the prescribed throat mass, the
-cut point supplies the second degree of freedom with the corner
-condition returning the base pressure it implies, four rigor
-defects were fixed on the way, and three independent checks PASS
-(the duality between the two ways of writing the endpoint
-condition, $2\times10^{-5}$; the exact planar limit, bit for bit;
-an independent Python integration of the design curve, three to
-four digits). One item did not close: the numbers tabulated in the
-1961 spike paper as the registry quotes them proved unverifiable
-and internally inconsistent (GENO's N-74), so the owner must
-procure the original paper. The full-field comparison --- our plug
-march run on GENO's own spike --- is now certified 8/8 in
-Chapter~\ref{ch:genotwin}, with the measured three-to-four-digit
-difference between the two codes characterized and its cause filed
-as an open question on GENO's side (Section~\ref{sec:twingap}).
+Il filone GENO è ora chiuso da capo a fondo. La decisione del
+proprietario era di risolvere il problema a due vincoli, e la sessione
+GENO l'ha centrata: la curva di progetto termina alla massa di gola
+assegnata, il punto di taglio fornisce il secondo grado di libertà con
+la condizione di spigolo che restituisce la pressione di base che ne
+consegue, quattro difetti di rigore sono stati corretti lungo la
+strada e tre verifiche indipendenti PASSANO (la dualità fra i due modi
+di scrivere la condizione terminale, $2\times10^{-5}$; il limite piano
+esatto, bit per bit; un'integrazione Python indipendente della curva
+di progetto, tre-quattro cifre). Una voce non si è chiusa: i numeri
+tabulati nell'articolo del 1961 sulla spina, così come il registro li
+cita, si sono rivelati non verificabili e internamente incoerenti (la
+N-74 di GENO), quindi il proprietario deve procurare l'articolo
+originale. Il confronto a campo intero --- la nostra marcia del plug
+eseguita sulla spina propria di GENO --- è ora certificato 8/8 nel
+Capitolo~\ref{ch:genotwin}, con la differenza misurata di
+tre-quattro cifre fra i due codici caratterizzata e la sua causa
+depositata come questione aperta dal lato GENO
+(Sezione~\ref{sec:twingap}).
 
-The free-vortex swirl extension is certified at march level in
-Chapter~\ref{ch:swirl}: the structural guarantee measured rather
-than assumed, an exact duct solution reproduced, and the
-switch-off regression at $10^{-13}$. Using it inside the plug and
-cycle studies is now a posing choice, not new machinery. Beyond the
-free vortex the flow is rotational and belongs to the CFD-adjoint
-track.
+L'estensione allo swirl a vortice libero è certificata a livello di
+marcia nel Capitolo~\ref{ch:swirl}: la garanzia strutturale misurata
+anziché assunta, una soluzione esatta di condotto riprodotta e la
+regressione a swirl spento a $10^{-13}$. Usarla dentro gli studi di
+plug e di ciclo è ormai una scelta di posizione del problema, non
+macchina nuova. Oltre il vortice libero il flusso è rotazionale ---
+e il Capitolo~\ref{ch:generalinlet} porta ora quel caso dentro la
+marcia, con gli invarianti di linea di corrente trasportati e
+l'ingresso $(p, T, M, \theta)$ esattamente determinato.
 
-The free-form wall, listed here for several sessions as the last
-missing piece, is now built: Chapter~\ref{ch:spline} gives the spike a
-cubic-spline basis, an adjoint gradient and a trust-region driver, and
-the result is a contour the program computes rather than inherits. Two
-things follow from how it was built. It uses the \emph{bell}
-optimizer's spline routines directly rather than a basis of its own,
-so bell and plug now carry the same shape freedom and the comparison
-of Chapter~\ref{ch:compare} becomes an equal-terms one. And the
-representation ladder of Section~\ref{sec:reprladder} shows the plug's
-error concentrating in the single region where its contour bends,
-which is an argument for adaptive knot placement rather than for more
-knots.
+La parete a forma libera, elencata qui per parecchie sessioni come
+l'ultimo pezzo mancante, è ora costruita: il Capitolo~\ref{ch:spline}
+dà alla spina una base di spline cubiche, un gradiente aggiunto e un
+driver a regione di fiducia, e il risultato è un contorno che il
+programma calcola anziché ereditare. Da come è stato costruito
+seguono due cose. Usa direttamente le routine spline
+dell'ottimizzatore a \emph{campana} anziché una base propria, quindi
+campana e plug portano ora la stessa libertà di forma e il confronto
+del Capitolo~\ref{ch:compare} diventa un confronto a pari condizioni.
+E la scala di rappresentazione della Sezione~\ref{sec:reprladder}
+mostra l'errore del plug concentrarsi nell'unica regione in cui il suo
+contorno si piega, il che è un argomento a favore del posizionamento
+adattivo dei nodi anziché di un maggior numero di nodi.
 
 \begin{enumerate}[itemsep=2pt]
-\item \textbf{Resolve the free-form spike's gain} --- RESOLVED
-  (\S\ref{sec:gainresolved}): on a six-rung paired ladder to
-  $(1921,1601)$, with the incumbent re-optimized at $(121,101)$ and
-  the model made to predict its last rung before seeing it, the gain
-  limit is $-0.011\% \pm 0.017\%$ --- zero within the band. The
-  truncated streamline is optimal at this length and inlet split to
-  within $0.028\%$; every previously measured gain was instrument.
-\item \textbf{Adaptive knot placement} on the spike --- DONE
-  (\S\ref{sec:adaptive}); its verdict check is the previous item,
-  now closed.
-\item \textbf{Re-run the configuration comparison} with both sides
-  free-form, now that the plug has a basis --- and only once the
-  previous item is settled, since a margin quoted against an
-  unresolved gain would inherit its problem.
-\item \textbf{The Rao comparison at full expansion}: pose the
-  classical construction and this optimizer at the SAME length
-  ($5.825$ m) with mass AND ambient matched (\S\ref{sec:vsrao}). At
-  $2.5$ m the two codes describe different machines and their thrusts
-  are not comparable.
-\item \textbf{The plug's $1\%$ momentum residual}
-  (\S\ref{sec:fmeter}): measured now on a good surface and surviving
-  refinement, so it is the branch's outstanding physical question.
-\item \textbf{The control surface in the O3.3 bench}: our terminal
-  characteristic is taken as a whole grid column, selected by
-  minimising the very spread the check then reports. The measured
-  spread ($4.0\times10^{-3}$) shows no pathology, but the locus should
-  be fixed \emph{a priori} and stopped at the kernel boundary rather
-  than chosen by the statistic it feeds.
-\item \textbf{Measured-cycle input}: a data swap --- mind the
-  table-range rejector of Chapter~\ref{ch:cycle}.
+\item \textbf{Risolvere il guadagno della spina a forma libera} ---
+  RISOLTO (\S\ref{sec:gainresolved}): su una scala appaiata a sei
+  pioli fino a $(1921,1601)$, con l'incumbente riottimizzato a
+  $(121,101)$ e il modello costretto a prevedere l'ultimo piolo prima
+  di vederlo, il limite del guadagno è
+  $-0.011\% \pm 0.017\%$ --- zero entro la banda. La linea di corrente
+  troncata è ottimale a questa lunghezza e a questa ripartizione di
+  ingresso entro lo $0.028\%$; ogni guadagno misurato in precedenza
+  era strumento.
+\item \textbf{Posizionamento adattivo dei nodi} sulla spina --- FATTO
+  (\S\ref{sec:adaptive}); la sua verifica di verdetto è la voce
+  precedente, ora chiusa.
+\item \textbf{Rieseguire il confronto fra configurazioni} con
+  entrambi i lati a forma libera, ora che il plug ha una base --- e
+  solo una volta sistemata la voce precedente, poiché un margine
+  citato contro un guadagno irrisolto ne erediterebbe il problema.
+\item \textbf{Il confronto con Rao a piena espansione}: porre la
+  costruzione classica e questo ottimizzatore alla STESSA lunghezza
+  ($5.825$ m) con massa E ambiente adattati (\S\ref{sec:vsrao}). A
+  $2.5$ m i due codici descrivono macchine diverse e le loro spinte
+  non sono confrontabili.
+\item \textbf{Il residuo di quantità di moto dell'$1\%$ del plug}
+  (\S\ref{sec:fmeter}): ora misurato su una buona superficie e
+  sopravvissuto al raffinamento, quindi è la questione fisica in
+  sospeso di questo ramo.
+\item \textbf{La superficie di controllo nel banco O3.3}: la nostra
+  caratteristica terminale è presa come un'intera colonna di griglia,
+  selezionata minimizzando proprio la dispersione che la verifica poi
+  riporta. La dispersione misurata ($4.0\times10^{-3}$) non mostra
+  patologie, ma il luogo va fissato \emph{a priori} e fermato al
+  confine del nucleo anziché scelto dalla statistica che alimenta.
+\item \textbf{Ingresso da ciclo misurato}: uno scambio di dati ---
+  attenzione al rigettatore di intervallo di tabella del
+  Capitolo~\ref{ch:cycle}.
 \end{enumerate}
 
-\section{Which solver these numbers stand on}
+\section{Su quale solutore poggiano questi numeri}
 \label{sec:rebase}
 
-Every result in this document was originally produced on one version
-of the underlying flow solver, and has since been re-run on another.
-The solver's Newton loop was changed independently: where it once took
-a fixed number of iterations per cell, it now stops when the step
-falls below the cell's own certification bound. That is a real change
-to how the arithmetic terminates, and it sits underneath every number
-here, so it was not assumed harmless.
+Ogni risultato di questo documento è stato prodotto originariamente su
+una versione del solutore di flusso sottostante, ed è stato poi
+rieseguito su un'altra. L'anello di Newton del solutore è stato
+cambiato in modo indipendente: dove un tempo compiva un numero fisso
+di iterazioni per cella, ora si ferma quando il passo scende sotto il
+limite di certificazione della cella stessa. È un cambiamento reale al
+modo in cui l'aritmetica termina, e sta sotto ogni numero qui, quindi
+non è stato assunto innocuo.
 
-It was measured instead. Re-running the case that fixes the common
-basis on both versions gives mass flow agreeing \emph{bit for bit},
-and thrust, exit Mach, exit speed, exit pressure and lip radius
-agreeing to between $10^{-15}$ and $10^{-13}$ relative --- machine
-precision, across four area ratios. The interpretation is
-straightforward: the fixed-iteration loop was already converging past
-the point where the new stopping rule halts, so the two agree to the
-last digit either can carry.
+È stato invece misurato. Rieseguire su entrambe le versioni il caso
+che fissa la base comune dà una portata concorde \emph{bit per bit}, e
+spinta, Mach di uscita, velocità di uscita, pressione di uscita e
+raggio di labbro concordi fra $10^{-15}$ e $10^{-13}$ relativi ---
+precisione di macchina, su quattro rapporti di espansione.
+L'interpretazione è immediata: l'anello a iterazioni fisse stava già
+convergendo oltre il punto in cui la nuova regola di arresto si ferma,
+quindi i due concordano fino all'ultima cifra che ciascuno può
+portare.
 
-No number in this document moves as a result. Every suite listed in
-Table~\ref{tab:status} was re-run on the new solver and returned its
-recorded verdict.
+Nessun numero di questo documento si muove di conseguenza. Ogni suite
+elencata nella Tabella~\ref{tab:status} è stata rieseguita sul nuovo
+solutore e ha restituito il proprio verdetto registrato.
 
-\section{Reproduction}
+\section{Riproduzione}
 
-Each carrier script is self-contained and prints its own verdict;
-runs are cached where noted, so re-runs are cheap. On host
-\code{s2}:
+Ogni carrier è autosufficiente e stampa il proprio verdetto; le
+esecuzioni sono memorizzate dove indicato, quindi le riesecuzioni
+costano poco. Sull'host \code{s2}:
 
 \begin{lstlisting}
 cd RDE_Design-rde-nozzle-program
-.venv-a1/bin/python validation/a1_ideal_march_jax.py    # Brick 1
-.venv-a1/bin/python validation/a1_thrust_functional.py  # the score and the compass
-.venv-a1/bin/python validation/a1_corner_instrument.py  # the score and the compass
-.venv-a1/bin/python validation/a1_driver_eps.py         # the first optimization
-.venv-a1/bin/python validation/a1_wall_march.py         # the wall becomes an input
-.venv-a1/bin/python validation/g0_geno_crosscode.py     # the referee
-.venv-a1/bin/python validation/a1_o33_toc.py            # the referee
-.venv-a1/bin/python validation/a1_cycle_layer.py        # the cycle layer
-.venv-a1/bin/python validation/a1_cycle_corner.py       # the cycle layer
-.venv-a1/bin/python validation/a1_freejet_unit.py       # the plug march (cell)
-.venv-a1/bin/python validation/a1_plug_march.py         # the plug march
-.venv-a1/bin/python validation/a1_plug_cycle.py         # truncated plug + cycle
-.venv-a1/bin/python validation/a1_geno_plug_twin.py     # the GENO plug twin
-.venv-a1/bin/python validation/a1_swirl_march.py        # free-vortex swirl
-.venv-a1/bin/python validation/a1_source_flow_oracle.py # the radial oracle
-.venv-a1/bin/python validation/a1_config_compare.py     # configurations
-.venv-a1/bin/python validation/a1_inlet_angle_opt.py    # the inlet angle
-.venv-a1/bin/python validation/a1_plug_spline_opt.py    # the free-form spike
+.venv-a1/bin/python validation/a1_ideal_march_jax.py    # Mattone 1
+.venv-a1/bin/python validation/a1_thrust_functional.py  # punteggio e bussola
+.venv-a1/bin/python validation/a1_corner_instrument.py  # punteggio e bussola
+.venv-a1/bin/python validation/a1_driver_eps.py         # prima ottimizzazione
+.venv-a1/bin/python validation/a1_wall_march.py         # la parete come ingresso
+.venv-a1/bin/python validation/g0_geno_crosscode.py     # l'arbitro
+.venv-a1/bin/python validation/a1_o33_toc.py            # l'arbitro
+.venv-a1/bin/python validation/a1_cycle_layer.py        # lo strato di ciclo
+.venv-a1/bin/python validation/a1_cycle_corner.py       # lo strato di ciclo
+.venv-a1/bin/python validation/a1_freejet_unit.py       # marcia del plug (cella)
+.venv-a1/bin/python validation/a1_plug_march.py         # marcia del plug
+.venv-a1/bin/python validation/a1_plug_cycle.py         # plug troncato + ciclo
+.venv-a1/bin/python validation/a1_geno_plug_twin.py     # gemello plug GENO
+.venv-a1/bin/python validation/a1_swirl_march.py        # swirl a vortice libero
+.venv-a1/bin/python validation/a1_rot_march.py          # ingresso generale
+.venv-a1/bin/python validation/a1_source_flow_oracle.py # oracolo radiale
+.venv-a1/bin/python validation/a1_config_compare.py     # configurazioni
+.venv-a1/bin/python validation/a1_inlet_angle_opt.py    # angolo di ingresso
+.venv-a1/bin/python validation/a1_plug_spline_opt.py    # spina a forma libera
+.venv-a1/bin/python validation/a1_plug_adaptive.py      # nodi adattivi
+.venv-a1/bin/python validation/a1_plug_gain_resolve.py  # risoluzione del guadagno
+.venv-a1/bin/python validation/a1_field_meter.py        # misuratore di campo (CFD P0)
 \end{lstlisting}
 
-Two of these need data the scripts do not generate themselves. The
-GENO plug twin reads a cached field from the independent Fortran code
-(\code{validation/\_geno\_twin/}), and the O3.3 bench reads a designed
-contour from the same source. Both are products of a code this
-document does not modify, so they are inputs rather than results. The
-O3.3 bench also carries a second stage that the default invocation
-does not run:
+Due di questi hanno bisogno di dati che gli script non generano da
+sé. Il gemello del plug GENO legge un campo memorizzato dal codice
+Fortran indipendente (\code{validation/\_geno\_twin/}), e il banco
+O3.3 legge un contorno progettato dalla stessa fonte. Entrambi sono
+prodotti di un codice che questo documento non modifica, quindi sono
+ingressi anziché risultati. Il banco O3.3 porta anche un secondo
+stadio che l'invocazione predefinita non esegue:
 
 \begin{lstlisting}
 STAGE=stationarity .venv-a1/bin/python validation/a1_o33_toc.py
 \end{lstlisting}
 
-This document itself is built from
-\code{docs/brick2\_doc\_src/}: \code{make\_figures.py} regenerates
-the data figures from the cached run data, and \code{build.sh}
-compiles \code{main.tex} (Tectonic engine) and installs the PDF as
-\code{docs/rde\_nozzle\_A1\_brick2\_thrust.pdf}.
+Questo documento stesso è costruito da
+\code{docs/brick2\_doc\_src/}: \code{make\_figures.py} rigenera le
+figure di dati a partire dai dati di esecuzione memorizzati, e
+\code{build.sh} compila \code{main.tex} (motore Tectonic) e installa
+il PDF come \code{docs/rde\_nozzle\_A1\_brick2\_thrust.pdf}.
+
+\section{Il misuratore di campo, e il primo cancello del programma
+CFD}
+\label{sec:fmeter}
+
+\code{a1\_field\_meter.py} calcola la spinta per due vie indipendenti
+su qualunque campo assialsimmetrico: come integrale di pressione
+sull'hardware (il flusso di quantità di moto all'ingresso più
+l'integrale di parete) e come flusso di quantità di moto attraverso un
+taglio verticale a valle. Non condividono né superficie, né quadratura,
+né integrando, quindi la loro differenza è una misura di conservazione
+anziché di contabilità.
+
+Esiste per due ragioni che si rivelano una sola. Le verifiche non
+chiuse del confronto fra configurazioni avevano bisogno di un
+misuratore adatto a essere integrato. E la controparte CFD di questo
+programma (\code{docs/rde\_nozzle\_CFD\_plan.md}) ha bisogno del
+proprio primo cancello: un obiettivo valutabile su un campo CFD e su
+un campo di marcia che sia lo \emph{stesso funzionale}, in un solo
+gauge e con un solo stato di riferimento. Confrontare una spinta CFD
+con una spinta di marcia calcolata diversamente riprodurrebbe, a scala
+molto maggiore, l'errore che questo documento ha ormai incontrato tre
+volte.
+
+Verdetto $3/4$. La via del flusso è indipendente dalla superficie
+attraverso cui è presa ($0.40\%$ su quattro stazioni); il misuratore
+riproduce la spinta registrata per lo stesso caso a
+$1.0\times10^{-4}$; e un rigettatore conferma che due vie calcolate in
+\emph{gauge ambiente diversi} non concordano, separando di
+$5.8\times$.
+
+La verifica che non passa è l'accordo fra le due vie stesso:
+$0.99\%$, contro una banda dello $0.09\%$ che il raffinamento della
+marcia sostiene, e la differenza si muove appena sotto raffinamento
+($0.99\% \to 0.97\%$). È dunque una proprietà del campo. Questo affina
+anziché contraddire il Capitolo~\ref{ch:compare}: l'$1.49\%$ di quel
+capitolo era misurato sull'ultima colonna della marcia ed era gonfiato
+da essa, ma circa l'$1\%$ è reale e resta la questione fisica in
+sospeso del ramo del plug.

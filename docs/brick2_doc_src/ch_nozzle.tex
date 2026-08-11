@@ -1,270 +1,287 @@
-\chapter{What a nozzle does, and what ``optimal'' means}
+\chapter{Che cosa fa un ugello e che cosa significa ``ottimale''}
 \label{ch:nozzle}
 
-This chapter assumes no background at all. It explains what the
-machine under study is, what it is for, which numbers describe it,
-why there is anything to optimize, and what makes rotating
-detonation engines a harder design problem than ordinary rockets.
-A reader who already designs nozzles can skip to
-Chapter~\ref{ch:moc}; everyone else should read it, because every
-later chapter uses this vocabulary without re-explaining it.
+Questo capitolo non presuppone alcuna conoscenza pregressa. Spiega
+qual è la macchina in esame, a che cosa serve, quali numeri la
+descrivono, perché ci sia qualcosa da ottimizzare e che cosa renda i
+motori a detonazione rotante un problema di progetto più difficile
+dei razzi ordinari. Chi già progetta ugelli può passare al
+Capitolo~\ref{ch:moc}; tutti gli altri dovrebbero leggerlo, perché
+ogni capitolo successivo usa questo vocabolario senza rispiegarlo.
 
-\section{The machine}
+\section{La macchina}
 
-A rocket burns propellant in a chamber, producing gas at high
-pressure and high temperature but going nowhere in particular. The
-nozzle is the part that converts that stored pressure into
-directed, high-speed exhaust --- and by Newton's third law, the
-reaction to throwing that exhaust backwards is thrust.
+Un razzo brucia propellente in una camera, producendo gas ad alta
+pressione e alta temperatura ma senza una direzione privilegiata.
+L'ugello è la parte che converte quella pressione immagazzinata in
+uno scarico veloce e orientato --- e, per il terzo principio di
+Newton, la reazione al lancio all'indietro di quello scarico è la
+spinta.
 
-The shape that does this is the \emph{converging--diverging}
-nozzle of Figure~\ref{fig:nozzleprimer}a: the passage narrows to a
-minimum area, the \emph{throat}, then opens out again. The
-narrowing accelerates the gas to exactly the local speed of sound
-at the throat; past the throat, in supersonic flow, the behaviour
-inverts --- widening the passage accelerates the gas further. So
-the diverging part, which is what this document designs, keeps
-converting pressure into speed all the way to the exit.
+La forma che fa questo è l'ugello \emph{convergente--divergente}
+della Figura~\ref{fig:nozzleprimer}a: il condotto si restringe fino
+a un'area minima, la \emph{gola}, e poi torna ad allargarsi. Il
+restringimento accelera il gas esattamente fino alla velocità locale
+del suono in gola; oltre la gola, in flusso supersonico, il
+comportamento si inverte --- allargare il condotto accelera
+ulteriormente il gas. Così la parte divergente, che è ciò che questo
+documento progetta, continua a convertire pressione in velocità fino
+all'uscita.
 
-Three consequences matter throughout.
+Tre conseguenze contano in tutto il seguito.
 
-\emph{The throat sets the mass flow.} When the flow reaches the
-speed of sound at the throat, the passage is \emph{choked}: the
-mass of gas per second, $\dot m$, is fixed by the throat area and
-the chamber state, and nothing downstream can change it. Holding
-the throat radius $y_t$ fixed is therefore the same thing as
-holding the mass flow fixed --- a fact this document uses as a
-design constraint.
+\emph{La gola fissa la portata.} Quando il flusso raggiunge la
+velocità del suono in gola, il condotto è \emph{bloccato}: la massa
+di gas al secondo, $\dot m$, è fissata dall'area di gola e dallo
+stato di camera, e nulla a valle può cambiarla. Tenere fisso il
+raggio di gola $y_t$ è dunque la stessa cosa che tenere fissa la
+portata --- fatto che questo documento usa come vincolo di progetto.
 
-\emph{The chamber state is quoted as a stagnation state.} The
-chamber pressure $P_0$ and temperature $T_0$ (the \emph{stagnation}
-values --- what the gas would have if brought to rest) are the
-boundary data of the whole problem. Everything downstream is the
-same gas, expanded.
+\emph{Lo stato di camera si esprime come stato di ristagno.} La
+pressione di camera $P_0$ e la temperatura $T_0$ (i valori di
+\emph{ristagno} --- ciò che il gas avrebbe se portato a riposo) sono
+i dati al contorno dell'intero problema. Tutto ciò che sta a valle è
+lo stesso gas, espanso.
 
-\emph{The exit is a compromise with the outside world.} The gas
-leaves at some pressure $p_e$, into an atmosphere at pressure
-$p_a$. These need not be equal, and whether they are is exactly
-what makes design non-trivial.
+\emph{L'uscita è un compromesso con il mondo esterno.} Il gas esce a
+una certa pressione $p_e$, in un'atmosfera a pressione $p_a$. Non è
+detto che siano uguali, e proprio il fatto che lo siano o no è ciò
+che rende il progetto non banale.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_nozzle_primer.pdf}
-\caption{The machine, what it does, and why it has an optimum.
-(a)~A converging--diverging nozzle: gas from the chamber (left)
-accelerates to sonic conditions at the throat and then supersonic
-in the diverging part; axes are axial position $x$ [m] and radius
-$y$ [m], with the throat radius $y_t = 1$~m in this reference
-case. (b)~What the nozzle actually does to the gas, measured on
-this document's own solver along the wall: Mach number (blue, left
-axis, dimensionless) rises while static pressure (green, right
-axis, bar, logarithmic) falls by two orders of magnitude ---
-pressure is being traded for speed. (c)~Why an optimum exists at
-all: the exit pressure $p_e$ [bar] falls as the area ratio
-$\varepsilon$ [--] grows. Above the ambient line the nozzle is
-still worth lengthening; below it, extra length costs thrust. The
-star marks where they cross --- the optimum, which
-Chapter~\ref{ch:firstopt} finds \emph{blindly} and checks against
-this crossing.}
+\caption{La macchina, ciò che fa e perché ha un ottimo. (a)~Un
+ugello convergente--divergente: il gas dalla camera (a sinistra)
+accelera fino a condizioni soniche in gola e poi supersoniche nella
+parte divergente; gli assi sono posizione assiale $x$ [m] e raggio
+$y$ [m], con raggio di gola $y_t = 1$~m in questo caso di
+riferimento. (b)~Che cosa fa davvero l'ugello al gas, misurato con
+il solutore di questo documento lungo la parete: il numero di Mach
+(blu, asse sinistro, adimensionale) cresce mentre la pressione
+statica (verde, asse destro, bar, logaritmica) cala di due ordini di
+grandezza --- si sta scambiando pressione con velocità. (c)~Perché
+esista un ottimo: la pressione di uscita $p_e$ [bar] cala al
+crescere del rapporto di espansione $\varepsilon$ [--]. Sopra la
+linea dell'ambiente conviene ancora allungare l'ugello; sotto, la
+lunghezza in più costa spinta. La stella segna il punto in cui si
+incrociano --- l'ottimo, che il Capitolo~\ref{ch:firstopt} trova
+\emph{alla cieca} e verifica contro questo incrocio.}
 \label{fig:nozzleprimer}
 \end{figure}
 
-\section{The numbers that describe a design}
+\section{I numeri che descrivono un progetto}
 
-Only a handful of quantities are needed to state a design problem,
-and this document keeps to them (the full symbol list is
-Table~\ref{tab:notation}).
+Bastano poche grandezze per enunciare un problema di progetto, e
+questo documento si attiene a quelle (l'elenco completo dei simboli
+è la Tabella~\ref{tab:notation}).
 
-The \emph{area ratio} $\varepsilon = A_e/A_t$ --- exit area divided
-by throat area --- is the single most important number: it says how
-far the gas is expanded. A larger $\varepsilon$ means a longer,
-wider nozzle, a faster and colder exhaust, and a lower exit
-pressure. The \emph{wall contour} is the shape itself, the curve
-$y(x)$ from throat to exit. The \emph{length} $L$ is where that
-curve stops. And $p_a$, the ambient pressure, is the environment:
-about 1~bar at sea level, essentially zero in vacuum.
+Il \emph{rapporto di espansione} $\varepsilon = A_e/A_t$ --- area di
+uscita diviso area di gola --- è il numero singolo più importante:
+dice quanto il gas viene espanso. Un $\varepsilon$ maggiore significa
+un ugello più lungo e più largo, uno scarico più veloce e più
+freddo, una pressione di uscita più bassa. Il \emph{contorno di
+parete} è la forma stessa, la curva $y(x)$ dalla gola all'uscita. La
+\emph{lunghezza} $L$ è il punto in cui quella curva si ferma. E
+$p_a$, la pressione ambiente, è l'ambiente: circa 1~bar a livello
+del mare, essenzialmente nulla nel vuoto.
 
-\section{Thrust, and why there is an optimum}
+\section{La spinta, e perché esiste un ottimo}
 
-Thrust is a momentum balance. Written at the exit plane it is
+La spinta è un bilancio di quantità di moto. Scritta sul piano di
+uscita è
 \begin{equation}
 J \;=\; \dot m\,u_e \;+\; (p_e - p_a)\,A_e ,
 \label{eq:thrustintro}
 \end{equation}
-the first term being the momentum carried out by the exhaust
-(mass flow times exit speed) and the second the net pressure force
-on the exit area. Chapter~\ref{ch:score} computes this two
-independent ways as a self-check, but the physics of the optimum is
-already visible in~\eqref{eq:thrustintro}.
+dove il primo termine è la quantità di moto portata fuori dallo
+scarico (portata per velocità di uscita) e il secondo la forza netta
+di pressione sull'area di uscita. Il Capitolo~\ref{ch:score} calcola
+questa quantità in due modi indipendenti come autoverifica, ma la
+fisica dell'ottimo è già visibile nella~\eqref{eq:thrustintro}.
 
-Suppose the nozzle is made slightly longer, adding one thin ring of
-wall. Gas inside pushes on that ring with pressure $p$; the
-atmosphere pushes back with $p_a$. The net gain is proportional to
-$p - p_a$. So while the exhaust is still at higher pressure than
-its surroundings --- the flow is \emph{under-expanded} --- extra
-length pays. Once the flow has expanded past ambient ---
-\emph{over-expanded} --- each additional ring pushes the wrong way
-and costs thrust. The best design sits exactly at the changeover:
+Si supponga di allungare leggermente l'ugello, aggiungendo un
+sottile anello di parete. Il gas interno spinge su quell'anello con
+pressione $p$; l'atmosfera spinge in senso opposto con $p_a$. Il
+guadagno netto è proporzionale a $p - p_a$. Dunque, finché lo
+scarico è a pressione maggiore dell'ambiente --- il flusso è
+\emph{sotto-espanso} --- la lunghezza in più paga. Una volta che il
+flusso si è espanso oltre l'ambiente --- \emph{sovra-espanso} ---
+ogni anello aggiuntivo spinge dalla parte sbagliata e costa spinta.
+Il progetto migliore sta esattamente al cambio di segno:
 \begin{equation}
 p_e(\varepsilon^{*}) \;=\; p_a .
 \label{eq:matchintro}
 \end{equation}
-Figure~\ref{fig:nozzleprimer}c is that statement, measured. This
-single idea --- extend the wall while the local pressure exceeds
-ambient, stop when it does not --- reappears throughout the
-document in increasingly general form: as an endpoint condition at
-the nozzle lip (Chapter~\ref{ch:score}), as a condition averaged
-over a cycle (Chapter~\ref{ch:cycle}), and as the rule that decides
-where to cut a plug nozzle short (Chapter~\ref{ch:plugcycle}).
+La Figura~\ref{fig:nozzleprimer}c è quell'affermazione, misurata.
+Questa singola idea --- estendere la parete finché la pressione
+locale supera l'ambiente, fermarsi quando non lo fa --- ricompare in
+tutto il documento in forma via via più generale: come condizione
+terminale al labbro dell'ugello (Capitolo~\ref{ch:score}), come
+condizione mediata su un ciclo (Capitolo~\ref{ch:cycle}) e come
+regola che decide dove troncare un ugello a spina
+(Capitolo~\ref{ch:plugcycle}).
 
-An important special case: in vacuum, $p_a = 0$, so $p - p_a$ is
-positive everywhere and \emph{longer is always better}. There is no
-interior optimum, only whatever length the vehicle can carry. Any
-optimizer worth trusting must reproduce that behaviour, and several
-tests in this document check precisely that.
+Un caso particolare importante: nel vuoto $p_a = 0$, quindi
+$p - p_a$ è positivo ovunque e \emph{più lungo è sempre meglio}. Non
+esiste un ottimo interno, solo la lunghezza che il veicolo riesce a
+portare. Qualunque ottimizzatore degno di fiducia deve riprodurre
+quel comportamento, e diversi test di questo documento verificano
+esattamente questo.
 
-\section{Three families of nozzle, and why the third is hard}
+\section{Tre famiglie di ugello, e perché la terza è difficile}
 
-\emph{The ideal (minimum-length) nozzle} is the textbook shape:
-its contour is drawn so that the exhaust comes out perfectly
-uniform and parallel. It is easy to characterize and serves here as
-a reference; Brick~1 generates it.
+\emph{L'ugello ideale (a lunghezza minima)} è la forma da manuale:
+il suo contorno è tracciato in modo che lo scarico esca
+perfettamente uniforme e parallelo. È facile da caratterizzare e qui
+serve da riferimento; lo genera il Mattone~1.
 
-\emph{The thrust-optimized contour}, following Rao's 1958
-solution~\cite{rao}, gives up the perfectly uniform exit and asks a
-better question: of all walls of a \emph{given length}, which
-produces the most thrust? The answer is a shorter, fuller shape,
-and it is what real rockets use. Rao solved it with the calculus of
-variations --- the mathematics of optimizing over a whole curve
-rather than over a few numbers --- and Chapter~\ref{ch:referee}
-confronts his hand-derived conditions with this program's automatic
-machinery on exactly such a contour.
+\emph{Il contorno ottimizzato in spinta}, secondo la soluzione di
+Rao del 1958~\cite{rao}, rinuncia all'uscita perfettamente uniforme
+e pone una domanda migliore: fra tutte le pareti di una \emph{data
+lunghezza}, quale produce la massima spinta? La risposta è una forma
+più corta e più piena, ed è quella che i razzi reali usano. Rao la
+risolse con il calcolo delle variazioni --- la matematica
+dell'ottimizzazione su un'intera curva anziché su pochi numeri --- e
+il Capitolo~\ref{ch:referee} confronta le sue condizioni derivate a
+mano con la macchina automatica di questo programma proprio su un
+contorno di quel tipo.
 
-\emph{The plug (or aerospike) nozzle} turns the geometry inside
-out (Figure~\ref{fig:bellvsplug}). Instead of the gas being
-enclosed by a wall, the solid surface --- the \emph{spike} --- sits
-underneath, and the outer boundary of the exhaust is nothing but
-the surrounding atmosphere. That free boundary is what makes the
-plug interesting: it is not fixed by the hardware, so the plume
-re-shapes itself when the ambient pressure changes. A bell is
-optimal at one altitude; a plug is roughly right over a range,
-because the exhaust always ends up at exactly $p_a$ on its outer
-edge, by definition. Figure~\ref{fig:bellvsplug}c shows this
-computed. Real plugs are always \emph{truncated} --- cut short and
-closed with a flat base --- because the long thin tail carries
-almost no pressure but all of the weight, and where to cut is a
-genuine design variable (Chapter~\ref{ch:plugcycle}).
+\emph{L'ugello a spina (o aerospike)} rovescia la geometria
+(Figura~\ref{fig:bellvsplug}). Invece che il gas sia racchiuso da
+una parete, la superficie solida --- la \emph{spina} --- sta sotto,
+e la frontiera esterna dello scarico non è altro che l'atmosfera
+circostante. Quella frontiera libera è ciò che rende interessante il
+plug: non è fissata dall'hardware, quindi il pennacchio si
+riconfigura quando la pressione ambiente cambia. Una campana è
+ottimale a una quota; un plug è all'incirca giusto su un
+intervallo, perché lo scarico finisce sempre esattamente a $p_a$ sul
+suo bordo esterno, per definizione. La
+Figura~\ref{fig:bellvsplug}c mostra questo, calcolato. I plug reali
+sono sempre \emph{troncati} --- tagliati corti e chiusi con una base
+piatta --- perché la coda lunga e sottile porta quasi nessuna
+pressione ma tutto il peso, e dove tagliare è una genuina variabile
+di progetto (Capitolo~\ref{ch:plugcycle}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_bell_vs_plug.pdf}
-\caption{The two nozzle families this document builds, and the one
-physical difference between them. Axes throughout are axial
-position $x$ [m] and radius $y$ [m]. (a)~The bell: the exhaust is
-enclosed by a solid wall, so the exit state is fixed by the
-geometry, whatever the altitude. (b)~The plug (aerospike): the
-solid spike is below and the outer edge of the jet is a
-\emph{free boundary} at ambient pressure. The spike shown is a
-real designed contour (from the independent code of
-Chapter~\ref{ch:genotwin}); the plume boundary is computed by the
-march of Chapter~\ref{ch:plug}; the red face is the base where the
-spike is cut short. (c)~Altitude compensation, computed on that
-same gas: the plume boundary angle $\theta_E$ [deg] against
-ambient pressure $p_a$ [bar]. At high ambient the jet barely
-expands and hugs the spike; as the ambient falls the boundary
-swings outward --- the nozzle adapting itself, with no moving
-parts.}
+\caption{Le due famiglie di ugello che questo documento costruisce e
+l'unica differenza fisica fra loro. Gli assi sono ovunque posizione
+assiale $x$ [m] e raggio $y$ [m]. (a)~La campana: lo scarico è
+racchiuso da una parete solida, quindi lo stato di uscita è fissato
+dalla geometria, qualunque sia la quota. (b)~Il plug (aerospike): la
+spina solida sta sotto e il bordo esterno del getto è una
+\emph{frontiera libera} a pressione ambiente. La spina mostrata è un
+contorno realmente progettato (dal codice indipendente del
+Capitolo~\ref{ch:genotwin}); la frontiera del pennacchio è calcolata
+dalla marcia del Capitolo~\ref{ch:plug}; la faccia rossa è la base
+dove la spina viene troncata. (c)~Compensazione di quota, calcolata
+sullo stesso gas: l'angolo della frontiera del pennacchio $\theta_E$
+[gradi] in funzione della pressione ambiente $p_a$ [bar]. Ad
+ambiente alto il getto si espande appena e resta aderente alla
+spina; al calare dell'ambiente la frontiera ruota verso l'esterno
+--- l'ugello che si adatta, senza parti in movimento.}
 \label{fig:bellvsplug}
 \end{figure}
 
-\section{The rotating detonation engine, and the cycle}
+\section{Il motore a detonazione rotante, e il ciclo}
 \label{sec:rdeintro}
 
-Everything above assumed one operating point: one chamber pressure,
-one ambient. A \emph{rotating detonation engine} (RDE) breaks that
-assumption, and it is the reason this document has a cycle layer.
+Tutto quanto sopra assumeva un solo punto di funzionamento: una
+pressione di camera, un ambiente. Un \emph{motore a detonazione
+rotante} (RDE) infrange quell'assunzione, ed è la ragione per cui
+questo documento ha uno strato di ciclo.
 
-In an RDE, combustion does not sit still and burn steadily. A
-detonation --- a combustion wave travelling faster than sound ---
-runs continuously \emph{around} an annular chamber, lapping it a
-few thousand times a second (Figure~\ref{fig:rdecycle}a). Fresh
-propellant is injected behind the wave and consumed on the next
-lap. The attraction is thermodynamic: detonative combustion raises
-the pressure as it burns, so an RDE promises more work from the
-same propellant than steady burning does.
+In un RDE la combustione non sta ferma a bruciare in modo stazionario.
+Una detonazione --- un'onda di combustione che viaggia più veloce
+del suono --- corre di continuo \emph{attorno} a una camera anulare,
+percorrendola qualche migliaio di volte al secondo
+(Figura~\ref{fig:rdecycle}a). Il propellente fresco viene iniettato
+dietro l'onda e consumato al giro successivo. L'attrattiva è
+termodinamica: la combustione detonativa alza la pressione mentre
+brucia, quindi un RDE promette più lavoro dallo stesso propellente
+rispetto a una combustione stazionaria.
 
-The consequence for the nozzle is severe. A fixed cross-section of
-the exhaust does not see a constant chamber state; it sees the
-pressure spike as the wave sweeps past and then decay until the
-next lap --- over and over, thousands of times a second. What the
-nozzle is handed is therefore not one stagnation state but a
-\emph{periodic family} of them, $(P_0(\xi), T_0(\xi))$, labelled by
-the position in the cycle, the \emph{phase} $\xi \in [0,1]$
-(Figure~\ref{fig:rdecycle}b).
+La conseguenza per l'ugello è severa. Una sezione fissa dello
+scarico non vede uno stato di camera costante; vede il picco di
+pressione al passaggio dell'onda e poi il decadimento fino al giro
+successivo --- ancora e ancora, migliaia di volte al secondo. Ciò
+che viene consegnato all'ugello non è dunque un solo stato di
+ristagno ma una \emph{famiglia periodica} di stati,
+$(P_0(\xi), T_0(\xi))$, etichettati dalla posizione nel ciclo, la
+\emph{fase} $\xi \in [0,1]$ (Figura~\ref{fig:rdecycle}b).
 
-Because gas crosses the nozzle far faster than the chamber
-conditions change, each phase can be treated as its own steady
-flow, and the performance of the whole cycle is the average of the
-steady performances over the phases. That assumption is called
-\emph{quasi-steady}; it is what makes the problem tractable with
-the machinery of this document, it is stated explicitly wherever it
-is used, and its limits are discussed honestly in
-Section~\ref{sec:spiral}.
+Poiché il gas attraversa l'ugello molto più in fretta di quanto
+cambino le condizioni di camera, ogni fase può essere trattata come
+un proprio flusso stazionario, e la prestazione dell'intero ciclo è
+la media delle prestazioni stazionarie sulle fasi. Quell'ipotesi si
+chiama \emph{quasi-stazionaria}; è ciò che rende il problema
+trattabile con la macchina di questo documento, è dichiarata
+esplicitamente ovunque venga usata, e i suoi limiti sono discussi
+onestamente nella Sezione~\ref{sec:spiral}.
 
-The design difficulty is then immediate and is the whole subject of
-Chapters~\ref{ch:cycle} and~\ref{ch:plugcycle}: each phase would
-want a different nozzle (Figure~\ref{fig:rdecycle}c), and only one
-piece of hardware gets built. What is the right compromise --- and
-is it simply the nozzle for the average chamber condition? For one
-kind of nozzle the answer turns out to be yes, exactly; for another
-it is emphatically no. Measuring both is what this document does.
+La difficoltà di progetto è allora immediata ed è l'intero soggetto
+dei Capitoli~\ref{ch:cycle} e~\ref{ch:plugcycle}: ogni fase
+vorrebbe un ugello diverso (Figura~\ref{fig:rdecycle}c), e di
+hardware se ne costruisce uno solo. Qual è il compromesso giusto ---
+ed è semplicemente l'ugello per la condizione media di camera? Per
+un tipo di ugello la risposta risulta essere sì, esattamente; per un
+altro è decisamente no. Misurare entrambi è ciò che questo documento
+fa.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_rde_cycle.pdf}
-\caption{Why an RDE nozzle is a harder design problem.
-(a)~The source of the cycle: a detonation wave runs around an
-annular chamber (axes are chamber cross-section coordinates
-$x, y$ [m]); a fixed nozzle section sees it sweep past once per
-lap, a few thousand times a second. (b)~What the nozzle is
-therefore handed: not one operating point but a periodic family.
-Cycle phase $\xi$ [--] on the horizontal axis ($\xi = 0$ at wave
-passage), chamber pressure $P_0$ [bar] on the left axis
-(logarithmic, blue) and chamber temperature $T_0$ [K] on the right
-(red) --- the five discrete phases actually marched by the
-carriers. (c)~The resulting design problem: for each phase, the
-area ratio $\varepsilon$ [--] that would be perfectly matched for
-\emph{that} phase, computed with the program's own gas tables. They
-spread by a factor of three, and only one nozzle gets built.}
+\caption{Perché l'ugello di un RDE è un problema di progetto più
+difficile. (a)~L'origine del ciclo: un'onda di detonazione corre
+attorno a una camera anulare (gli assi sono coordinate della sezione
+di camera $x, y$ [m]); una sezione fissa di ugello la vede passare
+una volta per giro, qualche migliaio di volte al secondo. (b)~Ciò
+che viene quindi consegnato all'ugello: non un punto di
+funzionamento ma una famiglia periodica. Fase di ciclo $\xi$ [--]
+sull'asse orizzontale ($\xi = 0$ al passaggio dell'onda), pressione
+di camera $P_0$ [bar] sull'asse sinistro (logaritmico, blu) e
+temperatura di camera $T_0$ [K] su quello destro (rosso) --- le
+cinque fasi discrete effettivamente marciate dai carrier. (c)~Il
+problema di progetto che ne risulta: per ogni fase, il rapporto di
+espansione $\varepsilon$ [--] che sarebbe perfettamente adattato per
+\emph{quella} fase, calcolato con le tabelle di gas del programma.
+Si distribuiscono su un fattore tre, e di ugello se ne costruisce
+uno solo.}
 \label{fig:rdecycle}
 \end{figure}
 
-\section{What ``optimizing'' means here, and what an adjoint buys}
+\section{Che cosa significa qui ``ottimizzare'', e che cosa dà un
+aggiunto}
 
-An \emph{optimizer} needs three things a flow solver does not have.
-A \emph{score}: one number saying how good a design is --- here the
-thrust $J$, built in Chapter~\ref{ch:score}. A \emph{compass}: the
-derivative of that score with respect to every design variable, the
-\emph{gradient}, which says which way to move. And a
-\emph{certificate}: a condition that recognizes an optimum when it
-is reached, so that ``the search stopped'' and ``the design is
-optimal'' are different statements.
+Un \emph{ottimizzatore} ha bisogno di tre cose che un solutore di
+flusso non possiede. Un \emph{punteggio}: un numero che dica quanto
+è buono un progetto --- qui la spinta $J$, costruita nel
+Capitolo~\ref{ch:score}. Una \emph{bussola}: la derivata di quel
+punteggio rispetto a ogni variabile di progetto, il
+\emph{gradiente}, che dice in che direzione muoversi. E un
+\emph{certificato}: una condizione che riconosca un ottimo quando lo
+si raggiunge, così che ``la ricerca si è fermata'' e ``il progetto è
+ottimale'' siano affermazioni distinte.
 
-The gradient is where the technology of Brick~1 matters. If a
-design has only one knob, the gradient can be estimated by
-\emph{finite differences} --- change the knob a little, see how $J$
-changes. With a whole wall shape as the unknown, that costs one
-extra flow solution per degree of freedom, which is hopeless.
-\emph{Automatic differentiation} (AD) avoids this. Because the
-solver is written in a language that records the arithmetic it
-performs, the chain rule can be applied backwards through the
-entire computation, yielding the derivative of $J$ with respect to
-\emph{all} inputs at once, for roughly the cost of one extra
-solve, and to machine accuracy rather than to the accuracy of a
-difference quotient. This backwards pass is mathematically the same
-object as the \emph{discrete adjoint} of classical optimal-control
-theory --- hence the name of this work package --- but it is
-obtained for free rather than derived and coded by hand.
+Il gradiente è il punto in cui la tecnologia del Mattone~1 conta. Se
+un progetto ha una sola manopola, il gradiente si può stimare per
+\emph{differenze finite} --- si cambia un poco la manopola e si
+guarda come cambia $J$. Con un'intera forma di parete come incognita
+questo costa una soluzione di flusso in più per ogni grado di
+libertà, il che è senza speranza. La \emph{differenziazione
+automatica} (AD) evita tutto ciò. Poiché il solutore è scritto in un
+linguaggio che registra l'aritmetica che esegue, la regola della
+catena può essere applicata all'indietro attraverso l'intero calcolo,
+producendo la derivata di $J$ rispetto a \emph{tutti} gli ingressi
+in una volta sola, al costo di circa una risoluzione aggiuntiva e
+con accuratezza di macchina anziché con quella di un rapporto
+incrementale. Questa passata all'indietro è matematicamente lo
+stesso oggetto dell'\emph{aggiunto discreto} della teoria classica
+del controllo ottimo --- da cui il nome di questo pacchetto di
+lavoro --- ma si ottiene gratis anziché derivarlo e programmarlo a
+mano.
 
-That is the engine. The rest of the document builds an optimizer
-around it, one certified piece at a time.
+Questo è il motore. Il resto del documento gli costruisce attorno un
+ottimizzatore, un pezzo certificato alla volta.

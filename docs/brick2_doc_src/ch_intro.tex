@@ -1,125 +1,136 @@
-\chapter{Introduction}
+\chapter{Introduzione}
 \label{ch:intro}
 
-\section{What this document is}
+\section{Che cos'è questo documento}
 
-This is the record of building a \emph{nozzle optimizer}: a program
-that does not merely compute the flow through a given rocket
-nozzle, but searches for the nozzle shape that produces the most
-thrust --- and can certify that what it found satisfies the
-mathematical conditions of an optimum.
+Questo è il resoconto della costruzione di un \emph{ottimizzatore di
+ugelli}: un programma che non si limita a calcolare il flusso
+attraverso un dato ugello di razzo, ma cerca la forma di ugello che
+produce la massima spinta --- e sa certificare che ciò che ha
+trovato soddisfa le condizioni matematiche di un ottimo.
 
-The target application is the rotating detonation engine (RDE), in
-which combustion runs continuously around an annular chamber
-instead of sitting still. That makes the design problem harder in a
-specific way: the nozzle is handed not one operating condition but
-a periodic family of them, thousands of times a second. Everything
-this document builds is aimed at that difficulty.
+L'applicazione di riferimento è il motore a detonazione rotante
+(RDE), in cui la combustione corre di continuo attorno a una camera
+anulare invece di restare ferma. Questo rende il problema di
+progetto più difficile in un modo preciso: all'ugello non viene
+consegnata una sola condizione di funzionamento, ma una famiglia
+periodica di condizioni, migliaia di volte al secondo. Tutto ciò che
+questo documento costruisce è rivolto a quella difficoltà.
 
-The work is organized in two \emph{bricks}. Brick~1, completed
-earlier, is the flow solver: a method-of-characteristics march
-written in a differentiable programming language, checked against
-closed-form solutions and against an independent Fortran design
-code. Brick~2 --- this document --- is the climb from a solver to
-an optimizer, step by step, each step carrying its own certified
-test suite.
+Il lavoro è organizzato in due \emph{mattoni}. Il Mattone~1,
+completato in precedenza, è il solutore di flusso: una marcia con il
+metodo delle caratteristiche scritta in un linguaggio di
+programmazione differenziabile, verificata contro soluzioni in forma
+chiusa e contro un codice Fortran di progetto indipendente. Il
+Mattone~2 --- questo documento --- è la salita da un solutore a un
+ottimizzatore, passo dopo passo, ciascun passo con la propria suite
+di test certificati.
 
-\section{Who this document is written for}
+\section{A chi è rivolto questo documento}
 
-No prior exposure to nozzle design, gasdynamics, the method of
-characteristics, optimization theory, or rotating detonation
-engines is assumed. The three chapters that follow supply all of
-it:
+Non si presuppone alcuna familiarità pregressa con il progetto di
+ugelli, la gasdinamica, il metodo delle caratteristiche, la teoria
+dell'ottimizzazione o i motori a detonazione rotante. I tre capitoli
+che seguono forniscono tutto:
 
 \begin{itemize}[itemsep=2pt]
-\item Chapter~\ref{ch:nozzle} --- what a nozzle is and does, what
-  the design variables are, why an optimum exists at all, what an
-  RDE is and why it creates a cycle, and what a gradient and an
-  adjoint buy you.
-\item Chapter~\ref{ch:moc} --- how the solver computes: the method
-  of characteristics, cells, columns, boundaries, and why sharp
-  corners must be handled separately.
-\item Chapter~\ref{ch:method} --- how this program decides that
-  something is true, and the symbol table
-  (Table~\ref{tab:notation}) for the whole document.
+\item Capitolo~\ref{ch:nozzle} --- che cos'è e che cosa fa un
+  ugello, quali sono le variabili di progetto, perché esista un
+  ottimo, che cos'è un RDE e perché genera un ciclo, e che cosa
+  danno un gradiente e un aggiunto.
+\item Capitolo~\ref{ch:moc} --- come calcola il solutore: il metodo
+  delle caratteristiche, celle, colonne, frontiere e perché gli
+  spigoli vivi vadano trattati a parte.
+\item Capitolo~\ref{ch:method} --- come questo programma decide che
+  qualcosa è vero, e la tabella dei simboli
+  (Tabella~\ref{tab:notation}) valida per l'intero documento.
 \end{itemize}
 
-Readers already fluent in these can start at
-Chapter~\ref{ch:score}. Every later chapter opens with a short
-plain-language statement of what it adds, and defines any new term
-where it first appears.
+Chi già padroneggia questi argomenti può partire dal
+Capitolo~\ref{ch:score}. Ogni capitolo successivo si apre con una
+breve dichiarazione in linguaggio piano di ciò che aggiunge, e
+definisce ogni termine nuovo là dove compare per la prima volta.
 
-\section{The two ground rules}
+\section{Le due regole di fondo}
 
-Two rules apply to every test suite in this program, and they are
-what makes the results claims rather than demonstrations. They are
-stated fully in Chapter~\ref{ch:method}; in brief:
+Due regole valgono per ogni suite di test di questo programma, e
+sono ciò che rende i risultati delle affermazioni anziché delle
+dimostrazioni. Sono enunciate per esteso nel
+Capitolo~\ref{ch:method}; in breve:
 
 \begin{enumerate}[itemsep=2pt]
-\item \textbf{No tolerance is chosen by hand.} Every pass band is
-  \emph{derived} --- usually by running the same computation at two
-  resolutions and letting the scheme measure its own error. A test
-  that passes inside a hand-picked tolerance certifies nothing.
-\item \textbf{Every suite must be able to say no.} Alongside the
-  positive checks, each suite plants deliberate corruptions that it
-  is required to catch. If the corrupted run does not fail, the
-  suite is worthless and the step does not count as done.
+\item \textbf{Nessuna tolleranza è scelta a mano.} Ogni banda di
+  superamento è \emph{derivata} --- di norma eseguendo lo stesso
+  calcolo a due risoluzioni e lasciando che sia lo schema a misurare
+  il proprio errore. Un test che passa dentro una tolleranza scelta
+  a mano non certifica nulla.
+\item \textbf{Ogni suite deve saper dire di no.} Accanto alle
+  verifiche positive, ogni suite impianta corruzioni deliberate che
+  è tenuta a cogliere. Se l'esecuzione corrotta non fallisce, la
+  suite non vale nulla e il passo non conta come fatto.
 \end{enumerate}
 
-A consequence worth stating: in this program the bugs the tests
-catch are results too. The main chapters present each step as it
-now works; everything that went wrong on the way --- every trap and
-measured structural lesson, with its diagnosis and fix --- is
-collected in Appendix~\ref{ch:appendix}, cross-referenced from the
-step it belongs to.
+Una conseguenza che vale la pena enunciare: in questo programma
+anche i difetti colti dai test sono risultati. I capitoli principali
+presentano ciascun passo così come funziona oggi; tutto ciò che è
+andato storto lungo la strada --- ogni trappola e ogni lezione
+strutturale misurata, con la sua diagnosi e la sua correzione --- è
+raccolto nell'Appendice~\ref{ch:appendix}, con riferimenti incrociati
+dal passo cui appartiene.
 
-\section{The independent referee}
+\section{L'arbitro indipendente}
 
-One further principle shapes the work. Alongside this program there
-is GENO~\cite{geno}, an independent Fortran nozzle design code:
-different language, different discretization, different
-thermodynamics, written by other people. By standing decision it is
-\emph{never modified and never differentiated}. It plays two roles:
-as a \emph{generator} it produces reference contours and flowfields
-that our optimizer did not make, and as a \emph{referee} its fields
-are required to satisfy our own equations, and ours its numbers.
-Two independently built programs agreeing on one physical problem
-is evidence that neither can produce alone.
+Un ulteriore principio dà forma al lavoro. Accanto a questo
+programma c'è GENO~\cite{geno}, un codice Fortran indipendente per
+il progetto di ugelli: altro linguaggio, altra discretizzazione,
+altra termodinamica, scritto da altre persone. Per decisione
+permanente esso \emph{non viene mai modificato né mai
+differenziato}. Svolge due ruoli: come \emph{generatore} produce
+contorni e campi di riferimento che il nostro ottimizzatore non ha
+prodotto, e come \emph{arbitro} i suoi campi devono soddisfare le
+nostre equazioni, e i nostri i suoi numeri. Due programmi costruiti
+in modo indipendente che concordano su un problema fisico sono una
+prova che nessuno dei due può produrre da solo.
 
-\section{The road through this document}
+\section{Il percorso di questo documento}
 
-Figure~\ref{fig:pipeline} maps the whole of Brick~2: each box is a
-chapter, in the order the work was done and certified.
+La Figura~\ref{fig:pipeline} mappa l'intero Mattone~2: ogni riquadro
+è un capitolo, nell'ordine in cui il lavoro è stato svolto e
+certificato.
 
-The engine is assembled in this order. Chapter~\ref{ch:score}
-builds the score (thrust, computed two independent ways) and the
-optimality certificate. Chapter~\ref{ch:firstopt} closes the first
-optimization loop and checks it against a case whose answer is
-known in closed form. Chapter~\ref{ch:wallinput} inverts the
-solver so that the wall shape becomes an \emph{input} --- the
-structural change free-form design requires --- and records a
-finding about differentiating tabulated gas properties.
-Chapter~\ref{ch:referee} brings the independent referee online and
-confronts Rao's 1958 hand-derived optimality conditions with the
-automatic-differentiation engine, term by term, on a real
-thrust-optimized contour.
+Il motore viene assemblato in quest'ordine. Il
+Capitolo~\ref{ch:score} costruisce il punteggio (la spinta,
+calcolata in due modi indipendenti) e il certificato di ottimalità.
+Il Capitolo~\ref{ch:firstopt} chiude il primo anello di
+ottimizzazione e lo verifica su un caso la cui risposta è nota in
+forma chiusa. Il Capitolo~\ref{ch:wallinput} inverte il solutore
+così che la forma della parete diventi un \emph{ingresso} --- il
+cambiamento strutturale che il progetto a forma libera richiede ---
+e registra un risultato sulla differenziazione di proprietà del gas
+tabulate. Il Capitolo~\ref{ch:referee} mette in linea l'arbitro
+indipendente e confronta le condizioni di ottimalità che Rao derivò
+a mano nel 1958 con il motore di differenziazione automatica,
+termine per termine, su un contorno realmente ottimizzato in spinta.
 
-Chapter~\ref{ch:cycle} adds the cycle layer that makes the engine
-an RDE tool, with a theorem-level test the implementation cannot
-pass by accident. Chapter~\ref{ch:plug} builds the plug (aerospike)
-nozzle march, whose free exhaust boundary is genuinely new physics,
-and certifies it against a closed-form solution.
-Chapter~\ref{ch:plugcycle} takes the certified plug into the cycle
-and measures where a truncated plug should be cut ---
-and why that is \emph{not} the design for the average condition.
-Chapter~\ref{ch:genotwin} runs the strongest external check the
-program owns, our march on the independent code's own designed
-spike, and reports one honest unresolved finding.
-Chapter~\ref{ch:swirl} extends the march to swirling exhaust and
-states plainly what that extension does and does not model.
-Chapter~\ref{ch:status} is the ledger: the status of every suite,
-what a design run can fix, what remains, and the reproduction
-commands.
+Il Capitolo~\ref{ch:cycle} aggiunge lo strato di ciclo che rende il
+motore uno strumento per RDE, con un test a livello di teorema che
+l'implementazione non può superare per caso. Il
+Capitolo~\ref{ch:plug} costruisce la marcia dell'ugello a spina
+(aerospike), la cui frontiera libera di scarico è fisica
+genuinamente nuova, e la certifica contro una soluzione in forma
+chiusa. Il Capitolo~\ref{ch:plugcycle} porta il plug certificato
+dentro il ciclo e misura dove vada tagliato un plug troncato --- e
+perché quello \emph{non} sia il progetto per la condizione media. Il
+Capitolo~\ref{ch:genotwin} esegue la più forte verifica esterna che
+il programma possieda, la nostra marcia sulla spina progettata dal
+codice indipendente, e riporta un risultato onestamente irrisolto.
+Il Capitolo~\ref{ch:swirl} estende la marcia allo scarico con swirl
+e dichiara con chiarezza che cosa quella estensione modella e che
+cosa no. Il Capitolo~\ref{ch:generalinlet} rimuove l'ipotesi di
+stato termodinamico uniforme all'ingresso. Il
+Capitolo~\ref{ch:status} è il registro: lo stato di ogni suite, che
+cosa un'esecuzione di progetto può fissare, che cosa resta da fare e
+i comandi di riproduzione.
 
 \begin{figure}[htbp]
 \centering
@@ -133,18 +144,18 @@ commands.
   arr/.style={-{Stealth[length=2mm]}, thick, color=black!60},
   node distance=0.32cm]
 \node[box, draw=black!55, text=black!55] (b1)
-  {diff.\ march\\(Brick 1)};
-\node[done, right=of b1] (s1) {score $J$,\\two routes\\8/8};
-\node[done, right=of s1] (s2) {gradient +\\corner meter\\5/5};
-\node[done, right=of s2] (s3) {optimizer vs\\closed form\\4/4};
-\node[done, right=of s3] (s4) {wall as\\INPUT\\5/5 + 2/2};
-\node[done, right=of s4] (s5) {referee\\GENO + Rao\\9/9};
-\node[done, right=of s5] (s6) {cycle layer\\+ oracles\\5/5, 6/6, 8/8};
-\node[done, right=of s6] (s7) {plug march:\\cell, oracle, axi\\6/6, 6/6, 5/5};
-\node[done, right=of s7] (s8) {truncated plug\\under cycle\\5/5, 9/9};
-\node[done, right=of s8] (s9) {full-field\\plug twin\\8/8};
-\node[done, right=of s9] (s10) {free-vortex\\swirl\\9/9};
-\node[ahead, right=of s10] (s11) {measured cycle,\\TR-SQP\\(ahead)};
+  {marcia diff.\\(Mattone 1)};
+\node[done, right=of b1] (s1) {punteggio $J$,\\due vie\\8/8};
+\node[done, right=of s1] (s2) {gradiente +\\misura spigolo\\5/5};
+\node[done, right=of s2] (s3) {ottimizz.\ vs\\forma chiusa\\4/4};
+\node[done, right=of s3] (s4) {parete come\\INGRESSO\\5/5 + 2/2};
+\node[done, right=of s4] (s5) {arbitro\\GENO + Rao\\9/9};
+\node[done, right=of s5] (s6) {strato ciclo\\+ oracoli\\5/5, 6/6, 8/8};
+\node[done, right=of s6] (s7) {marcia plug:\\cella, oracolo, assi\\6/6, 6/6, 5/5};
+\node[done, right=of s7] (s8) {plug troncato\\sotto ciclo\\5/5, 9/9};
+\node[done, right=of s8] (s9) {gemello plug\\a campo intero\\8/8};
+\node[done, right=of s9] (s10) {swirl a\\vortice libero\\9/9};
+\node[ahead, right=of s10] (s11) {ciclo misurato,\\TR-SQP\\(avanti)};
 \draw[arr] (b1) -- (s1);
 \draw[arr] (s1) -- (s2);
 \draw[arr] (s2) -- (s3);
@@ -158,21 +169,23 @@ commands.
 \draw[arr] (s10) -- (s11);
 \end{tikzpicture}%
 }
-\caption{The Brick-2 pipeline. Each box is a chapter of this
-document and carries its own certified test suite, with its pass
-count shown. Blue: done and certified. Red: the road ahead. Grey:
-Brick~1, the prerequisite solver.}
+\caption{La catena del Mattone~2. Ogni riquadro è un capitolo di
+questo documento e porta con sé la propria suite di test
+certificati, con il conteggio dei superamenti. Blu: fatto e
+certificato. Rosso: la strada davanti. Grigio: il Mattone~1, il
+solutore prerequisito.}
 \label{fig:pipeline}
 \end{figure}
 
-\section{Environment and provenance}
+\section{Ambiente e provenienza}
 
-Work of record ran on host \code{s2} in
-\code{RDE\_Design-rde-nozzle-program/} (environment \code{.venv-a1}:
-JAX 0.10.2, SciPy, Cantera 3.2.0, Matplotlib). This host's tree is
-not a version-controlled checkout: files are ported to the
-repository for commit, with a handoff note in \code{validation/}.
-The referee code GENO was rebuilt from source on this host
-(Chapter~\ref{ch:referee}). Every ``results of record'' block quotes
-the carrier script whose output it is, and
-Chapter~\ref{ch:status} lists the one-command reproduction for each.
+Il lavoro di riferimento è stato eseguito sull'host \code{s2} in
+\code{RDE\_Design-rde-nozzle-program/} (ambiente \code{.venv-a1}:
+JAX 0.10.2, SciPy, Cantera 3.2.0, Matplotlib). L'albero di questo
+host non è un checkout sotto controllo di versione: i file vengono
+portati nel repository per il commit, con una nota di consegna in
+\code{validation/}. Il codice arbitro GENO è stato ricompilato dai
+sorgenti su questo host (Capitolo~\ref{ch:referee}). Ogni blocco
+``risultati di riferimento'' cita il carrier di cui è l'uscita, e il
+Capitolo~\ref{ch:status} elenca la riproduzione con un solo comando
+per ciascuno.

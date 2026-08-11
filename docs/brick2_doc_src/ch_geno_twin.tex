@@ -1,250 +1,270 @@
-\chapter{The GENO full-field plug twin}
+\chapter{Il gemello a campo intero del plug GENO}
 \label{ch:genotwin}
 
-Two programs written independently, in different languages,
-checking each other on one physical problem is a stronger test than
-anything either can run alone: a shared answer cannot come from a
-shared mistake. This chapter runs that experiment on a \emph{plug}
-(aerospike) nozzle --- one whose solid wall, the \emph{spike}, sits
-under the exhaust while the outside of the jet is bounded by
-nothing but the surrounding atmosphere. The independent Fortran
-design code GENO~\cite{geno} designs such a spike; our solver takes
-that shape as an ordinary given wall, recomputes the whole flow
-around it, and the two flowfields are confronted number by number.
-The step delivers the program's strongest external check --- and
-one honest finding.
+Due programmi scritti in modo indipendente, in linguaggi diversi,
+che si verificano a vicenda su un unico problema fisico sono un test
+più forte di qualunque cosa ciascuno possa eseguire da solo: una
+risposta condivisa non può venire da un errore condiviso. Questo
+capitolo esegue quell'esperimento su un ugello a spina (aerospike)
+--- uno la cui parete solida, la \emph{spina}, sta sotto lo scarico
+mentre l'esterno del getto è delimitato da nient'altro che
+l'atmosfera circostante. Il codice Fortran indipendente di progetto
+GENO~\cite{geno} progetta una tale spina; il nostro solutore prende
+quella forma come una comune parete assegnata, ricalcola l'intero
+flusso attorno a essa, e i due campi di moto vengono confrontati
+numero per numero. Il passo consegna la più forte verifica esterna
+del programma --- e un risultato onesto.
 
-\section{The question}
+\section{La domanda}
 
-The two-constraint GENO session (Chapter~\ref{ch:status},
-Section~\ref{sec:designinputs}) left one named residual: the
-\emph{full-field} comparison. Not a handful of summary quantities,
-but our certified plug march run on the spike contour GENO's
-RaoPlug module now cleanly produces, compared field against field
---- wall pressure station by station, velocities at GENO's own
-interior points, and the integrated mass and thrust. This is the
-plug counterpart of the bell nozzle's cross-code check of
-Chapter~\ref{ch:referee}.
+La sessione GENO a due vincoli (Capitolo~\ref{ch:status},
+Sezione~\ref{sec:designinputs}) ha lasciato un residuo dichiarato:
+il confronto a \emph{campo intero}. Non una manciata di grandezze
+riassuntive, ma la nostra marcia del plug certificata eseguita sul
+contorno di spina che il modulo RaoPlug di GENO ora produce in modo
+pulito, confrontata campo contro campo --- pressione di parete
+stazione per stazione, velocità nei punti interni di GENO, e massa e
+spinta integrate. È la controparte per il plug della verifica fra
+codici dell'ugello a campana del Capitolo~\ref{ch:referee}.
 
-\section{How it works, in full}
+\section{Come funziona, per esteso}
 
-\subsection{What you need to know first}
+\subsection{Che cosa occorre sapere prima}
 
-The solver advances a supersonic flow along the two families of
-\emph{characteristics} --- the lines along which a disturbance can
-travel in supersonic flow, tilted by the Mach angle on either side
-of the flow direction (Chapter~\ref{ch:moc}; symbols in
-Table~\ref{tab:notation}). Three more words are needed here.
+Il solutore avanza un flusso supersonico lungo le due famiglie di
+\emph{caratteristiche} --- le linee lungo cui una perturbazione può
+viaggiare in flusso supersonico, inclinate dell'angolo di Mach da una
+parte e dall'altra della direzione del flusso (Capitolo~\ref{ch:moc};
+simboli nella Tabella~\ref{tab:notation}). Qui servono altre tre
+parole.
 
-A \emph{start line} (or Cauchy cut, after the initial-value problem
-it poses) is a line drawn across the flow on which the complete
-state --- position, velocity, pressure --- is supplied as data.
-Given a start line and the walls, the equations determine
-everything downstream of it and nothing upstream. Ours is a
-vertical cut across GENO's finished field.
+Una \emph{linea iniziale} (o taglio di Cauchy, dal problema ai valori
+iniziali che pone) è una linea tracciata attraverso il flusso sulla
+quale lo stato completo --- posizione, velocità, pressione --- è
+fornito come dato. Data una linea iniziale e le pareti, le equazioni
+determinano tutto ciò che sta a valle di essa e nulla a monte. La
+nostra è un taglio verticale attraverso il campo finito di GENO.
 
-The \emph{initial-value line} (IVL) is the last characteristic of
-GENO's own construction --- the outer edge of the region GENO
-computes. Below it is GENO's design field; above it GENO has
-nothing to say.
+La \emph{linea dei valori iniziali} (IVL) è l'ultima caratteristica
+della costruzione propria di GENO --- il bordo esterno della regione
+che GENO calcola. Sotto di essa c'è il campo di progetto di GENO;
+sopra, GENO non ha nulla da dire.
 
-\emph{Truncation} appears here in two unrelated standard senses,
-and the chapter needs both: cutting the spike short at a finite
-length (hardware), and the error a finite-step scheme makes because
-its steps are not infinitesimal (numerics). The finding below is
-about the second.
+Il \emph{troncamento} compare qui in due sensi standard non
+collegati, e il capitolo ha bisogno di entrambi: tagliare corta la
+spina a una lunghezza finita (hardware), e l'errore che uno schema a
+passo finito commette perché i suoi passi non sono infinitesimi
+(numerica). Il risultato qui sotto riguarda il secondo.
 
-\subsection{Two independent constructions}
+\subsection{Due costruzioni indipendenti}
 
-GENO builds the spike \emph{backward}: it rotates the expansion fan
-at the cowl lip in fixed angular steps ($0.05^{\circ}$), integrates
-one characteristic per fan member with its own cells, places each
-wall point by requiring that the mass flowing inside that
-characteristic equal the mass the throat passes (the mass
-termination, GENO's N-65), and cuts the spike at the point $D$
-where that balance is met.
+GENO costruisce la spina \emph{all'indietro}: ruota il ventaglio di
+espansione al labbro del cowl a passi angolari fissi
+($0.05^{\circ}$), integra una caratteristica per ogni membro del
+ventaglio con le proprie celle, colloca ciascun punto di parete
+richiedendo che la massa che scorre dentro quella caratteristica
+eguagli la massa che la gola lascia passare (la terminazione di
+massa, la N-65 di GENO) e taglia la spina nel punto $D$ in cui quel
+bilancio è soddisfatto.
 
-Our engine knows nothing of that construction. It is a general
-axisymmetric march --- interior cells, prescribed-wall cells with
-the multi-column foot search, the free-jet edge, each certified in
-Chapter~\ref{ch:plug} --- and it treats GENO's contour as an
-ordinary given wall, marching \emph{forward} from a start line.
-Agreement is therefore evidence about the shared continuum problem,
-not about shared code.
+Il nostro motore non sa nulla di quella costruzione. È una marcia
+assialsimmetrica generale --- celle interne, celle a parete assegnata
+con la ricerca multi-colonna del piede, il bordo di getto libero,
+ciascuna certificata nel Capitolo~\ref{ch:plug} --- e tratta il
+contorno di GENO come una comune parete assegnata, marciando
+\emph{in avanti} a partire da una linea iniziale. L'accordo è dunque
+una prova sul problema continuo condiviso, non su codice condiviso.
 
-\subsection{The posing: all data GENO's own}
+\subsection{La posizione del problema: tutti i dati sono di GENO}
 
-Nothing analytic is assumed. Even the gas is identified
-\emph{from GENO's field}: the ratio of specific heats
-$\gamma = 5.34782609/4.34782609$ (the recipe GENO's own thermo
-backend implements, a gas of constant specific heat), the gas
-constant $R_g$ from $p/(\rho T)$ at its points (scatter
-$8.7\times10^{-9}$), and the field's own effective isentrope. That
-last one matters: GENO's field actually sits at a chamber pressure
-of $p_0 = 6.008172\times10^{6}$~Pa, \emph{not} the nominal
-$6\times10^{6}$ --- a uniform offset of its construction, spread
-$1.1\times10^{-4}$ --- and posing the nominal value would have
-manufactured a difference that is not there.
+Non si assume nulla di analitico. Perfino il gas è identificato
+\emph{dal campo di GENO}: il rapporto dei calori specifici
+$\gamma = 5.34782609/4.34782609$ (la ricetta che il backend
+termodinamico di GENO stesso implementa, un gas a calore specifico
+costante), la costante del gas $R_g$ da $p/(\rho T)$ nei suoi punti
+(dispersione $8.7\times10^{-9}$) e l'isentropica efficace del campo
+stesso. Quest'ultima conta: il campo di GENO sta in realtà a una
+pressione di camera $p_0 = 6.008172\times10^{6}$~Pa, \emph{non} al
+nominale $6\times10^{6}$ --- uno scostamento uniforme della sua
+costruzione, dispersione $1.1\times10^{-4}$ --- e porre il valore
+nominale avrebbe fabbricato una differenza che non c'è.
 
-The start line is a vertical cut at $x_0 = 0.15$ through GENO's own
-first-phase characteristics; each crossing is interpolated on that
-curve's own points and cross-checked against an independent
-two-dimensional interpolation of the same field, agreeing to
-$10^{-5}$. The wall is GENO's contour, with slopes
-$\tan\theta_w$ measured from it (its tangency is consistent to
+La linea iniziale è un taglio verticale a $x_0 = 0.15$ attraverso le
+caratteristiche di prima fase di GENO; ogni attraversamento è
+interpolato sui punti propri di quella curva e verificato contro
+un'interpolazione bidimensionale indipendente dello stesso campo, con
+accordo a $10^{-5}$. La parete è il contorno di GENO, con pendenze
+$\tan\theta_w$ misurate da esso (la sua tangenza è coerente a
 $1.6\times10^{-5}$).
 
-Above the initial-value line lies a region GENO does not compute,
-and our march needs something there, so a free-jet strip is posed,
-blending continuously from the state at the IVL crossing to the
-state on the last fan member. It cannot contaminate the comparison
---- a fact about supersonic flow, not a hope, since each point is
-influenced only by what lies upstream inside its cone of
-dependence: every characteristic arriving at the wall ahead of $D$
-leaves the start line \emph{below} the IVL, and the IVL itself
-lands exactly at $D$, the end of the wall. It was verified anyway:
-replacing the blended strip by a uniform one changes the wall by
-nothing.
+Sopra la linea dei valori iniziali giace una regione che GENO non
+calcola, e la nostra marcia ha bisogno di qualcosa lì, quindi si pone
+una striscia di getto libero, raccordata con continuità dallo stato
+all'attraversamento della IVL allo stato sull'ultimo membro del
+ventaglio. Non può contaminare il confronto --- un fatto sul flusso
+supersonico, non una speranza, poiché ogni punto è influenzato solo
+da ciò che sta a monte dentro il suo cono di dipendenza: ogni
+caratteristica che arriva alla parete prima di $D$ lascia la linea
+iniziale \emph{sotto} la IVL, e la IVL stessa atterra esattamente in
+$D$, la fine della parete. È stato comunque verificato: sostituire
+la striscia raccordata con una uniforme non cambia nulla sulla
+parete.
 
-\subsection{Thresholds: declared, with provenance}
+\subsection{Soglie: dichiarate, con provenienza}
 
-Everywhere else in this program the pass band is \emph{derived}:
-the same computation is run at two resolutions, the change measures
-the scheme's own error, and the band is that change inflated by a
-safety factor (Chapter~\ref{ch:method}). Here the levels are
-instead \emph{declared} --- fixed in advance, with their provenance
---- deliberately, for the reason that is this step's central
-finding below: the measured difference between the two codes sits
-\emph{above} what either code's own step refinement suggests, so a
-refinement-derived band would be the wrong ruler.
+Ovunque altrove in questo programma la banda di superamento è
+\emph{derivata}: lo stesso calcolo è eseguito a due risoluzioni, la
+variazione misura l'errore proprio dello schema, e la banda è quella
+variazione gonfiata da un fattore di sicurezza
+(Capitolo~\ref{ch:method}). Qui i livelli sono invece
+\emph{dichiarati} --- fissati in anticipo, con la loro provenienza
+--- deliberatamente, per la ragione che è il risultato centrale di
+questo passo qui sotto: la differenza misurata fra i due codici sta
+\emph{sopra} ciò che il raffinamento di passo di ciascun codice
+suggerisce, quindi una banda derivata dal raffinamento sarebbe il
+metro sbagliato.
 
-The declared levels come from the cross-code agreement already
-established --- an independent integrator of the design curve,
-built in the two-constraint session, matched GENO to three or four
-significant digits --- re-measured here on the full field, with at
-least a factor of two of margin on every statistic: wall pressure
-$3\times10^{-3}$ (measured median $1.9\times10^{-3}$), settled
-field $q\ 10^{-3}$ / $\theta\ 1.5\times10^{-3}$ (measured 95th
-percentile $4.5\times10^{-4}$ / $5.3\times10^{-4}$), integrals
-through the shared boundary $2.5\times10^{-3}$ (measured
-$1.2\times10^{-3}$). What keeps declared numbers honest are the
-\emph{rejectors} --- deliberately corrupted runs the suite must
-fail (Chapter~\ref{ch:method}): they prove the instrument resolves
-defects an order of magnitude above the gap it is measuring. One
-check keeps fully derived bands: the gas identification is judged
-against GENO's own measured self-consistency floors (total enthalpy
-$2.0\times10^{-5}$, entropy $4.7\times10^{-6}R$, total pressure
-$1.1\times10^{-4}$).
+I livelli dichiarati vengono dall'accordo fra codici già stabilito
+--- un integratore indipendente della curva di progetto, costruito
+nella sessione a due vincoli, coincideva con GENO a tre o quattro
+cifre significative --- rimisurato qui sul campo intero, con almeno
+un fattore due di margine su ogni statistica: pressione di parete
+$3\times10^{-3}$ (mediana misurata $1.9\times10^{-3}$), campo
+assestato $q\ 10^{-3}$ / $\theta\ 1.5\times10^{-3}$ (95-esimo
+percentile misurato $4.5\times10^{-4}$ / $5.3\times10^{-4}$),
+integrali attraverso la frontiera condivisa $2.5\times10^{-3}$
+(misurato $1.2\times10^{-3}$). Ciò che tiene onesti dei numeri
+dichiarati sono i \emph{rigettatori} --- esecuzioni deliberatamente
+corrotte che la suite deve far fallire (Capitolo~\ref{ch:method}):
+dimostrano che lo strumento risolve difetti di un ordine di
+grandezza superiori al divario che sta misurando. Una verifica
+mantiene bande interamente derivate: l'identificazione del gas è
+giudicata contro i pavimenti di autoconsistenza misurati di GENO
+stesso (entalpia totale $2.0\times10^{-5}$, entropia
+$4.7\times10^{-6}R$, pressione totale $1.1\times10^{-4}$).
 
-\section{What was built}
+\section{Che cosa è stato costruito}
 
-\carrier{validation/a1\_geno\_plug\_twin.py}: the reference
-extractor (GENO run directory $\to$ \code{\_geno\_twin/ref.npz}:
-wall, initial-value line, the 131{,}589 first-phase field points,
-gas identification, floors), the start-line world builder, the
-calibrated flux quadrature --- along GENO's full initial-value line
-it reproduces GENO's printed mass flow $\dot m$ to
-$2.4\times10^{-7}$ and thrust $F$ to $2.3\times10^{-7}$, settling a
-question of definition on the way: GENO's $F$ is the
-absolute-pressure momentum integral --- plus the six agreement
-checks G-1--G-6 and the two rejectors R-1/R-2.
+\carrier{validation/a1\_geno\_plug\_twin.py}: l'estrattore di
+riferimento (cartella di esecuzione GENO $\to$
+\code{\_geno\_twin/ref.npz}: parete, linea dei valori iniziali, i
+131{,}589 punti di campo di prima fase, identificazione del gas,
+pavimenti), il costruttore del mondo della linea iniziale, la
+quadratura di flusso calibrata --- lungo l'intera linea dei valori
+iniziali di GENO riproduce la portata $\dot m$ stampata da GENO a
+$2.4\times10^{-7}$ e la spinta $F$ a $2.3\times10^{-7}$, risolvendo
+per strada una questione di definizione: la $F$ di GENO è
+l'integrale di quantità di moto a pressione assoluta --- più le sei
+verifiche di accordo G-1--G-6 e i due rigettatori R-1/R-2.
 
-\section{Results of record: 8/8 PASS}
+\section{Risultati di riferimento: 8/8 PASS}
 
-G-1, the gas: our tables reproduce GENO's pressure, temperature and
-density at its own points from the local speed alone, within GENO's
-measured floors (worst $9.9\times10^{-5}$ in $p$). G-2: all
-25{,}034 cells Newton-certified at both resolutions. G-3, the wall:
-pressure within $3\times10^{-3}$ at 100\% of stations (median
-$1.9\times10^{-3}$, worst $2.5\times10^{-3}$). G-4, the interior:
-past the start transient, 97.7\% of GENO's own points agree within
-($q\ 10^{-3}$, $\theta\ 1.5\times10^{-3}$); medians
-$3.8\times10^{-4}$ and $7.9\times10^{-5}$. G-5/G-6: mass and thrust
-through the shared segment of the initial-value line agree to
-$1.2\times10^{-3}$ and $1.1\times10^{-3}$. Both rejectors fire: a
-gas falsified by $1\%$ ($\gamma\times1.01$) collapses the wall
-agreement to 31\% of stations, a contour scaled by
-$\times1.005$ collapses it to 0\%.
+G-1, il gas: le nostre tabelle riproducono pressione, temperatura e
+densità di GENO nei suoi stessi punti a partire dalla sola velocità
+locale, entro i pavimenti misurati di GENO (peggiore
+$9.9\times10^{-5}$ in $p$). G-2: tutte le 25{,}034 celle certificate
+da Newton a entrambe le risoluzioni. G-3, la parete: pressione entro
+$3\times10^{-3}$ nel 100\% delle stazioni (mediana
+$1.9\times10^{-3}$, peggiore $2.5\times10^{-3}$). G-4, l'interno:
+superato il transitorio iniziale, il 97.7\% dei punti propri di GENO
+concorda entro ($q\ 10^{-3}$, $\theta\ 1.5\times10^{-3}$); mediane
+$3.8\times10^{-4}$ e $7.9\times10^{-5}$. G-5/G-6: massa e spinta
+attraverso il tratto condiviso della linea dei valori iniziali
+concordano a $1.2\times10^{-3}$ e $1.1\times10^{-3}$. Entrambi i
+rigettatori scattano: un gas falsificato dell'$1\%$
+($\gamma\times1.01$) fa crollare l'accordo di parete al 31\% delle
+stazioni, un contorno scalato di $\times1.005$ lo fa crollare
+allo 0\%.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_geno_twin.pdf}
-\caption{The GENO full-field plug twin. (a)~Wall pressure along the
-spike: axial coordinate $x$ [m] horizontally, pressure on the spike
-surface [bar] vertically. GENO's own wall (solid) and our forward
-march on the same contour (dashed) lie on top of each other; the
-relative deviation (dotted, right axis, in units of $10^{-3}$)
-stays under the declared $3\times10^{-3}$ at every station --- two
-codes, one contour, three to four digits. (b)~The same comparison
-inside the flow: at GENO's own field points, the difference in flow
-speed between the two codes, $|\Delta q|$ [m/s], against $x$ [m]
-(median and 95th percentile per band). Look at the left end: the
-start transient --- our march ingesting a start line drawn through
-the strong flow curvature near the lip --- washes out by
-$x\approx0.35$~m, leaving a settled gap of about $4\times10^{-4}$
-of the local speed. (c)~What that settled gap is: the length
-actually marched [m], varied by moving the start line, against the
-resulting speed difference at the wall $\Delta q$ [m/s]. The points
-fall on a straight line through the origin ($\approx4\times10^{-4}$
-of $q$ per unit length), while halving GENO's own steps moves
-GENO's wall by only $3.5\times10^{-6}$ --- so this is no local
-mistake in either code but a slow drift accumulating with distance
-marched between two individually converged solvers, worth $0.5\%$
-of the axisymmetric source term's own contribution.}
+\caption{Il gemello a campo intero del plug GENO. (a)~Pressione di
+parete lungo la spina: coordinata assiale $x$ [m] in orizzontale,
+pressione sulla superficie della spina [bar] in verticale. La parete
+propria di GENO (continua) e la nostra marcia in avanti sullo stesso
+contorno (tratteggiata) si sovrappongono; la deviazione relativa
+(punteggiata, asse destro, in unità di $10^{-3}$) resta sotto il
+$3\times10^{-3}$ dichiarato in ogni stazione --- due codici, un
+contorno, tre o quattro cifre. (b)~Lo stesso confronto dentro il
+flusso: nei punti di campo propri di GENO, la differenza di modulo
+della velocità fra i due codici, $|\Delta q|$ [m/s], contro $x$ [m]
+(mediana e 95-esimo percentile per banda). Si guardi l'estremo
+sinistro: il transitorio iniziale --- la nostra marcia che ingerisce
+una linea iniziale tracciata attraverso la forte curvatura del flusso
+vicino al labbro --- si esaurisce entro $x\approx0.35$~m, lasciando
+un divario assestato di circa $4\times10^{-4}$ della velocità locale.
+(c)~Che cosa sia quel divario assestato: la lunghezza effettivamente
+marciata [m], variata spostando la linea iniziale, contro la
+differenza di velocità che ne risulta alla parete $\Delta q$ [m/s]. I
+punti cadono su una retta per l'origine ($\approx4\times10^{-4}$ di
+$q$ per unità di lunghezza), mentre dimezzare i passi propri di GENO
+sposta la parete di GENO di soli $3.5\times10^{-6}$ --- quindi non è
+un errore locale in nessuno dei due codici ma una lenta deriva che si
+accumula con la distanza marciata fra due solutori individualmente
+convergenti, pari allo $0.5\%$ del contributo proprio del termine
+sorgente assialsimmetrico.}
 \label{fig:genotwin}
 \end{figure}
 
-\section{The finding: a measured, attributed-open cross-code gap}
+\section{Il risultato: un divario fra codici misurato e con
+attribuzione aperta}
 \label{sec:twingap}
 
-The twin certifies three-to-four-digit agreement --- and the
-residual difference is itself a characterized result, not a
-leftover. It has two parts. Near the start line, a transient: at
-mid heights the flow angle differs by up to $1.1\times10^{-2}$~rad,
-decaying by $x \approx 0.35$, unchanged when the resolution is
-changed, and moving when the start line moves --- the signature of
-ingesting a start line drawn through the strong flow curvature near
-the lip. It washes out. What remains is a settled \emph{uniform
-drift}: our speed runs $+4\times10^{-4}$ relative high across the
-whole column, and that excess grows linearly with the distance
-marched (Figure~\ref{fig:genotwin}c).
+Il gemello certifica un accordo di tre-quattro cifre --- e la
+differenza residua è essa stessa un risultato caratterizzato, non un
+avanzo. Ha due parti. Vicino alla linea iniziale, un transitorio: a
+quote intermedie l'angolo del flusso differisce fino a
+$1.1\times10^{-2}$~rad, decadendo entro $x \approx 0.35$, invariato
+al cambiare della risoluzione e mobile allo spostarsi della linea
+iniziale --- la firma dell'ingestione di una linea iniziale
+tracciata attraverso la forte curvatura del flusso vicino al labbro.
+Si esaurisce. Ciò che resta è una \emph{deriva uniforme} assestata:
+la nostra velocità corre $+4\times10^{-4}$ relativi più alta
+sull'intera colonna, e quell'eccesso cresce linearmente con la
+distanza marciata (Figura~\ref{fig:genotwin}c).
 
-The forensics excluded, by measurement, every accessible cause.
-\emph{The gas}: both sides are analytically equivalent to about
-$10^{-8}$. \emph{The wall geometry and its tangency}:
-$1.6\times10^{-5}$. \emph{The start-line data}: agreed to $10^{-5}$
-by two independent interpolation routes; refining the polyline
-resolution from $10^{-4}$ to $5\times10^{-6}$ leaves the drift
-unchanged. \emph{The strip above the initial-value line}: replacing
-the blend by a uniform state changes nothing, and the cone of
-dependence forbids it from reaching the wall anyway.
-\emph{GENO's discretization}: a diagnostic GENO build with the fan
-step \emph{and} the curve step both halved moved GENO's wall by
-$3.5\times10^{-6}$, so GENO is step-converged (the sources were
-then reverted and the binary restored, md5-verified).
-\emph{Our own resolution}: halving each of our two step counts
-moves the deviation by less than 10\% of itself.
+L'indagine ha escluso, per misura, ogni causa accessibile.
+\emph{Il gas}: i due lati sono analiticamente equivalenti a circa
+$10^{-8}$. \emph{La geometria della parete e la sua tangenza}:
+$1.6\times10^{-5}$. \emph{I dati della linea iniziale}: concordi a
+$10^{-5}$ per due vie di interpolazione indipendenti; raffinare la
+risoluzione della poligonale da $10^{-4}$ a $5\times10^{-6}$ lascia
+la deriva invariata. \emph{La striscia sopra la linea dei valori
+iniziali}: sostituire il raccordo con uno stato uniforme non cambia
+nulla, e il cono di dipendenza le vieta comunque di raggiungere la
+parete. \emph{La discretizzazione di GENO}: una compilazione
+diagnostica di GENO con il passo del ventaglio \emph{e} il passo
+della curva entrambi dimezzati ha spostato la parete di GENO di
+$3.5\times10^{-6}$, quindi GENO è convergente in passo (i sorgenti
+sono poi stati ripristinati e il binario restaurato, con verifica
+md5). \emph{La nostra risoluzione}: dimezzare ciascuno dei nostri due
+conteggi di passo sposta la deviazione di meno del 10\% di sé
+stessa.
 
-Both fields satisfy the same trapezoidal march relations to
-$10^{-8}$--$10^{-9}$ (an audit of the residuals run on
-\emph{both} meshes). That proves the two discrete systems are
-algebraically equivalent --- and it also proves that such an audit
-is \emph{tautological} as an accuracy check: each code solves its
-own relations exactly, so a residual audit can never see a slowly
-accumulating bias. Worth stating plainly, because it looks like a
-strong check and is not. Finally, a control march with the
-axisymmetric source term switched off sizes the drift: it is
-$0.5\%$ of what that term contributes to the wall velocity (which
-is itself $-5.4\%$ of $q$).
+Entrambi i campi soddisfano le stesse relazioni trapezoidali di
+marcia a $10^{-8}$--$10^{-9}$ (un audit dei residui eseguito su
+\emph{entrambe} le maglie). Ciò dimostra che i due sistemi discreti
+sono algebricamente equivalenti --- e dimostra anche che un tale
+audit è \emph{tautologico} come verifica di accuratezza: ogni codice
+risolve esattamente le proprie relazioni, quindi un audit dei residui
+non può mai vedere una distorsione che si accumula lentamente. Vale
+la pena dirlo chiaramente, perché sembra una verifica forte e non lo
+è. Infine, una marcia di controllo con il termine sorgente
+assialsimmetrico spento dimensiona la deriva: è lo $0.5\%$ di ciò che
+quel termine contribuisce alla velocità di parete (che è a sua volta
+il $-5.4\%$ di $q$).
 
-Attribution stays honestly \emph{open}. The candidate mechanisms
-live precisely where refinement does not vary anything --- on
-GENO's side the bookkeeping of re-interpolating during its backward
-march, on ours the interpolation along the chord found by the foot
-search --- and from outside, at this level, they cannot be told
-apart. The owner-side question is filed with GENO. For this program
-the operational consequence is the one already adopted: cross-code
-comparisons with GENO carry the measured three-to-four-digit
-agreement level --- far above the truncation error of either code,
-far below anything the optimizer's gradients are sensitive to ---
-and the rejectors keep the instrument honest at that level.
+L'attribuzione resta onestamente \emph{aperta}. I meccanismi
+candidati vivono precisamente dove il raffinamento non varia nulla
+--- dal lato di GENO la contabilità della re-interpolazione durante
+la sua marcia all'indietro, dal nostro l'interpolazione lungo la
+corda trovata dalla ricerca del piede --- e dall'esterno, a questo
+livello, non sono distinguibili. La domanda di competenza del
+proprietario è depositata presso GENO. Per questo programma la
+conseguenza operativa è quella già adottata: i confronti fra codici
+con GENO portano il livello di accordo misurato di tre-quattro cifre
+--- molto sopra l'errore di troncamento di entrambi i codici, molto
+sotto qualunque cosa cui i gradienti dell'ottimizzatore siano
+sensibili --- e i rigettatori tengono onesto lo strumento a quel
+livello.

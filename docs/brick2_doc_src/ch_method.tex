@@ -1,195 +1,208 @@
-\chapter{How this program decides that something is true}
+\chapter{Come questo programma decide che qualcosa è vero}
 \label{ch:method}
 
-A design code is only as good as the evidence that it is right.
-This chapter states the two rules every test suite in this document
-obeys, explains why they were chosen, and defines the handful of
-terms used to report results. It closes with the symbol table for
-the whole document.
+Un codice di progetto vale quanto le prove che è corretto. Questo
+capitolo enuncia le due regole cui ogni suite di test del documento
+obbedisce, spiega perché sono state scelte e definisce i pochi
+termini usati per riportare i risultati. Si chiude con la tabella
+dei simboli valida per l'intero documento.
 
-\section{Rule one: no tolerance is chosen by hand}
+\section{Regola uno: nessuna tolleranza è scelta a mano}
 
-Every check in this document compares a computed number against a
-band, and \emph{no band is picked by a human}. The reason is
-simple: a tolerance chosen after seeing the answer certifies
-nothing. It always exists, and it always passes.
+Ogni verifica di questo documento confronta un numero calcolato con
+una banda, e \emph{nessuna banda è scelta da un essere umano}. La
+ragione è semplice: una tolleranza scelta dopo aver visto la
+risposta non certifica nulla. Esiste sempre, e passa sempre.
 
-Instead, the band is \emph{derived}, and in almost every case the
-computation derives it about itself. The same quantity is computed
-twice, once on a coarse discretization and once on a fine one. The
-difference between the two is a measurement of the error the scheme
-is still making. The band is that difference, multiplied by a fixed
-safety factor $K_{\rm RICH} = 4$, plus a floor at the level of
-floating-point roundoff:
+La banda è invece \emph{derivata}, e in quasi tutti i casi è il
+calcolo stesso a derivarla su di sé. La stessa quantità viene
+calcolata due volte, una su una discretizzazione grossolana e una su
+una fine. La differenza fra le due è una misura dell'errore che lo
+schema sta ancora commettendo. La banda è quella differenza,
+moltiplicata per un fattore di sicurezza fisso
+$K_{\rm RICH} = 4$, più un pavimento al livello
+dell'arrotondamento in virgola mobile:
 \begin{equation}
-\text{band} \;=\; K_{\rm RICH}\,
-\bigl|\,\text{coarse} - \text{fine}\,\bigr|
-\;+\; \text{roundoff floor}.
+\text{banda} \;=\; K_{\rm RICH}\,
+\bigl|\,\text{grossolana} - \text{fine}\,\bigr|
+\;+\; \text{pavimento di arrotondamento}.
 \label{eq:band}
 \end{equation}
-This is the classical idea of \emph{Richardson extrapolation} used
-as an error estimate rather than as an accelerator, and the
-resulting number is called a \emph{Richardson band} throughout
-(Figure~\ref{fig:method}b). Because the method is second order
-(Chapter~\ref{ch:moc}), halving the step should cut the error by
-about four; when a suite reports a ``coarse/fine ratio of 4.52'' it
-is reporting that the scheme is converging at the rate it should,
-which is itself evidence that the band means something.
+È la classica idea dell'\emph{estrapolazione di Richardson} usata
+come stima dell'errore anziché come acceleratore, e il numero che ne
+risulta è chiamato ovunque \emph{banda di Richardson}
+(Figura~\ref{fig:method}b). Poiché il metodo è del secondo ordine
+(Capitolo~\ref{ch:moc}), dimezzare il passo dovrebbe ridurre
+l'errore di circa quattro volte; quando una suite riporta un
+``rapporto grossolana/fine di 4.52'' sta riportando che lo schema
+converge al ritmo che dovrebbe, il che è già di per sé una prova
+che la banda significa qualcosa.
 
-Not every quantity has a discretization to refine. Where it does
-not, the band is derived from something else measurable --- the
-scatter of the reference data itself, or the physical scale of the
-quantity --- and the source is always stated. One chapter
-(Chapter~\ref{ch:genotwin}) uses \emph{declared} thresholds rather
-than derived ones; it says so explicitly, gives their provenance,
-and explains why refinement would be the wrong ruler there. That
-exception is deliberate and visible, which is the point.
+Non tutte le quantità hanno una discretizzazione da raffinare. Dove
+non c'è, la banda è derivata da qualcos'altro di misurabile --- la
+dispersione dei dati di riferimento stessi, o la scala fisica della
+quantità --- e la fonte è sempre dichiarata. Un capitolo (il
+Capitolo~\ref{ch:genotwin}) usa soglie \emph{dichiarate} anziché
+derivate; lo dice esplicitamente, ne dà la provenienza e spiega
+perché il raffinamento sarebbe lì il metro sbagliato. Quell'eccezione
+è deliberata e visibile, che è appunto il punto.
 
-\section{Rule two: every suite must be able to say no}
+\section{Regola due: ogni suite deve saper dire di no}
 
-A test that has never failed may be measuring nothing. So alongside
-the positive checks, each suite contains deliberate corruptions ---
-called \emph{rejectors} --- which the suite is required to catch: a
-sign flipped, a term dropped, a wrong ambient pressure, a wrong
-characteristic foot, a geometry perturbed by a fraction of a
-percent. If a rejector does \emph{not} fail, the corresponding
-positive check is worthless and the step does not count as done.
+Un test che non ha mai fallito potrebbe non misurare nulla. Perciò,
+accanto alle verifiche positive, ogni suite contiene corruzioni
+deliberate --- chiamate \emph{rigettatori} --- che la suite è tenuta
+a cogliere: un segno invertito, un termine eliminato, una pressione
+ambiente sbagliata, un piede caratteristico sbagliato, una geometria
+perturbata di una frazione di percento. Se un rigettatore \emph{non}
+fallisce, la verifica positiva corrispondente non vale nulla e il
+passo non conta come fatto.
 
-Rejectors do real work in this document. They are what makes a
-declared threshold trustworthy (they show the instrument resolves
-defects an order of magnitude above the gap being measured), and
-several of them caught genuine errors in the program before they
-could reach a result.
+I rigettatori fanno lavoro reale in questo documento. Sono ciò che
+rende affidabile una soglia dichiarata (mostrano che lo strumento
+risolve difetti di un ordine di grandezza superiori al divario che
+si sta misurando), e parecchi di essi hanno colto errori genuini nel
+programma prima che potessero raggiungere un risultato.
 
-Figure~\ref{fig:method}a puts both rules on one picture: every
-check in this document, expressed as its measured deviation divided
-by its own band, together with every deliberate corruption. The
-positive checks must land left of one; the rejectors must land
-right of it. Nothing is close to the line by accident.
+La Figura~\ref{fig:method}a mette entrambe le regole in un'unica
+immagine: ogni verifica del documento, espressa come deviazione
+misurata divisa per la propria banda, insieme a ogni corruzione
+deliberata. Le verifiche positive devono cadere a sinistra di uno; i
+rigettatori devono cadere a destra. Nulla è vicino alla linea per
+caso.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_method.pdf}
-\caption{The method of this document, in one picture.
-(a)~Every certified check (blue) and every deliberate corruption
-(red), plotted as the measured deviation divided by that check's
-\emph{own} derived band --- so the horizontal axis is
-dimensionless and the vertical line at one is the pass/fail
-threshold for all of them at once. Positive checks land far left
-(most by two to six orders of magnitude); rejectors land far right.
-(b)~Where a band comes from: the same quantity is computed on a
-coarse and a fine grid, the difference measures the error the
-scheme is still making, and the band is that difference times a
-safety factor of four plus a roundoff floor. Axes are the grid
-spacing $h$ and the residual of the check, both relative and
-logarithmic; the dashed line is the second-order slope the method
-should follow.}
+\caption{Il metodo di questo documento, in un'immagine. (a)~Ogni
+verifica certificata (blu) e ogni corruzione deliberata (rosso),
+riportate come deviazione misurata divisa per la banda derivata
+\emph{propria} di quella verifica --- così l'asse orizzontale è
+adimensionale e la linea verticale a uno è la soglia di
+superamento/fallimento per tutte in una volta. Le verifiche positive
+cadono molto a sinistra (la maggior parte da due a sei ordini di
+grandezza); i rigettatori cadono molto a destra. (b)~Da dove viene
+una banda: la stessa quantità è calcolata su una griglia grossolana
+e su una fine, la differenza misura l'errore che lo schema sta
+ancora commettendo, e la banda è quella differenza per un fattore di
+sicurezza quattro più un pavimento di arrotondamento. Gli assi sono
+la spaziatura di griglia $h$ e il residuo della verifica, entrambi
+relativi e logaritmici; la linea tratteggiata è la pendenza del
+secondo ordine che il metodo dovrebbe seguire.}
 \label{fig:method}
 \end{figure}
 
-\section{How results are reported}
+\section{Come vengono riportati i risultati}
 
-A few conventions recur.
+Ricorrono alcune convenzioni.
 
-\emph{``$m/n$ PASS''} counts the checks in a suite, rejectors
-included: a suite of six positive checks and two corruptions that
-behaves correctly reports 8/8.
+\emph{``$m/n$ PASS''} conta le verifiche di una suite, rigettatori
+compresi: una suite con sei verifiche positive e due corruzioni che
+si comporta correttamente riporta 8/8.
 
-\emph{``Newton-certified''} means every cell's converged residual
-was verified to sit at roundoff level, scaled to the size of its
-unknowns (Chapter~\ref{ch:moc}). The number quoted (``worst
-residual 0.019'') is a fraction of the allowed tolerance, so
-anything below one passes.
+\emph{``Certificato da Newton''} significa che il residuo convergente
+di ogni cella è stato verificato essere al livello
+dell'arrotondamento, scalato con la dimensione delle sue incognite
+(Capitolo~\ref{ch:moc}). Il numero citato (``residuo peggiore
+0.019'') è una frazione della tolleranza ammessa, quindi qualunque
+valore sotto uno passa.
 
-\emph{``Result of record''} means the number is quoted verbatim
-from an actual run of the named carrier script, not recomputed for
-the document. Chapter~\ref{ch:status} lists the one command that
-reproduces each.
+\emph{``Risultato di riferimento''} significa che il numero è citato
+alla lettera da un'esecuzione reale del carrier nominato, non
+ricalcolato per il documento. Il Capitolo~\ref{ch:status} elenca
+l'unico comando che riproduce ciascuno.
 
-\emph{An oracle} is a case whose answer is known independently of
-the program --- a closed-form solution, an exact conservation
-identity, or a second code --- against which the program can be
-judged. Where no oracle exists, a suite falls back on
-\emph{internal closures}: conservation statements (mass, momentum)
-that must hold whatever the answer is, plus \emph{alive controls},
-which check that a term the program claims to include actually
-changes the answer when removed.
+\emph{Un oracolo} è un caso la cui risposta è nota indipendentemente
+dal programma --- una soluzione in forma chiusa, un'identità esatta
+di conservazione o un secondo codice --- rispetto al quale il
+programma può essere giudicato. Dove non esiste un oracolo, una
+suite ripiega sulle \emph{chiusure interne}: affermazioni di
+conservazione (massa, quantità di moto) che devono valere qualunque
+sia la risposta, più i \emph{controlli di vitalità}, che verificano
+che un termine che il programma dichiara di includere cambi
+effettivamente la risposta quando viene rimosso.
 
-Finally, and deliberately: \textbf{in this program the bugs the
-tests caught are results too.} The main chapters describe each step
-as it now works; every trap, wrong turn, and measured structural
-lesson is collected in Appendix~\ref{ch:appendix}, cross-referenced
-from the step it belongs to. A caught bug is evidence that the
-instrument has teeth.
+Infine, e deliberatamente: \textbf{in questo programma anche i
+difetti colti dai test sono risultati.} I capitoli principali
+descrivono ciascun passo così come funziona oggi; ogni trappola,
+ogni svolta sbagliata e ogni lezione strutturale misurata è raccolta
+nell'Appendice~\ref{ch:appendix}, con riferimenti incrociati dal
+passo cui appartiene. Un difetto colto è la prova che lo strumento
+ha i denti.
 
-\section{Symbols used throughout}
+\section{Simboli usati nel documento}
 
 \begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{@{}llp{7.4cm}@{}}
 \toprule
-Symbol & Units & Meaning \\
+Simbolo & Unità & Significato \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Geometry and flow}}\\
-$x$, $y$ & m & axial position, radius \\
-$u$, $v$ & m/s & axial and radial velocity components \\
-$q$ & m/s & flow speed, $\sqrt{u^2+v^2}$ (written $W$ in Rao's
-  papers) \\
-$\theta$ & rad, deg & flow direction, $\arctan(v/u)$ \\
-$p$, $\rho$, $T$ & Pa, kg/m$^3$, K & static pressure, density,
-  temperature \\
-$c$ & m/s & local speed of sound \\
-$M$ & -- & Mach number, $q/c$ \\
-$\alpha$ & rad & Mach angle, $\sin\alpha = 1/M$ \\
-$C^{+}$, $C^{-}$ & -- & the two characteristic families, at
-  $\theta+\alpha$ and $\theta-\alpha$ \\
-$\nu(M)$ & rad & Prandtl--Meyer function (the turn a corner
-  expansion produces) \\
-$\delta$ & -- & 0 for planar flow, 1 for axisymmetric \\
+\multicolumn{3}{@{}l}{\emph{Geometria e flusso}}\\
+$x$, $y$ & m & posizione assiale, raggio \\
+$u$, $v$ & m/s & componenti assiale e radiale della velocità \\
+$q$ & m/s & modulo della velocità, $\sqrt{u^2+v^2}$ (indicato $W$
+  negli articoli di Rao) \\
+$\theta$ & rad, gradi & direzione del flusso, $\arctan(v/u)$ \\
+$p$, $\rho$, $T$ & Pa, kg/m$^3$, K & pressione statica, densità,
+  temperatura \\
+$c$ & m/s & velocità locale del suono \\
+$M$ & -- & numero di Mach, $q/c$ \\
+$\alpha$ & rad & angolo di Mach, $\sin\alpha = 1/M$ \\
+$C^{+}$, $C^{-}$ & -- & le due famiglie caratteristiche, a
+  $\theta+\alpha$ e $\theta-\alpha$ \\
+$\nu(M)$ & rad & funzione di Prandtl--Meyer (la rotazione prodotta
+  da un'espansione di spigolo) \\
+$\delta$ & -- & 0 per flusso piano, 1 per assialsimmetrico \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{The machine and its operating point}}\\
-$y_t$ & m & throat radius (holding it fixes the mass flow) \\
-$r_{tu}$, $r_{td}$ & m & throat arc radii, upstream and downstream \\
-$A_t$, $A_e$ & m$^2$ & throat and exit area \\
-$\varepsilon$ & -- & area ratio, $A_e/A_t$ \\
-$L$ & m & wall length \\
-$P_0$, $T_0$ & Pa, K & chamber (stagnation) pressure and
-  temperature \\
-$p_a$ & Pa & ambient (back) pressure \\
-$p_e$, $u_e$ & Pa, m/s & exit pressure and speed \\
-$\dot m$ & kg/s & mass flow \\
-$J$, $F$ & N & thrust (the objective being optimized) \\
+\multicolumn{3}{@{}l}{\emph{La macchina e il suo punto di
+  funzionamento}}\\
+$y_t$ & m & raggio di gola (tenerlo fisso fissa la portata) \\
+$r_{tu}$, $r_{td}$ & m & raggi di raccordo in gola, a monte e a
+  valle \\
+$A_t$, $A_e$ & m$^2$ & area di gola e di uscita \\
+$\varepsilon$ & -- & rapporto di espansione, $A_e/A_t$ \\
+$L$ & m & lunghezza della parete \\
+$P_0$, $T_0$ & Pa, K & pressione e temperatura di camera (di
+  ristagno) \\
+$p_a$ & Pa & pressione ambiente (di contropressione) \\
+$p_e$, $u_e$ & Pa, m/s & pressione e velocità di uscita \\
+$\dot m$ & kg/s & portata \\
+$J$, $F$ & N & spinta (l'obiettivo da ottimizzare) \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{The cycle (rotating detonation engine)}}\\
-$\xi$ & -- & cycle phase, $0$ at wave passage to $1$ at the end of
-  the blowdown \\
-$\mu$ & -- & the measure that weights the phases in the cycle
-  average \\
-$PR$, $TR$ & -- & pressure and temperature ratio across the cycle \\
+\multicolumn{3}{@{}l}{\emph{Il ciclo (motore a detonazione
+  rotante)}}\\
+$\xi$ & -- & fase del ciclo, $0$ al passaggio dell'onda e $1$ alla
+  fine dello svuotamento \\
+$\mu$ & -- & la misura che pesa le fasi nella media di ciclo \\
+$PR$, $TR$ & -- & rapporto di pressione e di temperatura sul
+  ciclo \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Plug nozzle and swirl}}\\
-$l$ & m & truncation length: where the spike is cut short \\
-$D$ & -- & the truncation point itself \\
-$w$ & m/s & azimuthal (swirl) velocity \\
-$\Gamma$ & m$^2$/s & circulation, $y\,w$; constant in a free vortex \\
+\multicolumn{3}{@{}l}{\emph{Ugello a spina e swirl}}\\
+$l$ & m & lunghezza di troncamento: dove la spina viene tagliata \\
+$D$ & -- & il punto di troncamento stesso \\
+$w$ & m/s & velocità azimutale (di swirl) \\
+$\Gamma$ & m$^2$/s & circolazione, $y\,w$; costante in un vortice
+  libero \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Instruments}}\\
-$R_{\rm mom}$ & N & disagreement between the two independent thrust
-  routes \\
-$R_{\rm corner}$ & Pa & endpoint (corner) residual: zero at an
-  optimal lip \\
-$f_2$ & m/s & Rao's first integral,
-  $q\cos(\theta-\alpha)/\cos\alpha$, constant along the terminal
-  characteristic of an optimal nozzle \\
-$\lambda_2$, $\lambda_3$ & -- & Rao's constant Lagrange multipliers
-  ($f_2 = -\lambda_2$) \\
-$K_{\rm RICH}$ & -- & Richardson safety factor, fixed at 4 \\
+\multicolumn{3}{@{}l}{\emph{Strumenti}}\\
+$R_{\rm mom}$ & N & disaccordo fra le due vie indipendenti di
+  calcolo della spinta \\
+$R_{\rm corner}$ & Pa & residuo terminale (di spigolo): nullo a un
+  labbro ottimale \\
+$f_2$ & m/s & primo integrale di Rao,
+  $q\cos(\theta-\alpha)/\cos\alpha$, costante lungo la
+  caratteristica terminale di un ugello ottimale \\
+$\lambda_2$, $\lambda_3$ & -- & moltiplicatori di Lagrange costanti
+  di Rao ($f_2 = -\lambda_2$) \\
+$K_{\rm RICH}$ & -- & fattore di sicurezza di Richardson, fissato
+  a 4 \\
 \bottomrule
 \end{tabular}
-\caption{Symbols used throughout this document. Lengths are quoted
-in metres; the reference cases are posed with a throat radius
-$y_t = 1$~m, so numerical values of $x$ and $y$ are also
-multiples of the throat radius.}
+\caption{Simboli usati in tutto questo documento. Le lunghezze sono
+espresse in metri; i casi di riferimento sono posti con raggio di
+gola $y_t = 1$~m, quindi i valori numerici di $x$ e $y$ sono anche
+multipli del raggio di gola.}
 \label{tab:notation}
 \end{table}

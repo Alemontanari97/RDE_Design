@@ -1,181 +1,193 @@
-\chapter{How the solver computes}
+\chapter{Come calcola il solutore}
 \label{ch:moc}
 
-The rest of this document talks constantly about ``cells'',
-``columns'', ``feet'', ``characteristics'' and ``compatibility''.
-This chapter defines all of them from nothing. It describes the
-\emph{method of characteristics}, the numerical method the whole
-program rests on, and it is worth the four pages: almost every
-technical lesson recorded later --- including every bug in the
-appendix --- is a statement about the objects introduced here.
+Il resto di questo documento parla di continuo di ``celle'',
+``colonne'', ``piedi'', ``caratteristiche'' e ``compatibilità''.
+Questo capitolo le definisce tutte partendo da zero. Descrive il
+\emph{metodo delle caratteristiche}, il metodo numerico su cui posa
+l'intero programma, e vale le quattro pagine che occupa: quasi ogni
+lezione tecnica registrata più avanti --- compreso ogni difetto in
+appendice --- è un'affermazione sugli oggetti qui introdotti.
 
-\section{The one physical fact the method exploits}
+\section{L'unico fatto fisico che il metodo sfrutta}
 
-In a gas moving \emph{slower} than sound, a disturbance spreads in
-every direction, upstream included: the whole flow field is coupled
-to itself, and solving it means solving everywhere at once. In a
-gas moving \emph{faster} than sound, it cannot. A disturbance made
-at a point is swept downstream faster than it can propagate, so its
-influence is confined to a wedge opening downstream of that point.
+In un gas che si muove \emph{più lentamente} del suono, una
+perturbazione si propaga in ogni direzione, a monte compreso:
+l'intero campo di moto è accoppiato a sé stesso, e risolverlo
+significa risolvere ovunque simultaneamente. In un gas che si muove
+\emph{più velocemente} del suono, questo non può avvenire. Una
+perturbazione prodotta in un punto viene trascinata a valle più in
+fretta di quanto riesca a propagarsi, quindi la sua influenza è
+confinata a un cuneo che si apre a valle di quel punto.
 
-That wedge has a precise half-angle, the \emph{Mach angle}
-$\alpha$, given by
+Quel cuneo ha un semiangolo preciso, l'\emph{angolo di Mach}
+$\alpha$, dato da
 \begin{equation}
 \sin\alpha = \frac{1}{M}, \qquad M = \frac{q}{c},
 \label{eq:machangle}
 \end{equation}
-where $q$ is the flow speed, $c$ the local speed of sound, and $M$
-their ratio, the \emph{Mach number}. Faster flow means a narrower
-wedge. Its two edges, drawn through the point, are the
-\emph{characteristics}: one at angle $\theta + \alpha$ to the axis
-and one at $\theta - \alpha$, where $\theta$ is the direction the
-gas is actually flowing (Figure~\ref{fig:mocprimer}a). By
-convention the first family is called $C^{+}$ and the second
-$C^{-}$.
+dove $q$ è la velocità del flusso, $c$ la velocità locale del suono
+e $M$ il loro rapporto, il \emph{numero di Mach}. Un flusso più
+veloce dà un cuneo più stretto. I suoi due lati, tracciati per il
+punto, sono le \emph{caratteristiche}: uno a un angolo
+$\theta + \alpha$ rispetto all'asse e uno a $\theta - \alpha$, dove
+$\theta$ è la direzione in cui il gas sta effettivamente scorrendo
+(Figura~\ref{fig:mocprimer}a). Per convenzione la prima famiglia si
+chiama $C^{+}$ e la seconda $C^{-}$.
 
-Characteristics are not just geometry. Along each of them the flow
-must satisfy a \emph{compatibility relation}: an ordinary
-differential equation tying the change in speed to the change in
-flow direction, with an extra term in axisymmetric flow accounting
-for the passage opening out as the radius grows. That is the
-entire physical content the solver uses. Two families of lines,
-one relation along each --- no volume grid, no time stepping, no
-iteration to steady state.
+Le caratteristiche non sono solo geometria. Lungo ciascuna di esse
+il flusso deve soddisfare una \emph{relazione di compatibilità}:
+un'equazione differenziale ordinaria che lega la variazione di
+velocità alla variazione di direzione del flusso, con un termine
+aggiuntivo nel flusso assialsimmetrico che tiene conto del condotto
+che si allarga al crescere del raggio. Questo è l'intero contenuto
+fisico che il solutore usa. Due famiglie di linee, una relazione
+lungo ciascuna --- nessuna griglia di volume, nessun avanzamento nel
+tempo, nessuna iterazione fino allo stato stazionario.
 
-\section{The unit process: one cell}
+\section{Il processo elementare: una cella}
 
-The method turns those relations into arithmetic with a single
-repeating move, the \emph{cell} (or \emph{unit process}), shown in
-Figure~\ref{fig:mocprimer}b.
+Il metodo trasforma quelle relazioni in aritmetica con una singola
+mossa ripetuta, la \emph{cella} (o \emph{processo elementare}),
+mostrata in Figura~\ref{fig:mocprimer}b.
 
-Suppose two nearby points are already solved: position and velocity
-known at both. From the lower one, draw its $C^{+}$ characteristic;
-from the upper one, its $C^{-}$. In supersonic flow these two lines
-converge and cross at exactly one point downstream. That crossing
-gives two equations, one per line, for the two coordinates of the
-new point. The two compatibility relations, integrated along the
-two short segments just drawn, give two more equations for the two
-velocity components there. Four equations, four unknowns
-$(x, y, u, v)$.
+Si supponga che due punti vicini siano già risolti: posizione e
+velocità note in entrambi. Dal punto inferiore si traccia la sua
+caratteristica $C^{+}$; da quello superiore la sua $C^{-}$. In
+flusso supersonico queste due linee convergono e si incrociano in
+esattamente un punto a valle. Quell'incrocio fornisce due equazioni,
+una per linea, per le due coordinate del nuovo punto. Le due
+relazioni di compatibilità, integrate lungo i due brevi segmenti
+appena tracciati, danno altre due equazioni per le due componenti di
+velocità lì. Quattro equazioni, quattro incognite $(x, y, u, v)$.
 
-The equations are nonlinear --- the characteristic directions
-depend on the very state being solved for --- so each cell is
-closed by a small Newton iteration. Two details of how they are
-closed matter later:
+Le equazioni sono non lineari --- le direzioni caratteristiche
+dipendono proprio dallo stato che si sta cercando --- quindi ogni
+cella è chiusa da una piccola iterazione di Newton. Due dettagli su
+come vengono chiuse contano più avanti:
 
-\emph{Midpoint coefficients.} The coefficients of the
-compatibility relations are evaluated not at the segment's start
-but at its \emph{midpoint}, using the average of the two endpoint
-states. This is the trapezoidal rule; it makes the error per cell
-shrink with the square of the step rather than linearly, which is
-why the whole march is called second order. It is also the reason
-a cell must never span a region where the state changes abruptly:
-averaging the two ends of such a segment is then meaningless
-(Chapter~\ref{ch:plug} contains a measured example).
+\emph{Coefficienti al punto medio.} I coefficienti delle relazioni
+di compatibilità sono valutati non all'inizio del segmento ma nel
+suo \emph{punto medio}, usando la media dei due stati agli estremi.
+È la regola dei trapezi; fa sì che l'errore per cella si riduca con
+il quadrato del passo anziché linearmente, ed è il motivo per cui
+l'intera marcia si dice del secondo ordine. È anche la ragione per
+cui una cella non deve mai attraversare una regione in cui lo stato
+cambia bruscamente: mediare i due estremi di un tale segmento è
+allora privo di significato (il Capitolo~\ref{ch:plug} contiene un
+esempio misurato).
 
-\emph{Newton certification.} Once a cell's Newton iteration
-converges, the program checks that the residual of the four
-equations really has fallen to the level of floating-point
-roundoff, scaled to the size of the unknowns. A cell that stalls
-is caught and reported rather than quietly polluting the march.
-Every ``all cells Newton-certified'' claim in this document is that
-check, run over every cell.
+\emph{Certificazione di Newton.} Una volta che l'iterazione di
+Newton di una cella è convergita, il programma verifica che il
+residuo delle quattro equazioni sia davvero sceso al livello
+dell'arrotondamento in virgola mobile, scalato con la dimensione
+delle incognite. Una cella che si arena viene colta e segnalata
+invece di inquinare in silenzio la marcia. Ogni affermazione
+``tutte le celle certificate da Newton'' in questo documento è
+quella verifica, eseguita su ogni cella.
 
-\section{Columns, boundaries, and feet}
+\section{Colonne, frontiere e piedi}
 
-New points grow out of solved points, so a march organizes itself
-into \emph{columns}: from one solved column, the interior cells
-produce the next column, and the sweep repeats downstream
-(Figure~\ref{fig:mocprimer}c). A march therefore needs somewhere to
-begin --- a \emph{start line} (or initial-value line) across the
-flow, on which the complete state is supplied as data. In a rocket
-nozzle that line sits just downstream of the throat.
+I nuovi punti crescono da punti risolti, quindi una marcia si
+organizza in \emph{colonne}: da una colonna risolta, le celle
+interne producono la colonna successiva, e la spazzata si ripete
+verso valle (Figura~\ref{fig:mocprimer}c). Una marcia ha dunque
+bisogno di un punto da cui cominciare --- una \emph{linea iniziale}
+(o linea dei valori iniziali) attraverso il flusso, sulla quale lo
+stato completo è fornito come dato. In un ugello di razzo quella
+linea sta appena a valle della gola.
 
-At the edges of the flow the cell changes shape, because one of its
-two parent characteristics is missing and a boundary condition
-takes its place. Three boundaries appear in this document.
+Ai bordi del flusso la cella cambia forma, perché una delle sue due
+caratteristiche genitrici manca e una condizione al contorno ne
+prende il posto. In questo documento compaiono tre frontiere.
 
-\emph{A symmetry axis}: the flow cannot cross it, which supplies
-the missing relation.
+\emph{Un asse di simmetria}: il flusso non può attraversarlo, il che
+fornisce la relazione mancante.
 
-\emph{A prescribed wall}: the new point's position is already
-known, because it must lie on a given contour with a given slope.
-The cell then works \emph{backwards}. It must find the
-\emph{foot} --- the point on the previous column from which the
-arriving characteristic departed --- which in general falls
-between two stored points and must be located by searching along
-the column and interpolating. The compatibility relation is then
-closed along the chord from that foot to the wall point. This is
-the cell that lets a designer hand in an arbitrary wall
-(Chapter~\ref{ch:wallinput}), and the accuracy of the foot search
-is a recurring theme.
+\emph{Una parete assegnata}: la posizione del nuovo punto è già
+nota, perché deve trovarsi su un contorno dato con una pendenza
+data. La cella allora lavora \emph{all'indietro}. Deve trovare il
+\emph{piede} --- il punto sulla colonna precedente da cui la
+caratteristica in arrivo è partita --- che in generale cade fra due
+punti memorizzati e va localizzato cercando lungo la colonna e
+interpolando. La relazione di compatibilità viene poi chiusa lungo
+la corda da quel piede al punto di parete. È questa la cella che
+permette a un progettista di consegnare una parete arbitraria
+(Capitolo~\ref{ch:wallinput}), e l'accuratezza della ricerca del
+piede è un tema ricorrente.
 
-\emph{A free jet boundary}: the case with no wall at all, where
-the exhaust is bounded by the atmosphere. Here the situation is
-exactly reversed: the \emph{pressure} is known (it is $p_a$, since
-nothing but the atmosphere pushes on the jet) while the
-\emph{position} of the boundary is unknown and must be solved.
-This is the one genuinely new piece of physics the plug nozzle
-needs, and Chapter~\ref{ch:plug} builds and certifies it.
+\emph{Una frontiera di getto libero}: il caso in cui non c'è parete
+alcuna e lo scarico è delimitato dall'atmosfera. Qui la situazione è
+esattamente rovesciata: la \emph{pressione} è nota (è $p_a$, poiché
+sul getto non spinge altro che l'atmosfera) mentre la
+\emph{posizione} della frontiera è incognita e va risolta. È questo
+l'unico pezzo di fisica genuinamente nuovo di cui l'ugello a spina
+ha bisogno, e il Capitolo~\ref{ch:plug} lo costruisce e lo
+certifica.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_moc_primer.pdf}
-\caption{How the march computes, for a reader new to the method of
-characteristics. Axes throughout are axial position $x$ [m] and
-radius $y$ [m]. (a)~Through every point of a supersonic flow pass
-two characteristics, tilted by the Mach angle $\alpha$ on either
-side of the local flow direction $\theta$; along each, a
-compatibility relation links the change in speed to the change in
-angle. (b)~The interior cell: from two already-solved points, the
-crossing of a $C^{+}$ and a $C^{-}$ fixes the new point's position,
-and the two compatibility relations --- closed with coefficients
-taken at the segment midpoints ($\diamond$) --- fix its velocity;
-a Newton iteration solves the resulting $4\times4$ system.
-(c)~Cells build columns out of columns. At a prescribed wall the
-position is known instead of computed, so the cell must locate the
-\emph{foot} of the arriving characteristic on the previous column
-by interpolation. Every structural lesson in
-Chapter~\ref{ch:plug} and Appendix~\ref{ch:appendix} is a
-statement about these three pictures.}
+\caption{Come calcola la marcia, per un lettore nuovo al metodo
+delle caratteristiche. Gli assi sono ovunque posizione assiale $x$
+[m] e raggio $y$ [m]. (a)~Per ogni punto di un flusso supersonico
+passano due caratteristiche, inclinate dell'angolo di Mach $\alpha$
+da una parte e dall'altra della direzione locale del flusso
+$\theta$; lungo ciascuna, una relazione di compatibilità lega la
+variazione di velocità alla variazione di angolo. (b)~La cella
+interna: da due punti già risolti, l'incrocio di una $C^{+}$ e di
+una $C^{-}$ fissa la posizione del nuovo punto, e le due relazioni
+di compatibilità --- chiuse con coefficienti presi nei punti medi
+dei segmenti ($\diamond$) --- ne fissano la velocità; un'iterazione
+di Newton risolve il sistema $4\times4$ che ne risulta. (c)~Le celle
+costruiscono colonne a partire da colonne. A una parete assegnata la
+posizione è nota anziché calcolata, quindi la cella deve localizzare
+per interpolazione il \emph{piede} della caratteristica in arrivo
+sulla colonna precedente. Ogni lezione strutturale del
+Capitolo~\ref{ch:plug} e dell'Appendice~\ref{ch:appendix} è
+un'affermazione su queste tre figure.}
 \label{fig:mocprimer}
 \end{figure}
 
-\section{Sharp corners: the one thing a cell cannot do}
+\section{Spigoli vivi: l'unica cosa che una cella non sa fare}
 
-Where a wall turns a sharp corner, the flow expands through a
-\emph{centered expansion fan}: a continuous spread of
-characteristics all emanating from that single geometric point,
-each carrying a different state. At the corner itself the flow is
-therefore multivalued and the gradients are infinite.
+Dove una parete gira uno spigolo vivo, il flusso si espande
+attraverso un \emph{ventaglio di espansione centrato}: una
+distribuzione continua di caratteristiche tutte uscenti da quel
+singolo punto geometrico, ciascuna portatrice di uno stato diverso.
+Nello spigolo stesso il flusso è dunque a più valori e i gradienti
+sono infiniti.
 
-No ordinary cell can step across such a fan, for both of the
-reasons given above: a segment spanning the fan would average
-states that differ by the entire turn, and near the corner the
-characteristic crossing that fixes the new position degenerates
-because all the lines meet at one point. The cure is that a
-centered fan does not need to be marched --- it is
-\emph{self-similar}, so the state on each ray is known in closed
-form from the ray angle alone. The corner is therefore
-\emph{constructed} as data and ordinary cells resume between the
-rays, where the flow is smooth again. Chapter~\ref{ch:plug} shows
-what happens when this rule is violated, with the measured number.
+Nessuna cella ordinaria può scavalcare un tale ventaglio, per
+entrambe le ragioni dette sopra: un segmento che attraversasse il
+ventaglio medierebbe stati che differiscono per l'intera rotazione,
+e vicino allo spigolo l'incrocio di caratteristiche che fissa la
+nuova posizione degenera perché tutte le linee si incontrano in un
+punto solo. Il rimedio è che un ventaglio centrato non ha bisogno di
+essere marciato --- è \emph{autosimile}, quindi lo stato su ogni
+raggio è noto in forma chiusa a partire dal solo angolo del raggio.
+Lo spigolo viene perciò \emph{costruito} come dato e le celle
+ordinarie riprendono fra i raggi, dove il flusso è di nuovo
+regolare. Il Capitolo~\ref{ch:plug} mostra che cosa accade quando
+questa regola viene violata, con il numero misurato.
 
-\section{Real gas, and where the derivatives come from}
+\section{Gas reale, e da dove vengono le derivate}
 
-Two implementation choices are worth stating once here.
+Vale la pena enunciare qui, una volta per tutte, due scelte
+implementative.
 
-The gas is not assumed to be calorically perfect. Thermodynamic
-properties come from tabulated data, and the state is recovered
-from the speed through the energy and entropy relations. This
-matters in one non-obvious way that Chapter~\ref{ch:wallinput}
-documents: tabulated properties are interpolated piecewise, so the
-\emph{exact} derivative of the code carries a small ripple at the
-scale of the table cells --- a real property of the discrete
-objective, not a bug, but one that makes a naive derivative test
-ill-posed.
+Il gas non è assunto caloricamente perfetto. Le proprietà
+termodinamiche provengono da dati tabulati, e lo stato è recuperato
+dalla velocità attraverso le relazioni di energia ed entropia.
+Questo conta in un modo non ovvio che il
+Capitolo~\ref{ch:wallinput} documenta: le proprietà tabulate sono
+interpolate a tratti, quindi la derivata \emph{esatta} del codice
+porta una piccola increspatura alla scala delle celle della tabella
+--- una proprietà reale dell'obiettivo discreto, non un difetto, ma
+tale da rendere mal posto un ingenuo test sulle derivate.
 
-And the entire march --- every cell, every Newton iteration, every
-foot search --- is written so that it can be differentiated
-automatically. That is what turns a solver into the engine of an
-optimizer, and it is the subject of everything that follows.
+E l'intera marcia --- ogni cella, ogni iterazione di Newton, ogni
+ricerca del piede --- è scritta in modo da poter essere
+differenziata automaticamente. È questo che trasforma un solutore
+nel motore di un ottimizzatore, ed è il soggetto di tutto ciò che
+segue.

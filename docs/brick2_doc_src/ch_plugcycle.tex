@@ -1,241 +1,260 @@
-\chapter{The truncated plug under the cycle}
+\chapter{Il plug troncato sotto il ciclo}
 \label{ch:plugcycle}
 
-Chapter~\ref{ch:plug} can march one plug at one chamber condition.
-A rotating detonation engine never offers one condition: its
-detonation wave sweeps the annulus and a fixed cross-section sees
-the chamber pressure spike and blow down, over and over. This
-chapter cuts the spike short --- real plugs are always truncated,
-because the long thin tail weighs a great deal and produces almost
-no thrust --- and asks where to cut when the chamber pressure
-swings like that. The answer turns out not to be ``design for the
-average condition'', and the difference is measurable.
+Il Capitolo~\ref{ch:plug} sa marciare un plug a una condizione di
+camera. Un motore a detonazione rotante non offre mai una sola
+condizione: la sua onda di detonazione spazza l'anello e una sezione
+fissa vede la pressione di camera salire di colpo e svuotarsi,
+ancora e ancora. Questo capitolo taglia corta la spina --- i plug
+reali sono sempre troncati, perché la coda lunga e sottile pesa
+moltissimo e produce quasi nessuna spinta --- e si chiede dove
+tagliare quando la pressione di camera oscilla in quel modo. La
+risposta non risulta essere ``progettare per la condizione media'', e
+la differenza è misurabile.
 
-\section{The question}
+\section{La domanda}
 
-Two nozzle types behave in opposite ways over a cycle. The fixed
-bell \emph{averages}: its cycle optimum is the design for the
-single mean-pressure condition, which the engine certified in
-Chapter~\ref{ch:cycle}. The full plug instead \emph{maximizes}:
-every phase's optimum contains every longer plug, so the ideal plug
-is sized at the strongest phase. The \emph{truncated} plug is where
-both mechanisms fail at once --- ``the first genuinely averaged
-shape problem''~\cite{theory}. Can the engine measure all three
-claims: the ordering, its break, and the averaged optimality
-condition that replaces it?
+Due tipi di ugello si comportano in modo opposto su un ciclo. La
+campana fissa \emph{media}: il suo ottimo di ciclo è il progetto per
+la singola condizione di pressione media, che il motore ha
+certificato nel Capitolo~\ref{ch:cycle}. Il plug completo invece
+\emph{massimizza}: l'ottimo di ogni fase contiene ogni plug più
+lungo, quindi il plug ideale è dimensionato sulla fase più forte. Il
+plug \emph{troncato} è il punto in cui entrambi i meccanismi
+falliscono insieme --- ``il primo problema di forma genuinamente
+mediato''~\cite{theory}. Il motore sa misurare tutte e tre le
+affermazioni: l'ordinamento, la sua rottura e la condizione di
+ottimalità mediata che la sostituisce?
 
-\section{How it works, in full}
+\section{Come funziona, per esteso}
 
-\subsection{What the theory claims, and what it assumes}
+\subsection{Che cosa afferma la teoria, e che cosa assume}
 
-Two pieces of vocabulary first. A \emph{cycle phase}
-$\xi \in [0,1]$ labels where you are in the repeating chamber
-history --- $\xi$ near the wave passage is the high-pressure part,
-$\xi$ near the end of the blowdown is the low-pressure part
-(Chapter~\ref{ch:cycle}); the cycle mean $\mu$ is the time-like
-average over those phases. And a plug is \emph{truncated} at length
-$l$ when the spike is cut off there and closed with a flat base:
-the whole design question is what $l$ should be.
+Prima due termini. Una \emph{fase di ciclo} $\xi \in [0,1]$ indica
+dove ci si trova nella storia di camera che si ripete --- $\xi$
+vicino al passaggio dell'onda è la parte ad alta pressione, $\xi$
+vicino alla fine dello svuotamento è quella a bassa pressione
+(Capitolo~\ref{ch:cycle}); la media di ciclo $\mu$ è la media di
+tipo temporale su quelle fasi. E un plug è \emph{troncato} alla
+lunghezza $l$ quando la spina è tagliata lì e chiusa con una base
+piatta: l'intera questione di progetto è quale debba essere $l$.
 
-The corpus's plug result (its T-T4) is proved under an
-\emph{ideal-adaptation} closure --- an assumption made to keep the
-proof tractable: that downstream of each phase's full-expansion
-point the wall pressure clamps exactly to the ambient $p_a$, and
-upstream of it scales with the chamber pressure. Under that
-assumption the thrust of a given phase, $F(l;\xi)$, never decreases
-as the plug is extended and becomes exactly constant beyond a
-phase-dependent length $l(\xi)$, with $l(\xi)$ larger for stronger
-phases. Each phase's set of optimal lengths is then a half-line
-$[l(\xi), \infty)$, and these half-lines are \emph{nested}: the
-strongest phase's half-line sits inside all the others. Nesting is
-what makes the problem collapse --- one length is optimal for
-everybody at once, so the best average equals the average of the
-bests,
+Il risultato del corpus sui plug (la sua T-T4) è dimostrato sotto
+una chiusura di \emph{adattamento ideale} --- un'assunzione fatta per
+mantenere trattabile la dimostrazione: che a valle del punto di
+piena espansione di ciascuna fase la pressione di parete si agganci
+esattamente all'ambiente $p_a$, e a monte di esso scali con la
+pressione di camera. Sotto quell'assunzione la spinta di una data
+fase, $F(l;\xi)$, non decresce mai al prolungarsi del plug e diventa
+esattamente costante oltre una lunghezza dipendente dalla fase
+$l(\xi)$, con $l(\xi)$ maggiore per le fasi più forti. L'insieme
+delle lunghezze ottimali di ciascuna fase è allora una semiretta
+$[l(\xi), \infty)$, e queste semirette sono \emph{annidate}: quella
+della fase più forte sta dentro tutte le altre. È l'annidamento a
+far collassare il problema --- una sola lunghezza è ottimale per
+tutti insieme, quindi la migliore media eguaglia la media dei
+migliori,
 $\max_\Sigma \int F\,\mathrm{d}\mu = \int \max F\,\mathrm{d}\mu$,
-attained by the untruncated plug sized at the peak phase.
+raggiunta dal plug non troncato dimensionato sulla fase di picco.
 
-The sharpness caveat attached to that theorem says what destroys
-the nesting: a cap on length, a base-pressure model, or adaptation
-that is not ideal. Once nesting is gone the equality becomes a
-strict inequality, $\max\int < \int\max$, and the optimum instead
-satisfies an \emph{averaged corner condition} at the truncation
-plane --- the per-phase wall-pressure votes there must balance in
-the cycle mean. What the engine adds is precisely the quantity the
-closure assumes away: the real marched wall pressure does not
-clamp. Downstream of adaptation it undershoots and overshoots
-$p_a$, and the size of that departure \emph{is} the adaptation
-break, measurable phase by phase.
+L'avvertenza di finezza allegata a quel teorema dice che cosa
+distrugge l'annidamento: un limite sulla lunghezza, un modello di
+pressione di base o un adattamento non ideale. Perso l'annidamento,
+l'uguaglianza diventa una disuguaglianza stretta,
+$\max\int < \int\max$, e l'ottimo soddisfa invece una
+\emph{condizione di spigolo mediata} sul piano di troncamento --- i
+voti di pressione di parete per fase devono lì bilanciarsi nella
+media di ciclo. Ciò che il motore aggiunge è precisamente la
+quantità che la chiusura elimina per ipotesi: la pressione di parete
+realmente marciata non si aggancia. A valle dell'adattamento va
+sotto e sopra $p_a$, e l'ampiezza di quello scostamento \emph{è} la
+rottura dell'adattamento, misurabile fase per fase.
 
-\subsection{Averaging the problem is not averaging the condition}
+\subsection{Mediare il problema non è mediare la condizione}
 \label{sec:avgnotavg}
 
-The cycle mean $\mu$ is a time-like average over the phases, and it
-is tempting to conclude that the ``$\mu$-averaged corner
-condition'' is just the mean-pressure design in disguise. It is
-not, and the distinction is the whole content of the dichotomy.
-\emph{Mean-pressure design} means: build the single steady flow of
-the averaged \emph{state} --- the phase whose chamber pressure is
-$\bar P_0$ --- and optimize that one flow. For the fixed bell this
-is legitimate, because the bell's flow and thrust are \emph{linear}
-in the phase pressure: the scaling law (Lemma~A) says the whole
-field scales with $P_0$ on a fixed geometry, with the ambient
-entering only additively through the pressure gauge. For a linear
-problem the average of the solutions is the solution of the
-average --- average-then-solve equals solve-then-average. That is
-exactly why the bell collapses.
+La media di ciclo $\mu$ è una media di tipo temporale sulle fasi, ed
+è tentante concluderne che la ``condizione di spigolo mediata su
+$\mu$'' sia solo il progetto alla pressione media travestito. Non lo
+è, e la distinzione è l'intero contenuto della dicotomia. Il
+\emph{progetto alla pressione media} significa: costruire il singolo
+flusso stazionario dello \emph{stato} mediato --- la fase la cui
+pressione di camera è $\bar P_0$ --- e ottimizzare quell'unico
+flusso. Per la campana fissa questo è legittimo, perché il flusso e
+la spinta della campana sono \emph{lineari} nella pressione di fase:
+la legge di scala (Lemma~A) dice che l'intero campo scala con $P_0$
+su una geometria fissa, con l'ambiente che entra solo in modo
+additivo attraverso il gauge di pressione. Per un problema lineare la
+media delle soluzioni è la soluzione della media --- mediare-poi-
+risolvere equivale a risolvere-poi-mediare. È esattamente per questo
+che la campana collassa.
 
-\emph{The averaged corner condition} instead solves each phase as
-its \emph{own nonlinear flow}, lets each cast its own vote
-$p_w(l^{*};\xi) - p_a$ at the truncation plane --- positive means
-that phase is still pushing there and wants more plug, negative
-means it is being dragged and wants less --- and averages the
-\emph{optimality condition}:
-$\int (p_w(l^{*};\xi) - p_a)\,\mathrm{d}\mu = 0$. The two
-coincide only if the map from phase to vote is affine --- and the
-plug breaks that affinity through its free edge: the ambient is
-\emph{shared and fixed}, it does not scale with the phase, so each
-phase's wall pressure saturates toward the \emph{same} $p_a$ at its
-\emph{own} adaptation point. Mean-of-votes is not
-vote-at-the-mean. The suite below measures the difference
-directly: the mean-pressure design gives $l = 1.280$~m, the
-averaged condition puts the optimum at $l^{*} = 2.103$~m ---
-nowhere near. In one line: the bell result averages the
-\emph{problem}; the plug result averages the \emph{condition}, and
-averaging commutes with linear problems only.
+La \emph{condizione di spigolo mediata} invece risolve ogni fase come
+il \emph{proprio} flusso non lineare, lascia che ciascuna esprima il
+proprio voto $p_w(l^{*};\xi) - p_a$ sul piano di troncamento ---
+positivo significa che quella fase sta ancora spingendo lì e vuole
+più plug, negativo che viene trascinata e ne vuole meno --- e media
+la \emph{condizione di ottimalità}:
+$\int (p_w(l^{*};\xi) - p_a)\,\mathrm{d}\mu = 0$. Le due coincidono
+solo se l'applicazione da fase a voto è affine --- e il plug rompe
+quell'affinità attraverso il suo bordo libero: l'ambiente è
+\emph{condiviso e fisso}, non scala con la fase, quindi la pressione
+di parete di ogni fase satura verso lo \emph{stesso} $p_a$ nel
+\emph{proprio} punto di adattamento. La media dei voti non è il voto
+alla media. La suite qui sotto misura la differenza direttamente: il
+progetto alla pressione media dà $l = 1.280$~m, la condizione mediata
+colloca l'ottimo a $l^{*} = 2.103$~m --- tutt'altro luogo. In una
+riga: il risultato della campana media il \emph{problema}; quello del
+plug media la \emph{condizione}, e la media commuta solo con i
+problemi lineari.
 
-\subsection{One march per phase covers every truncation}
+\subsection{Una marcia per fase copre ogni troncamento}
 
-In supersonic flow, disturbances cannot travel upstream: what
-happens at a point is set entirely by a bounded region behind it,
-its \emph{domain of dependence}. On a \emph{fixed} spike,
-truncating at $l$ removes wall only downstream of $l$, so nothing
-at $x < l$ can feel the cut. One full-spike march per phase
-therefore yields the whole family of truncations in closed form,
+In flusso supersonico le perturbazioni non possono risalire la
+corrente: ciò che accade in un punto è fissato interamente da una
+regione limitata alle sue spalle, il suo \emph{dominio di
+dipendenza}. Su una spina \emph{fissa}, troncare a $l$ rimuove
+parete solo a valle di $l$, quindi nulla a $x < l$ può sentire il
+taglio. Una sola marcia a spina completa per fase produce dunque in
+forma chiusa l'intera famiglia dei troncamenti,
 \begin{equation}
 J(l;\xi) \;=\; F_{\rm in}(\xi)
 \;+\; \int_{x_0}^{l} \left(p_w(x;\xi) - p_a\right)
 \,2\pi y_w\,(-\mathrm{d}y_w),
 \label{eq:trunc}
 \end{equation}
-where every pressure is measured relative to ambient, so the free
-edge contributes zero (the pressure on it \emph{is} $p_a$) and a
-base plane at $p_b = p_a$ contributes zero as well. Differentiating
-in $l$ gives the marginal condition $\mathrm{d}J/\mathrm{d}l = 0$,
-i.e.\ $p_w(l) = p_a$ --- the plug corner condition at the
-truncation plane: extend the plug exactly as far as its wall is
-still pushing harder than the atmosphere. Its cycle average over
-phases is the averaged corner condition above. The five-phase
-truncation study therefore costs five marches, and every check
-below reads the cached wall-pressure curves.
+dove ogni pressione è misurata rispetto all'ambiente, così il bordo
+libero contribuisce zero (la pressione su di esso \emph{è} $p_a$) e
+anche un piano di base a $p_b = p_a$ contribuisce zero. Derivando in
+$l$ si ottiene la condizione marginale $\mathrm{d}J/\mathrm{d}l = 0$,
+cioè $p_w(l) = p_a$ --- la condizione di spigolo del plug sul piano
+di troncamento: estendere il plug esattamente fin dove la sua parete
+sta ancora spingendo più forte dell'atmosfera. La sua media di ciclo
+sulle fasi è la condizione di spigolo mediata di cui sopra. Lo studio
+dei troncamenti a cinque fasi costa perciò cinque marce, e ogni
+verifica qui sotto legge le curve di pressione di parete
+memorizzate.
 
-\subsection{The world}
+\subsection{Il mondo}
 
-Axisymmetric, real-gas NASA tables, one fixed piece of hardware
-marched by every phase. Cowl lip at $(0, 2)$; annular flow arrives
-at $M_i = 1.2$ aimed toward the axis ($\theta_i = -25^{\circ}$);
-the lip fan --- the corner expansion of Chapter~\ref{ch:plug},
-built per phase and consistent with the tables --- expands it down
-to the shared ambient. The ambient is posed so that the fan turn is
-about $|\theta_i|$, i.e.\ the flow leaves roughly axially
-($\theta_E \approx 0$): the classic plug design condition, which
-makes the spike --- one streamline of the mean phase's fan field
---- genuinely \emph{descending} toward the axis. The start line
-poses the same $(M,\theta)(y)$ profile for every phase with each
-phase's own thermodynamics: exact scaling-law data for the
-pressure-only cycle, and the natural ``same injector Mach profile''
-posing for the mock cycle. Each phase runs through the certified
-plug march of Chapter~\ref{ch:plug} (prescribed wall, multi-column
-foot search, row bookkeeping); the cycle itself is the certified
-construction of Chapter~\ref{ch:cycle} (five log-uniform phases,
-pressure ratio $PR = 10$, mock temperature ratio $TR = 1.306$).
+Assialsimmetrico, tabelle NASA di gas reale, un unico pezzo di
+hardware fisso marciato da tutte le fasi. Labbro del cowl in
+$(0, 2)$; il flusso anulare arriva a $M_i = 1.2$ diretto verso
+l'asse ($\theta_i = -25^{\circ}$); il ventaglio di labbro ---
+l'espansione di spigolo del Capitolo~\ref{ch:plug}, costruita per
+ogni fase e coerente con le tabelle --- lo espande fino all'ambiente
+condiviso. L'ambiente è posto in modo che la rotazione del ventaglio
+sia circa $|\theta_i|$, cioè che il flusso esca all'incirca in
+direzione assiale ($\theta_E \approx 0$): la classica condizione di
+progetto del plug, che rende la spina --- una linea di corrente del
+campo del ventaglio della fase media --- genuinamente
+\emph{discendente} verso l'asse. La linea iniziale pone lo stesso
+profilo $(M,\theta)(y)$ per ogni fase con la termodinamica propria
+di ciascuna fase: dati esatti da legge di scala per il ciclo a sola
+pressione, e la posizione naturale ``stesso profilo di Mach
+all'iniettore'' per il ciclo simulato. Ogni fase gira attraverso la
+marcia del plug certificata del Capitolo~\ref{ch:plug} (parete
+assegnata, ricerca multi-colonna del piede, contabilità delle
+righe); il ciclo stesso è la costruzione certificata del
+Capitolo~\ref{ch:cycle} (cinque fasi log-uniformi, rapporto di
+pressione $PR = 10$, rapporto di temperatura simulato
+$TR = 1.306$).
 
-\section{What was built}
+\section{Che cosa è stato costruito}
 
-\carrier{validation/a1\_plug\_cycle.py}: the world builder
-(per-phase tables-consistent fan, mean-field spike streamline), the
-per-phase march kits with disk cache, the closed-form truncation
-family~\eqref{eq:trunc}, and two stages --- \code{t3} (pressure-only
-cycle: the wall-level scaling law and the truncation-level
-anti-collapse) and \code{mock} ($P$ and $T$ profiles: the ordering
-of the per-phase optima, the measured adaptation break, the
-averaged corner votes, the strict $\int\max > \max\int$ gap, the
-peak-design penalty) --- plus a corrupted-ambient rejector.
+\carrier{validation/a1\_plug\_cycle.py}: il costruttore del mondo
+(ventaglio per fase coerente con le tabelle, linea di corrente della
+spina sul campo medio), i kit di marcia per fase con cache su disco,
+la famiglia di troncamenti in forma chiusa~\eqref{eq:trunc} e due
+stadi --- \code{t3} (ciclo a sola pressione: la legge di scala a
+livello di parete e l'anti-collasso a livello di troncamento) e
+\code{mock} (profili di $P$ e $T$: l'ordinamento degli ottimi per
+fase, la rottura misurata dell'adattamento, i voti di spigolo
+mediati, il divario stretto $\int\max > \max\int$, la penalità del
+progetto di picco) --- più un rigettatore ad ambiente corrotto.
 
-\section{Results of record}
+\section{Risultati di riferimento}
 
-\textbf{Pressure-only cycle (the plug anti-collapse): 5/5 PASS.}
-All phase marches Newton-certified. The wall-level scaling law
-appears live exactly where it must and only there: on the part of
-the wall still shielded from the ambient --- upstream of the first
-edge-arrival, $x < 0.81$, found by tracing the edge's $C^{-}$ back
-to the wall --- the scaled wall pressures $p_w/P_0$ collapse to one
-curve to $4.7\times10^{-15}$, machine zero. Beyond that station the
-collapse breaks, and that break \emph{is} the adaptation mechanism,
-cleanly localized. The truncations then measure the dichotomy: the
-cycle-optimal $l^{*} = 2.103$ sits far \emph{above} the
-mean-pressure design ($l = 1.280$) and just below the peak design
-($l = 2.336$) --- the plug does \emph{not} average, it shifts
-toward the peak, held short of it only by the real adaptation
-break. The per-phase optima
-$l(\xi) = 2.336, 2.061, 1.125, 1.047, 1.006$ increase with the
-phase pressure: the nesting \emph{order} of the plug theorem,
-live.
+\textbf{Ciclo a sola pressione (l'anti-collasso del plug): 5/5
+PASS.} Tutte le marce di fase certificate da Newton. La legge di
+scala a livello di parete compare dal vivo esattamente dove deve e
+soltanto lì: sulla parte di parete ancora schermata dall'ambiente ---
+a monte del primo arrivo del bordo, $x < 0.81$, trovato tracciando
+all'indietro la $C^{-}$ del bordo fino alla parete --- le pressioni
+di parete scalate $p_w/P_0$ collassano su un'unica curva a meno di
+$4.7\times10^{-15}$, lo zero di macchina. Oltre quella stazione il
+collasso si rompe, e quella rottura \emph{è} il meccanismo di
+adattamento, nettamente localizzato. I troncamenti misurano poi la
+dicotomia: la lunghezza ottimale di ciclo $l^{*} = 2.103$ sta molto
+\emph{sopra} il progetto alla pressione media ($l = 1.280$) e appena
+sotto il progetto di picco ($l = 2.336$) --- il plug \emph{non}
+media, si sposta verso il picco, trattenuto al di qua di esso solo
+dalla reale rottura dell'adattamento. Gli ottimi per fase
+$l(\xi) = 2.336, 2.061, 1.125, 1.047, 1.006$ crescono con la
+pressione di fase: l'\emph{ordine} di annidamento del teorema del
+plug, dal vivo.
 
-\textbf{Mock RDE ($P$ and $T$ profiles), the genuine average: 9/9
-PASS.} The same ordering appears again ($l(\xi) = 2.336 \ldots
-1.012$). The non-ideal adaptation is \emph{measured}: each interior
-phase loses thrust past its own $l(\xi)$ (relative losses
-$1.6\times10^{-4}$ to $2.0\times10^{-3}$) --- the ideal clamp does
-not hold in the real flow, and that loss is exactly the quantity
-that breaks the ideal nesting. Consequently the strict inequality
-of the sharpness caveat is resolved:
-$\int\max - \max\int = 1.07\times10^{4}$ N ($2.3\times10^{-4}$ of
-$J$), beyond its derived band; the penalty for designing at the
-peak is $2.2\times10^{-4}$ of $J$, also resolved. At the blind
-cycle optimum the averaged corner condition holds: the vote mean is
-$+1.8\times10^{4}$ Pa against a balance band of $3.1\times10^{5}$,
-while individual votes reach $\pm1.4\times10^{6}$ --- and the
-optimum is a strict interior compromise (the per-phase optima
-spread over 1.32 in $l$; no extreme phase owns $l^{*}$). A
-corrupted ambient moves the vote mean $2.3\times$ outside the band
---- rejected. The road here --- two posing lessons and two checks
-the theory itself rejected --- is Appendix~\ref{app:plugcycleposing}.
+\textbf{RDE simulato (profili di $P$ e $T$), la media genuina: 9/9
+PASS.} Lo stesso ordinamento ricompare
+($l(\xi) = 2.336 \ldots 1.012$). L'adattamento non ideale è
+\emph{misurato}: ogni fase interna perde spinta oltre il proprio
+$l(\xi)$ (perdite relative da $1.6\times10^{-4}$ a
+$2.0\times10^{-3}$) --- l'aggancio ideale non vale nel flusso reale,
+e quella perdita è esattamente la quantità che rompe l'annidamento
+ideale. Di conseguenza la disuguaglianza stretta dell'avvertenza di
+finezza è risolta:
+$\int\max - \max\int = 1.07\times10^{4}$ N ($2.3\times10^{-4}$ di
+$J$), oltre la sua banda derivata; la penalità per progettare al
+picco è $2.2\times10^{-4}$ di $J$, anch'essa risolta. All'ottimo di
+ciclo trovato alla cieca la condizione di spigolo mediata vale: la
+media dei voti è $+1.8\times10^{4}$ Pa contro una banda di
+equilibrio di $3.1\times10^{5}$, mentre i singoli voti raggiungono
+$\pm1.4\times10^{6}$ --- e l'ottimo è un compromesso strettamente
+interno (gli ottimi per fase si distribuiscono su 1.32 in $l$;
+nessuna fase estrema possiede $l^{*}$). Un ambiente corrotto sposta
+la media dei voti $2.3\times$ fuori dalla banda --- rigettato. La
+strada per arrivarci --- due lezioni di posizione del problema e due
+verifiche che la teoria stessa ha rigettato --- è
+l'Appendice~\ref{app:plugcycleposing}.
 
-\textbf{A measured lesson that is new physics, not a bug.} The
-bell's pointwise vote structure --- monotone in phase, exactly one
-sign change (Chapter~\ref{ch:cycle}) --- does \emph{not} carry over
-to the plug. Downstream of adaptation the wall pressure
-\emph{oscillates} around $p_a$, because the lip fan reflects off
-the free edge and comes back down onto the wall. Pointwise votes
-therefore sample an oscillation, and the wave-passage phase can
-vote negative at a length below its own optimum. Only the averaged
-balance and the compromise structure survive --- which is exactly,
-and only, what the sharpness caveat claims.
+\textbf{Una lezione misurata che è fisica nuova, non un difetto.} La
+struttura puntuale dei voti della campana --- monotona in fase, con
+esattamente un cambio di segno (Capitolo~\ref{ch:cycle}) --- \emph{non}
+si trasferisce al plug. A valle dell'adattamento la pressione di
+parete \emph{oscilla} attorno a $p_a$, perché il ventaglio di labbro
+si riflette sul bordo libero e ricade sulla parete. I voti puntuali
+campionano dunque un'oscillazione, e la fase di passaggio dell'onda
+può votare negativo a una lunghezza inferiore al proprio ottimo.
+Sopravvivono solo il bilancio mediato e la struttura di compromesso
+--- che è esattamente, e soltanto, ciò che l'avvertenza di finezza
+afferma.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_plug_cycle.pdf}
-\caption{The truncated plug under the cycle, measured. (a)~Wall
-pressure along the fixed spike for each phase: $x$ [m] against
-$p_w$ [bar], with the shared ambient $p_a$ drawn as a horizontal
-line. Look downstream of the shielded region: the curves do not
-clamp to $p_a$, they \emph{oscillate} about it --- the lip fan
-reflecting off the free edge back onto the wall. That oscillation
-is the real, non-ideal adaptation the theory's closure assumes
-away. (b)~The truncation families of Equation~\eqref{eq:trunc}:
-truncation length $l$ [m] against each curve's thrust deviation
-from its own maximum, $J(l;\xi) - \max_l J(l;\xi)$, in kN, so zero
-means ``at this phase's own optimum''. The per-phase maxima
-($\nabla$) spread from $l = 1.01$ to $2.34$~m in order of phase
-pressure, and each curve \emph{falls} past its own maximum --- the
-measured break of the ideal nesting, which would have kept them
-flat. The cycle mean $J_{\rm cycle}(l)$ (black) peaks at a
-compromise $l^{*}$ that no single phase owns. (c)~The votes at that
-optimum: cycle phase $\xi$ [--] against $p_w(l^{*};\xi) - p_a$
-[bar]. They are scrambled in sign order by the adaptation
-oscillation --- the bell's monotone vote structure does not
-transfer --- yet their cycle mean (dashed) balances at zero inside
-the derived band. That is the whole claim: not that any phase is
-satisfied, but that their average is.}
+\caption{Il plug troncato sotto il ciclo, misurato. (a)~Pressione di
+parete lungo la spina fissa per ciascuna fase: $x$ [m] contro $p_w$
+[bar], con l'ambiente condiviso $p_a$ disegnato come linea
+orizzontale. Si guardi a valle della regione schermata: le curve non
+si agganciano a $p_a$, vi \emph{oscillano} attorno --- il ventaglio
+di labbro che si riflette sul bordo libero e torna sulla parete.
+Quell'oscillazione è l'adattamento reale, non ideale, che la chiusura
+della teoria elimina per ipotesi. (b)~Le famiglie di troncamento
+dell'Equazione~\eqref{eq:trunc}: lunghezza di troncamento $l$ [m]
+contro la deviazione di spinta di ciascuna curva dal proprio massimo,
+$J(l;\xi) - \max_l J(l;\xi)$, in kN, così che zero significhi
+``all'ottimo proprio di questa fase''. I massimi per fase ($\nabla$)
+si distribuiscono da $l = 1.01$ a $2.34$~m nell'ordine della
+pressione di fase, e ogni curva \emph{cala} oltre il proprio massimo
+--- la rottura misurata dell'annidamento ideale, che le avrebbe
+tenute piatte. La media di ciclo $J_{\rm cycle}(l)$ (nero) ha il
+picco a un compromesso $l^{*}$ che nessuna singola fase possiede.
+(c)~I voti a quell'ottimo: fase di ciclo $\xi$ [--] contro
+$p_w(l^{*};\xi) - p_a$ [bar]. Sono scompaginati nell'ordine dei segni
+dall'oscillazione di adattamento --- la struttura monotona dei voti
+della campana non si trasferisce --- eppure la loro media di ciclo
+(tratteggiata) si bilancia a zero dentro la banda derivata. È tutta
+qui l'affermazione: non che qualche fase sia soddisfatta, ma che lo
+sia la loro media.}
 \label{fig:plugcycle}
 \end{figure}

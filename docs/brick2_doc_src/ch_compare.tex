@@ -1,272 +1,296 @@
-\chapter{Comparing configurations, and the inlet angle}
+\chapter{Confronto fra configurazioni, e l'angolo di ingresso}
 \label{ch:compare}
 
-Everything up to here certified one machine at a time. This chapter
-asks the question a designer actually asks --- bell or plug, how long,
-how much swirl, at what inlet angle --- and finds that the hard part
-is not computing the answers but making them \emph{comparable}. It
-also records the longest wrong turn in this program: four sessions
-spent chasing a defect that lived in a measuring instrument rather
-than in the flow.
+Tutto fin qui ha certificato una macchina alla volta. Questo capitolo
+pone la domanda che un progettista si fa davvero --- campana o plug,
+quanto lungo, quanto swirl, a quale angolo di ingresso --- e scopre
+che la parte difficile non è calcolare le risposte ma renderle
+\emph{confrontabili}. Registra anche la più lunga svolta sbagliata di
+questo programma: quattro sessioni spese a inseguire un difetto che
+viveva in uno strumento di misura anziché nel flusso.
 
-\section{The question, and why it is mostly a bookkeeping question}
+\section{La domanda, e perché è soprattutto una questione di
+contabilità}
 
-Thrust scales with mass flow. A bell computed in one posed world set
-against a plug computed in another compares the \emph{worlds}, not
-the nozzle types. So before any comparison is meaningful a common
-basis has to be fixed and enforced:
+La spinta scala con la portata. Una campana calcolata in un mondo
+posto in un certo modo, messa contro un plug calcolato in un altro,
+confronta i \emph{mondi}, non i tipi di ugello. Perciò, prima che
+qualunque confronto abbia senso, va fissata e imposta una base
+comune:
 
 \begin{itemize}[itemsep=1pt]
-\item the same gas, the same chamber state $(P_0, T_0)$, the same
-  ambient $p_a$;
-\item the same \textbf{mass flow} --- which carries a bonus, because
-  for a choked throat $\dot m = p_c A_t/c^{*}$, so equal mass flow at
-  equal chamber state means equal \emph{throat area}, and therefore
-  the thrust coefficient $C_F = F/(p_c A_t)$ and the specific impulse
-  are directly comparable numbers with the size of the machine
-  divided out;
-\item the same \textbf{envelope}: every configuration is allowed the
-  same maximum radius. A plug given unlimited radius wins trivially
-  on expansion alone.
+\item lo stesso gas, lo stesso stato di camera $(P_0, T_0)$, lo
+  stesso ambiente $p_a$;
+\item la stessa \textbf{portata} --- che porta un bonus, perché per
+  una gola bloccata $\dot m = p_c A_t/c^{*}$, quindi portata uguale a
+  stato di camera uguale significa \emph{area di gola} uguale, e
+  perciò il coefficiente di spinta $C_F = F/(p_c A_t)$ e l'impulso
+  specifico sono numeri direttamente confrontabili con la dimensione
+  della macchina divisa via;
+\item lo stesso \textbf{ingombro}: a ogni configurazione è concesso
+  lo stesso raggio massimo. Un plug cui si conceda raggio illimitato
+  vince banalmente sulla sola espansione.
 \end{itemize}
 
-Each configuration is then optimized over its \emph{own} design
-variable: the bell over its area ratio, the plugs over where the
-spike is cut.
+Ogni configurazione è poi ottimizzata rispetto alla \emph{propria}
+variabile di progetto: la campana rispetto al rapporto di espansione,
+i plug rispetto al punto in cui la spina viene tagliata.
 
-One subtlety makes the two sides the same physical quantity. For a
-rocket fed from a closed chamber the axial thrust equals the
-ambient-gauge momentum flux through \emph{any} surface that spans the
-whole exhaust and encloses the hardware. For the bell that surface is
-the exit plane. For the plug the same theorem applies at the march
-start line: the flux there already contains the thrust of everything
-upstream, because the free jet boundary between the lip and that cut
-contributes exactly zero in the gauge ($p = p_a$ on it). So
+Una sottigliezza rende i due lati la stessa grandezza fisica. Per un
+razzo alimentato da una camera chiusa la spinta assiale eguaglia il
+flusso di quantità di moto in gauge ambiente attraverso \emph{una
+qualunque} superficie che copra l'intero scarico e racchiuda
+l'hardware. Per la campana quella superficie è il piano di uscita.
+Per il plug lo stesso teorema si applica alla linea iniziale della
+marcia: il flusso lì contiene già la spinta di tutto ciò che sta a
+monte, perché la frontiera di getto libero fra il labbro e quel
+taglio contribuisce esattamente zero nel gauge ($p = p_a$ su di
+essa). Quindi
 $F_{\rm plug}(l) = F_{\rm in}(x_0) + \int_{x_0}^{l}(p_w - p_a)\,
-2\pi y\,(-\mathrm{d}y)$ is the total thrust from the chamber through
-the truncation --- the same object as the bell's.
+2\pi y\,(-\mathrm{d}y)$ è la spinta totale dalla camera fino al
+troncamento --- lo stesso oggetto di quella della campana.
 
-\section{Results of record}
+\section{Risultati di riferimento}
 
 \begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrrrr}
 \toprule
-configuration & $F$ [MN] & $C_F$ [--] & $I_{sp}$ [s] & $L$ [m] \\
+configurazione & $F$ [MN] & $C_F$ [--] & $I_{sp}$ [s] & $L$ [m] \\
 \midrule
-bell, at its area-ratio optimum & 116.474 & 1.4654 & 279.62 & 7.34 \\
-plug, full spike                & 116.148 & 1.4613 & 278.84 & 6.00 \\
-plug, truncated                 & 116.148 & 1.4613 & 278.84 & 3.69 \\
-plug, truncated $+$ swirl       & 111.839 & 1.4071 & 268.49 & 2.56 \\
+campana, al suo ottimo di rapporto & 116.474 & 1.4654 & 279.62 & 7.34 \\
+plug, spina completa               & 116.148 & 1.4613 & 278.84 & 6.00 \\
+plug, troncato                     & 116.148 & 1.4613 & 278.84 & 3.69 \\
+plug, troncato $+$ swirl           & 111.839 & 1.4071 & 268.49 & 2.56 \\
 \bottomrule
 \end{tabular}
-\caption{Four configurations at one operating point on the common
-basis of Section~1: same gas, chamber, ambient, mass flow (hence
-throat area) and envelope radius. Thrust in meganewtons, thrust
-coefficient and specific impulse dimensionless and in seconds, length
-in metres.}
+\caption{Quattro configurazioni a un punto di funzionamento sulla
+base comune della Sezione~1: stesso gas, camera, ambiente, portata
+(e quindi area di gola) e raggio di ingombro. Spinta in meganewton,
+coefficiente di spinta e impulso specifico adimensionale e in
+secondi, lunghezza in metri.}
 \label{tab:configcompare}
 \end{table}
 
-\textbf{The bell wins by $0.282\%$, and that is resolved.} The
-derived band on the thrust comes from refining the march itself:
-$J = 1.161610, 1.161481, 1.161454 \times 10^{8}$~N at three
-resolutions, successive differences $1.287\times10^{4}$ then
-$2.737\times10^{3}$ --- a ratio of $4.70$, confirming second order ---
-giving a Richardson band of $1.09\times10^{4}$~N, or $0.0094\%$. The
-bell--plug gap of $3.28\times10^{5}$~N is $30\times$ that band.
+\textbf{La campana vince dello $0.282\%$, e il risultato è
+risolto.} La banda derivata sulla spinta viene dal raffinamento della
+marcia stessa: $J = 1.161610, 1.161481, 1.161454 \times 10^{8}$~N a
+tre risoluzioni, differenze successive $1.287\times10^{4}$ e poi
+$2.737\times10^{3}$ --- un rapporto di $4.70$, che conferma il
+secondo ordine --- da cui una banda di Richardson di
+$1.09\times10^{4}$~N, ovvero lo $0.0094\%$. Il divario
+campana--plug di $3.28\times10^{5}$~N vale $30\times$ quella banda.
 
-\textbf{The plug matches the bell in half the length}, 3.69~m against
-7.34~m, which is the aerospike result stated the way the
-thermodynamics permits it to be stated (Section~\ref{sec:ceiling}).
+\textbf{Il plug eguaglia la campana in metà lunghezza}, 3.69~m contro
+7.34~m, che è il risultato dell'aerospike enunciato nel modo in cui
+la termodinamica permette di enunciarlo
+(Sezione~\ref{sec:ceiling}).
 
-\textbf{Swirl costs $4.0\%$}, an order of magnitude more than any
-geometric difference in the table --- but the swirled spike runs down
-to $38\times$ below ambient, a regime where a real flow would
-separate and this inviscid march cannot follow it. That number is
-indicative, and labelled so.
+\textbf{Lo swirl costa il $4.0\%$}, un ordine di grandezza più di
+qualunque differenza geometrica della tabella --- ma la spina con
+swirl scende fino a $38\times$ sotto l'ambiente, un regime in cui un
+flusso reale separerebbe e questa marcia non viscosa non può
+seguirlo. Quel numero è indicativo, ed è etichettato come tale.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_config_compare.pdf}
-\caption{The configurations compared. (a)~The hardware to one scale,
-axial position and radius in metres: the bell wall at its own
-optimum, the mass-matched plug spike, its truncation, and the spike
-re-sized for swirl. (b)~Wall pressure in bar against the ambient
-line: above it the wall makes thrust, in the shaded region below it
-the wall pulls backward --- and the swirled spike goes far into that
-region. (c)~Thrust in meganewtons against nozzle length: the plug
-curve rises and saturates, reaching the bell's thrust (blue) at about
-half its length. The shaded band is the \emph{derived} Richardson
-band on the thrust, $\pm0.009\%$; the bell--plug gap is $30\times$
-it.}
+\caption{Le configurazioni a confronto. (a)~L'hardware in un'unica
+scala, posizione assiale e raggio in metri: la parete della campana
+al proprio ottimo, la spina del plug adattata in massa, il suo
+troncamento e la spina ridimensionata per lo swirl. (b)~Pressione di
+parete in bar contro la linea dell'ambiente: sopra di essa la parete
+fa spinta, nella regione ombreggiata sotto la parete tira
+all'indietro --- e la spina con swirl entra molto dentro quella
+regione. (c)~Spinta in meganewton contro lunghezza dell'ugello: la
+curva del plug sale e satura, raggiungendo la spinta della campana
+(blu) a circa metà della sua lunghezza. La banda ombreggiata è la
+banda di Richardson \emph{derivata} sulla spinta, $\pm0.009\%$; il
+divario campana--plug vale $30\times$ essa.}
 \label{fig:configcompare}
 \end{figure}
 
-\section{Why they are so close: the thermodynamic ceiling}
+\section{Perché sono così vicine: il tetto termodinamico}
 \label{sec:ceiling}
 
-The near-equality of the coefficients is not a coincidence and not a
-disappointment. Both nozzles expand the same gas from the same
-chamber to the same exit pressure, and energy conservation alone then
-fixes the exit speed: $\tfrac12 q_e^2 = h_0 - h(p_a)$ gives
-$q_e = 2742.136$~m/s with no geometry in the statement. Since the
-basis forces the same mass flow, the ideal momentum thrust
-$\dot m\,q_e = 1.16474\times10^{8}$~N is exactly the bell's measured
-thrust --- an identity, because at its optimum the bell is perfectly
-expanded (the pressure term vanishes) and its exit is exactly axial
-(measured at $\theta_e = -10^{-16}$ in Chapter~\ref{ch:score}).
+La quasi uguaglianza dei coefficienti non è una coincidenza né una
+delusione. Entrambi gli ugelli espandono lo stesso gas dalla stessa
+camera alla stessa pressione di uscita, e la sola conservazione
+dell'energia fissa allora la velocità di uscita:
+$\tfrac12 q_e^2 = h_0 - h(p_a)$ dà $q_e = 2742.136$~m/s senza alcuna
+geometria nell'enunciato. Poiché la base impone la stessa portata, la
+spinta ideale di quantità di moto
+$\dot m\,q_e = 1.16474\times10^{8}$~N è esattamente la spinta
+misurata della campana --- un'identità, perché al proprio ottimo la
+campana è perfettamente espansa (il termine di pressione si annulla)
+e la sua uscita è esattamente assiale (misurata a
+$\theta_e = -10^{-16}$ nel Capitolo~\ref{ch:score}).
 
-The bell sits \emph{on} the ceiling. Geometry can therefore only lose
-against it, through divergence, non-uniformity and incomplete
-expansion --- all effects of order one percent. That is the entire
-playing field of contour optimization, and it is why this program
-derives every tolerance instead of choosing one.
+La campana sta \emph{sul} tetto. La geometria può quindi soltanto
+perdere rispetto a essa, per divergenza, non uniformità ed espansione
+incompleta --- tutti effetti dell'ordine dell'uno percento. È tutto
+qui il campo da gioco dell'ottimizzazione di contorno, ed è il motivo
+per cui questo programma deriva ogni tolleranza invece di
+sceglierne una.
 
-\section{A certification gap the comparison exposed}
+\section{Un vuoto di certificazione che il confronto ha esposto}
 
-Setting up the plug side required posing the flow the way a real
-aerospike does it: arriving at the lip aimed \emph{inward} so the fan
-turns it back toward axial, with the spike descending toward the
-axis. Every certified axisymmetric plug world in this document poses
-the opposite --- inflow axial, the fan turning it \emph{outward},
-the ``spike'' rising away from the axis (Figure~\ref{fig:turndir}a).
+Predisporre il lato plug ha richiesto di porre il flusso come fa un
+vero aerospike: arrivando al labbro puntato \emph{verso l'interno}
+così che il ventaglio lo riporti verso l'assiale, con la spina
+discendente verso l'asse. Ogni mondo di plug assialsimmetrico
+certificato in questo documento pone l'opposto --- ingresso assiale,
+il ventaglio che lo ruota \emph{verso l'esterno}, la ``spina'' che si
+alza allontanandosi dall'asse (Figura~\ref{fig:turndir}a).
 
-These are not mirror images. The axisymmetric source term is
-$\delta\,c^2 v/y$ and $y$ is always positive, so $\theta \to -\theta$
-is not a symmetry: the outward case runs with $v > 0$ and $y$ growing,
-so the source weakens along the march, while the inward case runs with
-$v < 0$ and $y$ shrinking, so it strengthens. The planar oracle is
-immune (no source, genuine mirror symmetry), so it is specifically
-the \emph{axisymmetric} certification that only ever exercised one
-side.
+Non sono immagini speculari. Il termine sorgente assialsimmetrico è
+$\delta\,c^2 v/y$ e $y$ è sempre positivo, quindi
+$\theta \to -\theta$ non è una simmetria: il caso verso l'esterno
+corre con $v > 0$ e $y$ crescente, quindi la sorgente si indebolisce
+lungo la marcia, mentre il caso verso l'interno corre con $v < 0$ e
+$y$ decrescente, quindi si rafforza. L'oracolo piano è immune
+(nessuna sorgente, simmetria speculare genuina), quindi è
+specificamente la certificazione \emph{assialsimmetrica} ad aver
+esercitato sempre e solo un lato.
 
-Outward turning was never a candidate design --- it was a test
-fixture. An outward-turning plug leaves its whole exhaust at
-$\theta_E > 0$ and collects only $\cos\theta_E$ of the momentum:
-$10.6\%$ lost at the design turn of $26.7^{\circ}$, against nothing
-for an inward design. It is the natural way to write a closed-form
-corner-jet test field, and that is how it came to be the only case
-tested.
+La rotazione verso l'esterno non è mai stata un progetto candidato
+--- era un banco di prova. Un plug che ruota verso l'esterno lascia
+l'intero scarico a $\theta_E > 0$ e raccoglie solo $\cos\theta_E$
+della quantità di moto: $10.6\%$ perso alla rotazione di progetto di
+$26.7^{\circ}$, contro nulla per un progetto verso l'interno. È il
+modo naturale di scrivere un campo di prova a getto di spigolo in
+forma chiusa, ed è così che è diventato l'unico caso testato.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_turn_direction.pdf}
-\caption{Outward versus inward turning, axial position and radius in
-metres. (a)~What every certified axisymmetric suite posed: the flow
-arrives axial, the fan turns it outward, and the ``spike'' rises away
-from the axis; $v>0$, $y$ grows, the source weakens. (b)~What a real
-aerospike is, and what this chapter poses: the flow arrives aimed at
-the axis, the fan turns it back, the spike descends; $v<0$, $y$
-shrinks, the source strengthens. (c)~The measured consequence, in
-mass non-closure of the march against fan turn angle: outward turning
-sits at the no-source floor (dotted) and stays flat, inward turning
-climbs to $2\times10^{-2}$.}
+\caption{Rotazione verso l'esterno contro rotazione verso l'interno,
+posizione assiale e raggio in metri. (a)~Ciò che ogni suite
+assialsimmetrica certificata poneva: il flusso arriva assiale, il
+ventaglio lo ruota verso l'esterno e la ``spina'' si alza
+allontanandosi dall'asse; $v>0$, $y$ cresce, la sorgente si
+indebolisce. (b)~Ciò che un vero aerospike è, e ciò che questo
+capitolo pone: il flusso arriva puntato verso l'asse, il ventaglio lo
+riporta indietro, la spina scende; $v<0$, $y$ decresce, la sorgente
+si rafforza. (c)~La conseguenza misurata, in termini di non chiusura
+di massa della marcia contro l'angolo di rotazione del ventaglio: la
+rotazione verso l'esterno resta al pavimento senza sorgente
+(punteggiato) e rimane piatta, quella verso l'interno sale a
+$2\times10^{-2}$.}
 \label{fig:turndir}
 \end{figure}
 
-\section{The radial-flow oracle}
+\section{L'oracolo del flusso radiale}
 \label{sec:radialoracle}
 
-To find out whether that difference was a defect, the program needed
-an exact axisymmetric solution with the flow running \emph{toward}
-the axis. Spherical radial flow supplies one: every streamline is a
-ray through a point on the axis, the speed depends only on the
-distance from it, and continuity with the isentrope closes it as
-$\rho(q)\,q\,r^2 = \mathrm{const}$. Putting the singular point
-upstream gives a diverging flow ($v>0$); putting it downstream gives
-a converging one ($v<0$). One formula, so the two cases differ in
-nothing but the sign the equations see. And since the streamlines are
-rays, a cone is an \emph{exact} wall.
+Per scoprire se quella differenza fosse un difetto, il programma
+aveva bisogno di una soluzione assialsimmetrica esatta con il flusso
+diretto \emph{verso} l'asse. Il flusso radiale sferico ne fornisce
+una: ogni linea di corrente è un raggio uscente da un punto
+sull'asse, la velocità dipende solo dalla distanza da esso, e la
+continuità con l'isentropica la chiude come
+$\rho(q)\,q\,r^2 = \mathrm{cost}$. Mettendo il punto singolare a
+monte si ottiene un flusso divergente ($v>0$); mettendolo a valle uno
+convergente ($v<0$). Un'unica formula, quindi i due casi non
+differiscono in nulla se non nel segno che le equazioni vedono. E
+poiché le linee di corrente sono raggi, un cono è una parete
+\emph{esatta}.
 
 \carrier{validation/a1\_source\_flow\_oracle.py}, \textbf{6/6 PASS.}
-The free edge is excluded by construction: only points below a
-rigorous dependence bound --- a straight line from the start line's
-top at the steepest characteristic slope present in the field, which
-nothing from above can outrun --- enter the comparison. Against the
-closed form, the median errors are
+Il bordo libero è escluso per costruzione: entrano nel confronto solo
+i punti sotto un limite rigoroso di dipendenza --- una retta dalla
+sommità della linea iniziale con la pendenza caratteristica più
+ripida presente nel campo, che nulla proveniente dall'alto può
+superare. Rispetto alla forma chiusa, gli errori mediani sono
 
 \begin{center}
 \small
 \begin{tabular}{lrr}
 \toprule
- & converging ($v<0$) & diverging ($v>0$) \\
+ & convergente ($v<0$) & divergente ($v>0$) \\
 \midrule
-wall pressure & $7.9\times10^{-4}$ & $5.2\times10^{-4}$ \\
-interior $|\Delta q|/q$ & $3.4\times10^{-4}$ & $1.8\times10^{-4}$ \\
+pressione di parete & $7.9\times10^{-4}$ & $5.2\times10^{-4}$ \\
+interno $|\Delta q|/q$ & $3.4\times10^{-4}$ & $1.8\times10^{-4}$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\noindent The interior and prescribed-wall cells are clean for
-inward-turning flow. A useful trap surfaced in building the negative
-control: in radial flow \emph{every} cone is an exact streamline, so
-perturbing the cone angle merely produces a different exact solution
-and can never reject. The valid rejector curves the wall off the ray,
-breaking the ray property, and separates by $29\times$. Even
-rejectors must be chosen by physics --- the same lesson as
-Appendix~\ref{app:f2rejector}, met again.
+\noindent Le celle interne e quelle a parete assegnata sono pulite
+per flusso che ruota verso l'interno. Una trappola utile è emersa
+costruendo il controllo negativo: nel flusso radiale \emph{ogni} cono
+è una linea di corrente esatta, quindi perturbare l'angolo del cono
+produce semplicemente un'altra soluzione esatta e non può mai
+rigettare. Il rigettatore valido incurva la parete allontanandola dal
+raggio, rompendo la proprietà di raggio, e separa di $29\times$.
+Anche i rigettatori vanno scelti in base alla fisica --- la stessa
+lezione dell'Appendice~\ref{app:f2rejector}, incontrata di nuovo.
 
-\section{The instrument, not the flow}
+\section{Lo strumento, non il flusso}
 
-The mass non-closure that started this investigation is largely a
-property of the meter. The conservation check integrated over the
-march's \emph{last column}, which is a characteristic, not a plane,
-and whose segment lengths are wildly uneven: on a descending spike
-the longest is $0.84$~m against a mean of $0.064$~m. Trapezoidal
-error scales as the square of the segment, so that one segment
-dominated. Three measurements settle it: the free edge's own
-streamline flux is $4\times10^{-11}$ --- machine zero, so it leaks
-nothing; the wall leaks $0.016\%$; and the cells reproduce the exact
-solution above. Per-column inspection finds the cause: only the
-\emph{first} marched column has a coverage hole, $26\times$ the mean
-row spacing when the wall rises and $39\times$ when it descends,
-against $0.5$--$1.0\times$ for every other column --- because a
-column is a characteristic while a vertical start line is not, so the
-first column alone must bridge the two geometries.
+La non chiusura di massa che ha dato origine a questa indagine è in
+larga parte una proprietà del misuratore. La verifica di
+conservazione integrava sull'\emph{ultima colonna} della marcia, che è
+una caratteristica, non un piano, e le cui lunghezze di segmento sono
+selvaggiamente disuguali: su una spina discendente la più lunga è
+$0.84$~m contro una media di $0.064$~m. L'errore trapezoidale scala
+con il quadrato del segmento, quindi quell'unico segmento dominava.
+Tre misure risolvono la questione: il flusso proprio della linea di
+corrente del bordo libero è $4\times10^{-11}$ --- zero di macchina,
+quindi non perde nulla; la parete perde lo $0.016\%$; e le celle
+riproducono la soluzione esatta di cui sopra. L'ispezione colonna per
+colonna trova la causa: solo la \emph{prima} colonna marciata ha un
+buco di copertura, $26\times$ la spaziatura media fra righe quando la
+parete sale e $39\times$ quando scende, contro $0.5$--$1.0\times$ per
+ogni altra colonna --- perché una colonna è una caratteristica mentre
+una linea iniziale verticale non lo è, quindi la prima colonna deve
+da sola fare da ponte fra le due geometrie.
 
-The lesson is the one worth carrying: \textbf{when the quantity of
-interest has a derived band available directly, derive it directly.}
-The thrust's uncertainty was inferred from a conservation meter
-measuring something else; refining the march and letting it measure
-its own error --- the program's own first rule --- settled it in one
-run.
+La lezione è quella che vale la pena portarsi dietro: \textbf{quando
+la grandezza di interesse ha una banda derivata disponibile in modo
+diretto, la si derivi in modo diretto.} L'incertezza sulla spinta era
+stata dedotta da un misuratore di conservazione che misurava
+qualcos'altro; raffinare la marcia e lasciarle misurare il proprio
+errore --- la prima regola stessa del programma --- ha risolto la
+questione in una sola esecuzione.
 
-\section{The inlet angle as a design variable}
+\section{L'angolo di ingresso come variabile di progetto}
 \label{sec:inletangle}
 
-By owner directive the initial turning angle is no longer posed: it
-is part of the optimization. The RDE delivers its flow across a
-\emph{straight} annular inlet between the spike start radius and the
-cowl lip, and the inclination of that inlet is the design variable.
+Per direttiva del proprietario l'angolo di rotazione iniziale non è
+più posto: fa parte dell'ottimizzazione. L'RDE consegna il proprio
+flusso attraverso un ingresso anulare \emph{rettilineo} fra il raggio
+iniziale della spina e il labbro del cowl, e l'inclinazione di quel
+ingresso è la variabile di progetto.
 
-The lip fan turn $\Delta\nu$ is fixed by the expansion (from $M_i$
-down to $p_a$) and does not depend on the inlet angle, so the exhaust
-angle is simply $\theta_E = \theta_i + \Delta\nu$; the sweep is
-reported in $\theta_E$ because that is what the physics cares about,
-and the classic design condition is $\theta_E = 0$. The basis of
-Section~1 is unchanged, with one addition: the axial mass flux
-through an inclined inlet scales with $\cos\theta_i$, so the annulus
-is re-sized at every candidate to hold the reference mass flow, and
-thrust is compared at a \emph{fixed length} so that length is not
-silently traded against angle.
+La rotazione del ventaglio di labbro $\Delta\nu$ è fissata
+dall'espansione (da $M_i$ fino a $p_a$) e non dipende dall'angolo di
+ingresso, quindi l'angolo di scarico è semplicemente
+$\theta_E = \theta_i + \Delta\nu$; la spazzata è riportata in
+$\theta_E$ perché è quello che interessa alla fisica, e la classica
+condizione di progetto è $\theta_E = 0$. La base della Sezione~1 è
+invariata, con un'aggiunta: il flusso assiale di massa attraverso un
+ingresso inclinato scala con $\cos\theta_i$, quindi l'anello viene
+ridimensionato a ogni candidato per mantenere la portata di
+riferimento, e la spinta è confrontata a \emph{lunghezza fissa} così
+che la lunghezza non venga barattata in silenzio contro l'angolo.
 
-\carrier{validation/a1\_inlet\_angle\_opt.py}. The blind sweep lands
-at $\theta_E = 0$ --- the divergence prediction, recovered rather
-than imposed --- and the measured penalty follows the $\cos\theta_E$
-model in sign and order across the whole admissible window:
+\carrier{validation/a1\_inlet\_angle\_opt.py}. La spazzata alla cieca
+atterra a $\theta_E = 0$ --- la previsione della divergenza,
+recuperata anziché imposta --- e la penalità misurata segue il
+modello $\cos\theta_E$ in segno e ordine su tutta la finestra
+ammissibile:
 
 \begin{center}
 \small
 \begin{tabular}{rrr}
 \toprule
-$\theta_E$ [deg] & measured & $\cos\theta_E$ model \\
+$\theta_E$ [gradi] & misurata & modello $\cos\theta_E$ \\
 \midrule
 $-6$ & $-0.365\%$ & $-0.548\%$ \\
 $-4$ & $-0.153\%$ & $-0.244\%$ \\
 $-2$ & $-0.031\%$ & $-0.061\%$ \\
-$0$  & best       & --- \\
+$0$  & migliore   & --- \\
 $+2$ & $-0.068\%$ & $-0.061\%$ \\
 $+4$ & $-0.224\%$ & $-0.244\%$ \\
 $+8$ & $-0.799\%$ & $-0.973\%$ \\
@@ -275,14 +299,14 @@ $+12$& $-1.753\%$ & $-2.185\%$ \\
 \end{tabular}
 \end{center}
 
-Two things are worth reading off. The measured penalty is
-consistently \emph{smaller} than pure divergence, because the wall
-pressure distribution partially compensates --- the trade the
-closed-form model does not contain. And the curve is asymmetric:
-turning inward past the optimum costs less than turning outward by
-the same angle, which is the quantitative form of the directive's
-premise that outward-turning aerospikes are not competitive. The
-window is bounded on the inward side by geometry, not preference: at
-$\theta_E = -8^{\circ}$ the spike descends to $y = 0.32$~m and the
-march loses certification as the flow runs into the axis, where the
-axisymmetric source diverges.
+Due cose vanno lette. La penalità misurata è sistematicamente
+\emph{minore} della pura divergenza, perché la distribuzione di
+pressione di parete compensa in parte --- il baratto che il modello
+in forma chiusa non contiene. E la curva è asimmetrica: ruotare verso
+l'interno oltre l'ottimo costa meno che ruotare verso l'esterno dello
+stesso angolo, che è la forma quantitativa della premessa della
+direttiva secondo cui gli aerospike che ruotano verso l'esterno non
+sono competitivi. La finestra è limitata dal lato interno dalla
+geometria, non da una preferenza: a $\theta_E = -8^{\circ}$ la spina
+scende a $y = 0.32$~m e la marcia perde la certificazione mentre il
+flusso corre verso l'asse, dove la sorgente assialsimmetrica diverge.

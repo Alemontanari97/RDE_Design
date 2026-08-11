@@ -1,0 +1,224 @@
+\chapter{L'ingresso generale: una marcia per uno scarico non
+uniforme}
+\label{ch:generalinlet}
+
+Il capitolo precedente si è chiuso su una frontiera: lo swirl a
+vortice libero conserva esattamente la struttura caratteristica, e
+qualunque cosa oltre esso rende il flusso \emph{rotazionale}, che la
+marcia certificata non sapeva rappresentare. Questo capitolo rimuove
+quella frontiera per il caso che conta per un RDE, e lo fa portando
+qui una macchina che il codice arbitro possiede da sempre.
+
+\section{Che cosa la marcia certificata assumeva, e perché contava}
+
+Ogni nodo della marcia, finora, conservava quattro numeri: la
+posizione e le due componenti di velocità, $(x, y, u, v)$. Nulla di
+termodinamico veniva conservato, perché nulla serviva: lo stato del
+gas era recuperato dalla \emph{sola velocità},
+\begin{equation}
+  h_t = h_0 - \tfrac12 q^2 \;\longrightarrow\; T
+  \;\longrightarrow\;
+  p = p_{\mathrm{ref}}\exp\!\Big(\frac{s(T) - s_0}{R}\Big),
+  \label{eq:homentropic}
+\end{equation}
+con una singola entalpia di ristagno $h_0$ e una singola entropia
+$s_0$ per l'intero campo. È l'ipotesi \emph{omoentropica}: un solo
+serbatoio, una sola isentropica, ogni linea di corrente attinta dallo
+stesso gas nello stesso stato.
+
+Per un ugello alimentato da una camera di calma questo è esattamente
+corretto. Per un motore a detonazione rotante è una scelta di
+modello. L'anello reale consegna uno scarico che non è né uniforme né
+privo di urti: la detonazione passa, i prodotti caldi seguono quelli
+più freddi, e ogni linea di corrente arriva con la propria
+temperatura totale e la propria entropia. La marcia non poteva
+accettare dati simili --- non perché i numeri fossero difficili da
+fornire, ma perché sarebbero stati \emph{sovradeterminati}. Dato un
+profilo $(p, T, M)$ riga per riga, la marcia può onorare la velocità
+e la direzione; la pressione che poi predice dalla
+\eqref{eq:homentropic} è quella che dice l'isentropica globale, e se
+la $p$ fornita non concorda non c'è dove mettere la differenza. Due
+numeri su tre entrano; il terzo non ha casa.
+
+\section{Che cosa l'arbitro faceva già}
+
+Il codice Fortran indipendente ha varcato questa frontiera molto
+tempo fa. Il suo modulo generico delle caratteristiche risolve il
+classico processo elementare \emph{rotazionale}: entropia ed entalpia
+di ristagno sono trasportate come \textbf{invarianti di linea di
+corrente}, ogni cella localizza la linea di corrente che passa per il
+suo nuovo punto, e lo stato al piede di quella linea è ricostruito da
+\emph{invarianti interpolati} anziché da pressioni e densità
+interpolate --- una distinzione che il registro di sviluppo di quel
+codice annota come correzione, perché interpolare le grandezze
+primitive fa uscire dalla varietà termodinamica mentre interpolare
+gli invarianti non può farlo.
+
+La conseguenza è esattamente la capacità che ci mancava: l'arbitro
+legge da file un'intera linea iniziale punto per punto --- posizione,
+densità, velocità, angolo, pressione, temperatura, Mach, $\gamma$ ---
+e la marcia. Non c'era ragione di inventare una seconda risposta a un
+problema già risolto. Questo capitolo porta qui la loro.
+
+\section{Le tre modifiche}
+
+\paragraph{I nodi portano la propria termodinamica.} Un nodo diventa
+$(x, y, u, v, s, h_0)$: i due invarianti si uniscono ai quattro numeri
+cinematici. La chiusura~\eqref{eq:homentropic} è invariata nella
+forma e generalizzata nel contenuto --- ogni nodo usa i \emph{propri}
+$(s, h_0)$ là dove la chiusura certificata usava la coppia globale.
+Alla coppia globale le due coincidono identicamente, e il carrier
+misura quell'identità anziché assumerla: la deviazione è esattamente
+nulla, perché il percorso aritmetico è lo stesso.
+
+\paragraph{Le equazioni di compatibilità cambiano forma.} Le celle
+certificate risolvono la relazione di compatibilità gasdinamica
+scritta in $(u, v)$. Quella forma è derivata assumendo flusso
+irrotazionale, e per il teorema di Crocco i gradienti di entropia
+\emph{sono} vorticità, quindi non sopravvive alla stratificazione. Il
+processo elementare rotazionale usa invece la relazione lungo le
+linee di Mach in pressione e angolo del flusso,
+\begin{equation}
+  \mathrm{d}\theta \pm Q\,\mathrm{d}p + S\,\mathrm{d}x = 0,
+  \qquad
+  Q = \frac{\sqrt{M^2-1}}{\rho q^2},
+  \qquad
+  S = \frac{\delta \sin\theta}{y\,M\,\cos(\theta \mp \alpha)},
+  \label{eq:ptheta}
+\end{equation}
+che non richiede irrotazionalità: $Q$ è il coefficiente acustico
+lungo una linea di Mach e $S$ è la sorgente assialsimmetrica che si
+annulla nel flusso piano. Ogni coefficiente è valutato nello stato al
+punto medio della propria corda, la forma implicita che le celle
+certificate già usano.
+
+\paragraph{La linea di corrente entra fra le incognite.} Una cella
+interna risolve ora cinque numeri, $(x_4, y_4, u_4, v_4, t)$: la
+posizione dai due incroci di linee di Mach, lo stato dalle due
+relazioni~\eqref{eq:ptheta}, e $t$ --- il punto in cui la linea di
+corrente che arriva al nuovo nodo attraversa la linea di dati a
+monte. Gli invarianti nel nuovo nodo sono quelli della linea di dati
+interpolati a quel $t$. Risolvere il piede \emph{insieme} al punto,
+anziché iterare attorno a esso, è l'espressione naturale della stessa
+fisica nell'ambiente a celle implicite di questo programma.
+
+La parete e la frontiera libera non richiedono equazioni nuove:
+entrambe sono linee di corrente, quindi ciascuna porta con sé, per
+l'intera marcia, gli invarianti della riga da cui parte.
+
+Con tutto ciò a posto, una linea $(p, T, M, \theta)$ riga per riga è
+\textbf{esattamente determinata} --- tre numeri termodinamici per i
+tre gradi di libertà dello stato $(s, h_0, q)$, più la direzione ---
+e ripercorre la chiusura in andata e ritorno a quindici cifre.
+
+\section{Due difetti colti dai test}
+
+Entrambi sono registrati perché entrambi producevano uscite
+plausibili.
+
+\textbf{Il piede della linea di corrente usciva dalla propria corda.}
+La prima versione interpolava gli invarianti lungo la corda che
+congiunge i due punti di dati della cella. Su un getto stratificato la
+marcia si rifiutava allora di convergere: raffinando la linea
+iniziale l'errore restava dov'era, vicino a una parte su mille. La
+sonda cella per cella ha mostrato perché. Ogni colonna scende di
+circa $\tan\mu$ per la spaziatura delle stazioni, quindi appena le
+righe sono abbastanza fini perché questo scorrimento superi la
+spaziatura fra righe, la linea di corrente che arriva a un nodo cade
+\emph{fuori} dalla corda fra i suoi due vicini --- e interpolare a
+$t<0$ è estrapolare. Gli invarianti venivano allora trasportati lungo
+una corda che non li conteneva. L'arbitro non ha questo difetto: la
+sua cella cerca l'intersezione vera sull'intera colonna a monte.
+Portata qui --- come \emph{decisione registrata}, nello stesso modo
+in cui il piede di parete è sempre stato registrato --- l'errore di
+trasporto nel corpo del getto è calato di due ordini di grandezza ed
+è comparsa la convergenza (Figura~\ref{fig:s24rot}c).
+
+\textbf{Un rigettatore va posto dove le equazioni portano carico.} La
+verifica che corrompe un segno di compatibilità è stata dapprima
+eseguita sul getto parallelo esatto, e \emph{ha promosso il codice
+corrotto}: su quel mondo le differenze di pressione si annullano
+identicamente, quindi il termine corrotto moltiplica zero e la marcia
+corrotta riproduce la risposta giusta. Un rigettatore che non può
+fallire non dimostra nulla. Spostato sul mondo del plug, dove le
+stesse equazioni fanno lavoro reale, separa di tre ordini di
+grandezza.
+
+\section{Che cosa stabiliscono i test}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_s24_rotational.pdf}
+\caption{L'ingresso generale, dall'esecuzione di riferimento. (a)~Una
+linea iniziale stratificata: entropia, entalpia di ristagno,
+temperatura e numero di Mach variano tutti attraverso il getto,
+ciascuna curva normalizzata sul proprio intervallo con l'intervallo
+stampato --- il tipo di dati che la marcia certificata non poteva
+accettare. (b)~Il campo di entropia che la marcia trasporta
+attraverso una spina: gli strati cavalcano le linee di corrente dalla
+linea iniziale all'uscita, ed è questo l'aspetto che ha ``l'entropia è
+un invariante di linea di corrente'' quando un solutore lo rispetta.
+(c)~Verifica: l'errore di trasporto rispetto alla soluzione
+stratificata esatta cala con il numero di righe della linea iniziale
+all'ordine dello schema, mentre l'artefatto, riportato a parte, della
+regola di crescita delle righe della maglia su un getto che non si
+allarga non cala --- è topologia, non trasporto, ed è confinato a una
+banda della colonna che la verifica esclude e dichiara.}
+\label{fig:s24rot}
+\end{figure}
+
+La verifica usa una soluzione esatta per delimitare l'errore. Un
+getto rettilineo a pressione uniforme, con temperatura e numero di
+Mach diversi su ogni linea di corrente e senza angolo di flusso, è
+una soluzione esatta delle equazioni assialsimmetriche: nulla ruota,
+nulla si espande, e ciascuna linea di corrente si limita a portare a
+valle il proprio stato. Se gli invarianti variano \emph{linearmente}
+attraverso il getto anche l'interpolazione di cella è esatta, quindi
+la marcia deve riprodurre la risposta all'arrotondamento --- misurato
+$3\times10^{-8}$ su cinquecento celle certificate. Curvando la
+stratificazione l'interpolazione diventa del secondo ordine, e
+l'errore cala allora al raffinarsi delle righe:
+$2.2\times10^{-5} \to 6.5\times10^{-6} \to 7.5\times10^{-7}$ su
+$21 \to 41 \to 81$ righe, più rapidamente del secondo ordine che lo
+schema promette.
+
+Sul mondo del plug, a invarianti uniformi, le celle rotazionali e
+quelle certificate sono due discretizzazioni delle stesse equazioni
+continue, quindi non devono coincidere esattamente --- e
+l'affermazione onesta è che la loro differenza \emph{si riduce}
+all'ordine comune dei due schemi, da $3.0\times10^{-5}$ a
+$8.8\times10^{-6}$ sotto raffinamento congiunto. Su una spina
+genuinamente stratificata la marcia certifica a $0.058$, conserva la
+massa a $8\times10^{-3}$ dopo la prima colonna, e trasporta il flusso
+di entropia con una deriva di $5\times10^{-4}$ --- l'invariante
+trasportato, misurato anziché assunto.
+
+Un artefatto è riportato anziché assorbito. Su un getto che
+\emph{non} si allarga, la regola di maglia che aggiunge una riga per
+colonna --- scritta per uno scarico che si espande --- ammassa le
+vecchie righe di bordo contro la frontiera stazionaria e apre un
+vuoto in mezzo alla colonna. Le corde che attraversano quel vuoto
+interpolano un profilo curvo lungo mezzo metro, e l'errore che ne
+risulta non cala con il raffinamento perché è fissato dalla
+topologia, non dalla spaziatura. È confinato alla banda ammassata, è
+stabile all'uno percento sull'intera scala di raffinamento, e
+l'affermazione sul trasporto è valutata al di sotto di esso. Le
+geometrie di plug che questo programma progetta davvero sono scarichi
+che si allargano e non lo sviluppano mai.
+
+\section{Che cosa apre}
+
+La conseguenza immediata è che uno scarico di RDE con vene calde e
+fredde può essere marciato così com'è, anziché nella sua caricatura
+uniforme in media; e poiché la linea iniziale che il port accetta
+porta lo stesso contenuto del file dei valori iniziali dell'arbitro,
+uno stesso ingresso può ora alimentare entrambi i codici --- il che
+rende un confronto fra codici su un ingresso \emph{rotazionale} il
+prossimo test naturale. Restano aperte e non misurate due ulteriori
+questioni: se l'aggiunto del Capitolo~\ref{ch:spline} differenzi
+attraverso una marcia stratificata così com'è (le celle passano per
+la stessa macchina a solutore implicito, quindi dovrebbe), e se swirl
+e stratificazione si compongano --- il vortice libero richiede
+entalpia totale uniforme per il proprio argomento di
+irrotazionalità, e uno scarico stratificato con swirl è
+un'affermazione diversa, e più difficile.

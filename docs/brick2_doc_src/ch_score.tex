@@ -1,221 +1,247 @@
-\chapter{The score and the compass}
+\chapter{Il punteggio e la bussola}
 \label{ch:score}
 
-The solver of Brick~1 answers ``what does the gas do in this nozzle?''.
-An optimizer needs two further things: a single number that says how
-good a nozzle is, and the derivative of that number with respect to
-every shape knob, which tells it which way to move. This chapter builds
-both and, more importantly, makes both checkable --- the number by
-computing it twice along two completely different paths, the derivative
-by comparing it with brute-force re-runs of the solver. It then adds a
-second instrument that does not score a design but \emph{certifies} it:
-a dial that reads zero exactly when the nozzle wall ends where an
-optimal wall must end.
+Il solutore del Mattone~1 risponde alla domanda ``che cosa fa il gas
+in questo ugello?''. Un ottimizzatore ha bisogno di altre due cose:
+un singolo numero che dica quanto è buono un ugello, e la derivata
+di quel numero rispetto a ogni manopola di forma, che gli dice in
+che direzione muoversi. Questo capitolo costruisce entrambi e,
+soprattutto, rende entrambi verificabili --- il numero calcolandolo
+due volte lungo due percorsi completamente diversi, la derivata
+confrontandola con riesecuzioni a forza bruta del solutore. Aggiunge
+poi un secondo strumento che non assegna un punteggio a un progetto
+ma lo \emph{certifica}: un quadrante che segna zero esattamente
+quando la parete dell'ugello finisce dove una parete ottimale deve
+finire.
 
-\section{The thrust functional, by two routes}
+\section{Il funzionale di spinta, per due vie}
 
-\subsection{The question}
+\subsection{La domanda}
 
-An optimizer needs exactly two things the flow solver did not have.
-First a \emph{number} that says how good one design is --- the
-\emph{objective} $J$, here the thrust in newtons, the axial force the
-nozzle produces. Second its \emph{gradient}: the list of partial
-derivatives of that number with respect to each design knob, i.e.\ how
-much $J$ changes per metre of change in each knob. The gradient is the
-compass; it points uphill.
+Un ottimizzatore ha bisogno esattamente di due cose che il solutore
+di flusso non aveva. Primo, un \emph{numero} che dica quanto è buono
+un progetto --- l'\emph{obiettivo} $J$, qui la spinta in newton, la
+forza assiale che l'ugello produce. Secondo, il suo
+\emph{gradiente}: l'elenco delle derivate parziali di quel numero
+rispetto a ciascuna manopola di progetto, cioè di quanto cambia $J$
+per metro di variazione di ciascuna manopola. Il gradiente è la
+bussola; punta in salita.
 
-\subsection{How it works, in full}
+\subsection{Come funziona, per esteso}
 
-Thrust is a \emph{momentum balance}: Newton's second law applied not to
-a body but to a region of gas. Draw a \emph{control surface} --- an
-imaginary closed surface enclosing the nozzle flow --- and add up two
-things on it: the momentum the gas carries through the surface, and the
-pressure force pushing on it. The sum is the force the machine feels.
-Nothing physical depends on where that surface is drawn, and that
-freedom is exploited twice, by computing $J$ on two surfaces that share
-no data:
+La spinta è un \emph{bilancio di quantità di moto}: la seconda legge
+di Newton applicata non a un corpo ma a una regione di gas. Si
+traccia una \emph{superficie di controllo} --- una superficie chiusa
+immaginaria che racchiude il flusso dell'ugello --- e vi si sommano
+due cose: la quantità di moto che il gas trasporta attraverso la
+superficie e la forza di pressione che vi spinge sopra. La somma è
+la forza che la macchina sente. Nulla di fisico dipende da dove
+quella superficie viene tracciata, e questa libertà viene sfruttata
+due volte, calcolando $J$ su due superfici che non condividono alcun
+dato:
 \begin{align}
 J &= \dot m\, u_e + (p_e - p_a)\, A_e
-  &&\text{(route 1: read the exit),} \label{eq:route1}\\
+  &&\text{(via 1: leggere l'uscita),} \label{eq:route1}\\
 J &= F_{\rm throat} + \int_{\rm wall} (p - p_a)\, 2\pi y \,\mathrm{d}y
-  &&\text{(route 2: read the wall).} \label{eq:route2}
+  &&\text{(via 2: leggere la parete).} \label{eq:route2}
 \end{align}
-Route 1 closes the surface at the exit plane, where an ideal nozzle
-delivers flow that is uniform and parallel to the axis. There the
-balance is elementary: the mass flow $\dot m$ [kg/s] times the exit
-speed $u_e$ [m/s], plus the mismatch between the exit static pressure
-$p_e$ and the ambient (surrounding) pressure $p_a$ acting on the exit
-area $A_e$.
+La via~1 chiude la superficie sul piano di uscita, dove un ugello
+ideale consegna un flusso uniforme e parallelo all'asse. Lì il
+bilancio è elementare: la portata $\dot m$ [kg/s] per la velocità di
+uscita $u_e$ [m/s], più lo scarto fra la pressione statica di uscita
+$p_e$ e la pressione ambiente $p_a$ agente sull'area di uscita
+$A_e$.
 
-Route 2 closes the same surface along the machine itself. Its first
-term is the momentum flux entering through the \emph{throat} --- the
-narrowest cross-section, where the gas reaches exactly the local speed
-of sound. A throat in that state is called \emph{choked}: the mass flow
-through it is then set by the throat area and the chamber conditions
-alone, and nothing downstream can increase it. The carrier evaluates
-this flux on the march's initial-value line, the short line across the
-throat where the solver starts. The second term is the axial push of
-the wall: every ring of wall of radius $y$ and radial width
-$\mathrm{d}y$ presents an axial projected area $2\pi y\,\mathrm{d}y$ on
-which the pressure excess $(p - p_a)$ pushes forward. The two routes
-share no intermediate quantity: route~1 never reads a wall pressure,
-route~2 never reads the exit state.
+La via~2 chiude la stessa superficie lungo la macchina stessa. Il
+suo primo termine è il flusso di quantità di moto entrante
+attraverso la \emph{gola} --- la sezione più stretta, dove il gas
+raggiunge esattamente la velocità locale del suono. Una gola in
+quello stato si dice \emph{bloccata}: la portata che la attraversa è
+allora fissata dalla sola area di gola e dalle condizioni di camera,
+e nulla a valle può aumentarla. Il carrier valuta questo flusso
+sulla linea dei valori iniziali della marcia, la breve linea
+attraverso la gola da cui il solutore parte. Il secondo termine è la
+spinta assiale della parete: ogni anello di parete di raggio $y$ e
+larghezza radiale $\mathrm{d}y$ presenta un'area assiale proiettata
+$2\pi y\,\mathrm{d}y$ su cui l'eccesso di pressione $(p - p_a)$
+spinge in avanti. Le due vie non condividono alcuna quantità
+intermedia: la via~1 non legge mai una pressione di parete, la via~2
+non legge mai lo stato di uscita.
 
-Newton's law forces the two answers to agree, so their difference
-$R_{\rm mom}$ [N] is a mechanical error meter --- if the discretization
-is wrong anywhere, the two routes stop matching. How large is it
-allowed to be? Not a number chosen by taste. The march is run twice, at
-one resolution and at double resolution; the \emph{change} in
-$R_{\rm mom}$ between the two runs is the scheme's own estimate of its
-discretization error. That change, multiplied by the safety factor
-$K_{\rm RICH} = 4$ and added to a floor for floating-point roundoff, is
-the allowed band --- a \emph{Richardson band}, named after the
-two-resolution extrapolation idea it comes from.
+La legge di Newton obbliga le due risposte a coincidere, quindi la
+loro differenza $R_{\rm mom}$ [N] è un misuratore meccanico
+d'errore: se la discretizzazione è sbagliata da qualche parte, le
+due vie smettono di accordarsi. Quanto grande le è concesso essere?
+Non un numero scelto a gusto. La marcia viene eseguita due volte, a
+una risoluzione e a risoluzione doppia; la \emph{variazione} di
+$R_{\rm mom}$ fra le due esecuzioni è la stima che lo schema fa del
+proprio errore di discretizzazione. Quella variazione, moltiplicata
+per il fattore di sicurezza $K_{\rm RICH} = 4$ e sommata a un
+pavimento per l'arrotondamento in virgola mobile, è la banda
+ammessa --- una \emph{banda di Richardson}, dal nome dell'idea di
+estrapolazione a due risoluzioni da cui proviene.
 
-Two further instruments complete the step. The \emph{gauge test}: add
-the same constant to the pressure everywhere and the thrust must not
-move, because a constant pressure integrates to zero over any closed
-surface. That is an identity of the \emph{formulas}, not of the flow,
-so it isolates errors in the surface bookkeeping from errors in the
-flow --- and it caught one (Appendix~\ref{app:sliver}). And the
-\emph{gradient}: because the march is written in a differentiable
-language, \emph{reverse-mode automatic differentiation} (AD) --- the
-technique that differentiates the program itself, propagating
-derivatives backwards through every operation it performed, which is
-mathematically the same as solving the discrete adjoint equations ---
-returns $\mathrm{d}J/\mathrm{d}P$ for all design parameters
-$P = (y_t, r_{tu}, r_{td}, \varepsilon)$ in a single backward pass, at
-about the cost of one extra march. Each of the four components is then
-checked against a \emph{central finite difference}: re-run the march
-with that knob nudged up by $h$ and down by $h$, and divide the
-difference of the two thrusts by $2h$. Halving $h$ gives the second
-estimate the Richardson band is built from.
+Altri due strumenti completano il passo. Il \emph{test di gauge}: si
+somma ovunque la stessa costante alla pressione e la spinta non deve
+muoversi, perché una pressione costante integra a zero su qualunque
+superficie chiusa. È un'identità delle \emph{formule}, non del
+flusso, e quindi isola gli errori nella contabilità della superficie
+da quelli nel flusso --- e ne ha colto uno
+(Appendice~\ref{app:sliver}). E il \emph{gradiente}: poiché la
+marcia è scritta in un linguaggio differenziabile, la
+\emph{differenziazione automatica in modo inverso} (AD) --- la
+tecnica che differenzia il programma stesso, propagando le derivate
+all'indietro attraverso ogni operazione eseguita, il che è
+matematicamente equivalente a risolvere le equazioni aggiunte
+discrete --- restituisce $\mathrm{d}J/\mathrm{d}P$ per tutti i
+parametri di progetto $P = (y_t, r_{tu}, r_{td}, \varepsilon)$ in
+una sola passata all'indietro, a circa il costo di una marcia
+aggiuntiva. Ciascuna delle quattro componenti è poi verificata
+contro una \emph{differenza finita centrata}: si riesegue la marcia
+con quella manopola spostata di $+h$ e di $-h$ e si divide la
+differenza delle due spinte per $2h$. Dimezzare $h$ fornisce la
+seconda stima con cui si costruisce la banda di Richardson.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\textwidth]{sch_two_routes.png}
-\caption{Two independent routes to one thrust, drawn in the nozzle's
-own coordinates ($x$ [m] along the axis, $y$ [m] radius). Route~1
-(right) closes the control surface at the exit plane and needs only the
-uniform exit state: mass flow times exit speed plus
-$(p_e-p_a)A_e$. Route~2 (left and along the wall) closes it on the
-machine: momentum flux through the choked throat plus the axial
-pressure push $(p-p_a)\,2\pi y\,\mathrm{d}y$ of each ring of wall.
-Look at what the two paths do \emph{not} share: no quantity is used by
-both, so their difference $R_{\rm mom}$ [N] is a genuine error meter
-rather than an identity. The red circle marks the sliver of surface
-that was accidentally left open at first, and whose story is told in
-Appendix~\ref{app:sliver}.}
+\caption{Due vie indipendenti verso un'unica spinta, disegnate nelle
+coordinate proprie dell'ugello ($x$ [m] lungo l'asse, $y$ [m]
+raggio). La via~1 (a destra) chiude la superficie di controllo sul
+piano di uscita e richiede solo lo stato uniforme di uscita: portata
+per velocità di uscita più $(p_e-p_a)A_e$. La via~2 (a sinistra e
+lungo la parete) la chiude sulla macchina: flusso di quantità di
+moto attraverso la gola bloccata più la spinta assiale di pressione
+$(p-p_a)\,2\pi y\,\mathrm{d}y$ di ogni anello di parete. Si guardi a
+ciò che le due vie \emph{non} condividono: nessuna quantità è usata
+da entrambe, quindi la loro differenza $R_{\rm mom}$ [N] è un
+autentico misuratore d'errore e non un'identità. Il cerchio rosso
+segna la scheggia di superficie lasciata inizialmente aperta per
+sbaglio, la cui storia è raccontata
+nell'Appendice~\ref{app:sliver}.}
 \label{fig:tworoutes}
 \end{figure}
 
-\subsection{What was built}
+\subsection{Che cosa è stato costruito}
 
-\carrier{validation/a1\_thrust\_functional.py}: both routes, the
-momentum residual $R_{\rm mom}$ with its Richardson band, the gauge
-test, reverse-mode $\mathrm{d}J/\mathrm{d}P$ checked against central
-finite differences knob by knob, and three rejectors --- deliberately
-corrupted versions of the computation (dropped pressure--area term,
-un-closed surface, corrupted flux) that the suite must catch.
+\carrier{validation/a1\_thrust\_functional.py}: entrambe le vie, il
+residuo di quantità di moto $R_{\rm mom}$ con la sua banda di
+Richardson, il test di gauge, $\mathrm{d}J/\mathrm{d}P$ in modo
+inverso verificato manopola per manopola contro differenze finite
+centrate, e tre rigettatori --- versioni deliberatamente corrotte
+del calcolo (termine pressione--area eliminato, superficie non
+chiusa, flusso corrotto) che la suite deve cogliere.
 
-\subsection{Results of record}
+\subsection{Risultati di riferimento}
 
 \textbf{8/8 PASS.} $J = 1.2552079\times10^{8}$~N; $R_{\rm mom} =
-+2.85\times10^{3}$ against a derived band of $4.01\times10^{4}$
-($3.2\times10^{-4}$ of $J$), so the two routes agree to about three
-parts in ten thousand of the thrust; the coarse/fine residual ratio of
-4.52 is the $\approx 4$ expected of a second-order scheme when the
-resolution is doubled, confirming that what is left is discretization
-error and not a mistake. Gauge delta $3.35\times10^{-8}$ vs.\ allowed
-$1.78\times10^{-6}$: adding a constant pressure really does change
-nothing. All four gradient components fall inside their
-finite-difference bands ($\mathrm{d}J/\mathrm{d}y_t$ agreeing to 9
-significant figures), and all rejectors fire.
++2.85\times10^{3}$ contro una banda derivata di
+$4.01\times10^{4}$ ($3.2\times10^{-4}$ di $J$), quindi le due vie
+concordano a circa tre parti su diecimila della spinta; il rapporto
+grossolana/fine dei residui pari a 4.52 è il $\approx 4$ atteso da
+uno schema del secondo ordine quando la risoluzione viene
+raddoppiata, il che conferma che ciò che resta è errore di
+discretizzazione e non un errore concettuale. Scarto di gauge
+$3.35\times10^{-8}$ contro $1.78\times10^{-6}$ ammesso: aggiungere
+una pressione costante davvero non cambia nulla. Tutte e quattro le
+componenti del gradiente cadono dentro le rispettive bande da
+differenze finite ($\mathrm{d}J/\mathrm{d}y_t$ concorda a 9 cifre
+significative), e tutti i rigettatori scattano.
 
-The gradient signs also behave as theory predicts:
-$\mathrm{d}J/\mathrm{d}\varepsilon > 0$ against a vacuum, i.e.\ with
-nothing pushing back a longer nozzle is always worth building; and
-$\mathrm{d}J/\mathrm{d}r_{td}$ is tiny, i.e.\ the curvature of the
-short arc just downstream of the throat barely matters. One real bug
-was caught and fixed on the way: Appendix~\ref{app:sliver}.
+Anche i segni del gradiente si comportano come la teoria prevede:
+$\mathrm{d}J/\mathrm{d}\varepsilon > 0$ contro il vuoto, cioè
+quando nulla spinge in senso contrario conviene sempre costruire un
+ugello più lungo; e $\mathrm{d}J/\mathrm{d}r_{td}$ è minuscolo,
+cioè la curvatura del breve raccordo appena a valle della gola conta
+pochissimo. Un difetto reale è stato colto e corretto lungo la
+strada: Appendice~\ref{app:sliver}.
 
-\section{The optimality meter}
+\section{Il misuratore di ottimalità}
 \label{sec:corner}
 
-\subsection{The question}
+\subsection{La domanda}
 
-A score and a compass find better designs. What \emph{certifies} that a
-given design already satisfies the condition an optimum must satisfy?
+Un punteggio e una bussola trovano progetti migliori. Che cosa
+\emph{certifica} che un dato progetto soddisfa già la condizione che
+un ottimo deve soddisfare?
 
-\subsection{How it works, in full}
+\subsection{Come funziona, per esteso}
 
-Choosing the best nozzle wall is not a problem of finding the best
-value of a few numbers but of finding the best \emph{curve}; the branch
-of mathematics for that is the \emph{calculus of variations}, which
-asks what must be true of a curve if no small deformation of it can
-improve the objective. Rao~\cite{rao} solved that problem for a nozzle
-and found, among the conditions, one exact scalar statement that must
-hold at the lip --- the point where the wall stops. It is an
-\emph{endpoint} (or transversality) condition:
+Scegliere la migliore parete di ugello non è un problema di trovare
+il valore migliore di pochi numeri, ma di trovare la migliore
+\emph{curva}; il ramo della matematica che se ne occupa è il
+\emph{calcolo delle variazioni}, che si chiede che cosa debba essere
+vero di una curva se nessuna sua piccola deformazione può migliorare
+l'obiettivo. Rao~\cite{rao} risolse quel problema per un ugello e
+trovò, fra le condizioni, un'affermazione scalare esatta che deve
+valere al labbro --- il punto in cui la parete si ferma. È una
+condizione \emph{terminale} (o di trasversalità):
 \begin{equation}
 R_{\rm corner}(p_a) \;=\; (p - p_a)\;-\;\tfrac{1}{2}\rho W^{2}
 \sin(2\theta)\tan\alpha .
 \label{eq:corner}
 \end{equation}
-Read it as the balance of the two effects of moving the lip one step
-further downstream. The first term is the direct gain: one more ring of
-wall, worth building as long as the pressure on it exceeds ambient. The
-second is the price: the extra wall forces the flow to keep turning,
-and the cost of that turning is written through the local flow angle
-$\theta$ (the direction of the velocity relative to the axis) and the
-Mach angle $\alpha$ (the tilt of the lines along which supersonic
-disturbances travel, Chapter~\ref{ch:moc}). $R_{\rm corner} = 0$ means
-``the wall stops in exactly the right place'': one more ring would gain
-as much as it costs. The meter evaluates this from the march's own lip
-data, so any design the engine produces can be certified and not merely
-scored. Averaged over the engine cycle it becomes the lip condition
-that a rotating detonation engine's nozzle must satisfy (statement T7
-of~\cite{theory}), which Chapter~\ref{ch:cycle} puts on a meter of its
-own.
+La si legga come il bilancio dei due effetti dello spostare il
+labbro di un passo più a valle. Il primo termine è il guadagno
+diretto: un anello di parete in più, che conviene costruire finché
+la pressione su di esso supera l'ambiente. Il secondo è il prezzo:
+la parete aggiuntiva costringe il flusso a continuare a ruotare, e
+il costo di quella rotazione è scritto attraverso l'angolo locale
+del flusso $\theta$ (la direzione della velocità rispetto all'asse)
+e l'angolo di Mach $\alpha$ (l'inclinazione delle linee lungo cui
+viaggiano le perturbazioni supersoniche,
+Capitolo~\ref{ch:moc}). $R_{\rm corner} = 0$ significa ``la parete
+si ferma esattamente nel punto giusto'': un anello in più
+guadagnerebbe quanto costa. Il misuratore valuta questa quantità dai
+dati di labbro della marcia stessa, così che qualunque progetto il
+motore produca possa essere certificato e non soltanto valutato.
+Mediata sul ciclo del motore diventa la condizione di labbro che
+l'ugello di un motore a detonazione rotante deve soddisfare
+(affermazione T7 di~\cite{theory}), che il Capitolo~\ref{ch:cycle}
+mette su un misuratore dedicato.
 
-The companion instrument is the \emph{first integral}
+Lo strumento compagno è il \emph{primo integrale}
 \begin{equation}
 f_2 \;=\; \frac{W\cos(\theta-\alpha)}{\cos\alpha} \;=\; -\lambda_2 ,
 \label{eq:f2}
 \end{equation}
-where a first integral means a combination of flow quantities that the
-governing equations force to stay constant along some particular curve,
-even though each ingredient varies. Rao's theory makes $f_2$ constant
-along the \emph{terminal characteristic} of an optimal nozzle --- the
-last of the two families of lines along which supersonic information
-travels, the one that closes the flowfield at the lip. Its constant
-value is $-\lambda_2$, a \emph{Lagrange multiplier}: the number that
-prices a constraint in a constrained optimization, here telling how
-much thrust would be gained per extra unit of mass flow allowed. Along
-any other curve --- in particular along the wall, which is a
-\emph{streamline}, a line everywhere tangent to the velocity and hence
-the path a gas particle follows --- $f_2$ is \emph{not} constant. That
-supplies the natural negative control: an implementation that made
-$f_2$ look constant everywhere would be broken, and must be caught.
+dove ``primo integrale'' significa una combinazione di grandezze di
+flusso che le equazioni del moto obbligano a restare costante lungo
+una particolare curva, benché ciascun ingrediente vari. La teoria di
+Rao rende $f_2$ costante lungo la \emph{caratteristica terminale} di
+un ugello ottimale --- l'ultima delle due famiglie di linee lungo
+cui viaggia l'informazione supersonica, quella che chiude il campo
+di moto al labbro. Il suo valore costante è $-\lambda_2$, un
+\emph{moltiplicatore di Lagrange}: il numero che dà il prezzo di un
+vincolo in un'ottimizzazione vincolata, qui indicando quanta spinta
+si guadagnerebbe per ogni unità di portata in più concessa. Lungo
+qualunque altra curva --- in particolare lungo la parete, che è una
+\emph{linea di corrente}, cioè una linea ovunque tangente alla
+velocità e dunque il percorso seguito da una particella di gas ---
+$f_2$ \emph{non} è costante. Questo fornisce il controllo negativo
+naturale: un'implementazione che facesse apparire $f_2$ costante
+ovunque sarebbe rotta, e va colta.
 
-\subsection{What was built}
+\subsection{Che cosa è stato costruito}
 
-\carrier{validation/a1\_corner\_instrument.py}: the corner meter and
-the $f_2$ instrument, tested against three known answers on the
-ideal-nozzle case (axial exit, matched ambient, vacuum), with the
-non-constancy rejector on the wall.
+\carrier{validation/a1\_corner\_instrument.py}: il misuratore di
+spigolo e lo strumento $f_2$, verificati contro tre risposte note
+sul caso dell'ugello ideale (uscita assiale, ambiente adattato,
+vuoto), con il rigettatore di non costanza sulla parete.
 
-\subsection{Results of record}
+\subsection{Risultati di riferimento}
 
-\textbf{5/5 PASS} (82~s). The flow angle at the lip is machine-zero
-($\theta = -10^{-16}$~rad: the exit really is axial, as the ideal
-nozzle assumes). With the ambient set equal to the exit pressure the
-meter reads $3.7\times10^{-10}$ against an allowed 42.8~Pa --- the
-nozzle is certified stationary at its design ambient. Against a vacuum
-it reads exactly $+p_e$, i.e.\ ``lengthen me'', the statement that no
-finite nozzle is optimal in vacuum, now on a dial; and its sign agrees
-with an independently recomputed $\mathrm{d}J/\mathrm{d}\varepsilon$,
-so meter and gradient tell the same story. The first integral $f_2$ at
-the lip equals the exit speed to $4.6\times10^{-13}$~m/s, while along
-the wall it varies by 1173~m/s --- the non-constancy rejector, firing
-as designed.
+\textbf{5/5 PASS} (82~s). L'angolo del flusso al labbro è zero di
+macchina ($\theta = -10^{-16}$~rad: l'uscita è davvero assiale, come
+l'ugello ideale assume). Con l'ambiente posto uguale alla pressione
+di uscita il misuratore segna $3.7\times10^{-10}$ contro 42.8~Pa
+ammessi --- l'ugello è certificato stazionario al suo ambiente di
+progetto. Contro il vuoto segna esattamente $+p_e$, cioè
+``allungami'', l'affermazione che nessun ugello finito è ottimale
+nel vuoto, ora su un quadrante; e il suo segno concorda con un
+$\mathrm{d}J/\mathrm{d}\varepsilon$ ricalcolato in modo
+indipendente, così misuratore e gradiente raccontano la stessa
+storia. Il primo integrale $f_2$ al labbro è uguale alla velocità di
+uscita a meno di $4.6\times10^{-13}$~m/s, mentre lungo la parete
+varia di 1173~m/s --- il rigettatore di non costanza, che scatta
+come previsto.

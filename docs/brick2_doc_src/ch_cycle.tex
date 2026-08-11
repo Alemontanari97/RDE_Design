@@ -1,204 +1,224 @@
-\chapter{The cycle layer: the engine becomes an RDE tool}
+\chapter{Lo strato di ciclo: il motore diventa uno strumento per RDE}
 \label{ch:cycle}
 
-Until now the nozzle had one operating point: one chamber pressure,
-one chamber temperature, one design. A rotating detonation engine does
-not offer one. This chapter teaches the optimizer to design against a
-whole periodic cycle of chamber conditions --- and then proves it did
-so correctly, by making it reproduce, blindly, two answers the theory
-already knows and a shortcut-taking implementation could not find.
+Finora l'ugello aveva un solo punto di funzionamento: una pressione
+di camera, una temperatura di camera, un progetto. Un motore a
+detonazione rotante non ne offre uno solo. Questo capitolo insegna
+all'ottimizzatore a progettare rispetto a un intero ciclo periodico
+di condizioni di camera --- e dimostra poi che lo ha fatto
+correttamente, facendogli riprodurre alla cieca due risposte che la
+teoria già conosce e che un'implementazione con scorciatoie non
+potrebbe trovare.
 
-\section{Cycle-averaged optimization and its oracles}
+\section{Ottimizzazione mediata sul ciclo e i suoi oracoli}
 
-\subsection{What you need to know first}
+\subsection{Che cosa occorre sapere prima}
 
-A \emph{rotating detonation engine} (RDE) burns its propellant in a
-ring-shaped (annular) chamber around which one or more
-\emph{detonation waves} --- supersonic combustion fronts, a shock with
-the flame locked to it --- run continuously, typically a few thousand
-times per second, fresh propellant refilling the gap behind each wave.
-The consequence for the nozzle is the point of this chapter: a nozzle
-cross-section never sees steady conditions. Once per revolution the
-pressure jumps sharply as the wave sweeps past, then falls
-(\emph{blows down}) until the next wave arrives.
+Un \emph{motore a detonazione rotante} (RDE) brucia il proprio
+propellente in una camera anulare attorno alla quale una o più
+\emph{onde di detonazione} --- fronti di combustione supersonici, un
+urto con la fiamma agganciata a esso --- corrono di continuo, tipicamente
+qualche migliaio di volte al secondo, con propellente fresco che
+riempie lo spazio dietro ciascuna onda. La conseguenza per l'ugello è
+il punto di questo capitolo: una sezione di ugello non vede mai
+condizioni stazionarie. Una volta per giro la pressione salta
+bruscamente al passaggio dell'onda, poi cala (\emph{si svuota}) fino
+all'arrivo dell'onda successiva.
 
-What the nozzle responds to is the \emph{stagnation state}
-$(P_0, T_0)$: the pressure and temperature the chamber gas would have
-if brought smoothly to rest, the reservoir condition that fixes
-everything downstream. In an RDE it is a periodic \emph{family}
-$(P_0(\xi), T_0(\xi))$ indexed by the \emph{cycle phase}
-$\xi \in [0,1]$, one full revolution of the wave; the \emph{phase
-measure} $\mathrm{d}\mu(\xi)$ says how much of the cycle each phase
-occupies, hence its weight in an average. And \emph{quasi-steady}
-means the gas crosses the nozzle in far less time than the wave takes
-to come round again --- so at each instant the flow is simply the
-steady flow of that instant's chamber state. The design variable
-throughout is the area ratio $\varepsilon = A_e/A_t$, exit area over
-throat area (Chapter~\ref{ch:nozzle}).
+Ciò a cui l'ugello risponde è lo \emph{stato di ristagno}
+$(P_0, T_0)$: la pressione e la temperatura che il gas di camera
+avrebbe se portato dolcemente a riposo, la condizione di serbatoio
+che fissa tutto ciò che sta a valle. In un RDE è una \emph{famiglia}
+periodica $(P_0(\xi), T_0(\xi))$ indicizzata dalla \emph{fase di
+ciclo} $\xi \in [0,1]$, un giro completo dell'onda; la \emph{misura
+di fase} $\mathrm{d}\mu(\xi)$ dice quanta parte del ciclo occupa
+ciascuna fase, e dunque il suo peso in una media. E
+\emph{quasi-stazionario} significa che il gas attraversa l'ugello in
+un tempo molto minore di quello che l'onda impiega a ritornare ---
+cosicché in ogni istante il flusso è semplicemente il flusso
+stazionario dello stato di camera di quell'istante. La variabile di
+progetto è ovunque il rapporto di espansione
+$\varepsilon = A_e/A_t$, area di uscita su area di gola
+(Capitolo~\ref{ch:nozzle}).
 
-\subsection{The question}
+\subsection{La domanda}
 
-An RDE hands the nozzle a periodic \emph{family} of chamber states,
-not one. Can the engine optimize the cycle-averaged thrust --- and
-prove it does so correctly?
+Un RDE consegna all'ugello una \emph{famiglia} periodica di stati di
+camera, non uno solo. Il motore sa ottimizzare la spinta mediata sul
+ciclo --- e dimostrare di farlo correttamente?
 
-\subsection{How it works, in full}
+\subsection{Come funziona, per esteso}
 
-Because the expansion is quasi-steady, the cycle-averaged thrust is
-simply the phase average of steady thrusts:
+Poiché l'espansione è quasi-stazionaria, la spinta mediata sul ciclo
+è semplicemente la media in fase delle spinte stazionarie:
 \begin{equation}
 J_{\rm cycle}(\varepsilon) \;=\; \int_0^1
 F\!\left(\varepsilon;\, P_0(\xi),\, T_0(\xi)\right)\mathrm{d}\mu(\xi).
 \label{eq:jcycle}
 \end{equation}
-The layer implements this \emph{honestly}: the integral is a
-quadrature over a finite set of phases, and each phase gets its own
-stagnation state built on the same gas tables, its own full march
-through the nozzle, and its own thrust. No shortcut exploiting a
-similarity between phases is coded anywhere --- deliberately, because
-the theory's hardest test is about what an honest implementation must
-then reproduce on its own.
+Lo strato implementa questa formula \emph{onestamente}: l'integrale è
+una quadratura su un insieme finito di fasi, e ogni fase riceve il
+proprio stato di ristagno costruito sulle stesse tabelle di gas, la
+propria marcia completa attraverso l'ugello e la propria spinta. Da
+nessuna parte è programmata una scorciatoia che sfrutti una
+similitudine fra le fasi --- deliberatamente, perché il test più
+difficile della teoria riguarda proprio ciò che
+un'implementazione onesta deve allora riprodurre da sé.
 
-That test is the collapse theorem for the fixed bell (its
-T3)~\cite{theory}. It says: if only the pressure varies over the cycle
-and the temperature does not (a \emph{pressure-only} blowdown, fixed
-$T_0$), the whole cycle problem collapses to a classical steady design
-at the mean pressure --- so cycle-aware optimization must buy
-\emph{exactly nothing}. The reason is a similarity: at fixed $T_0$ and
-fixed geometry, scaling $P_0$ scales every pressure in the nozzle by
-the same factor and moves no wall and no Mach number, so
-$J_{\rm cycle}$ is the steady $J$ at $\langle P_0\rangle$, exactly. An
-engine marching each phase independently has no way to know this ---
-unless it is correct, in which case the zero gain \emph{emerges}. That
-emergence is the test.
+Quel test è il teorema di collasso per la campana fissa (la sua
+T3)~\cite{theory}. Dice: se sul ciclo varia solo la pressione e non
+la temperatura (uno svuotamento \emph{a sola pressione}, $T_0$
+fisso), l'intero problema di ciclo collassa su un classico progetto
+stazionario alla pressione media --- quindi l'ottimizzazione
+consapevole del ciclo deve comprare \emph{esattamente nulla}. La
+ragione è una similitudine: a $T_0$ fisso e geometria fissa, scalare
+$P_0$ scala ogni pressione nell'ugello dello stesso fattore e non
+muove né pareti né numeri di Mach, quindi $J_{\rm cycle}$ è
+esattamente il $J$ stazionario a $\langle P_0\rangle$. Un motore che
+marcia ogni fase in modo indipendente non ha modo di saperlo --- a
+meno che non sia corretto, nel qual caso il guadagno nullo
+\emph{emerge}. Quell'emergere è il test.
 
-The second stage poses the first mock RDE (user-posed): exponential
-$P_0$ \emph{and} $T_0$ profiles in phase (peak-to-trough pressure
-ratio $PR = 10$, temperature ratio $TR = 1.306$, peak 3850~K, five
-phases spaced uniformly in the logarithm of pressure). With $T_0$
-varying, the collapse is no longer exact, and the question becomes
-quantitative: how close does the best \emph{one-number} design --- an
-ordinary single-point design at one representative chamber state ---
-come to the blind cycle optimum, and which state is the right one?
-The theory's answer --- the mean pressure at the
-\emph{pressure-weighted} temperature
-$\langle P T\rangle/\langle P\rangle$ --- is tested against the
-log-mean alternative in a derived comparison, and a design made at the
-peak-pressure phase supplies the deliberately wrong reference.
+Il secondo stadio pone il primo RDE simulato (posto dall'utente):
+profili esponenziali in fase di $P_0$ \emph{e} $T_0$ (rapporto di
+pressione picco-valle $PR = 10$, rapporto di temperatura
+$TR = 1.306$, picco 3850~K, cinque fasi equispaziate nel logaritmo
+della pressione). Con $T_0$ variabile il collasso non è più esatto, e
+la domanda diventa quantitativa: quanto si avvicina all'ottimo di
+ciclo trovato alla cieca il miglior progetto \emph{a un solo numero}
+--- un ordinario progetto a punto singolo su uno stato di camera
+rappresentativo --- e qual è lo stato giusto? La risposta della
+teoria --- la pressione media alla temperatura \emph{pesata sulla
+pressione} $\langle P T\rangle/\langle P\rangle$ --- viene
+confrontata con l'alternativa della media logaritmica in un paragone
+derivato, e un progetto fatto alla fase di picco di pressione
+fornisce il riferimento deliberatamente sbagliato.
 
-Building a phase's stagnation state on tabulated real-gas
-properties has traps of its own; the three that were met (and the
-rejectors that now guard them) are Appendix~\ref{app:cycletraps}.
+Costruire lo stato di ristagno di una fase su proprietà di gas reale
+tabulate ha trappole proprie; le tre incontrate (e i rigettatori che
+ora le presidiano) sono nell'Appendice~\ref{app:cycletraps}.
 
-\subsection{Results of record}
+\subsection{Risultati di riferimento}
 
-\textbf{The zero-gain collapse oracle: 5/5 PASS}
-(\carrier{validation/a1\_cycle\_layer.py}, stage \code{t3}). The
-optimizer, told nothing about the theorem and spending five full
-marches per objective evaluation, lands on the design-at-the-mean
-within its window: the gain it finds over that design is $-475$~N out
-of $1.16\times10^{8}$~N, against a derived band of
-$9.6\times10^{3}$~N --- zero, to the precision the test can resolve.
-The deliberately wrong peak-pressure design loses $4.8\times10^{6}$~N,
-$500\times$ the band, so a real gain would have been seen. And the
-similarity shows up live: at fixed geometry the five per-phase walls
-coincide to $8.9\times10^{-16}$ --- pressure scaling does not move the
-wall, measured at machine zero.
+\textbf{L'oracolo del collasso a guadagno nullo: 5/5 PASS}
+(\carrier{validation/a1\_cycle\_layer.py}, stadio \code{t3}).
+L'ottimizzatore, cui non è stato detto nulla del teorema e che spende
+cinque marce complete per ogni valutazione dell'obiettivo, atterra
+sul progetto-alla-media entro la propria finestra: il guadagno che
+trova rispetto a quel progetto è di $-475$~N su
+$1.16\times10^{8}$~N, contro una banda derivata di
+$9.6\times10^{3}$~N --- zero, alla precisione che il test può
+risolvere. Il progetto deliberatamente sbagliato alla pressione di
+picco perde $4.8\times10^{6}$~N, $500\times$ la banda, quindi un
+guadagno reale si sarebbe visto. E la similitudine si manifesta dal
+vivo: a geometria fissa le cinque pareti per fase coincidono a meno
+di $8.9\times10^{-16}$ --- scalare la pressione non muove la parete,
+misurato allo zero di macchina.
 
-\textbf{The mock RDE: 6/6 PASS} (stage \code{mock}). The blind
-optimum lands within $-0.74\%$ in $\varepsilon$ of the best
-one-number design --- which is indeed mean pressure at the
-pressure-weighted temperature $\langle PT\rangle/\langle P\rangle$,
-beating the log-mean reference in a derived comparison (the theory's
-weighted-average lesson, confirmed at engine level); the thrust
-penalty of that one-number design is $2.5\times10^{-6}$ relative
-(second order, as predicted), while the peak design loses 4\% of $J$.
-The practical reading: for this class of cycle one well-chosen state
-is enough, and the theory says which.
+\textbf{L'RDE simulato: 6/6 PASS} (stadio \code{mock}). L'ottimo
+trovato alla cieca cade entro il $-0.74\%$ in $\varepsilon$ rispetto
+al miglior progetto a un solo numero --- che è appunto la pressione
+media alla temperatura pesata sulla pressione
+$\langle PT\rangle/\langle P\rangle$, battendo il riferimento a media
+logaritmica in un paragone derivato (la lezione della media pesata
+della teoria, confermata a livello di motore); la penalità di spinta
+di quel progetto a un solo numero è $2.5\times10^{-6}$ relativa
+(secondo ordine, come previsto), mentre il progetto di picco perde il
+4\% di $J$. La lettura pratica: per questa classe di cicli uno stato
+ben scelto basta, e la teoria dice quale.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_cycle.pdf}
-\caption{The cycle layer, measured. Axes in both panels: area ratio
-$\varepsilon$ [--] (exit over throat area, the design variable)
-against cycle-averaged thrust of Equation~\eqref{eq:jcycle},
-plotted as the shortfall below that curve's own maximum, in kN
-(zero is the best design on the curve; the absolute level is
-$J_{\rm cycle} \approx 116$~MN). Each point costs five full nozzle
-marches, one per phase; vertical lines mark candidate designs.
-(a)~Pressure-only blowdown: the blind cycle optimum
-($\varepsilon = 5.1685$) sits on the classical mean-pressure design
-($\varepsilon = 5.1506$) within the derived window --- the zero-gain
-collapse, reproduced by an engine never told it should happen.
-(b)~Mock RDE, pressure \emph{and} temperature varying: the blind
-optimum ($\varepsilon = 5.1395$) and the one-number design at the
-pressure-weighted mean state ($\varepsilon = 5.1778$) differ by
-$0.74\%$ in $\varepsilon$ and $2.5\times10^{-6}$ in $J$; the
-peak-pressure design ($\varepsilon = 10.29$) loses 4\% and lies far
-off scale. Note how flat the curves are near their peaks: the story
-lives in the last digits, which is why the thresholds are derived
-rather than eyeballed.}
+\caption{Lo strato di ciclo, misurato. Assi in entrambi i pannelli:
+rapporto di espansione $\varepsilon$ [--] (area di uscita su area di
+gola, la variabile di progetto) contro la spinta mediata sul ciclo
+dell'Equazione~\eqref{eq:jcycle}, riportata come deficit sotto il
+massimo della curva stessa, in kN (zero è il miglior progetto sulla
+curva; il livello assoluto è $J_{\rm cycle} \approx 116$~MN). Ogni
+punto costa cinque marce complete di ugello, una per fase; le linee
+verticali segnano i progetti candidati. (a)~Svuotamento a sola
+pressione: l'ottimo di ciclo trovato alla cieca
+($\varepsilon = 5.1685$) cade sul classico progetto alla pressione
+media ($\varepsilon = 5.1506$) entro la finestra derivata --- il
+collasso a guadagno nullo, riprodotto da un motore cui non era mai
+stato detto che dovesse accadere. (b)~RDE simulato, con pressione
+\emph{e} temperatura variabili: l'ottimo alla cieca
+($\varepsilon = 5.1395$) e il progetto a un solo numero allo stato
+medio pesato sulla pressione ($\varepsilon = 5.1778$) differiscono
+dello $0.74\%$ in $\varepsilon$ e di $2.5\times10^{-6}$ in $J$; il
+progetto alla pressione di picco ($\varepsilon = 10.29$) perde il 4\%
+e cade molto fuori scala. Si noti quanto sono piatte le curve vicino
+ai loro picchi: la storia vive nelle ultime cifre, ed è per questo
+che le soglie sono derivate anziché stimate a occhio.}
 \label{fig:cycle}
 \end{figure}
 
-\section{The brokered compromise, on a meter}
+\section{Il compromesso mediato, su un misuratore}
 \label{sec:votes}
 
-\subsection{The question}
+\subsection{La domanda}
 
-The theory's most quotable claim about RDE nozzles~\cite{theory} is
-the averaged corner condition: ``no phase satisfies its own corner
-condition; the cycle average does.'' Can that be measured?
+L'affermazione più citabile della teoria sugli ugelli per
+RDE~\cite{theory} è la condizione di spigolo mediata: ``nessuna fase
+soddisfa la propria condizione di spigolo; la media di ciclo sì''.
+Si può misurare?
 
-\subsection{How it works, in full}
+\subsection{Come funziona, per esteso}
 
-Recall the corner condition of Section~\ref{sec:corner}: the exact
-statement that a nozzle's wall stops at the right place, whose leading
-term is the mismatch between the pressure the gas reaches at the exit
-and the ambient pressure it exhausts into. At the cycle optimum every
-phase $\xi$ casts a \emph{vote} through that same meter:
-its own exit-pressure mismatch $R(\xi) = p_e(\xi) - p_a$. A phase with
-$R > 0$ leaves the nozzle still pushing harder than its surroundings
---- \emph{underexpanded}, voting ``lengthen me''. A phase with
-$R < 0$ has expanded below ambient --- \emph{overexpanded}, voting
-``shorten me''. The claim is that the optimum satisfies no phase
-individually: it is a brokered compromise in which the
-$\mu$-weighted mean of the votes is zero while each vote is not.
+Si richiami la condizione di spigolo della
+Sezione~\ref{sec:corner}: l'affermazione esatta che la parete di un
+ugello si ferma nel punto giusto, il cui termine dominante è lo
+scarto fra la pressione che il gas raggiunge all'uscita e la
+pressione ambiente in cui scarica. All'ottimo di ciclo ogni fase
+$\xi$ esprime un \emph{voto} attraverso quello stesso misuratore: il
+proprio scarto di pressione di uscita $R(\xi) = p_e(\xi) - p_a$. Una
+fase con $R > 0$ lascia l'ugello ancora spingendo più forte
+dell'ambiente --- \emph{sotto-espansa}, vota ``allungami''. Una fase
+con $R < 0$ si è espansa sotto l'ambiente --- \emph{sovra-espansa},
+vota ``accorciami''. L'affermazione è che l'ottimo non soddisfa
+nessuna fase individualmente: è un compromesso mediato in cui la
+media pesata con $\mu$ dei voti è nulla mentre nessun singolo voto
+lo è.
 
-The meter reads the votes off the cached cycle runs, and every
-threshold is derived. The balance band around zero comes from the
-objective's own curvature and the width of the window where the
-optimizer stopped --- how far from zero the mean could legitimately
-sit. Each phase's vote must then individually exceed that band;
-otherwise ``no phase satisfies its own condition'' would be an
-assertion rather than a measurement.
+Il misuratore legge i voti dalle esecuzioni di ciclo memorizzate, e
+ogni soglia è derivata. La banda di equilibrio attorno allo zero
+viene dalla curvatura dell'obiettivo stesso e dall'ampiezza della
+finestra in cui l'ottimizzatore si è fermato --- quanto lontano
+dallo zero la media potrebbe legittimamente trovarsi. Ogni voto di
+fase deve poi individualmente superare quella banda; altrimenti
+``nessuna fase soddisfa la propria condizione'' sarebbe
+un'asserzione anziché una misura.
 
-\subsection{Results of record}
+\subsection{Risultati di riferimento}
 
-\textbf{8/8 PASS on both cycles}
-(\carrier{validation/a1\_cycle\_corner.py}, an analysis of the cached
-cycle runs --- 0.4~s). At the mock-RDE optimum the five phases' votes
-run from $+7.9\times10^{5}$ down to $-5.1\times10^{5}$~Pa ---
-monotone in phase, with exactly one sign change, each individually
-2.8--3.2$\times$ the balance band and 14--90$\times$ the achieved
-average --- while their \emph{mean} sits at zero within the derived
-band. At the wrong (peak-pressure) design the meter pins at
-$-4.6\times10^{5}$~Pa: every phase overexpanded, no compromise at
-all. A wrong design is visible at a glance.
+\textbf{8/8 PASS su entrambi i cicli}
+(\carrier{validation/a1\_cycle\_corner.py}, un'analisi delle
+esecuzioni di ciclo memorizzate --- 0.4~s). All'ottimo dell'RDE
+simulato i voti delle cinque fasi vanno da $+7.9\times10^{5}$ fino a
+$-5.1\times10^{5}$~Pa --- monotoni in fase, con esattamente un
+cambio di segno, ciascuno individualmente 2.8--3.2$\times$ la banda
+di equilibrio e 14--90$\times$ la media raggiunta --- mentre la loro
+\emph{media} sta a zero entro la banda derivata. Sul progetto
+sbagliato (alla pressione di picco) il misuratore si inchioda a
+$-4.6\times10^{5}$~Pa: tutte le fasi sovra-espanse, nessun
+compromesso. Un progetto sbagliato è visibile a colpo d'occhio.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{fig_votes.pdf}
-\caption{The theorem on a dial. Horizontal axis: cycle phase $\xi$
-[--], one revolution of the wave from passage to blowdown tail.
-Vertical axis: each phase's corner vote $p_e - p_a$ [bar], the amount
-by which its exit pressure exceeds (positive: underexpanded,
-``lengthen me'') or falls short of (negative: overexpanded, ``shorten
-me'') the ambient pressure. Blue: votes at the cycle optimum --- large
-and of both signs, yet their mean (blue dashed) sits inside the shaded
-balance band at zero. That is the averaged corner condition, measured:
-no phase is individually satisfied, the cycle is. Grey: the same votes
-at the peak-pressure design --- every phase overexpanded, the mean
-(grey dashed) far below zero: a wrong design, at a glance.}
+\caption{Il teorema su un quadrante. Asse orizzontale: fase di ciclo
+$\xi$ [--], un giro dell'onda dal passaggio alla coda dello
+svuotamento. Asse verticale: il voto di spigolo di ciascuna fase
+$p_e - p_a$ [bar], la quantità di cui la sua pressione di uscita
+supera (positivo: sotto-espansa, ``allungami'') o non raggiunge
+(negativo: sovra-espansa, ``accorciami'') la pressione ambiente. Blu:
+i voti all'ottimo di ciclo --- grandi e di entrambi i segni, eppure
+la loro media (blu tratteggiato) sta dentro la banda ombreggiata di
+equilibrio allo zero. È la condizione di spigolo mediata, misurata:
+nessuna fase è individualmente soddisfatta, il ciclo sì. Grigio: gli
+stessi voti sul progetto alla pressione di picco --- tutte le fasi
+sovra-espanse, la media (grigio tratteggiato) molto sotto lo zero: un
+progetto sbagliato, a colpo d'occhio.}
 \label{fig:votes}
 \end{figure}
