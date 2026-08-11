@@ -7,17 +7,120 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-11, chiusura Sessione 22 — **F1 "GOVERNOR + P-2
-## CAPTURE", sessione 1: O4 SCARICATA per l'istanza S20 (ramo (c)
-## UNANIME — meccanismo NON-FOLD, entrambe le letture del standoff
-## FALSIFICATE), il falsificatore del bridge K_disc~A_0 SPARA,
-## governor [X-MGOV] costruito/derivato/rejector-provato, campagna
-## decisiva A' 1/2 ESEGUITA = certifiability-limited-under-constraint
-## con margine INATTIVO (predizione pre-registrata TENUTA, stop per
-## monotonia)**; log: validation/PROGRESS_2026-08-11_S22_governor.md,
-## 8 passi; gate PASS al passo 2)
+## ORA (2026-08-11, chiusura Sessione 23 — **F1 "GOVERNOR + P-2
+## CAPTURE" CHIUSA DI RECORD su decisione utente (T0 = early close):
+## DUTY-6(i) SCARICATA ([X-TBAK] tolerance-ball backoff, falsificatore
+## ratificato SPARA), FREEZE P-2 DATATO 2026-08-11 eseguito (blocker
+## C1 = conditional dichiarata, owner F2), conditional esterna GENO
+## VERIFICATA NON ATTERRATA -> F1b leg-1 blocked-with-named-cause,
+## fallback F1b, PROSSIMA FASE = F2**; log:
+## validation/PROGRESS_2026-08-11_S23_f1close.md, 7 passi; gate PASS
+## al passo 2)
 
-**CONTATORE F1 (ISS-5, obbligatorio): F1 campaign 1/2, session 1/3.**
+**CONTATORE F1 FINALE (ISS-5): F1 campaign 1/2, session 2/3 —
+CLOSED (2026-08-11).**
+
+Branch `rde-nozzle-program`. Commit: apertura+gate+T0+T1 = a070f3a,
+T2+T3 = (vedi log), chiusura = (questo). Lint (xv) verde sull'EXIT
+CODE a ogni commit (133 -> 134: +[X-TBAK]). Suite di chiusura nel log
+passo 7 (carrier-esclusiva per l'annotazione C4 di record; [X-TBAK]
+on-demand esercitato in sessione con run diretto, exit 0).
+
+- **[F1] T0 DECISIONE UTENTE (2026-08-11)**: CHIUSURA ANTICIPATA (a)
+  RATIFICATA (condizioni di uscita raggiunte in S22, 2a campagna
+  misurabilmente vacua per monotonia); aggiudicazioni contestuali:
+  blocker C1 = FREEZE CON CONDITIONAL DICHIARATA (owner F2);
+  DUTY-6(i) = ESEGUITA in S23. **PIN UTENTE di record (vincolante su
+  tutte e tre)**: le decisioni valgono solo in quanto NON invalidano
+  la generalita e il modus operandi SOTA della codebase.
+  BLOCCATO-6 chiusa.
+- **[F1] T1 DUTY-6(i) SCARICATA — [X-TBAK]** (registry 134, lint xv
+  EXIT 0, R4 = M0 [S23 REGISTRATION BLOCK]): backoff di tolleranza
+  sul floor Lambda-form — bound mean-value [THEOREM] + surrogato
+  measured-sup a due punti K_RICH [PRACTICE]; regola Delta(delta) =
+  L_TB delta, ship gate SOLO a certificazione (ricerca
+  REQ-NONSTALL/G1 intoccata); L_TB = 4.321067e+01 per unita di
+  raggio-palla (classe bell tier-0 9-dof, piano baseline);
+  **falsificatore ratificato DUTY-6 SPARA** (nominale sintetico
+  margin-active a floor = KS(base): ri-certificazione perturbata
+  FALLISCE a margine -5.58e-02); ship gate discrimina (rung-1
+  shippabile a delta <= 1e-3; dato onesto: a delta = 1e-2 — 0.1 mm
+  su gola da 1 cm — il backoff MORDE); delta = input applicativo
+  DICHIARATO, ri-derivazione per classe = transition duty
+  tier-invariant.
+- **[F1] T2 FREEZE P-2 DI RECORD (datato 2026-08-11, PER REGOLA
+  ISS-5)**: blocco freeze nel P2_outline header — contenuto two-knob
+  S19 (drift f2 9.4809e-03 in norma registrata / banda derivata
+  1.8696e-02 con dato onesto drift-cresce-col-mesh; corner
+  6.6295e-02 vs 2.0e-02 Rao-wall; lambda_e agreement 2.803e-03);
+  riga o32 dichiarata NON-CONCLUSIVA (claim non ucciso, leva =
+  ladder piu fine); C1 = conditional dichiarata con owner F2 (ogni
+  claim field-level porta la clausola finche il carrier F2 non
+  atterra); upgradability dichiarata ([X-MGOV]/[X-TBAK] citabili
+  come methods senza toccare i numeri congelati). Submission resta
+  G5-gated.
+- **[F1] T3 CHIUSURA + ROUTING**: conditional esterna GENO letta
+  READ-ONLY di record (GENO docs/PROGRESS.md: "ramo DEF dimostrato
+  ma non misurato (nessun caso flagdef=1) -> follow-up tracciato")
+  -> **NON ATTERRATA** -> F1b leg 1 = blocked-with-named-cause per
+  la regola scritta D6, fallback F1b (Direction-A-only; leg 2
+  margin-constrained diretta RINVIATA con [X-MGOV] armato),
+  **PROSSIMA FASE = F2**; F1b RIAPRE se/quando la conditional
+  atterra (re-check obbligatorio a ogni apertura di sessione F2+).
+  C4 chiusura meccanica: MIGRATA DICHIARATA a finestra F2 (ragione:
+  F1 chiusa questa sessione; l'annotazione onesta
+  "suite verde = carrier-esclusiva" resta di record in run_all.py;
+  la chiusura meccanica consuma la finestra della fase attiva).
+- **NEXT-1 (S24) = APERTURA F2 "GENERAL ENGINE"** (D6: contatore
+  "F2 session m/6" obbligatorio, C6 promossa pre-entry, G6 operativo
+  da F2a; budget = cap deliberato 4-6 sessioni): item nominati =
+  meccanismo near-axis (evidenza S22, owner F2), rejector
+  field-level C1 (scioglie la conditional del freeze P-2), duties
+  F2a ratificati (DUTY-2(1), DUTY-5(b), DUTY-8, DUTY-15(a)),
+  DUTY-4(i) [F2b], X-SCANM replay probes (ereditato), U3' choking
+  (F2a), estensione margine (q; s, h0) con rejector (F2b exit) +
+  transition duty tier-invariant ([X-TBAK] L_TB ri-derivato).
+  RESIDUO DICHIARATO S22 in piedi: lettura convenzione scipy res.v
+  PRIMA di ogni test mu-consumante (ereditata dalla finestra F1b).
+
+STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S23):
+ 1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
+    del dispatch (validation/G5_dispatch_email.md) dall'account
+    istituzionale + canale di fallback; blocca SOLO le submission
+    (il P-2 congelato NON e sottomettibile prima di G5).
+ 2. **Acquisizioni (F0 dispatch)**: Sternin 1962; Shmyglevskii 1981
+    (gate O3); Giles-Ulbrich SINUM 2010 x2 (su disco) + Lozano 2019
+    (entry F4b); Moretti/Salas CONDIZIONALE; residuo fetch AIAA
+    2019-0197.
+ 3. **Decisione preprint/arXiv**: raccomandazione invariata (armare
+    il trigger); la decisione resta all'utente.
+ 4. **SGANCIO P-2 (ISS-2): CHIUSA 2026-08-11 (S22)**; freeze
+    ESEGUITO alla chiusura F1 (S23) per la regola ratificata.
+ 5. **DISPATCH GENO (protocollo SUO, sessione separata, MAI da
+    qui)**: flagdef KAT + caso di regressione DEF; VERDETTO S23
+    (lettura read-only di record): NON ATTERRATO -> F1b leg 1
+    blocked-with-named-cause; il dispatch RESTA pendente e F1b
+    riapre se/quando atterra.
+ 6. **CHIUSURA ANTICIPATA F1: CHIUSA 2026-08-11** — decisione utente
+    = (a), eseguita in S23 (freeze + C1 conditional dichiarata +
+    DUTY-6(i) scaricata).
+ 7. **NOTA ALBERO**: advisory untracked di record (pattern ADR) in
+    validation/ incl. mean_swirl_panel e i prompt
+    Scollapse/Sgauntlet — ownership della advisory mean_swirl e dei
+    residui prompt DA ASSEGNARE (in coda, non consumata).
+
+Stato precedente (chiusura Sessione 22 — **F1 "GOVERNOR + P-2
+CAPTURE", sessione 1: O4 SCARICATA per l'istanza S20 (ramo (c)
+UNANIME — meccanismo NON-FOLD, entrambe le letture del standoff
+FALSIFICATE), il falsificatore del bridge K_disc~A_0 SPARA,
+governor [X-MGOV] costruito/derivato/rejector-provato, campagna
+decisiva A' 1/2 ESEGUITA = certifiability-limited-under-constraint
+con margine INATTIVO (predizione pre-registrata TENUTA, stop per
+monotonia)**; log: validation/PROGRESS_2026-08-11_S22_governor.md,
+8 passi; gate PASS al passo 2)
+
+**CONTATORE F1 (ISS-5, alla chiusura S22): F1 campaign 1/2,
+session 1/3.**
 
 Branch `rde-nozzle-program`. Commit: apertura+gate+T0+T1 = aec2c9f,
 T2+T3 = 0174bb9, chiusura = (questo). Lint (xv) verde sull'EXIT CODE

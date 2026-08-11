@@ -8,6 +8,53 @@ cheap and scoopable). Sources of record: D2 §G14 + §b0 (page-verified
 classical corpus), D3 §8 (P2 entry) + §11 (falsifier index), M0 VI.3.
 Submission gated by G5 (Kraiko 1979/PMM human pass) — writing is not.
 
+------------------------------------------------------------------------------
+## P-2 FREEZE OF RECORD (dated 2026-08-11 — fired BY RULE at F1 close)
+
+FREEZE MECHANICS: the dated trigger ratified at S22 T0 (option (b),
+ISS-5 rule) fired at the F1 close decided by the user at S23 T0 (log
+validation/PROGRESS_2026-08-11_S23_f1close.md; F1 counter of record:
+campaign 1/2, session 2/3 — CLOSED 2026-08-11). Freeze = the numeric
+content below is the PAPER'S numeric half of record at fallback-B
+(two-knob S19) quality; writing proceeds; submission stays G5-gated.
+
+NUMERIC CONTENT AT FREEZE (R5: committed-carrier numbers only —
+[X-O33B] S19 campaign + S21 repaired re-run; S19/S21 logs of record):
+ - f2 drift = 9.4809e-03 in the REGISTERED norm (S19, CONFIRMED by
+   the S21 full re-run after the restore-bug fix), against the
+   DERIVED band 1.8696e-02 (replaces the 0.03 literal; its negative
+   control fires). HONEST DATUM carried into the text: the drift
+   GROWS with mesh refinement (9.5e-03 -> 1.4e-02) — the
+   design-class attribution is corroborated, the statement of record
+   is TWO-KNOB CONVERGENCE (class enrichment knob + mesh knob), per
+   §5(iv) below.
+ - Corner-row class evidence: 6.6295e-02 in the committed 8-node
+   class vs 2.0e-02 on the faithful Rao wall at the SAME mesh (S19)
+   — the class, not the physics, sets the corner accuracy.
+ - lambda_e = dJ/dy_lip bookkeeping: measured cross-design agreement
+   2.803e-03 (S21 re-issue of record).
+ - o32 OBJECTIVE ROW, DECLARED: the objective mesh-convergence row is
+   NON-CONCLUSIVE under the pre-registered 0.5 cap (S21
+   re-adjudication of record; the claim is NOT killed; named lever =
+   a finer ladder — a declared residual of the paper, not a blocker).
+
+C1 FREEZE-BLOCKER ADJUDICATION (user decision, S23 T0, of record):
+FREEZE WITH DECLARED CONDITIONAL — the audit-C1 FIELD-LEVEL REJECTOR
+(per-cell certification rejector at paper-claim level) remains a
+NAMED CONDITIONAL with owner F2 (carrier unbuilt at freeze): every
+claim in this paper consuming field-level certification carries the
+conditional clause until the F2 carrier lands, and the C1 scope
+qualifiers stay mandatory in the text. This is the plan's
+named-conditional-with-owner pattern (generality and the SOTA modus
+operandi preserved by construction — S23 user pin of record).
+
+UPGRADABILITY (declared): F1 closed on the
+certifiability-limited-under-constraint branch with the margin
+INACTIVE (no outcome-I result), so the frozen numeric claims stay
+two-knob S19; the F1 margin-governance machinery ([X-MGOV] derived
+floors, [X-TBAK] tolerance-ball ship backoff) is citable as METHODS
+content without touching the frozen numbers.
+
 Rigor legend as in M0: THEOREM / THEOREM* / SCHEMA / CONJECTURE /
 PRACTICE. Every claim below carries a class and a falsifier.
 

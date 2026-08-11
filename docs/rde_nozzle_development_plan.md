@@ -88,6 +88,16 @@ F1  GOVERNOR + P-2 CAPTURE (2-3 sessions). Margin-constrained A'
     is on the user-decision table (see BLOCCATO); the coupled
     dated-trigger above is the ratified default until the user
     decides. FALLBACK: P-2 publishes on S19 two-knob numbers.
+    STATUS OF RECORD: F1 CLOSED 2026-08-11 (S23, user decision T0 =
+    early close at campaign 1/2, session 2/3 — exit conditions
+    measured at S22: certifiability-limited-under-constraint branch,
+    margin INACTIVE, O4 discharged branch (c), bridge falsified; 2nd
+    campaign vacuous by monotonicity). P-2 freeze FIRED dated
+    2026-08-11 (P2_outline header block; C1 blocker adjudicated
+    freeze-with-declared-conditional, owner F2); DUTY-6(i) DISCHARGED
+    in-window ([X-TBAK] tolerance-ball backoff, ratified falsifier
+    demonstrated firing); C4 mechanical closure MIGRATED DECLARED to
+    the F2 window (honest annotation stays of record in run_all.py).
 F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
     the floor-sequence cost demands it — budget anchor ~1046
     s/campaign, wall-clock cap 2 h/decisive run, max 2 runs, then
@@ -107,7 +117,15 @@ F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
     conditional, never silently). EQ-v2 promotion/demotion recorded
     with rigor tags, R4 same session. FALLBACK: twin
     blocked-with-named-cause; Direction-A-only content published
-    with the recorded branch.
+    with the recorded branch. STATUS OF RECORD (S23, F1 close): the
+    external conditional was READ-ONLY VERIFIED NOT LANDED
+    (GENO docs/PROGRESS.md of record: "ramo DEF dimostrato ma non
+    misurato (nessun caso flagdef=1) -> follow-up tracciato") ->
+    leg 1 blocked-with-named-cause BY THE WRITTEN RULE, the F1b
+    fallback fires, and F2 OPENS FIRST; F1b RE-OPENS if/when the
+    conditional lands (mandatory re-check at every later session
+    opening), with leg 2 (direct margin-constrained, [X-MGOV] armed)
+    deferred alongside.
 F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
     BUDGET HONESTY (ISS-4): the brick-1+2 precedent spanned ~9
     sessions (S10-S18) — the 4-6 figure is a DELIBERATE cap, not an
@@ -313,7 +331,9 @@ F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
   ("suite green = carrier-exclusive", run_all.py header of record;
   every later gate citing suite-green inherits it); the mechanical
   closure (env-conditional carrier tier + typed ondemand field +
-  staleness link) stays a SCHEDULED F1-window row; C5 ->
+  staleness link) MIGRATED DECLARED to the F2 window at the S23 F1
+  close (reason: F1 closed with the honest annotation standing; the
+  mechanical closure consumes the active phase's window); C5 ->
   pre-F5 entry; C6 -> pre-F2 entry; remaining C3 rows -> the phase
   consuming each tolerance; C8 remainder -> F0 hygiene.
 - EXPERIMENTAL ANCHOR (RK-E, item 13): acquisition started
@@ -345,7 +365,9 @@ RATIFIED DUTY ROWS (accepted with owners; full reasons in the
 ledger's ratification appendix — silent drops void the verdict):
  F1 window   : DUTY-6(i) tolerance-ball margin backoff on the
                Lambda-form derived floor (re-derived per class,
-               tier-invariant transition duty).
+               tier-invariant transition duty). DISCHARGED S23
+               2026-08-11 ([X-TBAK]: L_TB = 4.321067e+01 on the bell
+               tier-0 9-dof class; ratified falsifier fired).
  F2a         : DUTY-2(1) contract scope line "gaseous single-phase
                products" + condensed-fraction rejector; DUTY-5(b)
                wave-count identifiability rejector (stage-A);
