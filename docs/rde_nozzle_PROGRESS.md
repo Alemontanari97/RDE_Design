@@ -7,11 +7,96 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-06, chiusura Sessione 19 — CAMPAGNA O3.2/O3.3, LA
-## METÀ NUMERICA DI P-2: **BENCH O3.3 PASS, CRITERIO PRIMARIO
-## SODDISFATTO**; log a ordine totale:
-## validation/PROGRESS_2026-08-06_S19_o33.md, 8 passi; gate PASS al
-## passo 2)
+## ORA (2026-08-07, chiusura Sessione 20 — CLASSE ADATTIVA [X-AKNO],
+## tentativo di scarico di [C-O33]: **OSTRUITO AL CONFINE DI
+## CERTIFICABILITÀ — [D1] NON TESTABILE, C-O33 NÉ SCARICATA NÉ
+## FALSIFICATA; gap di formulazione aggiudicato + formalizzazione
+## generale a registro**; log a ordine totale:
+## validation/PROGRESS_2026-08-07_S20_adaptive.md, 10 passi; gate
+## PASS al passo 2)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = f2be862, survey
+T1 = 7cfb49b, carrier+knob+wiring = 1d93719, fix P3(ii) = ed84f6e,
+fix livelock+outcome-II = cd0e204, audit critico+validity condition
+= f33e813, attempt-3+R4 = 5ece8d3, chiusura = (questo). Lint (xv)
+verde sull'EXIT CODE a ogni commit (124 -> 125: +[X-AKNO]). Suite
+--fast di chiusura nel log passo 10.
+
+- **[F1/P-2][F2/A1] T1 SURVEY + DECISIONE** (adopt-or-declare, in
+  D6 item 9): skeleton AFEM/FITPACK (sorgente scipy 1.18 LETTA,
+  costanti nascoste trovate e NON adottate); indicatore = drift di
+  f2 per segmento via mappa `owner` — aggiudicato DWR-conformant
+  (f2 = -lambda2 È la variabile aggiunta); base invariata (U1
+  C_geo); free-knot/THB/switch-di-base RIGETTATI con ragioni. GAP
+  dichiarato a posteriori (passo 9e): l'indicatore
+  gradiente-sui-dof-candidati (progressive parameterization ASO)
+  non era nel ventaglio — A/B in coda.
+- **[F2/A1] DUE DIFETTI DEL DRIVER trovati e fixati
+  policy-conformant** (esercitati dalla classe arricchita, mai da
+  quella uniforme): (1) P3(ii) — la certificazione a ogni iterato
+  ACCETTATO era nel testo della policy ma non nel codice, e il
+  recovery ripartiva dall'iterato fallito; (2) LIVELOCK — lo shrink
+  post-rigetto veniva riassorbito dalla ricrescita del raggio di
+  scipy (misurato bit-identico, seg 7-17 attempt 2). Ora: ratchet
+  monotono del cap + esito dichiarato `certifiability_limited`
+  (KKT riportato APERTO) + rifiuto del bench su design non
+  [D1]-eligible.
+- **[F1/P-2] ATTEMPT 3 DI RECORD (exit 1 per costruzione)**:
+  baseline riprodotta esatta (6.6295e-02; indicatore CONCENTRATO,
+  41.8% nel primo intervallo dopo l'attacco — prima evidenza
+  spaziale diretta della diagnosi S19); 2 knot inseriti (8 -> 10
+  dof); J certificato -> **2.7775702e+07** (+1.40e+04 sul J* S18),
+  KKT 1.7e+06 -> 3.8e+02; poi **CRAWL lungo la frontiera di
+  certificabilità** (cinque design rigettati distinti, certdiag
+  8/8 GENUINE con N_NEWTON x10 e floor intatto, margine di
+  causalità INVARIATO) => firma di VINCOLO ATTIVO: il KKT della
+  formulazione non vincolata non può chiudersi in linea di
+  principio. [D1] NON TESTABILE; mismatch corner 6.6826e-02
+  stampato SOLO informativo (design non stazionario).
+- **[F1/P-2] AGGIUDICAZIONE + CONNESSIONE CLASSICA (page-verified)**:
+  Rao-Beck AIAA 94-3264 letto PER INTERO + ramo DEF di GENO letto
+  alla sorgente — la zona vietata ha nome classico (il confine di
+  Sternin 1962 di esistenza degli ugelli ottimi shock-free; Eq. (4)
+  = forma chiusa al giunto; la loro Eq. (1) È il nostro f2); DEF =
+  compressione PM che coalesce ESATTAMENTE sulla superficie di
+  controllo (urto interno di estensione zero, urti solo a valle
+  del dominio). Sternin/Shmyglevskii citati SOLO via Rao-Beck
+  (acquisizione in coda, D6 item 12) — dichiarato.
+- **[F1/P-2] FORMALIZZAZIONE GENERALE A REGISTRO (M0 Parte VI,
+  classi di rigore dichiarate)**: scala di classi di soluzione
+  certificate (S0 shock-free ⊂ S1 fronti fitted), insieme
+  ammissibile A_t(mu_0) col vettore di margini, KKT vincolato col
+  MOLTIPLICATORE DI MARGINE (il termine mancante — perché
+  l'outcome I era impossibile), moltiplicatore = prezzo della
+  shock-freeness che decide la transizione di tier (linea G12/F2;
+  DEF = caso limite + àncora di validazione). Ancoraggio SOTA:
+  tassonomia Le Digabel-Wild (il vincolo oggi è
+  Known-Unrelaxable-Simulation-NONQUANTIFIABLE; rimedio = margine
+  quantificato), aggregazione KS = standard. Ponte K ↔ A_0 =
+  CONGETTURA con falsificatore nominato (monitor Eq. (4)/Sternin
+  lungo la camminata).
+- **DIRETTIVA UTENTE NUOVA (in memoria,
+  `agnostic-milestone-review-directive`)**: check agnostici a
+  milestone su committato+non committato, confine rabbit-hole
+  nominato in anticipo, un frame alternativo per ogni ostruzione.
+  Applicata in sessione (passi 7 e 9).
+- **NEXT-1 = DECISIONE UTENTE per S21** tra (ordine incluso):
+  (E) strumentazione di localizzazione (argmax cella + posizione)
+  + monitor di validità Eq. (4)/Sternin (= il test del ponte);
+  (A') ri-ottimizzazione VINCOLATA al margine (fold margin
+  KS-aggregato, floor derivato, gradiente AD) con la variante
+  vincolata di [D1] derivata PRIMA del run decisivo; A/B
+  dell'indicatore candidato; (B) fallback = P-2 coi numeri
+  two-knob S19 (sempre disponibile). NIENTE altro lavoro sul
+  driver (confine pre-nominato). Poi in coda invariati: residui
+  (b)/(c)/(d) S19, census-lemma, PAP-RIM, review G0/T2, panchina
+  rigore, G5/preprint (lock utente).
+
+Stato precedente (chiusura Sessione 19 — CAMPAGNA O3.2/O3.3, LA
+METÀ NUMERICA DI P-2: **BENCH O3.3 PASS, CRITERIO PRIMARIO
+SODDISFATTO**; log a ordine totale:
+validation/PROGRESS_2026-08-06_S19_o33.md, 8 passi; gate PASS al
+passo 2)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = 2664f95,
 carrier O3.2 + pre-dichiarazioni = 6ea29e3, bench O3.3 = ceae2ae,
