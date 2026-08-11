@@ -33,10 +33,16 @@
   [PASS] R-2 the compatibility equations are load-bearing
 
 -- W-4: stratified inlet on the spike world (conservation) --
-  cert 0.058 over 1457 cells
-  first-column wedge jump: 3.43e-02 (uniform baseline 1.58e-02, x2.2) — the S21 vertical-start-line property, reported
-  POST-wedge mass conservation col 2 -> last: 7.86e-03
-  mean entropy per unit mass in/out rel drift: 5.21e-04
+  cert 0.047 over 1457 cells
+  first-column wedge jump: 3.37e-02 (uniform baseline 1.58e-02, x2.1) — the S21 vertical-start-line property, reported
+  POST-wedge mass conservation col 2 -> last: 7.93e-03
+  mean entropy per unit mass in/out rel drift: 4.81e-04
   [PASS] W-4 stratified spike world: certified cells, post-wedge mass and transported-entropy conservation, wedge within 4x its uniform baseline
 
-== 8/8 PASS  (170.9 s) ==
+-- W-5: transported invariants stay inside the inlet range --
+  inlet entropy span 25.000 J/kg K; worst node overshoot 1.431e+01 (57.2491 % of the span), nodes outside: 96 / 1488
+  stagnation-enthalpy overshoot 2.622e+04 (57.2491 % of its span)
+  feet taken on the WALL segment (streamline off the descending wall): 0; feet outside their chord: 22
+  [FAIL] W-5 the march creates no entropy: every node's invariants lie inside the inlet's range (transport bound)
+
+== 8/9 PASS  (182.7 s) ==

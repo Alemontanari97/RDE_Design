@@ -71,7 +71,53 @@ plug worlds (widening) do not develop the artifact; a growth rule
 aware of non-widening jets is possible future driver work, not
 needed for the nozzle program's geometries.
 
-## The record (8/8 PASS, `_rot_march_run_of_record_S24.log`)
+## THE DEFECT THE FIGURE FOUND (correction to the first record)
+
+The first build of this carrier reported 8/8. Drawing the entropy
+field for the document refuted it in one glance: the marched mesh
+carried entropy up to 35.5 J/kg K where the inlet supplies at most
+25. Entropy is TRANSPORTED — interpolation may not create it — so
+the suite was missing the check that matters. Added as W-5, the
+TRANSPORT BOUND: every node's invariants must lie inside the
+inlet's range. It FAILS, and the failure is the result of record:
+
+    96 of 1488 nodes outside the inlet range (1.6 % of cells)
+    worst overshoot 57 % of the physical span, one band of the spike
+    measured foot parameters up to t = 12 (twelve chords past the end)
+
+Cause, measured: for those cells the backward streamline crosses NO
+segment of the previous column, so no chord brackets its foot and
+the invariant lerp extrapolates. Note what hid it: W-4 grades the
+MEAN entropy per unit mass (drift 5.2e-4, passing) while local
+values overshoot by half a span — a mean hides exactly this, and a
+picture does not.
+
+Three fixes measured, all rejected:
+
+- **clamp t to [0,1]** — GENO's own rule. Stores invariants the cell
+  did not solve with, so the node leaves the thermodynamic manifold
+  and poisons its neighbours: certification 3.5e11. GENO can clamp
+  because its predictor-corrector recomputes the foot state each
+  iteration; our cells are CERTIFIED against their own residual, so
+  the stored state must be the solved state.
+- **take the foot on the wall segment** (the streamline off a
+  descending wall) — physically right for that case, but it fires on
+  ONE cell and breaks it the same way; the other 22 are not
+  wall-foot cells.
+- **iterate the bracket against the SOLVED foot** (kept: it is
+  principled and improves certification 0.058 -> 0.047) — cannot
+  close those cells, because the containing segment is not in that
+  column at all.
+
+The remaining fix is a MULTI-COLUMN foot search — the generalization
+the wall-foot search already carries (it steps back up to three
+columns). Not built this session. Consequence, declared: the port is
+valid for inlets whose streamlines bracket cleanly (both jet
+oracles, uniform invariants, the regression) and carries a known
+localized defect on the stratified spike; NO DESIGN CONCLUSION may
+rest on a stratified spike march until W-5 passes.
+
+## The record (8/9 PASS, `_rot_march_run_of_record_S24.log`)
 
     R-0   closure identity at (s0, h0):            0.0
     W-3   (p, T, M) round-trip:                    2.4e-15
@@ -83,9 +129,12 @@ needed for the nozzle program's geometries.
     W-1   vs certified march (uniform invariants): 3.00e-5 -> 8.83e-6
           (ratio 3.4, joint (K,N) refinement)
     R-2   corrupted-compatibility rejector:        1350x separation
-    W-4   stratified spike world:                  cert 0.058,
+    W-4   stratified spike world:                  cert 0.047,
           post-wedge mass 7.9e-3, entropy-flux drift 5.2e-4,
           wedge 3.4e-2 = 2.2x its uniform baseline (S21 property)
+    W-5   TRANSPORT BOUND:                        FAIL — 96/1488
+          nodes outside the inlet range, worst 57% of the span
+          (the open defect above)
 
 ## What this opens
 

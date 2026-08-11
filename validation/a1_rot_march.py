@@ -98,6 +98,14 @@ CHECKS
        flux start -> last column conserved within the derived band;
        ENTROPY FLUX (integral s dmdot) conserved likewise — the
        transported invariant, measured not assumed;
+  W-5  THE TRANSPORT BOUND (the check the first build lacked, and
+       the one that caught its defect): entropy and stagnation
+       enthalpy are TRANSPORTED, so every marched node's invariants
+       must lie inside the range the INLET supplies — interpolation
+       may not create entropy. Measured on the stratified spike
+       world, together with the count of feet clamped to their
+       chord (the clamp is GENO's rule; a march that clamps often
+       is one whose foot search is losing its bracket);
   R-1  rejector: a corrupted interior cell that pins the streamline
        foot to t = 0 (invariants taken from the same-column node —
        cross-streamline contamination) must leave the W-2b band;
@@ -706,6 +714,35 @@ def main():
           " 4x its uniform baseline",
           out_s4["cert_worst"] <= 1.0 and d_md <= 1e-2
           and d_s <= 1e-3 and wedge <= 4.0 * wedge_u)
+
+    # ---- W-5: the transport bound -----------------------------------
+    print("\n-- W-5: transported invariants stay inside the inlet"
+          " range --")
+    mesh = np.asarray(out_s4["mesh_pts"])
+    s_lo, s_hi = float(np.min(s_r)), float(np.max(s_r))
+    h_lo, h_hi = float(np.min(h_r)), float(np.max(h_r))
+    span_s = s_hi - s_lo
+    span_h = h_hi - h_lo
+    ov_s = float(max(np.max(mesh[:, 4]) - s_hi,
+                     s_lo - np.min(mesh[:, 4]), 0.0))
+    ov_h = float(max(np.max(mesh[:, 5]) - h_hi,
+                     h_lo - np.min(mesh[:, 5]), 0.0))
+    n_bad = int(np.sum((mesh[:, 4] > s_hi + 1e-9)
+                       | (mesh[:, 4] < s_lo - 1e-9)))
+    n_cl = int(out_s4["foot_clamped_n"])
+    print("  inlet entropy span %.3f J/kg K; worst node overshoot"
+          " %.3e (%.4f %% of the span), nodes outside: %d / %d"
+          % (span_s, ov_s, 100 * ov_s / span_s, n_bad, len(mesh)))
+    print("  stagnation-enthalpy overshoot %.3e (%.4f %% of its"
+          " span)" % (ov_h, 100 * ov_h / span_h))
+    n_wf = int(out_s4["wall_foot_n"])
+    print("  feet taken on the WALL segment (streamline off the"
+          " descending wall): %d; feet outside their chord: %d"
+          % (n_wf, n_cl))
+    check("W-5 the march creates no entropy: every node's invariants"
+          " lie inside the inlet's range (transport bound)",
+          ov_s <= 1e-9 * max(span_s, 1.0)
+          and ov_h <= 1e-9 * max(span_h, 1.0))
 
     print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
                                             time.time() - t0))

@@ -322,6 +322,11 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     x_end_march = float(sx[-1])
     edge_pts, wall_pts = [], []
     sf_ct = [0]                    # streamline-foot decision counter
+    clamp_n = [0]                  # feet landing outside their chord
+    wall_foot_n = [0]              # (unused; kept for the out dict)
+    foot_open_n = [0]              # brackets the iteration could not
+                                   # close (reported, never masked)
+    tstat = []                     # (t, column, row) diagnostic
     M = N                                     # top row of the PREVIOUS column
     kst = -1
     while True:
@@ -394,23 +399,54 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 # the whole previous column for the intersection
                 # (inter_solve_gen's present(col) branch); so does
                 # this port.
-                if S.mode == "rec":
-                    x4s, y4s = float(z0[0]), float(z0[1])
-                    th0 = float(np.arctan2(float(z0[3]),
-                                           float(z0[2])))
-                    jsf = jprev
-                    f_prev = None
+                # STREAMLINE-FOOT BRACKET, ITERATED AGAINST THE
+                # SOLVED FOOT (S24 measured): scanning with the
+                # PREDICTOR's direction picks the wrong chord for a
+                # few percent of cells — measured foot parameters up
+                # to t = 10, i.e. ten rows past the chord, and the
+                # invariant lerp then EXTRAPOLATES entropy the inlet
+                # never supplied (5.6% of nodes, worst +42% of the
+                # span). Clamping t instead stores invariants the
+                # cell did not solve with and pushes the node off the
+                # thermodynamic manifold (measured cert 3.5e11), so
+                # the decision itself is iterated: solve, and if the
+                # foot fell outside its chord, re-bracket with the
+                # SOLVED direction and solve again. The converged
+                # bracket is what the schedule records.
+                def _scan(x4s, y4s, th0):
                     Mp = max(j for j in range(1, M + 1)
                              if (j, i - 1) in G)
+                    jj, f_prev = jprev, None
                     for j in range(1, Mp + 1):
                         ptj = G[(j, i - 1)]
                         f = ((y4s - float(ptj[1]))
                              - np.tan(th0) * (x4s - float(ptj[0])))
                         if f_prev is not None and f_prev > 0.0 >= f:
-                            jsf = j - 1
+                            jj = j - 1
                             break
                         f_prev = f
-                    jsf = min(max(jsf, 1), Mp - 1) if Mp > 1 else 1
+                    return min(max(jj, 1), Mp - 1) if Mp > 1 else 1
+
+                if S.mode == "rec":
+                    jsf = _scan(float(z0[0]), float(z0[1]),
+                                float(np.arctan2(float(z0[3]),
+                                                 float(z0[2]))))
+                    for _try in range(4):
+                        ptSA = G[(jsf, i - 1)]
+                        ptSB = G[(jsf + 1, i - 1)]
+                        zt = np.asarray(s_int[0](
+                            jnp.asarray(z0),
+                            jnp.concatenate([pt1, pt2, ptSA, ptSB])))
+                        tv = float(zt[4])
+                        if -1e-9 <= tv <= 1.0 + 1e-9:
+                            break
+                        jn = _scan(float(zt[0]), float(zt[1]),
+                                   float(np.arctan2(float(zt[3]),
+                                                    float(zt[2]))))
+                        if jn == jsf:
+                            foot_open_n[0] += 1
+                            break
+                        jsf = jn
                     S.d.setdefault("sfoot", []).append(jsf)
                 else:
                     jsf = S.d["sfoot"][sf_ct[0]]
@@ -426,8 +462,26 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                      tag=("int", kst, jnew))
             if NV == 6:
                 # the cell's t lerps the streamline invariants on the
-                # SEARCHED chord (the foot the cell itself refined)
+                # SEARCHED chord (the foot the cell itself refined),
+                # CLAMPED to the chord — GENO's rule
+                # (t_foot = max(0, min(1, t_foot)), reported through
+                # its foot_clamped flag). Entropy and stagnation
+                # enthalpy are TRANSPORTED: an unclamped lerp
+                # EXTRAPOLATES them past the data that carries them,
+                # creating entropy the inlet never supplied (S24
+                # measured on the stratified spike: 5.6% of nodes,
+                # worst +42% of the inlet span). Clamping keeps every
+                # node's invariants inside the convex hull of the
+                # chord's, so the transported bound holds by
+                # construction; the clamp COUNT is reported, since a
+                # march that clamps often is one whose foot search is
+                # losing its bracket.
                 t_ = z[4]
+                if S.mode == "rec":
+                    tv = float(t_)
+                    tstat.append((tv, kst, jnew))
+                    if tv < -1e-12 or tv > 1.0 + 1e-12:
+                        clamp_n[0] += 1
                 inv = ptSA[4:6] + t_ * (ptSB[4:6] - ptSA[4:6])
                 z = jnp.concatenate([z[:4], inv])
             G[(jnew, i)] = z
@@ -481,7 +535,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         # Values are a memcpy either way: bit-identical.
         mesh_pts=(np.stack([np.asarray(v) for v in G.values()])
                   if S.mode == "rec" else None),
-        mesh_keys=(list(G.keys()) if S.mode == "rec" else None))
+        mesh_keys=(list(G.keys()) if S.mode == "rec" else None),
+        foot_clamped_n=clamp_n[0], wall_foot_n=wall_foot_n[0],
+        foot_open_n=foot_open_n[0], tstat=tstat)
     return out, S
 
 
