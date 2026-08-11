@@ -7,13 +7,102 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-07, chiusura Sessione 20 — CLASSE ADATTIVA [X-AKNO],
-## tentativo di scarico di [C-O33]: **OSTRUITO AL CONFINE DI
-## CERTIFICABILITÀ — [D1] NON TESTABILE, C-O33 NÉ SCARICATA NÉ
-## FALSIFICATA; gap di formulazione aggiudicato + formalizzazione
-## generale a registro**; log a ordine totale:
-## validation/PROGRESS_2026-08-07_S20_adaptive.md, 10 passi; gate
-## PASS al passo 2)
+## ORA (2026-08-11, chiusura Sessione 21 — **F0 "ORDER +
+## INSTRUMENTATION" del piano v3 RATIFICATO: P0 chiusi con rejector,
+## certdiag KAT retro-valida il verdetto S20, bench o33 riparato e
+## FULL PASS, addendum utente (red-team + use-case + choking U3')
+## eseguito, EQ-v2/Λ-form/ledger a registro col footing corretto,
+## strumentazione ARMATA**; log:
+## validation/PROGRESS_2026-08-11_S21_order.md, 8 passi; gate PASS
+## al passo 2)
+
+Branch `rde-nozzle-program`. Commit: apertura+gate = e73f370,
+ratifica T1 = 0dd0d69, addendum = 7decfec, T2/T3-carrier = 89c3400,
+T3/T4/T5 = ba5f1cf, chiusura = (questo). Lint (xv) verde sull'EXIT
+CODE a ogni commit (125 -> 129: +[X-CDKAT], +[X-VMON], +[T-LFEQ4],
++[C-EQV2]). Suite --fast di chiusura nel log passo 8. NOTA C4 di
+record: "suite verde = carrier-esclusiva" (annotazione onesta in
+run_all.py; chiusura meccanica = riga schedulata F1).
+
+- **[F0] T1 RATIFICA**: piano v3 in D6 §0-pre (indice di lavoro
+  F0-F6; tabella G-gates→F senza perdite; tassonomia fronti con (a)
+  = EQ-v2 convergente e (c) governor HOMENTROPIC-SCOPED fino a F2;
+  CLAUSOLA TIER-INVARIANT vincolante: REQ-NONSTALL + G1-surrogato +
+  duty di transizione).
+- **[F0] ADDENDUM UTENTE (datato 2026-08-11) ESEGUITO**: correzioni
+  red-team PRIMA dell'assorbimento (RT-1 consistent-with; RT-2 lembi
+  S1 divisi; RT-3 H7-SEL; RT-4 mu = SIGN TEST); tre aggiudicazioni
+  obbligatorie (contact/slip → F2a/F4b; o32 RI-AGGIUDICATO: riga
+  obiettivo NON-CONCLUSIVA sotto il cap pre-registrato 0.5, claim
+  non ucciso; totali audit corretti 82/13/12 e re-triage dei 13
+  high COMPLETO); budget per fase istanziati; freeze P-2 checkable;
+  flagdef = conditional esterna nominata; F3<->F4b interscambiabili;
+  U1-U3 + U3' (choking RDE, PREMISE-OPEN, owner F2a) assorbiti.
+- **[F0] T2 P0 CHIUSI CON REJECTOR**: C2 cert-stack (NaN→reject nei
+  due certify + metric inf nel Newton; replay cert_diag sul jit TOC
+  + CERT_PLAY su A1 con righe di verdetto nuove; contatori
+  nonfiniti verdict-bearing nel driver; exit_cap distinto e
+  riportato); [X-CDKAT] KAT PASS: la manopola N_NEWTON MORDE
+  (2.1e-01 → 2.3e+05 a cap 3), bit-identica a cap 300, rejector
+  replay spara a 6.1e+08 su seed stantii → **verdetto S20 8/8
+  GENUINE RETRO-VALIDATO**; bench [X-O33B] riparato (bug di restore
+  che rendeva ineseguibile ogni stadio dopo R7) e RI-ESEGUITO FULL
+  PASS: f2 drift 9.4809e-03 in NORMA REGISTRATA (S19 confermato),
+  banda DERIVATA 1.8696e-02 al posto del letterale 0.03 (con
+  controllo negativo che spara), dato onesto: il drift CRESCE col
+  mesh (9.5e-03 → 1.4e-02) = attribuzione classe-di-design
+  corroborata.
+- **[F0] T4 R4**: M0 Parte VI [S21 REGISTRATION BLOCK] — EQ-v2 al
+  footing corretto (A/B CONJECTURE sotto H1-H6+H7-SEL, S4 THEOREM,
+  lembi S1, standoff = consistent-with), Λ-form coi DUE bound
+  (EOS-general MA NON data-general → estensione F2), lambda_e =
+  dJ/dy_lip, traduzione Rao-vs-Zucrow, ledger O1-O5+G1 con owner
+  di fase. Registry: [C-EQV2], [T-LFEQ4], [X-VMON].
+- **[F0] T5 STRUMENTAZIONE ARMATA**: argmax/argmin-cell nel cert
+  dict (additiva, default-off, env A1_CERT_ARGMAX); persistenza dei
+  design RIGETTATI nel driver (result dict + A1_REJ_SAVE); monitor
+  di validità [X-VMON] con KAT γ=1.4 PASS (identità al floor,
+  2.7e-13 vs banda 1.1e-12; conferma viva del clamp F3 fuori box,
+  riga P2). Retro-diagnosi del design S20 → riga F1-entry (tag di
+  fase, non consumata qui).
+- **NEXT-1 = F1 (governor + P-2 capture)**: entry gates = bande
+  derivate delle magic di implementazione + variante [D1] vincolata
+  PRIMA del run decisivo + monitor lungo la camminata; contatore di
+  budget "F1 campaign k/2, session m/3" in ORA a ogni chiusura;
+  freeze P-2 a trigger DATATO (default two-knob S19). In coda F1b
+  (twin DEF; leg 1 sotto conditional esterna GENO). PRIMA di F1:
+  decisione utente sullo SGANCIO P-2 (vedi BLOCCATO).
+
+STATO BLOCCATO / LOCK UTENTE (T6, ri-presentati DATATI 2026-08-11):
+ 1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
+    del dispatch (validation/G5_dispatch_email.md) dall'account
+    istituzionale + canale di fallback; blocca SOLO le submission.
+ 2. **Acquisizioni (F0 dispatch)**: Sternin 1962; Shmyglevskii 1981
+    (gate O3); Giles-Ulbrich SINUM 2010 x2; Lozano 2019 (entry
+    F4b); Moretti/Salas CONDIZIONALE. Addendum D: AIAA 2019-0197
+    (residuo — Harroun JPP 37(5) 2021 già letto 14/14 pp
+    nell'advisory choking atterrato in sessione; page-verify
+    formale al consumo F2a).
+ 3. **Decisione preprint/arXiv**: raccomandazione invariata (armare
+    il trigger); la decisione resta all'utente.
+ 4. **NUOVO — SGANCIO P-2 (ISS-2, decisione utente)**: freeze a
+    F0+1 a qualità fallback (two-knob S19) SGANCIATO dal governor,
+    vs il default ratificato (trigger datato a chiusura F1). Da
+    decidere all'apertura della prossima sessione.
+ 5. **DISPATCH GENO (protocollo SUO, sessione separata, MAI da
+    qui)**: flagdef KAT (boundaryfunction_solve vs Eq.(4) chiusa,
+    γ=1.4 sintetico — [X-VMON] fornisce il riferimento) + un caso
+    di regressione DEF; conditional esterna nominata del gate F1b.
+
+Stato precedente (chiusura Sessione 20 — CLASSE ADATTIVA [X-AKNO],
+tentativo di scarico di [C-O33]: **OSTRUITO AL CONFINE DI
+CERTIFICABILITÀ — [D1] NON TESTABILE, C-O33 NÉ SCARICATA NÉ
+FALSIFICATA; gap di formulazione aggiudicato + formalizzazione
+generale a registro**; log a ordine totale:
+validation/PROGRESS_2026-08-07_S20_adaptive.md, 10 passi; gate
+PASS al passo 2. NOTA S21: il verdetto certdiag 8/8 GENUINE è stato
+RETRO-VALIDATO da [X-CDKAT]; la lettura "predicted signature DEF" è
+riformulata di record in "consistent-with fino a O4" — red-team.)
 
 Branch `rde-nozzle-program`. Commit: apertura+gate = f2be862, survey
 T1 = 7cfb49b, carrier+knob+wiring = 1d93719, fix P3(ii) = ed84f6e,
