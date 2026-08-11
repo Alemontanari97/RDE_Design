@@ -510,6 +510,36 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     marking sets for theta in {0.3, 0.5, 0.7} printed so the choice
     is auditable), because each outer cycle costs a re-optimization
     (~400 s, S18) and dof economy is part of correctness here.
+    S20 EXECUTION STATE (2026-08-07, carrier [X-AKNO], log
+    validation/PROGRESS_2026-08-07_S20_adaptive.md steps 1-10; M0
+    Part VI block "ADAPTIVE DESIGN CLASS — DISCHARGE ATTEMPT"):
+    residue (a) STARTED, NOT closed — [C-O33] neither discharged
+    nor falsified ([D1] untestable: no cycle converged in-stratum).
+    ESTABLISHED: the f2 residual is spatially CONCENTRATED (41.8%
+    of mass in the first knot interval after the attachment) so
+    uniform nodes misallocate dofs; two Doerfler-marked knots
+    (8 -> 10 dofs) raised the certified objective to 2.7775702e+07
+    (+1.40e+04 over the S18 J*) with KKT 1.7e+06 -> 3.8e+02; the
+    walk then CRAWLS along the certifiability frontier (five
+    distinct rejected designs, certdiag 8/8 GENUINE = trip-cap
+    hypothesis dead, global causality margin unchanged) — an
+    ACTIVE-CONSTRAINT signature: the unconstrained-form KKT cannot
+    close in principle. TWO DRIVER DEFECTS found and fixed
+    policy-conformantly (P3(ii) certification of accepted iterates
+    was declared but not coded; the rejection shrink was undone by
+    scipy radius regrowth = livelock; driver now ratchets and can
+    return a declared certifiability-limited outcome). GENERAL
+    FORMALIZATION of record in M0 (tier ladder, margin-constrained
+    KKT, multiplier-priced tier transitions; Le Digabel-Wild
+    taxonomy anchor; KS aggregation standard). NEXT (S21, user
+    decides the order): (E) localization instrumentation + the
+    Eq.(4)/Sternin validity monitor (the K<->A_0 bridge falsifier);
+    (A') margin-constrained re-optimization (fold margin,
+    KS-aggregated, derived floor) with the constrained [D1]
+    variant derived BEFORE the decisive run; candidate-dof-gradient
+    indicator A/B (declared T1 gap); fallback B = publish P-2 with
+    the S19 two-knob numbers, standing at every gate. NO further
+    driver work (rabbit-hole boundary pre-named in-session).
     Honest both ways: the deferred brick lands RICHER (corrected
     O3.3 bench (30)/(31)+f2, pre-registered norms P2_outline §5,
     RK-G topology policy, X1 capturing control design). KICKOFF
@@ -550,6 +580,16 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     Morris JPP 21(3):527-538 (2005). Optional: Ma-Choi-Yang JPP
     21(3):512-526 (2005); Kailasanath AIAA J 41(2):145-159 (2003);
     Ransom/Hoffman/Thompson 3-D MOC (to locate; B-lite).
+    ADDED S20 (2026-08-07, the certifiability-boundary line —
+    tier-0 margin constraint + tier-1 fitted fronts): PRIORITY 2
+    Sternin, Sov. Phys. Doklady Fluid Mech. 6(7) (1962), "The
+    Boundary of the Region of Existence of Optimal Nozzles Free of
+    Shock Waves" + Shmyglevskii, USSR Comput. Maths. Math. Phys.
+    20(5):113-127 (1981), "Variational Problems of Gas Dynamics" —
+    both currently cited ONLY via Rao-Beck AIAA 94-3264 (which IS
+    in-house, GENO/literature, page-verified in full S20); their
+    independent page-verify unlocks the classical side of the
+    validity-boundary monitor.
 13. EXPERIMENTAL ANCHOR line (ESA-review finding): name and acquire
     at least one PUBLIC RDE dataset (thrust/Isp/frequency with
     nozzle) as the case-C calibration target — the program currently

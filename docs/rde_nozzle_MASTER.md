@@ -1313,13 +1313,97 @@ livelock. The driver now certifies every accepted iterate, RATCHETS
 the radius bound downward on rejection, and on exhaustion RETURNS
 the last certified base flagged certifiability_limited with the KKT
 reported OPEN (outcome II above) instead of raising mid-walk.
- WORKING HYPOTHESIS (explicitly NOT established): that a richer
-design class walks the optimizer to where the march's certification,
-not the objective, binds — i.e. that outcome II is generic for
-adaptive enrichment. Discriminated by the same two pre-declared
-measurements; if confirmed, the certifiability constraint becomes a
-first-class object of the P-2 narrative rather than an
-implementation detail.
+ ATTEMPT 3, THE DECISIVE RUN OF RECORD (fixes held; certdiag 8/8;
+S20 log step 8): the ratcheted walk crawled ALONG the certifiability
+frontier with certified progress — rejections at FIVE distinct
+nearby designs (cert_worst 1.170, 2.458, 1.060, 1.455, 1.698, each
+bit-identical under N_NEWTON 30 -> 300 with the floor untouched =
+the trip-cap/K_budget hypothesis dead eight times over) while the
+certified objective advanced to J = 2.7775702e+07 (+1.40e+04 over
+the S18 8-node J*, own-plan P4-audited record) and the KKT fell
+1.726e+06 -> 3.795e+02, still ~400x above gtol. The global min
+axial margin stayed AT the baseline value 0.4809 m/s: causality-
+margin erosion is EXCLUDED as the mechanism. Reading of record: an
+ACTIVE-CONSTRAINT signature — the ascent direction leaves the
+certifiable set from every certified base near the frontier — so
+outcome II is the necessary end state of the UNCONSTRAINED-form
+walk, [D1] stays untestable there, and [C-O33] is NEITHER
+discharged NOR falsified by this campaign.
+ THE CLASSICAL CONNECTION (page-verified 2026-08-07: Rao & Beck,
+AIAA 94-3264, pp. 1-4 READ IN FULL; GENO Profile_m.f90 DEF branch
+READ. CITATION STATUS, radical honesty: Sternin 1962, "The Boundary
+of the Region of Existence of Optimal Nozzles Free of Shock Waves",
+and Shmyglevskii 1981, "Variational Problems of Gas Dynamics", are
+cited VIA the Rao-Beck reference list only — NOT independently
+page-verified; both queued for acquisition, and no claim about
+their content beyond what Rao-Beck's own text states is made or
+permitted): the forbidden zone has a classical name — Sternin's
+boundary — with Rao-Beck Eq. (4) as its closed form at the kernel/
+control-surface junction, their Eq. (1) being literally our f2
+invariant;
+minimum-length optimum-thrust nozzles sit ON that boundary; the DEF
+construction goes beyond it via an isentropic Prandtl-Meyer
+compression coalescing EXACTLY AT the control-surface point (zero
+interior shock extent, isentropic upstream, shocks only downstream
+of the surface; Shmyglevskii 1981 for the variational treatment;
+-22% length at -0.3% thrust, slight advantage at equal length), and
+GENO implements it in production (type-2 flagdef, DE<->BD mass
+equality as the design constraint). Coalescence-shock caveat of
+record: envelope geometry does NOT determine an interior shock's
+position/strength — Rao-Beck avoid the interior shock by
+construction (inverse method); the general rigorous treatment makes
+the front an UNKNOWN of a fitted solve.
+ GENERAL FORMALIZATION OF RECORD (the most general the corpus
+supports; classes declared per item). The design problem is posed
+on a LADDER of certified solution classes:
+   (P_t):  max J(Sigma)  s.t.  g(Sigma) = 0 (eps, L),
+           Sigma in C_m INTERSECT A_t(mu_0),
+ where A_t(mu_0) = { Sigma in C_geo : P(Sigma) has a solution in
+tier t's class with margin vector m(Sigma) >= mu_0 > 0 }, the
+margin vector collecting the FOLD margin (distance from same-family
+characteristic coalescence; classically Eq. (4)/Sternin at the
+junction), the CAUSALITY margin u_x - c, and the uniform constants
+of the certified class D(delta, L_x, C_geo, C_dat, h_min). Tiers:
+S_0 (shock-free, the current engine) SUBSET S_1 (finitely many
+FITTED fronts under RH + entropy + Lax + Lopatinskii certificates —
+the G12/F2 line; DEF = the zero-interior-extent limit) SUBSET ...;
+the nesting is trivial and gives sup J monotone in t. First-order
+optimality at a boundary-active optimum is the KKT WITH THE MARGIN
+MULTIPLIER, grad J = lambda grad g + mu grad m, mu >= 0 — the term
+the S18/S20 formulation lacked, which is why the unconstrained-form
+KKT could not close; and the measured multiplier mu at a
+margin-constrained optimum PRICES shock-freeness: it is the
+quantitative criterion for opening tier 1. Rigor classes: the
+nesting and the constrained-KKT structure are THEOREM (standard);
+the ladder and A_t definitions are SCHEMA; "the S20 instance
+optimum is boundary-active" is a measured-supported HYPOTHESIS (the
+crawl + 8/8 genuine); "the discrete certifiable set K approximates
+A_0" is a CONJECTURE with a named falsifier — evaluate the
+Eq. (4)/Sternin validity relation (translated across the
+Rao-vs-Zucrow characteristic-naming inversion) along the walk: it
+must approach its boundary where certification degrades, else the
+bridge is dead. TAXONOMY ANCHOR (surveyed 2026-08-07, S20 log step 9: the
+Le Digabel-Wild "Taxonomy of Constraints in Simulation-Based
+Optimization", the canonical frame for constraints of this kind):
+in that taxonomy the certifiability constraint is TODAY of class
+Known-Unrelaxable-Simulation-NONQUANTIFIABLE — the optimizer learns
+only pass/fail, after paying a march, and a failed record yields no
+usable J; the taxonomy names this the worst tractable kind, and the
+recognized remedy, WHEN the physics exposes one, is to QUANTIFY a
+margin. The margin-constrained reformulation is exactly that move:
+m(Sigma) makes the constraint quantifiable BEFORE violation, with
+its gradient free through AD, aggregated by Kreisselmeier-
+Steinhauser (the standard aggregation for min/max constraint fields
+under adjoint sensitivities; conservative side correct; adaptive-
+parameter variants exist and are the current refinement). Discharge
+routes adjudicated for S21 (S20 log step 9d): tier-0
+margin-CONSTRAINED re-optimization (KS-aggregated fold margin,
+derived floor, AD gradient; Eq. (4) as classical cross-check
+monitor); tier-1 fitted-front optimization as the general rigorous
+method (captured-shock adjoints rejected per Giles-Ulbrich/Lozano;
+the tier-1 method's own survey is QUEUED to the G12/F2 session, not
+claimed done); the S19 fallback (publish with the two-knob numbers)
+standing at every gate.
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
