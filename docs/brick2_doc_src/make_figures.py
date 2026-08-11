@@ -2426,6 +2426,135 @@ def fig_s23_driver():
     fig.tight_layout()
     save(fig, "fig_s23_driver.pdf")
 
+
+# ------------------------------------- the worked example, end to end
+def fig_worked_example():
+    """One complete evaluation of the plug method, drawn from a live
+    run at the chapter's working settings: (a) the posed world, (b)
+    the march's characteristic mesh colored by Mach, (c) the wall
+    pressure and the running thrust integral, (d) the adjoint at the
+    streamline against the step the optimizer actually took."""
+    import a1_config_compare as CCm
+    import a1_plug_spline_opt as PS
+    import a1_ideal_march_jax as A1m
+    import jax
+    import jax.numpy as jnp
+    ck = os.path.join(OUT, "_example_run.npz")
+    art = json.load(open(os.path.join(ROOT, "validation",
+                                      "_plug_gain",
+                                      "design_fine.json")))
+    xk = np.array([float(eval(v)) for v in art["xk"]])
+    W_fine = np.array([float(eval(v)) for v in art["W_fine"]])
+    W_inc = np.array([float(eval(v)) for v in art["W_inc"]])
+    w = CCm.build_world()
+    c = PS.build_case(w)
+    cm = dict(c, xk=xk)
+    if os.path.exists(ck):
+        d = np.load(ck)
+        mesh, wall, edge, g = (d["mesh"], d["wall"], d["edge"],
+                               d["g"])
+        J0 = float(d["J0"])
+    else:
+        out, sch = PS.march_record(W_inc, w, cm)
+        J0, g = PS.J_and_grad(W_inc, w, cm, w["ta"], sch)
+        mesh = np.asarray(out["mesh_pts"])
+        wall = np.asarray(out["wall"])
+        edge = np.asarray(out["edge"])
+        np.savez(ck, mesh=mesh, wall=wall, edge=edge, g=g, J0=J0)
+    ta = w["ta"]
+    q_of = lambda a: np.hypot(a[:, 2], a[:, 3])
+    M_of = np.array(jax.vmap(
+        lambda q: A1m.state_q(q, ta)[5])(jnp.asarray(q_of(mesh))))
+    p_of = np.array(jax.vmap(
+        lambda q: A1m.state_q(q, ta)[1])(jnp.asarray(q_of(wall))))
+
+    fig, ((a1, a2), (a3, a4)) = plt.subplots(2, 2,
+                                             figsize=(9.8, 7.0))
+    # (a) the posed world
+    LIP = (0.0, w["RMAX"])
+    a1.plot(*LIP, "ko", ms=5)
+    a1.annotate("cowl lip", LIP, textcoords="offset points",
+                xytext=(6, 4), fontsize=8)
+    fan = c["fan"]
+    x0 = PS.X0
+    yw0, ye0 = c["yw0"], fan["LIP"][1] + np.tan(fan["th_e"]) * x0
+    for phi in np.linspace(fan["ray1"], np.arctan2(
+            yw0 - LIP[1], x0), 9):
+        t = np.linspace(0, 3.2, 2)
+        a1.plot(LIP[0] + t * np.cos(phi), LIP[1] + t * np.sin(phi),
+                color="0.8", lw=0.5, zorder=0)
+    a1.plot([x0, x0], [yw0, ye0], color="tab:green", lw=2.0,
+            label="start line (Cauchy data, mass-set)")
+    a1.plot(c["sx"][c["sx"] <= PS.L],
+            c["sy"][c["sx"] <= PS.L], color="tab:blue", lw=1.6,
+            label="spike wall (streamline / spline)")
+    a1.plot(edge[:, 0], edge[:, 1], color="tab:red", lw=1.2,
+            ls="--", label=r"free boundary ($p = p_a$)")
+    th_i = fan["th_i"]
+    a1.annotate(r"straight delivery line, $\theta_i=%.1f^\circ$"
+                % np.degrees(th_i), (0.05, 0.93),
+                xycoords="axes fraction", fontsize=8)
+    a1.set_xlim(-0.2, 3.2)
+    a1.set_ylim(0.5, 2.6)
+    a1.set_xlabel("x [m]")
+    a1.set_ylabel("y [m]")
+    a1.set_title("(a) the posed world")
+    a1.legend(fontsize=7, loc="lower left")
+    a1.grid(**GRID)
+    # (b) the march mesh
+    sc = a2.scatter(mesh[:, 0], mesh[:, 1], c=M_of, s=2.6,
+                    cmap="viridis", rasterized=True)
+    a2.plot(wall[:, 0], wall[:, 1], color="k", lw=1.0)
+    a2.plot(edge[:, 0], edge[:, 1], color="tab:red", lw=1.0,
+            ls="--")
+    plt.colorbar(sc, ax=a2, label="Mach")
+    a2.set_xlabel("x [m]")
+    a2.set_ylabel("y [m]")
+    a2.set_title("(b) the direct march: %d certified cells"
+                 % len(mesh))
+    a2.grid(**GRID)
+    # (c) wall pressure + running thrust
+    dy = np.diff(wall[:, 1])
+    wgt = 2 * np.pi * 0.5 * (wall[1:, 1] + wall[:-1, 1])
+    pm = 0.5 * (p_of[1:] + p_of[:-1])
+    push = np.concatenate([[0.0],
+                           np.cumsum((pm - PA) * wgt * (-dy))])
+    a3.plot(wall[:, 0], (p_of - PA) / PA, color="tab:blue", lw=1.4)
+    a3.set_xlabel("x [m]")
+    a3.set_ylabel(r"$(p_w - p_a)/p_a$", color="tab:blue")
+    a3.tick_params(axis="y", colors="tab:blue")
+    a3.set_title("(c) what the wall is worth")
+    a3b = a3.twinx()
+    a3b.plot(wall[:, 0], push / 1e6, color="tab:orange", lw=1.4)
+    a3b.set_ylabel(r"running wall thrust $\int(p-p_a)2\pi y(-dy)$"
+                   " [MN]", color="tab:orange")
+    a3b.tick_params(axis="y", colors="tab:orange")
+    a3.grid(**GRID)
+    # (d) the adjoint and the step taken
+    a4.bar(xk - 0.02, g / 1e6, width=0.04, color="tab:blue",
+           label=r"adjoint $\partial J/\partial y_k$ at the"
+                 " streamline [MN/m]")
+    a4.set_yscale("symlog", linthresh=0.5)
+    a4.set_xlabel("knot abscissa x [m]")
+    a4.set_ylabel(r"$\partial J/\partial y_k$ [MN/m]",
+                  color="tab:blue")
+    a4.tick_params(axis="y", colors="tab:blue")
+    a4.axhline(0, color="0.4", lw=0.6)
+    a4b = a4.twinx()
+    a4b.plot(xk, 1e3 * (W_fine - W_inc), "s--", color="tab:red",
+             ms=4, lw=1.0,
+             label="the optimizer's answer [mm]")
+    a4b.set_ylabel(r"$y_k^{\mathrm{opt}} - y_k^{\mathrm{stream}}$"
+                   " [mm]", color="tab:red")
+    a4b.tick_params(axis="y", colors="tab:red")
+    a4.set_title("(d) the gradient, and the step it justified")
+    h1, l1 = a4.get_legend_handles_labels()
+    h2, l2 = a4b.get_legend_handles_labels()
+    a4.legend(h1 + h2, l1 + l2, fontsize=7, loc="lower left")
+    a4.grid(**GRID)
+    fig.tight_layout()
+    save(fig, "fig_worked_example.pdf")
+
 if __name__ == "__main__":
     fig_nozzle_primer()
     fig_bell_vs_plug()
@@ -2452,4 +2581,5 @@ if __name__ == "__main__":
     fig_spike_designs()
     fig_s23_ladder()
     fig_s23_driver()
+    fig_worked_example()
     print("ALL FIGURES DONE ->", OUT)

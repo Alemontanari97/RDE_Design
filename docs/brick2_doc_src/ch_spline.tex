@@ -781,3 +781,86 @@ other with the same shape freedom on both sides. Chapter~\ref{ch:compare}
 found the bell ahead by $0.282\%$ with an optimized bell facing a
 constructed plug. Roughly a third of that margin is recovered here.
 The gap narrows; on this evidence it does not close.
+
+\section{A worked example, end to end}
+\label{sec:workedexample}
+
+Everything this chapter has described --- the posed world, the
+direct march, the functional, the adjoint, the step --- can be
+watched happening on one design. Figure~\ref{fig:workedexample}
+follows a single complete evaluation at the chapter's working
+settings ($81$ wall stations, $61$ start rows, the $11$-knot basis),
+starting from the fan streamline.
+
+\textbf{Pose (panel a).} The chamber state and the gas fix the
+tables; the ambient fixes the free-boundary pressure; the lip fixes
+the fan. The straight delivery line arrives at
+$\theta_i = -26.7^{\circ}$ --- the turning, from the RDE's axial
+discharge toward the spike, that the outer optimization of
+Chapter~\ref{ch:compare} selected so that the fan completes the
+turn to $\theta_E = 0$. The start radius is then \emph{not} chosen:
+a root search places the wall's origin so the start line carries the
+reference mass flow, measured by the same column functional every
+later verdict uses. Everything upstream of the start line enters
+the problem only through the Cauchy data on it; no knot can reach
+it.
+
+\textbf{March (panel b).} The direct march builds the field column
+by column --- each column a wall-to-edge characteristic, gaining a
+row as the jet widens --- and solves one small Newton system per
+cell: $5{,}611$ cells here, every one certified to round-off. The
+Mach field shows the physics the thrust integral will harvest: the
+fan's expansion arriving at the wall, the free boundary holding
+$p_a$, the top rows striding far downstream along near-characteristic
+chords into the widening jet. One march at these settings is a few
+seconds of arithmetic and about twenty of bookkeeping --- the
+record of every discrete decision, which is what the adjoint will
+replay.
+
+\textbf{Score (panel c).} The thrust splits as
+$J = F_{\mathrm{in}} + \int (p - p_a)\, 2\pi y\, (-\mathrm{d}y)$:
+the start line delivers $F_{\mathrm{in}} = 106.4$ MN of momentum
+flux, and the wall adds $9.3$ MN more --- the running integral in
+the panel, $J = 115.71$ MN in all. The wall's overpressure starts at
+$4.5\,p_a$ and is still $1.8\,p_a$ at the cut: the truncated spike
+discards flow it never finished expanding, which is the $57\%$
+truncation of Section~\ref{sec:vsrao} seen from the wall's side.
+The integrand's $2\pi y$ weight is visible as the integral's
+saturation --- by $x = 1.5$ m the remaining metre of slender wall
+has little area left to push on.
+
+\textbf{Gradient, and the step it justified (panel d).} One reverse
+pass through the recorded schedule prices every knot
+simultaneously: $+26.8$ MN per metre of raise at the first knot ---
+the fat end, where overpressure and radius are both large --- decaying
+and turning negative along the tail ($-1.1$ MN/m at the last knot).
+The optimizer's eventual answer, overlaid, is the gradient's
+instruction executed under the certification gate: raise the front
+by millimetres, surrender the tail by $87$ mm. That this step ---
+worth $+0.30\%$ to the coarse march that computed it --- is worth
+nothing to the exact functional is the resolution of
+Section~\ref{sec:gainresolved}; the example is the method working
+exactly as built, on the one problem where the honest answer was
+``the incumbent was already optimal.''
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_worked_example.pdf}
+\caption{One evaluation of the plug method, end to end, from a live
+run at the working settings. (a)~The posed world: lip fan (grey
+rays), the mass-set start line (green), the spike wall, and the
+free boundary --- whose polyline begins where the march's first
+column reaches it, one long chord downstream of the start line (the
+measured first-column stride of Chapter~\ref{ch:plug}).
+(b)~The direct march's mesh, one point per certified cell, coloured
+by Mach: columns hug the wall, and the top rows stride into the
+widening jet. (c)~Wall overpressure (left axis) against the running
+wall-thrust integral (right axis): the fat end does the work, and
+the flow leaves the cut still $1.8\,p_a$ above ambient.
+(d)~The reverse-mode adjoint at every knot (bars, symmetric log
+scale) beside the step the optimizer ultimately took (red): raise
+the fat end, surrender the tail --- correct at the resolution that
+computed it, and worth nothing in the limit
+(Section~\ref{sec:gainresolved}).}
+\label{fig:workedexample}
+\end{figure}
