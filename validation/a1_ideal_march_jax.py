@@ -889,7 +889,15 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
             Me_ach = Max
             i_K = i
             exit_capped = (code == "exit_cap")
-            me_gap = abs(float(Max - Me))
+            # S22 T1 finding: this bookkeeping line (S21, C2-F4) ran
+            # float() on the AD-traced play path (S.dec shields only
+            # the DECISION, not this reporting) and broke the S6 vjp
+            # with ConcretizationTypeError — the committed carrier
+            # could not complete its own O3.1 row. Tracer-guarded like
+            # certify(); the concrete paths are bit-identical.
+            gap = Max - Me
+            me_gap = (jnp.abs(gap) if isinstance(gap, jax.core.Tracer)
+                      else abs(float(gap)))
             break
         if code == "interp":
             it_ref += 1
