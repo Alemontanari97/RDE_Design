@@ -1241,6 +1241,45 @@ entries:
   falsifier: "KAT-1 cert_worst unchanged under the lowered cap (instrument non-discriminating => the S20 8/8 GENUINE adjudication is DOWNGRADED per the S21 gate [D1-KAT]); KAT-2 non-bit-identical; KAT-3 rejector fails to fire on stale seeds or fires at the default cap; N-CTRL nondeterminism"
   gamma: "EOS-general"
 
+- id: X-VMON
+  kind: carrier
+  class: PRACTICE
+  scope: "(G)/Lambda-form VALIDITY MONITOR + gamma=1.4 KAT vs Rao-Beck Eq. (4) (S21 2026-08-11, F0 exit gate: monitor ARMED); on-demand carrier (env: jax); EXECUTED S21 exit 0: KAT-A machine identity N == -tan(alpha)*Eq4-residual over a 247-point (theta, alpha) grid at the roundoff floor (worst 6.5e-03 of the derived C_OPS floor) + Fig.-2 sign spots (+0.1405 / -0.2968) + corrupted-gamma rejector; KAT-B backend AD Lambda (V d(alpha)/dV through the tabulated closure on a synthetic gamma=1.4 table) vs closed form: worst 2.688e-13 inside the derived two-resolution band 1.095e-12, corrupted-table rejector fires; speed range BOUNDED TO THE TABLE BOX (out-of-box the closure clamps silently = live confirmation of audit engine-core:F3, P2 row); monitor API surface_min_val returns per-node val + argmin localization; verdict form for consumption = the three-way decision table of ADVISORY_claims_to_code C-1; Rao-vs-Zucrow naming translation documented; scope bounds adopted: EOS-general NOT data-general (homentropic-homoenergetic; F2 owns the extension), plug/C- mirror unproven"
+  statement: "The EOS-general Lambda-form validity margin val is computable on our backend with AD (no FD magics), reduces exactly to Rao-Beck Eq. (4) for a perfect gas (S4 evidence half), and is armed as the Eq.(4)/Sternin monitor with argmin localization — the named falsifier of the K_disc ~ A_0 bridge CONJECTURE."
+  doc: "validation/validity_monitor.py"
+  proof: "validation/validity_monitor.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any grid point of KAT-A beyond the roundoff floor or of KAT-B beyond the derived table band kills the S4 evidence half; the corrupted-gamma/corrupted-table rejectors must fire; a monitor consumption outside the three-way verdict form is a protocol violation"
+  gamma: "EOS-general"
+
+- id: T-LFEQ4
+  kind: theorem
+  class: THEOREM
+  scope: "S4 of the DEF-equivalence panel (2026-08-07, ratified S21 at red-team-corrected footing): the zero set of the Lambda-form validity function val (GENO Rao_m boundaryfunction numerator) with the perfect-gas Lambda = -(gamma - cos 2alpha)/sin 2alpha IS Rao-Beck Eq. (4), with nonvanishing connecting factor away from the fold denominator; hand proof (ADVISORY_def_equivalence_proof, log-differentiation of Eq. (1) + Eq. (3) elimination) + independent judge re-derivation + machine identity KAT ([X-VMON] KAT-A). Scope: homentropic irrotational, axisymmetric, left-Mach-line control surface (bell branch); the C- mirror is UNPROVEN (F3 entry duty)"
+  statement: "For a perfect gas the general validity boundary (G) — val = 0 with Lam = V d(alpha)/dV on the isentrope — coincides exactly with Rao-Beck Eq. (4): tan(theta-alpha) - tan(alpha) = Lam tan(alpha) (tan(theta-alpha) + tan(alpha)) reduces to the Eq. (4) closed form via Lam_pg and the sine addition identity."
+  doc: "docs/rde_nozzle_MASTER.md#Lambda-FORM VALIDITY MARGIN"
+  proof: "validation/validity_monitor.py"
+  inherits: []
+  carrier: [X-VMON]
+  suffices_symbolic: "yes"
+  falsifier: "a (theta, alpha, gamma) point where the Lambda-form numerator and -tan(alpha) x the Eq. (4) residual differ beyond the roundoff floor ([X-VMON] KAT-A grid, rejector-proven)"
+  gamma: "perfect-gas-oracle"
+
+- id: C-EQV2
+  kind: conjecture
+  class: CONJECTURE
+  scope: "EQ-v2 of record (DEF-equivalence, panel wf_706f7901-32d ratified S21 AT THE RED-TEAM-CORRECTED FOOTING, 2026-08-11): split statement — Direction A (DEF construction => margin-active KKT point in the joint limit, SCHEMA footing, under H-int; limit order = O5) and Direction B (converse ONLY under H1-H6 + H7-SEL, and of the classical DEF CONSTRUCTION, not its optimality — weakening declared); one THEOREM component (S4 = T-LFEQ4); S1 split limb-2 HOLDS (SCHEMA)/limb-1 closure-membership OPEN; S20 standoff = CONSISTENT WITH a DEF-sector optimum AND equally with interior binding until O4 runs; obligations O1-O5 + G1 ledgered in M0 Part VI with phase owners; the unqualified EQ is REFUTED and non-citable; mu/deeper-jump companion = SIGN TEST only (RT-4)"
+  statement: "At fixed (eps, L) in the DEF regime (bell single-wall, homentropic-homoenergetic, perfect gas), the classical Rao-Beck DEF construction and the margin-active KKT points of the direct certified problem correspond in first order per the panel dictionary — Direction A on SCHEMA footing, Direction B only under H1-H6 + H7-SEL — with the pre-registered twin falsifier (branches F1-F7) as the decisive experiment (owner F1b)."
+  doc: "docs/rde_nozzle_MASTER.md#EQ-v2 OF RECORD"
+  proof: "docs/rde_nozzle_MASTER.md#[S21 REGISTRATION BLOCK"
+  inherits: [C-D25U]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the pre-registered twin falsifier F1-F7 (F1b): wall-contour gap not shrinking in the Richardson two-code band, cusp not converging to D', f2 drifting beyond the S19 bar, BF not vanishing under refinement, interior/lip/axis binding with KKT closed (kills H2), multi-cusp (kills H1), direct J beating DEF beyond band (kills classical optimality)"
+  gamma: "perfect-gas-oracle"
+
 # --------------------------------------------------------- paper-layer records
 
 - id: PAP-P1SK

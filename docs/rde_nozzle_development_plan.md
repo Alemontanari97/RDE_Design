@@ -309,7 +309,11 @@ F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
   CORRECTED ones (82 CONFIRMED / 13 high / 12 REFUTED, header fixed
   2026-08-11 — red-team judge-totals issue).
 - AUDIT P2 REMAINDER, phase-tagged (checkable scheduling): C4 ->
-  F0/F1 (minimal fix or carrier-exclusive annotations); C5 ->
+  F0/F1 — the HONEST-ANNOTATION option was EXECUTED at S21 F0
+  ("suite green = carrier-exclusive", run_all.py header of record;
+  every later gate citing suite-green inherits it); the mechanical
+  closure (env-conditional carrier tier + typed ondemand field +
+  staleness link) stays a SCHEDULED F1-window row; C5 ->
   pre-F5 entry; C6 -> pre-F2 entry; remaining C3 rows -> the phase
   consuming each tolerance; C8 remainder -> F0 hygiene.
 - EXPERIMENTAL ANCHOR (RK-E, item 13): acquisition started

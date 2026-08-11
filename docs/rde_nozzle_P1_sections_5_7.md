@@ -45,10 +45,17 @@ constraints — has a stationarity system whose structure is the paper's
 implementable core [T-T7FS]. Three blocks:
 
 (a) PER PHASE (a.e. xi): the per-phase adjoint Euler system. In the
-piecewise-smooth MOC-regular class S1 it reduces to the classical
-closed form of thrust-optimal contouring: the optimal control surface
-is the phase's terminal characteristic, and along it the first
-integral
+IRROTATIONAL-HOMENTROPIC subclass of the piecewise-smooth MOC-regular
+class S1 (scope per [T-A3]; on rotational members the identification
+survives at the field level only — S21 qualifier, audit C1) it
+reduces to the classical closed form of thrust-optimal contouring:
+the optimal control surface is the C+ characteristic traced back
+from the lip and STOPPED AT THE KERNEL BOUNDARY (the last
+arc-emitted C-; S19 LOCUS CORRECTION OF RECORD — on the full C+
+down to the axis the invariant drifts 2.9e-01 and the identity
+would read falsified; on the kernel-stopped surface the measured
+drift is 9.5e-03, S21 registered-norm re-issue 9.4809e-03), and
+along it the first integral
 
     f2 = V cos(theta -/+ alpha)/cos(alpha) = -lambda2(xi)
 

@@ -1415,6 +1415,94 @@ the tier-1 method's own survey is QUEUED to the G12/F2 session, not
 claimed done); the S19 fallback (publish with the two-knob numbers)
 standing at every gate.
 
+[S21 REGISTRATION BLOCK — EQ-v2, THE Lambda-FORM VALIDITY MARGIN,
+AND THE OBLIGATIONS LEDGER] (2026-08-11, [F0/ORDER] of plan v3,
+session S21; panel wf_706f7901-32d ABSORBED AT THE RED-TEAM-CORRECTED
+FOOTING — ADVISORY_redteam_2026-08-11 applied BEFORE absorption, per
+the dated user addendum; nothing below is promoted above the raw
+panel positions).
+ EQ-v2 OF RECORD (the DEF-equivalence statement; supersedes the
+unqualified EQ, which is REFUTED and non-citable). SCOPE: fixed
+(eps, L) in the DEF regime, bell single-wall, homentropic-
+homoenergetic core, perfect gas for the classical side. SPLIT
+STATEMENT: Direction A [CONJECTURE on SCHEMA footing] — the
+classical Rao-Beck DEF construction (single PM jump landing on the
+validity boundary at D', E by DE<->BD mass equality) is, in the
+joint continuum limit (h -> 0, KS rho -> inf, mu_0 -> 0; limit
+order = obligation O5), a margin-active KKT point of the direct
+problem, its fold touching the domain only at D' (under H-int).
+Direction B [CONJECTURE] — the converse holds ONLY under H1-H6 PLUS
+H7-SEL (selection/global-max among margin-active KKT points — the
+red-team-restored hypothesis covering KKT nonuniqueness; without it
+"coincides" is ill-posed), and speaks of the classical DEF
+CONSTRUCTION, not its optimality (the optimum wording awaits O2/O3
+— a DECLARED weakening, not an oversight). COMPONENT S4 [THEOREM]:
+the Lambda-form boundary (G) with the perfect-gas Lambda reduces
+EXACTLY to Rao-Beck Eq. (4) (hand proof + independent judge
+re-derivation + the [X-VMON] machine identity at the roundoff floor
+over a 247-point grid, executed S21). S1 SPLIT VERDICT: limb-2
+(fold-on-boundary + interior pointwise certification) HOLDS
+[SCHEMA, under H-int]; limb-1 (closure membership of the DEF wall
+in cl(K)) OPEN pending approximant existence. S20-STANDOFF READING
+OF RECORD (RT-1): the fixed-floor standoff is CONSISTENT WITH a
+DEF-sector optimum AND equally with an interior-binding tier-1
+optimum until O4 localization runs (the 41.8% attachment
+concentration itself suggests interior binding); the fixed-floor
+exclusion of the exact DEF wall is the REFUTER'S argument, experts
+consistent-with.
+ THE (G)/Lambda-FORM VALIDITY MARGIN, both bounds ADOPTED [S4]:
+   (G)  val = [Lam*B*(A+B) - (A-B)] / [1 + Lam*(A+B)],
+        A = tan(theta - alpha), B = tan(alpha),
+        Lam = V d(alpha)/dV on the isentrope (AD through the
+        tabulated backend — [X-VMON], KAT'd vs the closed form at
+        gamma = 1.4 to 2.7e-13 inside a derived two-resolution
+        band),  val > 0 = valid side.
+   BOUND (a): EOS-GENERAL but NOT DATA-GENERAL — homentropic-
+   homoenergetic (single-isentrope alpha(V)) data only; the
+   stratified (q; s, h0) extension is OWNED BY F2 (exit gate).
+   BOUND (b): the GENO implementation magics (dV_pert = 1.0,
+   |den| < 1e-10 fold guard, PM landing window) are PRACTICE,
+   tracked, NOT adopted here (AD Lambda; den reported, not
+   guarded); their derived bands are an F1-entry duty.
+   Classes: (G) derivation = THEOREM-level algebra (proof advisory,
+   ratified); the monitor = PRACTICE carrier; K_disc ~ A_0 bridge
+   stays CONJECTURE with THIS monitor as its named falsifier.
+ FIXED-EPS TRANSVERSALITY BOOKKEEPING (lambda_e): Rao's Eq. (14)
+free-endpoint corner condition is REPLACED, at fixed (eps, L), by
+the lip-constraint multiplier lambda_e = dJ/dy_lip — the measured
+corner identity of [X-O33B] R3; the classical reading pa/p_E is NOT
+required to vanish (it equals the constraint's shadow price;
+measured cross-design agreement 2.803e-03 of record, S21 re-issue).
+ RAO-vs-ZUCROW CONVENTION TRANSLATION (of record wherever D' is
+discussed): Rao 1958/Rao-Beck name the left-running characteristic
+C+ where Zucrow-Hoffman/GENO name it C-; this repo follows GENO —
+Rao's "left Mach line DE" IS our C+ chain traced back from the lip;
+the plug/C- mirror of (G) is UNPROVEN (panel scope limit, F3 entry
+duty).
+ OBLIGATIONS LEDGER (each with phase OWNER; blocks claim promotion,
+never work): O1 Danskin/Clarke cusp derivative (until discharged
+the margin-active KKT is B-STATIONARITY ONLY — no multiplier mu is
+defined) -> F4b theory WP. O2 Rao wall<->surface duality in the
+certified class -> F4b theory WP. O3 classical jump-depth
+optimality (Sternin 1962 + Shmyglevskii 1981 PAGE-VERIFY = hard
+gate for ANY classical-optimality claim; interim wording capped at
+direct-side surplus prediction) -> paper claim gate (F1b/F4b).
+O4 localization logs (argmin-margin cell + active-cusp census on
+every walk) -> F1 consumption; the F0 instrumentation is ARMED of
+record: [X-TOCV] cert-argmax/argmin localization (env
+A1_CERT_ARGMAX, additive default-off), rejected-design persistence
+in the driver (result dict + env A1_REJ_SAVE), and the [X-VMON]
+monitor. O5 h -> 0 vs mu_0 -> 0 limit order -> F1b named
+conditional (optional floor-ladder discharge). G1 extended-value
+margin surrogate at failed marches (finite negative, from the
+partial march, REJECTOR-GATED) -> F1, elevated to the D6
+TIER-INVARIANT clause (REQ-NONSTALL + G1 + transition duty = every
+margin of every tier/class). RT-4 DEMOTION of record: the GENO
+deeper-jump companion test is a SIGN TEST for Direction A — not
+decisive for O3; magnitude claims blocked until the
+dJ/d(depth) = -mu*dm/d(depth) derivation under H3 and the
+mu-estimator band exist.]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

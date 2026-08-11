@@ -9,6 +9,16 @@ RIGOR = the declared rigor tier (registry carriers beyond the fast
 budget; measured runtimes in each module's docstring), run in every
 full/CI run, skipped by --fast; SLOW = live examples subprocesses.
 
+HONEST SCOPE OF A GREEN SUITE (S21, audit C4 — annotation of record
+until the C4 closure row lands, phase tag F0/F1 in D6 §0-pre): a
+green run of this suite is CARRIER-EXCLUSIVE — the on-demand
+verdict-bearing carriers (X-A1IM, X-THC1, X-SCANM, X-LSG0, X-TOCV,
+X-O32, X-O33B, X-AKNO, X-CDKAT, X-G0/X-G0AX/X-GENOXC) are OUTSIDE
+every tier by declared exemption (env: jax/gfortran), and their
+PASS-of-record numbers rest on the dated manual runs recorded in the
+registry scopes and session logs, which nothing here re-executes.
+Any gate text citing "suite green" inherits this annotation.
+
 Tests (see each module's docstring):
   (i)    test_cj_coherence      one CJ from all canonical paths (<=1e-9 rel)
                                 + independent solvers within 2e-3
