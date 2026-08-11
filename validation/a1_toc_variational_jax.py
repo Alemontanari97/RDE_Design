@@ -845,13 +845,17 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 W = W_cert.copy()
                 tr0 = tr_cap
                 continue
-            if W_cert is not None:
+            if (W_cert is not None
+                    and not np.array_equal(W, W_cert)):
                 # REJECT-AND-SHRINK EXHAUSTED at the radius floor:
-                # the honest reading is that the design sits at the
-                # CERTIFIABILITY BOUNDARY of its class, not at a
-                # stationary point. Return the last CERTIFIED base
-                # with the flag set and the KKT reported OPEN — a
-                # declared outcome, never a silent success.
+                # the walk cannot certify any admissible step from
+                # the last certified base. Return THAT base with the
+                # flag set and the KKT reported OPEN — a declared
+                # outcome (outcome II, S20 log step 7), never a
+                # silent success. NOTE: this licenses only the
+                # certified-objective report; the [D1] corner-row
+                # measurement is outcome-I-only (validity condition,
+                # S20 log step 7).
                 print("  [seg %d] reject-and-shrink EXHAUSTED at the "
                       "radius floor (%s) -> returning the last "
                       "CERTIFIED base; KKT reported OPEN "
@@ -861,6 +865,10 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                             re_records=n_rec, re_record_events=events,
                             nit_total=nit_total, n_eval=n_eval,
                             certifiability_limited=True)
+            # W == W_cert failing here would mean a previously
+            # CERTIFIED base fails on deterministic re-record — a
+            # contradiction that must surface, never be masked by
+            # returning that same base as "certified".
             raise
         W_cert = W.copy()
         # P2 production path (S18): whole-loop jitted bucketed replay

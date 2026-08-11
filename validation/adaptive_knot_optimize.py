@@ -480,27 +480,24 @@ def main():
                         opt["nit_total"], t_opt, res.status,
                         res.optimality, gtol, res.constr_violation))
         W_new = opt["W"]
+        cert_lim = bool(opt.get("certifiability_limited"))
         # OUTCOME CLASSES, both declared BEFORE the decisive run
-        # (log step 6): a cycle either CONVERGES in-stratum, or it
-        # stops at the CERTIFIABILITY BOUNDARY of its design class.
-        # The second is an honest outcome, not a pass-by-weakening:
-        # the KKT is reported OPEN and the cycle must still have
-        # produced a CERTIFIED design that IMPROVED the objective
-        # over its own warm start — a check that can fail.
-        if opt.get("certifiability_limited"):
-            J_ws = float(J_w)
-            with design_class(xi_new):
-                runj_n = TV.make_run_toc_scan_jit(
-                    tab, cfg, plan_w, state_fn=state_c1, solvers=solv)
-                J_ret = float(TV.thrust_J(runj_n(jnp.asarray(W_new)),
-                                          tab, state_fn=state_c1))
+        # (log steps 6-7): outcome I = CONVERGED in-stratum (the S18
+        # gate unchanged); outcome II = CERTIFIABILITY-LIMITED
+        # (reject-and-shrink exhausted; the driver returned the last
+        # CERTIFIED base with the KKT reported OPEN). [D1] VALIDITY
+        # CONDITION (log step 7, R5, fixed before any decisive run):
+        # the corner identity is DERIVED FROM OPTIMALITY — [X-O33B]'s
+        # own R3 control requires it to BREAK at non-optimal designs
+        # — so outcome-II designs are EXCLUDED from the [D1] goal
+        # comparison; their goal is printed as INFORMATION ONLY and
+        # the enrichment loop STOPS (the obstruction goes to
+        # adjudication: the armed certdiag, then a user decision).
+        if cert_lim:
             print("  [cycle %d] CERTIFIABILITY-LIMITED outcome "
-                  "(declared): KKT stays OPEN at %.3e; J(warm start) "
-                  "= %.7e -> J(returned certified base) = %.7e"
-                  % (cyc, res.optimality, J_ws, J_ret))
-            ok &= check("cycle %d certifiability-limited stop still "
-                        "produced a CERTIFIED objective improvement "
-                        "over its warm start" % cyc, J_ret > J_ws)
+                  "(declared, outcome II): reject-and-shrink "
+                  "exhausted, KKT OPEN at %.3e — [D1]-INELIGIBLE by "
+                  "the validity condition" % (cyc, res.optimality))
         else:
             ok &= check("cycle %d TR-SQP converged in-stratum" % cyc,
                         res.status in (1, 2)
@@ -520,6 +517,23 @@ def main():
         cd_n, _ = O33.corner_density(np.asarray(out_n["wall"][-1]),
                                      state_c1)
         goal = abs(g_n[-1] - cd_n) / abs(cd_n)
+        if cert_lim:
+            # J_n and goal come from W_new's OWN P4-audited record
+            # (plan_n) — never from a replay on another design's plan.
+            print("  [cycle %d] J(warm start) = %.7e -> J(returned "
+                  "certified base) = %.7e; corner mismatch = %.4e "
+                  "[INFORMATION ONLY: non-stationary design, "
+                  "excluded from [D1] by the validity condition]"
+                  % (cyc, float(J_w), J_n, goal))
+            ok &= check("cycle %d certifiability-limited stop still "
+                        "produced a CERTIFIED objective improvement "
+                        "over its warm start" % cyc, J_n > float(J_w))
+            W_cur, xi_cur = W_new, xi_new
+            print("  [stop] enrichment OBSTRUCTED at the "
+                  "certifiability boundary of cycle %d's walk — "
+                  "adjudication (certdiag + user decision) is the "
+                  "named next step" % cyc)
+            break
         impr = goal_hist[-1] - goal
         print("  [cycle %d] J = %.7e; goal (corner mismatch) = %.4e "
               "(prev %.4e, improvement %.4e vs tol_stop %.4e)"
@@ -551,10 +565,25 @@ def main():
     print("  best: cycle %d, m = %d dofs, goal = %.4e  (S19 baseline "
           "6.6295e-02)" % (best["cycle"],
                            len(best["W"]) - 1, best["goal"]))
-    ok &= check("[D1] the adaptive-class optimum pulls the corner "
-                "mismatch BELOW the S19 baseline (else the "
-                "design-class diagnosis is FALSIFIED)",
-                best["goal"] < rel1 and best["cycle"] > 0)
+    # [D1] semantics (validity condition, log step 7): the kill test
+    # is DEFINED only over outcome-I (in-stratum converged) cycles.
+    # best[] is updated only by those, so best.cycle == 0 means no
+    # eligible design exists: [D1] is then UNTESTABLE — the diagnosis
+    # is neither confirmed nor falsified, the campaign did not reach
+    # its verdict, and the carrier exits nonzero by construction
+    # (the [X-O32] precedent: exit 1 = "not all rows conclude").
+    if best["cycle"] > 0:
+        ok &= check("[D1] the adaptive-class optimum pulls the "
+                    "corner mismatch BELOW the S19 baseline (else "
+                    "the design-class diagnosis is FALSIFIED)",
+                    best["goal"] < rel1)
+    else:
+        print("  [D1] UNTESTABLE on this run: no cycle converged "
+              "in-stratum, so no [D1]-eligible design exists — the "
+              "design-class diagnosis is NEITHER confirmed NOR "
+              "falsified; the obstruction goes to adjudication "
+              "(certdiag + user decision)")
+        ok = False
     art = dict(
         W=[repr(float(w)) for w in best["W"]],
         xi=([repr(float(t)) for t in best["xi"]]
@@ -564,6 +593,7 @@ def main():
         cycle=best["cycle"],
         baseline_r1=repr(float(rel1)), baseline_r2=repr(float(rel2)),
         tol_stop=repr(float(tol_stop)), theta=theta,
+        d1_eligible=bool(best["cycle"] > 0),
         provenance="[X-AKNO] S20; incumbent = S18 W* of record")
     with open(ART, "w") as f:
         json.dump(art, f, indent=1)

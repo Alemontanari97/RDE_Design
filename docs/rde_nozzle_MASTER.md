@@ -1234,6 +1234,93 @@ any spline fit at the lip), and the ATTACHMENT angle is not the
 maximum wall angle (16.90 deg vs a peak of 18.83 deg) — the S18 seed
 recipe took the peak.
 
+ADAPTIVE DESIGN CLASS — DISCHARGE ATTEMPT, STATE OF RECORD
+(2026-08-07, [F1/P-2][F2/A1], session S20; carrier [X-AKNO]; survey
+decision in D6 item 9; runs stopped by user order mid-campaign).
+Class: PRACTICE (measurement + engine work). BOTTOM LINE: the
+discharge procedure for residue (iii) above is BUILT and its first
+obstruction is characterized to the extent the stopped runs license;
+[C-O33] is NEITHER discharged NOR falsified — the pre-declared kill
+test ([D1], S20 gate) was never reached.
+ THE FORMAL PROBLEM, made explicit by this session (previously
+implicit): the engine's optimization is
+    max J(W)  s.t.  the eps equality,  W in C_m(xi),  AND  W in K,
+where K is the CERTIFIABLE SET — the designs whose adaptive record
+passes every record gate (per-cell while-Newton metric <= the
+certification floor NEWTON_TOL_FACTOR*eps*scale; axial margin above
+the floor). K never bound the S18 walk (8-node class), so its
+existence was invisible; the enriched class made partial(K) reachable
+inside the trust region. Two structurally different terminations
+follow, and they license DIFFERENT measurements: (I) interior
+stationarity — KKT closed at the S18 gate (status converged,
+optimality <= 10*gtol, feasibility <= gtol) — licenses the corner-row
+measurement, because identification (iii) is DERIVED FROM OPTIMALITY
+and [X-O33B]'s own control says the identity must BREAK at a
+non-optimal design; (II) boundary-limited — KKT open — licenses ONLY
+the certified-objective report; feeding such a design to the corner
+row would confound class error with non-stationarity, so [D1] is
+DEFINED ONLY over outcome-(I) designs (validity condition fixed in
+the S20 log step 7 BEFORE any decisive run). Further, K = K_phys
+intersect K_budget, with K_budget the part cut by the while-Newton
+TRIP CAP N_NEWTON = 30 — a compute budget, not a tolerance; the
+armed (not yet run) certdiag separates the two by re-recording a
+rejected design with the cap raised and the floor untouched. Only
+K_budget may ever be enlarged; the certification floor is a
+tolerance and does not move.
+ WHAT IS MEASURED (carrier committed, numbers from the printed
+attempt logs, reproduced identically across attempts 1 and 2):
+ (1) THE RESIDUAL IS CONCENTRATED: the f2 (= -lambda2) drift per
+control-surface segment, attributed to the emitting wall station
+through the march topology, puts 41.8% of its mass in the FIRST knot
+interval after the attachment, 18.9% in the second, 17.6% in the lip
+interval, 2.3% in the flattest — max/mean concentration 3.34 on a
+wall whose 8 nodes are uniform. First direct, spatially resolved
+evidence for the S19 design-class diagnosis beyond the two-knob
+ladder: the optimality residual lives where the wall turns, and
+uniform nodes misallocate the dofs.
+ (2) THE INDICATOR IS GOAL-ORIENTED BY CONSTRUCTION: f2 IS the
+adjoint variable of Prop. A3, so its segment drift is an
+adjoint-weighted optimality residual — the object DWR weighting
+constructs — adjudicated over a plain data-misfit indicator in the
+S20 survey.
+ (3) THE ENRICHED CLASS BUYS OBJECTIVE, WITH THE NUMBERS SPLIT BY
+CERTIFICATION STATUS (a distinction the first draft of this block
+got wrong; corrected in the S20 log step 7 audit): two
+Doerfler-marked knots (8 -> 10 dofs, inserted at x = 0.3146 and
+0.7026 from an attachment at xB = 0.121) carried the walk from the
+S18 J* = 2.7761688e+07 to J = 2.7775368e+07 at the LAST CERTIFIED
+accepted design (+1.27e+04), KKT falling 1.726e+06 -> 5.056e+04
+along the certified prefix. The optimizer's next Newton target,
+J = 2.7775635e+07, is UNCERTIFIABLE (one cell's certification
+metric at 2.458x its floor) and no J from it is claimed.
+ (4) ONE UNCERTIFIABLE TARGET DESIGN IS MEASURED — NOT a boundary:
+the defective shrink (defect 2 below) re-proposed the SAME design
+bit-identically (J, KKT, cert_worst identical over segments 7-17),
+so the walk never tested shorter steps. Whether a certifiable ascent
+continues past J = 2.7775368e+07 (boundary further out), stalls
+(genuine boundary), or the obstruction dissolves under a larger trip
+cap (K_budget artefact) are the three OPEN hypotheses; the
+discriminating measurements are pre-declared: the ratcheted-shrink
+walk and the certdiag.
+ (5) TWO DRIVER DEFECTS OF RECORD, both exposed by the enriched
+class, both fixed policy-conformantly, fixes selftested but NOT yet
+exercised on a decisive run (declared): (a) DIR-RKG P3(ii)
+certification of ACCEPTED iterates was in the policy text but absent
+from the code, and the record-failure recovery restarted from the
+failed iterate itself; (b) the post-rejection shrink was undone by
+the callback re-capturing scipy's regrown radius — the measured
+livelock. The driver now certifies every accepted iterate, RATCHETS
+the radius bound downward on rejection, and on exhaustion RETURNS
+the last certified base flagged certifiability_limited with the KKT
+reported OPEN (outcome II above) instead of raising mid-walk.
+ WORKING HYPOTHESIS (explicitly NOT established): that a richer
+design class walks the optimizer to where the march's certification,
+not the objective, binds — i.e. that outcome II is generic for
+adaptive enrichment. Discriminated by the same two pre-declared
+measurements; if confirmed, the certifiability constraint becomes a
+first-class object of the P-2 narrative rather than an
+implementation detail.
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

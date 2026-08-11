@@ -534,6 +534,15 @@ def main():
         import json as _json
         with open(des_path) as f:
             art = _json.load(f)
+        # [D1] validity condition (S20 log step 7): only an
+        # outcome-I (in-stratum converged) design may be measured —
+        # the corner identity must BREAK at non-optimal designs, so
+        # loading a non-eligible design would confound the row.
+        if not art.get("d1_eligible", False):
+            print("  [instance] REFUSED: %s is not [D1]-eligible "
+                  "(no in-stratum converged cycle) — the bench will "
+                  "not measure a non-stationary design" % des_path)
+            return 1
         W_STAR = np.array([float(w) for w in art["W"]])
         TV.M_NODES = len(W_STAR) - 1
         TV.KNOT_XI = (np.array([float(t) for t in art["xi"]])
