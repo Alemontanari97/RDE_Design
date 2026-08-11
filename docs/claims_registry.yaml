@@ -1306,6 +1306,19 @@ entries:
   falsifier: "R-KS bounds violated on the measured field; R-GRAD AD-vs-FD outside the derived band (or the corrupted control passing); R-G1 margin non-finite or non-negative at the broken design, or a margin-constrained walk stall/crash (tier-invariant G1 FAIL); R-FD GENO-step FD Lambda outside the derived band around AD"
   gamma: "EOS-general"
 
+- id: X-TBAK
+  kind: carrier
+  class: PRACTICE
+  scope: "TOLERANCE-BALL MARGIN BACKOFF — DUTY-6(i) of the S-GAUNTLET ratified duty package, discharged at F1 close (S23 2026-08-11); on-demand carrier (env: jax): the as-built manufacturing ball (declared radius delta, in-class dof-box mapping via nonexpansive nodal evaluation, out-of-class waviness a declared class-scope boundary) is priced into a SHIP-TIME margin backoff on the Lambda-form derived floor — mean-value bound min over the box >= m(W) - L1_sup delta (Hoelder l_inf/l_1 pairing, THEOREM-level anchor), measured-sup surrogate L_TB = K_RICH max(||grad m||_1 at nominal, at the first-order worst box vertex) [PRACTICE, the repo's two-point K_RICH-safeguarded pattern], backoff rule Delta(delta) = L_TB delta, ship gate m(W) >= Delta(delta); delta is a DECLARED application input (reference list = 0.1 mm on throat radii 1 m/10 cm/1 cm in y_t = 1 units, env-overridable), the deliverable of record is the per-class COEFFICIENT L_TB; search-time machinery untouched (REQ-NONSTALL/G1 preserved); PER-CLASS RE-DERIVATION mandatory at every tier/class transition (D6 tier-invariant transition duty); adopt-or-declare: linearized robust counterpart = standard robust-margin treatment adopted, full minimax/DRO robust machinery NOT adopted with reason (robust layer owner = DUTY-13 post-F5a; P3 anti-divergence)"
+  statement: "A KKT-active optimum certifies a measure-zero design (gauntlet C028); the derived backoff Delta(delta) = L_TB delta makes the certificate survive the declared as-built ball at ship time, with the ratified DUTY-6 falsifier demonstrated firing: at a synthetic margin-active nominal (floor = measured KS at base) the tolerance-perturbed contour MUST fail re-certification without the backoff, and does."
+  doc: "validation/margin_tolerance_backoff.py"
+  proof: "validation/margin_tolerance_backoff.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "R-TB1 measured drop exceeding Delta(delta) at any declared delta (surrogate fails to cover measured curvature); R-TB2 NOT firing (tolerance-perturbed re-certification passing at the margin-active nominal => the backoff is untestable/vacuous on the instance); R-TB3 ship gate failing to reject the active nominal, or an accepted healthy design whose perturbed margin goes negative, or the no-backoff control failing to reproduce the C028 defect"
+  gamma: "EOS-general"
+
 - id: T-LFEQ4
   kind: theorem
   class: THEOREM

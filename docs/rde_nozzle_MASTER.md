@@ -1813,6 +1813,79 @@ frontier). CONSEQUENCES, each of record:
  void here where rho is derived to pin the gap below the
  enforcement resolution and gradients are exact AD.]
 
+[S23 REGISTRATION BLOCK — DUTY-6(i) TOLERANCE-BALL MARGIN BACKOFF
+DISCHARGED AND F1 CLOSED] (2026-08-11, [F1/CLOSE] of plan v3, session
+S23; log validation/PROGRESS_2026-08-11_S23_f1close.md; carrier
+[X-TBAK] committed this session; duty = DUTY-6(i) of the S-GAUNTLET
+ratified package, owner F1 derived-floor machinery; S23 user pin of
+record: T0 decisions bind ONLY insofar as they preserve the
+generality and SOTA modus operandi of the codebase).
+ THE BACKOFF OF RECORD (gauntlet C028: a KKT-active optimum has zero
+ margin by construction — its certificate certifies a MEASURE-ZERO
+ design; the as-built ball must be priced). Classes declared:
+ (i)   BALL MAPPING [THEOREM-level step]: an in-class as-built
+       perturbation p with ||p||_inf <= delta has nodal values
+       |dW_i| = |p(x_i)| <= delta (nodal evaluation is
+       norm-nonexpansive), so the in-class ball maps INTO the dof box
+       {||dW||_inf <= delta} and the box worst case is conservative;
+       slope control (the W^{1,inf}/C^1 qualifier of the ratified
+       duty) is automatic in-class through the fixed basis, and the
+       margin's dof-gradient chain carries the full slope dependence;
+       OUT-OF-CLASS waviness (AM texture below class resolution) is a
+       DECLARED class-scope boundary (F2/F6 per the ratified split).
+ (ii)  MEAN-VALUE BOUND [THEOREM, m C^1 on the box]:
+       min_{||dW||_inf <= delta} m(W + dW) >= m(W) - L1_sup * delta,
+       L1_sup = sup over the box of ||grad m||_1 (Hoelder l_inf/l_1).
+ (iii) MEASURED-SUP SURROGATE [PRACTICE, the repo's two-point
+       K_RICH-safeguarded pattern]: L_TB = K_RICH * max(||grad
+       m(W)||_1, ||grad m at the first-order worst box vertex
+       -delta_max sign(grad m)||_1); BACKOFF RULE Delta(delta) =
+       L_TB * delta; SHIP GATE m(W) >= Delta(delta) at the DECLARED
+       application tolerance delta. SCOPE: certification-time (ship)
+       requirement on the nominal optimum ONLY — the search-time
+       margin machinery ([X-MGOV], REQ-NONSTALL, G1 surrogate) is
+       untouched.
+ (iv)  GENERALITY (binding text): delta is a DECLARED application
+       input, never tuned (reference list of the carrier = 0.1 mm on
+       throat radii 1 m / 10 cm / 1 cm in y_t = 1 units,
+       env-overridable); the deliverable of record is the PER-CLASS
+       coefficient L_TB; every tier/geometry-class transition
+       RE-DERIVES it (D6 tier-invariant transition duty).
+ (v)   MEASURED OF RECORD ([X-TBAK] FULL PASS, exit 0, first run):
+       L_TB = 4.321067e+01 per unit ball radius on the bell tier-0
+       9-dof baseline-plan class (||grad m||_1 = 1.868067e+00 nominal,
+       1.080267e+01 at the delta_max vertex — curvature engaged and
+       covered: measured drop/delta 1.88 -> 5.58 over delta 1e-4 ->
+       1e-2, all inside Delta); R-TB2 THE RATIFIED DUTY-6 FALSIFIER
+       FIRES (synthetic margin-active nominal at floor mu_0* =
+       measured KS(base) = 6.803943e-01: the delta = 1e-2 perturbed
+       contour fails re-certification at margin -5.576e-02); R-TB3
+       discriminates (active nominal rejected at every declared
+       delta; healthy rung-1 configuration m = 3.398794e-01 accepted
+       at delta <= 1e-3 with perturbed margin >= 0 measured; HONEST
+       DATUM: at delta = 1e-2 — 0.1 mm on a 1 cm throat — the rung-1
+       design is NOT shippable, Delta = 4.32e-01 > m: the backoff
+       BINDS on small hardware; no-backoff control reproduces C028).
+ (vi)  ADOPT-OR-DECLARE (SOTA survey of record): worst-case
+       linearization over a tolerance ball = the standard
+       robust-margin treatment (robust-LP lineage, tolerance
+       allocation practice) ADOPTED at ship-gate level; full
+       minimax/DRO robust re-optimization NOT adopted with reason —
+       the robust/mode-measure layer has a ratified owner (DUTY-13,
+       post-F5a re-adjudication) and P3 anti-divergence pins this
+       duty to the derived-floor backoff.
+ F1 CLOSE OF RECORD (user decision T0, 2026-08-11): F1 closed at
+ campaign 1/2, session 2/3 — exit conditions measured at S22 (branch
+ certifiability-limited-under-constraint, margin inactive, O4
+ localization branch (c), bridge falsified), 2nd campaign measurably
+ vacuous by monotonicity. P-2 freeze fired BY RULE dated 2026-08-11
+ (content: S19 two-knob numbers, registered norm 9.4809e-03, derived
+ band 1.8696e-02, o32 objective row NON-CONCLUSIVE); the C1
+ P-2-freeze-blocker row adjudicated FREEZE-WITH-DECLARED-CONDITIONAL
+ (the field-level rejector remains a NAMED conditional with owner F2,
+ declared in the P-2 outline header — the named-conditional-with-owner
+ pattern of record, generality preserved).]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 
