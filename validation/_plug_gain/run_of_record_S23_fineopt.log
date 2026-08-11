@@ -1,0 +1,59 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage fineopt) ==
+-- R-2: record checks against the S22 artifacts --
+  [PASS] R-2a J(S22 optimum) at (61,51) reproduces design.json (rel 0.0e+00)
+    rung 1 inc: 1.15600201e+08 vs log 1.15600201e+08 (rel 1.9e-09)
+    rung 1 opt: 1.15961756e+08 vs log 1.15961756e+08 (rel 3.7e-09)
+    rung 2 inc: 1.15810339e+08 vs log 1.15810339e+08 (rel 3.8e-09)
+    rung 2 opt: 1.16026100e+08 vs log 1.16026100e+08 (rel 1.0e-09)
+  [PASS] R-2b fresh rung-1/2 J's reproduce the S22 log at printed precision
+
+-- fine optimization at (K,N) = (121,101), warm from the S22 optimum --
+    [seg  0] J = 1.16026100e+08  |grad| = 6.018e+06  cert = 0.477
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg  1] trial J = 1.15339580e+08 REJECTED (worse than 1.16026100e+08) -> revert, radius -> 1.875e-02
+    [seg  2] J = 1.16026100e+08  |grad| = 6.018e+06  cert = 0.477
+    [seg  3] J = 1.16033114e+08  |grad| = 1.028e+06  cert = 0.420
+    [seg  3] no motion at radius 2.813e-02 -> retry at 1.406e-02 (same record)
+    [seg 4] base REJECTED (record not certified (worst 1.814e+01)) -> revert, radius -> 1.055e-02
+    [seg  5] J = 1.16033114e+08  |grad| = 1.028e+06  cert = 0.420
+    [seg  6] J = 1.16034457e+08  |grad| = 3.822e+05  cert = 0.922
+    [seg 7] base REJECTED (record not certified (worst 3.111e+00)) -> revert, radius -> 1.187e-02
+    [seg  8] J = 1.16034457e+08  |grad| = 3.822e+05  cert = 0.922
+    [seg  9] J = 1.16035348e+08  |grad| = 6.776e+05  cert = 0.499
+    [seg  9] no motion at radius 1.780e-02 -> retry at 8.899e-03 (same record)
+    [seg 10] J = 1.16035490e+08  |grad| = 2.143e+05  cert = 0.834
+    [seg 11] J = 1.16036050e+08  |grad| = 5.479e+05  cert = 0.289
+    [seg 11] no motion at radius 2.002e-02 -> retry at 1.001e-02 (same record)
+    [seg 12] J = 1.16036404e+08  |grad| = 1.634e+05  cert = 0.433
+    [seg 13] trial J = 1.15988660e+08 REJECTED (worse than 1.16036404e+08) -> revert, radius -> 1.126e-02
+    [seg 14] J = 1.16036404e+08  |grad| = 1.634e+05  cert = 0.433
+    [seg 15] J = 1.16037032e+08  |grad| = 3.923e+05  cert = 0.387
+    [seg 16] J = 1.16037268e+08  |grad| = 1.230e+05  cert = 0.467
+    [seg 17] trial J = 1.15868459e+08 REJECTED (worse than 1.16037268e+08) -> revert, radius -> 1.901e-02
+    [seg 18] J = 1.16037268e+08  |grad| = 1.230e+05  cert = 0.467
+    [seg 18] no motion at radius 1.901e-02 -> retry at 9.503e-03 (same record)
+    [seg 19] J = 1.16037436e+08  |grad| = 1.062e+05  cert = 0.660
+  fine optimum: J(121) = 1.16037436e+08 (warm start 1.16026100e+08, +0.0098%) cert 0.660, 15 segments
+  [PASS] R-3 fine optimum certified and does not lose to its warm start at its own resolution
+    node  0: AD +1.514415e+04 FD +1.535908e+04 |d| 2.15e+02 (band 1.87e+03)
+    node 10: AD -2.025331e+04 FD -2.025291e+04 |d| 3.94e-01 (band 5.00e+01)
+  [PASS] R-4 adjoint matches the FD ladder at the fine optimum
+
+-- fresh ladders, rungs 1-3, both designs --
+    rung ( 61, 51): J_inc 1.1560020078e+08  J_fine 1.1595026809e+08  gain +0.30283 %  (28 s)
+    rung (121,101): J_inc 1.1581033856e+08  J_fine 1.1603743640e+08  gain +0.19609 %  (66 s)
+E0810 17:04:04.189962   17146 slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+E0810 17:09:34.549225   17143 slow_operation_alarm.cc:140] The operation took 7m30.359416847s
+
+********************************
+[Compiling module jit_stack for CPU] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+    rung (241,201): J_inc 1.1591676617e+08  J_fine 1.1604150628e+08  gain +0.10761 %  (4350 s)
+  extrapolations: inc r +0.506 limit 1.160260e+08 | fine r +0.047 limit 1.160417e+08
+  PROVISIONAL 3-rung gain limit = +0.0136 %
+  saved /data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz  (11664 s total)
+
+== 4/4 PASS ==

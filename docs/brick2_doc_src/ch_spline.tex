@@ -523,6 +523,90 @@ the machinery is verified, the placement principle is demonstrated,
 and the headline gain is a property of the instrument's resolution,
 not yet of the nozzle.
 
+\section{The gain, resolved}
+\label{sec:gainresolved}
+
+The better instrument has now been built and run, and the question
+this chapter carried through three campaigns is closed. Three things
+were done, in the order the evidence demanded.
+
+\paragraph{Extrapolation, done per design.} Each design's thrust,
+measured on a resolution ladder whose spacing halves per rung, is its
+own convergent sequence, and each sequence must be extrapolated by
+its own contraction --- the streamline's converges cleanly at first
+order (measured ratio $0.506$), while a design tuned at a coarse
+resolution is \emph{non-monotone} near its tuning rung and refuses a
+one-mode fit. Extrapolated correctly, the S22 optimum's limit lands
+$0.012\%$ \emph{below} the streamline's: the coarse-grid gain was not
+merely unresolved, it was wholly the optimizer fitting the march's
+discretization error, slightly past the point of self-harm.
+
+\paragraph{An incumbent that is not tuned to the coarse march.} The
+optimum was re-optimized at the doubled resolution $(121,101)$ ---
+same class, same driver, sharper instrument. (Doing so exposed a
+driver defect worth recording: from this start the trust-region
+inner solver's first rejected trial, landing past the fold scale of
+the replayed surface, poisoned its quadratic model and it returned
+the start point unchanged while $+7\times10^{4}$ N of improvement
+was measurably available at a step of $10^{-3}$. The outer driver
+now applies its reject-and-shrink semantics to that case; every
+previously recorded walk reproduces bit-for-bit.) The fine-tuned
+optimum gains $+0.0098\%$ over the S22 design at its own resolution
+--- and its ladder then repeats the pattern one rung later: whatever
+resolution tunes the design, the march flatters it there and
+retracts the flattery one rung above.
+
+\paragraph{The paired ladder to $(1921,1601)$, and the verdict.}
+The difference of the two designs, however, becomes a clean sequence
+once the design leaves its tuning window, and it was extended to six
+rungs --- affordable because a profiling pass found the march
+spending its high-resolution hours inside a single degenerate
+tensor-stacking compilation, which a one-line change (bit-identical,
+gated on the record) reduced from hours to minutes:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+march resolution & gain over the streamline & diff ratio \\
+\midrule
+$(61,51)$      & $+0.303\,\%$ & \\
+$(121,101)$    & $+0.196\,\%$ & $0.829$ \\
+$(241,201)$    & $+0.108\,\%$ & $0.622$ \\
+$(481,401)$    & $+0.053\,\%$ & $0.554$ \\
+$(961,801)$    & $+0.022\,\%$ & $0.524$ \\
+$(1921,1601)$  & $+0.006\,\%$ & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The ratios settle onto the march's own first order, the
+model predicted the sixth rung before seeing it ($+0.0053\%$
+predicted, $+0.0062\%$ measured --- a miss eighteen times smaller
+than the step it predicted), and the extrapolated limit is
+\begin{equation}
+  \text{gain}^{*} \;=\; -0.011\,\% \;\pm\; 0.017\,\%
+  \qquad\text{(band from the limit's own window stability)}.
+\end{equation}
+
+\begin{quote}
+\textbf{The gain is zero within the band. At this length and this
+inlet split, the truncated fan streamline is optimal to within
+$0.028\%$: the free-form spike does not beat it, and every gain this
+program ever measured for it was the instrument's.}
+\end{quote}
+
+Rao's transposed argument (Section~\ref{sec:whynotstreamline})
+survives in sign --- the measured gain is positive at every finite
+resolution --- and turns out to be worth approximately nothing in
+the limit, \emph{at the optimized inlet split}. The one design
+variable at fixed length that pays remains the inlet angle, at
+percent scale; shape refinement after it is bounded by three parts
+in ten thousand. The statement is scoped: it is made at
+$\theta_E = 0$ and $L = 2.5$ m, and says nothing about deliberately
+suboptimal inlet splits, other lengths, or the full-expansion
+comparison of Section~\ref{sec:vsrao}, which remains the open
+experiment.
+
 \section{Against Rao's own construction}
 \label{sec:vsrao}
 

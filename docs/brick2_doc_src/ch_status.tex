@@ -52,18 +52,24 @@ Configuration comparison & \code{a1\_config\_compare.py} & 7/10
 Inlet angle as a variable & \code{a1\_inlet\_angle\_opt.py} & 6/6 PASS &
   \ref{ch:compare} \\
 Free-form spike (spline + TR-SQP) & \code{a1\_plug\_spline\_opt.py} &
-  7/8 (gain unresolved) & \ref{ch:spline} \\
+  7/8 (see below) & \ref{ch:spline} \\
+Adaptive knots on the spike & \code{a1\_plug\_adaptive.py} &
+  11/12 (see below) & \ref{sec:adaptive} \\
+Gain resolution (paired ladder) & \code{a1\_plug\_gain\_resolve.py} &
+  RESOLVED: gain $= 0$ in band & \ref{sec:gainresolved} \\
 Field meter, two routes (CFD P0) & \code{a1\_field\_meter.py} &
   3/4 (1 open) & \ref{sec:fmeter} \\
 \bottomrule
 \end{tabular}
 \caption{Every certified suite of Brick 2, its carrier script and its
 verdict of record. ``$m/n$ PASS'' counts the suite's checks,
-rejectors included. Three suites carry open checks rather than
+rejectors included. Two suites carry open checks rather than
 absorbing them into widened bands: the configuration comparison's mass
-and momentum closures for the descending plug, the field meter's
-two-route agreement, and the free-form spike's unresolved gain
-(\S\ref{sec:notresolved}). The first two are the same physics, and
+and momentum closures for the descending plug, and the field meter's
+two-route agreement. The free-form spike's once-open gain (its 7/8 and
+the adaptive carrier's 11/12 record the verdicts of their sessions) is
+now RESOLVED by the paired-ladder carrier: zero within a $0.017\%$
+band (\S\ref{sec:gainresolved}). The first two are the same physics, and
 \S\ref{sec:fmeter} sharpens the earlier diagnosis: the old figure was
 inflated by the meter, but a residual near $1\%$ survives on a surface
 fit to be integrated over and survives refinement, so it is a property
@@ -198,21 +204,16 @@ which is an argument for adaptive knot placement rather than for more
 knots.
 
 \begin{enumerate}[itemsep=2pt]
-\item \textbf{Resolve the free-form spike's gain}. Both remedies
-  proposed by \S\ref{sec:notresolved} have now been run
-  (\S\ref{sec:adaptive}): adaptive placement works --- one indicated
-  knot buys $+0.19\%$ where a matched uniform knot buys nothing ---
-  but on a three-point ladder to $(241,201)$ the gain falls
-  monotonically ($0.313 \to 0.186 \to 0.080\%$) and stays inside the
-  band ($0.426\%$). Still open, with the diagnosis sharpened: the
-  coarse-grid gain is largely optimizer fit to the march's
-  discretization error, and what is wanted next is a better
-  \emph{instrument} (an incumbent optimized at the finer rung, or an
-  extrapolation of the paired ladder), not more knots and not a
-  longer ladder.
+\item \textbf{Resolve the free-form spike's gain} --- RESOLVED
+  (\S\ref{sec:gainresolved}): on a six-rung paired ladder to
+  $(1921,1601)$, with the incumbent re-optimized at $(121,101)$ and
+  the model made to predict its last rung before seeing it, the gain
+  limit is $-0.011\% \pm 0.017\%$ --- zero within the band. The
+  truncated streamline is optimal at this length and inlet split to
+  within $0.028\%$; every previously measured gain was instrument.
 \item \textbf{Adaptive knot placement} on the spike --- DONE
-  (\S\ref{sec:adaptive}); retained here because its verdict check is
-  the previous item.
+  (\S\ref{sec:adaptive}); its verdict check is the previous item,
+  now closed.
 \item \textbf{Re-run the configuration comparison} with both sides
   free-form, now that the plug has a basis --- and only once the
   previous item is settled, since a margin quoted against an

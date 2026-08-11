@@ -160,6 +160,11 @@ _ck_tag = os.path.join(HERE, "_plug_spline",
 _ck_old = os.path.join(HERE, "_plug_spline", "spline_opt.npz")
 CKPT_S21 = _ck_tag if os.path.exists(_ck_tag) else _ck_old
 ART_DIR = os.path.join(HERE, "_plug_adaptive")
+# settings-tagged artifact names: a run at non-production
+# (m0, K, N) must never overwrite the production record
+# (the S21 checkpoint and the S22 design.json were both
+# destroyed by exactly that).
+TAG = "_m%d_k%d_n%d" % (M0, K0, N0)
 
 NPASS = [0, 0]
 
@@ -458,7 +463,7 @@ def main():
                          sites=list(map(float, sites)),
                          dev_warm=dev_w))
         np.savez_compressed(
-            os.path.join(ART_DIR, "cycle_%02d.npz" % cyc),
+            os.path.join(ART_DIR, "cycle%s_%02d.npz" % (TAG, cyc)),
             xk=xk_new, W=np.asarray(W_new), J=J_new,
             masses=masses, edges=edges, sites=np.asarray(sites))
         if J_new > best["J"]:
@@ -556,10 +561,10 @@ def main():
                             [4 * K0 - 3, 4 * N0 - 3]]),
         control=res_ctl, history=hist,
         provenance="[X-PAKN] S22; incumbent = S21 [X-PSPL] record")
-    with open(os.path.join(ART_DIR, "design.json"), "w") as f:
+    with open(os.path.join(ART_DIR, "design%s.json" % TAG), "w") as f:
         json.dump(art, f, indent=1)
     print("\n  design of record written to %s"
-          % os.path.join(ART_DIR, "design.json"))
+          % os.path.join(ART_DIR, "design%s.json" % TAG))
     print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
                                             time.time() - t_session))
     sys.exit(0 if NPASS[0] == NPASS[1] else 1)

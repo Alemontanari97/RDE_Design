@@ -303,11 +303,31 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             v, g = J_and_grad(z, w, c, ta, sched)
             return -sign * v, -sign * g
 
-        res = minimize(fun, W, jac=True, method="trust-constr",
-                       options=dict(maxiter=maxiter_per_seg,
-                                    initial_tr_radius=tr,
-                                    gtol=0.0, xtol=1e-14, verbose=0))
-        step = float(np.linalg.norm(res.x - W))
+        # NO-MOTION is not always convergence (S23 measured, on the
+        # S22 optimum at (121,101)): when the initial radius exceeds
+        # the surface's fold scale, trust-constr's FIRST rejected
+        # trial poisons its quadratic model with the fold's negative
+        # curvature and it burns its remaining iterations without
+        # evaluating the objective again, returning the start point
+        # unchanged while J is measurably improvable (+7e4 at
+        # h = 1e-3 along +grad, verified against the same frozen
+        # schedule). Same reject-and-shrink semantics as a rejected
+        # base: shrink OUR radius and retry the segment on the SAME
+        # record; only a no-motion at the radius floor is convergence.
+        while True:
+            res = minimize(fun, W, jac=True, method="trust-constr",
+                           options=dict(maxiter=maxiter_per_seg,
+                                        initial_tr_radius=tr,
+                                        gtol=0.0, xtol=1e-14,
+                                        verbose=0))
+            step = float(np.linalg.norm(res.x - W))
+            if step >= 1e-12 or tr <= 1.01e-3:
+                break
+            tr = max(1e-3, 0.5 * tr)
+            if verbose:
+                print("    [seg %2d] no motion at radius %.3e ->"
+                      " retry at %.3e (same record)"
+                      % (seg, 2 * tr, tr), flush=True)
         if step < 1e-12:
             if verbose:
                 print("    [seg %2d] no motion -> stop" % seg)

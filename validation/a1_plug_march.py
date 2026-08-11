@@ -378,7 +378,13 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         edge=jnp.stack(edge_pts), wall=jnp.stack(wall_pts),
         last_col=col, cert_worst=cert["worst"], cert_n=cert["n"],
         cert_where=cert["where"],
-        mesh_pts=(jnp.stack(list(G.values()))
+        # numpy, deliberately: this is a concrete record-mode artifact
+        # (never traced) and every consumer converts it to numpy
+        # anyway. jnp.stack over the whole mesh is an XLA compile
+        # with K*N operands — measured 7m30 at (241,201) and HOURS
+        # at (481,401), 100% CPU inside backend_compile (S23).
+        # Values are a memcpy either way: bit-identical.
+        mesh_pts=(np.stack([np.asarray(v) for v in G.values()])
                   if S.mode == "rec" else None),
         mesh_keys=(list(G.keys()) if S.mode == "rec" else None))
     return out, S

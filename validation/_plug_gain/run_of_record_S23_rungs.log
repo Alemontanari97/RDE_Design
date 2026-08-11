@@ -1,0 +1,36 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 4 (481,401) for design 'inc' --
+  J = 1.1596969441e+08  cert = 2.652  (509 s)
+  [FAIL] rung-4 march certified
+
+== 0/1 PASS ==
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 4 (481,401) for design 'fine' --
+  J = 1.1603071129e+08  cert = 0.199  (507 s)
+  [PASS] rung-4 march certified
+
+== 1/1 PASS ==
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 5 (961,801) for design 'inc' --
+  J = 1.1599624499e+08  cert = 0.865  (1966 s)
+  march certification: OK (0.865 vs 1.0)
+
+== 0/0 PASS ==
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 5 (961,801) for design 'fine' --
+  J = 1.1602194399e+08  cert = 4.032  (1973 s)
+  march certification: MARGIN-DEGRADED (4.032 vs 1.0) — reported, not binding at this rung
+
+== 0/0 PASS ==
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 6 (1921,1601) for design 'inc' --
+  J = 1.1600951521e+08  cert = 0.154  (8027 s)
+  march certification: OK (0.154 vs 1.0)
+
+== 0/0 PASS ==
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 6 (1921,1601) for design 'fine' --
+  J = 1.1601668529e+08  cert = 0.817  (8072 s)
+  march certification: OK (0.817 vs 1.0)
+
+== 0/0 PASS ==
