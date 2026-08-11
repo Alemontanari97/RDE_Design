@@ -168,7 +168,60 @@ nontrivial is not the constraints but the \emph{objective}: $J$ is
 differentiable only through a frozen march record
 (Section~15.4), and the record is itself position-dependent.
 
-\paragraph{The segmented walk.} The driver therefore proceeds in
+\paragraph{Decisions, records, and replays --- the vocabulary,
+concretely.} Three words carry this section and deserve exact
+meanings.
+
+A \emph{decision} is any discrete choice the march makes while
+building the field --- an integer or a branch, not a number that
+varies smoothly with the design. The march makes thousands: which
+segment of the previous column \emph{brackets} the characteristic
+arriving at a new wall point (the wall-foot search returns an index,
+and stepping columns further back changes that index by whole
+units); how many rows a given column carries (the mesh gains a row
+per column as the jet widens, and \emph{when} it gains one is a
+threshold test); which cells are wired to which neighbours; which
+side of every safety guard the arithmetic lands on. Each decision is
+a step function of the knot heights: nudge the wall and the bracket
+index, say, stays put --- until some threshold is crossed and it
+jumps by one. A derivative cannot pass through a jump, so the march
+as written is not differentiable, even though every formula inside
+it is.
+
+The \emph{record} (or \emph{schedule}) is the cure: one march runs
+with concrete arithmetic and writes down every decision it made ---
+the bracket indices, the row counts, the wiring, the branch
+outcomes --- as plain integers in a ledger. Nothing about the flow
+is stored; only the choices.
+
+A \emph{replay} re-runs the march with every decision \emph{read
+from the ledger instead of recomputed}. The comparisons and searches
+vanish; what remains is a fixed pipeline of smooth
+arithmetic --- the same cells, wired the same way, solving the same
+equations --- through which the knot heights flow. That pipeline
+\emph{is} differentiable, and one reverse pass through it yields
+the exact gradient of $J$ \emph{at frozen topology}: the derivative
+of the flow the march would compute \emph{if it kept making the
+same choices}.
+
+The price is locality, and it is the price the whole driver is
+shaped around. Near the recorded base the frozen choices are the
+right ones and the replayed $J$ agrees with the true $J$ to
+round-off. Move the design far enough that the true march would
+have decided differently --- a bracket shifts, a column gains its
+row earlier --- and the replay, still faithfully executing the old
+choices, computes a flow the true march would never produce: the
+replayed objective is only \emph{piecewise} smooth, exact within
+each decision cell and wrong across its boundary. The fold in
+Figure~\ref{fig:s23driver}(b) is such a boundary seen edge-on, and
+the finite-difference noise that once condemned a correct adjoint
+(the ladder lesson of Section~15.6) is the same boundaries seen at
+step-size scale.
+
+\paragraph{The segmented walk.} Everything above dictates the
+driver's shape: walk only on a record, distrust the walk the moment
+it may have out-run the record's validity, and refresh the record
+whenever a step is worth keeping. The driver therefore proceeds in
 \emph{segments}:
 
 \begin{enumerate}
