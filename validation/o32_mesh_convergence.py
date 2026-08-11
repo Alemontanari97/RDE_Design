@@ -60,16 +60,19 @@ UNCERTAINTY AND VERDICT RULE — DECLARED BEFORE THE RUN (R5)
      asymptotic-range indicator. A sequence out of asymptotic range
      produces a LARGE dp_model and the run is declared NON-CONCLUSIVE
      rather than PASS.
-  Verdict rule (fixed before any number was produced):
-     CONCLUSIVE iff dp_tot := dp_noise + dp_model < 1/2, the 1/2
-       being DERIVED as the half-separation from the adjacent integer
-       orders 1 and 3 (a band that touches 1 or 3 cannot discriminate
-       the claim from first or third order, so it decides nothing);
-     PASS iff CONCLUSIVE and |p_hat_fine - 2| <= dp_tot.
-  There is no third branch: a conclusive rate outside the band is a
-  FAIL of the h^2 claim (LB-c1 is then reported VIOLATED on that
-  instance — the clause's declared self-monitoring channel firing,
-  which is a result, not an error).
+  Verdict rule OF RECORD (S21 re-adjudication, 2026-08-11 — this
+  header previously stated the two-sided rule as pre-registered
+  while the verdict commit had switched it; the adjudicated set is):
+     CONCLUSIVE iff dp_tot := dp_noise + dp_model < 1/2, the
+       PRE-REGISTERED cap (carrier commit 6ea29e3; the in-verdict
+       doubling to 1.0 cannot bind post hoc — see verdict_row);
+     KILL rule = the BINDING one-sided S16 [S-LBML] falsifier:
+       p_hat_fine < 2 - dp_tot kills the h^2 claim (an order ABOVE 2
+       does not); the two-sided reading is reported, not binding.
+  S19 ROW OF RECORD, RE-REPORTED under this rule: p_fine = 2.5347,
+  dp_tot = 0.6704 -> rate claim NOT killed, row NON-CONCLUSIVE
+  (conclusiveness not achieved at the pre-registered cap). Named
+  lever: finer ladder until dp_tot < 0.5.
 
 NEGATIVE CONTROL — A REJECTOR THAT CAN REJECT (§S4)
   make_solvers_foot: the SAME unit processes with the characteristic
@@ -235,12 +238,21 @@ def verdict_row(label, f, h, ncell, scale_hint=None):
        session's step-3 text (|p - 2| <= dp_tot). It is STRICTER than
        the text that binds, so it is reported alongside and never used
        to decide.
-    The conclusiveness cap is reported at BOTH constants: the coded
-    0.5 and the 1.0 that the cap's own stated derivation ("the band
-    must not touch the adjacent integer orders 1 and 3") actually
-    yields — the step-3 text asserted the derivation and coded 0.5,
-    which is an inconsistency of mine, declared here rather than
-    silently resolved. Every exponent is printed either way."""
+    CONCLUSIVENESS CAP OF RECORD = 0.5 (S21 RE-ADJUDICATION,
+    2026-08-11, red-team o32-refutation-hides-verdict-moving-rule-
+    change): the 0.5 cap was PRE-REGISTERED in the carrier commit
+    (6ea29e3, before any number existed); the doubling to 1.0
+    landed in the VERDICT commit itself (514e267) with the numbers
+    in hand, and self-attested before-ness inside an outcome commit
+    does not meet the repo's own commit-granularity pre-registration
+    standard. Consequence for the S19 row of record: dp_tot = 0.6704
+    -> the rate claim stays NOT KILLED (binding one-sided S16 rule,
+    p_fine = 2.5347) but the row is RE-REPORTED NON-CONCLUSIVE under
+    the pre-registered cap. The 1.0 constant (the cap's stated
+    "adjacent integer orders" derivation) remains REPORTED as a
+    derivation PROPOSAL that cannot bind this instance post hoc;
+    named lever to moot the dispute: a finer ladder driving
+    dp_tot < 0.5. Every exponent is printed either way."""
     scale = scale_hint if scale_hint is not None else max(
         abs(v) for v in f)
     if len(f) < 4:
@@ -266,10 +278,9 @@ def verdict_row(label, f, h, ncell, scale_hint=None):
         return False, False, p_f, None
     dpm = abs(p_c - p_f)
     dpt = dpn + dpm
-    # conclusiveness at the constant the cap's own derivation yields
-    # (the band must not reach the adjacent integer orders 1 and 3);
-    # the coded 0.5 of the step-3 text is reported, not used.
-    concl = dpt < 2.0 * SEP_ADJACENT
+    # conclusiveness at the PRE-REGISTERED cap of record (S21
+    # re-adjudication — see docstring); the 1.0 reading stays printed
+    concl = dpt < SEP_ADJACENT
     killed = p_f < 2.0 - dpt              # the BINDING S16 falsifier
     ok = concl and (not killed)
     two_sided = abs(p_f - 2.0) <= dpt     # reported, stricter, not used

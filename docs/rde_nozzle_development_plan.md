@@ -60,8 +60,12 @@ F1  GOVERNOR + P-2 CAPTURE (2-3 sessions). Margin-constrained A'
     the [D1]-CONSTRAINED variant derived BEFORE the decisive run +
     the validity monitor running along the walk. EXIT
     (BRANCH-ADJUDICATED, every branch a valid exit): constrained-KKT
-    closure with margin-ACTIVE outcome ADMITTED (the panel-predicted
-    signature), mu >= 0 measured on a pre-registered floor sequence;
+    closure with margin-ACTIVE outcome ADMITTED (red-team RT-1
+    wording of record: the S20 standoff is CONSISTENT WITH a
+    DEF-sector optimum AND equally with an interior-binding tier-1
+    optimum until O4 localization runs — margin-active is an
+    admitted outcome, not a DEF-discriminating prediction),
+    mu >= 0 measured on a pre-registered floor sequence;
     OR certifiability-limited-under-constraint declared with
     localization evidence; binding locus CLASSIFIED via the
     mandatory logs (terminal-characteristic same-family cusp /
@@ -70,23 +74,82 @@ F1  GOVERNOR + P-2 CAPTURE (2-3 sessions). Margin-constrained A'
     campaigns (anchor ~1046 s/campaign, S20), then fallback
     auto-fires. P-2 freeze on a DATED trigger at F1 close (default =
     S19 two-knob numbers BY RULE); NO driver work (S20 pre-named
-    boundary). FALLBACK: P-2 publishes on S19 two-knob numbers.
-F1b DEF ADJUDICATION (1 session, current engine). The panel's
-    pre-registered twin falsifier VERBATIM (branches F1-F7; GENO
-    flagdef=1 leg vs direct margin-constrained leg at same (eps,L))
-    + companion mu-prediction test (GENO deeper-jump family);
-    O5 (h->0 vs mu_0->0 limit order) carried as NAMED CONDITIONAL
-    or discharged by a cheap floor-ladder study; EQ-v2
-    promotion/demotion recorded with rigor tags, R4 same session.
-    FALLBACK: twin blocked-with-named-cause; Direction-A-only
-    content published with the recorded branch.
+    boundary). FREEZE CHECKABILITY (S21 addendum, ISS-5): the F1
+    budget expires at the close of the SESSION containing the 2nd
+    decisive campaign (max 2 campaigns; 3rd session only if no 2nd
+    campaign has run); PROGRESS ORA carries the counter line
+    "F1 campaign k/2, session m/3" at every session close (recorder
+    = the session's R3 closure, verifiable by any reader); the
+    freeze date = the calendar date of that closing session,
+    recorded in PROGRESS ORA and the P-2 outline header. DECOUPLING
+    OPTION (ISS-2, USER DECISION re-presented, not defaulted): the
+    realist's alternative — freeze P-2 at F0-exit+1 session at
+    fallback (S19 two-knob) quality, decoupled from the governor —
+    is on the user-decision table (see BLOCCATO); the coupled
+    dated-trigger above is the ratified default until the user
+    decides. FALLBACK: P-2 publishes on S19 two-knob numbers.
+F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
+    the floor-sequence cost demands it — budget anchor ~1046
+    s/campaign, wall-clock cap 2 h/decisive run, max 2 runs, then
+    the fallback fires; current engine). The panel's pre-registered
+    twin falsifier VERBATIM (branches F1-F7; GENO flagdef=1 leg vs
+    direct margin-constrained leg at same (eps,L)) + companion
+    mu-prediction SIGN TEST (GENO deeper-jump family; red-team
+    RT-4: NOT decisive for O3 — magnitude claims blocked until the
+    dJ/d(depth) = -mu*dm/d(depth) derivation under H3 + the
+    mu-estimator band exist); O5 (h->0 vs mu_0->0 limit order)
+    carried as NAMED CONDITIONAL or discharged by a cheap
+    floor-ladder study. ENTRY (ISS-3 repair): gates depend only on
+    what THIS repo controls; "GENO flagdef KAT + DEF regression
+    landed in GENO" is a NAMED EXTERNAL CONDITIONAL — if not landed
+    by F1b entry, twin leg 1 is declared blocked-with-named-cause
+    and the F1b fallback fires (the coverage row reads through this
+    conditional, never silently). EQ-v2 promotion/demotion recorded
+    with rigor tags, R4 same session. FALLBACK: twin
+    blocked-with-named-cause; Direction-A-only content published
+    with the recorded branch.
 F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
+    BUDGET HONESTY (ISS-4): the brick-1+2 precedent spanned ~9
+    sessions (S10-S18) — the 4-6 figure is a DELIBERATE cap, not an
+    estimate from the anchor; per-session wall-clock cap 3 h of
+    decisive runs; at cap exhaustion the fallback fires BY RULE,
+    with the PROGRESS ORA counter "F2 session m/6" as the recorder;
     milestones F2a/F2b; C6 promoted to pre-entry). Three-family MoC
     (C+/C-/streamline transport of s, h0), thermo backend on the
     (q; s, h0) manifold, generalized data guard. F2a: certified
     stratified-data FORWARD march + stage-A data-contract audits
     (Crocco, completeness, H-I2) + T0 flatness monitor with DERIVED
-    threshold — G6 loud-reject operative from HERE. F2b: adjoint/
+    threshold — G6 loud-reject operative from HERE. F2a ALSO OWNS
+    (S21 addendum, red-team ISS-1 + use-case U2): the CONTACT/SLIP
+    adjudication of record — the U3/U4 fitted-front machinery is
+    Lax-shock-only BY CONSTRUCTION (entropy-jump floor; Lopatinskii
+    scalar degenerates exactly at characteristic fronts), so
+    contact/slip discontinuities (linearly degenerate, the main
+    stratification carrier in RDE exhaust, IN the problem book's
+    data class) are owned NOWHERE by the shock machinery: F2a's
+    DEFAULT = smeared contact marched as smooth stratified data
+    (justification: linear degeneracy — no self-steepening;
+    statement with declared rigor class), with piecewise s(psi),
+    h0(psi) admission and the extended margin covering the jump,
+    or an explicit smoothing hypothesis in the data class; the
+    FITTED-contact option (with its own degenerate-front theory) is
+    an F4b extension, never inherited from the shock certificates.
+    F2a ALSO OWNS U3' (use-case addendum, block C): the RDE CHOKING
+    ADJUDICATION — the extraction-surface rule U3 PRESUPPOSES a
+    per-phase axially-supersonic surface downstream of the throat,
+    a steady-nozzle intuition whose transfer to the RDE (throat
+    swept by a rotating nonuniform pattern; literature records
+    "steady criteria are invalid" claims) is NOT established: U3'
+    must adjudicate under which hypotheses (and with which
+    executable monitor) the quasi-steady decomposition admits a
+    well-defined per-phase sonic/extraction surface, what
+    correction the corrector carries, and when the answer is NO
+    (subsonic patch with declared closure). U3 stays PREMISE-OPEN
+    until U3' closes; NO freeze of the extraction contract before.
+    Survey base: the deep-read advisories in flight (Stechmann
+    2018, Kaemming-Paxson EAP, Paxson-Miki AIAA 2022-4107 "choked
+    chamber exit decouples cycle from nozzle" — page-verify in
+    course) + the Harroun acquisition (fetch list). F2b: adjoint/
     O3.1 at machine precision on the stratified march; GENO moc_gen
     twin agreement in derived bands PLUS independent invariants
     (cross-code agreement != truth); EXTENDED (q; s, h0) fold/
@@ -104,7 +167,15 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     truncated-plug shape falsifier executed BEFORE the first
     certified plug optimum ships. Spike-level plug-march de-risk
     AUTHORIZED parallel to F2 (RK1 front-load); two-wall Veen =
-    conditional stretch. FALLBACK: spike-only capture.
+    conditional stretch. BUDGET (ISS-4): 3-4 sessions, wall-clock
+    cap 3 h decisive runs/session, max 2 decisive optimization
+    campaigns per instance, PROGRESS counter "F3 session m/4"; cap
+    exhaustion fires the fallback BY RULE. ORDER RESILIENCE
+    (ISS-6, adopted from the RDE expert): F3 and F4b are
+    ORDER-INTERCHANGEABLE given F2 exit (both entry gates
+    independent of each other) — if F3 stalls on its external risks
+    (RaoPlug S1/S2; C- mirror), F4b may start first without
+    re-adjudication. FALLBACK: spike-only capture.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
@@ -116,13 +187,31 @@ F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     tier-1/DEF paper with claim gates (classical-optimality claims
     O3-GATED; O1 discharged or B-stationarity declared; O2 as this
     paper's theory obligation; every "coincides" carries the
-    multi-KKT selection hypothesis). NO interior-shock
-    birth-fitting. FALLBACK: single inherited-front instance (S8
-    fitted-sheet class).
-F5  RDE MACHINE (re-budget MANDATORY at entry; C5 closed pre-entry;
-    case-B per-phase profile generator with its OWN validation
-    oracle = named blocking conditional, buildable in the F3/F4b
-    window; G1 re-affirmed ABSOLUTE). F5a: quasi-steady sweep T3-QS
+    multi-KKT selection hypothesis H7-SEL). NO interior-shock
+    birth-fitting. OPTIONAL EXTENSION (ISS-1/U2): fitted-contact
+    (degenerate-front) machinery with its OWN theory — the Lax-shock
+    certificates do NOT cover it. BUDGET (ISS-4): 2-3 sessions,
+    wall-clock cap 3 h/session, max 2 decisive campaigns, PROGRESS
+    counter "F4b session m/3"; cap fires the fallback BY RULE.
+    FALLBACK: single inherited-front instance (S8 fitted-sheet
+    class).
+F5  RDE MACHINE (re-budget MANDATORY at entry — the horizon figure
+    is NOT a budget: the entry re-adjudication must set anchor +
+    wall-clock cap + campaign count per ISS-4, recorded in PROGRESS
+    before any decisive run; C5 closed pre-entry; case-B per-phase
+    generator UPGRADED per use-case duty U1 to a CFD-to-contract
+    PIPELINE: interface front-extraction operator — captured-shock
+    detection (Gelb-Tadmor concentration method lineage) +
+    RH-consistent sharp-state reconstruction (Paciorri-Bonfiglioli
+    fitted-front lineage) + exact-RH projection with DERIVED
+    residual band + LOUD REJECT + synthetic smear-extract-compare
+    KAT as its own oracle — the named blocking conditional,
+    buildable in the F3/F4b window; U3 EXTRACTION-SURFACE RULE in
+    the contract text (profile requested on a surface downstream of
+    the throat where the axial flow is per-phase supersonic;
+    exact-throat transonic hand-off = a SEPARATE priced duty) —
+    PREMISE-OPEN until U3' (F2a) closes, no contract freeze before;
+    G1 re-affirmed ABSOLUTE). F5a: quasi-steady sweep T3-QS
     + certified cycle-averaged design + mu-instruments bundle (D6
     item 15) IN the Verdict = RDE application paper (hardware
     claims P-ii only). F5b: G3 unsteadiness trigger derived as a
@@ -208,7 +297,17 @@ F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
   validation/ADVISORY_plan_v3_panel_2026-08-07.md (ingested S21);
   every phase assumption is covered by a prior exit gate or carried
   as a NAMED conditional with an owner — the map is part of this
-  ratification by reference.
+  ratification by reference, WITH the S21-addendum corrections: (i)
+  NEW ROW (red-team ISS-1): "F5 consumes contact/slip
+  discontinuities -> covered by F2a's contact adjudication (default
+  smooth-stratified by linear degeneracy) + optional F4b
+  fitted-contact extension — the U3/U4 Lax-shock certificates do
+  NOT cover degenerate fronts"; (ii) CORRECTED ROW (ISS-3): "F1b
+  leg 1 assumes GENO's flagdef branch correct -> named EXTERNAL
+  conditional (KAT in GENO's repo), fallback-wired, NOT an F0 exit
+  of this repo"; (iii) the audit totals cited anywhere are the
+  CORRECTED ones (82 CONFIRMED / 13 high / 12 REFUTED, header fixed
+  2026-08-11 — red-team judge-totals issue).
 - AUDIT P2 REMAINDER, phase-tagged (checkable scheduling): C4 ->
   F0/F1 (minimal fix or carrier-exclusive annotations); C5 ->
   pre-F5 entry; C6 -> pre-F2 entry; remaining C3 rows -> the phase

@@ -595,6 +595,14 @@ the apparatus is validated by a first-order control that reads 0.9997
 +/- 6e-04, and the ADJOINT exponent is NOT MEASURABLE on a refinement
 ladder because refinement cannot hold the march topology fixed — this
 is clause LB-c2 of [S-LBML] biting, not a failure of the transpose.
+S21 RE-ADJUDICATION OF RECORD (2026-08-11, red-team on the audit
+refutations): the objective row's CONCLUSIVENESS is re-reported
+NON-CONCLUSIVE under the PRE-REGISTERED cap (dp_tot = 0.6704 > 0.5
+of the carrier commit 6ea29e3; the in-verdict-commit doubling to
+1.0 cannot bind post hoc). The rate claim stays NOT KILLED (binding
+one-sided S16 falsifier, p_fine = 2.5347); no downstream claim may
+cite the objective exponent as CONCLUSIVELY second-order; named
+lever = a finer ladder driving dp_tot < 0.5.
 The Hoffman-E evaluation proper (E on the pointwise AD adjoint FIELD)
 is NOT executed: it needs the adjoint field extracted by residual
 injection (a source tau added through the custom_vjp solver's p
