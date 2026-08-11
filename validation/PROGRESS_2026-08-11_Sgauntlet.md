@@ -181,3 +181,22 @@ min) + discharge agent (~0.13M); Campaign B 22 agents (~1.52M, ~31
 min) + red-team agent (~0.20M). Total 42 agents vs ~42 declared at
 step 2 (Form-1: B1 drop counts 4,8,6,4,4,3,5 declared by the
 generators themselves).
+
+## STEP 10 — POST-COMMIT HUNK AUDIT + CLOSING HEAD RECONCILIATION
+
+Hunk audit of e5f8f64: PASS — exactly one file
+(validation/PROGRESS_2026-08-11_Sgauntlet.md, 183 insertions), no
+engine file, no F-line file.
+HEAD RECONCILIATION AT CLOSE: the F line advanced DURING this
+session (S22 steps 5-8 committed and CLOSED: 0174bb9 = [X-LOCD] O4
+discharged BRANCH (c) — DEF reading AND interior-caustic reading
+BOTH falsified for the S20 instance, mechanism = class construction
++ [X-MGOV] margin governor; e7b6a04 = S22 R3 close, F1 campaign 1/2
+certifiability-limited with margin INACTIVE). No conflict with this
+session's output: the collapse advisory treats the DEF twin as a
+DISTINCT object (conflation prohibited) and takes no position on the
+S20 standoff; the S22 [X-LOCD] branch-(c) outcome supersedes the
+RT-1 wording question independently. Registry count seen by our
+lint (131) matches the S22 registration (+X-LOCD, +X-MGOV).
+Remaining working-tree modifications (data/q_mapping.*) belong to
+the F line — untouched.
