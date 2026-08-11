@@ -1254,6 +1254,32 @@ entries:
   falsifier: "any grid point of KAT-A beyond the roundoff floor or of KAT-B beyond the derived table band kills the S4 evidence half; the corrupted-gamma/corrupted-table rejectors must fire; a monitor consumption outside the three-way verdict form is a protocol violation"
   gamma: "EOS-general"
 
+- id: X-LOCD
+  kind: carrier
+  class: PRACTICE
+  scope: "S20 RETRO-DIAGNOSIS — the C-1 three-way locus test (S22 2026-08-11, F1 entry row of plan v3); on-demand carrier (env: jax); consumes the O4 instrumentation armed at S21 F0 (cert argmax localization, rejected-design persistence with the S22 class-completed payload, [X-VMON] AD Lambda val field); inputs = the deterministically regenerated [X-AKNO] attempt-3 rejection set (A1_REJ_SAVE artifact) + the outcome-II returned certified base (A1_AKN_CERTLIM_SAVE artifact); pre-registered rules fixed in the docstring BEFORE the first analysis run: m_ref = min val over the certified baseline design-wall field, fold-implicated iff val_min < m_ref/K_RICH, on-chain iff distance to the nearest control-surface chain node <= STENCIL_RADIUS x local chain spacing, decision tree (1)-(4) with declared annotations mapping onto the C-1 branches (a)/(b)/(c) verbatim; determinism vs the S20 crawl signature (1.170, 2.458, 1.060, 1.455, 1.698) checked and a mismatch is a declared FINDING (verdict then reads regenerated-set); the run is ALSO the named K_disc ~ A_0 bridge test on the S20 instance (branch (c) fires the bridge falsifier)"
+  statement: "The O4 localization for the S20 instance is executable: each regenerated rejected design and the returned certified base is re-recorded in its persisted class with argmax localization, the (G)/Lambda-form val field is computed over the design-wall region by AD through the march's own closure, and the C-1 three-way table classifies the instance — every branch a verdict, none a failure."
+  doc: "validation/locus_diagnosis.py"
+  proof: "validation/locus_diagnosis.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "KAT-CLS classifier known-answer failing on any of the five synthetic scenarios; BASE-CTRL firing on the certified baseline (m_ref <= 0 => instrument non-discriminating); a rejected design whose re-record does not reproduce cert_worst > 1; branch (b) falsifies the DEF reading for S20, branch (c) falsifies both readings AND fires the K_disc ~ A_0 bridge falsifier for the instance"
+  gamma: "EOS-general"
+
+- id: X-MGOV
+  kind: carrier
+  class: PRACTICE
+  scope: "MARGIN GOVERNOR — the F1 A' margin-constrained formulation made executable (S22 2026-08-11); on-demand carrier (env: jax): traced (G)/Lambda-form val field over every W-dependent lane of the march (val_diag replay, the additive cert_diag pattern), KS-min aggregation in shifted overflow-free form with the log-sum-exp bounds as THEOREM-level anchor, rho DERIVED = K_RICH ln(N)/mu_0_min (gap pinned below the enforcement resolution by construction), floor ladder mu_0_k = m_ref/2^k k=1..4 pre-registered from the MEASURED baseline healthy reference m_ref, G1 finite-negative surrogate (masked-lane KS + K_RICH m_ref frac_bad penalty, finite at every representable W, exact-KS at zero failures) with REQ-NONSTALL zeroed+counted gradient fallback, GENO implementation-magic bands derived (dV_pert FD-vs-AD Lambda band = the F1b cross-check leg; den-guard in-range statement; PM window declared F1b), [D1]-CONSTRAINED corner metric rel_c = |gJ_lip + mu gm_lip - cd|/|cd| as COROLLARY of the S20-registered constrained-KKT THEOREM (B-stationarity qualifier until O1), scipy NonlinearConstraint entry via run_trsqp margin_factory (FORMULATION, policy stack untouched); adaptive-KS survey adopt-or-declare recorded (Poon-Martins/SAKS NOT adopted, reason stated); campaign stage = ladder continuation with mandatory O4 logs (argmin locus, active-cusp census, multiplier sign) and the D6 branch-adjudicated exits"
+  statement: "The margin-constrained A' problem of the M0 tier ladder is executable on the bell tier-0 instance with every constant derived or measured: the KS margin constraint steers, survives (G1 surrogate), and reports at every trial point, and its rejectors (KS bounds, AD-vs-FD gradient band, broken-design finite-negative, GENO-band self-check) can fire."
+  doc: "validation/margin_governor.py"
+  proof: "validation/margin_governor.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "R-KS bounds violated on the measured field; R-GRAD AD-vs-FD outside the derived band (or the corrupted control passing); R-G1 margin non-finite or non-negative at the broken design, or a margin-constrained walk stall/crash (tier-invariant G1 FAIL); R-FD GENO-step FD Lambda outside the derived band around AD"
+  gamma: "EOS-general"
+
 - id: T-LFEQ4
   kind: theorem
   class: THEOREM

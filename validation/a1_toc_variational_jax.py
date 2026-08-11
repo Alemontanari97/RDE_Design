@@ -545,7 +545,8 @@ def run_toc_scan(W, tab, cfg, plan, state_fn=A1.state_q, solvers=None):
 # this path is the NaN-leak detector.
 # ======================================================================
 def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
-                          solvers=None, cert_diag=False):
+                          solvers=None, cert_diag=False,
+                          val_diag=False):
     """Whole-loop jitted bucketed TOC replay for a FIXED plan.
     Returns a jitted callable W -> wall (n_B + Nw, 4).
 
@@ -559,7 +560,22 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     stays deliberately deferred to the P3(ii) accepted-iterate
     re-record (DECLARED contract, not a gap); the verdict-bearing
     consumers (O3.1 FD probes, the certdiag KAT) build with
-    cert_diag=True and CHECK worst <= 1."""
+    cert_diag=True and CHECK worst <= 1.
+
+    val_diag (S22, F1 governor entry — the same ADDITIVE pattern as
+    cert_diag): with val_diag=True the callable returns
+    (wall, q_lanes, th_lanes, act_lanes) where the lane arrays cover
+    every lane of the DESIGN-WALL bucket (wall point + interior cells
+    + axis per column — every W-dependent cell of the march; the fan
+    bucket is W-independent by construction: IVL + recorded seeds
+    only) with q = flow speed, th = flow angle, act = real-lane mask.
+    The [X-MGOV] margin governor consumes these to build the traced
+    (G)/Lambda-form val field and its KS aggregate; reporting-only
+    here, no gate reads them. Mutually exclusive with cert_diag by
+    declaration (no consumer needs both)."""
+    if cert_diag and val_diag:
+        raise ValueError("cert_diag and val_diag are mutually "
+                         "exclusive by declaration")
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
@@ -769,6 +785,16 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
                                               act))),
                     jnp.where(hax, _ratio(st_axi, za, p_ax), 0.0))
                 return base, (wall_pt, wcol)
+            if val_diag:
+                # S22: per-lane (q, theta) for the margin governor —
+                # wall point + interior cells (masked) + axis (hax).
+                lane_pts = jnp.concatenate(
+                    [wall_pt[None, :], cells, ax[None, :]], axis=0)
+                lane_act = jnp.concatenate(
+                    [jnp.array([True]), act, hax[None]])
+                q_l = jnp.sqrt(lane_pts[:, 2]**2 + lane_pts[:, 3]**2)
+                th_l = jnp.arctan2(lane_pts[:, 3], lane_pts[:, 2])
+                return base, (wall_pt, q_l, th_l, lane_act)
             return base, wall_pt
 
         _, outT = jax.lax.scan(
@@ -781,6 +807,9 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
         if cert_diag:
             wallT, wallW = outT
             return wallT, jnp.maximum(jnp.max(fanW), jnp.max(wallW))
+        if val_diag:
+            wallT, q_l, th_l, act_l = outT
+            return wallT, q_l, th_l, act_l
         return outT
 
     return run
@@ -814,7 +843,7 @@ def check(label, ok):
 # ======================================================================
 def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
               maxiter_per_seg=40, state_fn=A1.state_q, solvers=None,
-              verbose=0):
+              verbose=0, margin_factory=None):
     """S18 driver notes (declared, after the first honest end-to-end
     FAIL): (i) max_segments raised 8 -> 100 — the wall-search indices
     (N, Nv) are FRAGILE decisions (chord-foot descent over ~100
@@ -840,8 +869,19 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     scaling), NOT a policy change: RK-G semantics are
     coordinate-free, the constraint multiplier is invariant under
     the paired constraint-row scaling, and every record/replay still
-    receives physical W."""
-    from scipy.optimize import minimize, LinearConstraint
+    receives physical W.
+
+    margin_factory (S22, F1 governor — the A' FORMULATION entry, not
+    driver surgery: the optimization problem gains the margin
+    constraint of the M0 tier-ladder formalization, the policy stack
+    is untouched): a callable (plan, Dv) -> (m_np, gm_np) built per
+    segment (the traced margin replay is plan-fixed like the
+    objective's). The pair is wrapped in a scipy NonlinearConstraint
+    m >= 0 in the SCALED coordinates u (physical W = u * Dv) and
+    appended to the constraint list. None (default) = the exact
+    pre-S22 unconstrained-form problem, bit-identical."""
+    from scipy.optimize import (minimize, LinearConstraint,
+                                NonlinearConstraint)
 
     n = W0.shape[0]
     A = np.zeros((1, n))
@@ -901,7 +941,14 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 W=[float(x) for x in W], seg=int(seg),
                 cert_worst=(float(worst_seen)
                             if np.isfinite(worst_seen) else None),
-                error=str(err)))
+                error=str(err),
+                # S22 T2 (completeness of the T5 persistence): a
+                # design in an ADAPTIVE class is not re-recordable
+                # without its class — persist the active (M_NODES,
+                # KNOT_XI) alongside W. Additive, reporting-only.
+                m_nodes=int(M_NODES),
+                knot_xi=(None if KNOT_XI is None
+                         else [float(x) for x in KNOT_XI])))
             # OPTIONAL CERTIFIABILITY DIAGNOSTIC (S20, env
             # A1_RKG_CERTDIAG=1, default OFF, purely reporting):
             # cert_worst > 1 has TWO possible causes and they are
@@ -1128,10 +1175,15 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 return True
             return False
 
+        cons = [lip_eq]
+        if margin_factory is not None:
+            m_np, gm_np = margin_factory(plan, Dv)
+            cons.append(NonlinearConstraint(m_np, 0.0, np.inf,
+                                            jac=gm_np))
         W_start = W.copy()
         res = minimize(f_np, W / Dv, jac=g_np, hess=hess_u,
                        method="trust-constr",
-                       constraints=[lip_eq], callback=cb,
+                       constraints=cons, callback=cb,
                        options=dict(gtol=gtol, xtol=xtol,
                                     maxiter=maxiter_per_seg,
                                     initial_tr_radius=tr0,

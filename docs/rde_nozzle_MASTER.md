@@ -1503,6 +1503,103 @@ decisive for O3; magnitude claims blocked until the
 dJ/d(depth) = -mu*dm/d(depth) derivation under H3 and the
 mu-estimator band exist.]
 
+[S22 REGISTRATION BLOCK — O4 DISCHARGED FOR THE S20 INSTANCE
+(BRANCH (c)), THE K_disc ~ A_0 BRIDGE FALSIFIED ON ITS NAMED TEST,
+AND THE F1 GOVERNOR DERIVATIONS] (2026-08-11, [F1/GOVERNOR] of plan
+v3, session S22; log validation/PROGRESS_2026-08-11_S22_governor.md;
+carriers [X-LOCD], [X-MGOV] committed this session).
+ O4 DISCHARGE OF RECORD (the C-1 three-way locus test, verdict form
+adopted VERBATIM; class: MEASUREMENT on committed carriers). The S20
+walk was regenerated DETERMINISTICALLY ([X-AKNO] attempt-3 path:
+same knots 0.3146/0.7026, same certified prefix to J = 2.7775368e+07
+/ KKT 5.056e+04, same returned base J = 2.7775702e+07, same
+rejection signature {1.170, 2.458 x4, 1.060, 1.455, 1.698}, record
+artifact bit-identical) with the O4 instrumentation armed; the five
+distinct rejected designs and the returned base were re-recorded in
+their persisted class with cert-argmax localization and the
+(G)/Lambda-form val field: VERDICT = BRANCH (c) UNANIMOUS (5/5).
+The val field is HEALTHY at every rejected design (min val 0.612 -
+0.620 vs the healthy reference m_ref = 0.68837 and the fold
+threshold m_ref/K_RICH = 0.172; val at the FAILING cells 0.651 -
+0.857; argmin-val locus INTERIOR, never on the terminal C+; the
+returned base: val_min/m_ref = 0.899, no depression at the
+frontier). CONSEQUENCES, each of record:
+ (i)   the C-1(a) DEF-signature reading of the S20 standoff is
+       FALSIFIED for the instance;
+ (ii)  the C-1(b) interior-caustic reading is EQUALLY falsified (no
+       low-margin locus exists anywhere in the design region);
+ (iii) the mechanism is CLASS CONSTRUCTION, not physics: damped
+       Newton stalls at HEALTHY-margin cells. HONEST LOCALIZATION
+       DATUM (beyond the S20 candidate list): the stalling cells sit
+       in the NEAR-AXIS region of design columns 23-30 (x ~ 3.93 -
+       4.25, y ~ 0.05 - 0.14 at y_t = 1) — NOT adjacent to the
+       inserted wall knots; the S20 candidates (spline conditioning,
+       knot/station mismatch) remain candidates, mechanism
+       identification is OWNED BY F2 (engine rebuild), no
+       driver/engine surgery in F1 (S20 pre-named boundary);
+ (iv)  the RT-1 standoff wording is RESOLVED: O4 has run — the S20
+       standoff is a class-construction artifact, consistent with
+       NEITHER a DEF-sector optimum NOR an interior fold-binding
+       tier-1 optimum for this instance;
+ (v)   THE K_disc ~ A_0 BRIDGE CONJECTURE IS FALSIFIED BY ITS NAMED
+       FALSIFIER ON THIS INSTANCE (the S20 block's own test: "val
+       must approach its boundary where certification degrades,
+       else the bridge is dead"): certification degrades at val
+       0.61 - 0.86, nowhere near 0. On this instance the discrete
+       certifiable set K is NOT an approximation of A_0: bd(K) is a
+       NUMERICAL-CLASS boundary, bd(A_0) a physical one, and they
+       are DISTINCT objects here. The conjecture as stated is dead;
+       any future bridge claim must carry a per-instance monitor
+       test (this is now the standing rule);
+ (vi)  GOVERNOR RE-SCOPING of record: the margin governor retains
+       its role as the EXCLUSION guard against genuinely
+       fold-approaching designs (front taxonomy (c); REQ-NONSTALL
+       steering with the G1 surrogate) — that duty is untouched —
+       but it CANNOT capture the S20-instance certifiability
+       frontier, and no claim that margin-constrained
+       re-optimization dissolves THIS obstruction survives (the
+       T4 campaign measures the corresponding branch).
+ F1 GOVERNOR DERIVATIONS OF RECORD ([X-MGOV]; classes declared):
+ KS-min aggregate in shifted form with the log-sum-exp bounds
+ v_min - ln(N)/rho <= KS <= v_min [THEOREM, standard]; rho DERIVED
+ = K_RICH ln(N)/mu_0_min (gap pinned at mu_0_min/K_RICH by
+ construction); floor ladder mu_0_k = m_ref/2^k, k = 1..4,
+ PRE-REGISTERED from the measured healthy reference (governor scope:
+ the design-wall BUCKET lanes — every W-dependent cell; measured
+ m_ref = 6.810298e-01, N = 3498, rho = 766.83, gap = 1.0641e-02;
+ the [X-LOCD] diagnostic uses the design-wall REGION scope, m_ref =
+ 6.8837e-01 — both scopes declared, each carrier owns its own); G1
+ SURROGATE [PRACTICE, rejector-PROVEN]: m = KS(finite lanes) -
+ K_RICH m_ref frac_bad - mu_0, finite negative at every
+ representable W (measured at a gross non-monotone wall:
+ m = -3.96e+02 finite, gradient finite with the zeroed component
+ COUNTED — REQ-NONSTALL survive+report), exact KS at zero failures;
+ AD margin gradient verified against two-step-Richardson FD
+ (3.29e-06 vs band 5.92e-05) with a firing corrupted-gradient
+ control; [D1]-CONSTRAINED CORNER METRIC [COROLLARY of the
+ registered constrained-KKT THEOREM]: at a margin-active
+ constrained maximum the lip component reads dJ/dy_lip +
+ mu dm/dy_lip = lambda_e = corner density, so rel_c = |gJ_lip +
+ mu gm_lip - cd| / |cd|, reducing to the unconstrained [D1] at
+ mu = 0; validity condition (outcome-I only) unchanged; mu under
+ the B-stationarity qualifier until O1. GENO IMPLEMENTATION-MAGIC
+ BANDS (Lambda-form bound (b) F1-entry duty, DISCHARGED;
+ SOURCE-VERIFIED against GENO Rao_m.f90 boundaryfunction_solve:
+ CENTRAL FD with dV_pert = 1.0 absolute on V, alpha = asin(1/M)
+ with an M_FLOOR guard; at |den| < 1e-10 GENO RETURNS val = 0 "on
+ boundary" where our monitor reports den instead — a semantic
+ difference of record for the F1b cross-check): derived band =
+ K_RICH |Lam_FD(1.0) - Lam_FD(0.5)| + 100 eps |Lam_AD| per grid
+ point, GENO-recipe FD verified inside it on the baseline q-range;
+ den-guard in-range statement measured; PM landing window = F1b
+ consumption, declared. ADOPT-OR-DECLARE (KS survey, SOTA search
+ 2026-08-11): standard KS with derived rho ADOPTED; adaptive-rho
+ variants (Poon-Martins SMO 2007; interior-point adaptive
+ aggregation 2015; SAKS 2018) NOT adopted — their motive (accuracy
+ recovery under tuned budget rho with many active constraints) is
+ void here where rho is derived to pin the gap below the
+ enforcement resolution and gradients are exact AD.]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

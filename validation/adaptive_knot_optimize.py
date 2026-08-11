@@ -529,6 +529,21 @@ def main():
                         "produced a CERTIFIED objective improvement "
                         "over its warm start" % cyc, J_n > float(J_w))
             W_cur, xi_cur = W_new, xi_new
+            # S22 T2 (retro-diagnosis entry row): persist the returned
+            # certified base WITH its class when asked — the C-1
+            # three-way locus test runs on the last certified base AND
+            # the rejected designs, and a design without its class is
+            # not re-recordable. Additive, env-gated, default off.
+            path_cl = os.environ.get("A1_AKN_CERTLIM_SAVE")
+            if path_cl:
+                with open(path_cl, "w") as fh:
+                    json.dump(dict(
+                        W=[repr(float(x)) for x in W_new],
+                        xi=[repr(float(x)) for x in xi_new],
+                        cycle=int(cyc),
+                        provenance="[X-AKNO] certifiability-limited "
+                                   "returned base (outcome II)"), fh,
+                        indent=1)
             print("  [stop] enrichment OBSTRUCTED at the "
                   "certifiability boundary of cycle %d's walk — "
                   "adjudication (certdiag + user decision) is the "
