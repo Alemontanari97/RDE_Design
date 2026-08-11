@@ -308,7 +308,7 @@ entries:
   carrier: []
   suffices_symbolic: "no"
   falsifier: "any breaker clause failing its named killing branch on the advisory carriers (CARRIER-A K1-K4, CARRIER-B J1-J3, CARRIER-C both-identities KAT + E_theta row, CARRIER-D D1-D3, CARRIER-E E1-E3) when built; the PROTOCOL T3-CONTROL corner KAT failing on certified tier-1 data"
-  gamma: "EOS-general"
+  gamma: "perfect-gas-oracle"
 
 - id: T-T4
   kind: theorem

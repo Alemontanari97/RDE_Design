@@ -19,28 +19,6 @@
 
 **CONTATORE F1 (ISS-5, obbligatorio): F1 campaign 1/2, session 1/3.**
 
-## [PIANO/S-GAUNTLET] SESSIONE PARALLELA ASSORBITA (2026-08-11,
-## stesso giorno, chiusura in-sessione su ordine utente)
-
-Audit avversariale di generalita totale (due workflow: verticale
-collasso 17 agenti + gauntlet orizzontale 22 agenti, entrambi con
-red-team Form-3; log validation/PROGRESS_2026-08-11_Sgauntlet.md).
-VERDETTO: il piano risponde positivamente — ledger 14 [M] / 3 [B] /
-6 [S] / 11 [G], lista [G] interamente convertita in duty ratificati
-(D6 §0-pre addendum S-GAUNTLET). Claim di coincidenza generale
-ciclo-vs-steady RIFIUTATA come teorema generale, PROVATA sull'angolo
-tier-1+vuoto: M0 [T-T3-SI] (tier-1 THEOREM, pin Gibbs) + [T-T3-MAP]
-(5 breaker) + PROTOCOL T3-CONTROL pre-registrato; registry 131 ->
-133 (+T-T3-SI, +T-T3-MAP), lint (xv) verde. PIN UTENTE di record:
-P1 termo = miscela termicamente perfetta a composizione FROZEN
-(gamma(T) libero); P2 niente bifase per ora; P3 anti-divergenza.
-Correzioni: scope T-T3 ("EOS-general" era un'inflazione), eco P1
-sections 2-4, choking advisory 2-ter(a) (verdetto sea-level =
-"coincides at <Pc>_mu", non "no coincidence"). NOTA per S23: il
-duty F1-window DUTY-6(i) (tolerance-ball backoff sul floor del
-margine) tocca la linea del governor — da considerare alla
-decisione di early-close F1.
-
 Branch `rde-nozzle-program`. Commit: apertura+gate+T0+T1 = aec2c9f,
 T2+T3 = 0174bb9, chiusura = (questo). Lint (xv) verde sull'EXIT CODE
 a ogni commit (129 -> 131: +[X-LOCD], +[X-MGOV]). Suite di chiusura
@@ -135,6 +113,28 @@ STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S22):
     ADVISORY_Scollapse_prompt_2026-08-11,
     ADVISORY_Sgauntlet_prompt_2026-08-11,
     ADVISORY_mean_swirl_panel_2026-08-11 — ownership da assegnare.
+
+**[PIANO/S-GAUNTLET] SESSIONE PARALLELA ASSORBITA (2026-08-11,
+stesso giorno di S22, chiusura in-sessione su ordine utente).**
+Audit avversariale di generalita totale (due workflow: verticale
+collasso 17 agenti + gauntlet orizzontale 22 agenti, entrambi con
+red-team Form-3 + verifica di assorbimento a workflow; log
+validation/PROGRESS_2026-08-11_Sgauntlet.md). VERDETTO: il piano
+risponde positivamente — ledger 14 [M] / 3 [B] / 6 [S] / 11 [G],
+lista [G] interamente convertita in duty ratificati (D6 §0-pre
+addendum S-GAUNTLET). Claim di coincidenza generale ciclo-vs-steady
+RIFIUTATA come teorema generale, PROVATA sull'angolo tier-1+vuoto:
+M0 [T-T3-SI] (tier-1 THEOREM, pin Gibbs) + [T-T3-MAP] (5 breaker) +
+PROTOCOL T3-CONTROL pre-registrato; registry 131 -> 133 (+T-T3-SI,
++T-T3-MAP), lint (xv) verde. PIN UTENTE di record: P1 termo =
+miscela termicamente perfetta a composizione FROZEN (gamma(T)
+libero); P2 niente bifase per ora; P3 anti-divergenza. Correzioni:
+scope T-T3 ("EOS-general" era un'inflazione), eco P1 sections 2-4,
+choking advisory 2-ter(a) (verdetto sea-level = "coincides at
+<Pc>_mu" sotto la lista T-O1, non "no coincidence"). NOTA per S23:
+il duty F1-window DUTY-6(i) (tolerance-ball backoff sul floor del
+margine) tocca la linea del governor — da considerare alla
+decisione di early-close F1.
 
 Stato precedente (chiusura Sessione 21 — **F0 "ORDER +
 INSTRUMENTATION" del piano v3 RATIFICATO: P0 chiusi con rejector,

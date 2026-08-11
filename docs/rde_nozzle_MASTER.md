@@ -135,6 +135,12 @@ characteristic-direction audit) and the documented Verdict
 downgrades. This names the class the certified apparatus already
 lives on (the u_x - c >= delta margin is the standing certificate);
 no theorem's scope changes.]
+[H3-cl (D-CONTRACT vocabulary addition, S-GAUNTLET 2026-08-11):
+"certified phase-independent closure patch pattern" — the named
+sub-hypothesis of the O1-O4 subsonic case-class under which
+collapse-in-form survives on the subsonic sector (see T-T3-MAP
+clause (d)); expected to FAIL on migrating patch patterns (K-P
+Fig. 6); its audit is CARRIER-D D2 of the advisory record.]
 
 [D-S1] D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
 many transversal fronts, no wall-shock formation): classically
@@ -657,14 +663,15 @@ tier-1+vacuum corner (T-T3-SI). Per breaker:
  queued (hypothesis-exit lemma), rejector = the separated-phase
  monitor]. The naive "J depends on the k-distribution at first
  order" is FALSE and must never be claimed. Sea-level verdict of
- record: "coincides, at <Pc>_mu, weight now load-bearing" — NOT "no
- coincidence"; corrects the choking advisory 2-ter(a) "only the
- vacuum objective is protected" (too narrow).
+ record: "coincides, at <Pc>_mu, weight now load-bearing, under the
+ T-O1 list above" — NOT "no coincidence"; corrects the choking
+ advisory 2-ter(a) "only the vacuum objective is protected" (too
+ narrow).
  (b) outside H1/H3 the objective is the MIXTURE FORM J = a_eff <Pc>
  - Pa b, a_eff = <a Pc>/<Pc>, a = a[Sigma; T0(xi), gamma-law, m(xi),
  s(xi)] [THEOREM*, generalizes T-T3-CE]; single-state
- representability is SUFFICIENT for coincidence (necessity only in
- the all-feasible-sets sense); only the (p,p) Hessian diagonal
+ representability is SUFFICIENT for coincidence (the "iff" is
+ struck of record); only the (p,p) Hessian diagonal
  vanishes — Cov(Pc,T0)/Cov(Pc,gamma) cross terms live in the
  pressure channel [THEOREM* under C2 regularity]; optimum-shift
  genericity CONJECTURE. The Pc-weighted closure is T-T3-CE's, and is
@@ -691,8 +698,8 @@ tier-1+vacuum corner (T-T3-SI). Per breaker:
  Xi_sub holds ONLY under sub-hypothesis H3-cl (certified
  phase-independent closure patch pattern — EXPECTED to fail on
  migrating patterns) or the whole-interface I3 surrogate; else the
- subsonic sector joins (b)'s mixture form. Closure component < 5.4%
- typical (K-P Fig. 7); the 1.7-8.7% / ~15% figures are TOTAL
+ subsonic sector joins (b)'s mixture form. Expectations: closure
+ component < 5.4% typical (K-P Fig. 7); the 1.7-8.7% / ~15% figures are TOTAL
  envelopes, never a realized closure band; pressure-band -> Isp-band
  transfer OPEN/SCHEMA.
  (e) conventions/matching: invariance is THEOREM on the p-only
@@ -714,6 +721,12 @@ tier-1+vacuum corner (T-T3-SI). Per breaker:
  of general RDE/steady coincidence; a five-line hypothesis audit of
  the S18 twin against the tier-1+vacuum set is the NAMED
  PRECONDITION (queued, not performed) for any stronger phrasing.
+ Harroun clause of record: "Harroun-style" above is a tier-1 CORNER
+ READING of the TWIN-A construction (zero-swirl comparison twin,
+ Harroun p.666; pp.665-666 document a comparison construction, not
+ an optimization) — NOT an identification of Harroun's methodology
+ with the formal tier-1 lab; the TWIN-A misattribution caveats
+ (swirl panel P4) apply outside the corner.
 
 PROTOCOL T3-CONTROL (pre-registered control row of record; class
 PRACTICE, rejector-gated per R5; carrier tag X-T3CTRL reserved,
@@ -722,7 +735,13 @@ full protocol text in the advisory §5 and the T3/T4 synthesis of
 record). MANDATORY alongside every future decisive cycle-averaged
 optimization or RDE-vs-steady comparison campaign (F5a; F1/F2/F3
 campaigns run the applicable subset); no result touching the
-coincidence claim is citable without this row's output. Registered
+coincidence claim is citable without this row's output. DISCHARGE
+CORRECTIONS BAKED IN (binding on every use of this protocol): the
+row-(a) verdict sentence carries the T-O1 hypothesis list of
+T-T3-MAP(a) verbatim; the W2 matched-pressure formula is used ONLY
+with its declaring twin construction u_s/T_s := <u_x/T>; the
+S18/Harroun sentences carry the corner-reading qualifications of
+the T-T3-MAP block above. Registered
 inputs, declared BEFORE the run, never after: (1) OBJECTIVE PAIR
 J_vac AND J_app (application backpressure; vacuum-only campaigns
 must say so and forfeit application claims); (2) THREE DECLARED

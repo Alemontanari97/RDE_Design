@@ -321,9 +321,12 @@ F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
   case-C target.
 
 ### S-GAUNTLET ABSORPTION ADDENDUM (2026-08-11, user-ordered
-### in-session closure; records = validation/ADVISORY_Sgauntlet_
-### generality_ledger_2026-08-11.md + ADVISORY_Scollapse_verdict_
-### 2026-08-11.md + session log PROGRESS_2026-08-11_Sgauntlet.md)
+### in-session closure)
+
+Records of this addendum (unbroken paths):
+validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md,
+validation/ADVISORY_Scollapse_verdict_2026-08-11.md,
+validation/PROGRESS_2026-08-11_Sgauntlet.md.
 
 USER SCOPE PINS of record (2026-08-11): P1 design-region thermo =
 FROZEN composition, THERMALLY PERFECT mixture (gamma(T) free; the
@@ -358,7 +361,9 @@ ledger's ratification appendix — silent drops void the verdict):
                (thermal q-drivers vs optimizer DOFs).
  F4b         : DUTY-9 RR/MR reflection-type admissibility row.
  F5 ENTRY    : DUTY-5(a) U1 jitter-statistics clause + bias band +
-               synthetic jitter KAT.
+               synthetic jitter KAT; DUTY-1(b) ranking-stability
+               re-check (second firing, per the ledger ratification
+               "F3/F5-entry").
  F5a         : DUTY-1(a) q_peak surrogate row OR industrial-gap
                declaration in every claim; DUTY-3 "no phase change
                in design region" hypothesis row + supersaturation

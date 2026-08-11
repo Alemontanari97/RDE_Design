@@ -145,3 +145,35 @@ its record site; no new claims) | Falsifier: any row whose cited
 grounds do not support its verdict (grep-checkable citations) |
 Carrier: none (governance doc; the cited carriers belong to the
 rows) | Gamma: n/a (no mathematical content of its own)].
+
+## S-GAUNTLET ADDENDUM (2026-08-11, DELTA-A6 of the absorption; four
+## rows added to the living ledger — 29 -> 33; adjudication record =
+## validation/ADVISORY_Scollapse_verdict_2026-08-11.md)
+
+- H1-T (thermally-perfect ideal-gas pin of Lemma T3-A / T-T3-SI
+  tier 1): NECESSARY(counterexample) — Gibbs compatibility collapses
+  every rho = p f(T) with e = e(T) back to the ideal gas (f = C/T,
+  independently re-derived at Form-3 discharge); the scaling FAILS
+  for co-volume/virial/tabulated real-gas EOS. Counterexample
+  channel: Noble-Abel known-answer rejector (OWED, named carrier —
+  registered when built). USER SCOPE PIN 2026-08-11 makes H1-T the
+  program's design-region thermo of record (violation = out of
+  declared scope, not a silent assumption).
+- H-OBJ (vacuum objective Pa = 0): NECESSARY at the VALUE level
+  (breaker (a): at Pa != 0 convention-independence and per-phase Isp
+  constancy die — average-of-ratios lands at the harmonic mean);
+  WEAKENED at the ARGMAX level (the coincidence survives at <Pc>_mu
+  via T-O1 composed with T-T3, under T-O1(i)+(ii)+L4). Grounds: M0
+  T-T3-MAP(a).
+- H-F1 (frozen family, tier-2 cross-link): the existing PRICED row
+  (chamber response map, case-G q) acquires the tier-2 T-T3-SI
+  consumption — C(nu) Sigma-independence (hence tier-2 shape-argmax
+  nu-independence) holds ONLY under H-F1; bilevel coupling is the
+  named violation channel. Grounds: M0 T-T3-SI tier-2 claim.
+- H-CON (constraint-class scope of the convention-mootness
+  rhetoric): PRICED — the tier-1 "which mean is moot" statement
+  holds for GEOMETRIC-ONLY constraint classes; mixed/performance
+  constraints (e.g. tail-governed separation margins, breaker
+  (a-B2)) can reintroduce measure dependence; monitored through the
+  PROTOCOL T3-CONTROL convention-spread rejector. Grounds: M0
+  T-T3-SI hypothesis list.
