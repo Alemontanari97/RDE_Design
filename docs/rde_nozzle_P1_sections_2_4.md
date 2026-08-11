@@ -226,8 +226,12 @@ the collapse. Lemma T3-A (pressure-scaling similarity) states that at
 fixed contour and T0 the whole interior solution at stagnation
 pressure k·P0 is (u, T, k·p, k·rho): pressure factors out of the
 field. It is worth emphasizing — because it is where a referee will
-probe — that Lemma T3-A holds for ARBITRARY frozen equation of state
-(any gamma(T)) and ACROSS transversal shocks: the Rankine-Hugoniot
+probe — that Lemma T3-A holds for a frozen-composition THERMALLY
+PERFECT gas mixture (p = rho R T with any e(T), hence any gamma(T);
+NOT arbitrary EOS — Gibbs compatibility collapses every rho = p f(T)
+back to the ideal gas, and the scaling fails for co-volume/virial/
+dense real-gas EOS; correction of record, S-GAUNTLET 2026-08-11)
+and ACROSS transversal shocks: the Rankine-Hugoniot
 fluxes are degree-1 homogeneous in the conservative variables at fixed
 (u, T), and the Lax/Majda transversality conditions are k-invariant.
 Lemma T3-B (stagnation-temperature similarity) removes T0 from the

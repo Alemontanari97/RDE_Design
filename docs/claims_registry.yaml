@@ -261,7 +261,7 @@ entries:
 - id: T-T3
   kind: theorem
   class: THEOREM
-  scope: "fixed full-flowing wall, H1-H4; Lemma T3-A EOS-general across shocks, Lemma T3-B calorically perfect = THE boundary, Lemma T3-C affinity; demoted corollary rung per the gamma directive"
+  scope: "fixed full-flowing wall, H1-H4; Lemma T3-A thermally-perfect ideal-gas EOS across shocks (p = rho R T, frozen composition, gamma(T) free — 'EOS-general' inflation corrected per audit theory-core:F2 + S-GAUNTLET Gibbs closure f = C/T), Lemma T3-B calorically perfect = THE boundary, Lemma T3-C affinity; demoted corollary rung per the gamma directive"
   statement: "Under H1-H4 the averaged problem collapses pointwise to the classical design at the mean pressure: J[Sigma] = F[Sigma; <Pc>_mu]."
   doc: "docs/rde_nozzle_MASTER.md#THEOREM 5"
   proof: "docs/rde_nozzle_MASTER.md#THEOREM 5"
@@ -282,6 +282,32 @@ entries:
   carrier: ["X-GRP09"]
   suffices_symbolic: "no"
   falsifier: "gamma-probe rejector: penalty exceeding shift^2 order, or the stale -1.9% class reappearing"
+  gamma: "EOS-general"
+
+- id: T-T3-SI
+  kind: theorem
+  class: THEOREM
+  scope: "tier 1 (p-only family + vacuum objective + GEOMETRIC-ONLY constraint class H-CON): THEOREM under H1-T thermally-perfect ideal gas (Gibbs-closed, frozen composition, gamma(T) free — the USER SCOPE PIN 2026-08-11 makes this the program's design-region thermo of record) + H2'/H3-p/H4/H-MEAS; tier 2 ((P0,T0) family): THEOREM* under H1-C calorically perfect + H-F1 frozen family, Lemma-B-across-shocks promotion condition named (judge-added cap); S-GAUNTLET 2026-08-11 Form-2 panel + Form-3 discharge, adjudication record in validation/ADVISORY_Scollapse_verdict_2026-08-11.md; detector carrier X-T3SI-conv named-unbuilt (owner F5a, registry entry on landing)"
+  statement: "Under H1-T/H2'/H3-p/H4 + vacuum objective: F(xi) = k(xi) F1 AND mdot(xi) = k(xi) mdot1, so Isp is phase-constant and Isp_cycle[nu] is EQUAL under every averaging convention; the shape optimum is convention-independent and coincides with the matched-mdot steady optimum (matched-mdot == matched-<p> degeneracy). Tier 2: Isp_cycle[nu] = R[Sigma] C(nu) with the shape argmax nu-independent only under H-F1."
+  doc: "docs/rde_nozzle_MASTER.md#T-T3-SI"
+  proof: "docs/rde_nozzle_MASTER.md#T-T3-SI"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "X-T3SI-conv convention-sweep rejector (named, unbuilt): Isp_cycle spread across {time, mass-flux, log-uniform, atomic} measures beyond DERIVED tolerance on an in-hypothesis certified family; KILL branch: injected T0 variation must reopen the spread with the sqrt(T0) law; Noble-Abel known-answer rejector owed for the H1-T necessity claim"
+  gamma: "perfect-gas-oracle"
+
+- id: T-T3-MAP
+  kind: schema
+  class: SCHEMA
+  scope: "breaker map of the collapse/coincidence claim (S-GAUNTLET 2026-08-11): container SCHEMA; per-clause classes marked in the M0 block ((a) THEOREM/THEOREM*/SCHEMA limbs; (b) THEOREM* mixture form + CONJECTURE shift; (c) THEOREM* two-leg swirl extension + TWIN-fairness; (d) THEOREM partiality + H3-cl conditional; (e) THEOREM on the p-only class + declared-construction W2); killing carriers CARRIER-A..E named in the advisory, dispatched to F phases (F5a/F2/F2a); PROTOCOL T3-CONTROL (X-T3CTRL reserved) pre-registered in the same M0 block"
+  statement: "T3-as-stated is unbroken by breakers (a) ambient Pa != 0, (b) per-phase M/T0/gamma/s variation, (c) swirl, (d) subsonic patches, (e) measure/matching convention; each breaks a distinct object (convention, constraint activity, twin fairness, domain, well-posedness); the GENERAL cycle-vs-steady coincidence claim is refuted as a general theorem and proved on the tier-1+vacuum corner (T-T3-SI)."
+  doc: "docs/rde_nozzle_MASTER.md#T-T3-MAP"
+  proof: "docs/rde_nozzle_MASTER.md#T-T3-MAP"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "any breaker clause failing its named killing branch on the advisory carriers (CARRIER-A K1-K4, CARRIER-B J1-J3, CARRIER-C both-identities KAT + E_theta row, CARRIER-D D1-D3, CARRIER-E E1-E3) when built; the PROTOCOL T3-CONTROL corner KAT failing on certified tier-1 data"
   gamma: "EOS-general"
 
 - id: T-T4

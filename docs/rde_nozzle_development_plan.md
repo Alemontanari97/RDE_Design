@@ -320,6 +320,69 @@ F6  3-D / HARDWARE BRIDGE (horizon, not budgeted). B-lite helical
   cross-cutting at F2-F3 (external lead time) so F5a has a named
   case-C target.
 
+### S-GAUNTLET ABSORPTION ADDENDUM (2026-08-11, user-ordered
+### in-session closure; records = validation/ADVISORY_Sgauntlet_
+### generality_ledger_2026-08-11.md + ADVISORY_Scollapse_verdict_
+### 2026-08-11.md + session log PROGRESS_2026-08-11_Sgauntlet.md)
+
+USER SCOPE PINS of record (2026-08-11): P1 design-region thermo =
+FROZEN composition, THERMALLY PERFECT mixture (gamma(T) free; the
+Gibbs-closed H1-T class — real-gas EOS and finite-rate chemistry
+outside by declaration, finite-rate priced by T-EQBR); P2 two-phase
+flows excluded for now (declared exclusion, never architecture
+work); P3 anti-divergence (over-generalized items become one-line
+scope declarations).
+
+GAUNTLET VERDICT absorbed: generality ledger 14 [M] / 3 [B] / 6 [S]
+/ 11 [G] over 30 clusters; collapse verdict = general coincidence
+claim REFUTED as general theorem / PROVED on the tier-1+vacuum
+corner (M0 T-T3-SI + T-T3-MAP + PROTOCOL T3-CONTROL, registered).
+
+RATIFIED DUTY ROWS (accepted with owners; full reasons in the
+ledger's ratification appendix — silent drops void the verdict):
+ F1 window   : DUTY-6(i) tolerance-ball margin backoff on the
+               Lambda-form derived floor (re-derived per class,
+               tier-invariant transition duty).
+ F2a         : DUTY-2(1) contract scope line "gaseous single-phase
+               products" + condensed-fraction rejector; DUTY-5(b)
+               wave-count identifiability rejector (stage-A);
+               DUTY-8 swirl-criticality/breakdown screen on the
+               F-swirl-2 monitor (G6 rejector); DUTY-15(a)
+               bounds.py axial-vs-total rung (hygiene).
+ F2b         : DUTY-4(i) delta* displacement band inflating the
+               margin floor (priced [B] row).
+ F3 ENTRY    : DUTY-14 a-B2 separation-margin carrier-leg
+               assignment (agenda row); DUTY-11 two-wall
+               translation-nullspace duty (CONDITIONAL on the
+               two-wall stretch); DUTY-1(b) ranking-stability check
+               (thermal q-drivers vs optimizer DOFs).
+ F4b         : DUTY-9 RR/MR reflection-type admissibility row.
+ F5 ENTRY    : DUTY-5(a) U1 jitter-statistics clause + bias band +
+               synthetic jitter KAT.
+ F5a         : DUTY-1(a) q_peak surrogate row OR industrial-gap
+               declaration in every claim; DUTY-3 "no phase change
+               in design region" hypothesis row + supersaturation
+               monitor as its rejector; DUTY-7 locked-periodic-only
+               scope declaration (transient envelope = named
+               industrial gap); DUTY-13 robust/PB-5 layer owner =
+               post-F5a entry re-adjudication row; DUTY-15(b)
+               family-selection bookkeeping term; T3-CONTROL row
+               mandatory (M0 protocol); X-T3SI-conv detector
+               carrier (corner dry-run allowed in idle windows).
+ F5b         : DUTY-4(ii) BL Stokes number inside the G3 trigger
+               derivation; DUTY-10(a) base forced-response validity
+               note.
+ F6          : DUTY-6(ii) as-built/life drift + DUTY-10(b)
+               aeroelasticity = declared industrial gaps.
+ Case-G wiring: DUTY-12 carrier for the 0.97/0.65 choked-annulus
+               margins (numbers not of record until then).
+ INTERIM (immediate wording duty): margin certificates annotated
+ "inviscid-wall margin" (DUTY-4(iii)).
+REJECTED-FOR-NOW (user pins, recorded): two-fluid architecture
+(P2); nonequilibrium condensation corrector (P1); transient
+machinery (P3); real-gas EOS machinery (P1 — Noble-Abel rejector
+kept as the H1-T necessity guard only).
+
 ------------------------------------------------------------------------------
 ## 0. What "formally optimal methodology" means here (the certainty model)
 

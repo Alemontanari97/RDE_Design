@@ -520,7 +520,13 @@ Claim: J[Sigma] = F[Sigma; <Pc>_mu] POINTWISE on shape space, where
 classical contour designed at the mean pressure.
 PROOF.
 Lemma A (pressure-scaling similarity; holds for gamma(T) and ACROSS
-transversal shocks). Fix Sigma, T0. If (u,T,p,rho) solves the steady
+transversal shocks; THERMAL PIN of record, S-GAUNTLET 2026-08-11:
+thermally-perfect ideal gas p = rho R T with FROZEN composition —
+not relaxable even to rho = p f(T), which Gibbs compatibility with
+e = e(T) collapses back to the ideal gas, f = C/T; the scaling FAILS
+for co-volume/virial/tabulated real-gas EOS. USER SCOPE PIN
+2026-08-11: the program's design-region thermo of record IS this
+class — frozen composition, thermally perfect mixture). Fix Sigma, T0. If (u,T,p,rho) solves the steady
 problem at stagnation (P0,T0), then (u,T,kp,krho) solves it at
 (kP0,T0), k>0: continuity/energy are untouched at fixed (u,T); momentum
 contains p only through grad(p)/rho, invariant; EOS rho = p/(RT)
@@ -564,6 +570,194 @@ S-H freeze-at-CJ choice retro-justified); design penalty second order
 DIES (Hoffman 1967 Eq. 78: multiplier-field condition E = 0 replaces
 it) — the N4 ladder: frozen ⊂ gamma(T) (fails in principle, small in
 practice, E4 oracle pending) ⊂ finite-rate (adjoint-level mandatory).
+
+[T-T3-SI] PROPOSITION 5-bis (T3-SI — scale-invariance content of the
+collapse: mass flow, Isp, every averaging convention). Tier 1
+THEOREM; tier 2 THEOREM*. (S-GAUNTLET 2026-08-11, Form-2 panel +
+Form-3 discharge on full artifacts; adjudication record =
+validation/ADVISORY_Scollapse_verdict_2026-08-11.md.)
+Hypotheses (tier 1): H1-T thermally-perfect ideal gas p = rho R T,
+FROZEN composition, e = e(T) free (gamma(T) allowed) — EXACT and not
+relaxable (Gibbs closure, see the Lemma A thermal pin above; fails
+for real-gas EOS; the audit theory-core:F2 "rho = p f(T)" clause is
+EMPTY and must not be imported); per the USER SCOPE PIN 2026-08-11
+this is the program's design-region thermo of record. H2' as in
+T-T3; H3-p p-only family P0(xi) = k(xi) P0,1 with k > 0, T0 and
+nondimensional inflow shape frozen; H4 uniqueness; H-OBJ vacuum
+objective Pa = 0; H-CON constraint class GEOMETRIC-ONLY (mixed or
+performance constraints can reintroduce measure dependence — scope
+clause of record); H-MEAS any admissible probability measure nu
+(D-MU validity set; atomic per the T-O2 note) with 0 < Int k dnu <
+inf.
+Claim (tier 1): F(xi) = k(xi) F1[Sigma] AND mdot(xi) = k(xi)
+mdot1[Sigma] (the mdot half is implicit in Lemma A, stated nowhere
+in T-T3); hence Isp(xi) = F1/(g0 mdot1) is PHASE-CONSTANT and
+Isp_cycle[nu] = F1/(g0 mdot1) for EVERY nu — ratio-of-means =
+mean-of-ratios, every quasi-arithmetic aggregation coincides; the
+shape optimum is nu-INDEPENDENT and coincides with the single-phase
+steady optimum; matched-mdot degeneracy (matching the steady twin's
+mass flow at ANY phase or at the mean yields the same Isp; there
+matched-mdot == matched-<p>). No frozen-family hypothesis at tier 1
+(pointwise-in-Sigma cancellation).
+Claim (tier 2: (P0,T0)(xi) both vary; ADD H1-C calorically perfect,
+per Lemma B; THEOREM* — CAP, judge-added and judge-noticed: Lemma B
+carries no across-shocks clause; the RH/Mach-similarity check under
+T0-rescale is the named promotion condition): F(xi) = k F1 (CF is
+T0-blind); mdot(xi) = k tau^(-1/2) mdot1, tau = T0(xi)/T0,1;
+Isp_cycle[nu] = R[Sigma] C(nu): C nu-dependent, Sigma-independent —
+hence shape optimum nu-independent — ONLY UNDER H-F1 (T-O1(i));
+bilevel coupling can make the tier-2 optimum nu-dependent.
+Containment (both routes of record): at Pa = 0 the thrust-argmax
+half is a corollary of T-T3 + Lemma C + the T-O2 measure-agnostic
+note; the Isp-argmax coincidence with the classical argmax at
+<Pc>_mu holds at ANY Pa by T-O1 composed with T-T3, under T-O1's own
+hypotheses (i) frozen family H-F1 + (ii) choked feed H2, with the L4
+fully-supersonic-interface discharge note. NEW here: explicit mdot
+scaling; per-phase Isp constancy; every-nu VALUE equality;
+matched-mdot degeneracy; tier-2 C(nu) factorization; the convention
+detector.
+Novelty delimiter (query-bounded): no cycle-averaged
+scale-invariance / Isp-convention-equality statement found in the
+read corpus (Stechmann, K-P, Paxson-Miki, Harroun, Gonzalez-Viana;
+Kraiko-Osipov PMM 1970 is the trajectory-averaged AFFINE instance —
+distinct object, already cited at C2); the G2 novelty bound stands
+on its OLD queries (the S-GAUNTLET 4-query widening was
+default-refuted); folklore risk declared: the tier-1 mechanism is
+elementary — claim as PRECISAZIONE, never as discovery.
+Detector (dual-proof evidence half; carrier NAMED, unbuilt — tag
+X-T3SI-conv reserved, registry entry when the script lands, lint
+truthfulness; owner F5a, corner dry-run executable in an idle
+window): convention sweep {time, mass-flux, log-uniform, atomic
+empirical}; the exact contrapositive is THEOREM (nonzero EXACT
+convention-sensitivity of Isp_cycle implies violation of the
+tier-1+vacuum set); the measured instrument is PRACTICE (DERIVED
+tolerance + rejector, R5); T0(xi) variation trips it BY DESIGN (it
+detects tier-1 departures, not T-T3 violations); KILL branch:
+injected T0 variation must reopen the spread with the sqrt(T0) law.
+
+[T-T3-MAP] (breaker map of record, S-GAUNTLET 2026-08-11; container
+class SCHEMA with per-clause classes as marked; full adjudication,
+killing carriers CARRIER-A..E and open items =
+validation/ADVISORY_Scollapse_verdict_2026-08-11.md). T3-as-stated
+is UNBROKEN by the five adjudicated breakers; the GENERAL claim
+"cycle-averaged optimum == matched-mdot (Harroun-style) steady
+optimum" is REFUTED as a general theorem and PROVED on the
+tier-1+vacuum corner (T-T3-SI). Per breaker:
+ (a) Pa != 0: fixed-wall J and ratio-of-averages Isp are protected
+ [THEOREM via T-O1 o T-T3 under T-O1(i)+(ii) + L4 note; in-theorem
+ failure channels: bilevel coupling, unchoked tails, axially
+ subsonic patches]; average-of-ratios Isp collapses to the classical
+ design at the HARMONIC mean <Pc^-1>^-1 < <Pc> strictly [identity
+ THEOREM; argmax shift THEOREM* pending the design-map monotonicity
+ lemma]; constraint activity is governed by ess-inf k, not <k>
+ [structure THEOREM*, shift genericity SCHEMA]; a mu-positive
+ SEPARATED phase kills H2' and the affinity — collapse dies even for
+ J [SCHEMA — mechanism exact; class pinned by both parties:
+ separation is viscous, the machinery inviscid; THEOREM* repair
+ queued (hypothesis-exit lemma), rejector = the separated-phase
+ monitor]. The naive "J depends on the k-distribution at first
+ order" is FALSE and must never be claimed. Sea-level verdict of
+ record: "coincides, at <Pc>_mu, weight now load-bearing" — NOT "no
+ coincidence"; corrects the choking advisory 2-ter(a) "only the
+ vacuum objective is protected" (too narrow).
+ (b) outside H1/H3 the objective is the MIXTURE FORM J = a_eff <Pc>
+ - Pa b, a_eff = <a Pc>/<Pc>, a = a[Sigma; T0(xi), gamma-law, m(xi),
+ s(xi)] [THEOREM*, generalizes T-T3-CE]; single-state
+ representability is SUFFICIENT for coincidence (necessity only in
+ the all-feasible-sets sense); only the (p,p) Hessian diagonal
+ vanishes — Cov(Pc,T0)/Cov(Pc,gamma) cross terms live in the
+ pressure channel [THEOREM* under C2 regularity]; optimum-shift
+ genericity CONJECTURE. The Pc-weighted closure is T-T3-CE's, and is
+ DISTINCT from the TWIN-C fair twin — conflation prohibited.
+ (c) swirl: Lemmas A AND B extend to the five-field swirl system
+ [THEOREM* — assembled from two SINGLE-SOURCE pen legs (deriver:
+ Lemma A; refuter: Lemma B REPAIR of the refuted-as-incomplete
+ original); both-identities symbolic KAT in n6_swirl_kernel.py is
+ the promotion condition]; calorically-perfect boundary inherited;
+ first moment is a NON-breaker (mean-swirl panel P1, with the
+ mandatory "IDEALIZED axial-injection class" qualifier); the real
+ break is TWIN-FAIRNESS: the swirl-KE flux E_theta > 0 under
+ through-flow rho u_x > 0 is unconstrained by flux nullity [THEOREM*
+ under T0] and a zero-swirl twin (TWIN-A) misattributes it; recovery
+ asymmetry (Gamma^2/(2 r^2) decays outward, concentrates inward)
+ signs AGAINST the plug family [per-streamline THEOREM*, N6-2
+ free-vortex class]. Expectations: +6% EAPi / +3% experimental EAP
+ (K-P pp.7/11).
+ (d) subsonic patches: the per-phase supersonic map is PARTIAL
+ [THEOREM, via the T-NSW spacelikeness lemma]; mu(Xi_sub) > 0 is a
+ generic-class EXPECTATION (one page-verified example, K-P Table
+ 1/Fig. 6); J as written is UNDEFINED when mu(Xi_sub) > 0 — the
+ two-regime decomposition is load-bearing; collapse-in-form on
+ Xi_sub holds ONLY under sub-hypothesis H3-cl (certified
+ phase-independent closure patch pattern — EXPECTED to fail on
+ migrating patterns) or the whole-interface I3 surrogate; else the
+ subsonic sector joins (b)'s mixture form. Closure component < 5.4%
+ typical (K-P Fig. 7); the 1.7-8.7% / ~15% figures are TOTAL
+ envelopes, never a realized closure band; pressure-band -> Isp-band
+ transfer OPEN/SCHEMA.
+ (e) conventions/matching: invariance is THEOREM on the p-only
+ scaling class ONLY (value + argmax; the refuter counterexample
+ (2 P0, T0/4) kills full-H1-H4 VALUE invariance); the design-pressure
+ wedge <Pc>_mdot - <Pc>_t = Var(Pc)/<Pc>_t is exact on the p-only
+ class, sign clause CONJECTURE; the matched-pressure formula
+ p_match = <p u_x/T>/<u_x/T> is THEOREM* ONLY for the twin DECLARED
+ by u_s/T_s := <u_x/T> (the (T_s=<T>, u_s=<u>) twin differs at order
+ (sigma/mu)^2 — the construction must be declared); the fair twin of
+ record is TWIN-C flux-consistent; Harroun's averaging convention is
+ UNDECLARED (choking advisory 3-bis) so comparisons are ill-posed
+ until a convention is pinned; every collapse-adjacent theorem
+ statement carries its convention and matching. The judge-added
+ full-H1-H4 shape-argmax refinement is EXCLUDED from this record
+ pending its own refuter pass.
+ S18 clause of record: the S18 +0.04% twin agreement is a CORNER
+ MEASUREMENT (choking advisory 2-ter(A)), NEVER citable as evidence
+ of general RDE/steady coincidence; a five-line hypothesis audit of
+ the S18 twin against the tier-1+vacuum set is the NAMED
+ PRECONDITION (queued, not performed) for any stronger phrasing.
+
+PROTOCOL T3-CONTROL (pre-registered control row of record; class
+PRACTICE, rejector-gated per R5; carrier tag X-T3CTRL reserved,
+registry entry when the executable lands; S-GAUNTLET 2026-08-11;
+full protocol text in the advisory §5 and the T3/T4 synthesis of
+record). MANDATORY alongside every future decisive cycle-averaged
+optimization or RDE-vs-steady comparison campaign (F5a; F1/F2/F3
+campaigns run the applicable subset); no result touching the
+coincidence claim is citable without this row's output. Registered
+inputs, declared BEFORE the run, never after: (1) OBJECTIVE PAIR
+J_vac AND J_app (application backpressure; vacuum-only campaigns
+must say so and forfeit application claims); (2) THREE DECLARED
+MATCHINGS on every steady twin — matched-mdot, matched-<p>, TWIN-C
+flux-consistent (TWIN-B prohibited; TWIN-A admitted only as the
+labeled zero-swirl reference); on tier-1 data the three MUST
+degenerate — non-degeneracy is itself a rejection; (3) BOTH
+WEIGHTINGS wherever scaling is broken: ratio-of-averages AND
+average-of-ratios; time measure AND mass-flux measure; the
+arithmetic-vs-harmonic design-pressure pair reported explicitly;
+(4) SUBSONIC-PATCH CLOSURE DECLARED before the run (H3-cl audit
+attached, or whole-interface I3 surrogate, or certified
+mu(Xi_sub) = 0) — a run with mu(Xi_sub) > 0 and NO declared closure
+is INVALID by rule, not "approximate"; (5) SWIRL ACCOUNTING: the
+E_theta swirl-KE debit under the through-flow guard, reported beside
+the TWIN-C twin. BARS b1-b4 DERIVED per campaign (certificate-stack
+evaluation band; propagation through the aggregation formulas;
+cov-measurement band from the data contract; priced closure band) —
+never reused numeric constants; a corner KAT on a certified tier-1
+family is armed BEFORE first decisive use (a row that cannot pass
+its own corner KAT is not an instrument). REJECTOR, four limbs:
+(i) convention spread beyond its derived bar => tier-1+vacuum set
+violated (THEOREM by contraposition), coincidence claim downgraded
+or killed per the localization evidence; (ii) matching
+non-degeneracy on nominally tier-1 data => run INVALID;
+(iii) migrating subsonic patch pattern (H3-cl audit fails) =>
+collapse-in-form claims BLOCKED for the data class; (iv) E_theta
+beyond scale at claimed twin-equivalence => TWIN-A comparisons
+invalid, TWIN-C mandatory. OUTCOMES, both honest and pre-registered:
+collapse CERTIFIED (data class and Pa named; never extrapolated —
+the S18-corner rule applies forever) OR departure MEASURED
+(magnitude +/- bar, attributed to its axis via the fired rejector) —
+the second is a POSITIVE program result, reported with equal
+prominence. Post-hoc bar widening, post-hoc convention choice, or
+silently dropped subsonic phases = protocol violations, not results.
 
 ------------------------------------------------------------------------------
 [T-T4] THEOREM 6 (T4 — plug simultaneous optimizability). THEOREM* (under the
