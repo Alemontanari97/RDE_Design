@@ -1,0 +1,42 @@
+== A1 S24: the general inlet — rotational MoC ported from the referee [X-RMAR] ==
+-- R-0: state_qs at (s0, h0) IS state_q --
+  max rel deviation over 23 speeds: 0.00e+00
+  [PASS] R-0 closure identity at the global invariants
+
+-- W-3: the (p, T, M) inlet round-trips --
+  max round-trip deviation (p, T, M): 2.44e-15
+  [PASS] W-3 a full (p, T, M, theta) line is exactly determined
+
+-- W-2a: stratified parallel jet, LINEAR invariants (exact lerp) --
+  cert 0.020 over 535 cells; bulk: |du|/u 3.15e-08  |dp|/pa 6.71e-08  |v|/u 9.97e-09; crammed band 3.86e-08 (gap 0.509 m)
+  [PASS] W-2a the exact stratified jet is held at round-off scale everywhere (linear lerp is exact even across the gap)
+
+-- W-2b: CURVED stratification (O(dy^2) lerp), row-refinement ladder --
+  N = 21 rows: bulk |du|/u = 2.163e-05   crammed band 4.874e-04 (gap 0.509)   (cert 0.026)
+  N = 41 rows: bulk |du|/u = 6.474e-06   crammed band 4.943e-04 (gap 0.509)   (cert 0.016)
+  N = 81 rows: bulk |du|/u = 7.536e-07   crammed band 4.940e-04 (gap 0.509)   (cert 0.014)
+  bulk refinement ratios: 3.34, 8.59  (2nd order -> ~4); band N-stability x1.01
+  [PASS] W-2b the transport converges at the scheme's order below the gap, and the gap-chord band is N-stable (topology, not transport — reported)
+
+-- R-1: rejector — streamline foot pinned to t = 0 --
+  corrupted bulk |du|/u = 2.495e-03 vs honest 6.474e-06 (x385)
+  [PASS] R-1 cross-streamline contamination leaves the band
+
+-- W-1: uniform invariants on the real plug world vs the certified march --
+  (K,N) = (41,31): wall push certified 8.985175e+06 vs rot 8.984905e+06  (rel 3.00e-05; rot cert 0.05)
+  (K,N) = (81,61): wall push certified 9.308476e+06 vs rot 9.308393e+06  (rel 8.83e-06; rot cert 0.04)
+  refinement: rel diff 3.00e-05 -> 8.83e-06 (ratio 3.40; two 2nd-order schemes -> ~4)
+  [PASS] W-1 the (p,theta) and (u,v) discretizations agree within a band that SHRINKS at the schemes' order
+
+-- R-2: rejector — corrupted C+ compatibility on the plug world --
+  corrupted: cert 0.06, wall push 8.6211e+06 (dev 4.05e-02 vs honest 3.00e-05)
+  [PASS] R-2 the compatibility equations are load-bearing
+
+-- W-4: stratified inlet on the spike world (conservation) --
+  cert 0.058 over 1457 cells
+  first-column wedge jump: 3.43e-02 (uniform baseline 1.58e-02, x2.2) — the S21 vertical-start-line property, reported
+  POST-wedge mass conservation col 2 -> last: 7.86e-03
+  mean entropy per unit mass in/out rel drift: 5.21e-04
+  [PASS] W-4 stratified spike world: certified cells, post-wedge mass and transported-entropy conservation, wedge within 4x its uniform baseline
+
+== 8/8 PASS  (170.9 s) ==

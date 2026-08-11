@@ -147,7 +147,7 @@ def predict_bu(pt1, pt2, ta):
 # ----------------------------------------------------------------------
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
-               edge_fill=0):
+               edge_fill=0, rot_pred=None):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -162,6 +162,19 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     control flow (the swirl extension's seam); q_edge (optional) =
     the edge speed law y -> q (default: the constant qpa; the swirl
     edge carries q_m(y) = sqrt(qpa_tot^2 - Gamma^2/y^2)).
+    ROTATIONAL SEAM (S24, additive): when `start` carries SIX rows
+    (x0, ys, us, vs, ss, h0s) the march runs with 6-wide nodes
+    (x, y, u, v, s, h0) — per-streamline entropy and stagnation
+    enthalpy, the general (rotational) inlet. The wall and the free
+    edge are streamlines, so their invariants are the bottom/top
+    start-row constants, appended by this driver; INTERIOR cells
+    return z = (x4, y4, u4, v4, t) with t the streamline-foot
+    parameter on the chord pt1-pt2, and this driver stores the node
+    with invariants lerped at t. `cells` must then be the rotational
+    triple (the carrier's), `q_edge` the constant edge-speed law from
+    the edge row's own invariants, and `rot_pred` the interior seed
+    predictor. With 4-wide start data every branch below reproduces
+    the certified path bit-for-bit (gated).
     edge_fill (int): rows to insert in the FIRST marched column
     between its topmost interior point and the free edge. A column is
     a characteristic while a vertical start line is not, so the first
@@ -173,7 +186,13 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     ta = A1.tab_arrays(tab)
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
     sx, sy, ssl = stations
-    x0, ys0, us0, vs0 = start
+    if len(start) == 6:
+        x0, ys0, us0, vs0, ss0, h00 = start
+        NV = 6
+    else:
+        x0, ys0, us0, vs0 = start
+        ss0 = h00 = None
+        NV = 4
     N = len(ys0)
 
     if cells is None:
@@ -231,8 +250,16 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         x0a = np.full(N, float(x0a[0]))
     G = {}
     for j in range(1, N + 1):
-        G[(j, 1)] = jnp.array([float(x0a[j - 1]), float(ys0[j - 1]),
-                               float(us0[j - 1]), float(vs0[j - 1])])
+        row = [float(x0a[j - 1]), float(ys0[j - 1]),
+               float(us0[j - 1]), float(vs0[j - 1])]
+        if NV == 6:
+            row += [float(ss0[j - 1]), float(h00[j - 1])]
+        G[(j, 1)] = jnp.array(row)
+    if NV == 6:
+        # wall and edge are STREAMLINES: their invariants are the
+        # bottom/top start-row constants for the whole march.
+        sw_inv = jnp.array([float(ss0[0]), float(h00[0])])
+        se_inv = jnp.array([float(ss0[-1]), float(h00[-1])])
 
     # MULTI-COLUMN FOOT SEARCH (the fix for the third measured lesson,
     # replacing the characteristic pacing). The wall receives the C-
@@ -248,12 +275,25 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     # arriving characteristic, exactly like the bell's wall_search.
     # Chords shrink from the 0.30 clamp to the station spacing.
     def foot_lm(pt, u4_est, sl):
-        """Estimated C- slope at a stored point, toward wall state."""
+        """Estimated C- slope at a stored point, toward wall state.
+        Bracket HEURISTIC only (a recorded decision, never a
+        residual): for 6-wide nodes the Mach comes from the node's
+        own h0 (T from the h-table at ht = h0 - q^2/2; entropy is
+        not needed for M), else from the certified global closure."""
         u_, v_ = float(pt[2]), float(pt[3])
         um = 0.5 * (u_ + u4_est)
         vm = 0.5 * (v_ + sl * u4_est)
         q_ = float(np.hypot(um, vm))
-        Mm = float(A1.state_q(jnp.float64(q_), ta)[5])
+        if NV == 6:
+            Tg, hg, sg, cpg, Rg, _, _ = ta
+            ht = float(pt[5]) - 0.5 * q_ * q_
+            T_ = float(jnp.interp(ht, hg, Tg))
+            cp_ = float(jnp.interp(T_, Tg, cpg))
+            gam_ = cp_ / (cp_ - float(Rg))
+            c_ = float(np.sqrt(gam_ * float(Rg) * T_))
+            Mm = q_ / c_
+        else:
+            Mm = float(A1.state_q(jnp.float64(q_), ta)[5])
         mum = float(np.arcsin(min(1.0, 1.0 / max(Mm, 1.0001))))
         thm = float(np.arctan2(vm, um))
         return np.tan(thm - mum)
@@ -281,6 +321,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
 
     x_end_march = float(sx[-1])
     edge_pts, wall_pts = [], []
+    sf_ct = [0]                    # streamline-foot decision counter
     M = N                                     # top row of the PREVIOUS column
     kst = -1
     while True:
@@ -305,7 +346,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             b, jf = S.d["wfoot"][kst]
         ptA = G[(jf, i - b)]
         ptB = G[(jf + 1, i - b)]
-        p = jnp.concatenate([ptA, ptB, jnp.array([x4w, y4w, sl])])
+        p = jnp.concatenate([ptA, ptB, jnp.array([x4w, y4w, sl])]
+                            + ([sw_inv] if NV == 6 else []))
         if S.mode == "rec":
             z0 = jnp.array([0.5 * (float(ptA[1]) + float(ptB[1])),
                             float(ptA[2])])
@@ -313,6 +355,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             z0 = jnp.zeros(2)
         z = cell(s_wb, p, z0, tag=("wall", kst))
         wpt = jnp.array([x4w, y4w, z[1], sl * z[1]])
+        if NV == 6:
+            wpt = jnp.concatenate([wpt, sw_inv])
         G[(1, i)] = wpt
         wall_pts.append(wpt)
         # ---- ROW CONSUMPTION at the wall: the previous column's rows
@@ -333,10 +377,59 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             jnew += 1
             pt1 = G[(jnew - 1, i)]
             pt2 = G[(jprev, i - 1)]
-            z0 = predict_bu(pt1, pt2, ta) if S.mode == "rec" else None
-            p = jnp.concatenate([pt1, pt2])
-            z = cell(s_int, p, z0 if z0 is not None else jnp.zeros(4),
+            if S.mode == "rec":
+                z0 = (rot_pred(pt1, pt2, ta) if NV == 6
+                      else predict_bu(pt1, pt2, ta))
+            else:
+                z0 = None
+            if NV == 6:
+                # STREAMLINE-FOOT BRACKET SEARCH (a recorded decision,
+                # the S24 lesson): the foot is NOT always on the chord
+                # pt1-pt2 — when the C- drop per column exceeds the
+                # row spacing the mesh shears and the backward
+                # streamline lands OUTSIDE that chord, and a
+                # single-chord lerp EXTRAPOLATES the invariants
+                # (measured: a systematic N-independent transport
+                # ramp on the stratified-jet oracle). GENO searches
+                # the whole previous column for the intersection
+                # (inter_solve_gen's present(col) branch); so does
+                # this port.
+                if S.mode == "rec":
+                    x4s, y4s = float(z0[0]), float(z0[1])
+                    th0 = float(np.arctan2(float(z0[3]),
+                                           float(z0[2])))
+                    jsf = jprev
+                    f_prev = None
+                    Mp = max(j for j in range(1, M + 1)
+                             if (j, i - 1) in G)
+                    for j in range(1, Mp + 1):
+                        ptj = G[(j, i - 1)]
+                        f = ((y4s - float(ptj[1]))
+                             - np.tan(th0) * (x4s - float(ptj[0])))
+                        if f_prev is not None and f_prev > 0.0 >= f:
+                            jsf = j - 1
+                            break
+                        f_prev = f
+                    jsf = min(max(jsf, 1), Mp - 1) if Mp > 1 else 1
+                    S.d.setdefault("sfoot", []).append(jsf)
+                else:
+                    jsf = S.d["sfoot"][sf_ct[0]]
+                sf_ct[0] += 1
+                ptSA = G[(jsf, i - 1)]
+                ptSB = G[(jsf + 1, i - 1)]
+                p = jnp.concatenate([pt1, pt2, ptSA, ptSB])
+            else:
+                p = jnp.concatenate([pt1, pt2])
+            z = cell(s_int, p,
+                     z0 if z0 is not None else jnp.zeros(
+                         5 if NV == 6 else 4),
                      tag=("int", kst, jnew))
+            if NV == 6:
+                # the cell's t lerps the streamline invariants on the
+                # SEARCHED chord (the foot the cell itself refined)
+                t_ = z[4]
+                inv = ptSA[4:6] + t_ * (ptSB[4:6] - ptSA[4:6])
+                z = jnp.concatenate([z[:4], inv])
             G[(jnew, i)] = z
         # ---- new top row: the free edge, fed from THIS column
         pt1 = G[(jnew, i)]
@@ -353,6 +446,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         q_e = qe_of(z[1])
         ept = jnp.array([z[0], z[1], q_e * jnp.cos(z[2]),
                          q_e * jnp.sin(z[2])])
+        if NV == 6:
+            ept = jnp.concatenate([ept, se_inv])
         if edge_fill and kst == 0:
             # fill the start-up wedge: the flow between the topmost
             # interior and the edge is smooth and unsampled, so seed it
