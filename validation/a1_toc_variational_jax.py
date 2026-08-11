@@ -79,6 +79,7 @@ ON-DEMAND CARRIER (env: jax + WSL gfortran GENO binary): outside CI
 tiers by declaration. Exit code 0 iff ALL checks pass INCLUDING the
 negative controls.
 """
+import json
 import os
 import shutil
 import subprocess
@@ -114,6 +115,14 @@ NW = 60              # contour wall stations (march resolution)
 # optimization, moving affinely with xB exactly as the uniform class
 # does.
 KNOT_XI = None
+
+# S21 (T5 localization instrumentation, panel O4 / audit C-1(i)):
+# argmax-cell localization in the cert dict — position (x, y), cell
+# kind, column context — plus the argmin-margin cell along the walk.
+# ADDITIVE and DEFAULT-OFF (env A1_CERT_ARGMAX=1): the record path is
+# bit-identical unless armed; the fields are reporting-only and enter
+# no gate.
+CERT_ARGMAX = os.environ.get("A1_CERT_ARGMAX") == "1"
 
 
 # ======================================================================
@@ -208,7 +217,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     thB = float(Wj[0])
     n_B = max(1, int(np.ceil(thB / da)))     # frozen arc-station count
 
-    cert = dict(worst=0.0, n=0, min_margin=np.inf)
+    cert = dict(worst=0.0, n=0, min_margin=np.inf,
+                argmax=None, argmin_margin=None, ctx=None)
     # jitted once per run: the eager per-cell closure call is pure
     # dispatch overhead (measured S18 on the quintic closure)
     sound_of_q = jax.jit(lambda q: state_fn(q, ta)[3])
@@ -231,12 +241,31 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         z = sol(jnp.asarray(z0, dtype=jnp.float64), jnp.asarray(p), ta)
         step = float(stepn(z, jnp.asarray(p), ta))
         sc = max(1.0, float(jnp.max(jnp.abs(z))))
-        cert["worst"] = max(cert["worst"], step
-                            / (A1.NEWTON_TOL_FACTOR * EPS * sc))
+        ratio = step / (A1.NEWTON_TOL_FACTOR * EPS * sc)
+        if not np.isfinite(ratio):
+            # C2-F1 (S21): NaN/Inf metric = non-certifiable cell;
+            # builtin max() DISCARDS a NaN second argument (first-arg
+            # return), so it is forced onto the reject side.
+            ratio = np.inf
+        pt = pt_of_z(z) if pt_of_z is not None else None
+        if ratio > cert["worst"]:
+            cert["worst"] = ratio
+            if CERT_ARGMAX:
+                cert["argmax"] = dict(
+                    kind=kind, cell_index=cert["n"], ratio=float(ratio),
+                    x=(float(pt[0]) if pt is not None else None),
+                    y=(float(pt[1]) if pt is not None else None),
+                    ctx=cert["ctx"])
         cert["n"] += 1
-        if pt_of_z is not None:
-            m = margin_of(pt_of_z(z))
-            cert["min_margin"] = min(cert["min_margin"], m)
+        if pt is not None:
+            m = margin_of(pt)
+            if m < cert["min_margin"]:
+                cert["min_margin"] = m
+                if CERT_ARGMAX:
+                    cert["argmin_margin"] = dict(
+                        kind=kind, cell_index=cert["n"] - 1,
+                        margin=float(m), x=float(pt[0]), y=float(pt[1]),
+                        ctx=cert["ctx"])
             if m <= margin_floor:
                 raise RuntimeError(
                     "axial-margin rejector: u_x - c = %.3e <= floor "
@@ -265,6 +294,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     fan_cols = []
     prev = [ivl[NI - 1]]
     for i in range(2, NI + 1):
+        cert["ctx"] = ("fan", i)
         head = ivl[NI - i]
         seeds = []
         carry = head
@@ -319,7 +349,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     wall_pts = []
     field_cols = []
     has_axis = True
-    for (x4, y4, sl) in stations:
+    for i_col, (x4, y4, sl) in enumerate(stations, start=1):
+        cert["ctx"] = ("design_col", i_col)
         # wall_search: chord-foot descent (identical to [X-A1IM])
         N = 0
         Nv_loc = Nv
@@ -399,6 +430,10 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
 
     out = dict(wall=jnp.stack(wall_pts), cert_worst=cert["worst"],
                cert_n=cert["n"], min_margin=cert["min_margin"])
+    if CERT_ARGMAX:
+        # T5 (S21): localization payload, reporting-only, default-off
+        out["cert_argmax"] = cert["argmax"]
+        out["cert_argmin_margin"] = cert["argmin_margin"]
     if return_field:
         # fan columns FIRST: the C+ chain traced upstream from the lip
         # crosses out of the design-wall region into the kernel, and
@@ -510,15 +545,30 @@ def run_toc_scan(W, tab, cfg, plan, state_fn=A1.state_q, solvers=None):
 # this path is the NaN-leak detector.
 # ======================================================================
 def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
-                          solvers=None):
+                          solvers=None, cert_diag=False):
     """Whole-loop jitted bucketed TOC replay for a FIXED plan.
-    Returns a jitted callable W -> wall (n_B + Nw, 4)."""
+    Returns a jitted callable W -> wall (n_B + Nw, 4).
+
+    cert_diag (C2-F2, S21): with cert_diag=True the callable returns
+    (wall, worst) where worst = the max per-cell certification ratio
+    (one extra Newton step over its bound, the record-path metric)
+    over every REAL solved lane — the traced rejector the replay path
+    lacked ("certification exists only in record mode", audit
+    engine-core:F2). Default False = the pre-S21 callable and cost,
+    bit-identical. Certification of TRIAL points inside the optimizer
+    stays deliberately deferred to the P3(ii) accepted-iterate
+    re-record (DECLARED contract, not a gap); the verdict-bearing
+    consumers (O3.1 FD probes, the certdiag KAT) build with
+    cert_diag=True and CHECK worst <= 1."""
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
     s_int = solvers["interior"][0]
     s_axi = solvers["axis"][0]
     s_wal = solvers["wall"][0]
+    st_int = solvers["interior"][2]
+    st_axi = solvers["axis"][2]
+    st_wal = solvers["wall"][2]
     NI, Nw = cfg["NI"], cfg["Nw"]
     yt, rtu, rtd = cfg["yt"], cfg["rtu"], cfg["rtd"]
     L = cfg["xtronc"]
@@ -613,6 +663,26 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
             return (jnp.where(active, zc, carry),
                     jnp.where(active, zc, PADj))
 
+        def _ratio(stepfn, z, p):
+            # C2-F2 (S21): traced per-cell certification ratio (one
+            # extra Newton step over its bound); non-finite -> +inf
+            # (reject side), masked lanes -> 0 by the caller.
+            s = stepfn(z, p, ta)
+            sc = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
+            r = s / (A1.NEWTON_TOL_FACTOR * EPS * sc)
+            return jnp.where(jnp.isfinite(r), r, jnp.inf)
+
+        def _chain_ratios(head_pt, cells, pt2s, act):
+            # reconstruct each interior cell's parameter vector from
+            # the scan outputs (active lanes form a prefix, so the
+            # carry chain is exact there; inactive lanes are masked)
+            carries = jnp.concatenate([head_pt[None, :], cells[:-1]],
+                                      axis=0)
+            ps = jnp.concatenate([carries, pt2s], axis=1)
+            rr = jax.vmap(lambda zz, pp: _ratio(st_int, zz, pp))(
+                cells, ps)
+            return jnp.where(act, rr, 0.0)
+
         # ---------- FAN bucket
         prevF0 = jnp.concatenate(
             [ivl[NI - 1][None, :],
@@ -636,9 +706,15 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
                     axis=0)
             newp = jnp.where((rowsF == n_i + 1)[:, None],
                              ax[None, :], shifted)
+            if cert_diag:
+                wcol = jnp.maximum(
+                    jnp.max(_chain_ratios(head, cells, prev[:nmaxF],
+                                          act)),
+                    _ratio(st_axi, za, last))
+                return newp, wcol
             return newp, None
 
-        prevF, _ = jax.lax.scan(
+        prevF, fanW = jax.lax.scan(
             fan_body, prevF0,
             (jnp.asarray(fan_seeds), jnp.asarray(fan_n),
              jnp.asarray(fan_ax), jnp.asarray(head_idx)))
@@ -685,16 +761,27 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
                                                [:, None]) & hax,
                                               ax[None, :],
                                               PADj[None, :]))))
+            if cert_diag:
+                wcol = jnp.maximum(
+                    jnp.maximum(
+                        _ratio(st_wal, zw, p_w),
+                        jnp.max(_chain_ratios(wall_pt, cells, pt2s,
+                                              act))),
+                    jnp.where(hax, _ratio(st_axi, za, p_ax), 0.0))
+                return base, (wall_pt, wcol)
             return base, wall_pt
 
-        _, wallT = jax.lax.scan(
+        _, outT = jax.lax.scan(
             wall_body, prevT0,
             (jnp.asarray(arc_seeds), jnp.asarray(arc_n),
              jnp.asarray(arc_N), jnp.asarray(arc_Nv),
              jnp.asarray(arc_hax), jnp.asarray(arc_ws),
              jnp.asarray(ax_fill), jnp.asarray(arc_kk),
              jnp.asarray(arc_isarc)))
-        return wallT
+        if cert_diag:
+            wallT, wallW = outT
+            return wallT, jnp.maximum(jnp.max(fanW), jnp.max(wallW))
+        return outT
 
     return run
 
@@ -771,6 +858,19 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     tr_cap = 0.25                        # S20 RATCHET: only decreases
     Dv = None                            # Jacobi scaling (measured once)
     W_cert = None                        # last CERTIFIED segment base
+    nf_events = dict(grad=0, obj=0)      # C2 (S21): nonfinite events
+    rejected = []                        # T5 (S21): rejected designs
+
+    def _persist_rejected():
+        # T5 (S21, panel O4 / audit C-1(ii)): REJECTED designs are no
+        # longer transient — kept in the result dict always, and
+        # dumped to JSON when env A1_REJ_SAVE names a path, so a
+        # post-hoc retro-diagnosis (three-way locus test) can
+        # re-generate them deterministically.
+        path = os.environ.get("A1_REJ_SAVE")
+        if path and rejected:
+            with open(path, "w") as fh:
+                json.dump(dict(rejected=rejected), fh, indent=1)
     for seg in range(max_segments):
         # S20 REJECT-AND-SHRINK (defect found by [X-AKNO] cycle 1, log
         # S20 step 5; brings the code INTO conformance with the
@@ -797,6 +897,11 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                     "P4 gate: record at segment base not certified "
                     "(worst %.3e)" % out_rec["cert_worst"])
         except RuntimeError as err:
+            rejected.append(dict(
+                W=[float(x) for x in W], seg=int(seg),
+                cert_worst=(float(worst_seen)
+                            if np.isfinite(worst_seen) else None),
+                error=str(err)))
             # OPTIONAL CERTIFIABILITY DIAGNOSTIC (S20, env
             # A1_RKG_CERTDIAG=1, default OFF, purely reporting):
             # cert_worst > 1 has TWO possible causes and they are
@@ -861,10 +966,14 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                       "CERTIFIED base; KKT reported OPEN "
                       "(certifiability-limited)" % (seg, err),
                       flush=True)
+                _persist_rejected()
                 return dict(W=W_cert, res=result, n_segments=seg + 1,
                             re_records=n_rec, re_record_events=events,
                             nit_total=nit_total, n_eval=n_eval,
-                            certifiability_limited=True)
+                            certifiability_limited=True,
+                            n_nonfinite_grad=nf_events["grad"],
+                            n_nonfinite_obj=nf_events["obj"],
+                            rejected_designs=rejected)
             # W == W_cert failing here would mean a previously
             # CERTIFIED base fails on deterministic re-record — a
             # contradiction that must surface, never be masked by
@@ -948,11 +1057,26 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             n_eval += 1
             v, _ = val_grad(jnp.asarray(u * Dv))
             v = float(v)
-            return v if np.isfinite(v) else 1e30  # monitor-lite NaN guard
+            if np.isfinite(v):
+                return v
+            # C2 (S21): the finite fallback keeps the optimizer
+            # stepping (REQ-NONSTALL: survive + report), but the
+            # event is COUNTED and fails the verdict downstream —
+            # never a silent patch.
+            nf_events["obj"] += 1
+            return 1e30
         def g_np(u):
             _, g = val_grad(jnp.asarray(u * Dv))
             g = np.asarray(g) * Dv
-            return np.where(np.isfinite(g), g, 0.0)
+            if not np.all(np.isfinite(g)):
+                # C2 (S21): a nonfinite adjoint-gradient component
+                # silently zeroed would SHRINK res.optimality — the
+                # exact quantity the O3 verdict consumes. The zeroing
+                # stays (REQ-NONSTALL: scipy keeps stepping) but the
+                # event is COUNTED and the verdict fails on the count.
+                nf_events["grad"] += 1
+                g = np.where(np.isfinite(g), g, 0.0)
+            return g
 
         seg_state = dict(stop=False, last_rec=np.asarray(W).copy(),
                          radius=None)
@@ -1043,10 +1167,14 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 break                        # converged inside stratum
         if res.status == 0 and not seg_state["stop"]:
             break                            # iteration budget exhausted
+    _persist_rejected()
     return dict(W=W, res=result, n_segments=seg + 1,
                 re_records=n_rec, re_record_events=events,
                 nit_total=nit_total, n_eval=n_eval,
-                certifiability_limited=False)
+                certifiability_limited=False,
+                n_nonfinite_grad=nf_events["grad"],
+                n_nonfinite_obj=nf_events["obj"],
+                rejected_designs=rejected)
 
 
 def geno_type2_reference(scratch, NI_over=None, Ne_over=None):
@@ -1270,6 +1398,19 @@ def main():
     def scalar_J(Wv):
         return thrust_J(runj0(Wv), tab, state_fn=state_c1)
 
+    # C2-F2 (S21): the verdict-bearing FD probe evaluations are now
+    # CERTIFIED — a cert_diag build of the same jit replay returns the
+    # traced worst step/bound over every real lane; an uncertified
+    # probe fails the row instead of silently feeding the O3.1 lhs.
+    runj0d = make_run_toc_scan_jit(tab, cfg, plan0, state_fn=state_c1,
+                                   solvers=solv_c1, cert_diag=True)
+    probe_worst = []
+
+    def scalar_J_cert(Wv):
+        wall, worstd = runj0d(Wv)
+        probe_worst.append(float(worstd))
+        return float(thrust_J(wall, tab, state_fn=state_c1))
+
     Wj = jnp.asarray(W0)
     J0 = float(scalar_J(Wj))
     g = np.asarray(jax.grad(scalar_J)(Wj))
@@ -1279,8 +1420,8 @@ def main():
 
     def dirder(hsc):
         h = EPS ** (1.0 / 3.0) * hsc * max(1.0, float(np.abs(W0).max()))
-        return (float(scalar_J(Wj + h * jnp.array(v)))
-                - float(scalar_J(Wj - h * jnp.array(v)))) / (2 * h)
+        return (scalar_J_cert(Wj + h * jnp.array(v))
+                - scalar_J_cert(Wj - h * jnp.array(v))) / (2 * h)
 
     d1, d2 = dirder(1.0), dirder(0.5)
     lhs, rhs = d2, float(g @ v)
@@ -1292,6 +1433,10 @@ def main():
           % (J0, lhs, rhs, abs(lhs - rhs), tol_dp))
     ok &= check("O3.1 dot-product on dJ/dW (jit path, leak detector)",
                 abs(lhs - rhs) <= tol_dp)
+    print("  [C2-F2] probe replays certified: %d evaluations, worst "
+          "step/bound = %.3e" % (len(probe_worst), max(probe_worst)))
+    ok &= check("O3.1 probe replays Newton-certified (C2-F2)",
+                max(probe_worst) <= 1.0)
     # N1: corrupted gradient must break the identity
     gbad = g.copy()
     gbad[1] = -gbad[1]
@@ -1350,6 +1495,17 @@ def main():
                     "Verdict with re-record count)",
                     res.status in (1, 2)
                     and res.constr_violation <= gtol)
+        # C2 (S21): silent-patch counters are verdict-bearing — a walk
+        # that consumed a zeroed nonfinite gradient (or a 1e30
+        # objective fallback) cannot claim O3 transversality.
+        print("  [C2] nonfinite events on the walk: grad %d, obj %d; "
+              "rejected designs kept: %d"
+              % (opt["n_nonfinite_grad"], opt["n_nonfinite_obj"],
+                 len(opt["rejected_designs"])))
+        ok &= check("C2: no silently-patched nonfinite gradient/"
+                    "objective on the walk",
+                    opt["n_nonfinite_grad"] == 0
+                    and opt["n_nonfinite_obj"] == 0)
         # O3 transversality instance: KKT residual small = the Rao
         # stationarity reached VIA the gradient (executable opener of
         # the pre-registered O3.3 campaign — protocol untouched)

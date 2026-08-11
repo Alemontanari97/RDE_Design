@@ -30,7 +30,15 @@ decomposition; PB-3) are not covered by this text as written; the
 per-wall multiplier structure there is owed to a dedicated session.
 Hypothesis hereby NAMED (previously silent).]
 
-THEOREM P3-S1 (averaged multiplier regularity, shock-free S1 class;
+THEOREM P3-S1 (averaged multiplier regularity, shock-free
+IRROTATIONAL-HOMENTROPIC S1 subclass — scope qualifier added S21 per
+audit C1: the closed form (P3.1) is inherited from Lemma A step 5 /
+Prop. A3, whose derivation layer [T-A3] is scoped to irrotational
+homentropic per-phase flow; on ROTATIONAL S1 members (entropy/
+vorticity profiles, which the I2 interface class admits) the
+multiplier identification survives only at the FIELD level (Hoffman
+four-field route, M0 VI.4bis(iv)) and (P3.1) is NOT the stationarity
+condition — the field-level rejector is named below;
 class THEOREM* [C-D25U] — conditional exactly on the declared P7 continuity
 hypothesis, see step (iii) and §3). Under the above, for mu-a.e. xi
 the per-phase mass multiplier lambda2(xi) exists, is UNIQUE, satisfies
@@ -68,7 +76,21 @@ gives the Banach-space version). QED (i).
 the stationarity system of the phase, whose unique solution for
 lambda2 is Rao's first integral: lambda2(xi) = -f2(xi) — this is
 exactly Lemma A step 5 ((L.12), derived, corpus-checked,
-machine-verified; EOS-general). QED (ii).
+machine-verified; EOS-general WITHIN the irrotational-homentropic
+scope of the theorem statement — the invocation is licit only there,
+which is why the S21 qualifier is part of the statement). QED (ii).
+
+NAMED FIELD-LEVEL REJECTOR (S21, audit C1 — registered as a P-2
+FREEZE BLOCKER row, carrier named-but-unbuilt per the dual-proof
+standard): build one S1 phase with a nonzero inflow entropy gradient
+(a data class the I2 contract already admits), integrate f2 along
+the terminal characteristic with the existing X-PA1 machinery, and
+compare -f2(lip) against the FIELD-LEVEL multiplier from the
+O3.1-certified adjoint march: a drift beyond the derived tolerance
+CONFIRMS the mis-scoping cure (the closed form must fail there); no
+drift falsifies the scope qualifier itself. Owner: the F2 stratified
+engine (the field-level adjoint exists there); the row blocks any
+P-2 claim that quotes (P3.1) beyond the qualified subclass.
 
 (iii) MEASURABILITY. xi -> s(xi) is measurable (contract R3). The map
 s -> (W_E, theta_E, alpha_E) (data to lip trace values through the

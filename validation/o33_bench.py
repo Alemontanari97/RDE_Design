@@ -51,9 +51,17 @@ ROWS
      LEFT side: reverse-AD of the march (the adjoint). RIGHT side: the
      classical corner density evaluated on the flow. Nothing is shared
      between the two computations except the design.
-     CONTROL: the identity is DERIVED FROM OPTIMALITY ((L.12)/(L.13)
-     are substituted to obtain it), so at a NON-optimal feasible
-     design it must BREAK — that is the row's rejector.
+     VERDICT FORM (S21 rewrite; audit p2-line:corner-row): the row's
+     falsifier is the TWO-KNOB CONVERGENCE TEST of record (S19) — the
+     mismatch must shrink under design-class enrichment toward the
+     continuum optimum AND under mesh refinement at the near-continuum
+     design; in design-loaded mode, the pre-declared [D1] comparison
+     against the live 8-node baseline. The original break-at-non-
+     optimum control is REFUTED AND WITHDRAWN (this carrier's own R6
+     measurement: the mismatch varies smoothly 7.8e-2 -> 5.7e-2 across
+     the +-3% family, indistinguishable from the design-class floor at
+     the optimum — see the note of record in the R6 block) and is NOT
+     a rejector of this row.
  R4  ADJOINT COMPATIBILITY RESIDUAL on our field, in the two-field
      multiplier coordinates whose closed form is Prop. A3 / [T-A3]
      ((lambda1, lambda2) = a (y^d rho v, u) + b (0,1); gauge fixed to
@@ -85,10 +93,17 @@ ROWS
      a uniformity test passes — with a positive control (a synthetic
      uniform patch is accepted) and the live field (refused).
 
-TOLERANCES — DERIVED (R5): every band is a two-resolution Richardson
-estimate times the repo's reused K_RICH = 4, plus the accumulated
-Newton certification floor over the certified cell count. No band is
-adjusted after a number is seen (S18 precedent, binding).
+TOLERANCES (S21 honesty rewrite — the previous blanket "every band is
+Richardson-derived" was FALSE for three rows, audit benches:3): the
+FIELD bands (R1/R7 f2-drift band, R3 corner band) are two-resolution
+Richardson estimates x the repo's reused K_RICH = 4 plus the
+accumulated Newton certification floor over the certified cell
+count; the R4 sign-separation factor (20x) and the two-knob halving
+factor (0.5) are DECLARED STRUCTURAL DISCRIMINATORS (order-of-
+magnitude gates, not Richardson bands — declared, not derived); the
+R7 node-class representation gate (1e-4) is a declared cap pending
+its own derivation (P2-scheduled row). No band is adjusted after a
+number is seen (S18 precedent, binding).
 
 ON-DEMAND CARRIER (env: jax). Exit code 0 iff all rows pass INCLUDING
 the rejectors. Staging: A1_O33_STAGE in {field, rows, family, all}.
@@ -455,7 +470,14 @@ def march_design(W, n_nodes, tab, cfg, state_fn, solvers, grad=False):
                                        state_fn=state_fn))(
                 jnp.asarray(W)))
     finally:
-        TV.M_NODES = old
+        # S21 (audit benches:1): restore BOTH constants — the S20
+        # KNOT_XI extension widened `old` to a tuple but restored it
+        # into M_NODES alone, clobbering the ambient class and making
+        # every stage past R7 raise at the next trace. Regression
+        # guard below (the committed defect was exactly this).
+        TV.M_NODES, TV.KNOT_XI = old
+    assert isinstance(TV.M_NODES, int), \
+        "march_design failed to restore the ambient design class"
     return out, g
 
 
@@ -466,16 +488,28 @@ def surface_report(out, state_fn, label):
     pr, f2, f2w, f3 = rao_invariants(ch, state_fn)
     cs_m = locus_split(ow, out["n_fan"], out["n_arc"])
     idx = np.where(cs_m)[0]
+    # S21 (audit p2-line:lip-exclusion): the headline mask now applies
+    # the REGISTERED exclusion at BOTH ends — kernel-boundary end AND
+    # lip end (the inviscid adjoint is generically singular at the
+    # lip, P2_outline §5(a); the S19 lip-point probe measured degraded
+    # order p = 0.763 there). The S19 numbers of record were taken
+    # under the asymmetric mask (kernel end only) — that reading is
+    # kept printed for continuity, but the row numbers below are the
+    # registered-norm ones.
     inner = cs_m.copy()
     inner[idx[:STENCIL_RADIUS]] = False
+    inner[idx[-STENCIL_RADIUS:]] = False
+    inner_s19 = cs_m.copy()
+    inner_s19[idx[:STENCIL_RADIUS]] = False
     print("  [%s] control surface: %d of %d chain nodes, from "
           "(x=%.4f, y=%.4f) to the lip; f2 mean %.4f  drift %.4e "
-          "(full C+ to the axis would give %.4e)  | f3* drift %.4e | "
+          "[registered norm; S19 asymmetric-mask reading %.4e; "
+          "full C+ to the axis would give %.4e]  | f3* drift %.4e | "
           "wrong-family drift %.4e"
           % (label, int(cs_m.sum()), len(f2), pr["x"][idx[0]],
              pr["y"][idx[0]], float(np.mean(f2[inner])),
-             drift(f2[inner]), drift(f2), drift(f3[inner]),
-             drift(f2w[inner])))
+             drift(f2[inner]), drift(f2[inner_s19]), drift(f2),
+             drift(f3[inner]), drift(f2w[inner])))
     # LIP TRANSVERSALITY READING, in the gauge-free form: Rao Eq. [14]
     # says the corner condition is pa = p_E - (1/2) rho W^2 sin(2th)
     # tan(alpha) at the lip, so the RATIO pa/p_E is the classical
@@ -493,6 +527,7 @@ def surface_report(out, state_fn, label):
           % (prl["y"][0], prl["p"][0], prl["M"][0],
              prl["th"][0] / d2r, pa / prl["p"][0]))
     return dict(f2=float(np.mean(f2[inner])), d2=drift(f2[inner]),
+                d2_s19=drift(f2[inner_s19]),
                 d2_full=drift(f2), d3=drift(f3[inner]),
                 dw=drift(f2w[inner]), n=int(cs_m.sum()),
                 pa_ratio=pa / float(prl["p"][0]))
@@ -534,10 +569,14 @@ def main():
         import json as _json
         with open(des_path) as f:
             art = _json.load(f)
-        # [D1] validity condition (S20 log step 7): only an
-        # outcome-I (in-stratum converged) design may be measured —
-        # the corner identity must BREAK at non-optimal designs, so
-        # loading a non-eligible design would confound the row.
+        # [D1] validity condition (S20 log step 7; wording corrected
+        # S21): only an outcome-I (in-stratum converged) design may
+        # be measured — the corner identity is DERIVED FROM
+        # OPTIMALITY, so a KKT-open design confounds design-class
+        # error with non-stationarity and cannot test [D1]. (The
+        # stronger break-at-non-optimum claim is refuted and
+        # withdrawn — see the R6 note of record; the confounding
+        # argument above is what carries the refusal.)
         if not art.get("d1_eligible", False):
             print("  [instance] REFUSED: %s is not [D1]-eligible "
                   "(no in-stratum converged cycle) — the bench will "
@@ -596,9 +635,38 @@ def main():
     ok &= check("R5 wrong-family combination NOT conserved on the "
                 "control surface (must drift more than f2)",
                 D_f2w > D_f2)
-    ok &= check("R1 f2 constant on the control surface at the "
-                "instance's own discretization level (drift < 3%)",
-                D_f2 < 0.03)
+    # C3 (S21, audit p2-line:f2-drift-tolerance-underived): the R1/R7
+    # band is DERIVED per this module's own blanket declaration —
+    # two-resolution Richardson x K_RICH + the accumulated Newton
+    # floor — replacing the 0.03 literal. Pre-declared in the S21
+    # gate [D3-BENCH]: if the S19 numbers do not pass under the
+    # derived band, that is a FINDING of record, never a reason to
+    # adjust the band.
+    print("  deriving the R1/R7 f2-drift band from a "
+          "double-resolution repeat...")
+    cfg2 = refine(cfg, 2)
+    out2, plan2 = TV.run_toc_record(W_STAR, tab, cfg2,
+                                    state_fn=state_c1, solvers=solv,
+                                    return_field=True)
+    rep_r2 = surface_report(out2, state_c1, "our W* (r=2)")
+    band_f2 = (A1.K_RICH * abs(D_f2 - rep_r2["d2"])
+               + A1.NEWTON_TOL_FACTOR * EPS * int(out["cert_n"]))
+    print("  derived f2-drift band = K_RICH x |%.4e - %.4e| + Newton "
+          "floor = %.4e" % (D_f2, rep_r2["d2"], band_f2))
+    ok &= check("R1 f2 constant on the control surface within the "
+                "DERIVED two-resolution band", D_f2 <= band_f2)
+    # negative control (the band must be able to reject): a 5%
+    # corruption of one interior surface value must exceed the band
+    m_nc = locus_split(owner, out["n_fan"], out["n_arc"])
+    idx_nc = np.where(m_nc)[0]
+    mm_nc = m_nc.copy()
+    mm_nc[idx_nc[:STENCIL_RADIUS]] = False
+    mm_nc[idx_nc[-STENCIL_RADIUS:]] = False
+    _, f2_nc, _, _ = rao_invariants(chain, state_c1)
+    f2_bad = f2_nc.copy()
+    f2_bad[idx_nc[len(idx_nc) // 2]] *= 1.05
+    ok &= check("R1 negative control: corrupted surface value exceeds "
+                "the derived band", drift(f2_bad[mm_nc]) > band_f2)
 
     # ---------------- R7: second design instance (GENO's Rao wall) ----
     print("-- R7: CROSS-DESIGN check — GENO's own type-2 Rao contour, "
@@ -621,7 +689,8 @@ def main():
                 df2 < max(rep_star["d2"], rep_geno["d2"]))
     ok &= check("R7 f2 is constant on GENO's Rao contour too (the "
                 "residual is the instance's discretization, not our "
-                "design)", rep_geno["d2"] < 0.03)
+                "design; same mesh => the W*-derived band applies)",
+                rep_geno["d2"] <= band_f2)
     dpa = abs(rep_star["pa_ratio"] - rep_geno["pa_ratio"])
     print("  LIP TRANSVERSALITY ACROSS THE TWO DESIGNS: pa/p_E = "
           "%.5f (ours) vs %.5f (GENO) -> difference %.3e"
@@ -694,11 +763,9 @@ def main():
         return 0 if ok else 1
 
     # band: two-resolution Richardson on BOTH sides + Newton floor
-    print("  deriving the R3 band from a double-resolution repeat...")
-    cfg2 = refine(cfg, 2)
-    out2, plan2 = TV.run_toc_record(W_STAR, tab, cfg2,
-                                    state_fn=state_c1, solvers=solv,
-                                    return_field=True)
+    # (S21: cfg2/out2/plan2 already computed for the R1 derived band
+    # — reused here, one refined record per run)
+    print("  deriving the R3 band from the double-resolution repeat...")
     runj2 = TV.make_run_toc_scan_jit(tab, cfg2, plan2,
                                      state_fn=state_c1, solvers=solv)
     g2 = np.asarray(jax.grad(

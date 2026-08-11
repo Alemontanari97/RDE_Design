@@ -182,11 +182,11 @@ entries:
   kind: conditional
   class: SCHEMA
   scope: "declared NUMERIC residual (not an analytic gap — justification per SCAFFOLD §3 rule 4): adjoint component match"
-  statement: "Term-by-term match of the closed-form multiplier components against the AD adjoint field on a TOC case (oracle O3.3 / P-A3) awaits the A1 engine."
+  statement: "Term-by-term match of the closed-form multiplier components against the AD adjoint field on a TOC case (oracle O3.3 / P-A3). STATUS OF RECORD (S19/S20/S21, staleness fixed S21 per audit C8): the A1 engine EXISTS and the pre-registered O3.3 campaign RAN (X-O32/X-O33B, S19: primary criterion R6 PASS, f2 constant 9.5e-03/8.0e-03 on the classical surface); what remains open is the DESIGN-CLASS residual of the corner row (S19 diagnosis; S20 X-AKNO attempt certifiability-limited, C-O33 neither discharged nor falsified) and its margin-constrained reformulation (M0 Part VI) — NOT engine availability."
   doc: "docs/rde_nozzle_P2_lemmaA.md#§3.6"
   proof: "docs/rde_nozzle_P2_lemmaA.md#§3.4"
   inherits: []
-  carrier: []
+  carrier: [X-O33B, X-AKNO]
   suffices_symbolic: "n/a"
   falsifier: "O3.3 run with component mismatch beyond derived tolerance"
   gamma: "EOS-general"
@@ -456,7 +456,7 @@ entries:
 - id: T-P3
   kind: theorem
   class: THEOREM*
-  scope: "shock-free S1 class, single attached wall (hypothesis named 2026-08-05, D8 §8 residue s8; multi-wall sectors owed to a dedicated session); across fitted fronts inherits the front conditional"
+  scope: "shock-free IRROTATIONAL-HOMENTROPIC S1 subclass (scope qualifier added S21 2026-08-11 per audit C1: the closed form inherits T-A3, scoped there; rotational S1 members = FIELD-level identification only, Hoffman route, named field-level rejector in the P3 doc = P-2 freeze blocker, owner F2), single attached wall (hypothesis named 2026-08-05, D8 §8 residue s8; multi-wall sectors owed to a dedicated session); across fitted fronts inherits the front conditional"
   statement: "The averaged multiplier lambda2(xi) exists, is unique (scalar CQ via the Prop. A2 contraction), equals -f2(lip data), and is measurable with explicit L^inf(dmu) bound."
   doc: "docs/rde_nozzle_P3_multipliers.md#1. Statement"
   proof: "docs/rde_nozzle_P3_multipliers.md#2. Proof"
@@ -1226,6 +1226,19 @@ entries:
   carrier: []
   suffices_symbolic: "n/a"
   falsifier: "its rejectors: the known-answer indicator selftest (single-jump concentration + flat-drift anti-concentration + empty-set refusal), the strict-subset marking requirement on the live design, per-cycle certification/P4/O3.1 gates, and the [D1] check itself (goal not below baseline = FAIL)"
+  gamma: "EOS-general"
+
+- id: X-CDKAT
+  kind: carrier
+  class: PRACTICE
+  scope: "certdiag KNOWN-ANSWER TEST + S20 retro-validation (S21 2026-08-11, F0 of plan v3, audit seed A1 P0); on-demand carrier (env: jax); proves the N_NEWTON knob bites through the EXACT S20 certdiag binding chain (module global read at trace time, fresh solver-cache key): KAT-1 lowered cap N_NEWTON=3 on the HEALTHY GENO-seeded baseline strictly worsens cert_worst (EXECUTED 2026-08-11: 2.106398e-01 -> 2.307536e+05, x1.1e+06, PASS); KAT-2 raised cap 300 bit-identical on converged cells (PASS, 17 digits); KAT-3 the C2-F2 cert_diag jit-replay rejector certifies the base point (worst 2.156e-01), FIRES on a perturbed replay with the solver starved to zero trips (worst 6.062e+08 > 1) and re-certifies at the default cap (2.125e-01) — attempt 1 with cap 2 + 1% perturbation DECLARED insufficient-stimulus (two-trip Newton reached the floor; hardened to cap 0, no band moved); N-CTRL deterministic re-record bit-identical. RETRO-VALIDATION OF RECORD: the S20 8/8 GENUINE bit-identity under 30->300 cannot be a non-biting-knob artifact — the trip-cap-hypothesis-DEAD adjudication stands"
+  statement: "The certdiag instrument discriminates: lowering the Newton trip cap on a healthy design strictly worsens the certification metric through the same binding chain the S20 certdiag used, raising it is invariant only on converged cells, and the replay-path certification diagnostic can both certify and reject; therefore the S20 GENUINE verdicts are instrument-supported."
+  doc: "validation/certdiag_kat.py"
+  proof: "validation/certdiag_kat.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "KAT-1 cert_worst unchanged under the lowered cap (instrument non-discriminating => the S20 8/8 GENUINE adjudication is DOWNGRADED per the S21 gate [D1-KAT]); KAT-2 non-bit-identical; KAT-3 rejector fails to fire on stale seeds or fires at the default cap; N-CTRL nondeterminism"
   gamma: "EOS-general"
 
 # --------------------------------------------------------- paper-layer records

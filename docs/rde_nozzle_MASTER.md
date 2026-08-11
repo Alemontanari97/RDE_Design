@@ -284,8 +284,14 @@ Theorem 0 -> T0 -> P4.
 PROBLEM (P): find the PAIR (S*, delta) such that
  (i)   S* ∈ argmax_{A_h(c)} J (existence; P7 = function-class target
        with monitored failure boundary);
- (ii)  S* satisfies the averaged system T7: per-phase closed-form
-       adjoint (Rao/Kraiko) conditions + mu-averaged wall condition +
+ (ii)  S* satisfies the averaged system T7: per-phase adjoint
+       stationarity — CLOSED-FORM (Rao/Kraiko) conditions in the
+       IRROTATIONAL-HOMENTROPIC per-phase subclass; FIELD-LEVEL
+       adjoint conditions otherwise (rotational/stratified data:
+       the closed form is oracle/initializer only, VI.4bis(iv);
+       Hoffman four-field route — scope qualifier added S21 per
+       audit C1: the T-A3 derivation layer is scoped strictly
+       narrower than S1) + mu-averaged wall condition +
        WEIGHTED transversality (**') + active-constraint
        complementarity with multipliers = marginal values;
  (iii) reduced Hessian ⪯ 0 on the active tangent cone;
@@ -853,8 +859,12 @@ constraints (adjoint psi_xi per phase), per-phase mass flow fixed
 formulation; intrinsic in the wall formulation), shared geometric
 constraints (multipliers lambda_L, ...).
 Stationarity structure (verified formally):
- (a) per a.e. xi: the per-phase adjoint Euler system; in S1 it reduces
-     to the classical closed form — optimal control surface = the
+ (a) per a.e. xi: the per-phase adjoint Euler system; in the
+     IRROTATIONAL-HOMENTROPIC subclass of S1 (scope qualifier added
+     S21 per audit C1 — the closed form's derivation layer, T-A3,
+     is scoped there; on rotational S1 members the identification
+     survives only at the FIELD level, VI.4bis(iv)) it reduces to
+     the classical closed form — optimal control surface = the
      phase's characteristic; first integral
      f2 = V cos(theta -/+ alpha)/cos(alpha) = -lambda2(xi).
  (b) shared wall: Int_Xi G_xi(x) dmu + lambda_L g_L(x) = 0 a.e. on the

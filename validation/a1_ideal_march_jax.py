@@ -146,6 +146,11 @@ K_RICH = 4.0
 C_FLOOR = 8.0
 NEWTON_TOL_FACTOR = 100.0
 N_NEWTON = 30
+# C2-F2 (S21): arm per-cell certification on REPLAY ('play')
+# evaluations too (concrete calls only — AD traces are guarded in
+# certify). Default False = bit-identical pre-S21 behaviour; the
+# verdict-bearing O3.1 FD probe blocks turn it on around their calls.
+CERT_PLAY = False
 
 d2r = np.pi / 180.0
 
@@ -394,13 +399,21 @@ def make_implicit_solver(resid_fn):
             r = resid_fn(z, p, ta)
             Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
             dz = jnp.linalg.solve(Jz, r)
-            dz = jnp.where(jnp.isnan(dz), 0.0, dz)
+            # C2-F1 (S21): a non-finite Newton step (singular/blown
+            # Jacobian) must read as a STALLED metric, never as a
+            # zero one — zeroing dz alone made the loop exit at a
+            # fake floor with the unsolved iterate. Damped trials
+            # stay NaN-safe through the zeroed dz; the termination
+            # metric carries +inf so the cell runs to the cap and
+            # FAILS certification honestly.
+            bad = jnp.logical_not(jnp.all(jnp.isfinite(dz)))
+            dz = jnp.where(jnp.isfinite(dz), dz, 0.0)
             cands = z[None, :] - tvec[:, None] * dz[None, :]
             norms = jax.vmap(lambda zc: _norm(zc, p, ta))(cands)
             # metric = the size of the (undamped) Newton step at z —
             # the same quantity step_norm certifies post-hoc.
             return (cands[jnp.argmin(norms)], it + 1,
-                    jnp.max(jnp.abs(dz)))
+                    jnp.where(bad, jnp.inf, jnp.max(jnp.abs(dz))))
 
         z, _, _ = jax.lax.while_loop(
             cond, body, (z0, jnp.array(0), jnp.array(jnp.inf)))
@@ -673,12 +686,24 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
         # extra Newton step at the solution must move it by less than
         # NEWTON_TOL_FACTOR * eps * scale(z) (Newton at the roundoff
         # floor). Derived from the Newton contraction, no magic.
+        # C2-F2 (S21): replay ('play') evaluations are certified too
+        # when CERT_PLAY is armed — the verdict-bearing O3.1 FD probes
+        # replay at perturbed P from stale seeds with no rejector
+        # otherwise. Guarded on tracers: the AD (vjp) pass through the
+        # replay stays traceable and is covered by the implicit rule,
+        # not by a per-cell float() check.
         if S.mode != "rec":
-            return
+            if not CERT_PLAY or isinstance(z, jax.core.Tracer):
+                return
         step = float(stepfn(z, jnp.asarray(p)))
         sc = max(1.0, float(jnp.max(jnp.abs(z))))
-        cert["worst"] = max(cert["worst"],
-                            step / (NEWTON_TOL_FACTOR * EPS * sc))
+        ratio = step / (NEWTON_TOL_FACTOR * EPS * sc)
+        if not np.isfinite(ratio):
+            # C2-F1 (S21): NaN/Inf metric = non-certifiable cell.
+            # builtin max() DISCARDS a NaN second argument (first-arg
+            # return), so the metric is forced onto the reject side.
+            ratio = np.inf
+        cert["worst"] = max(cert["worst"], ratio)
         cert["n"] += 1
 
     def cell(solver, p, z0):
@@ -845,15 +870,26 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
         # record behaviour is bit-identical unless a caller asks
         # otherwise.
         m_stop = cfg.get("m_stop", 1.0e-5)
+        # C2-F4 (S21): the 30-refinement cap exit is a DISTINCT,
+        # surfaced decision ("exit_cap"), never folded into the
+        # converged "exit" — a run that stops refining with
+        # |Me_ach - Me| >> m_stop must say so (out-dict fields
+        # exit_capped / me_gap; the S2 check rejects a cap exit).
+        # Behaviour (march continuation) is unchanged; only the
+        # decision label and the reporting are new.
         code = S.dec(lambda: (
-            "exit" if (abs(float(Max - Me)) < m_stop or it_ref > 30)
-            else ("interp" if (float(Max) > float(Me) + m_stop or flag == 1)
-                  else "step")))
-        if code == "exit":
+            "exit" if abs(float(Max - Me)) < m_stop
+            else ("exit_cap" if it_ref > 30
+                  else ("interp" if (float(Max) > float(Me) + m_stop
+                                     or flag == 1)
+                        else "step"))))
+        if code in ("exit", "exit_cap"):
             valid_cols.append(i)
             j2 += 1
             Me_ach = Max
             i_K = i
+            exit_capped = (code == "exit_cap")
+            me_gap = abs(float(Max - Me))
             break
         if code == "interp":
             it_ref += 1
@@ -956,7 +992,8 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
     wy = jnp.stack([w[1] for w in wall])
     out = dict(wall_x=wx, wall_y=wy, Me=Me_ach, mdot=mdot,
                n_arc_cols=len(wall_cols), n_str_cols=len(wall_str),
-               cert_worst=cert["worst"], cert_n=cert["n"])
+               cert_worst=cert["worst"], cert_n=cert["n"],
+               exit_capped=exit_capped, me_gap=me_gap)
     return out, S
 
 
@@ -1154,9 +1191,13 @@ def main():
           " exit (x,y) = (%.4f, %.4f); eps_out = %.6f"
           % (out["n_arc_cols"], out["n_str_cols"], float(out["Me"]),
              wx[-1], wy[-1], wy[-1]**2 / CASE["yt"]**2))
-    print("  [Newton certification] %d cells, worst resid/tol = %.3e"
+    # (S21 label fix: the metric is the z-space Newton STEP over its
+    # certification bound, deliberately NOT a residual — see certify)
+    print("  [Newton certification] %d cells, worst step/bound = %.3e"
           % (out["cert_n"], out["cert_worst"]))
     ok &= check("all cells Newton-certified", out["cert_worst"] <= 1.0)
+    ok &= check("exit-Mach refinement converged (cap exit surfaced, "
+                "C2-F4)", not out["exit_capped"])
 
     # ---------------- S3: refined march (Richardson estimate)
     print("-- S3: refined march (2NI-1, da/2, 2Ne-1) --")
@@ -1187,8 +1228,10 @@ def main():
         print("  GENO wall: %d points, x in [%.2e, %.3f], Me_field = %.6f"
               % (gx.size, gx.min(), gx.max(), gMe))
         print("  Me twin-vs-GENO delta = %.2e (both defined as achieved"
-              " axis M, |.-Me_target| < 1e-5 each)"
-              % abs(float(out["Me"]) - gMe))
+              " axis M; our |Me_ach - Me_target| = %.2e, refinement"
+              " converged = %s)"
+              % (abs(float(out["Me"]) - gMe), out["me_gap"],
+                 not out["exit_capped"]))
         nbad, ns, err, tol = contour_compare(
             "contour vs GENO", wx, wy, wx2, wy2, gx, gy, CASE["yt"])
         ok &= check("end-to-end contour inside derived band", nbad == 0)
@@ -1245,10 +1288,29 @@ def main():
         return jnp.concatenate([o["wall_x"][idx], o["wall_y"][idx],
                                 jnp.array([o["Me"]])])
 
+    # C2-F2 (S21): the CONCRETE probe evaluations (replay-fidelity
+    # base + FD directional derivatives) are now CERTIFIED — CERT_PLAY
+    # arms per-cell certification in 'play' mode for these calls only
+    # (tracer-guarded, so the vjp through f below is untouched); an
+    # uncertified probe fails the S6 row instead of silently feeding
+    # the O3.1 verdict.
+    probe_worst = []
+
+    def f_probe(Pv):
+        global CERT_PLAY
+        CERT_PLAY = True
+        try:
+            o, _ = run_march(Pv, tab_n, cfg, sched=sched)
+        finally:
+            CERT_PLAY = False
+        probe_worst.append(float(o["cert_worst"]))
+        return jnp.concatenate([o["wall_x"][idx], o["wall_y"][idx],
+                                jnp.array([o["Me"]])])
+
     v = jnp.array([0.7, -0.4, 0.25, 0.5])
     w = jnp.array([((-1.0) ** k) * (0.3 + 0.07 * k)
                    for k in range(2 * n_out + 1)])
-    base = f(P)
+    base = f_probe(P)
     rep_err = float(jnp.max(jnp.abs(
         base - jnp.concatenate([out["wall_x"][idx], out["wall_y"][idx],
                                 jnp.array([out["Me"]])]))))
@@ -1259,7 +1321,7 @@ def main():
 
     def dirder(hsc):
         h = EPS ** (1.0 / 3.0) * hsc
-        return (f(P + h * v) - f(P - h * v)) / (2.0 * h)
+        return (f_probe(P + h * v) - f_probe(P - h * v)) / (2.0 * h)
     dv_h, dv_h2 = dirder(1.0), dirder(0.5)
     lhs = float(w @ dv_h2)
     _, vjp_fn = jax.vjp(f, P)
@@ -1272,6 +1334,10 @@ def main():
     print("  [O3.1] <w,Jv> = %.10e  <J^Tw,v> = %.10e  |diff| = %.3e"
           " (tol %.3e)" % (lhs, rhs, err_dp, tol_dp))
     ok &= check("O3.1 dot-product on the whole march", err_dp <= tol_dp)
+    print("  [C2-F2] probe replays certified: %d evaluations, worst "
+          "step/bound = %.3e" % (len(probe_worst), max(probe_worst)))
+    ok &= check("O3.1 probe replays Newton-certified (C2-F2)",
+                max(probe_worst) <= 1.0)
     # N2: corrupted vjp must break the identity
     rhs_c = float((JTw * (1.0 + 1e-5)
                    + 1e-5 * jnp.max(jnp.abs(JTw))) @ v)

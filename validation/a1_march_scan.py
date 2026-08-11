@@ -215,7 +215,9 @@ def build_plan(sched_d, cfg):
                         n_arc=n_arc, wall_seed=wall_seed, seeds=seeds,
                         axis_seed=axis_seed, code=code))
         Nv = int(Nv_rec)
-        if code == "exit":
+        # "exit_cap" (C2-F4, S21) = the refinement-cap exit, distinct
+        # in the decision stream but identical in march topology.
+        if code in ("exit", "exit_cap"):
             j2 += 1
             break
         if code == "interp":
@@ -424,7 +426,7 @@ def run_scan(P, tab, cfg, plan, state_fn=None, solvers=None):
         valid_wall.append(wall_pt)
         prev = new_col
         j2 += 1
-        if colp["code"] == "exit":
+        if colp["code"] in ("exit", "exit_cap"):
             Me_ach = Max
             break
 
