@@ -813,6 +813,15 @@ def stage_derive(tab, state_fn, solv, cfg):
                 - float(mj(Wj - h * jnp.asarray(dv)))) / (2.0 * h)
 
     d1, d2 = dd(1.0), dd(0.5)
+    # panel C5: mask-mapping identity rejector — the traced masked KS
+    # min must reproduce the chain-record m_ref within the KS gap
+    # (a (k,i)->lane mapping error breaks this grossly)
+    m_tr0 = float(mj(Wj))
+    gap0 = np.log(N) / rho
+    map_gap = m_ref - (m_tr0 + ladder[0])
+    ok &= check("C5 mapping identity: m_ref - (m_traced + mu0_1) = "
+                "%.3e in [0, gap %.3e + floor]" % (map_gap, gap0),
+                -1e-12 <= map_gap <= gap0 + 1e-10)
     tol_g = A1.K_RICH * (abs(d1 - d2) + A1.C_FLOOR * EPS ** (2.0 / 3.0)
                          * max(1.0, abs(float(mj(Wj)))))
     ok &= check("R-GRAD: AD margin gradient inside the derived band "
@@ -886,11 +895,16 @@ def rung_logs(st, state_fn, mu0, gap, label):
     n_act = int(act.sum())
     n_cl = int(np.sum(act & ~np.concatenate([[False], act[:-1]])))
     rep = O33.surface_report(out, state_fn, label)
+    den_min = float(np.min(np.abs(st["den"][st["de"]
+                                           & np.isfinite(st["den"])])))
     return dict(val_min=float(vv[i_loc]),
                 argmin_xy=(float(p_min[0]), float(p_min[1])),
                 site=site, d_cross=int(d_cross), d_lip=int(d_lip),
                 r_chain=float(r_loc),
                 census=(n_act, n_cl),
+                den_min=den_min,
+                cert_worst=float(out["cert_worst"]),
+                n_de=int(st["N"]),
                 f2_drift=rep["d2"], f2_mean=rep["f2"],
                 wall=np.asarray(out["wall"][:, :2]))
 
@@ -914,47 +928,107 @@ def stage_campaign(tab, state_fn, solv, cfg):
     t_camp = time.perf_counter()
     old_class = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES, TV.KNOT_XI = len(W_cur) - 1, None
+    abort = False
     for k, mu0 in enumerate(ladder, start=1):
         print("-- rung %d/%d: mu0 = %.6e --" % (k, len(ladder), mu0))
-        st_cur = cs_stats(tab, cfg, state_fn, solv, W_cur)
-        if st_cur["out"]["cert_worst"] > 1.0:
-            print("  [rung %d] start not certified (worst %.3e) — "
-                  "declared, campaign stops" %
-                  (k, st_cur["out"]["cert_worst"]))
-            ok = False
+        attempt = 0
+        while True:
+            attempt += 1
+            st_cur = cs_stats(tab, cfg, state_fn, solv, W_cur)
+            if st_cur["out"]["cert_worst"] > 1.0:
+                print("  [rung %d] start not certified (worst %.3e) "
+                      "— declared, campaign stops" %
+                      (k, st_cur["out"]["cert_worst"]))
+                ok = False
+                abort = True
+                break
+            # rung-frozen chain lane mask (declared freezing
+            # semantics; panel C3 gate below adjudicates drift)
+            runv = TV.make_run_toc_scan_jit(tab, cfg, st_cur["plan"],
+                                            state_fn=state_fn,
+                                            solvers=solv,
+                                            val_diag=True)
+            _w, q_l, _t, _a = runv(jnp.asarray(W_cur))
+            mask = lane_mask_from_chain(
+                st_cur["out"], st_cur["kis"], st_cur["de"],
+                tuple(int(t) for t in q_l.shape))
+            # derived optimizer tolerance ([X-MGOV] campaign recipe)
+            J_w, g_w, scalJ_w = AK_gJ(W_cur, None, tab, cfg,
+                                      st_cur["plan"], state_fn, solv)
+            dp_o31, tol_dp = AK_o31(W_cur, None, scalJ_w, g_w, J_w)
+            ok &= check("rung %d O3.1 at start (%.3e <= %.3e)"
+                        % (k, dp_o31, tol_dp), dp_o31 <= tol_dp)
+            gtol = max(tol_dp, 1e-8 * float(np.linalg.norm(g_w)))
+            factory = make_margin_factory_cs(tab, cfg, state_fn,
+                                             solv, rho, mu0, m_ref,
+                                             q_ref, mask, counters)
+            # panel C5 (per rung): INDEPENDENT (k,i)->lane mapping
+            # cross-check at the rung start
+            m_probe = make_margin_fn_cs(tab, cfg, st_cur["plan"],
+                                        state_fn, solv, rho, mu0,
+                                        st_cur["m_ref"], q_ref, mask,
+                                        counters)
+            m_probe_j = jax.jit(m_probe)
+            m_tr = float(m_probe_j(jnp.asarray(W_cur)))
+            gap_chk = st_cur["m_ref"] - (m_tr + mu0)
+            ok &= check("rung %d mapping cross-check: m_rec - "
+                        "(m_traced + mu0) = %.3e in [0, gap %.3e + "
+                        "floor]" % (k, gap_chk, gap),
+                        -1e-12 <= gap_chk <= gap + 1e-10)
+            t0 = time.perf_counter()
+            try:
+                opt = TV.run_trsqp(W_cur, tab, cfg, yL, gtol=gtol,
+                                   xtol=1e-10, state_fn=state_fn,
+                                   solvers=solv, verbose=0,
+                                   margin_factory=factory)
+            except RuntimeError as err:
+                print("  [rung %d] walk gate failure (REQ-NONSTALL "
+                      "breach = G1 rejector): %s" % (k, err))
+                ok = False
+                abort = True
+                break
+            dt = time.perf_counter() - t0
+            res = opt["res"]
+            W_new = np.asarray(opt["W"], dtype=float)
+            st_new = cs_stats(tab, cfg, state_fn, solv, W_new)
+            lg = rung_logs(st_new, state_fn, mu0, gap, "rung %d" % k)
+            # panel C4: certification gate on the RETURNED design of
+            # every rung (F1-F7 consume its J/wall)
+            ok &= check("rung %d returned design certified (worst "
+                        "%.3e)" % (k, lg["cert_worst"]),
+                        lg["cert_worst"] <= 1.0)
+            # panel C3: rung mask self-consistency gate — crossing
+            # drift (chain nodes + position) and frozen-vs-re-derived
+            # val_min delta (frozen-mask margin read at W_new under
+            # the START plan = a declared drift DETECTOR)
+            drift_idx = abs(int(st_new["i_cross"])
+                            - int(st_cur["i_cross"]))
+            p_cs = (st_cur["pts"][st_cur["i_cross"]][:2]
+                    if st_cur["i_cross"] >= 0 else None)
+            p_ce = (st_new["pts"][st_new["i_cross"]][:2]
+                    if st_new["i_cross"] >= 0 else None)
+            drift_pos = (float(np.hypot(*(p_ce - p_cs)))
+                         if (p_cs is not None and p_ce is not None)
+                         else float("nan"))
+            m_tr_end = float(m_probe_j(jnp.asarray(W_new)))
+            drift_val = abs((m_tr_end + mu0) - lg["val_min"])
+            mask_conf = drift_idx > O33.STENCIL_RADIUS
+            gate = ("clean" if not mask_conf else
+                    ("re-frozen" if attempt == 1 else "CONFOUNDED"))
+            print("  [rung %d C3] i_cross %d -> %d (drift %d nodes, "
+                  "%.3e pos); frozen-vs-rederived val_min delta = "
+                  "%.3e; mask gate = %s"
+                  % (k, st_cur["i_cross"], st_new["i_cross"],
+                     drift_idx, drift_pos, drift_val, gate))
+            if mask_conf and attempt == 1:
+                print("  [rung %d C3] drift > STENCIL_RADIUS — rung "
+                      "REPEATS ONCE with a re-frozen mask at the "
+                      "same mu0 (declared)" % k)
+                W_cur = W_new
+                continue
             break
-        # rung-frozen chain lane mask (declared freezing semantics)
-        runv = TV.make_run_toc_scan_jit(tab, cfg, st_cur["plan"],
-                                        state_fn=state_fn,
-                                        solvers=solv, val_diag=True)
-        _w, q_l, _t, _a = runv(jnp.asarray(W_cur))
-        mask = lane_mask_from_chain(st_cur["out"], st_cur["kis"],
-                                    st_cur["de"],
-                                    tuple(int(t) for t in q_l.shape))
-        # derived optimizer tolerance ([X-MGOV] campaign recipe)
-        J_w, g_w, scalJ_w = AK_gJ(W_cur, None, tab, cfg,
-                                  st_cur["plan"], state_fn, solv)
-        dp_o31, tol_dp = AK_o31(W_cur, None, scalJ_w, g_w, J_w)
-        ok &= check("rung %d O3.1 at start (%.3e <= %.3e)"
-                    % (k, dp_o31, tol_dp), dp_o31 <= tol_dp)
-        gtol = max(tol_dp, 1e-8 * float(np.linalg.norm(g_w)))
-        factory = make_margin_factory_cs(tab, cfg, state_fn, solv,
-                                         rho, mu0, m_ref, q_ref,
-                                         mask, counters)
-        t0 = time.perf_counter()
-        try:
-            opt = TV.run_trsqp(W_cur, tab, cfg, yL, gtol=gtol,
-                               xtol=1e-10, state_fn=state_fn,
-                               solvers=solv, verbose=0,
-                               margin_factory=factory)
-        except RuntimeError as err:
-            print("  [rung %d] walk gate failure (REQ-NONSTALL "
-                  "breach = G1 rejector): %s" % (k, err))
-            ok = False
+        if abort:
             break
-        dt = time.perf_counter() - t0
-        res = opt["res"]
-        W_new = np.asarray(opt["W"], dtype=float)
         # multiplier under the S24-T1 CLOSED convention
         mu_est = None
         try:
@@ -964,15 +1038,13 @@ def stage_campaign(tab, state_fn, solv, cfg):
                 mu_est = -float(vlist[-1][0])
         except Exception:
             pass
-        st_new = cs_stats(tab, cfg, state_fn, solv, W_new)
-        lg = rung_logs(st_new, state_fn, mu0, gap, "rung %d" % k)
         margin_active = lg["val_min"] <= mu0 + gap
         print("  [rung %d] %.0f s, segs %d, nit %d, status %s, KKT "
               "%.3e; J = %.7e; mu(M0, B-stat) = %s; min DE val %.6e "
               "(mu0 + gap = %.6e) -> margin %s; argmin (%.4f, %.4f) "
               "site %s (d_cross %d, d_lip %d, r_loc %.3e); census "
-              "(n_act, n_clusters) = %s; f2 drift %.4e; "
-              "nf-counters %s"
+              "(n_act, n_clusters) = %s; den_min(DE) %.3e; f2 drift "
+              "%.4e; nf-counters %s"
               % (k, dt, opt["n_segments"], opt["nit_total"],
                  getattr(res, "status", None),
                  float(getattr(res, "optimality", np.nan)),
@@ -980,7 +1052,8 @@ def stage_campaign(tab, state_fn, solv, cfg):
                  "ACTIVE" if margin_active else "inactive",
                  lg["argmin_xy"][0], lg["argmin_xy"][1], lg["site"],
                  lg["d_cross"], lg["d_lip"], lg["r_chain"],
-                 lg["census"], lg["f2_drift"], counters))
+                 lg["census"], lg["den_min"], lg["f2_drift"],
+                 counters))
         rungs.append(dict(
             rung=k, mu0=mu0, J=float(-res.fun),
             kkt=float(getattr(res, "optimality", np.nan)),
@@ -990,6 +1063,11 @@ def stage_campaign(tab, state_fn, solv, cfg):
             argmin_xy=lg["argmin_xy"], site=lg["site"],
             d_cross=lg["d_cross"], d_lip=lg["d_lip"],
             r_chain=lg["r_chain"], i_cross=st_new["i_cross"],
+            mask_gate=gate, attempt=attempt,
+            drift_idx=drift_idx, drift_pos=drift_pos,
+            drift_val=drift_val,
+            den_min=lg["den_min"], cert_worst=lg["cert_worst"],
+            n_de=lg["n_de"],
             census=lg["census"], f2_drift=lg["f2_drift"],
             f2_mean=lg["f2_mean"],
             W=[float(t) for t in W_new],
@@ -1025,27 +1103,39 @@ def stage_campaign(tab, state_fn, solv, cfg):
         # D'-induced position band (all measured leg-1/derive)
         band_f1 = (A1.K_RICH * leg1["dgeno_wall"] + leg1["ye_res"]
                    + der["rep"] + leg1["band_dprime"])
+        # C10 [PRACTICE]: the 1e-12 monotonicity slack is a roundoff
+        # allowance on the gap comparison, declared PRACTICE.
         shrink = all(gaps[i + 1] <= gaps[i] + 1e-12
                      for i in range(len(gaps) - 1))
         print("  F1: wall gap per rung = %s; combined band = %.4e; "
-              "monotone shrink toward mu0->0: %s"
+              "monotone shrink toward mu0->0: %s  [1e-12 slack = "
+              "PRACTICE, C10]"
               % (["%.4e" % t for t in gaps], band_f1, shrink))
         verdicts["F1"] = dict(
             fired=bool(not (shrink and gaps[-1] <= band_f1)),
             gaps=gaps, band=float(band_f1),
-            note="joint mesh+knot refinement half = refine stage")
+            note="C7 of record: F1/F4 re-scoped to the LADDER "
+                 "direction; the joint mesh+knot refinement half is "
+                 "a NAMED conditional (discharge: the pre-authorized "
+                 "optional session S24+1, else F2 entry)")
         dp = leg1["res"]["r1"]["dprime"]
         dlast = float(np.hypot(rungs[-1]["argmin_xy"][0] - dp["x"],
                                rungs[-1]["argmin_xy"][1] - dp["y"]))
+        drifts = [r["drift_pos"] for r in rungs
+                  if np.isfinite(r["drift_pos"])]
+        max_drift = max(drifts) if drifts else 0.0
+        # C3 fold: measured crossing drift enters the F2 band
         band_f2 = max(leg1["band_dprime"],
-                      A1.K_RICH * rungs[-1]["r_chain"])
+                      A1.K_RICH * rungs[-1]["r_chain"]) + max_drift
         dseq = [float(np.hypot(r["argmin_xy"][0] - dp["x"],
                                r["argmin_xy"][1] - dp["y"]))
                 for r in rungs]
-        print("  F2: |argmin - D'| per rung = %s; band = %.4e"
-              % (["%.4e" % t for t in dseq], band_f2))
+        print("  F2: |argmin - D'| per rung = %s; band = %.4e "
+              "(incl. measured crossing drift %.3e, C3)"
+              % (["%.4e" % t for t in dseq], band_f2, max_drift))
         verdicts["F2"] = dict(fired=bool(dlast > band_f2),
-                              dseq=dseq, band=float(band_f2))
+                              dseq=dseq, band=float(band_f2),
+                              max_drift=float(max_drift))
         # F3: f2 drift on our optimum and on the GENO representative
         st_g = cs_stats(tab, cfg, state_fn, solv, W0)
         lg_g = rung_logs(st_g, state_fn, ladder[-1], gap,
@@ -1068,15 +1158,35 @@ def stage_campaign(tab, state_fn, solv, cfg):
                        or lg_g["f2_drift"] > bar_f2d),
             ours=rungs[-1]["f2_drift"], geno=lg_g["f2_drift"],
             bar=float(bar_f2d))
-        # F4: val_min tracks mu0 -> 0 (active) — extrapolate
-        act = [r for r in rungs if r["margin_active"]]
-        track = [abs(r["val_min"] - r["mu0"]) <= 3 * gap for r in act]
+        # F4: val_min tracks mu0 -> 0 (active); CONFOUNDED rungs
+        # (C3 gate) are excluded from attribution, declared
+        n_conf = sum(1 for r in rungs if r["mask_gate"] == "CONFOUNDED")
+        if n_conf:
+            print("  [C3] %d rung(s) mask-CONFOUNDED — excluded from "
+                  "the F4/F5/F6 attribution sequences, declared"
+                  % n_conf)
+        act = [r for r in rungs if r["margin_active"]
+               and r["mask_gate"] != "CONFOUNDED"]
+        # C10 [PRACTICE]: the tracking factor 3 on the KS gap is a
+        # declared PRACTICE allowance; C3 folds the measured
+        # frozen-vs-rederived drift_val per rung on top.
+        track = [abs(r["val_min"] - r["mu0"])
+                 <= 3 * gap + r["drift_val"] for r in act]
         print("  F4: val_min vs mu0 tracking (|val_min - mu0| <= "
-              "3 gap): %s over %d active rungs"
+              "3 gap + drift_val [factor 3 = PRACTICE, C10]): %s "
+              "over %d attributable active rungs"
               % (track, len(act)))
         verdicts["F4"] = dict(fired=bool(len(act) == 0
                                          or not all(track)),
-                              n_active=len(act))
+                              n_active=len(act), n_confounded=n_conf)
+        # C4 containment: lane-count drops are a declared
+        # adjudication item, never silently absorbed
+        nde_seq = [r["n_de"] for r in rungs]
+        if any(t < der["N"] for t in nde_seq):
+            print("  [C4] N_DE per rung = %s vs derive N = %d — "
+                  "lane-count drop DECLARED (adjudication item; the "
+                  "G1 penalty scale is NOT re-derived ad hoc)"
+                  % (nde_seq, der["N"]))
         site_seq = [r["site"] for r in act]
         verdicts["F5"] = dict(
             fired=bool(len(act) > 0
