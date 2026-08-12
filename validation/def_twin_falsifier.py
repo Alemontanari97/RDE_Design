@@ -21,16 +21,25 @@ localized on the GENO OUTPUT FIELD with OUR AD Lambda-form monitor
 (0, 1e-6) window), with the landing-window + dthetapm-quantization
 position bands DERIVED in-run from measured local val gradients.
 
-LEG 2: the direct engine ([X-TOCV] march + [X-MGOV] margin machinery),
-margin-CONSTRAINED at the same (eps, L) and the same thermo, floor
-ladder mu0_k = m_ref/2^k (k = 1..4, pre-registered rule, m_ref =
-measured healthy reference of the DECLARED feasible start), tightest
-rung first with warm-started continuation toward mu0 -> 0 (the
-floor->0 extrapolation of the falsifier), run to KKT closure per rung,
-with the panel's two MANDATORY logs at every rung: (a) argmin-margin
-cell coordinates, (b) active-cusp count/location census at
-termination. Multiplier read under the S24-T1 CLOSED res.v convention:
-mu(M0) = -res.v[-1][0] (B-STATIONARITY wording, O1 undischarged).
+LEG 2: the direct engine ([X-TOCV] march + the [X-MGOV] margin
+machinery structure), margin-CONSTRAINED at the same (eps, L) and the
+same thermo, floor ladder mu0_k = m_ref/2^k (k = 1..4, pre-registered
+rule, m_ref = measured healthy reference of the DECLARED feasible
+start), tightest rung first with warm-started continuation toward
+mu0 -> 0 (the floor->0 extrapolation of the falsifier), run to KKT
+closure per rung, with the panel's two MANDATORY logs at every rung:
+(a) argmin-margin cell coordinates, (b) active-cusp count/location
+census at termination. MARGIN BUCKET SCOPE (S24 formulation
+adjudication of record, measured — see the in-code block): the
+CONTROL-SURFACE bucket (terminal-C+ chain nodes, registered end
+exclusion), NOT the whole W-dependent field — at this deep instance
+BOTH codes' certified fields legitimately carry val ~ -0.81 at the
+attachment, so a whole-field val >= mu0 > 0 constraint is infeasible
+for EVERY design of the class and cannot be the constraint EQ-v2
+speaks of; the theory names the fold ON the control surface (S4,
+Direction A, H2). Multiplier read under the S24-T1 CLOSED res.v
+convention: mu(M0) = -res.v[-1][0] (B-STATIONARITY wording, O1
+undischarged).
 
 BRANCH SEMANTICS (panel, verbatim; every branch is a VERDICT — a fired
 branch is a valid scientific outcome, the carrier's exit code gates
@@ -455,19 +464,195 @@ def wall_to_class(wx, wy, cfg, n_nodes):
     return W, thB, rep
 
 
-def perturbed_start(W0, cfg):
-    """The [X-TOCV] OPT-stage recipe (same family, same seed): smooth
-    interior sine bump ~1.5% of local y, lip pinned."""
-    rng = np.random.default_rng(7)
-    xB = cfg["rtd"] * np.sin(W0[0])
-    L = CASE["xtronc"]
-    n = len(W0) - 1
-    xsn = xB + (L - xB) * np.arange(1, n + 1) / n
-    Wp = W0.copy()
-    bump = 0.015 * W0[1:-1] * np.sin(np.pi * (xsn[:-1] - xB)
-                                     / (L - xB))
-    Wp[1:-1] = Wp[1:-1] + bump * rng.standard_normal(1)[0]
-    return Wp
+# ======================================================================
+# CONTROL-SURFACE MARGIN SCOPE (S24 formulation adjudication of record)
+# ======================================================================
+# MEASURED AT THIS INSTANCE (S24, both codes): the attachment region
+# legitimately carries val ~ -0.81 on CERTIFIED shock-free fields
+# (ours at the GENO-seeded design AND GENO's own defnoz output field),
+# so "val >= mu0 > 0 over every W-dependent lane" is INFEASIBLE for
+# EVERY design of the class here, including GENO's own DEF design —
+# it cannot be the constraint EQ-v2 speaks of. The locus the theory
+# names (S4, Direction A, H2) is the TERMINAL-C+ CONTROL SURFACE,
+# where the (G) boundary is the design-validity boundary and where
+# the DEF construction lands D'. The [X-DEFTW] margin bucket is
+# therefore the CONTROL-SURFACE bucket (chain nodes, registered end
+# exclusion) — the whole-field bucket of [X-MGOV] remains valid AT
+# ITS OWN mild instance (eps = 4, all-positive field) and its record
+# is untouched; the bucket-scope boundary is an R4 registration duty
+# of this session. Freezing semantics: the chain lane mask is built
+# at each RUNG START from that rung's record and FROZEN across the
+# rung's segments (same spirit as RK-G plan freezing, declared);
+# shape mismatches on later segments are cropped/padded and COUNTED.
+
+
+def chain_nodes_ki(out):
+    """(k, i) grid indices of the terminal-C+ chain (the [X-O33B]
+    cplus_chain walk, kept as INDICES so nodes map onto the traced
+    val_diag lane grid), the chain points, the control-surface mask
+    (owner >= n_fan + n_arc, the S19 locus correction), and the
+    registered end exclusion (STENCIL_RADIUS both ends)."""
+    cols = out["cols"]
+    index = {}
+    for k, col in enumerate(cols):
+        cl = col["cline"]
+        for i in range(cl.shape[0]):
+            index[(float(cl[i, 0]), float(cl[i, 1]))] = (k, i)
+    K = len(cols) - 1
+    start = (K, 1) if cols[K]["cline"].shape[0] > 1 else (K - 1, 1)
+    kis, pts = [], []
+    k, i = start
+    while True:
+        cl = cols[k]["cline"]
+        kis.append((k, i))
+        pts.append(np.asarray(cl[i]))
+        cp = cols[k]["cplus"]
+        if i - 1 < 0 or i - 1 >= cp.shape[0]:
+            break
+        nxt = cp[i - 1]
+        key = (float(nxt[0]), float(nxt[1]))
+        if key not in index:
+            break
+        k, i = index[key]
+    kis = kis[::-1]
+    pts = np.stack(pts[::-1])
+    owner = np.array([k for k, _ in kis])
+    cs = owner >= (out["n_fan"] + out["n_arc"])
+    idx = np.where(cs)[0]
+    reg = cs.copy()
+    if len(idx) > 2 * O33.STENCIL_RADIUS:
+        reg[idx[:O33.STENCIL_RADIUS]] = False
+        reg[idx[-O33.STENCIL_RADIUS:]] = False
+    return kis, pts, cs, reg
+
+
+def val_of_pts(pts, state_fn):
+    """(G)/Lambda-form val at march points (u, v in cols 2:4),
+    through the SAME state closure and AD Lambda as the monitor."""
+    alpha_of, lam_of = MG.make_alpha_lam(state_fn)
+    q = np.hypot(pts[:, 2], pts[:, 3])
+    th = np.arctan2(pts[:, 3], pts[:, 2])
+    al = np.asarray(jax.vmap(alpha_of)(jnp.asarray(q)))
+    lam = np.asarray(lam_of(jnp.asarray(q)))
+    Aa = np.tan(th - al)
+    Bb = np.tan(al)
+    den = 1.0 + lam * (Aa + Bb)
+    return (lam * Bb * (Aa + Bb) - (Aa - Bb)) / den, den, q, th
+
+
+def lane_mask_from_chain(out, kis, sel, lane_shape):
+    """Boolean mask on the traced val_diag lane grid (columns = arc +
+    contour, fan excluded => k_lane = k - n_fan; lane rows = [wall,
+    cells..., axis(last)] matching cline order for i < n_cells+1)."""
+    m = np.zeros(lane_shape, dtype=bool)
+    n_fan = out["n_fan"]
+    for (k, i), s in zip(kis, sel):
+        if not s:
+            continue
+        kl = k - n_fan
+        if 0 <= kl < lane_shape[0] and 0 <= i < lane_shape[1] - 1:
+            m[kl, i] = True
+    return m
+
+
+def cs_stats(tab, cfg, state_fn, solv, W, label=""):
+    """Record + control-surface chain val stats at a design."""
+    old = (TV.M_NODES, TV.KNOT_XI)
+    TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
+    try:
+        out, plan = TV.run_toc_record(np.asarray(W, float), tab, cfg,
+                                      state_fn=state_fn, solvers=solv,
+                                      return_field=True)
+    finally:
+        TV.M_NODES, TV.KNOT_XI = old
+    kis, pts, cs, reg = chain_nodes_ki(out)
+    val, den, q, th = val_of_pts(pts, state_fn)
+    good = reg & np.isfinite(val)
+    return dict(out=out, plan=plan, kis=kis, pts=pts, cs=cs, reg=reg,
+                val=val, den=den, q=q,
+                m_ref=float(val[good].min()) if good.any() else np.nan,
+                N=int(good.sum()),
+                q_ref=float(q[good].mean()) if good.any() else np.nan,
+                i_min=int(np.where(good)[0][np.argmin(val[good])])
+                if good.any() else -1)
+
+
+def make_margin_fn_cs(tab, cfg, plan, state_fn, solvers, rho, mu0,
+                      m_ref, q_ref, mask, shape_events):
+    """Traced W -> margin on the CONTROL-SURFACE lane bucket (the
+    MG.make_margin_fn structure with the chain mask applied; G1
+    finite-fallback semantics preserved; frac_bad denominator = the
+    masked lane count)."""
+    runv = TV.make_run_toc_scan_jit(tab, cfg, plan, state_fn=state_fn,
+                                    solvers=solvers, val_diag=True)
+    alpha_of, lam_of = MG.make_alpha_lam(state_fn)
+
+    def margin_W(W):
+        _w, q_l, th_l, act = runv(W)
+        mloc = mask
+        if tuple(q_l.shape) != tuple(mask.shape):
+            shape_events["mask_shape_adapt"] += 1
+            mm = np.zeros(q_l.shape, dtype=bool)
+            r = min(mask.shape[0], q_l.shape[0])
+            c = min(mask.shape[1], q_l.shape[1])
+            mm[:r, :c] = mask[:r, :c]
+            mloc = mm
+        sel = jnp.asarray(mloc.reshape(-1))
+        q = q_l.reshape(-1)
+        th = th_l.reshape(-1)
+        a = act.reshape(-1) & sel
+        fin = a & jnp.isfinite(q) & jnp.isfinite(th) & (q > 0.0)
+        q_z = jnp.where(fin, q, q_ref)
+        th_z = jnp.where(fin, th, 0.0)
+        al = jax.vmap(alpha_of)(q_z)
+        lam = lam_of(q_z)
+        A = jnp.tan(th_z - al)
+        B = jnp.tan(al)
+        val = (lam * B * (A + B) - (A - B)) / (1.0 + lam * (A + B))
+        fin2 = fin & jnp.isfinite(val)
+        n_fin = jnp.sum(fin2)
+        n_sel = max(int(mloc.sum()), 1)
+        vmin = jnp.min(jnp.where(fin2, val, jnp.inf))
+        vmin_s = jnp.where(n_fin > 0, vmin, 0.0)
+        e = jnp.where(fin2, jnp.exp(-rho * (jnp.where(fin2, val,
+                                                      vmin_s)
+                                            - vmin_s)), 0.0)
+        ks = vmin_s - jnp.log(jnp.maximum(jnp.sum(e), 1e-300)) / rho
+        ks_part = jnp.where(n_fin > 0, ks, -A1.K_RICH * m_ref)
+        frac_bad = (n_sel - n_fin) / n_sel
+        return ks_part - A1.K_RICH * m_ref * frac_bad - mu0
+
+    return margin_W
+
+
+def make_margin_factory_cs(tab, cfg, state_fn, solvers, rho, mu0,
+                           m_ref, q_ref, mask, counters):
+    """run_trsqp margin_factory with the control-surface bucket."""
+    def factory(plan, Dv):
+        margin_W = make_margin_fn_cs(tab, cfg, plan, state_fn,
+                                     solvers, rho, mu0, m_ref, q_ref,
+                                     mask, counters)
+        mval_grad = jax.jit(jax.value_and_grad(margin_W))
+
+        def m_np(u):
+            v, _ = mval_grad(jnp.asarray(np.asarray(u) * Dv))
+            v = float(v)
+            if not np.isfinite(v):
+                counters["m_nonfinite"] += 1
+                return -2.0 * A1.K_RICH * m_ref
+            return v
+
+        def gm_np(u):
+            _, g = mval_grad(jnp.asarray(np.asarray(u) * Dv))
+            g = np.asarray(g) * Dv
+            if not np.all(np.isfinite(g)):
+                counters["gm_nonfinite"] += 1
+                g = np.where(np.isfinite(g), g, 0.0)
+            return g
+
+        return m_np, gm_np
+
+    return factory
 
 
 def stage_derive(tab, state_fn, solv, cfg):
@@ -483,32 +668,70 @@ def stage_derive(tab, state_fn, solv, cfg):
     W16, _, rep16 = wall_to_class(wx, wy, cfg, 2 * M_NODES)
     print("  class band: M-vs-2M interpolant representation errors "
           "%.3e / %.3e" % (rep, rep16))
-    Wp = perturbed_start(W0, cfg)
-    print("-- derive: baseline val stats (GENO seed and perturbed "
-          "start) --")
-    stats = {}
-    for lbl, W in (("W0(GENO-seed)", W0), ("Wp(start)", Wp)):
-        st = MG.baseline_val_stats(tab, cfg, state_fn, solv,
-                                   np.asarray(W, dtype=float))
-        stats[lbl] = st
-        print("  [%s] certified %s (worst %.3e); N = %d lanes; "
-              "min val = %.6e; min |den| = %.4e"
-              % (lbl, st["out"]["cert_worst"] <= 1.0,
-                 st["out"]["cert_worst"], st["N"], st["m_ref"],
-                 float(np.min(np.abs(st["den"])))))
-    ok &= check("perturbed start certified",
-                stats["Wp(start)"]["out"]["cert_worst"] <= 1.0)
-    m_ref = stats["Wp(start)"]["m_ref"]
-    q_ref = stats["Wp(start)"]["q_ref"]
-    N = stats["Wp(start)"]["N"]
-    ok &= check("healthy reference positive at the start design "
-                "(m_ref = %.4e)" % m_ref, m_ref > 0.0)
+    print("-- derive: CONTROL-SURFACE val stats at the GENO seed --")
+    st0 = cs_stats(tab, cfg, state_fn, solv, W0, "W0")
+    print("  [W0(GENO-seed)] certified %s (worst %.3e); chain %d "
+          "nodes (%d registered CS); min CS val = %.6e at chain idx "
+          "%d; min |den| on CS = %.4e"
+          % (st0["out"]["cert_worst"] <= 1.0, st0["out"]["cert_worst"],
+             len(st0["kis"]), st0["N"], st0["m_ref"], st0["i_min"],
+             float(np.min(np.abs(st0["den"][st0["reg"]])))))
+    ok &= check("GENO seed certified", st0["out"]["cert_worst"] <= 1.0)
+    # START SELECTION (general, measured — no tuned constants): the
+    # [X-TOCV] recipe bump at amplitude a = 0.015/2^j, both signs,
+    # smallest j giving a certified start with CS margin > 0; if the
+    # SEED itself is margin-positive it is admitted as candidate
+    # of last resort (declared: less discriminating).
+    Wp, st_p, sel_note = None, None, "none"
+    for j in range(4):
+        amp = 0.015 / 2.0 ** j
+        for sgn in (+1.0, -1.0):
+            Wc = W0.copy()
+            xB = cfg["rtd"] * np.sin(W0[0])
+            L = CASE["xtronc"]
+            n = len(W0) - 1
+            xsn = xB + (L - xB) * np.arange(1, n + 1) / n
+            bump = amp * W0[1:-1] * np.sin(np.pi * (xsn[:-1] - xB)
+                                           / (L - xB))
+            Wc[1:-1] = Wc[1:-1] + sgn * bump
+            try:
+                stc = cs_stats(tab, cfg, state_fn, solv, Wc,
+                               "cand")
+            except RuntimeError as err:
+                print("  [start cand a=%.4f sgn=%+.0f] march raised "
+                      "(%s) — candidate discarded, declared"
+                      % (amp, sgn, str(err)[:80]))
+                continue
+            print("  [start cand a=%.4f sgn=%+.0f] cert %.3e, CS "
+                  "m_ref = %.6e"
+                  % (amp, sgn, stc["out"]["cert_worst"],
+                     stc["m_ref"]))
+            if stc["out"]["cert_worst"] <= 1.0 and stc["m_ref"] > 0:
+                Wp, st_p = Wc, stc
+                sel_note = "bump a=%.4f sgn=%+.0f" % (amp, sgn)
+                break
+        if Wp is not None:
+            break
+    if Wp is None and st0["m_ref"] > 0:
+        Wp, st_p = W0.copy(), st0
+        sel_note = "seed itself (declared: less discriminating)"
+    ok &= check("feasible start found (%s)" % sel_note, Wp is not None)
+    if Wp is None:
+        json.dump(dict(case=CASE, fail="no feasible start",
+                       m_ref_seed=st0["m_ref"]),
+                  open(ART_DERIVE, "w"), indent=1)
+        return False
+    m_ref = st_p["m_ref"]
+    q_ref = st_p["q_ref"]
+    N = st_p["N"]
     ladder = [m_ref / 2.0 ** k for k in range(1, N_RUNGS + 1)]
     rho = A1.K_RICH * np.log(N) / ladder[-1]
-    print("  ladder mu0 = %s; rho = %.4e (gap = %.4e)"
-          % (["%.4e" % t for t in ladder], rho, np.log(N) / rho))
+    print("  CONTROL-SURFACE bucket: N = %d registered chain lanes; "
+          "m_ref = %.6e; ladder mu0 = %s; rho = %.4e (gap = %.4e)"
+          % (N, m_ref, ["%.4e" % t for t in ladder], rho,
+             np.log(N) / rho))
     # dV_pert cross-implementation band on THIS q range ([X-MGOV] D4)
-    st = stats["Wp(start)"]
+    st = dict(q=st_p["q"][st_p["reg"]])
     alpha_of, lam_of = MG.make_alpha_lam(state_fn)
     qs = np.linspace(st["q"].min(), st["q"].max(), 24)
 
@@ -525,10 +748,29 @@ def stage_derive(tab, state_fn, solv, cfg):
           "q-range [%.0f, %.0f]" % (worst, qs.min(), qs.max()))
     ok &= check("R-FD: GENO-recipe FD Lambda inside the derived band "
                 "at the instance", worst <= 1.0)
+    # lane mask on the traced val_diag grid (one probe eval for the
+    # shapes; the chain (k, i) set comes from the start record)
+    runv = TV.make_run_toc_scan_jit(tab, cfg, st_p["plan"],
+                                    state_fn=state_fn, solvers=solv,
+                                    val_diag=True)
+    _w, q_l, _t, _a = runv(jnp.asarray(np.asarray(Wp, float)))
+    lane_shape = tuple(int(t) for t in q_l.shape)
+    mask = lane_mask_from_chain(st_p["out"], st_p["kis"],
+                                st_p["reg"], lane_shape)
+    print("  lane grid %s; chain mask lanes = %d (of %d registered "
+          "CS nodes; unmapped = axis-row nodes, declared)"
+          % (lane_shape, int(mask.sum()), st_p["N"]))
+    ok &= check("chain mask nonempty and >= 80%% of the registered "
+                "CS nodes mapped",
+                mask.sum() >= 0.8 * st_p["N"])
     # margin-gradient spot check + corrupted control at the start
-    print("-- derive: margin gradient O3.1-style spot at the start --")
-    margin_W = MG.make_margin_fn(tab, cfg, st["plan"], state_fn, solv,
-                                 rho, ladder[0], m_ref, q_ref)
+    print("-- derive: margin gradient O3.1-style spot at the start "
+          "(CONTROL-SURFACE bucket) --")
+    shape_events = dict(mask_shape_adapt=0, m_nonfinite=0,
+                        gm_nonfinite=0)
+    margin_W = make_margin_fn_cs(tab, cfg, st_p["plan"], state_fn,
+                                 solv, rho, ladder[0], m_ref, q_ref,
+                                 mask, shape_events)
     mj = jax.jit(margin_W)
     gm = np.asarray(jax.grad(margin_W)(jnp.asarray(Wp)))
     rng = np.random.default_rng(3)
@@ -554,10 +796,13 @@ def stage_derive(tab, state_fn, solv, cfg):
     art = dict(case=CASE, M=M_NODES, W0=[float(t) for t in W0],
                W16=[float(t) for t in W16],
                Wp=[float(t) for t in Wp], rep=rep, rep16=rep16,
+               start_note=sel_note,
                m_ref=m_ref, q_ref=q_ref, N=N, rho=float(rho),
                ladder=[float(t) for t in ladder],
-               m_ref_seed=stats["W0(GENO-seed)"]["m_ref"],
-               den_min=float(np.min(np.abs(st["den"]))))
+               m_ref_seed=st0["m_ref"],
+               den_min_cs=float(np.min(np.abs(
+                   st_p["den"][st_p["reg"]]))),
+               shape_events=shape_events)
     json.dump(art, open(ART_DERIVE, "w"), indent=1)
     print("  derive artifact -> %s" % ART_DERIVE)
     return ok
@@ -566,26 +811,42 @@ def stage_derive(tab, state_fn, solv, cfg):
 # ======================================================================
 # CAMPAIGN — the decisive ladder walk + F1-F7 adjudication
 # ======================================================================
-def rung_logs(W, tab, cfg, state_fn, solv, mu0, gap, label):
+def rung_logs(st, state_fn, mu0, gap, label):
     """The panel's two mandatory logs + F-branch observables at a
-    design: argmin-val cell, active census, f2 drift, J, wall."""
-    out, g = O33.march_design(np.asarray(W, dtype=float), len(W) - 1,
-                              tab, cfg, state_fn, solv)
-    nodes, r_loc = LD.chain_geometry(out["cols"], out["n_fan"],
-                                     out["n_arc"])
-    pts, val, _ = LD.field_val(out["cols"],
-                               out["n_fan"] + out["n_arc"],
-                               state_fn, LD.make_lambda_fn(state_fn))
-    i_min = int(np.argmin(val))
-    d_min, r_min, _ = LD.dist_to_chain(pts[i_min], nodes, r_loc)
-    n_act, n_on, n_int, n_cl = MG.active_cusp_census(
-        val, pts, mu0, gap, nodes, r_loc)
+    design, ON THE CONTROL-SURFACE bucket (S24 scope of record):
+    argmin-CS-val chain node (coordinates), active census along the
+    chain (1-D consecutive-run clustering), end-vs-interior binding
+    classification (the H2 reading: lip-end / kernel-end binding =
+    exclusion sites; strictly interior = classical D' site), f2
+    drift (registered norm), wall. st = cs_stats(...) output."""
+    out = st["out"]
+    reg = st["reg"]
+    val = st["val"]
+    pts = st["pts"]
+    idx = np.where(reg & np.isfinite(val))[0]
+    vv = val[idx]
+    i_loc = int(np.argmin(vv))
+    i_min = int(idx[i_loc])
+    # chain-local spacing at the argmin (position band for F2)
+    p_min = pts[i_min][:2]
+    nb = pts[max(0, i_min - 1)][:2], pts[min(len(pts) - 1,
+                                             i_min + 1)][:2]
+    r_loc = O33.STENCIL_RADIUS * max(np.hypot(*(p_min - nb[0])),
+                                     np.hypot(*(p_min - nb[1])))
+    # end-vs-interior: index distance from the registered ends
+    d_end = min(i_loc, len(idx) - 1 - i_loc)
+    interior = d_end > O33.STENCIL_RADIUS
+    # active census on the chain: consecutive-run clustering
+    act = vv <= mu0 + gap
+    n_act = int(act.sum())
+    n_cl = int(np.sum(act & ~np.concatenate([[False], act[:-1]])))
+    act_end = bool(act[0] or act[-1])
     rep = O33.surface_report(out, state_fn, label)
-    return dict(out=out, val_min=float(val[i_min]),
-                argmin_xy=(float(pts[i_min][0]), float(pts[i_min][1])),
-                argmin_on_chain=bool(d_min <= r_min),
-                d_chain=float(d_min), r_chain=float(r_min),
-                census=(int(n_act), int(n_on), int(n_int), int(n_cl)),
+    return dict(val_min=float(vv[i_loc]),
+                argmin_xy=(float(p_min[0]), float(p_min[1])),
+                argmin_interior=bool(interior),
+                d_end_nodes=int(d_end), r_chain=float(r_loc),
+                census=(n_act, n_cl, act_end),
                 f2_drift=rep["d2"], f2_mean=rep["f2"],
                 wall=np.asarray(out["wall"][:, :2]))
 
@@ -600,9 +861,10 @@ def stage_campaign(tab, state_fn, solv, cfg):
     m_ref, q_ref, rho = der["m_ref"], der["q_ref"], der["rho"]
     gap = np.log(der["N"]) / rho
     yL = CASE["yt"] * np.sqrt(CASE["eps"])
-    counters = dict(m_nonfinite=0, gm_nonfinite=0)
-    print("-- campaign: margin-constrained ladder (tightest first, "
-          "warm continuation; floor -> 0) --")
+    counters = dict(m_nonfinite=0, gm_nonfinite=0, mask_shape_adapt=0)
+    print("-- campaign: margin-constrained ladder on the CONTROL-"
+          "SURFACE bucket (tightest first, warm continuation; "
+          "floor -> 0) --")
     W_cur = Wp
     rungs = []
     t_camp = time.perf_counter()
@@ -610,25 +872,31 @@ def stage_campaign(tab, state_fn, solv, cfg):
     TV.M_NODES, TV.KNOT_XI = len(W_cur) - 1, None
     for k, mu0 in enumerate(ladder, start=1):
         print("-- rung %d/%d: mu0 = %.6e --" % (k, len(ladder), mu0))
-        out_w, plan_w = TV.run_toc_record(W_cur, tab, cfg,
-                                          state_fn=state_fn,
-                                          solvers=solv)
-        if out_w["cert_worst"] > 1.0:
+        st_cur = cs_stats(tab, cfg, state_fn, solv, W_cur)
+        if st_cur["out"]["cert_worst"] > 1.0:
             print("  [rung %d] start not certified (worst %.3e) — "
                   "declared, campaign stops" %
-                  (k, out_w["cert_worst"]))
+                  (k, st_cur["out"]["cert_worst"]))
             ok = False
             break
+        # rung-frozen chain lane mask (declared freezing semantics)
+        runv = TV.make_run_toc_scan_jit(tab, cfg, st_cur["plan"],
+                                        state_fn=state_fn,
+                                        solvers=solv, val_diag=True)
+        _w, q_l, _t, _a = runv(jnp.asarray(W_cur))
+        mask = lane_mask_from_chain(st_cur["out"], st_cur["kis"],
+                                    st_cur["reg"],
+                                    tuple(int(t) for t in q_l.shape))
         # derived optimizer tolerance ([X-MGOV] campaign recipe)
-        J_w, g_w, scalJ_w = AK_gJ(W_cur, None, tab, cfg, plan_w,
-                                  state_fn, solv)
+        J_w, g_w, scalJ_w = AK_gJ(W_cur, None, tab, cfg,
+                                  st_cur["plan"], state_fn, solv)
         dp_o31, tol_dp = AK_o31(W_cur, None, scalJ_w, g_w, J_w)
         ok &= check("rung %d O3.1 at start (%.3e <= %.3e)"
                     % (k, dp_o31, tol_dp), dp_o31 <= tol_dp)
         gtol = max(tol_dp, 1e-8 * float(np.linalg.norm(g_w)))
-        factory = MG.make_margin_factory(tab, cfg, state_fn, solv,
+        factory = make_margin_factory_cs(tab, cfg, state_fn, solv,
                                          rho, mu0, m_ref, q_ref,
-                                         counters)
+                                         mask, counters)
         t0 = time.perf_counter()
         try:
             opt = TV.run_trsqp(W_cur, tab, cfg, yL, gtol=gtol,
@@ -652,13 +920,14 @@ def stage_campaign(tab, state_fn, solv, cfg):
                 mu_est = -float(vlist[-1][0])
         except Exception:
             pass
-        lg = rung_logs(W_new, tab, cfg, state_fn, solv, mu0, gap,
-                       "rung %d" % k)
+        st_new = cs_stats(tab, cfg, state_fn, solv, W_new)
+        lg = rung_logs(st_new, state_fn, mu0, gap, "rung %d" % k)
         margin_active = lg["val_min"] <= mu0 + gap
         print("  [rung %d] %.0f s, segs %d, nit %d, status %s, KKT "
-              "%.3e; J = %.7e; mu(M0, B-stat) = %s; min val %.6e "
+              "%.3e; J = %.7e; mu(M0, B-stat) = %s; min CS val %.6e "
               "(mu0 + gap = %.6e) -> margin %s; argmin (%.4f, %.4f) "
-              "%s (d %.3e vs r %.3e); census %s; f2 drift %.4e; "
+              "%s (d_end %d nodes, r_loc %.3e); census (n_act, "
+              "n_clusters, end-active) = %s; f2 drift %.4e; "
               "nf-counters %s"
               % (k, dt, opt["n_segments"], opt["nit_total"],
                  getattr(res, "status", None),
@@ -666,8 +935,8 @@ def stage_campaign(tab, state_fn, solv, cfg):
                  float(-res.fun), mu_est, lg["val_min"], mu0 + gap,
                  "ACTIVE" if margin_active else "inactive",
                  lg["argmin_xy"][0], lg["argmin_xy"][1],
-                 "ON-CHAIN" if lg["argmin_on_chain"] else "interior",
-                 lg["d_chain"], lg["r_chain"], lg["census"],
+                 "INTERIOR" if lg["argmin_interior"] else "CHAIN-END",
+                 lg["d_end_nodes"], lg["r_chain"], lg["census"],
                  lg["f2_drift"], counters))
         rungs.append(dict(
             rung=k, mu0=mu0, J=float(-res.fun),
@@ -676,8 +945,8 @@ def stage_campaign(tab, state_fn, solv, cfg):
             mu_est=mu_est, val_min=lg["val_min"],
             margin_active=bool(margin_active),
             argmin_xy=lg["argmin_xy"],
-            argmin_on_chain=lg["argmin_on_chain"],
-            d_chain=lg["d_chain"], r_chain=lg["r_chain"],
+            argmin_interior=lg["argmin_interior"],
+            d_end_nodes=lg["d_end_nodes"], r_chain=lg["r_chain"],
             census=lg["census"], f2_drift=lg["f2_drift"],
             f2_mean=lg["f2_mean"],
             W=[float(t) for t in W_new],
@@ -735,8 +1004,9 @@ def stage_campaign(tab, state_fn, solv, cfg):
         verdicts["F2"] = dict(fired=bool(dlast > band_f2),
                               dseq=dseq, band=float(band_f2))
         # F3: f2 drift on our optimum and on the GENO representative
-        lg_g = rung_logs(W0, tab, cfg, state_fn, solv,
-                         ladder[-1], gap, "GENO-representative")
+        st_g = cs_stats(tab, cfg, state_fn, solv, W0)
+        lg_g = rung_logs(st_g, state_fn, ladder[-1], gap,
+                         "GENO-representative")
         # instance-derived f2 bar (the [X-O33B] two-resolution
         # construction at THIS instance, on the GENO representative)
         cfg2 = O33.refine(cfg, 2)
@@ -764,17 +1034,20 @@ def stage_campaign(tab, state_fn, solv, cfg):
         verdicts["F4"] = dict(fired=bool(len(act) == 0
                                          or not all(track)),
                               n_active=len(act))
-        on_chain_seq = [r["argmin_on_chain"] for r in act]
+        interior_seq = [r["argmin_interior"] for r in act]
         verdicts["F5"] = dict(
-            fired=bool(len(act) > 0 and not any(on_chain_seq)),
-            on_chain=on_chain_seq)
-        print("  F5: active argmin on the terminal-C+ control "
-              "surface per active rung: %s" % on_chain_seq)
-        ncl_seq = [r["census"][3] for r in act]
+            fired=bool(len(act) > 0 and not any(interior_seq)),
+            interior=interior_seq,
+            note="CS scope: chain-END binding (lip/kernel end) = the "
+                 "H2 exclusion sites; INTERIOR chain node = a "
+                 "classical D' site")
+        print("  F5: active argmin STRICTLY INTERIOR on the chain "
+              "per active rung: %s" % interior_seq)
+        ncl_seq = [r["census"][1] for r in act]
         verdicts["F6"] = dict(
             fired=bool(any(c > 1 for c in ncl_seq)), clusters=ncl_seq)
-        print("  F6: active-cusp clusters per active rung: %s"
-              % ncl_seq)
+        print("  F6: active-cusp clusters (1-D consecutive runs) per "
+              "active rung: %s" % ncl_seq)
         # F7: J (floor->0, last rung as the closest-to-limit reading)
         # vs J(GENO representative) through the SAME objective
         old = (TV.M_NODES, TV.KNOT_XI)
