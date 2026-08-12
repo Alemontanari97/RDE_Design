@@ -2006,14 +2006,15 @@ round, labeled per the standing rule).
  4999 intervals of the defnoz table it is the 1-K BACKWARD
  DIFFERENCE of Cp (max dev 1.0e-6 vs FD; analytic would sit 30-60x
  away): generator-derivative ingest only behind an ANALYTICITY
- REJECTOR [C-B]; (ii) FORMAL EXACTNESS: in the working window
+ REJECTOR (survey condition C-B); (ii) FORMAL EXACTNESS: in the
+ working window
  [1050, 3900] K the NASA fit has quartic cp => quintic h, which the
  quintic-Hermite closure reproduces IDENTICALLY (interpolation and
  FD errors ~ cp^(5) == 0) — in-window the closure is an exact
  re-representation, S11 generality costs zero accuracy; the
  no-joint-in-box hypothesis is DECLARED with a per-table joint
- census duty [C-C] (200/201 K clamp, 1000 K joint at 1.57% cp'
- kink named); (iii) FLINT (GENO backend-2, source-verified): sole
+ census duty (survey condition C-C; 200/201 K clamp, 1000 K joint
+ at 1.57% cp' kink named); (iii) FLINT (GENO backend-2, source-verified): sole
  interpolant is LINEAR-C0 on the 1-K grid with cp/h/s independent
  and dCp never consumed — the S14 defect class at source level on
  GENO's second backend (cross-code finding; defnoz/leg-1 runs

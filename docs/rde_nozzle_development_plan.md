@@ -134,6 +134,29 @@ F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
     is SATISFIED, F1b RE-OPENS as the next session (1 session, not
     order-interchangeable with F2); declared GENO-side residual:
     s3 md5 freeze of defnoz (md5 baselines are not cross-platform).
+    STATUS OF RECORD: F1b EXECUTED AND CLOSED 2026-08-12 (S24,
+    session 1/1; log validation/PROGRESS_2026-08-12_S24_f1b.md, 15
+    steps; carrier [X-DEFTW]; two in-session adversarial panels of
+    record). The twin RAN (not blocked): leg 1 complete (D' of
+    record, two-resolution agreement); leg 2 = two decisive runs
+    ([P4] budget consumed; run 2 = the panel's C3 repeat, +13 min
+    declared grace), final rung ATTRIBUTABLE (C3 clean). RECORDED
+    BRANCH: F4 margin-inactive / certifiability-limited — the
+    tier-0 class never reaches the margin-active regime (33x floor
+    at the stop; third instance of the class-construction
+    mechanism). VERDICT: EQ-v2 = CONJECTURE + the NEW NAMED
+    HYPOTHESIS H-CLASS (Direction-A limit read WITH
+    class-can-reach-the-boundary; measurably fails at tier-0); no
+    hypothesis-killing branch fired; in-class data: classical
+    transversality VERIFIED on leg 1 (f2 bar), F7 in-class surplus
+    datum +0.51% (band caveat declared, claim cap honored — O3
+    still gated, now blocked-on-ADJUDICATION with the two-sided
+    set). MARGIN-BUCKET SCOPE BOUNDARY registered in M0 (val =
+    construction-surface criterion; DE-side bucket of record,
+    panel-ratified 4/4). Residual conditionals with owners: C7
+    refine/enriched-class leg + O5 (S24+1 optional else F2 entry);
+    GENO deeper-jump knob (GENO repo). The pre-authorized optional
+    2nd session was NOT consumed.
 F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
     BUDGET HONESTY (ISS-4): the brick-1+2 precedent spanned ~9
     sessions (S10-S18) — the 4-6 figure is a DELIBERATE cap, not an

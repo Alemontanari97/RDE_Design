@@ -7,24 +7,70 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-11, chiusura Sessione 23 — **F1 "GOVERNOR + P-2
-## CAPTURE" CHIUSA DI RECORD su decisione utente (T0 = early close):
-## DUTY-6(i) SCARICATA ([X-TBAK] tolerance-ball backoff, falsificatore
-## ratificato SPARA), FREEZE P-2 DATATO 2026-08-11 eseguito (blocker
-## C1 = conditional dichiarata, owner F2), conditional esterna GENO
-## VERIFICATA NON ATTERRATA -> F1b leg-1 blocked-with-named-cause,
-## fallback F1b, PROSSIMA FASE = F2**; log:
-## validation/PROGRESS_2026-08-11_S23_f1close.md, 7 passi; gate PASS
+## ORA (2026-08-12, chiusura Sessione 24 — **F1b "DEF ADJUDICATION"
+## ESEGUITA E CHIUSA: twin falsifier ESEGUITO con branch registrata
+## (F4 margin-inactive / certifiability-limited — TERZA istanza del
+## meccanismo di costruzione-di-classe, ora a istanza DEF profonda),
+## verdetto EQ-v2 = CONJECTURE + nuova ipotesi nominata H-CLASS;
+## DUE panel avversariali in-sessione (DE-bucket: campaign GO 4/4
+## con C1-C10; survey termo: KEEP quintica) + dispatch generality
+## consumato (O3 -> ADJUDICATE, set bilaterale); dato in-class F7 di
+## record: il rappresentante DEF non e' l'argmax in-class (+0.51%
+## vs banda, caveat dichiarato)**; log:
+## validation/PROGRESS_2026-08-12_S24_f1b.md, 15 passi; gate PASS
 ## al passo 2)
+
+**CONTATORE F1b FINALE: F1b session 1/1 — CLOSED (2026-08-12)
+(la 2a sessione opzionale pre-autorizzata NON consumata come
+sessione; i 2 run decisivi del budget [P4] consumati in-sessione,
+run 2 = la ripetizione C3 del panel, grazia +13 min dichiarata).**
 
 **CONTATORE F1 FINALE (ISS-5): F1 campaign 1/2, session 2/3 —
 CLOSED (2026-08-11).**
 
-Branch `rde-nozzle-program`. Commit: apertura+gate+T0+T1 = a070f3a,
-T2+T3 = (vedi log), chiusura = (questo). Lint (xv) verde sull'EXIT
-CODE a ogni commit (133 -> 134: +[X-TBAK]). Suite di chiusura nel log
-passo 7 (carrier-esclusiva per l'annotazione C4 di record; [X-TBAK]
-on-demand esercitato in sessione con run diretto, exit 0).
+Branch `rde-nozzle-program`. Commit S24: carrier+gate+T0+T1 =
+91e4193, fix N-74 = 4588d6e, fix D' = 0c198e3, scope DE-bucket =
+366c2d7 + cf7afda, R-GRAD floor = 48d471c, condizioni panel =
+236422f, riparazioni loop = 8761dce, R4+verdetto = 00911a1,
+chiusura = (questo). Registro 134 -> 135 (+[X-DEFTW]), lint (xv)
+EXIT 0. Suite di chiusura nel log (carrier-esclusiva, annotazione
+C4 di record — C4 chiude a S25-first).
+
+- **[F1b] SINTESI DI RECORD (dettaglio nel log, 15 passi)**: leg 1
+  GENO defnoz PASS (D' = (5.20, 3.41) accordo due-risoluzioni
+  2.6e-3; A4 4.16e-4 riprodotto; N-74 esteso: hang inducibile da
+  risoluzione); SCOPERTA DI FORMULAZIONE misurata su ENTRAMBI i
+  codici (val = criterio di superficie di costruzione, MAI di
+  campo; bucket margine = lato DE della catena, panel-ratificato
+  4/4 con corroborazione classica A5); campagna = 2 run decisivi,
+  rung finale ATTRIBUIBILE (C3 clean), margine MAI attivo (33x il
+  floor allo stop cert-limited) -> **verdetto EQ-v2: CONJECTURE +
+  H-CLASS** (il limite di Direction A e' VUOTO a classe tier-0 —
+  causa nominata, owner C7/F2); F5/F6 pulite; F7 in-class datum
+  (+0.51%, cap di wording onorato, O3 gated); trasversalita'
+  classica VERIFICATA in-class su leg 1 (f2 bar). T1 res.v CHIUSA
+  (mu(M0) = -res.v[-1][0]). T2a audit S18 SCARICATO. mu sign test
+  banale (mu = 0 sul ladder); O5 = conditional nominata (owner C7).
+- **NEXT-1 (S25)**: (i) **C4 CHIUSURA MECCANICA PRIMA DI OGNI ALTRO
+  LAVORO** (collocazione scritta S24, terza migrazione vietata);
+  (ii) **ENGINE SPEED SESSION** (leve L1-L5 misurate/nominate,
+  target segmento <= 30 s / campagna <= 25 min a parita' di
+  certificazione; consuma la review G0/T2 in coda da S18; ingerisce
+  il dispatch della sessione parallela S-SPEED se atterrato +
+  l'advisory gap-map wf_ab766057); (iii) poi APERTURA F2 GENERAL
+  ENGINE (item invariati e RAFFORZATI dalla terza istanza:
+  meccanismo near-axis, rejector field-level C1, duties F2a incl.
+  assorbimento mean_swirl (decisione utente 2026-08-12), U3',
+  margine (q;s,h0), [X-TBAK] per classe). SESSIONE OPZIONALE
+  S24+1 (pre-autorizzata, non consumata): gamba C7
+  refine/classe-ricca + O5 + adjudication O3 (set bilaterale) —
+  eseguibile quando l'utente la apre, altrimenti gli item stanno a
+  F2 entry.
+
+Stato precedente (chiusura Sessione 23 — F1 chiusa su decisione
+utente; freeze P-2 datato; routing F2-first poi SUPERATO dalla
+conditional GENO atterrata; log
+validation/PROGRESS_2026-08-11_S23_f1close.md):
 
 - **[F1] T0 DECISIONE UTENTE (2026-08-11)**: CHIUSURA ANTICIPATA (a)
   RATIFICATA (condizioni di uscita raggiunte in S22, 2a campagna
@@ -71,7 +117,7 @@ on-demand esercitato in sessione con run diretto, exit 0).
   F1 chiusa questa sessione; l'annotazione onesta
   "suite verde = carrier-esclusiva" resta di record in run_all.py;
   la chiusura meccanica consuma la finestra della fase attiva).
-- **NEXT-1 (S24) = APERTURA F1b "DEF ADJUDICATION"** (AGGIORNATO
+- **NEXT-1 (S24) [ESEGUITO 2026-08-12 — vedi ORA] = APERTURA F1b "DEF ADJUDICATION"** (AGGIORNATO
   2026-08-12: la conditional esterna GENO e' ATTERRATA — vedi
   BLOCCATO 5 — quindi il routing S23 "F2-first" e' SUPERATO per la
   regola scritta stessa: F1b riapre, e' 1 sessione, e NON e'
@@ -90,15 +136,21 @@ on-demand esercitato in sessione con run diretto, exit 0).
   X-SCANM, U3', estensione margine (q;s,h0) + transition duty
   [X-TBAK]).
 
-STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S23):
+STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-12, chiusura S24):
  1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
     del dispatch (validation/G5_dispatch_email.md) dall'account
     istituzionale + canale di fallback; blocca SOLO le submission
     (il P-2 congelato NON e sottomettibile prima di G5).
- 2. **Acquisizioni (F0 dispatch)**: Sternin 1962; Shmyglevskii 1981
-    (gate O3); Giles-Ulbrich SINUM 2010 x2 (su disco) + Lozano 2019
-    (entry F4b); Moretti/Salas CONDIZIONALE; residuo fetch AIAA
-    2019-0197.
+ 2. **Acquisizioni — AGGIORNATO 2026-08-12**: Sternin (DAN SSSR
+    139(2) 1961, ORIGINALE russo) + Shmyglevskii (CMMP 20(5) 1981)
+    + Moretti (C&F 31, 2002) ATTERRATI e verificati (+ letti 2x
+    dalla review parallela) -> **gate O3 = blocked-on-ADJUDICATION**
+    (set bilaterale: salto Rao-Beck + secondo schema Shmyglevskii;
+    collocazione: sessione opzionale S24+1 o finestra F2);
+    Giles-Ulbrich x2 + Lozano 2019 su disco (entry F4b = solo
+    page-verify); **AIAA 2019-0197 = CITAZIONE FANTASMA** (verifica
+    utente, righe citanti corrette in S24); residuo acquisizioni:
+    SOLO Salas "A Shock-Fitting Primer" (libro, CONDIZIONALE F4b).
  3. **Decisione preprint/arXiv**: raccomandazione invariata (armare
     il trigger); la decisione resta all'utente.
  4. **SGANCIO P-2 (ISS-2): CHIUSA 2026-08-11 (S22)**; freeze
@@ -128,10 +180,80 @@ STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S23):
  6. **CHIUSURA ANTICIPATA F1: CHIUSA 2026-08-11** — decisione utente
     = (a), eseguita in S23 (freeze + C1 conditional dichiarata +
     DUTY-6(i) scaricata).
- 7. **NOTA ALBERO**: advisory untracked di record (pattern ADR) in
-    validation/ incl. mean_swirl_panel e i prompt
-    Scollapse/Sgauntlet — ownership della advisory mean_swirl e dei
-    residui prompt DA ASSEGNARE (in coda, non consumata).
+ 7. **OWNERSHIP ADVISORY: CHIUSA 2026-08-12 (decisione utente in
+    S24)** — mean_swirl_panel = ASSORBIMENTO ALL'APERTURA F2a (i 3
+    delta obbligatori sono duty F2a); i prompt Scollapse/Sgauntlet
+    restano PARCHEGGIATI come input di sessioni dedicate future,
+    riproposti a ogni R3.
+
+CENSIMENTO POSTICIPI — STATO FINALE S24 (consolidamento una-tantum,
+direttiva never-postpone-resolvables; dai prossimi R3 il sweep e'
+INCREMENTALE — solo delta di questa tabella. Classi: ORA = eseguita
+in S24; SCHED(x) = schedulata con sessione/fase nominata; GATED =
+structurally-gated con owner+trigger; LOCK = decisione utente):
+ R1  scipy res.v — ORA (T1, verdetto di record).
+ R2  audit 5-righe S18 — ORA (T2a, clausola T-T3-MAP annotata).
+ R3c C4 chiusura meccanica — SCHED(S25, PRIMA di ogni altro lavoro;
+     terza migrazione VIETATA).
+ R4c X-T3SI-conv corner dry-run — SCHED(F5a entry hard; check
+     opportunistico a ogni R3; non idle in S24: CPU satura).
+ R5c census-lemma — SCHED(F2-exit, finestra freeze metodi; se F3
+     apre prima, F3 entry con riga aggiornata).
+ R6c PAP-RIM — SCHED(F2-exit, stessa finestra).
+ R7c review G0/T2 — SCHED(S25 ENGINE SPEED SESSION, che la consuma
+     con l'evidenza S18+S24).
+ R8c residui S19 (b)/(c)/(d) — SCHED(F2b, leve di upgradability
+     P-2; freeze intatto).
+ R9c X-SCANM replay probes — SCHED(F2).
+ R10 rejector field-level C1 — GATED(owner F2, trigger = carrier
+     F2b; scioglie la conditional del freeze P-2) — RAFFORZATO
+     dalla terza istanza S24.
+ R11 Lemma-B across-shocks — SCHED(F5a entry al piu' tardi).
+ R12 a-B2 — SCHED(F3 entry).
+ R13 GENO: md5 freeze defnoz su s3 + N-74 (+ N-74 ESTESO S24:
+     hang inducibile da risoluzione) + knob jump-depth per la
+     famiglia deeper-jump (T4) — GATED(repo GENO, SUO protocollo,
+     trigger = prossima sessione GENO/s3).
+ R14 ownership advisory — CHIUSA (BLOCCATO 7, decisione utente).
+ R15 G5 — LOCK (dal 2026-07-17, ripresentato).
+ R16 acquisizioni — vedi BLOCCATO 2 (O3 -> ADJUDICATE; residuo =
+     Salas libro, condizionale F4b).
+ R17 preprint — LOCK (ripresentato).
+ R18 O5 ordine dei limiti — GATED(conditional nominata con ragione
+     misurata: nessuna sequenza boundary-active a tier-0; owner =
+     gamba C7: S24+1 opzionale, altrimenti F2 entry).
+ R19 mu sign test — ORA (banale: mu = 0 sul ladder per monotonia);
+     meta' GENO deeper-jump -> R13.
+ R20 item F2/F3/F5a gia' di record — invariati (near-axis, duties
+     F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK],
+     plug/C- mirror, X-T3CTRL).
+ NUOVE RIGHE S24:
+ R21 C7 gamba refine/classe-ricca (F1/F4 joint refinement) + O5 —
+     SCHED(S24+1 opzionale pre-autorizzata, altrimenti F2 entry).
+ R22 ENGINE SPEED SESSION — SCHED(S25 dopo C4-first): leve L1
+     cert_diag-al-posto-dei-re-record, L2 early-abort, L3
+     vmap-Hessiano, L4 batch design, L5 record compilato; target
+     segmento <= 30 s / campagna <= 25 min a parita' di
+     certificazione; ingerisce dispatch S-SPEED + advisory gap-map.
+ R23 survey termo condizioni — C-A oracolo esattezza (F2/prossimo
+     tocco X-THC1); C-B rejector di analiticita' all'ingest di
+     derivate da generatore (primo ingest ATLAS); C-C censimento
+     giunti per-tabella (stesso owner); C-D rejector clamp al bordo
+     box (F2). FLAG UTENTE: licenza GPLv3 FLINT (lato GENO).
+ R24 classe certificati per FRONTI DI CONTATTO (secondo schema
+     Shmyglevskii, dispatch A2) — GATED(owner F4b).
+ R25 CHOICE LEDGER (direttiva choice-adjudication-convergence) —
+     righe aperte: interpolante-vs-control-point (SCHED F2/F3
+     survey), mesh AMR/DWR (F2), trattamento nonsmooth della
+     frontiera di certificabilita' (F2, col rejector C1), maschera
+     differenziabile vs congelata (F2), universalita' K_RICH=4
+     (F2 audit); annex atteso dal resume del gap-map.
+ R26 advisory gap-map wf_ab766057 (+ resume CHOICE LEDGER) —
+     in-flight a chiusura S24; landing rule: ingest all'apertura
+     S25 col dispatch S-SPEED.
+ R27 quarantena B1 (identita' (6)-vs-(G) Shmyglevskii 1962) —
+     QUESTION con falsificatore nominato ([X-VMON] grid), owner
+     F4b; NON e' un finding.
 
 Stato precedente (chiusura Sessione 22 — **F1 "GOVERNOR + P-2
 CAPTURE", sessione 1: O4 SCARICATA per l'istanza S20 (ramo (c)
