@@ -1,0 +1,39 @@
+{
+ "label": "md",
+ "pycount": 1,
+ "reps": {
+  "record": 3,
+  "fast": 5
+ },
+ "record_s": {
+  "median": 5.582641299988609,
+  "all": [
+   8.298,
+   5.503,
+   5.583
+  ]
+ },
+ "replay_s": {
+  "compile_first": 1.9112061000196263,
+  "steady": 0.23615730000892654
+ },
+ "val_grad_s": {
+  "compile_first": 10.55377519998001,
+  "steady": 0.4494186000083573
+ },
+ "hessian_block_s": {
+  "per_row": 0.4494186000083573,
+  "rows": 10,
+  "block_estimate": 4.494186000083573
+ },
+ "segment_synthesis_s": {
+  "base_record": 5.582641299988609,
+  "callback_record": 5.582641299988609,
+  "hessian": 4.494186000083573,
+  "walk_evals": 1.5280232400284148,
+  "replay_monitor": 0.23615730000892654,
+  "total_pre_memo": 17.42364914009813,
+  "total_post_m1": 11.841007840109523,
+  "total_post_m1_pessimistic": 14.941625440260395
+ }
+}

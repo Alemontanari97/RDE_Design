@@ -1,0 +1,51 @@
+{
+ "pycount": 1,
+ "nets": {
+  "defnoz-mild": {
+   "t_percell": 6.649205800029449,
+   "t_colexec_warm": 2.101200900040567,
+   "t_colexec_first": 3.4735710999812,
+   "wall_dev": 1.1823431123048067e-11,
+   "band": 6.524455668651983e-10,
+   "seed_dev": 1.701820906419016e-10,
+   "seed_band": 7.416469922484428e-10,
+   "colexec": {
+    "on": true,
+    "calls": 87,
+    "cells": 1940,
+    "padded": 5719,
+    "Lpad_fan": 19,
+    "Lpad_des": 97
+   }
+  },
+  "defnoz-full": {
+   "t_percell": 18.11869780003326,
+   "t_colexec_warm": 5.909065899963025,
+   "t_colexec_first": 6.242825600027572,
+   "wall_dev": 1.9099388737231493e-11,
+   "band": 6.52484083158179e-10,
+   "seed_dev": 1.4777867818338564e-10,
+   "seed_band": 7.387690019810344e-10,
+   "colexec": {
+    "on": true,
+    "calls": 173,
+    "cells": 7586,
+    "padded": 22723,
+    "Lpad_fan": 39,
+    "Lpad_des": 193
+   }
+  }
+ },
+ "seam": {
+  "min_margin": 1.903656400197633,
+  "delta": 1.903656400197633e-06,
+  "raise_cell": {
+   "percell": "0",
+   "colexec": "0"
+  },
+  "lo_done": {
+   "percell": 0.6861222134100877,
+   "colexec": 0.7011026275409529
+  }
+ }
+}

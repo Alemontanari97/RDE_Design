@@ -88,6 +88,7 @@ ON-DEMAND CARRIER (env: jax + WSL gfortran GENO binary): outside CI
 tiers by declaration. Exit 0 iff the executed stage's MACHINERY checks
 pass (branch verdicts are reported, never coerced).
 """
+import hashlib
 import json
 import os
 import shutil
@@ -134,6 +135,37 @@ DTHETA_PM = 1e-3                  # GENO PM step (declared, rad)
 ART_LEG1 = os.path.join(HERE, "s24_deftw_leg1.json")
 ART_DERIVE = os.path.join(HERE, "s24_deftw_derive.json")
 ART_CAMP = os.path.join(HERE, "s24_deftw_campaign.json")
+
+# H4 (S25-bis): CODE-IDENTITY key for cross-stage persistence — the
+# record-path modules whose behavior any persisted reference number
+# depends on. A derive-stage artifact consumed by the campaign stage
+# under a DIFFERENT code identity must REFUSE loudly (the S24 C5
+# staleness-by-code scenario; seeded rejector at campaign open).
+RECORD_PATH_MODULES = ("a1_ideal_march_jax.py", "a1_march_scan.py",
+                       "a1_toc_variational_jax.py",
+                       "thermotab_c1_jax.py", "o33_bench.py",
+                       "def_twin_falsifier.py")
+
+
+def code_identity():
+    h = hashlib.sha256()
+    for fn in RECORD_PATH_MODULES:
+        with open(os.path.join(HERE, fn), "rb") as fh:
+            h.update(hashlib.sha256(fh.read()).digest())
+    return h.hexdigest()
+
+
+def check_tail_code(tail):
+    """H4 stale-code gate: RuntimeError iff the pre-registered tail
+    was computed under a different record-path code identity."""
+    cid = code_identity()
+    if tail["code_id"] != cid:
+        raise RuntimeError(
+            "H4 stale-code REFUSAL: derive-artifact tail was "
+            "pre-registered under code identity %s but the "
+            "record-path modules now hash %s — re-run stage_derive "
+            "(S24 C5 staleness-by-code scenario, load refused)"
+            % (tail["code_id"][:12], cid[:12]))
 
 
 def check(label, ok):
@@ -559,7 +591,7 @@ def lane_mask_from_chain(out, kis, sel, lane_shape):
     return m
 
 
-def cs_stats(tab, cfg, state_fn, solv, W, label=""):
+def cs_stats(tab, cfg, state_fn, solv, W, label="", pre=None):
     """Record + control-surface chain val stats at a design, with the
     DE-SIDE bucket (S24 second scope adjudication of record, measured
     on BOTH codes): in the deep-DEF regime the terminal characteristic
@@ -570,15 +602,25 @@ def cs_stats(tab, cfg, state_fn, solv, W, label=""):
     direct problem's self-consistent D'-analog); at a mild instance
     (no negative node, e.g. eps = 4) it DEGENERATES to the whole
     registered control surface — reconciling with the [X-MGOV]
-    record at its own instance."""
-    old = (TV.M_NODES, TV.KNOT_XI)
-    TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
-    try:
-        out, plan = TV.run_toc_record(np.asarray(W, float), tab, cfg,
-                                      state_fn=state_fn, solvers=solv,
-                                      return_field=True)
-    finally:
-        TV.M_NODES, TV.KNOT_XI = old
+    record at its own instance.
+
+    pre=(out, plan) (H3, S25-bis): a caller-supplied certified
+    record WITH cols (field_records walk output or a prior cs_stats)
+    replaces the fresh record; the bitwise reuse condition
+    (np.array_equal on W) is adjudicated AT THE CALL SITE — a
+    mismatch falls back to the fresh record, never a silent reuse."""
+    if pre is not None:
+        out, plan = pre
+    else:
+        old = (TV.M_NODES, TV.KNOT_XI)
+        TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
+        try:
+            out, plan = TV.run_toc_record(np.asarray(W, float), tab,
+                                          cfg, state_fn=state_fn,
+                                          solvers=solv,
+                                          return_field=True)
+        finally:
+            TV.M_NODES, TV.KNOT_XI = old
     kis, pts, cs, reg = chain_nodes_ki(out)
     val, den, q, th = val_of_pts(pts, state_fn)
     good = reg & np.isfinite(val)
@@ -862,6 +904,59 @@ def stage_derive(tab, state_fn, solv, cfg):
     ok &= check("R-GRAD control: corrupted gradient (2 x band along "
                 "the probe) rejected",
                 abs(float(gm_bad @ dv) - d2) > tol_g)
+    # H4 (S25-bis): the LADDER-INVARIANT campaign tail moves HERE —
+    # F3/F7 reference quantities become PRE-REGISTERED derive-artifact
+    # numbers (cap protection: every ladder-invariant second inside
+    # the campaign's BY-RULE wall-clock cap is fallback risk bought
+    # for nothing). st0 (the cs_stats(W0) above) is REUSED — the
+    # intra-tail W0 duplicate record is killed; J_def replays from
+    # st0's own plan (argument-identical, deterministic — no fresh
+    # record); W16 records ONCE, here. The tail carries the
+    # CODE-IDENTITY of the record-path modules; the campaign stage
+    # consumes it only under check_tail_code (stale = LOUD refusal).
+    print("-- derive: H4 pre-registered tail (F3/F7 references) --")
+    lg_g = rung_logs(st0, state_fn, ladder[-1], np.log(N) / rho,
+                     "GENO-representative")
+    cfg2 = O33.refine(cfg, 2)
+    out_g2, _ = O33.march_design(W0, len(W0) - 1, tab, cfg2,
+                                 state_fn, solv)
+    rep_g2 = O33.surface_report(out_g2, state_fn, "GENO-rep r=2")
+    bar_f2d = (A1.K_RICH * abs(lg_g["f2_drift"] - rep_g2["d2"])
+               + A1.NEWTON_TOL_FACTOR * EPS * int(out_g2["cert_n"]))
+    old_cls = (TV.M_NODES, TV.KNOT_XI)
+    TV.M_NODES, TV.KNOT_XI = len(W0) - 1, None
+    try:
+        runj0 = TV.make_run_toc_scan_jit(tab, cfg, st0["plan"],
+                                         state_fn=state_fn,
+                                         solvers=solv)
+        J_def = float(TV.thrust_J(runj0(jnp.asarray(np.asarray(
+            W0, float))), tab, state_fn=state_fn))
+    finally:
+        TV.M_NODES, TV.KNOT_XI = old_cls
+    old_cls = (TV.M_NODES, TV.KNOT_XI)
+    TV.M_NODES, TV.KNOT_XI = len(W16) - 1, None
+    try:
+        out16, plan16 = TV.run_toc_record(np.asarray(W16, float),
+                                          tab, cfg,
+                                          state_fn=state_fn,
+                                          solvers=solv)
+        runj16 = TV.make_run_toc_scan_jit(tab, cfg, plan16,
+                                          state_fn=state_fn,
+                                          solvers=solv)
+        J_def16 = float(TV.thrust_J(runj16(jnp.asarray(np.asarray(
+            W16, float))), tab, state_fn=state_fn))
+    finally:
+        TV.M_NODES, TV.KNOT_XI = old_cls
+    tail = dict(code_id=code_identity(),
+                f2_geno=float(lg_g["f2_drift"]),
+                f2_geno_r2=float(rep_g2["d2"]),
+                bar_f2d=float(bar_f2d),
+                J_def=J_def, J_def16=J_def16,
+                cert_n_g2=int(out_g2["cert_n"]))
+    print("  [H4 tail] f2_geno %.4e (r2 %.4e), bar %.4e; J_def "
+          "%.7e, J_def(2M) %.7e; code_id %s"
+          % (tail["f2_geno"], tail["f2_geno_r2"], tail["bar_f2d"],
+             J_def, J_def16, tail["code_id"][:12]))
     art = dict(case=CASE, M=M_NODES, W0=[float(t) for t in W0],
                W16=[float(t) for t in W16],
                Wp=[float(t) for t in Wp], rep=rep, rep16=rep16,
@@ -871,7 +966,7 @@ def stage_derive(tab, state_fn, solv, cfg):
                m_ref_seed=st0["m_ref"], i_cross_seed=st0["i_cross"],
                den_min_cs=float(np.min(np.abs(
                    st_p["den"][st_p["reg"]]))),
-               shape_events=shape_events)
+               shape_events=shape_events, tail=tail)
     json.dump(art, open(ART_DERIVE, "w"), indent=1)
     print("  derive artifact -> %s" % ART_DERIVE)
     return ok
@@ -940,6 +1035,25 @@ def stage_campaign(tab, state_fn, solv, cfg):
     m_ref, q_ref, rho = der["m_ref"], der["q_ref"], der["rho"]
     gap = np.log(der["N"]) / rho
     yL = CASE["yt"] * np.sqrt(CASE["eps"])
+    # H4 (S25-bis): pre-registered-tail gate at campaign OPEN —
+    # stale code REFUSES before any rung spends cap time; the seeded
+    # rejector (S24 C5 staleness-by-code replay) proves the refusal
+    # fires on EVERY campaign run.
+    tail = der.get("tail")
+    if tail is not None:
+        check_tail_code(tail)
+        try:
+            check_tail_code(dict(tail, code_id="0" * 64))
+            raise AssertionError(
+                "H4 seeded stale-code rejector FAILED to fire")
+        except RuntimeError:
+            print("  [H4] code-identity verified %s; seeded "
+                  "stale-code rejector FIRED (control PASS)"
+                  % tail["code_id"][:12])
+    else:
+        print("  [H4] derive artifact PRE-H4 (no tail block) — "
+              "ladder-invariant tail will run in-campaign "
+              "(declared legacy fallback)")
     counters = dict(m_nonfinite=0, gm_nonfinite=0, mask_shape_adapt=0)
     print("-- campaign: margin-constrained ladder on the CONTROL-"
           "SURFACE bucket (tightest first, warm continuation; "
@@ -950,12 +1064,28 @@ def stage_campaign(tab, state_fn, solv, cfg):
     old_class = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES, TV.KNOT_XI = len(W_cur) - 1, None
     abort = False
+    # H3 (S25-bis): rung-boundary record dedup — the C3 repeat and
+    # the next rung reuse the JUST-COMPUTED st_new as their st_cur
+    # (bitwise-keyed on W, argument-identical: same engine objects
+    # and class in scope); the walk consumes st_cur as preplan
+    # (seg-0 dup killed, gated by the M1 first-hit controls) and
+    # returns its last certified field-record for the rung-end
+    # cs_stats. Any key mismatch falls back to a fresh record.
+    st_carry = None                       # (W, cs_stats-dict)
     for k, mu0 in enumerate(ladder, start=1):
         print("-- rung %d/%d: mu0 = %.6e --" % (k, len(ladder), mu0))
         attempt = 0
         while True:
             attempt += 1
-            st_cur = cs_stats(tab, cfg, state_fn, solv, W_cur)
+            if (st_carry is not None
+                    and np.array_equal(np.asarray(st_carry[0]),
+                                       np.asarray(W_cur))):
+                st_cur = st_carry[1]
+                print("  [rung %d H3] st_cur = carried st_new "
+                      "(bitwise key match, record deduped)" % k)
+            else:
+                st_cur = cs_stats(tab, cfg, state_fn, solv, W_cur)
+            st_carry = None
             if st_cur["out"]["cert_worst"] > 1.0:
                 print("  [rung %d] start not certified (worst %.3e) "
                       "— declared, campaign stops" %
@@ -1001,7 +1131,10 @@ def stage_campaign(tab, state_fn, solv, cfg):
                 opt = TV.run_trsqp(W_cur, tab, cfg, yL, gtol=gtol,
                                    xtol=1e-10, state_fn=state_fn,
                                    solvers=solv, verbose=0,
-                                   margin_factory=factory)
+                                   margin_factory=factory,
+                                   preplan=(st_cur["out"],
+                                            st_cur["plan"]),
+                                   field_records=True)
             except RuntimeError as err:
                 print("  [rung %d] walk gate failure (REQ-NONSTALL "
                       "breach = G1 rejector): %s" % (k, err))
@@ -1011,7 +1144,18 @@ def stage_campaign(tab, state_fn, solv, cfg):
             dt = time.perf_counter() - t0
             res = opt["res"]
             W_new = np.asarray(opt["W"], dtype=float)
-            st_new = cs_stats(tab, cfg, state_fn, solv, W_new)
+            lc = opt.get("last_cert")
+            if (lc is not None
+                    and np.array_equal(np.asarray(lc["W"]), W_new)
+                    and "cols" in lc["out"]):
+                # H3: the walk's last certified field-record IS the
+                # record of W_new — rung-end cs_stats reuses it
+                st_new = cs_stats(tab, cfg, state_fn, solv, W_new,
+                                  pre=(lc["out"], lc["plan"]))
+                print("  [rung %d H3] rung-end record deduped "
+                      "(walk last_cert bitwise match)" % k)
+            else:
+                st_new = cs_stats(tab, cfg, state_fn, solv, W_new)
             lg = rung_logs(st_new, state_fn, mu0, gap, "rung %d" % k)
             # panel C4: certification gate on the RETURNED design of
             # every rung (F1-F7 consume its J/wall)
@@ -1046,6 +1190,7 @@ def stage_campaign(tab, state_fn, solv, cfg):
                       "REPEATS ONCE with a re-frozen mask at the "
                       "same mu0 (declared)" % k)
                 W_cur = W_new
+                st_carry = (W_new, st_new)   # H3: repeat's st_cur
                 continue
             break
         if abort:
@@ -1114,6 +1259,7 @@ def stage_campaign(tab, state_fn, solv, cfg):
                   % (lg["val_min"], mu0 + gap))
             break
         W_cur = W_new
+        st_carry = (W_new, st_new)           # H3: next rung's st_cur
     TV.M_NODES, TV.KNOT_XI = old_class
     t_camp = time.perf_counter() - t_camp
     print("  campaign wall time: %.0f s" % t_camp)
@@ -1176,26 +1322,37 @@ def stage_campaign(tab, state_fn, solv, cfg):
                               dseq=dseq, band=float(band_f2),
                               max_drift=float(max_drift))
         # F3: f2 drift on our optimum and on the GENO representative
-        st_g = cs_stats(tab, cfg, state_fn, solv, W0)
-        lg_g = rung_logs(st_g, state_fn, ladder[-1], gap,
-                         "GENO-representative")
-        # instance-derived f2 bar (the [X-O33B] two-resolution
-        # construction at THIS instance, on the GENO representative)
-        cfg2 = O33.refine(cfg, 2)
-        out_g2, _ = O33.march_design(W0, len(W0) - 1, tab, cfg2,
-                                     state_fn, solv)
-        rep_g2 = O33.surface_report(out_g2, state_fn, "GENO-rep r=2")
-        bar_f2d = (A1.K_RICH * abs(lg_g["f2_drift"] - rep_g2["d2"])
-                   + A1.NEWTON_TOL_FACTOR * EPS
-                   * int(out_g2["cert_n"]))
+        # (H4: the GENO-side references are PRE-REGISTERED derive
+        # numbers when the tail block exists — code-identity already
+        # verified at campaign open; legacy in-campaign computation
+        # only for pre-H4 artifacts, declared)
+        if tail is not None:
+            f2_geno = tail["f2_geno"]
+            f2_geno_r2 = tail["f2_geno_r2"]
+            bar_f2d = tail["bar_f2d"]
+            print("  F3 [H4]: references PRE-REGISTERED (derive)")
+        else:
+            st_g = cs_stats(tab, cfg, state_fn, solv, W0)
+            lg_g = rung_logs(st_g, state_fn, ladder[-1], gap,
+                             "GENO-representative")
+            cfg2 = O33.refine(cfg, 2)
+            out_g2, _ = O33.march_design(W0, len(W0) - 1, tab, cfg2,
+                                         state_fn, solv)
+            rep_g2 = O33.surface_report(out_g2, state_fn,
+                                        "GENO-rep r=2")
+            f2_geno = lg_g["f2_drift"]
+            f2_geno_r2 = rep_g2["d2"]
+            bar_f2d = (A1.K_RICH * abs(f2_geno - f2_geno_r2)
+                       + A1.NEWTON_TOL_FACTOR * EPS
+                       * int(out_g2["cert_n"]))
         print("  F3: f2 drift ours = %.4e, GENO-rep = %.4e (r2 "
               "%.4e); instance-derived bar = %.4e"
-              % (rungs[-1]["f2_drift"], lg_g["f2_drift"],
-                 rep_g2["d2"], bar_f2d))
+              % (rungs[-1]["f2_drift"], f2_geno, f2_geno_r2,
+                 bar_f2d))
         verdicts["F3"] = dict(
             fired=bool(rungs[-1]["f2_drift"] > bar_f2d
-                       or lg_g["f2_drift"] > bar_f2d),
-            ours=rungs[-1]["f2_drift"], geno=lg_g["f2_drift"],
+                       or f2_geno > bar_f2d),
+            ours=rungs[-1]["f2_drift"], geno=f2_geno,
             bar=float(bar_f2d))
         # F4: val_min tracks mu0 -> 0 (active); CONFOUNDED rungs
         # (C3 gate) are excluded from attribution, declared
@@ -1245,29 +1402,40 @@ def stage_campaign(tab, state_fn, solv, cfg):
               "active rung: %s" % ncl_seq)
         # F7: J (floor->0, last rung as the closest-to-limit reading)
         # vs J(GENO representative) through the SAME objective
-        old = (TV.M_NODES, TV.KNOT_XI)
-        TV.M_NODES, TV.KNOT_XI = len(W0) - 1, None
-        try:
-            out_j, plan_j = TV.run_toc_record(
-                W0, tab, cfg, state_fn=state_fn, solvers=solv)
-            runj = TV.make_run_toc_scan_jit(
-                tab, cfg, plan_j, state_fn=state_fn, solvers=solv)
-            J_def = float(TV.thrust_J(runj(jnp.asarray(W0)), tab,
-                                      state_fn=state_fn))
-        finally:
-            TV.M_NODES, TV.KNOT_XI = old
-        W16 = np.array(der["W16"])
-        old = (TV.M_NODES, TV.KNOT_XI)
-        TV.M_NODES, TV.KNOT_XI = len(W16) - 1, None
-        try:
-            out16, plan16 = TV.run_toc_record(
-                W16, tab, cfg, state_fn=state_fn, solvers=solv)
-            runj16 = TV.make_run_toc_scan_jit(
-                tab, cfg, plan16, state_fn=state_fn, solvers=solv)
-            J_def16 = float(TV.thrust_J(runj16(jnp.asarray(W16)),
-                                        tab, state_fn=state_fn))
-        finally:
-            TV.M_NODES, TV.KNOT_XI = old
+        # (H4: J_def / J_def16 are PRE-REGISTERED derive numbers
+        # when the tail block exists — two full records deleted from
+        # the capped campaign window)
+        if tail is not None:
+            J_def = tail["J_def"]
+            J_def16 = tail["J_def16"]
+            print("  F7 [H4]: J references PRE-REGISTERED (derive)")
+        else:
+            old = (TV.M_NODES, TV.KNOT_XI)
+            TV.M_NODES, TV.KNOT_XI = len(W0) - 1, None
+            try:
+                out_j, plan_j = TV.run_toc_record(
+                    W0, tab, cfg, state_fn=state_fn, solvers=solv)
+                runj = TV.make_run_toc_scan_jit(
+                    tab, cfg, plan_j, state_fn=state_fn,
+                    solvers=solv)
+                J_def = float(TV.thrust_J(runj(jnp.asarray(W0)),
+                                          tab, state_fn=state_fn))
+            finally:
+                TV.M_NODES, TV.KNOT_XI = old
+            W16 = np.array(der["W16"])
+            old = (TV.M_NODES, TV.KNOT_XI)
+            TV.M_NODES, TV.KNOT_XI = len(W16) - 1, None
+            try:
+                out16, plan16 = TV.run_toc_record(
+                    W16, tab, cfg, state_fn=state_fn, solvers=solv)
+                runj16 = TV.make_run_toc_scan_jit(
+                    tab, cfg, plan16, state_fn=state_fn,
+                    solvers=solv)
+                J_def16 = float(TV.thrust_J(
+                    runj16(jnp.asarray(W16)), tab,
+                    state_fn=state_fn))
+            finally:
+                TV.M_NODES, TV.KNOT_XI = old
         Js = [r["J"] for r in rungs]
         band_f7 = A1.K_RICH * abs(J_def - J_def16)
         print("  F7 (SURPLUS-PREDICTION wording only): J per rung = "

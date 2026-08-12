@@ -485,9 +485,24 @@ def campaign(gov, tab, cfg, state_fn, solv):
     yL = cfg["yt"] * np.sqrt(TV.TCASE["eps"])
     gap = np.log(gov["N"]) / rho
     results = []
+    # H3 (S25-bis, campaign rung-boundary dedup): the rung-end O4
+    # march of rung k IS the rung-start march of rung k+1 (same W,
+    # same engine objects/class in scope — bitwise-keyed reuse); the
+    # walk consumes the rung-start record as preplan (seg-0 dup
+    # killed, gated by the M1 first-hit controls) and returns its
+    # last certified field-record for the rung-end O4 logs. 3
+    # records/rung where 1 suffices -> 1.
+    rec_carry = None                     # (W, out, plan)
     for k, mu0 in enumerate(gov["ladder"], start=1):
         print("-- rung %d/%d: mu_0 = %.6e --" % (k, N_RUNGS, mu0))
-        out_w, plan_w = march(W_cur, xi, tab, cfg, state_fn, solv)
+        if (rec_carry is not None
+                and np.array_equal(np.asarray(rec_carry[0]), W_cur)):
+            out_w, plan_w = rec_carry[1], rec_carry[2]
+            print("  [rung %d H3] start record = carried rung-end "
+                  "record (bitwise key match, march deduped)" % k)
+        else:
+            out_w, plan_w = march(W_cur, xi, tab, cfg, state_fn, solv)
+        rec_carry = None
         if out_w["cert_worst"] > 1.0:
             print("  [rung %d] start design not certified (worst "
                   "%.3e) — declared, campaign stops here" %
@@ -506,7 +521,9 @@ def campaign(gov, tab, cfg, state_fn, solv):
                 opt = TV.run_trsqp(W_cur, tab, cfg, yL, gtol=gtol,
                                    xtol=1e-10, state_fn=state_fn,
                                    solvers=solv, verbose=0,
-                                   margin_factory=factory)
+                                   margin_factory=factory,
+                                   preplan=(out_w, plan_w),
+                                   field_records=True)
         except RuntimeError as err:
             print("  [rung %d] walk gate failure of record: %s — a "
                   "REQ-NONSTALL breach IS a G1 rejector firing; "
@@ -530,7 +547,17 @@ def campaign(gov, tab, cfg, state_fn, solv):
                  opt["n_nonfinite_grad"], counters["m_nonfinite"],
                  counters["gm_nonfinite"]))
         # mandatory O4 logs on the returned design
-        out_n, plan_n = march(W_new, xi, tab, cfg, state_fn, solv)
+        lc = opt.get("last_cert")
+        if (lc is not None
+                and np.array_equal(np.asarray(lc["W"]), W_new)
+                and "cols" in lc["out"]):
+            # H3: the walk's last certified field-record IS the
+            # record of W_new
+            out_n, plan_n = lc["out"], lc["plan"]
+            print("  [rung %d H3] O4 march deduped (walk last_cert "
+                  "bitwise match)" % k)
+        else:
+            out_n, plan_n = march(W_new, xi, tab, cfg, state_fn, solv)
         stats = baseline_val_stats(tab, cfg, state_fn, solv, W_new,
                                    xi=xi)
         with design_class(xi):
@@ -593,6 +620,7 @@ def campaign(gov, tab, cfg, state_fn, solv):
                 ("outcome-I" if getattr(res, "status", 0) in (1, 2)
                  else "open"))))
         W_cur = W_new
+        rec_carry = (W_new, out_n, plan_n)   # H3: next rung's start
         if not margin_active:
             print("  [ladder] MONOTONICITY STOP (derived, declared): "
                   "the constraint is INACTIVE at the tightest rung "

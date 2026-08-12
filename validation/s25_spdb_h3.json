@@ -1,0 +1,22 @@
+{
+ "a": {
+  "walltime_s": 20.640541600005236,
+  "records": [
+   4,
+   1,
+   1
+  ],
+  "n_segments": 3
+ },
+ "b": {
+  "walltime_s": 19.057671799964737,
+  "records": [
+   3,
+   2,
+   1
+  ],
+  "preplan": 1,
+  "n_segments": 3
+ },
+ "pycount": 1
+}

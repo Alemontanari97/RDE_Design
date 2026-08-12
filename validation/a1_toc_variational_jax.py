@@ -187,6 +187,77 @@ def wall_geometry(W, P_geom, L):
 # ======================================================================
 # record: adaptive specified-wall march (concrete), emits plan
 # ======================================================================
+# ======================================================================
+# M5c (S25-bis ENGINE SPEED): hoisted per-column compiled record
+# executor. ONE jitted scan per COLUMN chain replaces the per-cell
+# solve_cert dispatches of the record path; seeds are IN-TRACE
+# (A1.predict_interior_t, expression twin of the host predictor with a
+# DECLARED ulp-class divergence); per-cell (z, step, scale, margin)
+# come back as stacks and are host-checked with the SAME bound, the
+# SAME FAIL semantics and the SAME ordering (cert before margin) as
+# the per-cell path. Python keeps EVERY adaptive decision at column
+# granularity: wall_search, axis cells, truncation and all cert/margin
+# raises stay host-side; cells computed past a truncation crossing are
+# DISCARDED and never enter the plan (advisory M5c: sub-crossing
+# discards never in the plan; the eager cell_scan pattern stays
+# REJECTED of record). Bucketing: single bucket per phase at a DERIVED
+# case-level bound (fan: 2 NI - 3 = the exact structural fan maximum;
+# design: 2 NI - 2 + n_B + Nw >= len(prev) - Nv by the column growth
+# invariant len(newcol) <= len(prev) + 1), so the compile count is
+# structural (== phase count) with ZERO running-max growth events and
+# the signature churn is tied to (NI, Nw, n_B) exactly like the M4
+# engine (V1b: the replay's own single-bucket-per-phase discipline;
+# padded lanes tail-repeat the last real partner — data-only, results
+# discarded host-side). Engine cache: id-keyed with strong refs (the
+# M4 pattern); interior cells read no design-class module global, so
+# the class knobs are NOT part of this key (the class enters through
+# the operand arrays themselves). Legacy per-cell record path behind
+# A1_COLEXEC=0 (arbitration path of the m5cgate A/B).
+_COL_ENGINES = {}
+
+# bench/test hook (m5cgate doctored-cell control): dict(ctx=<cert
+# ctx tuple>, row=<int>, dstep=<float>) — when a column chain returns
+# under a matching cert ctx, dstep is added to the row's step BEFORE
+# host accounting (injects an uncertifiable cell at an exact
+# (column, row) to prove first-offender localization through the
+# executor path). None = inert.
+_COLEXEC_DOCTOR = None
+
+
+def _col_executor(solvers, state_fn, Lpad):
+    """Compiled per-column interior chain: (carry0, partners[Lpad,4],
+    ta) -> stacked (z, step, scale, margin) over the chain. The body
+    inlines the SAME jitted fused solve_cert entry as the per-cell
+    path (expressions verbatim); margin = u - c with c from the
+    injected state_fn, the same quantity margin_of computes host-side
+    (hypot/tan lowering divergence declared in predict_interior_t)."""
+    key = (id(solvers), id(state_fn), int(Lpad))
+    ent = _COL_ENGINES.get(key)
+    if ent is None:
+        sc_int = solvers["interior"][3]
+
+        def run_col(carry0, partners, ta):
+            def body(carry, pt2):
+                z0 = A1.predict_interior_t(carry, pt2, ta, 1.0)
+                z, step = sc_int(z0, jnp.concatenate([carry, pt2]), ta)
+                sc = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
+                q = jnp.hypot(z[2], z[3])
+                c = state_fn(q, ta)[3]
+                return z, (z, step, sc, z[2] - c)
+
+            _, outs = jax.lax.scan(body, carry0, partners)
+            return outs
+
+        # strong refs pinned alongside the engine (M4 pattern):
+        # id()-keyed identity stays valid for the cache lifetime
+        ent = (jax.jit(run_col), (solvers, state_fn))
+        _COL_ENGINES[key] = ent
+        print("  [colexec] per-column executor built: Lpad=%d "
+              "(engine entry #%d) [M5c bucket row]"
+              % (Lpad, len(_COL_ENGINES)), flush=True)
+    return ent[0]
+
+
 def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
                    margin_floor=0.0, return_field=False,
                    abort_uncert=False):
@@ -218,7 +289,29 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     + aborted_at_cell) — the same condition firing EARLIER, never
     later; verdict/reporting sites keep the default full march and
     their PASS/FAIL rows (constraint 6). Cert check precedes the
-    margin check per cell (ordering declared)."""
+    margin check per cell (ordering declared).
+
+    M5c (S25-bis): interior column chains run through the hoisted
+    per-column compiled executor (_col_executor; A1_COLEXEC=0 =
+    legacy per-cell arbitration path). Wall-search, axis cells and
+    every adaptive decision (truncation, cert/margin raises,
+    first-offender abort) stay host-side at column granularity;
+    the stacked per-cell rows are checked by the SAME account()
+    the per-cell path uses. DECLARED divergences (m5cgate
+    adjudicates, dec-vector bitwise + z in the driver's Newton-floor
+    band): in-trace predictor/margin lowering (ulp class, see
+    A1.predict_interior_t) and the axial-margin raise text now
+    carrying the offending cell index (additive schema note).
+    MEASURED PROPERTY OF RECORD (S25-bis m12gate catch): at a
+    cert-MARGINAL design the certification VERDICT can land on
+    opposite sides of 1 between the two recorders (Wp at the mild
+    gate net: per-cell 3.757 vs per-column 0.585 — ulp seed
+    differences amplified through the damped-trial selection of a
+    near-non-convergent cell; per-path determinism holds). The
+    ACTIVE recorder is the certification authority; a walk never
+    mixes recorders, and any cross-path adjudication must pin ONE
+    recorder for all its records (findings registry row
+    record-path:cert-verdict-recorder-dependence)."""
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
@@ -253,6 +346,57 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         return u - c
 
     fused_on = os.environ.get("A1_FUSED_CERT", "1") != "0"
+    colexec_on = os.environ.get("A1_COLEXEC", "1") != "0"
+
+    def account(kind, step, sc, pt=None, m=None):
+        """Shared per-cell host accounting (M5c refactor, S25-bis):
+        the IDENTICAL cert-ratio check, abort semantics, argmax/
+        margin bookkeeping and raise sites for BOTH record paths —
+        the per-cell path computes (step, sc, pt) at dispatch time,
+        the per-column executor hands the stacked rows in march
+        order (m precomputed in-trace there; None recomputes via
+        margin_of, the legacy expression). Ordering preserved: cert
+        check BEFORE margin check at each cell."""
+        ratio = step / (A1.NEWTON_TOL_FACTOR * EPS * sc)
+        if not np.isfinite(ratio):
+            # C2-F1 (S21): NaN/Inf metric = non-certifiable cell;
+            # builtin max() DISCARDS a NaN second argument (first-arg
+            # return), so it is forced onto the reject side.
+            ratio = np.inf
+        if abort_uncert and ratio > 1.0:
+            # M5b typed first-offender refusal (gate sites only)
+            cert["worst"] = max(cert["worst"], ratio)
+            cert["aborted_at_cell"] = cert["n"]
+            raise A1.UncertifiedCellError(
+                "early-abort (M5b, opt-in gate site): cell %d (%s) "
+                "uncertified at ratio %.3e — first offender, march "
+                "refused" % (cert["n"], kind, ratio),
+                cert_worst=ratio, aborted_at_cell=cert["n"])
+        if ratio > cert["worst"]:
+            cert["worst"] = ratio
+            if CERT_ARGMAX:
+                cert["argmax"] = dict(
+                    kind=kind, cell_index=cert["n"], ratio=float(ratio),
+                    x=(float(pt[0]) if pt is not None else None),
+                    y=(float(pt[1]) if pt is not None else None),
+                    ctx=cert["ctx"])
+        cert["n"] += 1
+        if pt is not None:
+            if m is None:
+                m = margin_of(pt)
+            if m < cert["min_margin"]:
+                cert["min_margin"] = m
+                if CERT_ARGMAX:
+                    cert["argmin_margin"] = dict(
+                        kind=kind, cell_index=cert["n"] - 1,
+                        margin=float(m), x=float(pt[0]), y=float(pt[1]),
+                        ctx=cert["ctx"])
+            if m <= margin_floor:
+                raise RuntimeError(
+                    "axial-margin rejector: u_x - c = %.3e <= floor "
+                    "%.3e at cell %d (x-as-time causality / L-DoD "
+                    "uniform-margin hypothesis violated at a solved "
+                    "cell)" % (m, margin_floor, cert["n"] - 1))
 
     def cell(kind, p, z0, pt_of_z=None):
         if fused_on:
@@ -269,47 +413,42 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
                     jnp.asarray(p), ta)
             step = float(stepn(z, jnp.asarray(p), ta))
         sc = max(1.0, float(jnp.max(jnp.abs(z))))
-        ratio = step / (A1.NEWTON_TOL_FACTOR * EPS * sc)
-        if not np.isfinite(ratio):
-            # C2-F1 (S21): NaN/Inf metric = non-certifiable cell;
-            # builtin max() DISCARDS a NaN second argument (first-arg
-            # return), so it is forced onto the reject side.
-            ratio = np.inf
-        if abort_uncert and ratio > 1.0:
-            # M5b typed first-offender refusal (gate sites only)
-            cert["worst"] = max(cert["worst"], ratio)
-            cert["aborted_at_cell"] = cert["n"]
-            raise A1.UncertifiedCellError(
-                "early-abort (M5b, opt-in gate site): cell %d (%s) "
-                "uncertified at ratio %.3e — first offender, march "
-                "refused" % (cert["n"], kind, ratio),
-                cert_worst=ratio, aborted_at_cell=cert["n"])
         pt = pt_of_z(z) if pt_of_z is not None else None
-        if ratio > cert["worst"]:
-            cert["worst"] = ratio
-            if CERT_ARGMAX:
-                cert["argmax"] = dict(
-                    kind=kind, cell_index=cert["n"], ratio=float(ratio),
-                    x=(float(pt[0]) if pt is not None else None),
-                    y=(float(pt[1]) if pt is not None else None),
-                    ctx=cert["ctx"])
-        cert["n"] += 1
-        if pt is not None:
-            m = margin_of(pt)
-            if m < cert["min_margin"]:
-                cert["min_margin"] = m
-                if CERT_ARGMAX:
-                    cert["argmin_margin"] = dict(
-                        kind=kind, cell_index=cert["n"] - 1,
-                        margin=float(m), x=float(pt[0]), y=float(pt[1]),
-                        ctx=cert["ctx"])
-            if m <= margin_floor:
-                raise RuntimeError(
-                    "axial-margin rejector: u_x - c = %.3e <= floor "
-                    "%.3e (x-as-time causality / L-DoD uniform-margin "
-                    "hypothesis violated at a solved cell)"
-                    % (m, margin_floor))
+        account(kind, step, sc, pt=pt)
         return z
+
+    colstats = dict(calls=0, cells=0, padded=0)
+
+    def chain(carry_pt, partner_list, Lpad):
+        """One compiled column chain (M5c): pad partners to the
+        phase bucket by TAIL-REPEATING the last real row (data-only
+        padding; padded rows are computed and DISCARDED — they never
+        reach account() or the plan), dispatch the hoisted executor
+        once, hand back host arrays in march order."""
+        n = len(partner_list)
+        arr = np.stack([np.asarray(p, dtype=np.float64)
+                        for p in partner_list])
+        P = np.empty((Lpad, 4), dtype=np.float64)
+        P[:n] = arr
+        P[n:] = arr[-1]
+        ex = _col_executor(solvers, state_fn, Lpad)
+        Z, ST, SC_, MG = ex(jnp.asarray(carry_pt, dtype=jnp.float64),
+                            jnp.asarray(P), ta)
+        Z, ST = np.asarray(Z), np.asarray(ST)
+        SC_, MG = np.asarray(SC_), np.asarray(MG)
+        doc = _COLEXEC_DOCTOR
+        if doc is not None and doc.get("ctx") == cert["ctx"]:
+            # m5cgate doctored-cell hook: perturb ONE stack row
+            # before host accounting; record the cert index at the
+            # chain boundary so the control can assert the exact
+            # first-offender localization (column, row).
+            ST = ST.copy()
+            ST[doc["row"]] += doc["dstep"]
+            doc["cert_n_at_chain"] = cert["n"]
+        colstats["calls"] += 1
+        colstats["cells"] += n
+        colstats["padded"] += Lpad - n
+        return Z, ST, SC_, MG
 
     # ---------- IVL + fan (as [X-A1IM]; plan reuses SC column arrays)
     gm = tab["gammamedio"]
@@ -327,6 +466,14 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     ivl = [jnp.array([x_ivl[k], y_ivl[k], u_ivl[k], 0.0])
            for k in range(NI)]
 
+    # M5c phase buckets (derived case-level bounds, zero growth
+    # events): fan chains reach exactly 2 NI - 3 partners; design
+    # chains obey len(prev) - Nv <= 2 NI - 2 + n_B + Nw (column
+    # growth invariant len(newcol) <= len(prev) + 1 from the fan
+    # exit length 2 NI - 1, Nv >= 1).
+    Lpad_fan = max(1, 2 * NI - 3)
+    Lpad_des = 2 * NI - 2 + n_B + Nw
+
     plan = dict(fan=[], arc=[], n_B=n_B)
     fan_cols = []
     prev = [ivl[NI - 1]]
@@ -337,14 +484,26 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         carry = head
         newcol = [head]
         cplus_f = []
-        for k in range(len(prev)):
-            z0 = A1.predict_interior(carry, prev[k], ta, 1.0)
-            z = cell("interior", jnp.concatenate([carry, prev[k]]), z0,
-                     pt_of_z=lambda zz: zz)
-            seeds.append(np.asarray(z))
-            carry = z
-            newcol.append(z)
-            cplus_f.append(prev[k])
+        if colexec_on:
+            Zc, STc, SCc, MGc = chain(head, prev, Lpad_fan)
+            for k in range(len(prev)):
+                z = jnp.asarray(Zc[k])
+                account("interior", float(STc[k]), float(SCc[k]),
+                        pt=z, m=float(MGc[k]))
+                seeds.append(np.asarray(z))
+                carry = z
+                newcol.append(z)
+                cplus_f.append(prev[k])
+        else:
+            for k in range(len(prev)):
+                z0 = A1.predict_interior(carry, prev[k], ta, 1.0)
+                z = cell("interior",
+                         jnp.concatenate([carry, prev[k]]), z0,
+                         pt_of_z=lambda zz: zz)
+                seeds.append(np.asarray(z))
+                carry = z
+                newcol.append(z)
+                cplus_f.append(prev[k])
         z0a = A1.predict_axis(carry, ta, 1.0)
         za = cell("axis", carry, z0a,
                   pt_of_z=lambda zz: [0.0, 0.0, float(zz[1]), 0.0])
@@ -425,19 +584,43 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         newcol = [wall_pt] + prev[1:Nv]
         truncated = False
         n_avail = len(prev) - (1 if has_axis else 0)
-        for j in range(Nv + 1, n_avail + 1 + (1 if has_axis else 0)):
-            pt2 = prev[j - 1]
-            z0 = A1.predict_interior(carry, pt2, ta, 1.0)
-            z = cell("interior", jnp.concatenate([carry, pt2]), z0,
-                     pt_of_z=lambda zz: zz)
-            seeds.append(np.asarray(z))
-            carry = z
-            newcol.append(z)
-            cline.append(z)
-            cplus.append(pt2)
-            if float(z[0]) > float(L):
-                truncated = True
-                break
+        # partner slice of the interior chain: prev[Nv:] exactly (the
+        # legacy j-loop indices j-1 run Nv .. len(prev)-1 in both
+        # has_axis cases)
+        if colexec_on and len(prev) > Nv:
+            partner_list = prev[Nv:]
+            Zc, STc, SCc, MGc = chain(wall_pt, partner_list, Lpad_des)
+            for idx in range(len(partner_list)):
+                z = jnp.asarray(Zc[idx])
+                account("interior", float(STc[idx]), float(SCc[idx]),
+                        pt=z, m=float(MGc[idx]))
+                seeds.append(np.asarray(z))
+                carry = z
+                newcol.append(z)
+                cline.append(z)
+                cplus.append(partner_list[idx])
+                if float(z[0]) > float(L):
+                    # sub-crossing discard: rows past this crossing
+                    # were computed speculatively in the compiled
+                    # chain and are DISCARDED — never accounted,
+                    # never in the plan
+                    truncated = True
+                    break
+        else:
+            for j in range(Nv + 1,
+                           n_avail + 1 + (1 if has_axis else 0)):
+                pt2 = prev[j - 1]
+                z0 = A1.predict_interior(carry, pt2, ta, 1.0)
+                z = cell("interior", jnp.concatenate([carry, pt2]),
+                         z0, pt_of_z=lambda zz: zz)
+                seeds.append(np.asarray(z))
+                carry = z
+                newcol.append(z)
+                cline.append(z)
+                cplus.append(pt2)
+                if float(z[0]) > float(L):
+                    truncated = True
+                    break
         axis_seed = None
         col_axis = False
         if has_axis and not truncated:
@@ -467,7 +650,11 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
 
     out = dict(wall=jnp.stack(wall_pts), cert_worst=cert["worst"],
                cert_n=cert["n"], min_margin=cert["min_margin"],
-               aborted_at_cell=cert["aborted_at_cell"])
+               aborted_at_cell=cert["aborted_at_cell"],
+               colexec=dict(on=colexec_on, calls=colstats["calls"],
+                            cells=colstats["cells"],
+                            padded=colstats["padded"],
+                            Lpad_fan=Lpad_fan, Lpad_des=Lpad_des))
     if CERT_ARGMAX:
         # T5 (S21): localization payload, reporting-only, default-off
         out["cert_argmax"] = cert["argmax"]
@@ -655,7 +842,7 @@ def plan_operands(plan, NI, Nw):
 
 def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
                           solvers=None, cert_diag=False,
-                          val_diag=False):
+                          val_diag=False, vg_batch=False):
     """Whole-loop jitted bucketed TOC replay for a FIXED plan.
     Returns a jitted callable W -> wall (n_B + Nw, 4).
 
@@ -694,7 +881,23 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     rows). A1_PLAN_ARGS=0 rebuilds the LEGACY constants-baked
     variant of the SAME body (arbitration path). Adoption is gated
     by [X-SPDB] m4gate (Newton-floor equivalence + O3.1 + warm-path
-    args-vs-constants band; the gate can FIRE and reject)."""
+    args-vs-constants band; the gate can FIRE and reject).
+
+    vg_batch=True (M6, S25-bis; REQUIRES the args engine — a
+    constants-baked vmap wrapper would re-bake the plan per segment,
+    the exact churn class M4 deleted): returns a callable
+    Wmat (B, n) -> (vals (B,), grads (B, n)) = ONE compiled
+    jit(vmap(value_and_grad)) dispatch of the thrust objective over
+    a batch of designs, plan arrays as broadcast OPERANDS, cached in
+    the SAME engine cache (mode key "vgb"). Same stencil consumers,
+    same derived steps — WHO executes the FD rows changes. DECLARED
+    version change (batched XLA reduction order != sequential at
+    floor order): adoption gated by [X-SPDB] m6gate (per-lane
+    batched == sequential inside the FD-truncation-derived band +
+    corrupted-lane fallback control + O3.1 re-pass) + the closing
+    KAT-grade suite. Mutually exclusive with cert_diag/val_diag."""
+    if vg_batch and (cert_diag or val_diag):
+        raise ValueError("vg_batch is exclusive with the diag modes")
     if cert_diag and val_diag:
         raise ValueError("cert_diag and val_diag are mutually "
                          "exclusive by declaration")
@@ -914,11 +1117,23 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
         return outT
 
     ops_j = {k: jnp.asarray(v) for k, v in ops.items()}
+    if vg_batch:
+        # M6 (S25-bis): batched value_and_grad entry — vmap over the
+        # design rows, ops broadcast as OPERANDS (in_axes=(0, None));
+        # one compiled dispatch per FD-row batch.
+        def entry(Wmat, ops_):
+            def sj(Wv, o):
+                return -thrust_J(run(Wv, o), tab, state_fn=state_fn)
+            return jax.vmap(jax.value_and_grad(sj),
+                            in_axes=(0, None))(Wmat, ops_)
+    else:
+        entry = run
     if os.environ.get("A1_PLAN_ARGS", "1") == "0":
         # LEGACY constants-baked build (arbitration path of the M4
         # args-vs-constants gate): same body, ops closed over.
-        return jax.jit(lambda W: run(W, ops_j))
-    mode = "cert" if cert_diag else ("val" if val_diag else "wall")
+        return jax.jit(lambda X: entry(X, ops_j))
+    mode = ("vgb" if vg_batch else
+            "cert" if cert_diag else ("val" if val_diag else "wall"))
     # Refuter repair M4-F1 (s25_refute_m4, HIGH): the traced body
     # closes over wall_geometry which reads the DESIGN-CLASS module
     # globals (M_NODES, KNOT_XI) at trace time — a same-length knot
@@ -935,7 +1150,7 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     if ent is None:
         # strong refs pinned alongside the engine: id()-keyed
         # identity stays valid for the cache lifetime
-        ent = (jax.jit(run), (tab, state_fn, solvers))
+        ent = (jax.jit(entry), (tab, state_fn, solvers))
         _SCAN_ENGINES[ekey] = ent
         _SCAN_SIGSEEN[ekey] = set()
     if sig not in _SCAN_SIGSEEN[ekey]:
@@ -998,9 +1213,32 @@ def record_ctx_tag(tab, cfg, state_fn, solvers):
     return h.hexdigest()
 
 
+def vg_batch_rows(vgb, val_grad, Wmat, nf_counter=None):
+    """M6 (S25-bis): ONE vmapped compiled dispatch over a batch of
+    FD design rows; any NONFINITE lane falls back to the sequential
+    compiled eval (REQ-NONSTALL: the batched path is never weaker
+    than the sequential block it replaces — which had NO nonfinite
+    guard at all) and the event is COUNTED (nf_counter['hess_lane']).
+    Returns (vals (B,), grads (B, n)) as numpy. Module-level so the
+    m6gate corrupted-lane control exercises exactly this code."""
+    Wm = np.asarray(Wmat, dtype=np.float64)
+    vs, gs = vgb(jnp.asarray(Wm))
+    vs = np.asarray(vs).copy()
+    gs = np.asarray(gs).copy()
+    for r_ in range(vs.shape[0]):
+        if not (np.isfinite(vs[r_]) and np.all(np.isfinite(gs[r_]))):
+            if nf_counter is not None:
+                nf_counter["hess_lane"] += 1
+            v2, g2 = val_grad(jnp.asarray(Wm[r_]))
+            vs[r_] = float(v2)
+            gs[r_] = np.asarray(g2)
+    return vs, gs
+
+
 def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
               maxiter_per_seg=40, state_fn=A1.state_q, solvers=None,
-              verbose=0, margin_factory=None):
+              verbose=0, margin_factory=None, preplan=None,
+              field_records=False):
     """S18 driver notes (declared, after the first honest end-to-end
     FAIL): (i) max_segments raised 8 -> 100 — the wall-search indices
     (N, Nv) are FRAGILE decisions (chord-foot descent over ~100
@@ -1067,6 +1305,20 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     Legacy paths stay runnable via A1_RECORD_MEMO=0 / A1_VG_MEMO=0
     (arbitration).
 
+    H3 (S25-bis, campaign rung-boundary dedup): preplan=(out, plan) —
+    the CALLER's already-certified record of W0 (argument-identical
+    contract: same tab/cfg/state_fn/solvers/class knobs, all carried
+    by the memo key) pre-loads the one-slot record memo, so the seg-0
+    duplicate record is consumed as a memo hit and the EXISTING M1
+    first-hit controls (fresh-record bitwise equality + perturbed-W
+    miss) gate the reuse; with A1_RECORD_MEMO=0 the preplan is
+    ignored (declared, legacy path records fresh). field_records=True
+    makes in-walk records carry return_field cols so the returned
+    last certified record is reusable for chain/field consumers.
+    The result dict gains last_cert = dict(W, out, plan) — the LAST
+    certified record of the walk (refs, read-only contract) — and
+    record_preplan (1 iff a caller preplan was loaded).
+
     margin_factory (S22, F1 governor — the A' FORMULATION entry, not
     driver surgery: the optimization problem gains the margin
     constraint of the M0 tier-ladder formalization, the policy stack
@@ -1093,7 +1345,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     tr_cap = 0.25                        # S20 RATCHET: only decreases
     Dv = None                            # Jacobi scaling (measured once)
     W_cert = None                        # last CERTIFIED segment base
-    nf_events = dict(grad=0, obj=0)      # C2 (S21): nonfinite events
+    nf_events = dict(grad=0, obj=0,      # C2 (S21): nonfinite events
+                     hess_lane=0)        # M6: batched-lane fallbacks
     rejected = []                        # T5 (S21): rejected designs
     # M1+M2 (S25 ENGINE SPEED, dispatch items 2-3; advisory §4):
     # segment-boundary record memo + failed-record memo (ONE-SLOT,
@@ -1127,11 +1380,23 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
 
     rec_slot = dict(key=None, out=None, plan=None)
     fail_slot = dict(key=None, msg=None, worst=None)
-    rec_counts = dict(fresh=0, cached=0, failmemo=0)
+    rec_counts = dict(fresh=0, cached=0, failmemo=0, preplan=0)
     probe = dict(eq=0, miss=0,
                  armed=os.environ.get("A1_MEMO_PROBE", "1") != "0")
     n_vg_exec = 0                # M2: honest compiled-eval count
     n_vg_hits = 0                # M2: deduplicated requests
+    n_vg_batch_lanes = 0         # M6: batched FD lanes (separate
+    #                              ledger row — a vmapped batch of B
+    #                              lanes is ONE dispatch, priced
+    #                              ~B/2.6 sequential evals; never
+    #                              folded into n_eval)
+    last_cert = dict(W=None, out=None, plan=None)   # H3 return slot
+    if preplan is not None and memo_on:
+        # H3: pre-load the one-slot memo with the caller's certified
+        # record of W0; the seg-0 record becomes a memo hit and the
+        # first-hit controls gate the reuse bitwise.
+        rec_slot.update(key=_mkey(W), out=preplan[0], plan=preplan[1])
+        rec_counts["preplan"] = 1
 
     def _persist_rejected():
         # T5 (S21, panel O4 / audit C-1(ii)): REJECTED designs are no
@@ -1217,7 +1482,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 out_rec, plan = run_toc_record(W, tab, cfg,
                                                state_fn=state_fn,
                                                solvers=solvers,
-                                               abort_uncert=True)
+                                               abort_uncert=True,
+                                               return_field=field_records)
                 n_rec += 1
             worst_seen = float(out_rec["cert_worst"])
             if out_rec["cert_worst"] > 1.0:
@@ -1312,18 +1578,25 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                             record_fresh=rec_counts["fresh"],
                             record_cached=rec_counts["cached"],
                             record_failmemo=rec_counts["failmemo"],
+                            record_preplan=rec_counts["preplan"],
                             memo_probe_pass=probe["eq"],
                             memo_probe_miss=probe["miss"],
                             certifiability_limited=True,
                             n_nonfinite_grad=nf_events["grad"],
                             n_nonfinite_obj=nf_events["obj"],
-                            rejected_designs=rejected)
+                            n_nonfinite_hess_lane=nf_events["hess_lane"],
+                            n_eval_batch_lanes=n_vg_batch_lanes,
+                            rejected_designs=rejected,
+                            last_cert=(last_cert
+                                       if last_cert["W"] is not None
+                                       else None))
             # W == W_cert failing here would mean a previously
             # CERTIFIED base fails on deterministic re-record — a
             # contradiction that must surface, never be masked by
             # returning that same base as "certified".
             raise
         W_cert = W.copy()
+        last_cert.update(W=W.copy(), out=out_rec, plan=plan)   # H3
         # P2 production path (S18): whole-loop jitted bucketed replay
         # built ONCE per segment (fixed plan); every objective/
         # gradient call is a compiled call — no per-eval re-trace
@@ -1331,6 +1604,25 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         runj = make_run_toc_scan_jit(tab, cfg, plan,
                                      state_fn=state_fn,
                                      solvers=solvers)
+        # M6 (S25-bis): batched value_and_grad engine for the FD
+        # blocks — **GATE-REJECTED AS DEFAULT, 2026-08-12 verdict of
+        # record (m6gate + s25bis_m6diag)**: the vmapped adjoint
+        # through the replay's implicit-solve chain diverges from
+        # the sequential path by 5.6e-8 relative on the gradient,
+        # which is NOT FD-Hessian-grade — measured dH = 18% of the
+        # Hessian scale = 5-6x the scheme's own asymmetry error
+        # (values ARE bitwise-class; the divergence is adjoint-side,
+        # batched 4x4 linalg vs single). Default = SEQUENTIAL;
+        # A1_VMAP_HESS=1 keeps the candidate runnable for the F2
+        # re-adjudication (routes: divergence-source isolation /
+        # jacfwd N5); findings registry row
+        # engine:vmap-hessian-adjoint-divergence.
+        vmh_on = os.environ.get("A1_VMAP_HESS", "0") == "1"
+        runvgb = (make_run_toc_scan_jit(tab, cfg, plan,
+                                        state_fn=state_fn,
+                                        solvers=solvers,
+                                        vg_batch=True)
+                  if vmh_on else None)
         # monitor (i): replay fidelity at the base point (jit path)
         wall_sc = runj(jnp.asarray(W))
         dev = float(jnp.max(jnp.abs(wall_sc - out_rec["wall"])))
@@ -1375,14 +1667,37 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             # gradient differences at the start point, derived step
             print("  [precond] measuring diagonal curvature "
                   "(2n gradient evals)...", flush=True)
-            h = np.empty(n)
-            for i in range(n):
-                d = EPS ** (1.0 / 3.0) * max(abs(W[i]), 1.0)
-                e = np.zeros(n)
-                e[i] = d
-                gp = _vg(W + e)[1]
-                gm = _vg(W - e)[1]
-                h[i] = (gp[i] - gm[i]) / (2.0 * d)
+            steps_j = np.array([EPS ** (1.0 / 3.0)
+                                * max(abs(W[i]), 1.0)
+                                for i in range(n)])
+            if runvgb is not None:
+                # M6: one batched dispatch over the 2n stencil rows
+                P2 = np.repeat(W[None, :], 2 * n, axis=0)
+                P2[np.arange(n), np.arange(n)] += steps_j
+                P2[n + np.arange(n), np.arange(n)] -= steps_j
+                _vsj, _gsj = vg_batch_rows(runvgb, val_grad, P2,
+                                           nf_events)
+                n_vg_batch_lanes += 2 * n
+                h = np.array([(_gsj[i][i] - _gsj[n + i][i])
+                              / (2.0 * steps_j[i])
+                              for i in range(n)])
+            else:
+                h = np.empty(n)
+                for i in range(n):
+                    d = steps_j[i]
+                    e = np.zeros(n)
+                    e[i] = d
+                    gp = _vg(W + e)[1]
+                    gm = _vg(W - e)[1]
+                    h[i] = (gp[i] - gm[i]) / (2.0 * d)
+                # M6 rigor half KEPT on the sequential path
+                # (REQ-NONSTALL): a nonfinite stencil lane is
+                # COUNTED and its diagonal entry dropped to the
+                # existing |h| floor clamp instead of poisoning Dv
+                bad_j = ~np.isfinite(h)
+                if bad_j.any():
+                    nf_events["hess_lane"] += int(bad_j.sum())
+                    h = np.where(bad_j, 0.0, h)
             habs = np.abs(h)
             Dv = 1.0 / np.sqrt(np.maximum(habs, 1e-6 * habs.max()))
             Dv = Dv / np.median(Dv)
@@ -1408,13 +1723,33 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         # a valley-crawl; persisting flips at tiny radius demonstrate
         # a seam-pinned discrete optimum (adjudicated honestly).
         g_base = _vg(W)[1]
-        Hw = np.empty((n, n))
-        for jH in range(n):
-            dH = EPS ** 0.5 * max(abs(W[jH]), 1.0)
-            eH = np.zeros(n)
-            eH[jH] = dH
-            gj = _vg(W + eH)[1]
-            Hw[:, jH] = (gj - g_base) / dH
+        dHs = np.array([EPS ** 0.5 * max(abs(W[jH]), 1.0)
+                        for jH in range(n)])
+        if runvgb is not None:
+            # M6: one batched dispatch over the n FD rows (same
+            # stencil, same derived steps, same symmetrization —
+            # WHO executes changes; nonfinite lanes fall back
+            # sequentially and are counted)
+            PH = np.repeat(W[None, :], n, axis=0)
+            PH[np.arange(n), np.arange(n)] += dHs
+            _vsh, _gsh = vg_batch_rows(runvgb, val_grad, PH,
+                                       nf_events)
+            n_vg_batch_lanes += n
+            Hw = (_gsh - g_base[None, :]).T / dHs[None, :]
+        else:
+            Hw = np.empty((n, n))
+            for jH in range(n):
+                dH = dHs[jH]
+                eH = np.zeros(n)
+                eH[jH] = dH
+                gj = _vg(W + eH)[1]
+                if not np.all(np.isfinite(gj)):
+                    # M6 rigor half KEPT on the sequential path:
+                    # counted, column dropped to zero curvature
+                    # (benign for the TR model), never silent
+                    nf_events["hess_lane"] += 1
+                    gj = np.where(np.isfinite(gj), gj, g_base)
+                Hw[:, jH] = (gj - g_base) / dH
         Hw = 0.5 * (Hw + Hw.T)
         Hu = (Dv[:, None] * Hw) * Dv[None, :]
 
@@ -1472,10 +1807,10 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 # fresh = REQUEST count (pre-call), march-type
                 # failures reconcile.
                 rec_counts["fresh"] += 1
-                out_new, plan_new = run_toc_record(xk_now, tab, cfg,
-                                                   state_fn=state_fn,
-                                                   solvers=solvers,
-                                                   abort_uncert=True)
+                out_new, plan_new = run_toc_record(
+                    xk_now, tab, cfg, state_fn=state_fn,
+                    solvers=solvers, abort_uncert=True,
+                    return_field=field_records)
                 n_rec += 1
                 # S20: P3(ii) conformance — the DECLARED policy
                 # certifies the record at EVERY accepted iterate, not
@@ -1487,6 +1822,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                         "P3(ii): accepted iterate not certified "
                         "(worst %.3e)" % out_new["cert_worst"])
                 seg_state["last_rec"] = xk_now.copy()
+                last_cert.update(W=xk_now.copy(), out=out_new,
+                                 plan=plan_new)           # H3
                 if memo_on:
                     # M1 stash: this certified accepted-iterate record
                     # is exactly what the next segment top would
@@ -1577,12 +1914,17 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 record_fresh=rec_counts["fresh"],
                 record_cached=rec_counts["cached"],
                 record_failmemo=rec_counts["failmemo"],
+                record_preplan=rec_counts["preplan"],
                 memo_probe_pass=probe["eq"],
                 memo_probe_miss=probe["miss"],
                 certifiability_limited=False,
                 n_nonfinite_grad=nf_events["grad"],
                 n_nonfinite_obj=nf_events["obj"],
-                rejected_designs=rejected)
+                n_nonfinite_hess_lane=nf_events["hess_lane"],
+                n_eval_batch_lanes=n_vg_batch_lanes,
+                rejected_designs=rejected,
+                last_cert=(last_cert if last_cert["W"] is not None
+                           else None))
 
 
 def geno_type2_reference(scratch, NI_over=None, Ne_over=None):

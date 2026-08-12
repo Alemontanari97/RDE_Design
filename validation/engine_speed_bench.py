@@ -222,6 +222,21 @@ def measure_core(tab, state_fn, solv, cfg, W, label):
         rows["segment_synthesis_s"]["total_pre_memo"] = seg
         print("  SEGMENT SYNTHESIS (pre-memo shape, advisory rows): "
               "%.1f s" % seg)
+        # post-M1 shape (S25-bis M-D/M-E STOP CHECK reads THIS):
+        # base record -> 0 (M1 memo), one callback record remains;
+        # pessimistic end = the same synthesis at the WORST measured
+        # rep of every term (the measured band IS the margin — no
+        # magic margin constant).
+        seg_post = (med(t_rec) + (n + 1) * med(t_vg)
+                    + 3.4 * med(t_vg) + med(t_rep))
+        seg_pess = (max(t_rec) + (n + 1) * max(t_vg)
+                    + 3.4 * max(t_vg) + max(t_rep))
+        rows["segment_synthesis_s"]["total_post_m1"] = seg_post
+        rows["segment_synthesis_s"]["total_post_m1_pessimistic"] = \
+            seg_pess
+        print("  SEGMENT SYNTHESIS (post-M1 shape): central %.1f s, "
+              "pessimistic-end %.1f s (worst reps)"
+              % (seg_post, seg_pess))
     finally:
         TV.M_NODES, TV.KNOT_XI = old
     return ok, rows
@@ -230,9 +245,12 @@ def measure_core(tab, state_fn, solv, cfg, W, label):
 def mode_m0():
     print("== [X-SPDB] M0 clean-host re-baseline (defnoz class) ==")
     # BASELINE PIN (declared): the M0 anchor is the PRE-M4 state —
-    # legacy constants-baked engine (A1_PLAN_ARGS=0); the args
-    # engine is adopted only through m4gate and measured by mbwalk.
+    # legacy constants-baked engine (A1_PLAN_ARGS=0) AND (S25-bis)
+    # the pre-M5c per-cell recorder (A1_COLEXEC=0); the args engine
+    # is adopted only through m4gate, the column executor only
+    # through m5cgate.
     os.environ["A1_PLAN_ARGS"] = "0"
+    os.environ["A1_COLEXEC"] = "0"
     try:
         tab, state_fn, solv, cfg, W = setup_instance()
         ok, rows = measure_core(tab, state_fn, solv, cfg, W, "m0")
@@ -241,6 +259,7 @@ def mode_m0():
         print("  artifact -> %s" % art)
     finally:
         os.environ.pop("A1_PLAN_ARGS", None)
+        os.environ.pop("A1_COLEXEC", None)
     return ok
 
 
@@ -283,16 +302,23 @@ def mode_m12gate():
     yL = DT.CASE["yt"] * np.sqrt(DT.CASE["eps"])
     from adaptive_knot_optimize import grad_and_J as AK_gJ, \
         o31_spot as AK_o31
+    # ATTRIBUTION PIN (declared): both arms run the LEGACY
+    # constants-baked engine (A1_PLAN_ARGS=0) AND the per-cell
+    # recorder (A1_COLEXEC=0, S25-bis) so this gate isolates M1+M2
+    # exactly as at its committed acceptance. The pins are set
+    # BEFORE walk_start (S25-bis re-chain catch of record): the
+    # start-selection record must use the SAME recorder as the gate
+    # arms — at the cert-MARGINAL Wp the two recorders land on
+    # opposite sides of the certification bound (per-cell 3.757 vs
+    # per-column 0.585, mild net), so a default-recorder start
+    # selection admits a start the gate's own recorder refuses.
+    os.environ["A1_PLAN_ARGS"] = "0"
+    os.environ["A1_COLEXEC"] = "0"
     W = walk_start(tab, state_fn, solv, cfg, W0i)
     old = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
     ok = True
     try:
-        # ATTRIBUTION PIN (declared): both arms run the LEGACY
-        # constants-baked engine (A1_PLAN_ARGS=0) so this gate
-        # isolates M1+M2 exactly; the M4 engine is gated by m4gate
-        # and its walk-level effect measured by mbwalk.
-        os.environ["A1_PLAN_ARGS"] = "0"
         # shared derived gtol (one record for the plan, O3.1 band)
         out0, plan0 = TV.run_toc_record(W, tab, cfg,
                                         state_fn=state_fn, solvers=solv)
@@ -318,6 +344,7 @@ def mode_m12gate():
         os.environ.pop("A1_RECORD_MEMO", None)
         os.environ.pop("A1_VG_MEMO", None)
         os.environ.pop("A1_PLAN_ARGS", None)
+        os.environ.pop("A1_COLEXEC", None)
     ok &= check("bit-identical final W",
                 bool(np.array_equal(a["W"], b["W"])))
     ok &= check("bit-identical J (%.10e vs %.10e)"
@@ -538,12 +565,17 @@ def mode_m5gate():
     fused entry calls the IDENTICAL jitted newton and the verbatim
     step expressions); (b) M5b doctored-cell control: a doctored
     solve_cert at host-call K must produce the TYPED refusal AT K
-    (first-offender index stable) with abort armed."""
+    (first-offender index stable) with abort armed. ATTRIBUTION PIN
+    (S25-bis): the whole mode runs the per-cell recorder
+    (A1_COLEXEC=0) — the M5a/M5b properties under test are
+    host-dispatch properties; the column executor has its own
+    m5cgate with its own doctored control."""
     print("== [X-SPDB] M5a+M5b acceptance gate ==")
     tab, state_fn, solv, cfg, W = setup_instance()
     old = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
     ok = True
+    os.environ["A1_COLEXEC"] = "0"
     try:
         os.environ["A1_FUSED_CERT"] = "0"
         t0 = time.perf_counter()
@@ -615,6 +647,405 @@ def mode_m5gate():
     finally:
         TV.M_NODES, TV.KNOT_XI = old
         os.environ.pop("A1_FUSED_CERT", None)
+        os.environ.pop("A1_COLEXEC", None)
+    return ok
+
+
+def mode_m5cgate():
+    """M5c acceptance gate (advisory M5c F6-AMENDED; this gate CAN
+    fire and REJECT the lever -> fallback H2 -> N1, never unbounded
+    debugging): legacy per-cell recorder (A1_COLEXEC=0) vs the
+    hoisted per-column compiled executor on the SAME W at TWO nets
+    (defnoz-mild = the declared m12gate net, then FULL defnoz):
+      (1) dec-vector BITWISE identity — n_B, per-fan-column n,
+          per-design-column (N, Nv, n, has_axis), cert_n (covers
+          every wall_search, truncation and axis decision on real
+          columns, truncated ones included);
+      (2) z inside the driver's Newton-floor band — wall stack,
+          per-column seeds, min_margin (same derived band
+          construction as m4gate: NEWTON_TOL_FACTOR x EPS x scale x
+          10) + certification VERDICT equality (cert_worst <= 1
+          agrees; the ratio itself is a floor-noise quantity,
+          reported not gated);
+      (3) doctored-cell control THROUGH the executor stacks: a
+          doctored step row at an exact (column ctx, row) must raise
+          the TYPED refusal with aborted_at_cell == the cert index
+          at the chain boundary + row (first-offender localization
+          through the compiled path);
+      (4) near-seam margin-floor pair: floor dialed just above /
+          below the recorded min_margin (delta derived from the
+          band) — the SAME flip (raise vs complete) in BOTH
+          recorders, and the raise names the SAME offending cell.
+    ANY plan/dec difference = lever REJECTED (exit 1)."""
+    import re as _re
+    print("== [X-SPDB] M5c acceptance gate (per-column executor vs "
+          "per-cell recorder) ==")
+    full = dict(DT.CASE)          # the CASE net OF RECORD, pristine
+    DT.CASE["NI"] = int(os.environ.get("A1_SPDB_GATE_NI", "11"))
+    DT.CASE["Nw"] = int(os.environ.get("A1_SPDB_GATE_NW", "30"))
+    DT.CASE["da_deg"] = float(os.environ.get("A1_SPDB_GATE_DA", "1.0"))
+    nets = [("defnoz-mild", dict(DT.CASE)), ("defnoz-full", full)]
+    ok = True
+    rows = dict(pycount=pycount(), nets={})
+
+    def dec_vec(out, plan):
+        return (int(plan["n_B"]),
+                tuple(int(c["n"]) for c in plan["fan"]),
+                tuple((int(c["N"]), int(c["Nv"]), int(c["n"]),
+                       bool(c["has_axis"])) for c in plan["arc"]),
+                int(out["cert_n"]))
+
+    def zdev(planA, planB):
+        d, s = 0.0, 0.0
+        for key in ("fan", "arc"):
+            for ca, cb in zip(planA[key], planB[key]):
+                if ca["n"]:
+                    d = max(d, float(np.max(np.abs(
+                        np.asarray(ca["seeds"])
+                        - np.asarray(cb["seeds"])))))
+                    s = max(s, float(np.max(np.abs(
+                        np.asarray(ca["seeds"])))))
+        return d, s
+
+    tab = state_fn = solv = cfg = W = None
+    for name, case in nets:
+        print("-- net %s: NI=%d Nw=%d da=%.2f --"
+              % (name, case["NI"], case["Nw"], case["da_deg"]))
+        DT.CASE.update(case)
+        tab, state_fn, solv, cfg, W = setup_instance()
+        old = (TV.M_NODES, TV.KNOT_XI)
+        TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
+        try:
+            os.environ["A1_COLEXEC"] = "0"
+            t0 = time.perf_counter()
+            outL, planL = TV.run_toc_record(W, tab, cfg,
+                                            state_fn=state_fn,
+                                            solvers=solv)
+            tL = time.perf_counter() - t0
+            os.environ.pop("A1_COLEXEC", None)
+            t0 = time.perf_counter()
+            outC, planC = TV.run_toc_record(W, tab, cfg,
+                                            state_fn=state_fn,
+                                            solvers=solv)
+            tC1 = time.perf_counter() - t0        # incl. compiles
+            t0 = time.perf_counter()
+            outC, planC = TV.run_toc_record(W, tab, cfg,
+                                            state_fn=state_fn,
+                                            solvers=solv)
+            tC = time.perf_counter() - t0         # warm executor
+            ok &= check("%s dec-vector BITWISE identity" % name,
+                        dec_vec(outL, planL) == dec_vec(outC, planC))
+            wL = np.asarray(outL["wall"])
+            wC = np.asarray(outC["wall"])
+            scale = float(np.max(np.abs(wL)))
+            band = A1.NEWTON_TOL_FACTOR * DT.EPS * scale * 10.0
+            dw = float(np.max(np.abs(wC - wL)))
+            ok &= check("%s wall inside Newton-floor band (%.3e <= "
+                        "%.3e; bitwise = %s)"
+                        % (name, dw, band, bool(np.array_equal(wC, wL))),
+                        dw <= band)
+            ds, ss = zdev(planL, planC)
+            bs = A1.NEWTON_TOL_FACTOR * DT.EPS * max(ss, 1.0) * 10.0
+            ok &= check("%s seeds inside Newton-floor band (%.3e <= "
+                        "%.3e)" % (name, ds, bs), ds <= bs)
+            dm = abs(float(outL["min_margin"])
+                     - float(outC["min_margin"]))
+            ok &= check("%s min_margin inside band (%.3e <= %.3e)"
+                        % (name, dm, band), dm <= band)
+            ok &= check("%s certification VERDICT agrees (L %.3e, C "
+                        "%.3e)" % (name, outL["cert_worst"],
+                                   outC["cert_worst"]),
+                        (outL["cert_worst"] <= 1.0)
+                        == (outC["cert_worst"] <= 1.0))
+            cx = outC["colexec"]
+            print("  record walltime: per-cell %.2f s -> colexec "
+                  "%.2f s warm (%.2fx; first incl. compile %.2f s); "
+                  "chains %d, cells %d, padded frac %.2f"
+                  % (tL, tC, tL / max(tC, 1e-9), tC1, cx["calls"],
+                     cx["cells"],
+                     cx["padded"] / max(cx["cells"] + cx["padded"], 1)))
+            rows["nets"][name] = dict(
+                t_percell=tL, t_colexec_warm=tC, t_colexec_first=tC1,
+                wall_dev=dw, band=band, seed_dev=ds, seed_band=bs,
+                colexec=cx)
+            if name == "defnoz-mild":
+                # (3) doctored-cell first-offender through the stacks
+                doc = dict(ctx=("design_col", 5), row=3, dstep=1.0e9)
+                TV._COLEXEC_DOCTOR = doc
+                fired = None
+                try:
+                    TV.run_toc_record(W, tab, cfg, state_fn=state_fn,
+                                      solvers=solv, abort_uncert=True)
+                except A1.UncertifiedCellError as e:
+                    fired = e
+                finally:
+                    TV._COLEXEC_DOCTOR = None
+                ok &= check("M5c doctored stack row -> TYPED refusal",
+                            fired is not None)
+                if fired is not None:
+                    exp = doc.get("cert_n_at_chain", -10) + doc["row"]
+                    ok &= check("M5c first-offender localization "
+                                "(aborted_at_cell %s == chain-start "
+                                "%s + row %d)"
+                                % (fired.aborted_at_cell,
+                                   doc.get("cert_n_at_chain"),
+                                   doc["row"]),
+                                fired.aborted_at_cell == exp)
+                    ok &= check("M5c cert_worst carries doctored "
+                                "ratio (> 1e6)", fired.cert_worst > 1e6)
+                # (4) near-seam margin-floor pair (derived delta)
+                mm = float(outC["min_margin"])
+                dlt = max(abs(mm) * 1e-6, 1e3 * band)
+                cells = {}
+                for arm, flag in (("percell", "0"), ("colexec", "1")):
+                    os.environ["A1_COLEXEC"] = flag
+                    try:
+                        TV.run_toc_record(W, tab, cfg,
+                                          state_fn=state_fn,
+                                          solvers=solv,
+                                          margin_floor=mm + dlt)
+                        cells[arm] = "NO-RAISE"
+                    except RuntimeError as e:
+                        mt = _re.search(r"at cell (\d+)", str(e))
+                        cells[arm] = mt.group(1) if mt else "NO-INDEX"
+                    finally:
+                        os.environ.pop("A1_COLEXEC", None)
+                ok &= check("near-seam floor_hi: SAME raise cell in "
+                            "both recorders (%s == %s)"
+                            % (cells["percell"], cells["colexec"]),
+                            cells["percell"] == cells["colexec"]
+                            and cells["percell"] not in
+                            ("NO-RAISE", "NO-INDEX"))
+                done = {}
+                for arm, flag in (("percell", "0"), ("colexec", "1")):
+                    os.environ["A1_COLEXEC"] = flag
+                    try:
+                        o2, _ = TV.run_toc_record(W, tab, cfg,
+                                                  state_fn=state_fn,
+                                                  solvers=solv,
+                                                  margin_floor=mm - dlt)
+                        done[arm] = float(o2["cert_worst"])
+                    except RuntimeError:
+                        done[arm] = None
+                    finally:
+                        os.environ.pop("A1_COLEXEC", None)
+                ok &= check("near-seam floor_lo: BOTH recorders "
+                            "complete (same flip side)",
+                            done["percell"] is not None
+                            and done["colexec"] is not None)
+                rows["seam"] = dict(min_margin=mm, delta=dlt,
+                                    raise_cell=cells, lo_done=done)
+        finally:
+            TV.M_NODES, TV.KNOT_XI = old
+            os.environ.pop("A1_COLEXEC", None)
+    art = os.path.join(HERE, "s25_spdb_m5c.json")
+    json.dump(rows, open(art, "w"), indent=1)
+    print("  artifact -> %s" % art)
+    return ok
+
+
+def mode_m6gate():
+    """M6 acceptance gate (S25-bis; user-ordered re-entry over
+    STOP-WHEN-MET — real improvement/generalization: batched FD rows
+    + the nonfinite-lane guard the sequential block never had):
+    (1) per-lane batched == sequential inside the FD-truncation-
+        derived band |dg| <= sqrt(EPS) * max(1, |g|_scale) — the
+        Hessian consumer's own step choice dH = sqrt(EPS)*scale
+        makes smaller deviations semantically invisible to the
+        measured quadratic (derived, not judged); bitwise reported;
+    (2) corrupted-lane control THROUGH vg_batch_rows: a doctored
+        batch NaN-ing lane k must be recovered from the sequential
+        compiled path BITWISE and counted (REQ-NONSTALL);
+    (3) O3.1 re-pass (version-change gate half; the closing suite
+        is the KAT half);
+    (4) timing row: sequential vs batched Hessian rows, the <= 8 s
+        defnoz target row = MEASURE M-E input."""
+    print("== [X-SPDB] M6 acceptance gate (vmapped FD rows vs "
+          "sequential) ==")
+    from adaptive_knot_optimize import grad_and_J as AK_gJ, \
+        o31_spot as AK_o31
+    tab, state_fn, solv, cfg, W = setup_instance()
+    W = np.asarray(W, float)
+    ok = True
+    old = (TV.M_NODES, TV.KNOT_XI)
+    TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
+    try:
+        out, plan = TV.run_toc_record(W, tab, cfg, state_fn=state_fn,
+                                      solvers=solv)
+        ok &= check("record certified (worst %.3e)"
+                    % out["cert_worst"], out["cert_worst"] <= 1.0)
+        runj = TV.make_run_toc_scan_jit(tab, cfg, plan,
+                                        state_fn=state_fn,
+                                        solvers=solv)
+
+        def scalar_J(Wv):
+            return -TV.thrust_J(runj(Wv), tab, state_fn=state_fn)
+
+        val_grad = jax.jit(jax.value_and_grad(scalar_J))
+        runvgb = TV.make_run_toc_scan_jit(tab, cfg, plan,
+                                          state_fn=state_fn,
+                                          solvers=solv, vg_batch=True)
+        n = len(W)
+        dHs = np.array([DT.EPS ** 0.5 * max(abs(W[j]), 1.0)
+                        for j in range(n)])
+        P = np.repeat(W[None, :], n, axis=0)
+        P[np.arange(n), np.arange(n)] += dHs
+        # sequential reference (n rows + base = the n+1 block)
+        val_grad(jnp.asarray(W))              # warm
+        t0 = time.perf_counter()
+        vs_seq, gs_seq = [], []
+        for j in range(n):
+            v, g = val_grad(jnp.asarray(P[j]))
+            vs_seq.append(float(v))
+            gs_seq.append(np.asarray(g))
+        val_grad(jnp.asarray(W))
+        t_seq = time.perf_counter() - t0
+        gs_seq = np.stack(gs_seq)
+        # batched (warm once; timing on the warm dispatch)
+        TV.vg_batch_rows(runvgb, val_grad, P)
+        t0 = time.perf_counter()
+        vs_b, gs_b = TV.vg_batch_rows(runvgb, val_grad, P)
+        val_grad(jnp.asarray(W))
+        t_bat = time.perf_counter() - t0
+        g_scale = max(1.0, float(np.max(np.abs(gs_seq))))
+        band = DT.EPS ** 0.5 * g_scale
+        dev = float(np.max(np.abs(gs_b - gs_seq)))
+        devv = float(np.max(np.abs(np.asarray(vs_seq) - vs_b)))
+        ok &= check("per-lane batched == sequential inside the FD-"
+                    "truncation band (grad dev %.3e, val dev %.3e <= "
+                    "%.3e; bitwise = %s)"
+                    % (dev, devv, band,
+                       bool(np.array_equal(gs_b, gs_seq))),
+                    dev <= band and devv <= band)
+        # corrupted-lane control through the driver's own helper
+        K_L = 3
+
+        def doct_vgb(Wm):
+            vs, gs = runvgb(Wm)
+            vs = np.asarray(vs).copy()
+            gs = np.asarray(gs).copy()
+            gs[K_L] = np.nan
+            return vs, gs
+
+        cnt = dict(hess_lane=0)
+        vs_c, gs_c = TV.vg_batch_rows(doct_vgb, val_grad, P, cnt)
+        ok &= check("corrupted-lane control: lane %d recovered from "
+                    "the sequential path BITWISE + counted (%d)"
+                    % (K_L, cnt["hess_lane"]),
+                    cnt["hess_lane"] == 1
+                    and bool(np.array_equal(gs_c[K_L], gs_seq[K_L])))
+        J_w, g_w, scalJ = AK_gJ(W, None, tab, cfg, plan, state_fn,
+                                solv)
+        dp, tol = AK_o31(W, None, scalJ, g_w, J_w)
+        ok &= check("O3.1 re-pass through the args engine (%.3e <= "
+                    "%.3e)" % (dp, tol), dp <= tol)
+        met = t_bat <= 8.0
+        print("  Hessian rows (n=%d + base): sequential %.2f s -> "
+              "batched %.2f s (%.2fx); <= 8 s target row: %s "
+              "[MEASURE M-E input]"
+              % (n, t_seq, t_bat, t_seq / max(t_bat, 1e-9),
+                 "MET" if met else "NOT-MET"))
+        art = os.path.join(HERE, "s25_spdb_m6.json")
+        json.dump(dict(t_seq=t_seq, t_bat=t_bat, dev=dev, band=band,
+                       n=n, pycount=pycount()),
+                  open(art, "w"), indent=1)
+        print("  artifact -> %s" % art)
+    finally:
+        TV.M_NODES, TV.KNOT_XI = old
+    return ok
+
+
+def mode_h3gate():
+    """H3 acceptance gate (S25-bis, campaign rung-boundary dedup):
+    the SAME short walk with and without preplan=(out, plan) of the
+    start design. REQUIRES: bit-identical (W, J, n_segments) between
+    arms (the reuse is bitwise or nothing); the preplan arm consumes
+    the caller record as a memo hit (record_preplan == 1, fresh
+    exactly one less than the no-preplan arm, cached one more); the
+    M1 first-hit controls fire on the preplan consume (the H3
+    'bitwise on reuse' gate IS the existing fresh-equality +
+    perturbed-miss control pair); field_records=True carries cols in
+    last_cert and last_cert.W must equal the returned W bitwise."""
+    print("== [X-SPDB] H3 acceptance gate (preplan/rung-boundary "
+          "dedup, %d segments x %d iters) ==" % (GATE_SEGS, GATE_ITER))
+    DT.CASE["NI"] = int(os.environ.get("A1_SPDB_GATE_NI", "11"))
+    DT.CASE["Nw"] = int(os.environ.get("A1_SPDB_GATE_NW", "30"))
+    DT.CASE["da_deg"] = float(os.environ.get("A1_SPDB_GATE_DA", "1.0"))
+    print("  gate march net (declared): NI=%d Nw=%d da=%.2f deg"
+          % (DT.CASE["NI"], DT.CASE["Nw"], DT.CASE["da_deg"]))
+    tab, state_fn, solv, cfg, W0i = setup_instance()
+    yL = DT.CASE["yt"] * np.sqrt(DT.CASE["eps"])
+    from adaptive_knot_optimize import grad_and_J as AK_gJ, \
+        o31_spot as AK_o31
+    W = walk_start(tab, state_fn, solv, cfg, W0i)
+    old = (TV.M_NODES, TV.KNOT_XI)
+    TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
+    ok = True
+    try:
+        out0, plan0 = TV.run_toc_record(W, tab, cfg,
+                                        state_fn=state_fn,
+                                        solvers=solv)
+        if not check("gate start certified (worst %.3e)"
+                     % out0["cert_worst"], out0["cert_worst"] <= 1.0):
+            return False
+        J_w, g_w, scalJ_w = AK_gJ(W, None, tab, cfg, plan0,
+                                  state_fn, solv)
+        dp_o31, tol_dp = AK_o31(W, None, scalJ_w, g_w, J_w)
+        gtol = max(tol_dp, 1e-8 * float(np.linalg.norm(g_w)))
+        print("-- arm A: no preplan --")
+        t0 = time.perf_counter()
+        a = TV.run_trsqp(W, tab, cfg, yL, gtol=gtol, xtol=1e-10,
+                         max_segments=GATE_SEGS,
+                         maxiter_per_seg=GATE_ITER,
+                         state_fn=state_fn, solvers=solv, verbose=0)
+        ta_ = time.perf_counter() - t0
+        print("-- arm B: preplan + field_records --")
+        t0 = time.perf_counter()
+        b = TV.run_trsqp(W, tab, cfg, yL, gtol=gtol, xtol=1e-10,
+                         max_segments=GATE_SEGS,
+                         maxiter_per_seg=GATE_ITER,
+                         state_fn=state_fn, solvers=solv, verbose=0,
+                         preplan=(out0, plan0), field_records=True)
+        tb_ = time.perf_counter() - t0
+    finally:
+        TV.M_NODES, TV.KNOT_XI = old
+    ok &= check("bit-identical final W",
+                bool(np.array_equal(a["W"], b["W"])))
+    ok &= check("bit-identical J (%.10e vs %.10e)"
+                % (-a["res"].fun, -b["res"].fun),
+                float(a["res"].fun) == float(b["res"].fun))
+    ok &= check("same n_segments (%d vs %d)"
+                % (a["n_segments"], b["n_segments"]),
+                a["n_segments"] == b["n_segments"])
+    ra = (a["record_fresh"], a["record_cached"], a["record_failmemo"])
+    rb = (b["record_fresh"], b["record_cached"], b["record_failmemo"])
+    print("  records fresh/cached/failmemo: A %s -> B %s "
+          "(preplan A %d, B %d)" % (ra, rb, a["record_preplan"],
+                                    b["record_preplan"]))
+    ok &= check("preplan arm consumed the caller record "
+                "(record_preplan == 1)", b["record_preplan"] == 1)
+    ok &= check("one fresh record deleted (fresh B == fresh A - 1)",
+                rb[0] == ra[0] - 1)
+    ok &= check("consumed as a memo hit (cached B == cached A + 1)",
+                rb[1] == ra[1] + 1)
+    ok &= check("M1 first-hit controls fired in arm B",
+                b.get("memo_probe_pass", 0) >= 1
+                and b.get("memo_probe_miss", 0) >= 1)
+    lc = b.get("last_cert")
+    ok &= check("last_cert returned, bitwise at the returned W, "
+                "with cols (field_records)",
+                lc is not None
+                and bool(np.array_equal(np.asarray(lc["W"]), b["W"]))
+                and "cols" in lc["out"])
+    print("  walltime: A %.1f s -> B %.1f s" % (ta_, tb_))
+    art = os.path.join(HERE, "s25_spdb_h3.json")
+    json.dump(dict(a=dict(walltime_s=ta_, records=ra,
+                          n_segments=a["n_segments"]),
+                   b=dict(walltime_s=tb_, records=rb,
+                          preplan=b["record_preplan"],
+                          n_segments=b["n_segments"]),
+                   pycount=pycount()), open(art, "w"), indent=1)
+    print("  artifact -> %s" % art)
     return ok
 
 
@@ -628,6 +1059,12 @@ def main():
         ok = mode_m4gate()
     elif mode == "m5gate":
         ok = mode_m5gate()
+    elif mode == "m5cgate":
+        ok = mode_m5cgate()
+    elif mode == "h3gate":
+        ok = mode_h3gate()
+    elif mode == "m6gate":
+        ok = mode_m6gate()
     elif mode == "mbwalk":
         ok = mode_mbwalk()
     elif mode in ("ma", "mb", "mc", "md", "me"):

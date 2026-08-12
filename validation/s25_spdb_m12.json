@@ -1,6 +1,6 @@
 {
  "off": {
-  "walltime_s": 41.45669170003384,
+  "walltime_s": 38.14151149999816,
   "n_eval": 47,
   "records": [
    6,
@@ -10,7 +10,7 @@
   "n_segments": 3
  },
  "on": {
-  "walltime_s": 35.43387820001226,
+  "walltime_s": 35.199656199954916,
   "n_eval": 43,
   "records": [
    4,

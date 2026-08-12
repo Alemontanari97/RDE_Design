@@ -312,6 +312,9 @@ def invert_h(c1, ht):
     fixed N_NEWT_INV=8 literal is retired to the module constant
     for the R4 negative control only)."""
     T0 = jnp.interp(ht, c1["hg"], c1["Tg"])
+    # A5 fence (S25-bis, CONVERGED §4.4 half-nit): the N_NEWT_INV
+    # fallback serves ONLY pre-M3 packs (no K_NEWT key); every pack
+    # built by build_c1 since M3 carries its derived K_NEWT.
     K = int(c1.get("K_NEWT", N_NEWT_INV))
 
     def body(_, T):

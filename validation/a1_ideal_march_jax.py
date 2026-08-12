@@ -650,6 +650,49 @@ def predict_axis(pt1, ta, delta):
     return jnp.array([x4, u4])
 
 
+def _foot_t(pt, ta):
+    """Traced twin of _foot (M5c, S25-bis). DECLARED expression
+    divergence vs the host _foot: np.hypot/np.tan/np.arcsin on host
+    doubles vs the XLA lowerings of the same IEEE functions — ulp-
+    class seed differences are expected and adjudicated by the M5c
+    gate (dec-vector bitwise + z inside the driver's Newton-floor
+    band; any DECISION difference rejects the lever)."""
+    x, y, u, v = pt[0], pt[1], pt[2], pt[3]
+    q = jnp.hypot(u, v)
+    A = jnp.arctan2(v, u)
+    _, _, _, c, _, M = state_q(q, ta)
+    mu = jnp.arcsin(jnp.minimum(1.0, 1.0 / M))
+    return x, y, u, v, c, A, mu
+
+
+def predict_interior_t(pt1, pt2, ta, delta):
+    """Traced twin of predict_interior (M5c per-column executor,
+    S25-bis): the SAME GENO Ch.16 foot-state predictor expressions,
+    traceable so the per-column compiled chain keeps its seeds
+    in-trace (advisory M5c 'in-trace seeds'). The y2 == 0 GENO guard
+    becomes a double-where (guarded denominator, then select) so the
+    unselected 0/0 lane never materializes a NaN."""
+    x1, y1, u1, v1, c1, A1, m1 = _foot_t(pt1, ta)
+    x2, y2, u2, v2, c2, A2, m2 = _foot_t(pt2, ta)
+    lm = jnp.tan(A1 - m1)
+    lp = jnp.tan(A2 + m2)
+    x4 = (y1 - y2 - lm * x1 + lp * x2) / (lp - lm)
+    y4 = y1 + lm * (x4 - x1)
+    qm = u1 * u1 - c1 * c1
+    rm = 2 * u1 * v1 - qm * lm
+    sm = delta * c1 * c1 * v1 / y1
+    qp = u2 * u2 - c2 * c2
+    rp = 2 * u2 * v2 - qp * lp
+    y2s = jnp.where(y2 == 0.0, 1.0, y2)          # guarded denominator
+    sp = delta * c2 * c2 * jnp.where(y2 == 0.0, v1 / y1, v2 / y2s)
+    tm = sm * (x4 - x1) + qm * u1 + rm * v1
+    tp = sp * (x4 - x2) + qp * u2 + rp * v2
+    den = qm * rp - qp * rm
+    u4 = (tm * rp - tp * rm) / den
+    v4 = (qm * tp - qp * tm) / den
+    return jnp.array([x4, y4, u4, v4])
+
+
 def predict_wall(pt1, pt3, x4, y4, slope, ta, delta):
     x1, y1, u1, v1, _, _, _ = _foot(pt1, ta)
     x3, y3, u3, v3, c3, A3, m3 = _foot(pt3, ta)
@@ -707,7 +750,9 @@ _SOLVERS = {}
 
 
 def get_solver(key, factory):
-    """Returns (solve, newton, step_norm), compiled once per key."""
+    """Returns the make_implicit_solver 4-tuple (solve, newton,
+    step_norm, solve_cert), compiled once per key (NOTE-5 docstring
+    repair, S25-bis: the tuple gained the fused M5a entry)."""
     if key not in _SOLVERS:
         _SOLVERS[key] = make_implicit_solver(factory())
     return _SOLVERS[key]

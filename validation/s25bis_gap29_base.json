@@ -1,0 +1,16 @@
+{
+ "arm": "base",
+ "ntf": 100.0,
+ "cfloor": 8.0,
+ "cops": 100.0,
+ "c1_build": "PASS",
+ "k_newt": 2,
+ "cert_worst": 0.7011026275409529,
+ "cert_verdict": "PASS",
+ "replay_dev": 4.547473508864641e-12,
+ "replay_band": 6.524455668651979e-10,
+ "replay_verdict": "PASS",
+ "o31_dp": 0.010624506554449908,
+ "o31_tol": 0.07646234499018467,
+ "o31_verdict": "PASS"
+}
