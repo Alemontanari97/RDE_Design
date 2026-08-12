@@ -88,7 +88,9 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xiii) rigor carriers (symbolic, fast ten)',
          'test_rigor_carriers'),
         ('(xv)  claims registry lint', 'test_claims_lint'),
-        ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs')]
+        ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs'),
+        ('(xix) findings registry lint (R31)',
+         'test_findings_registry')]
 RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]',
           'test_rigor_dualroute'),
          ('(xviii) X-IVXC interval certificate [rigor tier]',

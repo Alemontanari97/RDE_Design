@@ -1,0 +1,157 @@
+# FINDINGS REGISTRY — findings-as-code (census R31, user directive
+# 2026-08-12; lint = tests/test_findings_registry.py, group (xix)).
+# One typed entry per finding/gap/conditional OF RECORD: id slug,
+# status (CONFIRMED/DOWNGRADED = OPEN, owner+trigger required;
+# DISCHARGED/REFUTED/SUPERSEDED = CLOSED, evidence required),
+# severity, magnitude-of-record, source doc#anchor (must resolve),
+# code dedup keys path:l1-l2 (TWO OPEN entries overlapping one span
+# = machine violation), mechanism tag.
+#
+# DEMONSTRATOR CASE (why this registry exists — cited of record):
+# the throat-panel sliver below was CONFIRMED by the 2026-08-07
+# audit, RE-MINTED as "[NEW]" by the S25 pipeline-sense math review
+# with a CONTRADICTED magnitude, and caught only by the refuter's
+# dedup clause (ADVISORY_S25_pipeline_sense_CONVERGED §1). With this
+# registry that re-mint is a lint violation, not an agent-discipline
+# hope.
+#
+# SEEDING STATUS (declared): initial seed = the demonstrator + the
+# rows touched/settled in S25/S25-bis, hand-verified. The FULL
+# corpus seeding (audit 94 rows, gap-map 36/16/10, choice ledger 45,
+# refuter/red-team S25) is the NAMED first duty of the next session
+# (mechanical find->verify extraction, low-effort agents; owner
+# explicit, never generic).
+entries:
+- id: variational-driver:objective-omits-throat-panel
+  status: CONFIRMED
+  severity: medium
+  magnitude: "gradient axis GOVERNS: d(DJ)/dthB = 5.36e3 J-units/rad vs O3 acceptance 9.3 (5.8e2x, robust <=6x Dv caveat); value axis 1.0767e-4*p_t = O(da^2), Richardson-scoped, F7-cancelling => no recorded verdict moves"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#THE MERGED SLIVER ROW"
+  code: ["validation/a1_toc_variational_jax.py:516-522", "validation/a1_toc_variational_jax.py:1130-1137"]
+  mechanism: correlated-error
+  owner: "[OBJ-DOM] objective-domain adjudication, F2 entry (fix-A theta=0 station vs fix-B declare coded J + scope value/gradient/Pa)"
+  trigger: "first F2 verdict consuming dJ/dthB AND before the R2 delta-carrier ships; discharge test = the audit's analytic throat-panel A/B"
+  note: "THE demonstrator: audit-CONFIRMED 2026-08-07, re-minted by the S25 math review with contradicted magnitude, caught by the refuter dedup clause"
+- id: engine-core:F5-underived-factors
+  status: CONFIRMED
+  severity: medium
+  magnitude: "GAP-29 sweep EXECUTED S25-bis (s25bis_gap29_sweep.json): 1 FLIP of record — NEWTON_TOL_FACTOR/2 flips cert_verdict (factor-2 margin LOAD-BEARING, derivation duty live); C_FLOOR/2 and C_OPS/2 no-flip (>= 2x measured headroom on c1-build/cert/replay/O3.1 rows)"
+  source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F5-underived-factors"
+  code: ["validation/a1_ideal_march_jax.py:195-205"]
+  mechanism: underived-constant
+  owner: "F2 (derivation paragraph or reclassification per flip row; gap-map C18 placement)"
+  trigger: "F2 engine rebuild window; any sweep flip row = immediate derivation duty"
+- id: parametrization:natural-BC-lip-bias
+  status: CONFIRMED
+  severity: high
+  magnitude: "GAP-5 notaknot-twin EXECUTED S25-bis (s25bis_notaknot_twin.json): corner mismatch 6.629e-2 -> 1.166e-2 (r=1, -82%) / 6.637e-2 -> 9.775e-3 (r=2) — the natural BC accounts for the bulk of the S19 corner residual of record; lip-state (cd) shift 8.2% = the mechanism datum; baseline reproduces the S19 figure to 5 digits"
+  source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-5"
+  code: ["validation/a1_toc_variational_jax.py:133-152"]
+  mechanism: design-class-bias
+  owner: "F2 consequence adjudication (incumbent BC untouched until the twin discriminates)"
+  trigger: "F2 entry / first verdict leaning on the lip-node gradient"
+- id: margin-governor:G1-three-jump-channels
+  status: CONFIRMED
+  severity: medium
+  magnitude: "margin jumps K_RICH*m_ref/n_act per lane crossing finite/nonfinite; three channels one origin (frac_bad, ks_part subset, n_fin->0 switch); continuity only at frac_bad = 0"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#[G1-DISC]"
+  code: ["validation/margin_governor.py:175-201"]
+  mechanism: modeled-discontinuity
+  owner: "F2, GAP-27/GAP-1 window; ONE declaration clause in the [X-MGOV] surrogate declaration covering all three channels"
+  trigger: "owed independently of GAP-1 outcome (G1 keeps its REQ-NONSTALL duty under the governor re-scoping)"
+- id: thermotab:C-A-edge-stencil
+  status: DISCHARGED
+  severity: low
+  magnitude: "edge rows 2.8-4.6 orders below every C-A band at N_TAB 8192; band-breaking only at N_TAB ~ 220-300; failure direction conservative"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#CAV-1"
+  code: ["validation/thermotab_c1_jax.py:534-546"]
+  mechanism: stencil-order-scope
+  evidence: "scoping line at source (S25 addendum ad5c48e) + refuter independent sizing ratified by the CONVERGED verdict"
+- id: thermotab:R6-flip-formula
+  status: DISCHARGED
+  severity: low
+  magnitude: "exact flip condition eps > fr/i (i=0 never flips); fr/(i+fr) = first-order approximation, verdict-neutral at n=8192 (deciding probe i~8190, discrepancy 1e-4)"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#R6 exactness"
+  code: ["validation/thermotab_c1_jax.py:668-678"]
+  mechanism: approximation-mislabel
+  evidence: "exact-condition comment at source + [X-THC1] re-run EXIT 0 (S25 addendum, verdict-neutral +1 disagreement as predicted)"
+- id: test-suite:ondemand-carrier-exclusion
+  status: DISCHARGED
+  severity: high
+  magnitude: "17 on-demand carriers excluded from every CI tier by a scope-substring bypass"
+  source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:ondemand-carrier-exclusion"
+  code: ["tests/test_ondemand_carriers.py:1-40"]
+  mechanism: rejector-weakness
+  evidence: "C4 closure commit 32459ca: typed ondemand field + git-backed staleness link (4th seeded rejector) + registry-driven ONDEMAND tier; suite 19/19"
+- id: test-suite:numeric-lint-scope-hole
+  status: CONFIRMED
+  severity: medium
+  magnitude: "validation/ scope measured S25-bis: 33 files, 621 non-trivial unclassified literals; CHANNEL closed by the ratchet tier (new literals rejected per-file), classification = the open remainder"
+  source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:numeric-lint-scope-hole"
+  code: ["tests/test_numeric_lint.py:160-230"]
+  mechanism: underived-constant
+  owner: "F2-entry hygiene window: per-file classification of the baselined 621 (ratchet baseline = validation/numeric_lint_baseline_validation.json)"
+  trigger: "F2 entry; any file touched for content classifies its own literals in the same window"
+- id: conditional:filelock-lru-cap
+  status: CONFIRMED
+  severity: low
+  magnitude: "jax 0.11 refuses EVERY persistent-cache read when jax_compilation_cache_max_size is set without filelock (verified live S25); cache dir unbounded since S18 meanwhile"
+  source: "docs/rde_nozzle_PROGRESS.md#filelock"
+  code: ["validation/a1_ideal_march_jax.py:150-167"]
+  mechanism: dependency-conditional
+  owner: "user env decision at a session boundary (BLOCCATO 8; adoption-with-rejector class O5)"
+  trigger: "user ratifies adding the pure-python filelock dependency to the pinned env"
+- id: conditional:P-TRFLOOR
+  status: CONFIRMED
+  severity: low
+  magnitude: "none-measured (inputs forfeited by the S24 pre-8761dce kill)"
+  source: "docs/rde_nozzle_PROGRESS.md#P-TRFLOOR"
+  code: []
+  mechanism: blocked-with-named-cause
+  owner: "TR-floor derivation panel"
+  trigger: "first post-8761dce decisive campaign artifact (ART_CAMP partial log)"
+- id: pipeline:delta-carrier-F2-entry
+  status: CONFIRMED
+  severity: medium
+  magnitude: "no delta row exists at any engine-rung Verdict (grep-verified by both passes); delta semantics of record = distance to the L-unconstrained fixed-eps ceiling"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#Delta carrier"
+  code: []
+  mechanism: missing-carrier
+  owner: "F2 entry: (value, delta) Verdict field + fixed-exit-area relaxation lemma to M0 with rigor class"
+  trigger: "sequenced with/after [OBJ-DOM]; ships only with the sliver banded or repaired"
+- id: pipeline:Q3-certifiability-composition
+  status: CONFIRMED
+  severity: medium
+  magnitude: "none-measured (genuinely unposed: K(xi) intersections, xi-indexed margin buckets, xi-dependent crossing index, branch gradients under xi-dependent plan topology)"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#Q3"
+  code: []
+  mechanism: unposed-composition
+  owner: "F5 entry (pre-F5 obligation; T3-CONTROL is physics-side and does not cover it)"
+  trigger: "before the first genuinely averaged shape problem (PB-2 class)"
+- id: record-path:cert-verdict-recorder-dependence
+  status: CONFIRMED
+  severity: medium
+  magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25)"
+  source: "validation/a1_toc_variational_jax.py#MEASURED PROPERTY OF RECORD"
+  code: ["validation/a1_toc_variational_jax.py:255-330"]
+  mechanism: seed-noise-at-marginal-cell
+  owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it"
+  trigger: "any future consumer comparing certifications across recorders"
+- id: engine:vmap-hessian-adjoint-divergence
+  status: CONFIRMED
+  severity: medium
+  magnitude: "m6gate REJECTION of record (2026-08-12, s25_spdb_m6.json + s25bis_m6diag): vmapped value_and_grad through the replay diverges 5.6e-8 REL on the gradient vs the sequential path (values bitwise-class) -> measured dH = 18% of the Hessian scale = 5-6x the FD scheme's own asymmetry error; NOT FD-Hessian-grade; 2.14x speed measured but block already 4.5-7 s <= 8 target sequentially"
+  source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#M6"
+  code: ["validation/a1_toc_variational_jax.py:1265-1290"]
+  mechanism: batched-adjoint-divergence
+  owner: "F2 re-adjudication candidate (routes: divergence-source isolation in the batched 4x4 linalg adjoint; jacfwd = conditional N5); sequential default of record, candidate opt-in via A1_VMAP_HESS=1; the nonfinite-lane guard SHIPPED on the sequential path regardless"
+  trigger: "n growth at F2 making the Hessian block dominant, or any consumer needing batched gradients at FD-Hessian grade"
+- id: cell-cert:val-diag-starvation-twin
+  status: CONFIRMED
+  severity: low
+  magnitude: "none-measured (steering-quality, not verdict-bearing; KAT-3 twin absent)"
+  source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-30"
+  code: []
+  mechanism: test-family-gap
+  owner: "next open window (S25-cheap class) + M0 one-liner for the _chain_ratios prefix-exactness lemma"
+  trigger: "first session touching cert_diag/val_diag machinery"

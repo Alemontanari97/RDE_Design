@@ -20,6 +20,24 @@ Scope: src/**/*.py except src/style.py (pure presentation constants).
 Strings/docstrings are never scanned; -x parses as USub(x) so signs are
 structural; booleans are excluded.
 
+VALIDATION RATCHET TIER (R28, S25-bis — closes the audit row
+test-suite:numeric-lint-scope-hole as a CHANNEL): validation/**/*.py
+was never scanned — the machine channel that would have rejected the
+retired literals (N_NEWT_INV=8 class). Full classification of the
+measured legacy debt (621 non-trivial literals across 33 files,
+2026-08-12) is NOT faked here: the tier enforces a PER-FILE RATCHET
+against validation/numeric_lint_baseline_validation.json — a file
+whose unlisted-literal count EXCEEDS its frozen baseline FAILS (a new
+magic number cannot enter validation/ silently), a file BELOW its
+baseline FAILS TOO until the baseline is ratcheted down (the baseline
+always equals reality, never loosens silently), and an unbaselined
+file with literals FAILS outright. DECLARED LIMIT: within a constant
+count an edit could swap one literal for another — the ratchet is a
+channel guard, not a classification; per-file classification is the
+named F2-entry hygiene duty (findings registry row
+test-suite:numeric-lint-scope-hole). A seeded rejector (in-memory
+count bump) proves the ratchet fires every run.
+
 Usage:
     python tests/test_numeric_lint.py               # lint (suite mode)
     python tests/test_numeric_lint.py --inventory   # JSON skeleton of every
@@ -136,6 +154,55 @@ def inventory():
           % (len(out), sum(len(v) for v in out.values())))
 
 
+VAL_BASELINE = os.path.join(ROOT, 'validation',
+                            'numeric_lint_baseline_validation.json')
+VAL_DIR = os.path.join(ROOT, 'validation')
+VAL_SKIP_DIRS = ('sota_gapmap',)          # advisory raws, not code
+
+
+def iter_validation_scope():
+    for dirpath, dirs, files in os.walk(VAL_DIR):
+        dirs[:] = [d for d in dirs
+                   if not any(d.startswith(s) for s in VAL_SKIP_DIRS)]
+        for f in sorted(files):
+            if f.endswith('.py'):
+                full = os.path.join(dirpath, f)
+                rel = os.path.relpath(full, ROOT).replace(os.sep, '/')
+                yield rel, full
+
+
+def validation_counts():
+    """Per-file count of non-trivial literals in validation/ (no
+    allowlist yet — the ratchet baseline IS the declared debt)."""
+    return {rel: sum(1 for _ in scan_file(full, {}))
+            for rel, full in iter_validation_scope()}
+
+
+def ratchet_check(counts, baseline):
+    """Return violation strings for the per-file ratchet."""
+    v = []
+    for rel, n in sorted(counts.items()):
+        b = baseline.get(rel)
+        if b is None:
+            if n:
+                v.append('NEW FILE %s: %d unclassified literals and '
+                         'no baseline row — classify them or add the '
+                         'measured row' % (rel, n))
+        elif n > b:
+            v.append('RATCHET %s: %d literals > baseline %d — a new '
+                     'magic number entered validation/ (classify it '
+                     'or derive it; never bump the baseline for new '
+                     'entries)' % (rel, n, b))
+        elif n < b:
+            v.append('RATCHET %s: %d literals < baseline %d — '
+                     'progress! ratchet the baseline DOWN to %d '
+                     '(it must always equal reality)'
+                     % (rel, n, b, n))
+    for rel in sorted(set(baseline) - set(counts)):
+        v.append('BASELINE row %s has no file — remove it' % rel)
+    return v
+
+
 def run():
     violations, bad = lint()
     for rel, ln, v in violations[:40]:
@@ -149,7 +216,35 @@ def run():
     print('  %-52s %s (%d files scanned, %d unlisted, %d malformed)'
           % ('numeric lint: src/ literals all classified',
              'PASS' if ok else 'FAIL', nfiles, len(violations), len(bad)))
-    return ok
+    # R28 validation ratchet tier
+    try:
+        with open(VAL_BASELINE, encoding='utf-8') as f:
+            baseline = json.load(f)['files']
+    except (OSError, KeyError, ValueError) as e:
+        print('  RATCHET baseline unreadable (%s) — tier FAIL' % e)
+        return False
+    counts = validation_counts()
+    rv = ratchet_check(counts, baseline)
+    for msg in rv[:40]:
+        print('  ' + msg)
+    # seeded rejector: an in-memory +1 bump on a real file MUST fire
+    seed_ok = False
+    if counts:
+        rel0 = sorted(counts)[0]
+        bumped = dict(counts)
+        bumped[rel0] += 1
+        seed_ok = any(msg.startswith('RATCHET %s' % rel0)
+                      for msg in ratchet_check(bumped, baseline))
+    print('  seeded rejector [ratchet +1 bump]: %s'
+          % ('REJECTED (as required)' if seed_ok
+             else 'NOT REJECTED — ratchet broken'))
+    ok_r = not rv and seed_ok
+    print('  %-52s %s (%d files, %d literal-debt baselined, '
+          '%d ratchet violations)'
+          % ('numeric lint: validation/ ratchet tier (R28)',
+             'PASS' if ok_r else 'FAIL', len(counts),
+             sum(counts.values()), len(rv)))
+    return ok and ok_r
 
 
 if __name__ == '__main__':
