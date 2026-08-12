@@ -1052,8 +1052,20 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     costs ONE extra record per walk (structural, not counted in the
     reconciliation counters); wall-clock-capped campaigns may
     disable it per stage via A1_MEMO_PROBE=0 after their first
-    covered stage. Legacy paths stay runnable via A1_RECORD_MEMO=0 /
-    A1_VG_MEMO=0 (arbitration).
+    covered stage. DECLARED text divergence (refuter F3 scoping):
+    a memo-replayed failure carries the CALLBACK's message text plus
+    the "[replayed callback record failure, M1 memo]" suffix in
+    rejected_designs[].error and the revert rows — informative by
+    design, NOT bit-identical to the legacy fresh-raise text (the
+    numeric trajectory is; the m12gate A/B gates W/J/segments, not
+    message strings). M2 memo negative-control coverage (refuter F6
+    registration): the _vg/_mvg one-slot memos carry NO in-driver
+    first-hit probe BY DESIGN — the [X-SPDB] m12gate A/B
+    (bit-identity + honest-n_eval reconciliation + dedup-hit count)
+    is the DECLARED superseding control; the key mechanism (content
+    bytes) is shared with the record memo, whose probe IS in-driver.
+    Legacy paths stay runnable via A1_RECORD_MEMO=0 / A1_VG_MEMO=0
+    (arbitration).
 
     margin_factory (S22, F1 governor — the A' FORMULATION entry, not
     driver surgery: the optimization problem gains the margin
@@ -1174,14 +1186,20 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                             and [(c["N"], c["Nv"]) for c in p2["arc"]]
                             == [(c["N"], c["Nv"])
                                 for c in plan["arc"]])
-                    assert same, ("M1 memo control: cached record != "
-                                  "fresh re-record at the same W — "
-                                  "determinism contradiction, "
-                                  "surfaced loudly")
+                    # refuter repair m12-F11: explicit raises, never
+                    # `assert` (stripped under python -O => the probe
+                    # counters would over-claim silently)
+                    if not same:
+                        raise AssertionError(
+                            "M1 memo control: cached record != fresh "
+                            "re-record at the same W — determinism "
+                            "contradiction, surfaced loudly")
                     Wp_ = W.copy()
                     Wp_[0] = np.nextafter(Wp_[0], np.inf)
-                    assert _mkey(Wp_) != key, \
-                        "M1 memo control: perturbed-W key collision"
+                    if _mkey(Wp_) == key:
+                        raise AssertionError(
+                            "M1 memo control: perturbed-W key "
+                            "collision")
                     probe["eq"] += 1
                     probe["miss"] += 1
                     print("  [memo] first-hit controls: fresh-record "
@@ -1865,8 +1883,17 @@ def main():
         t0 = time.perf_counter()
         jax.block_until_ready(gjit(Wj))
         t_grad = time.perf_counter() - t0
+        # refuter repair m12-F8: the T2 lhs prices evals at the wall
+        # of ONE value_and_grad — time THAT compiled object (the one
+        # the walk actually executes), not the grad-only twin.
+        vgjit = jax.jit(jax.value_and_grad(scalar_J))
+        jax.block_until_ready(vgjit(Wj)[1])      # compile
+        t0 = time.perf_counter()
+        jax.block_until_ready(vgjit(Wj)[1])
+        t_vg = time.perf_counter() - t0
         print("  per-eval (jit, this case): t_solve = %.3f s, "
-              "t_grad = %.3f s" % (t_solve, t_grad))
+              "t_grad = %.3f s, t_value_and_grad = %.3f s"
+              % (t_solve, t_grad, t_vg))
         t_opt = time.perf_counter()
         opt = run_trsqp(Wp, tab, cfg, yL, gtol=gtol, xtol=xtol,
                         state_fn=state_c1, solvers=solv_c1, verbose=2)
@@ -1970,13 +1997,13 @@ def main():
         # (t_grad IS the measured whole value_and_grad wall); the
         # legacy double-priced figure is printed alongside for the
         # ledger continuity of the review.
-        lhs_T2 = opt["n_eval"] * t_grad
+        lhs_T2 = opt["n_eval"] * t_vg
         rhs_T2 = 4.0 * t_g2                       # K_prac (X-LSG0)
         print("  [T2] N_exec x t_value_and_grad = %d x %.3f s = "
               "%.1f s  <=  K_prac x t_GENO_type2 = 4 x %.3f s = "
               "%.1f s  [GENO log: %d outer iters, %d inner marches; "
               "legacy double-priced figure %.1f s, dedup hits %d]"
-              % (opt["n_eval"], t_grad, lhs_T2, t_g2,
+              % (opt["n_eval"], t_vg, lhs_T2, t_g2,
                  rhs_T2, n_outer, n_inner,
                  opt["n_eval"] * (t_solve + t_grad),
                  opt.get("n_eval_dedup_hits", 0)))

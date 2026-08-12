@@ -474,3 +474,76 @@ closure accelerates the in-suite carriers too (CJ 257.2 -> 83.9 s,
 X-IVXC 577.1 -> 80.4 s, live examples 672.4 -> 107.6 s, dual-route
 293.5 -> 34.6 s; suite-level 5.8x). ONDEMAND tier: 1 executed
 (X-VMON PASS), 17 accounted, 0 stale (18 rows incl. X-SPDB).
+
+## POST-CLOSURE ADDENDUM (same day — the convergence window; user
+## orders executed: reviews brought TO CONVERGENCE, orchestration
+## weight SOTA, nothing resolvable left open; micro-commit = this)
+
+USER DIRECTIVES REGISTERED (memories + operationalized in-window):
+pipeline-sense-expert-review 3-bis (one-pass reviews = INTERIM,
+convergence MANDATORY), orchestration-weight-sota (right-size,
+merge, resume-not-relaunch, no ritual rounds, weight reported),
+findings-as-code (census R31 + S25-bis T5-bis — the measured
+re-mint case is the demonstrator).
+
+CONVERGENCE OF RECORD (Form-2 round 1, CONVERGED — instrument
+shape: 2 expert reviews + 2 dedicated refuters + 1 FUSED judge +
+Form-3 red-team on the gap-map judge + inline Form-3 on the fused
+judge; 3 layers x 1 round):
+- ADVISORY_S25_pipeline_sense_math / _impl_fidelity (one-pass) ->
+  refuted -> ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md =
+  the verdict of record. IMPL: 0 MISMATCH / 11 faithful / 2 caveat
+  RATIFIED by two independent passes (quintic basis 36/36, IFT
+  signs, spline rows, KS/(G) symbol-identical, derived-K bound
+  math). MATH: R1-R3 adopted REFUTER-WEAKENED (R1 "no
+  conjecture-with-falsifier" FALSE at the letter vs [C-EQV2];
+  survives = the narrower argmax->(P_t) continuum gap the record
+  itself registers); R4 REFUTED-as-filed, replaced by the adopted
+  partition (4 on-axis {GAP-2,27,13,19} + 4 coupled {GAP-4,15,16,
+  17} + 4 R5-hygiene exclusions {GAP-12,14,31,33}).
+- THE SLIVER: ONE fused object == the REGISTERED audit row
+  variational-driver:objective-omits-throat-panel (CONFIRMED
+  2026-08-07) — [NEW] flag DELETED, folded as discharge-priors,
+  severity MEDIUM inherited; MAGNITUDE RESOLVED with exact
+  arithmetic (gradient row 5.36e3 J/rad vs O3 acceptance 9.3 =
+  5.8e2x above, robust <=6x to the Dv caveat; value row
+  1.0767e-4*p_t; exact bridge d(DJ)/dthB = (2/thB)*DJ verified
+  9.964 = 9.964): THE AUDIT'S GRADIENT-AXIS MAGNITUDE GOVERNS, the
+  math expert's "below every band" REFUTED as the governing
+  comparison (survives only on the value axis, Richardson-scoped,
+  F7-cancelling => NO recorded verdict moves today). OPEN-with-
+  owner: [OBJ-DOM] objective-domain adjudication -> F2-entry
+  (trigger: first F2 verdict consuming dJ/dthB, and BEFORE the
+  delta-carrier ships); delta-carrier (value, delta) with the
+  fixed-exit-area relaxation lemma -> F2-entry; [G1-DISC] G1
+  three-jump-channel clause -> F2 (GAP-27/GAP-1 window); Q3(a-c)
+  cert-side composition -> F5-entry; IVL-discipline row in M0-VI ->
+  F5/P-3 window.
+- GAP-MAP REPAIRS: red-team FINAL = ABSORB-WITH-REPAIRS (2H/3M/4L;
+  16 verdict rows; counts 47/26-18-3/36/16/10 ALL reconciled;
+  15/16 coverage pointers real; root cause of both HIGHs = the
+  judge consumed the INTERRUPTED driver draft) -> 7/7 repairs
+  APPLIED in-document [S25-REPAIR]: AC10/C32 un-reasserted (S1
+  "quasi-Newton OUT by policy" IS of record), GAP-18 back to
+  DOWNGRADED-owned-by-N6 + [P-FLIPMAT] DE-REGISTERED, ledger
+  reading recounted (5 decided + 3 mixed / 12 / 25; PROGRESS R25
+  echo corrected), C4 -> survey-decision, Q11 quarantine row added.
+- MICRO-REPAIRS APPLIED AT SOURCE (all four + two): m12-F8 (T2 lhs
+  now priced on a DEDICATED value_and_grad timing t_vg — the walk's
+  actual compiled object), m12-F11 (probe asserts -> explicit
+  raises, python -O-proof), m12-F3 + m12-F6 (declared-divergence
+  and control-supersession registered in the run_trsqp docstring),
+  R6 EXACT flip condition (eps > fr/i, i=0 never flips — the
+  fr/(i+fr) first-order form retired; [X-THC1] gate re-run EXIT 0,
+  verdict-neutral +1 disagreement as predicted), C-A EDGE-STENCIL
+  SCOPING line (2nd-order edge rows sized 2.8-4.6 orders below
+  band at N_TAB 8192; band-breaking only at ~220-300 — claim scoped
+  to interior rows).
+- The red-team agent STALL (waiting on its own sub-agents) was
+  caught by USER skepticism + disk verification and repaired by
+  resume-from-transcript with a finish-inline order — the S24
+  workflow-silence lesson, replayed and honored.
+NOTHING RESOLVABLE LEFT OPEN in this window; every remaining row is
+OPEN-with-owner+trigger of record. S25-bis prompt UPDATED
+(ADVISORY_S25bis_prompt_2026-08-12.md: convergence package marked
+landed, T5-bis R31 added).

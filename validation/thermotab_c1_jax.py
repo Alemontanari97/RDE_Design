@@ -530,6 +530,16 @@ def main():
     # roundoff floor; s0 carries the ln T term => derived quintic-
     # Hermite remainder band |s0^(6)| D^6/46080 (s0^(6) = 120 Rg a1
     # / T^6) + roundoff.
+    # SCOPING OF RECORD (S25 convergence, pipeline-impl review +
+    # refuter, judge-adopted): the 4 EDGE nodes carry 2nd-order cp'
+    # stencils (d_dT_table one-sided rows) whose O(dT^4 cp''')
+    # error is NOT zero on the in-window quartic — sized 2.8-4.6
+    # ORDERS below this oracle's bands at N_TAB = 8192
+    # (conservative direction; would become band-breaking only at
+    # N_TAB ~ 220-300). The "exact re-representation" claim is
+    # hereby SCOPED to the interior stencil rows; the edge rows are
+    # covered by the measured margin, re-derived per table by these
+    # very bands.
     print("-- C-A: NASA-direct exactness oracle (in-window, "
           "off-node) --")
     a_bl, mixM_bl = A1.blend_nasa(tab_n["_sp"], tab_n["_x"])
@@ -654,16 +664,20 @@ def main():
     # the far end exceeds the probes' distance to the interval
     # boundary — epsD is DERIVED from the measured probe geometry,
     # never a literal).
-    # per-probe detectability: scaling D by (1+epsD) shifts probe k
-    # (at interval i_k, fraction fr_k) DOWN by epsD*(i_k+fr_k)
-    # intervals — it flips iff epsD > fr_k/(i_k+fr_k). The DERIVED
-    # firing corruption = 2 x the MOST SENSITIVE probe's own floor
-    # (exact per-probe formula — the first sizing used the global
-    # boundary distance and ignored the fr<->i correlation of the
-    # probe set: caught by this control's own first FAIL, declared).
+    # per-probe detectability (EXACT condition, refuter correction of
+    # record s25_refute_pipeline_impl §A6): probe k at scaled
+    # position i_k + fr_k flips iff floor((i_k+fr_k)/(1+epsD)) < i_k,
+    # i.e. iff epsD > fr_k/i_k for i_k >= 1; the i = 0 probe can
+    # NEVER flip. (The previous fr_k/(i_k+fr_k) was the i >> fr
+    # first-order approximation — verdict-neutral at this n, but the
+    # exactness claim failed a one-line counterexample; corrected.
+    # History declared: sizing v1 used the global boundary distance
+    # and ignored the fr<->i correlation — caught by this control's
+    # own first FAIL, the S24 R-GRAD lesson.)
     fr_off = np.asarray((T_off - Tg_j[0]) / dT) % 1.0
     i_off = np.arange(n_g - 1, dtype=float)
-    sens = fr_off / (i_off + fr_off)
+    sens = np.where(i_off >= 1.0,
+                    fr_off / np.maximum(i_off, 1.0), np.inf)
     epsD = 2.0 * float(np.min(sens))
     i_bad6 = jnp.clip(jnp.floor((T_off - Tg_j[0])
                                 * (1.0 / (dT * (1.0 + epsD))))

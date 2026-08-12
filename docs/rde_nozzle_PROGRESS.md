@@ -224,8 +224,11 @@ consolidata a S24; solo le righe toccate + le nuove):
      NASA-direct nel carrier [X-THC1], stesso tocco M3 come da
      collocazione); C-B/C-C/C-D invariate (owner F2).
  R25 CHOICE LEDGER — **LEDGER-CARRIED**: l'annex C1-C45 del
-     gap-map E' il ledger di record (8 CONVERGED / 14 single-author
-     / 23 NEVER, ogni riga aperta con owner); delta S25: C4-suite
+     gap-map E' il ledger di record (lettura CORRETTA dal red-team
+     Form-3 [s25_redteam_gapmap_judge.md, riga MED]: ~5 CONVERGED +
+     3 misti / 12 single-author / 25 NEVER — la riga "8/14/23" del
+     documento e' inconciliabile con la sua stessa tabella e va
+     riparata nel documento; ogni riga aperta con owner); delta S25: C4-suite
      chiusa, C17-C18 sweep = GAP-29 (S25-bis), C23 = H1/M5b
      atterrata, C24 = C-A scaricata, C34 [P-TRFLOOR] =
      blocked-with-named-cause (input forfeited dal kill S24
@@ -255,6 +258,22 @@ consolidata a S24; solo le righe toccate + le nuove):
      tail-to-derive/persistenza (VINCOLANTI pre-campagna) + GAP-29
      + notaknot-twin + repairs red-team gap-map + R28 + MEASURE
      M-D/M-E = STOP CHECK con verdetto finale sul target segmento.
+ R31 FINDINGS-AS-CODE (direttiva utente 2026-08-12, post-chiusura
+     S25 — il re-mint MISURATO dello sliver [audit
+     variational-driver:objective-omits-throat-panel CONFIRMED
+     2026-08-07, ri-coniato dalla review pipeline S25 con
+     magnitudine CONTRADDETTA] e' il caso dimostrativo):
+     docs/findings_registry.yaml gemello del claims registry —
+     una entry per finding/gap/conditional (id = slug audit, status,
+     severita', magnitudine-di-record, doc#anchor, owner+trigger,
+     chiavi dedup file:line + tag meccanismo), lint macchina in (xv)
+     o gruppo proprio (anchor risolti, OPEN=>owner,
+     DISCHARGED=>evidenza, advisory nuovi registrano le righe, DUE
+     OPEN sullo stesso span = violazione), seeding dal corpus
+     (audit 94 + gap-map 36/16/10 + ledger 45 + refuter) con
+     find->verify bounded. Owner = S25-bis (T dedicata) o
+     mini-sessione propria; mitigazione interim = clausola dedup
+     obbligatoria in ogni brief agentico (gia' pratica di record).
 
 STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-12, chiusura S24):
  1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
