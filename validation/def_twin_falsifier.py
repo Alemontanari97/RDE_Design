@@ -258,8 +258,14 @@ def stage_leg1(state_fn):
         return np.arcsin(np.minimum(1.0, c / np.asarray(q)))
 
     print("-- LEG 1: GENO at the instance, two resolutions --")
+    # SECOND RESOLUTION = REFINEMENT direction (801/4001), NEVER the
+    # halved one: at this instance NI = 201 sends GENO's outer TOC
+    # bisection onto the registered N-74 path (non-physical bracket
+    # 'mach1 insufficiente -> raddoppio' to Mrao ~ 80, inner loop hang
+    # without error stop) — MEASURED in-session S24 and declared; the
+    # finer direction is also the standard Richardson refinement.
     res = {}
-    for tag, (ni, ne) in (("r1", (None, None)), ("r2", (201, 1001))):
+    for tag, (ni, ne) in (("r1", (None, None)), ("r2", (801, 4001))):
         scr = os.path.join(
             os.environ.get("TEMP", "/tmp"), "s24_deftw_geno_" + tag)
         t0 = time.perf_counter()
