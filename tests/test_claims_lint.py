@@ -12,11 +12,21 @@ the numeric lint (vii) for claims:
       exists; anchor is a literal substring of the file); every carrier
       ID resolves to a kind: carrier entry; every inherits ID resolves
       to a kind: conditional entry; IDs unique.
-  (c) SUITE MEMBERSHIP: every kind: carrier entry is IN THE SUITE —
-      tests/ scripts must be registered in run_all.py; validation/
-      scripts must be invoked by a registered tests module. Declared
-      exemption (syntax-enforced): scope contains
-      "on-demand carrier (env: <name>" (the jax spikes, of record).
+  (c) SUITE MEMBERSHIP + THE TYPED ONDEMAND FIELD (C4 closure of
+      record, S25 2026-08-12 — replaces the historical scope-substring
+      exemption): every kind: carrier entry carries `ondemand`
+      (REQUIRED on carriers, FORBIDDEN elsewhere). ondemand: "no" =>
+      the carrier must be IN THE SUITE (tests/ scripts registered in
+      run_all.py; validation/ scripts invoked by a registered tests
+      module). Otherwise the value must match the STRICT spec
+      "env=<jax|gfortran|jax+geno>; pass=YYYY-MM-DD; suite=<none|...>"
+      and the STALENESS LINK is enforced: the last git commit date
+      touching the carrier file must be <= the pass date (day
+      granularity, declared), else VIOLATION — editing a carrier
+      without re-running its gate and re-dating pass turns this lint
+      RED. Uncommitted carrier files are a violation outright.
+      git-unavailable hosts get a declared skip note (the ONDEMAND
+      tier of run_all.py re-checks on execution hosts).
   (d) SCHEMA: exact field set per entry; kind/class/gamma/suffices
       enums; class THEOREM* => nonempty inherits; kind theorem with
       suffices_symbolic yes => nonempty carrier; every entry has a
@@ -26,10 +36,12 @@ the numeric lint (vii) for claims:
       (spine tags like "[T-T3]") must exist in the registry.
 
 REJECTOR, DEMONSTRATED ON EVERY RUN: after the real registry passes,
-three violations are seeded IN-MEMORY (THEOREM* stripped of inherits;
-symbolic-sufficient theorem stripped of carrier; dangling anchor) and
-the checker MUST reject each — if any seeded violation slips through,
-this group FAILS. Nothing is written to disk.
+four violations are seeded IN-MEMORY (THEOREM* stripped of inherits;
+symbolic-sufficient theorem stripped of carrier; dangling anchor;
+stale ondemand pass-of-record date — skipped with a declared note on
+git-unavailable hosts) and the checker MUST reject each — if any
+seeded violation slips through, this group FAILS. Nothing is written
+to disk.
 
 Usage:
     python tests/test_claims_lint.py
@@ -38,6 +50,7 @@ import copy
 import io
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,8 +69,39 @@ SUFFICES = ('yes', 'no', 'n/a')
 # gamma/suffices "n/a" is legal ONLY on non-mathematical kinds:
 NA_KINDS = ('directive', 'paper', 'carrier', 'oracle', 'definition')
 MATH_KINDS = ('theorem', 'conditional', 'conjecture', 'schema')
-ONDEMAND = 'on-demand carrier (env: '        # declared exemption marker
+# Typed ondemand spec (C4 closure; carrier-only field, see docstring (c)):
+ODSPEC_RX = re.compile(r'^env=(jax|gfortran|jax\+geno); '
+                       r'pass=(\d{4}-\d{2}-\d{2}); suite=(none|\S.*)$')
 ID_RX = re.compile(r'\[((?:T|D|C|S|J|X|O|DIR|PAP)-[A-Za-z0-9-]+)\]')
+
+_GIT_DATES = {}          # memo: relpath -> (date_or_None, note)
+
+
+def carrier_last_commit(relpath):
+    """Day-granular date (%cs) of the last commit touching relpath.
+
+    Returns (date, '') on success; (None, note) with note in
+    {'no committed history', 'git unavailable'} otherwise. Memoized:
+    the seeded-rejector demos re-run check() several times per lint
+    run and must not multiply subprocess cost.
+    """
+    if relpath not in _GIT_DATES:
+        try:
+            out = subprocess.run(
+                ['git', '-C', ROOT, 'log', '-1', '--format=%cs',
+                 '--', relpath],
+                capture_output=True, text=True, timeout=60)
+            date = out.stdout.strip()
+            if out.returncode == 0 and re.match(r'^\d{4}-\d{2}-\d{2}$',
+                                                date):
+                _GIT_DATES[relpath] = (date, '')
+            elif out.returncode == 0:
+                _GIT_DATES[relpath] = (None, 'no committed history')
+            else:
+                _GIT_DATES[relpath] = (None, 'git unavailable')
+        except OSError:
+            _GIT_DATES[relpath] = (None, 'git unavailable')
+    return _GIT_DATES[relpath]
 
 
 def parse_registry(text):
@@ -126,9 +170,10 @@ def check(entries, suite=None):
     run_src, mods = suite if suite else _suite_sources()
     for e in entries:
         eid = e.get('id', '?')
-        # (d) schema
-        missing = [f for f in FIELDS if f not in e]
-        extra = [f for f in e if f not in FIELDS]
+        # (d) schema — ondemand is REQUIRED on carriers, FORBIDDEN elsewhere
+        req = FIELDS + (('ondemand',) if e.get('kind') == 'carrier' else ())
+        missing = [f for f in req if f not in e]
+        extra = [f for f in e if f not in req]
         if missing or extra:
             v.append('%s: fields missing %s / extra %s'
                      % (eid, missing, extra))
@@ -176,13 +221,26 @@ def check(entries, suite=None):
             if t is None or t.get('kind') != 'conditional':
                 v.append('%s: inherits ref %s not a conditional entry'
                          % (eid, cid))
-        # (c) suite membership for carrier entries
+        # (c) suite membership + typed ondemand for carrier entries
         if e['kind'] == 'carrier':
             path = e['doc'].partition('#')[0]
             base = os.path.basename(path)
             mod = base[:-3] if base.endswith('.py') else base
-            if ONDEMAND in e['scope']:
-                pass                        # declared exemption, of record
+            od = e['ondemand']
+            if od != 'no':
+                m = ODSPEC_RX.match(od if isinstance(od, str) else '')
+                if not m:
+                    v.append('%s: malformed ondemand spec %r' % (eid, od))
+                else:
+                    last, note = carrier_last_commit(path)
+                    if note == 'no committed history':
+                        v.append('%s: ondemand carrier file %s has no '
+                                 'committed history' % (eid, path))
+                    elif last is not None and last > m.group(2):
+                        v.append('%s: STALE ondemand pass-of-record %s < '
+                                 'last commit %s touching %s'
+                                 % (eid, m.group(2), last, path))
+                    # note 'git unavailable' -> declared skip (run() prints)
             elif path.startswith('tests/'):
                 if "'%s'" % mod not in run_src:
                     v.append('%s: tests module %s not registered in '
@@ -222,7 +280,7 @@ def dual_route_parse(text, entries):
     if len(ye) != len(entries):
         return True, False, 'entry count %d != %d' % (len(ye), len(entries))
     for a, b in zip(entries, ye):
-        for f in FIELDS:
+        for f in FIELDS + ('ondemand',):
             if a.get(f) != b.get(f):
                 return True, False, '%s field %s differs' % (a.get('id'), f)
     return True, True, 'PyYAML dual-route parse agrees'
@@ -247,6 +305,20 @@ def seeded_rejector_demo(entries, suite):
     m3 = copy.deepcopy(entries)
     m3[0]['doc'] = 'docs/rde_nozzle_MASTER.md#NO SUCH ANCHOR 9c1f'
     demos.append(('dangling anchor seeded (%s)' % m3[0]['id'], m3))
+    # 4: stale ondemand pass-of-record (staleness rejector must fire);
+    #    declared skip when git is unavailable on this host
+    t = next(e for e in entries if e.get('kind') == 'carrier'
+             and e.get('ondemand', 'no') != 'no')
+    probe_path = t['doc'].partition('#')[0]
+    if carrier_last_commit(probe_path)[1] != 'git unavailable':
+        m4 = copy.deepcopy(entries)
+        t4 = next(e for e in m4 if e['id'] == t['id'])
+        t4['ondemand'] = re.sub(r'pass=\d{4}-\d{2}-\d{2}',
+                                'pass=1999-01-01', t4['ondemand'])
+        demos.append(('stale ondemand pass date seeded (%s)' % t['id'], m4))
+    else:
+        print('  [rejector] stale-ondemand demo SKIPPED '
+              '(declared: git unavailable on this host)')
     ok = True
     for label, mutated in demos:
         rejected = bool(check(mutated, suite))

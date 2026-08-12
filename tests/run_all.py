@@ -7,17 +7,25 @@
 Tiers ([F1/SCAFFOLD-M] M-5): FAST = seconds-scale groups, always run;
 RIGOR = the declared rigor tier (registry carriers beyond the fast
 budget; measured runtimes in each module's docstring), run in every
-full/CI run, skipped by --fast; SLOW = live examples subprocesses.
+full/CI run, skipped by --fast; SLOW = live examples subprocesses;
+ONDEMAND = the C4-closure tier (S25, 2026-08-12): registry-driven
+staleness + env-conditional execution of the on-demand carriers
+(typed `ondemand` field in docs/claims_registry.yaml), skipped by
+--fast.
 
-HONEST SCOPE OF A GREEN SUITE (S21, audit C4 — annotation of record
-until the C4 closure row lands, phase tag F0/F1 in D6 §0-pre): a
-green run of this suite is CARRIER-EXCLUSIVE — the on-demand
-verdict-bearing carriers (X-A1IM, X-THC1, X-SCANM, X-LSG0, X-TOCV,
-X-O32, X-O33B, X-AKNO, X-CDKAT, X-G0/X-G0AX/X-GENOXC) are OUTSIDE
-every tier by declared exemption (env: jax/gfortran), and their
-PASS-of-record numbers rest on the dated manual runs recorded in the
-registry scopes and session logs, which nothing here re-executes.
-Any gate text citing "suite green" inherits this annotation.
+HONEST SCOPE OF A GREEN SUITE (C4 CLOSED S25, 2026-08-12 — this
+block supersedes the S21 carrier-exclusive annotation of record): a
+green FULL run = FAST+RIGOR+SLOW executed + every on-demand carrier
+ACCOUNTED by the ONDEMAND tier — the typed registry spec is
+lint-enforced, the STALENESS LINK (PASS-of-record date vs last
+commit touching the carrier) is checked by lint AND tier and CAN
+fail the suite, and carriers declaring an affordable suite
+self-check are EXECUTED env-conditionally, gated on exit 0. For
+suite=none carriers (decisive-run scale) a green suite still does
+NOT re-execute their decisive runs: their PASS-of-record numbers
+rest on the dated manual protocol runs in the registry scopes and
+session logs, now machine-linked via the staleness gate. A --fast
+run remains carrier-exclusive by construction.
 
 Tests (see each module's docstring):
   (i)    test_cj_coherence      one CJ from all canonical paths (<=1e-9 rel)
@@ -47,6 +55,9 @@ Tests (see each module's docstring):
                                 seeded-violation rejector proven every run
   (xvi)  test_t3qs              T3-QS sweep-protection proof chain P1-P6
                                 (ray family => J1 smooth-part = 0) + R1-R3
+  (xvii) test_ondemand_carriers on-demand carrier staleness accounting +
+                                env-conditional execution (C4 closure)
+                                [ondemand tier]
         test_examples [slow]    live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
@@ -83,10 +94,12 @@ RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]',
          ('(xviii) X-IVXC interval certificate [rigor tier]',
           'test_rigor_interval')]
 SLOW = [('(v+)  live examples & design study', 'test_examples')]
+ONDEMAND = [('(xvii) on-demand carriers: staleness + env-conditional run',
+             'test_ondemand_carriers')]
 
 
 def main(argv):
-    tests = FAST + ([] if '--fast' in argv else RIGOR + SLOW)
+    tests = FAST + ([] if '--fast' in argv else RIGOR + SLOW + ONDEMAND)
     results = []
     t00 = time.time()
     for label, mod in tests:

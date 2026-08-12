@@ -11,6 +11,22 @@
 # SCHEMA (SCAFFOLD §2, exact field set):
 #   id, kind, class, scope, statement, doc, proof, inherits, carrier,
 #   suffices_symbolic, falsifier, gamma
+#   + ondemand — REQUIRED on kind: carrier, FORBIDDEN elsewhere (C4
+#     closure of record, S25 2026-08-12; replaces the scope-substring
+#     exemption): "no" for carriers registered in the suite tiers, else
+#     the strict spec "env=<jax|gfortran|jax+geno>; pass=YYYY-MM-DD;
+#     suite=<none|default|argv...>" where pass = the day-granular date of the
+#     carrier's PASS-of-record (must be >= the last git commit date
+#     touching the carrier file — the STALENESS LINK, lint-enforced:
+#     editing a carrier without re-running its gate and re-dating pass
+#     turns the lint RED); suite = an affordable self-check invocation
+#     run by the run_all.py ONDEMAND tier when the env is available
+#     ("default" = bare script invocation, else extra argv tokens),
+#     or "none" for decisive-run-scale carriers (manual protocol runs
+#     only, accounted + staleness-checked by the tier). pass dates
+#     initialized at closure from git history under the R5 commit
+#     discipline of record (every carrier commit landed with its gate
+#     exercised in-session or a declared adjudication).
 #
 # ENUMS AND CONVENTIONS (deviations from the seed DECLARED, structure-only):
 #   kind:  theorem | definition | conditional | conjecture | schema |
@@ -680,6 +696,7 @@ entries:
 
 - id: X-PA1
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic carrier of the Lemma-A classical derivation + Prop. A2 + Prop. A3; PASS 19/19 of record (3 rejectors), re-verified 2026-07-17 (3.3 s)"
   statement: "Machine verification (sympy, EOS-general closure rules) of the ENTIRE classical stationarity derivation, the kernel solvability and the transported invariant."
@@ -693,6 +710,7 @@ entries:
 
 - id: X-P2A1
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "dual-route verification of Prop. A2 in CONSERVATIVE variables (Grueneisen closure); PASS + 3 negative controls, re-verified 2026-07-17 (44.7 s)"
   statement: "Independent symbolic verification of the annihilation identity, the rank-3 certificate, the executable (L.20) bookkeeping and the boundary-data reading lemma psi.(K w) = -lambda2."
@@ -706,6 +724,7 @@ entries:
 
 - id: X-G12
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "G12 front brick; PASS 9/9 of record (2 rejectors, equilibrated derived tolerances), re-verified 2026-07-17 (1.4 s)"
   statement: "Machine verification of the G12-L1 eigenstructure and the G12-L2 linearized-RH nonsingularity/degeneration law."
@@ -719,6 +738,7 @@ entries:
 
 - id: X-N6
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "N6 swirl kernel; PASS 16/16 of record, re-verified 2026-07-17 (2.6 s)"
   statement: "Machine verification of the swirl structure identities, the free-vortex verbatim extension and the obstruction identity with double control."
@@ -732,6 +752,7 @@ entries:
 
 - id: X-5F
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "five-field adjoint structure; PASS 6/6 of record, re-verified 2026-07-17 (1.6 s)"
   statement: "Machine verification of the five-field pencil structure, rank certificate and Lagrange identity."
@@ -745,6 +766,7 @@ entries:
 
 - id: X-G0
   kind: carrier
+  ondemand: "env=jax; pass=2026-07-16; suite=none"
   class: PRACTICE
   scope: "G0 spike (S5): planar interior + inverse-wall implicit unit processes in jax custom_vjp; PASS 52/52 of record; on-demand carrier (env: jax), outside CI tiers by declaration"
   statement: "Full Jacobian vs central FD with derived tolerance on Newton-implicit MOC unit processes; negative control rejected."
@@ -758,6 +780,7 @@ entries:
 
 - id: X-G0AX
   kind: carrier
+  ondemand: "env=jax; pass=2026-07-16; suite=none"
   class: PRACTICE
   scope: "G0 spike twin (S8-op): axisym source dual-route + fitted shock point on RH with O3.1 + Lax/Majda executable + GENO read-only interop; VERDICT PASS of record; on-demand carrier (env: jax), outside CI tiers by declaration"
   statement: "Axisymmetric source derived in-house with order-scaling rejector; O3.1 dot-product at the shock brick (3.4e-12 vs tol 1.2e-9) discharging P-B1 at brick level; fold-exponent-1/2 transversality collapse in derived band."
@@ -771,6 +794,7 @@ entries:
 
 - id: X-GENOXC
   kind: carrier
+  ondemand: "env=gfortran; pass=2026-07-20; suite=none"
   class: PRACTICE
   scope: "G0 cross-code oracle at the INTERIOR UNIT PROCESS ONLY (not the profile-generation machinery): GENO tocnoz MoC field vs our axisym unit process; VERDICT PASS; on-demand carrier (env: gfortran), outside CI tiers by declaration"
   statement: "OUR axisym second-order (u,v) unit process agrees with GENO's structured-grid nodes two ways: (residual, EOS-general, local a=sqrt(gamma p/rho)) 218/218 clean-core cells inside |R_trap|<=4(|R_trap-R_end|+floor); (reproduction, 'two feet->new point', declared gamma=const energy closure) 207/218=95% of solved children within the derived band. Negative controls reject (corrupted child/foot 100%->0%, wrong pairing 84x). SCOPE: interior unit process, clean supersonic core — NOT the wall/corner/shock unit processes nor any assembled contour."
@@ -784,6 +808,7 @@ entries:
 
 - id: X-A1IM
   kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "A1 BRICK 1 (S11): PROFILE-GENERATION MACHINERY — assembled differentiable MoC march (IVL -> fan -> arc throat expansion -> bounding-streamline wall) generating the ideal-nozzle contour end-to-end, GENO nozzle_type 0 twin; VERDICT PASS of record (2026-07-21, all 14 checks incl. four negative controls); tabulated-isentrope backend (DIR-THERMOTAB: Cantera primary generator, GENO NASA-poly interop instance, gconst declared oracle); on-demand carrier (env: jax + WSL gfortran GENO binary), outside CI tiers by declaration"
   statement: "The assembled march is the executable Lemma-B block-triangular system: every cell an implicit custom_vjp unit process (never unrolled); end-to-end contour vs a GENO reduced-case run inside the derived Richardson band (measured: max|dy| ~ 7.6e-9 over 63 wall points, Me twin-identical to 7 digits, max wall angle 16.265 deg = GENO); O3.1 dot-product over the ENTIRE march; per-cell z-space Newton certification; four negative controls."
@@ -797,6 +822,7 @@ entries:
 
 - id: X-GRP01
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (i); suite-green of record 13/13 (S8-op)"
   statement: "One CJ state from all canonical paths (<= 1e-9 rel) + independent solvers within 2e-3."
@@ -810,6 +836,7 @@ entries:
 
 - id: X-GRP02
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (ii)"
   statement: "Blowdown -> steady CP identity (<= 1e-6): the executable instance of the collapse chain and the O1/O2 pivots."
@@ -823,6 +850,7 @@ entries:
 
 - id: X-GRP03
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (iii)"
   statement: "SK axial sonic vs independent equation bound (~0%)."
@@ -836,6 +864,7 @@ entries:
 
 - id: X-GRP04
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (iv)"
   statement: "M_CJ -> q~ -> M_CJ exact inversion (<= 1e-6)."
@@ -849,6 +878,7 @@ entries:
 
 - id: X-GRP05
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (v) + slow tier live examples"
   statement: "Blessed digits from shipped data + reports; live examples digits EXACT in the slow tier."
@@ -862,6 +892,7 @@ entries:
 
 - id: X-GRP06
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (vi)"
   statement: "Executable eps-optimality proofs (Euler lemma, stationarity/globality, averaging discrimination — the wrong-averaging rejector lives here)."
@@ -875,6 +906,7 @@ entries:
 
 - id: X-GRP07
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (vii); code lint, non-mathematical"
   statement: "No-magic-number invariant: every src/ literal classified in validation/numeric_allowlist.json."
@@ -888,6 +920,7 @@ entries:
 
 - id: X-GRP08
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (viii); OP-0 ladder with rejectors, 18 Table-1 rows"
   statement: "eps-level bound ladder bell <= int-max == ideal <= B_EK with the sonic cap enforced; naive form rejected on the four subcritical rows."
@@ -901,6 +934,7 @@ entries:
 
 - id: X-GRP09
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (ix); PASS 12/12 of record"
   statement: "A0.3 gamma-channel probe: gamma_s shift, eps* shift -0.56% (unweighted-mean class rejected), second-order penalty."
@@ -914,6 +948,7 @@ entries:
 
 - id: X-GRP10
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (x); 22 checks + 8 negative controls of record"
   statement: "OP-11-eps phase diagram invariants (T3/T4 oracles explicit, wrong-topology rejectors, premium_bound device)."
@@ -927,6 +962,7 @@ entries:
 
 - id: X-GRP11
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xi); PASS 18/18 of record"
   statement: "OP-0-gamma real-thermo ceiling: EOS-general primary route, sonic cap at gamma(T), known-answer constant-cp rejector, corrupted route rejected."
@@ -940,6 +976,7 @@ entries:
 
 - id: X-GRP12
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xii); PASS 20/20 of record (S8-op)"
   statement: "Real-route diagram + equilibrium bracket: eps*_real carrier, two-level naive metric, live corrupted known-answer rejection, six negative controls, cross-anchor to the real ladder."
@@ -953,6 +990,7 @@ entries:
 
 - id: X-GRP13
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xiii), fast tier (M-5 promotion, S9); CI harness of the four fast rigor carriers"
   statement: "Subprocess execution of X-PA1, X-G12, X-N6, X-5F with exit-0 + verdict-line acceptance per carrier."
@@ -966,6 +1004,7 @@ entries:
 
 - id: X-GRP14
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xiv), DECLARED rigor tier (M-5 promotion, S9; measured 44.7 s beyond the fast budget); skipped by --fast, run in every full/CI run"
   statement: "Subprocess execution of X-P2A1 with exit-0 + verdict-line acceptance."
@@ -979,6 +1018,7 @@ entries:
 
 - id: X-GRP15
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xv), fast tier (M-2, S9); the registry's own lint — code-lint class, non-mathematical"
   statement: "Claims-registry lint: strict-subset parse (+ optional PyYAML dual-route), anchor resolution, suite membership, schema constraints, orphan-ID grep, with three seeded violations REJECTED on every run."
@@ -1165,6 +1205,7 @@ entries:
 
 - id: X-THC1
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-06; suite=none"
   class: PRACTICE
   scope: "brick-2 kickoff duty (d) carrier of record; on-demand carrier (env: jax), outside CI tiers like X-A1IM; PASS 2026-08-06 S17 (C1 monotone-verified min cp 1786.46 with derived dip margin; C2 structural cp = dh/dT at 3.5e-07 vs derived intermediate-magnitude tol 2.9e-05; C3 s0' = cp/T at 5.2e-11 vs derived floor 1.0e-06; C4 gconst known-answers incl. G -> (gamma+1)/2 at 4.9e-09; C5 dual-route gap vs the X-A1IM linear closure 9.1e-07 K inside the derived 1.5e-05 K band; C6 inverse roundtrip 2.8e-09 vs 1.7e-07 floor; C7 G > 0 audit: gamma in [1.1854, 1.2557], certified Lipschitz-margin floor G >= 1.089444 on the full table box, both nasa and cantera routes; rejectors R1-R4 all DETECT)"
   statement: "The brick-2 C^1 tabulated closure of record: QUINTIC Hermite h(T)/s0(T) with node data (h, cp, cp') and (s0, cp/T, (cp/T)'), cp := d/dT h-interpolant (structural invariant), monotone-verified, Newton-inverted with roundtrip certification; plus the ledger-c4 EOS audit G(T) = (gamma+1)/2 + (gamma-1) T gamma'/(2 gamma) > 0 certified on the declared state box."
@@ -1178,6 +1219,7 @@ entries:
 
 - id: X-SCANM
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "brick-2 kickoff duty (b) carrier of record; on-demand carrier (env: jax), outside CI tiers like X-A1IM; PASS 2026-08-06 S17 (record certified worst 1.41e-02; plan reconstruction 20 fan + 25 arc attempts incl. 2 interp + 40 straightening cols, 2684 interior cells; EQUIVALENCE scan-vs-python replay max delta 8.9e-16 vs Newton-floor tol 1.6e-12; O3.1 on the scan path 7.2e-09 vs derived tol 4.1e-08; N1 mis-indexed plan DETECTED at 1.6e-03, N2 corrupted vjp DETECTED); performance note of record: solver-cache is load-bearing (rebuilding jitted solvers per call forces full XLA recompilation — measured multi-GB/tens-of-minutes in-session). [S18 P1+P2 RE-RUN PASS: replay Newton = while_loop on the certification metric (damping retained, cap 30; equivalence unchanged 8.9e-16, cert worst 2.31e-02); PRODUCTION PATH added (make_run_scan_jit: 3 padded scan modules in ONE whole-loop jit, safe-where guard with certification-verified recorded dummy cell): bucketed jit == python at 6.2e-15, whole-loop compile 4.9 s, O3.1/jit 4.9e-11 vs 2.4e-08 = NaN-leak detector clean, N3 corrupted jit vjp rejected]"
   statement: "The brick-2 replay engine: per-column jax.lax.scan over the [X-A1IM] implicit custom_vjp cells with the march plan reconstructed from the recorded schedule (column-array representation); reproduces the certified Python replay at the Newton floor and preserves the Lemma B transpose (O3.1) — the duty-(b) restructure moves no number beyond roundoff."
@@ -1191,6 +1233,7 @@ entries:
 
 - id: X-LSG0
   kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-06; suite=none"
   class: PRACTICE
   scope: "brick-2 kickoff duty (a) carrier of record; on-demand carrier (env: jax + WSL gfortran GENO binary); PASS 2026-08-06 S17 clean host (0 concurrent): t_record 18.0 s / t_solve 39.8 s / t_grad 119.6 s => grad/solve = 3.004 inside the [3,4] cheap-gradient window (T1 PASS); t_GENO 0.286 s (EPOCHREALTIME median); T2a INDICATOR = FAIL-AS-IMPLEMENTED at S17 (per-eval Python re-trace; whole-march outer jit crashed XLA) => production gate CLOSED with the single-bucket remediation BINDING. [S18 RE-RUN of record, remediation EXECUTED: measurement object = the production whole-loop-jit path (X-SCANM make_run_scan_jit, safe-where guard); clean host PASS: t_solve 0.116 s (343x), t_grad 0.185 s, grad/solve 1.593 (T1 PASS), t_GENO 0.299 s, T2a 0.116 <= 1.197 s PASS => PRODUCTION GATE OPEN; one-time compile solve 4.7 s / grad 10.3 s; a future T2a failure on this path is STRUCTURAL = D6 flip clause; T2 whole-loop bound evaluated in the brick Verdict with measured N_TR]"
   statement: "The DIR-G0 loop-speed falsifier QUANTIFIED with derived thresholds: T1 grad/solve <= 4 (Baur-Strassen/Griewank constant, executable rejector), T2a per-evaluation t_solve <= 4 x t_GENO at same case+resolution (production-gate indicator), T2 whole-loop N_TR(t_solve+t_grad) <= 4 N_outer t_GENO (armed for the brick Verdict), under the clean-host protocol with a contention rejector."
@@ -1204,6 +1247,7 @@ entries:
 
 - id: X-TOCV
   kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "BRICK 2 carrier (A1 brick 2, D6 item 9); on-demand carrier (env: jax + WSL gfortran GENO binary); STAGED PASS 2026-08-06 S17, FULL staged+opt VERDICT PASS 2026-08-06 S18 (record run, exit 0; S18 log step 7): C^1 quintic closure PRIMARY two-track (P3 gate: closure gap 1.0e-07 vs 5.7e-01 resolution band); bucketed whole-loop-jit production replay (fidelity 1.2e-11; O3.1 on the jit path 1.2e-03 vs 1.2e-01); P4 margin floor delta_inst = 0.1202 m/s audited on the converged design (min margin 0.4809); OPT of record: TR-SQP (RK-G segmentation + measured Jacobi + measured full Hessian per segment base) from a 1.5% perturbed start -> status 1, KKT 7.745e-02 <= gtol 1.156e-01 = TRANSVERSALITY INSTANCE PASS, J* 2.7761688e+07 (+1.06e+04 over the GENO-projected seed), 5 segments / 14 re-records reported / 67 evals / 400 s; ORACLE 91/91 in the derived cross-code band (GENO cross-res + spline-representation + resampling terms, neighborhood-enveloped; max|dy| 1.861e-03, median err/band 0.102), N3 discriminates; T2 practicality falsifier FIRED of record (121.6 s vs 35.9 s, curvature+re-record decomposition, T1/T2a pass) => G0 re-decision review queued (D6 item 9). DESIGN RULE OF RECORD minted in-carrier: domain-of-dependence truncation (promoted to lemma L-DoD S17)"
   statement: "The variational-TOC engine: specified-wall direct march (adaptive record with per-cell certification + scan replay) under the RK-G policy, thrust objective J = wall pressure integral (Pa-free on the {eps, L} feasible set), dJ/dSigma by reverse-AD of the march (Lemma B) verified by O3.1, TR-SQP via scipy trust-constr in the RK-G segmentation driver; oracle = GENO nozzle_type 2 on the reduced twin case."
@@ -1217,6 +1261,7 @@ entries:
 
 - id: X-O32
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "ORACLE O3.2 carrier (P-2 numerics, S19 2026-08-06); on-demand carrier (env: jax); refinement ladder r = 1..4 on BOTH twins at fixed design, measuring the PRIMAL and the ADJOINT (dual-pairing) exponents that S-LBML §2 predicts; three-level estimator inverted exactly for non-integer ratios, known-answer tested to 1.67e-13 with a monotonicity assertion; uncertainty = measured noise (accumulated Newton certification floor over the certified cell count) + measured model drift between the two triples; BINDING verdict = the S16 one-sided falsifier of [S-LBML] (order < 2 - tol kills), conclusiveness cap = the PRE-REGISTERED 0.5 (S21 re-adjudication 2026-08-11, red-team: the in-verdict-commit doubling to 1.0 cannot bind post hoc; the S19 objective row is RE-REPORTED NON-CONCLUSIVE at dp_tot 0.6704, rate claim NOT killed; lever = finer ladder); APPARATUS VALIDATED by the foot-coefficient (explicit-Euler) march: measured order 0.9997 with dp_tot 6e-04, correctly killed by the h^2 claim"
   statement: "On the reduced twin instances the objective functional J of the TOC engine shows measured order 2.53 (fine triple, dp_tot 0.67 — NON-CONCLUSIVE under the pre-registered 0.5 cap per the S21 re-adjudication; not killed by the one-sided falsifier); the ADJOINT rows are NOT USABLE on a refinement ladder because refinement cannot hold the march topology fixed — precisely clause LB-c2 — and the ideal twin's rows are capped by the mirrored GENO exit constant |M - Me| < 1e-5 acting as an accuracy floor on the achieved exit Mach (|dMe| up to 1.5e-05, non-monotone)."
@@ -1230,6 +1275,7 @@ entries:
 
 - id: X-O33B
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "ORACLE O3.3 carrier (the pre-registered term-match bench, P2_outline §5 + its S19 execution addendum); on-demand carrier (env: jax); rows R1/R2 (Rao first integrals f2 and f3* on the CLASSICAL control surface = the C+ traced back from the lip and stopped at the kernel boundary), R3 (corner/transversality identity dJ/dy_lip == the classical corner density), R4/R5 (two-field multiplier compatibility along both families, both signs, with the wrong sign saturating), R6 (the pre-registered gradient-vs-Rao family test), R7 (cross-DESIGN check on GENO's own Rao wall, instance only), plus an executable guard refusing the constant-flow invariants (33)-(34) off uniform patches. LOCUS CORRECTION OF RECORD: evaluated on the full C+ down to the axis f2 drifts 2.9e-01 and the row looks falsified; on the classical surface it is 9.5e-03 (S18 optimum) and 8.0e-03 (GENO Rao contour)"
   statement: "On the S18 converged design the Rao first integral f2 = -lambda2 is constant along the control surface to 9.5e-03, its VALUE agrees with the one measured on GENO's independently obtained Rao contour to 2.4e-04, the wrong-family combination drifts 8.6x more, the adjoint compatibility relation cancels to 1.6e-04 with the correct sign per family and saturates at 1.0 with the wrong one, and the gradient's stationary design coincides with the Rao condition's zero within the derived bar (R6, the primary kill criterion)."
@@ -1243,6 +1289,7 @@ entries:
 
 - id: X-AKNO
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "ADAPTIVE DESIGN CLASS carrier (S20 2026-08-07, residue (a) of the S19 closure — the discharge procedure of C-O33's design-class residual); on-demand carrier (env: jax); the AFEM/FITPACK skeleton adopted by the S20 survey (D6 item 9 S20 annotation): solve -> per-knot-interval GOAL indicator (f2 drift per control-surface segment attributed to the emitting wall station via the march topology / owner array — adjudicated DWR-conformant since f2 = -lambda2 IS the adjoint variable, Prop. A3) -> Doerfler bulk marking (theta = 1/2 declared; theta in {0.3,0.5,0.7} sets printed) -> insertion at the residual-mass median station (equidistribution; degenerate-interval guard) -> warm-started TR-SQP re-optimization under the UNCHANGED DIR-RKG policy stack -> repeat under a MEASURED stopping rule (improvement below K_RICH x the goal metric's own measured mesh dependence, rise, empty set, or the declared budget). Basis class UNCHANGED (clamped-left natural cubic = U1 C_geo; knots via the KNOT_XI knob of X-TOCV, bit-identical None default). EXECUTED S20 (attempt 3 of record, exit 1 by construction — [D1] untestable): indicator concentrated (41.8% first interval, max/mean 3.34), two knots inserted, certified J -> 2.7775702e+07 (+1.40e+04 over S18 J*), then a certifiability-frontier CRAWL (five distinct rejected designs, certdiag 8/8 GENUINE at N_NEWTON x10, causality margin unchanged) ended cycle 1 certifiability-limited; C-O33 neither discharged nor falsified; formulation gap adjudicated -> margin-constrained reformulation (M0 Part VI)"
   statement: "An error-indicator-driven adaptive knot class for the TOC wall, warm-started from the incumbent optimum, re-optimized per cycle with every gate of record (per-cell Newton certification, axial-margin rejector, P4 instance floor, RK-G replay monitor, O3.1 spot checks), whose goal metric is the R3 corner mismatch; the pre-declared [D1] kill link: the final goal must fall below the S19 8-node baseline, else the design-class diagnosis of C-O33 is falsified."
@@ -1256,6 +1303,7 @@ entries:
 
 - id: X-CDKAT
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "certdiag KNOWN-ANSWER TEST + S20 retro-validation (S21 2026-08-11, F0 of plan v3, audit seed A1 P0); on-demand carrier (env: jax); proves the N_NEWTON knob bites through the EXACT S20 certdiag binding chain (module global read at trace time, fresh solver-cache key): KAT-1 lowered cap N_NEWTON=3 on the HEALTHY GENO-seeded baseline strictly worsens cert_worst (EXECUTED 2026-08-11: 2.106398e-01 -> 2.307536e+05, x1.1e+06, PASS); KAT-2 raised cap 300 bit-identical on converged cells (PASS, 17 digits); KAT-3 the C2-F2 cert_diag jit-replay rejector certifies the base point (worst 2.156e-01), FIRES on a perturbed replay with the solver starved to zero trips (worst 6.062e+08 > 1) and re-certifies at the default cap (2.125e-01) — attempt 1 with cap 2 + 1% perturbation DECLARED insufficient-stimulus (two-trip Newton reached the floor; hardened to cap 0, no band moved); N-CTRL deterministic re-record bit-identical. RETRO-VALIDATION OF RECORD: the S20 8/8 GENUINE bit-identity under 30->300 cannot be a non-biting-knob artifact — the trip-cap-hypothesis-DEAD adjudication stands"
   statement: "The certdiag instrument discriminates: lowering the Newton trip cap on a healthy design strictly worsens the certification metric through the same binding chain the S20 certdiag used, raising it is invariant only on converged cells, and the replay-path certification diagnostic can both certify and reject; therefore the S20 GENUINE verdicts are instrument-supported."
@@ -1269,6 +1317,7 @@ entries:
 
 - id: X-VMON
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-12; suite=default"
   class: PRACTICE
   scope: "(G)/Lambda-form VALIDITY MONITOR + gamma=1.4 KAT vs Rao-Beck Eq. (4) (S21 2026-08-11, F0 exit gate: monitor ARMED); on-demand carrier (env: jax); EXECUTED S21 exit 0: KAT-A machine identity N == -tan(alpha)*Eq4-residual over a 247-point (theta, alpha) grid at the roundoff floor (worst 6.5e-03 of the derived C_OPS floor) + Fig.-2 sign spots (+0.1405 / -0.2968) + corrupted-gamma rejector; KAT-B backend AD Lambda (V d(alpha)/dV through the tabulated closure on a synthetic gamma=1.4 table) vs closed form: worst 2.688e-13 inside the derived two-resolution band 1.095e-12, corrupted-table rejector fires; speed range BOUNDED TO THE TABLE BOX (out-of-box the closure clamps silently = live confirmation of audit engine-core:F3, P2 row); monitor API surface_min_val returns per-node val + argmin localization; verdict form for consumption = the three-way decision table of ADVISORY_claims_to_code C-1; Rao-vs-Zucrow naming translation documented; scope bounds adopted: EOS-general NOT data-general (homentropic-homoenergetic; F2 owns the extension), plug/C- mirror unproven"
   statement: "The EOS-general Lambda-form validity margin val is computable on our backend with AD (no FD magics), reduces exactly to Rao-Beck Eq. (4) for a perfect gas (S4 evidence half), and is armed as the Eq.(4)/Sternin monitor with argmin localization — the named falsifier of the K_disc ~ A_0 bridge CONJECTURE."
@@ -1282,6 +1331,7 @@ entries:
 
 - id: X-LOCD
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "S20 RETRO-DIAGNOSIS — the C-1 three-way locus test (S22 2026-08-11, F1 entry row of plan v3); on-demand carrier (env: jax); consumes the O4 instrumentation armed at S21 F0 (cert argmax localization, rejected-design persistence with the S22 class-completed payload, [X-VMON] AD Lambda val field); inputs = the deterministically regenerated [X-AKNO] attempt-3 rejection set (A1_REJ_SAVE artifact) + the outcome-II returned certified base (A1_AKN_CERTLIM_SAVE artifact); pre-registered rules fixed in the docstring BEFORE the first analysis run: m_ref = min val over the certified baseline design-wall field, fold-implicated iff val_min < m_ref/K_RICH, on-chain iff distance to the nearest control-surface chain node <= STENCIL_RADIUS x local chain spacing, decision tree (1)-(4) with declared annotations mapping onto the C-1 branches (a)/(b)/(c) verbatim; determinism vs the S20 crawl signature (1.170, 2.458, 1.060, 1.455, 1.698) checked and a mismatch is a declared FINDING (verdict then reads regenerated-set); the run is ALSO the named K_disc ~ A_0 bridge test on the S20 instance (branch (c) fires the bridge falsifier)"
   statement: "The O4 localization for the S20 instance is executable: each regenerated rejected design and the returned certified base is re-recorded in its persisted class with argmax localization, the (G)/Lambda-form val field is computed over the design-wall region by AD through the march's own closure, and the C-1 three-way table classifies the instance — every branch a verdict, none a failure."
@@ -1295,6 +1345,7 @@ entries:
 
 - id: X-MGOV
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "MARGIN GOVERNOR — the F1 A' margin-constrained formulation made executable (S22 2026-08-11); on-demand carrier (env: jax): traced (G)/Lambda-form val field over every W-dependent lane of the march (val_diag replay, the additive cert_diag pattern), KS-min aggregation in shifted overflow-free form with the log-sum-exp bounds as THEOREM-level anchor, rho DERIVED = K_RICH ln(N)/mu_0_min (gap pinned below the enforcement resolution by construction), floor ladder mu_0_k = m_ref/2^k k=1..4 pre-registered from the MEASURED baseline healthy reference m_ref, G1 finite-negative surrogate (masked-lane KS + K_RICH m_ref frac_bad penalty, finite at every representable W, exact-KS at zero failures) with REQ-NONSTALL zeroed+counted gradient fallback, GENO implementation-magic bands derived (dV_pert FD-vs-AD Lambda band = the F1b cross-check leg; den-guard in-range statement; PM window declared F1b), [D1]-CONSTRAINED corner metric rel_c = |gJ_lip + mu gm_lip - cd|/|cd| as COROLLARY of the S20-registered constrained-KKT THEOREM (B-stationarity qualifier until O1), scipy NonlinearConstraint entry via run_trsqp margin_factory (FORMULATION, policy stack untouched); adaptive-KS survey adopt-or-declare recorded (Poon-Martins/SAKS NOT adopted, reason stated); campaign stage = ladder continuation with mandatory O4 logs (argmin locus, active-cusp census, multiplier sign) and the D6 branch-adjudicated exits"
   statement: "The margin-constrained A' problem of the M0 tier ladder is executable on the bell tier-0 instance with every constant derived or measured: the KS margin constraint steers, survives (G1 surrogate), and reports at every trial point, and its rejectors (KS bounds, AD-vs-FD gradient band, broken-design finite-negative, GENO-band self-check) can fire."
@@ -1308,6 +1359,7 @@ entries:
 
 - id: X-TBAK
   kind: carrier
+  ondemand: "env=jax; pass=2026-08-11; suite=none"
   class: PRACTICE
   scope: "TOLERANCE-BALL MARGIN BACKOFF — DUTY-6(i) of the S-GAUNTLET ratified duty package, discharged at F1 close (S23 2026-08-11); on-demand carrier (env: jax): the as-built manufacturing ball (declared radius delta, in-class dof-box mapping via nonexpansive nodal evaluation, out-of-class waviness a declared class-scope boundary) is priced into a SHIP-TIME margin backoff on the Lambda-form derived floor — mean-value bound min over the box >= m(W) - L1_sup delta (Hoelder l_inf/l_1 pairing, THEOREM-level anchor), measured-sup surrogate L_TB = K_RICH max(||grad m||_1 at nominal, at the first-order worst box vertex) [PRACTICE, the repo's two-point K_RICH-safeguarded pattern], backoff rule Delta(delta) = L_TB delta, ship gate m(W) >= Delta(delta); delta is a DECLARED application input (reference list = 0.1 mm on throat radii 1 m/10 cm/1 cm in y_t = 1 units, env-overridable), the deliverable of record is the per-class COEFFICIENT L_TB; search-time machinery untouched (REQ-NONSTALL/G1 preserved); PER-CLASS RE-DERIVATION mandatory at every tier/class transition (D6 tier-invariant transition duty); adopt-or-declare: linearized robust counterpart = standard robust-margin treatment adopted, full minimax/DRO robust machinery NOT adopted with reason (robust layer owner = DUTY-13 post-F5a; P3 anti-divergence)"
   statement: "A KKT-active optimum certifies a measure-zero design (gauntlet C028); the derived backoff Delta(delta) = L_TB delta makes the certificate survive the declared as-built ball at ship time, with the ratified DUTY-6 falsifier demonstrated firing: at a synthetic margin-active nominal (floor = measured KS at base) the tolerance-perturbed contour MUST fail re-certification without the backoff, and does."
@@ -1455,6 +1507,7 @@ entries:
 
 - id: X-T3QS
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic carrier of T-T3QS: proof chain P1-P6 (conservative ray, degree-1 homogeneity incl. RH, Jacobian invariance dual-route symbolic+numeric, objective-gradient invariance, sweep factorization, cycle integral) + rejectors R1 (non-ray), R2 (H3 violated), R3 (non-affine objective); VERDICT PASS, 8.6 s clean host (29.1 s first run under load)"
   statement: "Machine verification (sympy + numeric dual-route) of the T3-QS algebraic core, EOS-general via arbitrary symbolic e(T)."
@@ -1468,6 +1521,7 @@ entries:
 
 - id: X-GRP16
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "run_all group (xvi), fast tier (S12); CI harness of X-T3QS"
   statement: "Subprocess execution of X-T3QS with exit-0 + verdict-line acceptance."
@@ -1535,6 +1589,7 @@ entries:
 
 - id: X-SLRW
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic + numeric carrier of T-SLRW; PASS 10/10 of record (S1-S4 symbolic incl. geometric kernels, N1-N3 full-vector quadrature with derived roundoff floors + FFT dual route, rejectors R1-R3), first run 2026-08-05 (~4 s); suite group (xiii)"
   statement: "Machine verification of the m = 1 selection rule: exact symbolic selection/null/rigid-rotation identities, full surface-integral numerics with jump (shock-like) azimuthal traces, and three breakage detections (counter-rotating, unequal amplitudes, corrupted kernel)."
@@ -1613,6 +1668,7 @@ entries:
 
 - id: X-XBVP
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic + numeric carrier of the Cauchy->BVP transfer bricks; PASS of record 2026-08-05 (P1/P2 symbolic at ABSTRACT EOS via LUsolve, P3 pair identity 40 states, P4a 200-state margin box, rejectors R1 subsonic 60/60 + R2 sonic pincer; 2.1 s); suite group (xiii)"
   statement: "Machine verification: sonic degeneracy of det(dm/dU), slip-wall flux annihilation (dS = 0, d(rho u) = 0 at abstract EOS), x-entropy pair identity, and the instance certificate + sharp rejectors for convexity-from-margin."
@@ -1665,6 +1721,7 @@ entries:
 
 - id: X-U2RG
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic + numeric carrier of T-U2RG; PASS 8/8 of record 2026-08-05 (P0 pencil factorization, P1 no-glancing-at-slip, P2 eigenvector divisibility, P3 sonic degeneracy locus — all abstract EOS; N1 margin floor, rejectors R1-R3; 1.4 s); suite group (xiii)"
   statement: "Machine verification of the slip-wall reflection brick: bracket identities and eigenvector divisibility at abstract EOS, margin uniformity, wrong-locus detection, off-slip glancing counterexample, near-sonic exponent."
@@ -1691,6 +1748,7 @@ entries:
 
 - id: X-IVXC
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "interval certificate machinery (suite group (xviii), rigor tier; measured 59.3 s; PASS of record 2026-08-05): outward-rounded interval arithmetic (1-ulp ops, 8-ulp libm guard, DECLARED libm-1ulp assumption), Krawczyk verified linear solve, mean-value form on the (M,V) slice, interval LDL^T, deterministic adaptive bisection (1M-box budget)"
   statement: "CERTIFIED of record: G = H_eta - sum lam_k Hm_k is strictly positive definite over the WHOLE (M,V) box [1.15,3] x [-0.8,0.8] at (rho,S) = (1,0) — hence over the ENTIRE declared 4-D S-XCONV box AND every (rho, S), by T-XRED — in 43199 boxes; three rejectors (subsonic box not certifiable + midpoint indefinite; corrupted diagonal; containment) + P4/P5/R4 symbolic group checks; METHOD RECORD kept in the docstring (expanded-adjugate NO-GO ~1.6e3 amplification; Gershgorin infeasible on ~53%; interval-Gauss ~15x over-wide; Krawczyk ~2x gain; mean-value + 4D->2D reduction = the feasible combination)."
@@ -1743,6 +1801,7 @@ entries:
 
 - id: X-U3BD
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "numeric carrier of the U3 bordered front solve; PASS of record 2026-08-06 (P0 oracle RH, P1 Lax count 5 = n+1 with margins, P1b eigenvector residual, P2 bordered s_min 1.984e-01 vs floor 2.652e-07, P3 Lopatinskii-Schur s_L = 1.8685, P3b det identity rel err 0, P4 class margins, rejectors R1 characteristic-front degeneration DETECTED + R2 corrupted RH row REJECTED; sub-second); suite group (xiii)"
   statement: "Machine verification of the free-boundary solvability structure of D2.5-U step U3: the bordered system (linearized RH + impinging downstream characteristic row) is nonsingular at the certified reference with derived tolerances, the Lax impinging count is exactly n + 1, and the Lopatinskii-Schur scalar is bounded away from zero — degenerating exactly at the characteristic-front limit."
@@ -1769,6 +1828,7 @@ entries:
 
 - id: X-ACFR
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "sampling PROBE (declared: not a certificate) of the a-contraction front condition; PASS of record 2026-08-06 (P0 pair compatibility 1.65e-16, P1 convexity cross-check 20000 samples, P2 RH sanity, P3 payload: LAX FRONT FEASIBLE with weight window r ~ [3.2, 47], best margin +4.33e-02 scaled at r = 6.8; R1 reversed front infeasible for every r — discrimination; R2 Deta-correction live; deterministic seed, derived floors; 1.4 s); suite group (xiii)"
   statement: "Machine probe of the balance-set front condition at the certified oracle: samples B_r by in-box bisection, scans the weight ratio on a log grid, reports min psi_r/scale; discriminates the Lax front (feasible window) from the reversed entropy-violating front (infeasible for all r)."
@@ -1795,6 +1855,7 @@ entries:
 
 - id: X-GBE
   kind: carrier
+  ondemand: "no"
   class: PRACTICE
   scope: "symbolic + numeric carrier of the S-GBE envelope bricks; PASS of record 2026-08-06 (S1 supercritical Hessian identities EXACT: V_h0h0 = -W^(-3/2), det = E/(cp^2 W^2); S2 sonic-branch structure symbolic incl. Pa-part log-convexity; S3 composite perspective concave 400/400 across the seam, max scaled eig 8.7e-06 vs floor 1.5e-05; S4 envelope == OP-0 ladder closed forms worst rel 3.4e-16 at 6 NPRs incl. critical seam; R1 corrupted envelope detected 400/400; R2 uncapped rule rejected at subcritical; 2.1 s); suite group (xiii)"
   statement: "Machine verification of the ergodic-G-B finite-dimensional bricks: capped-envelope identity against the independent tested OP-0 ladder, branch concavity (symbolic), composite concavity (numeric scan with derived FD floors), with discrimination rejectors."
@@ -1808,6 +1869,7 @@ entries:
 
 - id: X-DEFTW
   kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "F1b DEF TWIN FALSIFIER - the panel's pre-registered twin test executed at the DECLARED defnoz instance (S24 2026-08-12, gate [P1]: axisymmetric bell yt=1 rtu=1.5 rtd=0.45 eps=30 L=xtronc=8, frozen CH4/O2 tabulated thermo = the [X-TOCV] O2 cross-code pairing; the panel's gamma=1.4/Table-2 instance clause superseded AS INSTANCE by the session order + D6 F1b SUPERSEDED text, branch semantics F1-F7 VERBATIM and untouched); on-demand carrier (env: jax + WSL gfortran GENO binary): leg 1 = GENO nozzle_type=2 at the instance in a WSL scratch at TWO resolutions (GENO never modified, file exchange only; stdout DEF marker + Dtheta_comp + A4 mass identity parsed; D' localized on the GENO OUTPUT field with OUR AD Lambda-form monitor, landing-window (0,1e-6) + dthetapm/2 position bands DERIVED from measured local val gradients; GENO |den|<1e-10 val=0 semantic delta honored - our monitor reports den); leg 2 = direct margin-constrained ladder at the same (eps,L): mu0_k = m_ref/2^k k=1..4 pre-registered from the measured healthy reference of the DECLARED perturbed feasible start (the [X-TOCV] OPT-stage 1.5 percent sine-bump recipe), tightest rung first with warm continuation toward mu0->0 (the falsifier's floor->0 extrapolation), run to KKT closure per rung with derived gtol (O3.1-spot recipe), the panel's two MANDATORY logs per rung (argmin-margin cell coordinates; active-cusp census at termination), multiplier under the S24-T1 CLOSED scipy res.v convention mu(M0) = -res.v[-1][0] with the B-STATIONARITY qualifier (O1 undischarged); adjudication = the seven pre-registered branches (F1 two-code wall band incl. GENO two-resolution + class-representation + D' bands; F2 argmin-vs-D' convergence; F3 f2 drift on the control surface vs the instance-re-derived [X-O33B] two-resolution bar on BOTH designs; F4 val_min tracks mu0->0; F5 binding locus on the terminal-C+ control surface; F6 single active cluster; F7 J vs J_DEF through the SAME objective with the M-vs-2M class band) - every branch is a VERDICT, the exit code gates machinery health only; CLAIM CAP binding: F7 wording = direct-side surplus prediction ONLY (O3 = Sternin/Shmyglevskii hard gate, no classical-optimality claim in any outcome); instance parameters env-overridable (A1_DEFTW_*), stages leg1/derive/campaign/refine with JSON artifacts"
   statement: "The pre-registered EQ-v2 twin falsifier is executable at a measured deep-DEF instance: GENO's flagdef=1 DEF construction (leg 1) and the direct margin-constrained optimum at the same (eps,L) and thermo (leg 2) are compared inside derived-only bands on wall contour, cusp location, f2 invariant, boundary-function decay, binding locus, cusp count, and objective - each rejection branch names the hypothesis it kills, and a fired branch is a valid recorded outcome."
