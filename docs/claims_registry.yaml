@@ -808,7 +808,7 @@ entries:
 
 - id: X-A1IM
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-08-11; suite=none"
+  ondemand: "env=jax+geno; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "A1 BRICK 1 (S11): PROFILE-GENERATION MACHINERY — assembled differentiable MoC march (IVL -> fan -> arc throat expansion -> bounding-streamline wall) generating the ideal-nozzle contour end-to-end, GENO nozzle_type 0 twin; VERDICT PASS of record (2026-07-21, all 14 checks incl. four negative controls); tabulated-isentrope backend (DIR-THERMOTAB: Cantera primary generator, GENO NASA-poly interop instance, gconst declared oracle); on-demand carrier (env: jax + WSL gfortran GENO binary), outside CI tiers by declaration"
   statement: "The assembled march is the executable Lemma-B block-triangular system: every cell an implicit custom_vjp unit process (never unrolled); end-to-end contour vs a GENO reduced-case run inside the derived Richardson band (measured: max|dy| ~ 7.6e-9 over 63 wall points, Me twin-identical to 7 digits, max wall angle 16.265 deg = GENO); O3.1 dot-product over the ENTIRE march; per-cell z-space Newton certification; four negative controls."
@@ -1205,7 +1205,7 @@ entries:
 
 - id: X-THC1
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-06; suite=none"
+  ondemand: "env=jax; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "brick-2 kickoff duty (d) carrier of record; on-demand carrier (env: jax), outside CI tiers like X-A1IM; PASS 2026-08-06 S17 (C1 monotone-verified min cp 1786.46 with derived dip margin; C2 structural cp = dh/dT at 3.5e-07 vs derived intermediate-magnitude tol 2.9e-05; C3 s0' = cp/T at 5.2e-11 vs derived floor 1.0e-06; C4 gconst known-answers incl. G -> (gamma+1)/2 at 4.9e-09; C5 dual-route gap vs the X-A1IM linear closure 9.1e-07 K inside the derived 1.5e-05 K band; C6 inverse roundtrip 2.8e-09 vs 1.7e-07 floor; C7 G > 0 audit: gamma in [1.1854, 1.2557], certified Lipschitz-margin floor G >= 1.089444 on the full table box, both nasa and cantera routes; rejectors R1-R4 all DETECT)"
   statement: "The brick-2 C^1 tabulated closure of record: QUINTIC Hermite h(T)/s0(T) with node data (h, cp, cp') and (s0, cp/T, (cp/T)'), cp := d/dT h-interpolant (structural invariant), monotone-verified, Newton-inverted with roundtrip certification; plus the ledger-c4 EOS audit G(T) = (gamma+1)/2 + (gamma-1) T gamma'/(2 gamma) > 0 certified on the declared state box."
@@ -1233,7 +1233,7 @@ entries:
 
 - id: X-LSG0
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-08-06; suite=none"
+  ondemand: "env=jax+geno; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "brick-2 kickoff duty (a) carrier of record; on-demand carrier (env: jax + WSL gfortran GENO binary); PASS 2026-08-06 S17 clean host (0 concurrent): t_record 18.0 s / t_solve 39.8 s / t_grad 119.6 s => grad/solve = 3.004 inside the [3,4] cheap-gradient window (T1 PASS); t_GENO 0.286 s (EPOCHREALTIME median); T2a INDICATOR = FAIL-AS-IMPLEMENTED at S17 (per-eval Python re-trace; whole-march outer jit crashed XLA) => production gate CLOSED with the single-bucket remediation BINDING. [S18 RE-RUN of record, remediation EXECUTED: measurement object = the production whole-loop-jit path (X-SCANM make_run_scan_jit, safe-where guard); clean host PASS: t_solve 0.116 s (343x), t_grad 0.185 s, grad/solve 1.593 (T1 PASS), t_GENO 0.299 s, T2a 0.116 <= 1.197 s PASS => PRODUCTION GATE OPEN; one-time compile solve 4.7 s / grad 10.3 s; a future T2a failure on this path is STRUCTURAL = D6 flip clause; T2 whole-loop bound evaluated in the brick Verdict with measured N_TR]"
   statement: "The DIR-G0 loop-speed falsifier QUANTIFIED with derived thresholds: T1 grad/solve <= 4 (Baur-Strassen/Griewank constant, executable rejector), T2a per-evaluation t_solve <= 4 x t_GENO at same case+resolution (production-gate indicator), T2 whole-loop N_TR(t_solve+t_grad) <= 4 N_outer t_GENO (armed for the brick Verdict), under the clean-host protocol with a contention rejector."
@@ -1247,7 +1247,7 @@ entries:
 
 - id: X-TOCV
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-08-11; suite=none"
+  ondemand: "env=jax+geno; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "BRICK 2 carrier (A1 brick 2, D6 item 9); on-demand carrier (env: jax + WSL gfortran GENO binary); STAGED PASS 2026-08-06 S17, FULL staged+opt VERDICT PASS 2026-08-06 S18 (record run, exit 0; S18 log step 7): C^1 quintic closure PRIMARY two-track (P3 gate: closure gap 1.0e-07 vs 5.7e-01 resolution band); bucketed whole-loop-jit production replay (fidelity 1.2e-11; O3.1 on the jit path 1.2e-03 vs 1.2e-01); P4 margin floor delta_inst = 0.1202 m/s audited on the converged design (min margin 0.4809); OPT of record: TR-SQP (RK-G segmentation + measured Jacobi + measured full Hessian per segment base) from a 1.5% perturbed start -> status 1, KKT 7.745e-02 <= gtol 1.156e-01 = TRANSVERSALITY INSTANCE PASS, J* 2.7761688e+07 (+1.06e+04 over the GENO-projected seed), 5 segments / 14 re-records reported / 67 evals / 400 s; ORACLE 91/91 in the derived cross-code band (GENO cross-res + spline-representation + resampling terms, neighborhood-enveloped; max|dy| 1.861e-03, median err/band 0.102), N3 discriminates; T2 practicality falsifier FIRED of record (121.6 s vs 35.9 s, curvature+re-record decomposition, T1/T2a pass) => G0 re-decision review queued (D6 item 9). DESIGN RULE OF RECORD minted in-carrier: domain-of-dependence truncation (promoted to lemma L-DoD S17)"
   statement: "The variational-TOC engine: specified-wall direct march (adaptive record with per-cell certification + scan replay) under the RK-G policy, thrust objective J = wall pressure integral (Pa-free on the {eps, L} feasible set), dJ/dSigma by reverse-AD of the march (Lemma B) verified by O3.1, TR-SQP via scipy trust-constr in the RK-G segmentation driver; oracle = GENO nozzle_type 2 on the reduced twin case."
@@ -1261,7 +1261,7 @@ entries:
 
 - id: X-O32
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-11; suite=none"
+  ondemand: "env=jax; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "ORACLE O3.2 carrier (P-2 numerics, S19 2026-08-06); on-demand carrier (env: jax); refinement ladder r = 1..4 on BOTH twins at fixed design, measuring the PRIMAL and the ADJOINT (dual-pairing) exponents that S-LBML §2 predicts; three-level estimator inverted exactly for non-integer ratios, known-answer tested to 1.67e-13 with a monotonicity assertion; uncertainty = measured noise (accumulated Newton certification floor over the certified cell count) + measured model drift between the two triples; BINDING verdict = the S16 one-sided falsifier of [S-LBML] (order < 2 - tol kills), conclusiveness cap = the PRE-REGISTERED 0.5 (S21 re-adjudication 2026-08-11, red-team: the in-verdict-commit doubling to 1.0 cannot bind post hoc; the S19 objective row is RE-REPORTED NON-CONCLUSIVE at dp_tot 0.6704, rate claim NOT killed; lever = finer ladder); APPARATUS VALIDATED by the foot-coefficient (explicit-Euler) march: measured order 0.9997 with dp_tot 6e-04, correctly killed by the h^2 claim"
   statement: "On the reduced twin instances the objective functional J of the TOC engine shows measured order 2.53 (fine triple, dp_tot 0.67 — NON-CONCLUSIVE under the pre-registered 0.5 cap per the S21 re-adjudication; not killed by the one-sided falsifier); the ADJOINT rows are NOT USABLE on a refinement ladder because refinement cannot hold the march topology fixed — precisely clause LB-c2 — and the ideal twin's rows are capped by the mirrored GENO exit constant |M - Me| < 1e-5 acting as an accuracy floor on the achieved exit Mach (|dMe| up to 1.5e-05, non-monotone)."
@@ -1275,7 +1275,7 @@ entries:
 
 - id: X-O33B
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-11; suite=none"
+  ondemand: "env=jax; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "ORACLE O3.3 carrier (the pre-registered term-match bench, P2_outline §5 + its S19 execution addendum); on-demand carrier (env: jax); rows R1/R2 (Rao first integrals f2 and f3* on the CLASSICAL control surface = the C+ traced back from the lip and stopped at the kernel boundary), R3 (corner/transversality identity dJ/dy_lip == the classical corner density), R4/R5 (two-field multiplier compatibility along both families, both signs, with the wrong sign saturating), R6 (the pre-registered gradient-vs-Rao family test), R7 (cross-DESIGN check on GENO's own Rao wall, instance only), plus an executable guard refusing the constant-flow invariants (33)-(34) off uniform patches. LOCUS CORRECTION OF RECORD: evaluated on the full C+ down to the axis f2 drifts 2.9e-01 and the row looks falsified; on the classical surface it is 9.5e-03 (S18 optimum) and 8.0e-03 (GENO Rao contour)"
   statement: "On the S18 converged design the Rao first integral f2 = -lambda2 is constant along the control surface to 9.5e-03, its VALUE agrees with the one measured on GENO's independently obtained Rao contour to 2.4e-04, the wrong-family combination drifts 8.6x more, the adjoint compatibility relation cancels to 1.6e-04 with the correct sign per family and saturates at 1.0 with the wrong one, and the gradient's stationary design coincides with the Rao condition's zero within the derived bar (R6, the primary kill criterion)."
@@ -1345,7 +1345,7 @@ entries:
 
 - id: X-MGOV
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-11; suite=none"
+  ondemand: "env=jax; pass=2026-08-12; suite=none"
   class: PRACTICE
   scope: "MARGIN GOVERNOR — the F1 A' margin-constrained formulation made executable (S22 2026-08-11); on-demand carrier (env: jax): traced (G)/Lambda-form val field over every W-dependent lane of the march (val_diag replay, the additive cert_diag pattern), KS-min aggregation in shifted overflow-free form with the log-sum-exp bounds as THEOREM-level anchor, rho DERIVED = K_RICH ln(N)/mu_0_min (gap pinned below the enforcement resolution by construction), floor ladder mu_0_k = m_ref/2^k k=1..4 pre-registered from the MEASURED baseline healthy reference m_ref, G1 finite-negative surrogate (masked-lane KS + K_RICH m_ref frac_bad penalty, finite at every representable W, exact-KS at zero failures) with REQ-NONSTALL zeroed+counted gradient fallback, GENO implementation-magic bands derived (dV_pert FD-vs-AD Lambda band = the F1b cross-check leg; den-guard in-range statement; PM window declared F1b), [D1]-CONSTRAINED corner metric rel_c = |gJ_lip + mu gm_lip - cd|/|cd| as COROLLARY of the S20-registered constrained-KKT THEOREM (B-stationarity qualifier until O1), scipy NonlinearConstraint entry via run_trsqp margin_factory (FORMULATION, policy stack untouched); adaptive-KS survey adopt-or-declare recorded (Poon-Martins/SAKS NOT adopted, reason stated); campaign stage = ladder continuation with mandatory O4 logs (argmin locus, active-cusp census, multiplier sign) and the D6 branch-adjudicated exits"
   statement: "The margin-constrained A' problem of the M0 tier ladder is executable on the bell tier-0 instance with every constant derived or measured: the KS margin constraint steers, survives (G1 surrogate), and reports at every trial point, and its rejectors (KS bounds, AD-vs-FD gradient band, broken-design finite-negative, GENO-band self-check) can fire."
@@ -1880,3 +1880,17 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "machinery rejectors: leg-1 DEF marker absent or A4 identity missing/gross; D' val_min not small; R-FD GENO-recipe FD Lambda outside the derived band on the instance q-range; R-GRAD AD margin gradient outside the derived band (or the corrupted control passing); an uncertified rung start or a REQ-NONSTALL breach on the walk; nonzero silently-patched nonfinite counters"
   gamma: "EOS-general"
+
+- id: X-SPDB
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-12; suite=none"
+  class: PRACTICE
+  scope: "S25 ENGINE SPEED bench (DISPATCH_Sspeed_to_S25_2026-08-12 + ADVISORY_engine_speed_audit_2026-08-12): clean-host re-baseline M0 (fresh adaptive record, whole-loop C1 replay compile-vs-steady, val_grad compile-vs-steady, Hessian-block estimate, segment synthesis; medians over declared reps, pycount contention datum in every artifact) + MEASURE checkpoints M-A..M-E (attribution snapshots; M-D/M-E = the STOP-WHEN-MET checks at the pessimistic end of the measured band) + the M1/M2 acceptance gate m12gate (A/B walk memos OFF-vs-ON at declared reduced march net: bit-identical W/J/n_segments, record counters reconciling, at least one exercised cached boundary, honest n_eval strictly reduced, in-driver first-hit fresh-equality + perturbed-W-miss controls fired); instance = the defnoz twin class seeded from the COMMITTED s24_deftw_leg1.json wall (no GENO/WSL dependency); on-demand carrier (env: jax), outside CI tiers by declaration"
+  statement: "Every S25 engine-speed acceptance verdict consumes THIS carrier's clean-host measured rows (the S-SPEED parallel-session absolutes are contention-declared and re-anchored here); the M1/M2 memo levers are accepted only under its bit-identity A/B gate with reconciled counters."
+  doc: "validation/engine_speed_bench.py"
+  proof: "validation/engine_speed_bench.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any speed acceptance verdict quoting numbers not traceable to a committed [X-SPDB] artifact row; an M1/M2 adoption with the m12gate A/B failing bit-identity or counter reconciliation; a measured-row artifact missing its pycount contention datum"
+  gamma: "n/a"

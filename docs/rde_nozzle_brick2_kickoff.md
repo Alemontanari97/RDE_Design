@@ -294,6 +294,20 @@ single-bucket-per-phase remediation BINDING before production mesh
 jit crashes XLA today); T2 armed with the measured constants; flip
 clause NOT triggered — adjudication in G0_decision.md §4 dated note
 and the S17 log, step 9).
+T2 PRICING REPRICED OF RECORD (S25, 2026-08-12 — the queued G0/T2
+review consumed; G0_decision §4 dated note is the verdict of
+record): the lhs convention "N_TR x (solve_JAX + grad_JAX)" DOUBLE-
+PRICES reality — each optimizer evaluation is ONE value_and_grad
+execution, and the S18 n_eval feeding it was untruthful (~102-108
+true compiled executions, not 67; Hessian rows double-counted,
+precond and g_np uncounted). The armed [X-TOCV] T2 line now reads
+lhs = n_eval_actual x t_value_and_grad with n_eval counting ACTUAL
+compiled executions (S25 M2 truth repair) and prints the legacy
+double-priced figure alongside for ledger continuity. The S18 T2
+firing stays adjudicated STRUCTURAL (records + curvature; T1/T2a
+pass) — no flip; the structural terms are REPAIRED by the S25
+M-chain (record 100.84 -> 25.49 s measured at defnoz; memo/engine
+levers gated bitwise; [X-SPDB] artifacts of record).
 
 ------------------------------------------------------------------------------
 ## §4bis TR-SQP IMPLEMENTATION STANDARD — SOTA library survey of

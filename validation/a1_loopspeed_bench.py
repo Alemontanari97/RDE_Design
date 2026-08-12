@@ -60,14 +60,13 @@ import os
 import statistics
 import subprocess
 import sys
-import tempfile
 import time
 
-# persistent XLA compilation cache (SOTA jax practice; one-time
-# compiles survive across processes — set BEFORE importing jax)
-os.environ.setdefault("JAX_COMPILATION_CACHE_DIR",
-                      os.path.join(tempfile.gettempdir(),
-                                   "rde_jax_cache"))
+# persistent XLA compilation cache: THE canonical block lives in
+# a1_ideal_march_jax (S25 M4/H6 of record — one block, ONE dir
+# %TEMP%/jax_cache_rde, built-in LRU cap). The former module-local
+# env default pointing at the DISJOINT rde_jax_cache dir is RETIRED
+# (that split was cache-hygiene debt, advisory §1.2).
 import numpy as np
 import jax
 import jax.numpy as jnp

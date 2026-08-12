@@ -124,6 +124,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 
 import numpy as np
 import jax
@@ -131,8 +132,60 @@ import jax.numpy as jnp
 
 jax.config.update("jax_enable_x64", True)
 
+# ======================================================================
+# THE canonical persistent-XLA-cache block (S25 M4/H6 of record —
+# ONE block, ONE dir; supersedes the per-carrier blocks in o33_bench /
+# o32_mesh_convergence, which now defer here, and the disjoint
+# rde_jax_cache dir of a1_loopspeed_bench, retired). Living in THIS
+# module — the root import of every march consumer — it covers the
+# STANDALONE/diagnostic/restart launch class too (the measured 8.1x
+# compile+first cross-process gain; campaign carriers were already
+# covered by import side-effect). min_entry_size -1 and
+# min_compile_time 0.0: standalone entry points pay many small
+# compiles. Cache bounding: the BUILT-IN jax 0.11 LRU
+# (jax_compilation_cache_max_size, gauntlet V3/S3 — never
+# hand-rolled) is the ADOPTED mechanism, but arming it was CAUGHT at
+# first use to hard-require the `filelock` package at CACHE-READ
+# time (jax _src/compiler.py raises on every entry read without it,
+# i.e. the cap silently DISABLES the cache on this env) — the
+# S-SPEED "verified settable" row covered config existence only.
+# ADOPTION CATCH OF RECORD (S25): the cap is a NAMED CONDITIONAL
+# pending the filelock dependency decision at a session boundary
+# (env-pin discipline; cap arithmetic of record when it lands:
+# median entry ~7.9 MB [1.45 GiB / 188 entries] x ~64 signatures x
+# ~4 campaigns ~= 2 GiB). Until then the dir is UNBOUNDED exactly
+# as it has been since S18.
+try:
+    _cd = os.environ.get("JAX_COMPILATION_CACHE_DIR") or os.path.join(
+        tempfile.gettempdir(), "jax_cache_rde")
+    jax.config.update("jax_compilation_cache_dir", _cd)
+    jax.config.update("jax_persistent_cache_min_entry_size_bytes", -1)
+    jax.config.update("jax_persistent_cache_min_compile_time_secs",
+                      0.0)
+except Exception as _e:                                # pragma: no cover
+    print("  (persistent XLA cache unavailable: %s)" % _e)
+
 EPS = float(jnp.finfo(jnp.float64).eps)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+class UncertifiedCellError(RuntimeError):
+    """M5b (S25 ENGINE SPEED): TYPED early-abort refusal — raised at
+    the FIRST cell whose certification ratio exceeds 1 when the
+    caller opted in (abort_uncert=True at driver/campaign GATE
+    sites; verdict/reporting sites keep the full march and their
+    PASS/FAIL rows — the H1 constraint-6 contract). The gate
+    condition is UNCHANGED and fires EARLIER, never later; the
+    axial-margin raise keeps its established precedent (cert check
+    BEFORE margin check at each cell — ordering declared).
+    Carries cert_worst = the first-offending ratio and
+    aborted_at_cell = the running cell index (schema note of
+    record)."""
+
+    def __init__(self, msg, cert_worst=None, aborted_at_cell=None):
+        super().__init__(msg)
+        self.cert_worst = cert_worst
+        self.aborted_at_cell = aborted_at_cell
 GENO_DIR = os.path.join(ROOT, "GENO")
 RUNI_GENO = 8.31451          # GENO Types_m Runi [J/(mol K)]
 PREF = 1.0e5                 # GENO isentrope reference pressure [Pa]
@@ -434,6 +487,20 @@ def make_implicit_solver(resid_fn):
         Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
         return jnp.max(jnp.abs(jnp.linalg.solve(Jz, r)))
 
+    @jax.jit
+    def solve_cert(z0, p, ta):
+        # M5a (S25 ENGINE SPEED): fused record-path entry — the
+        # newton solve and its certification metric (the VERBATIM
+        # step_norm expression at the solution) in ONE compiled
+        # dispatch, halving the per-cell dispatch count on the
+        # record path. The AD path is untouched (the custom_vjp
+        # `solve` stays the only differentiable entry; this entry is
+        # host-consumed only).
+        z = newton(z0, p, ta)
+        r = resid_fn(z, p, ta)
+        Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
+        return z, jnp.max(jnp.abs(jnp.linalg.solve(Jz, r)))
+
     @jax.custom_vjp
     def solve(z0, p, ta):
         return newton(z0, p, ta)
@@ -448,7 +515,7 @@ def make_implicit_solver(resid_fn):
         return (jnp.zeros_like(z),) + (pbar,) + (None,)
 
     solve.defvjp(fwd, bwd)
-    return solve, newton, step_norm
+    return solve, newton, step_norm, solve_cert
 
 
 # ----------------------------------------------------------------------
@@ -649,7 +716,8 @@ def get_solver(key, factory):
 # ======================================================================
 # the assembled march (twin of GENO nozzle_type 0)
 # ======================================================================
-def run_march(P, tab, cfg, sched=None, corrupt_source=False):
+def run_march(P, tab, cfg, sched=None, corrupt_source=False,
+              abort_uncert=False):
     """P = [yt, rtu, rtd, eps] (jnp). Returns out dict + schedule.
     sched=None: adaptive (concrete) march, records the schedule.
     sched given: fixed-topology replay (traceable, differentiable)."""
@@ -705,6 +773,14 @@ def run_march(P, tab, cfg, sched=None, corrupt_source=False):
             ratio = np.inf
         cert["worst"] = max(cert["worst"], ratio)
         cert["n"] += 1
+        if abort_uncert and ratio > 1.0:
+            # M5b (S25): typed first-offender refusal, opt-in gate
+            # sites only (same condition, fired earlier)
+            raise UncertifiedCellError(
+                "early-abort (M5b, opt-in gate site): cell %d "
+                "uncertified at ratio %.3e — first offender, march "
+                "refused" % (cert["n"] - 1, ratio),
+                cert_worst=ratio, aborted_at_cell=cert["n"] - 1)
 
     def cell(solver, p, z0):
         p = jnp.asarray(p)

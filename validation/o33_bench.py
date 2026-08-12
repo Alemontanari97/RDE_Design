@@ -110,7 +110,6 @@ the rejectors. Staging: A1_O33_STAGE in {field, rows, family, all}.
 """
 import os
 import sys
-import tempfile
 import time
 
 import numpy as np
@@ -125,14 +124,10 @@ import a1_toc_variational_jax as TV   # noqa: E402
 import thermotab_c1_jax as TH     # noqa: E402
 
 jax.config.update("jax_enable_x64", True)
-try:
-    _cd = os.environ.get("JAX_COMPILATION_CACHE_DIR") or os.path.join(
-        tempfile.gettempdir(), "jax_cache_rde")
-    jax.config.update("jax_compilation_cache_dir", _cd)
-    jax.config.update("jax_persistent_cache_min_entry_size_bytes", -1)
-    jax.config.update("jax_persistent_cache_min_compile_time_secs", 1.0)
-except Exception as _e:                                # pragma: no cover
-    print("  (persistent XLA cache unavailable: %s)" % _e)
+# persistent XLA cache: THE canonical block now lives in
+# a1_ideal_march_jax (S25 M4/H6 of record — one block, one dir,
+# built-in LRU cap; imported above, so it is already armed here; the
+# per-carrier block this module used to carry is retired).
 
 EPS = float(jnp.finfo(jnp.float64).eps)
 d2r = np.pi / 180.0

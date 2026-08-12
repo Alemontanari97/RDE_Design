@@ -1,0 +1,24 @@
+{
+ "off": {
+  "walltime_s": 41.45669170003384,
+  "n_eval": 47,
+  "records": [
+   6,
+   0,
+   0
+  ],
+  "n_segments": 3
+ },
+ "on": {
+  "walltime_s": 35.43387820001226,
+  "n_eval": 43,
+  "records": [
+   4,
+   1,
+   1
+  ],
+  "n_segments": 3,
+  "dedup_hits": 4
+ },
+ "pycount": 1
+}

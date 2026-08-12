@@ -659,18 +659,39 @@ def make_margin_factory_cs(tab, cfg, state_fn, solvers, rho, mu0,
                                      solvers, rho, mu0, m_ref, q_ref,
                                      mask, counters)
         mval_grad = jax.jit(jax.value_and_grad(margin_W))
+        # M2 (S25 ENGINE SPEED): one-slot m+gm memo (the MG.factory
+        # pattern of record — scipy requests value and jacobian
+        # separately at the same u; bit-transparent dedup; counters
+        # additive; legacy path via A1_VG_MEMO=0).
+        vg_on = os.environ.get("A1_VG_MEMO", "1") != "0"
+        slot = dict(key=None, v=None, g=None)
+        counters.setdefault("m_exec", 0)
+        counters.setdefault("m_dedup", 0)
+
+        def _mvg(u):
+            Wb = np.asarray(u) * Dv
+            k = Wb.tobytes() if vg_on else None
+            if vg_on and slot["key"] == k:
+                counters["m_dedup"] += 1
+                return slot["v"], slot["g"].copy()
+            v, g = mval_grad(jnp.asarray(Wb))
+            v = float(v)
+            g = np.asarray(g)
+            counters["m_exec"] += 1
+            if vg_on:
+                slot.update(key=k, v=v, g=g.copy())
+            return v, g
 
         def m_np(u):
-            v, _ = mval_grad(jnp.asarray(np.asarray(u) * Dv))
-            v = float(v)
+            v, _ = _mvg(u)
             if not np.isfinite(v):
                 counters["m_nonfinite"] += 1
                 return -2.0 * A1.K_RICH * m_ref
             return v
 
         def gm_np(u):
-            _, g = mval_grad(jnp.asarray(np.asarray(u) * Dv))
-            g = np.asarray(g) * Dv
+            _, g = _mvg(u)
+            g = g * Dv
             if not np.all(np.isfinite(g)):
                 counters["gm_nonfinite"] += 1
                 g = np.where(np.isfinite(g), g, 0.0)

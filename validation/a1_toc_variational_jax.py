@@ -79,6 +79,8 @@ ON-DEMAND CARRIER (env: jax + WSL gfortran GENO binary): outside CI
 tiers by declaration. Exit code 0 iff ALL checks pass INCLUDING the
 negative controls.
 """
+import copy
+import hashlib
 import json
 import os
 import shutil
@@ -186,7 +188,8 @@ def wall_geometry(W, P_geom, L):
 # record: adaptive specified-wall march (concrete), emits plan
 # ======================================================================
 def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
-                   margin_floor=0.0, return_field=False):
+                   margin_floor=0.0, return_field=False,
+                   abort_uncert=False):
     """Adaptive TOC march at concrete W. Returns (out, plan).
     Structure mirrors [X-A1IM] run_march phases 1-4 with the wall
     given by (arc up to theta_B) + spline; certification enforced.
@@ -203,7 +206,19 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     point j-1 of column k-1 by the C+ leg — i.e. the field carries
     BOTH characteristic connectivities explicitly, which is what the
     O3.3 compatibility rows are evaluated on. Purely additive: with
-    the default False the record path is unchanged."""
+    the default False the record path is unchanged.
+
+    M5a+M5b (S25 ENGINE SPEED): every cell uses the FUSED solve+cert
+    entry (one compiled dispatch per cell — the metric, expressions
+    and gate condition are VERBATIM; who computes changes, never
+    what). abort_uncert (M5b/H1, default False): GATE sites
+    (driver/campaign records whose cert_worst > 1 outcome is a raise
+    ANYWAY) opt in to the TYPED first-offender refusal
+    (A1.UncertifiedCellError with cert_worst = first-offending ratio
+    + aborted_at_cell) — the same condition firing EARLIER, never
+    later; verdict/reporting sites keep the default full march and
+    their PASS/FAIL rows (constraint 6). Cert check precedes the
+    margin check per cell (ordering declared)."""
     ta = A1.tab_arrays(tab)
     if solvers is None:
         solvers = SC.cached_solvers(("a1_linear", 1.0), state_fn, 1.0)
@@ -218,7 +233,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     n_B = max(1, int(np.ceil(thB / da)))     # frozen arc-station count
 
     cert = dict(worst=0.0, n=0, min_margin=np.inf,
-                argmax=None, argmin_margin=None, ctx=None)
+                argmax=None, argmin_margin=None, ctx=None,
+                aborted_at_cell=None)
     # jitted once per run: the eager per-cell closure call is pure
     # dispatch overhead (measured S18 on the quintic closure)
     sound_of_q = jax.jit(lambda q: state_fn(q, ta)[3])
@@ -236,10 +252,22 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
         c = float(sound_of_q(jnp.float64(q)))
         return u - c
 
+    fused_on = os.environ.get("A1_FUSED_CERT", "1") != "0"
+
     def cell(kind, p, z0, pt_of_z=None):
-        sol, _, stepn = solvers[kind]
-        z = sol(jnp.asarray(z0, dtype=jnp.float64), jnp.asarray(p), ta)
-        step = float(stepn(z, jnp.asarray(p), ta))
+        if fused_on:
+            # M5a: ONE compiled dispatch returns (z, step) — the
+            # newton solve and the VERBATIM step_norm metric fused.
+            solve_cert = solvers[kind][3]
+            z, step_j = solve_cert(jnp.asarray(z0, dtype=jnp.float64),
+                                   jnp.asarray(p), ta)
+            step = float(step_j)
+        else:
+            # legacy 2-dispatch arbitration path (A1_FUSED_CERT=0)
+            sol, _, stepn = solvers[kind][:3]
+            z = sol(jnp.asarray(z0, dtype=jnp.float64),
+                    jnp.asarray(p), ta)
+            step = float(stepn(z, jnp.asarray(p), ta))
         sc = max(1.0, float(jnp.max(jnp.abs(z))))
         ratio = step / (A1.NEWTON_TOL_FACTOR * EPS * sc)
         if not np.isfinite(ratio):
@@ -247,6 +275,15 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
             # builtin max() DISCARDS a NaN second argument (first-arg
             # return), so it is forced onto the reject side.
             ratio = np.inf
+        if abort_uncert and ratio > 1.0:
+            # M5b typed first-offender refusal (gate sites only)
+            cert["worst"] = max(cert["worst"], ratio)
+            cert["aborted_at_cell"] = cert["n"]
+            raise A1.UncertifiedCellError(
+                "early-abort (M5b, opt-in gate site): cell %d (%s) "
+                "uncertified at ratio %.3e — first offender, march "
+                "refused" % (cert["n"], kind, ratio),
+                cert_worst=ratio, aborted_at_cell=cert["n"])
         pt = pt_of_z(z) if pt_of_z is not None else None
         if ratio > cert["worst"]:
             cert["worst"] = ratio
@@ -429,7 +466,8 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
                 has_axis=col_axis))
 
     out = dict(wall=jnp.stack(wall_pts), cert_worst=cert["worst"],
-               cert_n=cert["n"], min_margin=cert["min_margin"])
+               cert_n=cert["n"], min_margin=cert["min_margin"],
+               aborted_at_cell=cert["aborted_at_cell"])
     if CERT_ARGMAX:
         # T5 (S21): localization payload, reporting-only, default-off
         out["cert_argmax"] = cert["argmax"]
@@ -544,6 +582,77 @@ def run_toc_scan(W, tab, cfg, plan, state_fn=A1.state_q, solvers=None):
 # no gradient path to W), so both where-branches stay finite; O3.1 on
 # this path is the NaN-leak detector.
 # ======================================================================
+_SCAN_ENGINES = {}     # M4 engine cache: key -> (jitted body, strong refs)
+_SCAN_SIGSEEN = {}     # M4 churn log: key -> set of plan shape signatures
+
+
+def plan_operands(plan, NI, Nw):
+    """M4 (S25 ENGINE SPEED, dispatch item M4): extract the recorded
+    plan's TRACED-OPERAND arrays. Returns (ops, sig): ops = dict of
+    numpy arrays handed to the jitted engine as an ARGUMENT pytree —
+    jax's abstract shapes/dtypes ARE the generated static signature
+    (gauntlet V2: signature generated, never hand-enumerated; a plan
+    differing in any shape-bearing static field retraces by
+    construction, an unseen topology gets a new signature by
+    construction); sig = the same shape tuple for REPORTING (the M-B
+    churn counter). Padding discipline UNCHANGED (single bucket per
+    phase, per-phase maxima — gauntlet V1: no quantization grid at
+    landing; SCAN-F3 guard-rail: multi-bucket splitting rejected)."""
+    fan = plan["fan"]
+    arc = plan["arc"]
+    n_B = plan["n_B"]
+    nmaxF = max(c["n"] for c in fan)
+    WF = 2 * NI - 1
+    fan_n = np.array([c["n"] for c in fan], dtype=np.int32)
+    fan_seeds = np.zeros((len(fan), nmaxF, 4))
+    for i, c in enumerate(fan):
+        fan_seeds[i, : c["n"]] = c["seeds"]
+    fan_ax = np.stack([np.asarray(c["axis_seed"]) for c in fan])
+    head_idx = np.array([NI - i for i in range(2, NI + 1)],
+                        dtype=np.int32)
+    nmaxA = max(max(c["n"] for c in arc), 1)
+    WT = max(WF, max(1 + (c["Nv"] - 1) + c["n"]
+                     + (1 if c["has_axis"] else 0) for c in arc) + 1)
+    arc_n = np.array([c["n"] for c in arc], dtype=np.int32)
+    arc_N = np.array([c["N"] for c in arc], dtype=np.int32)
+    arc_Nv = np.array([c["Nv"] for c in arc], dtype=np.int32)
+    arc_hax = np.array([c["has_axis"] for c in arc])
+    arc_ws = np.stack([np.asarray(c["wall_seed"]) for c in arc])
+    arc_seeds = np.zeros((len(arc), nmaxA, 4))
+    for i, c in enumerate(arc):
+        if c["n"]:
+            arc_seeds[i, : c["n"]] = c["seeds"]
+    # station fraction (1-based within its family, divided by ITS
+    # family count here so the traced body never consumes n_B):
+    # th = thB * kkf on arc columns, x = xB + (L - xB) * kkf on
+    # contour columns.
+    kk = np.array([k + 1 if k < n_B else k + 1 - n_B
+                   for k in range(len(arc))], dtype=np.float64)
+    isarc = np.array([k < n_B for k in range(len(arc))])
+    kkf = np.where(isarc, kk / float(n_B), kk / float(Nw))
+    # safe-where dummies (exact recorded problems — operand data)
+    P_DUM = np.concatenate([np.asarray(fan[-1]["seeds"][0]),
+                            np.asarray(fan[-2]["seeds"][0])])
+    Z_DUM = np.asarray(fan[-1]["seeds"][1])
+    PT_DAX = np.asarray(fan[-1]["seeds"][-1])
+    SD_DAX = np.asarray(fan[-1]["axis_seed"])
+    ax_fill = np.stack([np.asarray(c["axis_seed"]) if c["has_axis"]
+                        else SD_DAX for c in arc])
+    ops = dict(fan_seeds=fan_seeds, fan_n=fan_n, fan_ax=fan_ax,
+               head_idx=head_idx, arc_seeds=arc_seeds, arc_n=arc_n,
+               arc_N=arc_N, arc_Nv=arc_Nv, arc_hax=arc_hax,
+               arc_ws=arc_ws, ax_fill=ax_fill, arc_kkf=kkf,
+               arc_isarc=isarc,
+               rowsF=np.arange(WF, dtype=np.int32),
+               rowsT=np.arange(WT, dtype=np.int32),
+               ksF=np.arange(nmaxF, dtype=np.int32),
+               ksA=np.arange(nmaxA, dtype=np.int32),
+               P_DUM=P_DUM, Z_DUM=Z_DUM, PT_DAX=PT_DAX,
+               SD_DAX=SD_DAX)
+    sig = (len(fan), nmaxF, WF, len(arc), nmaxA, WT, int(n_B))
+    return ops, sig
+
+
 def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
                           solvers=None, cert_diag=False,
                           val_diag=False):
@@ -572,7 +681,20 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     The [X-MGOV] margin governor consumes these to build the traced
     (G)/Lambda-form val field and its KS aggregate; reporting-only
     here, no gate reads them. Mutually exclusive with cert_diag by
-    declaration (no consumer needs both)."""
+    declaration (no consumer needs both).
+
+    M4 (S25 ENGINE SPEED, dispatch item M4): the plan arrays enter
+    the jitted body as OPERANDS (plan_operands) and the compiled
+    engine lives in a module-level cache keyed by (tab/state_fn/
+    solvers identity, diag mode, march-net statics, geometry) —
+    same-shape plans REUSE the compiled engine across segments and
+    (with the persistent XLA cache) across processes; a shape change
+    retraces by jax's own abstract-shape signature (V2: generated,
+    never enumerated; new-signature events print as the M-B churn
+    rows). A1_PLAN_ARGS=0 rebuilds the LEGACY constants-baked
+    variant of the SAME body (arbitration path). Adoption is gated
+    by [X-SPDB] m4gate (Newton-floor equivalence + O3.1 + warm-path
+    args-vs-constants band; the gate can FIRE and reject)."""
     if cert_diag and val_diag:
         raise ValueError("cert_diag and val_diag are mutually "
                          "exclusive by declaration")
@@ -589,72 +711,55 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     yt, rtu, rtd = cfg["yt"], cfg["rtu"], cfg["rtd"]
     L = cfg["xtronc"]
     P_geom = jnp.array([yt, rtu, rtd])
-    n_B = plan["n_B"]
 
-    # ---- bucket arrays (numpy constants)
-    fan = plan["fan"]
-    nmaxF = max(c["n"] for c in fan)
-    WF = 2 * NI - 1
-    fan_n = np.array([c["n"] for c in fan], dtype=np.int32)
-    fan_seeds = np.zeros((len(fan), nmaxF, 4))
-    for i, c in enumerate(fan):
-        fan_seeds[i, : c["n"]] = c["seeds"]
-    fan_ax = np.stack([np.asarray(c["axis_seed"]) for c in fan])
-    head_idx = np.array([NI - i for i in range(2, NI + 1)],
-                        dtype=np.int32)
+    # ---- M4 (S25): plan arrays as OPERANDS (plan_operands), not
+    # baked constants — the module-level engine is compiled once per
+    # (engine identity, shape signature) and REUSED across plans
+    # (the measured ~37-90 s/segment recompile deleted; jax's own
+    # abstract shapes are the generated signature, V2). Legacy
+    # constants-baked build stays runnable via A1_PLAN_ARGS=0 (the
+    # arbitration path of the args-vs-constants gate). Adoption
+    # gates (advisory M4): Newton-floor equivalence + O3.1 leak
+    # detector + warm-path args-vs-constants band, run by [X-SPDB]
+    # m4gate — the gate CAN fire and reject this lever.
+    ops, sig = plan_operands(plan, NI, Nw)
 
-    arc = plan["arc"]
-    nmaxA = max(max(c["n"] for c in arc), 1)
-    WT = max(WF, max(1 + (c["Nv"] - 1) + c["n"]
-                     + (1 if c["has_axis"] else 0) for c in arc) + 1)
-    arc_n = np.array([c["n"] for c in arc], dtype=np.int32)
-    arc_N = np.array([c["N"] for c in arc], dtype=np.int32)
-    arc_Nv = np.array([c["Nv"] for c in arc], dtype=np.int32)
-    arc_hax = np.array([c["has_axis"] for c in arc])
-    arc_ws = np.stack([np.asarray(c["wall_seed"]) for c in arc])
-    arc_seeds = np.zeros((len(arc), nmaxA, 4))
-    for i, c in enumerate(arc):
-        if c["n"]:
-            arc_seeds[i, : c["n"]] = c["seeds"]
-    # station index (1-based within its family) + family flag
-    arc_kk = np.array([k + 1 if k < n_B else k + 1 - n_B
-                       for k in range(len(arc))], dtype=np.float64)
-    arc_isarc = np.array([k < n_B for k in range(len(arc))])
-
-    # ---- safe-where dummies (exact recorded problems, constants)
-    P_DUM = np.concatenate([np.asarray(fan[-1]["seeds"][0]),
-                            np.asarray(fan[-2]["seeds"][0])])
-    Z_DUM = np.asarray(fan[-1]["seeds"][1])
-    zd = s_int(jnp.asarray(Z_DUM), jnp.asarray(P_DUM), ta)
-    stp = float(solvers["interior"][2](zd, jnp.asarray(P_DUM), ta))
+    # ---- safe-where dummies: certification-verified at build time
+    # (eager, per make call — unchanged semantics)
+    zd = s_int(jnp.asarray(ops["Z_DUM"]), jnp.asarray(ops["P_DUM"]),
+               ta)
+    stp = float(solvers["interior"][2](zd, jnp.asarray(ops["P_DUM"]),
+                                       ta))
     scd = max(1.0, float(jnp.max(jnp.abs(zd))))
     if not stp <= A1.NEWTON_TOL_FACTOR * EPS * scd:
         raise RuntimeError("safe-where dummy cell failed certification "
                            "(step %.3e)" % stp)
-    PAD = np.asarray(zd)
-    PT_DAX = np.asarray(fan[-1]["seeds"][-1])     # axis-solve dummy pt1
-    SD_DAX = np.asarray(fan[-1]["axis_seed"])     # + its recorded seed
-    # axis dummy: certification-verified at build time like the
-    # interior dummy (exact recorded axis problem + recorded seed)
-    za_d = s_axi(jnp.asarray(SD_DAX), jnp.asarray(PT_DAX), ta)
-    stp_a = float(solvers["axis"][2](za_d, jnp.asarray(PT_DAX), ta))
+    ops["PAD"] = np.asarray(zd)
+    za_d = s_axi(jnp.asarray(ops["SD_DAX"]),
+                 jnp.asarray(ops["PT_DAX"]), ta)
+    stp_a = float(solvers["axis"][2](za_d, jnp.asarray(ops["PT_DAX"]),
+                                     ta))
     sca_d = max(1.0, float(jnp.max(jnp.abs(za_d))))
     if not stp_a <= A1.NEWTON_TOL_FACTOR * EPS * sca_d:
         raise RuntimeError("safe-where axis dummy failed certification "
                            "(step %.3e)" % stp_a)
-    # axis dummy fillers for no-axis columns
-    ax_fill = np.stack([np.asarray(c["axis_seed"]) if c["has_axis"]
-                        else SD_DAX for c in arc])
 
     gm = tab["gammamedio"]
     delta = 1.0
     as_ = tab["_as"]
 
-    @jax.jit
-    def run(W):
-        PADj = jnp.asarray(PAD)
-        PDUMj = jnp.asarray(P_DUM)
-        ZDUMj = jnp.asarray(Z_DUM)
+    def run(W, ops):
+        PADj = ops["PAD"]
+        PDUMj = ops["P_DUM"]
+        ZDUMj = ops["Z_DUM"]
+        rowsF = ops["rowsF"]
+        rowsT = ops["rowsT"]
+        ksF = ops["ksF"]
+        ksA = ops["ksA"]
+        WF = rowsF.shape[0]
+        WT = rowsT.shape[0]
+        nmaxF = ops["fan_seeds"].shape[1]
+        nmaxA = ops["arc_seeds"].shape[1]
         thB = W[0]
         xB, yB, xs, ys, Msp = wall_geometry(W, P_geom, L)
 
@@ -703,8 +808,6 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
         prevF0 = jnp.concatenate(
             [ivl[NI - 1][None, :],
              jnp.tile(PADj[None, :], (WF - 1, 1))], axis=0)
-        ksF = jnp.arange(nmaxF, dtype=jnp.int32)
-        rowsF = jnp.arange(WF, dtype=jnp.int32)
 
         def fan_body(prev, xs):
             seeds, n_i, aseed, hidx = xs
@@ -732,23 +835,23 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
 
         prevF, fanW = jax.lax.scan(
             fan_body, prevF0,
-            (jnp.asarray(fan_seeds), jnp.asarray(fan_n),
-             jnp.asarray(fan_ax), jnp.asarray(head_idx)))
+            (ops["fan_seeds"], ops["fan_n"], ops["fan_ax"],
+             ops["head_idx"]))
 
         # ---------- DESIGN-WALL bucket (arc sector + contour)
         prevT0 = jnp.concatenate(
             [prevF, jnp.tile(PADj[None, :], (WT - WF, 1))], axis=0)
-        ksA = jnp.arange(nmaxA, dtype=jnp.int32)
-        rowsT = jnp.arange(WT, dtype=jnp.int32)
 
         def wall_body(prev, col):
-            (seeds, n_i, N_i, Nv_i, hax, wseed, aseed, kk,
+            (seeds, n_i, N_i, Nv_i, hax, wseed, aseed, kkf,
              isarc) = col
-            th = thB * kk / n_B
+            # kkf = station fraction pre-divided by ITS family count
+            # (arc: k/n_B; contour: k/Nw) — plan_operands
+            th = thB * kkf
             x4a = rtd * jnp.sin(th)
             y4a = yt + rtd * (1.0 - jnp.cos(th))
             sla = jnp.tan(th)
-            x4c = xB + (L - xB) * kk / Nw
+            x4c = xB + (L - xB) * kkf
             yvc, ypc = spline_eval(x4c, xs, ys, Msp)
             x4 = jnp.where(isarc, x4a, x4c)
             y4 = jnp.where(isarc, y4a, yvc)
@@ -763,8 +866,8 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
             pt2s = prev[jnp.clip(Nv_i + ksA, 0, WT - 1)]
             last, cells = jax.lax.scan(
                 cell_step, wall_pt, (seeds, pt2s, act))
-            p_ax = jnp.where(hax, last, jnp.asarray(PT_DAX))
-            sd_ax = jnp.where(hax, aseed, jnp.asarray(SD_DAX))
+            p_ax = jnp.where(hax, last, ops["PT_DAX"])
+            sd_ax = jnp.where(hax, aseed, ops["SD_DAX"])
             za = s_axi(sd_ax, p_ax, ta)
             ax = jnp.array([za[0], 0.0, za[1], 0.0])
             cellsel = cells[jnp.clip(rowsT - Nv_i, 0, nmaxA - 1)]
@@ -799,11 +902,9 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
 
         _, outT = jax.lax.scan(
             wall_body, prevT0,
-            (jnp.asarray(arc_seeds), jnp.asarray(arc_n),
-             jnp.asarray(arc_N), jnp.asarray(arc_Nv),
-             jnp.asarray(arc_hax), jnp.asarray(arc_ws),
-             jnp.asarray(ax_fill), jnp.asarray(arc_kk),
-             jnp.asarray(arc_isarc)))
+            (ops["arc_seeds"], ops["arc_n"], ops["arc_N"],
+             ops["arc_Nv"], ops["arc_hax"], ops["arc_ws"],
+             ops["ax_fill"], ops["arc_kkf"], ops["arc_isarc"]))
         if cert_diag:
             wallT, wallW = outT
             return wallT, jnp.maximum(jnp.max(fanW), jnp.max(wallW))
@@ -812,7 +913,38 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
             return wallT, q_l, th_l, act_l
         return outT
 
-    return run
+    ops_j = {k: jnp.asarray(v) for k, v in ops.items()}
+    if os.environ.get("A1_PLAN_ARGS", "1") == "0":
+        # LEGACY constants-baked build (arbitration path of the M4
+        # args-vs-constants gate): same body, ops closed over.
+        return jax.jit(lambda W: run(W, ops_j))
+    mode = "cert" if cert_diag else ("val" if val_diag else "wall")
+    # Refuter repair M4-F1 (s25_refute_m4, HIGH): the traced body
+    # closes over wall_geometry which reads the DESIGN-CLASS module
+    # globals (M_NODES, KNOT_XI) at trace time — a same-length knot
+    # change (the S24+1 joint-refinement leg is the named mutator)
+    # keeps every shape identical, so the class MUST be part of the
+    # engine key or the cache would return a stale-class engine
+    # silently.
+    ekey = (id(tab), id(state_fn), id(solvers), mode, NI, Nw,
+            float(yt), float(rtu), float(rtd), float(L),
+            M_NODES,
+            None if KNOT_XI is None
+            else np.asarray(KNOT_XI, float).tobytes())
+    ent = _SCAN_ENGINES.get(ekey)
+    if ent is None:
+        # strong refs pinned alongside the engine: id()-keyed
+        # identity stays valid for the cache lifetime
+        ent = (jax.jit(run), (tab, state_fn, solvers))
+        _SCAN_ENGINES[ekey] = ent
+        _SCAN_SIGSEEN[ekey] = set()
+    if sig not in _SCAN_SIGSEEN[ekey]:
+        _SCAN_SIGSEEN[ekey].add(sig)
+        print("  [engine] bucket-shape signature #%d for this engine "
+              "(fan,nmaxF,WF,arc,nmaxA,WT,n_B) = %s  [M-B churn row]"
+              % (len(_SCAN_SIGSEEN[ekey]), sig), flush=True)
+    eng = ent[0]
+    return lambda W: eng(W, ops_j)
 
 
 # ======================================================================
@@ -841,6 +973,31 @@ def check(label, ok):
 # fresh BFGS per minimize() call; state.x updated on ACCEPTED
 # iterations only; status 4 = converged-but-infeasible = failure)
 # ======================================================================
+def record_ctx_tag(tab, cfg, state_fn, solvers):
+    """M1 canonical record-memo context (S25 ENGINE SPEED, gauntlet
+    V8): sorted-JSON cfg + CONTENT hash of the thermo table arrays +
+    closure/solver identity + the DESIGN-CLASS module knobs (refuter
+    repair M4-F1/F10: M_NODES and KNOT_XI shape the wall geometry at
+    trace/record time and must never alias across a class change).
+    Inside one run_trsqp walk these are fixed by scope — the tag
+    makes the invariant EXPLICIT, and any store that OUTLIVES the
+    process must extend this key with the carrier code identity
+    (the H4 persistence rule)."""
+    h = hashlib.sha256()
+    h.update(json.dumps({k: cfg[k] for k in sorted(cfg)},
+                        sort_keys=True, default=float).encode())
+    for leaf in jax.tree_util.tree_leaves(tab):
+        h.update(np.asarray(leaf).tobytes())
+    h.update(getattr(state_fn, "__qualname__",
+                     repr(state_fn)).encode())
+    h.update(type(solvers).__name__.encode())
+    h.update(str(M_NODES).encode())
+    h.update(b"" if KNOT_XI is None
+             else np.asarray(KNOT_XI, float).tobytes())
+    h.update(str(A1.N_NEWTON).encode())
+    return h.hexdigest()
+
+
 def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
               maxiter_per_seg=40, state_fn=A1.state_q, solvers=None,
               verbose=0, margin_factory=None):
@@ -871,6 +1028,33 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     the paired constraint-row scaling, and every record/replay still
     receives physical W.
 
+    M1+M2 (S25 ENGINE SPEED, dispatch items 2-3 of
+    DISPATCH_Sspeed_to_S25_2026-08-12): (M1) the certified record of
+    the last accepted iterate is stashed at the callback (one slot,
+    deep-copied, key = (record_ctx_tag, W bytes)) and consumed at the
+    next segment top — deleting the duplicated full record at ~every
+    segment boundary; failed callback records replay their typed
+    raise the same way. (M2) a one-slot fun+jac memo shared by every
+    val_grad consumer deletes the fun/grad duplicated compiled call
+    (scipy calls them separately at the same x). Both memos are
+    bit-transparent (they change WHO computes, never WHAT);
+    acceptance evidence = the [X-SPDB] m12gate A/B (bit-identical
+    walk, counters reconciled) + the in-walk first-hit controls
+    (fresh-record bitwise equality, perturbed-W miss). n_eval in the
+    result dict now counts ACTUAL compiled value_and_grad executions
+    (the S18 ledger truth repair of record, advisory §7.1 — feeds
+    the G0/T2 review); record_fresh/cached/failmemo carry the
+    reconciliation with REQUEST semantics (fresh counted pre-call —
+    refuter repair F1, s25_refute_m12: march-type record failures
+    reconcile identically to cert-type ones); the record-memo key
+    reads the design-class/solver knobs AT REQUEST TIME (repair F2).
+    DECLARED probe tax (F4): the first-hit fresh-equality control
+    costs ONE extra record per walk (structural, not counted in the
+    reconciliation counters); wall-clock-capped campaigns may
+    disable it per stage via A1_MEMO_PROBE=0 after their first
+    covered stage. Legacy paths stay runnable via A1_RECORD_MEMO=0 /
+    A1_VG_MEMO=0 (arbitration).
+
     margin_factory (S22, F1 governor — the A' FORMULATION entry, not
     driver surgery: the optimization problem gains the margin
     constraint of the M0 tier-ladder formalization, the policy stack
@@ -891,7 +1075,6 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     events = []                          # re-record events (P2 log)
     n_rec = 0
     nit_total = 0
-    n_eval = 0
     result = None
     tr0 = 0.05                           # carried across segments
     TR_FLOOR = 1e-3                      # radius floor (S18 clip)
@@ -900,6 +1083,43 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     W_cert = None                        # last CERTIFIED segment base
     nf_events = dict(grad=0, obj=0)      # C2 (S21): nonfinite events
     rejected = []                        # T5 (S21): rejected designs
+    # M1+M2 (S25 ENGINE SPEED, dispatch items 2-3; advisory §4):
+    # segment-boundary record memo + failed-record memo (ONE-SLOT,
+    # in-walk, deep-copied at stash, consumed at most once; key =
+    # (context tag, W bytes) per gauntlet V8) and the fun+jac
+    # one-slot memo. Both are bit-transparent: they only decide WHO
+    # computes an already-deterministic quantity. Env arbitration
+    # flags keep the legacy paths runnable (A1_RECORD_MEMO=0 /
+    # A1_VG_MEMO=0); counters are carried in the result dict
+    # (constraint 6) and the [X-SPDB] m12gate A/B holds the
+    # bit-identity acceptance evidence. The first memo hit runs the
+    # constraint-5 controls (fresh-record bitwise equality +
+    # perturbed-W key miss, V12 cadence: once per walk, structural —
+    # not counted in the record counters); a control failure raises
+    # AssertionError so it can NEVER be absorbed as a rejected
+    # design by the RuntimeError paths below.
+    memo_on = os.environ.get("A1_RECORD_MEMO", "1") != "0"
+    vg_on = os.environ.get("A1_VG_MEMO", "1") != "0"
+    ctx = record_ctx_tag(tab, cfg, state_fn, solvers) if memo_on else ""
+
+    def _mkey(W_arr):
+        # Refuter repair F2 (s25_refute_m12): the design-class and
+        # solver-budget MODULE KNOBS are read AT REQUEST TIME into
+        # the key — a caller mutating M_NODES/KNOT_XI/N_NEWTON
+        # mid-walk (the S24+1 joint-refinement future is the named
+        # mutator) can never alias a stale record.
+        return (ctx, M_NODES,
+                None if KNOT_XI is None
+                else np.asarray(KNOT_XI, float).tobytes(),
+                A1.N_NEWTON, np.ascontiguousarray(W_arr).tobytes())
+
+    rec_slot = dict(key=None, out=None, plan=None)
+    fail_slot = dict(key=None, msg=None, worst=None)
+    rec_counts = dict(fresh=0, cached=0, failmemo=0)
+    probe = dict(eq=0, miss=0,
+                 armed=os.environ.get("A1_MEMO_PROBE", "1") != "0")
+    n_vg_exec = 0                # M2: honest compiled-eval count
+    n_vg_hits = 0                # M2: deduplicated requests
 
     def _persist_rejected():
         # T5 (S21, panel O4 / audit C-1(ii)): REJECTED designs are no
@@ -927,16 +1147,69 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         # floor the failure is genuine and raises honestly.
         worst_seen = float("nan")
         try:
-            out_rec, plan = run_toc_record(W, tab, cfg,
-                                           state_fn=state_fn,
-                                           solvers=solvers)
-            n_rec += 1
+            key = _mkey(W) if memo_on else None
+            if memo_on and fail_slot["key"] == key:
+                # M1 failed-record memo: this exact W already failed
+                # its record in the callback — replay the TYPED raise
+                # without paying the doomed re-record.
+                rec_counts["failmemo"] += 1
+                if fail_slot["worst"] is not None:
+                    worst_seen = float(fail_slot["worst"])
+                msg = fail_slot["msg"]
+                fail_slot.update(key=None, msg=None, worst=None)
+                raise RuntimeError(msg + " [replayed callback record "
+                                   "failure, M1 memo]")
+            if memo_on and rec_slot["key"] == key:
+                out_rec, plan = rec_slot["out"], rec_slot["plan"]
+                rec_slot.update(key=None, out=None, plan=None)
+                rec_counts["cached"] += 1
+                if probe["armed"] and probe["eq"] == 0:
+                    o2, p2 = run_toc_record(W, tab, cfg,
+                                            state_fn=state_fn,
+                                            solvers=solvers)
+                    same = (np.array_equal(np.asarray(o2["wall"]),
+                                           np.asarray(out_rec["wall"]))
+                            and float(o2["cert_worst"])
+                            == float(out_rec["cert_worst"])
+                            and [(c["N"], c["Nv"]) for c in p2["arc"]]
+                            == [(c["N"], c["Nv"])
+                                for c in plan["arc"]])
+                    assert same, ("M1 memo control: cached record != "
+                                  "fresh re-record at the same W — "
+                                  "determinism contradiction, "
+                                  "surfaced loudly")
+                    Wp_ = W.copy()
+                    Wp_[0] = np.nextafter(Wp_[0], np.inf)
+                    assert _mkey(Wp_) != key, \
+                        "M1 memo control: perturbed-W key collision"
+                    probe["eq"] += 1
+                    probe["miss"] += 1
+                    print("  [memo] first-hit controls: fresh-record "
+                          "bitwise equality PASS, perturbed-W miss "
+                          "PASS", flush=True)
+            else:
+                # M5b/H1: GATE site — cert_worst > 1 raises anyway,
+                # the typed early-abort only fires the same
+                # condition earlier (first offender).
+                # Refuter repair F1 (s25_refute_m12): fresh counts
+                # the REQUEST (pre-call), so march-type failures
+                # (record raising internally) reconcile across the
+                # memo A/B identically to cert-type ones.
+                rec_counts["fresh"] += 1
+                out_rec, plan = run_toc_record(W, tab, cfg,
+                                               state_fn=state_fn,
+                                               solvers=solvers,
+                                               abort_uncert=True)
+                n_rec += 1
             worst_seen = float(out_rec["cert_worst"])
             if out_rec["cert_worst"] > 1.0:
                 raise RuntimeError(
                     "P4 gate: record at segment base not certified "
                     "(worst %.3e)" % out_rec["cert_worst"])
         except RuntimeError as err:
+            if (isinstance(err, A1.UncertifiedCellError)
+                    and err.cert_worst is not None):
+                worst_seen = float(err.cert_worst)
             rejected.append(dict(
                 W=[float(x) for x in W], seg=int(seg),
                 cert_worst=(float(worst_seen)
@@ -1016,7 +1289,13 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 _persist_rejected()
                 return dict(W=W_cert, res=result, n_segments=seg + 1,
                             re_records=n_rec, re_record_events=events,
-                            nit_total=nit_total, n_eval=n_eval,
+                            nit_total=nit_total, n_eval=n_vg_exec,
+                            n_eval_dedup_hits=n_vg_hits,
+                            record_fresh=rec_counts["fresh"],
+                            record_cached=rec_counts["cached"],
+                            record_failmemo=rec_counts["failmemo"],
+                            memo_probe_pass=probe["eq"],
+                            memo_probe_miss=probe["miss"],
                             certifiability_limited=True,
                             n_nonfinite_grad=nf_events["grad"],
                             n_nonfinite_obj=nf_events["obj"],
@@ -1047,6 +1326,32 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             return -thrust_J(runj(Wv), tab, state_fn=state_fn)
         val_grad = jax.jit(jax.value_and_grad(scalar_J))
 
+        # M2 (S25): ONE-SLOT fun+jac memo keyed on the physical-W
+        # bytes, shared by EVERY val_grad consumer of this segment
+        # (precond, segment-base gradient, Hessian rows, f_np, g_np).
+        # scipy trust-constr calls fun and grad as SEPARATE callbacks
+        # at the same x (installed-source finding of record, advisory
+        # §1.4) — the memo deletes the duplicated compiled execution,
+        # bit-transparently (same compiled fn, same operand bytes).
+        # n_vg_exec is the HONEST compiled-execution count (the
+        # n_eval truth repair, [RIGOR]); the slot resets with each
+        # segment's fresh val_grad.
+        vg_slot = dict(key=None, v=None, g=None)
+
+        def _vg(W_phys):
+            nonlocal n_vg_exec, n_vg_hits
+            k = W_phys.tobytes() if vg_on else None
+            if vg_on and vg_slot["key"] == k:
+                n_vg_hits += 1
+                return vg_slot["v"], vg_slot["g"].copy()
+            v, g = val_grad(jnp.asarray(W_phys))
+            v = float(v)
+            g = np.asarray(g)
+            n_vg_exec += 1
+            if vg_on:
+                vg_slot.update(key=k, v=v, g=g.copy())
+            return v, g
+
         if Dv is None:
             # measured Jacobi scaling (driver note iii): central
             # gradient differences at the start point, derived step
@@ -1057,8 +1362,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 d = EPS ** (1.0 / 3.0) * max(abs(W[i]), 1.0)
                 e = np.zeros(n)
                 e[i] = d
-                gp = np.asarray(val_grad(jnp.asarray(W + e))[1])
-                gm = np.asarray(val_grad(jnp.asarray(W - e))[1])
+                gp = _vg(W + e)[1]
+                gm = _vg(W - e)[1]
                 h[i] = (gp[i] - gm[i]) / (2.0 * d)
             habs = np.abs(h)
             Dv = 1.0 / np.sqrt(np.maximum(habs, 1e-6 * habs.max()))
@@ -1084,15 +1389,14 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         # the valley-vs-seam DISCRIMINATOR: Newton-quality steps end
         # a valley-crawl; persisting flips at tiny radius demonstrate
         # a seam-pinned discrete optimum (adjudicated honestly).
-        g_base = np.asarray(val_grad(jnp.asarray(W))[1])
+        g_base = _vg(W)[1]
         Hw = np.empty((n, n))
         for jH in range(n):
             dH = EPS ** 0.5 * max(abs(W[jH]), 1.0)
             eH = np.zeros(n)
             eH[jH] = dH
-            gj = np.asarray(val_grad(jnp.asarray(W + eH))[1])
+            gj = _vg(W + eH)[1]
             Hw[:, jH] = (gj - g_base) / dH
-        n_eval += n + 1
         Hw = 0.5 * (Hw + Hw.T)
         Hu = (Dv[:, None] * Hw) * Dv[None, :]
 
@@ -1100,10 +1404,7 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             return Hu
 
         def f_np(u):
-            nonlocal n_eval
-            n_eval += 1
-            v, _ = val_grad(jnp.asarray(u * Dv))
-            v = float(v)
+            v, _ = _vg(u * Dv)
             if np.isfinite(v):
                 return v
             # C2 (S21): the finite fallback keeps the optimizer
@@ -1113,8 +1414,8 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             nf_events["obj"] += 1
             return 1e30
         def g_np(u):
-            _, g = val_grad(jnp.asarray(u * Dv))
-            g = np.asarray(g) * Dv
+            _, g = _vg(u * Dv)
+            g = g * Dv
             if not np.all(np.isfinite(g)):
                 # C2 (S21): a nonfinite adjoint-gradient component
                 # silently zeroed would SHRINK res.optimality — the
@@ -1145,10 +1446,18 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             xk_now = np.asarray(state.x) * Dv       # physical W
             if np.array_equal(xk_now, seg_state["last_rec"]):
                 return False
+            out_new = None
             try:
+                # M5b/H1: GATE site (P3(ii) raises on cert_worst > 1
+                # anyway) — typed early-abort fires the same
+                # condition at the first offender. Refuter repair F1:
+                # fresh = REQUEST count (pre-call), march-type
+                # failures reconcile.
+                rec_counts["fresh"] += 1
                 out_new, plan_new = run_toc_record(xk_now, tab, cfg,
                                                    state_fn=state_fn,
-                                                   solvers=solvers)
+                                                   solvers=solvers,
+                                                   abort_uncert=True)
                 n_rec += 1
                 # S20: P3(ii) conformance — the DECLARED policy
                 # certifies the record at EVERY accepted iterate, not
@@ -1160,7 +1469,30 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                         "P3(ii): accepted iterate not certified "
                         "(worst %.3e)" % out_new["cert_worst"])
                 seg_state["last_rec"] = xk_now.copy()
-            except RuntimeError:
+                if memo_on:
+                    # M1 stash: this certified accepted-iterate record
+                    # is exactly what the next segment top would
+                    # re-record. Deep-frozen copy (aliasing guard).
+                    rec_slot.update(
+                        key=_mkey(xk_now),
+                        out=copy.deepcopy(out_new),
+                        plan=copy.deepcopy(plan_new))
+            except RuntimeError as e_cb:
+                if memo_on:
+                    # M1 failed-record memo: the loop top would pay
+                    # the identical doomed record — replay the typed
+                    # raise instead.
+                    w_cb = None
+                    if (isinstance(e_cb, A1.UncertifiedCellError)
+                            and e_cb.cert_worst is not None):
+                        w_cb = float(e_cb.cert_worst)
+                    elif out_new is not None:
+                        try:
+                            w_cb = float(out_new["cert_worst"])
+                        except Exception:
+                            w_cb = None
+                    fail_slot.update(key=_mkey(xk_now),
+                                     msg=str(e_cb), worst=w_cb)
                 seg_state["stop"] = True     # record failed: segment
                 return True                  # ends; outer loop reverts
                                              # to the certified base
@@ -1222,7 +1554,13 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
     _persist_rejected()
     return dict(W=W, res=result, n_segments=seg + 1,
                 re_records=n_rec, re_record_events=events,
-                nit_total=nit_total, n_eval=n_eval,
+                nit_total=nit_total, n_eval=n_vg_exec,
+                n_eval_dedup_hits=n_vg_hits,
+                record_fresh=rec_counts["fresh"],
+                record_cached=rec_counts["cached"],
+                record_failmemo=rec_counts["failmemo"],
+                memo_probe_pass=probe["eq"],
+                memo_probe_miss=probe["miss"],
                 certifiability_limited=False,
                 n_nonfinite_grad=nf_events["grad"],
                 n_nonfinite_obj=nf_events["obj"],
@@ -1623,13 +1961,25 @@ def main():
         n_outer = sum(1 for ln in slines if "TOC" in ln and "iter" in ln)
         n_inner = sum(1 for ln in slines if "err inner" in ln)
         t_g2 = _time_geno_type2(scratch2)
-        lhs_T2 = opt["n_eval"] * (t_solve + t_grad)
+        # T2 PRICING REPAIR (S25 M2/G0-T2 review, advisory §1.3+§7.1
+        # of record): n_eval now counts ACTUAL compiled
+        # value_and_grad executions (the memo-honest count — the old
+        # line both double-counted Hessian evals inside n_eval AND
+        # priced each eval at t_solve+t_grad when reality is ONE
+        # value_and_grad per execution). lhs = n_eval x t_grad
+        # (t_grad IS the measured whole value_and_grad wall); the
+        # legacy double-priced figure is printed alongside for the
+        # ledger continuity of the review.
+        lhs_T2 = opt["n_eval"] * t_grad
         rhs_T2 = 4.0 * t_g2                       # K_prac (X-LSG0)
-        print("  [T2] N_eval x (t_solve + t_grad) = %d x %.3f s = "
+        print("  [T2] N_exec x t_value_and_grad = %d x %.3f s = "
               "%.1f s  <=  K_prac x t_GENO_type2 = 4 x %.3f s = "
-              "%.1f s  [GENO log: %d outer iters, %d inner marches]"
-              % (opt["n_eval"], t_solve + t_grad, lhs_T2, t_g2,
-                 rhs_T2, n_outer, n_inner))
+              "%.1f s  [GENO log: %d outer iters, %d inner marches; "
+              "legacy double-priced figure %.1f s, dedup hits %d]"
+              % (opt["n_eval"], t_grad, lhs_T2, t_g2,
+                 rhs_T2, n_outer, n_inner,
+                 opt["n_eval"] * (t_solve + t_grad),
+                 opt.get("n_eval_dedup_hits", 0)))
         # T2 SEMANTICS (S18 adjudication, mirroring the X-LSG0 T2a
         # pattern of record: "a production-gate INDICATOR, not a
         # bench exit-fail"): the practicality falsifier FIRING is a

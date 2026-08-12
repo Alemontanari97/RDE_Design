@@ -157,7 +157,12 @@ F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
     refine/enriched-class leg + O5 (S24+1 optional else F2 entry);
     GENO deeper-jump knob (GENO repo). The pre-authorized optional
     2nd session was NOT consumed.
-F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
+F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review
+    [CONSUMED 2026-08-12 in S25, BEFORE F2 opened — verdict of
+    record in rde_nozzle_G0_decision.md §4 dated note S25: S18 T2
+    firing = STRUCTURAL, no language flip, G0 stands; T2 pricing
+    repriced (kickoff §3), n_eval truth-repaired; the F2 session
+    budget no longer carries this review];
     BUDGET HONESTY (ISS-4): the brick-1+2 precedent spanned ~9
     sessions (S10-S18) — the 4-6 figure is a DELIBERATE cap, not an
     estimate from the anchor; per-session wall-clock cap 3 h of

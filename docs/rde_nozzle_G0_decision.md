@@ -169,6 +169,33 @@ third route (beyond GENO) if a differentiation cross-check is ever needed.
   1.197 s PASS. The production gate CLOSED at the S17 note above is
   hereby OPEN of record; a future T2a failure on this path would be
   STRUCTURAL and triggers the flip clause directly.]
+  [Dated note 2026-08-12, S25 — THE QUEUED G0/T2 REVIEW (S18 flip
+  clause) CONSUMED, VERDICT OF RECORD: the S18 T2 firing was
+  STRUCTURAL COST (records + curvature measurement), NOT language
+  throughput — T1 1.593 and T2a 0.116 s both PASS with margin, so
+  the flip clause does NOT trigger and the G0 language decision
+  (JAX primary / Julia-Enzyme alternate kept warm) STANDS. LEDGER
+  TRUTH REPAIR absorbed (S-SPEED advisory §1.3/§7.1, of record):
+  the S18 "67 evals" line was untruthful — true compiled-eval count
+  ~102-108 (g_np and the 18 preconditioning evals uncounted; the
+  n_eval += n+1 line double-counted Hessian evals) AND the T2 lhs
+  priced each eval at t_solve + t_grad while reality is ONE
+  value_and_grad per execution; the [X-TOCV] T2 line is REPRICED of
+  record (lhs = n_eval_actual x t_value_and_grad, legacy figure
+  printed alongside; n_eval now counts actual compiled executions —
+  the S25 M2 truth repair). The structural cost line is REPAIRED,
+  not just re-adjudicated, by the S25 M-chain (clean-host
+  [X-SPDB] baselines + gates of record): defnoz record 100.84 s ->
+  25.49 s (derived-K fused C1 closure M3 x fused-dispatch M5a,
+  bitwise-vs-legacy gated), duplicated fun/jac compiled executions
+  DELETED (M2 memo, bit-transparent, counter-reconciled), duplicate
+  segment-boundary records DELETED (M1 memo with failed-record
+  replay), per-segment engine recompile DELETED (M4 plan-as-args
+  engine cache, wall bitwise vs constants build). Julia/Enzyme
+  remains NOT benchmarked on this host (unchanged honesty row);
+  Python 3.14/3.14t stays DECLARE-NOT-ADOPT (advisory N7). The
+  remaining record-cost tail (true-L5 compiled record M5c + vmapped
+  Hessian M6) is a NAMED S25-bis item, not a G0 matter.]
 - JULIA/ENZYME NOT BENCHMARKED on this host: the "JAX over Julia" verdict
   rests on JAX being EXERCISED and Julia not, plus interop/ecosystem fit —
   not on a head-to-head speed number. Stated plainly.

@@ -1,0 +1,12 @@
+{
+ "walltime_s": 33.98528239998268,
+ "n_segments": 3,
+ "signatures": 2,
+ "n_eval": 43,
+ "records": [
+  4,
+  1,
+  1
+ ],
+ "pycount": 1
+}

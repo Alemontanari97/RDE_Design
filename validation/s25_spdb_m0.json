@@ -1,0 +1,37 @@
+{
+ "label": "m0",
+ "pycount": 1,
+ "reps": {
+  "record": 3,
+  "fast": 5
+ },
+ "record_s": {
+  "median": 100.84431780001614,
+  "all": [
+   100.844,
+   93.74,
+   123.831
+  ]
+ },
+ "replay_s": {
+  "compile_first": 16.275476899987552,
+  "steady": 2.046738800010644
+ },
+ "val_grad_s": {
+  "compile_first": 32.66047639999306,
+  "steady": 6.419620700005908
+ },
+ "hessian_block_s": {
+  "per_row": 6.419620700005908,
+  "rows": 10,
+  "block_estimate": 64.19620700005908
+ },
+ "segment_synthesis_s": {
+  "base_record": 100.84431780001614,
+  "callback_record": 100.84431780001614,
+  "hessian": 64.19620700005908,
+  "walk_evals": 21.826710380020085,
+  "replay_monitor": 2.046738800010644,
+  "total_pre_memo": 289.7582917801221
+ }
+}
