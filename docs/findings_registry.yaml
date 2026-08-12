@@ -135,17 +135,35 @@ entries:
   source: "validation/a1_toc_variational_jax.py#MEASURED PROPERTY OF RECORD"
   code: ["validation/a1_toc_variational_jax.py:255-330"]
   mechanism: seed-noise-at-marginal-cell
-  owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it"
-  trigger: "any future consumer comparing certifications across recorders"
+  owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); DEMONSTRATION DUTY (convergence map class B): per-cell isolation — find THE flipping cell at Wp/mild and show its damped-trial path divergence explicitly (cheap, next window); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it"
+  trigger: "any future consumer comparing certifications across recorders; the per-cell demo at the next open window"
 - id: engine:vmap-hessian-adjoint-divergence
   status: CONFIRMED
   severity: medium
-  magnitude: "m6gate REJECTION of record (2026-08-12, s25_spdb_m6.json + s25bis_m6diag): vmapped value_and_grad through the replay diverges 5.6e-8 REL on the gradient vs the sequential path (values bitwise-class) -> measured dH = 18% of the Hessian scale = 5-6x the FD scheme's own asymmetry error; NOT FD-Hessian-grade; 2.14x speed measured but block already 4.5-7 s <= 8 target sequentially"
+  magnitude: "MECHANISM ISOLATED (2026-08-12 locus+fix probes, three convergent evidences): the adjoint through ~250 implicit 4x4 solves has an intrinsic CROSS-LOWERING floor ~1e-8 rel on the gradient (even sequential eager-vs-jit diverges 2.9e-2 abs; values stay 1e-15) which FD amplifies ~7 orders into H; my FIRST M6 form MIXED lowerings (batched rows + separate base) -> dH 18% = 5-6x scheme asymmetry -> gate-rejected; CORRECTED form (base IN-BATCH, one lowering; lane-permutation control BITWISE validates common-mode cancellation) -> dH = 4.9e-2 rel = 1.68x scheme asym, INSIDE the derived bound K_RICH x max(scheme asyms) = 4.9e6, and batched self-asymmetry 7.6e5 BETTER than sequential 1.2e6"
   source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#M6"
   code: ["validation/a1_toc_variational_jax.py:1265-1290"]
-  mechanism: batched-adjoint-divergence
-  owner: "F2 re-adjudication candidate (routes: divergence-source isolation in the batched 4x4 linalg adjoint; jacfwd = conditional N5); sequential default of record, candidate opt-in via A1_VMAP_HESS=1; the nonfinite-lane guard SHIPPED on the sequential path regardless"
-  trigger: "n growth at F2 making the Hessian block dominant, or any consumer needing batched gradients at FD-Hessian grade"
+  mechanism: mixed-lowering-adjoint-bias
+  owner: "ADOPTION-READY candidate of record: the corrected in-batch-base form MEETS its derived acceptance bound (measured); adoption = declared version change at a session boundary / F2 entry with m6gate re-formed on the corrected criterion + walk-gate re-chain (per the M3 session-boundary precedent); sequential default meanwhile (block 4.5-7 s <= 8, no need); nonfinite-lane guard shipped on the sequential path regardless"
+  trigger: "next session boundary or F2 entry (one-flag flip + re-formed gate + re-chain); n growth making the block dominant raises priority"
+- id: engine:cross-lowering-gradient-floor
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the adjoint gradient of the replay objective varies ~1e-8 REL across ANY re-lowering of the same program (measured 2026-08-12: sequential eager-vs-jitted 2.9e-2 abs on g-scale 2.0e6; vmap B=1 2.2e-2; B-dependent 6.0e-2) while values hold at 1e-15 — FD consumers amplify this ~7 orders into H; within ONE lowering the bias is common-mode and cancels (lane-permutation control BITWISE)"
+  source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#STEP 13"
+  code: ["validation/a1_toc_variational_jax.py:1697-1720"]
+  mechanism: adjoint-reassociation-amplification
+  owner: "standing discipline of record: every gradient COMPARISON or FD stencil pins ONE lowering (O3.1/R-GRAD bands are same-lowering by construction — verified; the M6 corrected form encodes it); formal derivation of the chain amplification factor = F2-entry candidate alongside the NTF derivation"
+  trigger: "any new consumer comparing gradients across lowerings, or any cross-session gradient reproduction claim"
+- id: bench:speed-measurement-variance
+  status: CONFIRMED
+  severity: low
+  magnitude: "M-D vs M-E same-day clean-host (pycount=1 both) pessimistic-end segment 14.9 vs 20.1 s (record median 5.58 vs 8.30 s) — cause undiagnosed (thermal/OS scheduling class); BOTH inside the <=30 target with margin, verdict unaffected"
+  source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#STEP 11"
+  code: ["validation/engine_speed_bench.py:142-250"]
+  mechanism: host-variance-undiagnosed
+  owner: "next clean-host measure re-baselines with interleaved reps across a longer window; declare the band, never a point"
+  trigger: "any speed verdict with < 1.5x margin to its target (today's margin is 1.5-2x)"
 - id: cell-cert:val-diag-starvation-twin
   status: CONFIRMED
   severity: low

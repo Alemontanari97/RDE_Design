@@ -7,19 +7,96 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-12, chiusura Sessione 25 — **"C4-FIRST + ENGINE
-## SPEED": C4 CHIUSA di record (campo ondemand tipizzato + staleness
-## link + tier ONDEMAND registry-driven; l'annotazione
-## carrier-esclusiva CADE) + M-CHAIN del dispatch S-SPEED ATTERRATA
-## (M0 baseline clean-host; M1/M2/M4/M3/M5a-b ACCETTATE ognuna con
-## gate eseguibile + refuter avversario + guadagno misurato; TRE
-## difetti veri trovati dagli strumenti e riparati a registro);
-## review G0/T2 CONSUMATA (S18 T2 = STRUTTURALE, nessun flip di
-## linguaggio, riga T2 ri-prezzata); contatore S25 speed: SEGMENTO
-## ~46 s vs <=30 = NOT-MET senza M5c (controfattuale advisory
-## TENUTO), CAMPAGNA ~18-23 min vs <=25 = MET-central (sottile al
-## top); M5c+M6+H3/H4 = S25-bis NOMINATA**; log:
-## validation/PROGRESS_2026-08-12_S25_speed.md)
+## ORA (2026-08-12, chiusura Sessione 25-bis — **"M5c + M6 +
+## PROTEZIONE CAP" (censimento R30): PROGRAMMA VELOCITA' COMPLETO E
+## TARGET FORMALMENTE MET — M5c executor per-colonna ACCETTATO al
+## primo colpo su ENTRAMBE le reti (dec-vector BITWISE, z in banda
+## floor derivata, doctored first-offender esatto, coppia near-seam);
+## MEASURE M-D/M-E = STOP CHECK: SEGMENTO 14.9-20.1 s pessimistic-end
+## vs <=30 = **MET** (record fresco 100.84 -> 5.58 s = 18x),
+## CAMPAGNA proiettata ~10-14 min pessimistic vs <=25 = **MET across
+## the band**; M6 vmap-Hessiano IMPLEMENTATO e GATE-REJECTED al
+## livello consumatore (dH 18% della scala = 5-6x l'asimmetria dello
+## schema FD: verdetto onesto, default sequenziale, candidato F2
+## opt-in, guardia nonfinite-lane SHIPPATA comunque); H3+H4
+## protezione cap ATTERRATE E GATED (h3gate bitwise-sul-riuso PASS;
+## tail-to-derive riproduce ESATTAMENTE i numeri S24 + refusal
+## stale-code seminata); GAP-29 ESEGUITO (1 FLIP: NEWTON_TOL_FACTOR
+## margine x2 load-bearing -> duty derivazione F2); GAP-5
+## notaknot-twin ESEGUITO (residuo corner 6.63e-2 -> 1.17e-2 = -82%:
+## il grosso e' bias della BC naturale, aggiudicazione F2); R31
+## FINDINGS-AS-CODE atterrato (registry 15 entry + lint (xix) con
+## rejector re-mint); R28 canale CHIUSO (ratchet tier, 622 letterali
+## baselined); DUE catch onesti a registro (cert recorder-dependence
+## al design marginale; rejector notaknot riformato)**; log:
+## validation/PROGRESS_2026-08-12_S25bis_speed.md)
+
+**Branch `rde-nozzle-program`. Apertura S25-bis: HEAD ad5c48e
+(addendum post-chiusura S25). Commit S25-bis: nel log. NEXT = F2
+GENERAL ENGINE (apertura; contatore "F2 session 0/6").**
+
+- **[S25-bis] CONTATORE FINALE SPEED (formale, criterio
+  pessimistic-end pre-registrato)**: SEGMENTO = MET (sintesi post-M1:
+  14.9 s [M-D] / 20.1 s [M-E] vs <= 30; spread tra i due checkpoint
+  dichiarato, entrambi pycount=1); CAMPAGNA = MET (proiezione §5:
+  ~10-14 min pessimistic anche senza contare H3/H4, vs <= 25).
+  Catena di record: M0 100.84 s -> M-C 32.09 -> M-D record 5.58 s;
+  replay 0.236 s; val_grad 0.449 s; Hessiana 4.5-7.0 s (<= 8).
+  STOP-WHEN-MET onorato COME RAFFINATO dall'utente in sessione:
+  fuori solo l'overengineering (H2/H5/O1-O4/N8 restano conditional
+  nominate con trigger), dentro le migliorie reali (M6 tentato col
+  suo gate — e il gate ha rigettato: il rigetto E' il verdetto).
+- **[S25-bis] AGGIUDICAZIONE M6 DI RECORD (portata a CONVERGENZA su
+  ordine utente)**: implementato SOTA (entry vmap dentro l'engine
+  M4, operandi broadcast, zero ricompile/segmento) -> m6gate FIRED
+  (dH 18% = 5-6x asimmetria schema) -> CAUSA RADICE ISOLATA con tre
+  evidenze convergenti (locus probe): l'adjoint attraverso ~250
+  solve impliciti ha un floor di variabilita' CROSS-LOWERING
+  ~1e-8 rel sul gradiente (perfino eager-vs-jit sequenziale:
+  2.9e-2) che la FD amplifica ~7 ordini; il difetto era la MIA
+  formulazione (lowering miste: righe batched + base separata) ->
+  FORMA CORRETTA (base nello stesso batch, una lowering; controllo
+  permutazione lane BITWISE) misurata: dH 1.68x asimmetria, DENTRO
+  il bound derivato K_RICH x max(asym), auto-asimmetria batched
+  MIGLIORE del sequenziale. STATO: ADOPTION-READY (evidenza
+  completa, riga registry); adozione = version change dichiarato a
+  confine di sessione / F2 con m6gate riformato sul criterio
+  corretto (precedente M3); default sequenziale nel frattempo
+  (blocco 4.5-7 s <= 8, nessuna necessita'); guardia nonfinite-lane
+  SHIPPATA sul path sequenziale (REQ-NONSTALL rafforzato). NUOVE
+  righe registry: cross-lowering-gradient-floor (disciplina: ogni
+  confronto di gradienti pinna UNA lowering) +
+  speed-measurement-variance + il duty di demo per-cella della
+  recorder-dependence. MAPPA DI CONVERGENZA COMPLETA nel log STEP
+  15 (classi A proof-total / B meccanismo-dimostrato / C
+  open-with-owner: NESSUN punto S25/S25-bis silenziosamente
+  non-convergiuto).
+- **[S25-bis] DUE DATI RIGOR NUOVI DI RECORD**: (1) GAP-29/AUDIT:426
+  finalmente ESEGUITO — 1 flip (NTF/2 -> cert FAIL: margine x2
+  load-bearing, derivazione = duty F2 viva; C_FLOOR/C_OPS >= 2x
+  headroom misurato); (2) GAP-5 twin — la BC naturale porta ~5.7x
+  del residuo corner S19 (baseline riprodotta a 5 cifre; delta
+  two-resolution stabile; shift cd 8.2% = il datum di meccanismo);
+  conseguenze = F2, incumbent intoccata.
+- **[S25-bis] STRUMENTI NUOVI**: findings registry (R31) con lint
+  (xix) e regola anti-re-mint a macchina (il caso sliver = il
+  dimostratore); ratchet numeric-lint su validation/ (R28: canale
+  chiuso, classificazione = F2-entry); h3gate/m5cgate/m6gate nel
+  bench [X-SPDB].
+
+Stato precedente (chiusura Sessione 25 — **"C4-FIRST + ENGINE
+SPEED": C4 CHIUSA di record (campo ondemand tipizzato + staleness
+link + tier ONDEMAND registry-driven; l'annotazione
+carrier-esclusiva CADE) + M-CHAIN del dispatch S-SPEED ATTERRATA
+(M0 baseline clean-host; M1/M2/M4/M3/M5a-b ACCETTATE ognuna con
+gate eseguibile + refuter avversario + guadagno misurato; TRE
+difetti veri trovati dagli strumenti e riparati a registro);
+review G0/T2 CONSUMATA (S18 T2 = STRUTTURALE, nessun flip di
+linguaggio, riga T2 ri-prezzata); contatore S25 speed: SEGMENTO
+~46 s vs <=30 = NOT-MET senza M5c (controfattuale advisory
+TENUTO), CAMPAGNA ~18-23 min vs <=25 = MET-central (sottile al
+top); M5c+M6+H3/H4 = S25-bis NOMINATA**; log:
+validation/PROGRESS_2026-08-12_S25_speed.md)
 
 **Branch `rde-nozzle-program`. Commit S25: C4 = 32459ca, M-chain +
 T3 = 07400a4, chiusura = (questo). Registro 135 -> 136 (+[X-SPDB]),
@@ -205,6 +282,46 @@ riferimento, con UNA riga nuova):
     (classe O5: adozione-con-rejector di una dipendenza pura-python
     nell'env pinnato). Fino ad allora la dir cache resta illimitata
     (com'e' dal S18).
+
+CENSIMENTO — DELTA S25-bis (sweep INCREMENTALE; solo righe toccate):
+ R30 S25-bis — **CONSUMATA** (questa sessione, log completo):
+     M5c ACCETTATO first-pass (m5cgate, entrambe le reti); M-D/M-E
+     STOP CHECK = SEGMENTO MET (14.9/20.1 s pessimistic) + CAMPAGNA
+     MET (proiezione §5); M6 implementato + GATE-REJECTED come
+     default (candidato F2 opt-in; guardia nonfinite shippata);
+     H3+H4 atterrate e gated (h3gate PASS; derive H4 riproduce i
+     numeri S24; refusal stale-code seminata ad ogni apertura
+     campagna); GAP-29 eseguito (1 flip -> duty derivazione NTF,
+     owner F2); notaknot-twin eseguito (-82%, aggiudicazione F2);
+     N1 NON scattata (M5c = la leva L5-class); H2 resta fallback
+     nominato mai consumato.
+ R28 numeric-lint scope hole — **CONSUMATA-COME-CANALE**: tier
+     ratchet su validation/ (622 letterali legacy baselined
+     per-file, rejector +1 seminato); la CLASSIFICAZIONE per-file
+     resta duty F2-entry (riga findings registry; limite del
+     ratchet dichiarato: swap a conteggio costante).
+ R29 pipeline-sense — prima convergenza COMPLETATA e ASSORBITA
+     (T1); PROSSIMA istanza = sense-review PERIMETRATA al tocco
+     S25-bis (M5c executor + H3/H4 + l'aggiudicazione M6), riga
+     della prossima finestra — non improvvisata a fine sessione.
+ R31 FINDINGS-AS-CODE — **ATTERRATA** (docs/findings_registry.yaml
+     15 entry hand-verified + tests/test_findings_registry.py =
+     gruppo (xix), 4 rejector seminati incl. la regola anti-re-mint
+     a macchina); SPLIT DICHIARATO: il seeding dell'intero corpus
+     (audit 94 + gap-map 36/16/10 + ledger 45 + refuter) = LA PRIMA
+     DUTY della prossima sessione (estrazione find->verify bounded,
+     effort basso).
+ R25 CHOICE LEDGER — delta S25-bis: C2 (BC destra) ora ha il twin
+     ESEGUITO (datum -82%, aggiudicazione F2); C17/C18 sweep
+     ESEGUITO (1 flip NTF); righe NUOVE dichiarate al commit
+     (regola R5-estesa): padding tail-repeat (single-author+gate),
+     ratchet-baseline come pattern debt-lint (standard di settore,
+     dichiarato), vmap-in-engine (gate-rejected come default).
+ NUOVI FINDING A REGISTRO (canale R31, non piu' righe censimento
+     sparse): record-path:cert-verdict-recorder-dependence (catch
+     m12gate, semantica dichiarata: il recorder ATTIVO e'
+     l'autorita'); engine:vmap-hessian-adjoint-divergence (verdetto
+     m6gate).
 
 CENSIMENTO — DELTA S25 (sweep INCREMENTALE della tabella R1-R27
 consolidata a S24; solo le righe toccate + le nuove):
