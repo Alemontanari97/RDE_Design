@@ -7,18 +7,75 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-12, chiusura Sessione 24 — **F1b "DEF ADJUDICATION"
-## ESEGUITA E CHIUSA: twin falsifier ESEGUITO con branch registrata
-## (F4 margin-inactive / certifiability-limited — TERZA istanza del
-## meccanismo di costruzione-di-classe, ora a istanza DEF profonda),
-## verdetto EQ-v2 = CONJECTURE + nuova ipotesi nominata H-CLASS;
-## DUE panel avversariali in-sessione (DE-bucket: campaign GO 4/4
-## con C1-C10; survey termo: KEEP quintica) + dispatch generality
-## consumato (O3 -> ADJUDICATE, set bilaterale); dato in-class F7 di
-## record: il rappresentante DEF non e' l'argmax in-class (+0.51%
-## vs banda, caveat dichiarato)**; log:
-## validation/PROGRESS_2026-08-12_S24_f1b.md, 15 passi; gate PASS
-## al passo 2)
+## ORA (2026-08-12, chiusura Sessione 25 — **"C4-FIRST + ENGINE
+## SPEED": C4 CHIUSA di record (campo ondemand tipizzato + staleness
+## link + tier ONDEMAND registry-driven; l'annotazione
+## carrier-esclusiva CADE) + M-CHAIN del dispatch S-SPEED ATTERRATA
+## (M0 baseline clean-host; M1/M2/M4/M3/M5a-b ACCETTATE ognuna con
+## gate eseguibile + refuter avversario + guadagno misurato; TRE
+## difetti veri trovati dagli strumenti e riparati a registro);
+## review G0/T2 CONSUMATA (S18 T2 = STRUTTURALE, nessun flip di
+## linguaggio, riga T2 ri-prezzata); contatore S25 speed: SEGMENTO
+## ~46 s vs <=30 = NOT-MET senza M5c (controfattuale advisory
+## TENUTO), CAMPAGNA ~18-23 min vs <=25 = MET-central (sottile al
+## top); M5c+M6+H3/H4 = S25-bis NOMINATA**; log:
+## validation/PROGRESS_2026-08-12_S25_speed.md)
+
+**Branch `rde-nozzle-program`. Commit S25: C4 = 32459ca, M-chain +
+T3 = 07400a4, chiusura = (questo). Registro 135 -> 136 (+[X-SPDB]),
+lint (xv) EXIT 0 (suite di chiusura piena, EXIT-code gated, nel
+log).**
+
+- **[S25] NUMERI DI RECORD ([X-SPDB] artifacts committati,
+  pycount = 1 dichiarato in ognuno)**: baseline M0 record 100.84 s /
+  replay C1 2.047 s / val_grad 6.420 s / Hessiana 64.2 s / segmento
+  sintetico 289.8 s; POST M-chain (M-C): record 32.09 s (3.1x) /
+  replay 0.661 s (3.1x; la claim advisory 2.72x CONFERMATA) /
+  val_grad 0.979 s (6.6x — Q2/A-G RISOLTA, il falsificatore "banda
+  si allarga" NON spara) / Hessiana 9.8 s / segmento sintetico
+  77.9 s (3.7x). K_NEWT DERIVATO = 2 per tabella (il letterale 8
+  RITIRATO a riferimento di controllo). Churn firme (Q3) = 2/3
+  segmenti (n_B si muove con thB; assorbimento = engine cache +
+  cache XLA persistente). Catch di adozione: il cap LRU jax
+  richiede `filelock` a CACHE-READ time -> cap = conditional
+  nominata (BLOCCATO 8).
+- **[S25] TRIPLA PROVA PER LEVA (direttive utente in-sessione, ora
+  standing)**: m12gate (bit-identita' A/B, contatori riconciliati,
+  failmemo esercitato), m4gate (wall BITWISE args-vs-constants,
+  O3.1, banda warm, rejector V2 + rejector di CLASSE), m5gate
+  (record fuso bitwise, refusal tipizzato first-offender), [X-THC1]
+  re-run PASS (M3 = version change dichiarato adottato; oracolo
+  C-A scaricato; R6 ridimensionato al SUO floor di rilevabilita'
+  dopo 2 FAIL onesti — lezione R-GRAD). Refuter avversari: F1
+  contatori -> semantica request; F2 chiave cieca alla classe ->
+  _mkey per-request; M4-F1 HIGH engine cache senza classe nella
+  chiave -> classe in ekey+ctx + rejector nel gate. NUOVA direttiva
+  standing registrata: pipeline-sense-expert-review (2 review
+  esperte pipeline-wide lanciate, advisory in atterraggio).
+- **NEXT-1 = S25-bis NOMINATA** (o F2 se l'utente la apre prima
+  assorbendone le righe): M5c executor per-colonna (centerpiece;
+  gate bitwise dec-vector; fallback H2 -> N1) + M6 vmap-Hessiano
+  (version change dichiarato; M4 prerequisito GIA' dentro) +
+  **H3+H4 VINCOLANTI prima di OGNI prossima campagna decisiva**
+  (protezione cap) + GAP-29 sweep halved-constants + notaknot-twin
+  (GAP-5) + assorbimento advisory pipeline-sense + repairs red-team
+  gap-map + numeric-lint scope hole (R28). DOPO: F2 GENERAL ENGINE
+  (contatore "F2 session m/6", C6 pre-entry, G6 da F2a; near-axis +
+  rejector C1 rafforzati; F2a assorbe mean_swirl; U3';
+  census-lemma + PAP-RIM a F2-exit).
+
+Stato precedente (chiusura Sessione 24 — **F1b "DEF ADJUDICATION"
+ESEGUITA E CHIUSA: twin falsifier ESEGUITO con branch registrata
+(F4 margin-inactive / certifiability-limited — TERZA istanza del
+meccanismo di costruzione-di-classe, ora a istanza DEF profonda),
+verdetto EQ-v2 = CONJECTURE + nuova ipotesi nominata H-CLASS;
+DUE panel avversariali in-sessione (DE-bucket: campaign GO 4/4
+con C1-C10; survey termo: KEEP quintica) + dispatch generality
+consumato (O3 -> ADJUDICATE, set bilaterale); dato in-class F7 di
+record: il rappresentante DEF non e' l'argmax in-class (+0.51%
+vs banda, caveat dichiarato)**; log:
+validation/PROGRESS_2026-08-12_S24_f1b.md, 15 passi; gate PASS
+al passo 2)
 
 **CONTATORE F1b FINALE: F1b session 1/1 — CLOSED (2026-08-12)
 (la 2a sessione opzionale pre-autorizzata NON consumata come
@@ -135,6 +192,69 @@ validation/PROGRESS_2026-08-11_S23_f1close.md):
   rejector field-level C1, duties F2a ratificati, DUTY-4(i) F2b,
   X-SCANM, U3', estensione margine (q;s,h0) + transition duty
   [X-TBAK]).
+
+STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-12, chiusura S25;
+righe 1-7 = invariate dalla chiusura S24 e qui ri-presentate per
+riferimento, con UNA riga nuova):
+ 8. **NUOVO — dipendenza `filelock` per il cap LRU della cache XLA
+    (catch di adozione S25)**: jax 0.11 rifiuta OGNI lettura della
+    cache persistente se jax_compilation_cache_max_size e' settato
+    senza il pacchetto `filelock` (verificato live; la riga S3
+    dell'advisory copriva solo l'esistenza del config). Cap = 
+    conditional nominata; decisione utente/confine di sessione
+    (classe O5: adozione-con-rejector di una dipendenza pura-python
+    nell'env pinnato). Fino ad allora la dir cache resta illimitata
+    (com'e' dal S18).
+
+CENSIMENTO — DELTA S25 (sweep INCREMENTALE della tabella R1-R27
+consolidata a S24; solo le righe toccate + le nuove):
+ R3c C4 chiusura meccanica — **CONSUMATA S25** (commit 32459ca:
+     campo ondemand tipizzato, staleness link con rejector provato,
+     tier ONDEMAND registry-driven; terza migrazione MAI avvenuta).
+ R7c review G0/T2 — **CONSUMATA S25** (verdetto di record in
+     rde_nozzle_G0_decision.md §4 nota S25: S18 T2 = STRUTTURALE,
+     nessun flip; riga T2 ri-prezzata; D6 F2 annotata).
+ R18/R21 (C7/O5, S24+1 opzionale) — invariate.
+ R22 ENGINE SPEED — **CONSUMATA S25 con contatore onesto**:
+     M0-M5a/b atterrate e gate-accettate (07400a4); SEGMENTO
+     NOT-MET senza M5c (46 s vs 30), CAMPAGNA MET-central
+     (18-23 min); **M5c + M6 + H3 + H4 -> S25-bis NOMINATA (R30);
+     H3/H4 VINCOLANTI prima di ogni campagna decisiva**.
+ R23 survey termo — delta: **C-A SCARICATA S25** (oracolo
+     NASA-direct nel carrier [X-THC1], stesso tocco M3 come da
+     collocazione); C-B/C-C/C-D invariate (owner F2).
+ R25 CHOICE LEDGER — **LEDGER-CARRIED**: l'annex C1-C45 del
+     gap-map E' il ledger di record (8 CONVERGED / 14 single-author
+     / 23 NEVER, ogni riga aperta con owner); delta S25: C4-suite
+     chiusa, C17-C18 sweep = GAP-29 (S25-bis), C23 = H1/M5b
+     atterrata, C24 = C-A scaricata, C34 [P-TRFLOOR] =
+     blocked-with-named-cause (input forfeited dal kill S24
+     pre-8761dce; trigger = primo artifact di campagna
+     post-8761dce), C2 notaknot-twin (GAP-5) = S25-bis.
+ R26 gap-map — **CONSUMATA S25**: advisory ATTERRATO completo (36
+     gap, 5 HIGH; annex ledger), letto INTEGRALE; Form-3 red-team
+     sul judge layer ESEGUITO (conti riconciliati; 2 fallimenti di
+     assorbimento sul facet driver — il judge ha consumato il draft
+     interrotto: repairs = riga S25-bis); raws + refuter + red-team
+     in validation/sota_gapmap_raws_2026-08-12/.
+ NUOVE RIGHE S25:
+ R28 numeric-lint SCOPE HOLE (audit test-suite, CONFIRMED medium,
+     mai collocata prima): validation/ NON e' scansionata dal lint
+     no-magic — il canale macchina che avrebbe rigettato i
+     letterali ritirati; owner = S25-bis/F2-entry (finestra igiene).
+ R29 direttiva standing pipeline-sense-expert-review (registrata in
+     memoria S25): ogni pezzo algoritmico = gate + refuter + expert
+     sense-review (pipeline intera + singoli passaggi); prima
+     istanza = 2 review esperte lanciate S25 (advisory
+     ADVISORY_S25_pipeline_sense_math / _impl_fidelity in
+     atterraggio) — ASSORBIMENTO all'apertura della prossima
+     sessione (landing rule: leggere gli advisory PRIMA di toccare
+     l'algoritmo).
+ R30 S25-bis NOMINATA (sessione dedicata): M5c executor
+     per-colonna + M6 vmap-Hessiano + H3 campaign dedup + H4
+     tail-to-derive/persistenza (VINCOLANTI pre-campagna) + GAP-29
+     + notaknot-twin + repairs red-team gap-map + R28 + MEASURE
+     M-D/M-E = STOP CHECK con verdetto finale sul target segmento.
 
 STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-12, chiusura S24):
  1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
