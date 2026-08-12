@@ -401,9 +401,11 @@ verbatim, row grade) and Harroun 2021 (row grade)); Liu-Cheng-Zhang-Wang
 AST 120:107300 (2022) — states the design axiom verbatim
 ("time-averaged quantities are reasonable for design"; quotation
 level per D2 row, page-verify PENDING); Harroun-Heister-Ruf JPP
-37(5) (2021), doi:10.2514/1.B38244 — performance driver =
-near-perfect time-averaged expansion ("empirical echo" grade, D2 G2
-row). Page-verified anchors of record remain the PDE precursor
+37(5) (2021), doi:10.2514/1.B38244 — steady MOC design at fixed NPR
+13.7/19.3 (p.662; the earlier "near-perfect time-averaged expansion"
+wording was a MISQUOTE, page-verified ABSENT from the paper —
+choking census 2026-08-11, corrected S24; "empirical echo" grade,
+D2 G2 row). Page-verified anchors of record remain the PDE precursor
 below (O-H 2007) and the EAP steady-equivalent bookkeeping (§8.1).
 Bounds on the claim, stated plainly: (i) the documented habit is a
 DECLARED AXIOM or empirical rule in those papers, never a derived

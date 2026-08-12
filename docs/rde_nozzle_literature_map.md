@@ -17,7 +17,7 @@ reader the claim is query-bounded.
 | # | Candidate novelty (internal notes) | Verdict | Nearest prior art |
 |---|---|---|---|
 | G1 | Cycle/phase-averaged SHAPE-FUNCTIONAL variational formulation of the RDE nozzle (T1/T2 system) | NOT-FOUND(q) | Paxson et al. AIAA 2022-4107 (2-param CFD opt of shrouded plug); Gonzalez-Viana 2025, Ornano 2017 (evolutionary PDE-nozzle opt) |
-| G2 | Collapse theorem T3 (fixed wall → Rao at ⟨Pc⟩) | NOT-FOUND(q) | Empirical echoes: Harroun 2021 "near-perfect time-averaged expansion"; Liu et al. 2021 design axiom; certainty-equivalence analogues in stochastic control |
+| G2 | Collapse theorem T3 (fixed wall → Rao at ⟨Pc⟩) | NOT-FOUND(q) | Empirical echoes: Harroun 2021 steady MOC design at fixed NPR 13.7/19.3 (p.662; the earlier "near-perfect time-averaged expansion" quote is a MISQUOTE — page-verified ABSENT from the paper, choking census 2026-08-11, corrected S24); Liu et al. 2021 design axiom; certainty-equivalence analogues in stochastic control |
 | G3 | Plug-at-peak theorem T4 (simultaneous per-phase optimality) | NOT-FOUND(q) as theorem; the ideal-adaptation CLOSURE has precedent as a performance BOUND | Qualitative altitude-compensation rationale (Harroun 2019; Liu 2021/22); Kraiko-Egoryan 2018/2020 instantaneously-adapted nozzle bounds for detonation cycles |
 | G4 | Truncated/shrouded plug as genuinely averaged shape problem (PB-2/PB-3) | PARTIAL | Paxson et al. 2022: cycle-aware but parametric (2 DOF), no functional/optimality system |
 | G5 | MOC design against a phase-FAMILY of inflow states, one shared contour | NOT-FOUND(q) | All published MOC RDE designs average first, design second (Li-Xu-Huang 2022; Liu 2021) |
@@ -61,8 +61,13 @@ flight demonstration (JSR, doi:10.2514/1.A35401, aerospike RDE, Isp
 Rep. 2023, doi:10.1038/s41598-023-40156-y).
 
 Nozzle design/optimization: Harroun-Heister-Ruf JPP 37(5) (2021),
-doi:10.2514/1.B38244 (aerospikes + blunt body; performance driver =
-near-perfect TIME-AVERAGED expansion) + AIAA 2019-0197; Paxson-Miki-
+doi:10.2514/1.B38244 (aerospikes + blunt body; steady MOC design at
+fixed NPR 13.7/19.3, p.662 — the earlier "near-perfect TIME-AVERAGED
+expansion" wording was a MISQUOTE, page-verified absent, choking
+census 2026-08-11, corrected S24) [the conference-precursor
+citation "AIAA 2019-0197" carried here until 2026-08-12 is a PHANTOM
+— USER-VERIFIED NON-EXISTENT (S24); the fetch item is dissolved and
+no conference precursor is cited]; Paxson-Miki-
 Perkins-Yungster AIAA 2022-4107 (shrouded TRUNCATED plug, 2-parameter CFD
 optimization, 58.1%→70.0% of a "notional ideal shape-shifting nozzle"
 bound; notes the choked chamber exit decouples cycle from nozzle);

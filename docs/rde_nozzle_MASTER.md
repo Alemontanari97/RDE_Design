@@ -720,7 +720,10 @@ tier-1+vacuum corner (T-T3-SI). Per breaker:
  MEASUREMENT (choking advisory 2-ter(A)), NEVER citable as evidence
  of general RDE/steady coincidence; a five-line hypothesis audit of
  the S18 twin against the tier-1+vacuum set is the NAMED
- PRECONDITION (queued, not performed) for any stronger phrasing.
+ PRECONDITION for any stronger phrasing — AUDIT PERFORMED (S24
+ 2026-08-12, T2a; verdict INSIDE the corner with the H3-p-degenerate
+ and H4-instance qualifiers carried; see the S24 registration
+ block).
  Harroun clause of record: "Harroun-style" above is a tier-1 CORNER
  READING of the TWIN-A construction (zero-swirl comparison twin,
  Harroun p.666; pp.665-666 document a comparison construction, not
@@ -1554,14 +1557,27 @@ walk, [D1] stays untestable there, and [C-O33] is NEITHER
 discharged NOR falsified by this campaign.
  THE CLASSICAL CONNECTION (page-verified 2026-08-07: Rao & Beck,
 AIAA 94-3264, pp. 1-4 READ IN FULL; GENO Profile_m.f90 DEF branch
-READ. CITATION STATUS, radical honesty: Sternin 1962, "The Boundary
-of the Region of Existence of Optimal Nozzles Free of Shock Waves",
-and Shmyglevskii 1981, "Variational Problems of Gas Dynamics", are
-cited VIA the Rao-Beck reference list only — NOT independently
-page-verified; both queued for acquisition, and no claim about
-their content beyond what Rao-Beck's own text states is made or
-permitted): the forbidden zone has a classical name — Sternin's
-boundary — with Rao-Beck Eq. (4) as its closed form at the kernel/
+READ. CITATION STATUS — SUPERSEDED 2026-08-12 (S24 R4, executing
+duty D-A of ADVISORY_generality_litmap_2026-08-12 / dispatch A1):
+BOTH primaries are ON DISK and READ IN FULL, TWICE, page-verified
+by the generality-review refuter — Sternin = literature/dan25254.pdf,
+the RUSSIAN ORIGINAL, DAN SSSR 139(2):335-336 (1961) (the Rao-Beck
+Ref. 3 "Sov. Phys. Dokl. 6(7), Jan 1962" is its translation);
+Shmyglevskii = literature/0041-5553(80)90091-9.pdf, USSR CMMP
+20(5):113-127 (journal issue 1980, (c) 1981 Pergamon —
+translation-year discrepancy noted, reference verified exact). The
+O3 hard gate therefore moves from ACQUIRE to ADJUDICATE; the O3
+comparison set is TWO-SIDED of record (dispatch A2): the Rao-Beck
+D'-jump (admissibility restoration ON the boundary) AND
+Shmyglevskii's SECOND SCHEME (discontinuous SHOCKLESS solutions
+from variational corner conditions, his Eq. (7), completeness map
+Fig. 4 claiming THE optimum for all nozzle dimensions — a STRONGER
+classical object; its CONTACT front needs a certificate class of
+its own, F4b open item). Historical wording kept for the record:
+until 2026-08-12 both were cited VIA the Rao-Beck reference list
+only): the forbidden zone has a classical name — Sternin's
+boundary — with Rao-Beck Eq. (4) (the 1994 paper's numbering, of
+record per dispatch A4) as its closed form at the kernel/
 control-surface junction, their Eq. (1) being literally our f2
 invariant;
 minimum-length optimum-thrust nozzles sit ON that boundary; the DEF
@@ -1885,6 +1901,186 @@ generality and SOTA modus operandi of the codebase).
  (the field-level rejector remains a NAMED conditional with owner F2,
  declared in the P-2 outline header — the named-conditional-with-owner
  pattern of record, generality preserved).]
+
+[S24 REGISTRATION BLOCK — F1b DEF ADJUDICATION: THE MARGIN
+BUCKET-SCOPE BOUNDARY, THE CONSTRUCTION-SURFACE READING OF val, THE
+TWIN LEG-1 NUMBERS, AND THE COMPANION VERDICTS] (2026-08-12,
+[F1b/TWIN] of plan v3, session S24; log
+validation/PROGRESS_2026-08-12_S24_f1b.md; carrier [X-DEFTW]
+committed this session; two mid-session adversarial panels of record:
+ADVISORY_S24_DEbucket_panel_2026-08-12 (Form-2, campaign GO
+conditioned, C1-C10) and ADVISORY_S24_thermo_closure_survey_2026-08-12
+(adopt-or-declare, KEEP [X-THC1]); both judge-adjudicated in one
+round, labeled per the standing rule).
+ SCIPY res.v CONVENTION OF RECORD (S22 residual CLOSED; scipy 1.18
+ source-read): res.v = one multiplier array PER CONSTRAINT in the
+ order passed; defining identity lagrangian_grad = grad f +
+ sum J_i^T v_i (f = the MINIMIZED objective, J_i = the USER
+ constraint Jacobians); active LOWER-bound inequalities give v <= 0
+ (user v = MINUS the positive canonical multiplier), equalities pass
+ through at + sign. For run_trsqp (f = -J; cons = [lip equality,
+ margin]): mu(M0) = -res.v[-1][0] >= 0 and lambda_e = +res.v[0][0],
+ scale-invariant in the Jacobi parametrization. The S22 print
+ -156.05 maps to mu = +1.5605e+02 (sign-consistent; the NUMBER stays
+ information-only). mu wording remains B-STATIONARITY (O1 open).
+ THE MARGIN BUCKET-SCOPE BOUNDARY [MEASUREMENT of record, both
+ codes, panel-ratified]: at a deep-DEF instance (defnoz: eps = 30,
+ L = 8) the (G)/Lambda-form val field is legitimately NEGATIVE on
+ certified shock-free fields — val ~ -0.81 at the wall attachment
+ (theta ~ 46 deg) and val < 0 on the terminal characteristic
+ UPSTREAM of D' (both measured on GENO's own A4-verified defnoz
+ field AND on our march of its class representative, same AD
+ monitor) — so a constraint "val >= mu_0 > 0 over every W-dependent
+ lane" (the S20-S22 whole-field bucket) or over the whole control
+ surface has an EMPTY feasible set there for the entire class,
+ including the classical DEF design itself. CONSTRUCTION-SURFACE
+ READING [panel 4/4]: val is the criterion "can a Rao control
+ surface advance through this state" (val = 0 is a POLE of the
+ reduced DE-march ODE, dtheta/dR ~ 1/val — E1 sharpening); the
+ classical corpus evaluates it ONLY at candidate D points and along
+ DE; no field criterion exists. EQ-v2 DIRECTION-A CLAUSE CORRECTED
+ AT CONSTANT CONTENT [C2]: the fold "touches the CONSTRUCTION
+ SURFACE only at D'" (not "the computed domain"). THE BUCKET OF
+ RECORD for margin carriers: the DE-SIDE bucket — registered
+ terminal-C+ chain nodes strictly LIPWARD of the last val = 0
+ crossing (the direct problem's self-consistent D'-analog; GENO's
+ own jb/xstar/pmcompression dispatch mirrored, source-verified);
+ at mild instances (no crossing; eps = 4 field all-positive, min
+ val 0.68) it DEGENERATES to the whole control surface and is
+ feasibility-equivalent to the [X-MGOV] whole-field bucket — the
+ S22 record stands AT ITS OWN instance; the bucket definition is
+ INSTANCE-CLASS-SENSITIVE and every margin carrier must declare its
+ bucket against this boundary. INDEPENDENT CLASSICAL CORROBORATION
+ (generality-review dispatch A5, page-verified on BOTH Rao-Beck
+ papers): the classical discontinuity sits at D' on the chosen
+ right Mach line — the KERNEL-side end of the control surface —
+ with the PM compression coalescing AT D', the jump landing ON the
+ boundary, and the optimality Eqs. (1)-(3) UNCHANGED from the
+ post-jump state (isentropic upstream, induced shock only aft of
+ D') — exactly the "DE-side chain lipward of the last val = 0
+ crossing" construction. An empty DE bucket = the direct
+ image of the classical existence limit [C9]. Branch-map
+ declaration [C1]: kill criteria of the pre-registered falsifier
+ unchanged; margin OBJECT re-scoped; two F5 limbs re-routed
+ (axis-side -> the F2 position-vs-D' comparison; field-interior
+ caustics -> march certification + the F4 margin-inactive branch);
+ F2's on-characteristic half holds by construction (its content =
+ position along the chain). Site labels are quotable only together
+ with the F2 |argmin - D'| distance [C8]. F1/F4 are re-scoped to
+ the LADDER direction; the joint mesh+knot refinement half is a
+ NAMED conditional [C7] (discharge: the pre-authorized optional
+ session, else F2 entry).
+ TWIN LEG-1 OF RECORD ([X-DEFTW] leg1, two GENO resolutions, fresh
+ scratch runs): DEF marker ACTIVE, Dtheta_comp = -9.9837/-9.9839
+ deg; A4 identity on the DEF branch rel 4.163e-4/4.108e-4
+ (independent reproduction of GENO fca273a); CF = 1.7285/1.7284;
+ D' = (5.2015, 3.4073)/(5.1994, 3.4058), two-resolution agreement
+ 2.613e-3 inside the K_RICH cell band 1.2122e-2; q(D') = 3145 m/s,
+ den(D') = 0.684 (the GENO |den| < 1e-10 guard cannot bite at D');
+ derived D' bands: landing window (0,1e-6) + dthetapm/2 through
+ measured gradients = 1.581e-4 position, grid cell 3.03e-3,
+ K_RICH-safeguarded band 1.2122e-2; GENO two-resolution wall
+ difference 1.5283e-4; lip constraint residual |ye - yt sqrt(eps)|
+ = 4.4938e-3 (GENO's inner-bisection tolerance, measured). GENO
+ N-74 blast radius extended of record: resolution-INDUCED
+ infeasibility at a feasible (eps, L) (NI = 201 halving sends the
+ outer TOC bisection to the Mrao ~ 80 non-physical bracket + inner
+ hang) — return finding for the GENO repo.
+ S18 FIVE-LINE HYPOTHESIS AUDIT [T-T3-MAP S18-clause NAMED
+ PRECONDITION — PERFORMED, S24 T2a]: the S18 "+0.04%" twin
+ configuration audited from the S18 record against the
+ tier-1+vacuum set: H-OBJ satisfied by construction
+ (vacuum-equivalent objective, Pa drops on the {eps, L} feasible
+ set); H1-T satisfied (frozen CH4/O2 thermally-perfect table,
+ gamma(T) free); H2' satisfied-MEASURED (per-phase supersonic
+ march, P4 margin audit 0.4809 >= 0.1202 m/s); H3-p
+ satisfied-DEGENERATE (single-phase instance — the family axis
+ never exercised: exactly why it is a corner measurement); H4
+ instance-corroborated only (N2 restart control; hypothesis
+ retained). "Zero-by-theorem inside the corner" phrasings are now
+ admissible WITH the H3-p-degenerate and H4-instance qualifiers;
+ the +0.04% stays a corner measurement, never general
+ RDE/steady-coincidence evidence.
+ THERMO-CLOSURE SURVEY OF RECORD [KEEP [X-THC1]; adopt-or-declare]:
+ (i) the ATLAS table dCp column is NOT analytic — measured over all
+ 4999 intervals of the defnoz table it is the 1-K BACKWARD
+ DIFFERENCE of Cp (max dev 1.0e-6 vs FD; analytic would sit 30-60x
+ away): generator-derivative ingest only behind an ANALYTICITY
+ REJECTOR [C-B]; (ii) FORMAL EXACTNESS: in the working window
+ [1050, 3900] K the NASA fit has quartic cp => quintic h, which the
+ quintic-Hermite closure reproduces IDENTICALLY (interpolation and
+ FD errors ~ cp^(5) == 0) — in-window the closure is an exact
+ re-representation, S11 generality costs zero accuracy; the
+ no-joint-in-box hypothesis is DECLARED with a per-table joint
+ census duty [C-C] (200/201 K clamp, 1000 K joint at 1.57% cp'
+ kink named); (iii) FLINT (GENO backend-2, source-verified): sole
+ interpolant is LINEAR-C0 on the 1-K grid with cp/h/s independent
+ and dCp never consumed — the S14 defect class at source level on
+ GENO's second backend (cross-code finding; defnoz/leg-1 runs
+ backend 0, untouched); FLINT is GPLv3 (user flag, GENO-side);
+ (iv) NASA9-direct: not adopted as closure, ADOPTED as an
+ exactness ORACLE [C-A, owner F2/next X-THC1 touch]; box-edge
+ silent-clamp rejector = C-D (owner F2). Lit-map hygiene of
+ record: the "AIAA 2019-0197" citation was a PHANTOM (user-verified
+ non-existent, removed) and the Harroun "near-perfect time-averaged
+ expansion" misquote is corrected to the faithful "steady MOC
+ design at fixed NPR 13.7/19.3 (p.662)" in all three carrying
+ lines. ACQUISITIONS LANDED 2026-08-12: Sternin (Doklady AN SSSR
+ 139(2), 1961, p.335 — the Russian original of the 'Sov. Phys.
+ Dokl. 6(7) 1962' translation) + Shmyglevskii (USSR CMMP
+ 20(5):113-127, 1981) + Moretti (C&F 31:719-723, 2002) — the O3
+ gate moves from blocked-on-acquisition to blocked-on-page-verify;
+ the generality-review dispatch A1 then upgraded this further: both
+ primaries READ IN FULL TWICE by the review refuter, so O3 =
+ blocked-on-ADJUDICATION with a TWO-SIDED comparison set (dispatch
+ A2), see the corrected S20-block citation status.
+ THE TWIN VERDICT OF RECORD (leg 2 = [X-DEFTW] campaign, two
+ decisive runs, rung 1 attributable — C3 gate CLEAN on the repeat,
+ crossing drift 1 node; external monotonicity stop after the
+ tightest rung measured margin INACTIVE; branch adjudication in the
+ S24 log steps 13-14): **EQ-v2 stays CONJECTURE with ONE NEW NAMED
+ HYPOTHESIS ADDED of record — H-CLASS**: Direction A's joint limit
+ (h -> 0, rho -> inf, mu_0 -> 0) is read WITH the hypothesis that
+ the design class/mesh can approach the (G) boundary before losing
+ certifiability. At the tier-0 9-dof class at the defnoz instance
+ this hypothesis MEASURABLY FAILS: the margin never activates (min
+ DE val 7.31e-2 = 33x the tightest pre-registered floor at the
+ certifiability-limited stop, active-cusp census 0/0), the walk is
+ stopped by march CERTIFICATION at healthy val — the THIRD measured
+ instance of the class-construction mechanism (S20, S22 mild; S24
+ deep-DEF) — so the mu_0 -> 0 limit set of margin-active KKT points
+ is EMPTY along the executed ladder and the falsifier's decisive
+ content is UNREACHED at this class (named owners: the C7
+ refine/enriched-class conditional, S24+1 optional else F2 entry;
+ the F2 near-axis + C1-rejector mandate). NO hypothesis-killing
+ branch fired (F5/F6 clean; F2 non-adjudicable, subject absent).
+ MEASURED IN-CLASS DATA of record: (i) the classical transversality
+ content VERIFIED in-class on the leg-1 side (the GENO DEF
+ representative passes its own instance-derived f2 bar, 1.4972e-2 <
+ 2.0137e-2; our non-stationary outcome-II design does not and need
+ not — F3 fired-as-written with its KKT-closure precondition unmet,
+ declared); (ii) **the in-class F7 surplus datum**: within the
+ tier-0 certified class at (eps = 30, L = 8) the DEF-wall class
+ representative is measurably NOT the J-argmax — a certified
+ margin-inactive design exceeds its J by +2.0407e5 (+0.51%) vs the
+ pre-registered band 5.38e3 (38x), with the DECLARED
+ band-underinclusion caveat (class-representation error saturates
+ M -> 2M and is under-covered by the M-vs-2M J-difference; crude
+ systematic bound ~6e4). CLAIM CAP of record: this is an IN-CLASS
+ statement about the 9-dof representative, NEVER about the true DEF
+ construction's optimality in its own boundary-built family (O3
+ gated); it is the first in-class measured datum on the Viviano
+ side of the A3 three-way tension, compatible with Rao-Beck-Booth's
+ boundary-family margin-activity statement (a family this class
+ never reaches). O5 (limit order): NOT dischargeable at this class
+ (no boundary-active sequence exists to extrapolate) — NAMED
+ CONDITIONAL carried, same owner as C7. RT-4 mu SIGN TEST: mu = 0
+ identically on the ladder (monotonicity, the pre-registered
+ [X-MGOV] wording); the res.v barrier estimate at the stop
+ (+4.86e4) is information-only under B-stationarity; the GENO
+ deeper-jump family half remains STRUCTURALLY GATED (needs a
+ GENO-side jump-depth knob; owner = the GENO repo under its own
+ protocol, trigger = its next dedicated session).]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
