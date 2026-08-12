@@ -125,7 +125,15 @@ F1b DEF ADJUDICATION (1 session + optional pre-authorized 2nd if
     fallback fires, and F2 OPENS FIRST; F1b RE-OPENS if/when the
     conditional lands (mandatory re-check at every later session
     opening), with leg 2 (direct margin-constrained, [X-MGOV] armed)
-    deferred alongside.
+    deferred alongside. SUPERSEDED 2026-08-12 (user-ordered dispatch
+    EXECUTED in the GENO repo under GENO's own protocol, GENO commit
+    fca273a): the flagdef KAT (KAT_BFUN, closed-form gamma=1.4,
+    rejector-proven) AND the DEF regression case (CASES/defnoz,
+    flagdef=1 measured deep, A4 identity on the DEF branch rel
+    4.163e-4) are LANDED in GENO CTest -> the external conditional
+    is SATISFIED, F1b RE-OPENS as the next session (1 session, not
+    order-interchangeable with F2); declared GENO-side residual:
+    s3 md5 freeze of defnoz (md5 baselines are not cross-platform).
 F2  GENERAL ENGINE (4-6 sessions incl. the counted G0/T2 review;
     BUDGET HONESTY (ISS-4): the brick-1+2 precedent spanned ~9
     sessions (S10-S18) — the 4-6 figure is a DELIBERATE cap, not an

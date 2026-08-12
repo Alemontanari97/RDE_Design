@@ -71,17 +71,24 @@ on-demand esercitato in sessione con run diretto, exit 0).
   F1 chiusa questa sessione; l'annotazione onesta
   "suite verde = carrier-esclusiva" resta di record in run_all.py;
   la chiusura meccanica consuma la finestra della fase attiva).
-- **NEXT-1 (S24) = APERTURA F2 "GENERAL ENGINE"** (D6: contatore
-  "F2 session m/6" obbligatorio, C6 promossa pre-entry, G6 operativo
-  da F2a; budget = cap deliberato 4-6 sessioni): item nominati =
-  meccanismo near-axis (evidenza S22, owner F2), rejector
-  field-level C1 (scioglie la conditional del freeze P-2), duties
-  F2a ratificati (DUTY-2(1), DUTY-5(b), DUTY-8, DUTY-15(a)),
-  DUTY-4(i) [F2b], X-SCANM replay probes (ereditato), U3' choking
-  (F2a), estensione margine (q; s, h0) con rejector (F2b exit) +
-  transition duty tier-invariant ([X-TBAK] L_TB ri-derivato).
-  RESIDUO DICHIARATO S22 in piedi: lettura convenzione scipy res.v
-  PRIMA di ogni test mu-consumante (ereditata dalla finestra F1b).
+- **NEXT-1 (S24) = APERTURA F1b "DEF ADJUDICATION"** (AGGIORNATO
+  2026-08-12: la conditional esterna GENO e' ATTERRATA — vedi
+  BLOCCATO 5 — quindi il routing S23 "F2-first" e' SUPERATO per la
+  regola scritta stessa: F1b riapre, e' 1 sessione, e NON e'
+  interscambiabile con F2). Contenuto D6: twin falsifier
+  pre-registrato VERBATIM (branch F1-F7; leg 1 = GENO flagdef=1 —
+  ora con defnoz/KAT di supporto — vs leg 2 diretta
+  margin-constrained a pari (eps,L) con [X-MGOV] armato); companion
+  mu-prediction SIGN TEST (RT-4); O5 conditional o floor-ladder
+  cheap; EQ-v2 promozione/demozione con tag di rigore, R4 stessa
+  sessione. APERTURA F1b OBBLIGATORIA: lettura convenzione scipy
+  res.v PRIMA di ogni test mu-consumante (residuo S22, la finestra
+  e' QUESTA). Bande di cross-check armate ([X-MGOV] dV_pert; delta
+  semantico den-vs-val=0 di record). DOPO F1b: F2 GENERAL ENGINE
+  come gia' pianificato (item invariati: meccanismo near-axis,
+  rejector field-level C1, duties F2a ratificati, DUTY-4(i) F2b,
+  X-SCANM, U3', estensione margine (q;s,h0) + transition duty
+  [X-TBAK]).
 
 STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S23):
  1. **G5 (decisione time-boxed)**: pendente dal 2026-07-17 — invio
@@ -96,11 +103,28 @@ STATO BLOCCATO / LOCK UTENTE (aggiornati 2026-08-11, chiusura S23):
     il trigger); la decisione resta all'utente.
  4. **SGANCIO P-2 (ISS-2): CHIUSA 2026-08-11 (S22)**; freeze
     ESEGUITO alla chiusura F1 (S23) per la regola ratificata.
- 5. **DISPATCH GENO (protocollo SUO, sessione separata, MAI da
-    qui)**: flagdef KAT + caso di regressione DEF; VERDETTO S23
-    (lettura read-only di record): NON ATTERRATO -> F1b leg 1
-    blocked-with-named-cause; il dispatch RESTA pendente e F1b
-    riapre se/quando atterra.
+ 5. **DISPATCH GENO: ESEGUITO E ATTERRATO 2026-08-12** (ordine
+    utente "fallo te sulla versione locale"; eseguito NEL repo GENO
+    col SUO protocollo, commit GENO fca273a su main, log
+    GENO docs/PROGRESS.md sessione 2026-08-12): (i) flagdef KAT =
+    KAT_BFUN in test_thermo (boundaryfunction_solve REALE vs forma
+    chiusa gamma=1.4 CAS-provata + identita' Rao-Beck Eq.(4), banda
+    derivata Richardson, rejector-provato 19/25, PASS); (ii) caso
+    di regressione DEF = CASES/defnoz in CTest (DEF profondo
+    Dtheta=-9.98 gradi, identita' A4 kernel<->IVL MISURATA sul ramo
+    DEF: rel 4.163e-4 = O(Delta^2); marker-asserted, PASS 37 s).
+    SCOPERTE di ritorno (record GENO corretto con strumento):
+    tocnoz era gia' MILD-DEF (flagdef=1, Dtheta=-0.52 gradi) — il
+    label "flagdef=0" del dossier A4 GENO era un'assunzione mai
+    strumentata (valore 1.22e-5 confermato); N-74 nuovo (hang senza
+    error stop su TOC infeasible xtronc=6, registrato non fixato).
+    RESIDUO GENO dichiarato: md5 freeze defnoz + suite completa su
+    s3 (i baseline md5 non sono cross-platform, misurato).
+    **CONSEGUENZA F1b: la conditional esterna E' SODDISFATTA -> il
+    blocked-with-named-cause di S23-T3 e' SUPERATO, F1b RIAPRE**
+    (leg 1 twin flagdef=1 vs leg diretta; la banda dV_pert di
+    [X-MGOV] e' armata; il semantic delta den-vs-val=0 e' di
+    record). NEXT-1 aggiornato di conseguenza.
  6. **CHIUSURA ANTICIPATA F1: CHIUSA 2026-08-11** — decisione utente
     = (a), eseguita in S23 (freeze + C1 conditional dichiarata +
     DUTY-6(i) scaricata).
