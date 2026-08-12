@@ -212,10 +212,17 @@ def geno_case_run(scratch, NI_over=None, Ne_over=None):
 
 
 def locate_dprime(obs, lam_fn):
-    """D' on the GENO output field via OUR monitor: argmin val over
-    the finite supersonic field (the DEF construction lands D' on
-    val = 0 within the landing window). Returns location, state, and
-    the measured local |dval/ds| for the derived position bands."""
+    """D' on the GENO output field via OUR monitor: the DE control
+    surface IS the C+ characteristic through the lip, and the DEF
+    construction lands its start D' ON the val = 0 boundary (inside
+    the (0, 1e-6) window). So: trace the C+ back from the lip
+    (slope dy/dx = tan(theta + alpha), interpolated on the field by
+    inverse-distance over kd-tree neighbors) and return the val = 0
+    crossing. NOTE OF RECORD (S24, measured): the naive whole-field
+    argmin-val is WRONG here — the wall/attachment region legitimately
+    carries val << 0 (val < 0 is surface-march degeneracy, not field
+    invalidity), so the argmin lands at the attachment, not at D'."""
+    from scipy.spatial import cKDTree
     fld = obs["field"]
     x = fld["x"].ravel()
     y = fld["y"].ravel()
@@ -234,18 +241,61 @@ def locate_dprime(obs, lam_fn):
     den = 1.0 + lam * (Aa + Bb)
     val = (lam * Bb * (Aa + Bb) - (Aa - Bb)) / den
     good = np.isfinite(val)
-    i0 = int(np.argmin(np.where(good, val, np.inf)))
-    p0 = np.array([x[i0], y[i0]])
-    # local |dval/ds|: nearest-neighbor fit around D'
-    dd = np.hypot(x - p0[0], y - p0[1])
-    nb = np.argsort(dd)[1:12]
-    nb = nb[np.isfinite(val[nb])]
-    slope = np.abs(val[nb] - val[i0]) / np.maximum(dd[nb], 1e-300)
-    dval_ds = float(np.median(slope))
-    return dict(x=float(p0[0]), y=float(p0[1]), q=float(q[i0]),
-                theta=float(th[i0]), val_min=float(val[i0]),
-                den=float(den[i0]), dval_ds=dval_ds,
-                cell=float(np.median(dd[np.argsort(dd)[1:5]])))
+    P = np.stack([x[good], y[good]], axis=1)
+    qg, thg, alg = q[good], th[good], al[good]
+    valg, deng = val[good], den[good]
+    tree = cKDTree(P)
+    # local cell scale at the lip (median nn distance)
+    pE = np.array([obs["wall_x"][-1], obs["wall_y"][-1]])
+    dnn, _ = tree.query(pE, k=6)
+    cell = float(np.median(dnn[1:]))
+
+    def interp(pt, arr, k=8):
+        d, idx = tree.query(pt, k=k)
+        w = 1.0 / np.maximum(d, 1e-12)
+        return float(np.sum(w * arr[idx]) / np.sum(w)), float(d[0])
+
+    # trace the C+ back from just inside the lip
+    pt = pE.copy()
+    step = 3.0 * cell
+    v_here, _ = interp(pt, valg)
+    prev = (pt.copy(), v_here)
+    hit = None
+    found = False
+    for _ in range(200000):
+        t_here, _ = interp(pt, thg)
+        a_here, _ = interp(pt, alg)
+        mslope = np.tan(t_here + a_here)
+        dirv = -np.array([1.0, mslope])
+        dirv /= np.linalg.norm(dirv)
+        pt = pt + step * dirv
+        if pt[0] <= 0.0 or pt[1] <= 0.0:
+            break
+        v_new, dmiss = interp(pt, valg)
+        if dmiss > 10.0 * step:      # left the field
+            break
+        if v_new <= 0.0 <= prev[1]:
+            # linear crossing between prev and pt
+            tcr = prev[1] / max(prev[1] - v_new, 1e-300)
+            hit = prev[0] + tcr * (pt - prev[0])
+            found = True
+            break
+        prev = (pt.copy(), v_new)
+    if hit is None:
+        hit = pt                     # declared: no crossing found
+    d0, i0 = tree.query(hit, k=1)
+    # local |dval/ds| around D' for the derived position bands
+    dnb, nb = tree.query(hit, k=12)
+    fin_nb = np.isfinite(valg[nb])
+    slope = np.abs(valg[nb][fin_nb] - valg[i0]) / np.maximum(
+        dnb[fin_nb], 1e-300)
+    dval_ds = float(np.median(slope[1:])) if fin_nb.sum() > 2 else 0.0
+    v_at, _ = interp(hit, valg)
+    return dict(x=float(hit[0]), y=float(hit[1]), q=float(qg[i0]),
+                theta=float(thg[i0]), val_min=float(v_at),
+                den=float(deng[i0]), dval_ds=dval_ds,
+                cell=float(np.median(dnb[1:5])),
+                crossing_found=found)
 
 
 def stage_leg1(state_fn):
@@ -288,9 +338,12 @@ def stage_leg1(state_fn):
         ok &= check("%s: A4 mass identity present and O(1e-3) or "
                     "better" % tag,
                     obs["a4_rel"] is not None and obs["a4_rel"] < 1e-2)
-        ok &= check("%s: D' val_min small and NON-NEGATIVE side "
-                    "(landing semantics; |val|<1e-2)" % tag,
-                    abs(dp["val_min"]) < 1e-2)
+        band_v = A1.K_RICH * dp["dval_ds"] * dp["cell"] + LAND_WIN
+        ok &= check("%s: D' = val-zero crossing FOUND on the lip C+ "
+                    "with |val(D')| = %.2e <= derived band %.2e"
+                    % (tag, abs(dp["val_min"]), band_v),
+                    dp["crossing_found"]
+                    and abs(dp["val_min"]) <= band_v)
         res[tag] = dict(obs=dict(
             def_marker=obs["def_marker"],
             dtheta_comp=obs["dtheta_comp"], a4_rel=obs["a4_rel"],
@@ -312,6 +365,14 @@ def stage_leg1(state_fn):
     print("  GENO two-resolution wall difference (max |dy|) = %.4e; "
           "lip constraint residual |ye - yt sqrt(eps)| = %.4e"
           % (dgeno, ye_res))
+    d12 = float(np.hypot(
+        res["r1"]["dprime"]["x"] - res["r2"]["dprime"]["x"],
+        res["r1"]["dprime"]["y"] - res["r2"]["dprime"]["y"]))
+    band12 = A1.K_RICH * max(res["r1"]["dprime"]["cell"],
+                             res["r2"]["dprime"]["cell"])
+    ok &= check("D' two-resolution agreement |D'_r1 - D'_r2| = %.3e "
+                "<= K_RICH cell band %.3e" % (d12, band12),
+                d12 <= band12)
     # D' landing/quantization bands from measured gradients
     dp = res["r1"]["dprime"]
 
