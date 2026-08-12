@@ -1074,6 +1074,24 @@ def stage_campaign(tab, state_fn, solv, cfg):
             wall_x=[float(t) for t in lg["wall"][:, 0]],
             wall_y=[float(t) for t in lg["wall"][:, 1]],
             wtime=dt))
+        # incremental artifact dump (S24 repair: a BY-RULE wall-clock
+        # cap stop must never lose the measured rungs/walls)
+        json.dump(dict(case=CASE, rungs=rungs, partial=True,
+                       counters=counters),
+                  open(ART_CAMP + ".partial", "w"), indent=1)
+        # PRE-REGISTERED MONOTONICITY STOP ([X-MGOV] ladder rule,
+        # S24 declared omission repaired: activity is monotone in
+        # mu0 for the lower-bound constraint, so inactivity at the
+        # TIGHTEST rung makes every looser rung vacuous)
+        if not margin_active:
+            print("  [ladder] MONOTONICITY STOP (pre-registered "
+                  "[X-MGOV] rule): margin INACTIVE at the tightest "
+                  "executed rung (min DE val %.6e >> mu0 + gap "
+                  "%.6e); remaining rungs are vacuous — mu = 0 "
+                  "identically on the ladder, the RT-4 sign "
+                  "statement is trivially mu = 0."
+                  % (lg["val_min"], mu0 + gap))
+            break
         W_cur = W_new
     TV.M_NODES, TV.KNOT_XI = old_class
     t_camp = time.perf_counter() - t_camp
