@@ -467,23 +467,27 @@ def wall_to_class(wx, wy, cfg, n_nodes):
 # ======================================================================
 # CONTROL-SURFACE MARGIN SCOPE (S24 formulation adjudication of record)
 # ======================================================================
-# MEASURED AT THIS INSTANCE (S24, both codes): the attachment region
-# legitimately carries val ~ -0.81 on CERTIFIED shock-free fields
-# (ours at the GENO-seeded design AND GENO's own defnoz output field),
-# so "val >= mu0 > 0 over every W-dependent lane" is INFEASIBLE for
-# EVERY design of the class here, including GENO's own DEF design —
-# it cannot be the constraint EQ-v2 speaks of. The locus the theory
-# names (S4, Direction A, H2) is the TERMINAL-C+ CONTROL SURFACE,
-# where the (G) boundary is the design-validity boundary and where
-# the DEF construction lands D'. The [X-DEFTW] margin bucket is
-# therefore the CONTROL-SURFACE bucket (chain nodes, registered end
-# exclusion) — the whole-field bucket of [X-MGOV] remains valid AT
-# ITS OWN mild instance (eps = 4, all-positive field) and its record
-# is untouched; the bucket-scope boundary is an R4 registration duty
-# of this session. Freezing semantics: the chain lane mask is built
-# at each RUNG START from that rung's record and FROZEN across the
-# rung's segments (same spirit as RK-G plan freezing, declared);
-# shape mismatches on later segments are cropped/padded and COUNTED.
+# MEASURED AT THIS INSTANCE (S24, both codes, two findings): (i) the
+# attachment region legitimately carries val ~ -0.81 on CERTIFIED
+# shock-free fields (ours AND GENO's own defnoz output field); (ii)
+# the terminal characteristic legitimately carries val < 0 UPSTREAM
+# of D' (again both codes — this is exactly WHY Rao-Beck land the PM
+# compression ON D'). So "val >= mu0 > 0" over the whole W-dependent
+# field OR over the whole control surface is INFEASIBLE for EVERY
+# design of the class here, including GENO's own DEF design — val is
+# a CONSTRUCTION-SURFACE criterion in the classical logic (where can
+# a Rao surface live), never a field criterion. The faithful
+# direct-problem translation: enforce val >= mu0 on the DE-SIDE of
+# the terminal-C+ chain — the registered nodes LIPWARD of the last
+# val = 0 crossing (the direct D'-analog) — which at a mild instance
+# (no crossing, e.g. eps = 4, field all-positive) DEGENERATES to the
+# whole control surface and further to feasibility-equivalence with
+# the [X-MGOV] whole-field bucket at ITS instance; that record is
+# untouched. The bucket-scope boundary is an R4 registration duty of
+# this session. Freezing semantics: the DE lane mask is built at each
+# RUNG START from that rung's record and FROZEN across the rung's
+# segments (RK-G-spirit freezing, declared); shape mismatches on
+# later segments are cropped/padded and COUNTED.
 
 
 def chain_nodes_ki(out):
@@ -556,7 +560,17 @@ def lane_mask_from_chain(out, kis, sel, lane_shape):
 
 
 def cs_stats(tab, cfg, state_fn, solv, W, label=""):
-    """Record + control-surface chain val stats at a design."""
+    """Record + control-surface chain val stats at a design, with the
+    DE-SIDE bucket (S24 second scope adjudication of record, measured
+    on BOTH codes): in the deep-DEF regime the terminal characteristic
+    legitimately carries val < 0 UPSTREAM of D' — that is exactly why
+    Rao-Beck land the compression ON D' — so the classical surface is
+    DEFINED only on the DE side. The margin bucket = the registered
+    chain nodes LIPWARD of the LAST val = 0 upward crossing (the
+    direct problem's self-consistent D'-analog); at a mild instance
+    (no negative node, e.g. eps = 4) it DEGENERATES to the whole
+    registered control surface — reconciling with the [X-MGOV]
+    record at its own instance."""
     old = (TV.M_NODES, TV.KNOT_XI)
     TV.M_NODES, TV.KNOT_XI = len(W) - 1, None
     try:
@@ -568,13 +582,25 @@ def cs_stats(tab, cfg, state_fn, solv, W, label=""):
     kis, pts, cs, reg = chain_nodes_ki(out)
     val, den, q, th = val_of_pts(pts, state_fn)
     good = reg & np.isfinite(val)
+    idx = np.where(good)[0]                # axisward -> lipward
+    de = good.copy()
+    i_cross = -1
+    if idx.size:
+        neg = np.where(val[idx] <= 0.0)[0]
+        if neg.size:
+            j_last = int(neg[-1])          # last non-positive node
+            de[idx[: j_last + 1]] = False  # DE side = strictly lipward
+            i_cross = int(idx[j_last])
+    de_idx = np.where(de)[0]
     return dict(out=out, plan=plan, kis=kis, pts=pts, cs=cs, reg=reg,
-                val=val, den=den, q=q,
-                m_ref=float(val[good].min()) if good.any() else np.nan,
-                N=int(good.sum()),
-                q_ref=float(q[good].mean()) if good.any() else np.nan,
-                i_min=int(np.where(good)[0][np.argmin(val[good])])
-                if good.any() else -1)
+                de=de, i_cross=i_cross, val=val, den=den, q=q,
+                m_ref=float(val[de_idx].min()) if de_idx.size
+                else np.nan,
+                N=int(de_idx.size),
+                q_ref=float(q[de_idx].mean()) if de_idx.size
+                else np.nan,
+                i_min=int(de_idx[np.argmin(val[de_idx])])
+                if de_idx.size else -1)
 
 
 def make_margin_fn_cs(tab, cfg, plan, state_fn, solvers, rho, mu0,
@@ -668,13 +694,16 @@ def stage_derive(tab, state_fn, solv, cfg):
     W16, _, rep16 = wall_to_class(wx, wy, cfg, 2 * M_NODES)
     print("  class band: M-vs-2M interpolant representation errors "
           "%.3e / %.3e" % (rep, rep16))
-    print("-- derive: CONTROL-SURFACE val stats at the GENO seed --")
+    print("-- derive: DE-side control-surface val stats at the GENO "
+          "seed --")
     st0 = cs_stats(tab, cfg, state_fn, solv, W0, "W0")
     print("  [W0(GENO-seed)] certified %s (worst %.3e); chain %d "
-          "nodes (%d registered CS); min CS val = %.6e at chain idx "
-          "%d; min |den| on CS = %.4e"
+          "nodes, %d registered CS, %d DE-side (crossing at chain "
+          "idx %d); min DE val = %.6e at chain idx %d; min |den| on "
+          "the registered CS = %.4e"
           % (st0["out"]["cert_worst"] <= 1.0, st0["out"]["cert_worst"],
-             len(st0["kis"]), st0["N"], st0["m_ref"], st0["i_min"],
+             len(st0["kis"]), int(st0["reg"].sum()), st0["N"],
+             st0["i_cross"], st0["m_ref"], st0["i_min"],
              float(np.min(np.abs(st0["den"][st0["reg"]])))))
     ok &= check("GENO seed certified", st0["out"]["cert_worst"] <= 1.0)
     # START SELECTION (general, measured — no tuned constants): the
@@ -702,10 +731,10 @@ def stage_derive(tab, state_fn, solv, cfg):
                       "(%s) — candidate discarded, declared"
                       % (amp, sgn, str(err)[:80]))
                 continue
-            print("  [start cand a=%.4f sgn=%+.0f] cert %.3e, CS "
-                  "m_ref = %.6e"
+            print("  [start cand a=%.4f sgn=%+.0f] cert %.3e, DE "
+                  "m_ref = %.6e (N_DE = %d)"
                   % (amp, sgn, stc["out"]["cert_worst"],
-                     stc["m_ref"]))
+                     stc["m_ref"], stc["N"]))
             if stc["out"]["cert_worst"] <= 1.0 and stc["m_ref"] > 0:
                 Wp, st_p = Wc, stc
                 sel_note = "bump a=%.4f sgn=%+.0f" % (amp, sgn)
@@ -726,12 +755,12 @@ def stage_derive(tab, state_fn, solv, cfg):
     N = st_p["N"]
     ladder = [m_ref / 2.0 ** k for k in range(1, N_RUNGS + 1)]
     rho = A1.K_RICH * np.log(N) / ladder[-1]
-    print("  CONTROL-SURFACE bucket: N = %d registered chain lanes; "
-          "m_ref = %.6e; ladder mu0 = %s; rho = %.4e (gap = %.4e)"
+    print("  DE-SIDE bucket: N = %d chain lanes; m_ref = %.6e; "
+          "ladder mu0 = %s; rho = %.4e (gap = %.4e)"
           % (N, m_ref, ["%.4e" % t for t in ladder], rho,
              np.log(N) / rho))
     # dV_pert cross-implementation band on THIS q range ([X-MGOV] D4)
-    st = dict(q=st_p["q"][st_p["reg"]])
+    st = dict(q=st_p["q"][st_p["de"]])
     alpha_of, lam_of = MG.make_alpha_lam(state_fn)
     qs = np.linspace(st["q"].min(), st["q"].max(), 24)
 
@@ -756,12 +785,12 @@ def stage_derive(tab, state_fn, solv, cfg):
     _w, q_l, _t, _a = runv(jnp.asarray(np.asarray(Wp, float)))
     lane_shape = tuple(int(t) for t in q_l.shape)
     mask = lane_mask_from_chain(st_p["out"], st_p["kis"],
-                                st_p["reg"], lane_shape)
-    print("  lane grid %s; chain mask lanes = %d (of %d registered "
-          "CS nodes; unmapped = axis-row nodes, declared)"
+                                st_p["de"], lane_shape)
+    print("  lane grid %s; DE-side chain mask lanes = %d (of %d "
+          "DE nodes; unmapped = axis-row nodes, declared)"
           % (lane_shape, int(mask.sum()), st_p["N"]))
-    ok &= check("chain mask nonempty and >= 80%% of the registered "
-                "CS nodes mapped",
+    ok &= check("chain mask nonempty and >= 80%% of the DE-side "
+                "nodes mapped",
                 mask.sum() >= 0.8 * st_p["N"])
     # margin-gradient spot check + corrupted control at the start
     print("-- derive: margin gradient O3.1-style spot at the start "
@@ -799,7 +828,7 @@ def stage_derive(tab, state_fn, solv, cfg):
                start_note=sel_note,
                m_ref=m_ref, q_ref=q_ref, N=N, rho=float(rho),
                ladder=[float(t) for t in ladder],
-               m_ref_seed=st0["m_ref"],
+               m_ref_seed=st0["m_ref"], i_cross_seed=st0["i_cross"],
                den_min_cs=float(np.min(np.abs(
                    st_p["den"][st_p["reg"]]))),
                shape_events=shape_events)
@@ -820,10 +849,9 @@ def rung_logs(st, state_fn, mu0, gap, label):
     exclusion sites; strictly interior = classical D' site), f2
     drift (registered norm), wall. st = cs_stats(...) output."""
     out = st["out"]
-    reg = st["reg"]
     val = st["val"]
     pts = st["pts"]
-    idx = np.where(reg & np.isfinite(val))[0]
+    idx = np.where(st["de"] & np.isfinite(val))[0]
     vv = val[idx]
     i_loc = int(np.argmin(vv))
     i_min = int(idx[i_loc])
@@ -833,20 +861,26 @@ def rung_logs(st, state_fn, mu0, gap, label):
                                              i_min + 1)][:2]
     r_loc = O33.STENCIL_RADIUS * max(np.hypot(*(p_min - nb[0])),
                                      np.hypot(*(p_min - nb[1])))
-    # end-vs-interior: index distance from the registered ends
-    d_end = min(i_loc, len(idx) - 1 - i_loc)
-    interior = d_end > O33.STENCIL_RADIUS
+    # SITE classification on the DE bucket (H2 reading of record):
+    # crossing-end (kernel side) = the D'-analog, the EXPECTED
+    # classical site; strictly-interior DE node = a legitimate
+    # classical D' too (panel near-axis adjudication); LIP-end
+    # binding = the H2 lip-corner exclusion site (F5 kill).
+    d_cross = i_loc
+    d_lip = len(idx) - 1 - i_loc
+    site = ("crossing-end" if d_cross <= O33.STENCIL_RADIUS else
+            ("lip-end" if d_lip <= O33.STENCIL_RADIUS else
+             "interior"))
     # active census on the chain: consecutive-run clustering
     act = vv <= mu0 + gap
     n_act = int(act.sum())
     n_cl = int(np.sum(act & ~np.concatenate([[False], act[:-1]])))
-    act_end = bool(act[0] or act[-1])
     rep = O33.surface_report(out, state_fn, label)
     return dict(val_min=float(vv[i_loc]),
                 argmin_xy=(float(p_min[0]), float(p_min[1])),
-                argmin_interior=bool(interior),
-                d_end_nodes=int(d_end), r_chain=float(r_loc),
-                census=(n_act, n_cl, act_end),
+                site=site, d_cross=int(d_cross), d_lip=int(d_lip),
+                r_chain=float(r_loc),
+                census=(n_act, n_cl),
                 f2_drift=rep["d2"], f2_mean=rep["f2"],
                 wall=np.asarray(out["wall"][:, :2]))
 
@@ -885,7 +919,7 @@ def stage_campaign(tab, state_fn, solv, cfg):
                                         solvers=solv, val_diag=True)
         _w, q_l, _t, _a = runv(jnp.asarray(W_cur))
         mask = lane_mask_from_chain(st_cur["out"], st_cur["kis"],
-                                    st_cur["reg"],
+                                    st_cur["de"],
                                     tuple(int(t) for t in q_l.shape))
         # derived optimizer tolerance ([X-MGOV] campaign recipe)
         J_w, g_w, scalJ_w = AK_gJ(W_cur, None, tab, cfg,
@@ -924,29 +958,28 @@ def stage_campaign(tab, state_fn, solv, cfg):
         lg = rung_logs(st_new, state_fn, mu0, gap, "rung %d" % k)
         margin_active = lg["val_min"] <= mu0 + gap
         print("  [rung %d] %.0f s, segs %d, nit %d, status %s, KKT "
-              "%.3e; J = %.7e; mu(M0, B-stat) = %s; min CS val %.6e "
+              "%.3e; J = %.7e; mu(M0, B-stat) = %s; min DE val %.6e "
               "(mu0 + gap = %.6e) -> margin %s; argmin (%.4f, %.4f) "
-              "%s (d_end %d nodes, r_loc %.3e); census (n_act, "
-              "n_clusters, end-active) = %s; f2 drift %.4e; "
+              "site %s (d_cross %d, d_lip %d, r_loc %.3e); census "
+              "(n_act, n_clusters) = %s; f2 drift %.4e; "
               "nf-counters %s"
               % (k, dt, opt["n_segments"], opt["nit_total"],
                  getattr(res, "status", None),
                  float(getattr(res, "optimality", np.nan)),
                  float(-res.fun), mu_est, lg["val_min"], mu0 + gap,
                  "ACTIVE" if margin_active else "inactive",
-                 lg["argmin_xy"][0], lg["argmin_xy"][1],
-                 "INTERIOR" if lg["argmin_interior"] else "CHAIN-END",
-                 lg["d_end_nodes"], lg["r_chain"], lg["census"],
-                 lg["f2_drift"], counters))
+                 lg["argmin_xy"][0], lg["argmin_xy"][1], lg["site"],
+                 lg["d_cross"], lg["d_lip"], lg["r_chain"],
+                 lg["census"], lg["f2_drift"], counters))
         rungs.append(dict(
             rung=k, mu0=mu0, J=float(-res.fun),
             kkt=float(getattr(res, "optimality", np.nan)),
             status=int(getattr(res, "status", -1)),
             mu_est=mu_est, val_min=lg["val_min"],
             margin_active=bool(margin_active),
-            argmin_xy=lg["argmin_xy"],
-            argmin_interior=lg["argmin_interior"],
-            d_end_nodes=lg["d_end_nodes"], r_chain=lg["r_chain"],
+            argmin_xy=lg["argmin_xy"], site=lg["site"],
+            d_cross=lg["d_cross"], d_lip=lg["d_lip"],
+            r_chain=lg["r_chain"], i_cross=st_new["i_cross"],
             census=lg["census"], f2_drift=lg["f2_drift"],
             f2_mean=lg["f2_mean"],
             W=[float(t) for t in W_new],
@@ -1034,15 +1067,18 @@ def stage_campaign(tab, state_fn, solv, cfg):
         verdicts["F4"] = dict(fired=bool(len(act) == 0
                                          or not all(track)),
                               n_active=len(act))
-        interior_seq = [r["argmin_interior"] for r in act]
+        site_seq = [r["site"] for r in act]
         verdicts["F5"] = dict(
-            fired=bool(len(act) > 0 and not any(interior_seq)),
-            interior=interior_seq,
-            note="CS scope: chain-END binding (lip/kernel end) = the "
-                 "H2 exclusion sites; INTERIOR chain node = a "
-                 "classical D' site")
-        print("  F5: active argmin STRICTLY INTERIOR on the chain "
-              "per active rung: %s" % interior_seq)
+            fired=bool(len(act) > 0
+                       and all(s == "lip-end" for s in site_seq)),
+            sites=site_seq,
+            note="DE scope: crossing-end = the D'-analog (EXPECTED "
+                 "classical site); interior DE node = legitimate "
+                 "classical D' (panel near-axis adjudication); "
+                 "persistent LIP-end binding = the H2 lip-corner "
+                 "exclusion site -> F5 fires")
+        print("  F5: active argmin site per active rung: %s"
+              % site_seq)
         ncl_seq = [r["census"][1] for r in act]
         verdicts["F6"] = dict(
             fired=bool(any(c > 1 for c in ncl_seq)), clusters=ncl_seq)
