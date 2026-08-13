@@ -32,10 +32,17 @@
 ## validation/PROGRESS_2026-08-12_S25bis_speed.md)
 
 **Branch `rde-nozzle-program`. Apertura S25-bis: HEAD ad5c48e
-(addendum post-chiusura S25). Commit S25-bis: nel log. NEXT =
-S-ORDINE (R32, de-entropizzazione: prompt di record
+(addendum post-chiusura S25). Commit S25-bis: nel log. CATENA NEXT
+di record (ratificata dall'utente 2026-08-12): S-ORDINE (R32,
+de-entropizzazione, prompt committato
 validation/ADVISORY_Sordine_prompt_2026-08-12.md, assorbe la prima
-duty R31), POI F2 GENERAL ENGINE (contatore "F2 session 0/6").**
+duty R31, gate NOTHING-LOST vincolante) -> S-CERT (R33, audit di
+certificazione AGNOSTICO, prompt committato
+validation/ADVISORY_Scert_prompt_2026-08-12.md: la certificabilita'
+si MISURA con auditor ostili context-free, verdetto
+CERTIFICABILE-CON-RESIDUI / NON-CERTIFICABILE + delta vs l'audit
+2026-08-07) -> F2 GENERAL ENGINE (blocco 0 = decisioni utente
+filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 
 - **[S25-bis] CONTATORE FINALE SPEED (formale, criterio
   pessimistic-end pre-registrato)**: SEGMENTO = MET (sintesi post-M1:
@@ -342,6 +349,26 @@ CENSIMENTO — DELTA S25-bis (sweep INCREMENTALE; solo righe toccate):
      di copertura) -> EDUCAZIONE (regole standing come lint +
      delta CLAUDE.md da ratificare). Decisione utente in-sessione:
      commit degli advisory OF-RECORD (durabilita' vs pattern).
+     ESTENSIONI RATIFICATE 2026-08-12: T2-bis alza-livello
+     (glossario+lint, registro flag arbitrato, peso-orchestrazione
+     misurato, igiene dir prezzata) + GATE NOTHING-LOST vincolante
+     (ledger-a-rischio -> mappa destinazioni, loss-hunter
+     avversario, rejector seminati, riconciliazione scarto-0 come
+     precondizione R3).
+ NUOVA R33 — S-CERT NOMINATA E RATIFICATA (utente 2026-08-12;
+     prompt committato validation/ADVISORY_Scert_prompt_2026-08-12
+     .md): audit di certificazione AGNOSTICO dopo S-ORDINE, prima
+     di F2 — auditor ostili context-free attaccano le 7 meta-claim
+     di certificazione (MC1 numeri->carrier eseguiti, MC2
+     tolleranze ri-derivate, MC3 falsificatori che sparano, MC4
+     registry anti-re-mint, MC5 copertura suite, MC6 navigabilita'
+     da estraneo [misura anche S-ORDINE], MC7 catene di
+     provenienza) su campione stratificato a seme dichiarato;
+     find->verify Form 1 + judge + red-team; verdetto vincolante
+     CERTIFICABILE-CON-RESIDUI / NON-CERTIFICABILE + delta vs
+     AUDIT_agnostic_2026-08-07; ogni residuo = riga registry con
+     owner. F2 parte SOLO dopo (blocco 0 = filelock/O5/M6 +
+     re-chain).
 
 CENSIMENTO — DELTA S25 (sweep INCREMENTALE della tabella R1-R27
 consolidata a S24; solo le righe toccate + le nuove):
