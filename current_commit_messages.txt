@@ -1,0 +1,1799 @@
+On rde-nozzle-program: backup before author rewrite
+index on rde-nozzle-program: c0298d2 [LEADS/S14] reading queue COMPLETE: Owens-Hanson + Morris + Lozano-2018 page-verified; Morris method row corrected; O-H mean-pressure precedent duty flagged
+
+untracked files on rde-nozzle-program: 6127646 [LEADS/S14] reading queue COMPLETE: Owens-Hanson + Morris + Lozano-2018 page-verified; Morris method row corrected; O-H mean-pressure precedent duty flagged
+
+[LEADS/S14] reading queue COMPLETE: Owens-Hanson + Morris + Lozano-2018 page-verified; Morris method row corrected; O-H mean-pressure precedent duty flagged
+
+O-H 2007 (doi 10.2514/1.22415): 11 unsteady phenomena; quasi-1D
+inadequate for converging sections; PRECEDENT DUTY for P-1 — optimal
+eps 'well-predicted by isentropic theory + time-averaged head
+pressure' (2007 empirical precursor of the mean-pressure rule).
+Morris 2005 (doi 10.2514/1.7875): FOUND-AND-FIXED — not MOC but
+Yee-TVD/Roe FV; nozzle fully unsteady in-domain; rich validation
+anchors for O5-lite. Lozano 2018 (doi 10.2514/1.J056523):
+objective-dependent adjoint shock taxonomy; oblique-shock case
+declared open in 2018; P-2 candidate cite. literature/ now fully
+processed at claim-bearing level; handoff = panel only.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/S14-open] L-P 2025 reference list fully verified (zero classical-contouring citations — G14 page-verified at the B3 end) + S14 handoff state
+
+S14 opened (gate PASS step 2), L-P pp. 20-23 read personally, D2
+register updated; three extraction agents launched (O-H, Morris,
+Lozano-2018) with results to be collected/redone by the resuming
+session; panel mandate transfers via handoff prompt; log OPEN at
+step 4 for the resuming session.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/S13-coda]: Giles-Ulbrich Part 2 acquired + page-verified — the trap sentence fully verified on both parts
+
+SINUM 48:905-921 (2010), doi 10.1137/09078078X: adjoint pointwise
+a.e. convergence with eps = h^alpha (sharpened 2/3 < alpha < 1) incl.
+the correct uniform value on characteristics entering the shock;
+counterexample demonstrated (fixed smear => convergence to a WRONG
+nonzero value, p. 907; strong negative p. 910). D2 register updated;
+acquisitions complete — remaining queue is reads only (O-H, Morris,
+Lozano-2018, L-P tail).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/chiusura-S13] session close: PROGRESS (ORA S13 + NEXT S14) + INDEX + log closed at step 11
+
+K-O contingency adjudicated; four sources page-verified; Lemma B
+locus corrected; queued tail declared (O-H, Morris, Lozano-2018,
+L-P reference list, G-U Part 2 acquisition).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/S13] (T2): Giles-Ulbrich Part 1 + Lozano-Ponsin 2025 page-verified; D2 acquisitions register updated
+
+G-U Part 1 (SINUM 48:882-904, doi 10.1137/080727464): interior-
+smearing repair eps = h^alpha confirmed; counterexample lineage
+[Gil03] p. 884 supports the record's trap sentence nearly verbatim;
+adjoint interior BC at the shock p. 886; capturing-vs-FITTING
+contrast explicit. Part 2 (48:905-921) MISSING - priority
+acquisition. Lozano-Ponsin 2025 (Aerospace 12:494): det-transpose
+argument = our Prop. A1 verbatim-grade; adjoint Riemann invariants =
+ready O3.3 oracle bank; characteristic-crossing jump conditions =
+analytic mirror of Prop. A2's kernel law; shocks-as-state explicitly
+excluded (Lemma B/G12 territory untouched). Queued: Owens-Hanson,
+Morris, Lozano-2018, L-P reference-list check.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/S13] (T1-repair): M0 precedent notes + D4 adjudication addendum — the two edits 581ccb1's message anticipated
+
+M0: T3-C2 precedent duty + T7 trajectory-averaged precedent note
+(Kraiko-Osipov 1970, page-verified). D4 §3: adjudication addendum.
+Process deviation declared in log step 7 (unguarded commit chain);
+no content divergence.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[LEADS/S13] (T1): Kraiko-Osipov contingency ADJUDICATED (containment) + Cooper-Shepherd verified + Lozano-2019 locus correction
+
+K-O 1970 full text READ (personally, page-level): trajectory-averaged
+weighted variational contouring for a single shared contour with
+characteristic multiplier fields and an averaged-weight collapse case
+CONFIRMED — the armed contingency fires in the pre-planned containment
+mode: P-1 §4.5 reworded (containment statement, mandatory citation,
+claim-map row updated); M0 T3-C2 precedent duty + T7 trajectory-
+precedent note; D2 adjudication row; D4 §3 addendum. P-2 novelty
+unaffected. Cooper-Shepherd PAGE-VERIFIED: JPP 24(1):81-87 (2008),
+doi:10.2514/1.30192, +72%/+43% confirmed verbatim with precise roles
+(both vs plain tube, largest nozzle; tamper vs quasi-steady regimes;
+startup 6-12% of cycle; no unsteady CFD — Gurney/partial-fill).
+Lozano 2019 PAGE-VERIFIED with FOUND-AND-FIXED locus correction in
+Lemma B §4.4: divergence is wall/trailing-edge-driven (any condition
+for lift, incl. shock-free; upstream of the shock it converges),
+NOT 'near the shock'; G-U trap sentence unchanged (its read queued).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[chiusura-S12] session close: PROGRESS (ORA S12 + NEXT S13) + INDEX row + total-order log closed at step 7
+
+R4 of the review conversation fully registered: T3-QS + B-lite +
+separation state-constraint + Gonzalez-Viana row + strengthened D6
+(pre-registered O5-lite, experimental-anchor and compute gaps).
+Suite 15/15 in 101 s. Next sessions proceed autonomously from
+memoria + L0 + registro + D6 + PROGRESS.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[PIANO/D6]+[F0-coda/D2] (C3): plan strengthened from the review conversation
+
+D6: O5-lite as PRE-REGISTERED T3-QS falsification test (three
+predictions with rejectors, Phase A4); B-lite demonstrator first in
+Phase A5; Gonzalez-Viana reproduction benchmark (Phase A2); 90-days
+items 9-14 (S13 variational-TOC brick unlocking O3.3/P-2, GV+O5-lite,
+B-lite bricks, literature-acquisitions register with priorities,
+experimental-anchor gap, compute-plan gap); risks RK-E/RK-F. D2:
+Gonzalez-Viana Aerospace 12:502 (2025) full-text-read row with
+three-way attribution of record + pending-acquisitions register.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F4-prep/T3QS]+[F2-prep/BLITE]+[F1/D-GSEP] (C1-C2): R4 theory package of the review conversation
+
+T3-QS of record: quasi-steady protection of the collapse class —
+first-order sweep correction vanishes on the smooth part of ray
+cycles (Jacobian+adjoint-source invariance along the conservative
+ray, Euler's theorem), concentrates at the wave-passage jump;
+off-ray = computable hysteresis area term. Carrier
+validation/t3qs_sweep_protection.py (P1-P6 + rejectors R1-R3,
+EOS-general arbitrary e(T), PASS 8.6/6.6 s) promoted to suite group
+(xvi); doc docs/rde_nozzle_T3QS.md incl. the physical anatomy of the
+neglected operator (phase-shift reading; azimuthal-pressure
+sloshing) and the internal-shock acoustic-lag boundary. M0 addenda:
+Theorem-0 T3-QS remark; D2.6 per-phase separation-margin state
+constraint [D-GSEP]; Part-V RUNG 3a-LITE (B-lite) [S-BLITE]. D3 §3
+T3-QS block. Registry +5 entries (T-T3QS, X-T3QS, X-GRP16, S-BLITE,
+D-GSEP); claims lint PASS 0 violations.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F2/chiusura-S11] session close: PROGRESS (ORA S11 = A1 BRICK 1 DONE + P-1 body complete; NEXT S12 = variational TOC brick via dJ/dSigma) + total-order log closed at step 14 + INDEX row
+
+Suite 16/16 PASS exit 0 in 232 s (healthy host; incl. claims lint (xv)
+on the 89-entry registry). q_mapping datestamps regenerated by the live
+examples and RESTORED (declared, 2 lines, content identical). Untracked
+`literature/` (user material) and ADR panel left untouched by
+discipline. S12 restarts from memoria + L0 + registro + PROGRESS (+ D6)
+only.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-1] (T2): sections 1, 3, 8, 9 full text of record — P-1 body text COMPLETE
+
+docs/rde_nozzle_P1_sections_1_3_8_9.md [PAP-P1S1389], rules (a)-(e) per
+subsection (audit line [Class | Falsifier | Carrier | Gamma status]),
+claims by registry ID (21 IDs, all lint-resolving):
+- §1 intro with the UPDATED var-gamma genealogy: MANDATORY citation of
+  Rao, "Contoured Rocket Nozzles", Proc. IX IAC Amsterdam 1958
+  (Springer, DOI 10.1007/978-3-7091-4745-0_18) — ABSTRACT-VERIFIED
+  ONLY, attribution strictly bounded to the abstract; single steady
+  state, cycle-averaging untouched; §1.4 novelty query-bounded and
+  CONTINGENT on Kraiko-Osipov PMM 34(6) 1970 (G5 queue)
+- §3 exact steadification [T-T0] + flatness diagnostic (PRACTICE,
+  declared pending); §3.2 upgraded to the THEOREM-GRADE N6 boundary
+  ([T-N6-1]/[T-N6-2]/[T-N6-3], class refresh vs skeleton DECLARED);
+  §3.3 N-SW causal firewall [T-NSW] licensing the data interface
+- §8 containment bridges: EAP = pressure-coordinate of J_ideal (their
+  Eqs. 1-8, T0(i) tacit; Paxson 58-70% discount); S-H three findings =
+  instances of T3/T4/vacuum (3-5%/6-14% at fixed phi + 18/18 joint
+  validation, no circularity); phi = outer nested generator parameter
+- §9 honesty index: single conditional spine [C-D25U]+[C-MAJDA],
+  [S-LBML]/[J-OP11]/[J-CT1] named, generality ladder, biases B1/B2,
+  outlook (PB-2 via premium_bound, P-2 companion, O(St) bar)
+
+Coherence grep PASS (zero winner-as-hardware readings). Skeleton DRAFT
+TEXT STATUS updated: BODY TEXT COMPLETE — remaining appendices A1-A7 +
+assembly pass. Registry entries landed with the previous commit
+(entries-before-citation).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F2/A1] (T1): A1 BRICK 1 — profile-generation machinery of record, VERDICT PASS
+
+The assembled differentiable MoC march in JAX GENERATES the ideal-nozzle
+contour end-to-end (Sauer IVL -> characteristic fan -> circular-arc
+throat expansion with inverse-wall/chord-foot/void bookkeeping ->
+uniform-exit region with wall = bounding mass-flow streamline), twin of
+GENO nozzle_type 0; every cell an implicit custom_vjp unit process
+(implicit-function rule, never unrolled) => reverse-AD of the march IS
+the Lemma-B discrete adjoint sweep, executably.
+
+Carrier [X-A1IM] validation/a1_ideal_march_jax.py (on-demand env: jax +
+WSL GENO binary; GENO never modified, file exchange only). Verdict of
+record (reduced case NI=21, da=0.5 deg, Ne=41, eps=4, CH4/O2 frozen),
+ALL 14 checks incl. four negative controls:
+- end-to-end contour vs GENO WSL run: 62/62 samples inside the derived
+  two-resolution Richardson band, max |dy| = 7.6e-9 (band 4.5e-3);
+  achieved Me twin-identical to 8.4e-9; max wall angle 16.265 deg = GENO
+- O3.1 dot-product over the ENTIRE march: 2.714e-10 vs derived tol
+  5.094e-8 (replay fidelity 1.6e-13); corrupted whole-march vjp rejected
+- per-cell UNIT-CONSISTENT z-space Newton certification (2756 cells,
+  worst step/tol 1.4e-2); corrupted source rejected BY REFUSAL (cannot
+  place the wall); corrupted table and corrupted gamma rejected
+- thermo backend = TABULATED isentrope (user directive [DIR-THERMOTAB]:
+  tables-only interface, GENO backend-1 model; CANTERA sole production
+  generator; GENO NASA-poly generator confined to declared cross-code
+  oracle instances; NasaPoly2 hi-first order determined empirically;
+  dual-route within the DERIVED physical-constants budget, 5.3e-6 vs
+  2.5e-4, with 1e-3 corrupted-table rejector)
+
+R4 same session: M0 Part VI "A1 BRICK 1 OF RECORD" addendum +
+DIR-THERMOTAB pin (strengthens VI.4bis(iii)); D6 Phase A1 STATUS S11
+(BRICK 1 DONE; next: variational TOC via dJ/dSigma, fitted sheet, plug
+free boundary; G0 loop-speed falsifier stays armed); P-2 Lemma B §4.7
+march-level O3.1 instance of record (fitted-sheet march + P-B2 still
+open, declared). Registry: [X-A1IM], [DIR-THERMOTAB], T-LEMB carriers
++= X-A1IM; also lands [PAP-P1S1389] + FOUND-AND-ALIGNED [PAP-P1S57]
+(entries-before-citation: the P-1 sections doc lands in the next
+commit). Claims lint standalone PASS (89 entries, triple rejector).
+DIR-G0 scope guard ("no JAX-generated contour exists yet") DISCHARGED
+for the ideal direct-march type.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F2/chiusura-S10] session close: PROGRESS (ORA S10 + NEXT S11 with A1 brick 1 + G0 unblocked) + total-order log closed at step 14 + INDEX row
+
+Suite 16/16 PASS (213 s, healthy host) recorded in the log; suite
+output ephemera removed per S9 precedent. GENO/ and ADR panel remain
+untracked by discipline. Memory updated (S10 state appended).
+
+[LEADS] (T3): both S7/S6 external leads closed at source — Rao 1958 IAC Amsterdam abstract-verified (var-gamma precedent, single-state, mandatory citation), van Meerbeeck EUCASS 2013 full-text read (point design, zero averaged objective, G14 holds)
+
+- lit_b0bis (V1): van Meerbeeck-Zandbergen-Souverein, 'A Procedure for
+  Altitude Optimization of Parabolic Nozzle Contours Considering
+  Thrust, Weight and Size', 5th EUCASS 2013 — 15-page full text read
+  in-house (pypdf; raw-PDF method, never the summarizer). Point-design
+  TOP procedure (MMH-NTO, sea level, TDK). Keyword counts of record:
+  average 0, trajectory 0, weighted 0, flight 0. Lead CLOSED, novelty
+  G14 unthreatened.
+- lit_b0bis (A7): Rao 1958 'IAF Amsterdam' lead IDENTIFIED =
+  G. V. R. Rao, 'Contoured Rocket Nozzles', Proc. IXth International
+  Astronautical Congress (Amsterdam 1958), Springer Vienna, DOI
+  10.1007/978-3-7091-4745-0_18. Abstract extracted from RAW Springer
+  HTML with verified phrase counts: 'The varying gas properties
+  associated with chemical equilibrium are accounted for in the thrust
+  optimization method' — var-gamma precedent is Rao himself, 1958,
+  SINGLE steady state. Mandatory citation in the P-1/P-2 var-gamma
+  lineage; full text paywalled — page-level pass joins the G5 queue
+  (declared residual; abstract-verified citation only until then).
+
+[F1/P-1] (T2): sections 5-7 full text of record — averaged system T7/(**') with boxed naive-average warning, capped ceiling + ladder + purge/bracket deltas, semantics-first phase diagram incl. real-route instance
+
+- docs/rde_nozzle_P1_sections_5_7.md: NEW draft text of record.
+  Section 5: stationarity blocks (a)(b)(c), (**') factorization
+  R(xi)w(xi), BOXED WARNING (naive average wrong outside T3), quasi-1D
+  reduction with the EOS-general primary carrier eps*_real [T-T7RED,
+  group (xii)] and the closed form demoted to gamma-const oracle
+  (VI.4bis(iii) pin stated); P-2 pointer. Class refresh vs skeleton
+  DECLARED (S6/S8 upgrades: SCHEMA -> THEOREM* [T-T7FS]/[T-P3]/
+  [T-G12S1], single conditional spine C-D25U/C-MAJDA).
+  Section 6: geometry/topology-free ceiling [T-GB] + E-K precedent;
+  sonic-cap sharpening (g=1.15 counterexample, 4 subcritical rows
+  reject naive); ladder with the two measured deltas of record — gamma
+  purge -4.4..-7.9% (group (xi)) and equilibrium bracket +6.3..+7.0%
+  [T-EQBR, C-IGMIX] (group (xii)); EAP rung pointer.
+  Section 7: SEMANTICS-FIRST (D3 10quater(5) verbatim, winners =
+  closures never hardware), (P) block [D-P], statements (1)-(4)
+  [T-OP11e], published-closure artifact warning, real-route instance
+  7.5bis (eps*_real 3.49-3.52, knee_real 10.38 < ~12.9, M1 EOS-general
+  41 cells incl. 11 subcritical), premium_bound device (max 64.7 s),
+  multiplicity remark, vacuum limit. Rules (a)-(e) per subsection
+  (audit lines); claims by registry ID; novelty wording CONDITIONAL on
+  Kraiko-Osipov PMM 34(6) 1970 (contingency armed).
+  Coherence grep PASS (no hardware-verdict reading; naming guard).
+- P1_skeleton.md: DRAFT TEXT STATUS updated (sections 5-7 now of
+  record; remaining skeleton-only: 1, 3, 8, 9, appendices).
+Lint (xv) PASS after edit (85 entries, IDs resolve).
+
+[F2/G0] (T1): G0 DECIDED — GENO built (WSL gfortran), tocnoz contour reproduced to 1e-10, cross-code unit-process oracle X-GENOXC PASS; JAX primary stack; A1 OPEN
+
+- validation/g0_geno_crosscode.py: NEW on-demand carrier (env: gfortran).
+  Residual test (EOS-general, per-cell truncation band |R_trap| <=
+  4(|R_trap-R_end|+floor)): 218/218 clean supersonic-core cells inside.
+  Literal reproduction (two feet -> new point, declared gamma=const
+  cell-mean energy closure): 207/218 = 95% inside derived band.
+  Negative controls: corrupted child/foot 100%->0%, wrong pairing 84x,
+  feet discrimination >=10x. VERDICT PASS (26 s / 14 s runs of record).
+  SCOPE DECLARED: interior unit process only, NOT profile generation.
+- docs/rde_nozzle_G0_decision.md: NEW decision dossier [DIR-G0] —
+  criteria (i) gradient fidelity (X-G0 52/52 + O3.1), (ii) loop speed
+  measured standalone (solve ~322 us, +adjoint ~327 us, ratio ~1.01
+  host-invariant; absolutes host-caveated), (iii) GENO interop
+  EXERCISED (build declared+reversible, checksum convention N-36 read
+  in-session, contour 1e-10, X-GENOXC). Falsifiers kept (loop-speed
+  flip to Julia/Enzyme; Julia unbenchmarked declared).
+- claims_registry.yaml: +X-GENOXC (carrier), +DIR-G0 (directive);
+  lint (xv) PASS 85 entries, triple rejector proven.
+- M0 VI.7: R4 same-session — G0 decision + dual-code exercise of
+  record appended (structure: work-layer addendum, no theory change).
+- D6: gate G0 INSTRUCTED -> DECIDED (evidence inline); Phase A1 ->
+  OPEN with first brick = gamma(T) unit process + X-GENOXC regression.
+GENO/ tree untouched and untracked (outputs gitignored, verified).
+
+[F1/chiusura-S9] session close: PROGRESS (ORA S9 + consolidated S10 NEXT + S9 log entry) + total-order log closed at step 17
+
+PROGRESS rewritten without loss (all prior Stato-precedente sections
+intact; every ex-NEXT carries its FATTO pointer): header states the
+S10+ opening protocol (memoria + L0 + claims registry + D6 +
+PROGRESS; M0 = proof layer on demand); ORA = S9 closure of record;
+NEXT = one consolidated S10 list. Project memory updated additively.
+User decisions left pending, not forced: G5 send, ADR ratification,
+Kraiko-Osipov 1970 reading. First clean session (no interleaving at
+any of seven pre-commit checks) after six violations.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (T7): cleanup — scratch ephemera removed + gitignore rule + session-log index
+
+scratch_{out,err}.txt inspected (reproducible: cycles.py sweep + the
+superseded ChemEquil warning) and removed; scratch_*.txt ignored
+henceforth. validation/INDEX.md: one-line index of the nine
+total-order session logs (audit trail, never normative). GENO/ and
+the ADR panel untouched (awaiting user ratification).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (T6): D6 delta-pass — phase/gate/stream states realigned to the real tree
+
+Status-only refresh (plan substance unchanged): A0 CLOSED incl.
+real-route completion; A1 started-early at spike level with the G0
+dossier and named Fortran-toolchain residual; P-1/P-2 stream states
+(drafts of record, arXiv trigger half-armed, contingency armed);
+G0 instructed with the S5 interop criterion of record; G5 item 2a
+done in-house with the Kraiko-Osipov flag; 90-days item-by-item
+refresh. Registry header comment fixed (lint group (xv)). A reader of
+D6+PROGRESS now reconstructs the state without the logs (PROGRESS
+consolidation lands with the R3 closure).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (M-4): conditionals ledger (L4) — C-D25U and C-MAJDA stated once, inherited by ID
+
+New docs/rde_nozzle_conditionals.md: the two analytic conditionals
+transcribed from their sources of record (remaining_conditionals §1;
+M0 D2.5 + G12-L2 brick) with dischargers and heirs by ID; registry
+doc fields re-pointed to the ledger. Ledger-reference pass over the
+proof-layer docs (22 uniqueness-asserted insertions): every THEOREM*
+declaration now points to a conditional ID. Found-and-aligned
+(declared, log step 13): two stale Lemma-A class lines vs the S6
+discharges — dated supersession annotations added per the corpus
+addendum convention, original text preserved, zero new mathematics.
+Claims lint PASS 0 violations after the pass.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (M-3): registry spine IDs on M0 — structure-only tag pass
+
+Every definition/theorem/proposition head in M0 now carries its
+registry ID ([D-P], [T-TH0], ..., [T-T7FS]); inline IDs only at
+unambiguous sites (T-T3-CE, C-HT4, T-EQBR, T-OP11e, T-P3, T-P7S1,
+T-G12S1, T-T7RED, N6 instances, C-MAJDA, C-D25U). 29 changed lines,
+all pure insertions (hunk-by-hunk diff inspection in log step 11);
+proofs stay in place; coherence greps PASS; claims lint 0 violations.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (M-2): claims lint — theory-as-code enforcement, suite group (xv)
+
+Strict-subset registry parser (+ optional PyYAML dual-route), anchor
+resolution, carrier/inherits reference checks, suite-membership check
+with syntax-enforced on-demand exemption, schema constraints
+(THEOREM* => inherits; symbolic-sufficient theorem => carrier;
+falsifier + gamma tags mandatory), orphan-ID grep over docs/.
+REJECTOR PROVEN ON EVERY RUN: three seeded in-memory violations must
+each be rejected or the group fails. Registry gains X-GRP15.
+Acceptance: full suite 16/16 PASS exit 0 (under declared
+self-contention, log step 9); clean --fast 14/14 PASS in 448 s;
+host-condition caveat of record in log step 10.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (M-5): rigor carriers promoted into the suite — fast group (xiii) + declared rigor tier (xiv)
+
+Executed before M-2 by declared order deviation (S9 log step 6): the
+claim lint's carrier-in-suite check presupposes this promotion.
+Group (xiii) fast: X-PA1, X-G12, X-N6, X-5F as subprocess runs with
+exit-0 + verdict-line acceptance (measured 1.8-4.4 s each). Group
+(xiv) rigor tier: X-P2A1 dual-route conservative carrier (measured
+44.7-52.7 s), run in every full/CI run, skipped by --fast. Runner
+rejection channels demonstrated (missing script / missing verdict).
+Registry gains X-GRP13/X-GRP14. Standalone: both groups PASS.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD-M] (M-1): claims registry — 80-entry typed index of the theory corpus
+
+Transcribes the SCAFFOLD §2 seed and COMPLETES it against the real tree
+(S9 gate step 4 census): S8-op novelties (T-EQBR, T-T7RED, X-G0AX,
+X-P2A1, suite groups (i)-(xii) as carriers with PASS of record),
+Lemma-A identification split per the S6 upgrades, definitions
+D2.1-D2.3, closure/residual conditionals C-HT4/C-IGMIX/C-O33
+(justified per contract SCAFFOLD §3.4), directives and paper records.
+Strict YAML subset declared in header (no new dependency; lint in M-2
+carries the parser). Acceptance M-1 verified pre-commit: every anchor
+resolves; no THEOREM* without inherits; no symbolic-sufficient THEOREM
+without carrier (ad-hoc check, 0 violations; the committed lint lands
+with M-2).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S8-rigore] handoff: session-9 project-order prompt delivered (log step 22)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S8-op] session close: PROGRESS (ORA/NEXT/BLOCCATO/LOG) + total-order log closed at step 15
+
+S8-operativa delivered T1-T4 (aa1892c / cd69372 / 4e71c02 / 4b7136d),
+T5 declared not executed; suite 13/13 in 201 s (the 12 expected fast
+groups + live examples). Two concurrency events (S8-rigore campaign +
+SCAFFOLD commits) reconciled with clean post-commit hunk audits;
+foreign uncommitted q_mapping.* never staged. NEXT (S9): G0 formal
+decision (GENO toolchain residual named), P-1 sections 5-7, suite
+group (xiii) proposal, leads with raw-HTML method pin, G5 user
+dispatch. Session crossed midnight: log steps 9+ dated 2026-07-17.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (T4): draft polish - lexical-trap footnote + continuous anchors in Lemma B
+
+- docs/rde_nozzle_P2_lemmaA.md par.3.0: footnote of record on the
+  AIAA 94-3264 lexical trap ('adjoint constraints' = ADJOINED
+  isoperimetric constraints, not the adjoint PDE) - S6-rigore NEXT-0
+  discharged.
+- docs/rde_nozzle_P2_lemmaB.md: explicit cross-references to
+  Prop. A2 (off-kernel nondegeneracy behind J_k^{-T}) and Prop. A3
+  (the invariant that (B.6) transports discretely), with pointers to
+  lemmaA par.3.3-3.4 and the dual-route carrier.
+- P-A script consolidation evaluated, deferred with measured data
+  (5.4 s + 51.0 s, both PASS today; proposal = suite group (xiii),
+  session log step 13).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/OP-0-gamma] (T3): OP-11-eps phase diagram on the real route + equilibrium bracket
+
+src/thrust/phase_diagram_real.py: the topology phase diagram
+re-derived on the EOS-general primary route (bounds_gamma reuse:
+Cantera h(s,P) frozen-CJ isentrope, sonic cap w(P*) = h0), 90 cells,
+closed forms nowhere in the primary computations; S7 residual of M0
+Prop. 7 GAMMA-PURGE INSTANCE discharged.
+- eps*_real from the executable weighted-transversality reduction
+  <P_E(eps; xi)>_mu = Pa (bisection on the real area-ratio inversion)
+  - first EOS-general carrier of T7's quasi-1D reduction; closed form
+  NPR(eps*) = <Pc>/Pa demoted to its oracle.
+- Numbers of record: eps* 3.494..3.519; knee_real 3.49..10.38 (below
+  the closed-form knee ~12.9 at PR=90); map structure confirmed at
+  gamma(T): tie column, capped band, zero bell cells; M1 attainment
+  EOS-generally certified on 41 knee-fitting cells incl. 11
+  subcritical; naive instrument strictly rejected at the
+  deepest-spread cells (two-level metric, bounds_gamma precedent).
+- Equilibrium (shifting) ceiling bracket: +6.34..+6.97% above the
+  frozen rung on every PR (Gibbs-solver SP-equilibrate isentrope,
+  c^2 = dP/drho; derived bars <= 0.003 s; constant-cp known-answer
+  PASS, corrupted route rejected) - executable [frozen, equilibrium]
+  model bracket of the caloric closure at ceiling level.
+- Winner semantics unchanged: closures, never hardware (D3
+  par.10quater(5) verbatim in module + record + md).
+Tests: NEW group (xii) tests/test_phase_diagram_real.py (E1-E8,
+20/20: oracles, two-level naive metric, eq bracket, 6 negative
+controls + live corrupted known-answer rejection, cross-anchor to
+bounds_ladder_real). Numeric lint: 7 literals classified. Full suite
+13/13 in 201 s. R4 same session: M0 Prop. 7 REAL-ROUTE DIAGRAM
+INSTANCE OF RECORD + D3 par.8 residual discharged. Session log S8
+steps 9-12.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD] addendum: work-plan layer named (D6 phases + PROGRESS live position + M0 VII map)
+
+User-spotted gap: the six layers indexed the theory corpus but did
+not name where the DIVISION OF WORK lives. Fixed: orthogonal
+work-plan layer of record = D6 (phases A0-A7, critical path,
+publication stream, gates, 90 days, risks) + PROGRESS (live position)
++ M0 Part VII (thesis map); registry indexes theory, D6 indexes work,
+never duplicating.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/SCAFFOLD] architecture of record: six-layer corpus + claim registry (theory-as-code)
+
+docs/rde_nozzle_SCAFFOLD.md - the blueprint for every future
+maintainer: honest diagnosis (corpus complete but distributed by
+session accretion); six-layer target architecture (anchor with
+standing directives; definitions; statements-by-ID; proofs;
+conditionals ledger with C-D25U + C-MAJDA stated once; implementation
+pins; open register); THE CLAIM REGISTRY as YAML schema + CLAIM LINT
+test with rejector (class inflation, orphan claims, silent
+gamma=const, missing falsifiers become machine-rejected) + full seed
+inventory of the theory graph (~40 IDs); model-agnostic maintainer
+contract (registry-first, ID-before-citation, R4-to-registry,
+conditional parsimony, code-never-front-runs-registry); bounded
+migration plan M-1..M-5 with acceptance criteria and zero
+mathematical risk. Session log step 21.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F2-prep/G0] (T2): spike extension - axisym source, fitted shock point, GENO interop brick
+
+validation/g0_spike_axisym_shock.py (twin of the S5 spike, which stays
+untouched): VERDICT PASS.
+- Brick A: axisymmetric interior + inverse-wall unit processes
+  (in-house derived source terms), custom_vjp implicit rule, gradients
+  in derived Richardson tolerance; DUAL-ROUTE verification vs the
+  independent Zucrow-Hoffman conservative (u,v) compatibility form
+  with an order-scaling rejector (band [4,16] per halving); negative
+  controls: source-sign flip and corrupted vjp both rejected; planar
+  reduction known-answer exact.
+- Brick B: fitted shock point as implicit unit process on RH
+  (theta-beta-M + normal-Mach), O3.1 dot-product identity at 3.4e-12
+  vs derived tol 1.2e-9 -> P-B1 DISCHARGED AT BRICK LEVEL (Lemma B
+  register updated, R4 same session); Lax certificate with measured
+  margins; Lax/Majda == J_k nonsingular shown executably (detachment
+  rejected; fold-exponent-1/2 collapse of sigma_min in derived band).
+- Brick C: first GENO cross-code interop brick (gate-G0 criterion,
+  READ-ONLY file exchange with CASES/tocnoz): throat/eps/maxtheta
+  recomputed from the reference contour vs GENO's own ini +
+  performance.dat, derived tolerances, corrupted-contour rejector.
+  Declared limit: full O3.4 flowfield check needs the GENO binary
+  (gfortran absent on this host) -> stays in NEXT for G0.
+GENO untouched and never staged. Session log S8 steps 5-7 (incl. the
+FIFTH-interleaving reconciliation note).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/N6-5F + D25U + P4F + LBML + SO] (rigore-S8 finale): five-field adjoint machine-derived + the last four gaps stated pristine
+
+Five-field swirl adjoint (validation/n6_fivefield_adjoint.py, PASS
+6/6 with Lagrange-identity rejector; N6 section 4 upgraded): the
+linearization (A, B, M) of the five-equation swirl system is
+machine-derived with all sources and EOS-general c2(P, rho); the
+pencil equals r rho^3 times the N6-1 pencil with pinned weights (the
+adjoint propagates along the same characteristics, sources included);
+the Lagrange identity is an exact divergence (transposition
+certified; a corrupted centrifugal coupling breaks it); the TERMINAL
+GAUGE DIRECTION is obtained IN CLOSED FORM,
+l(n) = (1, -r n_x/c, -r n_r/c, 0, r/c^2), swirl component ZERO, with
+a rank-4 certificate (minor det = rho^3 c^4) - the Hoffman-counting
+object with swirl. Remaining SCHEMA named: assembly into wall/corner
+conditions + E_sw identification + per-phase well-posedness.
+
+docs/rde_nozzle_remaining_conditionals.md - pristine statements +
+proof architectures for the last four named gaps, anchored to (P):
+LEMMA D2.5-U (the ONE shared uniform-stability conditional, constants
+(delta, L_x, C_geo, C_dat), steps U1-U4 named; its discharge converts
+T7-FS/P7-S1/P3 to THEOREM in the shock-free class); P4-FREDHOLM
+reduced to the monodromy condition 1 not in spec(Pi), identifying the
+spectral hypothesis with the P1a/P1b neutral-mode margin; LEMMA-B
+MESH LIMIT as a Lax-equivalence instantiation with O3 falsifiers;
+SECOND ORDER declared an instrument, no sufficiency theory claimed.
+All four declared no-symbolic-carrier per the sufficiency discipline.
+
+The attackability assessment is now exhausted: every point is either
+a machine-verified THEOREM, a THEOREM* with named conditionals, or a
+stated architecture with bounded discharge cost. Session log steps
+18-20, thread finally closed.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S8-rigore] campaign closed at step 17: G12 + N6 + S1-U + P4 + T7-FS + P7
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/T7-FS + F1/P7] (rigore-S8): T7 and P7 attacked in function space - the chain of (P) closes at THEOREM* grade
+
+docs/rde_nozzle_T7_P7_functionspace.md, anchored to the objective (P)
+of M0 D2.6:
+
+THEOREM T7-FS (THEOREM*): differentiation under the cycle integral.
+Per-phase shape derivatives exist (classical Hadamard at smooth
+phases; G12-S1 at shocked phases), are mu-measurable (the P3
+composition argument one degree higher) and uniformly dominated by
+the AUDITED margins (energy bound, uniform supersonicity, C11
+geometry bound, front-strength margins bounding the inverse
+linearized RH via the certified equilibrated s_min). Dominated
+convergence gives dJ = Int F-prime dmu: the mu-averaged wall
+condition and the weighted transversality are genuine L1(dmu)
+statements - T7 upgraded SCHEMA -> THEOREM*, (P)(ii) is a rigorous
+necessary condition. Conditionals R-T7.1/R-T7.2 named (the single
+shared D2.5 uniform-estimate conditional); falsifier = O3-class
+exchange-of-derivative oracle.
+
+THEOREM P7-S1 (THEOREM*): the argmax of (P)(i) EXISTS on every
+margin-certified level set A_h-delta (finite-dimensional compactness
++ closed margin constraints + continuity by dominated convergence);
+the monitored failure boundary of record IS the boundary of the
+certified level sets. Residue R-P7.2 declared (certified argmax vs
+uncertified sup - reported, never hidden).
+
+Verification-sufficiency declared throughout (function-space
+theorems; finite bricks = this session-s machine-verified carriers).
+Consequence of record: no load-bearing SCHEMA remains between the
+definition of (P) and its certified solution in the S1 shock-free
+class; across fronts everything inherits ONE named conditional
+(D2.5). R4: M0 T7 named-gaps updated. Standing directives recorded
+in memory (pristine writing; sufficiency declarations; anchor to
+(P)). Session log steps 15-16.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/N6-S1 + S1-uniq + P4] (rigore-S8 riaperta): swirl attacked + uniqueness architecture + P4 first-order system
+
+N6 (docs/rde_nozzle_N6_swirl.md, carrier validation/n6_swirl_kernel.py
+PASS 16/16, EOS-general, with verification-sufficiency column per the
+new standing directive - symbolic-sufficient vs function-space):
+THEOREM N6-1 structure: swirl pencil = streamline^3 x the SAME
+meridional Mach bracket; det A_p = u^3(u^2-c^2); kernel eigenvector
+has zero swirl component with unchanged annihilation laws => the
+whole G12-S1 machinery extends to swirling flow. THEOREM N6-2: Rao
+machinery extends VERBATIM to FREE-VORTEX swirl (uniform r u_theta,
+h0, s; meridional Bernoulli gives the exact fixed-y closure; all
+identities machine re-run with p(W,y) + corner rejector) - a new
+positive swirl class. THEOREM N6-3 sharp negative: obstruction
+identity vanishes IFF free vortex => beyond it the control-surface
+closure fails and field-level machinery is NECESSARY (grounds M0
+VI.4bis(iv)); five-field system = named SCHEMA with the counting
+brick already proven. M0 Theorem 3 CAUTION upgraded (R4).
+
+S1-internal uniqueness (docs/rde_nozzle_S1_uniqueness.md): THEOREM
+S1-U stated (uniqueness INSIDE the S1 class) with proof architecture
+- two machine-proven bricks (G12-L1, G12-L2 front Gronwall
+ingredient) + named function-space steps; class SCHEMA with proven
+bricks, no symbolic carrier possible (declared); would close R-P3.1.
+
+P4-periodic (D3 section 3 addendum): first-order system
+N_0 + St S_sweep, checkable spectral hypothesis (P1a/P1b margin),
+adjoint formula J_1 = -<psi_J, S_sweep(U_0)> - the exact operator
+behind the VI.4bis(ii) pin; THEOREM* at statement level, smooth
+scope, residues named.
+
+Session log steps 10-14 (reopening declared, sufficiency directive
+recorded).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S8-rigore] G12 attack thread closed: log at step 9 + PROGRESS entry
+
+Minimal-footprint closure (operational S8 concurrently active, owns
+the next ORA): LOG SESSIONI entry for the G12 attack, rigor-track
+NEXT recorded (N6 kernel+swirl five-field, S1-internal uniqueness,
+P4 smooth periodic; Bressan-Guerra citation lead), memory updated.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/G12-S1] (rigore-S8): G12 ATTACKED - shape calculus with fitted shocks reduced to 1-D theory in the S1 class
+
+docs/rde_nozzle_G12_S1.md + carrier validation/
+g12_shock_linearization.py (PASS 9/9, two rejectors):
+
+Lemma G12-L1 (THEOREM, EOS-general, machine-verified): under the
+audited axial-spacelikeness margin, steady 2-D Euler IS a quasilinear
+hyperbolic evolution in x (det A_p prop. to u^2(u^2-c^2); pencil
+factorization with streamline double root + Mach-line roots) - the
+D2.5 Li-Yu semiglobal theory applies with x as time; shape dependence
+becomes coefficient dependence via the wall-fitted transform.
+
+Lemma G12-L2 (THEOREM, machine-verified at a closed-form oblique-
+shock oracle with derived equilibrated tolerances): the linearized
+Rankine-Hugoniot system is nonsingular STRICTLY INSIDE the Lax
+condition (equilibrated s_min 1.1e-1 vs floor 2.6e-7) and degenerates
+EXACTLY at characteristic fronts (s_min 1.9e-11, dH/dsigma-prime = 0)
+- the same kernel law as Prop. A2; rejectors: characteristic-front
+degeneration detected, corrupted RH row rejected.
+
+THEOREM G12-S1 (THEOREM*): J is Frechet-differentiable in the wall at
+certified S1 references; the Hadamard density of record (smooth
+formula + front-shift terms) is the derivative; the fitted-AD march
+discretizes exactly these objects (Lemma B twin). Residues NAMED:
+R-G12.1 (D2.5-inherited regularity conditional), R-G12.2
+(shift-differentiability class citation TO-VERIFY, claim
+self-contained), R-G12.3 (mesh limit = Lemma-B clause, continuum
+target now stated - circularity broken). R4: M0 T7 G12 entry
+upgraded. Session log steps 1-8 (gate PASS step 3; fifth concurrency
+interleave declared, disjoint files).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-1] (T1): full text of record for paper sections 2 and 4
+
+Sections 2 (Theorem 0 chain + O1/O2 + interface contract) and 4
+(collapse dichotomy) written to paper grade in
+docs/rde_nozzle_P1_sections_2_4.md, implementing skeleton 768447d:
+- acceptance rules (a)-(e) applied per subsection (audit line with
+  Class | Falsifier | Carrier | Gamma status closing each);
+- agreed pedagogical line for 4.1 (Lemma T3-C in one line: interior
+  (M, theta) phase-invariant at a fixed full-flowing wall, all
+  per-phase content in the boundary margin p_e(xi) vs Pa);
+- naming guard: T3 proof lemmas cited as T3-A/B/C, distinct from
+  P-2 Lemma A (now THEOREM grade via Props. A2/A3) and P-2 Lemma B;
+- 4.3 adds the S7 ladder-level purge delta (-4.4..-7.9%, carrier
+  run_all group (xi)) to the citable numbers of record;
+- 4.5 novelty wording QUERY-BOUNDED and CONDITIONAL on Kraiko-Osipov
+  PMM 34(6) 1970 full text (D4 par.3 contingency armed, restated);
+- coherence grep (rule (c)) PASS: no diagram winner read as hardware.
+Skeleton header updated with draft-text status pointer. Session log
+S8 steps 1-4.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S7] handoff: session-8 prompt delivered, log definitively closed at step 14
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/S7-coda] numeric lint: classify bounds_gamma.py literals - full suite 11/11
+
+The post-closure fast-suite run had group (vii) correctly REJECT the
+new module's unclassified literals (the no-magic-number invariant
+firing as designed). Allowlist entry added: six exempted named
+assignments (M_TAB/N_REAL/N_SPOT/S_BAR/TOL_KA/T_FLOOR, each with its
+derivation note) + ten classified literals (NUMERIC knobs covered by
+derived/measured bars or guards; SPEC = known-answer exact-gamma
+constants). Lint re-run PASS (21 files, 0 unlisted); suite 11/11.
+Session log step 13.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S7] session close: PROGRESS (ORA/NEXT/BLOCCATO/LOG) + total-order log at step 12
+
+Operational session S7 (launched as S6-op, renumbered at
+reconciliation with the concurrent rigor session S6). Commits of
+record: T1 = 35e95f2 (Lemma B draft + dual-route Prop. A2
+verification), T2 = ef0af1d (gamma purge of the executable ceiling),
+T3 = 344ddfb (PMM digital sweep 204/204). Declared deviations: T4/T5
+not executed (-> NEXT 1-2); real-route phase diagram deferred
+(-> NEXT 3); third+fourth one-session-rule interleavings detected and
+reconciled BEFORE committing (log steps 10-12; shared git index with
+the still-active rigor session -> path-limited closure commit).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/riconciliazione-S6-S7] remainder: PROGRESS S7 closure + S7 session log + M0 VI.4bis full-generality amendment + rigor-log step 22
+
+S7 committed its own batch (35e95f2) concurrently; this commit takes
+the remainder left on the shared tree: PROGRESS ORA = S7 closure, the
+S7 total-order session log, the M0 VI.4bis AMENDMENT (user
+clarification: full generality - the periodicity assumption sets
+theory priorities and runtime opportunities, never structure; general
+quadrature baseline with certificate-gated circle rule; both
+corrector routes kept; CVaR/DRO idle-not-absent; gamma/rotational
+pins unconditional), and rigor-log step 22 with the concurrency note
+(fourth interleave, reconciled).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (T1): Lemma B draft of record + independent dual-route verification of Prop. A2 (conservative variables)
+
+(a) docs/rde_nozzle_P2_lemmaB.md = paper par. 4 (implements outline par. 4):
+- B0/B1/B2 THEOREM: fitted MOC march = block-triangular system; reverse
+  AD with implicit custom rules = transposed back-substitution along the
+  SAME discrete characteristics (discrete twin of Prop. A1); dot-product
+  identity (B.7) = O3.1, demonstrator = g0 spike (S5, b54e571).
+- Fitted front as EXPLICIT unknown: Lax/Majda transversality ==
+  nonsingularity of the local shock-point Jacobian (THEOREM finite-dim);
+  front adjoint block = discrete twin of the Giles-Pierce interior
+  condition (SCHEMA at the limit).
+- Giles-Ulbrich trap bypassed BY CONSTRUCTION (no smear to
+  differentiate) with declared honesty clause: mesh limit SCHEMA, G12
+  frontier; falsifiers O3.1-O3.4.
+- Cycle assembly = WEIGHTED (**'), never naive (THEOREM at fixed
+  quadrature). Gamma status: transpose identity closure-agnostic =
+  EOS-general by construction. PENDING P-B1/P-B2 named.
+
+(b) validation/p2_pA1_symbolic_adjoint.py, VERDICT PASS: written
+concurrently with the rigor session S6, RECONCILED - does not re-claim
+the P-A1' discharge (Prop. A3 of record); it is the independent
+DUAL-ROUTE verification of Prop. A2 in CONSERVATIVE variables:
+general-EOS Grueneisen closure (c^2 = a + b h), Weierstrass-exact zero
+tests, kernel pair K r = 0 / l^T K = 0 explicit, kernel-annihilation
+identity d.r = 0 for EVERY lambda2 (= Prop. A2, agrees with the
+primitive-variable route), boundary-datum reading lemma
+psi.(K w) = -lambda2 for every adjoint solution (gauge-independent),
+rank-3 certificate, (L.20) bookkeeping executable, three negative
+controls REJECTED. R4: dual-route note under Prop. A2 in the Lemma-A
+draft + D3 par. 8 entry.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/S6-addendum] periodic-wave standing scope + algorithmic pins of record
+
+D3 section 3 (C-T1): PERIODIC-MODE SCOPING paragraph - under the
+standing user assumption (data always a pure periodic rotating wave;
+monitor = T0 flatness) the statistical-stationarity hypothesis
+reduces to the T0-covered case, and the O(St) corrector re-scopes
+from two-scale time-homogenization (no theorem exists) to a STEADY
+singular-perturbation expansion of the wave-frame BVP in the sweep
+parameter (discrete spectrum, Fredholm-on-the-circle, no secular
+terms; anchor O4). M0 VI.4bis: algorithmic consequences pinned -
+periodic spectral quadrature composed with switch splits; corrector
+as one steady linearized solve on the anchor; EOS-general backend
+mandatory with the gamma=const bijection forbidden as solver step;
+field-level adjoint with the two-field closed form as oracle;
+f2-drift + E-residual per-phase certificates and lambda2 = -f2(lip)
+initializer; CVaR/DRO layer optional. Session log addenda 20-21;
+memory periodic-wave-data-scope.md.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/G5-2a] (T3): digital PMM TOC sweep 1957-1990 of record - 204/204 issues, G14 survives, top flag Kraiko-Osipov 1970
+
+Discharges commission Item 2a (validation/G5_kraiko_pmm_commission.md
+par. 3, rescoped in-house in S4). Query-bounded record:
+- Coverage: 204/204 issue TOCs, vols 21-54, ~4,300 titles; raw-HTML +
+  windows-1251 decode + deterministic parsing with per-issue count
+  verification (METHOD FINDING of record: the WebFetch summarizer
+  FABRICATES content on these pages - all summarized output discarded).
+- Verdict (c)+(e): ZERO title hits for adjoint/conjugate equations x
+  contouring in 34 years -> P-2/G14 novelty SURVIVES the digital pass.
+- Verdict (a)+(d): no averaged/periodic-inflow shape optimization in
+  titles; TOP FLAG declared immediately per mandate: Kraiko-Osipov PMM
+  34(6) 1970 (contour for VARYING FLIGHT CONDITIONS - the multi-regime
+  cousin of the cycle average) + Kraiko-Tillyaeva 37(3) 1973 / Shipilin
+  28(3) 1964 (nonuniform inflow). P-1/G6 wording CONTINGENT on the A1
+  full text (D4 par. 3 contingency ARMED, not activated).
+- Ranked Item 2b reading list produced; Egoryan/post-1962 Shmyglevskii
+  negatives recorded; classical line mapped per window.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/OP-0-gamma] (T2): gamma purged from the executable ceiling - real-thermo primary route, closed forms demoted to oracles
+
+Strengthened S5 gamma directive, executable purge item (PROGRESS NEXT 5):
+- src/thrust/bounds_gamma.py: PRIMARY ceiling route now EOS-general -
+  V_id = sqrt(2[h0 - h(s,Pa)]) and the sonic cap on the Cantera
+  frozen-CJ-products isentrope (frozen gamma(T) rung of N4); cap found
+  exactly by inverting the monotone w(P) = h + c^2/2 at w(P*) = h0;
+  bounds.py closed forms DEMOTED to declared oracles evaluated alongside.
+- Derived bars only: Richardson nested quadrature + exact-flash spot
+  probes + measured sonic-endpoint table noise + roundoff floors.
+- Known-answer rejector: constant-cp synthetic gas (gamma = 7/5 exact)
+  through the SAME route reproduces closed forms at 4.7e-7 (tol 1e-6,
+  derived); corrupted route rejected at 8.7e-5.
+- Cap re-verified EXECUTABLY at gamma(T): admissible-exit scan never
+  beats the capped formula; naive uncapped form strictly LOSES at the
+  deepest subcritical phase (g=1.15 counterexample generalized).
+- NUMBERS OF RECORD: real ceiling -4.4% (H2) .. -7.9% (RP-1) below the
+  gamma_s=const oracle on the 12 finite-Pa rows (bars ~0.002%, all
+  significant); vacuum rows = declared T-floor lower-bound instruments.
+- tests/test_bounds_gamma.py = run_all group (xi), G1-G5 incl. five
+  corrupted-row/route rejections; 18/18 rows OK.
+- R4 same session: M0 Prop. 7 GAMMA-PURGE INSTANCE OF RECORD + D3 par. 8
+  purge item closed. Declared residual (NEXT): phase diagram on the real
+  route; equilibrium-expansion bracket.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S6] rigor session close: PROGRESS + total-order log at step 19
+
+Class upgrades of record: Lemma A (ii) THEOREM in scope (Prop. A2 +
+Prop. A3, P-A1/P-A1-prime discharged, machine-verified 19/19); P-A2
+discharged (Hoffman 1967 full read, component map); P3 -> THEOREM* in
+shock-free S1; corpus literature evaluation b0bis (novelty CLEAN,
+variable-inlet resolved, oracles at source, gamma leads). NEXT for S7
+reprioritized (Lemma B first, anchors ready). Rigor-prompt T4/T5
+deferred, declared. Memory updated.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/D2-b0bis] (rigore-T-LIT): full-corpus literature evaluation of record
+
+docs/rde_nozzle_lit_b0bis.md, synthesis of the five-agent page-level
+pass over GENO/literature (user directive). Verdicts: V1 novelty
+sweep CLEAN corpus-wide (no averaged/multi-operating-point
+variational objective anywhere; nearest non-threats quoted; one
+external lead: van Meerbeeck EUCASS 2013); V2 variable inlet RESOLVED
+(JTH 1974 = variable inlet GEOMETRY, ambient-as-output transversality;
+Rao 1961 free lip - geometric DOF, not state families); V3 bridge
+anchors found in-house (HTH closed-form pair; JOTA compatibility +
+EOS-general statement p. 138). Corrections C1-C6 (Veen Eq. 9 p. 1195;
+ADA455494 = Onofri RTO/AVT; S-H 1971 pinned AIAA J 9(9) with 2290 lbf
+diagonal precision; RaoPlug oracle at-source incl. 2.428-vs-2.433
+discrepancy; Sternin/Rao-Beck boundary page-verified; Hoffman
+symbols). Gamma-ledger additions incl. the Rao 1958 IAF Amsterdam
+var-gamma optimization LEAD (to acquire). Oracle registry O-b1..O-b7
+(R5 gate before adoption). Program actions A1-A7. Zucrow Vol. 2
+declared unreadable in-machine (image-only). Session log step 18.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (rigore-T4): P-A1-prime DISCHARGED - Prop. A3, f2 = transported adjoint invariant
+
+Part 3 of validation/pa1_symbolic_lemmaA.py (suite PASS 19/19): the
+two-field multiplier PDEs are derived in-house (EOS-general, only
+d rho/dV = -rho V/c^2 with c^2 a free field) and the HTH-1971
+closed-form pair (y rho v, u + K) is machine-verified to solve them
+for EVERY flow satisfying continuity + irrotationality; imposing the
+terminal-characteristic transversality on the family
+a(y rho v, u) + b(0,1) yields V cos(theta -/+ alpha)/cos(alpha) =
+-b/a = f2 exactly, both families; corrupted-pair rejector PASS.
+Lemma A identification (ii) upgraded to THEOREM within the
+irrotational homentropic scope. Published anchors (page-verified this
+session): Humphreys-Thompson-Hoffman AIAA J 9(8):1581 (1971) p. 1583;
+Hoffman-Scofield-Thompson JOTA 10(3):133 (1972) Eqs. (21)-(26).
+Rotational scope note of record (user question): framework
+rotational-general; two-field closed form irrotational-homentropic;
+rotational transport = Hoffman four-field + Kraiko school.
+Draft Prop. A3 + PENDING register + D3 section 8 updated. Session log
+steps 15-17.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P3] (rigore-T3): averaged multiplier gap ATTACKED - THEOREM* in shock-free S1
+
+docs/rde_nozzle_P3_multipliers.md: THEOREM P3-S1 - for mu-a.e. phase
+the mass multiplier lambda2(xi) exists, is UNIQUE (scalar
+Zowe-Kurcyusz CQ discharged by the Prop. A2 contraction
+<grad m, r+> = rho(u_n + c) > 0), equals the Lemma-A closed form
+-f2(lip data) (EOS-general), is measurable (measurable data composed
+with the continuous shock-free S1 solution map - no abstract
+selection theorem needed where the closed form lives: the multiplier
+correspondence is single-valued) and lies in L^infinity(dmu) with the
+explicit bound W_max/sqrt(1 - 1/M_min^2). The averaged system T7 with
+(**) weighted transversality is now well-posed at the multiplier
+level in this class. Residues NAMED: R-P3.1 (across fitted shocks -
+inherits the D2.5 continuity conditional), R-P3.2 (beyond closed
+form - ZK + Kuratowski-Ryll-Nardzewski, SCHEMA), R-P3.3 (interior
+adjoint field = P-2/G12 scope). R4: D3 section 9 P3 row upgraded
+(OPEN -> THEOREM* S1 shock-free / SCHEMA general), M0 T7 named-gap
+list updated. Falsifier in the doc. Session log steps 12-14
+(step 13 logs the 5-agent literature study launch, user directive).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (rigore-T2): P-A2 DISCHARGED - Hoffman 1967 full page-level read, component map of record
+
+Full in-house read of Hoffman 1967 (AIAA J 5(4):670-676, pypdf text
+extraction). Draft section 3.4(iv) UPGRADED SCHEMA -> THEOREM* with
+the explicit, equation-numbered component map: h_1..h_4 = the
+primitive-form adjoint 4-vector (interior PDEs Eqs. 35-39 = L*h = K);
+g_i = adjoint species with zero terminal data (Eq. 34); C_1 =
+isoperimetric constant; h_1 = C_2 wall b.c. (Eq. 29) with endpoint
+transversality Eqs. (63)/(65)/(68); characteristics = streamlines +
+Mach lines with multiplier compatibility Eqs. (49)-(51)/(54);
+E (Eq. 78) == the deliberately unused BC relation Eq. (32) = the
+a-posteriori adjoint-residual certificate.
+
+SYMBOL CORRECTION of record: lambda1..lambda5 paraphrase corrected to
+Hoffman notation. TWO structural finds: p. 673 selects the control
+surface by boundary-condition COUNTING (the 1967 ancestor of
+Prop. A2); Eq. (54) is the published adjoint transport relation along
+Mach lines -> new route of record for P-A1-prime (specialize to
+frozen homentropic flow, integrate to f2). P-A2 marked DISCHARGED
+(numeric half remains P-A3/O3.2). Session log steps 9-11.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (rigore-T1): P-A1 attack - machine verification + kernel solvability lemma, P-A1 narrowed
+
+validation/pa1_symbolic_lemmaA.py (PASS 14/14, rejectors R1/R2):
+Part 1 machine-verifies the ENTIRE Lemma-A classical derivation in
+sympy under EOS-general closure rules ((L.6)-(L.16), both families,
+corner == CSTR_PA/PB; bonus identity (M^2-1)sin^2psi - cos^2psi ==
+M^2 sin^2psi - 1). Part 2 proves NEW Prop. A2 (kernel solvability,
+THEOREM, c fully symbolic): on a Mach-characteristic surface the
+thrust- and mass-flux trace covectors annihilate the tangent-family
+kernel identically - the adjoint b.c. is solvable for EVERY lambda2;
+family-specificity rejector included.
+
+DISCOVERY (R4 same session): the first draft justified
+identification (i) by a dimension count - Prop. A2 shows that is too
+loose, and the computed kernel ratio (W cos(al) cos(th+al)) does NOT
+reproduce f2: the invariant lives in the tangent-family TRANSPORT,
+not in the pointwise boundary algebra. Draft refined (Prop. A2 added,
+(i) rewritten, (ii) precision paragraph, register updated); PENDING
+P-A1 NARROWED to P-A1-prime (derive the adjoint transport relation
+along C+/- and exhibit f2 as its first integral). D3 section 8
+upgraded. Honest status: solvability half THEOREM machine-verified;
+transport half open, precisely stated. Session log steps 5-8.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S5] handoff 2: dedicated rigor-session prompt delivered (log step 29)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/S5-addendum] D3 S10quater(6): multiplicity reading of the PR axis (R4)
+
+Two-sided formal answer of record to the user question on wave count
+vs optimum: (a) THEOREM (T3-affinity corollary): within H1-H4 the
+averaged objective depends on mu only through <Pc> - modes with equal
+mean pressure share the identical optimal fixed wall; (b) SCHEMA (O2
+corollary, feed-closure caveat): k co-rotating waves give
+PR_k = PR_1^(1/k), so multiplicity moves the cycle along the PR axis
+of the eps-level phase diagram toward the T3 tie column - outside the
+collapse class the optimum is genuinely k-dependent and the diagram
+already quantifies it (premium_bound and T4 knee decrease with k).
+H3 shape-channel effects and multistability (robust layer) declared
+on top. Session log addendum step 28.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S5] handoff: session-6 prompt delivered, log definitively closed at step 27
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/S5-addendum] gamma directive STRENGTHENED: architecture inversion of record
+
+User directive (post-closure): no load-bearing gamma=const anywhere.
+Codified honestly: T3''s exact collapse is PROVABLY false for gamma(T)
+(two-gamma counterexample, M0) - it cannot be generalized, only
+DEMOTED. Architecture inversion: primary objects = EOS-general
+(per-phase stationarity (L.6)-(L.16), T7/(**'') adjoint-level, V_id in
+h(s,Pa) form, sonic-cap criterion, gamma(T) A1 backend); gamma=const
+admitted ONLY as declared oracle instances or demoted corollaries
+(T3 collapse, gamma_eff, S-H eps forms). New work item PROGRESS
+NEXT 5 [F1/OP-0-gamma]: purge gamma=const from the executable ceiling
+via Cantera h(s,P) (closed forms -> declared oracles, dual-route
+rejector). D3 section 8 + P-1 skeleton rule (e) strengthened; session
+log addenda 25-26 (incl. GENO/JAX answer of record: no translation
+was ever planned; dual-code independence is the certification value).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S5] session close: PROGRESS (ORA/NEXT/BLOCCATO/LOG) + total-order log at step 24
+
+PROGRESS: ORA = S5 closure (P-1 skeleton 768447d, Lemma A draft
+8f90314, G0 spike PASS b54e571) with S4 interleave reconciled and the
+two user directives of record (variable-gamma standing audit; GENO
+stays Fortran with whole-pipeline functionality as G0 interop
+criterion); NEXT 1-4 for S6 (PMM TOC sweep, Lemma B + P-A1, P-1
+sections 2/4, spike extension + GENO cross-code); BLOCCATO updated
+(G0 instructed); LOG entries S5 + S4. Session log closed at step 24
+with declared deviations (S4 concurrency, declared JAX install).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F2-prep/G0] (T3): JAX spike - differentiable MOC unit processes with implicit custom_vjp, PASS
+
+validation/g0_spike_jax_moc.py: interior point + inverse/design-mode
+wall point as Newton-solved implicit systems wrapped in jax.custom_vjp
+with the implicit-function rule (adjoint solve on the transposed
+Jacobian; Newton never unrolled, per M0 VI.3). Planar, calorically
+perfect PM closure with declared GAMMA STATUS (structure EOS-general;
+gamma(T) backend is A1 scope). TOC-regime states (gamma = 1.23).
+Gradient check: full Jacobian (jacrev through the custom bwd) vs
+central FD at two steps with DERIVED tolerance (two-step Richardson
+truncation estimate + roundoff floor; constants derived from the FD
+error balance, none tuned). Rejectors: Newton self-certification +
+NEGATIVE CONTROL (corrupted vjp).
+
+Run of record: Newton residuals 1.1e-16 / 2.8e-17; 52/52 Jacobian
+entries within tolerance (worst err/tol 4.6e-2); corrupted vjp
+REJECTED (35/36 out, worst 2.3e4). Environment: jax 0.11.0 CPU
+installed user-level, numpy 2.2.6 pin verified intact (declared,
+reversible). Gate G0 decision stays at Fase 2, now instructed.
+
+User decision recorded: GENO stays Fortran (dual-code of record,
+M0 VI.7) provided whole-pipeline functionality is preserved -
+GENO-interop is now an explicit G0 criterion.
+
+Session log steps 17-21.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (T2): Lemma A draft of record - paper section 3, classical side fully derived
+
+docs/rde_nozzle_P2_lemmaA.md: term-by-term identification per outline
+section 4. Classical side DERIVED IN FULL from the single Rao
+Lagrangian (8 verifiable steps): Eq. [11] characteristic surface (as a
+RESULT, via the sin(theta)[(M^2-1)sin^2psi - cos^2psi] = 0
+factorization), Eq. [12] f2 = -lambda2, Eq. [13] (2pi normalization
+declared), Eq. [14] corner == CSTR_PA + C- mirror == CSTR_PB (alpha ->
+-alpha) - every row CHECKED against the page-verified D2 b0 corpus,
+zero discrepancies. Adjoint side: duality bookkeeping + Prop. A1
+(adjoint characteristics = flow characteristics) THEOREM.
+Identifications (i)-(iii) THEOREM* (structure derived; explicit B2/B3
+component match PENDING O3.3); (iv) Hoffman SCHEMA (verified anchors
+only - Eq. 78, p. 672, p. 676; component map PENDING page re-read,
+no equation numbers invented). PENDING register P-A1..P-A3.
+
+GAMMA-VARIABLE STANDING DIRECTIVE (user, this session): audit written
+into the draft (section 3.0) - (L.6)-(L.16) are EOS-GENERAL (only
+Gibbs + c^2 def used); true gamma=const boundaries named (E4
+corner<->eps bijection, T3 Lemma B, S-H closed forms). R4
+back-propagation: D3 section 8 status upgrade + gamma paragraph;
+P-1 skeleton acceptance rule (e) gamma status per claim.
+
+Declared deviation: concurrent session S4 (venue decision f965fb2)
+reconciled - disjoint content; this session renumbered S5. Session
+log steps 11-16.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/chiusura-S4] session log closed at step 6 (G5 dispatch package + P-2 venue decision)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (S4): venue decision of record - AIAA Journal + arXiv-at-G5
+
+User delegated the venue choice ("in modo sota"). Decision, documented
+with web-verified evidence in outline section 7 (rewritten from
+proposal to DECISION) and annotated in D6 section 3:
+
+- PRIMARY: AIAA Journal, coupled with an arXiv preprint posted
+  immediately at (G5 pass AND Lemma-A draft ready). Key argument: G5
+  gates ANY public claim-staking (journal submission and preprint
+  alike), so venue turnaround cannot neutralize the RK-A scoop risk -
+  the arXiv preprint after G5 does, at zero cost; the venue is then
+  chosen on audience fit (readers who cite Rao/Hoffman AND run
+  adjoints; Lozano's adjoint papers are AIAA J 2018/2019) and signal.
+- Verified numbers (2026-07-16): Aerospace (MDPI) median first
+  decision ~18.5 days, acceptance-to-publication ~2.7 days, APC
+  2400 CHF; AIAA Journal official guidance "six months or more".
+- FALLBACK: Aerospace, with declared triggers (desk rejection, or
+  ~8 months / two rounds without convergence). TERTIARY: JOTA.
+  KILL/RE-EVALUATE: G5 FOUND -> novelty wording downgrades (D4 S3
+  contingency), format re-evaluates to technical note.
+- PROGRESS: venue row no longer blocking.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/G5] (S4): dispatch package ready-to-send + web-verified rescoping
+
+User delegated the G5 dispatch ("in modo sota"). Web verification
+before dispatch (URLs in the S4 session log):
+
+- PMM official archive is ONLINE with TOCs 1933-2025
+  (pmm.ipmnet.ru/ru/Issues.php): commission Item 2 RESCOPED into
+  Item 2a (digital in-house TOC sweep 1957-1990 - new PROGRESS NEXT 4,
+  no library needed) and Item 2b (library full texts of flagged
+  papers only).
+- Kraiko 1979 (Nauka) verified NOT freely digitized; the 2010 second
+  edition is (techlibrary.ru) - the commission's declared fallback.
+  Item 1 stays a physical ILL/consultation request.
+- Recipient verified: bibliotecaboaga@uniroma1.it (Biblioteca centrale
+  di Ingegneria G. Boaga; ILL by email, DD via NILDE/IDEM-GARR).
+
+Deliverables:
+- validation/G5_kraiko_pmm_commission.md: new section 6 DISPATCH
+  SCOPING OF RECORD.
+- validation/G5_dispatch_email.md: complete Italian email READY TO
+  SEND (recipient, subject, body, technical annex pointer; internal
+  note keeps Item 2a out of the library request). Residual user
+  action: one click from the institutional account - the assistant
+  has no authorized email channel this session (claude.ai Gmail
+  connector unauthenticated; authorize it for future direct sends).
+- PROGRESS: BLOCCATO G5 row updated; NEXT 4 = [F0/G5-2a] digital PMM
+  TOC sweep.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-1] (T1): paper skeleton of record (JPP) with claim map C1-C26
+
+Section-by-section skeleton for P-1 (formulation + collapse dichotomy
++ certified bounds): Theorem 0 chain, O1/O2, T0 strengthened + N-SW,
+T3/T4 with proofs and sharpness (gamma_eff numbers of record), T7 with
+weighted (**') only, G-B sonic-capped ceiling + OP-0 ladder, OP-11-eps
+phase diagram presented SEMANTICS-FIRST per D3 S10quater(5) (winners
+rank closures, premium_bound = tournament device, (P) = D2.6 pair
+form), EAP + S-H bridges with the quantitative convergence check.
+CLAIM MAP: 26 claims, each with rigor class + falsifier + executable
+in-repo carrier (tests/run_all.py groups (i)-(x) + data of record);
+zero orphan claims; acceptance coherence grep PASS (no winner read as
+hardware). Submission gated M1 + G5 (declared in header).
+
+Session log: validation/PROGRESS_2026-07-16_fase1_P1.md steps 1-10
+(R2 opening + pre-execution gate PASS + T1).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S1-coda] PROGRESS: S1 coda logged (D2.6, D7 §5 inverse audit, phi placement) — S1 definitively closed
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/OP-11-eps] (addendum): scope remark - winners rank closures, not
+hardware; premium bound as the certified tournament device
+
+Precision pass on a user challenge ("the optimum is FOR GIVEN
+CONSTRAINTS - are you certain the optimum of the full problem is
+bell/aerospike/shrouded?"). Convergent answer of record: NO, and the
+formulation never claimed it. Back-propagated everywhere the eps-level
+diagram could be over-read:
+
+- D3 S10quater gains statement (5) SCOPE/NON-TRANSFER: the diagram's
+  winners rank VALUE MODELS (closures) at equal eps_max - the released
+  capped plug IS the per-phase relaxation, so its dominance prices the
+  ADAPTATION PREMIUM and is silent on hardware at the true constraint
+  vector c (truncation/base-pressure/length invisible at the eps
+  rung); the topology of S*(c) is the OUTPUT of the finite sector
+  tournament of problem (P) (M0 D2.6), NOT a priori
+  {bell, plug, shrouded}; bell-winning regions of (P) are EXPECTED at
+  contour level.
+- Certified tournament device: premium_bound = Isp_ideal(capped) -
+  Isp_bell per cell - geometry-free THEOREM (Prop. G-B + bell-member
+  achievability, up to the bell surrogate's declared C4 bar) bounding
+  what ANY non-bell solid can earn over the cell's best fixed bell;
+  a certified sector loss band exceeding it closes the cell for the
+  bell with delta-certificate per D2.6(iv). First candidate band: the
+  ADR-D4 empirical truncation penalty (awaiting user ratification).
+  Max on the record grid: 64.7 s at (PR=90, eps_max=1).
+- M0 Prop. 7 eps-level block: SCOPE paragraph (cross-ref D2.6, D3).
+- src/thrust/phase_diagram.py: WINNER SEMANTICS docstring section;
+  premium_bound persisted per cell, identity-guarded in check_cell;
+  SCOPE note + definition in data/phase_diagram.md; example prints
+  the max premium line.
+- tests/test_phase_diagram.py: D1 premium staleness check + D6
+  stale-premium rejector (23 checks). Data regenerated; group (x)
+  PASS, lint PASS, example exit 0, fast tier 10/10 (60 s).
+- PROGRESS ORA(S3) extended; session log reopened (rows 17-19) and
+  closed again.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/D7] §5 inverse de-biasing audit: pipeline re-derived from the bare problem, history removed — residual biases B1 (schedule, gated by G4) and B2 (exposition) declared
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/M0] D2.6: the Problem of Record (P) — canonical statement (S*, delta) with certified-globality contract and maximality rationale
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/chiusura-S3] session close: living PROGRESS + total-order log
+
+R3 closure of Session 3 (Fase 1: OP-11-eps + P-2 + G5; T1=fcb9be6,
+T2=19554cb, T3=0bbe164):
+
+- docs/rde_nozzle_PROGRESS.md: ORA = S3 state (OP-11-eps CLOSED with
+  the two theorem-grade R4 results; P-2 outline of record; G5
+  commission text ready); NEXT atomic for S4 = P-1 skeleton, P-2
+  Lemma-A drafting, G0 JAX unit-process spike; BLOCCATO = G5 dispatch,
+  P-2 venue decision, ADR-panel ratification (all user-side); LOG S3
+  entry with declared deviations (none of substance; two log-ordering
+  slips fixed in-session before committing).
+- validation/PROGRESS_2026-07-16_fase1_OP11.md: closed at step 16.
+- Project memory updated to the S3 state (same content, condensed).
+
+Session 4 must be able to restart from memory + M0 + PROGRESS alone.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/G5] (T3): commissioning text for the Kraiko-1979/PMM human pass
+
+validation/G5_kraiko_pmm_commission.md - the library-pass request of
+record (plan action A0.5; gate G5 blocks P-1/P-2/P-3 SUBMISSION, not
+work). TEXT ONLY, nothing sent; the user chooses recipient and channel.
+
+- Item 1: Kraiko, Variatsionnye zadachi gazovoi dinamiki (Nauka 1979,
+  448 pp; TOC unverified online): full TOC transcript + three chapter
+  questions, each mapped to the claim it would kill or downgrade
+  (shared-contour/averaged functional -> G6/P-1; unsteady 2-D
+  contouring beyond the known 1-D impulse line -> C4; multiplier
+  fields = adjoint statement or optimality residual -> G14/P-2).
+- Item 2: PMM / Izv. AN SSSR MZhG originals ~1957-1990 (translations
+  incomplete): author sweep (Kraiko, Shmyglevskii, Tillyaeva, Egoryan
+  + school), five targets incl. periodic-chamber shape optimization
+  beyond the characterized bounds/direct-search line and any pre-2001
+  adjoint ('sopryazhennye uravneniya') contouring priority.
+- Deliverable format specified so the verdict is query-bounded like
+  the rest of the program (indexes swept, FOUND/NOT-FOUND per row,
+  photos + exact citations); outcome can only downgrade novelty
+  WORDING, never the theorems/certificates (D4 S3 contingency).
+- Practical notes: WorldCat/KVK holdings lookup, 2010 second-edition
+  fallback (declared), transliterated keyword list, effort estimate.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/P-2] (T2): bridge-lemma paper outline of record (TIME-SENSITIVE)
+
+docs/rde_nozzle_P2_outline.md: the Rao/Kraiko = closed-form-adjoint
+bridge lemma, outlined for fast-track drafting (risk RK-A: the 2-D
+analytic-adjoint bank exists since 2025 without the classical side).
+
+- Lemma A (continuous, THEOREM* in S1 smooth-supersonic scope):
+  4-part identification - optimal control surface = adjoint
+  characteristic; f2 first integral = adjoint Riemann invariant with
+  multipliers = adjoint boundary data; corner algebra = adjoint
+  endpoint conditions; Hoffman 1967 multiplier fields = interior
+  adjoint with E (Eq. 78) = adjoint residual.
+- Lemma B (discrete): reverse-AD of a shock-FITTED MOC march =
+  discrete adjoint characteristic sweep (THEOREM, transpose identity)
+  + mesh-limit consistency (SCHEMA; fitting bypasses the
+  Giles-Ulbrich adjoint-consistency trap - citable point).
+- Three banks with no bridge (query-bounded per D2 G14): Hoffman
+  1967; Giles-Pierce JFM 426 (2001); Lozano-Ponsin Aerospace 12(6)
+  (2025).
+- O3 oracle plan (O3.1-O3.4): dot-product at machine precision with
+  DERIVED tolerance, Hoffman-E convergence at unit-process order,
+  AD-vs-Rao term match on perturbed contours, JAX-vs-GENO dual code.
+  All rejectors, per R5.
+- Declared risks: A1 engine timing (quasi-1D demonstrator fallback),
+  G12/transonic scope, G5/PMM novelty-downgrade path (submission
+  stays gated by G5).
+- Venue/timeline proposal (user decision pending): AIAA Journal
+  primary; Aerospace / JOTA alternates; D6 90-day item 7 schedule.
+- D6 S3 P-2 entry annotated with the outline pointer.
+
+Every claim carries a rigor class and a falsifier; the novelty claim
+is query-bounded (claim register, S8 of the outline).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F1/OP-11-eps] (T1): quasi-1D topology phase diagram, certified + rejectable
+
+The eps-level instance of OP-11 (the measure selects the topology),
+computed and certified on the blessed CH4/O2 20-atm anchor: 90-cell
+grid (eps_max x PR at fixed <Pc>) + vacuum sweep, OP-0 ladder embedded
+per cell (ladder_row/check_chain reused verbatim; the PR=1 degenerate
+strictness signature is asserted exactly, not skipped).
+
+- src/thrust/phase_diagram.py: candidates bell / plug_sh (published
+  S-H closure, kept for executable rejection) / plug (sonic-CAPPED
+  adaptation closure of record); winner + M1 gap-zero certificate per
+  cell; check_cell/check_vacuum rejector API.
+- tests/test_phase_diagram.py (suite group (x)): 22 checks D1-D7 -
+  staleness, T3 tie column vs independent closed form, T4/M1
+  attainment incl. 9 subcritical cells, vacuum no-finite-optimum,
+  naive-branch strict loss on the 30-cell subcritical strip, and 8
+  negative controls (explicit T3/T4 controls included): wrong winning
+  topologies are REJECTED, not merely unconfirmed.
+- examples/example_phase_diagram.py + figs/phase_diagram_op11.png:
+  P-1 figure (winner map + knee/Rao/subcritical-onset curves + gap
+  heatmap); registered in test_examples with blessed digits
+  (24 tie / 36 plug-capped / 30 plug-knee, 36 M1 cells).
+- R4 back-propagation IN SESSION: D3 S10quater OP-11-eps RESULT OF
+  RECORD (capped-closure plug dominance THEOREM: no strict bell
+  region at eps level; M1 attainment EXTENDED to subcritical cycles
+  via the sonic cap - the supercritical hypothesis belongs to the
+  naive closure only; the published closure inverts the bell/plug
+  ranking at eps_max=1, artifact test-rejected); M0 Prop. 7 corollary
+  updated; D4 OP-11 annotated (contour level stays OPEN).
+- Numeric lint: grids/anchor classified in the allowlist. Full suite
+  11/11 PASS (441 s).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/chiusura-S2] session close: Fase 0 formally closed, living PROGRESS + session log
+
+- docs/rde_nozzle_PROGRESS.md: ORA -> 9bdde5f (A0.1 gate PASS, suite
+  9/9), S2 log entry, NEXT re-ordered (OP-11-eps first, with the
+  capped-ceiling instruction; P-2 outline time-sensitive; G5).
+- validation/PROGRESS_2026-07-16_fase0_OP0.md: total-order step ledger
+  closed at step 20 (T4 declined and declared; Definition of Done met).
+- Project memory updated (corrections-of-record + session-2 state).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/A0.1] (T2): inline biblio fixes in the historical notes + control-grep gate
+
+- cycle_averaged_variational_nozzle.md: the survey passage now carries
+  the correct split citations - Li-Xu-Huang, JPP 38(5):849-865 (2022)
+  [RDE, MOC on the time-averaged state] and Mo et al., Acta Astronautica
+  108:92 (2015) [scramjet, nonuniform-inflow MOC] - with the conflation
+  note ("Mo, Huang" struck, D2 b1).
+- mathematical_foundations_rde_nozzle.md: Sternin citation now carries
+  the caveat of record (two-phase nozzle gasdynamics; the general
+  single-phase treatise is Pirumov-Roslyakov, D2 b0).
+- Audited: Rao 1958 (TOC) / 1960 (TOP, ARS J 30:561) / 1961 (spike,
+  Planet. Space Sci. 4:92) usage consistent everywhere; S-H title exact
+  at every full citation site.
+- A0.1 acceptance gate: control greps outside banners CLEAN (recorded in
+  validation/PROGRESS_2026-07-16_fase0_OP0.md step 17).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+A0.3 (T1): gamma-channel probe committed - D3 5.2 numbers reproduced or corrected
+
+examples/gamma_cycle_probe.py on the blessed det|CH4|20|1.64 state
+(equilibrium SP stagnation family anchored at the CJ chamber state,
+201 phases), persisted to data/gamma_cycle_probe.json:
+- gamma_s = 1.1537 -> 1.2093 (T0 3727 -> 2228 K): the stale
+  "1.154 -> 1.210" CONFIRMED to its own rounding; single shallow
+  interior minimum at xi ~ 0.1 (depth 4e-4); gamma_fr 1.2223 -> 1.2286
+  (old 1.244 endpoint wrong).
+- eps* shift of the bell optimum: -0.56% (3.980 -> 3.958). The stale
+  "-1.9%" is STRUCK; diagnosis: the unweighted-mean-gamma closure gives
+  -2.39% (the wrong-averaging class it plausibly came from), while the
+  D3 first-order closure gamma_eff = <Pc g>/<Pc> = 1.1577 reproduces
+  the true shift (-0.57%) - its first executable confirmation.
+- Isp penalty of the frozen-gamma design: -0.00028% (stale "-0.001%"
+  corrected in magnitude); second-order envelope structure
+  penalty <= shift^2 is now a test gate.
+- tests/test_gamma_probe.py (group ix): anchor to blessed state,
+  valley+rise structure, golden digits, pure-numpy re-derivation from
+  the persisted arrays, envelope inequality, closure discrimination,
+  and a reversed-array negative control - REJECTS wrong averaging and
+  corrupted records. Fast suite 9/9 PASS.
+- Corrections propagated to every stale-number site (grep-verified):
+  D3 5.2 + P6, D4 rows + action 6.3 DONE, historical notes corrected
+  inline (banners updated), D6 A0.3/A0.4 DONE markers, D7 E5 closed,
+  roadmap N4 number.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/A0.3] roadmap: N4 estimate replaced by the in-repo number of record (-0.00028%)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+[F0/chiusura-S1] adherence protocol + living PROGRESS + session-1 closure
+
+CLAUDE.md: codebase rules R1-R6 — no orphan steps (plan tag mandatory),
+session open/close protocol, THEORY BACK-PROPAGATION rule (every
+insight/number/concordance discovered during implementation must land
+in M0/D-docs the same session), numbers/claims discipline, gates.
+docs/rde_nozzle_PROGRESS.md: living state (ORA/NEXT/BLOCCATO/LOG) —
+session-1 reconciliation: Fase 0 COMPLETE (A0.3 probe, A0.4 bound
+ladder with the sonic-cap discovery back-propagated to M0/D3), Fase 1
+started early; NEXT = biblio grep, OP-11-eps phase diagram, P-2
+outline, G5 commissioning.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+A0.3 (T1): gamma-channel probe — stale numbers corrected, of record
+
+examples/gamma_cycle_probe.py + tests/test_gamma_probe.py (12 checks,
+incl. rejectors) + data/gamma_cycle_probe.json. Verdict: gamma_s
+1.1537->1.2093 CONFIRMED; eps* shift CORRECTED to -0.56% (stale -1.9%
+STRUCK — source identified: unweighted-mean closure gives -2.39%, now
+test-rejected); Isp penalty -0.00028% (second order confirmed,
+penalty <= shift^2); first executable confirmation of the
+gamma_eff = <Pc*gamma>/<Pc> closure (-0.571% vs -0.556%). Runner
+registered as test (ix). Historical note banner updated.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+M0: phi as nested outer generator parameter — full-fidelity S-H check = in-repo 18/18 joint (phi,eps) validation via phi_opt lattice certificate
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+M0: quantitative T3/T4 check vs S-H Table 1 — closed-form predictions reproduce their CEA-swept optima (bell 3-5%, spike 6-14%, phi-shift-consistent)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+OP-0 (T3): eps-level bound ladder on the 18 Table-1 rows, with rejector test
+
+Chain C verified row by row: Isp[eps_fix] <= int-max == ideal <= B_EK.
+- src/thrust/bounds.py: int-max via explicit per-phase Theorem-1 argmax
+  through Eq. 9; per-streamtube ceiling via an independent closed form;
+  B_EK = integral-flux (Efremov-Kraiko-type) relaxation by Cauchy-Schwarz
+  on the mdot measure; peak-designed S-H plug as the M1 candidate.
+  Tolerances derived (NQ*eps_mach); numeric lint clean.
+- DISCOVERY, correction of record: the naive G-B rung ("complete
+  expansion to Pa", unconditional) is NOT an upper bound on subcritical
+  phases (1 < Pc/Pa < critical): the sonic exit beats it (executable
+  counterexample g=1.15, Pc/Pa=1.3, dCF=+0.0070). Ceiling capped at the
+  sonic state; M0 Prop. 7 and D3 Prop. G-B sharpened accordingly; the
+  naive form is REJECTED by test on the 4 subcritical rows.
+- Regimes on the 18 rows: 8 supercritical sea-level (plug attains the
+  ceiling exactly - M1 gap-zero globality), 4 subcritical (naive rung
+  violated), 6 vacuum (no finite attainment, Theorem 3).
+- tests/test_bounds.py: live==persisted guard, chain re-run, regime
+  structure, counterexample, and 7 negative controls (corrupted ladders
+  and a broken naive-ceiling implementation all REJECTED); registered as
+  group (viii); full fast suite 8/8 PASS.
+- data/bounds_ladder.{json,md}: numbers of record.
+- validation/PROGRESS_2026-07-16_fase0_OP0.md: total-order session log.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+convergence pass: S-H concordance remark + E8 canonicity correction + proof tightening
+
+- M0: Stechmann-Heister-Harroun concordance remark (full-text spec in
+  ../project_build verified): their Eq.4 = O1; their Fig.9/Figs.10-12/
+  Table-1-vacuum findings are instances of T3/T4/no-finite-optimum;
+  assumption list maps 1:1 to the ledger; their flagged timescale gap
+  = Theorem 0 + P4. Second citable bridge for P-1 (JPP-class venue).
+- E8 (found-and-fixed): weak-strong canonicity overstated for shocked
+  S1 solutions — BDS CMP 305:351-361 (2011) verified, Lipschitz
+  hypothesis enforced; canonicity now exact shock-free,
+  declared-conditional across fronts (D1 §6, M0 D2.5, D7 register).
+- Proof tightening for paper grade: Lemma B renamed (stagnation-
+  temperature similarity, no clash with Theorem T0); Prop G-B explicit
+  V_id formula + hypotheses + dh/ds|_p = T argument; Theorem 6
+  attainment/measurability of l(xi); D6 P-1 venue + bridges.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+M0: EAP concordance remark — Kaemming-Paxson 2018 verified against Prop G-B
+
+Full text (NTRS 20180006890) read: EAP_i = pressure-coordinate of
+J_ideal (expand-then-average per segment, mass-flux-weighted specifics,
+detonation-frame area=time averaging = tacit T0). Deltas recorded:
+axial-vs-total energy variants as adjacent ladder rungs; unstated
+quasi-steady hypotheses (P4 = EAP's missing error bar); bound gap =
+discount factor on advertised pressure gain. Citable bridge for P-1.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+program baseline: M0 master + D1-D7 deliverables (formalization, survey, audit)
+
+Fase 0 of the RDE-nozzle variational program. Contents:
+- rde_nozzle_MASTER.md (M0): reference of record — idea, definitions,
+  full proofs (Thm 0 thrust chain, O1, O2, T0 strengthened, N-SW
+  spacelikeness, T3 three-lemma, T4, G-B bound + M1 globality, T7
+  averaged system with weighted transversality), global-optimality
+  contract M1-M5, generality/licensing ladder, implementation spec.
+- D1 problem_book: interface contract (sonic start, mixed-interface
+  decision tree), hypothesis ledger.
+- D2 literature_map: 17-gap analysis, six web-verified strands + b0
+  classical corpus; novelty query-bounded confirmed.
+- D3 theorem_ledger: rigor classes, corrections of record, method
+  upgrades (bound ladder, Gamma-convergence, DWR, shock tracking),
+  global-optimality program, configuration-free total optimum.
+- D4 claims_verdict: survivals/falls/weakenings, OP-0..OP-11 ranking.
+- D5 general_scheme_panel: 16-agent panel synthesis + prescribed-profile
+  convergent pipeline (Annex A).
+- D6 development_plan: certainty model, phases A0-A7, gates G0-G6,
+  input taxonomy for the CFD-free tool (Annex B).
+- D7 pipeline_audit: per-step triple verdict, residues R1-R10, errors
+  found-and-fixed E1-E7, decision matrix.
+- Historical notes kept with supersession banners; roadmap kept as
+  amended-by-D6.
+
+Known pending (next session): A0.3 gamma probe re-derivation or strike;
+A0.1 residual biblio fixes; G5 Kraiko/PMM human pass before submission.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+validation: check in the SOTA audit record + closure addendum
+
+Prior-session two-audit record (518 literature-fidelity verdicts, 0
+algebraic bugs; 55 enforce-the-constraint findings). Addendum notes the
+work-list was executed by the 2026-07-15/16 hardening rounds (commits
+b5ca105..86fb08d): verdicts computed, gates enforced, full-DOF optimization
+certified, no-magic-number invariant in the suite. 8/8 groups PASS.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+DOF/input audit + numeric lint: the no-magic-number invariant, ENFORCED
+
+- validation/dof_audit.md: the input map of EVERY model (Stechmann full
+  chain, eps=1 variant, SK pressure-history, SK axial, canonical CJ,
+  cycles/q suites, design examples) with each input classified as
+  COMPUTED / SPEC / DOF / ELIMINATED / MODEL-CONST / EMPIRICAL / NUMERIC;
+  the 2026-07-15/16 hardening round (41 audit findings closed) and the A6
+  discovery/re-bless recorded. The only paper-sourced constants left in
+  the implemented physics are the PH K (1.02/1.54) and u_c (300 m/s) -
+  definitional for the cited S&K closure and cross-validated in-repo
+  against the fit-free axial model.
+- tests/test_numeric_lint.py (suite group vii, 0.1 s, pure AST): every
+  numeric literal in src/**/*.py must be trivially structural, classified
+  in validation/numeric_allowlist.json (class + provenance note; malformed
+  entries fail too), or inside a data-block/function exempted AS A
+  CLASSIFIED UNIT (paper tables, mixture registry, literature-anchor rows,
+  plot code). Failure prints the exact JSON snippet to add: new numbers
+  cannot enter the physics without their class and provenance.
+  Mutation-tested (injected literal caught with actionable message);
+  --inventory mode bootstraps future extensions.
+- validation/numeric_allowlist.json: 148 distinct literals classified one
+  by one with per-line provenance from the audit.
+- tests/run_all.py: groups (vi) optimality proofs and (vii) numeric lint
+  registered; the series closes green: 8/8 groups PASS in 172 s.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+examples: mission-fill detonability, live closures, full regression coverage
+
+- example_design_10kN: fill hydraulics and detonability now evaluated at
+  the MISSION fill P_init = 2.40 atm (the matched-cycle OUTPUT; the old
+  print mixed the 1-atm SK leg density with the mission mdot: l_fill was
+  94 mm/52% of L, the mission state is 39 mm/22%). Cell size carried as a
+  TWO-ROUTE BAND scaled ~1/P (Caltech DB 2.5+-0.4 mm | repo 29*Delta_i =
+  5.77 mm at 1 atm): W = 3.14 is pressure-invariant, band [0.96, 6.41] ->
+  1-6 heads (central ~3) printed with the band, never the center alone.
+  Throatless closure computed LIVE (G* -> R_bar = 142.2 mm vs chosen
+  140 mm, +1.5%) and asserted; all headline numbers now regression-asserted
+  (bell 268.0 / spike 278.4 / CP 261.2 s, W, closure) - this example
+  previously asserted only U_CJ.
+- example_headtohead: the throatless/nozzled sizing closures were
+  comment-only numbers - now computed live (G* = 428 kg/m2s, R_bar =
+  22.6 mm at the SK bracket mdot 303 g/s; nozzled A_t = 4.30 cm2 at the
+  mission 249 g/s) and asserted.
+- example_design_study: gap assert raised to the documented 2.4*lambda
+  detonability criterion (was a silent factor 1) and D_bar >= 28*lambda
+  added.
+- tests/test_examples: example_headtohead and example_design_10kN added to
+  the slow tier (were uncovered); 6/6 examples now under digit regression.
+- SOLUTION_headtohead.md: carry-over completion of the truncated solution
+  document (sections 4-5: CP optimum, verdict table) from the prior
+  alignment session.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+A6: SK Table-1 fill is 0.15 MPa - discovery, re-bless, computed V&V verdicts
+
+DISCOVERY (2026-07-15, made possible by turning check 3a from a frozen
+string into a computed verdict): the SKREP replica densities deviated from
+SK's quoted rho_c by a SYSTEMATIC +1.2..1.5% = exactly 1.5 atm / 1.5 bar
+(+1.32%). Rescaled to 0.15 MPa, all four quoted rho_c reproduce to 3 s.f.
+=> SK Table 1 tabulates the S&K 2013 fill at 0.15 MPa, not 1.5 atm.
+
+RE-BLESS (2026-07-16): SKREP cases recomputed at 0.15 MPa / 255 K.
+Literature convergence tightens exactly as the hypothesis predicts:
+|dU_CJ| 0.044% -> 0.023%, |dP_CJ| 1.44% -> 0.12%, rho_c now compared
+DIRECTLY (0.18% < 0.5% gate), axial Isp_f 4/4 within 0.1% (C2H4-O2:
+911 s = SK's 911 s exactly). A6 documented as resolved with full history.
+
+tables.py verdict hardening (audit findings, all 8 verdicts now COMPUTED):
+- check 2 was a hardcoded PASS string - now derived from sk_tables.json
+  comp records with declared gates;
+- check 3a gates all five named inputs (U_CJ, gamma_e, P_CJ, rho_c, Y_f)
+  and prints live maxima instead of stale tighter claims;
+- check 3c PASS* carve-out verifies the single failure IS the documented
+  C2H4-O2 anomaly (a new failure elsewhere now FAILs instead of hiding);
+- Pm/P2 band tied to the SK quote (~0.22-0.25 +- 0.005 reading margin =>
+  [0.215, 0.255], tighter than the old unexplained [0.20, 0.26]);
+- counts len()-derived, empty V&V input sets raise actionably, exit code
+  reflects FAIL, matched-vs-sonic span computed into the table header,
+  A1 anomaly numbers computed from live data instead of frozen prose.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+audit hardening: CJ coherence, cycles, q-formalism, detonation suite
+
+Closes the multi-agent audit findings (0 formula mismatches over 10 models;
+41 findings, every one verified inline and fixed - see validation/dof_audit):
+
+- CJ coherence: U_CJ of the verbatim Stechmann Hugoniot solver now ASSERTED
+  vs the canonical cj_core chain (was computed and discarded while the
+  docstring claimed it); sonic residual gated at all 4 computed CJ points;
+  actionable error for single-species no-colon compositions.
+- mixtures: selfcheck() asserts the three redundant encodings of every
+  registry entry agree (X string <-> fuel/ox at phi=1 <-> xy bookkeeping,
+  N2 = 3.76*O2, per-oxidizer K) - wired into test_golden.
+- cycles: the tautological Brayton A59 row relabelled [algebraic identity]
+  and replaced in function by TWO new independent cross-checks exercising
+  the previously-dead A21/A40 quadratics against the closed-form CJ Mach
+  (tangency M2^2 -> 1 at M_CJ, no real root just below); vN band aligned to
+  the documented 1.6-2.0 (was silently 1.4-2.2); pic < 1 rejected with an
+  actionable error (was a silent thermodynamically-inconsistent state);
+  plot-stage KeyErrors made actionable; dead a2_fr assignment removed.
+  102/102 validation rows PASS. Frozen-compression / equilibrium-expansion
+  hypothesis pair verified correct (metastable cold reactants; papers' B1
+  state-function definitions).
+- q-formalism: reference state imported from constants.py (drift-proof, was
+  a local 300/1e5/298.15 duplicate); upstream-consistency deviations mdev_q
+  / mdev_M now asserted at 1e-6 (live 4e-11 / 0); the "gamma=1.2 family
+  reproduces fuel-air M_CJ within ~5%" claim COMPUTED and asserted (live
+  3.8% max); 700-K sensible-shift sign convention fixed in the generated
+  md; Fig.-A22 nearest-bin half-width named and documented (= half the
+  label spacing, not a physics knob).
+- detonation: CJ minimiser validated (sentinel + bracket-edge now raise),
+  Hugoniot brentq bracket sign pre-checked with actionable message, vN
+  fixed point raises on non-convergence, ZND completeness asserted in-run
+  (exo_len > 0 and thermicity tail < 1% of peak; shipped worst 0.21%).
+
+Data regenerated by the live reruns (display-precision values identical;
+JSON diffs are meta dates and last-ulp diagnostics).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+SOTA: Stechmann full-DOF optimization + formal eps-optimality proofs
+
+- optfull (Step 7): joint (phi, eps) optimum for all 18 Table-1
+  configurations with NOTHING inherited from the paper. Outer phi on the
+  0.01 lattice (= Table-1 resolution): auto-extending seed grids
+  (seed-independent), parabolic acceleration, hill-climb, STRICT
+  both-neighbours-lower certificate, executable unimodality scan
+  (n_local_max + full [phi, Isp] grid persisted per optimization, PASS
+  gate). Inner eps closed form per nozzle: bell = perfect expansion at the
+  TIME-mean <Pc> = P_CJ*I(1); aerospike = saturation knee NPR = P_CJ/Pa;
+  vacuum = spec eps_max (no finite optimum). 18/18 rows FULL-OPT PASS;
+  phi* REDISCOVERS Table 1 (26/36 exact at 0.01, rest within 0.03, always
+  with Isp(phi*_model) >= Isp(phi_paper) asserted).
+- validation/bell_optimality_proof.md: theorems inside the paper's own
+  Eq. 4-15 mass-weighted machinery. Euler momentum lemma dF/dA_e = Pe-Pa
+  (exact); the weight mdot*cstar = Pc*A_t cancels ALGEBRAICALLY, so the
+  bell stationarity lands on the plain time mean (not the mass mean);
+  spike: Isp' >= 0 with argmax = [eps_knee, inf), minimum EXACTLY the
+  peak-adaptation eps. Paper does the optimization numerically; the closed
+  forms are derived here and validated against its 18/18 tabulated optima
+  plus independent brute-force argmax (bell to 1e-5 in eps).
+- tests/test_bell_optimality.py (suite group vi): lemma by central
+  differences (2.5e-7), stationarity/sign/concavity/global dominance,
+  wrong-averaging DISCRIMINATION (mass-mean condition gives eps +45-90%,
+  Isp -3..-10 s: rejected per row), spike knee structure, all-36 phi
+  certificates with unimodality re-derived from the persisted grids.
+- hardening: _prop phi guard fixed (0.2-3.5; the old 3.0 bound rejected
+  Table-1 H2 phi 3.28/3.15 on cache regeneration - latent, cache-masked),
+  matched() raises on fixed-point non-convergence, CJ sonicity asserted at
+  every det_state (TOL ladder), det_state exports Ucj for cross-solver
+  assertion, isp_at_phi rejects unknown nozzle strings and N/A with Pa>0,
+  equals_cp_bell promoted from recorded to asserted (<0.05 s).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+SOTA: mission examples aligned to the consolidated chain — headtohead: precise feed-equivalence docstring (mass-per-cycle/throat matching, <Pc>=P_cp(1+DC)=10.24 atm, pump class), fill P_init as OUTPUT (no 1-atm assumption in the mission chain), 2-DOF rule, A/B protocols, nozzled vs throatless closures (R_bar=mdot/(2 pi gap G*) formula in the closure note); 10kN: same rules recap in docstring, declared-fill label on the SK bracket line, fill P_init=2.40 atm (matched OUTPUT) printed in (f); ALL numbers and asserts unchanged (both examples rerun green)
+
+SOTA: design-study docstring rewritten to the consolidated chain (2-DOF rule, dual A/B optimization protocols, nozzled vs throatless area closures, fill provenance: declared 1-atm SK leg vs P_init OUTPUT of the matched cycle — mission chain contains no 1-atm assumption; Isp conventions fuel-based vs total); prints: throatless closure R_bar=mdot/(2 pi gap G*)=22.3 mm labeled next to the given 45-mm (nozzled) annulus, nozzled A_t=mdot*cbar/<Pc>=5.2 cm2 (2.7:1), declared-fill and Pa conditions on (c)/(f) lines; ALL blessed digits and asserts unchanged (full live rerun green)
+
+audit: SOLUTION doc<->code numeric alignment (l_fill/lam 34->32 from lam=0.623, l_fill 20.3->20.1 mm, Dbar/lam 150->145, <Pc> 10.23->10.24 atm, Jensen pair 0.2924<=0.2992) — all values re-verified against live runs
+
+CORRECTION: mission chain contains no 1-atm assumption — all states descend from P_cp via the matching fixed point; detonability/fill re-evaluated at P_init (lambda 0.56 mm, l_fill 15 mm, W 2.2); 1-atm chain re-labelled as lab-class validation reference
+
+fix: fill-state determination — p1 is a model INPUT/feed choice, not ambient (choked exit decouples chamber; SK-Kato sub-atmospheric fills)
+
+solution: triangular mdot chain; two-DOF radii; fill residual declared
+
+sizing closure: SK throatless => annulus area from mdot (A=mdot/G*), R=22.6mm @600N; 45mm = nozzled config; 10kN cross-validated 142.1 vs 140 (-1.5%)
+
+solution: envelope/dimension selection logic (Delta from 2.4-lambda, Rbar window, R-bar cancellation in l_fill, L as fill-logistics vs residence; declared area-closure limit)
+
+solution: Jensen precision — the matching fixes the mass-flux mean, not <Pc>; DC shift = Jensen gap x c* factor (decomposed +8.3% x -5.4% = +2.4%)
+
+solution: precise feed-equivalence statement (equal mass+throat => equal mean Pc = pump class; NOT literal equal manifold pressure — needs injector model; EAP as referee; 30% blockage indicator)
+
+solution: clarify the three pressures (P_cp feed class / P_init fresh-layer floor / P0 CJ peak) and where the matching enters
+
+rigor: mdot set by choking at the annulus-exit throat; divergent raises F at fixed A_t; chamber/divergent thrust decomposition (493+107 N); closures disambiguated
+
+solution: declare model bases for mdot (nozzle-less SK bracket vs with-nozzle mission value); axial CV equally valid
+
+examples: 10 kN CH4/O2 scaling case (chain+head-to-head, declared model bases) + solution doc §8
+
+docs: formal SOTA worked solution (SOLUTION_headtohead.md) + README pointer
+
+headtohead: explicit MISSION block + formal problem statement + live det cycle + vacuum extension (envelope-capped eps=15): SL +7.9% spike, VAC +1.7% (bell==spike)
+
+examples: head-to-head RDE vs CP at each optimum (same mission/feed) — +7.9% Isp verdict, L* check
+
+docs: finalize validation README + interface audit (post-refactor)
+
+src/common: constants + mixture registry + canonical cj_state; thin adapters in cycles/q_mapping/sk_models/st_core/stechmann_nozzle; tests i-v (fast tier green, blessed digits intact); README architecture & SDT-demos sections
+
+validation: SDT official thrust-demo census & numeric comparison (Mandate B); pre-refactor interface audit
+
+validation: adversarial V&V report (REPO_VV)
+
+Full adversarial verification of the repo as a teaching/design tool:
+clean-install walkthrough (fresh clone, copy-paste README), functional
+tests of every module CLI against the promised numbers (1969 m/s; thrust
+table; eta_FJ = 0.300; 18/18; 8/8; 99/99; q_mapping 0.00%), library-mode
+design study (C2H4/O2 chamber: CJ, Wolanski wave number, SK PH/axial,
+frozen bound, eta_FJ, Stechmann bell-vs-aerospike), SOTA-quality pass,
+3 negative tests, non-regression after every refactor. 13 frictions
+found, all fixed; outcomes and numbers in validation/REPO_VV.md.
+
+Docs: 'Use as a design tool' + 'Model assumptions map'; report/path maps
+
+README.md — new 'Use as a design tool' section: the end-to-end design
+study with its expected numbers and the library entry-point table; new
+'Model assumptions map' section: condensed equilibrium-vs-frozen usage
+table (from validation/gamma_phase_audit.md section 4) with the one-line
+rule and the quantified bounds (frozen -7/-13%, Bray-at-throat -0.2/-2%
+on Isp_f), pointing at the live axial_calc(chem='frozen') bound.
+
+validation/README.md — NEW: report -> regenerator -> data/-copy map plus
+the historical build-tree path map (scripts/*.py -> src/..., data/gamma_*
+-> validation/..., specs/ not shipped), so the frozen reports' original
+'Generated by' lines and cross-references resolve unambiguously.
+
+validation/gamma_phase_audit.md — refreshed to the converged third-pass
+audit (adds section 4, the complete per-usage equilibrium/frozen map with
+expansion bounds; the shipped copy predated it).
+
+data/README.md — the generated-on-demand list wrongly claimed four
+shipped report copies were not shipped; corrected.
+
+Library API + end-to-end design study; robustness fixes from adversarial V&V
+
+src/ is now an importable package (__init__.py with lazy, side-effect-free
+imports): from src.thrust.sk_models import cj_calc, ph_calc, axial_calc, ...
+
+sk_models.py — pure calc functions extracted from the CLI stages (cj_calc /
+ph_calc / axial_calc; stages now wrap them for JSON+print); NEW
+axial_calc(chem='frozen') exposes the frozen-composition lower bound of the
+product expansion (H2/air -6.8%, C2H4/O2 -10.0% on sonic T/Mdot, matching
+the gamma_phase_audit section-4 bounds); portable mechanism ids in the JSON
+records (kerosene entries previously stored an absolute build-tree path);
+scoped silencing of the harmless Cantera ChemEquil fallback warning; clear
+CLI usage/unknown-case messages; FileNotFoundError with remedies for
+missing mechanism files.
+
+stechmann_nozzle.py — stdout of 'validate' printed only 16 of the 18 rows
+and dropped the '18/18 rows PASS' summary (bad hardcoded slice; file copy
+was always complete); optimizer grids/tolerances generalized to any Pcp
+(XTOL KeyError outside {20,200} atm before); _prop() guard with actionable
+messages for unknown propellants and phi outside 0.2-3.0; package-relative
+import of st_core with script-mode fallback.
+
+cj_sweeps.py — phi block resumability was per-section (an interrupted run
+skipped missing fuels on resume): now per-fuel. tables.py — wrapped in
+main() so importing it is side-effect free. q_formal.py — plain-float dict
+repr (no np.float64 noise under NumPy 2).
+
+examples/example_design_study.py — NEW: end-to-end design study
+(C2H4/O2, Rbar=45mm gap=5mm L=80mm, mdot=0.30 kg/s, Pcp=10 atm): CJ state,
+Wolanski wave number (PCI 34 Eqs. 4-5) with honest l_cr band, SK
+pressure-history + axial thrust, frozen bound, live eta_FJ, Stechmann
+bell-vs-aerospike optimization; every step cross-checked against the
+shipped validated JSONs. Physics of all validated modules untouched:
+18/18, 8/8, 99/99, q_mapping 0.00% re-verified after the refactor.
+
+sdtoolbox provenance: align with the official April 2026 SDT release audit
+
+The vendored modules were verified line-by-line against the official
+'Updated April 2026' SDToolbox release (functional identity confirmed;
+the single documented deviation remains the analytic soundspeed_fr patch,
+equivalence 6e-5..1e-4 on a_fr, <=0.02% end-to-end on ZND induction
+length). Ship the audit report as validation/sdt_official_audit.md and
+point CITATION.md / PROVENANCE.md / module docstrings at it (previously
+they referenced the build tree, which students do not receive).
+
+Initial release — RDE lecture code package
+
