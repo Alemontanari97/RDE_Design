@@ -24,8 +24,9 @@ VALIDATION RATCHET TIER (R28, S25-bis — closes the audit row
 test-suite:numeric-lint-scope-hole as a CHANNEL): validation/**/*.py
 was never scanned — the machine channel that would have rejected the
 retired literals (N_NEWT_INV=8 class). Full classification of the
-measured legacy debt (621 non-trivial literals across 33 files,
-2026-08-12) is NOT faked here: the tier enforces a PER-FILE RATCHET
+measured legacy debt (622 non-trivial literals across 33 files,
+2026-08-12; the STEP-12 regen +1 = the m6gate mode's own code) is
+NOT faked here: the tier enforces a PER-FILE RATCHET
 against validation/numeric_lint_baseline_validation.json — a file
 whose unlisted-literal count EXCEEDS its frozen baseline FAILS (a new
 magic number cannot enter validation/ silently), a file BELOW its
@@ -224,20 +225,45 @@ def run():
         print('  RATCHET baseline unreadable (%s) — tier FAIL' % e)
         return False
     counts = validation_counts()
+    # R10c (convergence repair, MERGE-4): skipped dirs made VISIBLE —
+    # the declared out-of-channel scope is printed, never silent
+    for d in sorted(os.listdir(VAL_DIR)):
+        fd = os.path.join(VAL_DIR, d)
+        if (os.path.isdir(fd)
+                and any(d.startswith(s) for s in VAL_SKIP_DIRS)):
+            npy = sum(1 for f in os.listdir(fd) if f.endswith('.py'))
+            print('  ratchet scope note: dir validation/%s SKIPPED '
+                  '(%d .py) — declared out-of-channel' % (d, npy))
     rv = ratchet_check(counts, baseline)
     for msg in rv[:40]:
         print('  ' + msg)
-    # seeded rejector: an in-memory +1 bump on a real file MUST fire
+    # R10b: seeded rejectors on ALL FOUR ratchet directions (the
+    # committed +1 bump plus the three the convergence review found
+    # unarmed: decrease, new-file, baseline-row-without-file)
     seed_ok = False
     if counts:
         rel0 = sorted(counts)[0]
         bumped = dict(counts)
         bumped[rel0] += 1
-        seed_ok = any(msg.startswith('RATCHET %s' % rel0)
-                      for msg in ratchet_check(bumped, baseline))
-    print('  seeded rejector [ratchet +1 bump]: %s'
-          % ('REJECTED (as required)' if seed_ok
-             else 'NOT REJECTED — ratchet broken'))
+        s_up = any(m.startswith('RATCHET %s' % rel0)
+                   for m in ratchet_check(bumped, baseline))
+        dropped = dict(counts)
+        dropped[rel0] = max(0, dropped[rel0] - 1)
+        s_down = any(m.startswith('RATCHET %s' % rel0)
+                     for m in ratchet_check(dropped, baseline))
+        added = dict(counts)
+        added['validation/__seed_new__.py'] = 1
+        s_new = any(m.startswith('NEW FILE')
+                    for m in ratchet_check(added, baseline))
+        base2 = dict(baseline)
+        base2['validation/__seed_gone__.py'] = 3
+        s_gone = any('has no file' in m
+                     for m in ratchet_check(counts, base2))
+        seed_ok = s_up and s_down and s_new and s_gone
+        print('  seeded rejectors [ratchet +1 / -1 / new-file / '
+              'baseline-orphan]: %s / %s / %s / %s'
+              % tuple('REJECTED' if s else 'NOT REJECTED — broken'
+                      for s in (s_up, s_down, s_new, s_gone)))
     ok_r = not rv and seed_ok
     print('  %-52s %s (%d files, %d literal-debt baselined, '
           '%d ratchet violations)'

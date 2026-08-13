@@ -478,3 +478,90 @@ demonstrated with bounded residual (B), or open-with-owner+trigger
 in the machine registry (C). The M6 lesson is now STRUCTURAL: the
 findings registry carries the demonstration duties as rows the lint
 enforces, not as intentions.
+
+## STEP 16 — SESSION TAIL: THE DIFF DRIVEN TO FULL CONVERGENCE
+## (user order "chiudere in modo SOTA con orchestrazione agentica
+## ogni punto"; Form-2: 2 positions + 1 fused judge, 1 round)
+
+INSTRUMENT (weight reported): adversarial refuter (default-refute,
+12 findings: 1 REFUTES / 9 caveats / 2 holds) + perimeter
+sense-review R29 (13 findings: 8 adopt / 3 caveats / 2 changes) in
+parallel -> fused judge (full-text, 3 needs-judge rows adjudicated)
+-> validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md =
+**21 ADOPTED / 4 ADOPTED-WEAKENED / 0 REFUTED / 0 OPEN; repair
+list 13 items**. The R29 perimeter-review duty for the S25-bis
+touch is CONSUMED by this convergence. Judge liveness verified by
+DISK SIGNAL (advisory mtime), not assurances — the 0-byte
+transcript red-herring adjudicated against the completed agents'
+own 0-byte transcripts (user skepticism honored, S25 lesson).
+
+**RF-1 (HIGH, dual-verified: refuter + judge independently
+recomputed the hash, bit-identical)** — THE REAL CATCH:
+s24_deftw_derive.json was committed ALREADY STALE inside 1806ae2
+(derive ran chain 1; the M6 default flip then edited a record-path
+module; the final re-chain re-ran m12gate+h3gate only — never
+re-derive). FAIL-SAFE direction: the session's own H4 mechanism
+REFUSES loudly at campaign open — availability damage only, zero
+correctness damage, no number consumed. NEW FAILURE CLASS named:
+INTRA-COMMIT staleness (C4's git link is cross-commit and blind to
+it; zero suite references to code_identity existed = the channel
+hole). CLASS-A DEMOTION declared per the judge: the H4
+ARTIFACT-of-record moved A -> C until re-stamp (the H4 MECHANISM
+stays class A — it is what fired); the 1806ae2 commit-message
+claim "derive re-run reproduces the S24 numbers" corrected of
+record (true as a chain-1 event, false of the committed artifact).
+ALSO corrected: my "21 registry entries" in commit 2d3661b's
+message — machine count was 19 (judge's grep of record).
+
+**REPAIRS R1-R13 ALL EXECUTED IN-WINDOW (phase-ordered per the
+judge: record-path edits FIRST, ONE derive re-run, instruments,
+gates)**: R1 batched-branch guard parity (RF-3) + R2 vg_batch x
+A1_PLAN_ARGS=0 raise + R3 FUSED x COLEXEC interplay declared + R4
+ACTIVE-RECORDER INTO THE MEMO KEY (never-mix now key-enforced) +
+docstring key-coverage narrowing (RF-2 wording of record) + R5
+first-hit controls FORCED on preplan consume even under
+A1_MEMO_PROBE=0 (B-F5i; tax = the record the preplan saved) + R6
+last_cert DEEP-COPIED (B-F5ii) + R7 env fingerprint stamped beside
+code_id, WARN-grade at campaign open (judge §3.2: refusal stays
+code-keyed; promotion trigger = first measured env-driven band
+excursion; closure rule declared at RECORD_PATH_MODULES) + **R8
+NEW MACHINE CHANNEL in group (xix): committed derive artifact vs
+committed-tree code identity (jax-free AST parse of the module
+list, hash replicated verbatim), doctored-code_id seeded rejector**
++ **R9 derive RE-RUN EXIT 0: ALL FIVE tail numbers BYTE-IDENTICAL
+to the S24 figures (f2 1.4972280462197103e-02 < bar
+2.013701802534313e-02; J_def 40262478.941368885; J_def16
+40263824.53075551; cert_n 30643) — the judge's expected outcome
+verified; new code_id 063fb796... + env stamp; [X-DEFTW]
+UNBLOCKED** + R10 ratchet rejectors on ALL FOUR directions
+(+1/-1/new-file/baseline-orphan) + skip-dir visibility + 622
+docstring truth + R11 registry deltas (622+residual; recorder
+class WIDENED to every thresholded record decision; re-formed
+m6gate spec + jacfwd-blocked route facts on the vmap row; B-shape
+clause + 3 scaling experiments on the floor row; NEW row
+persistence:derive-artifact-intra-commit-staleness born DISCHARGED
+with its evidence) + R12 h3gate declared coverage limit + R13
+registry-lint SPAN RESOLUTION (file exists + range fits) with
+seeded rejector, demo seeds re-pointed to real spans.
+
+LINTS POST-REPAIR: findings (xix) PASS — 20 entries, 16 open,
+0 violations, H4 channel FRESH (063fb796 == 063fb796), 6 seeded
+rejectors firing; numeric (vii) PASS — 622 baselined, 4 ratchet
+directions REJECTED, skip scope printed. SELF-IMPROVEMENT AT
+CONVERGENCE (standing directive applied, not announced): frozen-
+code re-chain rule EXTENDED of record — "the re-chain includes
+re-stamping every code-identity artifact whose modules were
+touched"; recorder-in-the-key discipline; judge-liveness by disk
+signal. Post-repair gates + closing suite verdicts appended below.
+
+POST-REPAIR VERDICTS OF RECORD: h3gate EXIT 0 (R4 recorder-in-key +
+R5 forced controls + R6 deepcopy hold; controls fired on the preplan
+consume) -> m12gate EXIT 0 -> closing FULL suite **20/20 PASS in
+295 s, SUITE_EXIT=0** (incl. the (xix) group with the NEW H4
+artifact channel FRESH and the (vii) ratchet with 4 firing
+directions; ONDEMAND 0 stale). Tail commits: record-path + restamped
+artifact + R8 channel in one commit; instruments + registry + log in
+the second. SESSION S25-bis FULLY CLOSED — every point of the diff
+driven to convergence (21/4/0/0), every repair gated, nothing open
+without owner. NEXT = S-ORDINE (R32, committed prompt), then S-CERT
+(R33), then F2.

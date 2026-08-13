@@ -965,7 +965,12 @@ def mode_h3gate():
     M1 first-hit controls fire on the preplan consume (the H3
     'bitwise on reuse' gate IS the existing fresh-equality +
     perturbed-miss control pair); field_records=True carries cols in
-    last_cert and last_cert.W must equal the returned W bitwise."""
+    last_cert and last_cert.W must equal the returned W bitwise.
+    DECLARED COVERAGE LIMIT (R12, convergence repair RF-4): this
+    gate A/Bs the DRIVER preplan arm; the def_twin/margin_governor
+    campaign CARRY sites are gated at consume by bitwise-W checks +
+    fresh fallback; the campaign-level fresh-vs-carried one-rung A/B
+    is a registered option at the first campaign window."""
     print("== [X-SPDB] H3 acceptance gate (preplan/rung-boundary "
           "dedup, %d segments x %d iters) ==" % (GATE_SEGS, GATE_ITER))
     DT.CASE["NI"] = int(os.environ.get("A1_SPDB_GATE_NI", "11"))

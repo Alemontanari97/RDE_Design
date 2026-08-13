@@ -86,7 +86,7 @@ entries:
 - id: test-suite:numeric-lint-scope-hole
   status: CONFIRMED
   severity: medium
-  magnitude: "validation/ scope measured S25-bis: 33 files, 621 non-trivial unclassified literals; CHANNEL closed by the ratchet tier (new literals rejected per-file), classification = the open remainder"
+  magnitude: "validation/ scope measured S25-bis: 33 files, 622 non-trivial unclassified literals (STEP-12 regen; +1 = the m6gate mode's own code); CHANNEL closed by the ratchet tier (new literals rejected per-file, 4 seeded rejector directions), classification = the open remainder; DECLARED RESIDUAL (convergence review MERGE-4): skip-dirs sota_gapmap* and relocation outside validation/ sit outside the ratchet channel (skip scope printed at every run)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:numeric-lint-scope-hole"
   code: ["tests/test_numeric_lint.py:160-230"]
   mechanism: underived-constant
@@ -131,7 +131,7 @@ entries:
 - id: record-path:cert-verdict-recorder-dependence
   status: CONFIRMED
   severity: medium
-  magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25)"
+  magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25); CLASS WIDENED of record (convergence review RF-7): the mechanism covers ANY thresholded record decision — cert verdict, truncation float(z[0])>L, wall_search revision, margin-floor raise — per-instance gate = the m5cgate dec-vector identity"
   source: "validation/a1_toc_variational_jax.py#MEASURED PROPERTY OF RECORD"
   code: ["validation/a1_toc_variational_jax.py:255-330"]
   mechanism: seed-noise-at-marginal-cell
@@ -144,7 +144,7 @@ entries:
   source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#M6"
   code: ["validation/a1_toc_variational_jax.py:1265-1290"]
   mechanism: mixed-lowering-adjoint-bias
-  owner: "ADOPTION-READY candidate of record: the corrected in-batch-base form MEETS its derived acceptance bound (measured); adoption = declared version change at a session boundary / F2 entry with m6gate re-formed on the corrected criterion + walk-gate re-chain (per the M3 session-boundary precedent); sequential default meanwhile (block 4.5-7 s <= 8, no need); nonfinite-lane guard shipped on the sequential path regardless"
+  owner: "ADOPTION-READY candidate of record: adoption = declared version change at a session boundary / F2 entry with the RE-FORMED m6gate per the convergence spec (R11c, MERGE-3): in-batch base MANDATORY; dH <= K_RICH x max(scheme self-asymmetries) with the NORM pinned in the gate text; corrupted-lane control kept; PLUS one consumer-level TR-step-agreement spot check at matched radius; symmetric-component residual DECLARED as the limit the TR-step check covers. ROUTE FACTS verified (B-F11): jacfwd is BLOCKED as written (solve is custom_vjp-only, a1_ideal_march_jax defvjp) — true N5 price = an implicit custom_jvp rule; central differences = non-route in a noise-dominated budget. Sequential default meanwhile (4.5-7 s <= 8); R1/R2 guards LANDED (batched-branch parity + vg_batch x A1_PLAN_ARGS=0 raise)"
   trigger: "next session boundary or F2 entry (one-flag flip + re-formed gate + re-chain); n growth making the block dominant raises priority"
 - id: engine:cross-lowering-gradient-floor
   status: CONFIRMED
@@ -153,7 +153,7 @@ entries:
   source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#STEP 13"
   code: ["validation/a1_toc_variational_jax.py:1697-1720"]
   mechanism: adjoint-reassociation-amplification
-  owner: "standing discipline of record: every gradient COMPARISON or FD stencil pins ONE lowering (O3.1/R-GRAD bands are same-lowering by construction — verified; the M6 corrected form encodes it); formal derivation of the chain amplification factor = F2-entry candidate alongside the NTF derivation"
+  owner: "standing discipline of record: every gradient COMPARISON or FD stencil pins ONE lowering (O3.1/R-GRAD bands are same-lowering by construction — verified; the M6 corrected form encodes it); B-SHAPE CLAUSE of record (convergence review B-F10): one lowering = one compiled executable AND one batch shape (the lowering changes with B — measured B=1 vs B=9 divergence 6.0e-2); formal derivation of the chain amplification factor = F2-entry candidate alongside the NTF derivation, with the three named scaling experiments (chain-length N-ladder, margin-proximity, float32 contrast)"
   trigger: "any new consumer comparing gradients across lowerings, or any cross-session gradient reproduction claim"
 - id: bench:speed-measurement-variance
   status: CONFIRMED
@@ -182,6 +182,15 @@ entries:
   mechanism: single-host-reproducibility
   owner: "own infra window (user decision class: env/tooling); minimal first step = a scheduled full-suite run on this host with EXIT-code artifact; multi-platform = adoption-with-rejector when a second env exists"
   trigger: "user opens an infra window, or a second machine/env enters the project, or any suite-red discovered late attributable to drift"
+- id: persistence:derive-artifact-intra-commit-staleness
+  status: DISCHARGED
+  severity: high
+  magnitude: "committed tail.code_id fcd5e6... vs committed-tree identity ea5cd2... (recomputed independently TWICE, bit-identical results — refuter + judge); six record-path modules byte-identical 1806ae2..HEAD => artifact stale INSIDE its own commit; mechanism = derive ran chain 1, a1_toc edited after (M6 default flip + guards), final re-chain ran m12gate+h3gate only; consequence was FAIL-SAFE ([X-DEFTW] campaign REFUSES loudly at open — the H4 mechanism catching the session's own mistake); C4 git link is cross-commit and blind to intra-commit ordering; zero suite references to code_identity existed"
+  source: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md#RF-1"
+  code: ["validation/def_twin_falsifier.py:144-200"]
+  mechanism: intra-commit-staleness
+  evidence: "repair R7-R9 executed same window: record-path edits finalized FIRST, ONE stage_derive re-run EXIT 0, all five tail numbers BYTE-IDENTICAL to the S24 figures (f2 1.4972280462197103e-02, bar 2.013701802534313e-02, J_def 40262478.941368885, J_def16 40263824.53075551, cert_n 30643), new code_id + env stamp; NEW machine channel R8 in group (xix): committed-artifact vs tree identity with doctored-code_id seeded rejector; frozen-code re-chain RULE EXTENDED: the re-chain includes re-stamping every code-identity artifact whose modules were touched"
+  note: "WARN->refuse promotion trigger for the env stamp = first measured env-driven excursion of any tail quantity beyond its consuming band"
 - id: cell-cert:val-diag-starvation-twin
   status: CONFIRMED
   severity: low
