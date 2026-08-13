@@ -71,6 +71,14 @@ tuned; theory classes declared):
    KILL RULE unchanged: rel_c < the S19 baseline 6.6295e-02 at an
    outcome-I margin-constrained optimum supports the design-class
    diagnosis; rel_c >= it falsifies ([C-O33] byproduct).
+   DUAL CLAUSE ADDED (repair S1/A37, F-SERVICE 2026-08-13,
+   REFUTE_C): rel_c is an identity on the SIGNED value with no dual
+   clause of its own; the margin constraint m >= mu_0 is UNILATERAL
+   (regime 3, [T-T7CN] taxonomy), so mu carries the required
+   direction mu >= 0 + complementarity (mu = 0 at inactive margin) —
+   mu_dual_clause, with a seed rejector proven in every stage.
+   VERSION CHANGE DECLARED: exit code now also gates the dual-clause
+   self-test; no pre-existing row or band was changed.
 
 SURVEY (adopt-or-declare, S22, SOTA search of record in the session
 log): KS aggregation for min-type constraint fields under adjoint
@@ -436,8 +444,33 @@ def derive(tab, cfg, state_fn, solv, verbose=True):
 # ======================================================================
 def d1_constrained(gJ, gm, mu, cd):
     """rel_c = |gJ_lip + mu gm_lip - cd| / |cd| (reduces to the
-    unconstrained [D1] metric at mu = 0)."""
+    unconstrained [D1] metric at mu = 0). LEXICON OF RECORD
+    (REFUTE_C, F-SERVICE 2026-08-13): this is an identity on the
+    SIGNED value — the modulus is of the DIFFERENCE — and it carries
+    NO dual clause by itself; the dual half lives in mu_dual_clause
+    (repair S1/A37 extension to this carrier)."""
     return abs(gJ[-1] + mu * gm[-1] - cd) / abs(cd)
+
+
+def mu_dual_clause(mu, margin_active, slack=None):
+    """Repair S1/A37 extension (F-SERVICE 2026-08-13, REFUTE_C): the
+    margin constraint m >= mu_0 is UNILATERAL — its multiplier is
+    regime-3 in the [T-T7CN] cone taxonomy and carries a REQUIRED
+    direction, mu >= 0 (under the B-stationarity qualifier until O1),
+    plus complementarity: mu = 0 identically at an inactive margin.
+    Returns (ok, msg); a wrong-side mu at an active margin must FIRE."""
+    if not margin_active:
+        ok = bool(mu == 0.0)
+        return ok, ("mu = %.4e at INACTIVE margin: complementarity "
+                    "requires mu = 0 -> %s"
+                    % (mu, "ok" if ok else "VIOLATED"))
+    ok = bool(mu >= 0.0)
+    comp = abs(mu * (0.0 if slack is None else slack))
+    return ok, ("mu = %+.4e at ACTIVE margin (unilateral, regime 3): "
+                "required mu >= 0 -> %s; |mu x slack| = %.3e "
+                "[B-stationarity qualifier until O1]"
+                % (mu, "dual-FEASIBLE" if ok else "dual-INFEASIBLE",
+                   comp))
 
 
 # ======================================================================
@@ -609,6 +642,11 @@ def campaign(gov, tab, cfg, state_fn, solv):
                   "= %.4e (S19 baseline %.4e; mu_use %.4e, "
                   "B-stationarity wording)"
                   % (k, rel_c, S19_D1_BASELINE, mu_use))
+            dok, dmsg = mu_dual_clause(mu_use, bool(margin_active),
+                                       slack=0.0)
+            print("  [rung %d] dual clause (repair S1/A37): %s"
+                  % (k, dmsg))
+            ok &= dok
         results.append(dict(
             rung=k, mu0=mu0, J=float(-res.fun) if res else None,
             kkt=float(getattr(res, "optimality", np.nan)),
@@ -646,6 +684,19 @@ def main():
     state_c1, solv, cfg = O33.make_case(tab)
     gov = derive(tab, cfg, state_c1, solv)
     ok = gov.pop("ok")
+    # repair S1/A37 self-test (F-SERVICE 2026-08-13, REFUTE_C): the
+    # dual clause on mu must accept the right side and FIRE on the
+    # wrong one — pure float logic, runs in every stage.
+    d_ok1, _ = mu_dual_clause(+1.0e-3, True, slack=0.0)
+    d_ok2, _ = mu_dual_clause(-1.0e-3, True, slack=0.0)
+    d_ok3, _ = mu_dual_clause(0.0, False)
+    print("  [S1/A37 dual clause] positive control %s; seed rejector "
+          "(wrong-side mu at active margin) %s; complementarity at "
+          "inactive margin %s"
+          % ("PASS" if d_ok1 else "FAIL",
+             "FIRES" if not d_ok2 else "FAILS-TO-FIRE",
+             "PASS" if d_ok3 else "FAIL"))
+    ok &= d_ok1 and (not d_ok2) and d_ok3
     if stage == "campaign" and ok:
         ok2, rep = campaign(gov, tab, cfg, state_c1, solv)
         ok &= ok2

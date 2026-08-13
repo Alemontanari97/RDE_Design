@@ -407,18 +407,31 @@ are published, none crossing it. (1) Classical side, in-house corpus:
 HOFFMAN 1967 (AIAA J 5(4):670) already formulates the reacting-flow
 optimality system as Lagrange-multiplier FIELDS λ₁..λ₅ satisfying PDEs
 along the SAME characteristics as the flow — a continuous adjoint avant
-la lettre, with the a-posteriori optimality residual E (Eq. 78) as the
-ancestor of the Level-C certificate; the homentropic-irrotational
-specialization degenerates the fields to constants and recovers
-f₂ = const. (2) Quasi-1D modern side: Giles-Pierce JFM 426:327 (2001),
+la lettre, with the a-posteriori optimality residual E (Eq. 78); the
+homentropic-irrotational specialization degenerates the fields to
+constants and recovers f₂ = const. [D-01, user-ratified 2026-08-13:
+the gloss identifying E / the classical optimality residual with the
+adjoint gradient ("ancestor of the Level-C certificate") is DELETED of
+record — KT2015 Eqq. (2.9)-(2.10) literally instantiate that
+identification inside the classical school.] (2) Quasi-1D modern side:
+Giles-Pierce JFM 426:327 (2001),
 analytic adjoints incl. shock interior condition and sonic-throat log
 singularity. (3) 2-D modern side: Lozano-Ponsin, Aerospace 12(6):494
 (2025), analytic supersonic adjoints with characteristic structure — no
-mention of Rao/Guderley/Kraiko/Hoffman. What remains genuinely unwritten:
-the EXPLICIT identification (Rao/Kraiko conditions ≡ closed-form adjoint;
-multipliers ≡ adjoint boundary data) and the statement reverse-mode AD of
-a shock-fitted MOC march ≡ discrete adjoint characteristic sweep. SCHEMA
-with high confidence; publish as a bridge lemma citing all three banks.
+mention of Rao/Guderley/Kraiko/Hoffman. What remains genuinely unwritten
+(P2/G14 formulation of record, query-bounded 2026-08-13): no published
+work executes the identification between the classical multiplier field
+and the modern ASO adjoint in any of the three claimed forms — (i) in
+modern ASO language; (ii) connected to DISCRETE adjoints / reverse-mode
+AD; (iii) driving a modern gradient-based optimizer. EXPLICITLY
+CONCEDED: the generic equivalence "adjoint ≡ Lagrange multiplier"
+(Giles-Pierce 2000 p.397; Lions 1971; Jameson 1988) and the complete
+Route B → Route A chain inside the classical school (KT2015 Eqq.
+(2.2)→(2.9)→(2.10)→(2.12)). Residual novelty = articulation +
+operationalization (the explicit identification statement + reverse-mode
+AD of a shock-fitted MOC march ≡ discrete adjoint characteristic sweep).
+SCHEMA with high confidence; publish as a bridge lemma citing all three
+banks, conceding the in-school chain.
 Falsifier (oracle O3): dot-product identities of the differentiable-MOC
 march at machine precision, then term-by-term match with Rao's conditions
 on one TOC case — plus Hoffman's E-residual computed along a

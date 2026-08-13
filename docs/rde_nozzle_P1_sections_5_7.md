@@ -69,13 +69,29 @@ reading is the paper's central design fact: NO phase satisfies its own
 wall condition — the mu-average does. A cycle-optimal wall is not the
 optimal wall of any operating point.
 
-(c) SHARED ENDPOINT — the WEIGHTED transversality (**'):
+(c) SHARED ENDPOINT — the WEIGHTED transversality (**'), CONE FORM
+of record (C31, user-ratified 2026-08-13):
 
-    Int_Xi (dF/ds_E)[Sigma; s(xi)] dmu(xi) = 0,
+    D := Int_Xi (dF/ds_E)[Sigma; s(xi)] dmu(xi)  in  N_K(s_E*),
 
-which factorizes as R(xi) . w(xi) with R the classical corner residual
-(the single-phase Rao endpoint condition) and w > 0 a geometric-
-kinematic weight.
+i.e. <D, d> <= 0 for all d in T_K(s_E*), with K = the admissible set
+of the SHARED endpoint, declared for every statement and instrument:
+K locally unconstrained => D = 0 (the free-endpoint equality — Rao
+Eq. (14), the former printed form); K = {point} (fixed-(eps, L)) =>
+condition vacuous, lambda = components of D with free sign (the
+fixed-eps bookkeeping in which all executed instances live); K with
+unilateral caps ((P) as posed) => sign + complementarity per
+component, direction derived from the active side (KT2015 (2.10)).
+The per-phase mass flow stays an EQUALITY outside the cone (KT2015
+(2.13)). D factorizes as R(xi) . w(xi) with R the classical corner
+residual (the single-phase Rao endpoint condition) and w > 0 a
+geometric-kinematic weight. Cone transfer lemma [THEOREM]: phase-wise
+in-cone mu-a.e. implies cycle in-cone; the CONVERSE IS FALSE
+(two-phase counterexample of record). Content split: axial component
+is pointwise nonnegative — its cycle condition is automatic and its
+content binary (length-cap activity, lambda_L = Int (-lambda3/q) dmu
+>= 0, the length twin of [T-P3]); the radial component changes sign
+along the cycle and carries ALL the averaging content.
 
   +--------------------------------------------------------------+
   | BOXED WARNING (the implementable form). The weight w(xi) is  |
@@ -89,6 +105,12 @@ kinematic weight.
   | repo's wrong-averaging rejectors exist precisely to keep     |
   | this distinction executable (§5.2); the -2.39% stale eps*    |
   | class struck in §4.3 was exactly a naive-mean artifact.      |
+  | TWIN WARNING (C31, 2026-08-13): the weight does NOT deform   |
+  | the cone — weighting and unilaterality are INDEPENDENT       |
+  | corrections; in the unilateral regime the naive form can     |
+  | moreover certify as KKT-admissible a DUAL-INFEASIBLE point   |
+  | (opposite signs of Int R dmu vs Int R w dmu — the cheap      |
+  | two-sign falsifier of record, regime-qualified).             |
   +--------------------------------------------------------------+
 
 Doctrinal remark (D2 §b0, carried verbatim): in the classical corpus

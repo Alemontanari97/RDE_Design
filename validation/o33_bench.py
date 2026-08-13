@@ -92,6 +92,34 @@ ROWS
  S6  GUARD: the constant-flow invariants (33)-(34) are refused unless
      a uniformity test passes — with a positive control (a synthetic
      uniform patch is accepted) and the live field (refused).
+ R8  DUAL-FEASIBILITY CLAUSE on lambda_e (repair S1/A37, F-SERVICE
+     2026-08-13, REFUTE_C-emended): REGIME-AWARE per the T7(c) cone
+     form of record ([T-T7CN], M0 Part III) — in the pinned regime
+     (our eps equality) the multiplier sign is FREE and the clause is
+     DECLARED vacuous (arming a bare sign check here would fire on
+     nothing); at a declared unilateral cap the required direction
+     comes from the ACTIVE SIDE (upper => lambda >= 0, lower =>
+     lambda <= 0) and the complementarity product is reported. Seed
+     rejector: a wrong-side lambda at a declared upper cap must FIRE.
+     LEXICON OF RECORD (REFUTE_C): R3 is an identity on the SIGNED
+     value WITHOUT a dual clause — never "a modulus identity".
+ R9  AXIAL lambda_L ROW (repair S2/A38): the f3* drift statistic
+     gains the DERIVED-band gate it never had — the identity half of
+     lambda_L = Int (f3*/q) dmu >= 0 ([T-T7CN] Route-A graft, the
+     length twin of [T-P3]) — plus the activity/complementarity
+     report (length cap ACTIVE iff mu({v_E != 0}) > 0). The seed
+     rejector corrupts the IDENTITY, never the sign: f3* >= 0
+     IDENTICALLY on physical fields, so a sign check cannot fire
+     (R5 violation if armed — REFUTE_C).
+ R10 CONE-SCAN TRANSFER CERTIFICATE (repair S3/A39): a per-phase
+     all-in-cone sign scan CERTIFIES the cycle endpoint condition
+     with no averaging ([T-T7CN]); the CONVERSE IS FALSE, so the
+     rejector requires a one-phase-out/mean-in family to be ACCEPTED
+     at cycle level — a tool rejecting it is testing the per-phase
+     condition instead of the cycle condition.
+VERSION CHANGE DECLARED (2026-08-13, F-SERVICE window): the exit code
+now also gates rows R8/R9/R10 including their seed rejectors; no
+pre-existing row or band was changed.
 
 TOLERANCES (S21 honesty rewrite — the previous blanket "every band is
 Richardson-derived" was FALSE for three rows, audit benches:3): the
@@ -528,6 +556,40 @@ def surface_report(out, state_fn, label):
                 pa_ratio=pa / float(prl["p"][0]))
 
 
+def dual_feasibility(lam, regime, active_side=None, slack=None):
+    """R8 (= repair S1/A37, F-SERVICE 2026-08-13, REFUTE_C-emended):
+    dual-feasibility clause on an endpoint multiplier, REGIME-AWARE
+    per the T7(c) cone form of record ([T-T7CN]). Returns (ok, msg)."""
+    if regime == "pinned":
+        return True, ("lambda = %+.6e  [regime 2/pinned: sign FREE; "
+                      "dual-feasibility content exists only at a "
+                      "unilateral active cap; equality slack = 0 => "
+                      "complementarity trivial]" % lam)
+    if regime == "unilateral":
+        want = +1.0 if active_side == "upper" else -1.0
+        ok = bool(want * lam >= 0.0)
+        comp = abs(lam * (0.0 if slack is None else slack))
+        return ok, ("lambda = %+.6e at a declared %s-side active cap: "
+                    "required sign %s -> %s; |lambda x slack| = %.3e"
+                    % (lam, active_side, "+" if want > 0 else "-",
+                       "dual-FEASIBLE" if ok else "dual-INFEASIBLE",
+                       comp))
+    raise ValueError("undeclared regime %r" % regime)
+
+
+def cone_scan_cycle(D_vals, wts, side=+1.0):
+    """R10 (= repair S3/A39): per-phase sign scan vs the cycle
+    condition under the cone transfer lemma [T-T7CN]: all-in-cone is
+    a SUFFICIENT certificate (no averaging); the converse is FALSE.
+    Returns (per_phase_all_in, cycle_in)."""
+    D = np.asarray(D_vals, dtype=float)
+    w = np.asarray(wts, dtype=float)
+    w = w / w.sum()
+    per = bool(np.all(side * D >= 0.0))
+    cyc = bool(side * float(w @ D) >= 0.0)
+    return per, cyc
+
+
 def perturbation_direction(cfg):
     """Feasible design direction: interior nodes only (lip pinned by
     the eps equality, attachment angle untouched), smooth bump — the
@@ -663,6 +725,54 @@ def main():
     ok &= check("R1 negative control: corrupted surface value exceeds "
                 "the derived band", drift(f2_bad[mm_nc]) > band_f2)
 
+    # ------------- R9 (= repair S2/A38, F-SERVICE 2026-08-13) ---------
+    # AXIAL lambda_L ROW: by Rao Eq. (13) f3* = -lambda3 is constant on
+    # the classical surface and lambda_L = Int (f3*/q) dmu >= 0 is the
+    # CYCLE length multiplier ([T-T7CN] Route-A graft, [T-P3] twin).
+    # Executable content on this atomic-mu instance: the IDENTITY half
+    # (f3* nodewise-constant within a DERIVED band — the drift
+    # statistic gains the gate it never had) + the activity report.
+    # The SIGN is NOT a rejector: f3* >= 0 identically (REFUTE_C/R5).
+    print("-- R9: axial lambda_L row (f3* identity + activity; repair "
+          "S2/A38) --")
+    D_f3 = rep_star["d3"]
+    band_f3 = (A1.K_RICH * abs(D_f3 - rep_r2["d3"])
+               + A1.NEWTON_TOL_FACTOR * EPS * int(out["cert_n"]))
+    print("  derived f3* band = K_RICH x |%.4e - %.4e| + Newton floor "
+          "= %.4e" % (D_f3, rep_r2["d3"], band_f3))
+    ok &= check("R9 f3* = -lambda3 constant on the control surface "
+                "within the DERIVED band (identity half of the "
+                "lambda_L row)", D_f3 <= band_f3)
+    _, _, _, f3_r9 = rao_invariants(chain, state_c1)
+    m_r9 = locus_split(owner, out["n_fan"], out["n_arc"])
+    i_r9 = np.where(m_r9)[0]
+    mm_r9 = m_r9.copy()
+    mm_r9[i_r9[:STENCIL_RADIUS]] = False
+    mm_r9[i_r9[-STENCIL_RADIUS:]] = False
+    f3m = float(np.mean(f3_r9[mm_r9]))
+    prl_r9 = props(np.asarray(out["wall"][-1])[None, :], state_c1)
+    thE = float(prl_r9["th"][0])
+    print("  lambda_L (up to the fixed positive 1/q normalization, "
+          "declared) = mean f3* = %.6e; exit flow angle theta_E = "
+          "%.4f deg => mu({v_E != 0}) > 0: %s => length cap ACTIVE "
+          "(A13(ii) cycle form; report, not a rejector)"
+          % (f3m, thE / d2r, thE != 0.0))
+    # seed-rejector corruption DERIVED from the band (first version
+    # used R1's literal 5% and FAILED TO FIRE on this row — f3* is an
+    # order-of-magnitude less converged than f2 (drift ~1.2e-1 vs
+    # ~9e-3), so a fixed-percent bump on an interior node need not
+    # create a new max beyond the band; honest catch of record,
+    # F-SERVICE 2026-08-13): push the ARGMAX node up by 2 x band_f3
+    # relative — drift increases by >= 2 x band_f3 by construction,
+    # so a working detector MUST fire; no magic percent.
+    f3_bad = f3_r9.copy()
+    j_max = np.where(mm_r9)[0][int(np.argmax(f3_r9[mm_r9]))]
+    f3_bad[j_max] += 2.0 * band_f3 * float(np.mean(np.abs(f3_r9[mm_r9])))
+    ok &= check("R9 seed rejector: band-derived corruption of the "
+                "argmax f3* node exceeds the derived band (identity, "
+                "never sign — a sign check cannot fire on physical "
+                "fields)", drift(f3_bad[mm_r9]) > band_f3)
+
     # ---------------- R7: second design instance (GENO's Rao wall) ----
     print("-- R7: CROSS-DESIGN check — GENO's own type-2 Rao contour, "
           "marched by OUR engine (instance only; every relation is "
@@ -753,6 +863,40 @@ def main():
           "sin(2th) tan(al)] = %.9e" % cd)
     rel = abs(g[-1] - cd) / max(abs(cd), 1.0)
     print("  |AD - classical| / |classical| = %.4e" % rel)
+
+    # ------- R8 (= repair S1/A37) + R10 (= repair S3/A39) -------------
+    print("-- R8: dual-feasibility clause on lambda_e (repair S1/A37, "
+          "regime-aware) --")
+    ok_live, msg_live = dual_feasibility(float(g[-1]), "pinned")
+    print("  live instance: %s" % msg_live)
+    ok &= check("R8 live instance carries its REGIME DECLARATION "
+                "(pinned: sign FREE — REFUTE_C emendation; a bare "
+                "sign check here would fire on nothing)", ok_live)
+    ok_pos, msg_pos = dual_feasibility(abs(float(cd)), "unilateral",
+                                       active_side="upper", slack=0.0)
+    print("  positive control: %s" % msg_pos)
+    ok &= check("R8 right-side lambda at a declared upper cap is "
+                "dual-FEASIBLE (positive control)", ok_pos)
+    ok_bad, msg_bad = dual_feasibility(-abs(float(cd)), "unilateral",
+                                       active_side="upper", slack=0.0)
+    print("  seed rejector: %s" % msg_bad)
+    ok &= check("R8 seed rejector: wrong-side lambda at a declared "
+                "upper cap FIRES (dual-INFEASIBLE detected)",
+                not ok_bad)
+
+    print("-- R10: cone-scan transfer certificate (repair S3/A39) --")
+    per_in, cyc_in = cone_scan_cycle([+2.0, +1.0], [0.5, 0.5])
+    ok &= check("R10 transfer direction ([T-T7CN]): an all-in-cone "
+                "phase family is certified at cycle level with no "
+                "averaging", per_in and cyc_in)
+    per_x, cyc_x = cone_scan_cycle([-1.0, +3.0], [0.5, 0.5])
+    ok &= check("R10 converse rejector: the one-phase-out/mean-in "
+                "family of record (D = [-1, +3], equal weights) is "
+                "ACCEPTED at cycle level while the scan reports "
+                "insufficient — a tool rejecting it tests the "
+                "per-phase condition, not the cycle condition",
+                (not per_x) and cyc_x)
+
     if stage == "rows":
         print("VERDICT (stage rows): %s" % ("PASS" if ok else "FAIL"))
         return 0 if ok else 1

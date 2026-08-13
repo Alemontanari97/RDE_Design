@@ -460,6 +460,42 @@ so (W e_x x r).n = 0 and w.n = u.n; trivially w_x = u_x. (iii) Coriolis
 Consequences: J_exact = steady 3-D wave-frame shape functional with W
 an EIGENVALUE-like unknown (freezing formulation + phase condition);
 thrust-trace flatness = executable mode-purity diagnostic (N-T0').
+[S-T0P] PROPAGATION LEMMA (SCHEMA — written of record 2026-08-13,
+F-SERVICE, from REFUTE_A / ASSESSMENT §3.1; the R4 duty "lemma to
+write"). T-T0 HYPOTHESIZES the rotating pattern on the field. The
+missing stage-1 statement — "purely periodic rotating data on the
+interface + axisymmetric domain, wall and ambient BC elsewhere =>
+the certified solution is a steady co-rotating pattern" — is
+PROVABLE on the L4 class and is registered here at SCHEMA with the
+proof route NAMED: equivariance of the steady Euler operator under
+the helical symmetry group + uniqueness of the certified S1
+solution (the solution map commutes with the group action, so the
+rotated solution solves the rotated problem = the same problem, and
+uniqueness forces the pattern), with L4's axially supersonic margin
+giving the finite domain of dependence that propagates the symmetry
+from the interface data along the march. HONEST TWO-STAGE CLAIM OF
+RECORD (REFUTE_A, replaces any "the correct object" tout court):
+STAGE 1 (exact): the symmetry quotient justifies the steady 3-D
+adjoint in the wave frame — for an autonomous rotating wave the
+naive periodic-BVP adjoint as printed is DEGENERATE (the trivial
+Floquet multiplier along the group orbit makes I - monodromy
+singular), so the per-phase/wave-frame formulation is the CORRECT
+symmetry-reduced object in the pinned class, not a poor surrogate
+of the "true" periodic adjoint; the general machinery applied
+naively would itself be ill-posed without the same quotient.
+STAGE 2 (declared approximation): the 2-D per-phase marches discard
+the theta-coupling — rung 2, "the only approximation in the chain"
+(M0's own wording). The claim of record is always: per-phase =
+exact quotient + declared rung 2. Honest boundaries, separately
+priced: (i) the pin (pure rotating wave, T0-flatness monitor) is a
+MODEL HYPOTHESIS with no certified hardware provenance (R20);
+(ii) the O(St)/dimensional-reduction step is DISTINCT from
+time-coupling and is where the Harroun threat lives (R22 decides);
+(iii) out of pin the named route is Zahr-Persson / Rubino
+(+ LSS/NILSS for the chaotic regime) — registered alternative.
+Falsifier: an L4-certified pure-periodic-data instance whose
+certified solution is NOT a steady co-rotating pattern (kills
+stage 1); owner of the full proof write-up: F2 theory window.
 CAUTION (verified weakening): T0 steadifies the PROBLEM; it does NOT
 transfer Rao's 2-D closed-form machinery to 3-D swirl (N6). N6 STATUS
 UPGRADE (2026-07-16, [F1/N6-S1], docs/rde_nozzle_N6_swirl.md +
@@ -576,6 +612,13 @@ S-H freeze-at-CJ choice retro-justified); design penalty second order
 DIES (Hoffman 1967 Eq. 78: multiplier-field condition E = 0 replaces
 it) — the N4 ladder: frozen ⊂ gamma(T) (fails in principle, small in
 practice, E4 oracle pending) ⊂ finite-rate (adjoint-level mandatory).
+[E4 ATTRIBUTION of record, D-07 2026-08-13: the EOS-generality of the
+Route-A first integrals is classical and from 1957 (Sternin, arbitrary
+two-parametric gas, per the account of Kraiko et al. 2001 p.1348 — a
+party to the priority dispute); our audit is a RE-DERIVATION, never
+new generality; the unqualified phrase "first to do Rao with variable
+gamma" is FORBIDDEN (Sun 2019 / Sun-Yu 2018 occupy the construction
+move); full lineage in docs/rde_nozzle_P2_lemmaA.md §3.0.]
 
 [T-T3-SI] PROPOSITION 5-bis (T3-SI — scale-invariance content of the
 collapse: mass flow, Isp, every averaging convention). Tier 1
@@ -807,16 +850,38 @@ QED.
 Sharpness: a length cap L < l(xi_peak), a base-pressure model at a
 truncation plane, or non-ideal adaptation break the nesting: then
 max Int < Int max STRICTLY and the optimum satisfies the averaged
-system (T7) with the mu-averaged plug corner condition. THE TRUNCATED
-PLUG IS THE FIRST GENUINELY AVERAGED SHAPE PROBLEM (PB-2). Precedent
-caveat (page-verified, S14 PAN-S14 F-PB2FIRST): Kraiko-Osipov PMM
-34(6) 1970 already poses TIME-AVERAGED endpoint conditions for a
-length-capped nozzle with base pressure on the end face (their (1.4)
-and (3.2) cont., transl. pp. 1007-1008; (4.4), p. 1011) — trajectory
-measure in place of the cycle measure; "first" is program-internal
-wording: first CYCLE-averaged instance for the RDE plug, not first
-averaged shape problem tout court; K-O 1970 mandatory citation here
-too (cross-ref the T7 precedent note). Precedent
+system (T7) with the mu-averaged plug corner condition.
+PB-2 LOCKED FORMULATION OF RECORD (D-06, 2026-08-13 — never
+abbreviate): "the first genuinely averaged and NON-COLLAPSING shape
+problem of the program (a CYCLE instance)". Any phrase of the type
+"the first averaged-thrust variational problem" is DEAD of record:
+Efremov-Kraiko 2004 poses a period-averaged maximum-thrust
+variational problem, Kraiko-signed, with measure Int_0^1 ... dt
+(Eq. 1.7, p.624) [page-verified]. It does not touch PB-2 because it
+has no wall contour (unknowns are time-functions of exit state plus
+scalars W, Q), its measure is ENDOGENOUS time rather than an
+exogenous measure on a given family, and its optimum COLLAPSES to
+steady by the authors' own admission (Summary p.631).
+Precedent caveat (page-verified, S14 PAN-S14 F-PB2FIRST):
+Kraiko-Osipov PMM 34(6) 1970 already poses TIME-AVERAGED endpoint
+conditions for a length-capped nozzle with base pressure on the end
+face (their (1.4) and (3.2) cont., transl. pp. 1007-1008; (4.4),
+p. 1011) — trajectory measure in place of the cycle measure; "first"
+is program-internal wording: first CYCLE-averaged instance for the
+RDE plug, not first averaged shape problem tout court; K-O 1970
+mandatory citation here too (cross-ref the T7 precedent note).
+EXTENDED CAVEAT LIST of record (D-06; carried whenever PB-2's
+formulation is presented): Kraiko-Osipov PMM 34(6) 1970 (above);
+ISABE-2003-117 + Bogdanov et al. 2002 (average-thrust descriptor is
+UNVERIFIED inference, full text unread — P0 procurement);
+Efremov-Kraiko 2004 (averaged but collapsing, not a shape problem);
+Reuther et al., J. Aircraft 36(1):51-60 and 61-74 (1999) (shared
+shape over a FINITE family, atomic measure, adjoint — aerodynamics,
+not nozzles); Ornano et al. 2017 (time-averaged force objective on a
+PDE nozzle, zero optimality conditions); Harroun M.S. Thesis 2019
+(the closest prior art to cycle-averaged RDE nozzle evaluation, NOT
+READ — P0); Levin & Manulovich CESW 46:418-425 (2010) and Billings
+NASA MSFC TR (2000) (not read). Precedent
 duty: the ideal-adaptation closure is published as a BOUND for
 detonation cycles (Kraiko-Egoryan) — cite next to the closure.
 
@@ -1086,13 +1151,84 @@ Stationarity structure (verified formally):
  (b) shared wall: Int_Xi G_xi(x) dmu + lambda_L g_L(x) = 0 a.e. on the
      wall, G_xi the phase Hadamard density — no phase satisfies its own
      wall condition; the mu-average does.
- (c) shared endpoint — THE WEIGHTED TRANSVERSALITY (**'):
-         Int_Xi (dF/ds_E)[Sigma; s(xi)] dmu(xi) = 0,
-     which factorizes R(xi)·w(xi) with R the classical corner residual
-     and w > 0 a geometric-kinematic weight; w is phase-independent
-     EXACTLY in the T3 class (there (**') reduces to the naive average
-     — everywhere else the naive form is WRONG; every implementation
-     must use (**')).
+ (c) shared endpoint — THE WEIGHTED TRANSVERSALITY (**'), CONE FORM
+     OF RECORD (C31, user-ratified 2026-08-13; supersedes the plain
+     equality, which is the free-endpoint special case below):
+         D := Int_Xi (dF/ds_E)[Sigma; s(xi)] dmu(xi)  in  N_K(s_E*),
+     i.e. <D, d> <= 0 for all d in T_K(s_E*), with K = the admissible
+     set of the SHARED endpoint, DECLARED for every statement and
+     every instrument (one VI-statement, not three theorems):
+       - K locally unconstrained => N_K = {0} => D = 0 (Rao Eq. (14) /
+         KT2015 (2.10) as equalities — the FORMER statement of
+         record, now the free-endpoint case);
+       - K = {point} (fixed-(eps, L) pinning) => condition VACUOUS,
+         the lambda are the components of D with FREE sign — exactly
+         the FIXED-EPS TRANSVERSALITY BOOKKEEPING lambda_e = dJ/dy_lip
+         already of record (the regime in which ALL executed
+         instances live: the committed driver pins the lip by
+         EQUALITY, a1_toc_variational_jax.py:1748);
+       - K with unilateral caps ((P) as posed, A_gen(c) with
+         g_i(S) <= c_i; the production quasi-1D reduction with its
+         eps clamp/cap branches) => sign + complementarity per
+         component, direction DERIVED from the active side: the
+         admissible cone {Dx <= 0} INTERSECT {Dy <= 0} has polar
+         giving BOTH >= 0 signs of KT2015 (2.10).
+     The per-phase MASS FLOW stays an EQUALITY and lives OUTSIDE the
+     cone (function-valued lambda2(xi); KT2015 (2.13) is an equality
+     for the same structural reason: the fixed flow rate makes the
+     endpoint variation dependent). D factorizes R(xi)·w(xi) with R
+     the classical corner residual and w > 0 a geometric-kinematic
+     weight; w is phase-independent EXACTLY in the T3 class (there
+     (**') reduces to the naive average — everywhere else the naive
+     form is WRONG; every implementation must use (**')). BOXED
+     WARNING TWIN: the weight does NOT deform the cone — weighting
+     and unilaterality are INDEPENDENT corrections.
+     CONE TRANSFER LEMMA [T-T7CN] [THEOREM, elementary; proof of record:
+     N_K(s*) is an intersection of half-spaces through the origin
+     indexed by K, and the mu-integral (mu >= 0, integrand in
+     L^1(dmu) by the [C-D25U] domination) preserves each half-space
+     separately — neither closedness nor convexity of N_K is
+     invoked]: if (dF/ds_E)(xi) in N_K(s_E*) for mu-a.e. xi, then
+     D in N_K(s_E*). The CONVERSE IS FALSE (two-phase counterexample
+     of record: K = {y <= 0}, s* = 0, N_K = [0, inf),
+     D(xi_1) = -1, D(xi_2) = +3, mean = +1 in N_K with phase 1 out).
+     Consequence: an all-in-cone per-phase sign scan CERTIFIES the
+     cycle condition with no averaging (sufficient, not necessary);
+     any tool armed on it must ACCEPT a one-phase-out/mean-in family
+     (the S3 rejector of record, A39).
+     CONTENT SPLIT (axial-vacuous / radial-substantial): axially,
+     rho v^2 tan(mu_Mach) >= 0 POINTWISE AND IDENTICALLY, so the
+     axial cycle condition holds automatically by the lemma; its
+     only content is binary — lambda_L > 0 <=> mu({xi : v_E(xi) !=
+     0}) > 0 => length cap ACTIVE (strictly weaker in hypothesis
+     than the per-phase statement; per-phase, KT2015 p.186 carries
+     the "if exists" qualifier on the terminal face). Radially,
+     R(xi) CHANGES SIGN along the cycle (over- and under-expanded
+     phases): ALL the averaging content of the unilateral condition
+     lives there.
+     ROUTE-A GRAFT (zero cost): rho v^2 tan(alpha) = -lambda3/q by
+     Rao Eq. (13), hence lambda_L = Int_Xi (-lambda3(xi)/q) dmu >= 0:
+     the cycle length multiplier is the mu-average of the per-phase
+     Route-A length multipliers — the exact length twin of
+     lambda2(xi) = -f2(lip data) [T-P3]. Carrier already computed
+     nodewise: f3* = 2 pi y rho W^2 sin^2(theta) tan(alpha)
+     (validation/o33_bench.py:292). NOTE (REFUTE_C, honest limit):
+     f3* >= 0 identically on physical fields, so a bare sign check
+     on it can never fire (R5); the falsifiable content is the
+     IDENTITY lambda_L = Int f3*/q dmu plus complementarity.
+     CLAIM-16 COMPANION (C32 falsifier, regime-qualified): outside
+     the T3 class, since w > 0 is phase-dependent and R(xi) changes
+     sign, Int R dmu and Int R w dmu can have OPPOSITE SIGNS — in
+     the unilateral regime with an active cap the naive form can
+     certify as KKT-admissible a DUAL-INFEASIBLE point. Falsifier
+     (cheap, two quadratures on already-marched fields, no
+     re-optimization): compare the two signs; family-wide agreement
+     on a sign-varying-R family falsifies the RELEVANCE of this
+     failure mode on the executed class (the existential itself is a
+     theorem — two-phase example of record). The dual-infeasibility
+     reading has content ONLY at an active unilateral cap (regime
+     qualifier of record; in the fixed-(eps,L) regime a sign flip
+     only measures naive-vs-weighted divergence).
 TRAJECTORY-AVERAGED PRECEDENT (page-verified 2026-07-22, S13):
 Kraiko-Osipov PMM 34(6):1067-1075 (1970) derive, for the TRAJECTORY
 instance of this structure (aircraft flight conditions in place of
@@ -1127,6 +1263,22 @@ cycle integral is now THEOREM* — per-phase derivatives exist
 dominated by the audited margins, so dJ = Int F' dmu and the wall
 condition + (**') are genuine L^1(dmu) statements (conditionals
 R-T7.1/2 named: the shared D2.5 uniform-estimate conditional [C-D25U]).
+NAMED HYPOTHESIS ADDED OF RECORD (H-EXO, D-02 2026-08-13, from the
+Rubino confrontation): the cycle measure and the interface state map
+are EXOGENOUS to the design — dmu/dSigma = 0 and ds(xi)/dSigma = 0 —
+guaranteed on the L4 class (every axially supersonic patch with
+margin) by the upstream-influence exclusion [T-NSW]. The Rubino/
+Krakos residue term ||(1/T) dT/dsigma||_1 ||d_s h||_inf O(k^-(p-1))
+prices exactly the failure of this hypothesis on the DOMAIN side:
+our THEOREM* upgrade of differentiation under the cycle integral
+dominates the INTEGRAND, not the domain, and is honest only under
+H-EXO. Refuter precision of record: for a NORMALIZED phase measure a
+pure rescaling of the physical period is a null variation — the
+object that must be design-independent is mu, not T (Rubino p.20
+confirms the positive direction: the interchange holds when the
+period is design-independent). Named falsifier: a MEASURED
+dmu/dSigma /= 0. H-EXO becomes LOAD-BEARING at F5 (coupled RDE) and
+wherever mu(Xi_sub) > 0.
 [T-P7S1] P7 EXISTENCE attacked same day (same doc §2, THEOREM*): argmax exists
 on every margin-certified level set A_h^delta (finite-dim compactness
 + closed margins + continuity via R-P7.1 [C-D25U]); the monitored failure
@@ -1235,7 +1387,14 @@ B = tan(alpha), Lam = V dalpha/dV (gamma-free); unit processes O(h^2).
 VI.3 Per-phase gradient: closed-form adjoint where smooth (= f2
 invariant + corner residuals: shroud/bell CSTR_PA
 p_a = p - (1/2) rho V^2 sin(2theta) tan(alpha); plug CSTR_PB with +
-sign — the sign from the CHARACTERISTIC TYPE); reverse-mode AD of the
+sign — the sign from the CHARACTERISTIC TYPE). CONE RE-STATEMENT OF
+RECORD (C31, user-ratified 2026-08-13): at unilateral endpoint caps
+CSTR_PA/CSTR_PB are INEQUALITY + COMPLEMENTARITY statements on the
+admissible cone {Dx <= 0} INTERSECT {Dy <= 0} (direction derived
+from the active side, KT2015 (2.10); the terminal face carries the
+"if exists" qualifier) — equalities only in the free-endpoint or
+pinned regimes; every printed (**') residual DECLARES ITS REGIME
+(free / pinned / unilateral) in the Verdict; reverse-mode AD of the
 fitted march elsewhere (implicit-function custom rules on inner
 iterations, never unrolled; differentiate the fitted front, never a
 captured smear). Certificates: dot-product to machine precision (O3);
@@ -1612,7 +1771,29 @@ MULTIPLIER, grad J = lambda grad g + mu grad m, mu >= 0 — the term
 the S18/S20 formulation lacked, which is why the unconstrained-form
 KKT could not close; and the measured multiplier mu at a
 margin-constrained optimum PRICES shock-freeness: it is the
-quantitative criterion for opening tier 1. Rigor classes: the
+quantitative criterion for opening tier 1.
+ CLASSICAL ATTRIBUTION OF RECORD (C30, user-ratified 2026-08-13,
+GATED — Shmyglevskii 1962 unread, WANTED row in the literature
+registry; upgrade from "classical structure" to "classical system"
+is gated on reading it, R28): the STRUCTURE "at inadmissibility of
+the continuous construction the necessary conditions become
+INEQUALITIES" is CLASSICAL (1961-62) — Sternin 1961 (boundary of
+constructibility of the continuous field) + Shmyglevskii, PMM
+26(1):110-125 (1962) (necessary conditions in inequality form),
+according to the account of Kraiko et al. 2001 p.1348 col.2 (a
+party to the priority dispute), with DIRECT page-verified
+counterproof in KT2015 p.186 Eq. (2.10) (delta R <= 0 on admissible
+variations => inequality + complementarity, slack on the "region of
+boundary extremum"). OURS: the quantified margin m(Sigma) (fold
+Eq. (4)/Sternin, causality u_x - c, uniform constants), the
+MEASURED shadow price mu pricing shock-freeness, the certified
+ladder with the nesting theorem, the KS aggregation at derived rho,
+and the B-stationarity qualifier. DECLARED ASYMMETRY (carried with
+every presentation of the ladder): the classical response to
+inadmissibility is to CHANGE CLASS (construct the discontinuous
+optimum = our tier 1); ours is to PRICE STAYING in tier 0 — in a
+precise sense the corpus goes further: it constructs the object we
+cannot yet certify (R16). Rigor classes: the
 nesting and the constrained-KKT structure are THEOREM (standard);
 the ladder and A_t definitions are SCHEMA; "the S20 instance
 optimum is boundary-active" is a measured-supported HYPOTHESIS (the
@@ -1702,6 +1883,11 @@ the lip-constraint multiplier lambda_e = dJ/dy_lip — the measured
 corner identity of [X-O33B] R3; the classical reading pa/p_E is NOT
 required to vanish (it equals the constraint's shadow price;
 measured cross-design agreement 2.803e-03 of record, S21 re-issue).
+[C31 note of record, 2026-08-13: this bookkeeping IS the pinned
+(K = {point}) regime of the T7(c) cone form — an embryonic regime
+declaration already in place, now named; lambda_e sign is FREE
+here, and the dual-feasibility (sign) content exists only in the
+unilateral-cap regime — see Part III T7(c) cone form.]
  RAO-vs-ZUCROW CONVENTION TRANSLATION (of record wherever D' is
 discussed): Rao 1958/Rao-Beck name the left-running characteristic
 C+ where Zucrow-Hoffman/GENO name it C-; this repo follows GENO —

@@ -29,7 +29,7 @@ reader the claim is query-bounded.
 | G11 | Rigorous time-homogenization of Euler w/ oscillating inflow BC | NOT-FOUND(q) as O(1)-amplitude; PARTIAL scaffold | Weakly nonlinear geometric optics for oscillating BVP data (Coulombel-Guès-Williams 2011/14; Kilque 2022, incl. 2-D Euler) |
 | G12 | Multi-D rigorous shape derivative for thrust functional with shocks | NOT-FOUND(q) | 1-D complete (Bressan-Marson; Ulbrich); quasi-1D design rigor (Cliff-Heinkenschloss-Shenoy 1997); 2-D practice (Baeza et al. 2009) |
 | G13 | Optimization constrained by statistical/measure-valued Euler solutions | NOT-FOUND(q) | Forward theory only (Fjordholm et al.) |
-| G14 | Rao = adjoint (P2) | PARTIAL — three banks published, no bridge: Hoffman 1967 multiplier FIELDS on characteristics (classical side, in-house corpus §b0); Giles-Pierce 2001 (quasi-1D analytic adjoint); Lozano-Ponsin 2025 (2-D analytic adjoint, no Rao/Kraiko mention) | P2 narrows to the explicit identification + reverse-AD = adjoint characteristic sweep |
+| G14 | Rao = adjoint (P2) — formulation of record 2026-08-13 (D-01): no published identification in the three claimed forms (ASO language / discrete-adjoint-reverse-AD / driving a modern optimizer); generic equivalence and the in-school Route B → Route A chain (KT2015 (2.2)→(2.9)→(2.10)→(2.12)) CONCEDED; residual value = articulation + operationalization | PARTIAL — three banks published, no bridge: Hoffman 1967 multiplier FIELDS on characteristics (classical side, in-house corpus §b0); Giles-Pierce 2001 (quasi-1D analytic adjoint); Lozano-Ponsin 2025 (2-D analytic adjoint, no Rao/Kraiko mention); KT2015 completes the chain INSIDE the classical school | P2 narrows to the explicit identification + reverse-AD = adjoint characteristic sweep; the "residual = adjoint gradient" gloss DELETED (KT2015 instantiates it) |
 | G15 | Trajectory-averaged (altitude) nozzle contour design as variational problem; "affine collapse" folklore | NOT-FOUND(q) as theorem | Dual-bell literature = parametric sweeps + trajectory codes (Frey-Hagemann 1999; Stark-Génin/Ariane5 2016); Sutton folklore; certainty equivalence (stochastic control) |
 | G16 | Mode multistability via mode-measure/CVaR/DRO | NOT-FOUND(q) for RDE | CVaR-PDE (Kouri-Surowiec 2016); Wasserstein-DRO shape opt EXISTS (Dapogny et al. 2023; Chen-Gauger 2024) — method known, application new |
 | G17 | Existence for shape opt of an integral over a μ-family of hyperbolic states, shared boundary (P7) | NOT-FOUND(q) | Elliptic-state analogues only (Conti et al. 2009; Dambrine et al. 2015) |
@@ -429,13 +429,31 @@ TRANSVERSALITY (bijective to ε) and for T3 remark (R2).
    chemically reacting flow the optimality system is Lagrange-multiplier
    FIELDS λ₁..λ₄ (+λ₅ per species) satisfying PDEs along the SAME
    characteristics as the flow — a continuous adjoint avant la lettre,
-   with an a-posteriori optimality residual E (Eq. 78) that is the
-   classical ancestor of the Level-C stationarity certificate. The P2
-   bridge lemma therefore has THREE banks: Hoffman 1967 (classical
-   multiplier fields), Giles-Pierce 2001 (quasi-1D analytic adjoint),
-   Lozano-Ponsin 2025 (2-D analytic adjoint) — none of which cites the
-   others' side. P2's content narrows to the explicit identification +
-   the reverse-AD = adjoint-characteristic-sweep statement.
+   with an a-posteriori optimality residual E (Eq. 78). [D-01,
+   user-ratified 2026-08-13: the parenthetical gloss identifying the
+   classical optimality residual with the adjoint gradient / "ancestor
+   of the Level-C certificate" is DELETED of record — KT2015 Eqq.
+   (2.9)-(2.10) literally instantiate that identification (multiplier
+   field → wall shape-gradient density B^x → optimality B^x = 0), so
+   the gloss is not ours to carry.] The P2 bridge lemma has THREE
+   banks: Hoffman 1967 (classical multiplier fields), Giles-Pierce
+   2001 (quasi-1D analytic adjoint), Lozano-Ponsin 2025 (2-D analytic
+   adjoint) — none of which cites the others' side.
+   P2/G14 FORMULATION OF RECORD (query-bounded 2026-08-13, replaces
+   the previous claim wording; class unchanged): no published work
+   executes the identification between the multiplier field of
+   classical variational nozzle design (Route B: Hoffman 1967,
+   Scofield-Hoffman 1971, Kraiko, Shmyglevskii, HTH) and the
+   continuous/discrete adjoint of modern shape optimization, in any of
+   the three forms the program claims: (i) stated in modern ASO
+   language; (ii) connected to DISCRETE adjoints / reverse-mode AD;
+   (iii) used to drive a modern gradient-based optimizer. EXPLICITLY
+   CONCEDED: the generic equivalence "adjoint variable ≡ Lagrange
+   multiplier of the flow constraint" (Giles-Pierce 2000 p.397; Lions
+   1971; Jameson 1988) and the complete Route B → Route A chain INSIDE
+   the classical school (KT2015 Eqq. (2.2)→(2.9)→(2.10)→(2.12)).
+   Residual novelty = articulation + operationalization, not
+   mathematical content of the bridge.
 2. HOFFMAN 1967 p.676 PROVES the corner bijection dies for reacting gas
    (E = 0 on multiplier fields replaces the algebraic corner): the
    closed-form per-phase brick is frozen-composition-only. This is

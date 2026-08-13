@@ -1275,9 +1275,9 @@ entries:
 
 - id: X-O33B
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-12; suite=none"
+  ondemand: "env=jax; pass=2026-08-13; suite=none"
   class: PRACTICE
-  scope: "ORACLE O3.3 carrier (the pre-registered term-match bench, P2_outline §5 + its S19 execution addendum); on-demand carrier (env: jax); rows R1/R2 (Rao first integrals f2 and f3* on the CLASSICAL control surface = the C+ traced back from the lip and stopped at the kernel boundary), R3 (corner/transversality identity dJ/dy_lip == the classical corner density), R4/R5 (two-field multiplier compatibility along both families, both signs, with the wrong sign saturating), R6 (the pre-registered gradient-vs-Rao family test), R7 (cross-DESIGN check on GENO's own Rao wall, instance only), plus an executable guard refusing the constant-flow invariants (33)-(34) off uniform patches. LOCUS CORRECTION OF RECORD: evaluated on the full C+ down to the axis f2 drifts 2.9e-01 and the row looks falsified; on the classical surface it is 9.5e-03 (S18 optimum) and 8.0e-03 (GENO Rao contour)"
+  scope: "ORACLE O3.3 carrier (the pre-registered term-match bench, P2_outline §5 + its S19 execution addendum); on-demand carrier (env: jax); rows R1/R2 (Rao first integrals f2 and f3* on the CLASSICAL control surface = the C+ traced back from the lip and stopped at the kernel boundary), R3 (corner/transversality identity dJ/dy_lip == the classical corner density), R4/R5 (two-field multiplier compatibility along both families, both signs, with the wrong sign saturating), R6 (the pre-registered gradient-vs-Rao family test), R7 (cross-DESIGN check on GENO's own Rao wall, instance only), plus an executable guard refusing the constant-flow invariants (33)-(34) off uniform patches. LOCUS CORRECTION OF RECORD: evaluated on the full C+ down to the axis f2 drifts 2.9e-01 and the row looks falsified; on the classical surface it is 9.5e-03 (S18 optimum) and 8.0e-03 (GENO Rao contour). F-SERVICE EXTENSION (2026-08-13, version change declared in-module): rows R8 (dual-feasibility clause on lambda_e, REGIME-AWARE per [T-T7CN] — pinned regime declares sign FREE, unilateral cap selects direction from the active side, seed rejector fires on wrong side), R9 (axial lambda_L row: f3* derived-band gate + activity report, seed rejector on the IDENTITY with band-derived corruption — never sign, f3* >= 0 identically), R10 (cone-scan transfer certificate with the converse rejector: one-phase-out/mean-in family must be ACCEPTED)"
   statement: "On the S18 converged design the Rao first integral f2 = -lambda2 is constant along the control surface to 9.5e-03, its VALUE agrees with the one measured on GENO's independently obtained Rao contour to 2.4e-04, the wrong-family combination drifts 8.6x more, the adjoint compatibility relation cancels to 1.6e-04 with the correct sign per family and saturates at 1.0 with the wrong one, and the gradient's stationary design coincides with the Rao condition's zero within the derived bar (R6, the primary kill criterion)."
   doc: "validation/o33_bench.py"
   proof: "validation/o33_bench.py"
@@ -1345,7 +1345,7 @@ entries:
 
 - id: X-MGOV
   kind: carrier
-  ondemand: "env=jax; pass=2026-08-12; suite=none"
+  ondemand: "env=jax; pass=2026-08-13; suite=none"
   class: PRACTICE
   scope: "MARGIN GOVERNOR — the F1 A' margin-constrained formulation made executable (S22 2026-08-11); on-demand carrier (env: jax): traced (G)/Lambda-form val field over every W-dependent lane of the march (val_diag replay, the additive cert_diag pattern), KS-min aggregation in shifted overflow-free form with the log-sum-exp bounds as THEOREM-level anchor, rho DERIVED = K_RICH ln(N)/mu_0_min (gap pinned below the enforcement resolution by construction), floor ladder mu_0_k = m_ref/2^k k=1..4 pre-registered from the MEASURED baseline healthy reference m_ref, G1 finite-negative surrogate (masked-lane KS + K_RICH m_ref frac_bad penalty, finite at every representable W, exact-KS at zero failures) with REQ-NONSTALL zeroed+counted gradient fallback, GENO implementation-magic bands derived (dV_pert FD-vs-AD Lambda band = the F1b cross-check leg; den-guard in-range statement; PM window declared F1b), [D1]-CONSTRAINED corner metric rel_c = |gJ_lip + mu gm_lip - cd|/|cd| as COROLLARY of the S20-registered constrained-KKT THEOREM (B-stationarity qualifier until O1), scipy NonlinearConstraint entry via run_trsqp margin_factory (FORMULATION, policy stack untouched); adaptive-KS survey adopt-or-declare recorded (Poon-Martins/SAKS NOT adopted, reason stated); campaign stage = ladder continuation with mandatory O4 logs (argmin locus, active-cusp census, multiplier sign) and the D6 branch-adjudicated exits"
   statement: "The margin-constrained A' problem of the M0 tier ladder is executable on the bell tier-0 instance with every constant derived or measured: the KS margin constraint steers, survives (G1 surrogate), and reports at every trial point, and its rejectors (KS bounds, AD-vs-FD gradient band, broken-design finite-negative, GENO-band self-check) can fire."
@@ -1894,3 +1894,44 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "any speed acceptance verdict quoting numbers not traceable to a committed [X-SPDB] artifact row; an M1/M2 adoption with the m12gate A/B failing bit-identity or counter reconciliation; a measured-row artifact missing its pycount contention datum"
   gamma: "n/a"
+
+# ------- F-SERVICE additions (R4 back-propagation, user-ratified 2026-08-13) -
+
+- id: S-T0P
+  kind: schema
+  class: SCHEMA
+  scope: "L4 class (axially supersonic patches with margin); pure periodic rotating interface data, axisymmetric domain and BC; STAGE 1 of the honest two-stage per-phase claim (REFUTE_A 2026-08-13: per-phase = exact quotient + declared rung 2, never 'the correct object' tout court); full proof write-up owner = F2 theory window"
+  statement: "Propagation: pure periodic rotating interface data + axisymmetric domain/BC propagate to a steady co-rotating certified solution (equivariance of steady Euler under the helical group + uniqueness of the certified S1 solution + L4 finite domain of dependence); hence the wave-frame/per-phase adjoint is the symmetry-reduced CORRECT object in the pinned class (the naive periodic-BVP adjoint is degenerate: trivial Floquet multiplier along the group orbit)."
+  doc: "docs/rde_nozzle_MASTER.md#[S-T0P] PROPAGATION LEMMA"
+  proof: "docs/rde_nozzle_MASTER.md#[S-T0P] PROPAGATION LEMMA"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "an L4-certified pure-periodic-data instance whose certified solution is NOT a steady co-rotating pattern (kills stage 1); out-of-pin the registered alternative route is Zahr-Persson/Rubino (+LSS/NILSS chaotic)"
+  gamma: "EOS-general"
+
+- id: T-T7CN
+  kind: theorem
+  class: THEOREM
+  scope: "cycle endpoint condition, cone form of T7(c) (C31, user-ratified 2026-08-13); K = admissible set of the SHARED endpoint, declared per statement and per instrument; requires only mu >= 0 and integrand in L^1(dmu) (via the [C-D25U] domination on executed classes); proof = half-space preservation under the integral (neither closedness nor convexity of N_K invoked)"
+  statement: "Cone transfer: if (dF/ds_E)(xi) in N_K(s_E*) for mu-a.e. xi, then D = Int_Xi (dF/ds_E) dmu in N_K(s_E*); the CONVERSE IS FALSE (two-phase counterexample of record: K = {y<=0}, D = (-1, +3) at equal weights, mean +1 in-cone with phase 1 out) — the per-phase sign scan is a SUFFICIENT certificate of the cycle condition, and any tool armed on it must ACCEPT one-phase-out/mean-in families."
+  doc: "docs/rde_nozzle_MASTER.md#CONE TRANSFER LEMMA [T-T7CN]"
+  proof: "docs/rde_nozzle_MASTER.md#CONE TRANSFER LEMMA [T-T7CN]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a mu >= 0 family with per-phase densities in N_K mu-a.e. whose mu-integral leaves N_K; tool-level rejector (S3/A39): a one-phase-out/mean-in family must be ACCEPTED — a tool rejecting it is testing the per-phase condition, not the cycle condition"
+  gamma: "EOS-general"
+
+- id: C-HEXO
+  kind: conditional
+  class: SCHEMA
+  scope: "T7/[T-T7FS] named hypothesis H-EXO (D-02, 2026-08-13, Rubino/Krakos confrontation): exogeneity of the cycle measure and interface state map; guaranteed on L4 by the [T-NSW] upstream-influence exclusion; becomes LOAD-BEARING at F5 (coupled RDE) and wherever mu(Xi_sub) > 0; normalized-measure precision of record: the object that must be design-independent is mu, not the physical period (a pure period rescaling is a null variation; Rubino p.20 confirms the positive direction)"
+  statement: "H-EXO: dmu/dSigma = 0 and ds(xi)/dSigma = 0 — cycle measure and interface state map are EXOGENOUS to the design; under it the THEOREM* differentiation under the cycle integral dominates the INTEGRAND and the Rubino/Krakos domain-variation residue ||(1/T)dT/dsigma||_1 ||d_s h||_inf O(k^-(p-1)) vanishes."
+  doc: "docs/rde_nozzle_MASTER.md#NAMED HYPOTHESIS ADDED OF RECORD (H-EXO"
+  proof: "docs/rde_nozzle_MASTER.md#NAMED HYPOTHESIS ADDED OF RECORD (H-EXO"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a MEASURED dmu/dSigma /= 0 on a certified family"
+  gamma: "EOS-general"

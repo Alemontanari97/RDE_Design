@@ -62,7 +62,30 @@ is EOS-GENERAL in primitive variables: it holds verbatim for frozen
 gamma(T) and for arbitrary (convex) EOS, given homentropic
 homenthalpic frozen flow — consistent with the corpus finding that the
 equations are gamma-agnostic in primitive variables (D2 §b0 item 4)
-and with the Kraiko-school arbitrary-EOS scope. The TRUE gamma = const
+and with the Kraiko-school arbitrary-EOS scope.
+ATTRIBUTION OF RECORD (D-07, 2026-08-13): the EOS-generality of the
+Route-A first integrals is CLASSICAL AND FROM 1957 — Sternin obtained
+the analogous relations for arbitrary two-parametric gas (Kraiko 2001
+p.1348: "In the same year Sternin obtained analogous relations for
+arbitrary two-parametric gas using the same technique"; published
+1959), while Shmyglevskii 1957 is perfect-gas. THIS AUDIT IS A
+RE-DERIVATION/extension of a 1957 result, never new generality.
+Route-A lineage of record (cited "according to the account of Kraiko
+et al. 2001, a party to the priority dispute"): Nikolskii (1950,
+publ. 1957) -> Guderley-Hantsch 1955 (seat of the Busemann condition)
+-> Shmyglevskii 1957 and Sternin 1957/59 -> Rao 1958/1961; priority
+of OBTAINMENT to Sternin, of PUBLICATION in scientific print to Rao;
+the Borisov-Shmyglevskii critique of Rao's METHOD does not touch the
+result, and Rao revised the work (Miele ed. 1965). Independent
+support: the Busemann condition Eq. (1) contains only primitive
+variables (p, rho, V, alpha) — the endpoint condition is EOS-general
+and the gamma = const dependence is a choice of expression. FORBIDDEN
+PHRASE of record (claim 12 rider): the unqualified "first to do Rao
+with variable gamma" — Sun 2019 (with Sun & Yu 2018, Chinese, unread)
+is prior art occupying the "Rao-type construction with gamma(T)"
+move; claim 12 stays INTACT because it is a MATHEMATICAL statement
+about the stationarity system in primitive variables, an object that
+does not exist in Sun 2019. The TRUE gamma = const
 boundaries of the program lie ELSEWHERE and are named: (a) the
 corner <-> eps closed-form BIJECTION used by implementations is
 derived only for gamma = const (risk E4; oracle = Scofield-Hoffman

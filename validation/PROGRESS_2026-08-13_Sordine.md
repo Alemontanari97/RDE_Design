@@ -354,3 +354,27 @@
   NEVER rows on components it consumes; measurement-gated
   adjudications pin protocol+falsifier pre-F2, measured half =
   binding F2 entry duty.
+
+## STEP 14 — DEFINITIVE CLOSE OF THE TAIL (2026-08-13, freeze declared)
+- A PARALLEL WINDOW went ACTIVE during this tail (uncommitted edits
+  on a1_toc_variational_jax.py / margin_governor.py / o33_bench.py +
+  ~10 live registry rows; consistent with the F-SERVICE carrier-fix
+  scope). The H4 identity channel FAIL observed at this moment is
+  the machinery working (tree != committed artifact); its repair =
+  the active window's own re-chain duty (stage_derive re-run at ITS
+  close), not this session's.
+- FREEZE honored from discovery: this tail commits NOTHING further.
+  The row theory:r22-formal-decomposition (user-ordered formal
+  re-framing of R22: T-DISC fiber-separation theorem + T-RED
+  reduction-residual operator + M-RED measurement on certified
+  marches + R22-CFD re-scoped to the model-adequacy core) is PARKED
+  UNCOMMITTED in docs/findings_registry.yaml — it parses clean, 0
+  content violations — and RIDES WITH THE ACTIVE WINDOW'S CLOSING
+  COMMIT (attribution: S-ORDINE tail, user-ratified). S-FOUNDATIONS
+  inherits it as CENTERPIECE alongside the F2-consumed choice
+  adjudications and the class-(a) theory batch (census R35; the
+  registry row's owner field is the authoritative pointer).
+- Memories written this tail: navigation-first-answering +
+  formal-first-epistemology (both indexed).
+- S-ORDINE + tail: DEFINITIVELY CLOSED. Chain of record:
+  F-SERVICE+S-CERT (active/next) -> S-FOUNDATIONS -> F2.

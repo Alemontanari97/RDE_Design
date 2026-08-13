@@ -1329,3 +1329,106 @@ entries:
   mechanism: process
   owner: "one-line max() winner label at the D-prime band print — next def_twin/D-prime-band touch (the seam-clustered refinement lever itself is R25-owned)"
   trigger: "next D-prime-band consumer, or the next def_twin touch"
+# ------- F-SERVICE window rows (user-ratified ratifications + R4 batch,
+# 2026-08-13; source advisory = the converged REV-3 confrontation) -------
+- id: litreview:glossa-residual-adjoint-gradient
+  status: DISCHARGED
+  severity: high
+  magnitude: "the parenthetical gloss 'Rao's optimality residual = the adjoint gradient' is literally instantiated by KT2015 (2.9)+(2.10) — a free target for a hostile referee on the program's highest-value novelty claim"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Claim 1 · P2/G14"
+  code: []
+  mechanism: attribution
+  evidence: "D-01 user-ratified + executed 2026-08-13 (F-SERVICE): gloss deleted at docs/rde_nozzle_literature_map.md (G14 row + in-house corpus item 1) and docs/rde_nozzle_theorem_ledger.md par.8; claim 1 rewritten with the record block (three forms, concessions explicit)"
+- id: litreview:t7c-equality-wrong-regime
+  status: DISCHARGED
+  severity: high
+  magnitude: "T7(c) of record was the free-endpoint EQUALITY — the wrong necessary condition for (P) as posed (g_i(S) <= c_i) and coexisting with the fixed-eps lambda_e bookkeeping without a regime declaration; the only internal M0 incoherence named by the 25-paper review"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Claim 16 · (**') trasversalità pesata"
+  code: []
+  mechanism: formulation
+  evidence: "C31-minimale user-ratified + executed 2026-08-13: M0 Part III T7(c) rewritten in the refuter-surviving cone form (one VI-statement D in N_K, K declared per instrument; mass flow stays equality outside the cone; [T-T7CN] transfer lemma registered; axial-vacuous/radial-substantial split; twin boxed warning; lambda_L Route-A graft), VI.3 CSTR_PA/PB cone re-statement, fixed-eps bookkeeping named regime 2, P1_sections_5_7 par.5.1(c) mirrored"
+- id: litreview:tier-ladder-attribution-c30
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the inequalities-at-inadmissibility STRUCTURE was presented as ours; it is classical 1961-62 (Sternin 1961 + Shmyglevskii 1962 per Kraiko 2001 p.1348, direct page-verified counterproof KT2015 (2.10))"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Attribuzione della **tier ladder / KKT margin-active**"
+  code: []
+  mechanism: attribution
+  evidence: "C30 user-ratified GATED + executed 2026-08-13: attribution formula of record + declared asymmetry landed at the M0 ladder block (GENERAL FORMALIZATION); upgrade 'structure'->'system' stays gated on reading Shmyglevskii 1962 (WANTED row, literature registry; R28)"
+- id: litreview:pb2-first-averaged-phrase-dead
+  status: DISCHARGED
+  severity: medium
+  magnitude: "'first averaged-thrust variational problem' is falsified by Efremov-Kraiko 2004 Eq. (1.7) (period-averaged thrust maximum, Kraiko-signed); PB-2 needs the locked non-collapsing CYCLE-instance formulation + extended caveat list"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Claim 6 · PB-2"
+  code: []
+  mechanism: formulation
+  evidence: "D-06 executed 2026-08-13: locked formulation + 7-item extended caveat list (K-O 1970, ISABE/Bogdanov unread-P0, Efremov-Kraiko 2004, Reuther x2, Ornano, Harroun thesis P0, Levin-Manulovich/Billings) landed at the M0 PB-2 block"
+- id: litreview:e4-attribution-sternin-1957
+  status: DISCHARGED
+  severity: medium
+  magnitude: "EOS-generality of Route-A first integrals presented as ours; it is classical 1957 (Sternin, arbitrary two-parametric gas, per Kraiko 2001 p.1348 account); Sun 2019 occupies the 'Rao construction with gamma(T)' move"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Claim 12 · E4"
+  code: []
+  mechanism: attribution
+  evidence: "D-07 executed 2026-08-13: attribution + full Route-A lineage ('according to the account of Kraiko et al. 2001, a party in the dispute') landed at docs/rde_nozzle_P2_lemmaA.md par.3.0 + M0 N4-ladder note; forbidden phrase registered"
+- id: litreview:litmap-noncontainments-hij
+  status: DISCHARGED
+  severity: medium
+  magnitude: "claim 18 (containment) was falsifiable at KT2015 ingestion without pre-emptive declaration of (h) elliptic-region design variable, (i) endogenous-cycle family (K-O weight / Zahr-Persson state), (j) vectorial thrust Pareto selection"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Claim 18 · Containment"
+  code: []
+  mechanism: formulation
+  evidence: "D-03 executed 2026-08-13: (h)/(i)/(j) added BY NAME to ADVISORY_generality_litmap_2026-08-12.md par.6 + claim 18 re-enunciated + 'no coupling' corrected to 'no STATE coupling'"
+- id: theory:s-t0p-proof-writeup-pending
+  status: CONFIRMED
+  severity: low
+  magnitude: "the propagation lemma [S-T0P] (pure periodic BC + axisymmetric domain => steady co-rotating pattern, provable on L4) is registered at SCHEMA with the proof route named; the full function-space write-up is not yet written"
+  source: "docs/rde_nozzle_MASTER.md#[S-T0P] PROPAGATION LEMMA"
+  code: []
+  mechanism: rigor-gap
+  owner: "F2 theory window (first theory block): write the equivariance+uniqueness proof at S1 level"
+  trigger: "F2 entry, or the first external presentation of the two-stage per-phase claim"
+- id: theory:r22-formal-decomposition
+  status: CONFIRMED
+  severity: medium
+  magnitude: "user methodological catch (2026-08-13, S-ORDINE tail): the litreview confrontation imported the FIELD's empirical epistemology along with its content — R22 was framed as a CFD experiment because that is how the CFD corpus resolves questions; the program's native register is formal-first. The formal decomposition EXISTS: (1) T-DISC fiber-separation theorem — characterize the fibers of the p-only projection pi: s(xi) -> (P(xi), uniform) on the admissible data class and LOWER-BOUND the J-variation within a fiber (inputs already of record: mean-swirl covariance P1 THEOREM*, swirl energy 3-6 pct measured, per-phase theta variation) => exonerates or convicts THE AVERAGE with zero CFD (the (b) half of R22); (2) T-RED reduction-residual operator — post-quotient ([S-T0P] exact under the pure-rotating-wave pin), write the azimuthal-structure terms dropped by the per-phase-2D reduction as an explicit residual operator with hypothesis list + bound schema (time-coupling half already owned by G3/corrector); (3) M-RED — the residual functional MEASURED on our own certified interface families (derived bands, no CFD); (4) R22-CFD re-scoped to the irreducible core (model adequacy on ONE reference coupled configuration / field-facing demonstration on the Harroun pair), no longer the decider"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#R22"
+  code: []
+  mechanism: epistemology-bias-from-literature
+  owner: "S-FOUNDATIONS centerpiece (Form-2 panel to convergence: variational/PDE/asymptotics experts + refuter; T-DISC and T-RED land in M0 with declared rigor class; M-RED = carrier with derived bands); R22-CFD scheduling decision AFTER the formal half converges"
+  trigger: "S-FOUNDATIONS opening (chain of record: F-SERVICE+S-CERT -> S-FOUNDATIONS -> F2); any public adequacy claim remains gated per D-44 either way"
+- id: oracles:sonic-strip-probe-missing-d49
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the DWR-bar exclusion locus at the Sauer IVL is the ONLY pre-registered exclusion without its probe (o32 par.S5 exists only for the lip); C33 locus qualifier applied in the same review; probe construction + Mach-margin locus reformulation = D-49"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Applicare C33 + A36"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "F-SERVICE+F2 (D-49); EXCLUSION user-confirmed 2026-08-13 (F-SERVICE window): NOT executed pre-S-CERT — S-CERT registers it as a DECLARED LIMIT of the sample; the MOC-08 economic falsifier is enrolled in the S-CERT MC1/MC2 sample independently"
+  trigger: "F2 window, or the first new DWR-bar claim of record"
+- id: oracles:a1-gp01-quasi1d-not-built
+  status: CONFIRMED
+  severity: medium
+  magnitude: "A1 [X-GP01] (Giles-Pierce 2001 quasi-1D analytic adjoint oracle, 4 regimes, re-derived double-implemented constants) is adjudicated ADOPTED but not built — the FIRST genuinely GENO-independent fidelity oracle; until it (or A2/A3) runs, 'our adjoint is faithful to the continuum' stays a hypothesis with named falsifiers"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#Oracolo aggiunto analitico quasi-1D"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "F2 (D-20, priority); NOT built in the F-SERVICE window per contract (2e): stays F2-prioritized"
+  trigger: "F2 entry (first oracle block), or S-CERT order"
+- id: oracles:o31-common-mode-hole
+  status: CONFIRMED
+  severity: medium
+  magnitude: "O3.1 (transpose identity 2.7e-10) certifies SELF-consistency of the discrete pair, not continuum fidelity (D-08 qualifier of record); it provably cannot detect a transpose-consistent-but-wrong pair — the common-mode hole; the closer is A2/O3.1-cs (complex-step primal-independent Jv + negative control that MUST be detected)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#O3.1-cs — trasposizione a PRIMALE INDIPENDENTE"
+  code: []
+  mechanism: oracle-scope
+  owner: "S-CERT (A2 decision PINNED (a) by user 2026-08-13: O3.1-cs built at S-CERT opening as an AUDIT INSTRUMENT for MC1/MC7, double implementation + negative control; never an in-window patch)"
+  trigger: "S-CERT opening (this session, Part 2)"
+- id: carriers:dual-feasibility-blind-five
+  status: DISCHARGED
+  severity: high
+  magnitude: "REFUTE_C line-verified: NO committed carrier tested endpoint dual feasibility or complementarity — five blind spots: o33 R3 (signed identity, no dual clause), o33 R7 (cross-design concordance only), o33 f3*-drift (never gated, never compared to lambda_L), a1_toc O3 reading (abs(lam), regime undeclared), margin_governor rel_c (modulus of difference, no verso clause on mu)"
+  source: "literature_review/reports/REFUTE_C_cone_form.md#VERDETTO COMPLESSIVO"
+  code: []
+  mechanism: instrumentation-gap
+  evidence: "F-SERVICE 2026-08-13 repairs S1-S3 (A37-A39, refuter-emended): o33_bench rows R8 (regime-aware dual clause + firing wrong-side seed rejector) / R9 (f3* derived-band identity gate + band-derived corruption rejector — first 5%-literal version FAILED TO FIRE, honest catch, repaired by deriving the corruption from the band) / R10 (cone-scan certificate + converse-acceptance rejector); margin_governor mu_dual_clause (mu unilateral regime-3, seed rejector proven every stage); a1_toc regime declaration on the abs(lam) reading. Gates re-run same day, all EXIT 0: X-O33B full PASS, X-MGOV derive PASS, X-TOCV staged+opt PASS; pass= stamps 2026-08-13; phase_diagram_real left untouched OF RECORD (sign right by monotonicity, repair owner F2)"

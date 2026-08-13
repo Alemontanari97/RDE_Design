@@ -2354,14 +2354,23 @@ def main():
         # implied-ambient reading uses |v| and is DECLARED an
         # instance reading (full corner term-match = O3.3).
         lam = float(np.atleast_1d(np.asarray(res.v[0]))[0])
+        # repair S1/A37 extension (F-SERVICE 2026-08-13, REFUTE_C):
+        # the |lam| below is a MAGNITUDE reading only — the lip is
+        # pinned by EQUALITY (regime 2, [T-T7CN] cone taxonomy), so
+        # the sign of lambda_eps is FREE and NO dual clause applies
+        # here; the regime is now DECLARED in the print (the
+        # dual-feasibility clause proper lives in o33_bench R8 and
+        # applies only at declared unilateral caps).
         Pa_impl = abs(lam) / (2.0 * np.pi * yL)
         q_lip = float(np.hypot(out_s["wall"][-1, 2],
                                out_s["wall"][-1, 3]))
         p_lip = float(state_c1(jnp.float64(q_lip), None)[1])
-        print("  [O3 multiplier reading] lambda_eps = %.6e; implied "
-              "Pa = |lambda|/(2 pi yL) = %.6e Pa; achieved lip "
-              "pressure = %.6e Pa; ratio %.3f  [instance reading, "
-              "declared: full corner term-match = O3.3 campaign]"
+        print("  [O3 multiplier reading] lambda_eps = %.6e (RAW, "
+              "sign FREE — regime 2/pinned declared, repair S1/A37); "
+              "implied Pa = |lambda|/(2 pi yL) = %.6e Pa; achieved "
+              "lip pressure = %.6e Pa; ratio %.3f  [instance "
+              "reading, declared: full corner term-match = O3.3 "
+              "campaign]"
               % (lam, Pa_impl, p_lip, Pa_impl / p_lip))
 
         # T2 whole-loop bound (ARMED in X-LSG0, EVALUATED here with

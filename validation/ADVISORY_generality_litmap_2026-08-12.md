@@ -528,6 +528,46 @@ made it EXECUTABLE (AD adjoint with certificates) and AVERAGED
  declared owner; no claim of containment of the coupled K-O
  problem is made.
 
+ [ADDED BY NAME 2026-08-13, D-03 of the confrontation review
+ (user-ratified window F-SERVICE); the claim-18 containment
+ statement is re-enunciated BELOW with this extended list.]
+ (h) DESIGN VARIABLE INSIDE THE ELLIPTIC REGION => MIXED-TYPE
+ ADJOINT (KT2015, abstract p.181 "including its subsonic part";
+ Eq. (3.3) p.188 "elliptic for V<1, hyperbolic for V>1"): (P)
+ answers elliptic patches with O1, which FREEZES the wall upstream
+ of the new interface — i.e. cancels exactly the question the
+ paper poses. Owner: F2 / future research; declared non-goal under
+ the L4 pin. (Judge-verified: problem_book O1 freezes the wall;
+ this §6 previously listed only (a)-(g).)
+ (i) ENDOGENOUS-CYCLE FAMILY — two members of one family:
+ Kraiko-Osipov (endogenous trajectory WEIGHT, (g) above) and
+ Zahr-Persson (periodicity imposed as a STATE constraint
+ u^(0) = u^(Nt), whose formal signature is one term: the adjoint
+ acquires lambda^(0) in the terminal condition and ceases to be a
+ backward evolution, becoming a two-point linear BVP; their Eqq.
+ (6), (23), (30)). In K-O the endogeneity is in the WEIGHT, here
+ in the STATE. WORDING CORRECTION of record: (P) couples the
+ phases through the SHARED DESIGN (T7(b), T7(c)) — the correct
+ formulation is "no STATE coupling between phases", never "no
+ coupling".
+ (j) VECTORIAL THRUST CRITERION / PARETO SELECTION (Kraiko 2016
+ p.122: optimization of the pair (R_x, |tan alpha|) with selection
+ on the Pareto front). Preferred and recommended defense:
+ SCALARIZE — "thrust-direction constraint / vectorial thrust" is
+ added explicitly to the constraint vector c of A_gen(c), which is
+ the defense the paper itself de facto operates (direction used as
+ a THRESHOLD on the front). If not scalarized, this is conceded as
+ a third non-containment.
+
+ CLAIM 18 RE-ENUNCIATED OF RECORD (2026-08-13): no work in the
+ reviewed corpus is a variational maximum-thrust nozzle
+ formulation whose core is not a restriction of (P), WITH the
+ non-containments (a)-(j) above declared BY NAME (the (h)/(i)/(j)
+ additions are pre-emptive declarations, not falsifications:
+ KT2015's subsonic-part design, the endogenous-cycle family, and
+ vectorial-thrust selection are answered by O1-freeze, exogenous-mu
+ contract, and scalarization respectively).
+
 ## 7. NEW FINDINGS OF RECORD from this review (each with its class)
 
 7.1 O3 LEDGER OBLIGATION — BOTH SOURCES NOW PAGE-VERIFIED
