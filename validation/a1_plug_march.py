@@ -50,6 +50,7 @@ import os
 import sys
 import time
 
+import collections
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -324,6 +325,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     sf_ct = [0]                    # streamline-foot decision counter
     clamp_n = [0]                  # feet landing outside their chord
     wall_foot_n = [0]              # (unused; kept for the out dict)
+    foot_nobracket_n = [0]         # feet no column brackets
+    foot_diag = []                 # why a scan found no bracket
+    tdiag = []                     # solved feet outside their chord
     foot_open_n = [0]              # brackets the iteration could not
                                    # close (reported, never masked)
     tstat = []                     # (t, column, row) diagnostic
@@ -414,45 +418,95 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 # SOLVED direction and solve again. The converged
                 # bracket is what the schedule records.
                 def _scan(x4s, y4s, th0):
-                    Mp = max(j for j in range(1, M + 1)
-                             if (j, i - 1) in G)
-                    jj, f_prev = jprev, None
-                    for j in range(1, Mp + 1):
-                        ptj = G[(j, i - 1)]
-                        f = ((y4s - float(ptj[1]))
-                             - np.tan(th0) * (x4s - float(ptj[0])))
-                        if f_prev is not None and f_prev > 0.0 >= f:
-                            jj = j - 1
+                    """(back-column b, row j) whose chord brackets the
+                    backward streamline from (x4s, y4s) at angle th0.
+
+                    W-5 FIX: search columns i-1, i-2, i-3 — exactly
+                    what `wall_foot_search` already does for the C-
+                    arriving at a WALL point. Measured on the
+                    stratified spike, the foot of ~1.6% of interior
+                    cells lies in NO segment of column i-1 at all, so
+                    a single-column scan cannot bracket it, silently
+                    returns its own initial guess, and the invariant
+                    lerp then EXTRAPOLATES (foot parameters up to
+                    t = 12) and manufactures entropy the inlet never
+                    supplied. Stepping back a column finds the segment
+                    that actually contains the foot.
+                    """
+                    for b in (1, 2, 3):
+                        if (1, i - b) not in G:
                             break
-                        f_prev = f
-                    return min(max(jj, 1), Mp - 1) if Mp > 1 else 1
+                        Mp = max((j for j in range(1, M + 1)
+                                  if (j, i - b) in G), default=0)
+                        if Mp < 2:
+                            continue
+                        f_prev = None
+                        for j in range(1, Mp + 1):
+                            ptj = G[(j, i - b)]
+                            f = ((y4s - float(ptj[1]))
+                                 - np.tan(th0) * (x4s - float(ptj[0])))
+                            if f_prev is not None and f_prev > 0.0 >= f:
+                                return b, min(max(j - 1, 1), Mp - 1)
+                            f_prev = f
+                    # No column brackets it. Keep the legacy
+                    # single-column fallback so this path is never
+                    # WORSE than before — but COUNT it, because a
+                    # fallback that nobody counts is exactly how W-5
+                    # stayed invisible behind a passing mean.
+                    Mp = max((j for j in range(1, M + 1)
+                              if (j, i - 1) in G), default=0)
+                    foot_nobracket_n[0] += 1
+                    # WHERE is the foot, if no column brackets it?
+                    # f > 0 at BOTH ends => it lies ABOVE the top row;
+                    # f < 0 at both ends => BELOW row 1 (the wall
+                    # side). Record it rather than guess again.
+                    if len(foot_diag) < 40 and Mp > 1:
+                        fs = []
+                        for jq in (1, Mp):
+                            pq = G[(jq, i - 1)]
+                            fs.append(float(
+                                (y4s - float(pq[1]))
+                                - np.tan(th0) * (x4s - float(pq[0]))))
+                        foot_diag.append(dict(
+                            col=int(i), Mp=int(Mp), jprev=int(jprev),
+                            f_row1=fs[0], f_rowMp=fs[1],
+                            side=("above-top" if fs[0] > 0 and fs[1] > 0
+                                  else "below-row1" if fs[0] < 0
+                                  and fs[1] < 0 else "mixed")))
+                    return 1, (min(max(jprev, 1), Mp - 1)
+                               if Mp > 1 else 1)
 
                 if S.mode == "rec":
-                    jsf = _scan(float(z0[0]), float(z0[1]),
-                                float(np.arctan2(float(z0[3]),
-                                                 float(z0[2]))))
+                    bsf, jsf = _scan(
+                        float(z0[0]), float(z0[1]),
+                        float(np.arctan2(float(z0[3]), float(z0[2]))))
                     for _try in range(4):
-                        ptSA = G[(jsf, i - 1)]
-                        ptSB = G[(jsf + 1, i - 1)]
+                        ptSA = G[(jsf, i - bsf)]
+                        ptSB = G[(jsf + 1, i - bsf)]
                         zt = np.asarray(s_int[0](
                             jnp.asarray(z0),
                             jnp.concatenate([pt1, pt2, ptSA, ptSB])))
                         tv = float(zt[4])
                         if -1e-9 <= tv <= 1.0 + 1e-9:
                             break
-                        jn = _scan(float(zt[0]), float(zt[1]),
-                                   float(np.arctan2(float(zt[3]),
-                                                    float(zt[2]))))
-                        if jn == jsf:
+                        bn, jn = _scan(
+                            float(zt[0]), float(zt[1]),
+                            float(np.arctan2(float(zt[3]),
+                                             float(zt[2]))))
+                        if (bn, jn) == (bsf, jsf):
                             foot_open_n[0] += 1
                             break
-                        jsf = jn
-                    S.d.setdefault("sfoot", []).append(jsf)
+                        bsf, jsf = bn, jn
+                    # (b, j), mirroring `wfoot` — the column offset is
+                    # now part of the recorded decision, so the replay
+                    # freezes WHICH COLUMN the foot came from as well
+                    # as which row.
+                    S.d.setdefault("sfoot", []).append((bsf, jsf))
                 else:
-                    jsf = S.d["sfoot"][sf_ct[0]]
+                    bsf, jsf = S.d["sfoot"][sf_ct[0]]
                 sf_ct[0] += 1
-                ptSA = G[(jsf, i - 1)]
-                ptSB = G[(jsf + 1, i - 1)]
+                ptSA = G[(jsf, i - bsf)]
+                ptSB = G[(jsf + 1, i - bsf)]
                 p = jnp.concatenate([pt1, pt2, ptSA, ptSB])
             else:
                 p = jnp.concatenate([pt1, pt2])
@@ -476,13 +530,51 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 # construction; the clamp COUNT is reported, since a
                 # march that clamps often is one whose foot search is
                 # losing its bracket.
+                # W-5 NOTE (2026-08-13, measured): the block above
+                # DECLARES a clamp of t_ and `clamp_n` is named for it,
+                # but t_ goes into the lerp RAW. Clamping it was TRIED
+                # and REVERTED: W-5 then passes by construction
+                # (overshoot exactly 0.000e+00, 0/1488 nodes) while
+                # W-4 FAILS -- post-wedge mass conservation degrades
+                # 7.93e-03 -> 3.72e-02 and the first-column wedge jump
+                # 3.37e-02 -> 3.83e-01 (x2.1 -> x24.2 of its uniform
+                # baseline). Entropy and h0 are TRANSPORTED, so
+                # truncating the interpolated value asserts something
+                # the streamline did not carry: the bound holds and
+                # the conservation law breaks. W-5 and W-4 are not
+                # independent, and no choice of VALUE at a foot of
+                # t = 12-18 is right, because the FOOT is wrong.
                 t_ = z[4]
                 if S.mode == "rec":
                     tv = float(t_)
                     tstat.append((tv, kst, jnew))
                     if tv < -1e-12 or tv > 1.0 + 1e-12:
                         clamp_n[0] += 1
-                inv = ptSA[4:6] + t_ * (ptSB[4:6] - ptSA[4:6])
+                        # W-5 DIAGNOSTIC (2026-08-13): the SOLVED foot
+                        # left the chord the scan had bracketed. This
+                        # is the DOMINANT failure (measured 20 of 22
+                        # against only 2 unbracketed feet), so the
+                        # defect is NOT in the search — it is in the
+                        # bracket <-> solve fixed point. Record how far
+                        # out, and on which side.
+                        if len(tdiag) < 60:
+                            tdiag.append(dict(
+                                col=int(i), row=int(jnew),
+                                b=int(bsf), j=int(jsf), t=float(tv),
+                                side=("below" if tv < 0.0 else
+                                      "above")))
+                # STORE WHAT THE CELL SOLVED WITH (W-5, 2026-08-13).
+                # The rotational residual forms its transported pair
+                # from clip(t, 0, 1); the node must be written the
+                # SAME way or the mesh carries invariants the cell
+                # never used. Both orders of this mismatch have now
+                # been measured: clamping the storage while the
+                # residual was raw broke W-4 (mass 7.93e-03 ->
+                # 3.72e-02); leaving the storage raw while the
+                # residual clamps left W-5 at 38.85%. Consistency is
+                # the requirement, not the clamp itself.
+                inv = ptSA[4:6] + jnp.clip(t_, 0.0, 1.0) * (
+                    ptSB[4:6] - ptSA[4:6])
                 z = jnp.concatenate([z[:4], inv])
             G[(jnew, i)] = z
         # ---- new top row: the free edge, fed from THIS column
@@ -537,7 +629,11 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                   if S.mode == "rec" else None),
         mesh_keys=(list(G.keys()) if S.mode == "rec" else None),
         foot_clamped_n=clamp_n[0], wall_foot_n=wall_foot_n[0],
-        foot_open_n=foot_open_n[0], tstat=tstat)
+        foot_open_n=foot_open_n[0], tstat=tstat,
+        foot_nobracket_n=foot_nobracket_n[0],
+        sfoot_bhist=dict(collections.Counter(
+            b for b, _ in S.d.get('sfoot', []))),
+        foot_diag=foot_diag[:40], tdiag=tdiag[:60])
     return out, S
 
 

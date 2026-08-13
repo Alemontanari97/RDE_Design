@@ -234,8 +234,30 @@ def make_resid_interior_rot(delta, corrupt_t0=False,
          x2, y2, u2, v2, s2, h2,
          xA, yA, uA, vA, sA, hA,
          xB, yB, uB, vB, sB, hB) = p
-        s4 = sA + t * (sB - sA)
-        h4 = hA + t * (hB - hA)
+        # TRANSPORT CLAMP (W-5 fix, 2026-08-13) — the missing half of
+        # the Ch.17 port. GENO's `inter_solve_gen` clamps the foot
+        # parameter (t_foot = max(0, min(1, t_foot))) BEFORE it builds
+        # the foot state from the transported invariants, and reports
+        # `foot_clamped`; the port took the interpolation and left the
+        # clamp behind, so a foot at t = 12 extrapolated entropy the
+        # inlet never supplied (W-5).
+        #
+        # WHERE the clamp goes is the whole point. Clamping the stored
+        # invariants AFTER the solve was tried and reverted: the cell
+        # had converged with the extrapolated pair, so overwriting it
+        # left the node inconsistent with its own residual and W-4's
+        # mass conservation degraded 7.93e-03 -> 3.72e-02. Here the
+        # clamped pair enters the residual itself, through p4v, so the
+        # cell SOLVES with bounded invariants and stays certified.
+        #
+        # The GEOMETRY keeps the raw t: the foot row below still finds
+        # where the streamline actually came from, and a foot outside
+        # its chord is still counted and reported. What is bounded is
+        # only what is TRANSPORTED, which cannot leave the convex hull
+        # of the data carrying it.
+        tc = jnp.clip(t, 0.0, 1.0)
+        s4 = sA + tc * (sB - sA)
+        h4 = hA + tc * (hB - hA)
         q1 = jnp.sqrt(u1 * u1 + v1 * v1)
         q2 = jnp.sqrt(u2 * u2 + v2 * v2)
         q4 = jnp.sqrt(u4 * u4 + v4 * v4)
@@ -283,8 +305,16 @@ def make_resid_wallbot_rot(delta):
         x2 = xA + D * (xB - xA)
         u2 = uA + D * (uB - uA)
         v2 = vA + D * (vB - vA)
-        s2 = sA + D * (sB - sA)
-        h2 = hA + D * (hB - hA)
+        # TRANSPORT CLAMP (W-5, 2026-08-13): the same rule as the
+        # interior cell. D is the C- foot's position along the chord;
+        # the GEOMETRY (x2, u2, v2) follows it wherever it goes, but
+        # the TRANSPORTED pair may not leave the chord that carries
+        # it. Clamping the interior cell alone took the overshoot
+        # 57.25% -> 38.85% of the inlet span; this is the same
+        # extrapolation on the wall path.
+        Dc = jnp.clip(D, 0.0, 1.0)
+        s2 = sA + Dc * (sB - sA)
+        h2 = hA + Dc * (hB - hA)
         v4 = slope * u4
         q2 = jnp.sqrt(u2 * u2 + v2 * v2)
         q4 = jnp.sqrt(u4 * u4 + v4 * v4)
@@ -735,6 +765,40 @@ def main():
           % (span_s, ov_s, 100 * ov_s / span_s, n_bad, len(mesh)))
     print("  stagnation-enthalpy overshoot %.3e (%.4f %% of its"
           " span)" % (ov_h, 100 * ov_h / span_h))
+    # W-5 DIAGNOSTIC (2026-08-13, reporting only — no verdict row
+    # touched): WHERE are the unbracketed feet? The multi-column
+    # search (b = 1, 2, 3) left W-5 bit-identical, so the foot is not
+    # simply one column upstream. f > 0 at BOTH ends of the column
+    # means it lies ABOVE the top row; f < 0 at both means BELOW row 1
+    # (the wall side); neither is reachable by looking further
+    # upstream.
+    print("  [diag] no-bracket feet: %d ; recorded back-column"
+          " histogram: %s"
+          % (int(out_s4.get("foot_nobracket_n", -1)),
+             out_s4.get("sfoot_bhist", {})))
+    _fd = out_s4.get("foot_diag", [])
+    if _fd:
+        _side = {}
+        for _d in _fd:
+            _side[_d["side"]] = _side.get(_d["side"], 0) + 1
+        print("  [diag] where they lie: %s" % _side)
+        for _d in _fd[:5]:
+            print("  [diag]   col %3d  Mp %3d  jprev %3d  f(row1)"
+                  " %+.3e  f(rowMp) %+.3e  -> %s"
+                  % (_d["col"], _d["Mp"], _d["jprev"], _d["f_row1"],
+                     _d["f_rowMp"], _d["side"]))
+    _td = out_s4.get("tdiag", [])
+    if _td:
+        _ts = [d["t"] for d in _td]
+        _sd = {}
+        for _d in _td:
+            _sd[_d["side"]] = _sd.get(_d["side"], 0) + 1
+        print("  [diag] solved feet OUTSIDE their chord: %d ; sides %s"
+              " ; t in [%.3f, %.3f]"
+              % (len(_td), _sd, min(_ts), max(_ts)))
+        for _d in _td[:6]:
+            print("  [diag]   col %3d row %3d  b=%d j=%3d  t=%+.4f"
+                  % (_d["col"], _d["row"], _d["b"], _d["j"], _d["t"]))
     n_wf = int(out_s4["wall_foot_n"])
     print("  feet taken on the WALL segment (streamline off the"
           " descending wall): %d; feet outside their chord: %d"
