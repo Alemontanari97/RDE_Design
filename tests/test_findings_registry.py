@@ -43,6 +43,8 @@ sys.path.insert(0, HERE)
 from test_claims_lint import parse_registry, _resolve   # noqa: E402
 
 REGISTRY = os.path.join(ROOT, 'docs', 'findings_registry.yaml')
+DERIVE_ART = os.path.join(ROOT, 'validation', 's24_deftw_derive.json')
+DEFTW_SRC = os.path.join(ROOT, 'validation', 'def_twin_falsifier.py')
 
 STATUSES = ('CONFIRMED', 'DOWNGRADED', 'REFUTED', 'DISCHARGED',
             'SUPERSEDED')
@@ -50,6 +52,9 @@ OPEN = ('CONFIRMED', 'DOWNGRADED')
 SEVERITIES = ('high', 'medium', 'low')
 BASE = ('id', 'status', 'severity', 'magnitude', 'source', 'code',
         'mechanism')
+
+
+_LINECOUNTS = {}
 
 
 def _spans(e):
@@ -99,6 +104,22 @@ def check(entries):
         for c, sp in zip(e.get('code', []) or [], _spans(e)):
             if sp is None:
                 v.append('%s: code key %r not path:l1[-l2]' % (eid, c))
+                continue
+            # R13 (convergence repair, MERGE-5): spans RESOLVE —
+            # file exists and the range fits its line count
+            p_, _a_, b_ = sp
+            full = os.path.join(ROOT, p_.replace('/', os.sep))
+            if not os.path.isfile(full):
+                v.append('%s: code span %r — file does not exist'
+                         % (eid, c))
+            else:
+                if full not in _LINECOUNTS:
+                    _LINECOUNTS[full] = sum(
+                        1 for _ in io.open(full, encoding='utf-8',
+                                           errors='replace'))
+                if b_ > _LINECOUNTS[full]:
+                    v.append('%s: code span %r exceeds file length '
+                             '%d' % (eid, c, _LINECOUNTS[full]))
     # (c) the re-mint channel: two OPEN entries overlapping one span
     open_spans = []
     for e in entries:
@@ -121,10 +142,12 @@ def check(entries):
 
 def seeded_rejectors():
     """Each check must FIRE on a doctored entry (rejector demo)."""
+    # R13: demo seeds point at REAL spans (span resolution is now
+    # itself linted, so fictitious paths would trip the resolver)
     good = dict(id='seed-ok', status='CONFIRMED', severity='low',
                 magnitude='"m"', source='docs/findings_registry.yaml',
-                code=['x.py:1-2'], mechanism='seed', owner='here',
-                trigger='never')
+                code=['tests/test_findings_registry.py:1-5'],
+                mechanism='seed', owner='here', trigger='never')
     demos = []
     e1 = dict(good, id='seed-noowner')
     e1.pop('owner')
@@ -136,8 +159,10 @@ def seeded_rejectors():
     demos.append(('discharged-without-evidence', [e2],
                   lambda vs: any('missing' in t and 'evidence' in t
                                  for t in vs)))
-    e3a = dict(good, id='seed-a', code=['y.py:10-20'])
-    e3b = dict(good, id='seed-b', code=['y.py:15-30'])
+    e3a = dict(good, id='seed-a',
+               code=['tests/test_findings_registry.py:10-20'])
+    e3b = dict(good, id='seed-b',
+               code=['tests/test_findings_registry.py:15-30'])
     demos.append(('two-OPEN-same-span (re-mint)', [e3a, e3b],
                   lambda vs: any(t.startswith('RE-MINT') for t in vs)))
     e4 = dict(good, id='seed-anchor',
@@ -145,6 +170,10 @@ def seeded_rejectors():
     demos.append(('dangling-anchor', [e4],
                   lambda vs: any('does not resolve' in t
                                  for t in vs)))
+    e5 = dict(good, id='seed-span',
+              code=['no/such/file_xyz.py:1-2'])
+    demos.append(('unresolvable-code-span (R13)', [e5],
+                  lambda vs: any('does not exist' in t for t in vs)))
     ok = True
     for name, ents, fired in demos:
         vs = check(ents)
@@ -154,6 +183,65 @@ def seeded_rejectors():
                  else 'NOT REJECTED — lint broken'))
         ok &= hit
     return ok
+
+
+def derive_code_identity():
+    """R8 (S25-bis convergence repair, RF-1): recompute the H4 code
+    identity WITHOUT importing the jax-heavy module — the module
+    list is parsed from the def_twin source (single source of
+    truth), the hash algorithm replicated verbatim (outer sha256
+    updated with each file's sha256 digest, tuple order)."""
+    import ast
+    import hashlib
+    src = io.open(DEFTW_SRC, encoding='utf-8').read()
+    mods = None
+    for node in ast.walk(ast.parse(src)):
+        if (isinstance(node, ast.Assign)
+                and any(isinstance(t, ast.Name)
+                        and t.id == 'RECORD_PATH_MODULES'
+                        for t in node.targets)):
+            mods = [e.value for e in node.value.elts]
+    if mods is None:
+        return None
+    h = hashlib.sha256()
+    for fn in mods:
+        with open(os.path.join(ROOT, 'validation', fn), 'rb') as fh:
+            h.update(hashlib.sha256(fh.read()).digest())
+    return h.hexdigest()
+
+
+def derive_staleness_check():
+    """The INTRA-COMMIT staleness channel (RF-1 of the S25-bis diff
+    convergence): the committed derive artifact's tail.code_id must
+    equal the CURRENT tree's code identity — the C4 git link is
+    cross-commit and cannot see a record-path edit landing in the
+    same commit as (or after) the artifact. Seeded rejector: a
+    doctored code_id must MISMATCH."""
+    import json
+    try:
+        art = json.load(io.open(DERIVE_ART, encoding='utf-8'))
+    except OSError as e:
+        print('  derive artifact unreadable (%s) — channel FAIL' % e)
+        return False
+    tail = art.get('tail')
+    if tail is None:
+        print('  derive artifact PRE-H4 (no tail block) — declared '
+              'skip (legacy artifact)')
+        return True
+    cid = derive_code_identity()
+    if cid is None:
+        print('  RECORD_PATH_MODULES not parseable — channel FAIL')
+        return False
+    ok = tail.get('code_id') == cid
+    print('  H4 derive artifact vs tree: tail.code_id %s / tree %s '
+          '-> %s' % (str(tail.get('code_id'))[:12], cid[:12],
+                     'FRESH' if ok else
+                     'STALE (re-run stage_derive on this tree)'))
+    seed_ok = ('0' * 64) != cid
+    print('  seeded rejector [doctored code_id mismatch]: %s'
+          % ('REJECTED (as required)' if seed_ok
+             else 'NOT REJECTED — channel broken'))
+    return ok and seed_ok
 
 
 def run():
@@ -167,11 +255,14 @@ def run():
     for t in vs[:40]:
         print('  VIOLATION ' + t)
     ok_seed = seeded_rejectors()
+    ok_stale = derive_staleness_check()
     n_open = sum(1 for e in entries if e.get('status') in OPEN)
-    ok = not vs and ok_seed
-    print('  %-52s %s (%d entries, %d open, %d violations)'
+    ok = not vs and ok_seed and ok_stale
+    print('  %-52s %s (%d entries, %d open, %d violations; H4 '
+          'artifact channel %s)'
           % ('findings registry lint (R31 findings-as-code)',
-             'PASS' if ok else 'FAIL', len(entries), n_open, len(vs)))
+             'PASS' if ok else 'FAIL', len(entries), n_open, len(vs),
+             'ok' if ok_stale else 'FAIL'))
     return ok
 
 

@@ -73,7 +73,13 @@
   "gm_nonfinite": 0
  },
  "tail": {
-  "code_id": "fcd5e61ae11143105ef2ad994611ce81b8fd6790bed6a2d4cd8e1954d1e7bb0c",
+  "code_id": "063fb796bb458a2be3db6e23fb01c138e04e780f3a480c452e7e1651e741380b",
+  "env": {
+   "jax": "0.11.0",
+   "jaxlib": "0.11.0",
+   "numpy": "2.5.1",
+   "x64": true
+  },
   "f2_geno": 0.014972280462197103,
   "f2_geno_r2": 0.020006534798430065,
   "bar_f2d": 0.02013701802534313,

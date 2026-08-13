@@ -141,10 +141,27 @@ ART_CAMP = os.path.join(HERE, "s24_deftw_campaign.json")
 # depends on. A derive-stage artifact consumed by the campaign stage
 # under a DIFFERENT code identity must REFUSE loudly (the S24 C5
 # staleness-by-code scenario; seeded rejector at campaign open).
+# CLOSURE RULE (R7c, convergence repair MERGE-1): any module the
+# tail path imports must be listed here — closure traced 2026-08-12:
+# rung_logs/cs_stats -> TV/O33/A1/SC/TH only (locus_diagnosis,
+# margin_governor, adaptive_knot_optimize do NOT feed the tail).
 RECORD_PATH_MODULES = ("a1_ideal_march_jax.py", "a1_march_scan.py",
                        "a1_toc_variational_jax.py",
                        "thermotab_c1_jax.py", "o33_bench.py",
                        "def_twin_falsifier.py")
+
+
+def env_fingerprint():
+    """R7 (convergence repair, MERGE-1): the environment STAMP beside
+    code_id — WARN-grade, not refusal-grade (tail consumption is
+    band-based; no env flip capability measured on any tail quantity;
+    promotion trigger registered: first measured env-driven excursion
+    beyond a consuming band promotes WARN -> refuse)."""
+    import numpy as _np
+    import jaxlib
+    return dict(jax=jax.__version__, jaxlib=jaxlib.__version__,
+                numpy=_np.__version__,
+                x64=bool(jax.config.jax_enable_x64))
 
 
 def code_identity():
@@ -948,6 +965,7 @@ def stage_derive(tab, state_fn, solv, cfg):
     finally:
         TV.M_NODES, TV.KNOT_XI = old_cls
     tail = dict(code_id=code_identity(),
+                env=env_fingerprint(),          # R7a: WARN-grade stamp
                 f2_geno=float(lg_g["f2_drift"]),
                 f2_geno_r2=float(rep_g2["d2"]),
                 bar_f2d=float(bar_f2d),
@@ -1050,6 +1068,16 @@ def stage_campaign(tab, state_fn, solv, cfg):
             print("  [H4] code-identity verified %s; seeded "
                   "stale-code rejector FIRED (control PASS)"
                   % tail["code_id"][:12])
+        # R7b: env WARN (loud, non-raise — refusal stays code-keyed;
+        # promotion trigger = first measured env-driven band excursion)
+        env_now = env_fingerprint()
+        env_st = tail.get("env")
+        if env_st is not None and env_st != env_now:
+            print("  [H4 WARN] tail stamped under env %s but running "
+                  "under %s — band-based consumption continues; "
+                  "re-stamp derive at the env-adoption boundary "
+                  "(named duty, BLOCCATO 8 / O5 checklist)"
+                  % (env_st, env_now))
     else:
         print("  [H4] derive artifact PRE-H4 (no tail block) — "
               "ladder-invariant tail will run in-campaign "

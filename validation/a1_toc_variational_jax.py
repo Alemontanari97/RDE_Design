@@ -347,6 +347,10 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
 
     fused_on = os.environ.get("A1_FUSED_CERT", "1") != "0"
     colexec_on = os.environ.get("A1_COLEXEC", "1") != "0"
+    # R3 (convergence repair, RF-6): A1_FUSED_CERT=0 is honored by
+    # the PER-CELL sites only — the column executor always inlines
+    # the fused entry; the full legacy arbitration arm requires BOTH
+    # flags 0 (as m0/m12gate/m5gate pin them).
 
     def account(kind, step, sc, pt=None, m=None):
         """Shared per-cell host accounting (M5c refactor, S25-bis):
@@ -1129,6 +1133,13 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
     else:
         entry = run
     if os.environ.get("A1_PLAN_ARGS", "1") == "0":
+        if vg_batch:
+            # R2 (convergence repair, RF-3b): the batched entry
+            # REQUIRES the args engine — a constants-baked batched
+            # build would re-bake the plan per segment, the exact
+            # churn class M4 deleted (declared contract enforced)
+            raise RuntimeError(
+                "vg_batch requires the args engine (A1_PLAN_ARGS=1)")
         # LEGACY constants-baked build (arbitration path of the M4
         # args-vs-constants gate): same body, ops closed over.
         return jax.jit(lambda X: entry(X, ops_j))
@@ -1210,6 +1221,12 @@ def record_ctx_tag(tab, cfg, state_fn, solvers):
     h.update(b"" if KNOT_XI is None
              else np.asarray(KNOT_XI, float).tobytes())
     h.update(str(A1.N_NEWTON).encode())
+    # R4 (convergence repair, RF-2): the ACTIVE RECORDER is part of
+    # the record identity (records are recorder-dependent of record,
+    # registry row record-path:cert-verdict-recorder-dependence) —
+    # the registered never-mix discipline becomes key-enforced.
+    h.update(b"colexec:%d"
+             % int(os.environ.get("A1_COLEXEC", "1") != "0"))
     return h.hexdigest()
 
 
@@ -1307,16 +1324,23 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
 
     H3 (S25-bis, campaign rung-boundary dedup): preplan=(out, plan) —
     the CALLER's already-certified record of W0 (argument-identical
-    contract: same tab/cfg/state_fn/solvers/class knobs, all carried
-    by the memo key) pre-loads the one-slot record memo, so the seg-0
-    duplicate record is consumed as a memo hit and the EXISTING M1
-    first-hit controls (fresh-record bitwise equality + perturbed-W
-    miss) gate the reuse; with A1_RECORD_MEMO=0 the preplan is
-    ignored (declared, legacy path records fresh). field_records=True
-    makes in-walk records carry return_field cols so the returned
-    last certified record is reusable for chain/field consumers.
-    The result dict gains last_cert = dict(W, out, plan) — the LAST
-    certified record of the walk (refs, read-only contract) — and
+    contract: same tab/cfg/state_fn/solvers/class knobs) pre-loads
+    the one-slot record memo, so the seg-0 duplicate record is
+    consumed as a memo hit and the M1 first-hit controls
+    (fresh-record bitwise equality + perturbed-W miss), FORCED on a
+    preplan consume regardless of A1_MEMO_PROBE (R5 repair — the
+    probe tax is exactly the one record the preplan saved), gate the
+    reuse; KEY-COVERAGE NARROWING of record (R4 repair, RF-2):
+    solvers enter the key by TYPE NAME only — solver-CONTENT
+    identity rests on the first-hit bitwise probe plus same-process
+    object discipline (all in-tree callers pass the same solv
+    object); the active-recorder flag IS in the key. With
+    A1_RECORD_MEMO=0 the preplan is ignored (declared, legacy path
+    records fresh). field_records=True makes in-walk records carry
+    return_field cols so the returned last certified record is
+    reusable for chain/field consumers. The result dict gains
+    last_cert = dict(W, out, plan) — the LAST certified record of
+    the walk (DEEP-COPIED at stash, R6 repair: caller-safe) — and
     record_preplan (1 iff a caller preplan was loaded).
 
     margin_factory (S22, F1 governor — the A' FORMULATION entry, not
@@ -1440,7 +1464,12 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 out_rec, plan = rec_slot["out"], rec_slot["plan"]
                 rec_slot.update(key=None, out=None, plan=None)
                 rec_counts["cached"] += 1
-                if probe["armed"] and probe["eq"] == 0:
+                # R5 (convergence repair, B-F5i): a PREPLAN consume
+                # is control-gated even under A1_MEMO_PROBE=0 — the
+                # probe tax is exactly the one record the preplan
+                # saved, so the combination is never net-negative
+                if ((probe["armed"] or rec_counts["preplan"])
+                        and probe["eq"] == 0):
                     o2, p2 = run_toc_record(W, tab, cfg,
                                             state_fn=state_fn,
                                             solvers=solvers)
@@ -1596,7 +1625,10 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             # returning that same base as "certified".
             raise
         W_cert = W.copy()
-        last_cert.update(W=W.copy(), out=out_rec, plan=plan)   # H3
+        # H3 + R6 (convergence repair, B-F5ii): deep-copied stash —
+        # caller-safe against any later in-driver mutation
+        last_cert.update(W=W.copy(), out=copy.deepcopy(out_rec),
+                         plan=copy.deepcopy(plan))
         # P2 production path (S18): whole-loop jitted bucketed replay
         # built ONCE per segment (fixed plan); every objective/
         # gradient call is a compiled call — no per-eval re-trace
@@ -1681,6 +1713,12 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                 h = np.array([(_gsj[i][i] - _gsj[n + i][i])
                               / (2.0 * steps_j[i])
                               for i in range(n)])
+                # R1 (convergence repair, RF-3): guard parity with
+                # the sequential block below — lanes already counted
+                # in vg_batch_rows, so no re-increment here
+                bad_j = ~np.isfinite(h)
+                if bad_j.any():
+                    h = np.where(bad_j, 0.0, h)
             else:
                 h = np.empty(n)
                 for i in range(n):
@@ -1735,6 +1773,13 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
             _vsh, _gsh = vg_batch_rows(runvgb, val_grad, PH,
                                        nf_events)
             n_vg_batch_lanes += n
+            # R1 (convergence repair, RF-3): guard parity with the
+            # sequential branch — a residually nonfinite row falls
+            # back to g_base (zero curvature column); lanes already
+            # counted in vg_batch_rows, no re-increment
+            for r_ in range(n):
+                if not np.all(np.isfinite(_gsh[r_])):
+                    _gsh[r_] = g_base
             Hw = (_gsh - g_base[None, :]).T / dHs[None, :]
         else:
             Hw = np.empty((n, n))
@@ -1822,8 +1867,9 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                         "P3(ii): accepted iterate not certified "
                         "(worst %.3e)" % out_new["cert_worst"])
                 seg_state["last_rec"] = xk_now.copy()
-                last_cert.update(W=xk_now.copy(), out=out_new,
-                                 plan=plan_new)           # H3
+                last_cert.update(W=xk_now.copy(),      # H3 + R6
+                                 out=copy.deepcopy(out_new),
+                                 plan=copy.deepcopy(plan_new))
                 if memo_on:
                     # M1 stash: this certified accepted-iterate record
                     # is exactly what the next segment top would
