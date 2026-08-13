@@ -214,3 +214,39 @@ inherits. NOTHING in the corpus should be citable without an ID.)
  - The scaffold is model-agnostic: it encodes the working discipline
    (gate, R4, sufficiency, pristine) as checkable structure rather
    than as prompt lore.
+
+## §6 Amendment of record (2026-08-13, S-ORDINE session; dated, bounded)
+
+Three layers added to the §1 architecture, plus the registry map:
+
+- **L7 — validation record layer**: evidence + adjudication documents
+  (advisories, audits, panels, dispatches, session logs, raws) living
+  flat in `validation/`, indexed by `validation/ADVISORY_INDEX.md`
+  (one row per document: class, status, plan-anchor; raws dirs as
+  block rows; status enum: OF-RECORD [(living)], SUPERSEDED-BY,
+  CONSUMED[-with-residue], RAW, DERIVED, PENDING-CONTRACT,
+  UNRESOLVED; index authoritative for STATUS, file for CONTENT).
+  Never normative against L1-L2 theory docs.
+- **L8 — literature layer**: FOUR roots (repo `literature/`, parent
+  dir, `GENO/` [read-only], `literature_review/`) registered in
+  `docs/literature_registry.yaml` with honest read-status
+  (READ-INTEGRAL / READ-PARTIAL[(triaged)] / UNREAD [no summary
+  allowed] / WANTED [owner required]); PDFs are untracked binaries
+  by declared rule.
+- **L9 — governance layer**: CLAUDE.md (rules), memory (harness-side),
+  `docs/glossary.yaml` (namespace-qualified codenames),
+  `docs/flag_registry.yaml` (A1_* env flags, env-read census).
+
+REGISTRY MAP (typed, machine-linted; strict-subset schema family):
+`docs/rde_nozzle_claims_registry.yaml` (claims -> carriers, lint xv);
+`docs/findings_registry.yaml` (findings/gaps/conditionals, lint xix
+incl. anchor-resolution + choice families); `docs/choice_ledger.yaml`
+(algorithmic choice adjudications); `docs/literature_registry.yaml`
+(lint xxii); `docs/glossary.yaml` (lint xxiii);
+`docs/flag_registry.yaml` (census fold in lint xx);
+`validation/ADVISORY_INDEX.md` (lint xx). History discipline:
+`docs/rde_nozzle_PROGRESS.md` = ORA/NEXT/BLOCCATO + ONE consolidated
+census table (edited in place, SR-7); history verbatim in
+`docs/rde_nozzle_PROGRESS_ARCHIVE.md` (append-only, SR-10).
+Standing rules SR-1..SR-12 of record:
+`validation/ADVISORY_SORDINE_plan_2026-08-13.md` §5.

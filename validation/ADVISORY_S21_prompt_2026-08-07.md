@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-11_S21_order.md.** Session prompt fully executed by S21 (F0 order+instrumentation, closed in one session). Full text preserved (R4).
+
 # S21 OPENING PROMPT OF RECORD (prepared 2026-08-07, inter-session
 # window; paste as the S21 session order. Advisory, untracked.)
 

@@ -58,6 +58,15 @@ Tests (see each module's docstring):
   (xvii) test_ondemand_carriers on-demand carrier staleness accounting +
                                 env-conditional execution (C4 closure)
                                 [ondemand tier]
+  (xx)   test_advisory_index    validation/ADVISORY_INDEX.md lint (S-ORDINE
+                                L7): file<->row bijection, status enum,
+                                orphan/marker ratchets + A1_* flag-registry
+                                census; the (xxi) anchor-resolution family
+                                folds into (xix) per plan repair R-1
+  (xxii) test_literature_registry docs/literature_registry.yaml lint:
+                                schema, honesty rules, four-root coverage
+  (xxiii) test_glossary         docs/glossary.yaml lint: pinned collisions,
+                                pointer resolution, token-resolution ratchet
         test_examples [slow]    live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
@@ -90,7 +99,13 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xv)  claims registry lint', 'test_claims_lint'),
         ('(xvi) T3-QS sweep-protection carrier', 'test_t3qs'),
         ('(xix) findings registry lint (R31)',
-         'test_findings_registry')]
+         'test_findings_registry'),
+        ('(xx)  advisory-index lint (S-ORDINE)',
+         'test_advisory_index'),
+        ('(xxii) literature registry lint (4 roots)',
+         'test_literature_registry'),
+        ('(xxiii) glossary lint (collision+ratchet)',
+         'test_glossary')]
 RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]',
           'test_rigor_dualroute'),
          ('(xviii) X-IVXC interval certificate [rigor tier]',

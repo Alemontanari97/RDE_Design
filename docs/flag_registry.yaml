@@ -1,0 +1,552 @@
+# A1_* ARBITRATION-FLAG REGISTRY — S-ORDINE T2 census row T2-bis(b).
+#
+# PURPOSE: one row per env-read A1_* flag that actually exists in the
+# committed code, so "does flag X exist / what does it default to /
+# which gate exercises it" never again requires a fresh grep-and-read.
+#
+# CENSUS RULE (pinned, REF-16; REPAIRED 2026-08-13, S-ORDINE T2 lint
+# step): a flag EXISTS iff it is READ from the environment. The
+# census pattern MUST tolerate a line break / whitespace after the
+# opening parenthesis — the original single-line grep missed FOUR
+# line-wrapped reads (see the repair note below). Census pattern of
+# record (implemented by lint group (xx),
+# tests/test_advisory_index.py, over validation/*.py + tests/*.py):
+#   os\.(environ\.get|getenv)\(\s*["']A1_[A-Z0-9_]+     (re.DOTALL-
+#   equivalent: \s* spans newlines)
+# Bare string mentions of "A1_..." in docstrings/comments/reporting
+# strings are DECLARED OUT OF SCOPE — they made both failure
+# directions unfalsifiable (a flag could look documented without
+# being read, or read without being documented) and are excluded from
+# this registry's counts and rows.
+#
+# CENSUS RESULT OF RECORD (2026-08-13, whitespace-tolerant pattern):
+# 59 read-site occurrences across 10 files, ALL in validation/*.py,
+# ZERO in tests/*.py:
+#   a1_toc_variational_jax.py 13, engine_speed_bench.py 16,
+#   def_twin_falsifier.py 12, adaptive_knot_optimize.py 5,
+#   o33_bench.py 4, margin_governor.py 3, o32_mesh_convergence.py 2,
+#   locus_diagnosis.py 2, a1_ideal_march_jax.py 1,
+#   a1_loopspeed_bench.py 1.
+# These 59 occurrences collapse to 45 UNIQUE flag names (some flags
+# have >1 read site: A1_COLEXEC x2, A1_VG_MEMO x3, A1_TOCV_OPT x2,
+# A1_GENO_CASE x2, A1_SPDB_GATE_NI/NW/DA x4 each). 45 rows below.
+#
+# CENSUS REPAIR OF RECORD (2026-08-13, found by lint (xx) at its
+# first run): the original single-line grep census declared 55/41 and
+# MISSED four LINE-WRAPPED reads — A1_LOCD_REJ + A1_LOCD_BASE
+# (locus_diagnosis.py, a file the 9-file census list omitted
+# entirely), A1_DEFTW_ATLAS (def_twin_falsifier.py) and A1_MGOV_BASE
+# (margin_governor.py), each written as os.environ.get( <newline>
+# "A1_...", default). Their four rows are appended at the end of this
+# file; the whitespace-tolerant pattern above is the pinned census
+# rule of record from this date.
+#
+# BIJECTION (stated both directions):
+#   -> every one of the 59 census occurrences is listed under some
+#      row's read_sites (sum of read_sites counts below = 59, checked
+#      against the lint (xx) census, see per-row counts);
+#   <- every row has >= 1 read_sites entry (none minted from a name
+#      alone; the "known population to verify" list in the S-ORDINE
+#      prompt was NOT assumed, it was independently reproduced by the
+#      census — all 7 named flags appear, plus 38 more the census
+#      found that the prompt did not name: A1_GENO_CASE, A1_RECORD_
+#      MEMO, A1_RKG_CERTDIAG, A1_TOCV_OPT, the A1_AKN_* family (5),
+#      the A1_DEFTW_* family (10 incl. A1_DEFTW_ATLAS), the A1_SPDB_*
+#      family (7 incl. the x4 read sites), A1_MGOV_STAGE +
+#      A1_MGOV_BASE, the A1_O32_* family (2), the A1_O33_* family
+#      (4), the A1_LOCD_* pair (2)).
+#
+# ARBITRATION vs INSTANCE/STAGE KNOBS (declared, not re-litigated):
+# only 7 of the 45 rows are genuine record-path ARBITRATION flags
+# (they select between behaviorally-different code paths inside the
+# driver's record/replay/margin machinery): A1_COLEXEC, A1_FUSED_CERT,
+# A1_PLAN_ARGS, A1_VMAP_HESS, A1_RECORD_MEMO, A1_VG_MEMO, A1_MEMO_PROBE.
+# The other 34 are standalone-script instance parameters (mesh/case
+# geometry), stage selectors (which leg of a multi-stage __main__ to
+# run), budget knobs (rep counts, cycle caps, wall-clock caps), or
+# artifact-path knobs (where to dump a JSON for post-hoc diagnosis).
+# They do not combine with the arbitration flags in gated logic, so
+# untested_cartesian is scoped to the 7 arbitration rows plus the one
+# reporting-only flag (A1_CERT_ARGMAX) that the docstring itself
+# declares enters no gate.
+#
+# UNTESTED CARTESIAN PRODUCT (do not re-mint): the S25-bis findings
+# registry already carries this row —
+#   docs/findings_registry.yaml:167 id structure:monolithic-driver-module
+#   "growing arbitration-flag matrix (A1_COLEXEC x A1_FUSED_CERT x
+#    A1_PLAN_ARGS x A1_VMAP_HESS x memos) tested on gated pairs,
+#    cartesian product DECLARED untested"
+# Every row below with untested_cartesian: true cites that row rather
+# than re-deriving the claim; the per-row note adds the SPECIFIC
+# untested cell(s) this census found (finer-grained than the registry
+# row's blanket declaration in three places: A1_VMAP_HESS's ==1 branch
+# is never reached by ANY committed script, not merely under-combined;
+# A1_RECORD_MEMO and A1_VG_MEMO are always moved TOGETHER, never
+# independently; A1_VG_MEMO has two read sites — margin_governor.py
+# and def_twin_falsifier.py's own margin factories — that no gate
+# reaches at all).
+#
+# LINT: none wired yet. This is a census artifact (S-ORDINE T2-bis(b));
+# a machine check (e.g. tests/test_flag_registry.py re-running the
+# grep above and diffing against this file's flag list) is a natural
+# S-ORDINE follow-up but is OUT OF SCOPE for this file (single-file
+# task) and is not created here.
+#
+# SCHEMA per entry:
+#   flag              A1_* name (census-verified read, not assumed)
+#   default           the code's actual default arg to .get(), quoted;
+#                      "None (no second arg)" when .get() takes one arg
+#   meaning            one line, from the read site's docstring/context
+#   read_sites         path:line list, one per census occurrence
+#   covering_gate      which gate/test exercises it (m0/m4gate/m5gate/
+#                      m5cgate/m6gate/m12gate/h3gate, all ONDEMAND-tier
+#                      carriers in validation/engine_speed_bench.py,
+#                      invoked via tests/test_ondemand_carriers.py —
+#                      no FAST/RIGOR/SLOW run_all group reaches any of
+#                      them); "none" when no committed script sets it
+#   tested_pairs       which flag combinations the gates actually run,
+#                      in prose (from the gate scripts' own text)
+#   untested_cartesian true/false
+#   note               required when untested_cartesian: true (cites
+#                      the registry row); optional detail otherwise
+#
+entries:
+
+- flag: "A1_COLEXEC"
+  default: "\"1\""
+  meaning: "select the per-cell legacy recorder (=0) vs the per-column compiled executor (=1, M5c) for the march/cert record path; folded into the record-context hash key (R4: the active recorder is part of record identity)"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:349"
+    - "validation/a1_toc_variational_jax.py:1229"
+  covering_gate: "m0/m12gate/m5gate PIN it to \"0\" (baseline / per-cell attribution, set BEFORE walk_start); m5cgate A/Bs \"0\" vs \"1\" directly (dec-vector bitwise, wall/seeds/min_margin inside the Newton-floor band, doctored-stack first-offender, near-seam floor-hi/floor-lo pair); m4gate/m6gate/h3gate never touch it and run at the unset default \"1\""
+  tested_pairs: "m5cgate varies COLEXEC in {0,1} with PLAN_ARGS/FUSED_CERT/RECORD_MEMO/VG_MEMO/VMAP_HESS all held at their unset defaults (1,1,1,1,0) — a single-axis slice, not a joint sweep"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module; COLEXEC=1 combined with FUSED_CERT=0, PLAN_ARGS=0, or memos=0 is never exercised by any committed gate"
+
+- flag: "A1_FUSED_CERT"
+  default: "\"1\""
+  meaning: "gate whether the PER-CELL cert path uses the fused solve_cert entry; per R3 (RF-6) the flag is honored only at per-cell sites — the column executor always inlines the fused entry regardless of this flag's value"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:348"
+  covering_gate: "m5gate A/Bs \"0\" vs the unset default \"1\" (fused-vs-legacy wall bitwise + cert_worst equality + timing), always under the m5gate attribution pin A1_COLEXEC=0; no other gate touches it"
+  tested_pairs: "{COLEXEC=0, FUSED_CERT=0} vs {COLEXEC=0, FUSED_CERT=1} inside m5gate; the FUSED_CERT x COLEXEC=1 cell is never exercised (m5gate pins COLEXEC=0 by design, m5cgate never varies FUSED_CERT)"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module; FUSED_CERT=0 at COLEXEC=1 is a specific untested cell this census located"
+
+- flag: "A1_PLAN_ARGS"
+  default: "\"1\""
+  meaning: "select the traced args-engine build (plan as jitted args, =1) vs the legacy constants-baked closure (=0); vg_batch REQUIRES the args engine and raises RuntimeError if PLAN_ARGS=0 is combined with vg_batch=True"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1135"
+  covering_gate: "m0/m12gate PIN it to \"0\" (pre-M4 baseline attribution); m4gate A/Bs \"0\" vs the unset default \"1\" directly (Newton-floor equivalence, replay fidelity vs record, O3.1 leak detector through the args engine, warm-path band, engine-cache re-bind, V2 property rejector); m5gate/m5cgate/m6gate/h3gate never touch it and run at the unset default \"1\""
+  tested_pairs: "m4gate varies PLAN_ARGS in {0,1} with COLEXEC/FUSED_CERT/memos/VMAP_HESS held at their unset defaults (1,1,1,1,0)"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module; PLAN_ARGS=0 combined with COLEXEC=1 (the M5c executor under the legacy constants build) is never exercised"
+
+- flag: "A1_VMAP_HESS"
+  default: "\"0\""
+  meaning: "opt-in switch for the M6 batched-vmap value_and_grad Hessian-row engine inside run_trsqp's FD blocks; GATE-REJECTED as default 2026-08-12 (vmapped adjoint diverges 5.6e-8 rel from sequential, dH = 18% of Hessian scale = 5-6x the FD scheme's own asymmetry); default sequential everywhere, candidate stays opt-in for the F2 re-adjudication"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1652"
+  covering_gate: "m6gate exercises the UNDERLYING vg_batch mechanism, but by constructing the batched entry directly through the vg_batch=True API parameter (TV.make_run_toc_scan_jit(..., vg_batch=True)) — it never sets os.environ[\"A1_VMAP_HESS\"]. A repo-wide grep for an assignment to this name in validation/*.py returns ZERO hits: the env-gated branch at line 1652 is read at its default \"0\" by every committed script; nothing ever sets it to \"1\""
+  tested_pairs: "none at the env-flag level — the mechanism m6gate measures is reached by API bypass, not by the flag; the flag's own ==\"1\" branch is dark to every committed gate/test"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module (VMAP_HESS is explicitly one of the cited axes); stronger than the registry row's blanket claim — this is not merely an under-combined axis, the flag's own armed state is never reached by anything committed"
+
+- flag: "A1_RECORD_MEMO"
+  default: "\"1\""
+  meaning: "one-slot segment-boundary record memo (M1, S25 engine speed): bit-transparent — decides WHO computes an already-deterministic quantity; legacy path kept runnable via =0"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1390"
+  covering_gate: "m12gate A/Bs \"0\" vs \"1\", always moved TOGETHER with A1_VG_MEMO (never varied independently), under the m12gate attribution pins A1_PLAN_ARGS=0 / A1_COLEXEC=0 set before walk_start"
+  tested_pairs: "{RECORD_MEMO=0, VG_MEMO=0} vs {RECORD_MEMO=1, VG_MEMO=1}, both arms at PLAN_ARGS=0/COLEXEC=0; the two mixed cells (RECORD_MEMO=0,VG_MEMO=1) and (RECORD_MEMO=1,VG_MEMO=0) are never exercised, nor is either flag varied at PLAN_ARGS=1/COLEXEC=1"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module (\"x memos\" axis); finer gap this census found: the two memo flags are never split, only moved as a pair"
+
+- flag: "A1_VG_MEMO"
+  default: "\"1\""
+  meaning: "one-slot value+grad memo: scipy requests value and jacobian as separate callbacks at the same u, the memo bit-transparently dedups the duplicated compiled execution; THREE independent read sites — the main driver plus each of margin_governor.py's and def_twin_falsifier.py's own standalone margin factories"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1391"
+    - "validation/def_twin_falsifier.py:725"
+    - "validation/margin_governor.py:219"
+  covering_gate: "m12gate A/Bs \"0\" vs \"1\" but ONLY at the a1_toc_variational_jax.py:1391 site (see A1_RECORD_MEMO for the pairing/pin detail); margin_governor.py:219 and def_twin_falsifier.py:725 belong to THOSE scripts' own standalone margin factories (own __main__ stage pipelines: A1_MGOV_STAGE, A1_DEFTW_STAGE) and are never reached by any engine_speed_bench.py gate"
+  tested_pairs: "see A1_RECORD_MEMO row for the one site that is gated; the other two read sites have NO gate-exercised \"=0\" run at all"
+  untested_cartesian: true
+  note: "cites docs/findings_registry.yaml:167 structure:monolithic-driver-module for the driver's own site's combinatorics; two of three read sites (margin_governor.py, def_twin_falsifier.py) are gate-dark entirely, a gap the registry row's driver-scoped wording does not cover"
+
+- flag: "A1_CERT_ARGMAX"
+  default: "None (no second arg to .get(); compared to \"1\")"
+  meaning: "arm argmax-cell/argmin-margin localization fields in the cert dict (S21 T5 instrumentation, panel O4 / audit C-1(i)); the module's own comment declares it \"ADDITIVE and DEFAULT-OFF ... the fields are reporting-only and enter no gate\""
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:127"
+  covering_gate: "none — no committed script assigns os.environ[\"A1_CERT_ARGMAX\"]; every gate run exercises it only at the default OFF state, by the docstring's own design"
+  tested_pairs: "none"
+  untested_cartesian: false
+  note: "reporting-only, self-declared out of the record path and out of every gate; not part of the structure:monolithic-driver-module axis list"
+
+- flag: "A1_MEMO_PROBE"
+  default: "\"1\""
+  meaning: "arm the fresh-record-hit control-pair probe (bitwise-equality + perturbed-key-miss checks) that runs on the first memo hit each walk; comments note it CAN be disabled per stage (A1_MEMO_PROBE=0) but the H3 preplan first-hit controls fire regardless (R5 repair)"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1409"
+  covering_gate: "none sets it to \"0\" anywhere in validation/*.py (grep for an assignment returns zero hits); every gate, including m12gate, exercises it only at the default armed \"1\""
+  tested_pairs: "none"
+  untested_cartesian: false
+  note: "control-arming flag, not one of the cited arbitration axes; its own =0 state is simply untested by anything committed (declared here, not folded into structure:monolithic-driver-module)"
+
+- flag: "A1_REJ_SAVE"
+  default: "None (no second arg to .get())"
+  meaning: "when set to a path, dump REJECTED designs to JSON (T5, S21) for a post-hoc three-way locus retro-diagnosis"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1431"
+  covering_gate: "none — never set by any committed gate/test; validation/locus_diagnosis.py's own comments describe it as a MANUAL regeneration step (\"run the [X-AKNO] regeneration with A1_REJ_SAVE first\")"
+  tested_pairs: "none"
+  untested_cartesian: false
+  note: "artifact-path knob, outside the arbitration matrix"
+
+- flag: "A1_RKG_CERTDIAG"
+  default: "None (no second arg to .get(); compared to \"1\")"
+  meaning: "OPTIONAL certifiability diagnostic (S20): re-records a rejected design with N_NEWTON raised 10x, floor UNCHANGED, to distinguish genuine non-convergence from a trip-cap budget miss; own comment: \"Reported, never acted on here\""
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1548"
+  covering_gate: "none — never set by any committed gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+  note: "reporting-only diagnostic, outside the arbitration matrix"
+
+- flag: "A1_TOCV_OPT"
+  default: "None (no second arg to .get(); compared to \"1\")"
+  meaning: "gate the OPT stage (TR-SQP from a perturbed feasible start + GENO oracle + O3 transversality instance) inside a1_toc_variational_jax.py's own __main__ verification; staged separately for budget control"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:2248"
+    - "validation/a1_toc_variational_jax.py:2514"
+  covering_gate: "none — the module's own selftest stage flag, not read or set by any engine_speed_bench.py gate; manual opt-in only"
+  tested_pairs: "none"
+  untested_cartesian: false
+  note: "module self-test stage selector, outside the arbitration matrix"
+
+- flag: "A1_GENO_CASE"
+  default: "None (no second arg to .get(); falls back to os.path.join(TEMP, \"a1_geno_ideal_ni21\"))"
+  meaning: "override the scratch directory for the GENO WSL end-to-end reference case used by the ideal-march twin's S4 stage / forward anchor"
+  read_sites:
+    - "validation/a1_ideal_march_jax.py:1344"
+    - "validation/a1_loopspeed_bench.py:216"
+  covering_gate: "none — manual scratch-path override; both host scripts run their GENO-comparison stage whenever executed (GENO-availability permitting), not gated pass/fail by this flag"
+  tested_pairs: "none — single scalar path knob, not combined with any other A1_* flag"
+  untested_cartesian: false
+  note: "standalone path override, outside the arbitration matrix"
+
+- flag: "A1_AKN_STAGE"
+  default: "\"all\""
+  meaning: "stage selector for adaptive_knot_optimize.py's own __main__ ([X-AKNO] adaptive knot class driver): \"selftest\" | \"all\""
+  read_sites:
+    - "validation/adaptive_knot_optimize.py:335"
+  covering_gate: "none from engine_speed_bench.py; own script's manual stage control"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_AKN_MAXCYC"
+  default: "\"4\""
+  meaning: "max outer adaptive-refinement cycles (declared budget knob, never a tolerance)"
+  read_sites:
+    - "validation/adaptive_knot_optimize.py:336"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_AKN_MAXINS"
+  default: "\"3\""
+  meaning: "max knot insertions per cycle (declared budget knob)"
+  read_sites:
+    - "validation/adaptive_knot_optimize.py:337"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_AKN_BUDGET_S"
+  default: "\"5400\""
+  meaning: "overall wall-clock budget (s) for the adaptive knot session"
+  read_sites:
+    - "validation/adaptive_knot_optimize.py:338"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_AKN_CERTLIM_SAVE"
+  default: "None (no second arg to .get())"
+  meaning: "when set, persist the certifiability-limited-stop returned certified base (W, xi, cycle) to JSON, for the C-1 three-way locus retro-diagnosis (S22 T2); additive, env-gated, default off"
+  read_sites:
+    - "validation/adaptive_knot_optimize.py:537"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_YT"
+  default: "\"1.0\""
+  meaning: "throat half-height for the declared F1b DEF-twin instance (S24 gate [P1]); every CASE entry env-overridable"
+  read_sites:
+    - "validation/def_twin_falsifier.py:122"
+  covering_gate: "none from engine_speed_bench.py (its gates mutate their OWN DT.CASE[\"NI\"/\"Nw\"/\"da_deg\"] via A1_SPDB_GATE_*, see those rows, not this one); consumed at import time by def_twin_falsifier.py's own leg1/derive/campaign stage pipeline"
+  tested_pairs: "none — scalar instance parameter, not combined with the arbitration flags"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_RTU"
+  default: "\"1.5\""
+  meaning: "upstream throat radius for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:123"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_RTD"
+  default: "\"0.45\""
+  meaning: "downstream throat radius for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:124"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_EPS"
+  default: "\"30.0\""
+  meaning: "area ratio for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:125"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_XTRONC"
+  default: "\"8.0\""
+  meaning: "truncation length for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:126"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_NI"
+  default: "\"21\""
+  meaning: "march node count for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:127"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_NW"
+  default: "\"60\""
+  meaning: "wall station count for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:128"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_DA"
+  default: "\"0.5\""
+  meaning: "angular march step (deg) for the DEF-twin instance"
+  read_sites:
+    - "validation/def_twin_falsifier.py:129"
+  covering_gate: "none from engine_speed_bench.py; own script instance parameter"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_M"
+  default: "str(TV.M_NODES) (dynamic; current a1_toc_variational_jax.M_NODES value, \"8\")"
+  meaning: "interior+lip wall design-node count for the DEF-twin instance, overridable independently of the main driver module's M_NODES"
+  read_sites:
+    - "validation/def_twin_falsifier.py:131"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_DEFTW_STAGE"
+  default: "\"leg1\""
+  meaning: "stage selector for def_twin_falsifier.py's own __main__: \"leg1\" | \"derive\" | \"campaign\""
+  read_sites:
+    - "validation/def_twin_falsifier.py:1491"
+  covering_gate: "none from engine_speed_bench.py; own script's manual stage control"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_REC_REPS"
+  default: "\"3\""
+  meaning: "repetition count for RECORD-mode timing medians (declared budget knob, never a tolerance)"
+  read_sites:
+    - "validation/engine_speed_bench.py:69"
+  covering_gate: "mode_measure(\"record\") in engine_speed_bench.py"
+  tested_pairs: "none — scalar rep count, not an arbitration axis"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_FAST_REPS"
+  default: "\"5\""
+  meaning: "repetition count for FAST-mode timing medians / m4gate's own args-vs-constants A/B rep loop"
+  read_sites:
+    - "validation/engine_speed_bench.py:70"
+  covering_gate: "mode_measure(\"fast\"), m4gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_GATE_SEGS"
+  default: "\"3\""
+  meaning: "segment count for the short arbitration walk shared by m12gate / mbwalk / h3gate (_short_walk helper)"
+  read_sites:
+    - "validation/engine_speed_bench.py:71"
+  covering_gate: "m12gate, mode_mbwalk, h3gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_GATE_ITER"
+  default: "\"4\""
+  meaning: "per-segment TR-SQP iteration cap for the same short arbitration walk"
+  read_sites:
+    - "validation/engine_speed_bench.py:72"
+  covering_gate: "m12gate, mode_mbwalk, h3gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_GATE_NI"
+  default: "\"11\""
+  meaning: "gate march-net node count (declared resolution knob, not a tolerance): a coarser net keeps the memo/preplan/executor A/B pairs affordable; the property under test is declared resolution-independent"
+  read_sites:
+    - "validation/engine_speed_bench.py:296"
+    - "validation/engine_speed_bench.py:516"
+    - "validation/engine_speed_bench.py:684"
+    - "validation/engine_speed_bench.py:976"
+  covering_gate: "m12gate (296), mode_mbwalk (516), m5cgate mild leg only (684 — the m5cgate \"full\" leg uses the pristine DT.CASE net, untouched by this env var), h3gate (976)"
+  tested_pairs: "none — mesh-resolution knob, not an arbitration flag"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_GATE_NW"
+  default: "\"30\""
+  meaning: "gate march-net wall-station count, paired with A1_SPDB_GATE_NI at each of the same four sites"
+  read_sites:
+    - "validation/engine_speed_bench.py:297"
+    - "validation/engine_speed_bench.py:517"
+    - "validation/engine_speed_bench.py:685"
+    - "validation/engine_speed_bench.py:977"
+  covering_gate: "same as A1_SPDB_GATE_NI: m12gate, mode_mbwalk, m5cgate mild leg, h3gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_SPDB_GATE_DA"
+  default: "\"1.0\""
+  meaning: "gate march-net angular step (deg), paired with A1_SPDB_GATE_NI/NW at each of the same four sites"
+  read_sites:
+    - "validation/engine_speed_bench.py:298"
+    - "validation/engine_speed_bench.py:518"
+    - "validation/engine_speed_bench.py:686"
+    - "validation/engine_speed_bench.py:978"
+  covering_gate: "same as A1_SPDB_GATE_NI: m12gate, mode_mbwalk, m5cgate mild leg, h3gate"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_MGOV_STAGE"
+  default: "\"derive\""
+  meaning: "stage selector for margin_governor.py's own __main__ ([X-MGOV] margin governor driver): \"derive\" | \"campaign\""
+  read_sites:
+    - "validation/margin_governor.py:642"
+  covering_gate: "none from engine_speed_bench.py; own script's manual stage control"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O32_STAGE"
+  default: "\"all\""
+  meaning: "stage selector for o32_mesh_convergence.py's __main__ (ORACLE O3.2: mesh convergence of the primal/adjoint pair): \"est\" | \"all\""
+  read_sites:
+    - "validation/o32_mesh_convergence.py:575"
+  covering_gate: "none from engine_speed_bench.py; own on-demand carrier's manual stage control"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O32_RMAX"
+  default: "\"4\""
+  meaning: "mesh-refinement ladder length (r = 1..rmax, h = 1/r) for O3.2"
+  read_sites:
+    - "validation/o32_mesh_convergence.py:576"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O33_STAGE"
+  default: "\"all\""
+  meaning: "stage selector for o33_bench.py's own __main__ (ORACLE O3.3: pre-registered term-match bench)"
+  read_sites:
+    - "validation/o33_bench.py:551"
+  covering_gate: "none from engine_speed_bench.py; o33_bench.py is IMPORTED (for W_STAR/make_case) by adaptive_knot_optimize.py, engine_speed_bench.py and def_twin_falsifier.py, but this __main__-only stage flag is independent of those imports"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O33_RMAX"
+  default: "\"3\""
+  meaning: "mesh-refinement ladder length for O3.3"
+  read_sites:
+    - "validation/o33_bench.py:552"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O33_NFAM"
+  default: "\"7\""
+  meaning: "number of term-family probes in the O3.3 bench"
+  read_sites:
+    - "validation/o33_bench.py:553"
+  covering_gate: "none"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+- flag: "A1_O33_DESIGN"
+  default: "None (no second arg to .get())"
+  meaning: "path to an [X-AKNO] adaptive-class design-of-record JSON artifact; when set, swaps the W*/knot-class instance O3.3 measures (bench rows/bands/verdict rules UNCHANGED, only the instance swaps); the [D1] validity condition restricts this to outcome-I (in-stratum converged) designs"
+  read_sites:
+    - "validation/o33_bench.py:562"
+  covering_gate: "none from engine_speed_bench.py"
+  tested_pairs: "none"
+  untested_cartesian: false
+
+# --- The four line-wrapped reads missed by the original single-line
+# --- census (repair of record 2026-08-13, S-ORDINE T2 lint step;
+# --- found by lint group (xx) at its first run) ---
+
+- flag: "A1_LOCD_REJ"
+  default: "os.path.join(HERE, \"s22_rejected_designs.json\") (dynamic; validation/s22_rejected_designs.json)"
+  meaning: "path to the rejected-designs JSON analyzed by locus_diagnosis.py ([X-LOCD] three-way locus retro-diagnosis, S22) — the A1_REJ_SAVE artifact of the regeneration run"
+  read_sites:
+    - "validation/locus_diagnosis.py:112"
+  covering_gate: "none from engine_speed_bench.py; consumed by locus_diagnosis.py's own on-demand carrier run (env: jax)"
+  tested_pairs: "none — artifact-path knob, not combined with any other flag"
+  untested_cartesian: false
+  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
+
+- flag: "A1_LOCD_BASE"
+  default: "os.path.join(HERE, \"s22_certlim_base.json\") (dynamic; validation/s22_certlim_base.json)"
+  meaning: "path to the certified-baseline JSON (the A1_AKN_CERTLIM_SAVE artifact) analyzed when present by locus_diagnosis.py's baseline-control row"
+  read_sites:
+    - "validation/locus_diagnosis.py:114"
+  covering_gate: "none from engine_speed_bench.py; consumed by locus_diagnosis.py's own on-demand carrier run (env: jax)"
+  tested_pairs: "none — artifact-path knob"
+  untested_cartesian: false
+  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
+
+- flag: "A1_DEFTW_ATLAS"
+  default: "os.path.join(A1.GENO_DIR, \"CASES\", \"defnoz\", \"INPUT\") (dynamic)"
+  meaning: "override the GENO atlas INPUT folder used by the DEF-twin leg-1 GENO runner (geno_case_run; part of the declared thermo pairing — GENO never modified)"
+  read_sites:
+    - "validation/def_twin_falsifier.py:201"
+  covering_gate: "none from engine_speed_bench.py; consumed by def_twin_falsifier.py's own leg1/derive/campaign stage pipeline (A1_DEFTW_STAGE)"
+  tested_pairs: "none — scratch/atlas path knob"
+  untested_cartesian: false
+  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
+
+- flag: "A1_MGOV_BASE"
+  default: "os.path.join(HERE, \"s22_certlim_base.json\") (dynamic; validation/s22_certlim_base.json)"
+  meaning: "path to the S22 certified-base JSON consumed by margin_governor.py's derive/campaign stages ([X-MGOV]; same artifact class as A1_LOCD_BASE)"
+  read_sites:
+    - "validation/margin_governor.py:142"
+  covering_gate: "none from engine_speed_bench.py; consumed by margin_governor.py's own stage pipeline (A1_MGOV_STAGE)"
+  tested_pairs: "none — artifact-path knob"
+  untested_cartesian: false
+  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"

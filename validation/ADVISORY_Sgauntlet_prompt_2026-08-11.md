@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-11_Sgauntlet.md + validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md.** Dedicated-session prompt executed; ledger + session log are the consumers of record. Full text preserved (R4).
+
 # PROMPT DI SESSIONE — S-GAUNTLET (audit avversariale di GENERALITA'
 # FENOMENOLOGICA TOTALE del piano; sessione dedicata parallela alla
 # linea F, ordinata dall'utente 2026-08-11. Advisory, untracked.)

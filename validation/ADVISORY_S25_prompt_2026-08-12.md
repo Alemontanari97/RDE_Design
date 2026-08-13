@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-12_S25_speed.md.** Session prompt fully executed by S25 (C4-first + engine speed M-chain). Full text preserved (R4).
+
 # PROMPT — S25 "C4-FIRST + ENGINE SPEED SESSION" (consolidato S24;
 # scritto alla chiusura S24, 2026-08-12)
 

@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> src/common/ (the refactor this pre-refactor snapshot gated, landed lecture-era; blessed numbers invariant by construction).** AS-IS snapshot of git a986717, kept as provenance. Full text preserved (R4).
+
 # Interface & convention audit — pre-refactor snapshot (2026-07-10)
 
 *Mandate: extreme coherence across the package's models. This document freezes

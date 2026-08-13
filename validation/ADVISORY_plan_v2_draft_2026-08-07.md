@@ -1,3 +1,5 @@
+> **STATUS — SUPERSEDED (2026-08-13, S-ORDINE) -> validation/ADVISORY_plan_v3_panel_2026-08-07.md.** Draft v2 superseded by the ratified plan v3 (panel-converged; D6 carries the ratified text). Full text preserved (R4).
+
 # ADVISORY — Plan v2 DRAFT (2026-08-07, inter-session window; INPUT
 # to the phase-reorder adjudication workflow; NOT ratified — D6
 # amendment happens at S21 opening, user decision)

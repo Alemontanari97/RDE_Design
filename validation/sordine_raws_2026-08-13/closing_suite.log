@@ -1,0 +1,335 @@
+== (i)   CJ coherence [test_cj_coherence] ==
+  sk_models H2/air U_CJ                  0.000e+00  (tol 1e-09)  PASS
+  sk_models H2/air gamma_e               0.000e+00  (tol 1e-09)  PASS
+  sk_models H2/air p2                    0.000e+00  (tol 1e-09)  PASS
+  sk_models H2/air T2                    0.000e+00  (tol 1e-09)  PASS
+  sk_models H2/air s2                    0.000e+00  (tol 1e-09)  PASS
+  sk_models H2/air h1                    0.000e+00  (tol 1e-09)  PASS
+  H2/air sonic residual                  1.429e-03  (tol 5e-03)  PASS
+  sk_models C2H4/O2 U_CJ                 0.000e+00  (tol 1e-09)  PASS
+  sk_models C2H4/O2 gamma_e              0.000e+00  (tol 1e-09)  PASS
+  sk_models C2H4/O2 p2                   0.000e+00  (tol 1e-09)  PASS
+  sk_models C2H4/O2 T2                   0.000e+00  (tol 1e-09)  PASS
+  sk_models C2H4/O2 s2                   0.000e+00  (tol 1e-09)  PASS
+  sk_models C2H4/O2 h1                   0.000e+00  (tol 1e-09)  PASS
+  C2H4/O2 sonic residual                 1.193e-03  (tol 5e-03)  PASS
+  cycles CH4/air U_CJ                    0.000e+00  (tol 1e-09)  PASS
+  cycles CH4/air gamma_e                 0.000e+00  (tol 1e-09)  PASS
+  CH4/air 1-bar sonic residual           1.590e-03  (tol 5e-03)  PASS
+  indep cj_states U_CJ                   7.237e-08  (tol 2e-03)  PASS
+  indep cj_states gamma_e                1.256e-05  (tol 2e-03)  PASS
+  indep det_state U_CJ                   2.677e-06  (tol 2e-03)  PASS
+  indep det_state PR                     8.534e-04  (tol 2e-03)  PASS
+  indep det_state T_CJ                   7.356e-05  (tol 2e-03)  PASS
+  indep det_state gamma                  7.150e-06  (tol 2e-03)  PASS
+  indep det_state sonic residual         5.110e-04  (tol 5e-03)  PASS
+  golden U_CJ(H2/air) == 1969.0          0.000e+00  (tol 1e-12)  PASS
+-> PASS (60.8 s)
+
+== (ii)  Stechmann CP collapse [test_stechmann_collapse] ==
+  synthetic g=1.2          Isp 206.3540  vs steady 206.3540  rel.err 2.07e-11  PASS
+  H2/O2 shipped CJ         Isp 275.9060  vs steady 275.9060  rel.err 7.32e-12  PASS
+-> PASS (0.0 s)
+
+== (iii) SK axial vs eq. bound [test_axial_bound] ==
+  axial_calc live vs shipped   1353.0971 / 1353.0971  rel 9.93e-10  PASS
+  axial sonic vs indep. bound  1353.0971 / 1353.0971  rel 2.03e-10 (0.000%)  PASS
+-> PASS (1.8 s)
+
+== (iv)  q~ round-trip [test_q_roundtrip] ==
+  benchmark g=1.4 q~=4: M_CJ=4.5992  roundtrip err 2.22e-16  PASS
+  12 mixtures M->q~->M: worst rel err 2.22e-16  PASS
+-> PASS (0.0 s)
+
+== (v)   golden numbers [test_golden] ==
+  U_CJ(H2/air) == 1969.0 [shipped]             PASS (1969.0225)
+  U_CJ(C2H4/O2) == 2373.5 [shipped]            PASS (2373.5288)
+  Stechmann H2/O2 Isp == 237.1 [shipped]       PASS (237.1351)
+  eta_FJ(CH4/air) == '0.300' [shipped]         PASS (0.299836)
+  mixtures.selfcheck: X <-> fuel/ox <-> xy, 12 entries PASS 
+  _prop accepts all 38 Table-1 states          PASS 
+  stechmann validate -> '18/18 rows PASS'      PASS 
+  stechmann validate -> '18/18 rows FULL-OPT PASS' PASS 
+  tables V&V verdicts 8/8 PASS                 PASS (8/8)
+  q_mapping 'max M_CJ recompute dev = 0.00%'   PASS 
+-> PASS (0.7 s)
+
+== (vi)  bell/spike optimality proofs [test_bell_optimality] ==
+  L: dCF/deps == (Pe-Pa)/Pc (36-pt gamma/eps/Pc grid)      PASS (worst rel 2.5e-07)
+  T1a H2 20: dIsp/deps ~ 0 at eps*, +/- around             PASS (8.3e-06; +4.850/-3.949)
+  T1b H2 20: global dominance + concavity                  PASS (d2=-6.9e-03)
+  T1c H2 20: time-mean beats mass-mean condition           PASS (eps* 3.80 vs alt 5.48, dIsp +4.94 s)
+  T1a H2 200: dIsp/deps ~ 0 at eps*, +/- around            PASS (7.1e-07; +0.431/-0.369)
+  T1b H2 200: global dominance + concavity                 PASS (d2=-3.5e-03)
+  T1c H2 200: time-mean beats mass-mean condition          PASS (eps* 21.16 vs alt 32.01, dIsp +3.33 s)
+  T1a CH4 20: dIsp/deps ~ 0 at eps*, +/- around            PASS (6.1e-06; +3.461/-2.856)
+  T1b CH4 20: global dominance + concavity                 PASS (d2=-5.2e-03)
+  T1c CH4 20: time-mean beats mass-mean condition          PASS (eps* 3.98 vs alt 6.61, dIsp +7.45 s)
+  T1a CH4 200: dIsp/deps ~ 0 at eps*, +/- around           PASS (5.4e-07; +0.315/-0.272)
+  T1b CH4 200: global dominance + concavity                PASS (d2=-2.8e-03)
+  T1c CH4 200: time-mean beats mass-mean condition         PASS (eps* 23.30 vs alt 40.57, dIsp +5.06 s)
+  T1a RP-1 20: dIsp/deps ~ 0 at eps*, +/- around           PASS (6.2e-06; +3.371/-2.777)
+  T1b RP-1 20: global dominance + concavity                PASS (d2=-5.0e-03)
+  T1c RP-1 20: time-mean beats mass-mean condition         PASS (eps* 3.94 vs alt 7.07, dIsp +9.71 s)
+  T1a RP-1 200: dIsp/deps ~ 0 at eps*, +/- around          PASS (5.5e-07; +0.309/-0.266)
+  T1b RP-1 200: global dominance + concavity               PASS (d2=-2.7e-03)
+  T1c RP-1 200: time-mean beats mass-mean condition        PASS (eps* 22.69 vs alt 42.51, dIsp +6.30 s)
+  T3 phi: strict lattice certificate, all 36 optima        PASS 
+  T3 phi: unimodal (n_local_max == 1), all 36              PASS 
+  T3 phi: unimodality re-derived from persisted grids      PASS 
+  T2 spike: strictly increasing below knee                 PASS 
+  T2 spike: exactly flat above knee                        PASS 
+-> PASS (0.1 s)
+
+== (vii) numeric lint (no magic numbers) [test_numeric_lint] ==
+  numeric lint: src/ literals all classified           PASS (22 files scanned, 0 unlisted, 0 malformed)
+  ratchet scope note: dir validation/sota_gapmap_raws_2026-08-12 SKIPPED (0 .py) — declared out-of-channel
+  NEW FILE validation/sordine_raws_2026-08-13/s8_split.py: 8 unclassified literals and no baseline row — classify them or add the measured row
+  seeded rejectors [ratchet +1 / -1 / new-file / baseline-orphan]: REJECTED / REJECTED / REJECTED / REJECTED
+  numeric lint: validation/ ratchet tier (R28)         FAIL (35 files, 630 literal-debt baselined, 1 ratchet violations)
+-> FAIL (0.4 s)
+
+== (viii) OP-0 eps-level bound ladder [test_bounds] ==
+  B1: live ladder == persisted JSON, 18 rows x 6 rungs     PASS (worst rel 0.0e+00)
+  B2: chain C holds on all 18 rows (re-run, not flag)      PASS 
+  B2: persisted chain_ok flags all true                    PASS 
+  B3: 18 rows = 6 vacuum + 4 subcritical + 8 supercritical PASS 
+  B3: M1 gap-zero (plug == ideal) on all supercritical rows PASS 
+  B3: vacuum rows: ceiling strictly unattained at finite eps PASS 
+  B3: subcritical rows: naive rung strictly violated       PASS (worst gap 1.9e-07 s)
+  B3: EK gap strictly positive on every row (u_eff varies) PASS 
+  B4: sonic exit beats naive full expansion (g=1.15, Pc/Pa=1.3) PASS (delta CF = +0.0070)
+  B4: capped ceiling equals the sonic branch there         PASS 
+  B5: bell above intmax REJECTED                           PASS 
+  B5: dual-route breach (ideal != intmax) REJECTED         PASS 
+  B5: B_EK below ideal REJECTED                            PASS 
+  B5: fake M1 gap (plug below ideal) REJECTED              PASS 
+  B5: fake vacuum attainment REJECTED                      PASS 
+  B5: suppressed subcritical naive-violation REJECTED      PASS 
+  B5: naive-ceiling implementation REJECTED on subcritical row PASS 
+  B2+ pointwise dual-route agreement (H2 20)               PASS (max |dCF| = 4.4e-16)
+  B2+ pointwise dual-route agreement (CH4 20)              PASS (max |dCF| = 5.6e-16)
+-> PASS (0.1 s)
+
+== (ix)  A0.3 gamma-channel probe [test_gamma_probe] ==
+  G1: chamber gamma_s == blessed state gamma (<1e-4)       PASS (resid 2.5e-05)
+  G2: single interior minimum, then monotone recombination rise PASS (min at xi=0.095, depth 4.4e-04)
+  G2: gamma_fr >= gamma_s pointwise, both in (1, 5/3]      PASS 
+  G3: gamma_s ends 1.154 -> 1.209 (3 decimals)             PASS (1.1537 -> 1.2093)
+  G3: eps* shift = -0.56% (strikes the stale -1.9%)        PASS (-0.556%)
+  G3: Isp penalty magnitude ~3e-6 (stale -0.001% corrected) PASS (2.83e-06)
+  G4: eps*_fr / eps*_var / shift re-derived == persisted   PASS 
+  G4: penalty re-derived == persisted                      PASS (2.83e-06 vs 2.83e-06)
+  G5: 0 < penalty <= shift^2 (second-order design penalty) PASS (pen 2.83e-06, shift^2 3.09e-05)
+  G6: gamma_eff closure reproduces the true shift (<0.1 pt) PASS (-0.571% vs -0.556%)
+  G6: unweighted <gamma> closure REJECTED (>1 pt off)      PASS (-2.39%)
+  G6: corrupted (reversed) gamma_s REJECTED                PASS (bad shift -4.671%)
+-> PASS (0.2 s)
+
+== (x)   OP-11-eps phase diagram [test_phase_diagram] ==
+  D1: live grid == persisted JSON (90 cells)               PASS (worst rel 0.0e+00, winners match)
+  D1: persisted cell_ok flags all true                     PASS 
+  D1: every cell passes check_cell re-run (not flag)       PASS 
+  D2: PR=1 column present and fully tied (T3)              PASS 
+  D2: tied value == independent single-phase closed form   PASS (worst rel 4.1e-16)
+  D2: degenerate chain signature exact on PR=1 column      PASS 
+  D3: every knee-fitting cell attains the capped ceiling (M1) PASS (36 cells)
+  D3: attainment includes subcritical cycles (capped extension) PASS (9 subcritical)
+  D3: no cell exceeds the capped ceiling                   PASS 
+  D4: vacuum sweep - ties, increasing, ceiling unattained  PASS 
+  D5: naive plug strictly below capped plug on the strip   PASS (30 cells)
+  D5: published closure loses to bell at eps_max=1 (artifact) PASS (delta 1.7e-02 s)
+  D5: capped closure restores the exact tie there          PASS 
+  D6: T3 control - broken tie at PR=1 REJECTED             PASS 
+  D6: T4 control - fake attainment flag REJECTED           PASS 
+  D6: bell winner label REJECTED (dominance theorem)       PASS 
+  D6: dominance breach (bell above capped plug) REJECTED   PASS 
+  D6: stale premium bound REJECTED                         PASS 
+  D6: naive closure as record closure REJECTED (subcritical) PASS 
+  D6: fake vacuum attainment REJECTED                      PASS 
+  D6: non-monotone vacuum sweep REJECTED                   PASS 
+  D6: winner_of flags the naive flip as a bell win (detectable) PASS 
+  D7: blessed-PR cell == bounds_ladder eps_fix-free rungs  PASS (worst rel 0.0e+00)
+-> PASS (0.1 s)
+
+== (xi)  OP-0-gamma real-thermo ceiling [test_bounds_gamma] ==
+  G1: constant-cp known-answer reproduces closed forms     PASS (worst 4.7e-07 vs tol 1e-06)
+  G1: corrupted route (h0 * (1+1e-4)) REJECTED             PASS (worst 8.7e-05)
+  G2: 18 rows = 12 finite-Pa + 6 vacuum instruments        PASS 
+  G2: all rows OK, no violations                           PASS 
+  G2: subcritical rows present (cap regime exercised)      PASS (4 rows)
+  G3: check_row holds on all rows (re-run)                 PASS 
+  G3: subcritical naive strictly loses to the sonic cap at the deepest phase (EOS-general counterexample) PASS (worst deep gap -5.45e-05)
+  G3: cap probe (grid exits never beat the capped formula) PASS 
+  G4: delta_significant flags consistent with derived bars PASS 
+  G5: suppressed subcritical naive-loss REJECTED           PASS 
+  G5: naive Isp above capped Isp REJECTED                  PASS 
+  G5: supercritical naive != capped beyond bar REJECTED    PASS 
+  G5: broken cap probe REJECTED                            PASS 
+-> PASS (0.0 s)
+
+== (xii) OP-11 real-route diagram + eq bracket [test_phase_diagram_real] ==
+  E1: every cell passes check_cell_real re-run (fresh)     PASS (90 cells)
+  E1: persisted cell_ok flags all true                     PASS 
+  E2: blessed-PR block live == persisted (declared subset) PASS (worst abs 0.00e+00 s vs tol 8.25e-03, winners match)
+  E3: PR=1 column present and fully tied (degenerate measure) PASS 
+  E4: every knee-fitting cell attains the capped real ceiling PASS (41 cells)
+  E4: attainment includes subcritical cycles (EOS-general M1) PASS (11 subcritical)
+  E4: no cell exceeds the capped real ceiling              PASS 
+  E5a: naive closure never beats capped on the strip       PASS (30 cells)
+  E5b: strict naive loss at the deepest-spread cells       PASS (10 cells, frac_sub 0.122)
+  E6: eq bracket recorded OK (frozen <= eq per PR)         PASS 
+  E6: check_bracket re-run passes fresh                    PASS 
+  E6: recombination gain strictly positive on blessed PR   PASS (gain 17.98 s, bars 0.009 s)
+  E7: bell winner label REJECTED                           PASS 
+  E7: dominance breach REJECTED                            PASS 
+  E7: stale premium bound REJECTED                         PASS 
+  E7: fake M1 attainment REJECTED                          PASS 
+  E7: naive closure as record closure REJECTED             PASS 
+  E7: eq row below frozen ceiling REJECTED                 PASS 
+  E7: corrupted eq known-answer REJECTED (live)            PASS 
+  E8: blessed-PR ceiling == bounds_ladder_real row         PASS (diff 5.998e-04 s vs summed bars 1.297e-02 s)
+-> PASS (0.1 s)
+
+== (xiii) rigor carriers (symbolic, fast ten) [test_rigor_carriers] ==
+  X-PA1  pa1_symbolic_lemmaA.py                     PASS (6.3 s)
+  X-G12  g12_shock_linearization.py                 PASS (1.1 s)
+  X-N6   n6_swirl_kernel.py                         PASS (2.2 s)
+  X-5F   n6_fivefield_adjoint.py                    PASS (1.9 s)
+  X-SLRW side_load_rotating_lemma.py                PASS (2.7 s)
+  X-XBVP xbvp_entropy_transfer.py                   PASS (1.2 s)
+  X-U2RG u2_reflection_glancing.py                  PASS (1.0 s)
+  X-U3BD u3_bordered_front_solve.py                 PASS (0.2 s)
+  X-ACFR acontraction_front_probe.py                PASS (1.1 s)
+  X-GBE  gbe_ergodic_envelope.py                    PASS (1.4 s)
+  rigor carriers fast tier: exit 0 + verdict line each PASS (10 carriers)
+-> PASS (19.1 s)
+
+== (xv)  claims registry lint [test_claims_lint] ==
+  parsed 136 entries: carrier 47, conditional 7, conjecture 3, definition 7, directive 10, oracle 3, paper 10, schema 11, theorem 38
+  dual-route: PyYAML absent (declared: subset parser is primary)
+  [rejector] THEOREM* stripped of inherits (T-T4)                       REJECTED (PASS)
+  [rejector] symbolic-sufficient theorem stripped of carrier (T-O2)     REJECTED (PASS)
+  [rejector] dangling anchor seeded (D-P)                               REJECTED (PASS)
+  [rejector] stale ondemand pass date seeded (X-G0)                     REJECTED (PASS)
+  claims lint: registry coherent + rejector proven     PASS (0 violations)
+-> PASS (0.8 s)
+
+== (xvi) T3-QS sweep-protection carrier [test_t3qs] ==
+  X-T3QS  t3qs_sweep_protection.py                  PASS (5.3 s)
+  T3-QS proof chain P1-P6 + rejectors R1-R3            PASS
+-> PASS (5.3 s)
+
+== (xix) findings registry lint (R31) [test_findings_registry] ==
+  VIOLATION conditional:P-TRFLOOR: source 'docs/rde_nozzle_PROGRESS.md#P-TRFLOOR' does not resolve (file True, anchor False)
+  seeded rejector [open-without-owner]: REJECTED (as required)
+  seeded rejector [discharged-without-evidence]: REJECTED (as required)
+  seeded rejector [two-OPEN-same-span (re-mint)]: REJECTED (as required)
+  seeded rejector [dangling-anchor]: REJECTED (as required)
+  seeded rejector [unresolvable-code-span (R13)]: REJECTED (as required)
+  H4 derive artifact vs tree: tail.code_id 063fb796bb45 / tree 063fb796bb45 -> FRESH
+  seeded rejector [doctored code_id mismatch]: REJECTED (as required)
+  VIOLATION choice C2: DEAD ANCHOR evidence 'docs/rde_nozzle_PROGRESS.md#delta S25-bis:' (file True, fragment False)
+  VIOLATION choice C18: DEAD ANCHOR evidence 'docs/rde_nozzle_PROGRESS.md#LEDGER-CARRIED' (file True, fragment False)
+  VIOLATION choice C23: DEAD ANCHOR evidence 'docs/rde_nozzle_PROGRESS.md#LEDGER-CARRIED' (file True, fragment False)
+  VIOLATION choice C24: DEAD ANCHOR evidence 'docs/rde_nozzle_PROGRESS.md#LEDGER-CARRIED' (file True, fragment False)
+  VIOLATION choice C34: DEAD ANCHOR evidence 'docs/rde_nozzle_PROGRESS.md#LEDGER-CARRIED' (file True, fragment False)
+  seeded rejector [doctored-dead-anchor (family e)]: REJECTED (as required)
+  seeded rejector [ownerless-NEVER-row (family f)]: REJECTED (as required)
+  findings registry lint (R31 findings-as-code)        FAIL (135 entries, 104 open, 1 violations; H4 artifact channel ok; families e+f FAIL: 48 choice + 80 lit rows, 5 violations)
+-> FAIL (0.1 s)
+
+== (xx)  advisory-index lint (S-ORDINE) [test_advisory_index] ==
+  seeded rejector [phantom index row]: REJECTED (as required)
+  seeded rejector [missing file row]: REJECTED (as required)
+  seeded rejector [unflagged orphan]: REJECTED (as required)
+  seeded rejector [unparsed marker beyond baseline]: REJECTED (as required)
+  seeded rejector [phantom flag]: REJECTED (as required)
+  seeded rejector [unregistered flag beyond baseline]: REJECTED (as required)
+  advisory-index lint (S-ORDINE L7 navigation)         PASS (90 file rows, 2 block rows, 90 disk .md, 45 flags, 0 violations)
+-> PASS (0.0 s)
+
+== (xxii) literature registry lint (4 roots) [test_literature_registry] ==
+  seeded rejector [unregistered PDF (root A +1)]: REJECTED (as required)
+  seeded rejector [UNREAD-with-summary]: REJECTED (as required)
+  seeded rejector [WANTED-with-path]: REJECTED (as required)
+  seeded rejector [dead path]: REJECTED (as required)
+  literature registry lint (four roots)                PASS (72 entries [10 WANTED], 8 bulk rows, disk A/B/C/D = 14/47/77/58, 0 violations)
+-> PASS (0.2 s)
+
+== (xxiii) glossary lint (collision+ratchet) [test_glossary] ==
+  corpus: 641 strings, 222 grammar tokens, 54 unresolved (baseline 54); sample: ADOPTION-READY, ALREADY-BUILT, B-F10, B-F11, B-SHAPE, BAR-CLASS, C-A, C-B
+  seeded rejector [unknown token]: REJECTED (as required)
+  seeded rejector [baseline +1 bump]: REJECTED (as required)
+  seeded rejector [dead resolver pointer]: REJECTED (as required)
+  glossary lint (collision + navigation, NOT anti-re-mint) PASS (32 families, 131 entries, 0 violations)
+-> PASS (0.0 s)
+
+== (xiv) P-A dual-route carrier [rigor tier] [test_rigor_dualroute] ==
+  X-P2A1 p2_pA1_symbolic_adjoint.py                 PASS (30.9 s)
+  dual-route conservative carrier (rigor tier)         PASS
+-> PASS (30.9 s)
+
+== (xviii) X-IVXC interval certificate [rigor tier] [test_rigor_interval] ==
+  X-IVXC ivxc_interval_certificate.py  PASS (50.9 s)
+-> PASS (50.9 s)
+
+== (v+)  live examples & design study [test_examples] ==
+  example_cj.py                rc=0  PASS
+  example_cycles.py            rc=0  PASS
+  example_thrust.py            rc=0  PASS
+  example_design_study.py      rc=0  PASS
+  example_headtohead.py        rc=0  PASS
+  example_design_10kN.py       rc=0  PASS
+  example_phase_diagram.py     rc=0  PASS
+-> PASS (84.5 s)
+
+== (xvii) on-demand carriers: staleness + env-conditional run [test_ondemand_carriers] ==
+  [acct] X-G0     validation/g0_spike_jax_moc.py             env=jax(jax importable) fresh (pass 2026-07-16 >= last commit 2026-07-16)
+  [acct] X-G0AX   validation/g0_spike_axisym_shock.py        env=jax(jax importable) fresh (pass 2026-07-16 >= last commit 2026-07-16)
+  [acct] X-GENOXC validation/g0_geno_crosscode.py            env=gfortran(gfortran not on PATH) fresh (pass 2026-07-20 >= last commit 2026-07-20)
+  [acct] X-A1IM   validation/a1_ideal_march_jax.py           env=jax+geno(jax+GENO/+wsl) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-THC1   validation/thermotab_c1_jax.py             env=jax(jax importable) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-SCANM  validation/a1_march_scan.py                env=jax(jax importable) fresh (pass 2026-08-11 >= last commit 2026-08-11)
+  [acct] X-LSG0   validation/a1_loopspeed_bench.py           env=jax+geno(jax+GENO/+wsl) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-TOCV   validation/a1_toc_variational_jax.py       env=jax+geno(jax+GENO/+wsl) fresh (pass 2026-08-13 >= last commit 2026-08-13)
+  [acct] X-O32    validation/o32_mesh_convergence.py         env=jax(jax importable) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-O33B   validation/o33_bench.py                    env=jax(jax importable) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-AKNO   validation/adaptive_knot_optimize.py       env=jax(jax importable) fresh (pass 2026-08-11 >= last commit 2026-08-11)
+  [acct] X-CDKAT  validation/certdiag_kat.py                 env=jax(jax importable) fresh (pass 2026-08-11 >= last commit 2026-08-11)
+  [PASS] X-VMON   exit=0 suite=default | VERDICT: PASS; fresh (pass 2026-08-12 >= last commit 2026-08-11)
+  [acct] X-LOCD   validation/locus_diagnosis.py              env=jax(jax importable) fresh (pass 2026-08-11 >= last commit 2026-08-11)
+  [acct] X-MGOV   validation/margin_governor.py              env=jax(jax importable) fresh (pass 2026-08-12 >= last commit 2026-08-12)
+  [acct] X-TBAK   validation/margin_tolerance_backoff.py     env=jax(jax importable) fresh (pass 2026-08-11 >= last commit 2026-08-11)
+  [acct] X-DEFTW  validation/def_twin_falsifier.py           env=jax+geno(jax+GENO/+wsl) fresh (pass 2026-08-13 >= last commit 2026-08-13)
+  [acct] X-SPDB   validation/engine_speed_bench.py           env=jax(jax importable) fresh (pass 2026-08-13 >= last commit 2026-08-13)
+  ondemand tier: 1 executed, 17 accounted, 0 env-skipped, 18 total
+  ondemand carriers: staleness + env-conditional execution PASS
+-> PASS (4.7 s)
+
+================================================================
+(i)   CJ coherence                     PASS (60.8 s)
+(ii)  Stechmann CP collapse            PASS (0.0 s)
+(iii) SK axial vs eq. bound            PASS (1.8 s)
+(iv)  q~ round-trip                    PASS (0.0 s)
+(v)   golden numbers                   PASS (0.7 s)
+(vi)  bell/spike optimality proofs     PASS (0.1 s)
+(vii) numeric lint (no magic numbers)  FAIL (0.4 s)
+(viii) OP-0 eps-level bound ladder     PASS (0.1 s)
+(ix)  A0.3 gamma-channel probe         PASS (0.2 s)
+(x)   OP-11-eps phase diagram          PASS (0.1 s)
+(xi)  OP-0-gamma real-thermo ceiling   PASS (0.0 s)
+(xii) OP-11 real-route diagram + eq bracket PASS (0.1 s)
+(xiii) rigor carriers (symbolic, fast ten) PASS (19.1 s)
+(xv)  claims registry lint             PASS (0.8 s)
+(xvi) T3-QS sweep-protection carrier   PASS (5.3 s)
+(xix) findings registry lint (R31)     FAIL (0.1 s)
+(xx)  advisory-index lint (S-ORDINE)   PASS (0.0 s)
+(xxii) literature registry lint (4 roots) PASS (0.2 s)
+(xxiii) glossary lint (collision+ratchet) PASS (0.0 s)
+(xiv) P-A dual-route carrier [rigor tier] PASS (30.9 s)
+(xviii) X-IVXC interval certificate [rigor tier] PASS (50.9 s)
+(v+)  live examples & design study     PASS (84.5 s)
+(xvii) on-demand carriers: staleness + env-conditional run PASS (4.7 s)
+21/23 test groups PASS in 261 s
+SUITE_EXIT=1

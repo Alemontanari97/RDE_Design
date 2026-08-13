@@ -1,0 +1,7 @@
+  parsed 136 entries: carrier 47, conditional 7, conjecture 3, definition 7, directive 10, oracle 3, paper 10, schema 11, theorem 38
+  dual-route: PyYAML absent (declared: subset parser is primary)
+  [rejector] THEOREM* stripped of inherits (T-T4)                       REJECTED (PASS)
+  [rejector] symbolic-sufficient theorem stripped of carrier (T-O2)     REJECTED (PASS)
+  [rejector] dangling anchor seeded (D-P)                               REJECTED (PASS)
+  [rejector] stale ondemand pass date seeded (X-G0)                     REJECTED (PASS)
+  claims lint: registry coherent + rejector proven     PASS (0 violations)

@@ -28,6 +28,7 @@
   "validation/s25bis_gap29_sweep.py": 7,
   "validation/s25bis_notaknot_twin.py": 0,
   "validation/side_load_rotating_lemma.py": 12,
+  "validation/sordine_raws_2026-08-13/s8_split.py": 8,
   "validation/t3qs_sweep_protection.py": 25,
   "validation/thermotab_c1_jax.py": 46,
   "validation/u2_reflection_glancing.py": 20,

@@ -1,0 +1,936 @@
+# CODENAME GLOSSARY — census T2-bis(a), S-ORDINE (census R32, 2026-08-13).
+#
+# PURPOSE: disambiguate the codename-token namespace collisions measured
+# across the Phase-1 inventory (segments 1-7) and give a navigable index
+# into WHERE each meaning is of record. This file does NOT re-state
+# content: every entry's `resolver` points at the doc/registry/anchor
+# that carries the actual definition/proof/verdict.
+#
+# HONEST-SCOPE (verbatim, per the S-ORDINE T2-bis(a) contract):
+# "payoff = collision disambiguation + navigation; NOT anti-re-mint
+# machinery (that is the findings-registry dedup clause's job)."
+# This glossary does not enforce uniqueness of findings/claims and does
+# not gate commits; docs/findings_registry.yaml (R31, lint group xix)
+# and docs/claims_registry.yaml (lint group xv) remain the only
+# machine-enforced anti-re-mint / index authorities.
+#
+# DESIGN (pinned by the converged S-ORDINE plan):
+# - Every entry id is NAMESPACE-QUALIFIED (namespace:token) because the
+#   same bare token (e.g. "C1", "M1", "T2", "F4", "O5", "P1", "A1",
+#   "B1", "L4", "U1..U4") carries 2-5 UNRELATED meanings depending on
+#   which document minted it.
+# - PREFIX-FAMILY RULE (anti-bloat, plan directive P1-12): any token
+#   family that resolves to a REGISTRY ROW (findings_registry ids,
+#   choice-ledger C<n>, gap-map GAP-<n>, census R<n>, claims [X-*]/
+#   [T-*]/[S-*]/[C-*]/[D-*], AUDIT/DUTY/RT/ISS/ATT/V/N/CEN-O/AC/Q
+#   enumerations, literature identities) gets ONE `family` entry
+#   pointing at its registry/document as resolver, NOT one row per
+#   member. Full individual `entries` rows exist only for (a) collision
+#   tokens — each distinct meaning of an ambiguous bare token — and
+#   (b) unregistered standalone tokens (terms of art, constants,
+#   directives, session names) that are not indexed anywhere else.
+# - Target: a navigable file, NOT a 700-row dump. This file has
+#   32 family rows (covering ~450+ individual registry-member tokens
+#   by reference) + 131 individual entries (collisions + standalone) =
+#   163 total rows (machine-counted: len(families)+len(entries), see
+#   MERGED N below; 24+116=140 at first build, +8 families +15 entries
+#   from the seg8 merge, 2026-08-13 S-ORDINE T2 lint step).
+#
+# SOURCES (Phase-1 inventory codename-token tables; per-source counts
+# as declared or, where the reader gave no single total, as counted
+# from that segment's own token table — method stated per row):
+#   seg1 (docs core)                : 214  (reader-declared total)
+#   seg2 (code/data/root)           :  31  (row-count of §I table; no reader total declared)
+#   seg3 (advisories A, 17 files)   : 178  (reader-declared total)
+#   seg4 (advisories B, 17 files)   :  96  (row-count of the CODENAME TOKEN TABLE; no reader total declared)
+#   seg5 (session logs + artifacts) :  78  (reader-declared "distinct token families")
+#   seg6 (persistent memory, 37)    : 231  (reader-declared total)
+#   seg7 (literature, 137 files)    :  70  (row-count of the numbered CODENAME TOKENS list; no reader total declared)
+#   seg8 (supplement, 64-file delta):  34  (row-count of the CODENAME
+#     TOKEN COLLECTION table of `validation/sordine_raws_2026-08-13/
+#     inventory_seg8_supplement.md`; the inventory did not exist at
+#     first build [the ABSENT note of record], it landed with the S0b
+#     supplementary pass; merged 2026-08-13, S-ORDINE T2 lint step)
+#   RAW SUM (per-source, pre-dedup, double-counting every token that
+#     recurs across segments — R1-R6, G0-G6, EQ-v2, KAT, GAP-5, GAP-29,
+#     REQ-NONSTALL, M0-M6 etc. each appear in 4-7 segment tables):
+#     898 + seg8 34 = 932 (updated 2026-08-13).
+#   MERGED N (this file, machine-counted post prefix-family collapse +
+#     cross-segment dedup of identical-meaning tokens): 32 family rows
+#     + 131 individual entries = 163 total rows (140 at first build;
+#     seg8 merge added 8 families + 15 entries, the other 11 seg8 table
+#     rows dedup onto existing rows/families: PB-2, T-T3*, T-T4, EQ-v2
+#     to existing entries/families; R16/C30/C31-C32/S1-S3-as-adoptions/
+#     gap-G-d rows are members of the new litreview enumerable families;
+#     D0-D5 folds into the SOTA-<n> family note). The reduction
+#     (932 -> 163) is entirely accounted for by: (i) the same token
+#     counted once per segment that mentioned it (R1-R6 alone was
+#     counted in all 7 segment tables); (ii) enumerable registry
+#     families (GAP-1..36, C1..C45, DUTY-1..15, AC1..16, etc. — ~450
+#     individual member tokens across the raw sum) collapsed to 24
+#     family rows; (iii) low-value single-mention tokens (e.g. one-off
+#     probe ids, GENO figure filenames) not carried forward — this is
+#     the declared, non-bloat cut, not a silent loss (the source
+#     inventories remain the ledger of record for those).
+#
+# VERIFICATION (collision families named in the S-ORDINE contract —
+# each has >= 2 disambiguating `entries` rows below; count given):
+#   O5 (2): oracle:O5, decision:O5
+#   M1 (2): speed-lever:M1, mechanism:M1
+#   T2 (2 within T1/T2 group of 4): gate:T2, theorem:T2
+#   F4 (2): plan-phase:F4b, falsifier:F4
+#   C1 (5): claim:C-1, choice:C1, panel:C1, conditional:C1, audit:C1
+#   L4 (3): doc-layer:L4, speed-lever:L4, class:L4-default
+#   U1-U4 (7): conditional:U1..U4 (4) + duty:U1..U3 (3)
+#   A1 (3): plan-phase:A1, flag:A1_*, topology:A1
+#   P* (7): triage:P0-P2, paper:P-1, paper:P-2, problem:P1-P7,
+#            pin:P1-P3, lever:P1-P4, book:PB-1..PB-4
+#   B1 (3): brick:B1, rung:B1, quarantine:B1
+#   T1/T2 (4): theorem:T1, gate:T1, theorem:T2, gate:T2
+#   F1-F7 (4): plan-phase:F1b, falsifier:F1-F7-deftwin,
+#              falsifier:F1-F4-swirl, falsifier:F1-F4-collapse
+#   BONUS collisions surfaced during seeding (not in the pinned list,
+#   disambiguated anyway because >=3 segments independently flagged
+#   them): G1 (3: gate:G1, term:G1-surrogate, claim:G1-DISC),
+#   M0 (2: doc:M0, speed-lever:M0). Q is ALSO overloaded (gap-map
+#   Q1-Q11 vs speed-audit Q1-Q6, two unrelated quarantine lists) but
+#   is disambiguated at the FAMILY level (two separate `family` rows
+#   "Q<n>* (gap-map quarantine)" / "Q<n>* (speed quarantine)" with
+#   cross-reference notes) rather than as individual `entries` rows,
+#   since every member is itself registry-enumerable (prefix-family
+#   rule applies).
+#
+# NAMESPACES used below (extends the plan-directive seed list
+# plan-phase:/census:/gate:/gap:/claim:/choice:/flag:/memory:/oracle:/
+# tier: with the additional ones this corpus actually needed):
+#   plan-phase, census, gate, gap, claim, choice, flag, memory, oracle,
+#   tier, session, doc, theorem, hypothesis, conditional, directive,
+#   audit, topology, speed-lever, panel, duty, falsifier, literature,
+#   decision, probe, term, brick, rung, quarantine, mechanism, constant,
+#   config
+
+families:
+  - family: "R<n>*"
+    resolver: "docs/rde_nozzle_PROGRESS.md#censimento (R1-R33)"
+    count_covered: 33
+  - family: "GAP-<n>*"
+    resolver: "docs/findings_registry.yaml + validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP MAP"
+    count_covered: 36
+  - family: "C<n>* (choice ledger)"
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#CHOICE LEDGER (T2 target: docs/choice_ledger.yaml)"
+    count_covered: 45
+  - family: "AC<n>*"
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#already-covered ledger"
+    count_covered: 16
+  - family: "Q<n>* (gap-map quarantine)"
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#quarantine"
+    count_covered: 11
+    note: "DISTINCT list from the speed-audit Q1-Q6 quarantine below — same letter, two unrelated documents."
+  - family: "Q<n>* (speed quarantine)"
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#quarantine Q1-Q6"
+    count_covered: 6
+    note: "DISTINCT from the gap-map Q1-Q11 quarantine above."
+  - family: "[X-*]* (executable carriers)"
+    resolver: "docs/claims_registry.yaml (carrier field) + validation/*.py docstrings"
+    count_covered: 35
+  - family: "[T-*]* / [S-*]* (theorem / schema registry rows)"
+    resolver: "docs/claims_registry.yaml + docs/rde_nozzle_theorem_ledger.md"
+    count_covered: 35
+  - family: "[C-*]* (registered conditionals, distinct from choice-ledger C<n>)"
+    resolver: "docs/rde_nozzle_conditionals.md + docs/claims_registry.yaml"
+    count_covered: 10
+  - family: "[D-*]* (M0 definitions)"
+    resolver: "docs/rde_nozzle_MASTER.md (Part II)"
+    count_covered: 6
+  - family: "[DIR-*]* (standing directives)"
+    resolver: "docs/claims_registry.yaml + docs/rde_nozzle_MASTER.md"
+    count_covered: 6
+  - family: "[PAP-*]* / [PAN-*]* (paper / panel registry rows)"
+    resolver: "docs/claims_registry.yaml"
+    count_covered: 6
+  - family: "DUTY-<n>*"
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md#DUTY package"
+    count_covered: 15
+  - family: "C0<n>* (gauntlet clusters, C001-C030)"
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md#ledger"
+    count_covered: 30
+    note: "Distinct namespace from choice-ledger C<n> and from AUDIT clusters C1-C8 — three unrelated C-families, see the C1 collision entries below."
+  - family: "CEN-O<n>*"
+    resolver: "validation/PANEL_topology_census_2026-07-22.md#open points"
+    count_covered: 11
+  - family: "RT-<n>* (red-team, eqv2)"
+    resolver: "validation/ADVISORY_redteam_2026-08-11.md#RT-1..RT-6"
+    count_covered: 6
+  - family: "ISS-<n>* (red-team, plan-v3)"
+    resolver: "validation/ADVISORY_redteam_2026-08-11.md#ISS-1..ISS-6"
+    count_covered: 6
+  - family: "ATT-<n>* (speed-audit refuter attacks)"
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#refuter ledger"
+    count_covered: 18
+  - family: "V<n>* (speed generality/SOTA gauntlet repairs)"
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#gauntlet repairs"
+    count_covered: 12
+  - family: "N<n>* (speed named conditionals)"
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#section 7 + validation/DISPATCH_Sspeed_to_S25_2026-08-12.md"
+    count_covered: 8
+  - family: "findings_registry ids (dotted-colon ids)"
+    resolver: "docs/findings_registry.yaml"
+    count_covered: 20
+  - family: "AUDIT_agnostic finding rows (subsystem:finding-id)"
+    resolver: "validation/AUDIT_agnostic_2026-08-07.md (94 rows, 3-4 already re-homed in findings_registry.yaml — R31 seeding backlog)"
+    count_covered: 94
+  - family: "literature identities (bibliographic ids)"
+    resolver: "docs/rde_nozzle_literature_map.md + validation/ADVISORY_generality_litmap_2026-08-12.md + validation/ADVISORY_rde_choking_2026-08-11.md (T2(vii) seed for docs/literature_registry.yaml)"
+    count_covered: 42
+  - family: "session-log ids (S14-S25bis session names)"
+    resolver: "validation/INDEX.md + validation/PROGRESS_*.md (27 logs)"
+    count_covered: 27
+  # --- seg8 merge (2026-08-13, S-ORDINE T2 lint step): 8 families ---
+  - family: "C<n>* (litreview corrections C1-C33)"
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#6"
+    count_covered: 33
+    note: "FOURTH C-family: corrections of record of the 25-paper confrontation (C29 renumbered out of sequence). Distinct from choice-ledger C<n>, gauntlet C0<n> and AUDIT clusters C1-C8 — see the C1 collision entries."
+  - family: "A<n>* (litreview adoptions A1-A39)"
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#5"
+    count_covered: 39
+    note: "Adoption rows with exact insertion points (VI.1-VI.6); 10 further candidates rejected after attack. Distinct from the MoC doubt-ledger A1-A9 below."
+  - family: "R<n>* (litreview residuals R1-R29)"
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#7"
+    count_covered: 29
+    note: "DISTINCT from the census R<n> family (R1-R33) above and from the speed-audit N<n> conditionals — same letter, unrelated lists. R1/R2/R22 = the three P0s of the confrontation."
+  - family: "D-<nn>* (litreview duties D-01..D-52)"
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#8"
+    count_covered: 52
+    note: "Zero-padded duty rows, each owner+trigger; NONE verified executed at seg8 time. Distinct from the [D-*] M0-definitions family."
+  - family: "MOC-<nn>* (GENO MoC fidelity findings)"
+    resolver: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md"
+    count_covered: 28
+    note: "GENO-owned findings MOC-01..MOC-28 (incl. the P0 wall-thrust double-count MOC-10); unseeded into any registry at seg8 time."
+  - family: "A<n>/B<n>/C<n>/D<n> (MoC doubt-ledger buckets)"
+    resolver: "validation/LEDGER_dubbi_moc_2026-08-13.md"
+    count_covered: 35
+    note: "A1-A9 closed-with-proof + B1-B11 in-verification + C1-C2 stopped + D1-D13 executable-now. Yet another overload of the A/B/C/D single-letter enumerations — always disambiguate by document."
+  - family: "SOTA-<n>* (confrontation-methodology rubric)"
+    resolver: "validation/ADVISORY_sota_definition_2026-08-13.md"
+    count_covered: 18
+    note: "SOTA-1..SOTA-18 rubric criteria + cross-cutting definitions D0-D5 (CELL, noise baseline b, GOLD, seed registry, snapshot_id, temporal anchor). UNRATIFIED (refuter round 1 converged: false) yet operationally used by the litreview confrontation — plan-adherence flag of record."
+  - family: "DIAG_* (GENO instrumentation counters)"
+    resolver: "validation/RAW_geno_audit_instrumentation_2026-08-13.patch + validation/LEDGER_dubbi_moc_2026-08-13.md"
+    count_covered: 9
+    note: "CHORD_CALL, COL_KSEG0, SNAP_PT5, SNAP_PB, FASE2, BOOT_CLAMP, LAG_CLAMP, FRACRAW_MIN, FRACRAW_MAX — counters wired by the GENO audit patch (cross-repo footgun: the patch also carries AUDIT VARIANT B, see that entry)."
+
+entries:
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: O5
+  # ---------------------------------------------------------------
+  - token: "O5"
+    namespace: "oracle"
+    meaning: "EQ-v2 proof-obligation O5: the h->0 / mu_0->0 double-limit-order obligation in the def-equivalence panel's O1-O5 list."
+    resolver: "validation/ADVISORY_def_equivalence_panel_2026-08-07.md#O1-O5 obligations"
+    first_seen: "seg4/ADVISORY_def_equivalence_panel"
+  - token: "O5"
+    namespace: "decision"
+    meaning: "BLOCCATO census row: standing user decision on numpy 2.5.2 adoption (same slot cited as an 'optional' item in the engine-speed SOTA survey O1-O5)."
+    resolver: "docs/rde_nozzle_PROGRESS.md#BLOCCATO 8 (O5 numpy)"
+    first_seen: "seg2/requirements.txt note; seg4/ADVISORY_engine_speed_audit"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: M1
+  # ---------------------------------------------------------------
+  - token: "M1"
+    namespace: "speed-lever"
+    meaning: "S25 M-CHAIN speed lever M1: record-path dedup (fun+jac memoization)."
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#M0-M6 mandatory set"
+    first_seen: "seg4/ADVISORY_engine_speed_audit"
+  - token: "M1"
+    namespace: "mechanism"
+    meaning: "M0 bound-ladder globality mechanism M1 (an instance of Prop. B1's ladder), src/thrust/bounds.py."
+    resolver: "docs/rde_nozzle_MASTER.md#Part IV (P)(iv) bound-ladder mechanisms"
+    first_seen: "seg2/src/thrust/bounds.py"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: T2 (see also T1/T2 group below)
+  # ---------------------------------------------------------------
+  - token: "T2"
+    namespace: "gate"
+    meaning: "G0/T2 cost-anchor review row: the S18 loop-speed measurement (121.6 s vs 35.9 s GENO) that feeds the T2a production gate; 'T2 fired' = the S18 verdict that opened the review queue, consumed at S25 with no flip."
+    resolver: "docs/rde_nozzle_G0_decision.md + validation/a1_loopspeed_bench.py"
+    first_seen: "seg5/s18-brick2-closed"
+  - token: "T2"
+    namespace: "theorem"
+    meaning: "Theory theorem-ladder item T2 within the T0-T7 averaged-system sequence (M0 Part III)."
+    resolver: "docs/rde_nozzle_MASTER.md#Part III theorem ladder"
+    first_seen: "seg1/M0"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: F4
+  # ---------------------------------------------------------------
+  - token: "F4b"
+    namespace: "plan-phase"
+    meaning: "D6 plan-of-record phase F4b: fitted-front geometry class (part of the F0-F6 spine ratified at S21)."
+    resolver: "docs/rde_nozzle_development_plan.md#0-pre plan v3"
+    first_seen: "seg1/D6"
+  - token: "F4"
+    namespace: "falsifier"
+    meaning: "DEF-twin pre-registered falsifier branch F4 (one of F1-F7 in validation/def_twin_falsifier.py) — kills a named EQ-v2 hypothesis if triggered."
+    resolver: "validation/def_twin_falsifier.py + validation/ADVISORY_def_equivalence_panel_2026-08-07.md#F1-F7"
+    first_seen: "seg5/def_twin_falsifier.py"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: C1 (5 distinct meanings measured)
+  # ---------------------------------------------------------------
+  - token: "C-1"
+    namespace: "claim"
+    meaning: "claims_to_code claim->verifier table row C-1: the three-way DEF-signature discriminator decision table (DEF-signature / interior-caustic-falsifies-panel-reading / non-fold construction defect)."
+    resolver: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-1"
+    first_seen: "seg4/ADVISORY_claims_to_code"
+  - token: "C1"
+    namespace: "choice"
+    meaning: "Choice-ledger row #1 (one of 45 rows in the gap-map annex; T2 extraction target docs/choice_ledger.yaml)."
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#choice ledger annex"
+    first_seen: "seg3/ADVISORY_S24_sota_gapmap"
+  - token: "C1"
+    namespace: "panel"
+    meaning: "S24 DE-bucket panel condition C1 (one of C1-C10 blocking/record conditions for the campaign GO verdict)."
+    resolver: "validation/ADVISORY_S24_DEbucket_panel_2026-08-12.md#C1-C10"
+    first_seen: "seg3/ADVISORY_S24_DEbucket_panel"
+  - token: "C1"
+    namespace: "conditional"
+    meaning: "F1 blocker conditional C1 (GENO-side conditional named at S22/S23, DISCHARGED when GENO fca273a landed) — unrelated to the choice-ledger C1 above."
+    resolver: "docs/rde_nozzle_PROGRESS.md#S23 F1 close"
+    first_seen: "seg5/s23-f1-closed"
+  - token: "C1"
+    namespace: "audit"
+    meaning: "AUDIT_agnostic cluster C1 (one of 8 cluster rows, C1-C8, in the codebase-wide find->verify audit)."
+    resolver: "validation/AUDIT_agnostic_2026-08-07.md#cluster map"
+    first_seen: "seg4/AUDIT_agnostic"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: L4
+  # ---------------------------------------------------------------
+  - token: "L4"
+    namespace: "doc-layer"
+    meaning: "SCAFFOLD architecture layer L4: docs/rde_nozzle_conditionals.md, the single-statement-location ledger for C-D25U/C-MAJDA."
+    resolver: "docs/rde_nozzle_SCAFFOLD.md#L0-L6 layers"
+    first_seen: "seg1/SCAFFOLD"
+  - token: "L4"
+    namespace: "speed-lever"
+    meaning: "S24-named speed lever L4: design-batching (one of the L1-L5 candidate speed levers named at the S-SPEED prompt)."
+    resolver: "validation/ADVISORY_Sspeed_prompt_2026-08-12.md#L1-L5"
+    first_seen: "seg4/ADVISORY_Sspeed_prompt"
+  - token: "L4-default"
+    namespace: "class"
+    meaning: "S15/S16 foundations-ledger 'L4-default' class (a default clause inside the C-D25U discharge ledger) — unrelated to both L4 meanings above."
+    resolver: "docs/rde_nozzle_remaining_conditionals.md"
+    first_seen: "seg6/s15-foundations-campaign"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: U1-U4
+  # ---------------------------------------------------------------
+  - token: "U1"
+    namespace: "conditional"
+    meaning: "C-D25U discharger U1: smooth-region semiglobal estimates (cost-claim CONFIRMED with the h_min discovery)."
+    resolver: "docs/rde_nozzle_D25U_U1.md"
+    first_seen: "seg1/D25U_U1"
+  - token: "U2"
+    namespace: "conditional"
+    meaning: "C-D25U discharger U2: slip-wall reflection brick [T-U2RG], carrier validation/u2_reflection_glancing.py [X-U2RG]."
+    resolver: "docs/rde_nozzle_remaining_conditionals.md + validation/u2_reflection_glancing.py"
+    first_seen: "seg5/u2_reflection_glancing.py"
+  - token: "U3"
+    namespace: "conditional"
+    meaning: "C-D25U discharger U3: bordered front-solve structure [S-D25U-U34], carrier [X-U3BD]; U3-H1 = the Lopatinskii scalar sharpening condition."
+    resolver: "docs/rde_nozzle_D25U_U3U4.md + validation/u3_bordered_front_solve.py"
+    first_seen: "seg1/D25U_U3U4"
+  - token: "U4"
+    namespace: "conditional"
+    meaning: "C-D25U discharger U4: fronts-and-composition companion to U3 (C-D25U -a complete at class level)."
+    resolver: "docs/rde_nozzle_D25U_U3U4.md"
+    first_seen: "seg1/D25U_U3U4"
+  - token: "U1"
+    namespace: "duty"
+    meaning: "Use-case duty U1: front-extraction operator with its own oracle (chamber-CFD-to-nozzle extraction stress test) — unrelated to conditional:U1 above."
+    resolver: "validation/ADVISORY_use_case_interface_2026-08-07.md#U1"
+    first_seen: "seg4/ADVISORY_use_case_interface"
+  - token: "U2"
+    namespace: "duty"
+    meaning: "Use-case duty U2: contact adjudication (smeared-vs-fitted slip line) — unrelated to conditional:U2 above."
+    resolver: "validation/ADVISORY_use_case_interface_2026-08-07.md#U2"
+    first_seen: "seg4/ADVISORY_use_case_interface"
+  - token: "U3 / U3'"
+    namespace: "duty"
+    meaning: "Use-case duty U3: extraction-surface placement rule; U3' = the sharpened two-regime RDE-choking extraction contract (C1-C5 consequences)."
+    resolver: "validation/ADVISORY_use_case_interface_2026-08-07.md#U3 + validation/ADVISORY_S21_addendum_prompt_2026-08-11.md#duty U3'"
+    first_seen: "seg4/ADVISORY_use_case_interface"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: A1
+  # ---------------------------------------------------------------
+  - token: "A1"
+    namespace: "plan-phase"
+    meaning: "D6 historical phase A1 (A0-A7 spine): the engine-brick build phase (brick 1 = [X-A1IM] ideal march; brick 2 = the TOC variational engine), superseded into the F-phase spine at S21 ratification."
+    resolver: "docs/rde_nozzle_development_plan.md#A0-A7 historical spine"
+    first_seen: "seg1/D6"
+  - token: "A1_*"
+    namespace: "flag"
+    meaning: "Engine arbitration env-flag family: A1_COLEXEC, A1_VMAP_HESS, A1_PLAN_ARGS, A1_FUSED_CERT, A1_MEMO_PROBE, A1_REJ_SAVE, A1_CERT_ARGMAX — runtime switches on validation/a1_toc_variational_jax.py, NOT the plan phase A1."
+    resolver: "validation/a1_toc_variational_jax.py (flag definitions) — flag-matrix registry is a separate S-ORDINE T2-bis(b) deliverable"
+    first_seen: "seg5/a1_toc_variational_jax.py"
+  - token: "A1"
+    namespace: "topology"
+    meaning: "PANEL_topology_census discrete invariant A1 ('A1-bridge', a bridge-sealing lemma) — unrelated to both meanings above."
+    resolver: "validation/PANEL_topology_census_2026-07-22.md#discrete invariants"
+    first_seen: "seg3/PANEL_topology_census"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: P* (P0-P5, P-1/P-2, P1-P7, PB-*, P1-P4)
+  # ---------------------------------------------------------------
+  - token: "P0-P2"
+    namespace: "triage"
+    meaning: "AUDIT_agnostic / plan-v3 finding-triage priority buckets (P0 = must-fix, P1/P2 lower priority)."
+    resolver: "validation/AUDIT_agnostic_2026-08-07.md#triage"
+    first_seen: "seg4/AUDIT_agnostic"
+  - token: "P-1"
+    namespace: "doc"
+    meaning: "Paper deliverable P-1: the cycle-averaged variational-nozzle JPP paper (target venue JPP; skeleton + sections drafted)."
+    resolver: "docs/rde_nozzle_P1_skeleton.md"
+    first_seen: "seg1/P1_skeleton"
+  - token: "P-2"
+    namespace: "doc"
+    meaning: "Paper deliverable P-2: the Rao/Kraiko-adjoint bridge companion paper (outline + Lemma A/B drafts; numeric half frozen S23)."
+    resolver: "docs/rde_nozzle_P2_outline.md"
+    first_seen: "seg1/P2_outline"
+  - token: "P1-P7"
+    namespace: "problem"
+    meaning: "mathematical_foundations_rde_nozzle.md solution-concept problems P1-P7 (P1a/P1b = the corrected biconditional split in D3 §7)."
+    resolver: "docs/mathematical_foundations_rde_nozzle.md (superseded-by-D1-D4, corrections in docs/rde_nozzle_theorem_ledger.md §7)"
+    first_seen: "seg1/mathematical_foundations"
+  - token: "P1/P2/P3"
+    namespace: "pin"
+    meaning: "User scope pins ratified at S-GAUNTLET (2026-08-11): P1 = frozen thermally-perfect mixture (gamma(T) free, H1-T class), P2 = two-phase excluded, P3 = anti-overengineering."
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md#ratification appendix"
+    first_seen: "seg6/scope-pins-frozen-thermally-perfect"
+  - token: "P1-P4"
+    namespace: "lever"
+    meaning: "Brick-2 'production levers' P1-P4 run at S18 (the end-to-end run that closed brick 2 and unlocked O3.3) — unrelated to the pin:P1-P3 or triage:P0-P2 above."
+    resolver: "validation/PROGRESS_2026-08-06_S18_brick2run.md"
+    first_seen: "seg5/s18-brick2-closed"
+  - token: "PB-1..PB-4"
+    namespace: "book"
+    meaning: "Problem-book (D1) frontier problem rows: PB-2 truncated-plug averaged problem, PB-4 bilevel chamber-nozzle coupling, etc."
+    resolver: "docs/rde_nozzle_problem_book.md#PB-n rows"
+    first_seen: "seg1/problem_book"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: B1
+  # ---------------------------------------------------------------
+  - token: "B1"
+    namespace: "brick"
+    meaning: "a-contraction attack brick B1: the interval-certificate route to C-MAJDA (supersedes the earlier probe form), S16 T2 [RIGOR/A]."
+    resolver: "docs/rde_nozzle_acontraction_attack.md#bricks B1-B3"
+    first_seen: "seg1/acontraction_attack"
+  - token: "B1"
+    namespace: "rung"
+    meaning: "D6 §5 gate-table rung reference B1 (a distinct budget/rung row in the gate context) — unrelated to the acontraction brick above."
+    resolver: "docs/rde_nozzle_development_plan.md#5 gates"
+    first_seen: "seg3/ADVISORY_Sgauntlet"
+  - token: "B1"
+    namespace: "quarantine"
+    meaning: "Generality-litmap DISPATCH quarantine row B1 (a non-converged litmap item pending an owner) — unrelated to both meanings above."
+    resolver: "validation/DISPATCH_S24_generality_findings_2026-08-12.md#B1-B2"
+    first_seen: "seg4/DISPATCH_S24_generality_findings"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: T1/T2 (theorem vs production-gate)
+  # ---------------------------------------------------------------
+  - token: "T1"
+    namespace: "theorem"
+    meaning: "Theory theorem-ladder item T1 (T0-T7 sequence); historically corrected to 'definition+conjecture' per the cycle_averaged_variational_nozzle.md supersession banner."
+    resolver: "docs/rde_nozzle_MASTER.md#Part III + docs/cycle_averaged_variational_nozzle.md (superseded banner)"
+    first_seen: "seg1/M0"
+  - token: "T1"
+    namespace: "gate"
+    meaning: "S17 loop-speed-threshold gate row T1 (predecessor of T2/T2a) — unrelated to theorem:T1."
+    resolver: "validation/PROGRESS_2026-08-06_S17_brick2.md"
+    first_seen: "seg5/s17-brick2-kickoff"
+  - token: "T2 (see also above)"
+    namespace: "theorem"
+    meaning: "See theorem:T2 entry above (T0-T7 ladder)."
+    resolver: "docs/rde_nozzle_MASTER.md#Part III theorem ladder"
+  - token: "T2 (see also above)"
+    namespace: "gate"
+    meaning: "See gate:T2 entry above (G0/T2 cost-anchor review / T2a production gate lineage)."
+    resolver: "docs/rde_nozzle_G0_decision.md"
+
+  # ---------------------------------------------------------------
+  # PINNED COLLISION FAMILY: F1-F7
+  # ---------------------------------------------------------------
+  - token: "F1 / F1b"
+    namespace: "plan-phase"
+    meaning: "D6 phase F1 (margin governor) / F1b (DEF-twin falsifier sub-phase, S24) — distinct from any falsifier BRANCH named F1."
+    resolver: "docs/rde_nozzle_development_plan.md#0-pre plan v3"
+    first_seen: "seg1/D6"
+  - token: "F1-F7 (DEF twin)"
+    namespace: "falsifier"
+    meaning: "Pre-registered DEF-twin falsifier branches F1-F7 in validation/def_twin_falsifier.py; each branch kills one named EQ-v2 hypothesis."
+    resolver: "validation/def_twin_falsifier.py + validation/ADVISORY_def_equivalence_panel_2026-08-07.md#F1-F7"
+    first_seen: "seg5/def_twin_falsifier.py"
+  - token: "F1-F4 (swirl)"
+    namespace: "falsifier"
+    meaning: "Mean-swirl panel falsifiers F1-F4 + A4 (swirl-field falsifiers) — never run by anyone (EMPIRICAL VACUUM finding: no time-mean tangential field reported in the read corpus). Distinct branch set from the DEF-twin F1-F7."
+    resolver: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#falsifiers F1-F4+A4"
+    first_seen: "seg4/ADVISORY_mean_swirl_panel"
+  - token: "F1-F4 (collapse)"
+    namespace: "falsifier"
+    meaning: "S-COLLAPSE breaker-map panel falsifiers F1-F4 (never run by anyone, per the Scollapse verdict §8 open-items list). A third, distinct F1-F4 set."
+    resolver: "validation/ADVISORY_Scollapse_verdict_2026-08-11.md#7 never-quote register + §8 open items"
+    first_seen: "seg3/ADVISORY_Scollapse_verdict"
+
+  # ---------------------------------------------------------------
+  # BONUS COLLISIONS (surfaced during seeding, >=3 segments flagged
+  # each; disambiguated even though not on the pinned list)
+  # ---------------------------------------------------------------
+  - token: "G1"
+    namespace: "gate"
+    meaning: "Plan gate G1: the absolute oracle-certification gate — 'no science from an uncertified machine' (R6, CLAUDE.md)."
+    resolver: "CLAUDE.md#R6 + docs/rde_nozzle_development_plan.md#5 gates"
+    first_seen: "seg1/CLAUDE.md"
+  - token: "G1"
+    namespace: "term"
+    meaning: "G1 surrogate: the NEW claims_to_code obligation for a finite negative-margin surrogate at a failed march (REQ-NONSTALL companion), carried by validation/margin_governor.py [X-MGOV]."
+    resolver: "validation/ADVISORY_claims_to_code_2026-08-07.md#G1 rejector"
+    first_seen: "seg4/ADVISORY_claims_to_code"
+  - token: "[G1-DISC]"
+    namespace: "claim"
+    meaning: "Registered finding [G1-DISC]: the G1-surrogate three-channel discontinuity finding (frac_bad / ks_part-subset / n_fin->0 switch), findings_registry id margin-governor:G1-three-jump-channels."
+    resolver: "docs/findings_registry.yaml#margin-governor:G1-three-jump-channels"
+    first_seen: "seg3/ADVISORY_S25_pipeline_sense_CONVERGED"
+  - token: "M0"
+    namespace: "doc"
+    meaning: "docs/rde_nozzle_MASTER.md — the master theory reference, top of the M0+D1-D7 conflict order (CLAUDE.md R2)."
+    resolver: "docs/rde_nozzle_MASTER.md"
+    first_seen: "seg1/M0"
+  - token: "M0"
+    namespace: "speed-lever"
+    meaning: "S25 M-CHAIN speed-lever checkpoint M0: clean-host re-baseline measurement (validation/engine_speed_bench.py). Unrelated to the master doc above."
+    resolver: "validation/s25_spdb_m0.json + validation/engine_speed_bench.py"
+    first_seen: "seg5/engine_speed_bench.py"
+
+  # ---------------------------------------------------------------
+  # HIGH-VALUE STANDALONE TOKENS (not registry-backed families,
+  # recur across >=2 segments, not already disambiguated above)
+  # ---------------------------------------------------------------
+  - token: "REQ-NONSTALL"
+    namespace: "term"
+    meaning: "Tier-invariant user requirement: the optimum search must never stall on an incomputable/uncertifiable field; owns gate G1's surrogate obligation."
+    resolver: "docs/rde_nozzle_development_plan.md#0-pre plan v3 + validation/margin_governor.py"
+    first_seen: "seg1/D6"
+  - token: "EQ-v2"
+    namespace: "term"
+    meaning: "The equivalence conjecture of record (Direction A/B split, hypotheses H1-H7-SEL) — informal name for the registered conditional claim:C-EQV2."
+    resolver: "validation/ADVISORY_def_equivalence_panel_2026-08-07.md + docs/rde_nozzle_MASTER.md#Part VI (L1653)"
+    first_seen: "seg1/M0"
+  - token: "H-CLASS"
+    namespace: "hypothesis"
+    meaning: "EQ-v2's class-level hypothesis ('the design class is the highest-leverage object') — S24 F1b adjudication bucket."
+    resolver: "validation/ADVISORY_S25_pipeline_sense_math_2026-08-12.md#2.1 + validation/PROGRESS_2026-08-12_S24_f1b.md"
+    first_seen: "seg3/ADVISORY_S25_pipeline_sense_math"
+  - token: "H1-H7-SEL"
+    namespace: "hypothesis"
+    meaning: "EQ-v2 hypothesis list H1-H6 + H7-SEL (added by red-team RT-3): single cusp, open terminal characteristic, MFCQ, matched classes, genuine margin, classical uniqueness, KKT selection."
+    resolver: "validation/ADVISORY_def_equivalence_panel_2026-08-07.md#hypotheses"
+    first_seen: "seg4/ADVISORY_def_equivalence_panel"
+  - token: "KAT"
+    namespace: "term"
+    meaning: "Known-Answer Test — generic term for a fixed-answer regression carrier (certdiag_kat.py [X-CDKAT]; GENO flagdef KAT; validity_monitor.py gamma=1.4 KAT)."
+    resolver: "validation/certdiag_kat.py + validation/validity_monitor.py"
+    first_seen: "seg2/run_all.py"
+  - token: "DEF"
+    namespace: "term"
+    meaning: "Rao-Beck DEF regime: discontinuous-exit-flow (PM-compression) nozzle construction, AIAA 94-3264/99-2584 — the program's central classical-generalization target."
+    resolver: "docs/rde_nozzle_MASTER.md + validation/ADVISORY_def_equivalence_proof_2026-08-07.md"
+    first_seen: "seg1/M0"
+  - token: "MoC"
+    namespace: "term"
+    meaning: "Method of characteristics — the discretization family behind validation/a1_ideal_march_jax.py and validation/a1_toc_variational_jax.py (differentiable MoC march)."
+    resolver: "validation/a1_ideal_march_jax.py"
+    first_seen: "seg5/a1_ideal_march_jax.py"
+  - token: "TR-SQP"
+    namespace: "term"
+    meaning: "The engine's driver method of record: segmented trust-region sequential-quadratic-programming (run_trsqp in validation/a1_toc_variational_jax.py [X-TOCV])."
+    resolver: "validation/a1_toc_variational_jax.py#run_trsqp"
+    first_seen: "seg5/a1_toc_variational_jax.py"
+  - token: "KS / KS_rho"
+    namespace: "term"
+    meaning: "Kreisselmeier-Steinhauser aggregate — the conservative min-envelope used by the margin governor to combine multiple margin channels into one scalar."
+    resolver: "validation/margin_governor.py"
+    first_seen: "seg3/ADVISORY_S24_DEbucket_panel"
+  - token: "RK-G"
+    namespace: "directive"
+    meaning: "Record/replay adaptivity discipline: record runs adaptively, replay runs differentiably against the recorded topology (DIR-RKG)."
+    resolver: "docs/rde_nozzle_brick2_kickoff.md#DIR-RKG"
+    first_seen: "seg1/brick2_kickoff"
+  - token: "(G) / Lambda-form / val"
+    namespace: "term"
+    meaning: "The registered margin field: GENO's validity-boundary function 'val' (Rao_m.f90), proved == Rao-Beck Eq.(4) for perfect gas (S4 THEOREM); the field the margin governor and gap-map GAP-1/5 all monitor."
+    resolver: "validation/ADVISORY_def_equivalence_proof_2026-08-07.md + validation/validity_monitor.py [X-VMON]"
+    first_seen: "seg4/ADVISORY_def_equivalence_proof"
+  - token: "EAP"
+    namespace: "term"
+    meaning: "Equivalent Available Pressure — Kaemming-Paxson's construction; cited in M0 Part III remarks and the lecture capstone (SOLUTION_headtohead.md)."
+    resolver: "PARENT/20180006890.pdf (B2; PARENT/ = ../, path fixed 2026-08-13 from the typo validation/PARENT/) + examples/SOLUTION_headtohead.md"
+    first_seen: "seg2/SOLUTION_headtohead.md"
+  - token: "S-H"
+    namespace: "term"
+    meaning: "Stechmann-Heister(-Harroun) shorthand for the mass-weighted-averaging thrust-model school (M0 remarks); NOT a session name (session names use the S<n>/S-<WORD> pattern, see session-log family)."
+    resolver: "docs/rde_nozzle_MASTER.md#Part III remarks"
+    first_seen: "seg1/M0"
+  - token: "TWIN-A / TWIN-B / TWIN-C"
+    namespace: "term"
+    meaning: "Steady-twin fairness constructions: mean-swirl panel uses TWIN-A (zero-swirl, misattributed), TWIN-B (pointwise-mean, REFUTED as unfair), TWIN-C (flux-consistent, adopted as fair). S-COLLAPSE reuses the TWIN-x naming pattern for its own p-only twin (distinct construction, same convention)."
+    resolver: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#P4 twin fairness"
+    first_seen: "seg4/ADVISORY_mean_swirl_panel"
+  - token: "W1 / W2"
+    namespace: "term"
+    meaning: "S-COLLAPSE measure-wedge identities: W1 = time-vs-mass-flux averaging identity, W2 = matched-pressure construction (corrected wording in the Scollapse verdict)."
+    resolver: "validation/ADVISORY_Scollapse_verdict_2026-08-11.md#(e) breakers"
+    first_seen: "seg3/ADVISORY_Scollapse_verdict"
+  - token: "ADR"
+    namespace: "term"
+    meaning: "The 'untracked advisory-copy' document pattern (Nygard ADR lineage) — origin file ADR_panel_2026-07-16.md; every later advisory header cites this as precedent."
+    resolver: "validation/ADR_panel_2026-07-16.md"
+    first_seen: "seg3/ADR_panel"
+  - token: "REBLESS.md"
+    namespace: "doc"
+    meaning: "Deliberate re-bless protocol spec (ADR panel cross-cutting section): the process for updating blessed golden numbers with an explicit before/after record."
+    resolver: "validation/ADR_panel_2026-07-16.md#cross-cutting"
+    first_seen: "seg3/ADR_panel"
+  - token: "MC1-MC8"
+    namespace: "claim"
+    meaning: "S-CERT (R33) certification meta-claims under hostile context-free attack; MC8 = the plan-adherence primary lens elevated to a system meta-claim."
+    resolver: "validation/ADVISORY_Scert_prompt_2026-08-12.md#MC1-MC8"
+    first_seen: "seg3/ADVISORY_Scert_prompt"
+  - token: "defnoz"
+    namespace: "term"
+    meaning: "The production DEF-nozzle benchmark/gate-case instance (GENO regression case, backend 0; eps=30, L=8 for the speed-program record march)."
+    resolver: "validation/engine_speed_bench.py + validation/ADVISORY_engine_speed_audit_2026-08-12.md"
+    first_seen: "seg2/thermotab_c1_jax.py (moc-critical memory)"
+  - token: "K_RICH"
+    namespace: "constant"
+    meaning: "Richardson-derived safety constant (measured value 4) used across derived-band constructions; carries 8 distinct roles per the choice ledger (C42)."
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#choice ledger C42"
+    first_seen: "seg3/ADVISORY_S24_sota_gapmap"
+  - token: "NEWTON_TOL_FACTOR (NTF)"
+    namespace: "constant"
+    meaning: "Newton-tolerance safety factor; GAP-29 4-arm sweep found halving it is the ONE FLIP arm (load-bearing on cert_verdict) — NTF derivation is now a named F2 duty."
+    resolver: "docs/findings_registry.yaml#engine-core:F5-underived-factors + validation/s25bis_gap29_sweep.py"
+    first_seen: "seg5/s25bis_gap29_sweep.py"
+  - token: "C_FLOOR / C_OPS"
+    namespace: "constant"
+    meaning: "Derived-band engine constants swept alongside NTF in GAP-29 (both no-flip, >=2x measured headroom)."
+    resolver: "validation/s25bis_gap29_sweep.py + docs/findings_registry.yaml#engine-core:F5-underived-factors"
+    first_seen: "seg5/s25bis_gap29_sweep.py"
+  - token: "N_TAB"
+    namespace: "constant"
+    meaning: "Thermo-table size constant (edge-stencil error band breaks only above N_TAB ~220-300; production runs at 8192)."
+    resolver: "validation/thermotab_c1_jax.py + docs/findings_registry.yaml#thermotab:C-A-edge-stencil"
+    first_seen: "seg3/ADVISORY_S25_pipeline_impl_fidelity"
+  - token: "STOP-WHEN-MET"
+    namespace: "term"
+    meaning: "S25/S25-bis speed-program stop rule: halt the M0->M6 dispatch order as soon as the segment/campaign targets are formally MET."
+    resolver: "validation/DISPATCH_Sspeed_to_S25_2026-08-12.md"
+    first_seen: "seg3/ADVISORY_S25_prompt"
+  - token: "m5cgate / m6gate / h3gate / m12gate"
+    namespace: "gate"
+    meaning: "S25-bis speed-program acceptance gates (bitwise dec-vector class): m5cgate = per-column executor, m6gate = the M6 vmapped-Hessian REJECTION of record, h3gate = rung-boundary dedup, m12gate = M1+M2 memo/counter."
+    resolver: "validation/s25_spdb_m5c.json + validation/s25_spdb_m6.json + PROGRESS_2026-08-12_S25bis_speed.md"
+    first_seen: "seg5/s25_spdb_*.json"
+  - token: "CVaR / DRO"
+    namespace: "term"
+    meaning: "Conditional-Value-at-Risk / Distributionally-Robust-Optimization — candidate robust-layer methods named for the PB-5 frontier problem, declared-not-adopted."
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md#DUTY-13"
+    first_seen: "seg3/ADVISORY_Sgauntlet_generality_ledger"
+  - token: "St / St=O(1)"
+    namespace: "term"
+    meaning: "Strouhal-number quasi-steady license (gauntlet cluster C001; quasi-1D residue red-team correction)."
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md#C001"
+    first_seen: "seg3/ADVISORY_Sgauntlet_generality_ledger"
+  - token: "IVL"
+    namespace: "term"
+    meaning: "Sauer initial-value-line domain term; also the name of the sense-math review's [NEW] common-data-envelope argument (argmax second-order vs value first-order) — treat both uses as the same interface-contract family, disambiguate by document."
+    resolver: "validation/ADVISORY_S25_pipeline_sense_math_2026-08-12.md#2.1"
+    first_seen: "seg4/ADVISORY_S25_pipeline_sense_math"
+  - token: "Route A / Route B"
+    namespace: "term"
+    meaning: "Classical derivation-route taxonomy (control-surface multiplier route A vs multiplier-field route B) in the generality litmap's containment map."
+    resolver: "validation/ADVISORY_generality_litmap_2026-08-12.md#2"
+    first_seen: "seg4/ADVISORY_generality_litmap"
+  - token: "K-O"
+    namespace: "term"
+    meaning: "Kraiko-Osipov 1970 trajectory-averaged variational-nozzle ancestor (endogenous-weight non-containment finding (g))."
+    resolver: "literature/0021-8928%2870%2990164-4.pdf + docs/rde_nozzle_literature_map.md#3.12"
+    first_seen: "seg7/A1"
+  - token: "Chenais"
+    namespace: "topology"
+    meaning: "Uniform-cone compactness hypothesis on the fluid-side Omega domain (user pin 2026-08-02)."
+    resolver: "validation/PANEL_topology_census_2026-07-22.md#7pin"
+    first_seen: "seg3/PANEL_topology_census"
+  - token: "NONBLOCK+"
+    namespace: "topology"
+    meaning: "User pin CEN-O10: every Omega component meets the farfield."
+    resolver: "validation/PANEL_topology_census_2026-07-22.md#CEN-O10"
+    first_seen: "seg3/PANEL_topology_census"
+  - token: "CSTR_PA / CSTR_PB"
+    namespace: "term"
+    meaning: "GENO pressure-corner boundary conditions (outer-lip p_a sign -, inner-tip p_b sign +) — three fixed GENO-convention conflicts documented at the topology census."
+    resolver: "validation/PANEL_topology_census_2026-07-22.md#face-indexed BC"
+    first_seen: "seg3/PANEL_topology_census"
+  - token: "flagdef"
+    namespace: "term"
+    meaning: "GENO's DEF-branch selector flag; its KAT coverage is the object of ISS-3 (landed-vs-dispatched coverage break) and the S23 GENO-conditional discharge."
+    resolver: "validation/ADVISORY_def_equivalence_proof_2026-08-07.md + validation/PROGRESS_2026-08-11_S23_f1close.md"
+    first_seen: "seg4/ADVISORY_def_equivalence_proof"
+  - token: "OP-0 / OP-11(-eps)"
+    namespace: "oracle"
+    meaning: "Ranked open problems (M0 Part IV): OP-0 = eps-level bound ladder (Prop. B1), OP-11-eps = measure-selects-topology phase diagram."
+    resolver: "src/thrust/bounds.py + src/thrust/phase_diagram.py"
+    first_seen: "seg2/src/thrust/bounds.py"
+  - token: "T3-QS / T-T3QS"
+    namespace: "theorem"
+    meaning: "Quasi-steady protection theorem for the collapse class (first-order sweep cancellation on ray families); carrier validation/t3qs_sweep_protection.py [X-T3QS]."
+    resolver: "docs/rde_nozzle_T3QS.md + validation/t3qs_sweep_protection.py"
+    first_seen: "seg1/T3QS"
+  - token: "Gamma_d / Lambda (lips) / mu"
+    namespace: "term"
+    meaning: "Interface-contract surface terms: Gamma_d = the interface data, Lambda = the lip set (design-space boundary), mu = the cycle measure."
+    resolver: "docs/rde_nozzle_problem_book.md#notation"
+    first_seen: "seg4/ADVISORY_use_case_interface"
+  - token: "LB-c1 / LB-c2"
+    namespace: "conditional"
+    meaning: "S-LBML declared clauses: LB-c1 (mesh-convergence primal/adjoint pair scope) and LB-c2 (fixed march-topology, the march-topology-flip monitor)."
+    resolver: "docs/rde_nozzle_LBML.md"
+    first_seen: "seg1/LBML"
+  - token: "dan25254 / 0041-5553(80)90091-9"
+    namespace: "literature"
+    meaning: "Opaque GENO-literature filenames identified: dan25254.pdf = Sternin, DAN SSSR 139(2):335-336 (1961, ORIGINAL); 0041-5553...pdf = Shmyglevskii, USSR CMMP 20(5):113-127 (1980) = Rao-Beck Ref. 4. Both page-verified twice."
+    resolver: "validation/ADVISORY_generality_litmap_2026-08-12.md#7.1 + literature/dan25254.pdf + literature/0041-5553%2880%2990091-9.pdf"
+    first_seen: "seg7/A2/A7"
+  - token: "AIAA 2019-0197"
+    namespace: "literature"
+    meaning: "Harroun 2019 — the SOLE remaining literature fetch of the RDE-choking census (needed before any reattribution of the 'near-perfect time-averaged expansion' misquote)."
+    resolver: "validation/ADVISORY_rde_choking_2026-08-11.md#5 fetch bookkeeping"
+    first_seen: "seg3/ADVISORY_rde_choking"
+  - token: "jax_compilation_cache_max_size"
+    namespace: "config"
+    meaning: "Built-in JAX LRU-cache-cap config setting adopted at S25 (filelock is its unresolved dependency-conditional, BLOCCATO row)."
+    resolver: "docs/findings_registry.yaml#conditional:filelock-lru-cap"
+    first_seen: "seg4/ADVISORY_engine_speed_audit"
+  - token: "G0"
+    namespace: "gate"
+    meaning: "Plan gate G0: the JAX-primary stack decision (custom_vjp/jvp, implicit rules; Julia+Enzyme fallback; GENO-Fortran independent reference), decided S10."
+    resolver: "docs/rde_nozzle_G0_decision.md"
+    first_seen: "seg1/G0_decision"
+  - token: "G5"
+    namespace: "gate"
+    meaning: "Plan gate G5: the human Kraiko-1979/PMM library-pass — blocks SUBMISSION only, never work (R6)."
+    resolver: "validation/G5_kraiko_pmm_commission.md"
+    first_seen: "seg1/CLAUDE.md"
+  - token: "[X-TOCV]"
+    namespace: "claim"
+    meaning: "The variational TOC engine of record (validation/a1_toc_variational_jax.py), the single heaviest-cited carrier in the corpus (gap-map facets cite it by line)."
+    resolver: "validation/a1_toc_variational_jax.py"
+    first_seen: "seg5/a1_toc_variational_jax.py"
+  - token: "[X-MGOV]"
+    namespace: "claim"
+    meaning: "Margin governor carrier (validation/margin_governor.py): KS aggregation, G1 surrogate, decisive-campaign driver."
+    resolver: "validation/margin_governor.py"
+    first_seen: "seg5/margin_governor.py"
+  - token: "[X-DEFTW]"
+    namespace: "claim"
+    meaning: "F1b DEF-twin falsifier campaign carrier (validation/def_twin_falsifier.py); H4 tail-to-derive + code-identity persistence guards its artifact."
+    resolver: "validation/def_twin_falsifier.py"
+    first_seen: "seg5/def_twin_falsifier.py"
+  - token: "[X-SPDB]"
+    namespace: "claim"
+    meaning: "Engine speed-bench carrier (validation/engine_speed_bench.py), M0..M-E checkpoints + gates."
+    resolver: "validation/engine_speed_bench.py"
+    first_seen: "seg5/engine_speed_bench.py"
+  - token: "H3 / H4"
+    namespace: "speed-lever"
+    meaning: "S25-bis cap-protection levers: H3 = rung-boundary dedup, H4 = tail-to-derive + code-identity persistence (catches intra-commit staleness, findings_registry persistence:derive-artifact-intra-commit-staleness)."
+    resolver: "validation/PROGRESS_2026-08-12_S25bis_speed.md#H3/H4 + docs/findings_registry.yaml#persistence:derive-artifact-intra-commit-staleness"
+    first_seen: "seg5/s25bis-speed-complete"
+  - token: "M-A..M-E"
+    namespace: "speed-lever"
+    meaning: "Speed-program MEASURE checkpoints; M-D/M-E are the formal segment/campaign STOP CHECKS of record (14.9 s / 20.1 s pessimistic-end vs <=30)."
+    resolver: "validation/s25_spdb_md.json + validation/s25_spdb_me.json"
+    first_seen: "seg3/ADVISORY_S25bis_prompt"
+  - token: "DIR-THERMOTAB"
+    namespace: "directive"
+    meaning: "Standing directive: JAX thermo = table reading only; Cantera is the sole production generator."
+    resolver: "docs/claims_registry.yaml:1127-1138 + docs/rde_nozzle_MASTER.md:1349-1356"
+    first_seen: "seg6/thermo-tabulated-backend"
+  - token: "DIR-RKG"
+    namespace: "directive"
+    meaning: "See term:RK-G entry above — the directive form of the record/replay discipline."
+    resolver: "docs/rde_nozzle_brick2_kickoff.md#DIR-RKG"
+  - token: "DIR-G0"
+    namespace: "directive"
+    meaning: "Stack-decision directive tied to gate G0 (JAX primary, segmentation discipline)."
+    resolver: "docs/rde_nozzle_G0_decision.md"
+    first_seen: "seg1/G0_decision"
+  - token: "[C-EQV2]"
+    namespace: "claim"
+    meaning: "Registered conditional form of EQ-v2 in the claims registry (CONJECTURE class, X-SPDB scope-extended at S25-bis)."
+    resolver: "docs/claims_registry.yaml#C-EQV2"
+    first_seen: "seg1/M0"
+  - token: "[C-O33]"
+    namespace: "claim"
+    meaning: "Registered conditional: the O3.3 class-limited residual (S19-S20, neither discharged nor falsified — a formalization-gap finding of record)."
+    resolver: "docs/rde_nozzle_conditionals.md + validation/PROGRESS_2026-08-07_S20_adaptive.md"
+    first_seen: "seg1/conditionals"
+  - token: "[C-MAJDA]"
+    namespace: "claim"
+    meaning: "Registered conditional sharpened by S16's a-contraction route (U3-H1 Lopatinskii scalar s_L = 1.8685)."
+    resolver: "docs/rde_nozzle_conditionals.md + docs/rde_nozzle_acontraction_attack.md"
+    first_seen: "seg1/conditionals"
+  - token: "[C-XBVP]"
+    namespace: "claim"
+    meaning: "Registered conditional: Cauchy-to-steady-BVP transfer, relative entropy in x."
+    resolver: "docs/rde_nozzle_cauchy_bvp_transfer.md"
+    first_seen: "seg1/cauchy_bvp_transfer"
+  - token: "GAP-1"
+    namespace: "gap"
+    meaning: "HIGH-severity gap-map row: KS certification surrogate (margin governor, standalone member of the GAP-<n>* family, called out because it recurs alongside GAP-5/29 as the most-cited gap in the corpus)."
+    resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-1"
+    first_seen: "seg3/ADVISORY_S24_sota_gapmap"
+  - token: "GAP-5"
+    namespace: "gap"
+    meaning: "HIGH-severity gap-map row: natural-BC lip bias; discharged into findings_registry (parametrization:natural-BC-lip-bias), twin measured -82% corner mismatch."
+    resolver: "docs/findings_registry.yaml#parametrization:natural-BC-lip-bias"
+    first_seen: "seg3/ADVISORY_S24_sota_gapmap"
+  - token: "GAP-29"
+    namespace: "gap"
+    meaning: "Underived-factors gap; GAP-29 sweep found the ONE FLIP of record (NEWTON_TOL_FACTOR/2 flips cert_verdict) — findings_registry engine-core:F5-underived-factors."
+    resolver: "docs/findings_registry.yaml#engine-core:F5-underived-factors"
+    first_seen: "seg3/ADVISORY_S24_sota_gapmap"
+  - token: "[OBJ-DOM]"
+    namespace: "claim"
+    meaning: "Objective-domain adjudication row (F2 entry): whether the coded objective should include the throat panel — THE demonstrator case for the findings-registry anti-re-mint clause (R31)."
+    resolver: "docs/findings_registry.yaml#variational-driver:objective-omits-throat-panel"
+    first_seen: "seg3/ADVISORY_S25_pipeline_sense_CONVERGED"
+  - token: "OP-0-gamma"
+    namespace: "oracle"
+    meaning: "EOS-general ceiling variant of OP-0 (gamma=const demoted to an oracle role), src/thrust/bounds_gamma.py."
+    resolver: "src/thrust/bounds_gamma.py"
+    first_seen: "seg2/bounds_gamma.py"
+  - token: "MC8 (see also above)"
+    namespace: "claim"
+    meaning: "See claim:MC1-MC8 entry above."
+    resolver: "validation/ADVISORY_Scert_prompt_2026-08-12.md#MC1-MC8"
+  - token: "S-ORDINE"
+    namespace: "session"
+    meaning: "Current de-entropy session (census R32): 5-phase inventory + T2/T2-bis execution + nothing-lost gate; THIS glossary is one of its T2-bis(a) deliverables."
+    resolver: "validation/ADVISORY_Sordine_prompt_2026-08-12.md"
+    first_seen: "seg4/ADVISORY_Sordine_prompt"
+  - token: "S-CERT"
+    namespace: "session"
+    meaning: "Next session (census R33, user-ratified): agnostic certification audit of MC1-MC8 under hostile context-free attack, sequenced strictly after S-ORDINE closes."
+    resolver: "validation/ADVISORY_Scert_prompt_2026-08-12.md"
+    first_seen: "seg3/ADVISORY_Scert_prompt"
+  - token: "S-SPEED"
+    namespace: "session"
+    meaning: "Parallel adversarial engine-speed audit session; delivered the M0-M6/H1-H5/N1-N8 plan of record consumed by S25/S25-bis."
+    resolver: "validation/ADVISORY_engine_speed_audit_2026-08-12.md"
+    first_seen: "seg4/ADVISORY_Sspeed_prompt"
+  - token: "S-COLLAPSE"
+    namespace: "session"
+    meaning: "Dedicated theory session formalizing the bell-optimum == steady-equivalent-optimum collapse question ([T-T3-SI] THEOREM + 5 breakers)."
+    resolver: "validation/ADVISORY_Scollapse_verdict_2026-08-11.md"
+    first_seen: "seg3/ADVISORY_Scollapse_prompt"
+  - token: "S-GAUNTLET"
+    namespace: "session"
+    meaning: "Parallel total-phenomenological-generality adversarial audit session (84 attacks -> 34-row ledger, DUTY-1..15, user scope pins P1-P3)."
+    resolver: "validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md"
+    first_seen: "seg3/ADVISORY_Sgauntlet_prompt"
+
+  # ---------------------------------------------------------------
+  # SEG8 MERGE (2026-08-13, S-ORDINE T2 lint step): 15 new entries
+  # from the inventory_seg8_supplement.md CODENAME TOKEN table
+  # (litreview confrontation + MoC/Zucrow campaign + sota rubric).
+  # ---------------------------------------------------------------
+  - token: "P2/G14"
+    namespace: "claim"
+    meaning: "The Rao=adjoint-bridge claim pair (litmap P2 + gap G14): QUALIFIED at the 2026-08-13 confrontation — glossa cancelled, re-worded to a three-legged qualified form (Kraiko-Tillyaeva 2015 is the decisive near-miss). Not the paper P-2 nor the triage P2."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#3"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "D2-G3"
+    namespace: "gap"
+    meaning: "D2 literature-map gap G3: no averaged-shape-optimality theorem in the corpus — CONFIRMED and reformulated stronger at the confrontation ('everyone averages, nobody derives optimality of the average')."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md + validation/ADVISORY_litmap_extension_2026-08-13.md"
+    first_seen: "seg8/ADVISORY_litmap_extension"
+  - token: "T7(c)"
+    namespace: "theorem"
+    meaning: "Weighted-transversality clause (c) of the T7 stationarity system — REWRITTEN of record in three-regime cone form (D in the normal cone N_K(s_E*)) with a THEOREM-class transfer lemma; repairs an internal M0 equality-form inconsistency (convergence-round gap G-b)."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#3"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "H-EXO"
+    namespace: "hypothesis"
+    meaning: "New hypothesis to add to T7: exogenous cycle measure / interface map (falsifier: dmu/dSigma != 0); F2-entry row of the confrontation."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#3"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "H2'"
+    namespace: "hypothesis"
+    meaning: "Fixed-wall / ambient-blind hypothesis of the averaged problem; Harroun 2021 named as the empirical demonstration of hardware OUTSIDE it (base-drag / ejector coupling)."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md + literature_review/reports/harroun_2021_jpp_nozzle_perf.md"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "X-GP01"
+    namespace: "oracle"
+    meaning: "Proposed new named oracle (adoption A1): Giles-Pierce 2001 quasi-1D analytic adjoint solutions — the only oracle genuinely independent of both GENO and this repo. Not yet a claims-registry row at merge time."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#5 + literature_review/reports/giles_pierce_2001_quasi1d.md"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "O3.5"
+    namespace: "oracle"
+    meaning: "Proposed new oracle (adoption A18): Ancourt ACE per-phase characteristic-residual check, complementary to O3.1. Not yet a claims-registry row at merge time."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#5"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "O6"
+    namespace: "oracle"
+    meaning: "Proposed new field-level closed-form adjoint oracle from Kraiko-Tillyaeva 2015 Eq. (2.11) (adoption A3). Not yet a claims-registry row at merge time."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#4"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "[X-GENOXC]"
+    namespace: "claim"
+    meaning: "Proposed solver-agnostic cross-code metric harness, Ancourt-derived (adoption A17). Bracket-styled like a carrier id but NOT yet minted in the claims registry at merge time."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#5"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "G-a / G-b / G-c / G-d"
+    namespace: "term"
+    meaning: "The four REV3 convergence-round gap labels of the litreview confrontation: G-a attribution (slip-line inequality-KKT is classical), G-b cone-form (T7(c)), G-c sonic-singularity (Giles-Pierce 6.1 locus), G-d evidence-grade ('measured' downgraded to CFD-vs-CFD with partial experimental corroboration)."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md + literature_review/reports/VERIFICATION_FABLE_2026-08-13.md"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "S1-S3 (Verdict rejectors)"
+    namespace: "term"
+    meaning: "Three zero-cost Verdict-format rejectors adopted at the confrontation (A37-A39: dual feasibility on lambda_e, axial lambda_L row, per-phase sign-scan). NOT session names and NOT the S1-S13 session-log ids — same letters, unrelated."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#5"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "AUDIT VARIANT B"
+    namespace: "term"
+    meaning: "Temporary alternate-stencil branch carried by the GENO audit instrumentation patch; MUST be removed before any nominal-behaviour measurement (companion-ledger warning — cross-repo footgun of record)."
+    resolver: "validation/RAW_geno_audit_instrumentation_2026-08-13.patch + validation/LEDGER_dubbi_moc_2026-08-13.md"
+    first_seen: "seg8/RAW_geno_audit_instrumentation"
+  - token: "N-26"
+    namespace: "term"
+    meaning: "GENO historical foot-reconstruction mass-deficit fix (commit 704b8c1): root cause RE-OPENED at the MoC campaign (MOC-24 / ledger D13 — the fix changed two mechanisms at once, causal attribution never isolated). Distinct from the speed-audit N<n> conditional family."
+    resolver: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md + validation/LEDGER_dubbi_moc_2026-08-13.md"
+    first_seen: "seg8/ADVISORY_moc_zucrow_fidelity"
+  - token: "[IO]/[REP]/[APERTO]"
+    namespace: "term"
+    meaning: "The methodology assessment's three-tier evidence marking: personally-verified / sampled-accurate / undecided."
+    resolver: "validation/ASSESSMENT_methodology_position_2026-08-13.md"
+    first_seen: "seg8/ASSESSMENT_methodology_position"
+  - token: "[PDF]/[INF]"
+    namespace: "term"
+    meaning: "The confrontation advisory's verbatim-vs-inference voice-tagging convention (parallels the SOTA-5 voice discipline of the unratified rubric)."
+    resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md"
+    first_seen: "seg8/ADVISORY_litreview_confrontation"

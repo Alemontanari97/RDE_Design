@@ -230,6 +230,46 @@ AUTORI STESSI incolpano la riduzione 2-D almeno quanto la media ("obviously did 
 nostri stati di fase più ricchi POTREBBERO discriminare dove i loro p-only non possono — da
 dimostrare, mai da asserire.
 
+### STAGE 4 — ADDENDUM 2 [IO]: Stechmann-Heister-Harroun JSR 56(3):887-... §§I-II LETTO + AGGIUDICAZIONE FORMALE dell'analogia Harroun-vs-noi (sfida utente 2026-08-13)
+
+**Stechmann verificato (pp.887-893)**: modello 0-D quasi-steady: waveform esponenziale
+P_c(t)=P_R·P_init·e^(−λt) (Eq. 13, λ=ln(P_R)/t_c Eq. 14, tarata su blowdown con side-relief Fig. 3);
+per ogni istante espressioni 0-D (Eq. 6-7) + C_F isentropico in forma chiusa (bell Eq. 9 a ε fisso;
+**aerospike Eq. 10 IDEALMENTE ADATTATO P_e=P_a sotto il limite di espansione** — è questa
+l'idealizzazione da cui esce "aerospikes preferred, 6-8%"); aggregato = **media PESATA IN MASSA**
+Isp_RDE = (1/m_cycle)∫ṁ C_F c*/g dt (Eq. 4), con la motivazione esplicita che la media semplice
+dell'Isp istantaneo è sbagliata; **Assunzione 3 = uscita RDE chocked/sonica in OGNI punto del ciclo**
+(coerente con la riga choking-as-assumption dell'advisory 08-11); caveat CTAP p.893 (il trasduttore
+può non catturare l'offset medio sotto instabilità nonlineari).
+
+**AGGIUDICAZIONE FORMALE (la sfida utente era FONDATA — requalifica della "minaccia Harroun"):**
+La costruzione di Harroun p.671 è: DUE geometrie fisse; per ogni istante del waveform (= per ogni
+pressione camera UNIFORME) un campo steady 2-D assialsimmetrico a pressione costante; media delle
+spinte sul ciclo. Confronto formale col nostro impianto, punto a punto:
+(i) **parametro di fase**: loro = scalare P_c(t) lungo un blowdown 0-D; nostro = ξ lungo l'onda
+   rotante con traccia d'interfaccia COMPLETA s(ξ) = (q,θ,T,s,h0)(ξ) risolta in caratteristica;
+(ii) **stato per fase**: loro = UNIFORME (p-only); nostro = non uniforme. Formalmente la loro
+   famiglia è l'IMMAGINE della nostra sotto la proiezione s(ξ) ↦ (P(ξ), uniforme, assiale) — un
+   membro della classe che il nostro registro T3-CONTROL tratta come convenzione degenere (riga
+   Liu Eq. 14), e ciò che la proiezione scarta (swirl per fase O(1), variazione di θ, covarianza
+   T-M, struttura wave-frame) è ESATTAMENTE il contenuto della nostra breaker map;
+(iii) **misura**: loro mass-weighted (Stechmann Eq. 4); nostra μ con la clausola conventions/
+   matching REGISTRATA come grado di libertà (T-T3-MAP (e), inversioni d'ordinamento A26/A33);
+(iv) **scopo**: loro VALUTAZIONE di due punti; nostro OTTIMIZZAZIONE con condizioni di ottimalità;
+(v) **rischio CONDIVISO**: entrambe le costruzioni sono 2-D-per-fase — ed è la causa che gli autori
+   stessi indicano ("obviously did not account ... fully three-dimensional").
+**CONSEGUENZA DI RECORD**: l'analogia regge SOLO alla forma esterna (media di valutazioni steady
+per fase su geometria fissa); si ROMPE al livello portante (contenuto informativo dello stato di
+fase). La cecità del loro valutatore NON stabilisce che il nostro lo sia: stabilisce che la
+PROIEZIONE scalare-uniforme lo è — cosa che la nostra teoria PREVEDE (è la classe di collasso/
+T3-CONTROL) invece di temere. La minaccia si riqualifica in tre pezzi: (a) i valutatori standard
+del campo (Stechmann 0-D, Harroun 2-D const-p) sono ciechi → è la nostra OPPORTUNITÀ, enunciata
+come fatto sul campo; (b) che il valutatore RICCO (il nostro) discrimini al percento resta NON
+DIMOSTRATO (assenza di evidenza, non evidenza contraria) → R22; (c) il rischio condiviso vero è la
+riduzione 2-D-per-fase → R22(b)-vs-(c) la isola. STATO: aggiudicazione [IO] sulle tre fonti
+(Harroun p.671, Stechmann §II, ZP App. A) ma single-analyst — refuter/panel pending per lo
+standard dual-proof prima di entrare in M0.
+
 ## STAGE 5 — PARTIAL: Kraiko-Tillyaeva-Baftalovskii JPP 17(6):1347-1352 (2001), pp.1347-1348 READ BY ME
 
 Page-verified on p.1348 col.2:
@@ -282,6 +322,58 @@ aerospikes indistinguishable by cycle-averaged c_F while experiment separates th
 proposition must be stated at the percent scale; **R22 disentanglement experiment** (3-D unsteady vs
 3-D phase-averaged vs 2-D phase-averaged) = the deciding act, ours; **R2**: the actual carrier of the
 cycle-averaged evaluation threat is Harroun's M.S. thesis (Purdue, July 2019), UNREAD — procurement P0.
+
+## GIUDIZIO FUSO POST-CONTRADDITTORIO (4 refuter, tutti rientrati — chiusura sessione 2026-08-13)
+
+I quattro punti teoricamente ricchi sono passati dal contraddittorio (REFUTE_A/B/C/D su disco).
+Esiti e formulazioni di record che sopravvivono:
+
+**A — Ancora simmetria-riduzione: CORRETTA A DUE STADI.** (stadio 1, esatto ma lemma NON scritto)
+il quoziente giustifica l'adjoint steady 3-D wave-frame; T-T0 IPOTIZZA il pattern sul campo intero
+(M0:442-445) — il lemma di propagazione "BC pura + dominio assialsimmetrico ⇒ steady co-rotante" è
+provabile su classe L4 ma va SCRITTO (azione R4). (stadio 2, approssimazione dichiarata) il
+passaggio alle marce 2-D per fase scarta l'accoppiamento in θ — M0 stesso: "the only approximation
+in the chain" (rung 2). "ZP mal posta" RITIRATO: sul sottoproblema guidato in-pin è ben posta e
+DOMINATA in costo (monodromia contrattiva, margine L4); la degenerazione vale per la vista
+autonoma. Caveat nuovo: flatness cieca alle armoniche lab-steady da iniettori.
+
+**B — Requalifica Harroun: clausola portante REFUTED.** "La nostra teoria lo prevede" era doppio
+abuso di T-T3: fuori ipotesi (valutatore RANS VISCOSO ambient-coupled con separazione e transizione
+wake a NPR≈6.7 = breaker (a) di M0:660-664; Pa≠0 costante da solo NON rompe il collasso, Lemma C)
+e oggetto sbagliato (il collasso è sulle fasi a parete fissa, mai fra GEOMETRIE). Errori fattuali
+miei emendati: "mass-weighted" NON stampato in Harroun (convention UNDECLARED, M0:713-715); Eq. (7)
+è log-fit da CFD, non l'esponenziale di Stechmann. Sopravvive: il tie non trasferisce a noi
+(proiezione valida solo sul canale inflow; valutatori INCOMPARABILI), lezione primaria = fragilità
+della convenzione di media (tocca anche la nostra μ). Rischi finali: 2-D (condiviso), quasi-steady
+(condiviso), **INVISCIDO (solo nostro: il loro valutatore vede la separazione, il nostro no)**.
+
+**C — Forma a cono C31: NECESSARIA nella sostanza, SOVRADIMENSIONATA nella forma.** Forma minimale:
+UN enunciato `D ∈ N_K(s_E*)` con K dichiarato per istanza; la portata fissa è UGUAGLIANZA (KT2015
+2.13) e NON entra nel cono; "il driver gira in active-set all'endpoint" è FALSO
+(a1_toc_variational_jax.py:1748 pinna il lip per uguaglianza); M0:1699-1704 dichiara già la
+sostituzione di regime 2. Lemma di trasferimento REGGE (dimostrazione elementare: semispazi +
+monotonia; viceversa falso, controesempio D=(−1,+3) media +1). C32 CONFERMATA (R=(+2,−1), w=(1,4)
+⇒ segni opposti) con qualificatore di regime. **Cecità duale VERA su CINQUE carrier, non tre**
+(R3 o33:754; R7 o33:689-695; f3* solo drift; a1:2356-65 usa abs(lam); margin_governor:64-73).
+Emenda S2: f3* ≥ 0 identicamente ⇒ il seed rejector va sull'IDENTITÀ, non sul segno.
+
+**D — R16 slip line: TIENE NEL NUCLEO, riqualificato in 4 punti.** Clausole citate fedelmente
+(verificate verbatim); rigetto anzi SOVRADETERMINATO (manca (F3) NONINTERACTION D25U:71-73; il
+rejector X-U3BD aveva GIÀ rilevato singolare il limite caratteristico). Membership in S1 regge
+(problem_book:373-374 include "transversal shocks/contacts") ma è ASSERITA, non certificata; sanare
+la collisione di nomi S_1-tier (M0:1606) vs S1-classe. Regime corto DENTRO l'inviluppo (plug corti
+= bandiera RDE; S20 boundary-active) ma il gap VINCOLA AL GATE F4b, NON blocca la catena
+S-ORDINE→S-CERT→F2. "Struttura, non tolleranza" RAFFORZATO (m·[v_t]=0 ⇒ [v_t]≡0 su ogni Lax; il
+limite [S]→0 è la Mach line, mai un contatto). Test di accettazione: PMM 1962 non su disco ⇒
+sostituto su disco = secondo schema Shmyglevskii CMMP (M0:1572-76, che GIÀ nominava l'istanza
+contatti: chiosa di novità RIDIMENSIONATA).
+
+**Conversioni finali a [IO] pre-chiusura**: Fernandes (pp.868-872: FFD + fmincon/NSGA-II, MoC =
+valutatore in NLP generico Eq. 13, zero condizioni di ottimalità ⇒ NICCHIA CONFERMATA); Rubino
+(pp.221-225: HB duality-preserving via contrazione Eq. 40, AD CoDiPack, 2K+1 istanze accoppiate ⇒
+per fronti ripidi K grande — la famiglia di fasi risolve la ripidezza geometricamente); Ancourt
+(refs pp.20-21: 45 voci, classici MoC presenti (Ferri 1946, Meyer-Goldstein, Shapiro,
+Liepmann-Roshko) + Lions 1968 + scuola adjoint completa, ZERO scuola variazionale ugelli).
 
 ## LOSS-PREVENTION LEDGER (nothing dropped)
 - Stage-1 text of record = THIS FILE (conversation-only content now persisted).

@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/ADVISORY_Scollapse_verdict_2026-08-11.md.** Dedicated-session prompt executed; the verdict document is the consumer of record. Full text preserved (R4).
+
 # PROMPT DI SESSIONE — S-COLLAPSE (sessione teorica DEDICATA,
 # parallela alla linea F; ordinata dall'utente 2026-08-11 per
 # saturazione della finestra corrente. Advisory, untracked.)

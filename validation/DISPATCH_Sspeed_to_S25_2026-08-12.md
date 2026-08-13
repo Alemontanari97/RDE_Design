@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-12_S25_speed.md.** Dispatch fully absorbed by S25 (M-chain landed; content redundant with the speed-audit advisory + S25 log, seg4-inventory verified). Full text preserved (R4).
+
 # DISPATCH — S-SPEED -> S25 "ENGINE SPEED SESSION" (2026-08-12)
 # Converged findings ONLY + the execution plan. Full adjudication record,
 # dispute ledger, survey rows and quarantine:

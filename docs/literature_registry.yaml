@@ -1,0 +1,784 @@
+# LITERATURE REGISTRY — papers-as-code (S-ORDINE T2 step S6,
+# 2026-08-13). One typed entry per paper OF RECORD across FOUR roots:
+#   root A = literature/ (repo)            — 14 PDFs on disk (fresh ls)
+#   root B = PARENT/ = "../" top level     — 47 files on disk (fresh ls)
+#   root C = GENO/ (independent repo, RO)  — 77 PDFs on disk (fresh find)
+#   root D = literature_review/ (repo)     — 58 files on disk (25 PDFs
+#            + INDEX.md + lint_index_consistency.py + reports/ 31 md;
+#            recounted 2026-08-13 after the 4 REFUTE_* convergence-
+#            round reports landed post-S6)
+#
+# SOURCES OF RECORD (seeds, carried verbatim unless disk contradicted):
+#   validation/sordine_raws_2026-08-13/inventory_seg7_literature.md
+#     (roots A/B/C per-paper identities, read-status, anchors, dedup)
+#   literature_review/INDEX.md + literature_review/reports/ (root D;
+#     each report = a where-read anchor of record)
+#   validation/ADVISORY_litmap_extension_2026-08-13.md
+#   validation/ADVISORY_litreview_confrontation_2026-08-13.md
+#     (verdict of record over the 25 root-D integral reads)
+#
+# MACHINE RULES (mirror of docs/findings_registry.yaml discipline):
+#   - status enum: READ-INTEGRAL / READ-PARTIAL / READ-PARTIAL(triaged)
+#     / UNREAD / WANTED.
+#   - READ-* rows REQUIRE non-empty where_read (resolvable anchors) and
+#     may carry a one-line summary (cite-derived, never invented).
+#   - UNREAD rows carry NO summary (never fake a summary of an unread
+#     paper). This seed registry contains zero UNREAD rows — every
+#     on-disk paper has a read-status of record.
+#   - WANTED rows = paper on NO root (absence verified on all four
+#     roots this session); owner REQUIRED; no summary beyond the
+#     record-supported reason it is wanted.
+#   - Dedup: one paper living on several roots = ONE row, multiple
+#     paths (cross-root duplicates verified bitwise by md5 2026-08-13).
+#
+# CONVENTIONS:
+#   - paths relative to the repo root; "PARENT/" denotes "../" (the
+#     parent dir "Presentazione RDE CVA/", outside the repo).
+#   - where_read anchors are "path#heading-prefix": the file must
+#     exist and the heading text resolves by prefix grep on a heading
+#     line (or a named block line for docs/rde_nozzle_literature_map.md
+#     inline blocks). All anchor FILES verified to exist 2026-08-13.
+#   - tracked: PDFs on all roots are UNTRACKED BINARIES (declared S2
+#     exclusion — the repo tracks this registry, not the binaries).
+#     Stated once here, not per row.
+#
+# FOUR-ROOT RECONCILIATION (discrepancy 0, fresh ls/find 2026-08-13):
+#   root A: disk 14 == rows 14 (13 A-only + 1 A+D dedup) + bulk 0
+#   root B: disk 47 == rows  9 (4 B-only + 5 B+D dedup) + bulk 38
+#           (26 pptx + 5 extracts + 2 derived-cache + 3 assets + 2 md)
+#   root C: disk 77 == rows 20 (GENO/literature papers) + bulk 57
+#           (52 vendor docs + 5 GenoPlug figures, glob expanded: the
+#           GenoPlug/plt entry is a LITERAL file named "mira_*.pdf")
+#   root D: disk 58 == rows 25 + bulk 33 (INDEX.md + lint script +
+#           31 reports; ratcheted 2026-08-13, +4 REFUTE_* reports)
+#
+# CROSS-ROOT DEDUP PAIRS OF RECORD (6, all md5-verified identical):
+#   1. literature/aerospace-10-00797.pdf == literature_review/ancourt_2023_... (53ed889b)
+#   2. PARENT/1-s2.0-S1540748912004014-main.pdf == literature_review/wolanski_2013_... (989419fd)
+#   3. PARENT/20180006890.pdf == literature_review/kaemming_paxson_2018_... (db0582ba)
+#   4. PARENT/Aviation_2022_final.pdf == literature_review/paxson_miki_2022_... (082c392b)
+#   5. PARENT/aiaa2004-1033.pdf == literature_review/wintenberger_shepherd_2004_... (e442c3ec)
+#   6. PARENT/computational-...(2).pdf == literature_review/harroun_2021_... (3a81491a)
+#   (intra-root: PARENT/hr.txt == PARENT/harroun.txt, md5-identical
+#   extracts — covered in the parent-extracts bulk row.)
+#
+# WANTED LIST RE-DERIVED AGAINST DISK (plan S6): Ancourt 2023,
+# Kraiko-Tillyaeva 2004/2015/2016, Teasley 2023/2025 are ON DISK in
+# root D (rows below — NOT wanted); Wolanski now has an integral
+# report (status upgraded). Surviving WANTED at the S6 build = 6,
+# each verified absent on all four roots.
+# HANDOFF ADDITION (2026-08-13, literature window closed with R3):
+# 4 further WANTED rows — the P0 procurement list of record (ISABE-
+# 2003-117, Bogdanov 2002, Harroun Purdue PhD thesis 2019,
+# Shmyglevskii PMM 26(1) 1962), each re-verified absent on all four
+# roots at insertion (fresh filename sweep). WANTED total = 10.
+# Identity-overlap adjudications: the Harroun thesis is DISTINCT from
+# wanted_aiaa_2019_0197 (PhD thesis vs conference paper — both stay);
+# Shmyglevskii 1962 is DISTINCT from wanted_naumova_shmyglevskii_1967
+# (different year/coauthor) and from the on-disk shmyglevskii_1980.
+
+entries:
+
+# ---------------------------------------------------------------
+# ROOT A — repo literature/ (13 A-only rows; ancourt_2023 shared
+# with root D sits in the cross-root section below)
+# ---------------------------------------------------------------
+
+- id: kraiko_osipov_1970
+  identity: "Kraiko & Osipov 1970, trajectory-averaged variational nozzle contouring, PMM/JAMM 34(6):1005-1013"
+  paths: ["literature/0021-8928%2870%2990164-4.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#KRAIKO-OSIPOV ADJUDICATION"
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Time-integrated WEIGHTED wall condition (3.2) with endogenous trajectory-adjoint weight W(t); Sec.4/Sec.5 collapse cases (T-T3/T4 ancestors, F-KO5); structural non-containment of the coupled problem; mandatory cite P-1/P-2."
+
+- id: shmyglevskii_1980
+  identity: "Shmyglevskii 1980, Variational Problems of Gas Dynamics, USSR CMMP 20(5):113-127 (the Rao-Beck Ref. 4)"
+  paths: ["literature/0041-5553%2880%2990091-9.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#7. NEW FINDINGS OF RECORD"
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Route A/B taxonomy; rejection condition (6) as candidate (G)/Lambda-form boundary identity (QUESTION, owner F4b); second scheme with corner conditions (7) + Fig. 4 completeness map = classical optimality claim for the discontinuous regime (O3 obligation); Naumova-Shmyglevskii 1967 swirl precedent."
+
+- id: giles_ulbrich_2010_part1
+  identity: "Giles & Ulbrich 2010, convergence of linearized/adjoint approximations with shocks, Part 1, SINUM 48(3):882-904"
+  paths: ["literature/080727464.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b3 — Shape/parameter calculus under hyperbolic constraints with shocks"
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#5. ARRIVALS REGISTERED THIS CENSUS"
+  summary: "eps=h^alpha interior-smearing repair; p.884 counterexample lineage; p.886 adjoint interior BC at the shock; capturing-vs-fitting contrast (page-verified; F4b entry condition)."
+
+- id: giles_ulbrich_2010_part2
+  identity: "Giles & Ulbrich 2010, Part 2, SINUM 48(3):905-921"
+  paths: ["literature/09078078x.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b3 — Shape/parameter calculus under hyperbolic constraints with shocks"
+  summary: "Adjoint convergence theorem (2/3<alpha<1); fixed-stencil discrete adjoint converges to a WRONG value across shocks (pp.907, 910) — 'the trap is a theorem', page-verified on both parts."
+
+- id: lozano_ponsin_2025
+  identity: "Lozano & Ponsin 2025, 2-D analytic Euler adjoints with characteristic structure, Aerospace 12(6):494"
+  paths: ["literature/aerospace-12-00494-v2 (1).pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b3 — Shape/parameter calculus under hyperbolic constraints with shocks"
+  summary: "det-transpose argument = our Prop. A1; adjoint compatibility Eqs. (30)/(31) = O3.3 bench rows (F-O33BENCH); all 42 references verified — zero cites of Rao/Guderley/Kraiko (G14 'both banks, no bridge' at the B3 end)."
+
+- id: gonzalez_viana_2025
+  identity: "Gonzalez-Viana, Sastre, Martin & Velazquez 2025, single-cycle H2-air PDE nozzle optimization, Aerospace 12:502"
+  paths: ["literature/aerospace-12-00502.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b1 — RDE performance models and RDE/PDE nozzle design"
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#1. WHAT THE LITERATURE ACTUALLY ESTABLISHES ABOUT RDE CHOKING"
+  summary: "Optimum always divergent with SMALL area ratio (1.13-1.31 of 15), length bound ACTIVE; time-averaged exit pressure 1.4-2.1 bar >> Pa; 'classical nozzle optimization criterion is no longer valid' (p.14); three-way attribution of record (O5 anchor). Read integrally twice (S12 + 17/17 pp choking census)."
+
+- id: sternin_1961
+  identity: "Sternin 1961, DAN SSSR 139(2):335-336 (Russian original of the 1962 Sov. Phys. Dokl. boundary paper)"
+  paths: ["literature/dan25254.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#7. NEW FINDINGS OF RECORD"
+  summary: "dy/dalpha=0 on the pencil characteristic; explicit gamma=const boundary Eq. (4); 'shockless solutions impossible left of C0' — classical ancestor of the A_t certifiability boundary. NOTE: the D2 b0 'Sternin 1962 in GENO/literature' line is a PHANTOM — the file lives HERE."
+
+- id: lozano_2018
+  identity: "Lozano 2018, singular and discontinuous solutions of the adjoint Euler equations, AIAA J 56(11):4437-4452"
+  paths: ["literature/lozano-2018-singular-and-discontinuous-solutions-of-the-adjoint-euler-equations.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b3 — Shape/parameter calculus under hyperbolic constraints with shocks"
+  summary: "Objective-dependent taxonomy of adjoint shock/sonic behavior (lift adjoint continuous at shock + log singularity at sonic throat); 2-D adjoint shock equations; oblique-shock case declared OPEN in 2018."
+
+- id: lozano_2019
+  identity: "Lozano 2019, Watch Your Adjoints! Lack of mesh convergence in inviscid adjoint solutions, AIAA J 57(9):3991-4006"
+  paths: ["literature/lozano-2019-watch-your-adjoints-lack-of-mesh-convergence-in-inviscid-adjoint-solutions.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b3 — Shape/parameter calculus under hyperbolic constraints with shocks"
+  summary: "Mesh-divergence locus CORRECTED of record: wall/trailing-edge-driven, NOT the shock (Lemma B hygiene, fixed S13); F4b entry trio member."
+
+- id: morris_2005
+  identity: "Morris 2005, single-pulse gasdynamics and performance of pulse detonation rocket engines, JPP 21(3):527-538 (filename '2012' = repository re-issue)"
+  paths: ["literature/morris-2012-numerical-modeling-of-single-pulse-gasdynamics-and-performance-of-pulse-detonation-rocket-engines.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b1 — RDE performance models and RDE/PDE nozzle design"
+  summary: "METHOD CORRECTION of record: NOT MoC — quasi-1D unsteady finite-rate FV-CFD (Yee TVD + Roe + Strang); optimized-CD gains +53-57%/+20-21%/+10% by pressure-ratio band; machine-checkable Table 2; implementation basis for the O5-lite bench exit-BC."
+
+- id: owens_hanson_2007
+  identity: "Owens & Hanson 2007, single-cycle unsteady nozzle phenomena in pulse detonation engines, JPP 23(2):325-337"
+  paths: ["literature/owens-hanson-2012-single-cycle-unsteady-nozzle-phenomena-in-pulse-detonation-engines.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b1 — RDE performance models and RDE/PDE nozzle design"
+  summary: "11 distinct single-cycle unsteady nozzle phenomena catalogued; quasi-1D inadequate for CONVERGING sections; 2007 empirical precursor of the mean-pressure design rule (PRECEDENT DUTY for P-1, cite next to S-H in the T3 practice line)."
+
+- id: moretti_2002
+  identity: "Moretti 2002, shock-fitting retrospective, Computers & Fluids 31:719-723 (non-variational)"
+  paths: ["literature/s0045-7930%2801%2900072-x.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "F4b fitted-front methodological support (litmap sec.1/sec.3.15; triaged depth, non-variational class)."
+
+- id: cooper_shepherd_2008
+  identity: "Cooper & Shepherd 2008, single-cycle impulse from detonation tubes with nozzles, JPP 24(1):81-87"
+  paths: ["literature/single-cycle-impulse-from-detonation-tubes-with-nozzles.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "docs/rde_nozzle_literature_map.md#b1 — RDE performance models and RDE/PDE nozzle design"
+  summary: "+72% (100 kPa, unsteady tamper regime) / +43% (1.4 kPa, quasi-steady from AVERAGE upstream pressure); nozzle-dependent transition pressure 5.2 kPa; nozzle startup 6-12% of cycle (F5b/G3 competition anchor)."
+
+# ---------------------------------------------------------------
+# CROSS-ROOT DEDUP ROWS (one row, multiple paths; md5-verified)
+# ---------------------------------------------------------------
+
+- id: ancourt_peter_atinault_2023
+  identity: "Ancourt, Peter & Atinault 2023, Adjoint and Direct Characteristic Equations for 2-D Compressible Euler Flows, Aerospace 10(9):797 (published version superseding arXiv:2305.03499)"
+  paths:
+    - "literature/aerospace-10-00797.pdf"
+    - "literature_review/ancourt_2023_adjoint_direct_characteristic_equations.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/ancourt_2023_char_adjoint.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Direct AND adjoint characteristic equations in conservative variables; rank-based counting; ACE residuals as code verification; App. C 6-bump nozzle steepest descent; 45 refs, zero classical citations = affirmative evidence for Claim A. Formerly WANTED (F-PETERANC) — landed 2026-08-13, dedup A<->D bitwise."
+
+- id: wolanski_2013
+  identity: "Wolanski 2013, Detonative propulsion, Proc. Combust. Inst. 34:125-158 (the RDE review, 176 refs)"
+  paths:
+    - "PARENT/1-s2.0-S1540748912004014-main.pdf"
+    - "literature_review/wolanski_2013_detonative_propulsion_survey.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/wolanski_2013_survey.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Reference survey of detonative propulsion; NO nozzle-design methodology and the nozzle argued OUTSIDE the problem; 176 refs with zero variational-school crossings = the widest witness that the two literatures do not cite each other. Status upgraded from lecture-grade READ-PARTIAL: integral report landed 2026-08-13. Note of merit (ported from PARENT/CONTINUATION_PROMPT.md par.5, S12 LR-44): the Wave Number W = t_refill/t_meanflow fixes the head count (W~n -> n heads; W<1 galloping; W<<1 deflagration collapse) — ties geometry to detonability; injection reverses just behind the wave; rotating beats standing (drag-limited, M5-7 only) and pulsed (per-cycle re-ignition)."
+
+- id: kaemming_paxson_2018
+  identity: "Kaemming & Paxson 2018, Determining the Pressure Gain of Pressure Gain Combustion (EAP), AIAA 2018-4567 / NTRS 20180006890"
+  paths:
+    - "PARENT/20180006890.pdf"
+    - "literature_review/kaemming_paxson_2018_equivalent_available_pressure.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#1. WHAT THE LITERATURE ACTUALLY ESTABLISHES ABOUT RDE CHOKING"
+    - "literature_review/reports/kaemming_paxson_2018_eap.md#Expert deep-read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Defines Equivalent Available Pressure: choking = CYCLE-INTEGRAL definition shift (p.10); throat axial Mach 0.86-1.33 avg 0.99; M=1 surrogate priced <5.4%; swirl energy +6% EAPi CFD / +3% exp; Eqs. (1)-(8) = published ancestor of the int-max rung, (10)-(13) = state-averaged reference-state reconstruction ancestor. M0 EAP remark verified FAITHFUL clause-by-clause."
+
+- id: paxson_miki_2022
+  identity: "Paxson, Miki, Perkins & Yungster 2022, CFD Optimization of an Experimental RDRE Nozzle, AIAA 2022-4107 (identity verified on the title page)"
+  paths:
+    - "PARENT/Aviation_2022_final.pdf"
+    - "literature_review/paxson_miki_2022_rdre_nozzle_cfd_optimization.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#1. WHAT THE LITERATURE ACTUALLY ESTABLISHES ABOUT RDE CHOKING"
+    - "literature_review/reports/paxson_miki_2022_nasa_opt.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Objective = cycle-averaged thrust (Eq. 1 = our J), 7 designs on two OFAT lines, no optimizer; 'pressure ratio and throat Mach number ILL-DEFINED' (p.2); total Mach 1.05-1.65 incl. tangential; steady M=1 sizing misses optimal area ratio ~31%; interface std dev ~70% of means (Jensen breaker (b)); sizing adequacy datum 6.54 predicted vs ~6.5 measured."
+
+- id: wintenberger_shepherd_2004
+  identity: "Wintenberger & Shepherd 2004, Thermodynamic Analysis of Combustion Processes for Propulsion Systems, AIAA 2004-1033 (CITATION source A)"
+  paths:
+    - "PARENT/aiaa2004-1033.pdf"
+    - "literature_review/wintenberger_shepherd_2004_thermo_detonation_cycles.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/wintenberger_shepherd_2004_thermo.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+    - "data/cycles_validation.md#"
+  summary: "A-series equations (A19-A22, A31-A32, A38-A42, A57-A60) implemented in src/cycles, 99/99 PASS; Delta-s decomposition, stagnation Hugoniot; FJ cycle as an upper bound on WORK per unit mass upstream of the nozzle — not translatable into a propulsive bound by the authors' own admission."
+
+- id: harroun_2021
+  identity: "Harroun, Heister & Ruf 2021, Computational and Experimental Study of Nozzle Performance for RDREs, JPP 37(5):659-673, doi:10.2514/1.B38244"
+  paths:
+    - "PARENT/computational-and-experimental-study-of-nozzle-performance-for-rotating-detonation-rocket-engines (2).pdf"
+    - "literature_review/harroun_2021_computational_experimental_rdre_nozzle_performance.pdf"
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#3. THE MISQUOTE OF RECORD"
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#3-bis. HARROUN'S QUASI-CYCLE-AVERAGED C_F"
+    - "literature_review/reports/harroun_2021_jpp_nozzle_perf.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Choking BYPASSED (inlet state imposed 1D upstream, Eq. (7) cycle law); 8x base drag; delayed separation; MISQUOTE OF RECORD — 'near-perfect time-averaged expansion' DOES NOT EXIST in the paper; executes a cycle average and finds it BLIND at contour-ranking level (C_F=1.25 identical for two aerospikes the experiment separates) — the discriminating-failure datum for claim 19 scale."
+
+# ---------------------------------------------------------------
+# ROOT B — PARENT/ papers not duplicated elsewhere (4 rows)
+# ---------------------------------------------------------------
+
+- id: wintenberger_shepherd_2006_fj
+  identity: "Wintenberger & Shepherd 2006, Thermodynamic Cycle Analysis for Propagating Detonations, JPP 22(3):694-698 (CITATION source B; distinct paper from AIAA 2004-1033)"
+  paths: ["PARENT/FickettJacobsCycle (1).pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "PARENT/CONTINUATION_PROMPT.md#"
+    - "data/cycles_validation.md#"
+  summary: "FJ cycle; implemented in src/cycles (B1/B2/B3 = A57 equations), validated 99/99 PASS; fixed-static vs fixed-stagnation ranking inversion (implementation-grade read, lecture project)."
+
+- id: browne_shepherd_sdtoolbox_2018
+  identity: "Browne, Ziegler, Bitter, Schmidt, Lawson & Shepherd, SDToolbox: Numerical Tools for Shock and Detonation Wave Modeling, GALCIT FM2018.001 (rev. 2021)"
+  paths: ["PARENT/ShockDetonation.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "PARENT/CONTINUATION_PROMPT.md#"
+    - "validation/sdt_official_audit.md#"
+  summary: "SD Toolbox method doc (equilibrium-Hugoniot CJ minimum, PostShock frozen, zndsolve thermicity eigenvalue); vendored sdtoolbox/ provenance (implementation-grade read, lecture project)."
+
+- id: shepherd_kasahara_2017
+  identity: "Shepherd & Kasahara 2017, Analytical Models for the Thrust of a Rotating Detonation Engine, GALCIT FM2017.001"
+  paths: ["PARENT/rde_model_report.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "PARENT/CONTINUATION_PROMPT.md#"
+    - "data/vv_thrust.md#"
+  summary: "PH + axial-flow thrust models implemented in src/thrust/sk_models.py (Eqs. 6, 15-20, 44-45), validated vs Tables 1-2 (8/8; U_CJ <=0.1%); wave count N cancels; term II ~15-20%. OPEN duty with owner: choking-relevant re-read queued (choking advisory sec.5), never executed — next lit window."
+
+- id: stechmann_2019
+  identity: "Stechmann, Heister & Harroun 2019, RDE Performance Model for Rocket Applications, JSR 56(3):887-898"
+  paths: ["PARENT/stechmann-et-al-2018-rotating-detonation-engine-performance-model-for-rocket-applications (1).pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_rde_choking_2026-08-11.md#1. WHAT THE LITERATURE ACTUALLY ESTABLISHES ABOUT RDE CHOKING"
+    - "data/st_opt_validation.md#"
+  summary: "Choking = DECLARED ASSUMPTION p.889 verbatim; Eq. (4) mass-weighted averaging = the functional's 0-D ancestor (18/18 Table-1 fidelity in-repo); Assumption 3 = priced H2; Fig. 8 bells 'significantly overexpanded' (breaker (a)). Dedup note: PARENT/stech.txt is its derived extract."
+
+# ---------------------------------------------------------------
+# ROOT C — GENO/literature research papers (20 rows; GENO read-only,
+# identities and read-status from the 8-reader litmap campaign)
+# ---------------------------------------------------------------
+
+- id: rao_1958
+  identity: "Rao 1958, Exhaust Nozzle Contour for Optimum Thrust, Jet Propulsion 28(6):377-382 (bell TOC)"
+  paths: ["GENO/literature/RAO.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "The bell TOC construction; [X-TOCV] 91/91 classical-vs-gradient agreement carrier; T-T3 collapse point; p.382 refutes G-H single-contour."
+
+- id: rao_1961_review
+  identity: "Rao 1961, survey, ARS J 31(11):1488-1494"
+  paths: ["GENO/literature/Rao_1961_review.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#7. NEW FINDINGS OF RECORD"
+  summary: "The 1961 unsolved-gap list maps 1:1 onto the program (P-1 framing material; litmap sec.3.15/sec.7.8)."
+
+- id: rao_1961_spike
+  identity: "Rao 1961, spike/plug nozzles, BMST v2:92-101 (dual-venue identity with Planet. Space Sci. 4:92-101)"
+  paths: ["GENO/literature/Rao_1961_spike.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Printed Eqs. (8)/(9) endpoint-label SWAP page-verified twice; GENO CSTR_PA/CSTR_PB pairing verified correct (flag D-F)."
+
+- id: migdal_1972
+  identity: "Migdal 1972, annular nozzles, JSR 9(1):3-6 (non-variational)"
+  paths: ["GENO/literature/migdal.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Two-wall design-space geometry; optimization deferred to Rao (litmap sec.3.15, triaged)."
+
+- id: humphreys_thompson_hoffman_1971
+  identity: "Humphreys, Thompson & Hoffman 1971, maximum-thrust plug nozzles for fixed inlet geometry, AIAA J 9(8):1581-1587"
+  paths: ["GENO/literature/design-of-maximum-thrust-plug-nozzles-for-fixed-inlet-geometry.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Start-line precedent 34,373 vs 34,375 lbf (litmap sec.3.4/sec.7.4) — D1 interface-contract provenance."
+
+- id: hoffman_1967
+  identity: "Hoffman 1967, general method for optimum thrust nozzle contours for chemically reacting gas flows, AIAA J 5(4):670-676"
+  paths: ["GENO/literature/hoffman-2012-a-general-method-for-determining-optimum-thrust-nozzle-contours-for-chemically-reacting-gas-flows.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Reacting-flow multiplier fields; E-residual Eq. (78) = a VI.3 certificate; p.676 corner-bijection death = closed-form boundary proof (M0 T-T3-CE cites it)."
+
+- id: scofield_hoffman_1971
+  identity: "Scofield & Hoffman 1971, maximum-thrust nozzles for nonequilibrium simple dissociating gas flows, AIAA J 9(9):1824-1832"
+  paths: ["GENO/literature/scofield-hoffman-2012-maximum-thrust-nozzles-for-nonequilibrium-simple-dissociating-gas-flows.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Tabular-EOS precedent for [DIR-THERMOTAB]; noneq-closer-to-frozen finding = freeze-at-CJ twin; quote-residue spot-check flag before PRINT citation (refuter E4)."
+
+- id: allman_hoffman_1981
+  identity: "Allman & Hoffman 1981, direct method, AIAA J 19(6):750-751"
+  paths: ["GENO/literature/Allman_Hoffman_1981.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Direct-vs-indirect resolution; <=0.2%/0.66% price (litmap sec.3.9)."
+
+- id: rao_beck_1994
+  identity: "Rao & Beck 1994, Use of Discontinuous Exit Flows to Reduce Rocket Nozzle Length, AIAA 94-3264 (DEF)"
+  paths: ["GENO/literature/rao-beck-2012-use-of-discontinuous-exit-flows-to-reduce-rocket-nozzle-length.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "'Rao-Beck Eq. (4)' MUST cite this 1994 paper; S4 THEOREM (G) == Eq. (4); refuter re-opened incl. reference list (litmap sec.3.10)."
+
+- id: rao_beck_booth_1999
+  identity: "Rao, Beck & Booth 1999, Nozzle Optimization for Space-Based Vehicles, AIAA 99-2584 (DEF, eq/frozen chemistry)"
+  paths: ["GENO/literature/rao-et-al-2012-nozzle-optimization-for-space-based-vehicles.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Eq.-numbering trap (1999 renumbers; boundary = unnumbered or Eq. (6)); optimum ON the validity boundary = classical margin-activity statement."
+
+- id: hoffman_scofield_thompson_1972
+  identity: "Hoffman, Scofield & Thompson 1972, boundary-layer-in-the-loop nozzle optimization, JOTA 10(3):133-159"
+  paths: ["GENO/literature/BF00934730.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "<=0.018% thrust in-loop gain = evidence FOR viscous layering; structural non-containment sec.6(c)."
+
+- id: johnson_thompson_hoffman_1974
+  identity: "Johnson, Thompson & Hoffman 1974, variable-inlet rotational plug nozzles, Computers & Fluids 2:173-190"
+  paths: ["GENO/literature/1-s2.0-0045793074900127-main.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Lip transversality = classical dJ/dy_lip; p_a>0 limit = vacuum no-optimum instance; base-constant sensitivity split -> DUTY-10 (litmap sec.3.8)."
+
+- id: vander_veen_1974
+  identity: "Vander Veen, Gentry & Hoffman 1974, shrouded plug nozzles, AIAA J 12(9):1193-1197"
+  paths: ["GENO/literature/Veen.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Two decoupled Rao problems; GENO S4/S5/S6 implementation bugs of record stand; base constants 0.846/M^1.3 -> sec.7.5 unreliability row."
+
+- id: onofri_2002_plug_survey
+  identity: "Onofri et al., plug nozzle survey, RTO-TR-AVT-007 / AIAA 2002-0584 (non-variational)"
+  paths: ["GENO/literature/ADA455494.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#7. NEW FINDINGS OF RECORD"
+  summary: "Veen constants reappear as Eq. (5.1), reported UNRELIABLE vs WG10 [+19%,-15%]; Angelino planar-only caveat page-anchored (litmap sec.7.5)."
+
+- id: nasa_rp1104_1983
+  identity: "NASA RP-1104 1983, truncated-perfect nozzle curves (non-variational)"
+  paths: ["GENO/literature/NASA_RP1104_bell_nozzle_curves.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Graphical truncation tangency = cheap surrogate the bound ladder prices (litmap sec.3.15)."
+
+- id: nasa_sp8120_1976
+  identity: "NASA SP-8120 1976, liquid rocket engine nozzles handbook"
+  paths: ["GENO/literature/NASA_SP8120_liquid_rocket_nozzles.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "Fig. 6 institutional failure boundary (Sternin echo, P-1 framing) + plug-optimization GAP declaration at handbook level (litmap sec.3.15)."
+
+- id: johnson_boney_1975
+  identity: "Johnson & Boney 1975, tabulated real-gas MoC nozzle design, NASA TM X-3243"
+  paths: ["GENO/literature/Johnson_Boney_1975_NASA_real_gas_nozzle.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#7. NEW FINDINGS OF RECORD"
+  summary: "RECLASSIFIED non-variational (litmap sec.7.6): tabulated real-gas MoC uniform-exit design; [DIR-THERMOTAB] classical ancestor; gamma-sensitivity ~80x length ratio; D2 b0 label duty."
+
+- id: zucrow_hoffman_1977_vol2
+  identity: "Zucrow & Hoffman 1977, Gas Dynamics Vol. 2 (handbook)"
+  paths: ["GENO/literature/Zucrow_Hoffman_Gas_Dynamics_Vol2.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#1. Corpus census"
+  summary: "16-4(c) Rao; 17-5(c) rotational max-thrust lineage; 'Rao-vs-Zucrow naming inversion' table context (litmap sec.7.2)."
+
+- id: tesi_viviano_2023
+  identity: "Viviano 2023, MSc thesis, Sapienza (rel. Nasuti)"
+  paths: ["GENO/literature/tesi_viviano.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "p.82 fluid-independence claim; psi (4.27-4.28) = FD Lambda-form = GENO boundaryfunction lineage; DEF 'suboptimal by construction' -> sec.7.3 three-way tension; zero RDE content verified (declared depth)."
+
+- id: thesis_valeriani_2019
+  identity: "Valeriani 2019/20, MSc thesis, Sapienza (rel. Nasuti)"
+  paths: ["GENO/literature/thesis_valeriani.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
+  summary: "GENO v3.x lineage doc; Rao plug outside perfect-gas with honest caveat; PSO/fminsearch = direct-method instances (declared depth)."
+
+# ---------------------------------------------------------------
+# ROOT D — literature_review/ papers not duplicated elsewhere
+# (19 rows; all 25 root-D papers read integrally per the 2026-08-13
+# confrontation of record — reports in literature_review/reports/)
+# ---------------------------------------------------------------
+
+- id: kraiko_tillyaeva_2015
+  identity: "Kraiko & Tillyaeva 2015, Conjugate Problem for Lagrange Multipliers and Consequences for PDEs of Mixed Type, J. Math. Sci. 208:181-198"
+  paths: ["literature_review/kraiko_tillyaeva_2015_conjugate_problem_lagrange_multipliers.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/kraiko_tillyaeva_2015_conjugate.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#4. IL VERDETTO SU KRAIKO-TILLYAEVA 2015"
+  summary: "Complete conjugate/multiplier problem for a Laval nozzle INCLUDING the subsonic part; field -> shape gradient -> optimality -> Rao first integrals; mixed-type (generalized Tricomi) adjoint solved numerically; its 8-title reference list is decisive evidence in the Claim A (P2/G14) adjudication."
+
+- id: giles_pierce_2001
+  identity: "Giles & Pierce 2001, Analytic adjoint solutions for the quasi-1D Euler equations, JFM 426:327-345"
+  paths: ["literature_review/giles_pierce_2001_analytic_adjoint_quasi1d_euler.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/giles_pierce_2001_quasi1d.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "ANALYTIC quasi-1D Euler adjoint solutions in 4 regimes; adjoint continuity across a fitted shock + internal shock BC; logarithmic singularity at the sonic throat (drives the DWR-bar re-scoping, advisory sec.3.25); adopted as the first oracle independent of both GENO and us."
+
+- id: giles_pierce_2000
+  identity: "Giles & Pierce 2000, An Introduction to the Adjoint Approach to Design, Flow Turb. Combust. 65:393-415"
+  paths: ["literature_review/giles_pierce_2000_intro_adjoint_design.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/giles_pierce_2000_intro.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Didactic review of adjoint-based design; continuous/discrete taxonomy; complex-step + transposition-identity correctness tests; 46-ref bibliography = one of the nine independent zero-crossing witnesses."
+
+- id: kraiko_2001_plug
+  identity: "Kraiko, Tillyaeva & Baftalovskii 2001, Optimal Design of Plug Nozzles and Their Thrust Determination at Start, JPP 17(6):1347-1352"
+  paths: ["literature_review/kraiko_2001_optimal_plug_nozzles_thrust_at_start.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/kraiko_2001_plug.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Optimal plug contouring + thrust at start; Busemann condition; first integrals; plug+TN matching without base; finding F-6 (necessary conditions in INEQUALITY form, Shmyglevskii 1962 lineage; slip line as structural element of the classical optimum) drove convergence gap G-a and correction C30."
+
+- id: kraiko_2016_two_sided
+  identity: "Kraiko, Pyankov & Tillyaeva 2016, Contouring Two-Sided Asymmetric Plane Maximum-Thrust Nozzles, Fluid Dyn. 51(1):120-125"
+  paths: ["literature_review/kraiko_2016_two_sided_asymmetric_maxthrust_nozzles.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/kraiko_2016_two_sided.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Two-sided asymmetric planar max-thrust nozzles by DIRECT optimization (RANS + GA + Bezier, zero optimality equations); VECTORIAL/Pareto thrust criterion = one of the three named structural non-containments of claim 18."
+
+- id: efremov_kraiko_2004_augmentor
+  identity: "Efremov & Kraiko 2004, Theory of an Ideal Jet Thrust Augmentor, Fluid Dyn. 39(4):621-632"
+  paths: ["literature_review/kraiko_tillyaeva_2004_ideal_jet_thrust_augmentor.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/kraiko_tillyaeva_2004_augmentor.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Ideal augmentor theory: variational problem of maximum PERIOD-AVERAGED thrust with 4 isoperimetric conditions; the periodic optimum turns out STATIONARY — the closest classical contact with PB-2/T-T3-MAP. (File slug says kraiko_tillyaeva; the PDF's authors of record are Efremov & Kraiko.)"
+
+- id: sun_2019
+  identity: "Sun, Luo & Feng 2019, New Contour Design Method for Rocket Nozzle of Large Area Ratio, Int. J. Aerospace Eng. 2019:4926413"
+  paths: ["literature_review/sun_2019_rao_contour_thermally_perfect_large_area_ratio.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/sun_2019_gamma_var_rao.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Rao TOC construction with state closure re-based on a thermally perfect gamma(T) gas; CFD + one hot-fire test; direct contact with the E4 gamma-variable boundary and the P1/Lemma-A frozen pin (attribution correction registered)."
+
+- id: hoffman_1987_ctp
+  identity: "Hoffman 1987, Design of Compressed Truncated Perfect Nozzles, JPP 3(2):150-156"
+  paths: ["literature_review/hoffman_1987_compressed_truncated_perfect.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/hoffman_1987_ctp.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Compressed truncated perfect nozzles: construction + grid enumeration; MEASURES the Rao premium (0.04-0.34% Isp) and refutes Gogish — the external reference scale for the in-class F7 surplus (+0.51%) of claim 19."
+
+- id: fernandes_2023
+  identity: "Fernandes, Souza & Afonso 2023, MoC-based shape design optimization of rocket nozzles, CEAS Space J. 15:867-879"
+  paths: ["literature_review/fernandes_2023_moc_shape_optimization_rocket_nozzles.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/fernandes_2023_moc_shapeopt.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "MoC used as a SIMULATOR inside an FFD + fmincon/NSGA-II loop; planar, gamma=1.4 air, no optimality conditions — the closest occupant of the niche we call empty (claim 8 formulation constraint)."
+
+- id: rubino_2018
+  identity: "Rubino et al. 2018, harmonic-balance discrete adjoint for period-averaged objectives, JCP 372:220-235"
+  paths: ["literature_review/rubino_2018_harmonic_balance_adjoint_periodic_shapeopt.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/rubino_2018_hb_adjoint.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Duality-preserving harmonic-balance discrete adjoint for period-averaged objectives, full turbulent RANS — proves the machinery gap is NOT technological (claims 7/8; T7 H-EXO contact)."
+
+- id: zahr_persson_2016
+  identity: "Zahr, Persson & Wilkening 2016, fully discrete adjoint with time-periodicity constraints, arXiv:1512.00616v2"
+  paths: ["literature_review/zahr_persson_2016_time_periodicity_constrained_adjoint.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/zahr_persson_periodicity.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "FULLY DISCRETE adjoint under a state-periodicity constraint: linear two-point BVP, existence+uniqueness via monodromy; endogenous-cycle family member in the claim-18 non-containment triple (with Kraiko-Osipov)."
+
+- id: schotthofer_2024
+  identity: "Schotthoefer, Zhou, Albring & Gauger 2024, Windowing Regularization Techniques for Unsteady Aerodynamic Shape Optimization, arXiv:2412.00604v1"
+  paths: ["literature_review/schotthofer_2024_windowing_unsteady_shapeopt.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/schotthofer_2024_windowing.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Windowing regularization for unsteady shape optimization; Krakos theorem recalled (convergence order vs window regularity) — contact with T7 Leibniz/period differentiation and O5."
+
+- id: janc_2025
+  identity: "JANC — Wen, Luo, Xu & Wang 2025, differentiable JAX reacting compressible solver with adjoint demo on RDC, arXiv:2504.13750 (preprint, not stamped)"
+  paths: ["literature_review/janc_2025_differentiable_reacting_solver_adjoint.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/janc_2025_differentiable.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Differentiable reacting compressible solver in JAX with JIT-compatible block AMR; adjoint demo on an RDC = the named 2026+ threat vector (claims 8/1; VI.4 vmap and speed-ledger contact)."
+
+- id: liu_2022
+  identity: "Liu, Cheng, Zhang & Wang 2022, aerospike nozzle for RDE via GA/gradient on time-averaged parameters, Aerosp. Sci. Tech. 120:107300"
+  paths: ["literature_review/liu_2022_aerospike_rde_ga_gradient_optimization.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/liu_2022_aerospike_rde.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Aerospike design on TIME-AVERAGED parameters + 3-D reactive CFD; 4 fixed geometries, no optimizer in the loop — 'average-then-classical' corpus member (claims 8/7; T-T3 and choking contact)."
+
+- id: ornano_2017
+  identity: "Ornano, Braun, Saracoglu & Paniagua 2017, nozzle shape optimization for a pulsed detonation combustor, Adv. Mech. Eng. 9(2):1-9"
+  paths: ["literature_review/ornano_2017_pulsed_detonation_nozzle_shapeopt.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/ornano_2017_pde_shapeopt.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Three-stage shape optimization (steady DoE -> averaged URANS -> reactive DDT) with a TIME-AVERAGED objective for a pulsed detonation combustor (claims 7/8/4; VI.5/VI.6 contact)."
+
+- id: harroun_2020
+  identity: "Harroun, Heister & Ruf 2020, Experimental Validation of Nozzle Flow Simulations for RDREs (NTRS 20230009329, not stamped)"
+  paths: ["literature_review/harroun_2020_rde_nozzle_simulation_validation.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/harroun_2020_validation.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "Experimental validation of RDRE nozzle-flow simulations: base drag enhanced by the cycle beyond the constant-pressure estimate; carries the second-hand '+1% Isp flared' figure whose primary source is the Harroun 2019 thesis (WANTED-adjacent, downgraded P0->P1)."
+
+- id: miki_2020
+  identity: "Miki, Paxson, Perkins & Yungster 2020, RDE Nozzle Computational Design Methodology Development and Application, AIAA 2020-3872"
+  paths: ["literature_review/miki_2020_rde_nozzle_design_methodology.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/miki_2020_nasa_methodology.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "NASA RDE nozzle design methodology: frozen unsteady inlet BC reused over 6 hand-designed geometries — states our gap in its own words (claims 7/8; VI.1, swirl P1, choking contact)."
+
+- id: teasley_2023
+  identity: "Teasley, Fedotowsky, Gradl, Austin & Heister 2023, Current State of NASA RDRE Development, AIAA SciTech 2023-1873"
+  paths: ["literature_review/teasley_2023_nasa_rdre_state.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/teasley_2023_nasa_state.md#Expert read"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "NASA RDRE program state: hardware, campaigns, wave modes, performance (claims 1/7/8; H2' and D2.3 contact)."
+
+- id: teasley_2025
+  identity: "Teasley 2025, NASA's RDRE Development, AAS G&C Feb 2025 (NTRS 20250000643)"
+  paths: ["literature_review/nasa_teasley_2025_rdre_development.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "literature_review/reports/teasley_2025_rdre_dev.md#Reader report"
+    - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+  summary: "NASA RDRE development roadmap (CTE): the nozzle treated as a MANUFACTURING SUBCOMPONENT; 4-scalar sweep — gap witness (claims 8/7/5/6)."
+
+# ---------------------------------------------------------------
+# WANTED — papers on NO root (absence verified on all four roots
+# 2026-08-13; owner REQUIRED; no content summaries by machine rule).
+# Re-derivation of record: Ancourt 2023, Kraiko-Tillyaeva 2004/2015/
+# 2016, Teasley 2023/2025 previously listed as pending are ON DISK
+# (rows above) and are NOT wanted.
+# ---------------------------------------------------------------
+
+- id: wanted_aiaa_2019_0197
+  identity: "AIAA 2019-0197 (Bigler, Bennewitz, Schumaker, Danczyk & Hargus per INDEX.md; earlier choking-advisory shorthand 'Harroun 2019' — identity to be settled on the PDF)"
+  paths: []
+  status: WANTED
+  owner: "Acquisition register / next lit window — sole remaining fetch of the choking census (ADVISORY_rde_choking sec.3/sec.5); needed before any reattribution of the 'near-perfect time-averaged expansion' phrase"
+
+- id: wanted_peter_desideri_2022
+  identity: "Peter & Desideri 2022, Phys. Fluids 34:086113"
+  paths: []
+  status: WANTED
+  owner: "Acquisition register — P-2 mandatory-cite, acquisition-pending (literature_map F-PETERANC: no content claim until page-verified)"
+
+- id: wanted_lozano_ponsin_2023
+  identity: "Lozano & Ponsin 2023, Aerospace 10:267"
+  paths: []
+  status: WANTED
+  owner: "Acquisition register — P-2 mandatory-cite (RK-A scoop-risk row); acquisition-pending"
+
+- id: wanted_tillyaeva_1975
+  identity: "Tillyaeva 1975, profiling for nonuniform and swirling inflow, TsAGI (Russian; [HARD] per INDEX.md)"
+  paths: []
+  status: WANTED
+  owner: "Next lit window — N6-2 novelty bound; closest classical antecedent to our data class"
+
+- id: wanted_naumova_shmyglevskii_1967
+  identity: "Naumova & Shmyglevskii 1967, swirl precedent (currently cited only via Shmyglevskii 1980)"
+  paths: []
+  status: WANTED
+  owner: "F2a swirl window — swirl-precedent primary source"
+
+- id: wanted_breitkopf_ulbrich
+  identity: "Breitkopf & Ulbrich, arXiv:2509.22076"
+  paths: []
+  status: WANTED
+  owner: "Acquisition register — D25U leads follow-up"
+
+# --- P0 procurement list of record (handoff 2026-08-13, literature
+# --- window; each re-verified absent on all four roots) ---
+
+- id: wanted_isabe_2003_117
+  identity: "ISABE-2003-117 (the litmap-extension near-miss pair member; confrontation residual R1 — the top P0 procurement blocker, named by BOTH the confrontation advisory and the VERIFICATION_FABLE loss-prevention ledger independently)"
+  paths: []
+  status: WANTED
+  owner: "P0 procurement (handoff 2026-08-13, literature window) — acquisition routes recorded in literature_review/INDEX.md (proceedings order / interlibrary loan / direct CIAM request)"
+
+- id: wanted_bogdanov_2002
+  identity: "Bogdanov 2002 (the second litmap-extension near-miss pair member; Russian-language)"
+  paths: []
+  status: WANTED
+  owner: "P0 procurement (handoff 2026-08-13, literature window) — eLibrary.ru route with the exact Russian search string recorded in literature_review/INDEX.md"
+
+- id: wanted_harroun_thesis_2019
+  identity: "Harroun 2019, PhD thesis, Purdue (primary source of the second-hand '+1% Isp flared' figure carried by harroun_2020; confrontation residual R2, P0). DISTINCT document from wanted_aiaa_2019_0197 (a conference paper, Bigler et al. per INDEX.md) — both rows stay, cross-noted"
+  paths: []
+  status: WANTED
+  owner: "P0 procurement (handoff 2026-08-13, literature window) — Purdue e-Pubs / ProQuest route; needed before the flared-nozzle figure can be cited at record grade"
+
+- id: wanted_shmyglevskii_1962
+  identity: "Shmyglevskii 1962, PMM 26(1) (inequality-form necessary conditions / slip-line-as-structural-element lineage; the classical attribution behind confrontation correction C30 and blocking residual R16). DISTINCT from wanted_naumova_shmyglevskii_1967 (swirl precedent, different year/coauthor) and from the on-disk shmyglevskii_1980 row — all cross-noted"
+  paths: []
+  status: WANTED
+  owner: "P0 procurement (handoff 2026-08-13, literature window) — pmm.ipmnet.ru archive route (the G5 sweep already indexes this archive); feeds the R16 slip-line certificate acceptance test"
+
+# ---------------------------------------------------------------
+# BULK CLASS ROWS — non-paper files, counted exactly (glob-free:
+# every count below was taken from a fresh ls/find this session)
+# ---------------------------------------------------------------
+
+bulk:
+
+- id: bulk_parent_presentation_lineage
+  class: presentation-lineage
+  root: B
+  count: 26
+  covers: "All 26 PARENT/*.pptx: deck of record Presentazione_CVA.pptx (lecture deliverable per PARENT/VALIDATION.md) + binding template ppt_Heister.pptx + 24 SUPERSEDED drafts (FINALE_84slide, FINALE_Editing, FINALE_v2..v21, v1_backup, v6_PRONTA)"
+  note: "Not papers; binary lineage of the completed lecture project. R4: archive candidates with banner, never delete."
+
+- id: bulk_parent_extracts
+  class: extract
+  root: B
+  count: 5
+  covers: "PARENT/harroun.txt, hr.txt, kp.txt, pm.txt, stech.txt — text extracts DERIVED from the B-root paper PDFs for the 2026-08-11 choking-census page reads"
+  note: "hr.txt == harroun.txt md5-identical (intra-root dedup of record); all regenerable."
+
+- id: bulk_parent_derived_cache
+  class: derived-cache
+  root: B
+  count: 2
+  covers: "PARENT/old_commit_hashes.txt, PARENT/old_short_hashes.txt — git-history maintenance byproducts (115 hashes each)"
+  note: "ORPHAN candidates flagged by the seg7 inventory; possible pre-rewrite hash provenance map — verify vs reflog before any disposal."
+
+- id: bulk_parent_assets
+  class: asset
+  root: B
+  count: 3
+  covers: "PARENT/Presentazione_CVA.pdf (render of the deliverable pptx), PARENT/SDToolbox.zip (official upstream snapshot, audit input of validation/sdt_official_audit.md), PARENT/brick2_profiles_record.png (S18 record figure, MISPLACED outside the repo)"
+  note: "Single copies; the zip and png are unique-at-risk items in the seg7 ledger."
+
+- id: bulk_parent_lecture_prose
+  class: lecture-prose
+  root: B
+  count: 2
+  covers: "PARENT/CONTINUATION_PROMPT.md, PARENT/VALIDATION.md — lecture-project transfer prompt and closure record (both READ IN FULL by the seg7 inventory)"
+  note: "VALIDATION.md sec.3 seven-correction list and CONTINUATION_PROMPT sec.4-5 per-paper notes are HIGH-value unique content (at-risk ledger rows 1-2)."
+
+- id: bulk_geno_vendor_docs
+  class: vendor-doc
+  root: C
+  count: 52
+  covers: "Third-party library manuals vendored in GENO's dependency tree: FLINT/ORION/OSlo/FATODE/Intel-ODE (4) + sundials doc tree under OSlo (35) + sundials doc tree under cantera/ext (13). Exact paths enumerated in inventory_seg7_literature.md ROOT C."
+  note: "Not literature; publicly redistributable manuals; sundials manuals duplicated across the two vendored trees (GENO-internal, out of our jurisdiction)."
+
+- id: bulk_geno_figures
+  class: fig-derived
+  root: C
+  count: 5
+  covers: "GENO/GenoPlug/ang_contour.pdf, ang_wall.pdf, mira_contour.pdf, mira_wall.pdf + GENO/GenoPlug/plt/mira_*.pdf"
+  note: "Glob EXPANDED against disk: GenoPlug/plt/ contains exactly ONE file whose literal filename is 'mira_*.pdf' (asterisk in the name, 2220 bytes) — 5 files exact, discrepancy 0. All regenerable GENO plot outputs."
+
+- id: bulk_litreview_apparatus
+  class: review-apparatus
+  root: D
+  count: 33
+  covers: "literature_review/INDEX.md (procurement index + 3-clause lint contract) + literature_review/lint_index_consistency.py (armed lint, duty D-14) + literature_review/reports/ 31 md (25 per-paper expert reads, VERIFICATION_FABLE_2026-08-13.md, 00_APPARATUS_BRIEF.md, and the 4 REFUTE_A..REFUTE_D convergence-round refuter reports)"
+  note: "The reports are the where-read anchors of record for every root-D row above; not papers themselves. Count ratcheted 29 to 33 on 2026-08-13 (S-ORDINE T2 lint step) when the four REFUTE_* refuter reports, landed after the S6 build, were folded in."

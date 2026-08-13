@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-12_S25bis_speed.md.** Session prompt fully executed by S25-bis (speed program complete, targets MET). Full text preserved (R4).
+
 # PROMPT SESSIONE S25-bis (censimento R30) — scritto alla chiusura S25
 # (pattern ADR untracked; copia verbatim per l'apertura)
 

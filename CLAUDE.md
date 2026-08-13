@@ -54,6 +54,20 @@ non certificata. G5 (passaggio umano Kraiko-1979/PMM) blocca ogni
 SUBMISSION, non il lavoro. Gli altri gate (G0, G2, G3, G4, G6) come da
 piano D6.
 
+### R7 — Chiusura anti-entropia (S-ORDINE 2026-08-13, ratificata)
+Alla chiusura R3, in aggiunta: (1) ogni doc nuovo in validation/ =
+riga in ADVISORY_INDEX + righe registry nella STESSA finestra; lint
+(xix)/(xx)/(xxii)/(xxiii) verdi [SR-1/2]; (2) i file of-record nuovi
+committati entro chiusura, o pending-commit dichiarato con ragione
+nel log [SR-6]; (3) censimento editato IN PLACE nella tabella
+consolidata di PROGRESS — blocchi-delta VIETATI; storia in
+PROGRESS_ARCHIVE (append-only) [SR-7/10]; (4) ogni orchestrazione
+riporta shape+round+token nel log [SR-9]; (5) ogni claim di
+conteggio/tracking cita il comando misurato nella propria finestra,
+mai un documento precedente [SR-12]. Git: GENO/ ignorato; add SOLO
+per pathspec espliciti, mai `git add -A`. Mappa layer/registry:
+docs/rde_nozzle_SCAFFOLD.md §6.
+
 ## Riferimenti canonici (ordine di lettura)
 0. `docs/rde_nozzle_MASTER.md` (M0) — teoria di record, prove complete.
 0b. `docs/rde_nozzle_PROGRESS.md` — stato vivente (ORA/NEXT/BLOCCATO/LOG).

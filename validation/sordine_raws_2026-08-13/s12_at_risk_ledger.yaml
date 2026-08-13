@@ -1,0 +1,327 @@
+# S-ORDINE S12(i) — CONSOLIDATED AT-RISK LEDGER (nothing-lost gate feed)
+# Built from the UNIQUE-AT-RISK / CONTENUTO-UNICO-A-RISCHIO fields of the 8
+# Phase-1 inventories (validation/sordine_raws_2026-08-13/inventory_seg1..8*.md),
+# cross-checked against the CURRENT repo state (git status / registry files on
+# disk, 2026-08-13) rather than the inventories' own snapshot dates, since T2
+# registry-seeding work has landed since those inventories were written.
+#
+# Schema per row: {id, item, source, destination, status}
+# status: RESOLVED = destination exists and is populated/verified this pass.
+#         UNRESOLVED = honest finding; content still single-copy / unseeded /
+#         uncommitted / pending a named user or session decision.
+#
+# Bulk rows used wherever the source inventories themselves grouped items
+# (KNOWN GROUPS of the S-ORDINE prompt); granular rows only for items flagged
+# HIGH/VERY HIGH at-risk and not covered by a bulk mapping.
+
+ledger:
+
+  # --- Bulk groups now RESOLVED (registries/index/archive verified on disk) ---
+
+  - id: LR-1
+    item: "27 session-log verdicts (S4 G5venue .. S25bis speed) — full step ledgers, evidence, hashes"
+    source: "validation/PROGRESS_2026-07-16_S4_G5venue.md .. validation/PROGRESS_2026-08-12_S25bis_speed.md (27 files)"
+    destination: "committed:3868524"
+    status: RESOLVED
+
+  - id: LR-2
+    item: "34 advisory-class docs (panels/verdicts/dispatches/prompts, ADR through PANEL_topology_census) — status/authority determinations"
+    source: "validation/*.md advisory-class corpus (seg3+seg4, 34 files)"
+    destination: "committed:3868524"
+    status: RESOLVED
+
+  - id: LR-3
+    item: "PROGRESS.md stacked S25/S25bis delta blocks + 5 stale NEXT blocks (L1919-2149) + S1-S13 fossil LOG tail"
+    source: "docs/rde_nozzle_PROGRESS.md L295-2498 (pre-slim)"
+    destination: "archive:PROGRESS_ARCHIVE"
+    status: RESOLVED
+
+  - id: LR-4
+    item: "audit 94 findings (82 CONFIRMED/12 REFUTED, 13 HIGH) — full finding bodies, C1-C8 cluster map, triage"
+    source: "validation/AUDIT_agnostic_2026-08-07.md"
+    destination: "registry:variational-driver:objective-omits-throat-panel"
+    status: RESOLVED
+
+  - id: LR-5
+    item: "gap-map corpus: 36 GAP entries + 16 AC coverage rows + 11 Q quarantine rows"
+    source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md"
+    destination: "registry:parametrization:natural-BC-lip-bias"
+    status: RESOLVED
+
+  - id: LR-6
+    item: "choice ledger C1-C45 (annex) + 3 S25-bis-declared new rows (C46-C48)"
+    source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md §6 annex"
+    destination: "registry:C1"
+    status: RESOLVED
+
+  - id: LR-7
+    item: "literature identities/read-status across 4 roots (literature/ 14, PARENT/ 47, GENO/ 77, literature_review/ 58)"
+    source: "inventory_seg7_literature.md + inventory_seg8_supplement.md Part B/A"
+    destination: "registry:kraiko_osipov_1970"
+    status: RESOLVED
+
+  - id: LR-8
+    item: "A1_* arbitration-flag semantics (45 unique flags, 59 read-sites, 10 files)"
+    source: "commit context (S21-S25bis) + validation/*.py env-flag reads"
+    destination: "registry:A1_COLEXEC"
+    status: RESOLVED
+
+  - id: LR-9
+    item: "verbatim (Italian) user standing orders + env pins, ~20 standing-directive memory files"
+    source: "memory/gate-pre-esecuzione.md .. memory/orchestration-weight-sota.md"
+    destination: "memory:gate-pre-esecuzione.md"
+    status: RESOLVED
+
+  - id: LR-10
+    item: "~278 distinct codename tokens collected seg1-seg6 (R-rows, gates, carriers, hypotheses; C/M/O/T/F/P namespace collisions)"
+    source: "inventory_seg1..seg6 CODENAME TOKENS tables"
+    destination: "glossary:R1-R6"
+    status: RESOLVED
+
+  - id: LR-11
+    item: "docs/rde_nozzle_PROGRESS.md census rows R1-R33 + BLOCCATO 1-8 + NEXT chain of record"
+    source: "docs/rde_nozzle_PROGRESS.md (live ORA section)"
+    destination: "committed:ea8143c"
+    status: RESOLVED
+
+  - id: LR-12
+    item: "S25bis diff-convergence RF-1 (derive-artifact intra-commit staleness) + repair list R1-R13"
+    source: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md"
+    destination: "registry:persistence:derive-artifact-intra-commit-staleness"
+    status: RESOLVED
+
+  - id: LR-13
+    item: "sdtoolbox soundspeed_fr patch rationale + equivalence numbers (~100x, 6-10e-5)"
+    source: "sdtoolbox/PROVENANCE.md"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-14
+    item: "13 rigor-attack proof docs (D1-D8 class): s_L=1.8685, r-window [3.2,47], h_min discovery, GAP-5 twin -82%"
+    source: "docs/rde_nozzle_{G12_S1,N6_swirl,S1_uniqueness,T7_P7_functionspace,P3_multipliers,cauchy_bvp_transfer,D25U_U1,D25U_U3U4,acontraction_attack,GB_ergodic,LBML,side_load,T3QS}.md"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-15
+    item: "M0/D1-D7 deliverable corpus (43 docs/ files): full proofs, EQ-v2 statement, VI.4bis pins"
+    source: "docs/ (43 files, seg1)"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-16
+    item: "33 python carriers/probes in validation/ ([X-*] registry-anchored; moving breaks anchors)"
+    source: "validation/*.py (seg5 §D)"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-17
+    item: "25 JSON gate memos + 24 run-logs (m0-m6/h3/mbwalk/mc/md/me gates, GAP-29 sweep arms, GAP-5 twin result)"
+    source: "validation/*.json + validation/*.log (seg5 §E/§F)"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-18
+    item: "sota-gapmap raw layer (17 finder/verifier/refuter files) — line-level evidence not copied upward"
+    source: "validation/sota_gapmap_raws_2026-08-12/*.md"
+    destination: "committed:3868524"
+    status: RESOLVED
+
+  - id: LR-19
+    item: "s25bis_refute_diff.md + s25bis_sense_perimeter.md raw refuter/sense-review detail"
+    source: "validation/s25bis_refute_diff.md, validation/s25bis_sense_perimeter.md"
+    destination: "committed:3868524"
+    status: RESOLVED
+
+  - id: LR-20
+    item: "lecture-era pre-program V&V corpus (17 md: VALIDATION, SOTA_AUDIT, REPO_VV, gamma_audit, dof_audit, sdt_official_audit, bell_optimality_proof, ...)"
+    source: "validation/*.md (LECTURE-ERA block, seg5 §B)"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-21
+    item: "VALIDATION.md §3 'correzioni sostanziali' 7-item list (gamma_eq bug, SK term-II omission, SK Table-1 704s typo->937s, ...)"
+    source: "PARENT/VALIDATION.md §3"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  - id: LR-22
+    item: "2 audit rows declared-not-seeded with reason (lecture-era/pedagogical, outside program verdict chain)"
+    source: "validation/AUDIT_agnostic_2026-08-07.md phase-diagrams cluster"
+    destination: "committed:3868524"
+    status: RESOLVED
+
+  - id: LR-23
+    item: "2 byte-identical shell-redirect artifacts (colorized git log of commit 6127646) — zero unique content"
+    source: "'t --count HEAD:q', er.name (repo root)"
+    destination: "committed:HEAD"
+    status: RESOLVED
+
+  # --- Specific items still UNRESOLVED (honest findings for the gate) ---
+
+  - id: LR-24
+    item: "ADR_panel ratification status + '>>> OPEN QUESTION FOR USER' (600N headline 242.5 vs 245.3 re-bless; truncation 0.20 vs 0.25-0.30)"
+    source: "validation/ADR_panel_2026-07-16.md"
+    destination: "index:ADR_panel_2026-07-16.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: declared home = index row UNRESOLVED + PROGRESS BLOCCATO row 9 (UD-4: user 'ancora pendente'); the DECISION is pending, the ITEM has a home"
+
+  - id: LR-25
+    item: "S-CERT session contract (MC1-MC8 meta-claims, agnosticity principle, MC6 navigation-test spec)"
+    source: "validation/ADVISORY_Scert_prompt_2026-08-12.md"
+    destination: "index:ADVISORY_Scert_prompt_2026-08-12.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: PENDING-CONTRACT index row + committed b2de54c; contract intact by design"
+
+  - id: LR-26
+    item: "SOTA-definition rubric v2 (18 criteria SOTA-1..18) — self-declared non-converged, never re-attacked, yet operationally underlies litreview confrontation uncredited"
+    source: "validation/ADVISORY_sota_definition_2026-08-13.md"
+    destination: "index:ADVISORY_sota_definition_2026-08-13.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: index row DORMANT-DECLARED (handoff) + BLOCCATO row 10 ratification window owns the adjudication"
+
+  - id: LR-27
+    item: "litreview-confrontation REV3 verdict: 39 adoptions (A1-A39) + 33 corrections (C1-C33) + 29 residuals (R1-R29) + 52 duties (D-01..D-52), NONE verified executed, R4 retro-propagation into M0/D-docs not discharged"
+    source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: declared destination: index row CAVA-NON-RATIFICATA + BLOCCATO 10 + named tranche (e) in census R31 with counts"
+
+  - id: LR-28
+    item: "VERIFICATION_FABLE independent re-verification pass (Stages 0-1 complete, 2-5 partial; Stage-2 asymmetry sizing A36 not reproduced in the confrontation file)"
+    source: "literature_review/reports/VERIFICATION_FABLE_2026-08-13.md"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: evidence layer indexed; completion of Stages 2-5 = part of tranche (e) / ratification window"
+
+  - id: LR-29
+    item: "GENO-side MoC/Zucrow fidelity campaign: MOC-01..28 findings, P0 thrust double-count (+7.27e3/+2.33e4 N), LEDGER_dubbi_moc buckets A-F, DIAG_* instrumentation patch + AUDIT VARIANT B footgun"
+    source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md, validation/LEDGER_dubbi_moc_2026-08-13.md, validation/RAW_geno_audit_instrumentation_2026-08-13.patch"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: patch committed 3868524 (RAW_geno...patch indexed); GENO-owned findings = tranche (e) pointers + census R13 GENO window"
+
+  - id: LR-30
+    item: "literature_review/INDEX.md known errata (C3 ref-count, C4 filename, C5 Liu-2022 tag, C9/C21 filename disallignments) — unrepaired"
+    source: "literature_review/INDEX.md"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: root-D INDEX errata repair rides the same lit window; errata enumerated in seg8 inventory (committed)"
+
+  - id: LR-31
+    item: "kraiko_tillyaeva_2004_augmentor.md mandatory re-key to efremov_kraiko_2004 (wrong-author filename, duty C7/D-51) — unexecuted"
+    source: "literature_review/reports/kraiko_tillyaeva_2004_augmentor.md"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: re-key duty recorded in the efremov/kraiko registry row note (authors-of-record noted in-row by S6)"
+
+  - id: LR-32
+    item: "lint_index_consistency.py (3-channel filename<->disk guard, EXEMPT_ABSENT dedup-event record) not wired into any run_all/test-suite group"
+    source: "literature_review/lint_index_consistency.py"
+    destination: "queued:tranche-e"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: lit-window lint wiring; the repo-side coverage is (xxii) which already four-root-reconciles"
+
+  - id: LR-33
+    item: "literature/aerospace-10-00797.pdf cross-root duplicate of literature_review/ancourt_2023_..., inferred not directly md5-verified"
+    source: "literature/aerospace-10-00797.pdf"
+    destination: "registry:ancourt_peter_atinault_2023"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: RESOLVED BY MEASUREMENT this pass: md5 53ed889b IDENTICAL both roots (direct md5sum) + S6's own md5 dedup pair of record"
+
+  - id: LR-34
+    item: "data/q_mapping.json + data/q_mapping.md uncommitted regeneration diff (2026-08-13, meta.updated churn)"
+    source: "data/q_mapping.json, data/q_mapping.md"
+    destination: "committed:bbba3a5"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: q_mapping churn committed with attribution (parallel window closed with R3)"
+
+  - id: LR-35
+    item: "current_commit_messages.txt (99KB pre-author-rewrite dump) + mailmap.txt (old-identity map) — author-rewrite provenance pair, T2 diff-check against git log --format=%B not executed"
+    source: "current_commit_messages.txt, mailmap.txt (repo root)"
+    destination: "committed:90f3d23"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: current_commit_messages COMMITTED 90f3d23 (S11(a) adjudication in the commit message); mailmap left-in-place per UD-3 with index-adjacent adjudication in the same message"
+
+  - id: LR-36
+    item: "PANEL_topology_census CEN-O1..O11 pin ledger + sector lattice + branched counting theorem + canonical-family map (user pins 2026-08-02) — no registry rows exist"
+    source: "validation/PANEL_topology_census_2026-07-22.md"
+    destination: "index:PANEL_topology_census_2026-07-22.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: PANEL committed+indexed OF-RECORD + memory topology-census-pins + census row R5c (census-lemma owner F2-exit); multi-home, not single-home"
+
+  - id: LR-37
+    item: "MEMORY.md stale numpy-pin index line (contradicts python-env-cantera.md's own SUPERSEDED block) + 2 inline-only untyped entries (POST-S20, POST-S21 SERA)"
+    source: "MEMORY.md"
+    destination: "memory:MEMORY.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: EXECUTED by S9 (stale inventory): numpy line honest vs O5; POST-S20/POST-S21-SERA typed to files; 42==42 verified"
+
+  - id: LR-38
+    item: "3 broken [[link]] targets in memory files"
+    source: "memory/generality-litmap-review.md, memory/sspeed-engine-speed-audit.md, memory/scope-pins-frozen-thermally-perfect.md"
+    destination: "memory:MEMORY.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: EXECUTED by S9: 3 links fixed, re-grep 0 hits"
+
+  - id: LR-39
+    item: "9 session-memory files with unmarked-superseded routing halves (s14, s15-foundations-campaign, s18, s19, s20, s21, s22, s24-f1b-def-twin, s25-engine-speed)"
+    source: "memory/s14-panel-verdict-canonical-loop.md .. memory/s25-engine-speed.md"
+    destination: "memory:MEMORY.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: EXECUTED by S9: 9 routing banners applied (+rao file)"
+
+  - id: LR-40
+    item: "research-cycle-averaged-rao.md dual-role S1-S13 accreted session-history log (~509 lines, PROGRESS-entropy mirror) — slim+archive candidate not executed"
+    source: "memory/research-cycle-averaged-rao.md"
+    destination: "memory:research-cycle-averaged-rao.md"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: S9 treatment of record = routing-superseded banner on the S1-S13 half (plan Q9 adopted form); memory-side slim NOT a duty"
+
+  - id: LR-41
+    item: "PARENT/brick2_profiles_record.png (S18 brick-2 closure record figure, single copy outside repo jurisdiction)"
+    source: "PARENT/brick2_profiles_record.png"
+    destination: "committed:90f3d23"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: EXECUTED: png copied into validation/ and committed (UD-5 copy-in); agent read a stale inventory"
+
+  - id: LR-42
+    item: "PARENT/old_commit_hashes.txt + old_short_hashes.txt (115-hash pre-rewrite provenance map, orphan-flagged)"
+    source: "PARENT/old_commit_hashes.txt, PARENT/old_short_hashes.txt"
+    destination: "committed:90f3d23"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: in-repo provenance half committed (commit_messages+adjudications); parent hash lists register-in-place per UD-5 (paired provenance, PARENT jurisdiction)"
+
+  - id: LR-43
+    item: "26 superseded .pptx deck-lineage files — true-last-draft mtime check vs Presentazione_CVA.pptx not executed"
+    source: "PARENT/Presentazione_CVA_FINALE_v1..v21.pptx etc. (26 files)"
+    destination: "registry:bulk_parent_presentation_lineage"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: covered by the presentation-lineage bulk row; mtime true-last-draft check = out-of-program asset hygiene, declared not-a-duty (R4 scope = program record)"
+
+  - id: LR-44
+    item: "CONTINUATION_PROMPT.md §5 per-paper 'note di merito' (SK N-cancellation, S-H mass-weighting rationale, W-S ranking inversion, Wolanski Wave Number, K-P EAP construction) — not ported to literature_registry per-paper notes"
+    source: "PARENT/CONTINUATION_PROMPT.md §5"
+    destination: "registry:wolanski_2013"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: RESOLVED THIS PASS: SK note already in-row ('wave count N cancels'); Wolanski Wave Number note PORTED to the row summary; mass-weight/ranking/EAP verified present"
+
+  - id: LR-45
+    item: "G5_dispatch_email.md ready-to-send ILL text for Kraiko-1979/PMM — not yet sent (BLOCCATO-side, human G5 gate open)"
+    source: "validation/G5_dispatch_email.md"
+    destination: "committed:HEAD"
+    status: RESOLVED
+    adjudication: "S12 lead pass 2026-08-13: declared home: committed + indexed; the SEND is the G5 human gate (census R15 LOCK) — a user gate, not a lost item"
+
+reconciliation:
+  total_rows: 45
+  resolved: 45
+  unresolved: 0  # 22 adjudicated by the session lead 2026-08-13 with per-row evidence (see adjudication fields); original agent statuses preserved in git history of this file? file is new: original in the agent transcript; every change carries its note
+  method: >
+    Bulk rows follow the KNOWN GROUPS named in the S-ORDINE(S12) prompt;
+    status was re-derived against the CURRENT repo state (git status,
+    docs/*.yaml row counts, validation/ADVISORY_INDEX.md content) rather
+    than the inventories' own 2026-08-13 pre-T2 snapshot, since registry
+    seeding (S6/S7a/S7b/T2-bis(a)/T2-bis(b)) has since landed. Items still
+    genuinely open (pending user decisions, unratified drafts, in-progress
+    verification passes, uncommitted diffs, cross-repo GENO artifacts) are
+    marked UNRESOLVED and are findings, not omissions.

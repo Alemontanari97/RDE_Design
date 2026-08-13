@@ -1,3 +1,5 @@
+> **STATUS — SUPERSEDED (2026-08-13, S-ORDINE) -> docs/rde_nozzle_development_plan.md (D6).** This early program roadmap is superseded by the ratified plan v3 (D6, phases F0-F6 + gates). Reciprocal banner per F-SEG1-1. Full text preserved below (R4); consult, never cite against D6.
+
 # GENO-RDE: program plan for a certified optimal-contour tool for RDE nozzles
 
 Status: PROGRAM PLAN (execution roadmap). Third document of the set:

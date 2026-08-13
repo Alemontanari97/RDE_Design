@@ -253,3 +253,11 @@ citations.
 
 ## Worked solution
 The capstone exercise (deck slide 60) has a formal written solution: **examples/SOLUTION_headtohead.md** — problem statement, per-step assumptions, full resolution (Part 1 chain + Part 2 independent CP optimization), verdict table (SL + vacuum), sensitivities, reproducibility.
+
+## Research program
+Beyond the lecture package, this repository hosts the cycle-averaged
+variational nozzle research program for RDE exhaust flows (branch
+`rde-nozzle-program`): theory of record in `docs/rde_nozzle_MASTER.md`,
+phased plan in `docs/rde_nozzle_development_plan.md`, living state in
+`docs/rde_nozzle_PROGRESS.md`, validation record layer indexed by
+`validation/ADVISORY_INDEX.md`.

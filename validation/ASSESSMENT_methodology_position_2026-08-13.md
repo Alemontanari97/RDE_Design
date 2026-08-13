@@ -36,15 +36,41 @@ VERDETTO: **massima nel suo campo, e testimoniata dal campo stesso, non da noi.*
   e sweep a 2 variabili (Paxson-Miki: 7 progetti OFAT, +13.4 PUNTI di ideale [IO pp.3-5]); nessuno
   pone la domanda "quale funzionale estremizza il flusso medio".
 - Il dibattito interno al corpus è APERTO e senza arbitro: Paxson-Miki mostra la media adeguata al
-  dimensionamento; Harroun 2021 la mostra CIECA al ranking (c_F=1.25 identico per due aerospike che
-  l'esperimento separa) [REP, cross-checked con ADVISORY_rde_choking]. Il nostro programma è
-  l'arbitro strutturale di quel dibattito; R22 (esperimento di disentanglement 3D/3D-mediato/2D) è
-  l'atto che lo decide ed è NOSTRO.
+  dimensionamento; Harroun 2021 mostra un valutatore ciclo-mediato CIECO al ranking (c_F=1.25
+  identico per due aerospike) [IO p.671]. PRECISIONE OBBLIGATORIA [IO + grep report]: nel paper NON
+  esiste alcuna spinta di caso transitorio — né calcolata (il c_F viene SOLO da snapshot steady a
+  pressione costante mediati; le CFD a onda servono alla regione di base) né misurata (strumenti =
+  CTAP + prese di pressione; Table 3 dà CTAP e portata, MAI spinta); i tre test appaiati
+  distinguono i due profili SOLO via pressioni superficiali, con inferenza qualitativa ("may thus
+  be the better design"). **CORREZIONE POST-CONTRADDITTORIO (REFUTE_B)**: la clausola "la nostra
+  teoria lo prevede" è REFUTED e RITIRATA (doppio abuso di T-T3: fuori ipotesi — valutatore RANS
+  viscoso ambient-coupled con separazione = breaker (a); e il collasso parla di fasi, mai di
+  geometrie); "mass-weighted" non è stampato in Harroun (convention UNDECLARED). Sopravvive: il tie
+  non trasferisce a noi (valutatori INCOMPARABILI, proiezione valida solo sul canale inflow);
+  lezione primaria = FRAGILITÀ DELLA CONVENZIONE DI MEDIA, che tocca anche la nostra scelta di μ;
+  rischi condivisi 2-D e quasi-steady, più il rischio **INVISCIDO solo nostro** (il loro valutatore
+  vede la separazione, il nostro no). **REQUALIFICA 2026-08-13
+  (sfida utente, aggiudicata sulle fonti — v. VERIFICATION file, Stage 4 add. 2)**: il valutatore
+  cieco è la PROIEZIONE scalare-uniforme (snapshot 2-D a pressione costante lungo un waveform 0-D
+  alla Stechmann, media mass-weighted Eq. 4 [IO]) — un membro della nostra classe T3-CONTROL, la cui
+  povertà informativa la NOSTRA teoria prevede. La cecità NON trasferisce formalmente al nostro
+  valutatore (stati di fase risolti in caratteristica): resta (a) il fatto-opportunità che i
+  valutatori standard del campo sono ciechi, (b) la NON-dimostrazione che il nostro discrimini al
+  percento, (c) il rischio CONDIVISO della riduzione 2-D-per-fase (attribuzione degli autori
+  stessi). R22 (3D-unsteady vs 3D-mediato vs 2D-mediato) decide (b) e (c) ed è NOSTRO.
 
 ## 3. LA METODOLOGIA — ha senso? ha appigli teorici?
 
-### 3.1 L'adjoint per fasi vs l'adjoint periodico (la domanda dirimente) — VERDETTO: **LEGITTIMO,
-con appiglio teorico FORTE, entro il pin dichiarato** [IO su Zahr-Persson pp.1-8]
+### 3.1 L'adjoint per fasi vs l'adjoint periodico (la domanda dirimente) — VERDETTO
+**POST-CONTRADDITTORIO (REFUTE_A): FONDATO A DUE STADI, entro il pin** [IO + refuter]
+- STADIO 1 (esatto, lemma da scrivere): il quoziente di simmetria giustifica l'adjoint steady 3-D
+  nel wave-frame; T-T0 IPOTIZZA il pattern sul campo — il lemma di propagazione "BC pura + dominio
+  assialsimmetrico ⇒ steady co-rotante" è provabile su classe L4 ma NON è scritto in M0 (duty R4).
+- STADIO 2 (approssimazione dichiarata): le marce 2-D per fase scartano l'accoppiamento in θ —
+  M0 stesso lo dichiara "the only approximation in the chain" (rung 2). La claim onesta è quindi:
+  per-fase = quoziente esatto + rung-2 dichiarato, MAI "l'oggetto corretto" tout court.
+- "ZP mal posta" RITIRATO: sul sottoproblema guidato in-pin ZP è ben posta e DOMINATA in costo;
+  la degenerazione (moltiplicatore di Floquet banale) vale per la vista autonoma [IO App. A].
 - La macchineria generale esiste in due forme: adjoint time-domain con vincolo di periodicità
   (Zahr-Persson: BVP lineare a due punti, esistenza/unicità via monodromia, App. A) e adjoint
   harmonic-balance (Rubino; "all time instances coupled, extremely large-scale" per ZP p.2).
@@ -88,10 +114,16 @@ controversie; fedeltà al continuo ANCORA NON TESTATA** [IO su Giles-Pierce 2001
   CSTR_PA/PB di GENO; la storia CCM (Nikolskii→Guderley-Hantsch→Shmyglevskii/Sternin→Rao, priorità
   di stampa a Rao fine-1958 secondo il resoconto di Kraiko 2001, parte in causa) è ora citabile con
   il rider corretto [IO].
-- BUCO BLOCCANTE R16 [IO su Kraiko 2001 p.1348 + clausole nostre]: l'ottimo discontinuo di
-  Shmyglevskii 1962 porta slip line `ct` come elemento strutturale; il nostro tier certificato la
-  rigetta per costruzione (fronte caratteristico, Lopatinskii degenere) ⇒ lo stack non può emettere
-  un Verdict sull'ottimo che il corpus ha pubblicato. Test di accettazione F4b nominato.
+- BUCO R16 [IO + REFUTE_D: TIENE nel nucleo, RIQUALIFICATO]: l'ottimo discontinuo di Shmyglevskii
+  1962 porta slip line `ct` strutturale; il nostro tier la rigetta per costruzione — rigetto anzi
+  SOVRADETERMINATO (anche (F3) noninteraction; il rejector X-U3BD aveva GIÀ rilevato singolare il
+  limite caratteristico). Il regime corto È dentro l'inviluppo RDE, ma il gap **vincola al GATE
+  F4b, non blocca la catena S-ORDINE→S-CERT→F2**; membership in S1 asserita non certificata
+  (+ collisione nomi S_1-tier/S1-classe da sanare); test di accettazione da riqualificare sul
+  sostituto su disco (secondo schema Shmyglevskii CMMP, M0:1572-76, che GIÀ nominava l'istanza —
+  chiosa di novità ridimensionata). C31 (forma a cono): NECESSARIA nella sostanza, forma MINIMALE
+  `D ∈ N_K` con K per istanza; portata = uguaglianza FUORI dal cono; cecità duale confermata SUL
+  CODICE su CINQUE carrier (REFUTE_C, righe citate); emenda S2 (f3*≥0 ⇒ rejector sull'identità).
 
 ## 4. LA METODOLOGIA È SOTA? — collocazione
 
@@ -111,7 +143,26 @@ controversie; fedeltà al continuo ANCORA NON TESTATA** [IO su Giles-Pierce 2001
 4. **Cosa NON possiamo dire**: che il contenuto matematico del ponte sia nostro; che la struttura
    disuguaglianze-all'inammissibilità sia nostra (Shmyglevskii 1962, C30 [IO]); che la media basti
    per il ranking al percento (APERTO, R22/R26); che l'adjoint sia fedele al continuo (APERTO fino
-   ad A1/A2/A3); che il pin d'onda abbia provenienza hardware (R20).
+   ad A1/A2/A3); che il pin d'onda abbia provenienza hardware (R20); **che siamo "sopra"
+   Zahr-Persson/Rubino sull'asse MACCHINERIA adjoint instazionaria** — su quell'asse loro sono
+   production-grade (fully discrete, duality-preserving, gradiente verificato, viscoso/turbolento,
+   SU2 open source) e noi deliberatamente NON la costruiamo perché in-pin non serve (quoziente);
+   fuori pin loro SONO la rotta nominata. La superiorità rivendicabile è di FORMULAZIONE per la
+   classe RDE (teoria del problema mediato + condizioni di ottimalità + certificati), non di
+   solver. Assi distinti, mai confonderli in una presentazione.
+
+**GENEALOGIA DI POSIZIONAMENTO (la "scala di Stechmann", registrata 2026-08-13)** — doppia
+discendenza citabile, entrambe [IO]: *lato valutazione* (scuola NASA/Purdue): rung 0 = Stechmann
+Eq. (4), media mass-weighted di prestazioni 0-D per-istante su waveform; rung 1 = Harroun 2021,
+stessi istanti ma campi 2-D steady a pressione costante; rung 2 = il nostro J = ∫F[Σ;s(ξ)]dμ con
+stati di fase = TRACCE D'INTERFACCIA NON UNIFORMI risolte in caratteristica (da profili a campi);
+rung 3 = il layer VARIAZIONALE su rung 2 (design come incognita + T7 + certificati) — che NON
+discende da Stechmann (lì nessuna variazione di design) ma dalla linea classica: Rao →
+Kraiko-Osipov 1970 (antenato variazionale mediato, citazione obbligatoria di record) →
+Efremov-Kraiko 2004 (mediato collassante). La scala rende il lavoro leggibile a ENTRAMBE le
+scuole; caveat da portare sempre: l'assunzione 3 di Stechmann (uscita chocked in ogni istante) e
+lo spike idealmente adattato sono le idealizzazioni che il nostro L4/T-T4 sostituisce con oggetti
+gated.
 
 ## 5. RESIDUI CHE GATE-ANO LA COLLOCAZIONE FINALE (owner nominati)
 R1 ISABE-2003 full text (PB-2, P0) · R2 tesi Harroun 2019 (P0) · R22 esperimento disentanglement
@@ -122,10 +173,13 @@ fedeltà (F2/S-CERT) · ratifiche utente pendenti: D-01 (glossa), C31 (forma a c
 
 ## 6. COPERTURA DI QUESTO ASSESSMENT
 Personalmente verificati [IO]: HTH-1971, Hoffman-1967(parz.), Rao-Beck, Hoffman-1987,
-Efremov-Kraiko-2004, Paxson-Miki(metodo), KT2015(13/18pp), GP2001(19/19), Zahr-Persson(pp.1-8),
-Kraiko-2001(pp.1-2), Harroun(via advisory 08-11 + cross-check), M0 righe 1071-1130 + grep glossa.
-Al tier [REP] (letture campionate 4/4 accurate, correzioni a valle già assorbite): Ancourt, GP2000,
-Rubino(dettaglio), Schotthöfer, Kaemming-Paxson, Wintenberger, Wolanski, JANC, Sun, Fernandes, Liu,
-Ornano, Kraiko-2016, set NASA. La verifica personale di questi continua in coda dichiarata
-(VERIFICATION_FABLE_2026-08-13.md); nessuno di essi porta da solo un claim di record senza
-riverifica alla citazione (regola A4 della sweep, standing).
+Efremov-Kraiko-2004, Paxson-Miki(metodo), KT2015(13/18pp), GP2001(19/19), Zahr-Persson(pp.1-8 +
+App. A), Kraiko-2001(pp.1-2), Harroun-2021(p.671 + cross-check advisory 08-11 + grep integrale),
+Stechmann(§§I-II), Fernandes(pp.868-872: nicchia CONFERMATA), Rubino(pp.221-225: HB 2K+1
+accoppiate), Ancourt(refs 45/45: zero scuola variazionale ugelli), M0 righe 246-247/442-445/
+660-664/1071-1130/1572-76/1699-1704 + carrier in codice (o33_bench, a1_toc, margin_governor via
+REFUTE_C). **Più contraddittorio consumato: 4 refuter (REFUTE_A/B/C/D) sui 4 punti teoricamente
+ricchi — 1 clausola REFUTED e ritirata, 2 riqualificate, 1 sovradimensionamento ridotto, 5 carrier
+duale-ciechi confermati sul codice.** Al tier [REP] residuo (non portante; regola A4 standing):
+GP2000, Schotthöfer, Kaemming-Paxson, Wintenberger, Wolanski, JANC, Sun, Liu, Ornano, Kraiko-2016,
+set NASA.

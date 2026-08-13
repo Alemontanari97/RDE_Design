@@ -1,3 +1,5 @@
+> **STATUS — CONSUMED (2026-08-13, S-ORDINE) -> validation/PROGRESS_2026-08-11_S21_order.md.** Addendum prompt executed inside S21 (red-team/use-case/U3' addendum). Full text preserved (R4).
+
 # S21 ADDENDUM PROMPT (2026-08-11 — integrates the red team, the
 # use-case duties, and the RDE-choking analysis into the RUNNING S21
 # F0; paste as an in-session order. Advisory, untracked.)

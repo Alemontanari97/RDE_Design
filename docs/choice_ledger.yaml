@@ -1,0 +1,597 @@
+# CHOICE LEDGER — typed index of the algorithmic choice-adjudication
+# ledger (standing directive choice-adjudication-convergence,
+# 2026-08-12; S-ORDINE T2 step S5a, census R25/R32).
+#
+# PROSE AUTHORITY (unchanged by this file): the ANNEX "6. ANNEX — THE
+# CHOICE LEDGER" in validation/ADVISORY_S24_sota_gapmap_2026-08-12.md
+# (rows C1-C45, table + reading paragraph). This YAML INDEXES that
+# annex — it never replaces it. Per-row deltas that postdate the
+# annex (executed twins/sweeps, closures, three S25-bis-declared new
+# rows) are folded in as status/note updates CITING
+# docs/rde_nozzle_PROGRESS.md (R25 census rows), never silently
+# overwriting the annex text.
+#
+# SCHEMA (strict subset, mirrors docs/findings_registry.yaml
+# discipline): each entry
+#   id: C<n>                                   (C1..C48, unique)
+#   choice: <one line>                          (what is being decided)
+#   incumbent: <the code's current behavior>
+#   alternatives: [<genuine SOTA alternative>, ...]   (may be [])
+#   status: DECIDED | MIXED | SINGLE-AUTHOR | NEVER
+#     DECIDED       = converged-panel / constructional / measured
+#                      verdict of record (annex "CONVERGED*")
+#     MIXED         = one branch DECIDED, a sibling branch NEVER
+#                      (e.g. eq-path decided, IP-path never surveyed)
+#     SINGLE-AUTHOR = one author's rationale stands, no survey/panel
+#     NEVER         = registered open row, no comparison run yet
+#   evidence: "<path#anchor>"   (resolvable: annex row anchor for
+#                                 C1-C45; PROGRESS/session-log anchor
+#                                 for rows carrying a post-annex delta
+#                                 or for the three new C46-C48 rows)
+#   owner: REQUIRED for every NEVER and SINGLE-AUTHOR row (verbatim
+#          from the annex "Owner+placement if open" column, or the
+#          census/session-log text for C46-C48; "F2 window
+#          (unassigned)" only if the source truly names none)
+#   note: optional — annex's own internal evidence-pointer text
+#         (D6/param-F.../GAP-N/AC-N, informational, not necessarily
+#         independently resolvable), annex status nuance verbatim,
+#         and/or the PROGRESS delta citation for touched rows.
+#
+# LINT: none yet — no tests/test_choice_ledger.py exists at the time
+# of this extraction (S-ORDINE T2/S5a is a READ-ONLY-elsewhere step,
+# one new file only). Declared gap, owner = next S-ORDINE/S-CERT
+# window (mirror tests/test_findings_registry.py's group (xix)
+# pattern: schema/enum check, per-status required-field check,
+# evidence-anchor resolution check, duplicate-id check).
+#
+# COUNTS (verified at extraction time, see verification note below):
+#   annex rows of record (C1-C45): 45
+#   this registry: 48 rows (45 indexed + C46-C48 newly declared
+#     S25-bis rows — growth enumerated, not silent)
+#   tallies by status (red-team-corrected recount, replacing the
+#     document's own inconsistent "8/14/23" line — see the annex
+#     reading paragraph and docs/rde_nozzle_PROGRESS.md R25):
+#     DECIDED: 5 (C3, C4, C15, C23, C24)
+#     MIXED: 3 (C29, C31, C39)
+#     SINGLE-AUTHOR: 15 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
+#       C32, C44, C45, C46, C47 + C48 counted under DECIDED — see
+#       C48 note; SINGLE-AUTHOR annex-only subtotal = 12, plus C46
+#       and C47 = 14; recount below is authoritative)
+#     NEVER: 25 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
+#       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
+#       C42, C43)
+#   EXACT machine tally of this file (do not hand-eyeball the block
+#   above further — count the `status:` field values instead):
+#     DECIDED: 6 (C3, C4, C15, C23, C24, C48)
+#     MIXED: 3 (C29, C31, C39)
+#     SINGLE-AUTHOR: 14 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
+#       C32, C44, C45, C46, C47)
+#     NEVER: 25 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
+#       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
+#       C42, C43)
+#     TOTAL: 48 (6+3+14+25=48). C48 (vmap-in-engine) is classed
+#     DECIDED here despite the census shorthand "gate-rejected as
+#     default" because it carries a full multi-probe converged
+#     technical verdict (m6gate + three convergent root-cause
+#     probes), NOT a single-author or un-surveyed choice — see its
+#     note for the declared nuance (adoption path itself still open,
+#     owner F2).
+entries:
+
+- id: C1
+  choice: "Design basis class"
+  incumbent: "clamped/natural interpolating cubic, heights-as-dofs"
+  alternatives:
+    - "B-spline control polygon (de Boor/Boehm)"
+    - "CST (Kulfan)"
+    - "Hicks-Henne"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C1 |"
+  owner: "F2-entry adjudication (GAP-21); post-solve change-of-basis certificate = S25"
+  note: "annex status verbatim: 'single-author on the oscillation axis (D6 adjudicated conditioning+revalidation only)'; annex internal pointer: D6:915-926; param-F1 + Q2"
+
+- id: C2
+  choice: "Right-end BC"
+  incumbent: "natural y''(L)=0"
+  alternatives:
+    - "not-a-knot (de Boor/FITPACK)"
+    - "free-end control points"
+  status: NEVER
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#delta S25-bis:"
+  owner: "F2 consequence adjudication (incumbent BC untouched until the twin discriminates)"
+  note: "annex evidence pointer: toc:148; param-F2. POST-ANNEX DELTA (S25-bis, docs/rde_nozzle_PROGRESS.md R25 delta S25-bis block; findings_registry.yaml:parametrization:natural-BC-lip-bias): notaknot-twin EXECUTED — corner mismatch 6.629e-2 -> 1.166e-2 (r=1, -82%), 6.637e-2 -> 9.775e-3 (r=2); lip-state (cd) shift 8.2% = mechanism datum; baseline reproduces S19 figure to 5 digits. Diagnostic executed, ADOPTION DECISION still open -> status stays NEVER, owner updated from the stale 'S25 notaknot-twin (GAP-5)' to the live F2 consequence-adjudication owner."
+
+- id: C3
+  choice: "Left-end BC"
+  incumbent: "clamped tan(thB)"
+  alternatives: []
+  status: DECIDED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C3 |"
+  note: "annex status verbatim: 'CONVERGED (constructional) [J]' — attachment tangency, forced by geometry, no genuine alternative exists; annex internal pointer: toc:146-147; annex owner column: '-'"
+
+- id: C4
+  choice: "Knot placement law"
+  incumbent: "uniform xi + [X-AKNO] goal-indicator insertion"
+  alternatives:
+    - "free knots (Jupp)"
+    - "curvature-based abscissae"
+  status: DECIDED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C4 |"
+  note: "annex status verbatim: 'survey-decision of record [S25-REPAIR: was \"CONVERGED-panel\"; D6 item 9 records an adopt-or-declare SURVEY decision, not a Form-2 panel]'; annex internal pointer: D6 item 9 (free-knot rejection, Jupp lethargy); S20 [X-AKNO] record. POST-ANNEX MENTION (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta paragraph): 'C4-suite chiusa' is named in the same R25 delta sentence alongside C17/C18/C23/C24/C34/C2; referent recorded verbatim from PROGRESS (test-suite/gate-closure context, distinct from and not altering this knot-placement survey-decision itself) — no change to status or alternatives."
+
+- id: C5
+  choice: "Knot anchoring across thB updates"
+  incumbent: "normalized xi re-anchored to live xB"
+  alternatives:
+    - "physical-x anchored knots"
+    - "arc-length anchored knots"
+    - "curvature-anchored knots"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C5 |"
+  owner: "S25 drift monitor (GAP-34)"
+  note: "annex internal pointer: param-F8 (corrected magnitudes Q8)"
+
+- id: C6
+  choice: "Insertion degeneracy guard"
+  incumbent: "dx_loc = median station spacing (mesh-derived)"
+  alternatives:
+    - "operator-derived max adjacent-knot ratio (de Boor; Schoenberg-Whitney)"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C6 |"
+  owner: "S25 guard edit (GAP-23)"
+  note: "annex status verbatim: 'single-author (rationale measured wrong: solve vs operator)'; annex internal pointer: adaptive_knot_optimize:209-213; P4' probe"
+
+- id: C7
+  choice: "Outer-loop dof policy"
+  incumbent: "insertion-only ratchet"
+  alternatives:
+    - "insert+remove (Lyche-Morken)"
+    - "AFEM coarsening (BDD04)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C7 |"
+  owner: "F2/F3 loop upgrade (GAP-25)"
+  note: "annex internal pointer: param-F5 (corrected attribution)"
+
+- id: C8
+  choice: "Warm-start deviation handling"
+  incumbent: "print-only dev_warm"
+  alternatives:
+    - "derived-floor rejector (armed) + THEOREM row"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C8 |"
+  owner: "S25 (GAP-24)"
+  note: "annex status verbatim: 'NEVER (armable invariant unarmed)'; annex internal pointer: param-F4; P3 = 6.7e-16"
+
+- id: C9
+  choice: "March mesh law"
+  incumbent: "uniform NI/da/Nw/Ne per run"
+  alternatives:
+    - "column-local C- insertion at record time"
+    - "goal-oriented AMR (Venditti-Darmofal)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C9 |"
+  owner: "R25 owner F2; spec attached"
+  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: R25; mesh-F1/AC2"
+
+- id: C10
+  choice: "Refinement operator"
+  incumbent: "refine(r) joint global scaling"
+  alternatives:
+    - "per-direction refinement (multi-parameter GCI, Eca-Hoekstra)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C10 |"
+  owner: "S25 flag (GAP-35)"
+  note: "annex internal pointer: o33_bench:172-176; mesh-F3(ii)"
+
+- id: C11
+  choice: "Error estimator for J"
+  incumbent: "two-level Richardson K=4"
+  alternatives:
+    - "three-mesh observed-p GCI (Roache/Celik)"
+    - "DWR (Becker-Rannacher)"
+    - "LSQ multigrid"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C11 |"
+  owner: "S25 extension (GAP-9) + R25 DWR"
+  note: "annex status verbatim: 'single-author at band sites ([X-O32] exists for O3.2 norms only)'; annex internal pointer: AC3; GAP-9"
+
+- id: C12
+  choice: "Start line"
+  incumbent: "Sauer first-order, gamma=const, GENO-mirrored (+1e-6 offset)"
+  alternatives:
+    - "Kliegel-Levine higher-order"
+    - "Hall"
+    - "displaced-IVL rejector"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C12 |"
+  owner: "S25 rejector; F4b/F5 higher-order if it fires"
+  note: "annex status verbatim: 'single-author (twin DATA CONTRACT - fidelity adjudicated, accuracy NEVER)'; annex internal pointer: a1:719-727, :37-40; GAP-6/AC14"
+
+- id: C13
+  choice: "Axis unit process"
+  incumbent: "GENO foot-ratio guard v1/y1"
+  alternatives:
+    - "L'Hopital dv/dy carried (Zucrow-Hoffman)"
+    - "MMS verification"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C13 |"
+  owner: "S25 gconst axis oracle"
+  note: "annex status verbatim: 'single-author (GENO mirror; march-level verification NEVER)'; annex internal pointer: a1:488-499, :566; GAP-8"
+
+- id: C14
+  choice: "Exit-condition read point"
+  incumbent: "axis-cell Me only"
+  alternatives:
+    - "multi-point exit read + band"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C14 |"
+  owner: "folded into GAP-8 oracle"
+  note: "annex status verbatim: 'NEVER [J]'; annex internal pointer: a1:853, :889"
+
+- id: C15
+  choice: "m_stop exit floor"
+  incumbent: "1e-5 GENO-mirrored (S19 knob)"
+  alternatives:
+    - "mesh-coupled floor m_stop ~ C*da^2"
+  status: DECIDED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C15 |"
+  note: "annex status verbatim: 'CONVERGED-measured (attribution diagnostic executed; STIM-1)'; annex internal pointer: AC4; annex owner column: '- (residual: coupling documentary)' — a documentary residual remains, not a reopened choice"
+
+- id: C16
+  choice: "Newton damping ladder"
+  incumbent: "(1,1/2,1/4,1/16,1/64,0), bare argmin non-increase"
+  alternatives:
+    - "Deuflhard measured-contraction damping"
+    - "Armijo sufficient decrease"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C16 |"
+  owner: "F2 engine rebuild"
+  note: "annex status verbatim: 'NEVER (no recorded rationale)'; annex internal pointer: a1:371, :397-416; GAP-29"
+
+- id: C17
+  choice: "Trip cap N_NEWTON"
+  incumbent: "30"
+  alternatives:
+    - "derived from contraction budget"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C17 |"
+  owner: "AUDIT F5 execution (S25)"
+  note: "annex status verbatim: 'single-author (KAT proved it bites, not derived)'; annex internal pointer: [X-CDKAT]; a1:145-148. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C17-C18 sweep = GAP-29'): the GAP-29 halved-constants sweep targeted C18's constants (NEWTON_TOL_FACTOR, C_FLOOR, C_OPS); N_NEWTON=30 itself was NOT among the swept constants and remains un-derived."
+
+- id: C18
+  choice: "Roundoff-floor constants"
+  incumbent: "NEWTON_TOL_FACTOR=100, C_FLOOR=8 (spike convention)"
+  alternatives:
+    - "Higham op-count gamma_n"
+    - "More-Wild noise floors"
+  status: SINGLE-AUTHOR
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
+  owner: "S25 halved-constants sweep (executed; derivation duty now F2-live)"
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C18 |; annex status verbatim: 'single-author (AUDIT F5 registered; test never executed)'; annex internal pointer: AC9; GAP-29. POST-ANNEX DELTA (S25-bis, findings_registry.yaml:engine-core:F5-underived-factors, s25bis_gap29_sweep.json): GAP-29 sweep EXECUTED — 1 FLIP of record: NEWTON_TOL_FACTOR/2 flips cert_verdict (factor-2 margin load-bearing); C_FLOOR/2 and C_OPS/2 no-flip (>=2x measured headroom). Sweep executed, derivation itself still NEVER done -> status stays SINGLE-AUTHOR."
+
+- id: C19
+  choice: "Certification metric scale"
+  incumbent: "scalar sc = max(1, max|z|)"
+  alternatives:
+    - "componentwise scaling (Deuflhard NLEQ; Higham)"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C19 |"
+  owner: "F2 hygiene with AUDIT F8"
+  note: "annex status verbatim: 'single-author (AUDIT F8 adjudicated LOW)'; annex internal pointer: AC8/Q1"
+
+- id: C20
+  choice: "Certificate qualification"
+  incumbent: "unqualified one-extra-step ratio"
+  alternatives:
+    - "kappa(J)-aware derived bound"
+    - "Kantorovich/alpha-theory"
+    - "branch-consistency monitor"
+    - "interval-Newton [X-IVXC]"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C20 |"
+  owner: "F2 (HIGH)"
+  note: "annex internal pointer: GAP-3"
+
+- id: C21
+  choice: "Seed validity policy"
+  incumbent: "asserted O(h) predictor + stale replay seeds (C2-F2 mitigation)"
+  alternatives:
+    - "alpha-theory per-seed certificate"
+    - "Kantorovich radius ([X-TBAK] pattern in z)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C21 |"
+  owner: "S25 probe -> F2 ledger row"
+  note: "annex internal pointer: GAP-20"
+
+- id: C22
+  choice: "Wall-foot search"
+  incumbent: "linear index scan, full Newton per attempt, monotone-foot predicate"
+  alternatives:
+    - "Brent on chord parameter + Shewchuk pre-filter -> derived (N,Nv)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C22 |"
+  owner: "F2 (rate lever)"
+  note: "annex internal pointer: GAP-28; toc:847-852"
+
+- id: C23
+  choice: "Record-failure policy"
+  incumbent: "full record then P4 gate"
+  alternatives:
+    - "fail-fast early-abort (opt-in, schema'd)"
+  status: DECIDED
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C23 |; annex status verbatim: 'CONVERGED-panel (speed audit H1 design of record)'; annex internal pointer: AC7; annex owner column: 'scheduled S25 item 8'. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C23 = H1/M5b atterrata'): the fail-fast/H1 record-failure design landed in the M-chain speed program (M5b)."
+
+- id: C24
+  choice: "Thermo closure"
+  incumbent: "[X-THC1] quintic C1 tables (backend-1)"
+  alternatives:
+    - "NASA-direct (oracle only per C-A)"
+    - "dCp-ingest (gated C-B)"
+  status: DECIDED
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C24 |; annex status verbatim: 'CONVERGED-panel (KEEP verdict fresh)'; annex internal pointer: ADVISORY_S24_thermo_closure_survey Sec.8; annex owner column: 'conditions C-A..C-D open as named'. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C24 = C-A scaricata'; findings_registry.yaml:thermotab:C-A-edge-stencil, status DISCHARGED): condition C-A (NASA-direct oracle) discharged in the [X-THC1] carrier, same M3 touch; C-B/C-C/C-D remain open, owner F2."
+
+- id: C25
+  choice: "Table box"
+  incumbent: "literals 1050/3900 K, N_TAB=8192"
+  alternatives:
+    - "envelope-derived box + declared margin + per-run certificate"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C25 |"
+  owner: "F2 (with C-C/C-D)"
+  note: "annex internal pointer: GAP-11"
+
+- id: C26
+  choice: "Out-of-box behavior"
+  incumbent: "silent clamp (linear) / silent quintic extrapolation (C1)"
+  alternatives:
+    - "traced flag + rejector covering BOTH modes"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C26 |"
+  owner: "C-D owner F2"
+  note: "annex status verbatim: 'NEVER (registered conditional C-D, spec corrected)'; annex internal pointer: AC6"
+
+- id: C27
+  choice: "Constraint aggregation"
+  incumbent: "KS-min, rho = K_RICH ln(N)/mu0 (conservativeness-derived)"
+  alternatives:
+    - "adaptive-KS (Poon-Martins)"
+    - "induced-exp/power (Kennedy-Hicken)"
+    - "two-constant rule"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C27 |"
+  owner: "F2 (with GAP-1)"
+  note: "annex status verbatim: 'single-author (survey answered accuracy axis; conditioning axis NEVER)'; annex internal pointer: GAP-27; AC12"
+
+- id: C28
+  choice: "Cert-frontier representation"
+  incumbent: "binary outside gates only (quantifier bridge falsified)"
+  alternatives:
+    - "KS-max surrogate inside KKT, gates kept"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C28 |"
+  owner: "F2 (census row 10)"
+  note: "annex status verbatim: 'NEVER (successor to falsified K_disc~A_0 absent)'; annex internal pointer: GAP-1"
+
+- id: C29
+  choice: "Mask freezing granularity"
+  incumbent: "rung-frozen + C3 drift gate"
+  alternatives:
+    - "segment-level re-freeze (P2 rhythm)"
+    - "smooth gate sigma(val/eps_gate)"
+  status: MIXED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C29 |"
+  owner: "F2 re-adjudication"
+  note: "annex status verbatim: 'CONVERGED-panel for rung-freeze, alternatives NEVER considered; C3 fired post-adjudication'; annex internal pointer: GAP-13; panel C3"
+
+- id: C30
+  choice: "Mask crop policy"
+  incumbent: "overlap crop + occurrence counter"
+  alternatives:
+    - "conservation-of-enforcement invariant (lost-lane count verdict-bearing)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C30 |"
+  owner: "S25 one-liner"
+  note: "annex internal pointer: GAP-14"
+
+- id: C31
+  choice: "Optimizer engine"
+  incumbent: "scipy trust-constr (eq-path Sec.4bis-adjudicated; IP path in use since S22)"
+  alternatives:
+    - "IPOPT"
+    - "filter SQP (Fletcher-Leyffer)"
+    - "SLQP"
+    - "Uno"
+    - "proximal-bundle (D6:738, never built)"
+  status: MIXED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C31 |"
+  owner: "F2 [P-IPADJ]"
+  note: "annex status verbatim: 'CONVERGED for eq-path; IP path NEVER'; annex internal pointer: GAP-15; kickoff Sec.4bis"
+
+- id: C32
+  choice: "Curvature policy"
+  incumbent: "fresh full FD Hessian per segment, no carry (policy-bound)"
+  alternatives:
+    - "SR1 carry from certified pairs + stale-symptom re-measure + directional rejector"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C32 |"
+  owner: "G0/T2 review, F2 entry"
+  note: "annex status verbatim: 'single-author (R-3 cites no alternatives; survey NEVER)'; annex internal pointer: AC10"
+
+- id: C33
+  choice: "Constraint curvature"
+  incumbent: "scipy default BFGS (no hess=)"
+  alternatives:
+    - "exact HVP (fwd-over-rev)"
+    - "FD-of-exact-gradient per segment"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C33 |"
+  owner: "F2 (R2 pilot flag)"
+  note: "annex internal pointer: GAP-19"
+
+- id: C34
+  choice: "TR floor/caps"
+  incumbent: "TR_FLOOR=1e-3, tr0=0.05, tr_cap=0.25 (S18 clip)"
+  alternatives:
+    - "noise-derived floor K_RICH*tol_dp/||g|| (Cartis-Scheinberg; More-Wild)"
+  status: NEVER
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
+  owner: "S25 arithmetic + F2 adoption ([P-TRFLOOR] blocked-with-named-cause)"
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C34 |; annex internal pointer: GAP-4. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C34 [P-TRFLOOR] = blocked-with-named-cause'): input forfeited by the pre-8761dce kill; trigger = first campaign artifact post-8761dce."
+
+- id: C35
+  choice: "xtol"
+  incumbent: "literal 1e-10 at every call site"
+  alternatives:
+    - "Newton-floor-derived on u scale (derivation exists as prose only)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C35 |"
+  owner: "F2 one-liner"
+  note: "annex internal pointer: GAP-33"
+
+- id: C36
+  choice: "Scaling policy"
+  incumbent: "Jacobi Dv measured once/walk, objective-only"
+  alternatives:
+    - "per-segment refresh from diag(H) (free) + constraint-row equilibration (SNOPT)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C36 |"
+  owner: "F2 [P-DVREFRESH]"
+  note: "annex internal pointer: GAP-17"
+
+- id: C37
+  choice: "Segmentation trigger"
+  incumbent: "any (N,Nv) flip ends segment"
+  alternatives:
+    - "materiality-gated by replay-fidelity band"
+    - "PC^1 active-set anticipation"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C37 |"
+  owner: "F2 entry (G0/T2)"
+  note: "annex internal pointer: GAP-18"
+
+- id: C38
+  choice: "Outcome-II stationarity declaration"
+  incumbent: "ratchet exhaustion + raw KKT-open number"
+  alternatives:
+    - "B-stationarity certificate (convex-hull / surrogate residual)"
+    - "normalized reporting"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C38 |"
+  owner: "F2"
+  note: "annex internal pointer: GAP-2"
+
+- id: C39
+  choice: "Multiplier provenance"
+  incumbent: "res.v raw (convention closed S24-T1)"
+  alternatives:
+    - "complementarity band + LSQ re-estimate"
+    - "AD post-optimality (Fiacco) via lip elimination"
+  status: MIXED
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C39 |"
+  owner: "S25 band/counter; F2 LSQ"
+  note: "annex status verbatim: 'convention CONVERGED (T1); verification NEVER'; annex internal pointer: GAP-12, GAP-32"
+
+- id: C40
+  choice: "Lip equality handling"
+  incumbent: "LinearConstraint row"
+  alternatives:
+    - "variable elimination (N-W Sec.15.3)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C40 |"
+  owner: "F2"
+  note: "annex internal pointer: GAP-32"
+
+- id: C41
+  choice: "Band form/composition"
+  incumbent: "K=4 pointwise two-level; ad-hoc sum/max/heterogeneous mixes"
+  alternatives:
+    - "declared GUM/RSS policy"
+    - "three-level GCI"
+    - "topology-conditioned (LB-c2)"
+    - "running-max envelope (in-house)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C41 |"
+  owner: "S25 policy + band pass"
+  note: "annex status verbatim: 'NEVER (no composition policy anywhere)'; annex internal pointer: GAP-7, GAP-9, GAP-10"
+
+- id: C42
+  choice: "Safety constant K_RICH role reuse"
+  incumbent: "one numeral, 8 roles"
+  alternatives:
+    - "per-role derivations (GCI Fs on observed p; KS rho from Lipschitz scale; etc.)"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C42 |"
+  owner: "R25 F2 audit + census annex"
+  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: AC5 (R25)"
+
+- id: C43
+  choice: "Asymptotic-range handling at band sites"
+  incumbent: "presumed h^p at r=1,2"
+  alternatives:
+    - "per-site observed-order check (o32 estimator reuse) + NON-CONCLUSIVE propagation"
+  status: NEVER
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C43 |"
+  owner: "S25"
+  note: "annex internal pointer: GAP-9"
+
+- id: C44
+  choice: "FD steps (gradient/Hessian)"
+  incumbent: "fixed sqrt(eps)*scale / eps^(1/3)*scale"
+  alternatives:
+    - "More-Wild noise-aware per-column steps"
+    - "seam-aware stencils"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C44 |"
+  owner: "F2 (with P-HESSREJ)"
+  note: "annex status verbatim: 'single-author (derived-for-smooth; kink-aware NEVER)'; annex internal pointer: GAP-16"
+
+- id: C45
+  choice: "leggeAree bracket"
+  incumbent: "hardcoded 400-point grid [1.01, 2.8]*as"
+  alternatives:
+    - "box-derived q_max window"
+    - "vectorization"
+  status: SINGLE-AUTHOR
+  evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C45 |"
+  owner: "S25 speed session"
+  note: "annex status verbatim: 'single-author (registered: speed audit H2 + AUDIT)'; annex internal pointer: AC16"
+
+# --- NEW ROWS DECLARED S25-bis (ledger grows 45 -> 48; docs/rde_
+# nozzle_PROGRESS.md R25 delta S25-bis block, 'regola R5-estesa':
+# righe nuove dichiarate al commit) ---
+
+- id: C46
+  choice: "Padded-lane fill policy for the M5c per-column vmapped bucket executor"
+  incumbent: "tail-repeat: padded lanes repeat the last real partner's data (data-only, never accounted, never in the plan)"
+  alternatives:
+    - "zero-padding with an explicit masked reduction"
+    - "NaN-padding + isnan guard on every consumer"
+    - "ragged/variable-shape scan (no padding, no fixed bucket bound)"
+  status: SINGLE-AUTHOR
+  evidence: "validation/PROGRESS_2026-08-12_S25bis_speed.md#tail-repeat the last real partner"
+  owner: "F2 window (unassigned) — M5c bucket-executor hygiene, no dedicated owner row named in PROGRESS/session log"
+  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'padding tail-repeat (single-author+gate)' — the m5cgate bitwise-identity gate covers correctness of the executor's output (dec-vector, z-band, doctored first-offender, near-seam pair) but was never run against the listed alternatives; single-author choice, gate-verified not panel-verified."
+
+- id: C47
+  choice: "Numeric-lint enforcement policy for legacy literals in validation/**/*.py (R28 scope-hole closure)"
+  incumbent: "per-file frozen baseline ratchet (validation/numeric_lint_baseline_validation.json): any count INCREASE over baseline fails; any DECREASE also fails until the baseline is ratcheted down; an unbaselined file with literals fails outright"
+  alternatives:
+    - "full per-file classification into TRIVIAL/ALLOWLISTED/EXEMPTED (the src/ standard already enforced by tests/test_numeric_lint.py)"
+    - "blanket exemption of validation/ (status quo ante — the scope hole itself)"
+    - "hard fail on any legacy literal, no ratchet (immediate full remediation)"
+  status: SINGLE-AUTHOR
+  evidence: "tests/test_numeric_lint.py#VALIDATION RATCHET TIER (R28, S25-bis"
+  owner: "F2-entry hygiene (per-file classification into the src/ taxonomy; findings registry row test-suite:numeric-lint-scope-hole)"
+  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'ratchet-baseline come pattern debt-lint (standard di settore, dichiarato)' — declared as an industry-standard debt-ratchet pattern by single-author decision, not a converged panel; DECLARED LIMIT (test_numeric_lint.py docstring): within-count literal swaps still pass, the ratchet is a channel guard not a classification."
+
+- id: C48
+  choice: "Hessian/gradient batching strategy for engine M4: vmap-batched entry (M6) vs sequential per-segment FD, as the DEFAULT execution path"
+  incumbent: "sequential per-segment FD Hessian (default, unchanged from the M-chain; nonfinite-lane guard + hess_lane counter shipped on this path)"
+  alternatives:
+    - "vmap value_and_grad batched entry inside the M4 engine (SOTA, plan as broadcast operands, zero per-segment recompile) — IMPLEMENTED and gate-tested, REJECTED as default"
+  status: DECIDED
+  evidence: "docs/rde_nozzle_PROGRESS.md#AGGIUDICAZIONE M6 DI RECORD"
+  owner: "F2 (adoption = declared version change at a session boundary, m6gate re-formed on the corrected criterion, M3 precedent; candidate opt-in flag A1_VMAP_HESS=1 named in the interim)"
+  note: "m6gate FIRED at first implementation (dH 18% of Hessian scale = 5-6x the FD scheme's own asymmetry) -> root cause ISOLATED via three convergent probes (adjoint cross-lowering gradient floor ~1e-8 rel over ~250 implicit solves, FD-amplified ~7 orders; even sequential eager-vs-jit diverges 2.9e-2; the defect was the mixed-lowering formulation, not the batching) -> CORRECTED FORM (base in-batch, one lowering; lane-permutation control bitwise) measured dH 1.68x scheme asymmetry, INSIDE the derived K_RICH bound, batched self-asymmetry better than sequential -> classed ADOPTION-READY. Classed DECIDED (not SINGLE-AUTHOR/NEVER) because the verdict rests on a full converged multi-probe technical adjudication (m6gate + consumer diagnostic + root-cause isolation), not an un-surveyed choice; the residual open item is WHEN to adopt (a session-boundary version-change decision), not WHETHER the current default is justified."
