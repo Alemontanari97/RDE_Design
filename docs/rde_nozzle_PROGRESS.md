@@ -57,6 +57,26 @@ l'ASSESSMENT (prima di S-ORDINE).
 
 **Branch `rde-nozzle-program`. Apertura S25-bis: HEAD ad5c48e
 (addendum post-chiusura S25). Commit S25-bis: nel log. CATENA NEXT
+AGGIORNAMENTO CATENA (ratificato dall'utente 2026-08-13, chiusura
+S-ORDINE): tra S-ORDINE (CONSUMATA) e S-CERT si inserisce la
+FINESTRA F-SERVICE RATIFICHE (piccola, in-window per
+never-postpone-resolvables; eseguibile NELLA STESSA SESSIONE di
+S-CERT con CONFINE DURO: mini-R3 verde e committata PRIMA che
+l'audit apra, freeze totale dopo; split di budget SOLO al confine).
+Scope pinnato: (1) ratifiche utente D-01/C31-minimale/C30
+(BLOCCATO 10); (2) batch R4 dalle righe ADOPTED della REV-3
+convergiuta (lemma propagazione, formulazione bloccata PB-2,
+attribuzione E4, H-EXO su T7, 3 non-contenimenti litmap) in M0/D-doc
+con classe di rigore + righe registry/indice stessa finestra (R7);
+(3) fix economici dei 5 carrier duale-ciechi (righe REFUTE_C) sotto
+SR-11: gate ri-eseguiti, lint verdi, stampi pass= stesso giorno,
+version-change dichiarato; (4) esclusioni NOMINATE: D-49 dichiarata
+(limite campione S-CERT se non eseguita), item MOC/GENO-owned
+fuori; (5) al confine si pinna la decisione A2 (O3.1-cs in apertura
+S-CERT vs F2). Ragione tattica di record: l'audit ostile deve
+misurare lo stato VERO, non ri-scoprire ciò che i refuter hanno già
+trovato. Catena precedente (per riferimento):
+
 di record (ratificata dall'utente 2026-08-12): S-ORDINE (R32,
 de-entropizzazione, prompt committato
 validation/ADVISORY_Sordine_prompt_2026-08-12.md, assorbe la prima
