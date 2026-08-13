@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 # ad-hoc console redirects (reproducible ephemera; S9 T7 rule)
 scratch_*.txt
+# GENO/ is an INDEPENDENT git repo (never committed from here; S-ORDINE S1)
+GENO/
