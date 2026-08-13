@@ -164,6 +164,24 @@ entries:
   mechanism: host-variance-undiagnosed
   owner: "next clean-host measure re-baselines with interleaved reps across a longer window; declare the band, never a point"
   trigger: "any speed verdict with < 1.5x margin to its target (today's margin is 1.5-2x)"
+- id: structure:monolithic-driver-module
+  status: CONFIRMED
+  severity: low
+  magnitude: "a1_toc_variational_jax.py > 2100 lines, multi-responsibility (geometry + record + replay engine + engine cache + TR-SQP driver); growing arbitration-flag matrix (A1_COLEXEC x A1_FUSED_CERT x A1_PLAN_ARGS x A1_VMAP_HESS x memos) tested on gated pairs, cartesian product DECLARED untested"
+  source: "validation/ADVISORY_Sordine_prompt_2026-08-12.md#FUORI SCOPE"
+  code: ["validation/a1_toc_variational_jax.py:1-100"]
+  mechanism: module-cohesion-debt
+  owner: "F2 window candidate WITH the perimeter sense-review (carrier touch = gates re-run + version risk; never inside an ordering session); the flag-matrix REGISTRY lands at S-ORDINE T2-bis(b) regardless"
+  trigger: "first F2 session that touches the driver for content, or the flag matrix gaining a 5th axis"
+- id: infra:scheduled-ci-multiplatform
+  status: CONFIRMED
+  severity: low
+  magnitude: "suite is manual per-session on ONE Windows host; the cross-lowering gradient floor (registry row engine:cross-lowering-gradient-floor) implies results carry a lowering/platform dependence a second platform would surface; env drift caught only at session opens"
+  source: "validation/ADVISORY_Sordine_prompt_2026-08-12.md#FUORI SCOPE"
+  code: ["tests/run_all.py:100-125"]
+  mechanism: single-host-reproducibility
+  owner: "own infra window (user decision class: env/tooling); minimal first step = a scheduled full-suite run on this host with EXIT-code artifact; multi-platform = adoption-with-rejector when a second env exists"
+  trigger: "user opens an infra window, or a second machine/env enters the project, or any suite-red discovered late attributable to drift"
 - id: cell-cert:val-diag-starvation-twin
   status: CONFIRMED
   severity: low
