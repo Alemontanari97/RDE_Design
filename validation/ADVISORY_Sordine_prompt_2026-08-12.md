@@ -142,6 +142,32 @@ nothing-lost dichiarata (conteggio sorgente == conteggio
 destinazione + anchor risolti dal lint; riconciliazione 428-file
 a scarto 0).
 
+## (4-bis) T2-bis — ALZARE IL LIVELLO (estensione utente 2026-08-12:
+## "colmare altri punti per alzare il livello della codebase" —
+## SOLO gli item che usano la STESSA macchineria della sessione;
+## scope creep = entropia):
+(a) GLOSSARIO dei codenames (docs/glossary.md o yaml tipizzato):
+generato DAI reader di Fase 1 (incontrano ogni token); lint di
+risoluzione — ogni [X-*]/GAP-*/R-*/C-*/M-* usato nei doc OF-RECORD
+deve risolvere a una voce di glossario o riga di registry;
+(b) REGISTRO DEI FLAG DI ARBITRATO (una riga per env-flag A1_*:
+default, significato, gate che lo copre, coppie testate vs prodotto
+cartesiano DICHIARATO non testato) — la matrice oggi vive solo nei
+docstring;
+(c) regola standing PESO-ORCHESTRAZIONE MISURATO (shape + token
+riportati nel log di sessione per ogni orchestrazione) dentro il
+deliverable educazione;
+(d) igiene della directory piatta validation/: il piano la
+adjudica con il VINCOLO PREZZATO — spostamenti sicuri = artifact/
+log/advisory; spostare i .py carrier rompe import e anchor
+(claims/findings registry) e si fa SOLO se il judge lo prezza con
+verifica anchor-lint post-mossa.
+FUORI SCOPE (si REGISTRANO con owner, mai eseguiti qui): split del
+driver monolitico (tocca carrier -> finestra F2 + sense-review);
+CI schedulata / multi-piattaforma (decisione infra/env, riga
+propria); distillazione per terzi (pipeline P-1); qualunque tocco
+algoritmico.
+
 ## (5) T3 — EDUCAZIONE (il mantenimento)
 Le regole standing convergiute atterrano come: delta CLAUDE.md
 (proposto all'utente per ratifica), riga di censimento standing, e
