@@ -391,7 +391,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C26 |"
   owner: "C-D owner F2"
-  note: "annex status verbatim: 'NEVER (registered conditional C-D, spec corrected)'; annex internal pointer: AC6. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); thermo survey condition C-D RE-AFFIRMS the traced box-exit rejector as required repair with owner F2 (ADVISORY_S24_thermo_closure_survey_2026-08-12.md par.8 C-D) — a repair mandate against the incumbent silence, not a comparison run; still unlanded"
+  note: "annex status verbatim: 'NEVER (registered conditional C-D, spec corrected)'; annex internal pointer: AC6. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); thermo survey condition C-D re-affirms the traced box-exit rejector as required repair with owner F2 (ADVISORY_S24_thermo_closure_survey_2026-08-12.md par.8 C-D) — a repair mandate against the incumbent silence, not a comparison run; still unlanded"
 
 - id: C27
   choice: "Constraint aggregation"

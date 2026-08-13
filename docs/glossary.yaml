@@ -56,8 +56,12 @@
 #     REQ-NONSTALL, M0-M6 etc. each appear in 4-7 segment tables):
 #     898 + seg8 34 = 932 (updated 2026-08-13).
 #   MERGED N (this file, machine-counted post prefix-family collapse +
-#     cross-segment dedup of identical-meaning tokens): 32 family rows
-#     + 131 individual entries = 163 total rows (140 at first build;
+#     cross-segment dedup of identical-meaning tokens): 34 family rows
+#     + 137 individual entries = 171 total rows (F-SERVICE window
+#     reconciliation 2026-08-13 added 2 families [B-F<n>, RF-<n>] + 6
+#     entries [F-SERVICE, S-FOUNDATIONS, T-DISC, T-RED, M-RED,
+#     R22-CFD] for the 11 post-baseline tokens, SR-4; 163 before that;
+#     140 at first build;
 #     seg8 merge added 8 families + 15 entries, the other 11 seg8 table
 #     rows dedup onto existing rows/families: PB-2, T-T3*, T-T4, EQ-v2
 #     to existing entries/families; R16/C30/C31-C32/S1-S3-as-adoptions/
@@ -111,8 +115,8 @@
 
 families:
   - family: "R<n>*"
-    resolver: "docs/rde_nozzle_PROGRESS.md#censimento (R1-R33)"
-    count_covered: 33
+    resolver: "docs/rde_nozzle_PROGRESS.md#CENSIMENTO — TABELLA CONSOLIDATA R1-R36"
+    count_covered: 36
   - family: "GAP-<n>*"
     resolver: "docs/findings_registry.yaml + validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP MAP"
     count_covered: 36
@@ -122,6 +126,14 @@ families:
   - family: "AC<n>*"
     resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#already-covered ledger"
     count_covered: 16
+  - family: "B-F<n>* (Form-2 convergence rows)"
+    resolver: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md"
+    count_covered: 13
+    note: "Fused Form-2 convergence-table rows of the S25-bis diff-convergence advisory (B-F1..B-F13; B-F2 padding, B-F12 ratchet); cited by the 2026-08-13 choice-ledger cross-reconciliation notes. Counts measured by grep -o sort -u, 2026-08-13."
+  - family: "RF-<n>* (diff-convergence refuter attacks)"
+    resolver: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md"
+    count_covered: 12
+    note: "Merged refuter attacks of the same advisory (RF-1..RF-12; RF-9/RF-11 cited by the choice-ledger reconciliation); RF-1 intra-commit staleness is the one carried into standing rules (S25-bis close). Counts measured by grep -o sort -u, 2026-08-13."
   - family: "Q<n>* (gap-map quarantine)"
     resolver: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#quarantine"
     count_covered: 11
@@ -197,7 +209,7 @@ families:
   - family: "R<n>* (litreview residuals R1-R29)"
     resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#7"
     count_covered: 29
-    note: "DISTINCT from the census R<n> family (R1-R33) above and from the speed-audit N<n> conditionals — same letter, unrelated lists. R1/R2/R22 = the three P0s of the confrontation."
+    note: "DISTINCT from the census R<n> family (R1-R36) above and from the speed-audit N<n> conditionals — same letter, unrelated lists. R1/R2/R22 = the three P0s of the confrontation."
   - family: "D-<nn>* (litreview duties D-01..D-52)"
     resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#8"
     count_covered: 52
@@ -934,3 +946,33 @@ entries:
     meaning: "The confrontation advisory's verbatim-vs-inference voice-tagging convention (parallels the SOTA-5 voice discipline of the unratified rubric)."
     resolver: "validation/ADVISORY_litreview_confrontation_2026-08-13.md"
     first_seen: "seg8/ADVISORY_litreview_confrontation"
+  - token: "F-SERVICE"
+    namespace: "session"
+    meaning: "The ratification window inserted between S-ORDINE and S-CERT (user-ratified 2026-08-13, census R36): D-01/C31/C30 ratifications, R4 batch from REV-3 ADOPTED rows, 5 REFUTE_C carrier fixes under SR-11, named exclusions, boundary decisions. Also the commit-tag prefix of the window."
+    resolver: "validation/ADVISORY_Fservice_Scert_prompt_2026-08-13.md"
+    first_seen: "chain commits 1e188a9/e3cfab3 (2026-08-13)"
+  - token: "S-FOUNDATIONS"
+    namespace: "session"
+    meaning: "Theory-before-F2 session (census R35, minted by the S-ORDINE tail 2026-08-13, commit 3961d3d): F2-consumed NEVER choice rows to Form-2 convergence, pre-derivable theory batch, census-lemma pin decision; centerpiece = theory:r22-formal-decomposition. Chain: F-SERVICE+S-CERT -> S-FOUNDATIONS -> F2."
+    resolver: "docs/rde_nozzle_PROGRESS.md#R35"
+    first_seen: "commit 3961d3d / PROGRESS_2026-08-13_Sordine.md STEP 13"
+  - token: "T-DISC"
+    namespace: "term"
+    meaning: "Planned fiber-separation theorem (S-FOUNDATIONS centerpiece, from the R22 formal re-framing): characterize the fibers of the p-only projection on the admissible data class and lower-bound the J-variation within a fiber — exonerates or convicts the cycle average with zero CFD."
+    resolver: "docs/findings_registry.yaml#theory:r22-formal-decomposition"
+    first_seen: "S-ORDINE tail parked row (2026-08-13)"
+  - token: "T-RED"
+    namespace: "term"
+    meaning: "Planned reduction-residual operator theorem (S-FOUNDATIONS centerpiece): post-quotient azimuthal-structure terms dropped by the per-phase-2D reduction written as an explicit residual operator with hypothesis list + bound schema."
+    resolver: "docs/findings_registry.yaml#theory:r22-formal-decomposition"
+    first_seen: "S-ORDINE tail parked row (2026-08-13)"
+  - token: "M-RED"
+    namespace: "term"
+    meaning: "Planned measurement of the T-RED residual functional on the program's own certified interface families (derived bands, no CFD) — the measured half of the R22 formal decomposition."
+    resolver: "docs/findings_registry.yaml#theory:r22-formal-decomposition"
+    first_seen: "S-ORDINE tail parked row (2026-08-13)"
+  - token: "R22-CFD"
+    namespace: "term"
+    meaning: "R22 re-scoped to its irreducible CFD core after the formal decomposition (model adequacy on one reference coupled configuration / field-facing demonstration) — no longer the decider of the average-adequacy question."
+    resolver: "docs/findings_registry.yaml#theory:r22-formal-decomposition"
+    first_seen: "S-ORDINE tail parked row (2026-08-13)"

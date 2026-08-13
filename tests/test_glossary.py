@@ -70,7 +70,12 @@ CORPUS_YAMLS = ('claims_registry.yaml', 'findings_registry.yaml',
 # triage of the seeding tranches' residual tokens is the seeding /
 # R3-closure session's declared duty. Growth FAILS, shrink =
 # ratchet-down report:
-TOKEN_BASELINE = 54
+# Re-frozen 2026-08-13 (F-SERVICE reconciliation): 54 -> 52 measured
+# after the SR-4 same-window resolution of the 11 post-baseline tokens
+# (2 linked families B-F<n>/RF-<n> + 6 entries + 1 prose case-fix);
+# the family patterns also resolved the pre-existing B-F10/B-F11 debt,
+# hence the ratchet-down (R28 discipline: baseline follows reality).
+TOKEN_BASELINE = 52
 
 EXTS = ('md', 'py', 'json', 'yaml', 'yml', 'pdf', 'f90', 'patch',
         'png', 'txt', 'zip', 'log')
@@ -90,6 +95,12 @@ FAMILY_PATTERNS = (
     (r'^MOC-\d+$', 'MOC-<nn>'),
     (r'^SOTA-\d+$', 'SOTA-<n>'),
     (r'^D-\d{2}$', 'D-<nn>'),
+    # F-SERVICE window reconciliation 2026-08-13 (SR-4): the S25-bis
+    # diff-convergence enumerations entered the ratchet corpus via the
+    # choice-ledger cross-reconciliation notes (commit 3961d3d) — two
+    # linked family rows added to the glossary in the same window.
+    (r'^B-F\d+$', 'B-F<n>'),
+    (r'^RF-\d+$', 'RF-<n>'),
 )
 
 # The 12 pinned collision groups (contract list) -> entry predicate:

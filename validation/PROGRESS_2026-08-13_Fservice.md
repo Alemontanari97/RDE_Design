@@ -1,7 +1,11 @@
 # SESSION LOG — F-SERVICE RATIFICATION WINDOW (Part 1 of the
 # F-SERVICE + S-CERT double session; contract =
 # validation/ADVISORY_Fservice_Scert_prompt_2026-08-13.md, executed
-# integrally; census row R35; chain of record: commits 1e188a9 +
+# integrally; census row R36 — RENUMBERED from R35 at reconciliation:
+# the parallel S-ORDINE tail minted R35 = S-FOUNDATIONS at 14:54
+# (commit 3961d3d), before this window's boundary commit; first-minted
+# keeps the number, so "census R35" in ea2abce's message reads THIS
+# row under its new number R36; chain of record: commits 1e188a9 +
 # e3cfab3, user-ratified 2026-08-13)
 
 Date: 2026-08-13. Opening HEAD: e3cfab3 (verified, tags
@@ -200,7 +204,9 @@ GATE RE-RUNS (SR-11, same-day stamps; redirect-only, EXIT-gated):
 
 ## (1f) MINI-R3 OF THE BOUNDARY
 
-- Census: row R35 added IN PLACE (SR-7); BLOCCATO 10 CONSUMED (see
+- Census: row R36 added IN PLACE (SR-7; renumbered from R35 at the
+  reconciliation with the parallel tail's R35 = S-FOUNDATIONS mint,
+  see header note); BLOCCATO 10 CONSUMED (see
   PROGRESS edit of this window).
 - This log = the window log; ADVISORY_INDEX row added same window
   (R7/SR-1).

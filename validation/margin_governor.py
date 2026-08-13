@@ -687,8 +687,8 @@ def main():
     # repair S1/A37 self-test (F-SERVICE 2026-08-13, REFUTE_C): the
     # dual clause on mu must accept the right side and FIRE on the
     # wrong one — pure float logic, runs in every stage.
-    d_ok1, _ = mu_dual_clause(+1.0e-3, True, slack=0.0)
-    d_ok2, _ = mu_dual_clause(-1.0e-3, True, slack=0.0)
+    d_ok1, _ = mu_dual_clause(+1.0, True, slack=0.0)
+    d_ok2, _ = mu_dual_clause(-1.0, True, slack=0.0)
     d_ok3, _ = mu_dual_clause(0.0, False)
     print("  [S1/A37 dual clause] positive control %s; seed rejector "
           "(wrong-side mu at active margin) %s; complementarity at "
