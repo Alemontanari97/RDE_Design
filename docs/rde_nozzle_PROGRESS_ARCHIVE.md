@@ -2375,3 +2375,31 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
   PASS. Suite 9/9. Deviazioni dichiarate: T4/OP-11-ε opzionale NON
   eseguito (→ NEXT 1); lavoro in concorrenza con S1 sullo stesso tree,
   riconciliato senza conflitti.
+
+
+# ---- ARCHIVED at the F-SERVICE+S-CERT R3 close (2026-08-13, SR-10 append): the outgoing ORA block (S25-bis) ----
+
+## ORA (2026-08-12, chiusura Sessione 25-bis — **"M5c + M6 +
+## PROTEZIONE CAP" (censimento R30): PROGRAMMA VELOCITA' COMPLETO E
+## TARGET FORMALMENTE MET — M5c executor per-colonna ACCETTATO al
+## primo colpo su ENTRAMBE le reti (dec-vector BITWISE, z in banda
+## floor derivata, doctored first-offender esatto, coppia near-seam);
+## MEASURE M-D/M-E = STOP CHECK: SEGMENTO 14.9-20.1 s pessimistic-end
+## vs <=30 = **MET** (record fresco 100.84 -> 5.58 s = 18x),
+## CAMPAGNA proiettata ~10-14 min pessimistic vs <=25 = **MET across
+## the band**; M6 vmap-Hessiano IMPLEMENTATO e GATE-REJECTED al
+## livello consumatore (dH 18% della scala = 5-6x l'asimmetria dello
+## schema FD: verdetto onesto, default sequenziale, candidato F2
+## opt-in, guardia nonfinite-lane SHIPPATA comunque); H3+H4
+## protezione cap ATTERRATE E GATED (h3gate bitwise-sul-riuso PASS;
+## tail-to-derive riproduce ESATTAMENTE i numeri S24 + refusal
+## stale-code seminata); GAP-29 ESEGUITO (1 FLIP: NEWTON_TOL_FACTOR
+## margine x2 load-bearing -> duty derivazione F2); GAP-5
+## notaknot-twin ESEGUITO (residuo corner 6.63e-2 -> 1.17e-2 = -82%:
+## il grosso e' bias della BC naturale, aggiudicazione F2); R31
+## FINDINGS-AS-CODE atterrato (registry 15 entry + lint (xix) con
+## rejector re-mint); R28 canale CHIUSO (ratchet tier, 622 letterali
+## baselined); DUE catch onesti a registro (cert recorder-dependence
+## al design marginale; rejector notaknot riformato)**; log:
+## validation/PROGRESS_2026-08-12_S25bis_speed.md)
+

@@ -73,6 +73,14 @@
 #   AC  16 ==  0 seeded_new +  4 mapped_to_existing + 12 declared;
 #   Q   11 ==  0 seeded_new +  0 mapped_to_existing + 11 declared;
 #   TOTAL 63 == 29 seeded_new + 11 mapped_to_existing + 23 declared.
+# REMAINING SEEDING DUTIES (named queue, S-CERT closing note
+# 2026-08-13 — the audit caught this header omitting them): tranches
+# (c) S25/S25-bis refuter/red-team residues + (d) consumption maps
+# (4 advisories) + (e) the 2026-08-13 literature corpus (~101
+# confrontation + ~40 MoC/GENO incl. MOC-01..09 and the raw 35-finding
+# ledger, currently PROSE-ONLY in validation/) = the first duty of the
+# next seeding window (S-FOUNDATIONS Phase 0, per census R31/R32 and
+# memory s-foundations-design).
 # MAPPED to existing rows (no new row; re-mint would violate the
 # dedup clause): GAP-1 and GAP-27 ->
 # margin-governor:G1-three-jump-channels (that row's owner field
@@ -197,7 +205,7 @@ entries:
 - id: test-suite:numeric-lint-scope-hole
   status: CONFIRMED
   severity: medium
-  magnitude: "validation/ scope measured S25-bis: 33 files, 622 non-trivial unclassified literals (STEP-12 regen; +1 = the m6gate mode's own code); CHANNEL closed by the ratchet tier (new literals rejected per-file, 4 seeded rejector directions), classification = the open remainder; DECLARED RESIDUAL (convergence review MERGE-4): skip-dirs sota_gapmap* and relocation outside validation/ sit outside the ratchet channel (skip scope printed at every run)"
+  magnitude: "validation/ scope RE-MEASURED at the S-CERT closing window 2026-08-13: 37 files, 639 non-trivial baselined literals (was 33/622 at S25-bis; growth = the S25bis→S-CERT window births incl. the two audit-instrument files, each registered at birth); CHANNEL closed by the ratchet tier (new literals rejected per-file, 4 seeded rejector directions), classification = the open remainder; DECLARED RESIDUAL (convergence review MERGE-4): skip-dirs sota_gapmap* and relocation outside validation/ sit outside the ratchet channel (skip scope printed at every run)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:numeric-lint-scope-hole"
   code: ["tests/test_numeric_lint.py:160-230"]
   mechanism: underived-constant
@@ -1432,3 +1440,97 @@ entries:
   code: []
   mechanism: instrumentation-gap
   evidence: "F-SERVICE 2026-08-13 repairs S1-S3 (A37-A39, refuter-emended): o33_bench rows R8 (regime-aware dual clause + firing wrong-side seed rejector) / R9 (f3* derived-band identity gate + band-derived corruption rejector — first 5%-literal version FAILED TO FIRE, honest catch, repaired by deriving the corruption from the band) / R10 (cone-scan certificate + converse-acceptance rejector); margin_governor mu_dual_clause (mu unilateral regime-3, seed rejector proven every stage); a1_toc regime declaration on the abs(lam) reading. Gates re-run same day, all EXIT 0: X-O33B full PASS, X-MGOV derive PASS, X-TOCV staged+opt PASS; pass= stamps 2026-08-13; phase_diagram_real left untouched OF RECORD (sign right by monotonicity, repair owner F2)"
+# ------- S-CERT audit residues (final verdict 2026-08-13: NON-CERTIFICABILE,
+# 2 P0 at HEAD; triage fused run1+run2 by the orchestrator per the final
+# judge's declared handoff defect; every row below = a CONFIRMED finding
+# that survived default-REFUTE verification) -------
+- id: audit-scert:staleness-import-closure-blind
+  status: CONFIRMED
+  severity: high
+  magnitude: "P0#3 of the final verdict: the ondemand staleness link checks only the carrier FILE's last commit vs pass= — 6/19 carriers reported 'fresh' with import-closure modules committed after their pass-of-record; SECOND mechanism (same fix family): tracked-but-uncommitted carrier edits evade the link while the docstring claims the opposite; POSITIVELY corroborated by carrier evidence: X-CDKAT record numbers drifted -13.9% under env/lowering change with stamp pass=2026-08-11 intact"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P0"
+  code: ["tests/test_claims_lint.py:20-29"]
+  mechanism: gate-scope
+  owner: "F2 (extend carrier_last_commit to the import closure + env fingerprint; make the standing S25-bis re-chain/re-stamp rule env-sensitive; fix the docstring in the same touch; re-stamp the 6 affected carriers)"
+  trigger: "F2 entry (first gate touch), or the next re-stamp of any affected carrier"
+- id: audit-scert:xcdkat-record-numbers-drift
+  status: CONFIRMED
+  severity: medium
+  magnitude: "X-CDKAT numbers of record do NOT reproduce (7-14% drift, no declared band, no re-stamp after env change): baseline 1.813425e-01 vs registry 2.106398e-01; multiplier x1.272e6 vs x1.1e6; replay 2.315e-01 vs 2.156e-01/2.125e-01; the perturbation-dominated values (2.307537e+05, 6.062e+08) reproduce exactly = env/lowering-drift mechanism confirmed; qualitative PASS holds, record numbers fail MC1 — the carrier-evidence of audit-scert:staleness-import-closure-blind"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
+  code: ["validation/certdiag_kat.py:1-20"]
+  mechanism: staleness
+  owner: "F2 (re-stamp discipline: statement-number refresh + band derivation for env-sensitive floors becomes mandatory at re-stamp; causal attribution via pinned env = declared MC1 drop)"
+  trigger: "next X-CDKAT touch or re-stamp"
+- id: provenance:f7-design-vector-irrecoverable
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the F7 direct-side design vector behind J_last=4.0466550e7 (the +0.51% claim-19 surplus) is IRRECOVERABLE from the repo: s24_deftw_campaign.json absent from disk AND all git history (sole producer def_twin_falsifier.py:137/1485, output never persisted); s24_deftw_f3f7.json is a committed ORPHAN artifact (no committed generator script); the M0 +0.51% datum is RECORDED-CONSISTENT (arithmetic reproduces from committed scalars: 2.0407e5 = 0.507%) but NOT RE-EXECUTABLE; converged from THREE independent audit streams (MC1, MC7, dual-seed known-true)"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
+  code: ["validation/def_twin_falsifier.py:1485"]
+  mechanism: provenance
+  owner: "F2 (regeneration = declared conditional: hour-scale ladder re-run, would still not restore the design OF RECORD; M0 annotation + X-DEFTW row enrichment executed at the S-CERT closing window)"
+  trigger: "any re-execution demand on the +0.51% datum, or the F2 deftw touch"
+- id: audit-scert:anti-remint-evasion-classes
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the anti-re-mint channel (check (c)) fires only on OPEN x OPEN code-span overlap in one file: three demonstrated evasion classes (re-mint with code:[], adjacent non-overlapping span, re-mint of a CLOSED row's identical span) pass clean; 73/109 OPEN rows carry no dedup key at all — the channel's coverage is structural, not incidental"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
+  code: ["tests/test_findings_registry.py:28-30"]
+  mechanism: gate-scope
+  owner: "F2 (widen the dedup surface: id-similarity or source-anchor overlap as second key; backfill dedup keys on the keyless OPEN rows — already the confrontation advisory's first duty)"
+  trigger: "F2 entry, or the next seeding window (whichever first)"
+- id: audit-scert:teqbr-magnitude-unguarded
+  status: CONFIRMED
+  severity: medium
+  magnitude: "T-EQBR (THEOREM*) carries a quantitative +6.3..+7.0% bracket with NO falsifier able to fire on the magnitude (the falsifier tests structure only) — direct R5 exposure on a promoted theorem"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
+  code: []
+  mechanism: rigor-gap
+  owner: "F2 + next seeding window (magnitude guard in suite group (xii) + registry falsifier extension)"
+  trigger: "F2 entry, or the next T-EQBR citation in an external-facing document"
+- id: audit-scert:h4-doctored-rejector-vacuous
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the H4 'doctored code_id' seeded rejector cannot fail by construction (compares a constant to a fresh hash — always unequal) and is cited as repair evidence; its siblings route through check() and can genuinely fail"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
+  code: ["tests/test_findings_registry.py:274-277"]
+  mechanism: vacuous-rejector
+  owner: "F2 (rewrite the seed through the checker like its siblings; re-adjudicate the registry row citing it)"
+  trigger: "next test_findings_registry touch"
+- id: audit-scert:future-pass-dates-accepted
+  status: CONFIRMED
+  severity: low
+  magnitude: "the staleness gate accepts pass= dates in the future, permanently defusing itself (latent — no active instance found in the registry)"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
+  code: []
+  mechanism: gate-scope
+  owner: "F2 (add pass<=today validation in test_claims_lint/test_ondemand_carriers)"
+  trigger: "F2 entry, with audit-scert:staleness-import-closure-blind (same fix family)"
+- id: audit-scert:ondemand-no-run-artifacts
+  status: CONFIRMED
+  severity: low
+  magnitude: "structural evidence-layer gap for the ondemand carrier class: no carrier persists a run artifact (X-VMON, X-O31CS checked; the 2.7e-10 transpose-identity number of record exists in NO machine artifact — prose in M0:1506/D6:539/LBML:26/P2_lemmaB:368 pinned to a 2026-07-21 run never persisted; live re-run 2026-08-13 measured 2.419e-10, EXIT 0 <300 s — stamps TRUE, evidence layer missing)"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
+  code: []
+  mechanism: provenance
+  owner: "F2 (standing-rule extension: every ondemand carrier dumps a minimal verdict-JSON; refresh the 2.7e-10 prose from a persisted run; self-improvement-at-convergence candidate)"
+  trigger: "F2 entry, or the next ondemand re-stamp"
+- id: theory:r8-r10-never-live-unilateral
+  status: CONFIRMED
+  severity: low
+  magnitude: "the cone-form instrument rows o33 R8/R10 have never run on a LIVE unilateral/multi-phase instance (live R8 is un-failable by construction in the pinned regime — declared of record in M0); the dual-feasibility machinery is proven only on synthetic controls"
+  source: "docs/rde_nozzle_MASTER.md#CONE TRANSFER LEMMA [T-T7CN]"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "F2/F4b (fire at the first active unilateral cap of record)"
+  trigger: "first driver run with an active unilateral endpoint cap"
+- id: navigation:t-t0-glossary-token-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the headline theorem T-T0 has no glossary token and 'wave-frame exactness' is absent from the glossary (MC6 headline REFUTED on findability — T-T0 resolves via claims_registry:251 — but the glossary-hygiene residue survives)"
+  source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
+  code: []
+  mechanism: navigation
+  owner: "next glossary/ORDINE window (one token row)"
+  trigger: "next glossary touch"

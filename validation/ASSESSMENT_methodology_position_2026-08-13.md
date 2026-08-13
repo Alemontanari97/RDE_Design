@@ -104,7 +104,10 @@ controversie; fedeltà al continuo ANCORA NON TESTATA** [IO su Giles-Pierce 2001
   — Fig. 4 asintoto a x≈0, NON all'urto [IO]) giustifica in forma DERIVATA il locus escluso delle
   nostre barre DWR presso la IVL di Sauer (C33); nel nostro dominio la singolarità è al BORDO, non
   interna — strutturalmente più mite del caso GP.
-- Correzione matematica accettata alla nostra teoria: T7(c) come UGUAGLIANZA (M0:1090 [IO]) è la
+- Correzione matematica accettata alla nostra teoria: T7(c) come UGUAGLIANZA (M0:1090 [IO] al
+  momento della lettura; ANCHOR AGGIORNATO alla chiusura S-CERT 2026-08-13: l'innesto C31 ha
+  sostituito l'uguaglianza con la forma a cono di record — il contenuto T7(c) vive ora in M0
+  ~1154-1198, [T-T7CN]; la citazione storica resta fedele allo stato pre-C31) è la
   condizione del solo estremo libero; con vincoli attivi la forma è a cono D ∈ N_K(s_E*) — KT2015
   (2.10)/(2.14) mostra le disuguaglianze-con-slack nella scuola classica [IO]; falsificatore a SEGNI
   (C32). DA RATIFICARE.

@@ -2253,7 +2253,17 @@ round, labeled per the standing rule).
  pre-registered band 5.38e3 (38x), with the DECLARED
  band-underinclusion caveat (class-representation error saturates
  M -> 2M and is under-covered by the M-vs-2M J-difference; crude
- systematic bound ~6e4). CLAIM CAP of record: this is an IN-CLASS
+ systematic bound ~6e4). EVIDENCE GRADE (S-CERT audit 2026-08-13,
+ P1 finding, three independent streams convergent): the +0.51%
+ datum is RECORDED-CONSISTENT (the arithmetic reproduces from the
+ committed scalars of s24_deftw_f3f7.json: J_last - J_def =
+ 2.0407e5 = 0.507%) but NOT RE-EXECUTABLE - the F7-side design
+ vector behind J_last was never persisted (campaign artifact absent
+ from disk and git history); regeneration = declared conditional,
+ owner F2 (hour-scale ladder re-run, and it would still not restore
+ the design OF RECORD). MOC-08 falsifier of the pair executed
+ 2026-08-13: PASS (delta-J IVL-insensitive, drift 3.5e-1 vs band
+ 5.4e3). CLAIM CAP of record: this is an IN-CLASS
  statement about the 9-dof representative, NEVER about the true DEF
  construction's optimality in its own boundary-built family (O3
  gated); it is the first in-class measured datum on the Viviano

@@ -92,8 +92,12 @@ machine-first); the coming lint checks agreement between them.
   measure-before-stating rather than silently inherited; `interface_audit.md`
   predates the program by date but is filed CONSUMED, not LECTURE-ERA,
   matching the segment-5 table's own choice).
-- UNTRACKED-SINGLE-COPY-qualified rows: **1**
-  (`PROGRESS_2026-08-12_S24_f1b.md`, per plan §0.2 GT-1: the only one of
+- UNTRACKED-SINGLE-COPY-qualified rows: **0** (S-CERT closing repair
+  2026-08-13, P2 finding MC6-F1: the former sole member
+  `PROGRESS_2026-08-12_S24_f1b.md` is COMMITTED — measured this window
+  by `git ls-files --error-unmatch`, tracked since 3868524; the stale
+  claim below is corrected in place)
+  (historical text: `PROGRESS_2026-08-12_S24_f1b.md`, per plan §0.2 GT-1: the only one of
   the 27 pre-S-ORDINE session logs left untracked).
 
 ---
@@ -115,8 +119,8 @@ machine-first); the coming lint checks agreement between them.
 | ADVISORY_S25bis_diff_convergence_2026-08-12.md | advisory (Form-2 converged verdict) | OF-RECORD | R29 (perimeter review consumed); R31 registry dedup; F2-entry deferred rows | FLAG: execution status of repair list R1-R13 unverified by the seg3 reader against ea8143c/56baed1 (RF-1 staleness fact) — top NOTHING-LOST item for the loss-hunter |
 | ADVISORY_S25bis_prompt_2026-08-12.md | session-prompt | CONSUMED | census R30, R28, R31, R25; BLOCCATO-8 | banner -> `PROGRESS_2026-08-12_S25bis_speed.md` |
 | ADVISORY_SORDINE_plan_2026-08-13.md | advisory (Phase-4 fused-judge plan) | OF-RECORD | census R32 (S-ORDINE itself); successor of Phase-1/2/3 | THIS session's own execution plan; T2 (14-step S0-S13) in progress at the time of this row |
-| ADVISORY_Fservice_Scert_prompt_2026-08-13.md | session-prompt (pending) | PENDING-CONTRACT | chain update of record (PROGRESS commit 1e188a9): F-SERVICE ratification window + S-CERT in one session with HARD BOUNDARY; wraps (never alters) the Scert contract | user-ratified 2026-08-13; scope pinned (D-01/C31/C30, R4 batch REV-3-adopted, 5 REFUTE_C carrier fixes under SR-11, named exclusions, A2 decision at boundary) |
-| ADVISORY_Scert_prompt_2026-08-12.md | session-prompt (pending) | PENDING-CONTRACT | census R33; agnostic-milestone-review directive; sequenced R32 -> R33 -> F2 | may not be archived or altered; precondition "S-ORDINE CHIUSA" before it opens; ORDERED BY the Fservice_Scert wrapper prompt (2026-08-13) with opening hooks 2a-2e |
+| ADVISORY_Fservice_Scert_prompt_2026-08-13.md | session-prompt | CONSUMED | chain update of record (PROGRESS commit 1e188a9): F-SERVICE ratification window + S-CERT in one session with HARD BOUNDARY; wraps (never alters) the Scert contract | consumed 2026-08-13 (Part 1 at ea2abce/57a0fe9, Part 2 at the S-CERT close); banner -> `PROGRESS_2026-08-13_Fservice.md` + `PROGRESS_2026-08-13_Scert.md`; scope was pinned (D-01/C31/C30, R4 batch REV-3-adopted, 5 REFUTE_C carrier fixes under SR-11, named exclusions, A2 decision at boundary) |
+| ADVISORY_Scert_prompt_2026-08-12.md | session-prompt | CONSUMED | census R33; agnostic-milestone-review directive; sequenced R32 -> R33 -> F2 | consumed 2026-08-13, executed integrally as Part 2 under the wrapper's 2a-2e hooks; banner -> `PROGRESS_2026-08-13_Scert.md`; was ORDERED BY the Fservice_Scert wrapper prompt |
 | ADVISORY_Scollapse_prompt_2026-08-11.md | session-prompt | CONSUMED | G2/T3/T0 theory line; parallel-session non-interference protocol | banner -> `ADVISORY_Scollapse_verdict_2026-08-11.md` |
 | ADVISORY_Scollapse_verdict_2026-08-11.md | advisory (Form-2+Form-3 discharge-verified verdict) | OF-RECORD | M0 [T-T3-SI]/[T-T3-MAP]/[X-T3CTRL] registrations; carriers dispatched F2/F2a/F3/F5a/F5b/F6 | §6 M0/registry deltas EXECUTED 2026-08-11; §7/§8 clause register + open-items list authoritative only here |
 | ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md | advisory (horizontal gauntlet ledger + red-team + ratification appendix) | OF-RECORD | D6 §0-pre absorption addendum; user scope-pins memory; F2a/F3/F4b/F5a/F5b/F6 duty owners | delta-execution half CONSUMED 2026-08-11; 34-row ledger + DUTY texts + user pin verbatim text authoritative only here |
@@ -172,10 +176,11 @@ machine-first); the coming lint checks agreement between them.
 | PROGRESS_2026-08-11_S22_governor.md | session-log | OF-RECORD | F1 of plan v3; R3 | F1 governor [X-MGOV] + [X-LOCD] retro-diagnosis + decisive campaign A' + O4 discharge |
 | PROGRESS_2026-08-11_S23_f1close.md | session-log | OF-RECORD | F1 close; R3 | F1 early-close decision, P-2 dated freeze, [X-TBAK] DUTY-6(i), C1 conditional |
 | PROGRESS_2026-08-11_Sgauntlet.md | session-log | OF-RECORD | Standing directive claim-dual-proof; `ADVISORY_Sgauntlet_prompt_2026-08-11.md`; R3 | parallel adversarial generality-ledger session (advisory-pattern, path-limited) |
-| PROGRESS_2026-08-12_S24_f1b.md | session-log | OF-RECORD, UNTRACKED-SINGLE-COPY | F1b of plan v3; R3 | F1b DEF twin falsifier [X-DEFTW] executed, EQ-v2 adjudication, DE-bucket — the one session log among the pre-S-ORDINE 27 that is still untracked (plan §0.2 GT-1) |
+| PROGRESS_2026-08-12_S24_f1b.md | session-log | OF-RECORD | F1b of plan v3; R3 | F1b DEF twin falsifier [X-DEFTW] executed, EQ-v2 adjudication, DE-bucket — TRACKING CLAIM CORRECTED at the S-CERT closing window (2026-08-13, MC6-F1): the file is COMMITTED (in 3868524), the former UNTRACKED-SINGLE-COPY qualifier was stale and is removed; SR-12 lesson re-instanced (tracking claims cite a measured command in their own window) |
 | PROGRESS_2026-08-12_S25_speed.md | session-log | OF-RECORD | Census R30-prep / S-SPEED dispatch; F-SERVICE; R3 | C4-first + engine speed M-CHAIN (M0-M5ab), [X-SPDB] |
 | PROGRESS_2026-08-12_S25bis_speed.md | session-log | OF-RECORD | Census R30/R31; F-SERVICE; R3 | M5c/M6/H3/H4 + GAP-29 + notaknot twin + findings registry; STEP 15 = the convergence map (named input of THIS S-ORDINE session) |
 | PROGRESS_2026-08-13_Sordine.md | session-log (live) | OF-RECORD (living) | R3 (session closure/continuity discipline); census R32 | THE live S-ORDINE session log; restart map for a session-limit death; this session owns it — structure-only row per task brief |
+| PROGRESS_2026-08-13_Scert.md | session-log | OF-RECORD | census R33 CONSUMED; R3 close of the double session | Part-2 log: S-CERT verdict of record NON-CERTIFICABILE (2 P0 at HEAD; audit-integrity P0 discharged via dual-seed), fused P0/P1/P2 triage with owners, delta vs 2026-08-07 (old P0 tier verified-consumed; defects moved object->certifier), closing-window repairs declared, SR-9 weight (21 agents / ~1.69M tokens / 2 runs), declared limits |
 | PROGRESS_2026-08-13_Fservice.md | session-log | OF-RECORD | census R36 (renumbered from R35: parallel-tail mint priority); BLOCCATO 10 consumed; R3 mini-close of the hard boundary | Part-1 window log of the F-SERVICE+S-CERT double session: D-01/C31/C30 ratified+executed, R4 batch ([S-T0P]/[T-T7CN]/C-HEXO/PB-2/E4/h-i-j), 5 REFUTE_C carrier fixes under SR-11 (o33 R8/R9/R10 + mgov dual clause + a1 regime decl), named exclusions, A2=(a) pinned |
 | README.md | doc-index | OF-RECORD, LECTURE-ERA | repo-sota-standard; top-level README badges | frozen-reports contract for lecture-era validation (regenerate into `data/`, never overwrite here) |
 | REPO_VV.md | doc-validation | OF-RECORD, LECTURE-ERA | repo-sota-standard | adversarial V&V of the repo as a teaching/design tool (2026-07-10, verdict PROMOSSA) |
@@ -192,6 +197,7 @@ machine-first); the coming lint checks agreement between them.
 | s25bis_sense_perimeter.md | raw-agent-output | RAW | Standing directive pipeline-sense-expert-review (R29); choice-adjudication-convergence | S25-bis perimeter sense-review (R29 expert adjudication of each choice); verdicts absorbed in the S25-bis session log/registry |
 | sdt_official_audit.md | doc-audit | OF-RECORD, LECTURE-ERA | repo-sota-standard | official Caltech SDToolbox zip vs vendored stack audit |
 | sdt_thrust_demos.md | doc-audit | OF-RECORD, LECTURE-ERA | repo-sota-standard | SDT official impulse demos vs course thrust models census |
+| **scert_raws_2026-08-13/** (block row) | raw-block | RAW | census R33 (S-CERT; contract: artefatti su file) | RAW block: S-CERT audit artifacts — sample_manifest.md (seed 20260813, strata declared), moc08_falsifier_driver.py + moc08_results.json (hook 2a, PASS), env fingerprints open/close (diff: unchanged); adjudicated verdicts live in `PROGRESS_2026-08-13_Scert.md` |
 | **sordine_raws_2026-08-13/** (block row) | raw-block | RAW | census R32 (S-ORDINE) | RAW block: 26 files, adjudicated verdicts live in `ADVISORY_SORDINE_plan_2026-08-13.md` (+ this session's own synthesis) |
 | **sota_gapmap_raws_2026-08-12/** (block row) | raw-block | RAW | census R26 (gap-map) / R29 (pipeline-sense) | RAW block: 17 files, adjudicated verdicts live in `ADVISORY_S24_sota_gapmap_2026-08-12.md` + `ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md` |
 | st_opt_validation.md | doc-validation | OF-RECORD, LECTURE-ERA | repo-sota-standard | Stechmann Table 1 nozzle-optimization validation |
