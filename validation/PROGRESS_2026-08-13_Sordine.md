@@ -328,3 +328,29 @@
 ## queue per the contract's split rule. VERDICTS: plan absorbed
 ## (ABSORB_WITH_REPAIRS, 7 repairs applied); S12 gate PASS;
 ## (xv)/(xix)/(xx)/(xxii)/(xxiii) ALL PASS.
+
+## STEP 13 — SESSION TAIL (user-ordered): CHOICE-LEDGER CROSS-
+## RECONCILIATION + THEORY-FIRST CHAIN (post-R3 tail, committed
+## separately)
+- User challenge: "several of the 25 NEVER were surely touched in
+  other analyses — reconcile the phases." MEASURED (agent sweep, 13
+  corpus docs + gapmap raws + PROGRESS archive + session-log greps,
+  strict dual-proof standard): 39 rows swept -> 1 genuine upgrade
+  (C46 padding SINGLE-AUTHOR -> DECIDED: Form-2 convergence B-F2
+  adopted + refuter failed + alternative measured-dead) + 25 NEVER
+  CONFIRMED + 13 SINGLE-AUTHOR confirmed, EVERY row now carrying a
+  dated per-row note (upgrade anchor or nearest-evidence-and-why-not
+  -- e.g. C25/C26 thermo survey issued repair MANDATES not
+  comparisons; C42 DE-bucket verified one instance not the axis;
+  C36/C37 the speed audit ITSELF says "needs its own panel").
+  Sense-reviews and gate verifications NOT counted as adjudication.
+  Ledger tallies now 7/3/13/25 = 48; lint (xix) family f green.
+- CHAIN OF RECORD EXTENDED (user objective: "arrivare al motore
+  generale con tutta la teoria costruita e dimostrata"; user-ratified
+  in-session): F-SERVICE+S-CERT -> **S-FOUNDATIONS (R35)** -> F2.
+  R35 minted in the census table with the MEASURED scope (F2-consumed
+  NEVER rows to convergence + pre-derivable theory batch + the
+  census-lemma pin decision); rule of record: NO phase opens with
+  NEVER rows on components it consumes; measurement-gated
+  adjudications pin protocol+falsifier pre-F2, measured half =
+  binding F2 entry duty.

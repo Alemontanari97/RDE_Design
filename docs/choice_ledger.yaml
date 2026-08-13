@@ -61,21 +61,62 @@
 #       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
 #       C42, C43)
 #   EXACT machine tally of this file (do not hand-eyeball the block
-#   above further — count the `status:` field values instead):
-#     DECIDED: 6 (C3, C4, C15, C23, C24, C48)
+#   above further — count the `status:` field values instead;
+#   post-reconciliation 2026-08-13, see RECONCILIATION block below):
+#     DECIDED: 7 (C3, C4, C15, C23, C24, C46, C48)
 #     MIXED: 3 (C29, C31, C39)
-#     SINGLE-AUTHOR: 14 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
-#       C32, C44, C45, C46, C47)
+#     SINGLE-AUTHOR: 13 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
+#       C32, C44, C45, C47)
 #     NEVER: 25 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
 #       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
 #       C42, C43)
-#     TOTAL: 48 (6+3+14+25=48). C48 (vmap-in-engine) is classed
+#     TOTAL: 48 (7+3+13+25=48). C48 (vmap-in-engine) is classed
 #     DECIDED here despite the census shorthand "gate-rejected as
 #     default" because it carries a full multi-probe converged
 #     technical verdict (m6gate + three convergent root-cause
 #     probes), NOT a single-author or un-surveyed choice — see its
 #     note for the declared nuance (adoption path itself still open,
 #     owner F2).
+#
+# RECONCILIATION (cross-reconciliation sweep, 2026-08-13, S-ORDINE
+# tail; user challenge "abbiamo passato a setaccio le scelte
+# algoritmiche piu' volte — sicuri che le fasi siano conciliate?"):
+# every row with status NEVER (25) or SINGLE-AUTHOR (14) was swept
+# against the adjudication corpus below for evidence that the choice
+# WAS in fact put against alternatives. ARITHMETIC OF RECORD:
+# 39 rows swept -> 1 upgraded SINGLE-AUTHOR -> DECIDED (C46, padding
+# policy: Form-2 fused convergence B-F2 vs P_DUM + refuter
+# RF-11(iii) + measured-DEAD ragged route), 0 upgraded to MIXED,
+# 0 upgraded NEVER -> SINGLE-AUTHOR, 25 CONFIRMED NEVER,
+# 13 CONFIRMED SINGLE-AUTHOR. Every swept row carries a dated
+# "cross-reconciled 2026-08-13" note (upgrade anchors, or the
+# nearest evidence found and why it does not adjudicate, or a plain
+# confirm).
+# CORPUS SWEPT (all committed):
+#   validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md
+#     (+ the _math and _impl_fidelity one-pass raws),
+#   validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md,
+#   validation/ADVISORY_S24_thermo_closure_survey_2026-08-12.md,
+#   validation/ADVISORY_S24_DEbucket_panel_2026-08-12.md,
+#   validation/ADVISORY_def_equivalence_panel_2026-08-07.md + _proof,
+#   validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md,
+#   validation/ADVISORY_engine_speed_audit_2026-08-12.md,
+#   validation/ADVISORY_litreview_confrontation_2026-08-13.md
+#     (ADOPTED/A-rows only, cited strictly as
+#     adjudication-evidence-pending-ratification — the doc is CAVA
+#     NON RATIFICATA, never cited as decided),
+#   validation/ADVISORY_rde_choking_2026-08-11.md,
+#   validation/ADVISORY_mean_swirl_panel_2026-08-11.md,
+#   validation/sota_gapmap_raws_2026-08-12/ (finder/verifier/refuter
+#     raws — the annex's own sources; confirmations, never upgrades),
+#   docs/rde_nozzle_PROGRESS_ARCHIVE.md (historical census deltas),
+#   grep of validation/PROGRESS_*.md session logs per row subject.
+# STANDARD APPLIED (dual-proof, strict): expert sense-review alone
+# is NOT choice adjudication (it asks does-this-make-sense, not
+# does-it-beat-the-alternatives); upgrades only where a CONVERGED
+# panel/refuter round EXPLICITLY weighed the incumbent against
+# genuine alternatives. Confirmation of NEVER is a legitimate
+# outcome; no upgrade was forced.
 entries:
 
 - id: C1
@@ -88,7 +129,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C1 |"
   owner: "F2-entry adjudication (GAP-21); post-solve change-of-basis certificate = S25"
-  note: "annex status verbatim: 'single-author on the oscillation axis (D6 adjudicated conditioning+revalidation only)'; annex internal pointer: D6:915-926; param-F1 + Q2"
+  note: "annex status verbatim: 'single-author on the oscillation axis (D6 adjudicated conditioning+revalidation only)'; annex internal pointer: D6:915-926; param-F1 + Q2. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); gapmap raws re-verify the D6:915-926 rejection of the B-spline control-point switch (sota_gapmap_raws_2026-08-12/s24_gapv_constraints.md:173 'collides with D6 S20 rejection of record') but that is the same single-author D6 axis the annex already scoped; no panel/refuter comparison of basis classes found"
 
 - id: C2
   choice: "Right-end BC"
@@ -99,7 +140,7 @@ entries:
   status: NEVER
   evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#delta S25-bis:"
   owner: "F2 consequence adjudication (incumbent BC untouched until the twin discriminates)"
-  note: "annex evidence pointer: toc:148; param-F2. POST-ANNEX DELTA (S25-bis, docs/rde_nozzle_PROGRESS.md R25 delta S25-bis block; findings_registry.yaml:parametrization:natural-BC-lip-bias): notaknot-twin EXECUTED — corner mismatch 6.629e-2 -> 1.166e-2 (r=1, -82%), 6.637e-2 -> 9.775e-3 (r=2); lip-state (cd) shift 8.2% = mechanism datum; baseline reproduces S19 figure to 5 digits. Diagnostic executed, ADOPTION DECISION still open -> status stays NEVER, owner updated from the stale 'S25 notaknot-twin (GAP-5)' to the live F2 consequence-adjudication owner."
+  note: "annex evidence pointer: toc:148; param-F2. POST-ANNEX DELTA (S25-bis, docs/rde_nozzle_PROGRESS.md R25 delta S25-bis block; findings_registry.yaml:parametrization:natural-BC-lip-bias): notaknot-twin EXECUTED — corner mismatch 6.629e-2 -> 1.166e-2 (r=1, -82%), 6.637e-2 -> 9.775e-3 (r=2); lip-state (cd) shift 8.2% = mechanism datum; baseline reproduces S19 figure to 5 digits. Diagnostic executed, ADOPTION DECISION still open -> status stays NEVER, owner updated from the stale 'S25 notaknot-twin (GAP-5)' to the live F2 consequence-adjudication owner. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the notaknot twin remains a DIAGNOSTIC (mechanism datum), the adoption comparison itself was never adjudicated; no further evidence found"
 
 - id: C3
   choice: "Left-end BC"
@@ -129,7 +170,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C5 |"
   owner: "S25 drift monitor (GAP-34)"
-  note: "annex internal pointer: param-F8 (corrected magnitudes Q8)"
+  note: "annex internal pointer: param-F8 (corrected magnitudes Q8). cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C6
   choice: "Insertion degeneracy guard"
@@ -139,7 +180,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C6 |"
   owner: "S25 guard edit (GAP-23)"
-  note: "annex status verbatim: 'single-author (rationale measured wrong: solve vs operator)'; annex internal pointer: adaptive_knot_optimize:209-213; P4' probe"
+  note: "annex status verbatim: 'single-author (rationale measured wrong: solve vs operator)'; annex internal pointer: adaptive_knot_optimize:209-213; P4' probe. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block), no panel/refuter adjudication found"
 
 - id: C7
   choice: "Outer-loop dof policy"
@@ -150,7 +191,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C7 |"
   owner: "F2/F3 loop upgrade (GAP-25)"
-  note: "annex internal pointer: param-F5 (corrected attribution)"
+  note: "annex internal pointer: param-F5 (corrected attribution). cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C8
   choice: "Warm-start deviation handling"
@@ -160,7 +201,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C8 |"
   owner: "S25 (GAP-24)"
-  note: "annex status verbatim: 'NEVER (armable invariant unarmed)'; annex internal pointer: param-F4; P3 = 6.7e-16"
+  note: "annex status verbatim: 'NEVER (armable invariant unarmed)'; annex internal pointer: param-F4; P3 = 6.7e-16. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C9
   choice: "March mesh law"
@@ -171,7 +212,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C9 |"
   owner: "R25 owner F2; spec attached"
-  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: R25; mesh-F1/AC2"
+  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: R25; mesh-F1/AC2. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); nearest evidence = litreview A36 singularity-aware derived spacing law (log-weighted DWR equidistribution near the sonic strip, ADVISORY_litreview_confrontation_2026-08-13.md A36) = adjudication-evidence-pending-ratification only (CAVA NON RATIFICATA, cited as pending, never as decided); the incumbent uniform law was never put against the listed alternatives"
 
 - id: C10
   choice: "Refinement operator"
@@ -181,7 +222,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C10 |"
   owner: "S25 flag (GAP-35)"
-  note: "annex internal pointer: o33_bench:172-176; mesh-F3(ii)"
+  note: "annex internal pointer: o33_bench:172-176; mesh-F3(ii). cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C11
   choice: "Error estimator for J"
@@ -193,7 +234,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C11 |"
   owner: "S25 extension (GAP-9) + R25 DWR"
-  note: "annex status verbatim: 'single-author at band sites ([X-O32] exists for O3.2 norms only)'; annex internal pointer: AC3; GAP-9"
+  note: "annex status verbatim: 'single-author at band sites ([X-O32] exists for O3.2 norms only)'; annex internal pointer: AC3; GAP-9. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); litreview par.3.25/A36 re-scope the DWR bars near the sonic throat (adjudication-evidence-pending-ratification, CAVA NON RATIFICATA) — that touches the DWR alternative's validity DOMAIN, not the estimator choice at band sites; no panel/refuter comparison of estimators found"
 
 - id: C12
   choice: "Start line"
@@ -205,7 +246,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C12 |"
   owner: "S25 rejector; F4b/F5 higher-order if it fires"
-  note: "annex status verbatim: 'single-author (twin DATA CONTRACT - fidelity adjudicated, accuracy NEVER)'; annex internal pointer: a1:719-727, :37-40; GAP-6/AC14"
+  note: "annex status verbatim: 'single-author (twin DATA CONTRACT - fidelity adjudicated, accuracy NEVER)'; annex internal pointer: a1:719-727, :37-40; GAP-6/AC14. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); litreview A7 registers the Hoffman-1987 LENGTH oracle whose throat model is Kliegel-Levine (pending ratification) — oracle-band context around the alternative, not an accuracy adjudication of the start line; accuracy axis still never adjudicated"
 
 - id: C13
   choice: "Axis unit process"
@@ -216,7 +257,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C13 |"
   owner: "S25 gconst axis oracle"
-  note: "annex status verbatim: 'single-author (GENO mirror; march-level verification NEVER)'; annex internal pointer: a1:488-499, :566; GAP-8"
+  note: "annex status verbatim: 'single-author (GENO mirror; march-level verification NEVER)'; annex internal pointer: a1:488-499, :566; GAP-8. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block), no panel/refuter adjudication found"
 
 - id: C14
   choice: "Exit-condition read point"
@@ -226,7 +267,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C14 |"
   owner: "folded into GAP-8 oracle"
-  note: "annex status verbatim: 'NEVER [J]'; annex internal pointer: a1:853, :889"
+  note: "annex status verbatim: 'NEVER [J]'; annex internal pointer: a1:853, :889. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C15
   choice: "m_stop exit floor"
@@ -246,7 +287,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C16 |"
   owner: "F2 engine rebuild"
-  note: "annex status verbatim: 'NEVER (no recorded rationale)'; annex internal pointer: a1:371, :397-416; GAP-29"
+  note: "annex status verbatim: 'NEVER (no recorded rationale)'; annex internal pointer: a1:371, :397-416; GAP-29. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the executed GAP-29 halved-constants sweep exercised C18's roundoff-floor constants, NOT the damping ladder; no adjudication of the ladder vs Deuflhard/Armijo found"
 
 - id: C17
   choice: "Trip cap N_NEWTON"
@@ -256,7 +297,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C17 |"
   owner: "AUDIT F5 execution (S25)"
-  note: "annex status verbatim: 'single-author (KAT proved it bites, not derived)'; annex internal pointer: [X-CDKAT]; a1:145-148. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C17-C18 sweep = GAP-29'): the GAP-29 halved-constants sweep targeted C18's constants (NEWTON_TOL_FACTOR, C_FLOOR, C_OPS); N_NEWTON=30 itself was NOT among the swept constants and remains un-derived."
+  note: "annex status verbatim: 'single-author (KAT proved it bites, not derived)'; annex internal pointer: [X-CDKAT]; a1:145-148. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C17-C18 sweep = GAP-29'): the GAP-29 halved-constants sweep targeted C18's constants (NEWTON_TOL_FACTOR, C_FLOOR, C_OPS); N_NEWTON=30 itself was NOT among the swept constants and remains un-derived. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); the sweep-exclusion fact above stands, no derivation or panel adjudication of N_NEWTON found"
 
 - id: C18
   choice: "Roundoff-floor constants"
@@ -267,7 +308,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
   owner: "S25 halved-constants sweep (executed; derivation duty now F2-live)"
-  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C18 |; annex status verbatim: 'single-author (AUDIT F5 registered; test never executed)'; annex internal pointer: AC9; GAP-29. POST-ANNEX DELTA (S25-bis, findings_registry.yaml:engine-core:F5-underived-factors, s25bis_gap29_sweep.json): GAP-29 sweep EXECUTED — 1 FLIP of record: NEWTON_TOL_FACTOR/2 flips cert_verdict (factor-2 margin load-bearing); C_FLOOR/2 and C_OPS/2 no-flip (>=2x measured headroom). Sweep executed, derivation itself still NEVER done -> status stays SINGLE-AUTHOR."
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C18 |; annex status verbatim: 'single-author (AUDIT F5 registered; test never executed)'; annex internal pointer: AC9; GAP-29. POST-ANNEX DELTA (S25-bis, findings_registry.yaml:engine-core:F5-underived-factors, s25bis_gap29_sweep.json): GAP-29 sweep EXECUTED — 1 FLIP of record: NEWTON_TOL_FACTOR/2 flips cert_verdict (factor-2 margin load-bearing); C_FLOOR/2 and C_OPS/2 no-flip (>=2x measured headroom). Sweep executed, derivation itself still NEVER done -> status stays SINGLE-AUTHOR. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); the executed sweep is measurement evidence on the incumbent (1 flip of record), not a Higham/More-Wild comparison; derivation duty F2-live unchanged"
 
 - id: C19
   choice: "Certification metric scale"
@@ -277,7 +318,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C19 |"
   owner: "F2 hygiene with AUDIT F8"
-  note: "annex status verbatim: 'single-author (AUDIT F8 adjudicated LOW)'; annex internal pointer: AC8/Q1"
+  note: "annex status verbatim: 'single-author (AUDIT F8 adjudicated LOW)'; annex internal pointer: AC8/Q1. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block), no panel/refuter adjudication of scalar-vs-componentwise scaling found"
 
 - id: C20
   choice: "Certificate qualification"
@@ -290,7 +331,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C20 |"
   owner: "F2 (HIGH)"
-  note: "annex internal pointer: GAP-3"
+  note: "annex internal pointer: GAP-3. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C21
   choice: "Seed validity policy"
@@ -301,7 +342,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C21 |"
   owner: "S25 probe -> F2 ledger row"
-  note: "annex internal pointer: GAP-20"
+  note: "annex internal pointer: GAP-20. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the S25-bis in-trace traced-predictor seeds (predict_interior_t, declared ulp divergence) shipped GATE-verified under m5cgate — an implementation delta on the incumbent, not an alpha-theory/Kantorovich alternatives adjudication"
 
 - id: C22
   choice: "Wall-foot search"
@@ -311,7 +352,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C22 |"
   owner: "F2 (rate lever)"
-  note: "annex internal pointer: GAP-28; toc:847-852"
+  note: "annex internal pointer: GAP-28; toc:847-852. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the S25-bis M5c executor compiled the incumbent scan (gate-verified) without weighing the Brent/Shewchuk alternative; no adjudication found"
 
 - id: C23
   choice: "Record-failure policy"
@@ -340,7 +381,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C25 |"
   owner: "F2 (with C-C/C-D)"
-  note: "annex internal pointer: GAP-11"
+  note: "annex internal pointer: GAP-11. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); partial context found, NOT a comparison: thermo survey refuter attack A4 ('quintic + 8192-point table is over-engineering') judge-REJECTED and condition C-C makes no-joint-in-window a declared per-certificate hypothesis (ADVISORY_S24_thermo_closure_survey_2026-08-12.md par.7-8) — neither weighs the envelope-derived box alternative; the literals remain underived"
 
 - id: C26
   choice: "Out-of-box behavior"
@@ -350,7 +391,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C26 |"
   owner: "C-D owner F2"
-  note: "annex status verbatim: 'NEVER (registered conditional C-D, spec corrected)'; annex internal pointer: AC6"
+  note: "annex status verbatim: 'NEVER (registered conditional C-D, spec corrected)'; annex internal pointer: AC6. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); thermo survey condition C-D RE-AFFIRMS the traced box-exit rejector as required repair with owner F2 (ADVISORY_S24_thermo_closure_survey_2026-08-12.md par.8 C-D) — a repair mandate against the incumbent silence, not a comparison run; still unlanded"
 
 - id: C27
   choice: "Constraint aggregation"
@@ -362,7 +403,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C27 |"
   owner: "F2 (with GAP-1)"
-  note: "annex status verbatim: 'single-author (survey answered accuracy axis; conditioning axis NEVER)'; annex internal pointer: GAP-27; AC12"
+  note: "annex status verbatim: 'single-author (survey answered accuracy axis; conditioning axis NEVER)'; annex internal pointer: GAP-27; AC12. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); DE-bucket panel independently re-verified the ladder/rho arithmetic at the S24 instance (ADVISORY_S24_DEbucket_panel_2026-08-12.md M3, E3+judge) and pipeline-sense R4 classes GAP-27 squarely on-axis — instance verification + classification, not a comparison vs adaptive-KS/induced aggregates; conditioning axis still never adjudicated"
 
 - id: C28
   choice: "Cert-frontier representation"
@@ -372,7 +413,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C28 |"
   owner: "F2 (census row 10)"
-  note: "annex status verbatim: 'NEVER (successor to falsified K_disc~A_0 absent)'; annex internal pointer: GAP-1"
+  note: "annex status verbatim: 'NEVER (successor to falsified K_disc~A_0 absent)'; annex internal pointer: GAP-1. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); pipeline-sense converged R1 re-states of record that no successor quantifier exists after the falsified K_disc~A_0 bridge (ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md par.3.1) — confirms the open state, adjudicates no alternative representation"
 
 - id: C29
   choice: "Mask freezing granularity"
@@ -393,7 +434,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C30 |"
   owner: "S25 one-liner"
-  note: "annex internal pointer: GAP-14"
+  note: "annex internal pointer: GAP-14. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C31
   choice: "Optimizer engine"
@@ -417,7 +458,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C32 |"
   owner: "G0/T2 review, F2 entry"
-  note: "annex status verbatim: 'single-author (R-3 cites no alternatives; survey NEVER)'; annex internal pointer: AC10"
+  note: "annex status verbatim: 'single-author (R-3 cites no alternatives; survey NEVER)'; annex internal pointer: AC10. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); speed audit S1 declines quasi-Newton reuse 'OUT by policy' (defers to the same single-author R-3 policy, no fresh survey) and N5 keeps the exact-Hessian route adjudication-only (ADVISORY_engine_speed_audit_2026-08-12.md par.7.3 S1 + par.4 N5); the SR1-carry alternative was never panel-weighed"
 
 - id: C33
   choice: "Constraint curvature"
@@ -428,7 +469,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C33 |"
   owner: "F2 (R2 pilot flag)"
-  note: "annex internal pointer: GAP-19"
+  note: "annex internal pointer: GAP-19. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); adjacent facts found, not an adjudication of THIS choice: speed audit S1/N5 declined HVP-as-default for the OBJECTIVE Hessian, and S25-bis diff convergence B-F11 source-verified the route facts (solve is custom_vjp only so jacfwd is blocked as written; central differences non-route) (ADVISORY_engine_speed_audit_2026-08-12.md par.7.3; ADVISORY_S25bis_diff_convergence_2026-08-12.md B-F11) — the constraint-curvature default-BFGS choice itself was never weighed"
 
 - id: C34
   choice: "TR floor/caps"
@@ -438,7 +479,7 @@ entries:
   status: NEVER
   evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED"
   owner: "S25 arithmetic + F2 adoption ([P-TRFLOOR] blocked-with-named-cause)"
-  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C34 |; annex internal pointer: GAP-4. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C34 [P-TRFLOOR] = blocked-with-named-cause'): input forfeited by the pre-8761dce kill; trigger = first campaign artifact post-8761dce."
+  note: "annex row: validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C34 |; annex internal pointer: GAP-4. POST-ANNEX DELTA (docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED, S25 delta: 'C34 [P-TRFLOOR] = blocked-with-named-cause'): input forfeited by the pre-8761dce kill; trigger = first campaign artifact post-8761dce. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); [P-TRFLOOR] remains blocked-with-named-cause (forfeited inputs), no adjudication of the noise-derived floor found"
 
 - id: C35
   choice: "xtol"
@@ -448,7 +489,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C35 |"
   owner: "F2 one-liner"
-  note: "annex internal pointer: GAP-33"
+  note: "annex internal pointer: GAP-33. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found (the S18 driver finding 'xtol with KKT open = stale-model collapse', PROGRESS archive, is a symptom record, not a derived-xtol comparison)"
 
 - id: C36
   choice: "Scaling policy"
@@ -458,7 +499,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C36 |"
   owner: "F2 [P-DVREFRESH]"
-  note: "annex internal pointer: GAP-17"
+  note: "annex internal pointer: GAP-17. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the speed audit's DEAD row killed the Jacobi-precond REMOVAL lever of record (ADVISORY_engine_speed_audit_2026-08-12.md par.4 DEAD) — an adjacent keep-vs-drop verdict, not an adjudication of the refresh/equilibration alternatives; [P-DVREFRESH] unchanged"
 
 - id: C37
   choice: "Segmentation trigger"
@@ -469,7 +510,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C37 |"
   owner: "F2 entry (G0/T2)"
-  note: "annex internal pointer: GAP-18"
+  note: "annex internal pointer: GAP-18. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); speed audit N6 flags the benign-flip segment merge as touching constraint 7 and 'needs its own panel. Flagged, never traded' (ADVISORY_engine_speed_audit_2026-08-12.md par.4 N6) — an explicit refusal to adjudicate without a dedicated panel; alternatives never run"
 
 - id: C38
   choice: "Outcome-II stationarity declaration"
@@ -480,7 +521,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C38 |"
   owner: "F2"
-  note: "annex internal pointer: GAP-2"
+  note: "annex internal pointer: GAP-2. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); pipeline-sense R4 partition classes GAP-2 'squarely on-axis' (ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md par.3.4) — a classification of the gap, not an adjudication of the B-stationarity-certificate alternative"
 
 - id: C39
   choice: "Multiplier provenance"
@@ -501,7 +542,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C40 |"
   owner: "F2"
-  note: "annex internal pointer: GAP-32"
+  note: "annex internal pointer: GAP-32. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C41
   choice: "Band form/composition"
@@ -514,7 +555,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C41 |"
   owner: "S25 policy + band pass"
-  note: "annex status verbatim: 'NEVER (no composition policy anywhere)'; annex internal pointer: GAP-7, GAP-9, GAP-10"
+  note: "annex status verbatim: 'NEVER (no composition policy anywhere)'; annex internal pointer: GAP-7, GAP-9, GAP-10. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no composition-policy adjudication found"
 
 - id: C42
   choice: "Safety constant K_RICH role reuse"
@@ -524,7 +565,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C42 |"
   owner: "R25 F2 audit + census annex"
-  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: AC5 (R25)"
+  note: "annex status verbatim: 'NEVER (registered open row)'; annex internal pointer: AC5 (R25). cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block); the DE-bucket panel re-verified ONE instance arithmetic (rho = K_RICH ln(N)/mu0) — instance verification of a single role, not the per-role derivation audit; no adjudication found"
 
 - id: C43
   choice: "Asymptotic-range handling at band sites"
@@ -534,7 +575,7 @@ entries:
   status: NEVER
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C43 |"
   owner: "S25"
-  note: "annex internal pointer: GAP-9"
+  note: "annex internal pointer: GAP-9. cross-reconciled 2026-08-13: CONFIRMED NEVER — swept the RECONCILIATION corpus (header block), no adjudication of this choice found"
 
 - id: C44
   choice: "FD steps (gradient/Hessian)"
@@ -545,7 +586,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C44 |"
   owner: "F2 (with P-HESSREJ)"
-  note: "annex status verbatim: 'single-author (derived-for-smooth; kink-aware NEVER)'; annex internal pointer: GAP-16"
+  note: "annex status verbatim: 'single-author (derived-for-smooth; kink-aware NEVER)'; annex internal pointer: GAP-16. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); speed audit S1 DECLINEs approx_derivative's step machinery on constraint-7 grounds (protects the incumbent derived steps by POLICY, not by accuracy comparison) and N8/V7 registers the measured-pattern colored-FD mechanism (ADVISORY_engine_speed_audit_2026-08-12.md par.7.3 S1 + par.4 N8); More-Wild per-column steps never weighed"
 
 - id: C45
   choice: "leggeAree bracket"
@@ -556,7 +597,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#| C45 |"
   owner: "S25 speed session"
-  note: "annex status verbatim: 'single-author (registered: speed audit H2 + AUDIT)'; annex internal pointer: AC16"
+  note: "annex status verbatim: 'single-author (registered: speed audit H2 + AUDIT)'; annex internal pointer: AC16. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); the speed audit MEASURED the vectorization alternative's block gain (444x, H2 bracket-scan = the leggeAree scan per sota_gapmap_raws_2026-08-12/s24_gapv_cell-cert.md:191) but H2 never landed (M5c accepted first-pass) and the box-derived q_max window was never adjudicated (ADVISORY_engine_speed_audit_2026-08-12.md H2) — measurement of one alternative, no comparison verdict"
 
 # --- NEW ROWS DECLARED S25-bis (ledger grows 45 -> 48; docs/rde_
 # nozzle_PROGRESS.md R25 delta S25-bis block, 'regola R5-estesa':
@@ -569,10 +610,10 @@ entries:
     - "zero-padding with an explicit masked reduction"
     - "NaN-padding + isnan guard on every consumer"
     - "ragged/variable-shape scan (no padding, no fixed bucket bound)"
-  status: SINGLE-AUTHOR
-  evidence: "validation/PROGRESS_2026-08-12_S25bis_speed.md#tail-repeat the last real partner"
-  owner: "F2 window (unassigned) — M5c bucket-executor hygiene, no dedicated owner row named in PROGRESS/session log"
-  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'padding tail-repeat (single-author+gate)' — the m5cgate bitwise-identity gate covers correctness of the executor's output (dec-vector, z-band, doctored first-offender, near-seam pair) but was never run against the listed alternatives; single-author choice, gate-verified not panel-verified."
+  status: DECIDED
+  evidence: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md#tail-repeat padding vs P_DUM: principled"
+  owner: "F2 window (unassigned) — residual lever only: the named second-design-bucket lever if padding pressure returns (informational; owner no longer required at DECIDED)"
+  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'padding tail-repeat (single-author+gate)' — the m5cgate bitwise-identity gate covers correctness of the executor's output (dec-vector, z-band, doctored first-offender, near-seam pair). cross-reconciled 2026-08-13: UPGRADED SINGLE-AUTHOR -> DECIDED — the padding choice WAS put against genuine alternatives and converged: Form-2 fused convergence row B-F2 'tail-repeat padding vs P_DUM: principled' ADOPTED with the merged refuter attack RF-11(iii) FAILED (ADVISORY_S25bis_diff_convergence_2026-08-12.md par.2 convergence table; cost accepted with the named lever, second design bucket, if pressure returns) — the dummy-fill class (zero/NaN padding) adjudicated there; the ragged/no-padding route is separately measured-REJECTED of record (eager cell_scan pattern 0.8x slower + 803 s per-shape compile churn, ADVISORY_engine_speed_audit_2026-08-12.md M5/DEAD rows). Dual proof complete: gate half (m5cgate) + panel/refuter half (B-F2/RF-11(iii)). Prior single-author anchor kept for provenance: validation/PROGRESS_2026-08-12_S25bis_speed.md#tail-repeat the last real partner."
 
 - id: C47
   choice: "Numeric-lint enforcement policy for legacy literals in validation/**/*.py (R28 scope-hole closure)"
@@ -584,7 +625,7 @@ entries:
   status: SINGLE-AUTHOR
   evidence: "tests/test_numeric_lint.py#VALIDATION RATCHET TIER (R28, S25-bis"
   owner: "F2-entry hygiene (per-file classification into the src/ taxonomy; findings registry row test-suite:numeric-lint-scope-hole)"
-  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'ratchet-baseline come pattern debt-lint (standard di settore, dichiarato)' — declared as an industry-standard debt-ratchet pattern by single-author decision, not a converged panel; DECLARED LIMIT (test_numeric_lint.py docstring): within-count literal swaps still pass, the ratchet is a channel guard not a classification."
+  note: "PROGRESS census (docs/rde_nozzle_PROGRESS.md R25 delta S25-bis): 'ratchet-baseline come pattern debt-lint (standard di settore, dichiarato)' — declared as an industry-standard debt-ratchet pattern by single-author decision, not a converged panel; DECLARED LIMIT (test_numeric_lint.py docstring): within-count literal swaps still pass, the ratchet is a channel guard not a classification. cross-reconciled 2026-08-13: CONFIRMED SINGLE-AUTHOR — swept the RECONCILIATION corpus (header block); Form-2 fused convergence ratified the ratchet as the strict standard pattern WITH repairs (RF-9/B-F12 ADOPTED, three missing rejector directions added; ADVISORY_S25bis_diff_convergence_2026-08-12.md par.2) — refuter-HARDENED, but the listed policy alternatives were not comparatively weighed; full per-file classification remains the F2-entry owner"
 
 - id: C48
   choice: "Hessian/gradient batching strategy for engine M4: vmap-batched entry (M6) vs sequential per-segment FD, as the DEFAULT execution path"
