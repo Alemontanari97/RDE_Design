@@ -252,14 +252,11 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
  12. P0 procurement: ISABE-2003-117, Bogdanov 2002, tesi Harroun
     Purdue 2019, Shmyglevskii PMM 26(1) 1962 (righe WANTED nel
     literature registry).
- 13. Call utente al prossimo touchpoint (parcheggiate in memoria
-    s-foundations-design, chiusura S-CERT 2026-08-13): (a) due
-    one-liner CLAUDE.md candidati — ban mutazioni ambiente (vincola
-    anche gli agenti; incidente PyYAML) + regola sessioni parallele
-    (file disgiunti + HANDOFF block obbligatorio + conteggi
-    rigenerati per SR-12; incidenti drift 2026-08-13 R35/glossario);
-    (b) memory-mirror UD-5-sub (snapshot datato del corpus memoria
-    in-repo con banner di non-autorita'; default = non eseguito).
+ 13. CONSUMATA (touchpoint post-S-CERT, 2026-08-13): (a) le due
+    one-liner CLAUDE.md RATIFICATE ed ESEGUITE (ban mutazioni
+    ambiente + regola sessioni parallele, sezione Preferenze);
+    (b) memory-mirror UD-5-sub DECISA-NO (default confermato: il
+    corpus memoria resta solo nel suo store).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

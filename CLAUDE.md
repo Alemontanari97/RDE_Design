@@ -82,3 +82,11 @@ Comunicazione in italiano; codice, doc e commit in inglese. Ambiente
 Python/Cantera: vedi memoria `python-env-cantera` (numpy pinnato).
 Branch di lavoro: `rde-nozzle-program` (mai su main). GENO/ è un repo
 git indipendente: mai aggiungerlo ai commit di questo repo.
+L'ambiente Python è PINNATO (cambi = decisioni O5-class a confine di
+sessione): VIETATO installare/rimuovere/aggiornare pacchetti — il
+divieto vincola anche gli agenti (incidente PyYAML di record;
+ratificata 2026-08-13).
+Sessioni parallele: file disgiunti; a chiusura HANDOFF block
+obbligatorio nel log + conteggi/numerazioni rigenerati da comando
+misurato nella propria finestra (SR-12), mai ereditati (incidenti
+R35/glossario/indice 2026-08-13; ratificata 2026-08-13).
