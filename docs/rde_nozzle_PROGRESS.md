@@ -32,8 +32,10 @@
 ## validation/PROGRESS_2026-08-12_S25bis_speed.md)
 
 **Branch `rde-nozzle-program`. Apertura S25-bis: HEAD ad5c48e
-(addendum post-chiusura S25). Commit S25-bis: nel log. NEXT = F2
-GENERAL ENGINE (apertura; contatore "F2 session 0/6").**
+(addendum post-chiusura S25). Commit S25-bis: nel log. NEXT =
+S-ORDINE (R32, de-entropizzazione: prompt di record
+validation/ADVISORY_Sordine_prompt_2026-08-12.md, assorbe la prima
+duty R31), POI F2 GENERAL ENGINE (contatore "F2 session 0/6").**
 
 - **[S25-bis] CONTATORE FINALE SPEED (formale, criterio
   pessimistic-end pre-registrato)**: SEGMENTO = MET (sintesi post-M1:
@@ -322,6 +324,24 @@ CENSIMENTO — DELTA S25-bis (sweep INCREMENTALE; solo righe toccate):
      m12gate, semantica dichiarata: il recorder ATTIVO e'
      l'autorita'); engine:vmap-hessian-adjoint-divergence (verdetto
      m6gate).
+ NUOVA R32 — S-ORDINE NOMINATA (ordine utente 2026-08-12,
+     de-entropizzazione; prompt di record COMMITTATO:
+     validation/ADVISORY_Sordine_prompt_2026-08-12.md — eccezione
+     dichiarata al pattern untracked per continuita'-critica; la
+     decisione generale tracked-vs-untracked resta alla sessione):
+     collocazione DOPO la coda di convergenza S25-bis, PRIMA di F2;
+     ASSORBE la prima duty R31 (seeding corpus). Contenuto: workflow
+     dedicato di esperti (6-7 reader a COPERTURA CONTABILE — tutto
+     il tree 428 file, scarto 0 — + censimento LETTERATURA su TRE
+     radici [repo 13 PDF / padre ~10 / GENO 77] con analisi-di-record
+     per paper e status onesti; 3 posizioni esperte KM/provenance/
+     vincoli-repo; refuter; judge a convergenza; red-team Form-3)
+     -> PIANO convergiuto PRIMA di ogni intervento -> esecuzione
+     (seeding R31, choice ledger tipizzato, ADVISORY_INDEX+archive,
+     PROGRESS slim, literature_registry.yaml, sweep memorie, lint
+     di copertura) -> EDUCAZIONE (regole standing come lint +
+     delta CLAUDE.md da ratificare). Decisione utente in-sessione:
+     commit degli advisory OF-RECORD (durabilita' vs pattern).
 
 CENSIMENTO — DELTA S25 (sweep INCREMENTALE della tabella R1-R27
 consolidata a S24; solo le righe toccate + le nuove):
