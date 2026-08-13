@@ -1,0 +1,37 @@
+== [X-SPDB] H3 acceptance gate (preplan/rung-boundary dedup, 3 segments x 4 iters) ==
+  gate march net (declared): NI=11 Nw=30 da=1.00 deg
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  walk start = recorded Wp (derive artifact, cert_worst 5.850e-01)
+  [PASS] gate start certified (worst 5.850e-01)
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 77, 42, 45, 47)  [M-B churn row]
+-- arm A: no preplan --
+  [precond] measuring diagonal curvature (2n gradient evals)...
+  [precond] diag |H| in [1.731e+06, 5.042e+07] (kappa_diag 5.4); D = [1.456 1.676 3.641 1.329 1.    0.844 0.734 0.675 0.946]
+  [colexec] per-column executor built: Lpad=95 (engine entry #3) [M5c bucket row]
+  [seg 0] nit 2  J = 4.0476259e+07  KKT 3.540e+06  radius -> 2.500e-01  flips 1
+  [memo] first-hit controls: fresh-record bitwise equality PASS, perturbed-W miss PASS
+  [engine] bucket-shape signature #2 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 75, 43, 46, 45)  [M-B churn row]
+  [colexec] per-column executor built: Lpad=92 (engine entry #4) [M5c bucket row]
+  [seg 1] nit 3  J = 4.0719582e+07  KKT 3.719e+06  radius -> 1.167e-01  flips 1
+  [seg 2] base REJECTED (early-abort (M5b, opt-in gate site): cell 1580 (interior) uncertified at ratio 1.066e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 5.835e-02
+-- arm B: preplan + field_records --
+  [memo] first-hit controls: fresh-record bitwise equality PASS, perturbed-W miss PASS
+  [precond] measuring diagonal curvature (2n gradient evals)...
+  [precond] diag |H| in [1.731e+06, 5.042e+07] (kappa_diag 5.4); D = [1.456 1.676 3.641 1.329 1.    0.844 0.734 0.675 0.946]
+  [seg 0] nit 2  J = 4.0476259e+07  KKT 3.540e+06  radius -> 2.500e-01  flips 1
+  [seg 1] nit 3  J = 4.0719582e+07  KKT 3.719e+06  radius -> 1.167e-01  flips 1
+  [seg 2] base REJECTED (early-abort (M5b, opt-in gate site): cell 1580 (interior) uncertified at ratio 1.066e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 5.835e-02
+  [PASS] bit-identical final W
+  [PASS] bit-identical J (4.0719582486e+07 vs 4.0719582486e+07)
+  [PASS] same n_segments (3 vs 3)
+  records fresh/cached/failmemo: A (4, 1, 1) -> B (3, 2, 1) (preplan A 0, B 1)
+  [PASS] preplan arm consumed the caller record (record_preplan == 1)
+  [PASS] one fresh record deleted (fresh B == fresh A - 1)
+  [PASS] consumed as a memo hit (cached B == cached A + 1)
+  [PASS] M1 first-hit controls fired in arm B
+  [PASS] last_cert returned, bitwise at the returned W, with cols (field_records)
+  walltime: A 21.4 s -> B 17.9 s
+  artifact -> C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s25_spdb_h3.json
+VERDICT: PASS

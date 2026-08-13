@@ -1,0 +1,47 @@
+PARENT/1-s2.0-S1540748912004014-main.pdf
+PARENT/20180006890.pdf
+PARENT/Aviation_2022_final.pdf
+PARENT/CONTINUATION_PROMPT.md
+PARENT/FickettJacobsCycle (1).pdf
+PARENT/Presentazione_CVA.pdf
+PARENT/Presentazione_CVA.pptx
+PARENT/Presentazione_CVA_FINALE_84slide.pptx
+PARENT/Presentazione_CVA_FINALE_Editing.pptx
+PARENT/Presentazione_CVA_FINALE_v10.pptx
+PARENT/Presentazione_CVA_FINALE_v11.pptx
+PARENT/Presentazione_CVA_FINALE_v12.pptx
+PARENT/Presentazione_CVA_FINALE_v13.pptx
+PARENT/Presentazione_CVA_FINALE_v14.pptx
+PARENT/Presentazione_CVA_FINALE_v15.pptx
+PARENT/Presentazione_CVA_FINALE_v16.pptx
+PARENT/Presentazione_CVA_FINALE_v17.pptx
+PARENT/Presentazione_CVA_FINALE_v18.pptx
+PARENT/Presentazione_CVA_FINALE_v19.pptx
+PARENT/Presentazione_CVA_FINALE_v2.pptx
+PARENT/Presentazione_CVA_FINALE_v20.pptx
+PARENT/Presentazione_CVA_FINALE_v21.pptx
+PARENT/Presentazione_CVA_FINALE_v3.pptx
+PARENT/Presentazione_CVA_FINALE_v4.pptx
+PARENT/Presentazione_CVA_FINALE_v5.pptx
+PARENT/Presentazione_CVA_FINALE_v6.pptx
+PARENT/Presentazione_CVA_FINALE_v7.pptx
+PARENT/Presentazione_CVA_FINALE_v8.pptx
+PARENT/Presentazione_CVA_FINALE_v9.pptx
+PARENT/Presentazione_CVA_v1_backup.pptx
+PARENT/Presentazione_CVA_v6_PRONTA_83slide.pptx
+PARENT/SDToolbox.zip
+PARENT/ShockDetonation.pdf
+PARENT/VALIDATION.md
+PARENT/aiaa2004-1033.pdf
+PARENT/brick2_profiles_record.png
+PARENT/computational-and-experimental-study-of-nozzle-performance-for-rotating-detonation-rocket-engines (2).pdf
+PARENT/harroun.txt
+PARENT/hr.txt
+PARENT/kp.txt
+PARENT/old_commit_hashes.txt
+PARENT/old_short_hashes.txt
+PARENT/pm.txt
+PARENT/ppt_Heister.pptx
+PARENT/rde_model_report.pdf
+PARENT/stech.txt
+PARENT/stechmann-et-al-2018-rotating-detonation-engine-performance-model-for-rocket-applications (1).pdf

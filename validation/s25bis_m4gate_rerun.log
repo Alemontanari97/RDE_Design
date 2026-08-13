@@ -1,0 +1,18 @@
+== [X-SPDB] M4 acceptance gate (plan-as-args vs legacy constants) ==
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  [PASS] record certified (worst 4.231e-01)
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  args-vs-constants wall: max|d| = 0.000e+00 (scale 2.939e+03); bitwise = True
+  [PASS] Newton-floor equivalence (dev <= driver band 6.525e-10)
+  [PASS] args replay fidelity vs record (2.865e-11 <= 6.525e-10)
+  [PASS] O3.1 leak detector through the args engine (1.133e-02 <= 7.690e-02)
+  [PASS] warm-path args-vs-constants band (args 0.2505 s <= legacy 0.2352 s x (1 + 0.356), K_RICH x measured spread)
+  re-bind cost (plan_operands + dummy verification): 0.0036 s
+  [PASS] engine-cache re-bind first call WARM (0.2493 s <= steady 0.2505 s x (1 + 0.356) — no per-segment recompile)
+  [PASS] V2 property rejector: different topology -> different signature ((20, 39, 41, 153, 85, 89, 93) != (20, 39, 41, 154, 85, 89, 93))
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [PASS] class-key rejector: same-length knot change -> NEW engine entry (1 -> 2)
+  artifact -> C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s25_spdb_m4.json
+VERDICT: PASS

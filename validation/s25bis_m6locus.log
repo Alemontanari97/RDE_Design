@@ -1,0 +1,8 @@
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+(a) B=1 vmap vs sequential: max|dg| = 2.179e-02 (bitwise = False); dv = 2.161e-07
+(b) B=9 lane0(=W) vs sequential(W): max|dg| = 8.226e-02 (bitwise = False)
+(b2) B=9 lane0 vs B=1 lane0:        max|dg| = 6.047e-02 (bitwise = False)
+(c) sequential eager-vs-jitted:     max|dg| = 2.855e-02 (bitwise = False)

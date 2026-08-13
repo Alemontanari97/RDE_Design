@@ -1,0 +1,17 @@
+== [X-SPDB] MEASURE me (attribution snapshot) ==
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  pycount (declared contention datum): 1
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  RECORD (fresh adaptive march): median 8.30 s [8.867, 8.175, 8.296]
+  [PASS] record certified (cert_worst 4.231e-01 <= 1)
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  REPLAY (C1 whole-loop jit): compile+first 3.09 s, steady median 0.387 s
+  [PASS] replay fidelity at base (dev 2.865e-11 <= driver band 6.525e-10)
+  VAL_GRAD: compile+first 5.96 s, steady median 0.701 s
+  [PASS] val/grad finite
+  HESSIAN BLOCK (n+1 = 10 rows x steady val_grad): estimate 7.0 s
+  SEGMENT SYNTHESIS (pre-memo shape, advisory rows): 26.4 s
+  SEGMENT SYNTHESIS (post-M1 shape): central 18.1 s, pessimistic-end 20.1 s (worst reps)
+  artifact -> C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s25_spdb_me.json
+VERDICT: PASS

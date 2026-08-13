@@ -1,0 +1,28 @@
+== [X-SPDB] M5c acceptance gate (per-column executor vs per-cell recorder) ==
+-- net defnoz-mild: NI=11 Nw=30 da=1.00 --
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  [PASS] defnoz-mild dec-vector BITWISE identity
+  [PASS] defnoz-mild wall inside Newton-floor band (1.182e-11 <= 6.524e-10; bitwise = False)
+  [PASS] defnoz-mild seeds inside Newton-floor band (1.702e-10 <= 7.416e-10)
+  [PASS] defnoz-mild min_margin inside band (2.410e-11 <= 6.524e-10)
+  [PASS] defnoz-mild certification VERDICT agrees (L 6.861e-01, C 7.011e-01)
+  record walltime: per-cell 6.65 s -> colexec 2.10 s warm (3.16x; first incl. compile 3.47 s); chains 87, cells 1940, padded frac 0.75
+  [PASS] M5c doctored stack row -> TYPED refusal
+  [PASS] M5c first-offender localization (aborted_at_cell 208 == chain-start 205 + row 3)
+  [PASS] M5c cert_worst carries doctored ratio (> 1e6)
+  [PASS] near-seam floor_hi: SAME raise cell in both recorders (0 == 0)
+  [PASS] near-seam floor_lo: BOTH recorders complete (same flip side)
+-- net defnoz-full: NI=21 Nw=60 da=0.50 --
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  [colexec] per-column executor built: Lpad=39 (engine entry #3) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #4) [M5c bucket row]
+  [PASS] defnoz-full dec-vector BITWISE identity
+  [PASS] defnoz-full wall inside Newton-floor band (1.910e-11 <= 6.525e-10; bitwise = False)
+  [PASS] defnoz-full seeds inside Newton-floor band (1.478e-10 <= 7.388e-10)
+  [PASS] defnoz-full min_margin inside band (0.000e+00 <= 6.525e-10)
+  [PASS] defnoz-full certification VERDICT agrees (L 4.041e-01, C 4.231e-01)
+  record walltime: per-cell 18.12 s -> colexec 5.91 s warm (3.07x; first incl. compile 6.24 s); chains 173, cells 7586, padded frac 0.75
+  artifact -> C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s25_spdb_m5c.json
+VERDICT: PASS

@@ -1,0 +1,263 @@
+diff --git a/src/lib/MoC_Gen_m.f90 b/src/lib/MoC_Gen_m.f90
+index 283b633..aaa15ad 100644
+--- a/src/lib/MoC_Gen_m.f90
++++ b/src/lib/MoC_Gen_m.f90
+@@ -24,6 +24,15 @@ module MoC_Gen_m
+     public :: stream_solve_gen, jet_solve, jet_solve_cminus
+     public :: wall_refine_gen
+     public :: foot_state_from_invariants   ! N-26 fix: tested in test_thermo
++    ! ---- TEMPORARY AUDIT INSTRUMENTATION (remove after audit) ----
++    integer, public :: DIAG_CHORD_CALL = 0
++    integer, public :: DIAG_CHORD_SNAP = 0
++    integer, public :: DIAG_CHORD_FRACOUT = 0
++    integer, public :: DIAG_COL_CALL = 0
++    integer, public :: DIAG_COL_KSEG0 = 0
++    integer, public :: DIAG_COL_FOOTCLAMP = 0
++    integer, public :: DIAG_SNAP_PT5 = 0, DIAG_SNAP_PB = 0
++    real(R8), public :: DIAG_FRACRAW_MIN = 1.0e30_R8, DIAG_FRACRAW_MAX = -1.0e30_R8
+     ! find_foot_segment, inter_rebracket removed: bracket search is now
+     ! inside inter_solve_gen (via optional col/ncol arguments)
+ 
+@@ -75,6 +84,13 @@ contains
+         type(flow_point_t) :: pb  ! streamline interpolation base
+         real(R8) :: T_lo_foot, T_hi_foot  ! valid T-range for entropy inversion
+         logical  :: foot_ok               ! foot reconstruction from invariants
++        logical  :: dg_snap, dg_fracout, dg_kseg0, dg_footclamp
++        integer  :: dg_snapdir
++        real(R8) :: dg_fracraw
++
++        dg_snap = .false.; dg_fracout = .false.
++        dg_kseg0 = .false.; dg_footclamp = .false.
++        dg_snapdir = 0; dg_fracraw = 0.0_R8
+ 
+         ! Valid T-range for the streamline-invariant foot reconstruction
+         ! (entropy inversion bracket; constant per call).
+@@ -171,6 +187,7 @@ contains
+                     end if
+                 end do
+                 if (k_seg == 0) then
++                    dg_kseg0 = .true.
+                     ! Nessuna intersezione interna: piede oltre un estremo
+                     ! della polilinea (clamp onesto, flag al caller). Estremo
+                     ! scelto con la proiezione classica (qui è solo tie-break).
+@@ -199,6 +216,7 @@ contains
+                 ! ricalcolo con stencil alternativo nel caller.
+                 if (present(foot_clamped)) &
+                     foot_clamped = (k_seg == 1 .and. t_foot < 0.0_R8)
++                dg_footclamp = (k_seg == 1 .and. t_foot < 0.0_R8)
+                 t_foot = max(0.0_R8, min(1.0_R8, t_foot))
+ 
+                 ! Foot state: geometric lerp for theta3, p3 (position along the
+@@ -227,16 +245,28 @@ contains
+                 l53 = sqrt((pt5%y - y3)**2 + (pt5%x - x3)**2)
+                 l23 = sqrt((pb%y - y3)**2 + (pb%x - x3)**2)
+                 l25 = sqrt((pt5%y - pb%y)**2 + (pt5%x - pb%x)**2)
++                if (abs(pb%y - pt5%y) > 1.0e-30_R8) then
++                    dg_fracraw = (y3 - pt5%y) / (pb%y - pt5%y)
++                else
++                    dg_fracraw = 0.5_R8
++                end if
+                 if (l23 > l25 .and. l23 > l53) then
+                     x3 = pt5%x;  y3 = pt5%y
++                    dg_snap = .true.;  dg_snapdir = 1
++                    DIAG_FRACRAW_MIN = min(DIAG_FRACRAW_MIN, dg_fracraw)
++                    DIAG_FRACRAW_MAX = max(DIAG_FRACRAW_MAX, dg_fracraw)
+                 else if (l53 > l25 .and. l53 > l23) then
+                     x3 = pb%x;  y3 = pb%y
++                    dg_snap = .true.;  dg_snapdir = 2
++                    DIAG_FRACRAW_MIN = min(DIAG_FRACRAW_MIN, dg_fracraw)
++                    DIAG_FRACRAW_MAX = max(DIAG_FRACRAW_MAX, dg_fracraw)
+                 end if
+                 if (abs(pb%y - pt5%y) > 1.0e-30_R8) then
+                     frac3 = (y3 - pt5%y) / (pb%y - pt5%y)
+                 else
+                     frac3 = 0.5_R8
+                 end if
++                if (frac3 < 0.0_R8 .or. frac3 > 1.0_R8) dg_fracout = .true.
+                 ! theta3, p3 geometrici; rho3, V3 ricostruiti dagli invarianti
+                 ! (s, h0) interpolati fra pt5 e pb -> on-manifold (N-26 fix).
+                 th3  = pt5%theta + (pb%theta - pt5%theta) * frac3
+@@ -396,6 +426,18 @@ contains
+ 
+             th0  = 0.5_R8*(th3  + pt4%theta)
+         end do predictor_corrector
++
++        if (present(col)) then
++            DIAG_COL_CALL = DIAG_COL_CALL + 1
++            if (dg_kseg0)     DIAG_COL_KSEG0 = DIAG_COL_KSEG0 + 1
++            if (dg_footclamp) DIAG_COL_FOOTCLAMP = DIAG_COL_FOOTCLAMP + 1
++        else
++            DIAG_CHORD_CALL = DIAG_CHORD_CALL + 1
++            if (dg_snap)    DIAG_CHORD_SNAP = DIAG_CHORD_SNAP + 1
++            if (dg_snapdir == 1) DIAG_SNAP_PT5 = DIAG_SNAP_PT5 + 1
++            if (dg_snapdir == 2) DIAG_SNAP_PB  = DIAG_SNAP_PB  + 1
++            if (dg_fracout) DIAG_CHORD_FRACOUT = DIAG_CHORD_FRACOUT + 1
++        end if
+     end subroutine inter_solve_gen
+ 
+     ! ========================================================================
+diff --git a/src/lib/Profile_m.f90 b/src/lib/Profile_m.f90
+index 696b5a9..96663a3 100644
+--- a/src/lib/Profile_m.f90
++++ b/src/lib/Profile_m.f90
+@@ -2,7 +2,10 @@ module Profile_m
+     use Types_m, only: flow_point_t, config_t, thermo_data_t, &
+                        solution_t, perf_t, pi, R8
+     use MoC_Dispatch_m, only: inter_dispatch
+-    use MoC_Gen_m, only: inter_solve_gen
++    use MoC_Gen_m, only: inter_solve_gen, &
++                         DIAG_CHORD_CALL, DIAG_CHORD_SNAP, DIAG_CHORD_FRACOUT, &
++                         DIAG_COL_CALL, DIAG_COL_KSEG0, DIAG_COL_FOOTCLAMP, &
++                         DIAG_SNAP_PT5, DIAG_SNAP_PB, DIAG_FRACRAW_MIN, DIAG_FRACRAW_MAX
+     use Performance_m, only: thrust_solve, massflow
+     use Rao_m, only: boundarycurvestep_solve, pmcompressionstep_solve
+     use iso_fortran_env, only: error_unit
+@@ -10,6 +13,15 @@ module Profile_m
+     private
+     public :: idealNozzleSub_solve, ticNozzleSub_solve, tocNozzleSub_solve, &
+               migdalNozzleSub_solve, compute_mdot_upstream, goursat_step_cp
++    ! ---- TEMPORARY AUDIT INSTRUMENTATION (remove after audit) ----
++    integer :: DIAG_FASE2 = 0          ! correct_clamped_points body executions
++    integer :: DIAG_BOOT_CLAMP = 0     ! foot_clamped=.T. events in PASS-1 bootstrap
++    integer :: DIAG_LAG_CLAMP  = 0     ! foot_clamped=.T. events in FASE-1 lagged
++    integer :: DIAG_SNAP_FIRSTROW = 0  ! chord snap at j==Nv_in+1 (pt5=wall row)
++    integer :: DIAG_SNAP_OTHER    = 0  ! chord snap at other rows
++    integer :: DIAG_COLS = 0, DIAG_NVGROW = 0, DIAG_NVSHALLOW = 0
++    integer :: DIAG_LASTNV_IN = 0, DIAG_LASTNV_NEW = 0
++    integer :: DIAG_COLSNAP_FIRST = 0, DIAG_COLSNAP_OTHER = 0, DIAG_COLBOOTCLAMP = 0
+ 
+ contains
+ 
+@@ -171,6 +183,8 @@ contains
+         integer  :: j, j_clamp, Nv_in, Nv_new, Nv_new_prev, iter_outer
+         real(R8) :: pos_max_change, mdot_target, tol_pos, geom_scale
+         real(R8) :: mdot1_cum(j2), x_prev_iter(j2), y_prev_iter(j2)
++        real(R8) :: p_prev_iter(j2), q_prev_iter(j2), th_prev_iter(j2)
++        real(R8) :: dg_below, dg_wallrow, dg_thermo
+         logical  :: foot_was_clamped(j2)
+         logical  :: wall_closed
+         real(R8) :: shortfall_rel   ! last no-crossing relative mass shortfall (diagnostic)
+@@ -184,6 +198,7 @@ contains
+         ! flow).
+         real(R8), parameter :: TOL_POS_REL = 1.490116119384766e-8_R8  ! sqrt(eps_R8)
+ 
++        DIAG_COLSNAP_FIRST = 0; DIAG_COLSNAP_OTHER = 0; DIAG_COLBOOTCLAMP = 0
+         Nv_in = Nv    ! boundary void entering (fissa durante tutta la colonna)
+         wall_closed = .true.
+         shortfall_rel = 0.0_R8
+@@ -216,6 +231,8 @@ contains
+             Nv_new_prev = Nv_new
+             do j = Nv_in+1, j2-1
+                 x_prev_iter(j) = sol%x(j, i); y_prev_iter(j) = sol%y(j, i)
++                p_prev_iter(j) = sol%p(j, i); q_prev_iter(j) = sol%q(j, i)
++                th_prev_iter(j) = sol%theta(j, i)
+             end do
+ 
+             ! FASE 1: re-sweep [Nv_in+1, j2-1] con stencil fisico triangolare
+@@ -397,6 +414,47 @@ contains
+                 &design infeasibility at this column'
+         end if
+ 
++        ! ---- TEMPORARY AUDIT DIAGNOSTIC ----
++        dg_below = 0.0_R8; dg_wallrow = -1.0_R8; dg_thermo = 0.0_R8
++        do j = Nv_in+1, min(Nv_new, j2-1)
++            dg_below = max(dg_below, abs(sol%x(j,i) - x_prev_iter(j)), &
++                                      abs(sol%y(j,i) - y_prev_iter(j)))
++        end do
++        if (Nv_new >= Nv_in+1 .and. Nv_new <= j2-1) &
++            dg_wallrow = max(abs(sol%x(Nv_new,i) - x_prev_iter(Nv_new)), &
++                             abs(sol%y(Nv_new,i) - y_prev_iter(Nv_new)))
++        do j = Nv_new+1, j2-1
++            dg_thermo = max(dg_thermo, &
++                abs(sol%p(j,i)-p_prev_iter(j))/max(abs(sol%p(j,i)),tiny(1.0_R8)), &
++                abs(sol%q(j,i)-q_prev_iter(j))/max(abs(sol%q(j,i)),tiny(1.0_R8)), &
++                abs(sol%theta(j,i)-th_prev_iter(j)))
++        end do
++        DIAG_COLS = DIAG_COLS + 1
++        DIAG_LASTNV_IN = Nv_in; DIAG_LASTNV_NEW = Nv_new
++        if (Nv_new > Nv_in) then
++            DIAG_NVGROW = DIAG_NVGROW + 1
++        else
++            DIAG_NVSHALLOW = DIAG_NVSHALLOW + 1
++        end if
++        write(error_unit,'(A,I5,A,I4,A,I4,A,I4,A,ES10.3,A,ES10.3,A,ES10.3,A,ES10.3)') &
++            ' DIAGCOL i=', i, ' Nv_in=', Nv_in, ' Nv_new=', Nv_new, &
++            ' iters=', iter_outer, ' tol=', tol_pos, &
++            ' below=', dg_below, ' wallrow=', dg_wallrow, ' thermo=', dg_thermo
++        write(error_unit,'(A,3(A,I6))') ' DIAGSNAP', ' colsnapfirst=', DIAG_COLSNAP_FIRST, &
++            ' colsnapother=', DIAG_COLSNAP_OTHER, ' colbootclamp=', DIAG_COLBOOTCLAMP
++        write(error_unit,'(A,7(A,I8))') ' DIAGCNT', &
++            ' F2=', DIAG_FASE2, ' bootclamp=', DIAG_BOOT_CLAMP, &
++            ' lagclamp=', DIAG_LAG_CLAMP, ' snapfirst=', DIAG_SNAP_FIRSTROW, &
++            ' snapother=', DIAG_SNAP_OTHER, ' chordsnap=', DIAG_CHORD_SNAP, &
++            ' chordcall=', DIAG_CHORD_CALL
++        write(error_unit,'(A,5(A,I8))') ' DIAGCNT2', &
++            ' fracout=', DIAG_CHORD_FRACOUT, ' colcall=', DIAG_COL_CALL, &
++            ' colkseg0=', DIAG_COL_KSEG0, ' colfoot=', DIAG_COL_FOOTCLAMP, &
++            ' cols=', DIAG_COLS
++        write(error_unit,'(A,2(A,I8),2(A,ES12.4))') ' DIAGCNT3', &
++            ' snap2pt5=', DIAG_SNAP_PT5, ' snap2pb=', DIAG_SNAP_PB, &
++            ' fracraw_min=', DIAG_FRACRAW_MIN, ' fracraw_max=', DIAG_FRACRAW_MAX
++
+         ! Finalize: azzera void [2, Nv_new], aggiorna Nv
+         do j = 2, Nv_new
+             sol%x(j,i) = 0.0_R8; sol%y(j,i) = 0.0_R8
+@@ -432,10 +490,25 @@ contains
+         integer :: j
+         logical :: foot_clamped
+         type(flow_point_t) :: pt5_lag
++        integer :: dg_s0
+ 
+         do j = j2-1, Nv_in+1, -1
+             call check_realloc(sol, j, i)
+-            if (lagged) then
++            dg_s0 = DIAG_CHORD_SNAP
++            if (lagged .and. (j - 1 <= Nv_in)) then
++                ! ---- AUDIT VARIANT B: row Nv_in+1 has no sol(j-1,i); use the
++                ! bracket surrogate (same stencil PASS 1 uses) instead of the
++                ! current-column wall point. ----
++                if (use_cp) then
++                    call goursat_step_cp(sol, i, j+1, j, cfg, td, &
++                                          prev_col, n_prev, j-Nv_in+1)
++                    foot_clamped = .false.
++                else
++                    call goursat_step(sol, i, j+1, j, cfg, td, &
++                                       prev_col, n_prev, j-Nv_in+1, &
++                                       foot_clamped=foot_clamped)
++                end if
++            else if (lagged) then
+                 if (j - 1 <= Nv_in) then
+                     pt5_lag = sol%load_point(1, i)     ! wall
+                 else
+@@ -467,6 +540,23 @@ contains
+                     sol%q(j,i) /= sol%q(j,i) .or. sol%theta(j,i) /= sol%theta(j,i)) exit
+             end if
+             foot_was_clamped(j) = foot_clamped
++            if (foot_clamped) then
++                if (lagged) then
++                    DIAG_LAG_CLAMP = DIAG_LAG_CLAMP + 1
++                else
++                    DIAG_BOOT_CLAMP = DIAG_BOOT_CLAMP + 1
++                    DIAG_COLBOOTCLAMP = DIAG_COLBOOTCLAMP + 1
++                end if
++            end if
++            if (lagged .and. DIAG_CHORD_SNAP > dg_s0) then
++                if (j == Nv_in+1) then
++                    DIAG_SNAP_FIRSTROW = DIAG_SNAP_FIRSTROW + 1
++                    DIAG_COLSNAP_FIRST = DIAG_COLSNAP_FIRST + 1
++                else
++                    DIAG_SNAP_OTHER = DIAG_SNAP_OTHER + 1
++                    DIAG_COLSNAP_OTHER = DIAG_COLSNAP_OTHER + 1
++                end if
++            end if
+         end do
+     end subroutine sweep_goursat_interior
+ 
+@@ -536,6 +626,7 @@ contains
+ 
+         do j_clamp = Nv_new+1, j2-1
+             if (.not. foot_was_clamped(j_clamp)) cycle
++            DIAG_FASE2 = DIAG_FASE2 + 1
+             k_src_alt = max(j_clamp - Nv_in + 1, 1)
+             pt1_alt = sol%load_point(j_clamp+1, i)
+             pt2_alt = prev_col(k_src_alt)

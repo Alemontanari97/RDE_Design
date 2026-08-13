@@ -1,0 +1,13 @@
+literature/0021-8928%2870%2990164-4.pdf
+literature/0041-5553%2880%2990091-9.pdf
+literature/080727464.pdf
+literature/09078078x.pdf
+literature/aerospace-12-00494-v2 (1).pdf
+literature/aerospace-12-00502.pdf
+literature/dan25254.pdf
+literature/lozano-2018-singular-and-discontinuous-solutions-of-the-adjoint-euler-equations.pdf
+literature/lozano-2019-watch-your-adjoints-lack-of-mesh-convergence-in-inviscid-adjoint-solutions.pdf
+literature/morris-2012-numerical-modeling-of-single-pulse-gasdynamics-and-performance-of-pulse-detonation-rocket-engines.pdf
+literature/owens-hanson-2012-single-cycle-unsteady-nozzle-phenomena-in-pulse-detonation-engines.pdf
+literature/s0045-7930%2801%2900072-x.pdf
+literature/single-cycle-impulse-from-detonation-tubes-with-nozzles.pdf

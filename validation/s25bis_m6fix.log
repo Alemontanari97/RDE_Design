@@ -1,0 +1,7 @@
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+CORRECTED-FORM dH(batched-in-batch-base vs sequential) = 2.063e+06  (H scale 4.175e+07; rel 4.942e-02; vs scheme asym 1.229e+06 = 1.68 x)
+LANE-PERMUTATION control: max|dg| lanes permuted-vs-inplace = 0.000e+00 (bitwise = True)
+batched scheme self-asymmetry = 7.582e+05 (sequential 1.229e+06)

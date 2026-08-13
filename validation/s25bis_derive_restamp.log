@@ -1,0 +1,33 @@
+== [X-DEFTW] F1b DEF twin falsifier (JAX 0.11.0; stage derive; instance {'yt': 1.0, 'rtu': 1.5, 'rtd': 0.45, 'eps': 30.0, 'xtronc': 8.0, 'NI': 21, 'Nw': 60, 'da_deg': 0.5}) ==
+-- derive: GENO-seeded class representative + perturbed start --
+  W0 (M = 8): thB = 46.320 deg; representation error vs GENO wall = 5.679e-03
+  class band: M-vs-2M interpolant representation errors 5.679e-03 / 5.595e-03
+-- derive: DE-side control-surface val stats at the GENO seed --
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  [W0(GENO-seed)] certified True (worst 4.231e-01); chain 144 nodes, 56 registered CS, 46 DE-side (crossing at chain idx 95); min DE val = 1.084801e-02 at chain idx 96; min |den| on the registered CS = 5.6546e-01
+  [PASS] GENO seed certified
+  [start cand a=0.0150 sgn=+1] cert 4.231e-01, DE m_ref = 4.235657e-03 (N_DE = 45)
+  [PASS] feasible start found (bump a=0.0150 sgn=+1)
+  DE-SIDE bucket: N = 45 chain lanes; m_ref = 4.235657e-03; ladder mu0 = ['2.1178e-03', '1.0589e-03', '5.2946e-04', '2.6473e-04']; rho = 5.7518e+04 (gap = 6.6182e-05)
+  [R-FD] max |Lam_FD(1.0) - Lam_AD|/band = 0.366 on THIS q-range [3067, 3162]
+  [PASS] R-FD: GENO-recipe FD Lambda inside the derived band at the instance
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  lane grid (153, 87); DE-side chain mask lanes = 45 (of 45 DE nodes; unmapped = axis-row nodes, declared)
+  [PASS] chain mask nonempty and >= 80%% of the DE-side nodes mapped
+-- derive: margin gradient O3.1-style spot at the start (CONTROL-SURFACE bucket) --
+  [PASS] C5 mapping identity: m_ref - (m_traced + mu0_1) = 4.550e-09 in [0, gap 6.618e-05 + floor]
+  [PASS] R-GRAD: AD margin gradient inside the derived band (|diff| 3.577e-03 vs 1.858e-02)
+  [PASS] R-GRAD control: corrupted gradient (2 x band along the probe) rejected
+-- derive: H4 pre-registered tail (F3/F7 references) --
+  [GENO-representative] control surface: 60 of 144 chain nodes, from (x=5.3068, y=3.4322) to the lip; f2 mean 3216.8916  drift 1.4972e-02 [registered norm; S19 asymmetric-mask reading 1.6356e-02; full C+ to the axis would give 3.6140e-01]  | f3* drift 1.1358e-01 | wrong-family drift 1.5719e-01
+       lip: y=5.47723 p_E=1.736193e+05 M=3.57868 theta=18.4269 deg -> transversality reading pa/p_E = -0.36425
+  [colexec] per-column executor built: Lpad=79 (engine entry #3) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=386 (engine entry #4) [M5c bucket row]
+  [GENO-rep r=2] control surface: 120 of 287 chain nodes, from (x=5.3122, y=3.4380) to the lip; f2 mean 3215.9542  drift 2.0007e-02 [registered norm; S19 asymmetric-mask reading 2.0753e-02; full C+ to the axis would give 3.6121e-01]  | f3* drift 1.4916e-01 | wrong-family drift 1.6962e-01
+       lip: y=5.47723 p_E=1.735104e+05 M=3.57901 theta=18.4269 deg -> transversality reading pa/p_E = -0.36438
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [H4 tail] f2_geno 1.4972e-02 (r2 2.0007e-02), bar 2.0137e-02; J_def 4.0262479e+07, J_def(2M) 4.0263825e+07; code_id 063fb796bb45
+  derive artifact -> C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s24_deftw_derive.json
+VERDICT (machinery): PASS

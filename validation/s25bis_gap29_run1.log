@@ -1,0 +1,40 @@
+== [GAP-29] arm base: NEWTON_TOL_FACTOR=100 C_FLOOR=8 C_OPS=100 ==
+  c1 build: PASS (K_NEWT 2)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 77, 42, 45, 47)  [M-B churn row]
+  record cert 7.011e-01 -> PASS; replay PASS (4.547e-12 vs 6.524e-10); O3.1 PASS (1.062e-02 vs 7.646e-02)
+== [GAP-29] arm ntf50: NEWTON_TOL_FACTOR=50 C_FLOOR=8 C_OPS=100 ==
+  c1 build: PASS (K_NEWT 2)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 77, 42, 45, 47)  [M-B churn row]
+  record cert 1.033e+00 -> FAIL; replay PASS (2.956e-12 vs 3.262e-10); O3.1 PASS (1.059e-02 vs 7.961e-02)
+== [GAP-29] arm cfloor4: NEWTON_TOL_FACTOR=100 C_FLOOR=4 C_OPS=100 ==
+  c1 build: PASS (K_NEWT 2)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 77, 42, 45, 47)  [M-B churn row]
+  record cert 7.011e-01 -> PASS; replay PASS (4.547e-12 vs 6.524e-10); O3.1 PASS (1.062e-02 vs 5.283e-02)
+== [GAP-29] arm cops50: NEWTON_TOL_FACTOR=100 C_FLOOR=8 C_OPS=50 ==
+  c1 build: PASS (K_NEWT 2)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (10, 19, 21, 77, 42, 45, 47)  [M-B churn row]
+  record cert 7.011e-01 -> PASS; replay PASS (4.547e-12 vs 6.524e-10); O3.1 PASS (1.062e-02 vs 7.646e-02)
+== [GAP-29] halved-constants sweep (AUDIT:426 executed; 4 arms, each its own subprocess) ==
+-- flip table (PASS->FAIL vs base = load-bearing margin, owner F2) --
+  ntf50    c1_build       base=PASS -> PASS
+  ntf50    cert_verdict   base=PASS -> FAIL   ** FLIP **
+  ntf50    replay_verdict base=PASS -> PASS
+  ntf50    o31_verdict    base=PASS -> PASS
+  cfloor4  c1_build       base=PASS -> PASS
+  cfloor4  cert_verdict   base=PASS -> PASS
+  cfloor4  replay_verdict base=PASS -> PASS
+  cfloor4  o31_verdict    base=PASS -> PASS
+  cops50   c1_build       base=PASS -> PASS
+  cops50   cert_verdict   base=PASS -> PASS
+  cops50   replay_verdict base=PASS -> PASS
+  cops50   o31_verdict    base=PASS -> PASS
+GAP-29 SWEEP DATUM: 1 flip(s) -> derivation duty rows for F2: [('ntf50', 'cert_verdict')]
+VERDICT: PASS

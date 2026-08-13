@@ -1,0 +1,8 @@
+== [X-SPDB] M1+M2 acceptance gate (A/B memo OFF vs ON, 3 segments x 4 iters) ==
+  gate march net (declared): NI=11 Nw=30 da=1.00 deg
+  instance: defnoz class M = 8, thB = 46.320 deg, representation 5.679e-03 (committed leg-1 wall)
+  [colexec] per-column executor built: Lpad=19 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=97 (engine entry #2) [M5c bucket row]
+  walk start = recorded Wp (derive artifact, cert_worst 5.850e-01)
+  [FAIL] gate start certified (worst 3.757e+00)
+VERDICT: FAIL

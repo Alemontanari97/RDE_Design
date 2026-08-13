@@ -1,0 +1,9 @@
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=193 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 153, 85, 89, 93)  [M-B churn row]
+per-lane grad dev (batched vs seq rows): 1.130e-01 (g scale 2.002e+06)
+base grad dev (batched-base vs seq-base): 2.179e-02
+H scale 4.175e+07; scheme self-asymmetry (seq) 1.229e+06
+dH batched(mixed-base) vs seq: 7.583e+06  (rel to H 1.817e-01; vs asym 6.170 x)
+dH batched(batched-base) vs seq: 6.121e+06  (vs asym 4.980 x)

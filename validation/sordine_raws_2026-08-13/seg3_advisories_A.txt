@@ -1,0 +1,17 @@
+validation/ADR_panel_2026-07-16.md
+validation/ADVISORY_S21_addendum_prompt_2026-08-11.md
+validation/ADVISORY_S21_prompt_2026-08-07.md
+validation/ADVISORY_S24_DEbucket_panel_2026-08-12.md
+validation/ADVISORY_S24_sota_gapmap_2026-08-12.md
+validation/ADVISORY_S24_thermo_closure_survey_2026-08-12.md
+validation/ADVISORY_S25_pipeline_impl_fidelity_2026-08-12.md
+validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md
+validation/ADVISORY_S25_pipeline_sense_math_2026-08-12.md
+validation/ADVISORY_S25_prompt_2026-08-12.md
+validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md
+validation/ADVISORY_S25bis_prompt_2026-08-12.md
+validation/ADVISORY_Scert_prompt_2026-08-12.md
+validation/ADVISORY_Scollapse_prompt_2026-08-11.md
+validation/ADVISORY_Scollapse_verdict_2026-08-11.md
+validation/ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md
+validation/ADVISORY_Sgauntlet_prompt_2026-08-11.md
