@@ -46,6 +46,19 @@ PRINCIPIO VINCOLANTE: de-entropizzare = convertire prosa in
 artefatti TIPIZZATI e LINTATI + status di supersessione espliciti +
 archivio con banner — MAI cancellazione (R4: nulla si perde;
 archive != delete).
+LENTE PRIMARIA (ordine utente 2026-08-12, sovraordinata a ogni
+altra): l'importanza prima e' SEMPRE l'ADERENZA AL PIANO GENERALE
+e ai suoi obiettivi — ogni artefatto e ogni ramificazione
+algoritmica deve rispondere a un'ESIGENZA PRECISA del piano, in
+modo SOTA a livello algoritmico, fisico e implementativo.
+Operativamente: lo schema di inventario di Fase 1 include il campo
+PLAN-ANCHOR (a quale fase/obiettivo D6 / riga censimento / riga
+registry risponde questo artefatto); un artefatto OF-RECORD senza
+esigenza nominata = FINDING (orfano R1 a livello di sistema, mai
+assorbito in silenzio); la struttura target del piano convergiuto
+deve rendere QUESTA tracciabilita' (esigenza -> ramificazione ->
+prova SOTA) la navigazione di default del progetto, non un
+sottoprodotto.
 
 ## (3) T1 — IL WORKFLOW DEDICATO (pianificazione a convergenza,
 ## PRIMA di qualsiasi intervento; Workflow tool, ~12-13 agenti)

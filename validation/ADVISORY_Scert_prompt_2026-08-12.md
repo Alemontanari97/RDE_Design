@@ -58,6 +58,17 @@ MC6 "Un estraneo NAVIGA il progetto" (misura anche S-ORDINE): 10
 MC7 "Le catene di provenienza reggono": per 5 verdetti storici
     campionati, risali sessione->commit->carrier->artifact senza
     buchi.
+MC8 "OGNI RAMIFICAZIONE ALGORITMICA RISPONDE A UN'ESIGENZA PRECISA
+    DEL PIANO" (lente primaria, ordine utente 2026-08-12 — R1
+    elevata a meta-claim di sistema): campiona N leve/moduli/
+    formulazioni -> per ciascuna traccia (i) l'esigenza del piano
+    che la richiede (fase D6 / riga censimento / riga registry),
+    (ii) la sua adjudication SOTA ai TRE livelli — algoritmico
+    (alternative battute o registrate), fisico (l'ipotesi/regime
+    che la giustifica), implementativo (gate + refuter + review);
+    una ramificazione senza esigenza nominata o senza adjudication
+    ai tre livelli = finding (orfano di sistema / SOTA non
+    dimostrato), mai assorbito in silenzio.
 
 ## (4) IL WORKFLOW (find->verify Form 1, ~15-20 agenti)
 FASE A — CAMPIONAMENTO STRATIFICATO (1 agente + tu): dalle
