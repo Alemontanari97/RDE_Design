@@ -168,6 +168,30 @@ CI schedulata / multi-piattaforma (decisione infra/env, riga
 propria); distillazione per terzi (pipeline P-1); qualunque tocco
 algoritmico.
 
+## (4-ter) GATE NOTHING-LOST (vincolante, ordine utente 2026-08-12:
+## "fondamentale non perdere nulla" — la garanzia deve essere un
+## GATE che puo' sparare, non un principio):
+(i) LEDGER-A-RISCHIO: la Fase 1 produce l'elenco consolidato di
+OGNI contenuto-unico-a-rischio (finding/numero/verdetto/analisi che
+vive in UN solo posto); l'esecuzione T2 produce la MAPPA DI
+DESTINAZIONE per-item (riga registry / file archiviato con riga
+indice / riga glossario) e il gate verifica: ogni item del ledger
+ha destinazione risolta — item senza destinazione = FAIL della
+sessione, non nota a pie' di pagina.
+(ii) LOSS-HUNTER AVVERSARIO: a valle dell'esecuzione, UN agente
+dedicato col solo mandato di TROVARE qualcosa di perso (default:
+"si e' perso qualcosa finche' non dimostro il contrario"):
+campiona il ledger-a-rischio + diffa gli inventari pre/post +
+tenta di risalire da 10 finding storici casuali alla loro casa
+attuale. Un solo item irrintracciabile = FAIL.
+(iii) REJECTOR SEMINATO del detector: si rimuove IN-MEMORIA un
+item dalla mappa di destinazione e il gate (i) DEVE fallire; il
+loss-hunter riceve un item-canarino assente e DEVE segnalarlo —
+un detector che non spara sul seme e' rotto e la sessione non
+chiude su di esso.
+(iv) La riconciliazione a scarto 0 (428 file + 3 radici
+letteratura) e' PRECONDIZIONE di chiusura R3 della sessione.
+
 ## (5) T3 — EDUCAZIONE (il mantenimento)
 Le regole standing convergiute atterrano come: delta CLAUDE.md
 (proposto all'utente per ratifica), riga di censimento standing, e
