@@ -1935,3 +1935,19 @@ entries:
   suffices_symbolic: "no"
   falsifier: "a MEASURED dmu/dSigma /= 0 on a certified family"
   gamma: "EOS-general"
+
+# ------- S-CERT opening instrument (A2 decision (a), 2026-08-13) ------
+
+- id: X-O31CS
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-13; suite=none"
+  class: PRACTICE
+  scope: "O3.1-cs AUDIT INSTRUMENT (A2 of the ADOPTED list; user decision (a) 2026-08-13: built at S-CERT opening, an instrument of the audit, never a repair; strengthens MC1/MC7): primal-independent transposition check of the engine's hand-written implicit adjoint — independent numpy-complex TWIN of the interior unit-process residual (double implementation: own quintic-Hermite build from table node data, own Newton policy, arctan(v/u) branch-asserted) + complex-step Jacobians (h=1e-20, no cancellation) + implicit-function rule re-derived in the complex plane (S_cs = -A_cs^{-1} B_cs, real solves) against jax.jacrev through the engine's custom_vjp solve. Rows CS1 (twin residual at engine-solved z within the DERIVED slope-mapped Newton floor — honest catch of record: the first version used a 1e6x magic multiplier and fired falsely on the near-axis instance; repaired by deriving ||A||_inf x floor_z), CS3 (sensitivity + pairing rows within derived two-h + slope-propagated bands; measured deviations 8.5e-11..2.9e-8 vs bands 1.9e-8..9.5e-8), CS4 NEGATIVE CONTROL (transpose-consistent-but-wrong pair passes the O3.1-style self check at machine zero — the common-mode hole DEMONSTRATED — and is DETECTED by the primal-independent side with a band-derived 2x perturbation), CS5 h-stability. COVERAGE DECLARED: interior process only; wall/axis/legge/composition = registered residual, owner F2"
+  statement: "The engine's per-cell implicit adjoint (custom_vjp transpose) matches a primal-independent complex-step IFT sensitivity computed from an independently re-implemented residual, within derived bands, on certified instances of the committed design of record; and the demonstrated common-mode hole of O3.1 (transpose-consistent-but-wrong pairs) is closed at the unit-process level by this instrument's negative control."
+  doc: "validation/o31cs_instrument.py"
+  proof: "validation/o31cs_instrument.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "CS3 deviation beyond the derived band on a certified instance (kills the implicit-rule fidelity claim); CS4 negative control NOT detected (kills the instrument); CS1 firing (kills the twin's independence-coupling)"
+  gamma: "EOS-general"

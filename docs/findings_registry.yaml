@@ -1416,14 +1416,14 @@ entries:
   owner: "F2 (D-20, priority); NOT built in the F-SERVICE window per contract (2e): stays F2-prioritized"
   trigger: "F2 entry (first oracle block), or S-CERT order"
 - id: oracles:o31-common-mode-hole
-  status: CONFIRMED
-  severity: medium
-  magnitude: "O3.1 (transpose identity 2.7e-10) certifies SELF-consistency of the discrete pair, not continuum fidelity (D-08 qualifier of record); it provably cannot detect a transpose-consistent-but-wrong pair — the common-mode hole; the closer is A2/O3.1-cs (complex-step primal-independent Jv + negative control that MUST be detected)"
+  status: DOWNGRADED
+  severity: low
+  magnitude: "O3.1 (transpose identity 2.7e-10) certifies SELF-consistency of the discrete pair; the common-mode hole (transpose-consistent-but-wrong pairs invisible to it) is now DEMONSTRATED and CLOSED AT THE UNIT-PROCESS LEVEL by [X-O31CS] (built at S-CERT opening per the pinned A2=(a) decision): the consistent-wrong pair passes the O3.1-style self check at machine zero AND is detected by the primal-independent complex-step IFT side (gate PASS EXIT 0, 2026-08-13; CS3 deviations 8.5e-11..2.9e-8 vs derived bands). RESIDUAL: coverage = interior process only — wall/axis/legge/whole-march composition remain O3.1-only"
   source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#O3.1-cs — trasposizione a PRIMALE INDIPENDENTE"
-  code: []
+  code: ["validation/o31cs_instrument.py:1-40"]
   mechanism: oracle-scope
-  owner: "S-CERT (A2 decision PINNED (a) by user 2026-08-13: O3.1-cs built at S-CERT opening as an AUDIT INSTRUMENT for MC1/MC7, double implementation + negative control; never an in-window patch)"
-  trigger: "S-CERT opening (this session, Part 2)"
+  owner: "F2 (extend [X-O31CS] coverage to the wall process — the shape-gradient carrier — with the same twin pattern; then composition)"
+  trigger: "F2 first oracle block, or any new hand-written custom_vjp rule entering the engine"
 - id: carriers:dual-feasibility-blind-five
   status: DISCHARGED
   severity: high
