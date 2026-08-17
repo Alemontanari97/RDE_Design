@@ -1,0 +1,10 @@
+  seeded rejector [open-without-owner]: REJECTED (as required)
+  seeded rejector [discharged-without-evidence]: REJECTED (as required)
+  seeded rejector [two-OPEN-same-span (re-mint)]: REJECTED (as required)
+  seeded rejector [dangling-anchor]: REJECTED (as required)
+  seeded rejector [unresolvable-code-span (R13)]: REJECTED (as required)
+  H4 derive artifact vs tree: tail.code_id 25c173fc3f77 / tree 25c173fc3f77 -> FRESH
+  seeded rejector [doctored code_id mismatch]: REJECTED (as required)
+  seeded rejector [doctored-dead-anchor (family e)]: REJECTED (as required)
+  seeded rejector [ownerless-NEVER-row (family f)]: REJECTED (as required)
+  findings registry lint (R31 findings-as-code)        PASS (161 entries, 122 open, 0 violations; H4 artifact channel ok; families e+f PASS: 48 choice + 80 lit rows, 0 violations)

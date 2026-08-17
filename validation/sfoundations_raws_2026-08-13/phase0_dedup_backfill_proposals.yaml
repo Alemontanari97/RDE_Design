@@ -1,0 +1,251 @@
+# DEDUP-KEY BACKFILL — consolidated of record (S-FOUNDATIONS Phase 0,
+# 2026-08-17). 78 keyless-OPEN rows == 59 backfillable + 19 not-backfillable
+# + 0 merge-candidates. Span proposals authored by six Sonnet batch agents
+# (pre/peri-directive window), consolidated + collision-resolved by the Fable
+# orchestrator: 4 cross-batch nested-span collisions found and re-pinned on
+# the exact per-row objects (F8 796-812 vs conditioning 813-820; dense-Hessian
+# 1763-1797 vs symmetrization-rejector 1798-1799; margin-no-hess 1912-1915 vs
+# ip-path 1916-1923; future-pass-dates 230-243 vs orphan-lint 244-247).
+# Machine authority = lint (xix) span resolution + OPEN-overlap rejector.
+proposals:
+- id: conditional:P-TRFLOOR
+  code: []
+  basis: "Blocked-with-named-cause row: magnitude is 'none-measured (inputs forfeited by the S24 pre-8761dce kill)' and the trigger is a not-yet-existing future campaign artifact (ART_CAMP partial log). There is no current code ob"
+- id: pipeline:delta-carrier-F2-entry
+  code: []
+  basis: "The finding is an absence claim ('no delta row exists at any engine-rung Verdict, grep-verified') plus an owed theory lemma for M0. There is no existing code span that IS the defect -- the object described (a missing (va"
+- id: pipeline:Q3-certifiability-composition
+  code: []
+  basis: "Explicitly 'unposed-composition': magnitude states the problem (K(xi) intersections, xi-indexed margin buckets, etc.) is 'genuinely unposed' -- there is no code to point at because the formulation itself does not exist y"
+- id: cell-cert:val-diag-starvation-twin
+  code: ["validation/a1_toc_variational_jax.py:1003-1012"]
+  basis: "Read lines 985-1039. def _chain_ratios(head_pt, cells, pt2s, act) at 1003-1012 is the prefix-exactness reconstruction used by cert_diag's per-cell certification (jax.vmap over _ratio for the FAN bucket chain, masked by `"
+- id: cell-cert:certify-no-conditioning-qualification
+  code: ["validation/a1_ideal_march_jax.py:813-820"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "Read lines 795-834. def certify(stepfn, z, p) computes ratio = step/(NEWTON_TOL_FACTOR*EPS*sc) -- the one-extra-Newton-step certificate described in the finding -- with no kappa(J)/conditioning check anywhere in the func"
+- id: cell-cert:seed-validity-radius-underived
+  code: ["validation/a1_ideal_march_jax.py:737-746"]
+  basis: "Read lines 737-746. Sched.cell(self, solver, p, z0): in 'rec' mode records z into self.d['z']; in 'play' mode pulls a stale recorded z as z0r = stop_gradient(self.d['z'][self._iz]) and re-solves from it -- exactly the 'r"
+- id: cell-cert:wall-foot-search-fragile
+  code: ["validation/a1_ideal_march_jax.py:920-943"]
+  basis: "Read lines 895-984. Confirmed the finding's own stale citations (a1:806-833, toc:355-375, toc:847-852 from the 2026-08-12 advisory) have DRIFTED and now point to unrelated code (certify(), the account() cert-accounting h"
+- id: theory-core:F2-lemmaA-ideal-gas-pin-undeclared
+  code: []
+  basis: "Pure theorem-statement defect: the T-T3 Lemma A/B header in M0 (docs/rde_nozzle_MASTER.md, THEOREM text) fails to name the ideal-gas EOS hypothesis. No code implements or checks this yet (the suggested test, a Noble-Abel"
+- id: theory-core:F3-TGB-class-inflation-rejector-scope
+  code: []
+  basis: "The finding's own FILE/LOC is M0 lines 602-638 (T-GB statement+proof) vs claims_registry.yaml lines 300-311 -- a theorem-class label (THEOREM vs THEOREM*) and registry classification mismatch plus a proof-sketch/falsifie"
+- id: theory-core:F4-CXBVP-ledger-dangling-pointer
+  code: []
+  basis: "Cross-document reference mismatch (M0 legend says the L4 ledger is docs/rde_nozzle_conditionals.md, but T-XWS's cited '[C-XBVP](a,b), ledger 1bis' only resolves in remaining_conditionals.md; SCAFFOLD's 'no other analytic"
+- id: foundations-U:U34-C0-bootstrap-circularity
+  code: []
+  basis: "The defect is an absence: an unwritten fixed-point construction for the region-wise C_0^(k) bootstrap, and a missing fifth clause in the docs/rde_nozzle_D25U_U3U4.md section-5 conditional inventory (c1-c4). Read §5 (line"
+- id: foundations-U:L4-statement-falsifier-unamended
+  code: ["docs/rde_nozzle_conditionals.md:20-30", "docs/rde_nozzle_conditionals.md:66-67"]
+  basis: "Read docs/rde_nozzle_conditionals.md lines 1-100. The C-D25U STATEMENT block (20-30) still reads 'Let D(delta, L_x, C_geo, C_dat) be the certified set...' -- the four-constant form. The FALSIFIER line (66-67) still reads"
+- id: foundations-U:pass2-discharges-are-rescopes
+  code: []
+  basis: "Concerns 3 verdict-cell labels (H2/H-I2, H-Pa) plus a headline totals claim in docs/rde_nozzle_hypothesis_ledger.md's pass-2 summary -- a labeling/vocabulary convention issue across a multi-row table that is expected to "
+- id: foundations-U:U4B-stated-bound-unproven
+  code: ["docs/rde_nozzle_D25U_U3U4.md:283-302"]
+  basis: "Read docs/rde_nozzle_D25U_U3U4.md lines 278-307. LEMMA U4-B header (283-286) states 'N_X <= N_F^max (N_b + 2)' while its own PROOF SKETCH (287-302) explicitly records the cruder bound 'we RECORD the cruder but simply-pro"
+- id: foundations-U:LBML-gradient-rate-rejector-cannot-fire
+  code: []
+  basis: "The defect is that the registry falsifier field (docs/claims_registry.yaml S-LBML entry) and docs/rde_nozzle_LBML.md's audit-cited lines still advertise an O3.2 rate check that the doc's own §5 S19 addendum says cannot f"
+- id: foundations-U:ledger-totals-miscount-CMAJDA
+  code: []
+  basis: "A summary-arithmetic mismatch in docs/rde_nozzle_hypothesis_ledger.md's governance totals line (booked 5/13 vs actual rows 6/12, etc.) -- a totals recomputation issue over a table that changes whenever rows are added/rec"
+- id: engine-core:F3-table-clamp-silent
+  code: ["validation/a1_ideal_march_jax.py:397-409"]
+  basis: "state_q(): T = jnp.interp(ht, hg, Tg) (line 403), p and cp likewise interp-derived from the same table arrays (Tg,hg,sg,cpg). jnp.interp pins T to the table edge with zero exterior derivative outside [Tg[0],Tg[-1]] -- th"
+- id: engine-core:F6-node-check-vacuous
+  code: ["validation/thermotab_c1_jax.py:406-419"]
+  basis: "C3 s0'=cp/T check block. N_PROBE=20001 (line 114), Tg has len 8192 (N_TAB in a1_ideal_march_jax.py). node_idx (line 412) = np.arange(0, N_PROBE, (N_PROBE-1)//(len(Tg)-1))[:len(Tg)]; (20000)//(8191) = 2, so the stride is "
+- id: engine-core:F7-legge-bracket-fallback
+  code: ["validation/a1_ideal_march_jax.py:864-873"]
+  basis: "supersonic-root bracket scan: qs = np.linspace(float(as_)*1.01, float(as_)*2.8, 400) (line 868); if no sign change is found in idx (idx.size == 0), q0 falls back silently to float(as_)*1.8 (line 872) with no rejection an"
+- id: engine-core:F8-cert-scale-unit-mixing
+  code: ["validation/a1_ideal_march_jax.py:796-812"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "certify() function: comment at 796-798 claims 'UNIT-CONSISTENT' certification; sc = max(1.0, float(jnp.max(jnp.abs(z)))) (line 812) is a single scalar scale over z=[x4,y4,u4,v4] (mixed position/velocity units, per z4 unp"
+- id: variational-driver:cross-unit-and-slack-tolerances
+  code: ["validation/a1_toc_variational_jax.py:2259-2264"]
+  basis: "derived-tolerance block: gscale = float(np.linalg.norm(g)) (2262); gtol = max(tol_dp, 1e-8*gscale) (2263, gradient-unit derivation); xtol = 1e-10 (2264, hardcoded). This gtol is then used both to gate res.constr_violatio"
+- id: variational-driver:negative-control-N2-missing
+  code: []
+  basis: "The only textual locus (the N2 negative-control declaration, 'the optimizer restarted from a perturbed feasible point... local uniqueness probe', at validation/a1_toc_variational_jax.py lines 65-70) falls entirely inside"
+- id: variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip
+  code: ["validation/a1_toc_variational_jax.py:1839-1846", "validation/a1_toc_variational_jax.py:1948-1951"]
+  basis: "Two loci inside run_trsqp, both defeated by the same W/Dv roundtrip: (a) lines 1839-1846, _cb_body's base-skip check -- xk_now = np.asarray(state.x)*Dv (1844) compared via np.array_equal to seg_state['last_rec'] (1845), "
+- id: driver-nonsmooth:no-B-stationarity-certificate
+  code: ["validation/a1_toc_variational_jax.py:1586-1613"]
+  basis: "reject-and-shrink-exhausted branch inside run_trsqp: on radius-floor exhaustion (comment 1588-1601) the function returns dict(..., certifiability_limited=True, ...) at line 1613 carrying the last `result` (res) object co"
+- id: driver-nonsmooth:ip-path-unadjudicated
+  code: ["validation/a1_toc_variational_jax.py:1916-1923"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "cons = [lip_eq] (1911); if margin_factory is not None: cons.append(NonlinearConstraint(m_np, 0.0, np.inf, jac=gm_np)) (1912-1915) -- appending an inequality constraint; res = minimize(..., method='trust-constr', constrai"
+- id: driver-nonsmooth:hessian-no-rejector
+  code: ["validation/a1_toc_variational_jax.py:1798-1799"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "Hw built by forward-difference of the gradient (batched branch 1783, sequential branch 1785-1797), then Hw = 0.5*(Hw + Hw.T) (line 1798) unconditionally symmetrizes with no check of the pre-symmetrization asymmetry magni"
+- id: driver-nonsmooth:jacobi-scaling-frozen
+  code: ["validation/a1_toc_variational_jax.py:1370", "validation/a1_toc_variational_jax.py:1739-1744"]
+  basis: "Dv = None (line 1370, comment 'Jacobi scaling (measured once)') is the walk-level state guarding the `if Dv is None:` block (line 1697, inside the already-occupied span 1697-1720, so not spanned); the actual assignment D"
+- id: driver-nonsmooth:flip-segmentation-materiality
+  code: []
+  basis: "Status DOWNGRADED; the finding's own text records that [P-FLIPMAT] was explicitly DE-REGISTERED pending convening of the N6 panel ('not licensable without the N6 panel'), i.e. this is a parked process/policy decision abo"
+- id: driver-nonsmooth:flip-event-log-omission
+  code: ["validation/a1_toc_variational_jax.py:1900-1906"]
+  basis: "dec_new = [(c['N'], c['Nv']) for c in plan_new['arc']] (1900); if dec_new != dec_base: events.append(dict(..., first_diff=next(i for i,(a,b) in enumerate(zip(dec_base, dec_new)) if a != b))) (1901-1906). When dec_base an"
+- id: benches:r6-bars-unguarded-conclusiveness
+  code: ["validation/o33_bench.py:1024-1039"]
+  basis: "Read the R6 gradient-vs-Rao PRIMARY kill check: bar_g (noise/slope) and bar_r (V-fit floor/slope) derived at lines 1024-1030, then the acceptance test `abs(t_grad - t_rao) <= bar_g + bar_r` at lines 1037-1039 with no com"
+- id: benches:o33-underived-thresholds
+  code: ["validation/o33_bench.py:823-830", "validation/o33_bench.py:978-982", "validation/o33_bench.py:396-405", "validation/o33_bench.py:785"]
+  basis: "Compound finding, four distinct residual objects all re-located at current line numbers (module docstring at lines 124-134 itself now declares these as DECLARED-not-derived): R4 sign-separation factor 0.05 (=1/20x) at li"
+- id: benches:o32-adjoint-negative-control-missing
+  code: ["validation/o32_mesh_convergence.py:651-662"]
+  basis: "Read the S4 NEGATIVE CONTROL block: `rf = toc_ladder(..., with_grad=False)` at line 655, confirming the foot-coefficient first-order negative control runs primal-only (G identically 0, adjoint branch never exercised on k"
+- id: benches:o32-topo-window-monitors-print-only
+  code: ["validation/o32_mesh_convergence.py:540-552", "validation/o32_mesh_convergence.py:667-669"]
+  basis: "Read the TOPOLOGY MONITOR construction (clause LB-c2) at lines 540-552 which appends `res['topo']` per level but is never asserted on; and its sole consumption at lines 667-669, a bare print of the axis-column fraction s"
+- id: benches:d1-kill-comparisons-unbanded
+  code: ["validation/adaptive_knot_optimize.py:380-383", "validation/adaptive_knot_optimize.py:590-594", "validation/o33_bench.py:971-976"]
+  basis: "Read adaptive_knot_optimize.py: tol_stop derived at lines 380-383 (`tol_stop = A1.K_RICH * abs(rel1 - rel2)`) but the [D1] kill check at lines 590-594 uses raw `best['goal'] < rel1` with no reference to tol_stop. Read o3"
+- id: mesh-amr:start-line-accuracy-rejector-missing
+  code: ["validation/a1_ideal_march_jax.py:839-848"]
+  basis: "Read the Sauer IVL construction block: `x_raw = c1 * y_ivl**2 + 0.000001` at line 846 is the GENO-mirrored 1e-6-scale offset, applied identically regardless of NI/resolution — the concrete object making the start-line's "
+- id: mesh-amr:axis-process-unverified
+  code: ["validation/a1_ideal_march_jax.py:555-566"]
+  basis: "Read `make_resid_axis`, the axis (y->0) unit process, at lines 555-566: it evaluates the source coefficient at `ym = 0.5*y1` (the foot value, not the true v/y limit) and is never independently exercised by an axis-only M"
+- id: mesh-amr:observed-order-not-at-band-sites
+  code: ["validation/o32_mesh_convergence.py:218-294"]
+  basis: "Read `verdict_row` (lines 218-294), the module's own X-O32 rate estimator with derived dp_noise/dp_model bands and the S19-row-of-record numbers (p_fine=2.5347, dp_tot=0.6704) quoted verbatim in its docstring (lines 236-"
+- id: mesh-amr:joint-refine-confounds-directions
+  code: ["validation/o33_bench.py:195-200"]
+  basis: "Read `def refine(cfg, r)`: a single knob r jointly rescales NI, Nw and da_deg (the three error directions: IVL rows / arc angle / contour-exit stations) in one call, with no per-direction refinement flag."
+- id: mesh-amr:dprime-winner-label-missing
+  code: ["validation/def_twin_falsifier.py:453-457"]
+  basis: "Read the D-prime band assembly: `band_dprime = A1.K_RICH * max(dp['cell'], ds_land)` at line 453, followed by a print (454-457) that reports both `ds_land` and `dp['cell']` plus the resulting band, but never states which"
+- id: thermo-bands:bands-not-topology-conditioned
+  code: ["validation/a1_ideal_march_jax.py:1220-1238", "validation/a1_toc_variational_jax.py:2154-2171"]
+  basis: "Read `contour_compare` (a1_ideal_march_jax.py:1220-1238): interpolates the (h, h/2) wall pair (wx/wx2) with no topology check between the two resolutions. Read the band_u block (a1_toc_variational_jax.py:2154-2171): buil"
+- id: thermo-bands:band-composition-no-declared-rule
+  code: ["validation/def_twin_falsifier.py:429-430", "validation/o33_bench.py:709-710"]
+  basis: "Confirmed heterogeneous composition rules coexist with no declared policy: def_twin_falsifier.py:429-430 uses a max() form (`band12 = A1.K_RICH * max(res['r1']['dprime']['cell'], res['r2']['dprime']['cell'])`); o33_bench"
+- id: thermo-bands:table-box-no-margin-certificate
+  code: ["validation/a1_ideal_march_jax.py:306-322"]
+  basis: "Read `build_tab_nasa` (lines 306-322): constructs the thermo table via `T = np.linspace(T_TAB_LO, T_TAB_HI, N_TAB)` (line 315) using the case-independent literals defined at lines 195-196 (already occupied, so this funct"
+- id: constraints:multiplier-rejector-missing
+  code: ["validation/a1_toc_variational_jax.py:2356-2364", "validation/margin_governor.py:617-639"]
+  basis: "a1_toc_variational_jax.py:2356 reads `lam = float(np.atleast_1d(np.asarray(res.v[0]))[0])` (raw solver multiplier, unguarded) and :2364 consumes it into `Pa_impl = abs(lam) / (2 pi yL)` with no complementarity/rejector c"
+- id: constraints:mask-rung-freeze-granularity
+  code: ["validation/def_twin_falsifier.py:1124-1133"]
+  basis: "In the rung loop of run_margin_ladder (approx.), the chain lane mask is built once per rung via `mask = lane_mask_from_chain(st_cur['out'], st_cur['kis'], st_cur['de'], ...)` at :1131-1133, explicitly commented 'rung-fro"
+- id: constraints:mask-crop-lane-loss-unbounded
+  code: ["validation/def_twin_falsifier.py:677-699"]
+  basis: "In make_margin_fn_cs's traced margin_W closure, :677-684 crop the passed-in `mask` to the current lane-grid shape on a shape mismatch (`mm[:r,:c] = mask[:r,:c]; mloc = mm`) -- any True lane at index >= r or >= c is silen"
+- id: constraints:margin-constraint-no-hess
+  code: ["validation/a1_toc_variational_jax.py:1912-1915"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "`cons = [lip_eq]` then, if margin_factory is not None, `cons.append(NonlinearConstraint(m_np, 0.0, np.inf, jac=gm_np))` at :1914-1915 -- exact jac supplied, no `hess=` kwarg, so scipy trust-constr defaults to BFGS-estima"
+- id: constraints:lip-equality-not-eliminated
+  code: ["validation/a1_toc_variational_jax.py:1746-1749"]
+  basis: "`lip_eq = LinearConstraint(A * Dv[None, :], [yL], [yL])` at :1748 carries the lip-height equality y_m = yL as a constraint row passed to scipy trust-constr (via `cons = [lip_eq]` at :1911) rather than eliminating the cor"
+- id: parametrization:basis-oscillation-axis-unadjudicated
+  code: []
+  basis: "This is a pending re-adjudication duty (which basis to use for the interpolation-vs-control-point axis), not an implemented code defect: grep across validation/ finds no carrier computing the clamped-end alternating-curv"
+- id: parametrization:shape-monitors-uncomputed
+  code: ["validation/a1_toc_variational_jax.py:170-184"]
+  basis: "wall_geometry(W, P_geom, L) at :170-184 builds the wall spline (xB, yB, xs, ys, M = spline_coeffs(...)) that fully determines per-interval slope and curvature (closed-form/affine in the dofs at fixed thB, as the finding "
+- id: parametrization:insertion-guard-wrong-object
+  code: ["validation/adaptive_knot_optimize.py:197-213"]
+  basis: "insertion_site(j, xs_knots, x_st, m_st) at :197-213 computes `dx_loc = float(np.median(np.diff(xi_)))` (:210, median STATION spacing on the marked interval) and rejects a candidate site if `(x_new - lo) < dx_loc or (hi -"
+- id: parametrization:warmstart-exactness-unarmed
+  code: ["validation/adaptive_knot_optimize.py:434-451"]
+  basis: "After building W_warm (:434), :435-446 compute `dev_warm = float(np.max(np.abs(y_new_g - y_old_g)))` (the warm-start representation deviation across knot insertion) and :447-451 only PRINT it (`print('  [cycle %d] insert"
+- id: parametrization:insertion-only-dof-ratchet
+  code: ["validation/adaptive_knot_optimize.py:399-417"]
+  basis: "The enrichment `for cyc in range(1, max_cyc + 1):` loop body at :399-417 only ever marks (Doerfler) and INSERTS knots (`sites.append(xn)` at :413, via insertion_site); there is no removal/coarsening branch anywhere in ma"
+- id: parametrization:dense-hessian-truncation-unpriced
+  code: ["validation/a1_toc_variational_jax.py:1763-1797"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "The R-3 full-Hessian measurement block: :1763 `g_base = _vg(W)[1]`, :1764-1783/1784-1797 build the n forward-difference columns (n+1 value_and_grad evals total, one base + n perturbed, matching the finding's 'n+1 evals')"
+- id: parametrization:knot-xi-drift-unmonitored
+  code: ["validation/adaptive_knot_optimize.py:419-433"]
+  basis: ":419-420 compute `thB = float(W_cur[0]); xB = cfg['rtd'] * np.sin(thB)` (physical, thB-dependent), then :424-425 build `xi_new` as `(np.asarray(sites) - xB) / (L - xB)` -- a normalized coordinate baked in at the CURRENT "
+- id: problem-statement:flatness-monitor-unarmed
+  code: []
+  basis: "The T0-flatness monitor script (CycleFamily v0) does not exist anywhere in-repo (confirmed: no CycleFamily module, no T0-flatness carrier under validation/ or tests/). The plan doc's own item 5-bis (docs/rde_nozzle_devel"
+- id: problem-statement:stage-a-audits-premised-not-implemented
+  code: ["validation/a1_march_scan.py:256-297"]
+  basis: "Read the inlet_admissibility() function in full (lines 256-297). Its own docstring confirms the finding verbatim: it is a homenthalpic/homentropic UNIFORMITY guard (checks h0 and s spreads against a derived Richardson-ba"
+- id: problem-statement:st-marginal-numbers-uncarried
+  code: ["docs/rde_nozzle_problem_book.md:471-478"]
+  basis: "Read docs/rde_nozzle_problem_book.md (the D1 frozen problem book) lines 455-499. The exact uncited numbers are there: 'Honest numbers (rocket RDEs): f = 3-30 kHz, t_c = 33-330 mu s, tau_n = 20-150 mu s => St = O(0.1-1): "
+- id: problem-statement:t4-gamma-status-undeclared
+  code: ["docs/claims_registry.yaml:329-340", "docs/rde_nozzle_MASTER.md:583-588"]
+  basis: "docs/claims_registry.yaml:329-340 is the T-T4 entry; confirmed gamma: 'EOS-general' with no upstream-scaling/Lemma-B caveat in the entry. docs/rde_nozzle_MASTER.md:583-588 is the Lemma B statement block ('Lemma B (stagna"
+- id: problem-statement:pv-bars-no-evaluator
+  code: ["docs/rde_nozzle_MASTER.md:312-318"]
+  basis: "Read docs/rde_nozzle_MASTER.md lines 305-334. Line 312 is the (P)(v) declared-bars clause; lines 313-318 are the bracketed [BAR-CLASS NOTE, dated 2026-08-05 ...] admitting the (v) bars are 'ESTIMATED/ASYMPTOTIC indicator"
+- id: problem-statement:label-namespace-collisions
+  code: ["docs/rde_nozzle_MASTER.md:206-211"]
+  basis: "Read the [D-P] D2.6 definition block (lines 206-212): '...declared closure O1/O2/O3 on subsonic patches...' at line 211 — three letters (O1/O2/O3) named where the finding says the interface has four options, confirming t"
+- id: problem-statement:geno-line-refs-unpinned
+  code: ["docs/rde_nozzle_problem_book.md:203-204"]
+  basis: "Read docs/rde_nozzle_problem_book.md lines 198-209 (interface I2 definition). Line 204: '`read_ivl_from_file` (IO_m.f90:620) + annular inlet (InitialValues_m.f90:146).' — GENO source file:line citations with no commit ha"
+- id: ledger-coherence:D4-novelty-zero-hits-vs-KO1970
+  code: ["docs/rde_nozzle_claims_verdict.md:10-19", "docs/rde_nozzle_claims_verdict.md:44"]
+  basis: "Read docs/rde_nozzle_claims_verdict.md (D4) lines 1-50 and the S13 addendum context near line 100. Lines 10-19 are the 'b2 GATE' paragraph with its 'ZERO hits' claim; line 44 is the T3-novelty table row still saying 'b2 "
+- id: ledger-coherence:T-LEMA-ii-class-contradiction
+  code: ["docs/rde_nozzle_theorem_ledger.md:474-477", "docs/rde_nozzle_theorem_ledger.md:525-535", "docs/claims_registry.yaml:446-457"]
+  basis: "Read docs/rde_nozzle_theorem_ledger.md (D3) lines 450-539. Line 476: 'Classes of (i)-(iii) therefore UNCHANGED (THEOREM*)'. Later in the SAME section, line 532: 'Lemma A identification (ii) is now THEOREM within the irro"
+- id: ledger-coherence:coherence-grep-uncommitted
+  code: []
+  basis: "Confirmed by search: grep for 'coherence' across all .py files in the repo returns only the unrelated test_cj_coherence chain; grep for 'grep' in .py files returns nothing. No file anywhere (tests/, validation/, scripts)"
+- id: ledger-coherence:D25U-statement-four-constants
+  code: ["docs/rde_nozzle_remaining_conditionals.md:21-41", "docs/rde_nozzle_remaining_conditionals.md:82-84"]
+  basis: "Read docs/rde_nozzle_remaining_conditionals.md lines 15-90. STATEMENT (line 22) and CLAIM (lines 39-41) both still read 'D(delta, L_x, C_geo, C_dat)' / '(delta, L_x, C_geo, C_dat)' — four constants — even though the S15 "
+- id: ledger-coherence:D3-52-heading-unverified-stale
+  code: ["docs/rde_nozzle_theorem_ledger.md:298-299"]
+  basis: "Read docs/rde_nozzle_theorem_ledger.md lines 298-325. The section heading (298-299) reads '### 5.2 Sharpness. The gamma-channel counterexample. THEOREM (in principle) + ### measured magnitude DOWNGRADED to UNVERIFIED-IN-"
+- id: ledger-coherence:d3-claims-field-misnomer
+  code: ["data/gamma_cycle_probe.json:1453-1457"]
+  basis: "Read data/gamma_cycle_probe.json lines 1448-1458. The JSON object holds: 'd3_claims': {'gamma_s': '1.154 -> 1.210', 'eps_shift': '-1.9%', 'isp_penalty': '-0.001%'} — exactly the STRUCK stale-note values (-1.9%, -0.001%),"
+- id: test-suite:orphan-lint-prefix-and-scope
+  code: ["tests/test_claims_lint.py:75", "tests/test_claims_lint.py:244-247", "tests/test_claims_lint.py:258-269"]
+  basis: "Read tests/test_claims_lint.py. Line 75: ID_RX = re.compile(r'\[((?:T|D|C|S|J|X|O|DIR|PAP)-[A-Za-z0-9-]+)\]') — the prefix whitelist that excludes real registry prefixes like PAN-S14/L-DoD. Lines 258-269: check_orphans()"
+- id: registry-legacy:FALSIFIERS-WITHOUT-CARRIERS
+  code: ["docs/claims_registry.yaml:251-262", "docs/claims_registry.yaml:498-509", "docs/claims_registry.yaml:1115-1126"]
+  basis: "Read the three claims_registry.yaml entries. T-T0 (251-262): falsifier text present ('thrust-trace flatness diagnostic failing...') but carrier: [] and no inline IOU tag. T-P3 (498-509): carrier: [] while the finding not"
+- id: theory:s-t0p-proof-writeup-pending
+  code: ["docs/rde_nozzle_MASTER.md:463-498"]
+  basis: "The named [S-T0P] PROPAGATION LEMMA block: heading at line 463 ('[S-T0P] PROPAGATION LEMMA (SCHEMA...'), statement + proof route (equivariance + uniqueness argument, lines 463-476), the honest two-stage claim (477-495), "
+- id: theory:r22-formal-decomposition
+  code: []
+  basis: "This is a methodological/planning finding: it names a four-part formal-decomposition PLAN (T-DISC fiber-separation theorem, T-RED reduction-residual operator, M-RED measurement, re-scoped R22-CFD) none of which is yet wr"
+- id: theory:r8-r10-never-live-unilateral
+  code: ["docs/rde_nozzle_MASTER.md:1186-1198"]
+  basis: "The named CONE TRANSFER LEMMA [T-T7CN] theorem block: heading at line 1186 ('CONE TRANSFER LEMMA [T-T7CN] [THEOREM, elementary; proof of record...'), statement, the false-converse counterexample (1192-1194), and the cons"
+- id: oracles:sonic-strip-probe-missing-d49
+  code: []
+  basis: "Grepped the whole repo (case-insensitive) for GP01, D-49/D49, and 'sonic strip' restricted to *.py: zero matches. The only hits are in docs/*.md and validation/ADVISORY_*.md prose describing the gap itself (registry, PRO"
+- id: oracles:a1-gp01-quasi1d-not-built
+  code: []
+  basis: "Same check as sonic-strip-probe-missing-d49: grepped *.py repo-wide for GP01/X-GP01/D-49 -- zero code matches. literature_review/reports/giles_pierce_2001_quasi1d.md is a literature-reading report, not an implementation;"
+- id: audit-scert:teqbr-magnitude-unguarded
+  code: ["tests/test_phase_diagram_real.py:133-146"]
+  basis: "Read tests/test_phase_diagram_real.py:1-37 (module docstring, E1-E8 oracle list) and 120-147. The E6 block (lines 133-146) is the actual T-EQBR falsifier: it checks 'eq bracket recorded OK (frozen <= eq per PR)' (135-136"
+- id: audit-scert:future-pass-dates-accepted
+  code: ["tests/test_claims_lint.py:230-243"]
+  note: "span re-pinned by orchestrator (collision resolution)"
+  basis: "Read tests/test_claims_lint.py:195-255. Block (c) 'suite membership + typed ondemand for carrier entries' (224-254) is the staleness gate: it matches the ondemand spec against ODSPEC_RX (231-233, defined at 73-74), fetch"
+- id: audit-scert:ondemand-no-run-artifacts
+  code: ["tests/test_ondemand_carriers.py:128-147"]
+  basis: "Read tests/test_ondemand_carriers.py:87-152 (the run() function). Lines 128-147 are the env-conditional execution block: it runs the declared suite self-check via subprocess.run with capture_output=True (131-132), comput"
+- id: navigation:t-t0-glossary-token-missing
+  code: []
+  basis: "Confirmed via grep on docs/glossary.yaml: no 'T-T0' or 'wave-frame' entry exists. The file is itself a live, machine-counted registry (163 total rows = len(families)+len(entries), counts stated inline in its own header a"

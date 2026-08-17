@@ -136,10 +136,70 @@
 # sessions AFTER the doc's date (git-verified: 8046434/7fb0f0c touch
 # them post-2026-08-12); the advisory's own file:line anchors are the
 # locus of record, re-pinned at first touch.
-# REMAINING R31 corpus duties (named, never generic): choice-ledger
-# ANNEX C1-C45 = EXTRACTED to docs/choice_ledger.yaml (tranche done,
-# lives outside this registry by design); S25 refuter/red-team
-# findings — the next tranche of this same seeding duty.
+# SEEDING STATUS tranche (c) (declared; 2026-08-17, S-FOUNDATIONS
+# Phase 0 = the named queue of the S-CERT closing note): the
+# S25/S25-bis REFUTER + RED-TEAM residues are SEEDED AND ACCOUNTED.
+# THREE-WAY COUNT OF RECORD (per source; full per-item accounting in
+# validation/sfoundations_raws_2026-08-13/phase0_tranche_c_candidates.yaml):
+#   pipeline_sense_CONVERGED §6 open rows:  8 == 1 + 5 + 2;
+#   S25bis_diff_convergence §7 deferred:    9 == 1 + 6 + 2;
+#   S25/S25bis session-log refuter/red-team catches:
+#                                          13 == 1 + 1 + 11;
+#   TOTAL 30 == 3 seeded_new + 12 mapped_to_existing + 15 declared.
+# Declared items dominated by pre-commit repairs (defect never shipped
+# in a committed tree = not a finding of record) and items consumed by
+# later sessions with cited evidence. New rows:
+# theory:ivl-bias-quoting-discipline-pending,
+# bench:campaign-carry-fresh-vs-carried-untested,
+# test-suite:notaknot-corner-density-rejector-misformed (CLOSED,
+# rejector-construction defect + same-window repair, kept of record).
+# SEEDING STATUS tranche (d) (declared; 2026-08-17, S-FOUNDATIONS
+# Phase 0): the PER-ROW CONSUMPTION MAPS of the four high-density
+# partially-consumed advisories are SEEDED AND ACCOUNTED (extraction
+# draft Sonnet-authored pre-directive, integrated after full
+# Fable-tier verification by the orchestrator — spot-verified loci:
+# MASTER [vorticity] placeholder, N6 owner mapping, ISS-6 plan:227,
+# C-3/5/6 anchors, H-AM zero-hits). THREE-WAY COUNT OF RECORD (per
+# source; full per-item accounting in
+# validation/sfoundations_raws_2026-08-13/phase0_tranche_d_candidates.yaml):
+#   claims_to_code C-1..C-6:              6 == 3 + 0 + 3;
+#   engine_speed_audit N/DEAD/Q/S (28):  28 == 6 + 2 + 20;
+#   redteam ISS-1..ISS-6:                 6 == 0 + 0 + 6 (all six
+#     repairs verified landed in the ratified plan, cited per-item);
+#   mean_swirl panel F2a deltas:          3 == 3 + 0 + 0;
+#   TOTAL 43 == 12 seeded_new + 4 mapped_to_existing + 27 declared.
+# HONEST RESIDUAL flagged by the tranche (out of its named scope,
+# recorded here so it is not lost): the mean-swirl panel's R4
+# same-session P1 theorem write-up (H-AM1..H-AM5) was never landed
+# verbatim in M0/N6 — only informally absorbed via the later
+# S-GAUNTLET material; owner = the S-FOUNDATIONS Phase D mean-swirl
+# absorption item (this session), else next theory window.
+# SEEDING STATUS tranche (e) (declared; 2026-08-17, S-FOUNDATIONS
+# Phase 0): the 2026-08-13 LITERATURE CORPUS is SEEDED AND ACCOUNTED
+# (extraction Sonnet under the user-ratified mechanical split,
+# integrated after Fable-tier verification; full per-item accounting
+# in validation/sfoundations_raws_2026-08-13/phase0_tranche_e_candidates.yaml).
+# THREE-WAY COUNT OF RECORD (per source):
+#   litreview confrontation (A1-39/C1-33/R1-29): 101 == 88 + 12 + 1
+#     (88 items land in 29 grouped rows, grouping declared and
+#     traceable by A#/C#/R# tag; ALL carry "pending ratification
+#     (confrontation CAVA)" — nothing adopted on that doc's authority);
+#   litmap extension (2 near-misses + W1/W2/A1-A4): 8 == 0 + 4 + 4;
+#   moc_zucrow MOC-01..09: 9 == 9 + 0 + 0 (MOC-08 seeded DISCHARGED
+#     with the S-CERT same-label-different-artifact disambiguation);
+#   LEDGER_dubbi raw A/B/C/D (35): 35 == 2 + 0 + 33 (GENO-owned /
+#     no-result-yet / no-defect-found, per-item reasons in file);
+#   TOTAL 153 == 40 seeded_new rows + 16 mapped + 97 declared.
+# NAMED RESIDUE of the tranche (boundary honesty): both MoC-audit
+# docs GREW past the tranche's item-set boundary in their own session
+# (MOC doc to MOC-28 + appendix; dubbi doc's late sections
+# self-disclaimed) — that overgrowth is the S-GENOAUDIT-resumption
+# corpus (census R13), EXCEPT its P0 which is seeded NOW:
+# oracles:geno-tocnoz-wall-thrust-double-count (never-postpone).
+# SEEDING QUEUE OF RECORD: CONSUMED — tranches (a)/(b)/(c)/(d)/(e)
+# all seeded and accounted (this header, blocks above); the R31/R32
+# named queue is EMPTY as of 2026-08-17 (S-FOUNDATIONS Phase 0
+# complete; future corpora seed at their own birth windows per SR-4).
 entries:
 - id: variational-driver:objective-omits-throat-panel
   status: CONFIRMED
@@ -315,7 +375,7 @@ entries:
   severity: low
   magnitude: "none-measured (steering-quality, not verdict-bearing; KAT-3 twin absent)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-30"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1003-1012"]
   mechanism: test-family-gap
   owner: "next open window (S25-cheap class) + M0 one-liner for the _chain_ratios prefix-exactness lemma"
   trigger: "first session touching cert_diag/val_diag machinery"
@@ -385,7 +445,7 @@ entries:
   severity: medium
   magnitude: "the L4 C-D25U STATEMENT and FALSIFIER blocks still carry the four-constant form that U1 section-7 proved FALSE as literally written (the h_min counterexample satisfies the recorded falsifier verbatim); the five-constant amendment lives only in the DISCHARGER STATUS note while the reading rule directs heirs to the statement block"
   source: "validation/AUDIT_agnostic_2026-08-07.md#foundations-U:L4-statement-falsifier-unamended"
-  code: []
+  code: ["docs/rde_nozzle_conditionals.md:20-30", "docs/rde_nozzle_conditionals.md:66-67"]
   mechanism: doc-code-mismatch
   owner: "F0-hygiene remainder: amend the L4 STATEMENT + FALSIFIER blocks with the dated five-constant text; grep-lint candidate (h_min co-occurrence)"
   trigger: "next conditionals.md touch, or the next THEOREM* inheriting C-D25U"
@@ -411,7 +471,7 @@ entries:
   severity: low
   magnitude: "LEMMA U4-B header states N_X <= N_F^max(N_b+2) while the proof reaches only the cruder 2 N_F^max(N_b+1) (strictly weaker for N_b > 0); crudeness declared inline, constant declared NOT load-bearing, downstream chain uses the proved bound - header-only mismatch"
   source: "validation/AUDIT_agnostic_2026-08-07.md#foundations-U:U4B-stated-bound-unproven"
-  code: []
+  code: ["docs/rde_nozzle_D25U_U3U4.md:283-302"]
   mechanism: numerics
   owner: "pre-F2 (C6): one-line header correction to the proved bound, or complete the sharper count"
   trigger: "next D25U_U3U4 touch"
@@ -515,7 +575,7 @@ entries:
   severity: medium
   magnitude: "out-of-box states silently CLAMP (jnp.interp pins T to the table edge with exactly zero exterior derivative - Newton then certifies the wrong-but-consistent system, cert_worst blind) while the quintic path EXTRAPOLATES unboundedly (_locate clips the index); CONFIRMED LIVE S21: the [X-VMON] KAT-B first range left the box and measured lam_ad -0.216 vs -1.185 at M ~ 4.7; the box-membership hypothesis is asserted in the C7 audit and enforced by no carrier"
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F3-table-clamp-silent"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:397-409"]
   mechanism: hidden-hypothesis
   owner: "named condition of record C-D (S24 thermo-closure survey): box-edge silent-clamp rejector, owner F2 - traced min/max-T (or ht-margin) diagnostic checked like cert_worst"
   trigger: "F2 engine window / next X-THC1 touch; any consumer marching states near the table box (FD probes at P+-h included)"
@@ -532,7 +592,7 @@ entries:
   severity: low
   magnitude: "the printed node-set max samples NON-node points (stride 2 over 20001 probes vs 8192 nodes - incommensurate grids), so the declared node-exactness of s0' = cp/T is never actually checked; PASS gate unaffected (full-probe gap check governs); print-only defect"
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F6-node-check-vacuous"
-  code: []
+  code: ["validation/thermotab_c1_jax.py:406-419"]
   mechanism: doc-code-mismatch
   owner: "consuming phase (C-A exactness-oracle window, S24 named condition): evaluate s0p directly AT the nodes or fix/drop the comment and printed figure"
   trigger: "next thermotab/X-THC1 touch"
@@ -541,7 +601,7 @@ entries:
   severity: low
   magnitude: "supersonic-root seed scan over the magic window [1.01, 2.8] x as (400 samples) falls back SILENTLY to q0 = 1.8*as when no sign change is found - no rejection, no post-solve M(qe) > 1 check; a subsonic-root convergence would surface only as downstream NaN; constants case-tuned to the reduced twin"
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F7-legge-bracket-fallback"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:864-873"]
   mechanism: underived-constant
   owner: "F2 engine rebuild window (generality directive): derive the scan window from the table box (q_max from h0 - h(T_TAB_LO)) + assert bracket found + supersonic-root rejector"
   trigger: "F2 engine window, or any design point with eps outside the reduced-case class"
@@ -550,7 +610,7 @@ entries:
   severity: low
   magnitude: "single scalar certification scale max(1, max|z|) over mixed-units z = [x4,y4,u4,v4]: position components certified only to ~100 eps |u| - about 3 decades looser than their own roundoff floor - while the comment claims UNIT-CONSISTENT / Newton-at-the-floor; no verdict compromised (contour bands Richardson-dominated)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F8-cert-scale-unit-mixing"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:796-812"]
   mechanism: numerics
   owner: "F2 engine window: per-component scale vector (position rows vs velocity rows) or honest re-label of the guarantee"
   trigger: "F2 engine window / next certification-metric touch"
@@ -575,7 +635,7 @@ entries:
   severity: medium
   magnitude: "res.constr_violation (a LENGTH in the u-coordinates) gated by gtol derived in gradient units - with the S20 gtol 9.338e-01 of record the infeasibility rejector tolerates ~0.9 length units on a y~2 wall (near-vacuous, dimensional coincidence); xtol = 1e-10 mislabeled 'Newton floor on W scale' (actual floor ~4e-14); the 10x slacks in optimality <= 10*gtol and the replay tol are undischarged factors inside PASS/FAIL gates; scipy optimality is Dv-SCALED while tol_dp was measured on the physical dJ/dW; REFUTED component: the 1e-8 gscale factor = trust-constr's own default gtol (derived-by-declaration)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#variational-driver:cross-unit-and-slack-tolerances"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:2259-2264"]
   mechanism: underived-constant
   owner: "F2-entry driver window (with the numeric-lint classification duty): separate feasibility tolerance in length units (Newton floor on y scale x K_RICH) + scaled-space gtol via the same Dv map + derive-or-declare the 10x factors"
   trigger: "F2 entry, or the first verdict leaning on constr_violation or a near-threshold KKT residual"
@@ -594,7 +654,7 @@ entries:
   severity: medium
   magnitude: "(W/Dv)*Dv != W at the ulp level: (a) stalled = np.array_equal(W, W_start) essentially never True - the declared honest-floor break is dead code (bounded by max_segments; final verdict still FAILs honestly, no false PASS); (b) one spurious full adaptive re-record per segment at an eps-perturbed base, inflating n_rec/segment counts reported in the Verdict"
   source: "validation/AUDIT_agnostic_2026-08-07.md#variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1839-1846", "validation/a1_toc_variational_jax.py:1948-1951"]
   mechanism: numerics
   owner: "F2 driver window: compare in u-space (state.x vs stored u) or with an ulp-scaled tolerance; verify FIRST against the S25 M-chain memoized callback (bit-key dedup may already absorb the spurious re-record) before editing"
   trigger: "F2 driver touch"
@@ -619,7 +679,7 @@ entries:
   severity: medium
   magnitude: "R6 acceptance |t_grad - t_rao| <= bar_g + bar_r has NO conclusiveness guard vs the scanned half-span 3*t0amp: if the floor/slope ratio reaches the half-span the PRIMARY kill criterion passes for ANY relative placement of the two zeros; bar_r's floor is t-independent (does not shrink with family span); both bars omit fit model error; the o32 twin implements exactly the missing NON-CONCLUSIVE branch - the omission is against the campaign's own standard"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:2"
-  code: []
+  code: ["validation/o33_bench.py:1024-1039"]
   mechanism: rejector-weakness
   owner: "consuming phase: the next R6/primary-kill consumer adds the conclusiveness guard bar_g + bar_r < half-span (declared NON-CONCLUSIVE otherwise) in the NEXT pre-registration, with fit residuals propagated into both bars"
   trigger: "next o33 R6 consumer, or a P-1 claim citing the R6 verdict"
@@ -628,7 +688,7 @@ entries:
   severity: medium
   magnitude: "S21 discharged the verdict-bearing pair (0.03 -> derived band 1.8696e-02 with firing control) and rewrote the false blanket claim; RESIDUE of record: R4 sign-separation 0.05, the two-knob 0.5 factor + unbanded rel_g2 single-pair monotonicity, order_of_decay dead code (the docstring's O(h^2) decay never measured - this row ABSORBS audit row p2-line:r4-order-claim-untested-dead-code, same objects), and the 1e-4 representation gate = declared cap P2-scheduled"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:3"
-  code: []
+  code: ["validation/o33_bench.py:823-830", "validation/o33_bench.py:978-982", "validation/o33_bench.py:396-405", "validation/o33_bench.py:785"]
   mechanism: underived-constant
   owner: "audit-P2 C3 remainder -> consuming phase: next o33_bench touch derives or declares each residual constant (order_of_decay wired to the r=1/r=2 records or deleted)"
   trigger: "next o33_bench touch, or any verdict leaning on the R4/two-knob rows"
@@ -645,7 +705,7 @@ entries:
   severity: low
   magnitude: "the first-order negative control runs PRIMAL-only (with_grad=False, G identically 0) - the adjoint band, the sole falsifier of claim (iv), is never demonstrated to fire end-to-end on known-wrong-order physics; the adjoint noise floor borrows the primal accumulation law with no written justification; mitigation: the estimator selftest machine-rejects a first-order sequence"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:5"
-  code: []
+  code: ["validation/o32_mesh_convergence.py:651-662"]
   mechanism: rejector-weakness
   owner: "next O3.2 touch (paired with the fixed-topology-ladder duty, D6 item 9): run the foot-solver ladder once with with_grad=True + derive or empirically bound the adjoint-specific floor"
   trigger: "next o32 run consumed by a verdict, or the gradient-half falsifier registration (see foundations-U:LBML-gradient-rate-rejector-cannot-fire)"
@@ -654,7 +714,7 @@ entries:
   severity: low
   magnitude: "two self-declared verdict-relevant monitors cannot fire: res topo (axis-column fraction) is print-only, and no per-level assertion checks that every level's wall span covers the frozen window [a,b] (ideal-ladder end station h-dependent via m_stop); mitigations: TOC lip at x = L structurally covered, dp_model NON-CONCLUSIVE backstop"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:6"
-  code: []
+  code: ["validation/o32_mesh_convergence.py:540-552", "validation/o32_mesh_convergence.py:667-669"]
   mechanism: rejector-weakness
   owner: "next o32 touch: gate the topo fraction (derived smoothness bound) + per-level window-coverage assert"
   trigger: "next o32 ladder consumed by a verdict"
@@ -671,7 +731,7 @@ entries:
   severity: low
   magnitude: "both [D1] kill comparisons are raw sign tests (best.goal < rel1; rel < rel8) with no uncertainty band while the carrier itself measures the metric's noise floor tol_stop - an in-floor verdict is decided by quantified noise; the raw form faithfully implements the PRE-DECLARED kill link, so the fix belongs in the NEXT pre-registration, not a silent edit"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:8"
-  code: []
+  code: ["validation/adaptive_knot_optimize.py:380-383", "validation/adaptive_knot_optimize.py:590-594", "validation/o33_bench.py:971-976"]
   mechanism: rejector-weakness
   owner: "next [D1]-class pre-registration: declared NON-CONCLUSIVE region (improvement > tol_stop for a confirming verdict)"
   trigger: "next adaptive-knot [D1] campaign"
@@ -725,7 +785,7 @@ entries:
   severity: low
   magnitude: "T-T0's flatness falsifier is a panel-adjudicated dated IOU of record but the registry entries (T-T0, DIR-PERIODIC) omit the inline IOU tag the registry's own convention uses - an index-only auditor sees an unexecutable falsifier; T-P3 carrier [] while X-O33B measures exactly f2 = -lambda2 constancy (de-facto falsifier unregistered)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#registry-legacy:FALSIFIERS-WITHOUT-CARRIERS"
-  code: []
+  code: ["docs/claims_registry.yaml:251-262", "docs/claims_registry.yaml:498-509", "docs/claims_registry.yaml:1115-1126"]
   mechanism: rejector-weakness
   owner: "F0-hygiene remainder: inline IOU tags on T-T0/DIR-PERIODIC + X-O33B into the T-P3 carrier list, linked to the S21-registered field-level-rejector P-2 blocker row"
   trigger: "next registry hygiene pass, or a P-1 claim citing T-T0/T-P3"
@@ -777,7 +837,7 @@ entries:
   severity: medium
   magnitude: "(P) GIVEN premises the stage-A admission audits as PASSED while they are checkable 1-of-3: only the axial spacelikeness margin has a carrier (derived floor); no Crocco-compatibility or characteristic-completeness audit exists (inlet_admissibility enforces homentropic UNIFORMITY, a different guard); gate G6 'rejected loud' cannot fire as specified"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:stage-a-audits-premised-not-implemented"
-  code: []
+  code: ["validation/a1_march_scan.py:256-297"]
   mechanism: rejector-weakness
   owner: "pre-F5 / F2a (U3' owns the extraction-surface premise; CycleFamily stage-A v0 owns the auditor): standalone stage-A auditor with loud-reject controls (Crocco-inconsistent synthetic family; axially-subsonic patch without declared closure)"
   trigger: "F5 entry / first stratified interface contract consumed of record"
@@ -786,7 +846,7 @@ entries:
   severity: medium
   magnitude: "the numbers driving the program's central error-budget verdict (f = 3-30 kHz, tau_n = 20-150 us => St = O(0.1-1) MARGINAL => P4 corrector mandatory, (P)(v) St bar) carry no citation and no committed carrier; tau_n = int dx/u is computable on the certified march and was never computed - nothing can currently reject the stated range (R5 violation inside a normative doc)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:st-marginal-numbers-uncarried"
-  code: []
+  code: ["docs/rde_nozzle_problem_book.md:471-478"]
   mechanism: underived-constant
   owner: "pre-F5 / P-1 claim gate: commit the St carrier (tau_n on the certified TOC march at the anchor states, t_c from the matched-cycle machinery, derived bars, corrupted-u rejector) + literature citation for the f range"
   trigger: "P-1 draft citing St / the P4 obligation, or F5 entry"
@@ -795,7 +855,7 @@ entries:
   severity: medium
   magnitude: "T-T4 declares only the C-HT4 closure and the registry labels it gamma EOS-general, while the peak-design ordering (l(xi) increasing in Pc) rests on Lemma B - declared 'REQUIRES calorically perfect gas' - whenever T0(xi) varies across phases, which is the physical case (D3: T0 3727 -> 2228 K, gamma_s 1.1537 -> 1.2093); the registry C-HT4 statement omits the upstream-scaling clause entirely"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:t4-gamma-status-undeclared"
-  code: []
+  code: ["docs/claims_registry.yaml:329-340", "docs/rde_nozzle_MASTER.md:583-588"]
   mechanism: gamma-leak
   owner: "F0-hygiene remainder (gamma-variable directive): declare T4's status at both statement sites + fix the registry gamma field; named rejector = the D3-style two-phase l-ordering probe on the Cantera gamma(T) route"
   trigger: "next M0/registry T-T4 touch, or any T4-consuming verdict at gamma(T) with varying T0"
@@ -804,7 +864,7 @@ entries:
   severity: medium
   magnitude: "no committed carrier can evaluate either (P)(v) bar term for a delivered design: t3qs is a structural lemma (not a J1 evaluator), the D2-residual meter's full anchor = A5 (not built) - conformance of any delivered (S*, delta) to (P)(v) is unfalsifiable today, weaker than the BAR-CLASS NOTE's own downgrade admits (it concedes non-certification, not non-computability); the certified fallback bracket is the only shippable object, as the docs state"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:pv-bars-no-evaluator"
-  code: []
+  code: ["docs/rde_nozzle_MASTER.md:312-318"]
   mechanism: doc-code-mismatch
   owner: "pre-F5: land the licensed cheap J1 route (one linearized sweep-perturbation solve on the certified march -> numeric St|J1| with derived bars) or amend the BAR-CLASS NOTE to 'evaluators pending (J1: VI.4bis(ii); D2: A5)' + a Verdict lint requiring every (v) bar term to name its carrier or declared absence"
   trigger: "F5 entry / first delivered (S*, delta) pair of record"
@@ -813,7 +873,7 @@ entries:
   severity: low
   magnitude: "one letter-namespace carries at least five meanings in the normative corpus (O1/O2 = theorem labels, 4.3bis interface options, Verdict oracles, campaign oracles, census pins - and D2.6's 'closure O1/O2/O3' miscounts the four options); R1/R2 triple use; D1 Def 3.3 missing; misreading hazard under the textual conflict rule, no wrong content found downstream"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:label-namespace-collisions"
-  code: []
+  code: ["docs/rde_nozzle_MASTER.md:206-211"]
   mechanism: process
   owner: "F0-hygiene remainder: namespace rename pass (IF-O*, ORC-O*) at the D2.6 sites + Def 3.3 tombstone + doc-lint candidate rejecting bare O-digit tokens matching two label spaces"
   trigger: "next D2.6/D1 touch, or the first misreading incident of record"
@@ -822,7 +882,7 @@ entries:
   severity: low
   magnitude: "the frozen problem book anchors interface-contract narrative to GENO source line numbers with no commit hash (GENO = independent never-committed repo) - unverifiable from this repo's history, rots silently inside frozen definitions"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:geno-line-refs-unpinned"
-  code: []
+  code: ["docs/rde_nozzle_problem_book.md:203-204"]
   mechanism: citation
   owner: "F0-hygiene remainder: stamp GENO code citations with the pinned build hash (GENO fca273a is now of record as the KAT'd build) + lint rejecting hash-less GENO file:line citations"
   trigger: "next D1/G0-dossier touch"
@@ -965,7 +1025,7 @@ entries:
   severity: medium
   magnitude: "the b2 'ZERO hits' paragraph and the T3-novelty row carry no supersession marker to the SAME document's S13 adjudication (Kraiko-Osipov PMM 34(6) 1970 CONFIRMED: trajectory-averaged weighted variational contouring; resolved in containment, mandatory citation) though in-row markers are the doc's own practice; P1_skeleton still says 'contingency armed' and C26 'QUERY-BOUNDED' although the falsifier fired 2026-07-22 - the novelty ledger is internally contradictory without markers"
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:D4-novelty-zero-hits-vs-KO1970"
-  code: []
+  code: ["docs/rde_nozzle_claims_verdict.md:10-19", "docs/rde_nozzle_claims_verdict.md:44"]
   mechanism: citation
   owner: "F0-hygiene remainder / P-1 claim gate: [SUPERSEDED/QUALIFIED - see S13 ADJUDICATION ADDENDUM] markers on the b2 paragraph + T3-novelty row; skeleton line + C26 row refreshed to ADJUDICATED (containment, K-O 1970 mandatory citation); zero-hits-co-cites-adjudication lint candidate"
   trigger: "any P-1/D4 novelty pass"
@@ -974,7 +1034,7 @@ entries:
   severity: medium
   magnitude: "the class of a verdict-bearing identification is stated three inconsistent ways: latest D3 entry '(i)-(iii) UNCHANGED (THEOREM*)' vs the same section's P-A1' discharge ('(ii) is now THEOREM') and the registry (T-LEMA-ii class THEOREM, inherits []); P-1 5.3 lumps (ii) under 'THEOREM*/pending [C-O33]' - a reader of the latest D3 entry gets the wrong class"
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:T-LEMA-ii-class-contradiction"
-  code: []
+  code: ["docs/rde_nozzle_theorem_ledger.md:474-477", "docs/rde_nozzle_theorem_ledger.md:525-535", "docs/claims_registry.yaml:446-457"]
   mechanism: doc-code-mismatch
   owner: "F0-hygiene remainder: one-line D3 correction ('(i)/(iii) UNCHANGED; (ii) already THEOREM per P-A1-prime') + P-1 5.3 split; doc-vs-registry class-consistency lint candidate"
   trigger: "next D3/theorem-ledger touch, or a P-1 section-5.3 pass"
@@ -992,7 +1052,7 @@ entries:
   severity: low
   magnitude: "the CLAIM clause and the U4 architecture line still assert the four-constant form that the S15 amendment IN THE SAME STATEMENT BLOCK declares FALSE as written without h_min (registry already five-constant - doc lags registry); no reading path reaches the stale tuples without passing the correction (why low)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:D25U-statement-four-constants"
-  code: []
+  code: ["docs/rde_nozzle_remaining_conditionals.md:21-41", "docs/rde_nozzle_remaining_conditionals.md:82-84"]
   mechanism: doc-code-mismatch
   owner: "F0-hygiene remainder: edit the CLAIM and U4 lines to the five-constant form (amendment kept as dated history) + grep-lint (no D2.5-U tuple without h_min outside dated-amendment context)"
   trigger: "next remaining_conditionals touch"
@@ -1001,7 +1061,7 @@ entries:
   severity: low
   magnitude: "section-5.2 heading still reads 'measured magnitude DOWNGRADED to UNVERIFIED-IN-REPO' while the body records MEASURED IN-REPO (A0.3 closed, carriers committed) with the corrected numbers of record (-0.56%, -0.00028%) that D4 designates cite-only"
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:D3-52-heading-unverified-stale"
-  code: []
+  code: ["docs/rde_nozzle_theorem_ledger.md:298-299"]
   mechanism: process
   owner: "F0-hygiene remainder: one-line heading fix ('RE-DERIVED IN-REPO (A0.3)')"
   trigger: "next theorem-ledger touch"
@@ -1044,7 +1104,7 @@ entries:
   severity: low
   magnitude: "three narrowings below the stated guarantee (with the verifier's corrected evidence): ID_RX prefix whitelist excludes real registry prefixes (PAN-S14 is a registry entry cited as [PAN-S14] in M0 - structurally invisible to check_orphans; L-DoD uncoverable), check_orphans scans docs/*.md non-recursively (validation dossiers unguarded), suite registration = raw substring in run_all source (a quoted module name in a comment satisfies it)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:orphan-lint-prefix-and-scope"
-  code: []
+  code: ["tests/test_claims_lint.py:75", "tests/test_claims_lint.py:244-247", "tests/test_claims_lint.py:258-269"]
   mechanism: rejector-weakness
   owner: "suite-hygiene window (C4 remainder): derive ID_RX from the registry ID population + catch-all bracketed-tag pattern with declared ignore-list; extend the scan to validation/**/*.md; ast-parse the tier lists"
   trigger: "next test_claims_lint touch"
@@ -1069,7 +1129,7 @@ entries:
   severity: low
   magnitude: "the persisted field named d3_claims in data/gamma_cycle_probe.json holds the STRUCK stale note numbers (-1.9%, -0.001%) - exactly the values D3 5.2 / D4 declare corrected/never-cite - not D3's numbers of record (-0.56%, -0.00028%); the test gates the corrected values (rejector culture holds); naming/mis-citation hazard only, computed fields match the record"
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:d3-claims-field-misnomer"
-  code: []
+  code: ["data/gamma_cycle_probe.json:1453-1457"]
   mechanism: process
   owner: "F0-hygiene remainder: rename the field (stale_note_claims_struck, schema-bump note) + golden-test rule that no *claims* key in data of record carries struck values without a struck/stale marker"
   trigger: "next gamma_cycle_probe regeneration"
@@ -1078,7 +1138,7 @@ entries:
   severity: high
   magnitude: "outcome-II exit fires on ratchet exhaustion at TR_FLOOR; the reported residual (S24: 1.417e6) is the KKT residual of the problem WITHOUT the certification constraint — at a frontier-pinned point it measures nothing about optimality; 'pinned at a genuine frontier optimum' and 'TR machinery failure at an interior point' are indistinguishable today (three outcome-II records S20/S22/S24 lean on the distinction; S24 EQ-v2 H-CLASS qualification too); Probe B Arm 1 measured: binary-gate arm exits at radius floor with optimality 1.0 at 7.1e-2 from the true optimum"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-2"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1586-1613"]
   mechanism: rejector-weakness
   owner: "F2 (with the GAP-1 window): with the KS surrogate scipy optimality IS the surrogate B-residual; without it, [P-BSTAT] convex-hull test 0 in conv(stratum gradients)+normals on the persisted rejected designs (s22_rejected_designs.json exists) — the certificate upgrades every future outcome-II from declaration to adjudication"
   trigger: "F2 entry / the next outcome-II declaration of record"
@@ -1087,7 +1147,7 @@ entries:
   severity: high
   magnitude: "the one-extra-Newton-step certificate claims derivation from the Newton contraction while the contraction hypothesis is never checked: no kappa(J) qualification, no branch-consistency monitor anywhere; near-fold toy measured BOTH failure modes — exact root -> ratio 25 = false FAIL (roundoff amplified by 1/|J|) and basin-scale stale seed -> other branch at ratio 0.0 = false PASS on the verdict-bearing O3.1 FD-probe replay path; [X-CDKAT] does NOT discriminate this, CERT_PLAY cannot see the wrong-branch pass"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-3"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:813-820"]
   mechanism: hidden-hypothesis
   owner: "F2 (enlarges the outcome-II certifiability-limited mechanism candidate list): branch-consistency monitor + kappa-aware derived band (eps*kappa(J)) evaluated over one recorded S18/defnoz march — named probe still owed (the S25 window was consumed by the speed program)"
   trigger: "F2 engine window, or the first verdict leaning on near-fold certification"
@@ -1097,7 +1157,7 @@ entries:
   severity: medium
   magnitude: "both resolutions share the same first-order Sauer start (gamma=const, GENO-mirrored 1e-6 offset) so IVL model error is invisible to e(x) BY CONSTRUCTION — an instrument-level statement in no record doc; corrected numbers of record (Q9 folded): NET wall perturbation +0.17 a* (terms 0.167/0.333 opposite-sign, not 0.50), r=0.1 extreme net 2.5 (series meaningless); the 7.6e-9 cross-code agreement proves fidelity, not accuracy"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-6"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:839-848"]
   mechanism: correlated-error
   owner: "displaced-start-line invariance rejector (march 3 columns, restart, contour must move < band) still owed at the next engine window + band-blindness one-liner in M0; higher-order start (Kliegel-Levine/Hall) = F4b/F5 lever if the rejector fires; the GENO twin DATA CONTRACT stays"
   trigger: "any absolute-accuracy claim on the start region, a compact-throat instance (rtu->0.5 / r=0.1), or F4b/F5 entry"
@@ -1106,7 +1166,7 @@ entries:
   severity: medium
   magnitude: "contour_compare, band_u and o33 field bands assume the (h,h/2) pair shares march topology and nothing checks it, though the LB-c2 monitor exists (unwired) and the running-max zero-crossing cure exists at ONE site only; PASSes of record (62/62, 0/98) are conditional on the unchecked hypothesis; the mechanism numbers (11.2% under-coverage, worst 1853x) come from a TUNED synthetic — mechanism demonstration ONLY, never quotable as coverage failures of the bands of record (Q4 folded)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-7"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:1220-1238", "validation/a1_toc_variational_jax.py:2154-2171"]
   mechanism: hidden-hypothesis
   owner: "F2 band pass (the S25 wiring window was consumed by the speed program): LB-c2 census attached to every band row + running-max envelope at the three band sites; bands never narrow"
   trigger: "next band-consuming verdict at a plan-flip boundary ([X-AKNO] insertion-site skip class), or the F2 band-policy pass with GAP-10"
@@ -1115,7 +1175,7 @@ entries:
   severity: medium
   magnitude: "the axis (y->0) unit process is verification-free at march level while Me_ach — the verdict-load-bearing exit read — IS the axis-cell value: the inherited gconst oracle never exercises the v/y limit cell, no MMS, no axis-only refinement; consistency hand-probe reproduced (O(h^2) coefficient bias, no order defect, honestly disclaimed); DISTINCT from the F2 near-axis OPTIMIZATION-stall residual (different object)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-8"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:555-566"]
   mechanism: rejector-weakness
   owner: "F2 (documentary one-liner to avoid conflation with the near-axis mechanism row) + march-level gconst axis oracle at two NI (2 reduced marches; MMS per Roache / Zucrow-Hoffman axis point process as the SOTA forms) — probe still owed"
   trigger: "F2 engine window, or any verdict leaning on Me_ach at large NI"
@@ -1124,7 +1184,7 @@ entries:
   severity: medium
   magnitude: "every two-resolution band presumes the h^p model at r=1,2 while the repo's own three-level measurement at the twin returned NON-CONCLUSIVE (p_fine=2.5347, dp_tot=0.6704 > 0.5 cap) and a standing counterexample exists (f2 drift GROWS under refinement, 9.48e-03 -> 1.42e-02); K_RICH is not conditioned on an observed p; verifier-corrected threshold: deployed bands protect the COARSE member so under-coverage begins at p < log2(4/3) = 0.415; severity split MEDIUM(mesh-verifier)/LOW(thermo-verifier) carried MEDIUM by the judge on the corner-row signature (Q7 folded)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-9"
-  code: []
+  code: ["validation/o32_mesh_convergence.py:218-294"]
   mechanism: hidden-hypothesis
   owner: "F2 engine window: extend the ALREADY-BUILT [X-O32] estimator to the banded quantities (contour band, band_u, def_twin F-branches, corner row) + third resolution in contour_compare + NON-CONCLUSIVE propagation rule (degraded-p coverage factor); feeds the R25 K_RICH audit"
   trigger: "next band-bearing verdict at an unverified observed order, or the R25 K_RICH audit window"
@@ -1133,7 +1193,7 @@ entries:
   severity: medium
   magnitude: "sum, max and heterogeneous unweighted mixes coexist across the band sites with no doc stating when each applies; measured arithmetic: comparable components a~b -> K*max covers a+b by 2.11x (intended 4x) — K*max silently halves the intended safety exactly when both mechanisms contribute; honest datum of record: S24 D-prime band max-dominated 19:1, no current verdict touched"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-10"
-  code: []
+  code: ["validation/def_twin_falsifier.py:429-430", "validation/o33_bench.py:709-710"]
   mechanism: underived-constant
   owner: "declared one-paragraph composition policy (GUM/RSS independent vs linear-sum unknown-correlation, ASME V&V 20 u_val) + pass over the max sites — F2 band-policy window; any site changed moves toward the conservative composition"
   trigger: "first verdict where a max-composed band carries comparable components (D-prime landing near a cell boundary class), or the F2 band pass"
@@ -1142,7 +1202,7 @@ entries:
   severity: medium
   magnitude: "T_TAB_LO/HI = 1050/3900 K, N_TAB=8192 are case-independent literals and the contains-every-march-realized-state hypothesis is enforced nowhere (grep of record + verifier); measured margins reproduced: stagnation 34.8 K (undeclared), exit-T 8.34 K at eps=100 — comfortable at executed instances AND unrecorded; defnoz-class eps 10-25 margins (200-500 K) unrecorded too"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-11"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:306-322"]
   mechanism: hidden-hypothesis
   owner: "F2 (same window as conditions C-C/C-D): envelope-derived box with declared margin + per-run realized-(T,ht) census -> box-margin row in every Verdict (the Verdict-row addition is cheap); box unchanged until the derived version lands"
   trigger: "any eps>=100 scan or high-T0 case (8 K margin, one continuation step from the edge), or the F2 thermo window"
@@ -1151,7 +1211,7 @@ entries:
   severity: medium
   magnitude: "res.v is consumed raw into verdict-adjacent quantities (lam -> Pa_impl) and an except-pass turns extraction failure into mu_use = 0.0 with no counter; the driver checks stationarity + feasibility, never complementarity; measured arithmetic reproduced: at the S24 stop |mu*m| = 3.55e3 — a derived complementarity band fires on exactly the case that was caught BY HAND (barrier artifact demoted at step 13d)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-12"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:2356-2364", "validation/margin_governor.py:617-639"]
   mechanism: rejector-weakness
   owner: "complementarity band as a check() row + counter on the except-pass path (cheap first rows) + [R2'] LSQ multiplier re-estimate on the recorded S18/S24 gradients (Gill-Murray-Wright; Wachter-Biegler three-part termination) — F2 driver window"
   trigger: "first margin-active verdict, or any verdict leaning on res.v (Pa_impl class) or a near-threshold KKT residual"
@@ -1160,7 +1220,7 @@ entries:
   severity: medium
   magnitude: "the chain mask is frozen per RUNG while the plan re-freezes per RK-G P2 segment — the only W-dependent frozen object outside that rhythm; C3 fired of record (i_cross 96->82, 14 nodes; drift_val 9.188e-3 vs mu0 2.118e-3 = 4.3x the floor; repeat consumed decisive run 2); the panel ratified rung-freeze but NO position considered segment re-freeze or the smooth gate — post-adjudication measured evidence; stale floor never bound (margin inactive 33x, cost = budget + attribution, honestly recorded)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-13"
-  code: []
+  code: ["validation/def_twin_falsifier.py:1124-1133"]
   mechanism: hidden-hypothesis
   owner: "F2 re-adjudication, both legs (interface extension is driver-touching, S21 pin): [R1] replay recorded run-1 segment bases through cs_stats, i_cross per segment — smooth accumulation licenses segment re-freeze, jump licenses the differentiable gate; the C3 detector stays"
   trigger: "F2 entry, or the next DEF campaign rung with an active DE chain"
@@ -1169,7 +1229,7 @@ entries:
   severity: medium
   magnitude: "the mask shape-adaptation crop can silently DROP enforced lanes (a True lane beyond the overlap exits KS AND frac_bad, denominator recomputed on the crop); 16 adaptations counted in decisive run 2 with True-lanes-lost-per-adaptation UNMEASURED — counted event != bounded event, against the repo's own C4/C5 standard; loss can only weaken an inactive-by-33x constraint at this instance, no number at risk"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-14"
-  code: []
+  code: ["validation/def_twin_falsifier.py:677-699"]
   mechanism: rejector-weakness
   owner: "one-line conservation-of-enforcement invariant + verdict-bearing lost-lane counter ([R1'] log mask.sum() minus mloc.sum() per adaptation; margin_governor counter pattern) — F2-entry cheap window"
   trigger: "next def_twin campaign with truncation/DoD active (crop eats DE lanes preferentially), or an [X-AKNO] M_NODES change between derive and rung"
@@ -1178,7 +1238,7 @@ entries:
   severity: medium
   magnitude: "every margin-constrained walk since S22 runs scipy tr_interior_point — any inequality switches the method (verified at installed scipy 1.18.0) — not the 4bis-adjudicated Byrd-Omojokun path, with 19-21 cold barrier restarts per S24 walk (each RK-G segment is a fresh minimize()); unacknowledged in the S22 log; S24-T1 covered multiplier extraction only; GAP-1 adoption makes the IP (or replacement) engine PERMANENT — re-adjudication is on the F2 critical path"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-15"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1916-1923"]
   mechanism: process
   owner: "F2 entry (with the engine re-decision, AC10 row): [P-IPADJ] 4bis-grade source adjudication of tr_interior_point (barrier law, optimality semantics, status meanings, warm start; IPOPT/filter-SQP/SLQP as the alternative set) + optional S18-mild A/B for barrier-restart overhead"
   trigger: "F2 entry, before the first margin/cert-ACTIVE rung of record (central path vs reject-and-shrink interaction untested)"
@@ -1187,7 +1247,7 @@ entries:
   severity: medium
   magnitude: "Hw = 0.5(Hw+Hw^T) destroys the natural asymmetry error signal and nothing checks the matrix — the only verdict-adjacent measured quantity in the driver with no rejector and no derived band (contrast: gradient has O3.1 + corrupted control, margin gradient has R-GRAD); kink risk real (FD step straddling a knot/plan seam -> column O(1) wrong); a wrong Hessian can MASQUERADE as certifiability-limiting — the main attribution risk at outcome-II; PARTIAL DELTA of record (S25-bis): nonfinite-lane guard + hess_lane counter landed on the sequential FD blocks (which had none) — the symmetry-defect band and directional-Richardson rejector remain absent"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-16"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1798-1799"]
   mechanism: rejector-weakness
   owner: "F2 driver window (cheap): [P-HESSREJ] symmetry-defect band pre-symmetrization (Nocedal-Wright error model) + directional second-difference Richardson on one S18 segment, defect distribution near vs far from a flip seam"
   trigger: "F2 driver window, or any outcome-II attribution leaning on TR-step quality"
@@ -1196,7 +1256,7 @@ entries:
   severity: medium
   magnitude: "Dv is measured once per walk, from objective curvature only, never refreshed across 19-21 frontier segments and blind to constraint rows (KS rho ~ 5.75e4 -> rows orders steeper, never equilibrated); refresh is FREE (the full H is re-measured per segment, its diagonal costs zero extra evals); S18 finding of record: conditioning IS the convergence rate on this driver"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-17"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1370", "validation/a1_toc_variational_jax.py:1739-1744"]
   mechanism: process
   owner: "F2 (with the GAP-15/AC10 review): [P-DVREFRESH] per-segment refresh from diag(H) on the S18 walk + constraint-row equilibration (SNOPT lineage), determinism bit-check registered"
   trigger: "first cert/margin-active walk (mixed scales 1e4-1e6 make inner CG stagnation indistinguishable from TR failure), or post-[X-AKNO] new dofs with no measured scale"
@@ -1214,7 +1274,7 @@ entries:
   severity: medium
   magnitude: "the margin NonlinearConstraint ships exact jac but NO hess=: scipy silently BFGS-estimates constraint curvature (~rho/4*|grad val|^2 when active; at rho = 5.75e4, rho/4 = 1.44e4 can dominate the measured H, re-learned from identity every segment) — the exact S18 plateau mechanism re-created on the constraint side after R-3 repaired the objective half only; declared boundary: margin INACTIVE at every recorded instance, zero recorded effect"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-19"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1912-1915"]
   mechanism: rejector-weakness
   owner: "F2 (with the GAP-1 pilot, [R2] hess= A/B flag): exact Lagrangian Hessian via fwd-over-rev HVP or the existing FD-of-exact-gradient recipe applied to gm, measured-per-segment-base and frozen within segment — the R-3 policy extended, not changed"
   trigger: "first margin-active rung of record, or an argmin-lane swap mid-segment"
@@ -1223,7 +1283,7 @@ entries:
   severity: medium
   magnitude: "no derived seed-validity radius exists in z-space: the W-space ball got a THEOREM+PRACTICE stack ([X-TBAK]) while the predictor rests on an asserted O(h) and replay seeds are recorded z with KAT-3 = one instance + one amplitude; the z-basin shrinks like sqrt(dist-to-fold) below h_FD = 6.1e-6 near folds -> O3.1 probe seed validity at frontier instances unadjudicated; CERT_PLAY does not close the wrong-branch case (couples to the certify-qualification row)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-20"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:737-746"]
   mechanism: hidden-hypothesis
   owner: "F2 (converts to a measured ledger row): alpha-theory/Kantorovich per-cell seed certificate at the S18 baseline + defnoz plans (one Jacobian + Hessian-norm surrogate per cell; [X-TBAK] K_RICH two-point pattern transplanted to z)"
   trigger: "F2 engine window, or the first frontier campaign leaning on O3.1 FD probes near folds"
@@ -1242,7 +1302,7 @@ entries:
   severity: medium
   magnitude: "declared shape monitors (slope positivity, curvature bounds) are computed nowhere (verified grep): inadmissible trial walls are discovered only by paying a full march and geometry rejections land in rejected_designs as certifiability events; per-interval slope/curvature at fixed thB are closed-form/affine in the dofs (affinity residuals at machine floor) so pre-march checks cost microseconds; the S20 certdiag 8/8 discriminates tolerance-vs-budget, NOT geometry-vs-physics — the S20 frontier reading rests on rejections being physics"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-22"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:170-184"]
   mechanism: doc-code-mismatch
   owner: "F2 (constraint rows in the KKT, with the GAP-1 window); the geom-vs-cert tag probe over the S20 rejected_designs ledger is still owed — rejector-grade design FIRST because it touches a reading of record"
   trigger: "F2 entry; escalates to HIGH if the probe finds a geometry-representable rejection among the S20 five"
@@ -1252,7 +1312,7 @@ entries:
   severity: medium
   magnitude: "the [X-AKNO] insertion degeneracy guard protects a mesh-derived object (median station spacing, shrinks under refinement) instead of the operator-derived one (adjacent-knot ratio, mesh-independent); measured: cond(A) saturates ~6 at ratio 1000 while the interpolation-operator cardinal amplitude grows ~linearly (2.2/17.5/170 at 10/100/1e3); admitted knot ratio degrades with march refinement, and repeated insertion into the persistent 41.8%-mass interval produces clustering the guard progressively stops guarding"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-23"
-  code: []
+  code: ["validation/adaptive_knot_optimize.py:197-213"]
   mechanism: underived-constant
   owner: "[X-AKNO] guard edit + rejector: operator-derived primary bound (declared max adjacent-knot ratio, de Boor / Schoenberg-Whitney), current station-spacing check kept as secondary — cheap, next [X-AKNO] touch"
   trigger: "next [X-AKNO] cycle of record, or Nw>=240 / max_ins>=3 configurations"
@@ -1261,7 +1321,7 @@ entries:
   severity: medium
   magnitude: "warm-start exactness across knot insertion is a provable THEOREM measured at machine zero (nested-space uniqueness => re-interpolation reproduces the incumbent EXACTLY; P3 = 6.7e-16; verifier independently checked the argument) — but the header claims NOT-geometry-preserving and dev_warm only prints: a defect DETECTOR (knot remap / BC inconsistency) that today would print and pass; R5 (tests must reject) + R4 promotion due"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-24"
-  code: []
+  code: ["validation/adaptive_knot_optimize.py:434-451"]
   mechanism: rejector-weakness
   owner: "arm dev_warm <= K_RICH * eps * (measured cardinal amplitude) * scale as a check() row + near-degenerate negative control (floor carries the measured cardinal amplitude; scales with slope at steep-thB clamp) + M0 THEOREM promotion for nestedness (Boehm 1980 / Oslo) in the same session (R4) — next [X-AKNO] touch"
   trigger: "next [X-AKNO] cycle verdict, or the M0 parametrization touch"
@@ -1270,7 +1330,7 @@ entries:
   severity: medium
   magnitude: "the [X-AKNO] outer loop is insertion-only — no knot removal/coarsening, dofs ratchet monotonically (default 4-cycle 3-insert run: 8 -> up to 20 dofs, no survivor audit) while dof economy is part of correctness (D6) stays unenforced; a knot justified by cycle-k residual can be dead at cycle k+1 (the optimum MOVES per cycle — verifier-corrected attribution: the no-coarsening AFEM optimality theorems address a FIXED problem); verifier-refuted sub-claim excluded: the artifact saves the BEST cycle's class, no failed-knot inheritance"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-25"
-  code: []
+  code: ["validation/adaptive_knot_optimize.py:399-417"]
   mechanism: process
   owner: "F2/F3 loop upgrade: removal-test leg (project to the coarser class + derived band — cheap via the warm-start exactness theorem; Lyche-Morken removal, AFEM-with-coarsening lineage) on the recorded S20 cycle; removal gated by the same derived-band machinery as insertion"
   trigger: "the F2/F3 loop window, or dof growth with stagnant goal on any recorded cycle"
@@ -1279,7 +1339,7 @@ entries:
   severity: medium
   magnitude: "the global-support cardinal basis makes the measured Hessian structurally dense (cardinal decay 0.243/interval, never zero -> n+1 evals forced — the term named dominant when T2 FIRED); coloring is USELESS under the current basis without a truncation adjudication, and |H_ij| falls ~2 decades by 3 intervals — a MEASURABLE truncation with a derived bar, no basis switch needed; plus an O(n^3) unrolled dense solve of a tridiagonal system inside every traced evaluation (hygiene-grade at current m)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-26"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1763-1797"]
   mechanism: process
   owner: "feeds the scheduled G0/T2 review (F2 entry, census row 7) with the measured decomposition it lacks; hess-decay probe (|H_ij| vs |i-j| at W*8 vs the cardinal-decay prediction) = cheap first datum; truncation only with a derived bar, otherwise dense measurement stays"
   trigger: "the G0/T2 review at F2 entry, or m~30 enrichment at a frontier instance"
@@ -1288,7 +1348,7 @@ entries:
   severity: medium
   magnitude: "unbracketed linear index scan with one FULL implicit Newton per failed attempt, monotone-foot assumption, Nv never steps back; fragility measured of record — the (N,Nv) decision flips SET the re-record rate (n_rec ~ n_segments); wrong-foot silent acceptance under a non-monotone spline PLAUSIBLE, unmeasured (Q5 folded — the doctored two-close-knots probe vs a Brent-bracketed reference decides); DELTA of record: S25-bis M5c consumed the COST side (wall_search decisions bitwise inside the compiled executor) — the decision-flip RATE at source stays un-owned"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-28"
-  code: []
+  code: ["validation/a1_ideal_march_jax.py:920-943"]
   mechanism: process
   owner: "F2 (derived-(N,Nv) lever: Brent on the continuous chord parameter + orientation pre-filter -> one implicit solve at the bracketed foot; couples to the N6 flip-materiality object — rate and materiality attack the same churn from both sides); the implicit cell solve and its certification unchanged"
   trigger: "F2 engine rebuild, or [X-AKNO] near-degenerate knots / steep-thB / short-L truncation instances"
@@ -1297,7 +1357,7 @@ entries:
   severity: low
   magnitude: "on a length-only plan change (thB crossing a da multiple) the flip comparator raises StopIteration — scipy catches it (clean status 3, recorded in kickoff 4bis) but the flip event is SILENTLY DROPPED from the P2 log of record (re_record_events undercount); crash claim REFUTED (Probe A, both runs); the one-line default repair (min of the two lengths) is verified correct and cheap"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-31"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1900-1906"]
   mechanism: process
   owner: "one-line comparator fix + log-completeness restoration — F2-entry cheap window (the S25-cheap placement was consumed by the speed pivot)"
   trigger: "next driver-log consumer of record, or the first thB walk crossing a da multiple"
@@ -1306,7 +1366,7 @@ entries:
   severity: low
   magnitude: "the lip equality is carried as a LinearConstraint row instead of eliminating one variable — paying a normal step every iteration and taking lambda_e from solver internals when AD post-optimality (Fiacco) would give it exactly with an O3.1-style check; no record impact"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-32"
-  code: []
+  code: ["validation/a1_toc_variational_jax.py:1746-1749"]
   mechanism: process
   owner: "F2 (driver surgery): variable elimination (Nocedal-Wright 15.3) + AD post-optimality multiplier with its check row — multiplier provenance moves from solver-trusted to repo-verified"
   trigger: "F2 driver window"
@@ -1315,7 +1375,7 @@ entries:
   severity: low
   magnitude: "insertion sites chosen in physical x are stored as normalized xi and silently migrate when thB moves at the next re-optimization; no drift monitor exists; corrected magnitude of record (Q8 folded): the S18 event is ~4.4% of the first m=8 interval, everyday ~1.4% (NOT 15% — verifier corrected ~10x down); material only against post-insertion LOCAL intervals or short-L"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-34"
-  code: []
+  code: ["validation/adaptive_knot_optimize.py:419-433"]
   mechanism: numerics
   owner: "per-cycle knot-drift print + band; re-derive xi if drift exceeds a declared fraction of the marked interval — monitoring only, next [X-AKNO] touch"
   trigger: "next [X-AKNO] cycle of record, or a short-L campaign"
@@ -1324,7 +1384,7 @@ entries:
   severity: low
   magnitude: "joint refine() confounds the three error directions (IVL rows / arc angle / contour-exit stations): a band that fails to shrink cannot be attributed (mesh vs class vs floor); finder claim (i) (floor never measured) REFUTED of record (S19 m_stop diagnostic executed); the per-direction attribution lever survives — adjacent to, not identical with, R25"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-35"
-  code: []
+  code: ["validation/o33_bench.py:195-200"]
   mechanism: process
   owner: "per-direction refinement flag in o33_bench.refine (attribution sharpener for existing falsifier branches) — next o33_bench touch"
   trigger: "next o33_bench touch, or a band-shrink attribution question of record"
@@ -1333,7 +1393,7 @@ entries:
   severity: low
   magnitude: "the D-prime-band cell-vs-landing-window winner is implicit: both terms are printed but no label states which floor binds, and at dtheta-quantization-dominated instances local mesh refinement provably cannot help; the attribution print EXISTS (verifier) — only the max() winner label is missing, a 1-line addition"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-36"
-  code: []
+  code: ["validation/def_twin_falsifier.py:453-457"]
   mechanism: process
   owner: "one-line max() winner label at the D-prime band print — next def_twin/D-prime-band touch (the seam-clustered refinement lever itself is R25-owned)"
   trigger: "next D-prime-band consumer, or the next def_twin touch"
@@ -1392,7 +1452,7 @@ entries:
   severity: low
   magnitude: "the propagation lemma [S-T0P] (pure periodic BC + axisymmetric domain => steady co-rotating pattern, provable on L4) is registered at SCHEMA with the proof route named; the full function-space write-up is not yet written"
   source: "docs/rde_nozzle_MASTER.md#[S-T0P] PROPAGATION LEMMA"
-  code: []
+  code: ["docs/rde_nozzle_MASTER.md:463-498"]
   mechanism: rigor-gap
   owner: "F2 theory window (first theory block): write the equivariance+uniqueness proof at S1 level"
   trigger: "F2 entry, or the first external presentation of the two-stage per-phase claim"
@@ -1474,18 +1534,18 @@ entries:
 - id: audit-scert:anti-remint-evasion-classes
   status: CONFIRMED
   severity: medium
-  magnitude: "the anti-re-mint channel (check (c)) fires only on OPEN x OPEN code-span overlap in one file: three demonstrated evasion classes (re-mint with code:[], adjacent non-overlapping span, re-mint of a CLOSED row's identical span) pass clean; 73/109 OPEN rows carry no dedup key at all — the channel's coverage is structural, not incidental"
+  magnitude: "the anti-re-mint channel (check (c)) fires only on OPEN x OPEN code-span overlap in one file: three demonstrated evasion classes (re-mint with code:[], adjacent non-overlapping span, re-mint of a CLOSED row's identical span) pass clean; 73/109 OPEN rows carried no dedup key at the S-CERT census — the channel's coverage is structural, not incidental. DATA-SIDE HALF CONSUMED (S-FOUNDATIONS Phase 0, 2026-08-17): keyless-OPEN re-measured 78 at window open, 59 backfilled with verified current-line spans (4 nested-span collisions resolved by the orchestrator), 19 remain keyless by declared genuine absence (no present code object; per-row reasons in validation/sfoundations_raws_2026-08-13/phase0_dedup_backfill_proposals.yaml); lint (xix) PASS post-backfill"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
   code: ["tests/test_findings_registry.py:28-30"]
   mechanism: gate-scope
-  owner: "F2 (widen the dedup surface: id-similarity or source-anchor overlap as second key; backfill dedup keys on the keyless OPEN rows — already the confrontation advisory's first duty)"
-  trigger: "F2 entry, or the next seeding window (whichever first)"
+  owner: "F2 (the MACHINE-side half only: widen the dedup surface — id-similarity or source-anchor overlap as second key; the data-side backfill half is consumed of record)"
+  trigger: "F2 entry"
 - id: audit-scert:teqbr-magnitude-unguarded
   status: CONFIRMED
   severity: medium
   magnitude: "T-EQBR (THEOREM*) carries a quantitative +6.3..+7.0% bracket with NO falsifier able to fire on the magnitude (the falsifier tests structure only) — direct R5 exposure on a promoted theorem"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
-  code: []
+  code: ["tests/test_phase_diagram_real.py:133-146"]
   mechanism: rigor-gap
   owner: "F2 + next seeding window (magnitude guard in suite group (xii) + registry falsifier extension)"
   trigger: "F2 entry, or the next T-EQBR citation in an external-facing document"
@@ -1503,7 +1563,7 @@ entries:
   severity: low
   magnitude: "the staleness gate accepts pass= dates in the future, permanently defusing itself (latent — no active instance found in the registry)"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
-  code: []
+  code: ["tests/test_claims_lint.py:230-243"]
   mechanism: gate-scope
   owner: "F2 (add pass<=today validation in test_claims_lint/test_ondemand_carriers)"
   trigger: "F2 entry, with audit-scert:staleness-import-closure-blind (same fix family)"
@@ -1512,7 +1572,7 @@ entries:
   severity: low
   magnitude: "structural evidence-layer gap for the ondemand carrier class: no carrier persists a run artifact (X-VMON, X-O31CS checked; the 2.7e-10 transpose-identity number of record exists in NO machine artifact — prose in M0:1506/D6:539/LBML:26/P2_lemmaB:368 pinned to a 2026-07-21 run never persisted; live re-run 2026-08-13 measured 2.419e-10, EXIT 0 <300 s — stamps TRUE, evidence layer missing)"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
-  code: []
+  code: ["tests/test_ondemand_carriers.py:128-147"]
   mechanism: provenance
   owner: "F2 (standing-rule extension: every ondemand carrier dumps a minimal verdict-JSON; refresh the 2.7e-10 prose from a persisted run; self-improvement-at-convergence candidate)"
   trigger: "F2 entry, or the next ondemand re-stamp"
@@ -1521,10 +1581,109 @@ entries:
   severity: low
   magnitude: "the cone-form instrument rows o33 R8/R10 have never run on a LIVE unilateral/multi-phase instance (live R8 is un-failable by construction in the pinned regime — declared of record in M0); the dual-feasibility machinery is proven only on synthetic controls"
   source: "docs/rde_nozzle_MASTER.md#CONE TRANSFER LEMMA [T-T7CN]"
-  code: []
+  code: ["docs/rde_nozzle_MASTER.md:1186-1198"]
   mechanism: instrumentation-gap
   owner: "F2/F4b (fire at the first active unilateral cap of record)"
   trigger: "first driver run with an active unilateral endpoint cap"
+- id: carriers:control-surface-invariance-rejector-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the continuum control-surface invariance of the thrust integral (momentum theorem, D-MU) has NO discrete always-on rejector: the wall-form vs control-surface-form equality within the discretization bar is a FREE per-solve integral-identity audit (V-F2 O3 + P-F22 O1==O2 + H-F21 decoupling certificate, 3/4 blind convergence) that the engine does not compute"
+  source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Discrete control-surface invariance as always-on rejector"
+  code: []
+  mechanism: rejector-not-wired
+  owner: "F2 engine rebuild (one integral per solve; its drift doubles as a free discretization-error indicator)"
+  trigger: "F2 engine rebuild window / first Verdict shipping both thrust forms"
+- id: engine:flow-branch-selection-unpinned
+  status: CONFIRMED
+  severity: low
+  magnitude: "per-phase steady solutions can be non-unique in the FLOW-CONFIGURATION sense (hysteresis/folds); no record row pins the branch-selection principle or carries a fold-margin monitor (V-F7: continuation-defined branch + inf_xi sigma_min of the linearized steady operator as the computable exclusion boundary; O-F11 multiplicity probes + worst-case-over-branches certificate policy)"
+  source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Per-phase branch selection under hysteresis"
+  code: []
+  mechanism: unposed-selection-principle
+  owner: "F2 (branch bookkeeping in the certificate record; fold monitor = candidate cheap addition to the certification list)"
+  trigger: "first instance exhibiting a fold/multiple steady branches, or the F2 certification-list design window"
+- id: plume:vortex-sheet-stability-unchecked
+  status: CONFIRMED
+  severity: low
+  magnitude: "the free plume boundary is a compressible vortex sheet whose linear stability is REGIME-dependent (KH-unstable below the convective-Mach threshold, Miles/Papamoschou-Roshko class); the certificate currently ASSERTS nothing either way — H-F3/H-F13 mandate a phase-by-phase convective-Mach CHECK plus the control-surface decoupling certificate (far-plume instability does not void thrust if decoupled)"
+  source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Plume vortex-sheet stability"
+  code: []
+  mechanism: monitor-scope-gap
+  owner: "F4b/F5-adjacent (external-expansion sectors; joins the certification monitor list when plug/expansion-deflection campaigns open)"
+  trigger: "first certified campaign in an external-expansion sector"
+- id: thermotab:fundamental-derivative-audit-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the thermo-table conditions C-A..C-D do not audit h(T) monotonicity, a^2>0 and the fundamental derivative Gamma_fund = 1+(rho/a)(da/drho)_S > 0 over the reachable (T,p) set — the cheap quadrature audit that underwrites Lax admissibility and Majda stability hypotheses for the gamma(T) gas (H-F6, blind)"
+  source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Fundamental-derivative audit"
+  code: []
+  mechanism: audit-scope-gap
+  owner: "F2 thermo window (one quadrature over the table range, joins the [X-THC1] carrier)"
+  trigger: "next [X-THC1] touch, or the first front-admissibility certificate consuming gamma(T) tables"
+- id: scope-pins:frozen-model-form-bar-at-champions
+  status: CONFIRMED
+  severity: low
+  magnitude: "the frozen-composition scope pin needs its model-form price carried as a NAMED (v) bar at champion designs: the frozen/equilibrium bracket (few percent for H2-air per the corpus; [T-EQBR] +6.3..+7.0% on the internal instance) can exceed claimed deltas — P-F14 mandates the bracket re-executed per propellant/PR at every champion, never a one-time number (hypaudit GAS-FROZEN monitors 1-2 are the instrument; this row is the per-champion DUTY)"
+  source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Frozen-vs-equilibrium model-form (v) bar"
+  code: []
+  mechanism: scope-pin-consequence
+  owner: "campaign windows (every champion Verdict carries the bracket line; wiring = F2 Verdict-field work)"
+  trigger: "first champion design of record post-F2"
+- id: orchestration:until-dry-confirm-direction-unproven
+  status: CONFIRMED
+  severity: medium
+  magnitude: "LG-1 of the phaseD-proofs judge (2026-08-17): both proof loops closed NOT-DRY at the round cap with the FINAL revisions unrefuted, and the dual-seed known-true seed failed twice (refuter over-strictness: REPAIRABLE verdicts on true cores) — the until-dry refuter layer is PROVEN to kill (canaries positively falsified, twice) but UNPROVEN to confirm; survivals are not layer-certified and final labels rest on the judge's direct reading (declared). Repair path named by the judge: (a) one confirmation round on the final revisions OR the queued carrier executions (G-f/G-a/[X-T0P] battery) as the confirm-direction proof; (b) repair the known-true SEED PROTOCOL (seeds must be single-claim, label-matched, no fused legs) before the next loop self-certifies"
+  source: "validation/sfoundations_raws_2026-08-13/phaseD/VERDICT_phaseD_proofs1.md#LG-1"
+  code: []
+  mechanism: verification-layer-gap
+  owner: "S-FOUNDATIONS-C opening (the batched r2 adversarial pass doubles as the confirmation round; seed-protocol repair in the same prompt)"
+  trigger: "S-FOUNDATIONS-C opening, before any M0 landing consumes the rev-3/r3 labels"
+- id: contract:data-class-function-space-unpinned
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the of-record contract (D2.4 + D1) carries '(Gamma_d, data class, validity)' with the CLASS slot uninstantiated (search-verified by the blind-contract judge); BOTH blind formalizers independently converge on BV∩L∞(A;K) with one-sided traces on the jump set + a refinement-stability rejector (TV Cauchy under record/mesh refinement) — 'independent double convergence on the same space is the strongest possible blind signal'"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-1 (P2)"
+  code: []
+  mechanism: contract-slot-uninstantiated
+  owner: "F2 contract window: pin the data-class slot (candidate = the blinds' convergent space) + the refinement rejector"
+  trigger: "F2 contract freeze; rejecting test = exhibit an of-record data-class pin (then this row dies to a cross-reference fix)"
+- id: contract:datum-internal-rh-entropy-audits-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the D2.6 stage-A audit list lacks the DATUM-INTERNAL admissibility checks both blinds demand: moving Rankine-Hugoniot consistency on the datum's own jump set at the wave trace speed + entropy admissibility (no expansion shocks) — detects fabricated/corrupted/independently-interpolated interface data before any solve consumes it"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-2 (P2)"
+  code: []
+  mechanism: audit-scope-gap
+  owner: "F2a stage-A auditor build (rides the same window as the existing stage-A rows)"
+  trigger: "first stage-A auditor implementation touch; rejecting test = an of-record audit row implementing datum-side RH/entropy checks"
+- id: contract:datum-uncertainty-contract-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the record has the 'validity' slot NAME, the (v) estimated bars and the robust layer, but NO metric, NO certified-radius semantics, NO extrapolation rule at the contract site; both blinds demand the datum ship as a calibrated SET (nominal + declared metric + certified radius + validity window with extrapolation = NO DATUM, rejected not error-barred + interval-separation obligation before two designs are declared distinct). The metric CHOICE itself is a genuine two-lens disagreement -> ledger row C50"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-3 (P2)"
+  code: []
+  mechanism: contract-slot-uninstantiated
+  owner: "F2 contract window, sequenced with the C50 metric adjudication"
+  trigger: "F2 contract freeze / first imported real-data family"
+- id: bound-ladder:constraint-aware-rungs-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the shipped delta-ladder rungs (int-max with UNCONSTRAINED per-phase sup, sonic-capped J_ideal, geometry-free B_EK) are constraint-blind: delta = B - J[S*] is a VALID upper bound for the constrained problem (B >= sup over A(c) a fortiori) but CONFLATES true suboptimality with the PRICE OF THE CONSTRAINTS (sup_unconstrained - sup_{A(c)}); under tight L/eps_max the certificate can be dominated by the second term and go uselessly loose (user catch 2026-08-17, S-FOUNDATIONS). Constraint-aware refinements are COMPUTABLE and named: (1) B1^c = interchange bound with the inner sup taken over A(c) via per-phase CLASSICAL CONSTRAINED solves (Rao's method IS the exact length/exit-area-constrained single-phase optimum in the irrotational-homentropic subclass; Guderley-Armitage/Kraiko variants for other constraint combos) - T3's collapse is precisely attainment of B1^c under pressure similarity; (2) the weak-duality rung from the engine's own KKT multipliers (constraints priced at their marginal values, no extra PDE solves). The current demo delta's declared semantics ('distance to the L-unconstrained fixed-eps ceiling') is the honest interim form of exactly this gap"
+  source: "docs/rde_nozzle_MASTER.md#B = min of the bound ladder"
+  code: []
+  mechanism: bound-tightness
+  owner: "F2 ladder window, sequenced with the delta-carrier relaxation lemma (Phase D item) and the (value, delta) Verdict field: add the B1^c per-phase constrained-classical rung + the KKT weak-duality rung to the min"
+  trigger: "first (value, delta) Verdict field shipped, or the first campaign artifact where delta is dominated by the constraint price rather than by design suboptimality"
+- id: oracles:geno-tocnoz-wall-thrust-double-count
+  status: CONFIRMED
+  severity: high
+  magnitude: "GENO CircularContour_m.f90:79-83 calls thrust_solve BEFORE the axis accept/reject test and never restores perf%f on reject: every discarded overshoot column leaves its full wall panel accumulated (the annular twin does the save/restore right, f_save L234 + Phase-6 recompute; main.f90:540-545 de-duplicates the GEOMETRY but not the THRUST — the authors knew about the duplicates). Measured on COMMITTED production outputs by exact-formula reconstruction: +7.27e3 N / +2.33e4 N. MOC-10 [P0 CONFERMATO CON NUMERI] of the (incomplete, to-be-resumed) MoC/Zucrow fidelity audit; flagged by the tranche (e) sweep as outside its item-set boundary and seeded immediately (never-postpone). Any program verdict consuming GENO tocnoz/defnoz WALL-THRUST references is potentially contaminated (cross-code agreement != truth)"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-10 [P0 CONFERMATO CON NUMERI]"
+  code: []
+  mechanism: oracle-contamination
+  owner: "fix = GENO repo under its own protocol (census R13, S-GENOAUDIT resumption); impact audit on THIS program's thrust-reference consumers = next main-chain window, F2 entry at the latest"
+  trigger: "next GENO/S-GENOAUDIT session (fix); first verdict re-consuming a GENO thrust reference (impact audit fires FIRST)"
 - id: navigation:t-t0-glossary-token-missing
   status: CONFIRMED
   severity: low
@@ -1534,3 +1693,595 @@ entries:
   mechanism: navigation
   owner: "next glossary/ORDINE window (one token row)"
   trigger: "next glossary touch"
+- id: pipeline:P1-provenance-package
+  status: CONFIRMED
+  severity: low
+  magnitude: "the P-1 distillation/provenance package is not assembled; seed content of record = the six reviewer-requirement mappings of the P2-position Appendix B (S-ORDINE plan §7.3 registered it fuori-scope and promised the mint 'at S7 alongside the seeding tranches' — the tranche briefs omitted it; minted at the S-FOUNDATIONS Phase 0 window per the session prompt's parked-items list)"
+  source: "validation/ADVISORY_SORDINE_plan_2026-08-13.md#pipeline:P1-provenance-package"
+  code: []
+  mechanism: provenance
+  owner: "P-1 submission window (D6 §3)"
+  trigger: "post-G5/M1 submission window opens"
+- id: theory:ivl-bias-quoting-discipline-pending
+  status: CONFIRMED
+  severity: low
+  magnitude: "IVL-envelope note (argmax second-order), math-review §2.1: SETTLED-CLEAN and distinct from GAP-6/AC14 in the S25 pipeline-sense convergence, but the M0 Part VI line stating the quoting discipline (IVL-bias comparisons valid design-to-design / code-to-code only, never as a cross-class absolute) is not yet written"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#Candidate M0-VI discipline line"
+  code: []
+  mechanism: quoting-discipline-gap
+  owner: "F5/P-3 window (the advisory's own named placement, §6 row 'M0 Part VI discipline line')"
+  trigger: "before any absolute Isp claim ships, or M0 Part VI next touched"
+  note: "residual of the S25 pipeline-sense convergence advisory §2 row A-§2.1 / §6 consolidated-open-rows table; tranche (c) seeding, not otherwise registered"
+
+- id: bench:campaign-carry-fresh-vs-carried-untested
+  status: CONFIRMED
+  severity: low
+  magnitude: "h3gate proves the consume-site gating (bitwise np.array_equal(W) + fresh fallback at both consumers, M1 stash deep-copies, no mutation found) but carried-content reuse across a full campaign rests on same-process determinism rather than an executable one-rung fresh-vs-carried bitwise A/B; RF-4's residual, right-sized as a deferred campaign-mode control rather than dropped"
+  source: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md#Campaign-level fresh-vs-carried one-rung bitwise A/B"
+  code: []
+  mechanism: coverage-limit
+  owner: "first campaign window ([X-DEFTW]/[X-MGOV])"
+  trigger: "first campaign anomaly implicating a carried record, or the window itself"
+  note: "the h3gate docstring already declares this coverage limit (repair R12); this row carries the deferred executable A/B duty itself (§7 deferred-rows table)"
+
+- id: test-suite:notaknot-corner-density-rejector-misformed
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the first GAP-5 notaknot-twin rejector demanded corner-density invariance across the BC change, but cd is computed ON the design and the BC change legitimately moves the lip state BY THE MECHANISM UNDER TEST (8.2% shift = the mechanism datum) -- the rejector was wrong by construction and its own firing refuted it; re-formed as a two-resolution DELTA-STABILITY rejector (|delta_r1 - delta_r2| <= K_RICH x max arm spread) + the artifact-fixed GENO reference kept untouched"
+  source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#CATCH #2"
+  code: []
+  mechanism: rejector-weakness
+  evidence: "re-formed rejector re-run PASS in chain 2 (STEP 10): |d1-d2| = 1.95e-3 <= 7.52e-3; the GAP-5 corner-residual datum (-82%, r=1) stands unaffected -- only the verification instrument was defective and repaired, same window, before any commit shipped the mis-formed version"
+- id: twin-falsifier:c3-mesh-refinement-unadjudicated
+  status: DOWNGRADED
+  severity: medium
+  magnitude: "the [X-DEFTW] twin's decisive run 2 (rung 1-bis, 19 segments, 7037s) was killed by the pre-registered external monotonicity stop before its rung wall/W arrays could be captured; branch F1 (wall-contour gap under joint mesh+knot refinement -- exactly C-3's claim) is recorded 'NOT ADJUDICABLE this run' on BOTH decisive runs and folds into the panel's own C7 NAMED CONDITIONAL; no instance has ever produced a verdict on the fine-mesh DEF-wall-rejection claim"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-3"
+  code: []
+  mechanism: unexecuted-falsifier-branch
+  owner: "F2 (the C7 refine/enriched-class leg; the pre-authorized S24+1 optional session was not consumed, so per PROGRESS_2026-08-12_S24_f1b.md step 16 the discharge owner defaults to F2 entry)"
+  trigger: "the joint mesh+knot refinement leg of the [X-DEFTW] twin executing to a verdict on branch F1 (fires, or is cleanly not-adjudicable again with a fresh wall-array capture)"
+- id: twin-falsifier:c5-deeper-jump-geno-gated
+  status: DOWNGRADED
+  severity: low
+  magnitude: "the direct-side mu-prediction sign test ran and is trivial (mu = 0 identically on the ladder, margin inactive throughout); the GENO-side one-parameter DEEPER-JUMP family C-5 needs a jump-depth knob GENO does not expose -- STRUCTURALLY GATED per PROGRESS_2026-08-12_S24_f1b.md step 15, census row added on the GENO side; magnitude claims stay BLOCKED (dJ/d(depth) derivation + mu-estimator band still nonexistent)"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-5"
+  code: []
+  mechanism: external-dependency-gate
+  owner: "the GENO repo under its own protocol (never a commit from this repo)"
+  trigger: "GENO's next dedicated session exposing a jump-depth knob for the deeper-jump family"
+- id: twin-falsifier:c6-outcome-i-never-reached
+  status: DOWNGRADED
+  severity: low
+  magnitude: "safety half VERIFIED of record ([X-AKNO] attempt 3, 5 rejections traversed, ordered return to the certified base); progress half NEVER REACHED -- both decisive A' campaigns run to date (S22 T4, S24 T3 rung 1-bis) returned margin INACTIVE (0 lanes/0 clusters active at termination) and F1 CLOSED 2026-08-11 with 'margin INACTIVE (no outcome-I)' declared explicitly (PROGRESS_2026-08-11_S23_f1close.md step 5); no case with a margin-active optimum has ever exercised the G1 rejector + outcome-I convergence C-6 requires"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-6"
+  code: []
+  mechanism: unreached-outcome-class
+  owner: "F2 (near-axis mechanism work; any future decisive campaign reaching a margin-active optimum)"
+  trigger: "the first decisive campaign (any phase) that returns a margin-active outcome-I, or a deliberate margin-active adversarial instance construction"
+- id: speed-cond:n1-l5-full-record-untriggered
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N1 (true L5 full compiled record, MARCH-F7) never fired: M5c (the F6-amended per-column executor) landed first-pass and MEASURE M-D found segment MET at the pessimistic end (14.9s vs <=30s, margin 2.0x) -- PROGRESS_2026-08-12_S25bis_speed.md STEP 4 states verbatim 'N1 not triggered'; the marginal 2-3x over M5c remains unclaimed"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N1 — true L5 full compiled record"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2-engine"
+  trigger: "measured segment shortfall after M1-M6 (e.g. a future M5c-class gate rejects and the fallback leaves record ~50-60s)"
+- id: speed-cond:n2-traced-screen-never-armed
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N2 (traced-screen deployment as a gate) requires shadow-mode agreement data from O1 (shadow-screen instrumentation, D1's own verdict: 'DEAD AS A GATE ... shadow-mode instrumentation only, never gates'); O1 itself was never built -- PROGRESS_2026-08-12_S25bis_speed.md STEP 5 lists 'O1/O2/O4/N8 (named triggers not fired)' among the items kept out after STOP-WHEN-MET fired at M-D"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N2 — traced-screen deployment as a gate"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2"
+  trigger: "material rejected-probe share after the mandatory set AND shadow (O1) agreement >= its own derived bound on the live population (O1 must be built first)"
+- id: speed-cond:n3-campaign-f8-restart-semantics-open
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N3 (CAMPAIGN-F8 semantic half -- repeat restarts from last pre-drift certified base) needs one post-8761dce campaign artifact plus O2 drift data; O2 (drift watch, reporting-only) is among the items never built per PROGRESS_2026-08-12_S25bis_speed.md STEP 5 ('O1/O2/O4/N8 ... named triggers not fired'); no panel/declared-rule amendment has convened"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N3 — CAMPAIGN-F8 semantic half"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "panel/declared-rule amendment (touches constraint 5 semantics)"
+  trigger: "one post-8761dce campaign artifact + O2 drift data (O2 must be built first)"
+- id: speed-cond:n4-stall-stop-reopen-blocked
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N4 (stall-stop, CAMPAIGN-F7 class) is REFUTED AS STATED by the advisory's own text (equal-outcome premise false: J crept +0.13% during fencing); the re-proposal path (post-8761dce artifact + derivable trigger + segment-by-segment base-identity verification) has not been exercised since -- no artifact of that class has been produced; Q5's identical unblock condition (post-8761dce artifact + base-identity check) is the same open content, folded into this row"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N4 — stall-stop"
+  code: []
+  mechanism: refuted-pending-reproposal
+  owner: "F2"
+  trigger: "post-8761dce artifact + derivable trigger + segment-by-segment base-identity verification (a fresh pre-registration, never the original REFUTED form)"
+- id: speed-cond:n8-colored-fd-hessian-ungated
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N8 (P5 colored/sparse FD Hessian) stays un-adopted: its precondition Q1 (spline-DoF/Hessian bandedness sparsity structure) is UNPROVEN ('the banded spline structure claim conflates basis overlap with the field-coupled Hessian'), and its second trigger leg (segment still thin after M6) never fired -- M-D/M-E both MET the <=30s target without it; listed among 'named triggers not fired' at PROGRESS_2026-08-12_S25bis_speed.md STEP 5. Q1's precondition is the same open content, folded into this row"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N8 — P5 colored/sparse FD Hessian"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2 / S25-shortfall"
+  trigger: "Q1 sparsity derivation lands (spline-DoF coupling derivation + one clean-host full-FD fill probe) AND segment measured thin after M6"
+- id: speed-cond:q4-abort-fraction-multiplier-unmeasured
+  status: DOWNGRADED
+  severity: low
+  magnitude: "H1 (early-abort opt-in flag) LANDED as part of the mandatory M5b chain (PROGRESS_2026-08-12_S25_speed.md STEP 5: 'M5b/H1 ... armed at the driver's TWO gate sites'), but Q4's own multiplier question (2x uniform vs 5-20x adversarial; first-uncertified-cell position) was never measured -- no log read of a post-8761dce ART_CAMP.partial has been performed"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#H1's abort-fraction multiplier (2x vs 20x)"
+  code: []
+  mechanism: unmeasured-multiplier
+  owner: "F2 (offline log analysis)"
+  trigger: "a log read of the first post-8761dce ART_CAMP.partial artifact"
+- id: swirl-f2a:f-swirl-1-contract-field-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "MASTER VI.1 CycleFamily contract C1 carries only the bracketed placeholder '[vorticity]' (docs/rde_nozzle_MASTER.md:1371-1373) -- no per-phase swirl profile w(y;xi) or Gamma=r*w transport row exists in the ratified F2 contract; F2a's mandatory delta 1-of-3 (panel S4) is unabsorbed; F2 has not opened (NEXT = S-FOUNDATIONS -> F2 block 0)"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#F-swirl-1 absorption"
+  code: []
+  mechanism: contract-field-gap
+  owner: "F2a (prerequisite for ingesting any surviving swirl physics)"
+  trigger: "F2a entry / the F2 contract freeze"
+- id: swirl-f2a:f-swirl-2-monitor-not-upgraded
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the stage-A uniformity monitor has not been upgraded from Gamma-only to the mandated TRIPLE (Gamma, h0, s) per-phase spread with an N6-3-obstruction-term-derived threshold and the psi-monotonicity/backflow C1 guard wired as a G6 rejector; a Gamma-only monitor 'falsely licenses N6-2' per the panel S4 verdict; no F2a session has run (grep of record: no TRIPLE/H-AM monitor code under validation/)"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#F-swirl-2 upgrade"
+  code: []
+  mechanism: monitor-scope-gap
+  owner: "F2a"
+  trigger: "F2a entry / the stage-A uniformity monitor's first implementation touch"
+- id: swirl-f2a:angular-momentum-audit-row-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the ANGULAR-MOMENTUM AUDIT balance-residual check (|measured flux - declared J_inj - declared shear/numerical torque budget| <= derived tolerance, normalized by gross flux, >=2 stations) is not wired anywhere in the F2 contract or test suite; the F1-F4+A4 falsifier scripts (rejector-capable, on one periodic chamber-CFD dataset) have never been committed -- only validation/n6_swirl_kernel.py exists, and it is the DISTINCT Lemma A/B symbolic-kernel deliverable"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#New contract row"
+  code: []
+  mechanism: rejector-not-wired
+  owner: "F2a"
+  trigger: "F2a entry, gated on the first ingested periodic chamber-CFD dataset (the falsifier's own precondition)"
+# ---- source (i): grafts (A-rows), grouped, all OPEN / CAVA-pending ----
+
+- id: litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates
+  status: CONFIRMED
+  severity: medium
+  magnitude: "five new-oracle candidates, none built: (A3) KT2015 (2.11) closed-form field-level adjoint [O6] lambda1=u+C, lambda2=-y^(nu-1)*rho*v, valid ONLY at the optimum inside the triangle h-d+-f-h, homentropic-homoenergetic EOS-general but not data-general, projected form needs a discretization band (can FAIL where O3.1 passes); (A4) Giles-Pierce 2000/2001 sec.3.6 p.407/sec.2: adjoint CONTINUOUS across a Rankine-Hugoniot shock (proved quasi-1D, only preliminary+numerical in 2D, needs an interior BC ALONG the shock) vs Kraiko jumps ALONG characteristics (compatible, different objects) -- new monitor-only executable BC-along-front residual; (A5) KT2015 (2.5)-(2.6): third missing F4b certificate class, lambda jumps on characteristics WITH continuous flow from a convex-corner fan, gain quantified by the authors as 'hundredth fractions of per cent'; (A17) Ancourt p.13 Eq.(40)/p.15 recipe (refs 9.0e-8/4.2e-8 direct-side): [X-GENOXC] solver-agnostic a-posteriori characteristic-extraction harness, no node-to-node correspondence needed, diagnostic power ASYMMETRIC (weak direct-side for MoC codes, full on the adjoint side + an FV twin); (A18) Ancourt Eqq.(47)-(50) p.15 (1.8e-6/2.6e-6/2.0e-6/9.5e-9): O3.5 ACE oracle, per-phase, complementary to O3.1, already adjudicated 'worth ONE oracle' at the 2026-07-22 panel sec.6 -- interior-homogeneous (blind to G_xi/(**')/CSTR_PA/PB), blind at the boundary (2 cells excluded)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A3**"
+  code: []
+  mechanism: oracle-gap
+  owner: "F2 / F4b (D-22, D-23; VI.6 oracle bank + F4b jump-condition reconciliation)"
+  trigger: "next O3-bank / F4b certificate-class window"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a6-a26-a27-cycle-measure-lemmas
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(A6) Harroun Eqq.(1)-(2)+Table1: second D2.3 cycle measure, label MODEL-DERIVED, cap 30atm (figure-read), consistency check 8.37 vs CTAP 8.6atm (-2.7%); Jensen anchor for the pa!=0 breaker: harmonic mean 5.57 vs arithmetic 8.37atm (-33%); (A26) NEW lemma: V_id(Tt,Pt)=sqrt(2*cp*Tt*(1-(P0/Pt)^k)) is jointly concave in (Tt,Pt) => with EAP_i's mass-flux weights, EAP_i <= <Pt>_w (Kaemming-Paxson Fig.11 instance: 5.96 vs 7.97atm); calorically-perfect boundary (re-derive under thermally-perfect pin); ordering FLIPS under area/time-average weights (5.75atm); free corollary via Cauchy-Schwarz: T_ei_tilde>0 always => EAP_i exists and is unique; (A27) NEW lemma: with C=Fg/A8+P0 fixed, P_t_tilde(M) has a unique global minimum at M=1, position exactly GAMMA-FREE -- reconstruction certificate for any campaign inferring chamber pressure from thrust with unknown exit Mach (Kaemming-Paxson sec.VI.C Fig.7 PLOTS it, we DERIVE it); curve+5.4% magnitude ARE gamma-dependent (1.0713/1.0733/1.0753 at gamma=1.15/1.264/1.4)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A6**"
+  code: []
+  mechanism: derivation-gap
+  owner: "F-SERVICE (D-18, D-42; VI.6 schema Verdict / D2.3 mu-library)"
+  trigger: "next instrumentation window / next reconstruction-certificate touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a7-a8-hoff87-ctp-oracle-and-seed
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(A7) Hoffman 1987 Table 3 (24 area ratios, 4 outputs theta_e/L/y_e/Isp): [X-HOFF87] length-band oracle (Kliegel-Levine throat model C_D~0.990 => y_e tests the THROAT model, not the characteristic net; MoC spacing never printed => tolerance from our own convergence study; Table 2's 3 Rao cases EXCLUDED as unverified: private communication + unverified in-house code); (A8) Hoffman 1987 pp.150-151: universal CTP admissibility seed (perfect nozzle -> truncate at eps -> linear compress to L -> tangency repair), a third seed alongside 'Rao-at-<Pc>' and 'peak design', feeds REQ-NONSTALL (always-defined) and H-CLASS (reaches envelopes the tier-0 9-dof class does not)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A7**"
+  code: []
+  mechanism: oracle-gap
+  owner: "F2 (D-19; VI.6/gate G2, REQ-NONSTALL/H-CLASS block)"
+  trigger: "REQ-NONSTALL / H-CLASS block opening"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a9-a10-krakos-o5-window-order
+  status: CONFIRMED
+  severity: low
+  magnitude: "(A9) correct citation for the estimator-window ORDER used by O5/VI.1: Krakos, Wang, Hall & Darmofal, JCP 231(8):3228-3245 (2012) -- NOT Schotthofer (which only cites it 'for completeness'); gives an ORDER (C^l window => p, p_s=p-1; C0 window => p=1, p_s=0), never a tolerance; on exactly-periodic known-period data the window is useless and strictly WORSE than integer-period trapezoid; (A10) Schotthofer p.13: quarter-period horizon shift (9 iterations = 29% of period) moves Square sensitivity by 9.1% -- rejector = shifted-horizon recompute, VOID if the residual moves beyond its own band; precondition on O5 = 'single-mode certified, flatness-passing' data; LSS/NILSS (refs [10]-[12]) registered as the out-of-pin chaotic-regime alternative"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A9**"
+  code: []
+  mechanism: citation-order-not-tolerance
+  owner: "F-SERVICE (D-18)"
+  trigger: "next instrumentation window / next O5 touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a11-a12-a13-vi-residual-corrections
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(A11) Giles-Pierce 2001 pp.331-332: BC-count screen m-n; m=3 only in quasi-1D, m=4 in 2D/axisymmetric (streamline family is DOUBLE: entropy + stagnation-enthalpy/vorticity), m=5 with swirl -- '3 per node' is a multiplicity ERROR that must not enter the audit; statute = precondition implied by Lopatinskii, not a 5th independent certificate; text repair ADOPTED unconditionally: the adjoint carries the SAME characteristics but information travels in the OPPOSITE direction; (A12) KT2015 (2.9): second wall residual B^x=y^(nu-1)*rho*v*(u-lambda1)'=0 <=> (u-lambda1)=const -- register as a RE-EXPRESSION of the Hoffman-E residual, NOT an independent certificate, degenerate where rho*v->0; (A13) KT2015 (2.10): at the optimum with an active unilateral restriction the CSTR_PA residual is SIGN-DEFINITE (zero-cost unilateral rejector on lambda_e, verso RE-DERIVED for the active side); axial terminal-variation coefficient rho*v^2*tan(mu)>=0 identically => the length constraint is ALWAYS active for any finite X, terminal face = boundary-extremum region; NOT adoptable without our own derivation for the plug/base-pressure mirror (the paper has neither plug nor p_b)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A11**"
+  code: []
+  mechanism: residual-correction
+  owner: "F-SERVICE + F2 (D-10, D-18; M0 Parte II / F4b screen)"
+  trigger: "next screen build / next M0 Parte II touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a14-a28-thrust-decomposition-and-normalizer
+  status: CONFIRMED
+  severity: low
+  magnitude: "(A14) Sun 2019 Tab.3 / Liu 2022 Tab.6 / Miki 2020 p.8: thrust decomposes as (F_momentum, F_static_pressure, environment term -pa*Ae); under Lemma A the first two scale with Pc (both belong in a[Sigma]*Pc), the pa!=0 breaker acts on the THIRD term ONLY; a[Sigma]=(F_mom+F_p)/Pc, b[Sigma]=Ae; D_wall viscous debt = DIAGNOSTIC column only, never inside J; (A28) report every Verdict headline also as a fraction of the Kaemming-Paxson element-wise notional-ideal ceiling (58.1%->70.0% Paxson-Miki instance), declared EXTERNAL and strictly LOOSER (majorant of integral-max), never a rung -- makes results commensurable with the NASA/PGC literature"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A14**"
+  code: []
+  mechanism: verdict-schema-gap
+  owner: "F-SERVICE (D-18, D-42; VI.6 schema Verdict)"
+  trigger: "next instrumentation window; A28 only where an RDE output plan exists"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a15-a16-gradient-verification-and-thermo-loop
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(A15) Zahr-Persson p.22 Fig.11 Tab.2: O4 gradient-verification protocol -- FD ON THE MANIFOLD (reconverge at each perturbed design, external precedent not validation), DERIVED inner tolerance eps_solve <~ tau*delta_target (never import '1e-12' as a magic number: the paper itself uses 1e-3/1e-10/1e-4 in its production run), tau swept over >=4 decades reported PER-COMPONENT not in norm; (A16) Sun 2019 Fig.1 + Eq.(9): thermodynamic-freeze outer loop (1D kinetics on a seed contour -> fit cp(T) -> redesign) as a FIXED-POINT candidate (Sun never iterates it) -- needs an R-coherent table + residual monitor + rejector; Sun's quartic cp is the same functional class our quintic-Hermite closure reproduces exactly in-window"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A15**"
+  code: []
+  mechanism: verification-protocol-gap
+  owner: "F2 / DIR-THERMOTAB"
+  trigger: "next O4 gradient-verification touch / second thermo-generator window"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a20-a29-a30-a32-a34-cyclefamily-contract-fields
+  status: CONFIRMED
+  severity: low
+  magnitude: "five CycleFamily/VI.1 contract additions, none wired: (A20) Zahr-Persson sec.2.3 Fig.9: orbit spectral (Floquet/monodromy) certificate, MODULO the symmetry group (a unit multiplier is STRUCTURAL for an autonomous rotating wave -- a naive copy would fail on every admissible RDE field); cheap surrogate = wave-frame Jacobian spectrum via the existing Newton-Krylov/Arnoldi anchor; imported-data disclosure NOT-COMPUTED-FOR-IMPORTED-DATA; (A29) Paxson-Miki p.5: limit-cycle certificate triad (exit-plane mass-flow limit cycle + cycle-averaged thrust constant + cycle-averaged in/out mass flows COINCIDE) as termination+provenance certificate for unsteady CFD generators -- third leg coincides with the mean-swirl-panel-mandated balance-residual audit (external corroboration, not new capability); lives on the GENERATOR, not our MoC per-phase march; (A30) Paxson-Miki p.5: station-position sensitivity audit is a post-hoc patch for an admitted domain inconsistency (weak metric, std-dev ratio ~70% of its own means) -- OUR metric must be margin drift (characteristic completeness, Crocco, spacelikeness, flatness), never their ratio; (A32) Harroun 2021 Eq.(9)+p.670 (re-injection every 72us, f=13800Hz, 2 waves): f_cycle as a MANDATORY CycleFamily field (today the physical period is dimensionally cancelled from the contract while separation is a wave-period-vs-boundary-layer-development competition); (A34) Wolanski Eqq.(4)-(5) pp.143-145: Wave Number W as a PROVENANCE label (W~integer => n-head rotating-wave plausible; W<<1 => galloping/decaying, outside the D2.3 averaged model), grade PRACTICE never certificate (V_cr undefined in the survey)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A20**"
+  code: []
+  mechanism: contract-field-gap
+  owner: "F2 / VI.1 (D-25, D-42)"
+  trigger: "first imported CycleFamily / next instrumentation window"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a21-a22-a23-speed-vectorization-and-checkpointing
+  status: CONFIRMED
+  severity: low
+  magnitude: "(A21) JANC sec.3.1: static-shape padding pattern (pre-declared capacity + masked reductions + resize) for per-phase march vectorization -- NOT adoptable directly (standard JAX practice, never exercised in JANC's own differentiated region; Algorithm 1 as printed is NOT amortized doubling) -- own design needed with an amortization proof; constraints: never NaN/Inf in a differentiated expression, lax.scan at fixed trip-count with masked no-ops, capacity frozen per campaign window; (A22) JANC make_diffeq: temporal complement to our spatial custom_vjp -- ADOPT the discrete CHECKPOINTED adjoint (jax.checkpoint/remat, diffrax RecursiveCheckpointAdjoint; provenance = Chen et al. Neural ODE, not JANC), never JANC's continuous backsolve (only the discrete variant satisfies O3.1); citable OOM datum 421565057912 bytes on an A100 40GB for unrolled reverse-AD, never usable against checkpointing (JANC does not compare, 0 occurrences); (A23) Miki 2020 pp.4-5 (dt=9.2324e-9s, dx=0.0008m, one full wave transit) + JANC sec.5 (pmap+ppermute, 1->4 A100 near-linear, CPMS 13.3 vs 1344.0) + Harroun: frozen-and-reused interface-BC protocol + pmap-over-phases; our phases have no halo (easier case); nothing quantitative about interface state is extractable (imported families stay simulation-sourced)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A21**"
+  code: []
+  mechanism: speed-design-gap
+  owner: "F2 / F5 speed program"
+  trigger: "next vectorization touch / interface-data-generation window"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a24-a25-constraint-scan-and-coalescence-detector
+  status: CONFIRMED
+  severity: low
+  magnitude: "(A24) Kraiko 2016 (3 cycles at beta=0.1/0.5/0.9): constraint-level price-curve scan, grade PRACTICE -- each point ships its OWN Verdict with its OWN bar (sub-band increment = UNRESOLVED); explicit secant-vs-lambda comparison pre-registered; secant moves from -1.5 to -0.45 per unit beta (~3.3x) => the local shadow price is UNREPRESENTATIVE; structural non-monotonicity observed (supersonic-length minimum at intermediate beta) even under a monotone objective; (A25) Hoffman 1987 p.151: characteristic-crossing coalescence detector as margin + fitted-front seed -- LOCALIZER not margin (monotonicity to MEASURE), min-over-crossing-events => NONSMOOTH (same B-stationarity/Danskin qualifier as O1, mesh-dependent, not C1 as [X-TBAK] requires), covers only the ENDOGENOUS front not the inherited sheet, cost = a second full march per phase per iteration (price against the S25-bis budget before arming)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A24**"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "F-SERVICE / F2 (D-24; VI.5, F4b)"
+  trigger: "next constraint-level scan / before arming the coalescence detector"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:graft-a31-a33-a35-external-precedent-corroborations
+  status: CONFIRMED
+  severity: low
+  magnitude: "(A31) Kaemming-Paxson sec.VI.A + Fig.5: thrust-balance base-force subtraction discipline -- measurement HYGIENE ONLY; the 12%/38% is an undocumented order-of-magnitude warning ('the integrated base drag results were not presented') -- NOT adoptable as a PB-2 empirical band (wrong geometric class: external afterbody annulus vs centerbody base in its own plume), not support for T-T4 sharpness, not an experimental counterpart of CSTR_PB; (A33) Wintenberger-Shepherd Figg.26-27: a 3-cycle ordering INVERTS between pre-combustion-base and post-combustion-base matching -- primary attribution to Talley & Coy, JPP 18(2):400-406 (2002); precedent of the META-PRINCIPLE (an ordering inverts), not of the matched-mdot/matched-<p> pair (where the two matchings COINCIDE); FJ-vs-Humphrey internal ordering NOT citable (falls inside the 0.02-0.03 figure-vs-figure inconsistency already in cycles_validation.md note 5, tolerance +-0.035); (A35) Wintenberger-Shepherd Eqq.(23),(31)-(32),(38): per-phase entropy-balance audit -- WIRING not new capability (already implemented+validated in src/cycles/cycles.py, suite 99/99); 3 binding conditions: thermally-perfect re-derivation of delta_s_min, re-statement at FROZEN composition (paper's prescription runs an equilibrium calc, against pin P1), new provenance field = reactant stagnation state (Pt1,Tt1) absent from contract C1 (without it delta_s_irr is uncomputable); authors themselves grade delta_s_min as CONJECTURE"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**A31**"
+  code: []
+  mechanism: external-corroboration-gap
+  owner: "D6/F5 (A31); F-SERVICE (A33, D-38/D-42); F2 (A35, D-43)"
+  trigger: "experimental protocol window / next contract-data block opening"
+  note: "pending ratification (confrontation CAVA)"
+
+# ---- source (i): corrections (C-rows), grouped, all OPEN / CAVA-pending ----
+
+- id: litreview:correction-index-attribution-errors-batch
+  status: CONFIRMED
+  severity: medium
+  magnitude: "6 verified errors in our own citation record: (C1) litmap-extension line 13 half-false ('no evidence of citation ... no equivalence statement' true; the implicit 'internal terminology only' reading is FALSE per sec.4's executed Route-B->Route-A derivation); (C3) Ancourt INDEX.md errors: 45 refs not 47, preprint (not published) title/URL, wrong filename, and 'zero classical citations' is false (Ferri 1946/Shapiro 1954/Meyer-Goldstein 1948/Liepmann-Roshko 1956 ARE cited -- strengthens claim 1, more informed witness not less); (C4) Liu 2022 INDEX.md claim 'parabolic spike + GA/gradient, 5 objectives, only formal optimizer in the corpus' is COMPLETELY FALSE by full-text census (genetic/gradient/objective/pareto/surrogate/parabol/adjoint/design-variable all 0 occurrences) -- reclassify tier-2 average-then-classical, leave the 'only formal optimizer' slot EMPTY; (C7) Efremov-Kraiko 2004: the correct authors are N.L. EFREMOV and A.N. KRAIKO, Tillyaeva is NOT an author (appears only in refs [20]/[21]) -- re-key efremov_kraiko_2004 everywhere; (C8) Kraiko 2016 is NOT 'the last true extension of the exact theory' (it is direct RANS/GA optimization, zero numbered equations) but is NOT a migration away either -- KT2015 is coevo and fully exact, and Kraiko 2016's own table shows the exact-theory nozzle beats every GA design; (C9) 5 filenames on disk do not match INDEX.md (harroun, janc, zahr_persson, schotthofer, ancourt) -- needs a filename<->INDEX lint"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C1**"
+  code: []
+  mechanism: citation-attribution-error
+  owner: "F-SERVICE (D-13, D-14, D-16)"
+  trigger: "next litmap/INDEX.md touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-hoffman1987-schotthofer-framing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(C5) Hoffman 1987 INDEX.md line: magnitude right, VERDICT SIGN wrong -- Rao wins in ALL tested cases, the paper confutes Gogish's premise ('the presence of the shock wave is not beneficial') but only with 'suggests'; the abstract's own thesis IS 'CTP ~ Rao in practice' (a half-truth, not a full falsification); it is FALSE that Table 6's best member has zero compression (it is eps=600 truncated to 400 then compressed by >100in to 60.189in); every 'always' needs the 'parametric study was of limited scope' rider; (C6) Schotthofer INDEX.md framing 'quality of our cycle average ... a window/convergence problem' invites a wrong adoption -- correct framing: the window prices the cycle-averaging error only when the period is UNKNOWN, DESIGN-DEPENDENT, or not covered by an integer number of periods; on exactly-periodic known-period data it is useless and strictly worse than integer-period trapezoid; the window is an ESTIMATOR-side device (O5, VI.1), never inside the definition of J (our mu is a physical, log-uniform measure per T-O2)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C5**"
+  code: []
+  mechanism: citation-attribution-error
+  owner: "F-SERVICE (D-13)"
+  trigger: "next litmap/INDEX.md touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-sun-ornano-fernandes-thermo-citations
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(C13) Sun 2019 as a P1 instance: cp is fitted on VARIABLE composition while R is held CONSTANT (Eqq.7-8) -- not citable as a frozen-thermally-perfect physical instance; formally inside Lemma A, the inadmissibility is in the INTERPRETATION; (C14) Sun 2019's own motivation 'Rao re-derived at thermally-perfect gamma(T)' is FALSE -- no variational re-derivation ever happens (no Euler-Lagrange, no lambda2/lambda3, no f2, no angle condition are ever written; the exit criterion is delegated by reference to Arrington et al.); (C16) Ornano 2017: (a) the '2%' figure has DIFFERENT baselines in abstract vs body -- cite only the body chain in full (unsteady-opt = MOC+2% AND MOC = steady-opt+1.5%, ~3.5% combined, with the internal inconsistency flagged); (b) 'proving the validity of Rao's method' is an overclaim -- correct framing: a viscous RANS DE optimum and a Rao contour of equal length/area-ratio give mass-averaged exit forces agreeing to 5.689 vs 5.690 kN (~0.02%, the DE's own stopping tolerance), with three qualifiers (quadratic fit not exact MoC, different fields, inviscid-vs-RANS mismatch); (C17) Fernandes 2023 conclusions 'design-variable deviation never exceeds 20%' is CONTRADICTED by the paper's own Table 2 (19.4/24.9/55.0/60.1%) and body ('~60%') -- NOT CITABLE as stated; the true reading is a FLAT objective (Tab.1 vs Tab.2: x_FFD 0.3441 vs 0.3170 at identical C_T to 5 decimals) => argmax NON-IDENTIFIABILITY, not just model error; 4 internal inconsistencies registered"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C13**"
+  code: []
+  mechanism: citation-attribution-error
+  owner: "F-SERVICE (D-13)"
+  trigger: "next litmap/INDEX.md touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-lozano-ancourt-venue-attribution-batch
+  status: CONFIRMED
+  severity: low
+  magnitude: "(C10) the Lozano [44] attribution corroborating 'differentiate the fitted front, never a captured smear' CONTRADICTS our own page-verified record (the divergence locus is wall/exit edge, NOT the shock, per the S13 correction to Lemma B sec.4.4) -- attribution must be RETRACTED; (C18) the Ancourt 'ACQUISITION-PENDING' flag in P2_outline sec.3/literature_map is stale -- full-text reading is EXECUTED, dischargeable (D-17); (C19) Teasley 2023 geometry: Table 1's Ae/At=5.0 is NOT reconciled with p.17's throat/cowl-exit areas (=1.40xAt) or Fig.3's A/A*=25 -- register as UNAVAILABILITY, not an unexplored option: the RDRE hardware corpus does not publish a reconstructible nozzle geometry, so 'we replicate NASA hardware' is not a claim we can make from this source; (C20) the digest-vs-report tension on Ancourt's ACE (\"highest-value item\") and R1^psi is resolved: both are CORROBORATIONS of already-adjudicated rows (2026-07-22 panel sec.6; literature_map r.222 from S14), not new discoveries -- adopt the refuter's formulation; (C21) 5 sources ship with NO printed venue/number/DOI/date (Harroun 2020, Miki 2020, Teasley 2023/2025, JANC 2025), extended in tranche 2 to Kaemming-Paxson (no PDF metadata either -- the 'AIAA 2018-4567'/'NTRS 20180006890' strings from MASTER.md are UNVERIFIABLE from the file) and Paxson-Miki (AIAA number sourced from the reading list, not the document) -- every such bibliography entry ships with the qualifier 'venue UNVERIFIED FROM SOURCE'"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C10**"
+  code: []
+  mechanism: citation-attribution-error
+  owner: "F-SERVICE (D-13, D-17)"
+  trigger: "next litmap/INDEX.md touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-eap-swirl-uncapped-labels
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(C22) docs/rde_nozzle_MASTER.md l.844 (EAP_i baseline rung): missing the UNCAPPED qualifier -- EAP_i as published is the naive full-expansion form that T-GB's sharpening rejects on sub-critical phases (Eq.(1) inverted for arbitrary Pt8,j/P0, no branch condition; 'sonic'/'critical pressure ratio'/'choked segment' never appear pp.3-4) => the rung carries 'min-cycle NPR >= critical' as an EXPLICIT hypothesis, or the cap; (C23) docs/rde_nozzle_MASTER.md l.691 (swirl expectations +6%/+3%): numbers/pages correct [PDF] but missing the model label -- computed with V_y FROZEN bookkeeping (Eq.4 carries station-8 circumferential velocity unchanged through the whole expansion; Eq.9 credits (1/2)V_ei_bar^2 wholesale) on a quasi-2D-unrolled CFD with NO radial coordinate, so a free-vortex Gamma=r*V_theta model is INEXPRESSIBLE from it; the pair bounds the MAGNITUDE of our E_theta debt only, never the SIGN of the recovery asymmetry against the plug"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C22**"
+  code: []
+  mechanism: missing-qualifier
+  owner: "F-SERVICE (D-34, D-35)"
+  trigger: "next M0 EAP/swirl-remark touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-l4-mach-paxson-miki-framing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(C24) every RDE exit-plane Mach citation supporting L4 needs re-qualification: Paxson-Miki Fig.3 publishes a TOTAL-velocity Mach (axial+circumferential), Kaemming-Paxson Tab.1 gives M8x_min=0.86 and sec.VI.H reports M8x~0.5 at low pressure ratio; citable ONLY as 'SOTA assumes/imposes a sonic-or-supersonic interface', never as 'RDE data are L4-admissible' (the axial condition is IMPOSED by the outflow characteristic BC, admitted margin ZERO); (C25) Paxson-Miki 2022 framing correction: (a) the recommended V5 (70.0%) is NOT the argmax (V7 ~71.5% is; V5 chosen on undeclared prose criteria: diameter/mass/manufacturability); (b) '13.4% improvement' is PERCENTAGE POINTS of ideal, not relative gain (relative: V7=+23.1%, V5=+20.5%); (c) the 2-D landscape was never explored (the one off-axis point is 1.4% worse); (d) the matched-mdot twin is NOT 'the community standard' (Kaemming-Paxson: 'the community must first agree upon the definition') -- attribute the twin construction to Paxson & Kaemming, AIAA 2012-0770, as a PROPOSED convention"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C24**"
+  code: []
+  mechanism: missing-qualifier
+  owner: "F-SERVICE (D-36, D-41)"
+  trigger: "next L4/Paxson-Miki citation touch"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:correction-harroun-base-pressure-numbers-batch
+  status: CONFIRMED
+  severity: medium
+  magnitude: "6 corrections on the Harroun/base-pressure numbers of record: (C11) Harroun 2020's '0.58 to 0.60 psia' (p.7) is a UNIT REFUSO against atm axes/nomenclature on Figg.7-8 (0.58psia ~ 0.039atm, ~15x off) -- cite only '0.58-0.60 atm'; (C12) the misquote 'near-perfect time-averaged expansion' is attached to the WRONG Harroun year (2021 in our record; the 2020 doc has 0 occurrences) -- never conflate the two; (C26) UPGRADE on the same misquote: verified 0 occurrences in BOTH 2020 and 2021, AND the paper argues the CONTRARY thesis (p.661 doubts constant-pressure-ratio correlations; Conclusions p.672: RDE base pressure is mal-predicted by both analytical and empirical constant-pressure models) -- two mandatory riders (perimeter = 0-D mass-averaged correlations only; cite the paper's FAVORABLE conclusion alongside, or the reclassification is itself a biased reading); STRIKE the 'reinforces T3-novelty' clause, unsupported by this paper; (C27) the litmap line calling Wintenberger-Shepherd's FJ bound 'the western cousin of Kraiko-Egoryan's instantaneously-adapted bound' is WRONG -- B_EK prices flow/nozzle expansion at given chamber state, FJ is a closed-system WORK ceiling over the whole detonation cycle that then ASSUMES perfect expansion; not the same peg, do not compete; variation w.r.t. Sigma is identically zero => CANNOT falsify any shape gain; (C28) three base-drag magnitudes are of DIFFERENT geometric classes and must not be summed/substituted: Harroun (ejector/nozzleless mechanism, 0.59 vs 0.95atm, both CFD, only the 0.59 has partial experimental corroboration) vs Paxson-Miki (truncated-plug PB-2 anchor, -9.5% of nozzle thrust/-1.4% of total) vs Kaemming-Paxson (measurement protocol only, 12%/38% marked UNDOCUMENTED); (C29) the 'eightfold' base-drag headline number comes from the LEAST grid-converged Harroun configuration, trend-validated only, and is CONTESTED (Schwer et al., private communication 5 Jan 2021 cited in the paper) -- cite trend+mechanism as of record, the number only with grid and contestation caveats"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**C11**"
+  code: []
+  mechanism: citation-attribution-error
+  owner: "F-SERVICE (D-41, D-50)"
+  trigger: "next Harroun/base-pressure citation touch"
+  note: "pending ratification (confrontation CAVA)"
+
+# ---- source (i): residues (R-rows), grouped, all OPEN / CAVA-pending unless noted CLOSED ----
+
+- id: litreview:residue-r1-r2-p0-averaged-thrust-precedent
+  status: CONFIRMED
+  severity: high
+  magnitude: "TWO P0 residues on the PB-2/D2-G3 novelty claim: (R1) does a variational contouring at MEAN thrust under time-varying stagnation parameters exist? Decided by ISABE-2003-117 (Kraiko-Pyankov-Tillyaeva) + Bogdanov-Kraiko-Pyankov-Tillyaeva, Aeromekh. Gaz. Din. No.3 (2002), full text unread; new datum from Efremov-Kraiko 2004 p.622: the physical driver is a ROTATING-VALVE chamber (the PDE is listed as a SEPARATE device -- not detonation-wave work); the descriptor 'maximum-AVERAGE-thrust' is NOT corroborated by any source read so far and is downgraded to an unverified inference; distinctions in our favor: their throat MOVES, ours is fixed and fed by a rotating-wave interface; (R2) the closest prior art to cycle-averaged RDE-nozzle evaluation is Harroun, M.S. Thesis, Purdue, July 2019 (ref.[7] of Harroun 2020) -- the actual carrier of the 2D-axisymmetric constant-pressure cycle-averaging and the flared-vs-IE ~1% Isp estimate the entire F3 threat runs on; we hold only ONE sentence of it. Procurement of both is already tracked in docs/literature_registry.yaml (wanted_isabe_2003_117, wanted_bogdanov_2002, wanted_harroun_thesis_2019) -- this row is the STANDING FINDING (the open theory question + its P0 weight on PB-2/D2-G3), not the procurement mechanics"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R1**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "PROC + G5 (D-28, D-29)"
+  trigger: "blocks any FURTHER strengthening of PB-2/D2-G3 novelty; does not block the work"
+  note: "pending ratification (confrontation CAVA); also the target of validation/ADVISORY_litmap_extension_2026-08-13.md's claim-B near-miss (ISABE-2003-117), same open question from the independent adversarial sweep"
+
+- id: litreview:residue-r3-r4-r7-sternin-shmyglevskii-lineage
+  status: CONFIRMED
+  severity: medium
+  magnitude: "three lineage residues: (R3) is there an averaged-measure ancestor OLDER than Kraiko-Osipov 1970? Candidate: Sternin, Nauchno-tehnicheskii byulleten' No.6 (1957) 42-49 + its print publication Izv. AN USSR OTN No.1 (1959) 41-45 ('minimal weight' nozzle) -- default-deflationary: the twin 'minimal weight' title + Kraiko 2001 crediting Ref.12 for first integrals ONLY suggests the trajectory weighs SCALAR parameters, not a shape functional; confidence on the 'averaged ancestor' hypothesis: LOW; (R4) is 'Sternin's boundary' the same object as our Lambda-form / Rao-Beck Eq.(4)? Candidate: Sternin, 'Limits of the Optimal Shockless Nozzles Field', Doklady AN SSSR 139(2):335-336 (1961) [title corrected in convergence -- procurement under the prior title string fails]; Kraiko 2001 cites it primarily but does NOT make the identification (Rao-Beck absent from its bibliography); (R7) does the second first integral y^nu*rho*V^2*sin^2(theta)*tan(alpha)=const survive on ROTATIONAL data? Candidates: Kraiko, Trudy VC AN USSR, Moscow 1963 p.83, OR Shmyglevskii, Trudy VC AN USSR 1963 p.142 (non-constant stagnation parameters, perfect gas); the paper ASSERTS the generalization without proving it -- adoption GATED on reading or independent re-derivation + rejector; scoping caveat: expected null phase-by-phase only in the T3-collapse class, on the shared optimum only the mu-averaged form holds"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R3**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "PROC (D-31)"
+  trigger: "before the respective claim/block (R3/R4 gate the tier-ladder lineage; R7 gates the rotational-invariant adoption)"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r5-r28-kraiko1979-shmyglevskii1962-gate
+  status: CONFIRMED
+  severity: medium
+  magnitude: "two blocking human-reading residues on the classical tier-ladder attribution: (R5) KT2015 delegates its shape-gradient (Delta-chi) derivation rules FOUR times to Kraiko, *Variational Problems of Gas Dynamics*, Nauka 1979 -- not self-contained; the G5 human passage on Kraiko 1979 is LOAD-BEARING and cannot be discharged by KT2015 alone; (R28) Shmyglevskii, PMM 26(1):110-125 (1962), in Russian, NOT READ -- must decide whether its inequality-form necessary conditions are (i) mere construction-admissibility constraints, (ii) one-sided variational inequalities on a cone, or (iii) a true sign-multiplier KKT system; case (iii) upgrades C30's attribution from 'classical STRUCTURE' to 'classical SYSTEM' and re-labels the tier ladder as instrumentation of a published system -- currently known only via a secondary attribution sentence in a paper that is a party to the dispute (Kraiko et al. 2001)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R5**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "G5 (R5, blocking, portante); PROC (D-31; wanted_shmyglevskii_1962 already tracked in docs/literature_registry.yaml for R28)"
+  trigger: "R5 blocks SUBMISSION not the work (G6); R28 gates the C30 'structure'->'system' upgrade"
+  note: "pending ratification (confrontation CAVA); NAMED GAP: Kraiko 1979 (R5) has NO WANTED row in docs/literature_registry.yaml (grep-confirmed absent), unlike R28's Shmyglevskii 1962 -- flagged in the closing message, not silently seeded as a procurement row here"
+
+- id: litreview:residue-r6-r29-corner-class-and-terminal-face-cone
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(R6) Kraiko, Kraiko, P'yankov & Tillyaeva, Fluid Dyn. 47(2):223-238 (2012) [ref.8 of KT2015]: the optimal supersonic contour has TWO corner points, smooth contours are inferior by 'hundredth fractions of per cent' -- our clamped A_h class cannot represent an interior bend, candidate bend-enabled variant for the H-CLASS sector tournament; (R29) the cone verso for the terminal face ff-degree (base pressure / mirror plug), when it exists, is NOT derivable from KT2015 (the paper contains neither plug nor p_b) -- must be derived in-house; the one piece of A13 external evidence does not cover"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R6**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "F2/F3 (R6, H-CLASS re-opening); F2/PB-2 (R29)"
+  trigger: "next H-CLASS re-opening (R6); next PB-2 cone-form derivation touch (R29)"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r8-r23-base-pressure-pb2-blocking
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(R8) base-pressure closure for PB-2/CSTR_PB: NASA N-73-12282 (Mueller, Sule, Fanning, Giel & Galanga, Sept.1972) + NASA N-71-18990 (Mueller, Sule & Hall) -- measured of record via Harroun p.8 [PDF]: Pb/Pa=1 is INADMISSIBLE for RDE in both regimes (base stays ~20% below ambient even in open wake), admissible structure has TWO regimes with transition at Pa/Pc~0.15; limit: no measurement of a TRUNCATED-plug RDE base exists in Harroun (taps are on the nozzleless config; the aerospike has 6 taps only on the ramp) -- nozzleless->truncated-plug transfer is an ANALOGY, not a measurement; (R23) the base-pressure 'eightfold' headline is CONTESTED by Schwer et al. (private communication 5 Jan 2021, cited in Harroun 2021 p.667: 'the base pressures did not vary substantially between steady-flow and RDE conditions'); the authors themselves write 'this is an area demanding a more focused study' -- the number is not of record while open"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R8**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "F2 / PB-2 (blocks PB-2 closure)"
+  trigger: "PB-2 base-pressure closure window"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r9-r10-r12-mdo-and-detonation-nozzle-precedent
+  status: CONFIRMED
+  severity: medium
+  magnitude: "(R9) the direct-methods MDO route the Kraiko school names 'promising' (Kraiko 2001 p.1351, a 2001 declaration of intent, not an execution): Korte et al., NASA TM 110326 (1997); Korte et al., JPP 17(1):93-98 (2001, accessible, HIGH priority); Korte, AIAA 2000-1044; (R10) analytic shape optimization for detonation-fed nozzles: Levin & Manulovich, Combust. Explo. Shock Waves 46:418-425 (2010) + Billings, 'PDE nozzle optimization using a genetic algorithm', NASA MSFC TR (2000) -- ATTRIBUTION CORRECTION: CESW is the Springer English translation of Fizika Goreniya i Vzryva, Scopus/WoS indexed, so this is NOT covered by the declared 'Russian corpora' blind spot -- it is a genuine SWEEP HOLE in an indexed English-venue journal, a more serious finding class than a language blind spot; (R12) 'Rao with gamma(T)' priority candidate: Sun & Yu, Acta Armamentarii 39(11):2145-2152 (2018), in Chinese -- inside the declared 'Chinese-language journals' blind spot"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R9**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "PROC (D-31, D-32)"
+  trigger: "before citing claim 8 (niche-vacancy) or claim 9/10 (EQ-v2) against these"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r11-r13-r14-r15-adjoint-scholarship-secondary
+  status: CONFIRMED
+  severity: low
+  magnitude: "four P2/P3 secondary-source residues on the adjoint scholarship: (R11) Reuther, Jameson, Alonso, Rimlinger, Saunders, J. Aircraft 36(1):51-60 (Part 1) / 61-74 (Part 2), 1999 -- Giles-Pierce 2000 never prints the multipoint objective or weights, so J=sum(w_i*F[Sigma;s_i]) is OUR inference (NPSOL is also compatible with a min-max epigraphic formulation); (R13) Krakos, Wang, Hall & Darmofal, JCP 231(8):3228-3245 (2012) -- Schotthofer recalls it without proof (see also A9's correct-citation duty); (R14) Zahr & Persson, JCP 2016 [ref.54] -- the shape-derivative-on-deformable-domain details; 'one composition away' is conditional on an unverified capability of [54] (its geometry is FIXED NACA0012, design variables are KINEMATIC spline nodes); (R15) independent verification of the ACE coefficients lives only in Ancourt's Supplementary Materials (3 Python + 2 Maple files), not in the PDF"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R11**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "PROC (D-32, opportunistic)"
+  trigger: "opportunistic; no blocking claim named"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r16-f4b-contact-front-open-with-acceptance-test
+  status: CONFIRMED
+  severity: high
+  magnitude: "ADJUDICATED CONTRADICTION, still OPEN: Giles-Pierce says the adjoint is CONTINUOUS across an imposed-RH shock; Kraiko says multipliers are DISCONTINUOUS along characteristics -- ruled COMPATIBLE (different objects: a shock is a NON-characteristic front for the adjoint, whose characteristics coincide with streamlines+Mach lines, so a jump across it would be overdetermined; Kraiko's jumps live on CHARACTERISTIC surfaces). What remains open: the THIRD certificate class (A5) and the hole on CONTACT fronts, now with a NAMED CLASSICAL INSTANCE (gap G-a upgrade): Kraiko 2001 p.1348 col.2 Fig.1b -- Shmyglevskii 1962's discontinuous optimum has 'cn is the shock wave, and ct is the slip line', a linearly-degenerate zero-mass-flux front as a STRUCTURAL element of the optimum, not an artifact. Our tier-1 rejects it BY CONSTRUCTION (D25U_U3U4.md:61-64 F1 strength margin, :164 shock-branch entropy floor, conditionals.md:93 Lopatinskii degenerates exactly at characteristic fronts and a contact IS characteristic) -- structure inapplicable, not a tolerance to widen; the classical optimum sits in S1\\A1(mu0), inside the solution class but outside our certified tier => the stack CANNOT emit a Verdict on the optimum the corpus has published, against 'nothing ships outside a Verdict'. NEW measurable acceptance test: the F4b linearly-degenerate-front certificate class is declared closed ONLY when it certifies the benchmark instance 'discontinuous optimal plug with slip line ct'. Zero-cost screen adoptable now: every fitted contact ships M_rel=||Delta v_t||/c against the classical Miles threshold 2*sqrt(2) (Miles 1958/Coulombel-Secchi NOT on disk => procurement, not citable of record)"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R16**"
+  code: []
+  mechanism: certificate-class-gap
+  owner: "F4b (D-22, D-52)"
+  trigger: "before declaring F4b jump conditions closed; screen (M_rel vs Miles) armable immediately, zero cost"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r17-r18-r19-adjudicated-non-contradictions
+  status: DISCHARGED
+  severity: low
+  magnitude: "three apparent contradictions in the corpus, each ADJUDICATED CLOSED within the confrontation doc itself (self-contained, no external action needed): (R17) does the Russian school abandon the exact theory (Kraiko 2016, GA on RANS) vs continue it (KT2015, coeval, fully exact)? Ruled PARALLEL BRANCHES, no migration -- KT2015 received 1 Jun 2015; Kraiko 2016 itself calls exact contouring 'the conventional technique'; Kraiko 2016's own table has the exact-theory nozzle beating every GA design; (R18) Hoffman (Rao unbeatable, gap 0.04-0.34%) vs Miki ('averaged basis' heuristic wins by 3.2%)? Ruled DIFFERENT OBJECTS, no conflict -- Hoffman compares contours at identical envelope/vacuum/const-gamma/matched-mdot; Miki compares configurations with different external-body extension (authors' own attribution p.13), Case 2 without averaged design already captures +1.7%, and the study has +17% validation bias and no grid-convergence study; (R19) Ornano (unsteady-opt beats MOC by ~2%) vs Hoffman (Rao unbeatable)? Ruled DISJOINT REGIMES, no conflict, but NEITHER resolves the question -- Ornano's delta (2%, 1.5%) is the same order as its own declared stopping tolerance (1.2%), no bars, no grid convergence; Hoffman's gaps are grid maxima; both discuss under their own resolution -- precisely the hole our VI.6 stack closes"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R17**"
+  code: []
+  mechanism: literature-contradiction-adjudicated
+  evidence: "adjudication executed and closed within validation/ADVISORY_litreview_confrontation_2026-08-13.md sec.7 (R17/R18/R19 rows), each with the deciding evidence quoted in-row; no further reading or procurement required to close these three"
+
+- id: litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking
+  status: CONFIRMED
+  severity: medium
+  magnitude: "five open provenance/doctrine residues: (R20) no published dataset certifies a single-mode wave PERSISTENT in thermal-steady-state (Teasley 2023's observations are almost all at startup) -- the periodic-pure-wave pin remains valid as a MODEL HYPOTHESIS but loses its hardware provenance; decided by high-speed imaging in steady mainstage, or published transition durations; (R21) the doctrinal source of the EAP definition is Paxson & Kaemming, AIAA 2012-0770 ('Foundational Performance Analyses of Pressure Gain Combustion...', p.2 definition + p.12 caution 'simple averaging can produce significantly optimistic results'), NOT the 2018 paper any priority claim on 'steady equivalent pressure' must be bounded against; secondary: Paxson & Hoke, JANNAF 2012 / NASA TM 2013-217826 (CTAP base); (R24) the 'matching-basis' question originates at Talley & Coy, JPP 18(2):400-406 (2002), cited by Wintenberger-Shepherd p.16 as the origin -- their Figg.26-27 is the worked demonstration, not the source; (R25) the non-choked-feed regime and its effect on the T-GB hypothesis: Teasley 2025 (100-415 psid @ 700-1250 psia, no chug) + Kaemming-Paxson sec.VI.H (M8x~0.5 at low overall pressure ratio) -- decided by a campaign with MEASURED choking margin at the interface, which none of the sources read publish; (R26) OPEN TENSION: is cycle-averaging adequate or blind? Paxson-Miki says adequate for sizing (6.54 vs ~6.5); Harroun 2021 says blind to contour ranking (c_F=1.25 identical) -- PARTIALLY adjudicated (sec.3bis-B): not a contradiction, a RESOLUTION THRESHOLD (adequate for sizing, not demonstrated adequate for percent-level ranking); exactly where the threshold falls stays OPEN, decided by R22"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R20**"
+  code: []
+  mechanism: literature-precedent-open
+  owner: "F5 (R20); F-SERVICE (D-45, R21/R24 registration); F2 (R25 T-GB coverage restriction); F2/F5 (R26)"
+  trigger: "R20: next hardware-provenance campaign; R21/R24: immediate registration; R25: measured-choking-margin campaign; R26: resolved by R22"
+  note: "pending ratification (confrontation CAVA)"
+
+- id: litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer
+  status: CONFIRMED
+  severity: high
+  magnitude: "(R22) THE DISENTANGLEMENT EXPERIMENT -- is Harroun 2021's non-discrimination caused by the AVERAGE or by the 2-D reduction? Not a paper, an ACT of our own: three evaluations of the same IE/flared pair -- (a) 3-D unsteady, (b) 3-D per-phase steady-averaged, (c) 2-D per-phase steady-averaged. If (b) discriminates and (c) does not => the average is EXONERATED and the 2-D reduction is at fault, materially strengthening (P); if (b) does not discriminate => phase-averaging is itself culpable on ambient-coupled configurations and the two-regime contract becomes load-bearing, not defensive. Graded P0 -- the single highest-value item of tranche 2; (R27) does the near-sonic adjoint-weight growth rate TRANSFER from quasi-1D to the axisymmetric rotational case? The ~4x of sec.3.25 is inferred [INF] from a local Sauer model; Giles-Pierce gives only 'preliminary analysis / numerical evidence' for 2D (p.343) and points to Giles & Pierce 1997 ('Adjoint equations in CFD: duality, boundary conditions and solution behaviour'), not on disk; decided by EITHER (i) the transonic rung of [X-GP01] executed (in-house, cost M, no procurement) or (ii) Giles & Pierce 1997 for the region-of-influence argument in citable form -- neither blocks the sec.3.25 re-scoping"
+  source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#**R22**"
+  code: []
+  mechanism: experiment-not-yet-run
+  owner: "F2 or F5 (D-44; R22 = the single highest-value tranche-2 item)"
+  trigger: "R22: before any public claim on cycle-average adequacy for contour ranking; R27: non-blocking, at the next [X-GP01] transonic-rung window or Giles & Pierce 1997 procurement"
+  note: "pending ratification (confrontation CAVA)"
+
+# ---- source (iii): validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md, sec.4, MOC-01..MOC-09 ----
+
+- id: moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion
+  status: CONFIRMED
+  severity: high
+  magnitude: "Interior_m.f90:65 + InverseWall_m.f90:87: the velocity convergence criterion uses a SIGNED RHS (abs(delta_v) < E2*vc, vc = signed previous iterate); for v<=0 the test is IDENTICALLY FALSE => guaranteed silent exhaustion of all 21 passes; LIVE in production (lower family of the annular/migdal kernel, theta<0 => v<0, on a frozen-md5 baseline); damage is bounded for contracting cells (iterate caps ~1e-11 from the fixed point) -- the real damage is masking the NON-contracting cells, the only dangerous ones; violates GENO/CLAUDE.md sec.3 'zero silent exit'"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-01"
+  code: []
+  mechanism: silent-failure-sign-error
+  owner: "GENO repo (fix) + F2 (program: O2 cross-code oracle trusts this kernel's output as a fidelity reference — mai assumere GENO bug-free)"
+  trigger: "next GENO baseline refresh touching the lower-family/migdal kernel, or next O2 cross-code comparison in that regime"
+  note: "GENO-owned defect that BINDS this program per the moc-critical-independent-invariants standing directive; register also lato GENO per the advisory's own sec.8 duty 1"
+
+- id: moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap
+  status: CONFIRMED
+  severity: high
+  magnitude: "InverseWall_m.f90:31-64: the interior position loop has NO iteration cap -- oscillation above 1e-6 = an infinite hang inside a `pure` subroutine (no I/O possible, not diagnosable)"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-02"
+  code: []
+  mechanism: missing-iteration-cap
+  owner: "GENO repo (fix) + F2 (program: any O2/O3.x run consuming this kernel can hang undiagnosably)"
+  trigger: "next GENO InverseWall_m touch, or first observed unexplained hang in a GENO-consuming run"
+  note: "GENO-owned defect that BINDS this program; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion
+  status: CONFIRMED
+  severity: high
+  magnitude: "CircularContour_m.f90:112: throatExpansion_solve exits the exhaustion branch (iter>THROAT_MAXITER) through the SAME path as convergence, OVERWRITING Me with whatever axis Mach was reached, no message; iter is local, not in the signature -- no caller can distinguish convergence from exhaustion; consumers: run_ideal (type0), run_conico (type3), run_tic (secant on Me, type1), raocore_solve (M1d intent(inout), types 2/4/6); for types 0/3 there is no outer loop -- the nozzle is designed for the WRONG Mach with nominal-looking output; the annular twin does error stop on the same THROAT_MAXITER (L744-754), an asymmetry proving the rule was known; split verdict across two independent verifiers (CONFIRMED-P1 vs DECLASSIFIED-P2 'no wrong number demonstrated yet') -- to be settled by the R-3 instrumented run"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-03"
+  code: []
+  mechanism: silent-failure-state-overwrite
+  owner: "GENO repo (fix) + F2 (program: types 0/1/2/3/4/6 all feed our design/oracle chain)"
+  trigger: "the R-3 instrumented s3 run (iter-at-exit histogram) settles the split verdict; next GENO CircularContour_m touch"
+  note: "GENO-owned defect that BINDS this program; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-04-ch16-mass-crossing-no-diagnostic-on-miss
+  status: CONFIRMED
+  severity: medium
+  magnitude: "Profile_m.f90:649 (+L806,L1283,L1379): on the legacy Ch.16 path (ideal/TIC/migdal) the mass-crossing branch is the ONLY writer of sol(1,i)/thrust/Nv; if cumulative column mass never crosses mdot_ref the loop ends with NO wall closure and NO diagnostic; for Nv=1 the interior scratch point lands IN the wall row and the next column consumes it as prev_col(1)/perf%yw/pw; the Ch.17 twin treats the same state as FATAL (error stop 'converged WITHOUT a mass crossing', L391-398) and has a wall_save restore Ch.16 lacks -- the hole is masked by backend duality; the TOC Ch.16 path alone was patched with a forced closure (asymmetry proving the hole was known); split verdict (CONFIRMED-P1 vs P2-with-escalation-trigger) between two verifiers"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-04"
+  code: []
+  mechanism: silent-failure-missing-diagnostic
+  owner: "GENO repo (fix) + F2 (program: legacy Ch.16 path feeds the ideal/TIC/migdal design chain)"
+  trigger: "the R-3 instrumented run settles the split verdict; next GENO Profile_m touch"
+  note: "GENO-owned defect that BINDS this program; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped
+  status: CONFIRMED
+  severity: medium
+  magnitude: "MoC_Gen_m.f90:559-574: inverse-wall Ch.17 foot extrapolation is NOT clamped and has no positivity guard on rho,p -- rho2<=0 or p2<=0 gives a silent NaN one iteration later (aP=sqrt(gamma*p/rho)); latent: an exactly-horizontal segment passes the L563 guard but gives frac=Inf at L567; an unresolved doubt comment (L576-578) about streamline-foot interpolation consistency is left open in-code"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-05"
+  code: []
+  mechanism: silent-failure-unguarded-extrapolation
+  owner: "GENO repo (fix) + F2 (program: Ch.17 inverse-wall feeds the differential-engine-comparable design path)"
+  trigger: "next GENO MoC_Gen_m touch, or first observed silent NaN in a Ch.17-consuming run"
+  note: "GENO-owned defect that BINDS this program; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-06-icor-tolerance-uneconomical-vs-book
+  status: CONFIRMED
+  severity: low
+  magnitude: "IO_m.f90:312-317,560-561: default icor=20, tol_conv=1e-8, E1=E2=tol_conv are LIVE across all production .ini (swept: zero overrides; tocnoz's [GENO-solver] block is literally empty) against the book's economy prescription (<=2 correctors justified p.261; fractional 1e-3 sufficient; 1e-8 costs ~2x for nothing, Fig.17.36; 'reduce point spacing rather than iterating more' p.120); measured analytic cost: ~2.3x on a converging cell, 7x on a capped cell (2 td%solve calls per pass) -- a named speed lever (S25/S25-bis hook)"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-06"
+  code: []
+  mechanism: uneconomical-tolerance
+  owner: "GENO repo (fix) + F2/speed program (program: any GENO-timed comparison inherits this cost)"
+  trigger: "next GENO IO_m touch, or next speed-lever prioritization pass"
+  note: "GENO-owned defect that BINDS this program's speed comparisons; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-07-no-fold-crossing-monitor
+  status: CONFIRMED
+  severity: low
+  magnitude: "no module monitors characteristic crossing/fold anywhere in MoC; the book discusses 3 options (p.149, valid to pressure-ratio ~4-5) and NOZZLE uses option 1 (let them cross): GENO is option-1-WITHOUT-a-monitor; indirect guards are not fold-specific (annular-only kgrid loud scan; A4 mass identity at 10% with 3-4 orders margin; NaN check only at bootstrap); Interior_m.f90:51-55 (y<0 => silent return with u=v=0) is an ANTI-GUARD; coverage is affirmatively in-hypothesis -- collateral discovery: the TOP contour and the cone are NEVER marched (they are geometric outputs, not MoC domains: run_top fits and writes, run_conico marches the ideal design), so the arc->cone junction the book warns about never enters the computation; exposure LATENT, not live"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-07"
+  code: []
+  mechanism: missing-monitor
+  owner: "GENO repo (fix) + F2 (program: instrumentation gap on any GENO-consumed march)"
+  trigger: "next GENO march-instrumentation touch; currently latent, not live on today's marched domains"
+  note: "GENO-owned defect that BINDS this program; register also lato GENO per the advisory's sec.8 duty 1"
+
+- id: moc-audit:moc-08-critical-speed-refinement-undocumented-deviation
+  status: DISCHARGED
+  severity: low
+  magnitude: "InitialValues_m.f90:73-96 + a1_ideal_march_jax.py prep_tab: critical-speed refinement to M=1.000005 (M_IVL-1=5e-6) has NO source in Zucrow (IVLINE uses an analytically perfect a*); the deviation ORIGINATED in GENO and was deliberately copied into the differential engine; defensible for tabulated thermo (an analytic a* no longer gives exactly M=1 on tables) but UNDOCUMENTED against the reference"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-08"
+  code: []
+  mechanism: undocumented-deviation
+  evidence: "the verdict-bearing question (is this undocumented constant load-bearing for our claims?) was independently exercised by the S-CERT 'MOC-08 economic falsifier' (validation/scert_raws_2026-08-13/moc08_falsifier_driver.py -- a DIFFERENT artifact sharing the MOC-08 label by coincidence, noted so the two are never conflated again): DEF and F7 re-marched at M_IVL-1 in {5e-6 (GENO constant of record), 5e-4 (100x coarser)}, PASS -- the committed J_def reproduces at baseline and the pair-difference Delta-J does not drift beyond its own committed band (band_f7); the claim-19 +0.51% surplus is IVL-refinement-insensitive at 100x. The book-fidelity documentation gap itself (M0 l.1234/l.1297 locus + the missing sonic-strip probe, per confrontation C33/A36) remains open under the SEPARATE existing row oracles:sonic-strip-probe-missing-d49 -- not re-opened here"
+
+- id: moc-audit:moc-09-extension-fan-point-index-shift-unverified
+  status: DOWNGRADED
+  severity: low
+  magnitude: "Extension_m.f90:305: in the fan phase (do_axis=.true., j2 fixed), march_column wires the known C+ point as pt2=old(jj+1) while storing at row jj -- one row of offset relative to the legacy/grid contract, fabricating an axis point where the legacy computes an interior point; VERIFICATION TRUNCATED by the session limit -- to be confirmed/refuted before any use"
+  source: "validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md#MOC-09"
+  code: []
+  mechanism: unverified-index-shift
+  owner: "GENO repo (fix, if confirmed) + F2 (program: Extension_m/type-6 fan phase, if consumed)"
+  trigger: "next MoC audit resume completing the truncated verification (the advisory's own sec.7 R-2 residue), before any production use of the fan-phase index path"
+  note: "GENO-owned candidate defect, verification session-truncated; bounded per the (iii) MOC-01..09 tranche boundary — the doc's further growth (MOC-10..28, incl. the P0 double-counted wall thrust, + the sec.9 appendix) is a named residue for the next window, see header"
+
+# ---- source (iv): validation/LEDGER_dubbi_moc_2026-08-13.md, sec.C1 and sec.D3 ----
+
+- id: moc-audit:ledger-c1-thermo-audit-outcome-bundle
+  status: CONFIRMED
+  severity: medium
+  magnitude: "thermo red-team outcome, 7 items (a-g), closed-with-proof: (a) the T_mid cp discontinuity claim REFUTED by direct measurement -- 3.7e-9 relative, not ~1e-4, i.e. BELOW tol_conv (PC converges through T_mid, the associated P0 is cancelled -- a NASA-7 'general truth' substituted for a measurement); (b) thermo_H2O2.dat has a NEGATIVE s0 jump => G(T) non-monotone => solve_T_from_entropy's orientation assumption is locally FALSE, but no shipped case uses it -- LATENT, P2, unreached; (c) migdal uses air14 with EXACTLY ZERO jumps and gamma===1.4 -- the entire T_mid concern is STRUCTURALLY ABSENT from the annular/Broyden path; (d) the FLINT source IS in the repo (submodule): piecewise-LINEAR C0 interpolation with a kink at every integer Kelvin, and dG=cp/T is NOT the derivative of the interpolated s0; (e) the throat-wall-angle iteration is NOT a secant but a FALSE POSITION with a frozen endpoint, hence LINEAR convergence, and on exhaustion accepts unconditionally overwriting Me -> ILL-POSED in the named regime; (f) Interior_m with y<0 returns an ALL-ZERO state with NO FLAG, and p=rho=q=0 then feeds sqrt(gamma*p/rho)=0/0 downstream -- P1 CONFIRMED, live (no reachability caveat given, unlike (b)); (g) REPRODUCIBILITY: thermo_plug.dat and plug.plt do NOT exist in the tree (.gitignore excludes thermo/), so CASES/plugnoz -- an ACTIVE production case in CTest -- is NOT reproducible from the repository"
+  source: "validation/LEDGER_dubbi_moc_2026-08-13.md#RIENTRATA 2026-08-13"
+  code: []
+  mechanism: thermo-audit-mixed-outcome
+  owner: "GENO repo (items b,d,e,f: fix) + F2 (program: item f/(g) bind any O2/O3.x run touching Interior_m near-axis states or the plugnoz CTest case)"
+  trigger: "next GENO Interior_m/thermo touch (f); next CI/reproducibility audit of CASES/plugnoz (g)"
+  note: "item (a) is a POSITIVE result (a previously-suspected P0 is cancelled by measurement) carried here for completeness, not as a standing risk"
+
+- id: moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net
+  status: CONFIRMED
+  severity: medium
+  magnitude: "closed-with-proof already on disk (GENO/docs/analisi_drift_portata_ch17.md, section 'La prova empirica'): an instrumented log from a prior session (idealnoz Ch.17, column 511, rows j=27/j=28) shows SL kseg=1 tf=0.00000 yfoot=1.0085882 col1y=1.0077696 col2y=1.0069965 -- the foot falls ABOVE the wall, outside the segment; t_foot is clamped to 0 and the foot state (rho3,V3,p3,theta3) becomes the WALL state, not the interior field, corrupting rho4/q4 via isentrope+Bernoulli; the clamp persists across ALL PC passes. The foot_clamped flag DOES fire in production (k_seg==1 .and. t_foot<0), but PHASE 2 never reads it (PHASE 1 zeroes the flag first) -- the correction the code provides for exactly this event NEVER RUNS; a documented production event that should have been intercepted was not. The GENO registry's own classification of this asymmetry (N-12, 'cosm -- proven inert: PHASE1 lagged resets the flags before PHASE2') is CIRCULAR: the flag is inert BECAUSE it is zeroed, and the zeroing is justified by the (unverified) claim that the clamp cannot fire"
+  source: "validation/LEDGER_dubbi_moc_2026-08-13.md#CHIUSO 2026-08-13 SENZA NUOVO RUN"
+  code: []
+  mechanism: dead-safety-net-circular-justification
+  owner: "GENO repo (fix) + F2 (program: any GENO baseline whose kgrid re-anchors near a foot-above-wall geometry inherits the uncorrected corruption)"
+  trigger: "next GENO kgrid re-anchor touch, or next foot_clamped-adjacent MoC_Gen_m/CircularContour_m change"
+  note: "distinct from the appendix's MOC-16 (same dead-safety-net mechanism, out-of-scope per the (iii) MOC-01..09 boundary) -- this row is the source-(iv) instance, in scope"

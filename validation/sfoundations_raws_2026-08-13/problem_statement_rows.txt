@@ -1,0 +1,63 @@
+id: problem-statement:closed-form-scope-overreach
+status: DISCHARGED
+severity: high
+magnitude: (P)(ii) and T-T7FS(a) asserted the closed-form f2 reduction for the whole S1 class while the derivation of record is irrotational-homentropic (I2 explicitly admits entropy/vorticity profiles; M0 VI.4bis(iv) demotes the closed form on rotational data in the same document); latent - current optima homentropic
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:closed-form-scope-overreach
+evidence: S21 step 6 T3(i): irrotational-homentropic qualifiers landed at (P)(ii) + T7(a) (+ the P3 sites) + registry T-P3 scope; the executable field-level rejector = standing P-2 freeze blocker row, owner F2 (see theory-core:F1-f2-closed-form-rotational-leak - one repair, two audit rows)
+---
+id: problem-statement:flatness-monitor-unarmed
+status: CONFIRMED
+severity: medium
+magnitude: the single monitor fencing the whole averaged objective's scope (pure periodic rotating-wave data; monitor = T0 flatness, 'mandatory in every data contract') has NO committed carrier: CycleFamily NOT STARTED, plan item 5-bis defers the script + derived threshold + impure-mode rejector - the guarantee 'never silently averaged' is currently unfalsifiable in-repo (declared pending in the plan, not at the M0 sites)
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:flatness-monitor-unarmed
+owner: pre-F5 / D6 item 5-bis: CycleFamily v0 + the T0-flatness carrier (derived threshold, two-mode and n-transition rejectors); cheap now: a monitor-carrier-PENDING flag at the M0 D2.3/VI.4bis(v) sites
+trigger: F5 entry / first averaged-data contract consumed; any impure-mode or mode-transition data entering the program
+---
+id: problem-statement:stage-a-audits-premised-not-implemented
+status: CONFIRMED
+severity: medium
+magnitude: (P) GIVEN premises the stage-A admission audits as PASSED while they are checkable 1-of-3: only the axial spacelikeness margin has a carrier (derived floor); no Crocco-compatibility or characteristic-completeness audit exists (inlet_admissibility enforces homentropic UNIFORMITY, a different guard); gate G6 'rejected loud' cannot fire as specified
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:stage-a-audits-premised-not-implemented
+owner: pre-F5 / F2a (U3' owns the extraction-surface premise; CycleFamily stage-A v0 owns the auditor): standalone stage-A auditor with loud-reject controls (Crocco-inconsistent synthetic family; axially-subsonic patch without declared closure)
+trigger: F5 entry / first stratified interface contract consumed of record
+---
+id: problem-statement:st-marginal-numbers-uncarried
+status: CONFIRMED
+severity: medium
+magnitude: the numbers driving the program's central error-budget verdict (f = 3-30 kHz, tau_n = 20-150 us => St = O(0.1-1) MARGINAL => P4 corrector mandatory, (P)(v) St bar) carry no citation and no committed carrier; tau_n = int dx/u is computable on the certified march and was never computed - nothing can currently reject the stated range (R5 violation inside a normative doc)
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:st-marginal-numbers-uncarried
+owner: pre-F5 / P-1 claim gate: commit the St carrier (tau_n on the certified TOC march at the anchor states, t_c from the matched-cycle machinery, derived bars, corrupted-u rejector) + literature citation for the f range
+trigger: P-1 draft citing St / the P4 obligation, or F5 entry
+---
+id: problem-statement:t4-gamma-status-undeclared
+status: CONFIRMED
+severity: medium
+magnitude: T-T4 declares only the C-HT4 closure and the registry labels it gamma EOS-general, while the peak-design ordering (l(xi) increasing in Pc) rests on Lemma B - declared 'REQUIRES calorically perfect gas' - whenever T0(xi) varies across phases, which is the physical case (D3: T0 3727 -> 2228 K, gamma_s 1.1537 -> 1.2093); the registry C-HT4 statement omits the upstream-scaling clause entirely
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:t4-gamma-status-undeclared
+owner: F0-hygiene remainder (gamma-variable directive): declare T4's status at both statement sites + fix the registry gamma field; named rejector = the D3-style two-phase l-ordering probe on the Cantera gamma(T) route
+trigger: next M0/registry T-T4 touch, or any T4-consuming verdict at gamma(T) with varying T0
+---
+id: problem-statement:pv-bars-no-evaluator
+status: CONFIRMED
+severity: medium
+magnitude: no committed carrier can evaluate either (P)(v) bar term for a delivered design: t3qs is a structural lemma (not a J1 evaluator), the D2-residual meter's full anchor = A5 (not built) - conformance of any delivered (S*, delta) to (P)(v) is unfalsifiable today, weaker than the BAR-CLASS NOTE's own downgrade admits (it concedes non-certification, not non-computability); the certified fallback bracket is the only shippable object, as the docs state
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:pv-bars-no-evaluator
+owner: pre-F5: land the licensed cheap J1 route (one linearized sweep-perturbation solve on the certified march -> numeric St|J1| with derived bars) or amend the BAR-CLASS NOTE to 'evaluators pending (J1: VI.4bis(ii); D2: A5)' + a Verdict lint requiring every (v) bar term to name its carrier or declared absence
+trigger: F5 entry / first delivered (S*, delta) pair of record
+---
+id: problem-statement:label-namespace-collisions
+status: CONFIRMED
+severity: low
+magnitude: one letter-namespace carries at least five meanings in the normative corpus (O1/O2 = theorem labels, 4.3bis interface options, Verdict oracles, campaign oracles, census pins - and D2.6's 'closure O1/O2/O3' miscounts the four options); R1/R2 triple use; D1 Def 3.3 missing; misreading hazard under the textual conflict rule, no wrong content found downstream
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:label-namespace-collisions
+owner: F0-hygiene remainder: namespace rename pass (IF-O*, ORC-O*) at the D2.6 sites + Def 3.3 tombstone + doc-lint candidate rejecting bare O-digit tokens matching two label spaces
+trigger: next D2.6/D1 touch, or the first misreading incident of record
+---
+id: problem-statement:geno-line-refs-unpinned
+status: CONFIRMED
+severity: low
+magnitude: the frozen problem book anchors interface-contract narrative to GENO source line numbers with no commit hash (GENO = independent never-committed repo) - unverifiable from this repo's history, rots silently inside frozen definitions
+source: validation/AUDIT_agnostic_2026-08-07.md#problem-statement:geno-line-refs-unpinned
+owner: F0-hygiene remainder: stamp GENO code citations with the pinned build hash (GENO fca273a is now of record as the KAT'd build) + lint rejecting hash-less GENO file:line citations
+trigger: next D1/G0-dossier touch
+---

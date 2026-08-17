@@ -657,6 +657,18 @@ entries:
 # (rows above) and are NOT wanted.
 # ---------------------------------------------------------------
 
+- id: unread_cf_aso_preprint
+  identity: "CF_ASO_Paper_PrePrint.pdf — user-deposited preprint (aerodynamic-shape-optimization class by filename; exact identity to be established at first read); appeared on root D after the 2026-08-13 ratchet-down, caught by the four-root coverage lint 2026-08-17 (S-FOUNDATIONS window)"
+  paths: ["literature_review/CF_ASO_Paper_PrePrint.pdf"]
+  status: UNREAD
+  owner: "next lit window — first read establishes identity and read-status; no summary before reading (UNREAD rule)"
+
+- id: wanted_kraiko_1979_variational
+  identity: "Kraiko A.N., Variational Problems of Gas Dynamics (Variatsionnye zadachi gazovoi dinamiki), Nauka, Moscow 1979 — the G5 human-passage book (census R15); confrontation residue R5 named it with no WANTED row (gap caught by the tranche (e) sweep 2026-08-17)"
+  paths: []
+  status: WANTED
+  owner: "G5 dispatch package of record (ILL Boaga request, validation/G5_dispatch_email.md) — the book IS the G5 object; this row makes the procurement trackable in-registry like the other P0 procurement items"
+
 - id: wanted_aiaa_2019_0197
   identity: "AIAA 2019-0197 (Bigler, Bennewitz, Schumaker, Danczyk & Hargus per INDEX.md; earlier choking-advisory shorthand 'Harroun 2019' — identity to be settled on the PDF)"
   paths: []

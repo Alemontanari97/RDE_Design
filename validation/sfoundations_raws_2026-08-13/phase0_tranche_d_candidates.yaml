@@ -1,0 +1,323 @@
+# S-FOUNDATIONS Phase 0, seeding tranche (d) — PER-ROW CONSUMPTION MAPS
+# for four high-density partially-consumed advisories (named queue item,
+# S-CERT closing note 2026-08-13; existing_ids.txt = 157 rows read as the
+# no-re-mint baseline). Schema = docs/findings_registry.yaml header.
+#
+# ============================================================
+# SOURCE (i) validation/ADVISORY_claims_to_code_2026-08-07.md
+# rows C-1..C-6 (the "NEW OBLIGATION G1" preamble is OUT OF SCOPE per the
+# tasking's explicit row list; it is independently of record as CONSUMED
+# — PROGRESS_2026-08-11_S21_order.md step 6: "G1 -> F1 [tier-invariant
+# clause]" — noted here, not counted).
+# THREE-WAY COUNT: 6 == 3 seeded_new + 0 mapped_to_existing + 3 declared.
+#
+# C-1 (S20 = DEF-type coalescence, three-way locus test): CONSUMED.
+#   [X-LOCD] built and executed (registry entry cell-cert row is a
+#   DIFFERENT GAP-30 defect — no id covers C-1's content, hence
+#   "declared", not "mapped"). Evidence: validation/PROGRESS_2026-08-11_
+#   S22_governor.md rows 5+7 — O4 discharged, branch (c) UNANIMOUS 5/5,
+#   BOTH the DEF-signature (a) and interior-caustic (b) readings
+#   FALSIFIED for the S20 instance (min val 0.612-0.620 vs threshold
+#   0.172; mechanism = class construction, not physics); the K_disc~A_0
+#   bridge falsifier FIRES for the instance.
+# C-2 ((G) Lambda-form == Rao-Beck Eq.(4), KAT on synthetic gamma=1.4):
+#   CONSUMED. [X-VMON] built and KAT'd, exit 0. Evidence:
+#   validation/PROGRESS_2026-08-11_S21_order.md row 7 — KAT-A machine
+#   identity over 247 grid points (worst 6.5e-03 of the derived C_OPS
+#   floor) + corrupted-gamma rejector firing; KAT-B backend AD vs closed
+#   form at gamma=1.4, worst 2.688e-13 inside the derived band 1.095e-12,
+#   corrupted-table rejector firing; registered in M0 as THEOREM
+#   [T-LFEQ4] with carrier [X-VMON].
+# C-3 (DEF wall rejected at fine mesh, twin falsifier leg 1): OPEN —
+#   seeded row twin-falsifier:c3-mesh-refinement-unadjudicated. The
+#   [X-DEFTW] twin ran twice (S24) but branch F1 (the mesh-refinement
+#   half C-3 asks about) was explicitly "NOT ADJUDICABLE this run" both
+#   times (rung wall/W arrays forfeited by the external monotonicity-stop
+#   kill) and folds into the panel's own C7 NAMED CONDITIONAL, never
+#   discharged.
+# C-4 (S20 walk approaching a DEF-sector optimum): CONSUMED — falls per
+#   its own text ("verifiable only AFTER C-1 outcome (a) ... otherwise it
+#   falls with them"); C-1's measured outcome was branch (c), not (a).
+#   Same evidence as C-1.
+# C-5 (mu>=0 <-> jump-depth minimality, GENO deeper-jump sign test):
+#   OPEN — seeded row twin-falsifier:c5-deeper-jump-geno-gated.
+#   Evidence the direct-side sign test ran (trivial, mu=0 on the ladder)
+#   but the GENO-side companion is STRUCTURALLY GATED (GENO exposes no
+#   jump-depth knob): validation/PROGRESS_2026-08-12_S24_f1b.md step 15.
+# C-6 (search continues under interior folds; A'/G1 progress half): OPEN
+#   — seeded row twin-falsifier:c6-outcome-i-never-reached. Safety half
+#   consumed ([X-AKNO] attempt 3 of record); progress half never reached
+#   — both decisive A' campaigns (S22 T4, S24 T3 rung 1-bis) returned
+#   margin INACTIVE and F1 CLOSED with "no outcome-I" declared
+#   explicitly: validation/PROGRESS_2026-08-11_S23_f1close.md step 5.
+#
+# ============================================================
+# SOURCE (ii) validation/ADVISORY_engine_speed_audit_2026-08-12.md
+# rows N1-N8, the DEAD list (10 items), Q1-Q6, survey rows S1-S4 (section
+# 7.3). N_source_rows = 8 + 10 + 6 + 4 = 28.
+# THREE-WAY COUNT: 28 == 6 seeded_new + 2 mapped_to_existing + 20 declared.
+#
+# N1 true-L5-record: OPEN, seeded speed-cond:n1-l5-full-record-untriggered
+#   ("N1 not triggered" verbatim, PROGRESS_2026-08-12_S25bis_speed.md
+#   STEP 4 — M5c/M-D MET the segment target without it).
+# N2 traced-screen-as-gate: OPEN, seeded
+#   speed-cond:n2-traced-screen-never-armed (its precondition O1 was
+#   itself never built — STEP 5 "O1/O2/O4/N8 named triggers not fired").
+# N3 CAMPAIGN-F8 restart semantics: OPEN, seeded
+#   speed-cond:n3-campaign-f8-restart-semantics-open (precondition O2
+#   never built, same STEP-5 citation).
+# N4 stall-stop: OPEN (REFUTED-as-stated, re-proposable), seeded
+#   speed-cond:n4-stall-stop-reopen-blocked. Q5's identical unblock
+#   condition (post-8761dce artifact + base-identity check) MERGES into
+#   this same row — Q5 counted under "declared" below, not a second row.
+# N5 jacfwd exact Hessian: MAPPED to engine:vmap-hessian-adjoint-
+#   divergence — the route facts ("solve is custom_vjp-only ... jacfwd
+#   BLOCKED as written, true N5 price = implicit custom_jvp rule") were
+#   appended to that row's owner field via R11(c) of
+#   validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md (B-F11,
+#   ADOPTED), consuming N5's adjudication-only content.
+# N6 benign-flip segment merge: MAPPED to driver-nonsmooth:
+#   flip-segmentation-materiality (docs/findings_registry.yaml, source
+#   GAP-18) — that row's owner field already reads "the speed-audit N6
+#   panel (F2 entry...)", i.e. N6 is that row's own owner clause; no
+#   second row (S-ORDINE repair of record: "GAP-18 re-owned N6").
+# N7 Python 3.14/3.14t: DECLARED-NOT-SEEDED — DECLARE-NOT-ADOPT is
+#   already the terminal decision of record; its stated revisit trigger
+#   ("M5 AND H2 both rejected") did NOT occur (M5c ACCEPTED first-pass,
+#   PROGRESS_2026-08-12_S25bis_speed.md "GATE m5cgate ... EXIT 0, FIRST
+#   PASS"), so the conditional is closed for the foreseeable program
+#   state; no open content remains to seed.
+# N8 colored/sparse FD Hessian: OPEN, seeded
+#   speed-cond:n8-colored-fd-hessian-ungated (Q1's sparsity precondition
+#   folds into this row — Q1 counted under "declared" below).
+# DEAD (10 items: naive cert screen as a gate; COSTMODEL-F4 dispatch-
+#   amortization; COSTMODEL-F6 6x replay headroom; COSTMODEL-F9
+#   derive-batching premise; seed-anchored screen band; eager cell_scan
+#   record; external interpolation/thermo libs + tabulated inverse T(h);
+#   L4 batching of early-exit searches; Jacobi-precond removal; "arm the
+#   cache env var in carriers"): DECLARED-NOT-SEEDED, all 10 — these are
+#   verdict rows of record already carrying their own measured
+#   refutation evidence inline in the advisory's "### DEAD" section
+#   (e.g. eager cell_scan 0.8x measured + an 803s compile-churn event;
+#   seed-anchored band vacuous by 6700x measured; cache env var already
+#   armed via the o33_bench import side-effect) — closed engineering
+#   decisions, not open findings; no repo state since 2026-08-12
+#   contradicts any of the ten.
+# Q1 P5 sparsity precondition for N8: DECLARED — merges into the N8 row
+#   above (same open content, one row).
+# Q2 A-G (M3's gradient-pass gain), unblock = M-C measurement: DECLARED
+#   — CONSUMED, the M-C bench ran: PROGRESS_2026-08-12_S25_speed.md
+#   "MEASURE M-C / STOP-CHECK VERDICT OF RECORD" (s25_spdb_mc.json,
+#   val_grad steady 0.979s measured on the post-M3 closure); Q2's own
+#   unblock condition (run M-C) is satisfied of record.
+# Q3 A-S (bucket-signature stability), unblock = M-B churn-rate report:
+#   DECLARED — CONSUMED, mbwalk churn measured (PROGRESS_2026-08-12_
+#   S25_speed.md:395-397, "2 signatures / 3 segments... churn REAL") and
+#   subsequently bounded at M5c landing ("ZERO running-max growth
+#   events, churn tied to (NI, Nw, n_B)", PROGRESS_2026-08-12_S25bis_
+#   speed.md STEP 3).
+# Q4 H1 abort-fraction multiplier (2x vs 20x): OPEN, seeded
+#   speed-cond:q4-abort-fraction-multiplier-unmeasured (H1 itself
+#   LANDED — PROGRESS_2026-08-12_S25_speed.md STEP 5 "M5b/H1... armed at
+#   the driver's TWO gate sites" — but the multiplier question was never
+#   measured).
+# Q5 stall-stop artifact: DECLARED — merges into the N4 row above (same
+#   unblock condition, one row).
+# Q6 post-M5 campaign-layer residual: DECLARED — CONSUMED, "settled
+#   empirically at M-D" exactly as the advisory names it:
+#   PROGRESS_2026-08-12_S25bis_speed.md STEP 4 (campaign projection with
+#   H3/H4 terms priced, <=25 min MET across the band).
+# S1-S4 (SOTA survey rows, adopt-or-declare): DECLARED-NOT-SEEDED, all
+#   4 — governance decisions already reasoned and dated in the advisory
+#   itself (validation/ADVISORY_engine_speed_audit_2026-08-12.md#7.3),
+#   consistent with the landed code (S3's jax_compilation_cache_max_size
+#   LRU is the M4 cache-bounding mechanism of record; S1's scipy
+#   group_columns-only decision is N8's own un-adopted mechanism, above).
+#
+# ============================================================
+# SOURCE (iii) validation/ADVISORY_redteam_2026-08-11.md
+# rows ISS-1..ISS-6 (TARGET: plan-v3, "consumption verification" — the
+# RT-1..RT-6 eqv2-judgment target and the 7 "audit-refuted" findings are
+# OUT OF SCOPE per the tasking's explicit row list).
+# THREE-WAY COUNT: 6 == 0 seeded_new + 0 mapped_to_existing + 6 declared.
+# ALL SIX are CONSUMED — every repair the red-team demanded was applied,
+# checkably, in the ratified plan docs/rde_nozzle_development_plan.md:
+# ISS-1 (contact/slip unowned): CONSUMED — F2a's dedicated
+#   CONTACT/SLIP adjudication paragraph (development_plan.md:177-193,
+#   default = smeared-contact-as-smooth-stratified-data with declared
+#   rigor class + piecewise s(psi),h0(psi) admission; FITTED-contact
+#   option = F4b extension) + hypothesis-coverage-map NEW ROW
+#   (development_plan.md:355-359).
+# ISS-2 (P-2 decoupling dropped): CONSUMED — "DECOUPLING OPTION (ISS-2,
+#   USER DECISION re-presented, not defaulted)" is textually in the plan
+#   (development_plan.md:85-90) and the decision was PRESENTED AND
+#   DECIDED at S22->S23 (early-close chosen; PROGRESS_2026-08-11_
+#   S23_f1close.md step 3/6).
+# ISS-3 (flagdef-KAT landed-vs-dispatched mismatch): CONSUMED — the
+#   D6 entry gate already reads "DISPATCHED" not "landed"
+#   (development_plan.md:135, corrected row development_plan.md:359-361)
+#   and the dispatch itself SUBSEQUENTLY LANDED (GENO fca273a,
+#   development_plan.md:130-134).
+# ISS-4 (uniform budget clause not instantiated): CONSUMED — every
+#   later phase (F2/F3/F4b/F5) now carries an explicit anchor + cap +
+#   campaign count + PROGRESS counter line, each tagged "(ISS-4)"
+#   in text (development_plan.md:166, 224, 245, 254).
+# ISS-5 (dated freeze trigger not checkable): CONSUMED — "FREEZE
+#   CHECKABILITY (S21 addendum, ISS-5)" gives the exact recorder rule
+#   (development_plan.md:76-84) AND it was EXECUTED: P-2 froze dated
+#   2026-08-11 with the "F1 campaign k/2, session m/3" counter of
+#   record (validation/PROGRESS_2026-08-11_S23_f1close.md steps 5+7).
+# ISS-6 (F3<->F4b interchangeability dropped): CONSUMED — "ORDER
+#   RESILIENCE (ISS-6, adopted from the RDE expert): F3 and F4b are
+#   ORDER-INTERCHANGEABLE given F2 exit" (development_plan.md:227-231).
+#
+# ============================================================
+# SOURCE (iv) validation/ADVISORY_mean_swirl_panel_2026-08-11.md
+# "the F2a deltas": the panel's own S4 sub-verdict names EXACTLY THREE
+# duties as F2a's mandatory ingestion-adequacy conditions ("CONDITIONAL
+# on three mandatory deltas ... absorb F-swirl-1 ... upgrade the
+# F-swirl-2 monitor ... add the ANGULAR-MOMENTUM AUDIT row") — those
+# three are counted here (the R4 same-session P1 write-up, the S21
+# choking-advisory text correction, the T3-control-row pin, the
+# falsifier-script registration and the bound-ladder queue are OTHER
+# PLAN-ACTIONS items, not F2a duties, and are outside the tasking's
+# named scope; two are noted below for completeness, not counted).
+# THREE-WAY COUNT: 3 == 3 seeded_new + 0 mapped_to_existing + 0 declared.
+# All three are OPEN — F2/F2a has not opened (NEXT = S-FOUNDATIONS ->
+# F2 block 0; docs/rde_nozzle_PROGRESS.md).
+# F-swirl-1 (swirl field in the F2 contract): OPEN, seeded
+#   swirl-f2a:f-swirl-1-contract-field-missing. Verified: MASTER VI.1
+#   CycleFamily carries only the bracketed placeholder "[vorticity]"
+#   (docs/rde_nozzle_MASTER.md:1371) — no w(y;xi)/Gamma=r*w row exists.
+# F-swirl-2 (TRIPLE Gamma/h0/s monitor upgrade): OPEN, seeded
+#   swirl-f2a:f-swirl-2-monitor-not-upgraded. No stage-A monitor
+#   implementation with the N6-3-derived threshold + G6 wiring exists
+#   yet (grep of record: no H-AM/TRIPLE-monitor code in validation/).
+# New contract row (angular-momentum balance-residual audit + F1-F4/A4
+#   falsifier scripts): OPEN, seeded
+#   swirl-f2a:angular-momentum-audit-row-missing. Only
+#   validation/n6_swirl_kernel.py exists (the DISTINCT Lemma A/B
+#   symbolic-kernel deliverable) — no F1-F4/A4 falsifier script is
+#   committed.
+# NOTED, not counted (other PLAN-ACTIONS items): the R4 same-session P1
+#   theorem write-up (H-AM1..H-AM5 statement) was NOT landed verbatim in
+#   M0/N6 (grep of record: zero hits for "H-AM1", "FLUX NULLITY",
+#   "J_inj" anywhere under docs/) — only an informal citation of the
+#   panel's P1 verdict survives, in the LATER S-GAUNTLET material
+#   (docs/rde_nozzle_MASTER.md:722-735, Lemmas A/B extension + TWIN-C/
+#   TWIN-A/swirl-KE-debit content, PROTOCOL T3-CONTROL registered input
+#   (5) SWIRL ACCOUNTING at :804-818) — a genuine but out-of-scope
+#   residual for a future tranche. The S21-absorption choking-advisory
+#   text correction (strike "wave-count asymmetries") IS consumed
+#   (grep-verified zero hits in
+#   validation/ADVISORY_rde_choking_2026-08-11.md).
+
+entries:
+- id: twin-falsifier:c3-mesh-refinement-unadjudicated
+  status: DOWNGRADED
+  severity: medium
+  magnitude: "the [X-DEFTW] twin's decisive run 2 (rung 1-bis, 19 segments, 7037s) was killed by the pre-registered external monotonicity stop before its rung wall/W arrays could be captured; branch F1 (wall-contour gap under joint mesh+knot refinement -- exactly C-3's claim) is recorded 'NOT ADJUDICABLE this run' on BOTH decisive runs and folds into the panel's own C7 NAMED CONDITIONAL; no instance has ever produced a verdict on the fine-mesh DEF-wall-rejection claim"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-3"
+  code: []
+  mechanism: unexecuted-falsifier-branch
+  owner: "F2 (the C7 refine/enriched-class leg; the pre-authorized S24+1 optional session was not consumed, so per PROGRESS_2026-08-12_S24_f1b.md step 16 the discharge owner defaults to F2 entry)"
+  trigger: "the joint mesh+knot refinement leg of the [X-DEFTW] twin executing to a verdict on branch F1 (fires, or is cleanly not-adjudicable again with a fresh wall-array capture)"
+- id: twin-falsifier:c5-deeper-jump-geno-gated
+  status: DOWNGRADED
+  severity: low
+  magnitude: "the direct-side mu-prediction sign test ran and is trivial (mu = 0 identically on the ladder, margin inactive throughout); the GENO-side one-parameter DEEPER-JUMP family C-5 needs a jump-depth knob GENO does not expose -- STRUCTURALLY GATED per PROGRESS_2026-08-12_S24_f1b.md step 15, census row added on the GENO side; magnitude claims stay BLOCKED (dJ/d(depth) derivation + mu-estimator band still nonexistent)"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-5"
+  code: []
+  mechanism: external-dependency-gate
+  owner: "the GENO repo under its own protocol (never a commit from this repo)"
+  trigger: "GENO's next dedicated session exposing a jump-depth knob for the deeper-jump family"
+- id: twin-falsifier:c6-outcome-i-never-reached
+  status: DOWNGRADED
+  severity: low
+  magnitude: "safety half VERIFIED of record ([X-AKNO] attempt 3, 5 rejections traversed, ordered return to the certified base); progress half NEVER REACHED -- both decisive A' campaigns run to date (S22 T4, S24 T3 rung 1-bis) returned margin INACTIVE (0 lanes/0 clusters active at termination) and F1 CLOSED 2026-08-11 with 'margin INACTIVE (no outcome-I)' declared explicitly (PROGRESS_2026-08-11_S23_f1close.md step 5); no case with a margin-active optimum has ever exercised the G1 rejector + outcome-I convergence C-6 requires"
+  source: "validation/ADVISORY_claims_to_code_2026-08-07.md#C-6"
+  code: []
+  mechanism: unreached-outcome-class
+  owner: "F2 (near-axis mechanism work; any future decisive campaign reaching a margin-active optimum)"
+  trigger: "the first decisive campaign (any phase) that returns a margin-active outcome-I, or a deliberate margin-active adversarial instance construction"
+- id: speed-cond:n1-l5-full-record-untriggered
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N1 (true L5 full compiled record, MARCH-F7) never fired: M5c (the F6-amended per-column executor) landed first-pass and MEASURE M-D found segment MET at the pessimistic end (14.9s vs <=30s, margin 2.0x) -- PROGRESS_2026-08-12_S25bis_speed.md STEP 4 states verbatim 'N1 not triggered'; the marginal 2-3x over M5c remains unclaimed"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N1 — true L5 full compiled record"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2-engine"
+  trigger: "measured segment shortfall after M1-M6 (e.g. a future M5c-class gate rejects and the fallback leaves record ~50-60s)"
+- id: speed-cond:n2-traced-screen-never-armed
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N2 (traced-screen deployment as a gate) requires shadow-mode agreement data from O1 (shadow-screen instrumentation, D1's own verdict: 'DEAD AS A GATE ... shadow-mode instrumentation only, never gates'); O1 itself was never built -- PROGRESS_2026-08-12_S25bis_speed.md STEP 5 lists 'O1/O2/O4/N8 (named triggers not fired)' among the items kept out after STOP-WHEN-MET fired at M-D"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N2 — traced-screen deployment as a gate"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2"
+  trigger: "material rejected-probe share after the mandatory set AND shadow (O1) agreement >= its own derived bound on the live population (O1 must be built first)"
+- id: speed-cond:n3-campaign-f8-restart-semantics-open
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N3 (CAMPAIGN-F8 semantic half -- repeat restarts from last pre-drift certified base) needs one post-8761dce campaign artifact plus O2 drift data; O2 (drift watch, reporting-only) is among the items never built per PROGRESS_2026-08-12_S25bis_speed.md STEP 5 ('O1/O2/O4/N8 ... named triggers not fired'); no panel/declared-rule amendment has convened"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N3 — CAMPAIGN-F8 semantic half"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "panel/declared-rule amendment (touches constraint 5 semantics)"
+  trigger: "one post-8761dce campaign artifact + O2 drift data (O2 must be built first)"
+- id: speed-cond:n4-stall-stop-reopen-blocked
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N4 (stall-stop, CAMPAIGN-F7 class) is REFUTED AS STATED by the advisory's own text (equal-outcome premise false: J crept +0.13% during fencing); the re-proposal path (post-8761dce artifact + derivable trigger + segment-by-segment base-identity verification) has not been exercised since -- no artifact of that class has been produced; Q5's identical unblock condition (post-8761dce artifact + base-identity check) is the same open content, folded into this row"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N4 — stall-stop"
+  code: []
+  mechanism: refuted-pending-reproposal
+  owner: "F2"
+  trigger: "post-8761dce artifact + derivable trigger + segment-by-segment base-identity verification (a fresh pre-registration, never the original REFUTED form)"
+- id: speed-cond:n8-colored-fd-hessian-ungated
+  status: DOWNGRADED
+  severity: low
+  magnitude: "N8 (P5 colored/sparse FD Hessian) stays un-adopted: its precondition Q1 (spline-DoF/Hessian bandedness sparsity structure) is UNPROVEN ('the banded spline structure claim conflates basis overlap with the field-coupled Hessian'), and its second trigger leg (segment still thin after M6) never fired -- M-D/M-E both MET the <=30s target without it; listed among 'named triggers not fired' at PROGRESS_2026-08-12_S25bis_speed.md STEP 5. Q1's precondition is the same open content, folded into this row"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#N8 — P5 colored/sparse FD Hessian"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F2 / S25-shortfall"
+  trigger: "Q1 sparsity derivation lands (spline-DoF coupling derivation + one clean-host full-FD fill probe) AND segment measured thin after M6"
+- id: speed-cond:q4-abort-fraction-multiplier-unmeasured
+  status: DOWNGRADED
+  severity: low
+  magnitude: "H1 (early-abort opt-in flag) LANDED as part of the mandatory M5b chain (PROGRESS_2026-08-12_S25_speed.md STEP 5: 'M5b/H1 ... armed at the driver's TWO gate sites'), but Q4's own multiplier question (2x uniform vs 5-20x adversarial; first-uncertified-cell position) was never measured -- no log read of a post-8761dce ART_CAMP.partial has been performed"
+  source: "validation/ADVISORY_engine_speed_audit_2026-08-12.md#H1's abort-fraction multiplier (2x vs 20x)"
+  code: []
+  mechanism: unmeasured-multiplier
+  owner: "F2 (offline log analysis)"
+  trigger: "a log read of the first post-8761dce ART_CAMP.partial artifact"
+- id: swirl-f2a:f-swirl-1-contract-field-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "MASTER VI.1 CycleFamily contract C1 carries only the bracketed placeholder '[vorticity]' (docs/rde_nozzle_MASTER.md:1371) -- no per-phase swirl profile w(y;xi) or Gamma=r*w transport row exists in the ratified F2 contract; F2a's mandatory delta 1-of-3 (panel S4) is unabsorbed; F2 has not opened (NEXT = S-FOUNDATIONS -> F2 block 0)"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#F-swirl-1 absorption"
+  code: []
+  mechanism: contract-field-gap
+  owner: "F2a (prerequisite for ingesting any surviving swirl physics)"
+  trigger: "F2a entry / the F2 contract freeze"
+- id: swirl-f2a:f-swirl-2-monitor-not-upgraded
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the stage-A uniformity monitor has not been upgraded from Gamma-only to the mandated TRIPLE (Gamma, h0, s) per-phase spread with an N6-3-obstruction-term-derived threshold and the psi-monotonicity/backflow C1 guard wired as a G6 rejector; a Gamma-only monitor 'falsely licenses N6-2' per the panel S4 verdict; no F2a session has run (grep of record: no TRIPLE/H-AM monitor code under validation/)"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#F-swirl-2 upgrade"
+  code: []
+  mechanism: monitor-scope-gap
+  owner: "F2a"
+  trigger: "F2a entry / the stage-A uniformity monitor's first implementation touch"
+- id: swirl-f2a:angular-momentum-audit-row-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the ANGULAR-MOMENTUM AUDIT balance-residual check (|measured flux - declared J_inj - declared shear/numerical torque budget| <= derived tolerance, normalized by gross flux, >=2 stations) is not wired anywhere in the F2 contract or test suite; the F1-F4+A4 falsifier scripts (rejector-capable, on one periodic chamber-CFD dataset) have never been committed -- only validation/n6_swirl_kernel.py exists, and it is the DISTINCT Lemma A/B symbolic-kernel deliverable"
+  source: "validation/ADVISORY_mean_swirl_panel_2026-08-11.md#New contract row"
+  code: []
+  mechanism: rejector-not-wired
+  owner: "F2a"
+  trigger: "F2a entry, gated on the first ingested periodic chamber-CFD dataset (the falsifier's own precondition)"

@@ -46,8 +46,10 @@
 #
 # COUNTS (verified at extraction time, see verification note below):
 #   annex rows of record (C1-C45): 45
-#   this registry: 48 rows (45 indexed + C46-C48 newly declared
-#     S25-bis rows — growth enumerated, not silent)
+#   this registry: 51 rows (45 indexed + C46-C48 newly declared
+#     S25-bis rows + C49-C51 minted S-FOUNDATIONS 2026-08-17 — growth
+#     enumerated, not silent: C49 Phase-B diff omission, C50/C51 the
+#     blind-contract judge's C-4 deliveries)
 #   tallies by status (red-team-corrected recount, replacing the
 #     document's own inconsistent "8/14/23" line — see the annex
 #     reading paragraph and docs/rde_nozzle_PROGRESS.md R25):
@@ -67,10 +69,12 @@
 #     MIXED: 3 (C29, C31, C39)
 #     SINGLE-AUTHOR: 13 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
 #       C32, C44, C45, C47)
-#     NEVER: 25 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
+#     NEVER: 28 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
 #       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
-#       C42, C43)
-#     TOTAL: 48 (7+3+13+25=48). C48 (vmap-in-engine) is classed
+#       C42, C43, C49, C50, C51)
+#     TOTAL: 51 (7+3+13+28=51; C49 minted at S-FOUNDATIONS Phase B —
+#     the fit-vs-capture solution-representation choice had NO ledger
+#     row, caught by the de-novo diff). C48 (vmap-in-engine) is classed
 #     DECIDED here despite the census shorthand "gate-rejected as
 #     default" because it carries a full multi-probe converged
 #     technical verdict (m6gate + three convergent root-cause
@@ -635,4 +639,38 @@ entries:
   status: DECIDED
   evidence: "docs/rde_nozzle_PROGRESS.md#AGGIUDICAZIONE M6 DI RECORD"
   owner: "F2 (adoption = declared version change at a session boundary, m6gate re-formed on the corrected criterion, M3 precedent; candidate opt-in flag A1_VMAP_HESS=1 named in the interim)"
+
+- id: C49
+  choice: "Per-phase solution REPRESENTATION for design: fitted-front characteristic marching vs adjoint-consistent shock capturing vs two-tier (capturing explorer + fitted certifier)"
+  incumbent: "fitted-front characteristic marching (the S1 piecewise-smooth class with fitted fronts is the certified class of record; capturing never used)"
+  alternatives:
+    - "adjoint-consistent shock capturing (WENO/DG/entropy-stable FV with smooth limiters) as the sole solver"
+    - "two-tier: capturing as exploration/discovery solver + fitted marching as certification solver, |J_captured - J_fitted| promoted to a measured (v) model-residual carrier (the 4/4 de-novo convergence)"
+    - "modern implicit shock tracking (HOIST/Zahr; Bonfiglioli-Paciorri unstructured fitting) as the high-order upgrade path"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Certified solution class"
+  owner: "S-FOUNDATIONS Phase C (Form-2 with a GENUINE captured-only advocate seeded from the four de-novo trees' option blocks; user question 2026-08-17 'perche si fitta una soluzione che potrebbe essere catturata' = the mandate); falls to F2 entry if the Phase C batch splits"
+  note: "Minted 2026-08-17 at Phase B: the choice lives in M0 D2.5 (solution class) and was never a LEDGER row — the de-novo diff exposed the omission. The four blind trees each carry the captured option at its genuine best (V-F6/F27, H-F4/F8/F9/F28, O-F9, P-F12) and converge on the two-tier form with the fitted tier as the certificate bearer (adjoint front-motion term = the load-bearing argument, Giles-Pierce class). Nothing decided here: the row exists so the adjudication cannot close by omission."
+
+- id: C50
+  choice: "Datum-space metric for the interface-data uncertainty contract (acceptance + sensitivity semantics)"
+  incumbent: "none — the record has no metric at the contract site (finding contract:datum-uncertainty-contract-missing)"
+  alternatives:
+    - "L1(A) (blind-PDE lens: TV-metrics ruled out since jump positions are never measured to TV accuracy; weaker-than-L1 ruled out by flux continuity)"
+    - "thrust-calibrated flux-weighted L2 + separate L-inf realizability guard (blind-data/UQ lens)"
+    - "both, split by role: acceptance metric vs sensitivity metric"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-3 — Datum-space metric"
+  owner: "F2 contract window (with finding contract:datum-uncertainty-contract-missing); genuine two-lens disagreement surfaced blind — Form-2 with each lens as its own advocate"
+  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition; the two blind formalizers genuinely disagree and the record is silent — a textbook Form-2 case with non-incestuous advocates already on file."
+
+- id: C51
+  choice: "Rung-3a wave-frame solver: implicit BVP (freezing + Newton-Krylov) vs azimuthal MARCHING of the periodic orbit"
+  incumbent: "implicit BVP (M0 rung-3a pin: freezing + Newton-Krylov)"
+  alternatives:
+    - "azimuthal marching in alpha: the blind-PDE formalizer proves the wave-frame problem symmetrizable-hyperbolic in alpha where |u_theta − Omega r| > a — the periodic orbit could be MARCHED (a genuine algorithmic alternative surfaced blind)"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-5 — Wave-frame azimuthal MARCHING"
+  owner: "rung-3a implementation window (adjudication owed at implementation time, not before — the judge's own sequencing)"
+  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition. The hyperbolicity-in-alpha regime condition is the decision criterion's core; outside the regime the marching option dies structurally."
   note: "m6gate FIRED at first implementation (dH 18% of Hessian scale = 5-6x the FD scheme's own asymmetry) -> root cause ISOLATED via three convergent probes (adjoint cross-lowering gradient floor ~1e-8 rel over ~250 implicit solves, FD-amplified ~7 orders; even sequential eager-vs-jit diverges 2.9e-2; the defect was the mixed-lowering formulation, not the batching) -> CORRECTED FORM (base in-batch, one lowering; lane-permutation control bitwise) measured dH 1.68x scheme asymmetry, INSIDE the derived K_RICH bound, batched self-asymmetry better than sequential -> classed ADOPTION-READY. Classed DECIDED (not SINGLE-AUTHOR/NEVER) because the verdict rests on a full converged multi-probe technical adjudication (m6gate + consumer diagnostic + root-cause isolation), not an un-surveyed choice; the residual open item is WHEN to adopt (a session-boundary version-change decision), not WHETHER the current default is justified."

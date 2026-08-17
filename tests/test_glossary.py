@@ -101,6 +101,15 @@ FAMILY_PATTERNS = (
     # linked family rows added to the glossary in the same window.
     (r'^B-F\d+$', 'B-F<n>'),
     (r'^RF-\d+$', 'RF-<n>'),
+    # S-FOUNDATIONS window 2026-08-17 (SR-4): the Phase-A de-novo
+    # attack-tree fork namespaces entered the ratchet corpus via the
+    # C49 choice-ledger note — four linked family rows added to the
+    # glossary in the same window (V/H/O/P = variational/hyperbolic/
+    # optimization/propulsion deriver trees).
+    (r'^V-F\d+$', 'V-F<n>'),
+    (r'^H-F\d+$', 'H-F<n>'),
+    (r'^O-F\d+$', 'O-F<n>'),
+    (r'^P-F\d+$', 'P-F<n>'),
 )
 
 # The 12 pinned collision groups (contract list) -> entry predicate:

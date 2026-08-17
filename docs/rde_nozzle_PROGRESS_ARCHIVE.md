@@ -2403,3 +2403,48 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## al design marginale; rejector notaknot riformato)**; log:
 ## validation/PROGRESS_2026-08-12_S25bis_speed.md)
 
+
+
+---
+### [moved from PROGRESS.md ORA/NEXT, 2026-08-17, S-FOUNDATIONS part-1 R3 close]
+
+## ORA (2026-08-13, chiusura DOPPIA SESSIONE F-SERVICE (R36) +
+## S-CERT (R33). **F-SERVICE CONSUMATA** al confine duro (ea2abce +
+## 57a0fe9, suite 23/23 PASS 267 s): ratifiche utente D-01/C31-min/
+## C30 ESEGUITE (glossa cancellata; T7(c) in forma a cono minimale
+## [T-T7CN] con lemma di trasferimento, split assiale/radiale,
+## innesto lambda_L; attribuzione ladder C30 gated su Shmyglevskii
+## 1962); batch R4 REV-3 ([S-T0P] lemma propagazione SCHEMA, C-HEXO,
+## PB-2 bloccata, E4 lineage Sternin-1957, non-contenimenti h/i/j);
+## 5 carrier REFUTE_C riparati sotto SR-11 (o33 R8/R9/R10 regime-
+## aware + mgov dual clause + a1 regime decl; gate EXIT 0, stampi
+## 13-08, H4 re-mint); riconciliazione col conio parallelo della
+## coda S-ORDINE (R35=S-FOUNDATIONS tiene il numero, la finestra =
+## R36). **S-CERT ESEGUITA** sul tree congelato: strumento A2
+## [X-O31CS] PASS committato (buco common-mode di O3.1 dimostrato e
+## chiuso a livello unit-process); MOC-08 PASS (J_def riproduce a
+## 3.9e-7 abs; drift Delta-J 3.5e-1 vs banda 5.4e3 su offset IVL
+## 100x); campione a seme 20260813; workflow find->verify Form 1 in
+## DUE passate (21 agenti, ~1.69M token: 8 auditor MC1-MC8 agnostici
+## + verifier default-REFUTE + judge + red-team; poi completamento
+## copertura con dual-seed dedicato: canary REFUTED, known-true
+## CONFIRMED = strato di verifica PROVATO). **VERDETTO DI SESSIONE
+## (vincolante): NON-CERTIFICABILE — 2 P0 a HEAD** (gruppo (vii)
+## rosso = RIPARATO in chiusura con dichiarazione; staleness gate
+## cieco a import-closure/env = owner F2, carrier-evidence X-CDKAT
+## -13.9%); P0-integrita' dell'audit SCARICATO; triage fuso 2 P0 +
+## P1/P2 tutti a registro con owner (157 righe findings). DELTA vs
+## 2026-08-07: l'INTERO tier P0 del vecchio audit e' consumato-
+## verificato; i difetti sono migrati dall'oggetto al CERTIFICATORE
+## ("the floor is higher; the roof now needs the same treatment").
+## MC8 (lente primaria utente) SOPRAVVIVE su 8/8 branching. Log:
+## validation/PROGRESS_2026-08-13_Fservice.md +
+## validation/PROGRESS_2026-08-13_Scert.md)
+
+## NEXT (atomico): S-FOUNDATIONS (R35, design ratificato in memoria
+## s-foundations-design: Fase 0 seeding tranche (c)/(d)/(e) -> Fase A
+## derivazione agnostica de-novo 3-4 lenti -> tree-diff vs choice
+## ledger -> aggiudicazioni F2-consumate -> batch teoria classe (a)
+## con R22-F centerpiece T-DISC/T-RED/M-RED); poi F2 blocco 0
+## (filelock / O5 numpy / adozione M6 + re-chain).
+

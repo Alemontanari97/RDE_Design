@@ -1,0 +1,189 @@
+# PHASE 0 SEEDING — TRANCHE (c): S25/S25-bis REFUTER + RED-TEAM
+# RESIDUES. Candidate rows for docs/findings_registry.yaml, extracted
+# 2026-08-17 per the S-CERT closing note's named seeding queue
+# (tranches c/d/e). Schema per docs/findings_registry.yaml:1-160.
+# Dedup checked against validation/sfoundations_raws_2026-08-13/
+# existing_ids.txt (157 committed ids, read in full).
+#
+# THREE-WAY COUNT OF RECORD, per source (N == seeded_new +
+# mapped_to_existing + declared_not_seeded):
+#
+# (i) validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md
+#   Enumeration unit: the doc's own "§6 CONSOLIDATED OPEN ROWS (owners
+#   named; nothing else remains open)" table — 8 rows, the document's
+#   declared-complete residue set.
+#   8 == 1 seeded_new + 5 mapped_to_existing + 2 declared_not_seeded.
+#   MAPPED (row -> existing registry id):
+#     [OBJ-DOM] objective-domain adjudication ->
+#       variational-driver:objective-omits-throat-panel (owner field
+#       already carries [OBJ-DOM] verbatim);
+#     Delta carrier (value,delta) engine-rung field ->
+#       pipeline:delta-carrier-F2-entry;
+#     [G1-DISC] three-channel discontinuity clause ->
+#       margin-governor:G1-three-jump-channels;
+#     Q3(a-c) certifiability-side cycle composition ->
+#       pipeline:Q3-certifiability-composition;
+#     R6 comment + CAV-1 scoping repairs ->
+#       thermotab:R6-flip-formula (R6) AND thermotab:C-A-edge-stencil
+#       (CAV-1) — both already DISCHARGED with this exact evidence.
+#   DECLARED-NOT-SEEDED (2, with reason):
+#     S25-bis micro list (m12-F3/F6-registration/F11/F8 + optional F4
+#       wiring/invert_h fence/NOTE-5 docstring) — executed in-window
+#       (doc/comment-only micro-repairs, verified landed per
+#       PROGRESS_2026-08-12_S25bis_speed.md STEP 2); no residual open
+#       defect, not a distinct finding object;
+#     Second-pass standard (file:line anchors mandatory; dedup
+#       universe = gap map + AUDIT + registry) — a procedural/
+#       methodology directive for future reviews, not a codebase
+#       defect; already enacted as standing practice this tranche.
+#   SEEDED_NEW (1): theory:ivl-bias-quoting-discipline-pending.
+#
+# (ii) validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md
+#   Verified in-doc: the converged diff IS 21 ADOPTED / 4
+#   ADOPTED-WEAKENED / 0 REFUTED / 0 OPEN (§2 header count "21 adopted
+#   / 4 adopted-weakened / 0 refuted / 0 open"; §2 table 25 rows: 12
+#   RF-* + 13 B-F*; FINAL line reconfirms). All 25 were closed
+#   in-window by the R1-R13 repair list (dual-verified RF-1 already
+#   seeded as persistence:derive-artifact-intra-commit-staleness,
+#   existing id, DISCHARGED) — none of the 25 rows themselves is a
+#   residue. The genuine residue set is the doc's own
+#   "§7 DEFERRED ROWS WITH OWNER (structurally-gated; none generic)"
+#   table — 9 rows.
+#   9 == 1 seeded_new + 6 mapped_to_existing + 2 declared_not_seeded.
+#   MAPPED:
+#     M6 adoption decision -> engine:vmap-hessian-adjoint-divergence
+#       (row already carries the re-formed m6gate spec + route facts
+#       per R11c, adoption-ready-with-owner);
+#     Per-file classification of the 622 baselined literals ->
+#       test-suite:numeric-lint-scope-hole (row already carries the
+#       622 figure + residual clause per R11a);
+#     NTF derivation / GAP-5 / delta-carrier / [OBJ-DOM] row -> the
+#       three registry-eligible parts map to
+#       parametrization:natural-BC-lip-bias (GAP-5),
+#       pipeline:delta-carrier-F2-entry, and
+#       variational-driver:objective-omits-throat-panel ([OBJ-DOM]);
+#       NTF derivation itself has no findings-registry home by design
+#       (theory/choice-ledger object, S-FOUNDATIONS Phase D territory
+#       per the census — not a findings-registry defect);
+#     Flag-matrix registry (A1_COLEXEC x A1_FUSED_CERT x
+#       A1_PLAN_ARGS x A1_VMAP_HESS x memos) ->
+#       structure:monolithic-driver-module (doc's own §6.3 dedup
+#       verdict, cited not re-minted);
+#     Env decisions (numpy 2.5.2 / filelock) + the named derive
+#       re-stamp duty -> conditional:filelock-lru-cap (filelock cap)
+#       AND persistence:derive-artifact-intra-commit-staleness (the
+#       re-stamp/upgrade-trigger duty is already in that row's owner
+#       field);
+#     Cross-lowering floor formal derivation + 3 scaling experiments
+#       -> engine:cross-lowering-gradient-floor (R11d already
+#       appended the B-shape clause + scaling experiments in-row).
+#   DECLARED-NOT-SEEDED (2, with reason):
+#     Full corpus seeding of the registry + anchor policy (MERGE-5
+#       residual) — this IS the seeding duty itself (the present
+#       tranche c/d/e task), not a registry-eligible codebase finding;
+#     Three-level SOTA trace consuming this convergence (MC8 class) —
+#       CONSUMED at the S-CERT session 2026-08-13 (commit 6ff0508:
+#       "MC8 ... SURVIVES on 8/8 sampled branchings"); verdict of
+#       record lives there, not a residual finding here.
+#   SEEDED_NEW (1): bench:campaign-carry-fresh-vs-carried-untested.
+#
+# (iii) validation/PROGRESS_2026-08-12_S25_speed.md +
+#       validation/PROGRESS_2026-08-12_S25bis_speed.md
+#   Enumeration unit: every refuter-round / red-team / "honest catch"
+#   finding NAMED in the two logs that is NOT already fully accounted
+#   by sources (i)/(ii) above — 13 items.
+#   13 == 1 seeded_new + 1 mapped_to_existing + 11 declared_not_seeded.
+#   From PROGRESS_2026-08-12_S25_speed.md:
+#     1. Refuter round 1 (s25_refute_m12.md) F1, MEDIUM
+#        REFUTED-THE-EDIT (counter reconciliation trajectory-
+#        conditional) — declared: caught+repaired PRE-COMMIT (commit
+#        07400a4 already carries the fix; the buggy state never
+#        shipped in any committed tree).
+#     2. Refuter round 1 F2 (memo key blind to design-class/solver
+#        knobs) — declared: same reason, pre-commit repair.
+#     3. Refuter round 1 F4 (probe tax undeclared) — declared:
+#        docs-only clarification (docstring), no code defect.
+#     4. Refuter round 1 F6/F7 (carried to T3 review edit) —
+#        declared: consumed same session at T3 G0/T2 review (census
+#        R7c closed in-window).
+#     5. Refuter round 2 (s25_refute_m4.md) F1, HIGH REFUTED
+#        (engine-cache key omitted design-class module globals) —
+#        declared: caught+repaired PRE-COMMIT (class-key rejector
+#        added and gate-verified PASS 1->2 before the M-chain commit
+#        07400a4).
+#     6. Refuter round 2 F2/F3 (kkf last-ulp association drift,
+#        replay-side only) — declared: non-issue, already covered by
+#        the live fidelity band with 2-3 orders of margin.
+#     7. Refuter round 2 F4 (walk-level recompile over-claim) —
+#        declared: claim-text correction only ("deleted" -> measured
+#        row), no code defect.
+#     8. Refuter round 2 F7 (H6 import order) — declared: verified
+#        correct at every entry point, non-issue.
+#     9. Refuter round 2 F10 (failmemo replay message text differs
+#        from legacy P4 text) — declared: cosmetic schema note, no
+#        owner/trigger warranted.
+#     10. Refuter round 2 F14 (edit-surface bookkeeping, 8 files) —
+#        declared: bookkeeping note, not a defect.
+#     11. Red-team gap-map judge-layer FINAL report (2H/3M/4L, 16
+#        verdict rows, 7/7 [S25-REPAIR] applied) — declared: belongs
+#        to the S24 gap-map corpus, already seeded under the R31
+#        tranche (b) GAP rows (registry header tranche-(b) section);
+#        re-minting here would violate the dedup clause.
+#   From PROGRESS_2026-08-12_S25bis_speed.md (STEP 7, "the TWO honest
+#   catches"):
+#     12. CATCH #1 — cert-verdict RECORDER DEPENDENCE at a marginal
+#        design -> MAPPED to
+#        record-path:cert-verdict-recorder-dependence (existing row,
+#        R11b already widened its class wording to this exact
+#        mechanism).
+#     13. CATCH #2 — the first GAP-5 notaknot-twin rejector was
+#        MIS-FORMED (demanded corner-density invariance the BC change
+#        legitimately breaks) and was re-formed as a two-resolution
+#        delta-stability rejector -> SEEDED_NEW (verified NOT already
+#        carried in parametrization:natural-BC-lip-bias, which
+#        documents only the GAP-5 physics finding, not the rejector-
+#        construction defect+repair).
+#   SEEDED_NEW (1): test-suite:notaknot-corner-density-rejector-misformed.
+#
+# TOTAL: 30 == 3 seeded_new + 12 mapped_to_existing + 15 declared_not_seeded.
+# (8+9+13 = 30; 1+1+1 = 3; 5+6+1 = 12; 2+2+11 = 15.)
+#
+# New ids checked against the 157 committed ids (no collision):
+# theory:ivl-bias-quoting-discipline-pending,
+# bench:campaign-carry-fresh-vs-carried-untested,
+# test-suite:notaknot-corner-density-rejector-misformed.
+# All three CODE-SPAN = [] (default per task instruction; loci carried
+# in note/magnitude, not as spans, to avoid collision with existing
+# OPEN-row spans).
+
+entries:
+- id: theory:ivl-bias-quoting-discipline-pending
+  status: CONFIRMED
+  severity: low
+  magnitude: "IVL-envelope note (argmax second-order), math-review §2.1: SETTLED-CLEAN and distinct from GAP-6/AC14 in the S25 pipeline-sense convergence, but the M0 Part VI line stating the quoting discipline (IVL-bias comparisons valid design-to-design / code-to-code only, never as a cross-class absolute) is not yet written"
+  source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#Candidate M0-VI discipline line"
+  code: []
+  mechanism: quoting-discipline-gap
+  owner: "F5/P-3 window (the advisory's own named placement, §6 row 'M0-VI discipline line')"
+  trigger: "before any absolute Isp claim ships, or M0 Part VI next touched"
+  note: "residual of the S25 pipeline-sense convergence advisory §2 row A-§2.1 / §6 consolidated-open-rows table; tranche (c) seeding, not otherwise registered"
+
+- id: bench:campaign-carry-fresh-vs-carried-untested
+  status: CONFIRMED
+  severity: low
+  magnitude: "h3gate proves the consume-site gating (bitwise np.array_equal(W) + fresh fallback at both consumers, M1 stash deep-copies, no mutation found) but carried-content reuse across a full campaign rests on same-process determinism rather than an executable one-rung fresh-vs-carried bitwise A/B; RF-4's residual, right-sized as a deferred campaign-mode control rather than dropped"
+  source: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md#Campaign-level fresh-vs-carried one-rung bitwise A/B"
+  code: []
+  mechanism: coverage-limit
+  owner: "first campaign window ([X-DEFTW]/[X-MGOV])"
+  trigger: "first campaign anomaly implicating a carried record, or the window itself"
+  note: "the h3gate docstring already declares this coverage limit (repair R12); this row carries the deferred executable A/B duty itself (§7 deferred-rows table)"
+
+- id: test-suite:notaknot-corner-density-rejector-misformed
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the first GAP-5 notaknot-twin rejector demanded corner-density invariance across the BC change, but cd is computed ON the design and the BC change legitimately moves the lip state BY THE MECHANISM UNDER TEST (8.2% shift = the mechanism datum) -- the rejector was wrong by construction and its own firing refuted it; re-formed as a two-resolution DELTA-STABILITY rejector (|delta_r1 - delta_r2| <= K_RICH x max arm spread) + the artifact-fixed GENO reference kept untouched"
+  source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#CATCH #2"
+  code: []
+  mechanism: rejector-weakness
+  evidence: "re-formed rejector re-run PASS in chain 2 (STEP 10): |d1-d2| = 1.95e-3 <= 7.52e-3; the GAP-5 corner-residual datum (-82%, r=1) stands unaffected -- only the verification instrument was defective and repaired, same window, before any commit shipped the mis-formed version"
