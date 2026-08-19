@@ -8,7 +8,27 @@ previously-owed round-2 refuter files: refute_S-T0P_r2_l0.md Part 1
 (r2-F1..F11) and Part 2 (r2b-F1..F6), and refute_S-T0P_r2_l1.md
 (carried F1-F9 and reissue F10-F14). The §11 honesty note's owed
 pass is EXECUTED; no refuter finding on disk is unconsumed at this
-revision). This document PROVES, at full function-space level, the
+revision. REVISED AGAIN 2026-08-18 in the S-FOUNDATIONS-C
+escalation pass [REVISION LOG §13], revision 4: escalations
+E-1/E-2 of VERDICT_r2pass (r2 batched adversarial pass) EXECUTED —
+sustained objections L0-1/L1-1 (leg 3, §4 periodization step:
+proof-content rewrite) and L1-2 + amendment L0-2 (leg 5, G8/r2
+repricing) CONSUMED; statements, labels and route-level
+conclusions UNCHANGED; the r2-batch findings targeting THIS
+document are all consumed at revision 4 — the r2-batch files'
+remaining findings target other documents of the batch; the
+UNTIL-DRY escalation-refutation loop then continues in §13:
+revision 5 = round 1 consumed, revision 6 = round 2 (lens l0)
+consumed, revision 7 = round 3 l0 + round 2 l1 consumed,
+revision 8 = round 4 l0 (E4L0-1..4) + round 3 l1 (ER3L1-1..3)
+consumed — seven findings, ALL AMENDMENT-class wording/
+attribution repairs on the leg-5 row, zero statement or label
+motion — 2026-08-18/19, revision 9 = the two-lens CONFIRMING
+round consumed per r2pass/VERDICT_confirm.md (ECL0-1..3 +
+ECR1-1..4, judge-merged to six distinct: 1 REPAIR-NEEDED — the
+slice-connectedness chart member, ECL0-1 — + 5 AMENDMENT, 0
+BREAKS-THE-LEG; statements, labels and route-level conclusions
+again UNCHANGED — 2026-08-19)). This document PROVES, at full function-space level, the
 propagation lemma registered in M0 Part III as [S-T0P] (SCHEMA,
 landed by F-SERVICE from REFUTE_A / ASSESSMENT §3.1), and upgrades
 it to a SPLIT-GAP-LIST statement with every consumed conditional
@@ -76,7 +96,25 @@ G8 row for all three consumers, r2b-F4); G7 route r-a is the only
 named abstract-EOS G7 route; for G8 NO named viable abstract-EOS
 route currently exists (the revision-2 "r2 is the only abstract-EOS
 route" sentence is RETRACTED per r2b-F1 — r2 is a PARTIAL reduction
-with an open coercivity piece), so the abstract-EOS status of the
+with an open coercivity piece AND, per revision 4 / L1-2, a named
+thermal-stability condition on its granted half, stated in its
+SUFFICIENT joint s-concavity / Bethe-Weyl form per revision 5,
+EL0-3/ESC1-F2, in its STRICT form — positive-definite
+Hess e(v, S) on the comparison-segment hull — per revision 6,
+E2L0-1, and DOMAIN-COMPLETED — theta > 0 on the hull added to
+the condition, granted half pinned to the certified quadruple
+g(S) = S — per revision 7, E3L0-1/E3L0-2/ER2L1-1, and
+CHART-COMPLETED — totality clause (S(W) defined hull-wide) +
+universal root-quantifier added to the condition, strict
+Legendre bridge and member-wise falsifier consequent written —
+per revision 8, E4L0-1..4/ER3L1-1..3, and TOPOLOGY-COMPLETED —
+slice-connectedness added as the chart's third clause (each
+S-slice of the EOS domain over hull v-values met by the roots
+an INTERVAL; else root uniqueness imposed directly as a
+member), falsifier-consequent member arithmetic and grant-head
+enumeration corrected — per revision 9,
+ECL0-1..3/ECR1-1..4), so the
+abstract-EOS status of the
 [T-T0P-U]/[T-T0P] chain is OPEN AT THE ROUTE LEVEL — see the
 per-statement table in §9.]
 
@@ -1163,15 +1201,70 @@ at the strong-side state):
 below, M_V - M_U is shorthand for F_x(V) - F_x(U), a state-level
 object. G7 is NOT consumed at this point; its single genuine
 consumption is the endgame.
-PERIODIZATION STEP (written per r2b-F6, held to this document's
+PERIODIZATION STEP (REWRITTEN in revision 4 per L0-1/L1-1,
+VERDICT_r2pass E-1 — the revision-3 mechanism "summing telescopes
+by periodicity" is RETRACTED: for T-periodic V the pairings
+<mu, psi chi_k> below are EQUAL for every k, so the literal sum
+over k in Z diverges unless the common value is zero, and nothing
+telescopes among identical terms; the r2b-F6 disposition is
+RE-CLOSED by the written argument below, held to this document's
 own "one line, but the line must be WRITTEN" standard): (EI-x) is
 minted in D'(Omega_march x R_t) (compact-support tests); the
-constant-in-t test on the torus is licensed by the class: for
-T-periodic V (H8') the quadruple composed with V is T-periodic, so
-pairing (EI-x) with a partition of unity subordinate to
-{(kT - T, kT + T)}_{k in Z} — each term a legitimate D'(R_t)
-pairing — and summing telescopes by periodicity to the same
-inequality on Omega_march x T_t. Integrate the torus form of
+torus form on Omega_march x T_t is licensed by the class in THREE
+steps. Write mu := -(d_x eta + d_y q_y + d_z q_z + d_t q_t) >= 0
+in D' for the quadruple composed with V — T-periodic in t, since
+V is T-periodic (H8') and the quadruple is a pointwise function
+of the state. Fix ONE window cutoff chi_0 in C_c^inf(R_t) whose
+translates chi_k := chi_0(. - kT) form a partition of unity
+subordinate to {(kT - T, kT + T)}_{k in Z}: Sum_k chi_k == 1.
+ (p1) SINGLE-WINDOW PAIRING: for any T-periodic torus test
+      psi >= 0 (in x, y, z compactly supported in Omega_march as
+      before), <mu, psi chi_0> >= 0 is ONE legitimate
+      compact-support D'-pairing; it is k-independent
+      (<mu, psi chi_k> = <mu, psi chi_0> by joint T-periodicity
+      of mu and psi). NO sum over k is taken anywhere.
+ (p2) FIELD TERMS via Sum_k chi_k == 1: for T-periodic
+      h in L^1_loc(R_t), Int_R h chi_0 dt = Int_0^T
+      h (Sum_k chi_k) dt = Int_0^T h dt (unfold the k-translates
+      onto one period). Applied to the field terms of the
+      pairing, this identifies the window pairing with the torus
+      integral of the same integrand.
+ (p3) CUTOFF-DERIVATIVE TERMS KILLED by Sum_k chi_k' == 0: the
+      d_t term pairs against d_t(psi chi_0) = (d_t psi) chi_0
+      + psi chi_0', producing the extra term
+      Int (q_t o V) psi chi_0' dt dV_x = Int over one period of
+      (q_t o V) psi (Sum_k chi_k') = 0, since differentiating
+      Sum_k chi_k == 1 gives Sum_k chi_k' == 0. THIS cancellation
+      is the entire nontrivial content of the step — it converts
+      the window d_t-pairing into the torus
+      distributional-derivative pairing (the x, y, z terms carry
+      no cutoff derivative: chi_0 depends on t only).
+Together (p1)-(p3) give the torus form of (EI-x): mu >= 0 against
+every admissible nonnegative T-periodic test on
+Omega_march x T_t. THE (EU-x) EQUALITY PAIRING RIDES THE SAME
+IDENTITY (stated per L0-1's second clause — the revision-3 text
+periodized only (EI-x) while the same display silently consumed
+the periodized EQUALITY pairing): the weak form of (EU-x) for V
+is tested against the non-compactly-supported Lipschitz field
+D_W E(U), which is T-periodic in t (U is T-periodic on the slab,
+H8'); testing against D_W E(U) . (test) chi_0 componentwise and
+applying (p1)-(p3) (with equality in place of the inequality
+sign) yields the torus form of the equality pairing. TWO
+CONSUMPTIONS WRITTEN in revision 5 per EL0-2 (the revision-4
+"applying (p1)-(p3) verbatim" left both to the reader): (i) the
+composite Lipschitz multiplier (D_W E(U))_row psi is an
+ADMISSIBLE test for the L^inf-coefficient weak form by standard
+mollification (fluxes in L^inf on the slab; the windowed test is
+W^{1,inf} with compact support — strictly weaker than the
+non-windowed Gauss-Green consumption already itemized in G2);
+(ii) the composite is taken AS the psi of (p1)-(p3), so the
+extra d_t-term (d_t D_W E(U)) psi chi_0 is a FIELD term absorbed
+by (p2) — d_t D_W E(U) is L^inf and T-periodic on the
+stratum-(A) slab (U C^1 there, H8') — and NOT a third
+cutoff-derivative term outside (p3)'s two-term split
+d_t(psi chi_0) = (d_t psi) chi_0 + psi chi_0'.
+Statement unchanged; the step is EOS-free measure theory.
+Integrate the torus form of
 (EI-x) for V
 against 1 over {0 < x < x1} x Sigma, subtract the smooth entropy
 identity of U (equality case of (EI-x), using L-COMPAT), and
@@ -2025,30 +2118,414 @@ of use in the text above):
       RE-PRICED in revision 3 (r2b-F1: the revision-2 sentences
       "kills the hull problem at its root" and "the ONLY named G8
       route that keeps the chain abstract-EOS" are RETRACTED as a
-      coercivity conflation). What W-convexity of E = -rho g(S)
+      coercivity conflation; GRANTED half re-priced + s = 0
+      sentence reworded in revision 4 per L1-2 / L0-2,
+      VERDICT_r2pass E-2). What W-convexity of E = -rho g(S)
       (Harten; Godlewski-Raviart — t-EVOLUTION facts) genuinely
-      delivers: (i) E(V|U) >= c|DeltaW|^2 with all comparison
+      delivers — MODULO A NAMED THERMAL-STABILITY CONDITION
+      (added in revision 4 per L1-2; NAMED IN ITS SUFFICIENT
+      FORM in revision 5 per EL0-3/ESC1-F2 — the revision-4
+      transcription promoted the judge's condition CLASS to a
+      false equivalence "e_SS > 0 (equivalently ... s-concavity
+      ...)": given theta > 0, e_SS > 0 is equivalent to
+      c_v-type positivity ONLY; joint s-concavity is STRICTLY
+      STRONGER): W-convexity of -rho g(S) is NOT a free
+      consequence of the §1 gas model (Gibbs closure + c^2 > 0
+      + theta > 0 pin NO sign of e_SS and NO cross-term bound);
+      the classical results cited run on FULL thermodynamic
+      stability = JOINT concavity of s as a function of
+      (specific volume, internal energy) — the Bethe-Weyl
+      class, the same class G7 route r-a already names —
+      equivalently (theta > 0, partial Legendre inversion)
+      JOINT convexity of e(v, S). CONDITION OF RECORD, stated
+      in its STRICT form in revision 6 per E2L0-1 (the
+      revision-5 transcription printed the Grueneisen member
+      NON-strict, ">=" — the NECESSITY-direction inequality
+      transplanted into the sufficiency slot; see (m3)), and
+      DOMAIN-COMPLETED in revision 7 per E3L0-2 (the transfer
+      from "Hess e(v, S) PD" to item (i) consumes theta > 0 AT
+      HULL STATES three separate times — the chart W -> (v, S)
+      inverts eps = e(v, S) in S and needs e_S = theta != 0
+      along the hull before any Hessian can be read there; the
+      partial Legendre step above is flagged "(theta > 0)" and
+      runs pointwise where applied, i.e. hull-wide; and the
+      momentum block of the sufficiency assembly below is
+      (1/(rho theta)) I, NEGATIVE at a hull state with
+      theta < 0 even with Hess e(v, S) PD — theta is
+      FIRST-order EOS data no Hessian condition controls —
+      while §1 pins theta > 0 only "on the state region of
+      interest", segments LEAVE K, {theta > 0} is NOT convex
+      in W (theta composes the non-affine S(W)), and the
+      grant's convex physical region below carries no theta
+      clause: the consumption was real, named, and unpinned),
+      and CHART-COMPLETED in revision 8 per ER3L1-2/E4L0-2,
+      TOPOLOGY-COMPLETED in revision 9 per ECL0-1 (three
+      clauses the revision-7 parenthetical "(the
+      (v, S)-image of)" presupposed without writing — the
+      first two written in revision 8, the third found by the
+      confirming round firing the second's own registered
+      falsifier on a disconnected-slice witness:
+      (zeroth clause, TOTALITY — ER3L1-2) S(W) is DEFINED on
+      the WHOLE hull: at every hull point W_s, eps(W_s) lies
+      in the range of e(v(W_s), .) over the EOS's S-domain —
+      the chart's EXISTENCE, which theta > 0 does not deliver
+      (theta licenses uniqueness of the inversion — and that
+      only on an interval S-slice, revision 9 per ECL0-1 —
+      not surjectivity; the row's own in-class patch EOS of
+      (m2)/(m3) show hulls can exit a partially-defined EOS's
+      domain) — the abstract-EOS counterpart of the
+      table-domain precondition priced once at the closure
+      below; (root-quantifier clause — E4L0-2) theta > 0 is
+      read at EVERY S-root of eps(W) = e(v, S) over each hull
+      point, which — ON AN INTERVAL S-SLICE — forces the root
+      to be UNIQUE (two theta > 0 roots of e(v, .) = eps in
+      one interval slice would bracket a theta <= 0 root by
+      level-crossing parity: e(v, .) passes from above the
+      level just after the first root to below it just before
+      the second, and the traversed S-interval lies in the
+      EOS domain, so an intermediate root with e_S <= 0
+      exists); (slice-connectedness clause — ECL0-1, revision
+      9, the confirming round's REPAIR: the parity bracketing
+      and the continuation landing consume the domain
+      TOPOLOGY the two clauses above do not constrain — §1
+      pins no EOS domain, ER3L1-2 of record) each S-slice
+      {S : (v(W_s), S) in dom e} over a hull v-value that the
+      roots of eps(W_s) = e(v(W_s), .) meet is an INTERVAL —
+      under which the parity bracketing runs (the traversed
+      interval IS in the domain), the root is unique, the
+      (v, S)-image and the chart are single-valued, the root
+      map W -> S(W) is continuous on the compact hull
+      (single-upcrossing structure: e(v, .) - eps < 0 before
+      and > 0 after the unique root — the continuity the
+      assembly's compactness step and the bridge's uniformity
+      clause consume), and each per-segment continuation
+      lands on the DATA root — closing the in-class landing
+      mechanism of the per-branch reading; WITHOUT the clause
+      the mechanism fails in-class: a two-branch EOS
+      e = e0(v) + h_i(S) on (v-range) x ([0, 1] ∪ [10, 11])
+      (h_1 = 5^S - 1; h_2 = 1 + 2(S - 10) + 0.1 (S - 10)^2)
+      satisfies every OTHER member — Gibbs closure,
+      c^2 = v^2 e0'' > 0, theta = h_i' > 0 at every root,
+      Hess e = diag(e0'', h_i'') PD, totality via the h_1
+      branch — with a TWO-VALUED chart and an off-data-root
+      landing (ECL0-1's witness, judge-verified at pen grade:
+      the §13 E4L0-2 entry's own registered falsifier
+      firing); where slice-connectedness is not available,
+      root UNIQUENESS is imposed directly as a member in its
+      place):
+      theta > 0 AND Hess e(v, S) positive DEFINITE on (the
+      (v, S)-image of) the comparison-segment hull — the
+      image total and single-valued by the three chart
+      clauses above — i.e. the
+      hull-theta clause PLUS the strict pair e_vv > 0
+      (= c^2 > 0 — the §1-pinned QUANTITY, here imposed
+      hull-wide by the condition itself: §1 pins it only "on
+      the state region of interest", the same domain
+      limitation the hull-theta accounting above names; gloss
+      corrected in revision 8 per E4L0-4(a)) AND the strict
+      Grueneisen
+      cross-term bound e_vv e_SS > (e_vS)^2 (unpinned by §1);
+      e_SS > 0 (= c_v > 0 via c_v = theta/e_SS: the necessary
+      scalar shadow, the part revision 4 named) then FOLLOWS
+      from the strict pair and remains the recorded shadow.
+      SUFFICIENCY, scoped and WRITTEN in revision 7 per
+      E3L0-1/ER2L1-1 (the revision-6 note "pointwise
+      strictness plus compactness of the comparison-segment
+      hull yields the uniform c of item (i)" asserted its
+      conclusion for the row's GENERIC E = -rho g(S), for
+      which it is FALSE — the row's own kept ideal-gas iff
+      below supplies the in-class separating member
+      f = exp(kS), k >= 1/c_v: strict condition of record
+      satisfied everywhere, item (i) broken (for k strictly
+      above 1/c_v the W-Hessian carries a negative direction
+      at every state; at k = 1/c_v the (m3)-style degenerate
+      break) — and the assembly behind the note was nowhere
+      written, against this document's own "the line must be
+      WRITTEN" standard): item (i) is granted FOR THE
+      CERTIFIED QUADRUPLE g(S) = S, E = -rho S — the member §4
+      actually consumes (H7', "Take the certified entropy
+      quadruple g(S) = S"; the kill chains (m1)-(m3) also
+      instantiate it). For a general Harten member the
+      g-condition enters ADDITIONALLY (the kept ideal-gas iff
+      is its instance; its abstract-EOS form is unstated and
+      NOT needed — one convex member suffices for the device);
+      at g = S it reads 0 < 1/c_v, i.e. c_v > 0, which the
+      CONDITION OF RECORD already contains — e_SS > 0 via the
+      strict pair, the SIGN of c_v = theta/e_SS via the
+      hull-theta clause; the strict pair ALONE does not
+      contain it (theta is first-order data the pair does not
+      constrain: the quadratic-patch FAMILY of (m2) taken in
+      the OPPOSITE determinant regime — e0'' > 0,
+      e0'' b > a1^2, under which the strict pair HOLDS on the
+      patch ((m2)'s own printed exhibit carries a1^2 > e0'' b,
+      where it FAILS) — with a0 large NEGATIVE (theta < 0
+      there) satisfies the strict pair everywhere with
+      c_v = theta/e_SS < 0 (witness determinant regime
+      restated in revision 9 per ECR1-2: the revision-8
+      restatement had dropped the load-bearing parameter
+      clause); at the ideal-gas instance
+      theta > 0 is automatic, which is where the superseded
+      attribution was harmlessly true — attribution corrected
+      in revision 8 per ER3L1-1/E4L0-4(b), both lenses) —
+      exactly why the printed
+      condition self-suffices at the certified quadruple and
+      at no strongly-convex g. The assembly, written — FIRST
+      LINK (the strict Legendre bridge, WRITTEN in revision 8
+      per E4L0-1: the revision-7 assembly consumed "strict
+      s-concavity" from a condition stated on Hess e(v, S)
+      with this line unwritten): given theta > 0, strict PD
+      of Hess e(v, S) is EQUIVALENT to strict concavity of
+      s(v, eps) — congruence Hess_{(v,eps)} s
+      = -(1/theta) C^T Hess_{(v,S)} e C with
+      C = [[1, 0], [-e_v/theta, 1/theta]] invertible
+      (quadratic-form identity Q_s(dv, deps)
+      = -(1/theta) Q_e(dv, dS) at dS = (deps - e_v dv)/theta),
+      rank-faithful, uniform on compacts by continuity of C —
+      THEN: given
+      the condition of record, at a rest state the W-Hessian
+      of -rho S is BLOCK-DIAGONAL — the (rho, E) block is
+      tau B^T Hess(-s) B (the (m2) perspective congruence run
+      in the sufficiency direction; STRICT s-concavity,
+      delivered by the bridge above,
+      transfers to strict slice positivity because B is
+      invertible), the momentum block is (1/(rho theta)) I > 0
+      by the hull-theta clause (d^2(-rho s)/dm_i dm_j
+      = (s_eps/rho) delta_ij = delta_ij/(rho theta) at m = 0),
+      and the m-(rho, E) cross terms VANISH at m = 0 (each
+      carries a factor m_i); boost affinity transports
+      positive-definiteness to all velocities by congruence;
+      continuity of Hess_W E (EOS C^2 — a §1-implicit
+      consumption, now stated — with the root map W -> S(W)
+      single-valued and continuous on the hull by the three
+      chart clauses, revision 9 per ECL0-1) plus compactness
+      of the hull's
+      state image give the uniform lower eigenvalue bound
+      lambda_min > 0, and the Bregman double integral gives
+      item (i) with c = lambda_min/2. The necessity-direction
+      chains (m1)-(m3) are untouched (they only ever consume
+      the slice). The
+      revision-5 printed NON-strict triple (e_vv > 0 AND
+      e_SS > 0 AND e_vv e_SS >= (e_vS)^2) does NOT suffice for
+      item (i): it sits strictly between
+      positive-SEMIdefiniteness of Hess e (which is what
+      W-convexity itself FORCES — the necessity direction,
+      where ">=" is the correct form; the (m1)/(m2) kill
+      chains run there) and positive-DEFINITENESS, matching
+      neither ((m3) separates it from PD; the PSD state
+      e_SS = e_vS = 0 with e_vv > 0 separates it from PSD). At ideal gas -rho f(S) is strictly convex iff
+      f' > 0 AND f''/f' < 1/c_v — a condition on g beyond
+      g' > 0 (the g-condition instance, kept). In-class
+      breaking mechanisms, THREE of record: (m1) abstract EOS
+      with c^2 > 0, theta > 0 and e_SS <= 0 somewhere on K
+      BREAKS delivered item (i) below (revision 4); (m2) — one
+      rung deeper, revision 5 — abstract EOS with ALL of
+      c^2 > 0, theta > 0, e_SS > 0 but the determinant bound
+      violated (quadratic patch e = e0(v) + (a0 + a1 v) S
+      + (b/2) S^2 with e0'' > 0, b > 0, a0 large,
+      a1^2 > e0'' b: Gibbs closure holds by construction, all
+      §1 pins + e_SS > 0 hold, yet s(tau, eps) is NOT concave)
+      ALSO breaks item (i): a Galilean boost is AFFINE on W and
+      leaves -rho S invariant, and at rest states the
+      (rho, E)-slice Hessian of -rho s(1/rho, E/rho) is
+      CONGRUENT to Hess(-s) via the invertible perspective
+      factor B = [[-tau, 0], [-eps, 1]], so W-convexity FORCES
+      joint s-concavity — the FULL joint condition, not its
+      e_SS shadow, is LOAD-BEARING for the granted half;
+      (m3) — the strictness rung, revision 6 per E2L0-1 — the
+      (m2) quadratic family AT its determinant boundary:
+      e0'' = a1^2/b CONSTANT (quadratic e0, a1 != 0, b > 0,
+      a0 large), so e_vv e_SS - (e_vS)^2 = (a1^2/b) b - a1^2
+      == 0 on the whole patch: Gibbs closure, theta > 0,
+      c^2 = v^2 a1^2/b > 0, e_SS = b > 0 and the NON-strict
+      determinant bound ALL hold, but Hess e(v, S) =
+      [[a1^2/b, a1], [a1, b]] is rank 1 — e is convex, NOT
+      strictly, affine along the constant null direction
+      d0 = (b, -a1); through the same boost-affinity +
+      perspective-congruence chain the W-Hessian of
+      E = -rho S is positive SEMIdefinite with a nontrivial
+      null direction at every state over the patch, and along
+      it the Bregman expansion gives E(V|U) = 0 +
+      O(|DeltaW|^3), so for EVERY fixed c > 0 the bound
+      E(V|U) >= c|DeltaW|^2 FAILS at small |DeltaW|: item (i)
+      breaks WITH the full non-strict triple satisfied —
+      non-strict does NOT suffice, which is why the condition
+      of record above is the STRICT form. On the
+      STANDING gamma(T) thermally-perfect closure the FULL
+      condition is DISCHARGED by the AUD-cp-class finite audit
+      (c_v > 0): s(tau, eps) = phi(eps) + R ln tau is SEPARABLE
+      there (cross term identically zero, Hessian diagonal), so
+      joint concavity reduces EXACTLY to c_v > 0 — and the
+      revision-6 STRICT form is discharged VERBATIM: the
+      diagonal Hessian diag(-R/tau^2, -1/(c_v T^2)) is strictly
+      negative definite iff c_v > 0, uniformly on compacts,
+      with strict determinant R/(tau^2 c_v T^2) > 0 automatic;
+      and the revision-7 hull-theta clause and quadruple pin
+      are FREE there: theta = T > 0 wherever the closure is
+      DEFINED (T is the table coordinate; hull evaluability
+      inside the tabulated range is the table-domain
+      precondition already priced once for all consumers in
+      this row), and g = S is the certified quadruple of
+      record; the revision-8/9 chart clauses are the SAME
+      precondition there: the tabulated range is an INTERVAL
+      (slice-connectedness FREE at the closure, revision 9
+      per ECL0-1 — the disconnected-slice witness has no
+      purchase), theta = T > 0 globally on the table
+      domain makes every S-root unique (monotone inversion),
+      and hull evaluability inside the tabulated range IS the
+      totality clause — the condition prices the ABSTRACT-EOS
+      accounting only.
+      FALSIFIER of the condition-claim (RECALIBRATED in
+      revision 5 — the revision-4 clause "derive e_SS > 0 ...
+      restores the unconditional grant" over-claimed
+      sufficiency of the scalar shadow; RE-RECALIBRATED in
+      revision 6 per E2L0-2 — the revision-5 clause "on K" had
+      FALSE-RESTORATION power on the DOMAIN: item (i)
+      quantifies over comparison segments, and W-segments
+      between K-states LEAVE K — this row's own hull point — so
+      a derivation exploiting K-membership would declare the
+      grant restored while the condition stays uncertified at
+      segment points OUTSIDE K, exactly where (i) needs it):
+      derive joint s-concavity IN THE STRICT FORM on the
+      comparison-segment hull (equivalently: wherever the §1
+      pins hold, PROVIDED the pins are read on the whole EOS
+      domain — else on the hull itself; parenthetical
+      RE-CALIBRATED in revision 7 per E3L0-2: §1 pins theta
+      only "on the state region of interest", and no printed
+      line places the hull inside that region, so the
+      unconditioned "equivalently" retained residual
+      false-restoration power on the domain — a pins-only
+      derivation concludes only where the pins hold) from
+      Gibbs closure + c^2 > 0 + theta > 0
+      ALONE, with no K-geometry input — THAT kills the
+      condition-claim and restores the grant's PIN-READABLE
+      members IN THE WHOLE-DOMAIN BRANCH — the Hessian member
+      and hull-theta, where the theta pin itself goes
+      hull-wide — MODULO the chart clauses (totality,
+      root-quantifier, slice-connectedness): those are
+      domain/range GEOMETRY no reading of the pins and no
+      concavity derivation delivers (pins constrain e's
+      derivatives where e is DEFINED, never where it is
+      defined; witness: the row's own accepted patch-EOS
+      class with a0 large POSITIVE holds every §1 pin on its
+      entire domain while a thin-S-band hull exits the
+      range), so the chart clauses stay STANDING members with
+      their own §13 falsifiers; in the ELSE branch
+      the derivation has CONSUMED theta > 0 on the hull as an
+      input and PRESUPPOSED the chart there (a strict
+      s-concavity conclusion AT hull states is not a
+      statement unless s(v, eps) is defined and single-valued
+      there), so a firing there kills the HESSIAN member ONLY
+      and leaves the grant conditional on hull-theta AND the
+      chart clauses — hull-theta
+      first-order data no concavity derivation controls,
+      retaining its OWN falsifier (the E3L0-2 disposition
+      row's: a printed line placing the hull inside the
+      theta-pin region, or a proof that endpoint K-membership
+      forces theta > 0 along W-segments) (consequent
+      RE-SCOPED member-wise in revision 8 per E4L0-3/ER3L1-3,
+      both lenses: revision 7 made the condition two-membered
+      under a consequent written when it had Hessian members
+      only — a Hessian-side firing must not erase the
+      hull-theta member it either consumed as input or never
+      touched; member arithmetic CORRECTED in revision 9 per
+      ECL0-2/ECR1-1, merged at the clause, both lenses: the
+      revision-8 re-scope was calibrated against the
+      revision-7 member list while revision 8 itself enlarged
+      the condition, and the transplanted "modulo ER3L1-2's
+      totality" caveat had been INVERTED in transcription
+      into a delivery claim no refutation file asserts — an
+      R-4 transplant-mutation instance of record);
+      deriving e_SS > 0 alone kills only the (m1) necessity
+      exhibit and leaves the grant conditional on the strict
+      cross-term bound (m2 and m3 stand as the witnesses).
+      Granted, FOR THE CERTIFIED QUADRUPLE g(S) = S (revision
+      7 per E3L0-1/ER2L1-1; a general Harten member
+      additionally needs the g-condition) and under the STRICT
+      + hull-theta + CHART-COMPLETE
+      condition of record (grant-head enumeration PROPAGATED
+      in revision 9 per ECR1-3: revision 8 enlarged the
+      condition and updated every other carrier while this
+      operative granting sentence kept the revision-7
+      epithet — and without the chart members the universal
+      root-quantifier is VACUOUSLY satisfiable at a rootless
+      hull point (empty root set), ER3L1-2's mechanism
+      surviving in the enumeration): (i) E(V|U) >= c|DeltaW|^2 with all comparison
       segments inside the convex physical region ({rho >=
       rho_min} IS convex in W — this half of the pricing was
-      correct); (ii) flux smoothness on that hull, hence the
+      correct; that region carries NO theta clause and NO
+      chart clause, which is
+      why the hull-theta member and the chart members of the
+      condition are genuine
+      additions, E3L0-2/ER3L1-2/ECL0-1); (ii) flux smoothness on that hull, hence the
       UPPER/commutator bounds along W-segments. What it does NOT
       deliver: the load-bearing LOWER sandwich, which is on the
       relative x-FLUX Q_x(V|U) = eta(V|U): with
       G_U(W) := Q_x(W) - D_W E(U).F_x(W) (so D_W G_U(W_U) = 0 by
       classical compatibility), the segment-Taylor integrand
-      D^2 G_U(W_s) is at s = 0 CONGRUENT to the M-Hessian of eta
-      (change of variables through M = F_x(W)), hence INDEFINITE
-      at subsonic states by [S-XCONV] R1; and the supersonic set
-      {u > c} is NON-convex in W (u = m1/rho is a mediant under
-      convex combination; two supersonic states can average
-      subsonic): the hull obstruction TRANSFERS verbatim to
-      W-space. The "also removes the G7 consumption" claim is
-      CONDITIONAL on the same missing bound (with a valid
-      Q_x-sandwich the endgame would indeed conclude W_V = W_U
-      without M-inversion — that inference is right; the sandwich
-      IS the open piece). STATUS of r2: a PARTIAL reduction (hull
-      convexity + upper bounds gained; x-flux segment coercivity
-      OPEN — a G8-equivalent problem). CONSEQUENCE OF RECORD: NO
+      D^2 G_U(W_s) is at every s > 0 a TWO-POINT object
+      (U != W_s: curvature evaluated at W_s against the
+      multiplier D_W E(U) anchored at U, congruent to NO
+      M-Hessian at all) with NO definiteness certificate, on or
+      off the branch — THIS is the open obstruction. (Reworded
+      in revision 4 per L0-2: the revision-3 sentence attached
+      [S-XCONV] R1 at s = 0, where the congruence
+      D^2 G_U(W_U) = DF_x^T Hess_M(eta)(M_U) DF_x (change of
+      variables through M = F_x(W)) in fact yields the certified
+      DEFINITE block — the s = 0 base point is
+      SUPERSONIC-BRANCH, so the s = 0 congruent object is
+      DEFINITE and "indefinite at subsonic states" cannot be
+      instantiated at s = 0 in this chain; at subsonic W_s even
+      the ONE-POINT congruent object is indefinite by [S-XCONV]
+      R1 — an auxiliary fact, not the mechanism.) And the
+      supersonic set {u > c} is NON-convex in W: u = m1/rho is a
+      mediant under convex combination AND c moves with
+      (rho, S) — S is not affine in W, and W-averaging deposits
+      velocity variance into internal energy, raising c (the
+      mixing mechanism, verified by l1's exhibit) — so two
+      supersonic states can average subsonic (the "c moves with
+      (rho, S)" clause is load-bearing and had been dropped in
+      the revision-3 transcription: the mediant alone gives only
+      u_avg between the two supersonic values, a non-sequitur;
+      the pair is EXPECTED-NOT-EXHIBITED — no certified
+      subsonic-average pair is on file, and none is needed for
+      the OPEN verdict: the burden sits on r2's unproven
+      coercivity, not on this pricing): the hull obstruction is
+      EXPECTED to transfer to W-space (marker extended across
+      the colon in revision 5 per EL0-4 — the revision-4 text
+      printed the transfer CATEGORICALLY while its sole support,
+      the subsonic-average pair, carries the
+      EXPECTED-NOT-EXHIBITED marker above; the conclusion now
+      inherits it; the direction is conservative — were the
+      transfer to fail, r2 would look BETTER and the OPEN
+      verdict is safe either way). The "also removes the G7
+      consumption" claim is CONDITIONAL on the same missing
+      bound (with a valid Q_x-sandwich the endgame would indeed
+      conclude W_V = W_U without M-inversion — that inference is
+      right; the sandwich IS the open piece). STATUS of r2
+      (honest status line of record, revision 4; condition
+      parenthetical restated in revision 5 per EL0-3/ESC1-F2;
+      strictness fixed in revision 6 per E2L0-1; hull-theta
+      clause + certified-quadruple scope added in revision 7
+      per E3L0-1/E3L0-2/ER2L1-1; chart totality +
+      root-uniqueness clauses added in revision 8 per
+      ER3L1-2/E4L0-2; slice-connectedness member added in
+      revision 9 per ECL0-1):
+      a PARTIAL reduction MODULO the named thermal-stability
+      condition (theta > 0 AND STRICT joint s-concavity in
+      (specific volume, internal energy) on the
+      comparison-segment hull — positive-definite
+      Hess e(v, S), chart total and single-valued there (the
+      revision-8/9 clauses incl. slice-connectedness),
+      granted half pinned to the
+      certified
+      quadruple g(S) = S — / Bethe-Weyl class, with
+      e_SS > 0 = c_v > 0 (sign via hull-theta, ER3L1-1) its
+      necessary scalar shadow; discharged
+      IN FULL, strict form and hull-theta included, at the
+      standing gamma(T)
+      closure by the AUD-cp-class c_v > 0 audit — separable s
+      and theta = T > 0 there) + OPEN x-flux segment
+      coercivity (a G8-equivalent problem). CONSEQUENCE OF RECORD: NO
       named viable abstract-EOS G8 route exists at this revision
       (r1 feasibility-gated, possibly infeasible in principle; r3
       instance-level; r2 partial) — the abstract-EOS status of
@@ -2251,7 +2728,26 @@ VARIABLE-GAMMA STATUS (per statement):
     route exists at this revision (the revision-2 "route r2 is
     the only abstract-EOS route" sentence is RETRACTED: r2 is a
     PARTIAL reduction with the x-flux segment coercivity open,
-    r2b-F1). On the standing gas model (gamma(T) tabulated,
+    r2b-F1, and — revision 4, L1-2 — a named thermal-stability
+    condition on its granted half (named in its SUFFICIENT form,
+    joint s-concavity / Bethe-Weyl class, in revision 5 per
+    EL0-3/ESC1-F2; stated STRICT — positive-definite Hess e on
+    the comparison hull — in revision 6 per E2L0-1;
+    DOMAIN-COMPLETED — hull-theta clause added, grant pinned to
+    the certified quadruple g = S — in revision 7 per
+    E3L0-1/E3L0-2/ER2L1-1; CHART-COMPLETED — totality +
+    root-uniqueness clauses added, strict Legendre bridge
+    written — in revision 8 per E4L0-1..4/ER3L1-1..3;
+    TOPOLOGY-COMPLETED — slice-connectedness member added
+    (else root uniqueness imposed directly), consequent
+    member arithmetic and grant-head enumeration corrected —
+    in revision 9 per ECL0-1..3/ECR1-1..4),
+    discharged
+    IN FULL at the standing
+    gamma(T) closure by the AUD-cp-class c_v > 0 audit
+    (separable s, strict form automatic, theta = T > 0 free
+    there); table conclusions UNCHANGED). On the standing gas model (gamma(T)
+    tabulated,
     thermo-tabulated backend) EVERY instance-certificate route
     additionally needs certified table-interpolation enclosures —
     stated once in the G8 row for all three consumers. Honest
@@ -2288,7 +2784,9 @@ full) + single-agent revision pass round 3 (consumed the two round-3
 refuter files in full — §11) + single-agent revision pass round 4
 (consumed the round-2 refuter files IN FULL: r2_l0 Part 1 + Part 2,
 r2_l1 carried F1-F9 + reissue F10-F14 — §12; nothing on disk left
-unconsumed); no sub-orchestration; no environment mutations —
+unconsumed) + single-agent escalation pass 2026-08-18 (consumed
+VERDICT_r2pass sustained rows L0-1/L1-1 (E-1) and L1-2/L0-2 (E-2)
+— §13); no sub-orchestration; no environment mutations —
 pinned env untouched.
 
 ==============================================================================
@@ -2663,6 +3161,11 @@ LABEL-DOWNGRADED for the headline change.
     partition of unity subordinate to the period cover +
     telescoping by T-periodicity of V and the composed
     quadruple).
+    [SUPERSEDED, revision 4: the revision-3 written line was
+    itself refuted by L0-1/L1-1 (literal sum divergent; the
+    chi_k' cancellation — the nontrivial content — absent) and
+    REWRITTEN as the three-step (p1)-(p3) argument — see §13;
+    the disposition is re-closed there.]
 
 LABEL SUMMARY after round 4 (revision 3, of record):
 [T-T0P-E] THEOREM (unchanged in content; falsifier corrected to
@@ -2681,3 +3184,1277 @@ coercivity (route-level open, incl. the r2 residual), G3/G11
 (declared-not-written technology), G4 general branch, G2
 structural clauses in bare L^inf. No refuter finding on disk is
 unconsumed at this revision.
+[SUPERSEDED NOTE, revision 4: "no refuter finding on disk
+unconsumed" was true of the r1/r2/r3 refuter files this log
+consumed; the 2026-08-18 r2 batched pass raised four further
+findings against THIS document — consumed in §13.]
+
+==============================================================================
+## §13 REVISION LOG — S-FOUNDATIONS-C escalation pass E-1/E-2
+## (2026-08-18, revision 4; EXTENDED same section with until-dry
+## ROUND 2, revision 5 — block appended below)
+
+Objections consumed THIS PASS (judge of record:
+r2pass/VERDICT_r2pass.md — sustained rows for legs 3 and 5 in
+§2.1, escalation specs E-1/E-2 in §4(c); full objection texts:
+r2pass/refute_r2batch_l0.md L0-1/L0-2 and
+r2pass/refute_r2batch_l1.md L1-1/L1-2). By design of BOTH
+escalations: statements, rigor labels and route-level conclusions
+are UNCHANGED — the repairs are proof-content and accounting
+text. Disposition key as in §10.
+
+ L0-1 / L1-1  (E-1, leg 3; judge severity SUSTAINED-REPAIR)
+    §4 periodization line divergent as literally written; the
+    r2b-F6 disposition inadequate ..................... FIXED
+    (the PERIODIZATION STEP rewritten as the full three-step
+    argument (p1)-(p3): (p1) single-window D'-pairing
+    <mu, psi chi_0>, k-independent by joint T-periodicity, NO
+    sum over k taken; (p2) Sum_k chi_k == 1 applied to the field
+    terms, identifying the window pairing with the torus
+    integral; (p3) Sum_k chi_k' == 0 killing the
+    cutoff-derivative terms — the cancellation that IS the
+    nontrivial content and that the revision-3 line omitted. The
+    "summing telescopes by periodicity" mechanism RETRACTED with
+    the divergence reason recorded (equal pairings for all k).
+    The (EU-x) EQUALITY pairing against D_W E(U) stated to ride
+    the SAME identity (U T-periodic on the slab by H8'), closing
+    L0-1's second clause. The §12 r2b-F6 disposition is
+    RE-CLOSED by the written argument under the document's own
+    "one line, but the line must be WRITTEN" standard. Statement
+    unchanged; hypotheses unchanged (H8' both sides, H7' test
+    class); gamma/EOS status: the step is EOS-free measure
+    theory. FALSIFIER of the retraction: a finite value of
+    Sum_k <mu, psi chi_k> for some nonzero T-periodic mu >= 0
+    and admissible psi, {chi_k} — kills the divergence claim
+    (and with it the ground of the rewrite, not the rewritten
+    argument itself, which never sums over k).
+    [FALSIFIER RECALIBRATED in revision 5 per EL0-1/ESC1-F1 —
+    as printed it has FALSE-POSITIVE power (the r2-F6 defect
+    class): psi supported away from supp(mu) meets every
+    printed condition with a finite (zero) sum while the
+    divergence claim, which carves out the zero-common-value
+    case, stands unrefuted. Firing condition of record: a
+    finite value of Sum_k <mu, psi chi_k> WITH
+    <mu, psi chi_0> != 0.]
+ L1-2  (E-2(a), leg 5; judge severity SUSTAINED-REPAIR)
+    GRANTED half of G8 route r2 conditional on an unnamed
+    thermal-stability condition ....................... FIXED
+    (the G8/r2 row now names the condition ON the granted half:
+    e_SS > 0 / s-concavity in (specific volume, internal
+    energy) / Bethe-Weyl class — NOT implied by the §1 gas
+    model, which pins only Gibbs closure + c^2 > 0 + theta > 0
+    and NO sign of e_SS; ideal-gas form recorded (-rho f(S)
+    strictly convex iff f' > 0 AND f''/f' < 1/c_v); in-class
+    breaking mechanism recorded (abstract EOS with e_SS <= 0
+    somewhere on K breaks delivered item (i)); discharge at the
+    STANDING gamma(T) thermally-perfect closure via the
+    AUD-cp-class finite audit c_v > 0 noted, so the condition
+    prices the abstract-EOS accounting only; honest r2 status
+    line of record = "partial reduction MODULO named
+    thermal-stability condition + open x-flux coercivity";
+    audit line + §9 gamma table annotated for consistency, their
+    CONCLUSIONS unchanged — the correction STRENGTHENS the
+    no-viable-abstract-EOS-route conclusion. FALSIFIER: derive
+    e_SS > 0 from Gibbs closure + c^2 > 0 + theta > 0 alone —
+    kills L1-2 and restores the unconditional grant. Not a
+    re-raise of r2b-F1: that finding priced the coercivity
+    conflation; this one prices the granted half).
+    [SUPERSEDED IN PART, revision 5 per EL0-3/ESC1-F2: the
+    revision-4 naming promoted the condition class to a false
+    equivalence and its falsifier over-claimed sufficiency of
+    e_SS > 0; the condition of record is now the JOINT
+    s-concavity / Bethe-Weyl form and the falsifier is
+    recalibrated — see the revision-5 block below. The
+    disposition's substance (condition named, AUD-cp discharge,
+    honest status line, conclusions strengthened) stands.]
+ L0-2  (E-2(b), leg 5; judge severity SUSTAINED-AMENDMENT,
+    riding E-2) s = 0 congruence sentence proves the wrong
+    thing; mediant clause a non-sequitur .............. FIXED
+    (reworded per the L0-2 repair spec: at s = 0 the congruent
+    object D^2 G_U(W_U) = DF_x^T Hess_M(eta)(M_U) DF_x is the
+    certified DEFINITE block — the base point is
+    SUPERSONIC-BRANCH, so [S-XCONV] R1 cannot be instantiated at
+    s = 0 in this chain; the TRUE obstruction stated as the
+    TWO-POINT integrand D^2 G_U(W_s) at s > 0, congruent to no
+    M-Hessian and carrying NO definiteness certificate on or off
+    the branch, with the subsonic one-point indefiniteness
+    demoted to auxiliary fact; the load-bearing "c moves with
+    (rho, S)" clause RESTORED in the mediant parenthetical, with
+    the mixing mechanism recorded per l1's verification exhibit,
+    and the subsonic-average pair declared
+    EXPECTED-NOT-EXHIBITED with the burden located on r2's
+    unproven coercivity. Route-level OPEN conclusion and gamma
+    table UNCHANGED, per the E-2 spec).
+
+LABEL SUMMARY after revision 4: NO label motion (VERDICT_r2pass
+§4(a): "[T-T0P] main was already SCHEMA — no further label
+motion; the repairs are text-level"). The §12 label summary
+remains the summary of record, with G8's r2 residue now TWO
+named pieces (thermal-stability condition on the granted half +
+x-flux segment coercivity).
+
+HONEST RESIDUE at this revision:
+ (1) The Blocco-2 landing gate remains CLOSED (VERDICT_r2pass
+     §1: verification layer unproven in the confirm direction;
+     E-5/E-6 are NOT this document's to discharge): the M0
+     landing of the [T-T0P] main statement and of the
+     G8/[C-XBVP](a') registry row stays HELD OUT until the gate
+     opens; these E-1/E-2 repairs themselves are UNADJUDICATED
+     as of this revision (single-agent revision pass — the
+     re-closure claims above await their own adversarial
+     confirmation per the standing until-dry discipline).
+     [revision 5: that adjudication has since RUN — round-1
+     escalation refutation, two lenses (esc_doc1_r1_l0/l1);
+     verdicts and the consumed findings in the REVISION 5
+     block below.]
+ (2) The r2-batch escalations E-3 (leg 6, DOC-2) and E-4
+     (leg 14, DOC-3) target OTHER documents and are not
+     consumed here.
+ (3) The open mathematics of the §12 summary is otherwise
+     unchanged: G8 segment coercivity (route-level open, r2
+     residue now two-piece), G3/G11, G9 lift, G5/G12, G4
+     general branch, G2 structural clauses in bare L^inf.
+
+------------------------------------------------------------------
+REVISION 5 — until-dry ROUND 2 (2026-08-18). Objections consumed
+THIS PASS: the round-1 escalation refutations
+r2pass/esc_doc1_r1_l0.md (EL0-1..EL0-4) and
+r2pass/esc_doc1_r1_l1.md (ESC1-F1, ESC1-F2), raised against the
+revision-4 E-1/E-2 repair text. Round-1 discharge verdicts of
+record: E-1 DISCHARGED (both lenses); E-2(b)/L0-2 DISCHARGED;
+E-2(a)/L1-2 PARTIALLY DISCHARGED (l1) / discharged-in-substance-
+with-named-residue (l0) — the residue is EL0-3/ESC1-F2, repaired
+below. MERGED IDs (same defect, found independently):
+EL0-1 == ESC1-F1; EL0-3 == ESC1-F2. By design of the round:
+statements, rigor labels and route-level conclusions UNCHANGED —
+every edit is accounting text, falsifier calibration, or
+written-clause completion; the one REPAIR-grade correction again
+STRENGTHENS the no-viable-abstract-EOS-route conclusion, mirroring
+L1-2's own effect. Disposition key as in §10.
+
+ EL0-3 / ESC1-F2  (leg 5, class REPAIR-NEEDED, both lenses
+    independently convergent incl. the counterexample class)
+    revision-4 condition naming: the "equivalently" chain false
+    as an equivalence (e_SS > 0 <=> c_v > 0 only; joint
+    s-concavity strictly stronger); headline e_SS > 0 NECESSARY
+    but NOT SUFFICIENT for delivered item (i) — the Grueneisen
+    cross-term bound e_vv e_SS >= (e_vS)^2 is pinned by NOTHING
+    in §1; falsifier clause "restores the unconditional grant"
+    over-claims sufficiency of the scalar shadow ....... FIXED
+    (G8/r2 row rewritten at the condition clause: condition of
+    record = FULL thermodynamic stability = JOINT s-concavity
+    in (specific volume, internal energy) / Bethe-Weyl class,
+    equivalently (theta > 0, partial Legendre) joint convexity
+    of e(v, S) = THREE conditions: e_vv > 0 [= c^2 > 0, §1 pin]
+    AND e_SS > 0 [= c_v > 0, the necessary scalar shadow
+    revision 4 named] AND the Grueneisen bound [equally
+    unpinned]; "equivalently" scoped to the e_SS/c_v pair
+    alone; SECOND in-class breaking mechanism (m2) recorded —
+    quadratic e(v, S) patch with all §1 pins + e_SS > 0 but
+    a1^2 > e0'' b, killed through the boost-affinity +
+    perspective-congruence chain (W-convexity of -rho S forces
+    joint s-concavity, so the determinant-violating point
+    breaks the lower sandwich (i) with the revision-4 headline
+    condition satisfied); AUD-cp note STRENGTHENED per the
+    refuters' own surviving analysis: at the standing gamma(T)
+    thermally-perfect closure s(tau, eps) = phi(eps) + R ln tau
+    is SEPARABLE (cross term identically zero), so the c_v > 0
+    audit discharges the FULL joint condition there, not merely
+    its shadow; FALSIFIER recalibrated: joint s-concavity on K
+    from the §1 pins alone restores the grant; e_SS > 0 alone
+    kills only the (m1) necessity exhibit. Propagated to ALL
+    residue carriers: audit line (header), honest status line,
+    §9 gamma table, §13 L1-2 entry [SUPERSEDED IN PART note —
+    prior text preserved]. Statement, labels, route-level OPEN
+    conclusion, gamma-table conclusions UNCHANGED. Hypotheses:
+    §1 gas model as pinned; gamma/EOS status: the condition
+    prices ABSTRACT EOS only, discharged IN FULL at the
+    standing gamma(T) closure. DEDUP: not a re-raise of L1-2 —
+    L1-2 priced the ABSENCE of any named condition; this priced
+    the revision-4 NAMING as sufficient, text that did not
+    exist before revision 4.)
+    [SUPERSEDED IN PART, revision 6 per E2L0-1/E2L0-2: this
+    entry's condition transcription printed the Grueneisen
+    member NON-strict (">=" — the necessity-direction
+    inequality in the sufficiency slot; the (m3) determinant-
+    boundary witness satisfies it and still breaks item (i))
+    and its recalibrated falsifier's "on K" clause carried
+    false-restoration power on the domain (W-segments between
+    K-states leave K). The condition of record is now the
+    STRICT form on the comparison-segment hull and the
+    falsifier is re-recalibrated — see the revision-6 block
+    below. The disposition's substance (joint naming, (m2)
+    witness, AUD-cp separability discharge, four-carrier
+    propagation) stands.]
+ EL0-1 / ESC1-F1  (leg 3, class AMENDMENT, both lenses)
+    §13 E-1 retraction falsifier has FALSE-POSITIVE power:
+    fires on nonzero mu with zero common pairing value,
+    against the true divergence claim (which carves out that
+    case) .............................................. FIXED
+    (firing condition of record now requires
+    <mu, psi chi_0> != 0 — bracketed recalibration appended to
+    the revision-4 entry, prior text preserved. The falsifier
+    guards only the retraction GROUND; no proof content or
+    label was exposed. Same defect class the document retired
+    at the [T-T0P-E] falsifier in revision 3 (r2-F6), retired
+    here by the same one-clause form.)
+ EL0-2  (leg 3, class AMENDMENT, l0 only — l1 examined the
+    same passage and CONFIRMED it; the sound reading is the
+    one now written) (EU-x) equality rider passed the
+    Lipschitz composite through machinery minted for smooth
+    tests via an unwritten "verbatim"; two consumptions owed
+    in writing ......................................... FIXED
+    (the rider now WRITES both: (i) mollification
+    admissibility of the windowed W^{1,inf} compact-support
+    composite test against the L^inf-coefficient weak form —
+    strictly weaker than the non-windowed G2 Gauss-Green
+    consumption already itemized, hence covered a fortiori;
+    (ii) the composite-as-psi reading, under which the
+    d_t D_W E(U) term is a FIELD term absorbed by (p2) —
+    L^inf and T-periodic on the stratum-(A) slab (U C^1, H8')
+    — not a third cutoff-derivative term. The word "verbatim"
+    dropped from the sentence; change logged here. Statement
+    unchanged; the step remains EOS-free measure theory;
+    hypotheses H8'/H7' unchanged.)
+ EL0-4  (leg 5, class AMENDMENT, l0 only — l1 confirmed the
+    premise level and could not break the mechanism)
+    categorical "the hull obstruction TRANSFERS to W-space"
+    outruns its EXPECTED-NOT-EXHIBITED premise .......... FIXED
+    (marker extended across the colon: the conclusion now
+    reads "is EXPECTED to transfer to W-space", inheriting the
+    premise's status, with the conservative direction recorded
+    — a failed transfer would only improve r2 and the OPEN
+    verdict is safe either way. Upgrade paths unchanged: a
+    certified subsonic-average pair upgrades EXPECTED ->
+    EXHIBITED; an unconditional abstract-EOS proof of {u > c}
+    non-convexity in W upgrades the whole clause.)
+
+CONFIRMED passages of round 1 (no action owed; recorded for the
+dryness ledger, strongest attacks on file in the two refutation
+documents): retraction preamble; (p1)/(p2)/(p3) core rewrite
+(both lenses — "complete proof at the document's own standard");
+s = 0 / two-point rewording (judge act (iii) re-derived; DF_x
+subsonic-invertibility attack killed via L-XSON3); mediant
+mechanism restoration (premise level, incl. l1's pen-grade
+mixing construction); e_SS <= 0 breaking mechanism (m1); AUD-cp
+gamma(T) discharge (verified by l1 INCLUDING the strengthened
+joint condition — separability); status-line / audit-line /
+gamma-table / §13 consistency (no stale consumer found by
+either lens).
+
+LABEL SUMMARY after revision 5: NO label motion (the round-2
+edits are accounting text, falsifier calibration and
+written-clause completion; VERDICT_r2pass §4(a) status
+unchanged). The §12 summary remains the summary of record;
+G8's r2 residue remains TWO named pieces, the thermal-stability
+piece now stated in its sufficient JOINT form.
+
+HONEST RESIDUE at revision 5:
+ (1) UNTIL-DRY STATUS: round 1 raised 4 distinct defects
+     (1 REPAIR-NEEDED + 3 AMENDMENT, 0 BREAKS-THE-LEG), all
+     consumed above with disposition rows — the round was NOT
+     dry; the loop CONTINUES: these round-2 repairs are
+     themselves UNADJUDICATED and await the next escalation-
+     refutation round. Dryness = a round returning zero
+     sustained findings.
+ (2) The Blocco-2 landing gate remains CLOSED (VERDICT_r2pass
+     §1; E-5/E-6 are not this document's to discharge): the
+     [T-T0P] main-statement and G8/[C-XBVP](a') M0 landings
+     stay HELD OUT regardless of this round's outcome.
+ (3) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = joint thermal-stability
+     condition at abstract EOS + x-flux coercivity), G3/G11,
+     G9 lift, G5/G12, G4 general branch, G2 structural
+     clauses in bare L^inf.
+
+------------------------------------------------------------------
+REVISION 6 — until-dry loop, consumption of the ROUND-2
+refutation (2026-08-19). Objections consumed THIS PASS: the
+round-2 escalation refutation r2pass/esc_doc1_r2_l0.md (E2L0-1,
+E2L0-2), raised against the revision-5 E-1/E-2 repair text.
+ROUND-NUMBER NOTE, declared: the launching brief for this window
+named the target "revision 4" and this consumption "until-dry
+ROUND 2" — both stale against the on-disk state (revision 5
+already carried the E-1/E-2 rewrites and consumed round 1; this
+block consumes round 2). Round-2 coverage was lens l0 ONLY on
+this document (no esc_doc1_r2_l1.md exists in r2pass/) — a
+DECLARED coverage asymmetry, carried in the honest residue. By
+design of the round: statements, rigor labels and route-level
+conclusions UNCHANGED — both edits are condition-calibration and
+falsifier-calibration on the G8/r2 accounting row; the one
+REPAIR-grade correction again STRENGTHENS the
+no-viable-abstract-EOS-route conclusion (the condition of record
+gets strictly stronger), the third time in a row for this row
+(L1-2, EL0-3/ESC1-F2, E2L0-1). Disposition key as in §10.
+
+ E2L0-1  (leg 5, class REPAIR-NEEDED, lens l0)
+    revision-5 condition of record printed the Grueneisen
+    member NON-strict (">=") — the necessity-direction
+    inequality transplanted into the sufficiency slot; the
+    (m3) determinant-boundary witness (quadratic patch with
+    e0'' = a1^2/b constant, det == 0, rank-1 Hessian, null
+    direction d0 = (b, -a1)) satisfies ALL printed conditions
+    yet breaks delivered item (i)'s uniform c (Bregman
+    O(|DeltaW|^3) along the null direction); "i.e. THREE
+    conditions" matched neither PSD nor PD ............. FIXED
+    (condition of record restated in its STRICT form:
+    Hess e(v, S) positive DEFINITE on the comparison-segment
+    hull = strict pair e_vv > 0 AND e_vv e_SS > (e_vS)^2, with
+    e_SS > 0 following and kept as the recorded scalar shadow;
+    pointwise strictness + compactness of the segment hull
+    yields the uniform c of item (i); the NON-strict triple
+    re-scoped to the necessity direction, where ">=" is the
+    correct form; (m3) recorded as the third in-class breaking
+    mechanism — the witness that non-strict does not suffice;
+    the grant clause now reads "under the STRICT condition of
+    record"; AUD-cp discharge note strengthened: at the
+    standing gamma(T) closure the strict form is discharged
+    VERBATIM — diag(-R/tau^2, -1/(c_v T^2)) strictly negative
+    definite iff c_v > 0, uniformly on compacts, strict
+    determinant automatic; propagated to all four residue
+    carriers: audit line (header), honest status line, §9
+    gamma table, §13 EL0-3 entry [SUPERSEDED-IN-PART note —
+    prior text preserved]. Statement, labels, route-level
+    OPEN conclusion, gamma-table conclusions UNCHANGED.
+    Hypotheses: §1 gas model as pinned; gamma/EOS status: the
+    condition prices ABSTRACT EOS only, discharged in full —
+    strict form included — at the standing gamma(T) closure.
+    DEDUP: not a re-raise of EL0-3/ESC1-F2 — those priced the
+    revision-4 SCALAR naming; this priced the revision-5
+    transcription's STRICTNESS, text that did not exist before
+    revision 5. PROVENANCE, declared by the refuter and
+    recorded: the ">=" was seeded by the round-1 repair specs'
+    own necessity-direction displays — repair-spec text is not
+    exempt from refutation.)
+ E2L0-2  (leg 5, class AMENDMENT, lens l0)
+    revision-5 recalibrated falsifier's restoration clause
+    "joint s-concavity ON K ... restores the grant" had
+    FALSE-RESTORATION power on the DOMAIN (item (i)
+    quantifies over comparison segments; W-segments between
+    K-states LEAVE K — this row's own hull point) and
+    inherited the E2L0-1 strictness gap ................ FIXED
+    (falsifier RE-RECALIBRATED: restoring derivation must
+    deliver joint s-concavity IN THE STRICT FORM on the
+    comparison-segment hull — equivalently wherever the §1
+    pins hold — from the §1 pins ALONE, with no K-geometry
+    input; witnesses updated to "m2 and m3". The falsifier is
+    auxiliary text guarding the condition-claim; no proof
+    content or label exposed. PROVENANCE, declared: "on K" was
+    transcribed verbatim from the round-1 l0 repair spec —
+    same lesson as E2L0-1's.)
+    [SUPERSEDED IN PART, revision 7 per E3L0-1/E3L0-2/ER2L1-1
+    — both revision-6 entries above: the E2L0-1 disposition's
+    transplanted sufficiency note ("pointwise strictness +
+    compactness ... yields the uniform c of item (i)") left
+    the entropy member/quadruple unpinned — the row's own
+    kept ideal-gas iff separates it: f = exp(kS),
+    k >= 1/c_v satisfies the strict condition and breaks
+    item (i) — and its assembly unwritten; the condition's
+    domain lacked the load-bearing hull-theta clause (chart
+    inversion, Legendre step, m-block sign all consume
+    theta > 0 at hull states, which §1 pins only "on the
+    state region of interest"); and the E2L0-2 disposition's
+    "(equivalently: wherever the §1 pins hold)" parenthetical
+    assumed hull ⊆ pin-region. The condition of record is now
+    theta > 0 AND Hess e(v, S) PD on the hull, the grant is
+    pinned to the certified quadruple g(S) = S, the
+    sufficiency assembly is WRITTEN in the row, and the
+    falsifier parenthetical is re-calibrated — see the
+    revision-7 block below. The dispositions' substance
+    (strict form, (m3) witness, necessity re-scope, AUD-cp
+    strict discharge, no-K-input clause, four-carrier
+    propagation) stands.]
+
+ROUND-1 l1 DISPOSITIONS VERIFIED (esc_doc1_r1_l1.md, ESC1-F1 +
+ESC1-F2 — both consumed at revision 5 under the merges
+EL0-1 == ESC1-F1, EL0-3 == ESC1-F2; adequacy adjudicated by the
+round-2 refuter): ESC1-F1's disposition VERIFIED DISCHARGED
+(satisfiability analysis of the recalibrated firing condition —
+fires only on a genuine k-independence failure; the round-1
+supp-disjoint exhibit no longer fires); ESC1-F2's disposition
+VERIFIED delivered-as-specified with a NAMED residual in the
+transcription — that residual IS E2L0-1 + E2L0-2, consumed
+above. The r1_l1 file is fully consumed with standing
+dispositions; no orphan objection remains in either input file.
+
+CONFIRMED passages of round 2 (no action owed; recorded for the
+dryness ledger, strongest attacks on file in
+r2pass/esc_doc1_r2_l0.md): (m2) mechanism + boost-affinity +
+perspective-congruence kill chain (congruence re-derived at pen
+grade, Hess h = tau B^T Hess f B); AUD-cp separability
+strengthening (survives the E2L0-1 strict form verbatim);
+EL0-4 marker extension; propagation carriers (no stale scalar
+form of record); EL0-1/ESC1-F1 falsifier recalibration; EL0-2
+rider consumptions (boundedness chain, Lipschitz product rule,
+a-fortiori comparison); the revision-5 log block's bookkeeping.
+LEG 3 (E-1): ZERO round-2 findings — the leg-3 escalation
+thread is DRY at lens l0 as of revision 5.
+
+LABEL SUMMARY after revision 6: NO label motion (both edits are
+accounting text and falsifier calibration on the G8/r2 row;
+VERDICT_r2pass §4(a) status unchanged). The §12 summary remains
+the summary of record; G8's r2 residue remains TWO named
+pieces, the thermal-stability piece now stated in its
+sufficient STRICT joint form (positive-definite Hess e on the
+comparison-segment hull).
+
+HONEST RESIDUE at revision 6:
+ (1) UNTIL-DRY STATUS: round 2 raised 2 distinct defects
+     (1 REPAIR-NEEDED + 1 AMENDMENT, 0 BREAKS-THE-LEG), both
+     consumed above with disposition rows — the round was NOT
+     dry; the loop CONTINUES: these revision-6 repairs are
+     themselves UNADJUDICATED and await the next
+     escalation-refutation round. Leg 3 is dry at lens l0;
+     leg 5 is not yet dry. Dryness = a round returning zero
+     sustained findings.
+ (2) COVERAGE ASYMMETRY, declared: round 2 ran lens l0 only
+     (no esc_doc1_r2_l1.md on file); the revision-5/6 leg-5
+     text carries single-lens round-2 adversarial coverage.
+     A lens-l1 pass over the revision-6 text is the natural
+     next round.
+ (3) The Blocco-2 landing gate remains CLOSED (VERDICT_r2pass
+     §1; E-5/E-6 are not this document's to discharge): the
+     [T-T0P] main-statement and G8/[C-XBVP](a') M0 landings
+     stay HELD OUT regardless of this round's outcome.
+ (4) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = STRICT joint
+     thermal-stability condition at abstract EOS + x-flux
+     coercivity), G3/G11, G9 lift, G5/G12, G4 general branch,
+     G2 structural clauses in bare L^inf.
+
+------------------------------------------------------------------
+
+REVISION 7 — until-dry loop, ROUND 3 (2026-08-19). Objections
+consumed THIS PASS: the round-3 lens-l0 escalation refutation
+r2pass/esc_doc1_r3_l0.md (E3L0-1, E3L0-2) and the round-2 lens-l1
+escalation refutation r2pass/esc_doc1_r2_l1.md (ER2L1-1) — the
+latter closes the revision-6 declared coverage asymmetry (honest
+residue item (2) of revision 6): the leg-5 text now carries
+TWO-LENS coverage at every round. ROUND-NUMBER NOTE, declared
+(fourth occurrence of the same off-by-one): the launching brief
+for this window again named the target "revision 4" and asked to
+"execute E-1 and E-2" — stale against the on-disk state
+(revisions 5-6 already carried the E-1/E-2 rewrites and consumed
+refutation rounds 1-2; the brief's own until-dry clause "consume
+EVERY objection in esc_doc1_r3_l0.md and esc_doc1_r2_l1.md"
+resolves unambiguously to THIS round-3 consumption). By design of
+the round: statements, rigor labels and route-level conclusions
+UNCHANGED — all three findings are accounting/condition text on
+the G8/r2 row; the repairs STRENGTHEN the
+no-viable-abstract-EOS-route conclusion for the FOURTH time in a
+row (L1-2 -> EL0-3/ESC1-F2 -> E2L0-1 -> E3L0-1+E3L0-2: the
+granted half now carries a pinned quadruple and a fourth named
+condition member). Disposition key as in §10.
+
+ E3L0-1  (leg 5, class REPAIR-NEEDED, lens l0, round 3)
+    the revision-6 sufficiency note ("pointwise strictness
+    plus compactness ... yields the uniform c of item (i)")
+    was asserted for the row's GENERIC E = -rho g(S) and is
+    FALSE at that quantification: the row's OWN kept
+    ideal-gas iff supplies the in-class separating member
+    f = exp(kS), k >= 1/c_v (strict condition of record
+    satisfied everywhere; -rho f(S) not convex in W; item (i)
+    fails for every fixed c) — and the sufficiency assembly
+    behind the note was nowhere written (the recorded
+    congruence chain only ever ran the necessity
+    direction) .......................................... FIXED
+    (the grant and the sufficiency note are PINNED to the
+    certified quadruple g(S) = S, E = -rho S — the member §4
+    actually consumes (H7') and the (m1)-(m3) chains
+    instantiate; general-member clause added: the g-condition
+    enters additionally, the kept ideal-gas iff is its
+    instance, its abstract-EOS form unstated and NOT needed —
+    one convex member suffices for the device; at g = S the
+    g-condition reads c_v > 0, contained in the strict pair.
+    [ATTRIBUTION SUPERSEDED-IN-PART at revision 8 per
+    ER3L1-1/E4L0-4(b), prior text preserved: contained in the
+    CONDITION OF RECORD — e_SS > 0 via the strict pair, the
+    SIGN of c_v = theta/e_SS via the hull-theta clause; the
+    strict pair alone does not constrain theta's sign.]
+    The assembly is now WRITTEN in the row: rest-state
+    block-diagonal splitting — (rho, E) block =
+    tau B^T Hess(-s) B (the (m2) congruence, sufficiency
+    direction), momentum block (1/(rho theta)) I > 0 via
+    d^2(-rho s)/dm_i dm_j = delta_ij/(rho theta) at m = 0,
+    m-(rho, E) cross terms vanishing at m = 0 (factor m_i) —
+    then boost transport, Hess-continuity (EOS C^2, §1
+    consumption now stated) + hull compactness => uniform
+    lambda_min, Bregman => c = lambda_min/2; necessity chains
+    untouched. Statement, labels, route-level OPEN
+    conclusion, gamma-table conclusions UNCHANGED.
+    Hypotheses: §1 gas model + hull-theta clause (E3L0-2) +
+    EOS C^2; falsifier: the row's condition-claim falsifier
+    of record guards this text too — additionally, exhibit
+    an error in the kept ideal-gas iff or a proof that strict
+    joint s-concavity yields W-convexity of -rho f(S) for
+    every f' > 0, and the pinning becomes unnecessary.
+    Gamma/EOS status: abstract-EOS accounting only; at the
+    standing gamma(T) closure g = S is the certified
+    quadruple and the discharge is unchanged. DEDUP: not a
+    re-raise of E2L0-1 (strictness) — this priced the
+    delivered note's QUANTIFICATION and unwritten mechanism,
+    text that did not exist before revision 6. PROVENANCE,
+    declared by the refuter and recorded: the unscoped note
+    was transplanted verbatim from the round-2 l0 repair
+    spec — the third consecutive spec-seeded defect;
+    repair-spec text is not exempt from refutation.)
+ ER2L1-1  (leg 5, class AMENDMENT, lens l1, round 2 —
+    MERGED-AT-THE-CLAUSE with E3L0-1: same sentence, same
+    witness family g = exp(lambda S), lambda > 1/c_v (or
+    >= for the degenerate (m3)-style break), independently
+    found at the second lens)
+    the revision-6 sufficiency sentence unscoped over the
+    QUADRUPLE: at ideal gas (strict PD Hess e holds
+    everywhere) the admissible Harten member
+    g = exp(lambda S), lambda > 1/c_v breaks item (i) by the
+    row's own recorded iff; the chain closes only at the
+    certified g(S) = S, where the strict pair contains the
+    g-condition ................................ FIXED (by the
+    E3L0-1 repair above — one scoping clause + the written
+    assembly; the l1 refuter's own pen-grade verification of
+    the g = S sufficiency chain (esc_doc1_r2_l1.md §5.1,
+    steps (1)-(4)) is the adversarial check of record on the
+    written assembly's content. DEDUP: distinct provenance
+    and class from E3L0-1 (AMENDMENT — the benign reading,
+    g = S fixed by H7', is the one every consumer uses), same
+    repair site; consumed once, recorded at both IDs.)
+ E3L0-2  (leg 5, class REPAIR-NEEDED, lens l0, round 3)
+    theta > 0 ON THE HULL was a load-bearing UNPINNED
+    consumption of the condition of record: the chart
+    W -> (v, S) (inverting eps = e(v, S) in S), the partial
+    Legendre step, and the sufficiency assembly's momentum
+    block (1/(rho theta)) I all consume it at hull states;
+    §1 pins theta > 0 only "on the state region of interest",
+    segments leave K, {theta > 0} is not W-convex, and the
+    grant's convex physical region carries no theta clause;
+    in-class breaking mechanism: hull state with theta < 0
+    gives a negative momentum block and breaks item (i) with
+    Hess e(v, S) PD satisfied; the falsifier parenthetical
+    "(equivalently: wherever the §1 pins hold)" inherited the
+    gap (equivalence needs hull ⊆ pin-region) .......... FIXED
+    (condition of record DOMAIN-COMPLETED: theta > 0 AND
+    Hess e(v, S) positive DEFINITE on (the (v, S)-image of)
+    the comparison-segment hull — the theta clause licenses
+    the chart/Legendre steps and makes the momentum block
+    positive; the three consumptions are itemized in the row;
+    falsifier parenthetical RE-CALIBRATED: "PROVIDED the pins
+    are read on the whole EOS domain — else on the hull
+    itself"; grant clause annotated (the convex physical
+    region carries no theta clause — why hull-theta is a
+    genuine addition); propagated to all four residue
+    carriers by the same route the strict form took: audit
+    line (header), honest status line, §9 gamma table, §13
+    revision-6 entries [SUPERSEDED-IN-PART note — prior text
+    preserved]. Statement, labels, route-level OPEN
+    conclusion, gamma-table conclusions UNCHANGED.
+    Hypotheses: §1 gas model as pinned; falsifier: exhibit a
+    printed line placing the hull inside the theta-pin
+    region, or a proof that endpoint K-membership forces
+    theta > 0 along W-segments for every §1-class EOS —
+    either kills the clause as redundant (the refuter's own
+    self-falsifier list argues the second cannot exist:
+    theta is first-order data). Gamma/EOS status: the clause
+    prices ABSTRACT EOS only — at the standing gamma(T)
+    closure theta = T > 0 wherever the closure is defined
+    (table coordinate), discharge FREE, stated in the row.
+    DEDUP: not a re-raise of E2L0-2 (falsifier restoration
+    domain, K vs hull — discharged as delivered) — this
+    priced the CONDITION's own domain hypotheses (chart,
+    Legendre, m-block), one rung further out (hull ->
+    pin-region). PROVENANCE, declared and recorded: the
+    "(equivalently ...)" parenthetical was transplanted from
+    the round-2 l0 repair spec's defense analysis without
+    checking §1's domain clause — third consecutive
+    spec-seeded defect on this row.)
+
+DISCHARGE VERDICTS RECORDED FROM BOTH REFUTERS (adjudicating the
+revision-6 repairs): E2L0-1 DISCHARGED-AS-SPECIFIED at both
+lenses (strict form Sylvester-exact; (m3) verified airtight at
+pen grade twice — null-direction algebra, rank-faithful Legendre
+transfer, genuinely-cubic Bregman remainder; non-strict triple
+placement "matching neither" verified with all four
+containments; AUD-cp strict discharge re-derived at variable
+c_v(T)), residuals = exactly E3L0-1/ER2L1-1, consumed above.
+E2L0-2 DISCHARGED at both lenses (no surviving
+false-restoration reading of the no-K-input clause), residual =
+exactly the parenthetical carried inside E3L0-2, consumed above.
+Standing r2-batch dispositions L0-1/L1-1, L0-2, L1-2 all
+re-verified DISCHARGED against the revision-6 state by the l1
+refuter (§D of esc_doc1_r2_l1.md); round-1 dispositions
+EL0-1/ESC1-F1, EL0-2, EL0-3/ESC1-F2, EL0-4 all verified
+DISCHARGED, EL0-2 and ESC1-F1 now at BOTH lenses (mollification
+vs L^inf coefficients, term inventory, sign discipline,
+a-fortiori comparison; falsifier-bracket satisfiability verified
+by the merged finding's own author). No orphan objection remains
+in any input file on disk.
+
+LEG 3 (E-1) STATUS OF RECORD: ZERO findings at round 3 (l0:
+fresh well-definedness attack on the recalibrated firing
+condition FAILED — nonnegative terms, unconditionally
+well-defined in [0, +inf], fires exactly on a k-independence
+failure) and ZERO findings at the l1 pass — the leg-3
+escalation thread is DRY AT BOTH LENSES as of this revision.
+The launch brief's E-1 spec (three-step periodization argument +
+(EU-x) equality-pairing rider) was executed at revision 5 and
+has now survived rounds 1-3 at l0 and rounds 1-2 at l1 with
+zero sustained findings since revision 5.
+
+CONFIRMED passages of this round (no action owed; strongest
+attacks on file in the two input refutations): strict-condition
+algebra + lattice placement (Sylvester, both separators,
+necessity re-scope); (m3) strictness rung (twice, both lenses);
+AUD-cp strict discharge (twice, including the variable-c_v(T)
+re-derivation and the table-range attack rejected); the
+re-recalibrated falsifier core (dead-falsifier attack fails:
+unfirable-because-proven is the correct epistemic state); all
+four propagation carriers (no stale form of record at either
+lens); the revision-6 log block's bookkeeping (both lenses);
+(EU-x) rider consumptions and §13 E-1 falsifier bracket (l1,
+first coverage at that lens).
+
+LABEL SUMMARY after revision 7: NO label motion (all three
+repairs are accounting/condition text on the G8/r2 row;
+VERDICT_r2pass §4(a) status unchanged; [T-T0P] main remains
+SCHEMA of record). The §12 summary remains the summary of
+record; G8's r2 residue remains TWO named pieces, the
+thermal-stability piece now in the STRICT + hull-theta form
+with the granted half pinned to the certified quadruple
+g(S) = S.
+
+HONEST RESIDUE at revision 7:
+ (1) UNTIL-DRY STATUS: round 3 (l0) + the l1 round-2
+     completion raised 3 distinct defects across 2 files
+     (2 REPAIR-NEEDED + 1 AMENDMENT, 0 BREAKS-THE-LEG), all
+     consumed above with disposition rows — the round was NOT
+     dry; the loop CONTINUES: these revision-7 repairs are
+     themselves UNADJUDICATED and await the next
+     escalation-refutation round (both lenses, per the
+     restored two-lens coverage). Leg 3 is dry at BOTH
+     lenses; leg 5 is not yet dry. Dryness = a round
+     returning zero sustained findings.
+ (2) SPEC-SEEDING PATTERN, named for the next round's
+     briefs: three consecutive rounds saw a repair-spec
+     clause seed the next round's finding (">=" of E2L0-1,
+     "on K" of E2L0-2, the unscoped sufficiency note of
+     E3L0-1/ER2L1-1, the "(equivalently ...)" parenthetical
+     of E3L0-2). This revision drew its repair TEXT from the
+     round-3 specs but restated each clause against the
+     row's own hypotheses (member pinned, domain pinned,
+     assembly written); the next refutation round should
+     nonetheless attack the revision-7 text AS repair-spec-
+     derived text, per the standing lesson.
+ (3) The Blocco-2 landing gate remains CLOSED (VERDICT_r2pass
+     §1; E-5/E-6 are not this document's to discharge): the
+     [T-T0P] main-statement and G8/[C-XBVP](a') M0 landings
+     stay HELD OUT regardless of this round's outcome.
+ (4) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = hull-theta + STRICT
+     joint thermal-stability condition at abstract EOS,
+     quadruple-pinned grant + x-flux coercivity), G3/G11, G9
+     lift, G5/G12, G4 general branch, G2 structural clauses
+     in bare L^inf.
+
+------------------------------------------------------------------
+
+REVISION 8 — until-dry loop, ROUND 4 (2026-08-19). Objections
+consumed THIS PASS: the round-4 lens-l0 escalation refutation
+r2pass/esc_doc1_r4_l0.md (E4L0-1..E4L0-4) and the round-3 lens-l1
+escalation refutation r2pass/esc_doc1_r3_l1.md (ER3L1-1..ER3L1-3)
+— seven findings, ALL leg 5, ALL class AMENDMENT (0 REPAIR-NEEDED,
+0 BREAKS-THE-LEG at both lenses): wording/attribution/consequent-
+calibration defects inside the revision-7 repair text, whose
+MATHEMATICS both refuters verified sound at pen grade (every
+displayed identity of the written assembly re-derived from
+scratch at both lenses). ROUND-NUMBER NOTE, declared (fifth and
+sixth occurrences of the standing off-by-one, each declared in
+the refuter's own header): the launching brief again named the
+target "revision 4"; the on-disk state was revision 7; the
+until-dry clause resolves unambiguously to THIS round-4-l0 +
+round-3-l1 consumption, and both refutation files landed at
+unclaimed slots (no artifact overwritten). By design of the
+round: statements, rigor labels, route-level OPEN conclusion and
+gamma-table conclusions UNCHANGED; the repairs complete the
+condition of record's CHART accounting — the FIFTH consecutive
+strengthening of the no-viable-abstract-EOS-route conclusion
+(L1-2 -> EL0-3/ESC1-F2 -> E2L0-1 -> E3L0-1+E3L0-2 ->
+E4L0-2+ER3L1-2). Disposition key as in §10.
+
+ E4L0-1  (leg 5, class AMENDMENT, lens l0, round 4)
+    the revision-7 written assembly consumed "strict
+    s-concavity" from a condition stated on Hess e(v, S) with
+    the strict, rank-faithful Legendre bridge UNWRITTEN — the
+    delivered chain was the l1 record's steps (2)-(4) minus
+    step (1), against this document's own "the line must be
+    WRITTEN" standard ................................. FIXED
+    (the bridge is now the assembly's WRITTEN FIRST LINK:
+    given theta > 0, strict PD of Hess e(v, S) is equivalent
+    to strict concavity of s(v, eps) — congruence
+    Hess_{(v,eps)} s = -(1/theta) C^T Hess_{(v,S)} e C,
+    C = [[1, 0], [-e_v/theta, 1/theta]] invertible, with the
+    quadratic-form identity displayed; rank-faithful, uniform
+    on compacts by continuity of C. The congruence was
+    verified entry-by-entry by BOTH round-window refuters
+    before being written. Hypotheses: theta > 0 at the
+    evaluation point (the hull-theta clause) + EOS C^2;
+    falsifier: symbolic check of the congruence at a random
+    (v, S) state — [X-T0P]-class one-liner. Gamma/EOS status:
+    abstract; trivial (diagonal separable Hessian) at the
+    standing gamma(T) closure. PROVENANCE, declared and
+    recorded: spec-seeded — E3L0-1's repair spec's element
+    list ("slice congruence + m-block + cross terms + boost +
+    compactness") omitted the bridge; revision 7 transcribed
+    the list faithfully and inherited the omission.)
+ E4L0-2  (leg 5, class AMENDMENT, lens l0, round 4)
+    the "(the (v, S)-image of)" parenthetical left the S-root
+    QUANTIFIER open: theta > 0 at a selected image point gives
+    only local inversion (IFT); under the per-branch
+    continuation reading an in-class increasing-decreasing-
+    increasing EOS lands the continuation off the DATA root —
+    item (i) then bounds the wrong relative entropy while the
+    printed condition holds on the continued image ...... FIXED
+    (universal-over-roots reading made EXPLICIT in the
+    condition of record: theta > 0 at EVERY S-root of
+    eps(W) = e(v, S) over each hull point, with the
+    level-crossing parity line WRITTEN — two theta > 0 roots
+    bracket a theta <= 0 root, so the condition forces root
+    UNIQUENESS, a single-valued image/chart, and data-root
+    landing of every segment continuation. Hypotheses: as the
+    condition of record; falsifier: exhibit a §1-class EOS
+    with two theta > 0 roots of e(v, .) = eps and no
+    theta <= 0 root between them — impossible for continuous
+    e_S (the parity argument): a counterexample kills the
+    parity line itself. [FALSIFIER LINE CORRECTED in revision
+    9 per ECL0-1, prior text preserved above per the
+    supersession convention: impossible for continuous e_S ON
+    AN INTERVAL SLICE — on a disconnected S-slice the
+    registered counterexample EXISTS and FIRED (the two-branch
+    witness of record, judge-verified), which is what killed
+    the parity line as printed and forced the
+    slice-connectedness member of revision 9.] Gamma/EOS
+    status: abstract-EOS only —
+    at the closure theta = T > 0 globally, roots unique by
+    monotone inversion, stated in the AUD-cp note.
+    PROVENANCE, declared and recorded: spec-seeded — the
+    parenthetical was transplanted verbatim from E3L0-2's own
+    repair spec, which introduced the image without pinning
+    the branch.)
+ ER3L1-2  (leg 5, class AMENDMENT, lens l1, round 3)
+    theta > 0 licenses the chart's UNIQUENESS, not its
+    EXISTENCE: S(W) defined hull-wide (eps(W) in the range of
+    e(v(W), .)) was an unwritten presupposition — the domain
+    ladder's outermost rung (K -> hull -> theta-pin region ->
+    EOS chart domain); in-class patch EOS (the row's own
+    (m2)/(m3) class) with a thin S-band leave E undefined at
+    mid-segment states while the printed condition held
+    vacuously on the partial image; the closure side priced
+    exactly this (table-domain precondition), the
+    abstract-EOS side carried no counterpart ............ FIXED
+    (TOTALITY written as the condition's ZEROTH clause: S(W)
+    DEFINED on the whole hull, named as the abstract-EOS
+    counterpart of the table-domain precondition; the
+    assembly's "compactness of the hull's state image" and
+    "continuity of Hess_W E" now read under it. Hypotheses:
+    none new — it IS a hypothesis clause, previously
+    presupposed; falsifier: a proof that §1-class EOS are
+    necessarily globally defined in S with e(v, .) surjective
+    onto segment eps-ranges — refuted in advance by the row's
+    own patch witnesses being accepted in-class, so the
+    clause is a genuine addition. Gamma/EOS status:
+    abstract-EOS only; at the closure it coincides with the
+    already-priced evaluability clause, stated in the AUD-cp
+    note. PROVENANCE, declared and recorded: spec-seeded
+    (sixth declared instance) — the l0 round-3 spec's own
+    parenthetical presupposed the totality. DEDUP vs E4L0-2,
+    recorded from both refuters: distinct axes, consumed as
+    two adjacent written clauses — E4L0-2 = root multiplicity
+    GIVEN existence; ER3L1-2 = existence.)
+ E4L0-4 + ER3L1-1  (leg 5, class AMENDMENT, lenses l0 + l1,
+    rounds 4/3 — site (b) MERGED-AT-THE-CLAUSE: same clause,
+    same mechanism c_v = theta/e_SS, independently found at
+    both lenses; ER3L1-1 supplies the in-class witness (the
+    (m2)-class quadratic patch, a0 large negative: strict
+    pair everywhere, c_v < 0) [WITNESS REGIME RESTATED in
+    revision 9 per ECR1-2, prior text preserved: the
+    quadratic-patch FAMILY of (m2) in the OPPOSITE determinant
+    regime — e0'' > 0, e0''b > a1^2, under which the strict
+    pair HOLDS on the patch; (m2)'s own printed exhibit
+    carries a1^2 > e0''b, where the strict pair FAILS — the
+    load-bearing parameter clause, present in ER3L1-1's text,
+    had been dropped in the revision-8 restatement] and
+    declares the seeding from
+    its OWN round-2 spec — "repair-spec text is not exempt,
+    including mine")
+    two provenance glosses inside the completed condition:
+    (a) "(= c^2 > 0, already a §1 pin)" — §1 pins c^2 > 0
+    only on "the state region of interest", which the row
+    itself denies reaches the hull two lines above: on the
+    hull e_vv > 0 is IMPOSED by the condition, not inherited
+    (internal inconsistency crystallized by the revision-7
+    insertion); (b) "c_v > 0, which the strict pair already
+    contains" — the strict pair delivers e_SS > 0 ONLY; the
+    SIGN of c_v = theta/e_SS consumes the hull-theta member,
+    at the very revision that made it load-bearing ...... FIXED
+    (site (a) reworded: "the §1-pinned QUANTITY, here imposed
+    hull-wide by the condition itself"; site (b) attribution
+    moved to the CONDITION OF RECORD with the member-wise
+    split written — e_SS > 0 via the strict pair, sign via
+    hull-theta — the patch witness and the ideal-gas caveat
+    named in place; the §13 revision-7 echo carries a
+    SUPERSEDED-IN-PART annotation (prior text preserved); the
+    honest status line's scalar-shadow clause annotated
+    "(sign via hull-theta)". Hypotheses/falsifier: kill by
+    deriving c_v > 0 from the strict pair alone — impossible,
+    theta is first-order data (the patch witness); or by a
+    printed §1 line pinning c^2 > 0 on a region containing
+    the hull — none exists of record. Gamma/EOS status:
+    textual attribution; at ideal gas and at the standing
+    closure theta > 0 is automatic and the superseded
+    readings were harmlessly true there. PROVENANCE, declared
+    and recorded: site (b) transplanted verbatim from
+    ER2L1-1's own repair clause (l1 self-catch); site (a)
+    survived from revision 6 and became inconsistent only
+    when revision 7 inserted the domain-limitation sentence
+    two lines above.)
+ E4L0-3 + ER3L1-3  (leg 5, class AMENDMENT, lenses l0 + l1,
+    rounds 4/3 — MERGED-AT-THE-CLAUSE: same consequent
+    "restores the unconditional grant", two independent
+    mechanisms — l0: an else-branch firing ASSUMES the
+    hull-theta member as input and cannot erase it; l1: the
+    demanded derivation delivers only the HESSIAN member, so
+    even a Gibbs-closure-wide firing leaves theta < 0 hull
+    breaks live through the negative m-block — one member-wise
+    repair covers both)
+    the falsifier's consequent was written when the condition
+    had Hessian members only; revision 7 made it two-membered
+    (and revision 8 chart-completed it) under the unchanged
+    consequent, leaving residual false-restoration power on
+    the hull-theta member .............................. FIXED
+    (consequent RE-SCOPED member-wise: full restoration IN
+    THE WHOLE-DOMAIN BRANCH only, where the theta pin itself
+    goes hull-wide (modulo totality, which that reading also
+    delivers) [CAVEAT INVERSION CORRECTED in revision 9 per
+    ECL0-2/ECR1-1, prior text preserved: the whole-domain
+    reading does NOT deliver totality — pins constrain e's
+    derivatives where e is defined, never where it is defined;
+    the transplanted "modulo ER3L1-2's totality" caveat had
+    been INVERTED in transcription into a delivery claim no
+    refutation file asserts; the consequent of record is the
+    revision-9 body text, restoring the PIN-READABLE members
+    only, with the chart clauses standing members]; in the
+    else branch a firing kills the HESSIAN
+    member ONLY — hull-theta stays conditional and retains
+    its own falsifier, cross-referenced to the E3L0-2 row's
+    [ELSE-BRANCH REMAINDER CORRECTED in revision 9 per the
+    same finding: the grant stays conditional on hull-theta
+    AND the chart clauses, both consumed or presupposed as
+    inputs by any s-concavity conclusion at hull states].
+    Hypotheses/falsifier: kill by a reading of record under
+    which "the condition-claim" denotes the Hessian member
+    alone (none: the condition of record is defined as the
+    conjunction) or by a concavity derivation that delivers
+    theta > 0 on the hull without assuming it (impossible:
+    first-order data — the row's own sentence). Gamma/EOS
+    status: auxiliary falsifier text, abstract-EOS side only.
+    PROVENANCE, declared and recorded: E4L0-3 spec-seeded
+    (E3L0-2's spec re-wrote the parenthetical and left the
+    consequent); ER3L1-3 declared a propagation-completeness
+    miss, NOT spec-seeded — the round's one non-seeded
+    finding.)
+
+DISCHARGE VERDICTS RECORDED FROM BOTH REFUTERS (adjudicating the
+revision-7 repairs): E3L0-1 DISCHARGED-AS-SPECIFIED at both
+lenses (quadruple pin verified by consumption audit at the
+H7'/§4 sites of record; the written assembly verified exact at
+pen grade TWICE — m-block sign by direct differentiation, exact
+tau B^T Hess(-s) B congruence with no remainder, strictness-tight
+Legendre transfer, boost-image (v, S)-membership attack failed,
+uniform Bregman constant c = lambda_min/2 exact; hull compactness
+confirmed under the of-record certified-box reading), residuals =
+exactly E4L0-1 + the merged attribution clause, consumed above.
+ER2L1-1 DISCHARGED at both lenses, residual = the clause
+transplanted from its own spec, consumed above. E3L0-2
+DISCHARGED-AS-SPECIFIED at both lenses (three theta consumptions
+itemized and re-derived; {theta > 0} W-non-convexity re-verified;
+third-consumption non-redundancy established; PROVIDED/else split
+closes the equivalence gap exactly as demanded; over-completion
+check passed — the clause excludes no legitimate EOS), residuals
+= exactly E4L0-2/ER3L1-2 (the spec's own parenthesis) +
+E4L0-3/ER3L1-3 (the unrescoped consequent), consumed above. All
+standing dispositions (r2-batch L0-1/L1-1, L0-2, L1-2; rounds 1-2
+EL0-1/ESC1-F1, EL0-2, EL0-3/ESC1-F2, EL0-4, E2L0-1, E2L0-2)
+re-verified at both lenses against the revision-7 state; no
+orphan objection remains in any input file on disk.
+
+LEG 3 (E-1) STATUS OF RECORD: ZERO revision-7 edits and ZERO
+findings at both round-window passes — fresh attacks executed
+and FAILED at each lens (l0: the (p2) unfolding interchange —
+the k-sum is locally finite by compact support of chi_0, so
+L^1_loc suffices exactly as printed; l1: direction-of-minting/
+seam attack, representation-independence of the window at
+measure level, partition-sign convention, rider flux
+integrability). The leg-3 escalation thread remains DRY AT BOTH
+LENSES; the E-1 spec text (three-step periodization: single-
+window D'-pairing, Sum chi_k == 1 on field terms,
+Sum chi_k' == 0 killing cutoff-derivative terms; (EU-x) equality
+pairing riding the same identity) is unchanged since revision 5
+with zero sustained findings across l0 rounds 1-4 and l1 rounds
+1-3. [RECITAL COUNT CORRECTED in revision 9 per ECL0-3, prior
+text preserved: zero sustained findings across l0 rounds 2-4 and
+l1 rounds 2-3 — the round-1 findings EL0-1/EL0-2/ESC1-F1 WERE
+leg-3 findings, consumed AT revision 5, which is why the text
+dates from it (the same sentence's "unchanged since revision 5"
+presupposes them); count of record = the escalation judge's
+three consecutive dry l0 rounds + two consecutive dry l1 rounds.
+The leg-3 dry STATUS is true and untouched — this corrects the
+ledger, not the mathematics.]
+
+CONFIRMED passages of this round (no action owed; strongest
+attacks on file in the two input refutations): the
+DOMAIN-COMPLETED condition + itemized consumptions (fidelity,
+sufficiency-of-inputs, over-completion at l0; each consumption
+re-derived at l1); the written assembly's full computational
+content (both lenses, every displayed identity re-derived from
+scratch); the quadruple pin + general-member clause incl. "at no
+strongly-convex g" and "one convex member suffices" (both
+lenses); the AUD-cp revision-7 additions (all seven findings
+pushed through the closure and absorbed); the re-calibrated
+falsifier parenthetical itself (PROVIDED/else split); all four
+propagation carriers (no stale theta-free or unpinned-grant form
+of record at either lens); the revision-7 log block's
+bookkeeping (both lenses).
+
+LABEL SUMMARY after revision 8: NO label motion (all seven
+findings are wording/attribution/consequent text on the G8/r2
+row; VERDICT_r2pass §4(a) status unchanged; [T-T0P] main remains
+SCHEMA of record). The §12 summary remains the summary of record;
+G8's r2 residue remains TWO named pieces — the thermal-stability
+piece now in the STRICT + hull-theta + chart-complete form with
+the granted half pinned to the certified quadruple g(S) = S, and
+the x-flux segment coercivity OPEN.
+
+HONEST RESIDUE at revision 8:
+ (1) UNTIL-DRY STATUS: the round was NOT dry (7 sustained
+     findings, all AMENDMENT, 0 REPAIR-NEEDED, 0 BREAKS) —
+     the loop CONTINUES: these revision-8 repairs are
+     themselves UNADJUDICATED and await the next
+     escalation-refutation round (both lenses). Leg 3 is dry
+     at BOTH lenses (l0 rounds 1-4, l1 rounds 1-3); leg 5 is
+     not yet dry, but the l1 refuter's close is of record:
+     "zero derivation-content defects survive in the
+     revision-7 mathematics" — the surviving defect class is
+     wording-grade, and this revision consumed all of it on
+     disk.
+ (2) SPEC-SEEDING PATTERN, now SIX declared instances across
+     four consecutive rounds (one finding of this round,
+     ER3L1-3, is the sole non-seeded item — a propagation-
+     completeness miss). [COUNT CORRECTED in revision 9 per
+     ECR1-4, prior text preserved: EIGHT declared distinct
+     seeding events (TEN seeded findings) across four
+     consecutive rounds, regenerated from the on-file
+     declarations per SR-12 — the printed SIX dropped the two
+     l0-only events (the bridge omission, E4L0-1; the
+     unrescoped consequent, E4L0-3) that this block's own
+     entries record as spec-seeded.] Per both refuters' closing mandate,
+     this revision RESTATED each repair against the row's own
+     hypotheses instead of transplanting the refuters' repair
+     wordings: the bridge is written from the condition's own
+     objects, the root/totality clauses as condition members
+     (not the specs' parentheticals), the consequent split
+     names the members of record. The next refutation round
+     should nonetheless attack the revision-8 text AS
+     repair-spec-derived text, per the standing lesson.
+ (3) The Blocco-2 landing gate remains CLOSED (VERDICT_r2pass
+     §1; E-5/E-6 are not this document's to discharge): the
+     [T-T0P] main-statement and G8/[C-XBVP](a') M0 landings
+     stay HELD OUT regardless of this round's outcome.
+ (4) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = hull-theta + chart-total
+     STRICT joint thermal-stability condition at abstract
+     EOS, quadruple-pinned grant + x-flux coercivity),
+     G3/G11, G9 lift, G5/G12, G4 general branch, G2
+     structural clauses in bare L^inf.
+
+------------------------------------------------------------------
+
+REVISION 9 — two-lens CONFIRMING round consumed (2026-08-19).
+Objections consumed THIS PASS: the confirming-round refutations
+r2pass/esc_doc1_confirm_l0.md (ECL0-1..3) and
+r2pass/esc_doc1_confirm_l1.md (ECR1-1..4), as adjudicated by the
+successor judge of record in r2pass/VERDICT_confirm.md (§1 DOC-1,
+§2, §3, §6 R-1') — seven raised, judge-merged to SIX distinct
+(ECL0-2 ≡ ECR1-1 merged at the clause): 1 REPAIR-NEEDED (ECL0-1,
+the slice-connectedness chart member) + 5 AMENDMENT, 0
+BREAKS-THE-LEG at both lenses. Under the dry criterion of record
+(VERDICT_confirm preamble) DOC-1 was NOT DRY at the confirming
+round — the sustained REPAIR-NEEDED blocks dryness — so legs 3
+and 5 stay OPEN and this revision is the owed consumption
+(VERDICT_confirm §6 R-1'), followed by ONE two-lens confirming
+round on the revision-9 delta NEXT WINDOW (no further rounds
+this window, per mandate). By design of the round: statements,
+rigor labels, route-level OPEN conclusion and gamma-table
+conclusions UNCHANGED; the repair is the SIXTH consecutive
+strengthening of the no-viable-abstract-EOS-route conclusion
+(L1-2 -> EL0-3/ESC1-F2 -> E2L0-1 -> E3L0-1+E3L0-2 ->
+E4L0-2+ER3L1-2 -> ECL0-1). R-4 BINDING RULE in force for this
+revision: every repair clause below is RESTATED against the
+row's own hypotheses, never transplanted verbatim (declared per
+entry). Disposition key as in §10.
+
+ ECL0-1  (leg 5, class REPAIR-NEEDED, lens l0, confirming
+    round; judge-verified at pen grade)
+    the revision-8 root-quantifier parity clause silently
+    consumed CONNECTEDNESS of the S-slice of the EOS domain —
+    unwritten, and not deliverable by the printed members: an
+    explicit in-class two-branch EOS (e = e0(v) + h_i(S) on
+    (v-range) x ([0, 1] ∪ [10, 11]), h_1 = 5^S - 1,
+    h_2 = 1 + 2(S - 10) + 0.1 (S - 10)^2) satisfies EVERY
+    printed revision-8 member — Gibbs closure, c^2 > 0,
+    theta > 0 at every root, Hess PD, totality via the h_1
+    branch — with a TWO-VALUED chart and an off-data-root
+    landing; the §13 E4L0-2 entry's own registered falsifier
+    FIRED (the exact E3L0-2 shape: missing condition member +
+    in-class break) ..................................... FIXED
+    (SLICE-CONNECTEDNESS written as the chart's THIRD clause
+    in the condition of record: each S-slice
+    {S : (v(W_s), S) in dom e} over a hull v-value met by the
+    roots is an INTERVAL — under which the parity bracketing
+    runs (the traversed interval IS in the domain), the root
+    is unique, the (v, S)-image and chart are single-valued,
+    the root map W -> S(W) is continuous on the compact hull
+    (single-upcrossing structure — the continuity the
+    assembly's compactness step and the bridge's uniformity
+    clause consume), and each per-segment continuation lands
+    on the DATA root; where slice-connectedness is not
+    available, root UNIQUENESS is imposed directly as a
+    member in its place; the parity line restated with the
+    traversed-interval hypothesis EXPLICIT ("ON AN INTERVAL
+    S-SLICE ... and the traversed S-interval lies in the EOS
+    domain"); the §13 E4L0-2 entry's falsifier line corrected
+    in place by annotation ("impossible for continuous e_S ON
+    AN INTERVAL SLICE"), prior text preserved. Hypotheses: as
+    the condition of record; falsifier: exhibit a printed
+    line of record making disconnected-S-slice EOS
+    out-of-class (none — §1 pins no EOS domain, ER3L1-2 of
+    record), or break the two-branch witness at any checked
+    member (each verified by refuter and judge), or derive
+    slice-connectedness or root uniqueness from the other
+    members (refuted by the same witness). Gamma/EOS status:
+    abstract-EOS only — FREE at the standing gamma(T)
+    closure: the tabulated range is an INTERVAL, the
+    disconnected-slice witness has no purchase (stated in the
+    AUD-cp note); AUD-cp discharge untouched. PROVENANCE,
+    declared and recorded: R-4 transplant misfit (seventh
+    declared instance) — E4L0-2's repair spec's parity
+    mechanism was authored on a connected S-domain and the
+    revision-8 transplant carried the assumption; the
+    revision-9 clause is RESTATED against the row's own
+    domain-unpinned EOS class. The domain ladder gains its
+    outermost rung: K -> hull -> theta-pin region -> chart
+    domain (totality) -> chart-domain TOPOLOGY
+    (slice-connectedness).)
+ ECL0-2 + ECR1-1  (leg 5, class AMENDMENT, lenses l0 + l1,
+    confirming round — MERGED-AT-THE-CLAUSE by the judge:
+    same clause, compatible mechanisms)
+    the revision-8 member-wise falsifier consequent was
+    calibrated against the revision-7 member list while
+    revision 8 itself enlarged the condition: (a) the
+    whole-domain branch claimed the reading "also delivers"
+    totality — FALSE (totality is domain/range GEOMETRY; pins
+    constrain e's derivatives where e is defined, never where
+    it is defined; witness: the row's own accepted patch-EOS
+    class with a0 large POSITIVE holds every §1 pin
+    domain-wide while a thin-S-band hull exits the range) —
+    the l1 spec's honest caveat "modulo ER3L1-2's totality"
+    transplanted AND INVERTED into a delivery claim no
+    refutation file asserts; (b) the else-branch remainder
+    "conditional on hull-theta" under-enumerated — an
+    s-concavity conclusion AT hull states presupposes s
+    defined and single-valued there, so a firing consumes the
+    chart members exactly as it consumes hull-theta ... FIXED
+    (consequent restated in the body against the FULL
+    condition of record: a whole-domain firing restores the
+    grant's PIN-READABLE members only — Hessian + hull-theta
+    — MODULO the chart clauses (totality, root-quantifier,
+    slice-connectedness), which no pins-reading and no
+    concavity derivation delivers and which stay STANDING
+    members with their own §13 falsifiers; an else-branch
+    firing kills the HESSIAN member ONLY, leaving the grant
+    conditional on hull-theta AND the chart clauses, both
+    consumed or presupposed as inputs; the §13 revision-8
+    echo annotated in place, prior text preserved.
+    Hypotheses/falsifier: kill by deriving totality (a
+    range-coverage fact) from any reading of the §1 pins
+    (impossible — the a0-positive patch witness), or by a
+    reading of record under which an else-branch s-concavity
+    conclusion at hull states does not presuppose the chart
+    there (none: concavity of an undefined or multivalued
+    function is not a statement). Gamma/EOS status: auxiliary
+    falsifier text, abstract-EOS side only. PROVENANCE,
+    declared and recorded: R-4 transplant-mutation instance
+    (eighth declared) — the revision-9 clause is restated
+    from the row's own four-member condition, not from either
+    refuter's wording.)
+ ECL0-3  (legs 3/5 LEDGER, class AMENDMENT, lens l0,
+    confirming round)
+    the §13 revision-8 leg-3 dryness recital printed "zero
+    sustained findings across l0 rounds 1-4 and l1 rounds
+    1-3" — false as printed: round 1 sustained
+    EL0-1/EL0-2/ESC1-F1 at leg 3, consumed AT revision 5,
+    which the same sentence's "unchanged since revision 5"
+    presupposes ......................................... FIXED
+    (recital corrected in place by annotation, prior text
+    preserved: zero sustained findings across l0 rounds 2-4
+    and l1 rounds 2-3; count of record = the escalation
+    judge's three consecutive dry l0 rounds + two l1.
+    Falsifier: show EL0-1/EL0-2 were not sustained leg-3
+    findings — refuted at the source summary rows of
+    esc_doc1_r1_l0.md. Ledger only: the leg-3 dry STATUS is
+    true and untouched, no leg-3 body text carries any
+    finding; leg 3 is held OPEN by the per-doc rule ONLY.)
+ ECR1-2  (leg 5, class AMENDMENT, lens l1, confirming round)
+    the revision-8 attribution witness was restated WITHOUT
+    its load-bearing determinant regime: "the (m2)-class
+    quadratic patch with a0 large negative satisfies the
+    strict pair everywhere" — at (m2)'s printed regime
+    a1^2 > e0''b the strict pair FAILS (judge arithmetic:
+    e0''b = 2 < 9 = a1^2 at the printed parameters); the
+    valid witness (ER3L1-1's own) carries the OPPOSITE regime
+    in its text ......................................... FIXED
+    (body witness restated with the regime written: the
+    quadratic-patch FAMILY of (m2) in the OPPOSITE
+    determinant regime — e0'' > 0, e0''b > a1^2, under which
+    the strict pair HOLDS on the patch ((m2)'s own printed
+    exhibit carries a1^2 > e0''b, where it FAILS) — with a0
+    large NEGATIVE (theta < 0 there); the §13 revision-8 echo
+    annotated in place. Falsifier: a reading of "(m2)-class"
+    of record under which (m2)'s printed regime satisfies the
+    strict pair — false by arithmetic. Gamma/EOS status:
+    textual witness clause; the member-wise split itself was
+    CONFIRMED at both lenses. PROVENANCE: restatement loss —
+    the parameter clause present in ER3L1-1's text was
+    dropped in the revision-8 restatement, against the row's
+    own written-line standard; restored here from the row's
+    own (m2) family objects.)
+ ECR1-3  (leg 5, class AMENDMENT, lens l1, confirming round)
+    the operative granting sentence kept the revision-7
+    epithet "STRICT + hull-theta condition of record" while
+    revision 8 enlarged the condition and updated every other
+    carrier; without the chart members the universal
+    root-quantifier is VACUOUSLY satisfiable at a rootless
+    hull point (empty root set) — ER3L1-2's mechanism
+    surviving in the enumeration; the item-(i) parenthetical
+    named hull-theta as the genuine addition and was silent
+    on the chart clauses ................................ FIXED
+    (grant head now reads "under the STRICT + hull-theta +
+    CHART-COMPLETE condition of record"; the item-(i)
+    parenthetical reads "that region carries NO theta clause
+    and NO chart clause, which is why the hull-theta member
+    and the chart members of the condition are genuine
+    additions, E3L0-2/ER3L1-2/ECL0-1"; and the §9
+    gamma-table carrier is extended in the SAME pass
+    (TOPOLOGY-COMPLETED per revision 9) so no carrier of the
+    revision-9-enlarged condition is left stale — the ECR1-3
+    pattern not reproduced one revision later. Falsifier: a
+    consumer reading the grant head's enumeration alone that
+    still claims the grant on a totality-violating patch EOS
+    — closed by the propagated enumeration; the benign
+    defined-term reading (the condition IS a defined singular
+    object) existed, which is why this stood at AMENDMENT.)
+ ECR1-4  (leg 5 LEDGER, class AMENDMENT, lens l1, confirming
+    round)
+    honest residue (2) printed "now SIX declared instances"
+    of the spec-seeding pattern — no six-event partition of
+    the on-file declarations exists without dropping events
+    the same block's own entries record as spec-seeded
+    (E4L0-1 bridge, E4L0-3 consequent) ................. FIXED
+    (residue corrected in place by annotation, prior text
+    preserved: EIGHT declared distinct seeding events (TEN
+    seeded findings) across four consecutive rounds,
+    regenerated from the on-file declarations per SR-12.
+    Falsifier: a six-event partition not dropping E4L0-1 or
+    E4L0-3 — none exists. Ledger only, no mathematics.)
+
+DISCHARGE VERDICTS RECORDED FROM THE CONFIRMING ROUND
+(adjudicating the revision-8 repairs, both lenses +
+VERDICT_confirm §1/§5): E4L0-1 DISCHARGED CLEAN at both lenses
+(the bridge congruence verified entry-by-entry at l0 and
+SYMBOLICALLY to zero residual at l1). ER3L1-1 + E4L0-4(b)
+DISCHARGED, residual = exactly ECR1-2's witness clause, consumed
+above; E4L0-4(a) DISCHARGED CLEAN. ER3L1-2 DISCHARGED (totality
+zeroth clause kills the vacuous-satisfaction mechanism; the
+v-domain-exit/empty-range attack failed), residuals one rung out
+= ECL0-1 (domain topology, inherited by the "licenses
+uniqueness" gloss), ECR1-1 (consequent carrier) and ECR1-3
+(grant-head carrier), all consumed above. E4L0-2 DISCHARGED IN
+PART — the disposition failed at the parity mechanism's
+transplanted connected-domain assumption (ECL0-1, consumed
+above); the universal quantifier and data-root landing on
+interval slices stand CONFIRMED. E4L0-3 + ER3L1-3 DISCHARGED IN
+PART — failed at the member arithmetic and the inverted totality
+caveat (ECL0-2/ECR1-1, consumed above); the branch split and
+hull-theta non-erasure principle stand. All standing
+dispositions (r2-batch; rounds 1-4 windows) re-verified at both
+lenses against the revision-8 state; no orphan objection remains
+in any input file on disk.
+
+LEG 3 (E-1) STATUS OF RECORD: zero revision-8 edits to the leg-3
+body and zero confirming-round findings on it (out of scope at
+l1 per brief; recital verified as transcription); the thread
+remains DRY at both lenses of record — ECL0-3 corrected its
+LEDGER, not its mathematics. Leg 3 is held OPEN by the per-doc
+rule ONLY (VERDICT_confirm §3).
+
+CONFIRMED passages of the confirming round (no action owed;
+strongest attacks on file in the two input refutations): the
+strict Legendre bridge with its splice (congruence
+entry-by-entry at l0, symbolic zero residual at l1, uniformity
+chase resolved into ECL0-1's carried clause); the totality
+zeroth clause; the c_v member-wise attribution split and both
+gloss rewordings (minus the witness clause, ECR1-2); the AUD-cp
+chart-clause discharge (the disconnected-slice witness absorbed
+by the interval table domain); all propagation carriers as
+carriers; the §13 REVISION 8 block's counts, merges,
+transcriptions and discharge recital (minus the two ledger
+items, ECL0-3/ECR1-4).
+
+LABEL SUMMARY after revision 9: NO label motion (none was in
+prospect — VERDICT_confirm §3). [T-T0P] main remains SCHEMA of
+record; the §12 summary remains the summary of record; the
+route-level OPEN verdict, two-piece r2 residue and gamma-table
+conclusions stand. G8's r2 residue: the thermal-stability piece
+now in the STRICT + hull-theta + chart-complete +
+TOPOLOGY-COMPLETE form (slice-connectedness member) with the
+granted half pinned to the certified quadruple g(S) = S, and the
+x-flux segment coercivity OPEN.
+
+HONEST RESIDUE at revision 9:
+ (1) UNTIL-DRY STATUS: DOC-1 was NOT DRY at the confirming
+     round (1 REPAIR-NEEDED + 5 AMENDMENT judge-merged, 0
+     BREAKS) — these revision-9 repairs are themselves
+     UNADJUDICATED; per VERDICT_confirm §6 R-1' ONE two-lens
+     confirming round is owed on the revision-9 delta NEXT
+     WINDOW (no further rounds this window, per mandate).
+     Legs 3 and 5 stay OPEN until it sustains zero
+     BREAKS/REPAIR findings under the dry criterion of
+     record.
+ (2) R-4 BINDING RULE at eight-plus declared instances: three
+     of the confirming round's sustained findings were
+     transplant misfits (ECL0-1's parity mechanism, ECL0-2's
+     inverted caveat, plus doc3's ESC5-3 across the batch);
+     every revision-9 clause above is RESTATED against the
+     row's own hypotheses (declared per entry). The next
+     round should attack the revision-9 text AS
+     repair-spec-derived text, per the standing lesson.
+ (3) The Blocco-2 landing gate remains CLOSED for this
+     document: the [T-T0P] main-statement and
+     G8/[C-XBVP](a') M0 landings stay HELD OUT (legs 3/5 =
+     the held-out set of VERDICT_confirm §6 R-5'); the doc2 +
+     doc3 landing items released by that verdict are not this
+     document's to compose.
+ (4) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = hull-theta +
+     chart-total-and-topology-complete STRICT joint
+     thermal-stability condition at abstract EOS,
+     quadruple-pinned grant + x-flux coercivity), G3/G11, G9
+     lift, G5/G12, G4 general branch, G2 structural clauses
+     in bare L^inf.

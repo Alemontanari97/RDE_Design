@@ -4,7 +4,27 @@
 **REVISED r1 2026-08-17** consuming the round-1 adversarial refutations
 (`refute_L4R1_r1_l0.md`, `refute_L4R1_r1_l1.md`) in full;
 **REVISED r2 2026-08-17** consuming the round-2 adversarial refutations
-(`refute_L4R1_r2_l0.md`, `refute_L4R1_r2_l1.md`) in full.
+(`refute_L4R1_r2_l0.md`, `refute_L4R1_r2_l1.md`) in full;
+**REVISED r3 2026-08-18** (S-FOUNDATIONS-C escalation window) executing escalation **E-4** and
+amendment **A-2** of `r2pass/VERDICT_r2pass.md` (the judge of record), consuming the sustained
+objections L0-7 (`r2pass/refute_r2batch_l0.md`) and L1-7/L1-8 (`r2pass/refute_r2batch_l1.md`)
+in full; **until-dry ROUND 2 (r3.2, 2026-08-18)** consuming the round-1 escalation refutations
+(`r2pass/esc_doc3_r1_l0.md` ESC-L0-1..7, `r2pass/esc_doc3_r1_l1.md` F-1..F-6; 13 objection IDs
+= 0 BREAKS-THE-LEG + 2 distinct REPAIR-NEEDED + 8 distinct AMENDMENT after dedup) in full;
+**until-dry ROUND 2 continuation (r3.3, 2026-08-19)** reconciling the interrupted r3.2 write
+(state-integrity order: all 13 round-1 dispositions re-verified against the live text) and
+consuming the round-2 lens-l0 escalation refutation (`r2pass/esc_doc3_r2_l0.md` ESC2-1..5 =
+0 BREAKS-THE-LEG + 1 REPAIR-NEEDED + 4 AMENDMENT) in full;
+**until-dry ROUND 3 (r3.4, 2026-08-19)** consuming the round-3 escalation refutations
+(`r2pass/esc_doc3_r3_l0.md` ESC3-1..3, lens l0 on the r3.3 state, and
+`r2pass/esc_doc3_r2_l1.md` ESC2-6..9, the lens-l1 round on the same r3.3 state; 7 objection
+IDs = 0 BREAKS-THE-LEG + 1 REPAIR-NEEDED (ESC2-8) + 6 AMENDMENT, no dedup collisions) in full;
+**until-dry ROUND 4 (r3.5, 2026-08-19)** consuming the round-4 escalation refutations
+(`r2pass/esc_doc3_r4_l0.md` ESC4-1..2, lens l0 on the r3.4 state, and
+`r2pass/esc_doc3_r3_l1.md` ESC3-4..6, the lens-l1 round on the same r3.4 state; 5 objection
+IDs = 0 BREAKS-THE-LEG + 1 REPAIR-NEEDED (ESC4-2) + 4 AMENDMENT; ESC4-1 and ESC3-5 attack the
+same third-bullet sentence via DISTINCT counterexample subfamilies — one combined rewrite,
+both IDs dispositioned separately) in full.
 **Plan anchor**: [F-FOUNDATIONS/Phase D] per `validation/ADVISORY_Sfoundations_prompt_2026-08-13.md`;
 GAP-5-adjacent BC item (interface causality).
 **Directory/date bookkeeping (declared)**: the raws directory is the S-FOUNDATIONS session bundle
@@ -106,12 +126,181 @@ keyed by its session date-of-record 2026-08-13; this file carries its own author
   deleted (unipotent change, exact determinant); register rows updated — repairs
   R2-5(a)-(d)/R2-N(a),(b),(e).
 
+**REVISION r3 — S-FOUNDATIONS-C escalation window (E-4 + A-2), 2026-08-18.** Scope strictly per
+the judge of record `r2pass/VERDICT_r2pass.md` (adjudication grounds §2.1; escalation specs
+§4(c); amendments §3): escalation **E-4** (leg 14, Proposition 1'') and amendment **A-2**
+(leg 17, Remark 1.5.5). **Theorem 1' (leg 12) and Lemma 1.4 (leg 13) are UNTOUCHED** (both
+CONFIRMED by the pass). Objection texts consumed in full: `r2pass/refute_r2batch_l0.md`
+(L0-7), `r2pass/refute_r2batch_l1.md` (L1-7, L1-8). Disposition of every sustained objection
+ID landing on this document:
+
+| ID | Judge verdict of record | Disposition (r3, each anchored below) |
+|---|---|---|
+| L0-7 (leg 14) | SUSTAINED-BREAKS | r2 bootstrap of Proposition 1'' RETRACTED AS NOT-A-PROOF (defect (a) quantifier order: eps_1 depends on Omega_int' and degenerates as Omega_int' exhausts Omega_int — no uniform eps_1 as displayed; defect (b) distance zero: finite speed can never deliver the trace ON the source face). (H-UP) RESTATED as the family-of-collar-depths uniqueness form (H-UP-fam) with geometric clause (D-coll); bootstrap REWRITTEN as the two-face argument (Lemma 1.4 frusta up to the mid-collar face + Theorem 1' on the half collar + (H-UP-fam) on the enlarged interior). Label of record SCHEMA per judge downgrade J-r2p-1 until the E-4 adjudication; delivered strength = THEOREM modulo (H-UP-fam). Section 1.6. |
+| L1-7 (leg 14) | SUSTAINED-BREAKS (judge-merged with L0-7; severity adjudicated UP from REPAIR) | Same disposition as L0-7 — the construction written is the one BOTH lenses converge on; the (H-UP) form consumed is L1-7's route (r-b) = L0-7's named repair route (half-collar/two-face, family of collar depths); the trace-level-determinism route (r-a) (NG-9 machinery folded into the hypothesis) is NOT consumed. Section 1.6. *(r3.2/F-4 annotation: attribution refined — the CONSTRUCTION is the both-lens convergence; the (H-UP) FORM consumed is L0-7's family-of-depths restatement; (r-b)'s ingredients are consumed, its face-straddling lens geometry is not. See the corrected "Which (H-UP) form" block.)* |
+| L1-8 (leg 17) | SUSTAINED-AMENDMENT | Remark 1.5.5 mechanism REPLACED: the eigenstructure is REGULAR at u-bar.n in {0, -c-bar} for c-bar > 0 (mutual spectral gaps = c-bar; Lemma 0.2 eigenvectors unaffected); the discontinuous/ill-defined object is the incoming-modes SUBSPACE MAP (sign-classification jump of the incoming/outgoing split); the r2 "1/c factors against closing spectral gaps" parenthetical RETIRED. Conclusion and scoping unchanged. Section 1.5.5. *(r3.2/F-6 annotation: "mutual spectral gaps = c-bar" reads ADJACENT gaps = c-bar; all pairwise separations >= c-bar, extreme acoustic pair 2 c-bar.)* |
+
+Consumer updates in the same window (no other statement touched): Section 3.4(3)(a) and the
+Section 5 composite clause (i) now cite (H-UP-fam) with the SCHEMA-of-record label; register
+row 1' updated (hypotheses, rigor, r3 mid-face falsifier leg); NG-9 restated for (H-UP-fam)
+(the finite-propagation-speed clause is DROPPED from the consumed hypothesis — its burden
+moves to Lemma 1.4 on the collar, where it is proved; the S1-class burden is unchanged).
+
+**REVISION r3 — until-dry ROUND 2 (r3.2, 2026-08-18), same escalation window.** The round-1
+escalation refutations on the r3 text consumed IN FULL: `r2pass/esc_doc3_r1_l0.md`
+(ESC-L0-1..7; that lens's discharge verdicts of record: E-4 defects (a)/(b) DISCHARGED,
+proves-too-much test passes substantively, A-2 DISCHARGED) and `r2pass/esc_doc3_r1_l1.md`
+(F-1..F-6; discharge verdicts: L0-7(a)/(b), L1-7(i)/(ii), L1-8/A-2 all DISCHARGED). 13
+objection IDs, dedup ESC-L0-2 = F-1, ESC-L0-5 = F-3, ESC-L0-4 = F-5: 0 BREAKS-THE-LEG +
+2 REPAIR-NEEDED + 8 AMENDMENT. No justified-rebuttal rows this round: every finding FIXED.
+The LABEL OF RECORD stays SCHEMA per J-r2p-1, untouched by this round (restoration = the E-4
+adjudication only, no other channel); Theorem 1' (leg 12) and Lemma 1.4 (leg 13) remain
+untouched. Dispositions:
+
+| ID(s) | Class | Disposition (r3.2, each anchored below) |
+|---|---|---|
+| ESC-L0-1 | REPAIR-NEEDED | FIXED — Claim clause (cl-C) added: U^(i) in C([0, T_f]; L^2_loc(Omega_up)) (time-slices exist; the sup-set {t : U == 0 on [0, t]} is left-closed; on C_h already implied by (H1.4)), with the Omega_int^{h/2}-restrictions in the solution class over which (H-UP-fam) quantifies; that class is declared part of (H-UP-fam)'s own formulation, DELEGATED to NG-9 — the Claim states the delegation. Proof head + STEP 3 annotated to consume (cl-C). Section 1.6. |
+| ESC-L0-2 = F-1 | REPAIR-NEEDED | FIXED — the same-forcing clause restored at all three enumeration sites: Claim clause (cl-F) (same forcing f on Omega_up — Theorem 1's parenthetical restored to the statement of record; the r3 wording retained as annotation with F-1's refuting interior-source pair recorded); (H-UP-fam) (same interior forcing); Status (a) (same-interior-problem pairs). Register row 1' mirrors. Section 1.6. |
+| ESC-L0-3 | AMENDMENT | FIXED — proves-too-much mechanism RE-ATTRIBUTED: the operative exclusion is STEP 3's domain enlargement (the coupling face is INTERIOR to (H-UP-fam)'s domain, so the hypothesis quantifies only over pairs solving the PDE ACROSS the face — the cross-face solvability IS the transmission content a bare coupling lacks); the r3 "Step 1 is unavailable" sentence RETIRED by annotation (refuted by the strengthened bare-coupling instance, for which Steps 1-2 genuinely run). Conclusion of the paragraph unchanged. Section 1.6. *(r3.3 annotation: this disposition's BODY text was found INADEQUATE by round-2 ESC2-1 — the body named Gamma_mid where the operative mechanism is Gamma_in^coll's interiority to (H-UP-fam)'s domain, contradicting this row's own wording; re-repaired r3.3, face-dependent form, see the r3.3 block below.)* |
+| ESC-L0-4 = F-5 | AMENDMENT | FIXED — mid-face falsifier trigger pinned to the field on ALL of Omega_up (collar C_h INCLUDED), window arithmetic recorded (any contaminant enters at distance >= d_0, speed <= lambda_max: arrival >= 2x the window); register row 1' falsifier cell mirrored. Section 1.6 falsifier + Section 6 row 1'. |
+| ESC-L0-5 = F-3 | AMENDMENT | FIXED — eps_1' := min(eps_1, T_f - t*) > 0 defined at the proof head and threaded through STEPs 1-3 and (MID-TRACE); UNION closes both cases (t* + eps_1 <= T_f: maximality contradiction; otherwise U == 0 on [0, T_f] outright). Section 1.6. |
+| ESC-L0-6 | AMENDMENT | FIXED — STEP 2's hypothesis checklist completed: "(H1.4) on C_{h/2} by restriction". Section 1.6. |
+| ESC-L0-7 | AMENDMENT | FIXED — (D-coll) now stipulates Omega_int^{h/2} = Omega_up \ closure(C_{h/2}) a Lipschitz domain per (D'') (a set difference of Lipschitz domains is not automatically Lipschitz); the family form inherits the clause through F-2's (D-coll)-class-split quantifier; Status (a) cites it for its (EI) run. Section 1.6. |
+| F-2 | AMENDMENT | FIXED — (H-UP-fam)'s quantifier restricted to collar depths WITH a given (D-coll)-class split (the document constructs no general depth-s family for the Lipschitz geometry); the s = h endpoint DROPPED (d_0(h) = 0 contradicted the row's own verbatim-runs parenthetical); the consumed instance s = h/2 is exactly (D-coll)'s content. r3 quantifier retained as annotation. Section 1.6. |
+| F-4 | AMENDMENT | FIXED — audit-trail attribution corrected in the "Which (H-UP) form" block (construction = both-lens convergence per the judge's E-4 merge; the FORM consumed = L0-7's family-of-depths restatement; L1-7's (r-b) ingredients consumed, its face-straddling lens geometry NOT used; (r-a) NOT consumed); the r3 disposition row L1-7 annotated in place. Section 1.6 + this log. |
+| F-6 | AMENDMENT | FIXED — "mutual spectral gaps equal to c-bar" corrected to ADJACENT gaps = c-bar (all pairwise separations of distinct eigenvalues >= c-bar; extreme acoustic pair (lambda_-, lambda_+) = 2 c-bar) in Remark 1.5.5; the L1-8 log row annotated in place. Adjudication note of record: l0's C-6 read the phrase as defensible under the distinct-separation reading; the literal equality IS false for the extreme pair (l1 F-6) — wording corrected, mechanism/conclusion/scoping untouched. Section 1.5.5. |
+
+**REVISION r3 — until-dry ROUND 2 continuation (r3.3, 2026-08-19), same escalation window.**
+STATE-INTEGRITY RECONCILIATION of record: this slot resumed an interrupted predecessor whose
+r3.2 edits were on disk but whose completeness claims were author-unverified (null=failure
+rule). Every round-1 objection ID was re-verified against the live text on three checks —
+(a) disposition row present, (b) the claimed edit present in the body, (c) the edit internally
+coherent (no dangling quotes, no duplicated sections, no half-applied replacements). Outcomes:
+ESC-L0-1 VERIFIED ((cl-C) + proof-head slice-wise annotation + STEP-3 class threading);
+ESC-L0-2 = F-1 VERIFIED ((cl-F) at all three enumeration sites + register row 1' mirror +
+superseded-wording annotation carrying F-1's counterexample); ESC-L0-3 row present and edit
+present BUT the disposition is INADEQUATE — the r3.2 body named the wrong face (round-2
+ESC2-1); re-repaired below; ESC-L0-4 = F-5 VERIFIED (pinned Omega_up-inclusive trigger +
+register mirror; the r3.2-NEW arithmetic sentence added alongside carried ESC2-4, repaired
+below); ESC-L0-5 = F-3 VERIFIED (eps_1' defined and threaded; UNION both cases); ESC-L0-6
+VERIFIED ((H1.4) on C_{h/2} in the STEP-2 checklist); ESC-L0-7 VERIFIED ((D-coll) Lipschitz
+clause + family inheritance + Status (a) citation); F-2 VERIFIED (restricted quantifier,
+s = h endpoint dropped, r3 quantifier annotated); F-4 VERIFIED (corrected attribution block +
+annotated L1-7 log row; its r3.2-NEW parenthetical carried ESC2-3, repaired below); F-6
+VERIFIED (adjacent-gaps wording in Remark 1.5.5 + annotated L1-8 log row). No duplicated log
+sections or orphaned edits found; nothing redone blindly, no ledger row re-minted. The
+round-2 lens-l0 escalation refutation `r2pass/esc_doc3_r2_l0.md` (ESC2-1..5 = 0 BREAKS-THE-LEG
++ 1 REPAIR-NEEDED + 4 AMENDMENT; its §1 independently re-verified the same r3.2 dispositions
+with concurring outcomes, including the ESC-L0-3 inadequacy) is consumed IN FULL below. The
+LABEL OF RECORD stays SCHEMA per J-r2p-1 (restoration = the E-4 adjudication only, no other
+channel); Theorem 1' (leg 12) and Lemma 1.4 (leg 13) remain untouched; NO step of the
+two-face proof moved this round — all five findings live in the honesty commentary, the
+audit-trail attribution, the falsifier justification, and one Status-(a) scoping. gamma(T)
+status of every touched statement unchanged (fully general / inherited); every changed
+statement keeps its hypothesis list and falsifier. Dispositions:
+
+| ID | Class | Disposition (r3.3, each anchored below) |
+|---|---|---|
+| ESC2-1 | REPAIR-NEEDED | FIXED — the proves-too-much paragraph REWRITTEN face-correctly and face-dependently: a coupling across Gamma_in^coll is excluded by STEP 3's DOMAIN ENLARGEMENT (Gamma_in^coll is INTERIOR to (H-UP-fam)'s domain Omega_int^{h/2}, so the hypothesis's states solve the PDE ACROSS that face — the transmission content a bare coupling across it lacks; the enlargement also removes any need to control the Gamma_in^coll trace, defect (b)'s locus); a coupling across a face interior to C_h (e.g. Gamma_mid) is excluded by STEP 1's certified TWO-SIDED-regularity requirement (the frusta straddle the face). The r3.2 paragraph retained verbatim in the annotation with its three recorded defects (wrong face; fails on ESC-L0-3's own instance, whose glued pair IS C^1 across Gamma_mid; false quantifier claim about (H-UP-fam)). ESC-L0-3's disposition thereby RE-CLOSED. Section 1.6. |
+| ESC2-2 | AMENDMENT | FIXED — the false universal "the exclusion was never Step 1" replaced by the face-dependent statement (STEP 3's enlargement for couplings across Gamma_in^coll; STEP 1's two-sided regularity for couplings across faces interior to C_h — for the bare coupling ACROSS Gamma_mid, Step 1 IS the operative exclusion and the interior-side member is (H-UP-fam)-admissible, so the STEP-3 route is closed). Rides ESC2-1's rewrite; superseded clause recorded in the same annotation. Section 1.6. |
+| ESC2-3 | AMENDMENT | FIXED — "nothing straddles any face" corrected in the "Which (H-UP) form" block: nothing straddles a DATA-CARRYING face (Gamma_in^coll or Gamma_I); STEP 1's frusta DO straddle Gamma_mid (balls centered on it) precisely because Gamma_mid carries no data — its trace is STEP 1's OUTPUT, never an input. Section 1.6. |
+| ESC2-4 | AMENDMENT | FIXED — falsifier window arithmetic REDERIVED through the terminal collar segment: any influence path from Gamma_in^coll union Gamma_I to Gamma_mid has length >= d_0 inside closure(C_h) ((D-coll)), where lambda_max is theorem-grade (Lemma 1.4) — arrival >= t_p + d_0/lambda_max = 2x the probed window REGARDLESS of exterior speeds; the operative contaminant re-pointed at post-t_p exterior growth (the pinned trigger excludes an above-bound contaminant in Omega_up AT t_p). The r3.2 sentence retained as superseded (it applied the collar constant lambda_max to the deliberately roughened exterior and reasoned from the vacuous t_p case). Register row 1' cell mirrored. Section 1.6 falsifier + Section 6 row 1'. |
+| ESC2-5 | AMENDMENT | FIXED — Status (a) SCOPED: "(H-UP-fam) IS a theorem of this document" now quantifies over (H1.4)-grade (C^1) pairs of the delegated class, with H^1 members via the 1.5.3 mollification extension (THEOREM* modulo NG-3, corner inventory extended to the curves Gamma_mid intersect Gamma_w); the r3.2 unconditional quantification over the NG-9-delegated class retired by annotation. Load-bearing only for the smooth-base sanity reduction; case (b)/NG-9 untouched. Section 1.6. |
+
+**REVISION r3 — until-dry ROUND 3 (r3.4, 2026-08-19), same escalation window.** The round-3
+escalation refutations on the r3.3 text consumed IN FULL: `r2pass/esc_doc3_r3_l0.md`
+(ESC3-1..3 = 0 BREAKS-THE-LEG + 0 REPAIR-NEEDED + 3 AMENDMENT; its §1 discharge verdicts of
+record: ESC2-1/ESC2-2/ESC2-3 DISCHARGED clean, ESC2-4 DISCHARGED modulo ESC3-3, ESC2-5
+DISCHARGED modulo ESC3-2, the r3.3 reconciliation block verified; first round of the
+escalation with zero inadequate dispositions on that lens) and `r2pass/esc_doc3_r2_l1.md`
+(the lens-l1 round attacking the same r3.3 state, ID namespace continuing as ESC2-6..9 =
+0 BREAKS-THE-LEG + 1 REPAIR-NEEDED (ESC2-8) + 3 AMENDMENT; its §1: the judge's proves-too-much
+test PASSES substantively on six coupling instances, ESC2-1/2/4 dispositions ADEQUATE, ESC2-3
+adequate-as-to-content modulo ESC2-7, ESC2-5 PARTIALLY ADEQUATE — ESC2-8 + ESC2-9; A-2/L1-8
+re-verified fully landed by that lens's own spectrum computation). 7 objection IDs, no dedup
+collisions (ESC3-1 and ESC2-6 touch the same paragraph at DIFFERENT sentences; ESC3-2 and
+ESC2-8 touch the same Status-(a) sentence at DIFFERENT clauses). No justified-rebuttal rows
+this round: every finding FIXED. The LABEL OF RECORD stays SCHEMA per J-r2p-1 (restoration =
+the E-4 adjudication only, no other channel); Theorem 1' (leg 12) and Lemma 1.4 (leg 13)
+remain untouched; NO step of the two-face proof (STEPs 1-3, UNION, Claim clauses, (H-UP-fam),
+(D-coll)) moved this round — all seven findings live in the honesty commentary (ESC3-1,
+ESC2-6), the attribution block (ESC2-7), the falsifier contaminant labeling (ESC3-3), two
+clauses of the Status-(a) premise/label (ESC3-2, ESC2-8), and the NG-3 register mirror
+(ESC2-9). gamma(T) status of every touched statement unchanged (fully general / inherited);
+every changed statement keeps its hypothesis list and falsifier. Dispositions:
+
+| ID | Class | Disposition (r3.4, each anchored below) |
+|---|---|---|
+| ESC3-1 | AMENDMENT | FIXED — third exclusion clause added to the face-dependent proves-too-much taxonomy: a bare coupling across a face ALREADY interior to Omega_int^h (e.g. planar {x = x_I - 2h}) fell under neither printed bullet — there STEPs 1-2 RUN (the glued pair restricted to C_h is a single C^1 solution; the coupling face lies outside C_h) and NO enlargement is needed; the operative exclusion is (H-UP-fam)'s class quantification ITSELF (its states solve the interior problem on all of Omega_int^{h/2}, hence the PDE across EVERY face interior to that domain; the bare-coupled pair does not — the r2 circularity reproduced inside the interior domain, so STEP 3 has nothing to consume). Bullet 1's enlargement mechanism thereby scoped to the one face the enlargement internalizes (Gamma_in^coll). Conclusion unchanged (true on the missing case through exactly this clause, per the refuter's own verification). Section 1.6. |
+| ESC3-2 | AMENDMENT | FIXED — Status (a)'s premise completed with the missing conjunct: "W^{1,infinity} on all of Omega_up WITH (G3)-BOX VALUES" (regularity and box membership are SEPARATE conjuncts everywhere in this document — (H1.1), (H1.1'); the (EI)/Gronwall run consumes the box through the uniform symmetrizer bounds s_min I <= S <= s_max I on all of Omega_int^s, which W^{1,infinity} alone does not deliver off the collar — a Lipschitz base drifting to rho-bar -> 0 or c-bar^2 -> 0 in the far interior satisfied the r3.3 premise while (EI) lost coercivity; the Claim's (H1.1') supplies the box ON C_h ONLY). Section 1.6. |
+| ESC3-3 | AMENDMENT | FIXED — falsifier contaminant labeling corrected: the operative contaminant is the STANDING DOWNSTREAM PULSE (above the bound at t_p OUTSIDE Omega_up — the pinned trigger constrains Omega_up only, and downstream of Gamma_I is the PULSE region, not the roughened region) together with any POST-t_p growth in the roughened UPSTREAM exterior; the r3.3 sentence ("POST-t_p growth in the deliberately ROUGHENED exterior (downstream of Gamma_I or upstream of Gamma_in^coll)") retained as superseded with both mislabels recorded. Window arithmetic UNAFFECTED (re-derived for the pre-existing pulse: above-bound influence cannot be inside closure(C_h) at t_p — the trigger covers the collar — so collar entry >= t_p and the terminal-collar-segment bound gives arrival >= t_p + d_0/lambda_max unchanged). Register row 1' cell clarified in the same window (arrival-time reading made explicit). Section 1.6 falsifier + Section 6 row 1'. |
+| ESC2-6 | AMENDMENT | FIXED — the proves-too-much opening slogan corrected: "crossed by a certified structure" (half false under the document's own reserved word — at Gamma_in^coll the crossing structure is (H-UP-fam)'s hypothesized cross-face solution class, the NG-9 modulo, certified by nothing) replaced by the split form: crossed by a NAMED structure of the proof — CERTIFIED at Gamma_mid (Lemma 1.4 on the (M-c)-monitored collar), HYPOTHESIZED at Gamma_in^coll ((H-UP-fam), NG-9). Superseded wording retained in annotation; the bullets' mechanisms untouched (they were already correct). Section 1.6. |
+| ESC2-7 | AMENDMENT | FIXED — "never an input" in the "Which (H-UP) form" block scoped to "never an EXOGENOUS input": the Gamma_mid trace IS consumed downstream as a datum (STEP 2 = Theorem 1' hypothesis (ii), supplied by (MID-TRACE); STEP 3 = (H-UP-fam)'s same-trace clause) but only as STEP 1's established result — it is not part of the Claim's data set and no uncontrolled data crosses a straddled face. Fourth wording-universal defect at this block-family, recorded as such. Section 1.6. |
+| ESC2-8 | REPAIR-NEEDED | FIXED (refuter branch (r-ii)) — the Status-(a) H^1 clause's rigor accounting completed by the missing NAMED condition: 1.5.3's two smooth-portion regimes (Friedrichs noncharacteristic; Rauch 1985 uniformly characteristic of CONSTANT multiplicity) cover NO regime containing Gamma_mid's characteristic-type transition loci — nothing in (D-coll)/Theorem 1'/Status (a) constrains u-bar.n_mid, which may cross {0, ±c-bar} on the face (the same grazing/sonic loci Remark 1.5.5 scopes OUT of the constant-multiplicity theory on Gamma_in). The clause now reads THEOREM* modulo NG-3 AND the variable-type trace theory on Gamma_mid, DISCHARGED as cited only for splits with Gamma_mid uniformly noncharacteristic (\|u-bar.n_mid\| and \|u-bar.n_mid -+ c-bar\| bounded below). Alternative discharge path (r-i) (plain H^1 divergence-theorem route on the (D'')-Lipschitz Omega_int^s via W^{1,1} Gauss-Green — no boundary mollification, no characteristic-type debt, Rauch citation confined to walls) NAMED-NOT-CONSUMED (not verified in this document). Both residuals mirrored in NG-3 (with ESC2-9). C^1-grade main scoping untouched; case (b)/NG-9 untouched; the two-face proof consumes nothing of this. Section 1.6 + Section 7. |
+| ESC2-9 | AMENDMENT | FIXED — the NG-3 register row now MIRRORS the Section-1.6 prose (register discipline: inventories live in their registers): r3.4 additions recorded IN the row — (i) corner inventory extended by the curves Gamma_mid intersect Gamma_w (introduced in prose r3.3, mirrored r3.4), (ii) the ESC2-8 variable-type trace residual on Gamma_mid — with the Prop-1'' Status-(a) H^1 consumption named in the trigger clause, so a consumer discharging NG-3 against its own row cannot close the gap while these curves/loci remain live. Section 7 row NG-3. |
+
+**REVISION r3 — until-dry ROUND 4 (r3.5, 2026-08-19), same escalation window.**
+**BRIEF/ROUND DEVIATION, DECLARED (house precedent, third instance):** the launching brief for
+this slot restated the full E-4 + A-2 spec as "revision r3". On disk, E-4 and A-2 are executed
+of record since r3 (2026-08-18) and until-dry rounds 1-3 are consumed (r3.2/r3.3/r3.4);
+identical brief-vs-disk offsets were declared by the round-3 and round-4 refuter files
+themselves. This window's work is therefore the ROUND-4 consumption; revision anchor minted
+r3.5; nothing else in the brief is deviated from. The round-4 escalation refutations consumed
+IN FULL: `r2pass/esc_doc3_r4_l0.md` (ESC4-1..2 = 0 BREAKS-THE-LEG + 1 REPAIR-NEEDED (ESC4-2)
++ 1 AMENDMENT; its §1 discharge verdicts of record: ESC3-1 DISCHARGED modulo ESC4-1, ESC3-2
+DISCHARGED clean, ESC3-3 DISCHARGED clean, ESC2-6/ESC2-7 DISCHARGED, ESC2-8 DISCHARGED as
+raised modulo ESC4-2, ESC2-9 DISCHARGED clean; second consecutive round with zero inadequate
+dispositions on that lens; the proves-too-much test re-run PASSES on seven instances) and
+`r2pass/esc_doc3_r3_l1.md` (ESC3-4..6 = 0 BREAKS-THE-LEG + 0 REPAIR-NEEDED + 3 AMENDMENT; its
+§1: all seven r3.4 dispositions ADEQUATE, L0-7(a)/(b) = L1-7(i)/(ii) remain DISCHARGED, the
+proves-too-much test passes substantively on seven instances). 5 objection IDs; dedup note of
+record: ESC4-1 and ESC3-5 attack the SAME third-bullet universal via DISTINCT counterexample
+subfamilies (kernel-jump distributional glue vs accidental C^1 glue) — one combined rewrite
+consumes both, each ID dispositioned; ESC3-4 attacks the slogan tail (same paragraph,
+different sentence — the recorded no-collision pattern); ESC3-6 vs ESC3-2/ESC2-8 =
+same-sentence-different-clause, no collision. No justified-rebuttal rows this round: every
+finding FIXED. **A-2 (leg 17, Remark 1.5.5): NO EDIT NEEDED this round — re-verified FULLY
+LANDED by BOTH round files** (l0 C4-9: direct spectrum recomputation at both loci; l1 C3L1-10:
+two-loci-coincidence attack fails, pointwise separations >= c-bar(x) > 0 via the (G3) box);
+the standing r3.2 text is untouched. The LABEL OF RECORD stays SCHEMA per J-r2p-1 (restoration
+= the E-4 adjudication only, no other channel); Theorem 1' (leg 12) and Lemma 1.4 (leg 13)
+remain untouched; NO step of the two-face proof (STEPs 1-3, UNION, Claim clauses, (H-UP-fam),
+(D-coll)) moved this round — all five findings live in the honesty commentary (ESC3-4, ESC3-5,
+ESC4-1), the Status-(a) premise (ESC3-6), the Status-(a) H^1 discharge clause (ESC4-2), and
+the NG-3 register mirror (ESC4-2). gamma(T) status of every touched statement unchanged (fully
+general / inherited; no gas-model content in any r3.5 edit); every changed statement keeps its
+hypothesis list and falsifier. Dispositions:
+
+| ID | Class | Disposition (r3.5, each anchored below) |
+|---|---|---|
+| ESC4-1 | AMENDMENT | FIXED (combined rewrite with ESC3-5) — the third bullet's universal and the slogan tail scoped for the KERNEL-JUMP subfamily: on characteristic portions of a coupling face (u-bar.n in {0, ±c-bar}, nowhere constrained on interior faces) a piecewise-C^1 glued pair with jump in ker A(n) IS a distributional solution across the face (the jump condition for the linear symmetric system is exactly A(n)[U] = 0; at u-bar.n = 0 the kernel is the entropy+shear — slip-line — subspace, whose modes advect tangentially, so the jump persists); such a pair belongs to NG-9's slip-line territory, and where NG-9's instantiation admits it the concluded uniqueness is (H-UP-fam)'s honest hypothesized content, not an over-proof. Superseded universal retained in annotation as the SIXTH wording-universal defect of the block-family (shared sentence with ESC3-5). Section 1.6. |
+| ESC4-2 | REPAIR-NEEDED | FIXED (refuter branch (r-i')) — the Status-(a) H^1 discharge condition extended to BOTH data faces of Omega_int^s: "DISCHARGED as cited" now additionally requires Gamma_in uniformly noncharacteristic (\|u-bar.n\| and \|u-bar.n -+ c-bar\| bounded below on Gamma_in), because 1.5.3's mollification must be justified on every smooth boundary portion and its inventory is SILENT on Gamma_in's type while Remark 1.5.5 records grazing as GENERIC on an injector rim in the motivating class — on those loci Gamma_in is outside both 1.5.3 regimes (the identical ESC2-8 mechanism one data face over). HONESTY CLAUSE added of record: in the motivating class the Gamma_in condition is generically VIOLATED, so there the H^1 leg carries the residual, not the discharge. NG-3 residual (ii) extended to Gamma_in's loci; the (r-i) W^{1,1} Gauss-Green alternative annotated debt-free on ANY face and stays NAMED-NOT-CONSUMED (branch (r-ii') — verifying that route — NOT taken this round). The upstream SILENCE itself (1.5.3 / register row 1, r1 text) is outside this escalation's scope; its consumption site and register mirror are repaired, the residual owned by NG-3 (F2). Section 1.6 + Section 7 row NG-3. |
+| ESC3-4 | AMENDMENT | FIXED — the slogan tail "a bare coupling's face is crossed by nothing" (face-absolute; equivocal between two readings, each failing on a named instance) replaced by the PAIR-RELATIVE predicate: "a bare-coupled PAIR belongs to no structure of the proof that crosses its face", with the accidental-solve escape clause (honest uniqueness, no over-proof). Superseded tail retained in annotation as the FIFTH wording-universal defect with both failing readings recorded (structure-of-the-proof: self-contradiction at Gamma_in^coll; pair-supplies: false on the accidental-C^1-glue and kernel-jump pairs) and the adopted-phrase provenance declared (l1's own round-2 wording; adoption does not immunize). Section 1.6. |
+| ESC3-5 | AMENDMENT | FIXED (combined rewrite with ESC4-1) — the third bullet's exclusion made CERTIFICATION-RELATIVE: the bare COUPLING certifies no cross-face solvability for its pairs (it supplies only piecewise uniqueness with the trace-feed uncontrolled); a glued pair enters (H-UP-fam)'s delegated class only on its own merits — accidental C^1 glue (nothing in a bare coupling FORBIDS smooth gluing; it merely fails to REQUIRE it) or — where NG-9's instantiation of the class admits it — kernel jump (r3.6, AM-4 mirror) — in which case the concluded uniqueness is honest; so STEP 3 has nothing the COUPLING supplies to consume. The refuted universal ("the bare-coupled pair does not ... is not in (H-UP-fam)'s class") retained in the same annotation; the paragraph's conclusion held in every printing. Section 1.6. |
+| ESC3-6 | AMENDMENT | FIXED — the Status-(a) premise completed with the TIME CYLINDER: "W^{1,infinity} on all of Omega_up x [0, T_f]" per the document's own (H1.1)/(H1.1') convention (the r3.4 text printed the spatial domain alone); rationale recorded — the (EI)/Gronwall run differentiates E(t) = Int <S(W-bar) U, U> and consumes the L^infinity bound on del_t S uniformly on [t_0, t_1], the time half of the hypothesis, not deliverable from the box clause; the rough-in-time counter-instance W_0(x) + a(t) V(x), a in C^0 \ W^{1,infinity}, recorded. Third clause repaired at the same premise sentence (ESC3-2 box conjunct, ESC2-8 trace label — same-sentence-different-clause, no collision). Section 1.6. |
+
+**REVISION r3 — confirming-round wording amendments (r3.6, 2026-08-19, S-FOUNDATIONS-C
+Blocco-2 landing window).** The four wording-class amendments SUSTAINED and ADJUDICATED by the
+confirming-round judge (`r2pass/VERDICT_confirm.md` §4) APPLIED IN PLACE, marked "(r3.6, AM-n)"
+at the point of change: AM-4 (the slogan escape clause gains bullet 3's NG-9 conditional on the
+kernel branch; mirrored in the ESC3-5 disposition row); AM-5 (the kernel-jump persistence gloss
+restated to flow-invariant loci — on a face portion with u-bar.n ≡ 0 and steady base the jump
+persists, the slip-line configuration; persistence in general = NG-9's territory with the rest
+of the transmission theory); AM-6 (the Status-(a) H^1 discharge condition names the mid face
+FAMILY-WISE — the split's mid face Gamma^coll_s, = Gamma_mid at the consumed depth h/2; NG-3
+residual (ii) generalized the same one word); AM-7 (reduced scope: the NG-3 trigger's first
+clause extended to variable-type (grazing/sonic) loci on a data face; register row 1's pointer
+now reads "corners + Gamma_in variable-type = NG-3"). Replaced wording quoted where restated,
+never erased. NO label, grade, hypothesis list, or falsifier changed by these edits; every
+touched statement keeps its gamma(T) status (no gas-model content in any r3.6 edit).
+
 **What is proved**: the composite statement relating the L4 interface default (every patch of Gamma_d
 supersonic with margin in the interface-NORMAL direction, `u.n_I - c >= delta > 0`; axial form
 `u_x - c >= delta` on planar patches) to contract item R1 (causal separation: no upstream influence
 of the downstream domain), for compressible Euler with a thermally-perfect frozen gas
 (gamma = gamma(T)). Statements: Theorem 1 (unsteady, linearized) with its collar form
-Theorem 1' / Proposition 1'' (r2 — the form whose hypotheses the monitors actually certify),
+Theorem 1' / Proposition 1'' (r2 — the form whose hypotheses the monitors actually certify;
+r3 — Proposition 1'' restated per escalation E-4, label of record SCHEMA pending adjudication),
 Theorem 2 (steady per-phase), Theorem 3 (the honest finite-amplitude boundary; upstream-facing
 family), Corollary 4 (subsonic patch: independence of causal separation and well-posedness, 1-D
 model class). Every statement carries hypotheses, rigor class, gamma(T) status, and a rejecting
@@ -503,13 +692,25 @@ x |-> <S A(n) U, U>(t, x) a measurable, a.e.-nonnegative integrand on Gamma_in; 
 Gamma_in term then enters with a GOOD sign (-Int <S A(n)U,U> <= 0) instead of vanishing, and the
 Gronwall argument runs verbatim. QED. **Rigor: THEOREM.** (Hypothesis (ii) is the special case
 N = {0}.)
-**Example, correctly scoped (r2).** "Prescribed incoming characteristic components" defines a
+**Example, correctly scoped (r2; mechanism corrected r3 — amendment A-2, repairs L1-8).**
+"Prescribed incoming characteristic components" defines a
 valid measurable N(x) only on the NON-CHARACTERISTIC, constant-multiplicity part of Gamma_in
 (u-bar.n bounded away from {0, -c-bar, +c-bar}): at sonic-inflow points (u-bar.n = -c-bar) or
 grazing points (u-bar.n = 0 — generic on an injector rim in the motivating RDE injection class)
-the incoming count jumps and the acoustic eigenprojectors degenerate (Lemma 0.2 arithmetic: 1/c
-factors against closing spectral gaps), so "the same characteristic components" is pointwise
-ill-defined there. On any characteristic part of Gamma_in, (ii') must be supplied with an
+the incoming count jumps while the EIGENSTRUCTURE stays REGULAR — for c-bar > 0 the eigenvalues
+u-bar.n - c-bar, u-bar.n, u-bar.n + c-bar keep ADJACENT spectral gaps equal to c-bar at those
+loci (all pairwise separations of distinct eigenvalues >= c-bar; the extreme acoustic pair
+(lambda_-, lambda_+) sits at 2 c-bar — r3.2 wording, repairs F-6: the r3 phrase "mutual
+spectral gaps equal to c-bar" was literally false for that pair; the load-bearing fact, a
+minimum distinct-eigenvalue gap >= c-bar > 0 so no collision and no projector degeneracy,
+is unchanged), and Lemma 0.2's eigenvectors are unaffected; what degenerates is the SIGN CLASSIFICATION
+of the incoming/outgoing split: the subspace-valued map x |-> span{incoming modes} is
+DISCONTINUOUS across the loci {u-bar.n = 0} and {u-bar.n = -c-bar} and ill-defined ON them (a
+fixed, regular mode flips class as its eigenvalue crosses zero), so "the same characteristic
+components" is pointwise ill-defined there. *(r3 annotation of record: the r2 parenthetical
+mechanism "acoustic eigenprojectors degenerate (Lemma 0.2 arithmetic: 1/c factors against
+closing spectral gaps)" is RETIRED — it describes a c -> 0 degeneracy not at issue at these
+crossings; L1-8, judge-sustained. Conclusion and scoping of this remark are unchanged.)* On any characteristic part of Gamma_in, (ii') must be supplied with an
 explicitly constructed measurable N(x) (e.g., the wall subspace u'.n = 0 where u-bar.n = 0,
 which is nonnegative by (BQ)). No consumer in this document uses (ii') at a characteristic
 inflow point.
@@ -543,38 +744,373 @@ field there — coincide on C_h x [0, T_f]. In particular NO signal enters C_h t
 energy identity (EI), Lemmas 1.1-1.3, and the boundary decomposition never used anything
 upstream of Gamma_in^coll. QED.
 
-**Proposition 1'' (device-class causal separation, domain-decomposed). THEOREM modulo (H-UP).**
-Assume Theorem 1''s hypotheses on the collar, and additionally
+**Proposition 1'' (device-class causal separation, domain-decomposed) — r3 RESTATED (escalation
+E-4; consumes L0-7/L1-7, both SUSTAINED-BREAKS by the judge of record).**
 
-  (H-UP) (interior upstream determinism): the linearized upstream problem on
-  Omega_int := Omega_up \ closure(C_h) — data on Gamma_in, slip walls, coupling to the collar
-  only through the trace on Gamma_in^coll — has the uniqueness and finite-propagation-speed
-  (propagation-of-support) properties, with some finite speed lambda_glob.
+**Geometric clause (D-coll) (r3).** The collar C_h carries a fixed MID-COLLAR face
+Gamma_mid: a transversal Lipschitz surface splitting C_h into the outer half collar
+C_h \ closure(C_{h/2}) and the inner half collar C_{h/2} (the one-sided collar of Gamma_I of
+depth h/2), with C_{h/2} a Lipschitz domain per (D''), with — r3.2, repairs ESC-L0-7 — the
+complementary interior domain Omega_int^{h/2} := Omega_up \ closure(C_{h/2}) ALSO a Lipschitz
+domain per (D'') (a set difference of Lipschitz domains is not automatically Lipschitz — it can
+fail where Gamma_mid meets Gamma_w tangentially; the clause is consumed by Status case (a)'s
+(EI) run and by (H-UP-fam)'s split class), and with the uniform distance bound
+d_0 := dist(Gamma_mid, Gamma_in^coll union Gamma_I) > 0. Planar case:
+Gamma_mid = Omega intersect {x = x_I - h/2}, d_0 = h/2.
 
-Then two solutions with the same data on Omega_up (initial data + Gamma_in data/BC), differing
-arbitrarily downstream of Gamma_I, coincide on Omega_up x [0, T_f].
-*Proof (bootstrap).* Let U be the difference and
+**Hypothesis (H-UP-fam) (r3 restatement of (H-UP) — the FAMILY-OF-COLLAR-DEPTHS uniqueness
+form; quantifier and enumeration completed r3.2, repairs F-2 / ESC-L0-2 = F-1 / ESC-L0-1 /
+ESC-L0-7).** For every collar depth s in (0, h) FOR WHICH a (D-coll)-class split is given —
+C_s a one-sided collar of Gamma_I of depth s with transversal Lipschitz face Gamma^coll_s,
+both C_s and Omega_int^s := Omega_up \ closure(C_s) Lipschitz domains per (D''), and
+d_0(s) := dist(Gamma^coll_s, Gamma_in^coll union Gamma_I) > 0 — the linearized interior
+problem on Omega_int^s (data on Gamma_in, slip walls, SAME interior forcing, coupling to the
+collar side ONLY through the FULL trace on the depth-s face Gamma^coll_s) has the UNIQUENESS
+property, within a solution class that is part of this hypothesis's own formulation (NG-9's
+burden, delegation declared here and in the Claim): two solutions of the same interior problem
+(same forcing on Omega_int^s — r3.2, F-1) with the same initial data on Omega_int^s at a time
+t_0, the same Gamma_in data/BC, and the same trace on Gamma^coll_s x [t_0, t_1] coincide on
+Omega_int^s x [t_0, t_1]. (The proof below consumes ONLY the depth s = h/2, whose
+(D-coll)-class split is exactly what (D-coll) supplies, with Gamma^coll_{h/2} = Gamma_mid;
+the family form is stated because the mid-face depth is a choice, not a structure — any depth
+with a given (D-coll)-class split runs verbatim. *r3.2 annotation of record: the r3 quantifier
+"every s in (0, h]" ranged over a collar family the document never constructs for the general
+Lipschitz geometry AND included the endpoint s = h, where d_0(h) = 0 contradicts this row's
+own verbatim-runs clause — both defects F-2; neither propagated into the proof, which consumes
+only s = h/2.*)
+**Which (H-UP) form this is (declared per the E-4 spec; attribution corrected r3.2, repairs
+F-4):** the HALF-COLLAR/TWO-FACE decomposition CONSTRUCTION is the one both lenses converge on
+(the judge's E-4 merge); the (H-UP) FORM consumed is L0-7's named family-of-collar-depths
+restatement. L1-7's route (r-b) ingredients (a Lemma 1.4 frustum + an (H-UP)-class estimate)
+are consumed, but (r-b) as written is a two-sided lens-shaped energy argument STRADDLING the
+face — that lens geometry is NOT used: the r3 frusta live wholly inside C_h and nothing
+straddles a DATA-CARRYING face (Gamma_in^coll or Gamma_I) — that is what distinguishes this
+construction from (r-b)'s lens across Gamma_in^coll; the frusta DO straddle Gamma_mid (balls
+centered on it), precisely because Gamma_mid carries no data: its trace is STEP 1's OUTPUT,
+produced from two-sided collar regularity — never an EXOGENOUS input: STEPs 2-3 DO consume the
+Gamma_mid trace as their face datum (STEP 2 = Theorem 1' hypothesis (ii), supplied by
+(MID-TRACE); STEP 3 = (H-UP-fam)'s same-trace clause), but only as STEP 1's established
+result; it is not part of the Claim's data set, and no UNCONTROLLED data crosses a straddled
+face (r3.4, repairs ESC2-7 — the r3.3 phrase "never an input" was a false universal against
+the proof's own data flow, the fourth wording-universal defect minted at this block-family;
+the distinguishing content vs (r-b)'s lens geometry is the exogenous/derived split, now
+stated) (r3.3, repairs ESC2-3 — the r3.2
+parenthetical "nothing straddles any face" was literally false for Gamma_mid, the coupling
+face of the decomposition, and the straddling is STEP 1's mechanism, not an accident).
+*(r3.2 annotation of record: the r3 sentence "route (r-b) of L1-7 = the named
+repair route of L0-7" over-identified the two — an auditor reading L1-7's text against it
+would not find the claimed match.)* The alternative trace-level-determinism form (r-a) (the
+NG-9 transmission machinery folded into the hypothesis) is NOT consumed. Two deltas vs the r2 (H-UP), both content-honest: (i) the
+finite-propagation-speed / propagation-of-support clause is DROPPED — no longer consumed (its
+burden moves to Lemma 1.4 on the collar, where it is PROVED); (ii) the interior domain is
+enlarged from Omega_int^h to Omega_int^{h/2}, but the added region is the outer half collar,
+where W-bar is W^{1,infinity} by (H1.1') — the S1-class burden (fronts, slip lines) of
+(H-UP-fam) is exactly that of the r2 (H-UP).
+
+**Claim (enumeration completed r3.2 — the r3 statement omitted two clauses its proof already
+consumed; repairs ESC-L0-2 = F-1 and ESC-L0-1).** Assume Theorem 1''s hypotheses on the collar
+C_h, (D-coll), and (H-UP-fam), and additionally:
+
+- **(cl-F) [same forcing — r3.2, ESC-L0-2 = F-1]**: the two solutions solve the SAME linearized
+  problem on Omega_up — same base state, same forcing f on Omega_up (Theorem 1's parenthetical,
+  restored to this statement of record; the forcing is free downstream of Gamma_I);
+- **(cl-C) [solution class — r3.2, ESC-L0-1]**: U^(1), U^(2) in C([0, T_f]; L^2_loc(Omega_up))
+  — hence time-slices exist and the set {t : U == 0 on Omega_up x [0, t]} is left-closed; on
+  C_h this already follows from (H1.4) — with their Omega_int^{h/2}-restrictions lying in the
+  solution class over which (H-UP-fam) quantifies (that class is part of (H-UP-fam)'s own
+  formulation and is DELEGATED to NG-9; this Claim declares the delegation explicitly).
+
+Then the two solutions — same data on Omega_up (initial data + Gamma_in data/BC + forcing per
+(cl-F)), differing arbitrarily downstream of Gamma_I — coincide on Omega_up x [0, T_f].
+*(r3 wording of record, superseded r3.2: "two solutions with the same data on Omega_up
+(initial data + Gamma_in data/BC), differing arbitrarily downstream of Gamma_I, coincide on
+Omega_up x [0, T_f]" — the forcing clause was consumed by the proof ("the forcings cancel on
+Omega_up") but absent from the enumeration; the literal r3 sentence is refutable by an
+interior source pair f^(1) = phi compactly supported in Omega_int^{h/2} x (0, T_f),
+f^(2) = 0, U^(2) = 0 — F-1's counterexample, recorded.)*
+
+**Rigor and label of record (r3).** The two-face proof below is complete in this document
+MODULO (H-UP-fam). **LABEL OF RECORD: SCHEMA, per judge downgrade J-r2p-1** (VERDICT_r2pass
+§4(a)/(c), escalation E-4): the modulo-form label stays SCHEMA until this escalation's
+adjudication; the strength the new proof actually delivers — and the label restorable at that
+adjudication, no earlier and by no other channel — is THEOREM modulo (H-UP-fam).
+**gamma(T) status: fully general** (inherited from Theorem 1'/Lemma 1.4; no new gas-model
+step). Falsifier: see the Theorem 1'/Proposition 1'' falsifier below, r3 mid-face leg added.
+
+*r2 proof RETRACTED AS NOT-A-PROOF (r3, E-4). Retained of record per the house annotation
+discipline (never erased); the retracted text:*
+
+> *Proof (bootstrap).* Let U be the difference and
+> t* := sup{ t in [0, T_f] : U == 0 on Omega_up x [0, t] } (well-defined; the set contains t = 0
+> by the initial condition and continuity). Suppose t* < T_f. Up to t*, the trace of U on
+> Gamma_in^coll vanishes, so Theorem 1' gives U == 0 on C_h x [0, t*], and (H-UP)-uniqueness gives
+> U == 0 on Omega_int x [0, t*]. Beyond t*: the interior data (initial, Gamma_in) vanish and its
+> only source is the collar-face trace, zero up to t*; by (H-UP) finite speed, support entering
+> through Gamma_in^coll after t* needs positive time to reach any fixed interior point, so there
+> is eps_1 > 0 with U == 0 on Omega_int' x [t*, t* + eps_1] for every compactly-contained
+> Omega_int' — in particular the interior-side trace feeding Gamma_in^coll stays zero on
+> [t*, t* + eps_1]. Theorem 1' applied on [0, t* + eps_1] with that zero collar-face data gives
+> U == 0 on C_h x [0, t* + eps_1]; hence U == 0 on Omega_up x [0, t* + eps_1], contradicting the
+> maximality of t*. QED (modulo (H-UP)).
+
+*Retraction grounds of record (L0-7(a)/(b) = L1-7(i)/(ii), judge-verified at derivation level):*
+(a) QUANTIFIER ORDER — the eps_1 furnished by finite speed scales like
+dist(Omega_int', Gamma_in^coll)/lambda_glob and degenerates to zero as Omega_int' exhausts
+Omega_int: no uniform eps_1 exists as displayed. (b) DISTANCE ZERO — Gamma_in^coll lies in NO
+compactly-contained Omega_int'; finite speed controls the solution at POSITIVE distance from
+the source face and can never deliver the TRACE ON the face, which is exactly what "in
+particular the interior-side trace ... stays zero" asserts. The printed bootstrap fed each
+side's output into the other's input with no independent control of the coupling trace; run
+verbatim it would "prove" uniqueness for ANY transmission coupling with NO transmission
+condition — it proves too much, hence proves nothing (both lenses; judge concurs).
+
+*Proof (r3 — two-face bootstrap; the construction both lenses converge on).* Let
+U := U^(1) - U^(2) and
 t* := sup{ t in [0, T_f] : U == 0 on Omega_up x [0, t] } (well-defined; the set contains t = 0
-by the initial condition and continuity). Suppose t* < T_f. Up to t*, the trace of U on
-Gamma_in^coll vanishes, so Theorem 1' gives U == 0 on C_h x [0, t*], and (H-UP)-uniqueness gives
-U == 0 on Omega_int x [0, t*]. Beyond t*: the interior data (initial, Gamma_in) vanish and its
-only source is the collar-face trace, zero up to t*; by (H-UP) finite speed, support entering
-through Gamma_in^coll after t* needs positive time to reach any fixed interior point, so there
-is eps_1 > 0 with U == 0 on Omega_int' x [t*, t* + eps_1] for every compactly-contained
-Omega_int' — in particular the interior-side trace feeding Gamma_in^coll stays zero on
-[t*, t* + eps_1]. Theorem 1' applied on [0, t* + eps_1] with that zero collar-face data gives
-U == 0 on C_h x [0, t* + eps_1]; hence U == 0 on Omega_up x [0, t* + eps_1], contradicting the
-maximality of t*. QED (modulo (H-UP)).
+by the initial condition and continuity — this much of the r2 argument stands). Set
+lambda_max := sup_{C_h x [0, T_f]} (|u-bar| + c-bar), finite by (H1.1') + the (G3)-box clause
+on the collar, and
 
-**Status of (H-UP).** (a) If W-bar is W^{1,infinity} on all of Omega_up, (H-UP) IS a theorem of
-this document — uniqueness by Theorem 1's estimate applied on the interior subdomain, finite
-speed by Lemma 1.4 — and Proposition 1'' reduces to Theorem 1: nothing new consumed. (b) For the
-DEVICE data class (S1 piecewise-smooth base with fronts and slip lines), (H-UP) requires
-linearized transmission conditions across the fronts (uniqueness + finite speed for a
-discontinuous-coefficient symmetric hyperbolic system) — standard-physical, NOT written here =
-**NG-9** (owner F2). The collar statement itself (Theorem 1': no signal crosses Gamma_d into the
-collar) consumes NOTHING beyond the monitored collar and is the unconditional content of
-composite clause (i) in Section 5.
+    eps_1 := d_0 / (2 lambda_max) > 0,
+
+a FIXED constant of the collar geometry (D-coll) and the collar base state — the uniformity
+the r2 display lacked. *(r3.2, ESC-L0-1: the sup-set {t : U == 0 on Omega_up x [0, t]} is
+left-closed and time-slices exist by (cl-C); "U == 0 on [0, t]" is read slice-wise in
+L^2_loc.)* Suppose t* < T_f; by (cl-C)-continuity U(., t*) = 0 on Omega_up. Set
+
+    eps_1' := min(eps_1, T_f - t*) > 0
+
+(positive since t* < T_f; r3.2, repairs ESC-L0-5 = F-3 — the r3 proof ran the window
+[t*, t* + eps_1] off the end of [0, T_f] whenever t* > T_f - eps_1); STEPs 1-3 below run on
+the in-domain window (t*, t* + eps_1'].
+
+STEP 1 (zero data -> mid-face trace; Lemma 1.4 on the collar — positive distance only, no
+trace on any data-carrying face is ever consumed). Fix t in (t*, t* + eps_1'] and x_0 in
+Gamma_mid, and choose R with lambda_max (t - t*) < R < d_0 (possible since
+lambda_max (t - t*) <= lambda_max eps_1' <= lambda_max eps_1 = d_0/2 < d_0). By (D-coll), B(x_0, R) stays at positive distance from
+BOTH Gamma_in^coll and Gamma_I, so the Lemma 1.4 frustum based on B(x_0, R) x {t*} inside
+O = C_h meets del O only in wall portions — an admissible frustum (the margin-interface clause
+of Lemma 1.4 is not even needed here). U is a C^1 solution of the homogeneous (LIN-U) on C_h
+((H1.4); the forcings cancel on Omega_up) with U(., t*) = 0 on B(x_0, R) intersect C_h (zero on
+all of Omega_up at t*). Lemma 1.4 gives U == 0 on the frustum; its time-t section
+B(x_0, R - lambda_max (t - t*)) has positive radius, so U(x_0, t) = 0. Since x_0 in Gamma_mid
+and t in (t*, t* + eps_1'] were arbitrary:
+
+    U == 0 on Gamma_mid x [t*, t* + eps_1'].                                (MID-TRACE)
+
+(Contrast with the retracted step: the target set Gamma_mid sits at the FIXED positive distance
+d_0 from every face carrying uncontrolled data, so the finite-speed window is uniform — defect
+(a) gone — and the conclusion is evaluated at interior points of the collar, never ON a source
+face — defect (b) gone.)
+
+STEP 2 (mid face -> inner half collar; Theorem 1'). Apply Theorem 1' on the half collar
+C_{h/2}, upstream face Gamma_mid, time-shifted to start at t*: its hypotheses hold — (H1.1') +
+(G3)-box on C_{h/2} subset C_h; (H1.2) on Gamma_w intersect del C_{h/2}; (H1.3) on Gamma_I;
+(H1.4) on C_{h/2} by restriction (r3.2, repairs ESC-L0-6 — the r3 checklist omitted the
+solution-regularity hypothesis its verbatim-Theorem-1 proof consumes);
+(D'') for C_{h/2} per (D-coll). The two solutions have the same initial data on C_{h/2} at t*
+(U(., t*) = 0) and the same trace on Gamma_mid x [t*, t* + eps_1'] — hypothesis (ii) of
+Theorem 1', supplied by (MID-TRACE). Hence U == 0 on C_{h/2} x [t*, t* + eps_1'].
+
+STEP 3 (mid face -> enlarged interior; (H-UP-fam) at depth h/2). On
+Omega_int^{h/2} = Omega_up \ closure(C_{h/2}) the two solutions have the same initial data at
+t* (U(., t*) = 0), the same Gamma_in data/BC, the same interior forcing (clause (cl-F)), and —
+by (MID-TRACE) — the same full trace on Gamma_mid x [t*, t* + eps_1']; their
+Omega_int^{h/2}-restrictions lie in the solution class over which (H-UP-fam) quantifies by
+clause (cl-C) (r3.2, ESC-L0-1). (H-UP-fam) at depth s = h/2 gives U == 0 on
+Omega_int^{h/2} x [t*, t* + eps_1'].
+
+UNION (both cases closed — r3.2, repairs ESC-L0-5 = F-3). Omega_up = Omega_int^{h/2} union
+Gamma_mid union C_{h/2}, so U == 0 on Omega_up x [0, t* + eps_1'] with the FIXED eps_1' above.
+If t* + eps_1 <= T_f then eps_1' = eps_1 and this contradicts the maximality of t*; otherwise
+eps_1' = T_f - t* and U == 0 on Omega_up x [0, T_f] outright, so t* = T_f — contradicting
+t* < T_f in either case. Hence t* = T_f. QED (modulo (H-UP-fam)).
+
+**Why this does not prove too much (the judge's own test, applied; mechanism stated
+face-correctly and face-dependently r3.3, repairs ESC2-1 + ESC2-2 — the third printing of
+this paragraph; the r3 and r3.2 mechanisms were each false universals in opposite
+directions).** The exclusion is FACE-DEPENDENT: every face of the two-face decomposition is
+crossed by a NAMED structure of the proof — a CERTIFIED one at Gamma_mid (Lemma 1.4 on the
+(M-c)-monitored collar, theorem-grade) and a HYPOTHESIZED one at Gamma_in^coll ((H-UP-fam)'s
+cross-face solution class, the NG-9 modulo — certified by nothing) — and a bare-coupled PAIR
+belongs to no structure of the proof that crosses its face (r3.5, repairs ESC3-4 and the
+slogan half of ESC4-1: the predicate is PAIR-RELATIVE, not face-absolute — where a glued pair
+does happen to solve across its face on its own merits, by accidental C^1 glue or — where
+NG-9's instantiation of the class admits it — by a kernel jump A(n)[U] = 0 on the face's
+characteristic loci (r3.6, AM-4, `r2pass/VERDICT_confirm.md` §4: the r3.5 slogan carried the
+kernel branch without the NG-9 conditional that bullet 3 states), it enters (H-UP-fam)'s
+delegated class and
+the concluded uniqueness is that hypothesis's honest content, not an over-proof; see the third
+bullet). *(Superseded r3.4 tail, retained: "and a bare coupling's face is crossed by nothing"
+— face-absolute where the truth is pair-relative, the FIFTH wording-universal defect of this
+block-family: under the structure-of-the-proof reading it contradicted the slogan's own first
+half at Gamma_in^coll (the same face declared crossed by a hypothesized structure and, as
+bullet 1's coupling face, crossed by nothing — and bullet 3 makes that reading untenable
+generally, since (H-UP-fam)'s states solve across every deep interior face); under the
+pair-supplies reading it failed on the accidental-C^1-glue pair (ESC3-4) and on the
+kernel-jump pair, a genuine piecewise-C^1 distributional solution across the face (ESC4-1).
+Provenance recorded: the tail was lens l1's own round-2 proposed phrase, adopted by the
+ESC2-6 disposition — adoption does not immunize, house precedent.)* *(r3.4 annotation, repairs ESC2-6: the r3.3 slogan read "crossed
+by a certified structure" for both faces; "certified" is this document's reserved word — the
+monitored-hypothesis accounting below separates what the monitors certify from what is
+hypothesized — and the slogan was half false at Gamma_in^coll, overclaiming exactly the NG-9
+gap. The bullets' mechanisms were and are correct; only the slogan moved.)*
+- *Coupling across Gamma_in^coll (the r2 configuration; ESC-L0-3's strengthened bare-coupling
+  instance):* the operative exclusion is STEP 3's DOMAIN ENLARGEMENT. Enlarging the interior
+  from Omega_int^h to Omega_int^{h/2} places the coupling face Gamma_in^coll in the INTERIOR
+  of (H-UP-fam)'s domain Omega_int^{h/2}, so the states (H-UP-fam) quantifies over solve the
+  PDE ACROSS Gamma_in^coll — exactly the transmission content a bare coupling across that face
+  lacks. A bare interior-side hypothesis lives on Omega_int^h, stopping AT Gamma_in^coll, and
+  cannot be applied on the enlarged domain containing the face; and the enlargement removes
+  any need to control the Gamma_in^coll trace — defect (b)'s locus — because the only trace
+  the proof consumes is on Gamma_mid, at distance >= d_0 from it.
+- *Coupling across a face interior to C_h (e.g. Gamma_mid itself):* the operative exclusion is
+  STEP 1's requirement of certified TWO-SIDED regularity across the face — Lemma 1.4's frusta
+  are balls centered ON Gamma_mid and straddle it, so they need a single C^1 solution of the
+  homogeneous system on all of C_h. A bare-coupled pair solves no PDE across Gamma_mid, Lemma
+  1.4 on O = C_h has no solution to act on, and (MID-TRACE) never becomes available. (Note the
+  interior-side member of such a coupling can be a perfectly good (H-UP-fam)-class state — it
+  solves across Gamma_in^coll, interior to its domain — so STEP 3 is NOT the exclusion there:
+  the exclusion is genuinely Step 1's for this face.)
+- *Coupling across a face ALREADY interior to Omega_int^h (e.g. planar {x = x_I - 2h},
+  strictly upstream of Gamma_in^coll) — the case the two bullets above left uncovered (r3.4,
+  repairs ESC3-1):* here STEPs 1-2 RUN — the glued pair restricted to C_h IS a single C^1
+  solution of the homogeneous system (the coupling face lies outside C_h) — and NO enlargement
+  is needed (the face was interior to Omega_int^h already); the operative exclusion is
+  (H-UP-fam)'s class quantification ITSELF: the states it quantifies over solve the interior
+  problem on all of Omega_int^{h/2}, hence the PDE across EVERY face interior to that domain,
+  while the bare COUPLING certifies no such cross-face solvability for its pairs — it supplies
+  only piecewise uniqueness on the two pieces with the trace-feed across its face uncontrolled
+  (the r2 circularity reproduced INSIDE the interior domain). A glued pair enters (H-UP-fam)'s
+  delegated class only if it happens to solve across the face ON ITS OWN MERITS — a smooth
+  accidental C^1 glue (nothing in a bare coupling FORBIDS smooth gluing; it merely fails to
+  REQUIRE it), or, if NG-9's instantiation of the class admits it, a jump satisfying the kernel
+  transmission condition A(n)[U] = 0 on the face's characteristic loci (u-bar.n in
+  {0, ±c-bar}, nowhere constrained on interior faces; at u-bar.n = 0 the kernel is the
+  entropy+shear subspace, and on a flow-invariant locus (e.g. a face portion with
+  u-bar.n ≡ 0 and steady base) the jump persists — the slip-line configuration; persistence
+  in general is NG-9's territory with the rest of the transmission theory (r3.6, AM-5,
+  `r2pass/VERDICT_confirm.md` §4: the r3.5 gloss read "the slip-line class, NG-9's territory
+  — and the jump persists because those modes advect tangentially to the face" — a
+  persistence universal underived off flow-invariant loci; quoted, never erased)) — and for
+  exactly those pairs the
+  concluded uniqueness is (H-UP-fam)'s honest hypothesized content, not an over-proof; so
+  STEP 3 has nothing the COUPLING supplies to consume (r3.5, repairs ESC3-5 + ESC4-1).
+  Bullet 1's enlargement mechanism is thereby scoped to the one
+  face the enlargement internalizes (Gamma_in^coll); for deeper faces the class quantification
+  alone does the excluding. *(Superseded r3.4 clause, retained: "while the bare-coupled pair
+  does not — ... — so the glued pair is not in (H-UP-fam)'s class and STEP 3 has nothing to
+  consume" — a true mechanism stated as a false universal, the SIXTH wording-universal defect
+  of this block-family, refuted on two independent subfamilies of the judge's §5 test class
+  ("ANY transmission coupling with NO transmission condition"): (i) the accidental-C^1-glue
+  pair — e.g. restrictions of globally-defined interior solutions declared a two-subdomain
+  coupling at {x = x_I - 2h}; its members solve the interior problem on all of Omega_int^{h/2}
+  and STEP 3 consumes them LEGITIMATELY (ESC3-5); (ii) the kernel-jump pair — piecewise C^1
+  with jump in ker A(n) on characteristic portions of the face, a genuine distributional
+  solution since the jump condition for the linear symmetric system is exactly A(n)[U] = 0
+  (ESC4-1). On both subfamilies the concluded uniqueness is honest, so the paragraph's
+  CONCLUSION — no over-proof — held in every printing; the excluding work was always
+  certification-relative, now stated as such.)*
+
+*(r3.3 annotation of record — superseded r3.2 wording retained per house discipline, ESC2-1
+(REPAIR) + ESC2-2: the r3.2 paragraph read "The operative exclusion is STEP 3's DOMAIN
+ENLARGEMENT: the coupling face Gamma_mid is INTERIOR to the domain on which (H-UP-fam)'s
+input pair solves the PDE — the pair fed to it in STEP 3 consists of solutions on all of
+Omega_up (clauses (cl-F)/(cl-C)), so the hypothesis quantifies only over pairs solving the
+PDE ACROSS the face, and that cross-face solvability IS the transmission content a bare
+coupling lacks. A bare transmission coupling of two subdomains with no transmission condition
+supplies no class of states solving anything across its face, so the STEP-3 hypothesis has
+nothing to consume and the argument does not run.", and its retirement clause ended "...the
+exclusion was never Step 1." Recorded defects: (1) WRONG FACE — Gamma_mid is the BOUNDARY of
+Omega_int^{h/2}, not interior to it; the face the enlargement internalizes is Gamma_in^coll
+(the r3.2 body contradicted its own log row); (2) the printed sentence failed to exclude
+ESC-L0-3's cited instance, whose glued pair IS C^1 across Gamma_mid (Gamma_mid lies inside
+C_h, where the collar-side member alone lives); (3) "the hypothesis quantifies only over
+pairs solving the PDE ACROSS [Gamma_mid]" was false of (H-UP-fam) as printed — its solutions
+take the Gamma_mid trace as DATA and are required to solve across Gamma_in^coll, not across
+Gamma_mid. The retirement clause "the exclusion was never Step 1" was a false universal in
+the opposite direction of the r3 sentence it retired: for a bare coupling ACROSS Gamma_mid,
+Step 1 is exactly the operative exclusion, and the STEP-3-has-nothing-to-consume route is
+closed by the (H-UP-fam)-admissibility of the interior-side member (ESC2-2). The r3
+annotation retiring the r3 "Step 1 is unavailable" sentence stands as adjudicated (that
+sentence failed on the Gamma_in^coll instance). The paragraph's CONCLUSION — the derivation
+does not prove too much — was true in all three printings and is now carried by the
+face-dependent argument above, which is ESC2-1's own verification route.)* The two structural assets consumed
+remain as stated: the W^{1,infinity} collar overlap C_h \ closure(C_{h/2}) (monitored by
+(M-c)), on which Lemma 1.4 is a theorem of this document, and the margin outflow face Gamma_I
+(Theorem 1'). Each side's input is delivered by the OTHER face at positive distance; the
+circular trace-feed of the r2 display is structurally absent.
+
+**Status of (H-UP-fam) (r3; supersedes the r2 "Status of (H-UP)" — the two r2 cases carry
+over with the finite-speed clause removed).** (a) If W-bar is W^{1,infinity} on all of
+Omega_up x [0, T_f] (r3.5, repairs ESC3-6 — the space-time CYLINDER of the document's own
+convention, (H1.1)/(H1.1'), both of which spell it out; the r3.4 premise printed the spatial
+domain alone, while the (EI)/Gronwall run below consumes the TIME half too: differentiating
+E(t) = Int <S(W-bar) U, U> produces the volume term <(del_t S) U, U>, whose L^infinity bound,
+uniform on [t_0, t_1], is exactly the time half of the W^{1,infinity} hypothesis and is NOT
+deliverable from the box clause (a pointwise range condition, orthogonal to regularity —
+ESC3-2's own dichotomy); a base W-bar(x, t) = W_0(x) + a(t) V(x) with a in
+C^0 \ W^{1,infinity} staying inside the box satisfied the printed premise while the Gronwall
+constant C_0 was lost) WITH (G3)-BOX VALUES (r3.4, repairs ESC3-2 — regularity and box membership are
+SEPARATE conjuncts everywhere in this document, (H1.1)/(H1.1'), and the (EI)/Gronwall run
+below consumes the box through the uniform symmetrizer bounds s_min I <= S <= s_max I on all
+of Omega_int^s, which W^{1,infinity} alone does not deliver: a Lipschitz base drifting to
+rho-bar -> 0 or c-bar^2 -> 0 in the far interior satisfied the r3.3 premise while (EI) lost
+coercivity there; the Claim's (H1.1') supplies the box ON C_h ONLY), (H-UP-fam) IS a theorem
+of this document at every depth with a given (D-coll)-class
+split, FOR PAIRS OF (H1.4)-GRADE (C^1) MEMBERS of its delegated solution class — H^1 members
+via the 1.5.3 mollification extension, THEOREM* modulo NG-3 (whose corner inventory then also
+includes the curves where Gamma_mid meets Gamma_w, never inventoried by 1.5.3) AND modulo the
+VARIABLE-TYPE trace theory on Gamma_mid (r3.4, repairs ESC2-8, refuter branch (r-ii)): 1.5.3's
+two smooth-portion regimes — Friedrichs mollifiers on noncharacteristic portions; Rauch 1985
+on uniformly characteristic portions of CONSTANT multiplicity — cover NO regime containing
+Gamma_mid's characteristic-type transition loci, since nothing in (D-coll), Theorem 1', or
+this Status constrains u-bar.n_mid, which may cross {0, ±c-bar} on the face (the same
+grazing/sonic loci Remark 1.5.5 scopes OUT of the constant-multiplicity theory on Gamma_in;
+on those loci the face is characteristic but NOT uniformly and NOT of locally constant
+multiplicity). The H^1 leg is therefore DISCHARGED as cited only for splits with
+the split's mid face Gamma^coll_s (= Gamma_mid at the consumed depth h/2 — family-wise
+naming, r3.6, AM-6, `r2pass/VERDICT_confirm.md` §4) uniformly noncharacteristic
+(|u-bar.n_mid| and |u-bar.n_mid -+ c-bar| bounded below) AND with
+Gamma_in uniformly noncharacteristic in the same sense (|u-bar.n| and |u-bar.n -+ c-bar|
+bounded below on Gamma_in; r3.5, repairs ESC4-2, refuter branch (r-i') — the 1.5.3
+mollification must be justified on EVERY smooth boundary portion of Omega_int^s, whose
+boundary is Gamma_in union walls union Gamma^coll_s: 1.5.3's own inventory names, beyond plain
+Friedrichs, only the uniformly characteristic wall (Rauch 1985) and the corner curves (NG-3),
+and is SILENT on Gamma_in's type, while nothing in (H1.1)-(H1.4), (D-coll), or this Status
+constrains u-bar.n on Gamma_in — and Remark 1.5.5 records grazing points (u-bar.n = 0) as
+GENERIC on an injector rim in the motivating RDE injection class; on those loci Gamma_in is
+characteristic but neither uniformly nor of locally constant multiplicity, outside BOTH 1.5.3
+regimes — the identical ESC2-8 mechanism one data face over. HONESTY CLAUSE: in the motivating
+class the Gamma_in condition is therefore generically VIOLATED, so for that class the H^1 leg
+carries the residual, not the discharge); otherwise it carries these named residuals (BOTH
+data faces), mirrored in NG-3. Alternative discharge path
+NAMED-NOT-CONSUMED (refuter branch (r-i)): for U in C([0,T_f]; H^1) intersect
+C^1([0,T_f]; L^2) on the (D'')-Lipschitz Omega_int^s, run (EI) directly by W^{1,1}
+Gauss-Green (each <S A_j U, U> is W^{1,1} in x slice-wise, boundary values via the
+W^{1,1} -> L^1(del) trace) — no boundary mollification, hence no characteristic-type debt on
+ANY face, Gamma_mid or Gamma_in (r3.5, ESC4-2), and a wall-specific Rauch citation; not
+verified in this document, so not consumed.
+*(Retained r3.3 annotation, repairs
+ESC2-5: the r3.2 sentence quantified "IS a theorem" unconditionally over the NG-9-delegated
+class, made formally free by (cl-C)/the formulation clause, while the (EI) run below is
+available only at (EI)-admissible grade; if NG-9 instantiates the class wider, e.g. L^2-weak,
+case (a) beyond these grades is unproven — scoping load-bearing only for this smooth-base
+sanity reduction.)* The (EI) run: for same-interior-problem pairs (same forcing on Omega_int^s — r3.2,
+ESC-L0-2 = F-1, so the difference solves the homogeneous system) the energy
+identity (EI) closes on Omega_int^s — a Lipschitz domain per the (D-coll)-class split, (D''),
+which is exactly what the (EI) run consumes (r3.2, ESC-L0-7) —
+with the Gamma^coll_s boundary term killed pointwise by the ZERO FULL
+TRACE of the difference (<S A(n) U, U> = 0 where U = 0 — no sign information about A(n) on the
+face is needed, so no margin is required there), the Gamma_in and wall terms as in Theorem 1;
+Proposition 1'' then reduces to Theorem 1: nothing new consumed. (b) For the DEVICE data class
+(S1 piecewise-smooth base with fronts and slip lines in the interior), (H-UP-fam) requires
+linearized transmission conditions across the fronts (uniqueness, given full face-trace data,
+for a discontinuous-coefficient symmetric hyperbolic system) — standard-physical, NOT written
+here = **NG-9** (owner F2; r3: uniqueness only — the finite-speed half of the r2 (H-UP) is no
+longer part of the consumed hypothesis). The collar statement itself (Theorem 1': no signal
+crosses Gamma_d into the collar) consumes NOTHING beyond the monitored collar and is the
+unconditional content of composite clause (i) in Section 5.
 
 **Monitored-hypothesis accounting (r2).** (M-c) monitors exactly (H1.1') + (G3)-box membership
 ON THE COLLAR (the box clause was a consumed-but-unmonitored hypothesis in r1 — refuter R2-O2's
@@ -588,7 +1124,44 @@ pulse test with the base state deliberately ROUGHENED outside the collar (a stee
 mimicking a slip line, margin and collar regularity intact): the upstream-of-collar response to
 a downstream pulse must remain at the discretization bound (rejects the collar wiring if not),
 while the same roughening INSIDE the collar must degrade the certified bound (rejects a vacuous
-(M-c) if it does not).
+(M-c) if it does not). **r3 mid-face leg (tests the two-face bootstrap wiring; trigger pinned
+r3.2, repairs ESC-L0-4 = F-5):** in the roughened-exterior run, probe the trace on the
+mid-collar face Gamma_mid over a window [t_p, t_p + d_0/(2 lambda_max)] following any instant
+t_p at which the field on ALL of Omega_up — collar C_h INCLUDED (the r3 trigger "the upstream
+field" underdetermined the zero-data hypothesis of Step 1, which needs U at the bound on all
+of Omega_up at t_p) — is at the scheme bound: the mid-face trace must stay at the scheme
+bound over that FIXED window (the (MID-TRACE) step). Window arithmetic of record (rederived
+r3.3, repairs ESC2-4; contaminant labeling corrected r3.4, repairs ESC3-3): under the pinned
+trigger the field is at the bound on ALL of Omega_up at t_p — and on Omega_up ONLY:
+downstream of Gamma_I is OUTSIDE Omega_up and carries the injected pulse, above the bound AT
+t_p deliberately and legitimately (it is the falsifier's probe signal). The operative
+contaminant is therefore the STANDING DOWNSTREAM PULSE (pre-existing at t_p, unconstrained by
+the trigger) together with any POST-t_p growth in the roughened UPSTREAM exterior (upstream
+of Gamma_in^coll — the roughening of record lives there, not downstream of Gamma_I); in
+neither exterior region is any speed bound hypothesized or monitored — (H1.1') and the
+(G3)-box clause are collar-only by construction. *(Superseded r3.3 sentence, retained: "the
+operative contaminant is POST-t_p growth in the deliberately ROUGHENED exterior (downstream
+of Gamma_I or upstream of Gamma_in^coll)" — two mislabels (ESC3-3): the downstream
+contaminant PRE-EXISTS t_p (the "so ... post-t_p growth" inference is valid only for regions
+the trigger constrains, i.e. inside Omega_up), and downstream of Gamma_I is the PULSE region,
+not the roughened region; an executor reading it literally could wait for exterior "growth"
+and ignore the standing pulse when timing the window. The arithmetic below is unaffected:
+above-bound influence cannot be inside closure(C_h) at t_p — the trigger covers the collar —
+so its collar entry occurs at time >= t_p in every case.)*
+The bound therefore routes through the TERMINAL COLLAR SEGMENT: any influence path from
+Gamma_in^coll union Gamma_I to Gamma_mid has length >= d_0 inside closure(C_h) ((D-coll)'s
+distance bound), where the speed bound lambda_max is theorem-grade (Lemma 1.4 on the collar),
+so arrival at Gamma_mid occurs no earlier than (collar entry time >= t_p) + d_0/lambda_max
+= t_p + 2x the probed window, REGARDLESS of exterior propagation speeds. *(Superseded r3.2
+sentence, retained: "any contaminant above the bound at t_p lives downstream of Gamma_I or
+upstream of Gamma_in^coll, hence at distance >= d_0 from Gamma_mid, and travels at speed
+<= lambda_max — arrival time >= d_0/lambda_max = 2x the probed window" — defective twice
+(ESC2-4): it applied the collar constant lambda_max to the exterior path segment, where an
+executor implementing arrival = distance/lambda_max would derive a too-late bound and could
+mis-certify, and it reasoned from an at-t_p contaminant its own pinned trigger excludes; same
+2x-window conclusion, wrong derivation of record.)* A mid-face signal growing inside the window while
+the collar regularity monitors are green rejects Step 1's wiring (Lemma 1.4 on the collar),
+independently of (H-UP-fam).
 
 **Falsifier (Theorem 1) — rejecting test.** Linearized 1-D (and axisymmetric) solver in the pinned
 env (numpy only): base state with margin delta on a slab; inject a downstream pulse downstream of
@@ -1149,7 +1722,8 @@ Four separate, precise reasons; together they define the epistemic role of the c
      steady clause MODULO (M-a')** (r2 hedge, repairs R2-5(c); Section 5 and this list now carry
      the same hedge):
        (a) the HYPOTHESES of Theorem 1'/Proposition 1'' — via (M-a) + (M-c) on the collar +
-           (H-RW), with (H-UP)/NG-9 declared for the full-domain device form — and of Theorem 2
+           (H-RW), with (H-UP-fam)/NG-9 declared for the full-domain device form (r3; label of
+           record SCHEMA per J-r2p-1 pending the E-4 adjudication) — and of Theorem 2
            via (M-a'): hence causal separation for the linearized collar dynamics and for the
            steady per-phase class, BY THEOREM, with each consumption route named (r2: the r1
            wording "delivers the hypotheses of Theorems 1-2" from the surface certificate alone
@@ -1412,7 +1986,10 @@ certificate does not supply, refuters R2-O1/R2-O2/R2-1):
 > COLLAR of Gamma_d (Theorem 1': pure-outflow interface, zero incoming characteristics,
 > Friedrichs-dissipative energy estimate, no signal enters through Gamma_d; hypotheses = (M-a) +
 > (M-c) collar regularity/box + (H-RW); the extension to the full upstream domain is Proposition
-> 1'', THEOREM modulo (H-UP) = interior S1-class determinism, NG-9 — the unlocalized Theorem 1,
+> 1'' (**r3, E-4: restated on (H-UP-fam), the family-of-collar-depths uniqueness form, with the
+> two-face proof; LABEL OF RECORD = SCHEMA per judge downgrade J-r2p-1 until the E-4
+> adjudication, delivered strength THEOREM modulo (H-UP-fam)**; interior S1-class determinism =
+> NG-9) — the unlocalized Theorem 1,
 > though true, is VACUOUS for the device data class, whose rotating-wave complex lives upstream
 > of Gamma_d by design) and (ii) the steady per-phase class CONDITIONAL ON (M-a') (Theorem
 > 2(a)-(b): x time-like via S A_1 >= delta S; the SURFACE certificate (M-a) does not and cannot
@@ -1458,8 +2035,8 @@ owed, not optional.
 |---|-----------|------------|-------------|-----------------|------------------------|
 | 0.1 | s exists; c^2 = gamma(T) R T | (G1)-(G3) | THEOREM | exact for class | numeric (dp/drho)_s check; rejects over roundoff |
 | 0.2 | Primitive form + 3-D eigenstructure, multiplicities 1+3+1 | (G1)-(G3), smooth flow | THEOREM | verbatim | eigendecomposition + rank test; rejects on mismatch/defect |
-| 1 | Unsteady linearized: normal-margin interface = pure outflow; S A(n_I) >= delta S; upstream independence | (H1.1)-(H1.4) normal form, (G1)-(G3), (D'') for the extension | THEOREM (C^1 core complete; H^1 extension THEOREM* on smooth portions, corners = NG-3); **for the device data class (H1.1) fails by design — consumed only via row 1' (r2, repairs R2-O2/R2-N(e))** | fully general | downstream-pulse test + subsonic control; min-eig test of Lemma 1.2 incl. random normals |
-| 1' | Collar form (Thm 1', no signal enters C_h through Gamma_d) + device-class domain decomposition (Prop 1'') + finite speed (Lemma 1.4) — r2 | (H1.1') + (G3)-box ON the collar C_h (= (M-c)'s declared domain) + (M-a) + (H-RW); (D''); Prop 1'' adds (H-UP) | THEOREM (Thm 1', Lemma 1.4 complete); Prop 1'' THEOREM modulo (H-UP) (S1-class transmission = NG-9) | fully general | roughened-base collar test (roughening OUTSIDE the collar: upstream response stays at scheme bound; INSIDE: certified bound must degrade); numeric cone test for Lemma 1.4 |
+| 1 | Unsteady linearized: normal-margin interface = pure outflow; S A(n_I) >= delta S; upstream independence | (H1.1)-(H1.4) normal form, (G1)-(G3), (D'') for the extension | THEOREM (C^1 core complete; H^1 extension THEOREM* on smooth portions, corners + Gamma_in variable-type = NG-3 — r3.6, AM-7); **for the device data class (H1.1) fails by design — consumed only via row 1' (r2, repairs R2-O2/R2-N(e))** | fully general | downstream-pulse test + subsonic control; min-eig test of Lemma 1.2 incl. random normals |
+| 1' | Collar form (Thm 1', no signal enters C_h through Gamma_d) + device-class domain decomposition (Prop 1'', r3 restated per E-4) + finite speed (Lemma 1.4) — r2/r3 | (H1.1') + (G3)-box ON the collar C_h (= (M-c)'s declared domain) + (M-a) + (H-RW); (D''); Prop 1'' adds (D-coll) + (H-UP-fam) (r3: family-of-depths uniqueness form; finite-speed clause dropped) + (cl-F) same forcing on Omega_up + (cl-C) C([0,T_f]; L^2_loc) class (r3.2, ESC-L0-1/ESC-L0-2 = F-1) | THEOREM (Thm 1', Lemma 1.4 complete — UNTOUCHED by r3, legs 12/13 CONFIRMED); Prop 1'': two-face proof complete modulo (H-UP-fam), LABEL OF RECORD SCHEMA per J-r2p-1 pending the E-4 adjudication (S1-class transmission = NG-9) | fully general | roughened-base collar test (roughening OUTSIDE the collar: upstream response stays at scheme bound; INSIDE: certified bound must degrade); numeric cone test for Lemma 1.4; r3 mid-face leg (trigger = field at scheme bound on ALL of Omega_up incl. the collar; mid-collar trace must stay at scheme bound over the fixed d_0/(2 lambda_max) window — contaminant (standing downstream pulse, pre-existing at t_p outside Omega_up, + any post-t_p upstream-exterior growth — r3.4, ESC3-3) arrival >= t_p + d_0/lambda_max = 2x window via the TERMINAL COLLAR SEGMENT, collar-only speed bound, exterior speeds unconstrained (r3.3, ESC2-4); rejects the two-face wiring; r3.2, ESC-L0-4 = F-5) |
 | 2a | Mach-cone axial positivity <=> u_x > c (geometric + algebraic, FULL 3-D symbol; meridional class scoped in Rmk 2.4) | c > 0, **u_x > 0** (r1); for 2.1 also \|u\| > c (implied) | THEOREM (incl. r1 extremality proof + pencil diagonalizability) | verbatim | discriminant-SIGN classification sweep (r1 predicate); single mismatch rejects |
 | 2b | Steady per-phase: x time-like (S_x = S A_1 > 0), upstream determination by upstream data alone | (H2.1)-(H2.3), (G1)-(G3); **(H2.2) supplied ONLY by the segment certificate (M-a'), never by the surface certificate (r2, R2-O1/R2-1)** | THEOREM (a,b); SCHEMA (c cone); nonlinear class SCHEMA = NG-1 (r1 downgrade; characteristic-IBVP package named) | fully general | bit-identical upstream march under exit perturbation; subsonic control CONDITIONAL (NG-7; r2 interim = STEADY duct BVP + broken-marcher check) |
 | 3a | Front runs upstream <=> M_s > M_x | u_1 > 0 | THEOREM | gas-model-free | shock-tube trajectory vs threshold, both sides of Pi* |
@@ -1509,13 +2086,13 @@ on any M0 proof.
 |---|-----|-------|-------|--------------------------|
 | NG-1 | Nonlinear steady per-phase x-marching well-posedness in the S1 class: characteristic-IBVP package (Rauch 1985 / Secchi 1996 / Gues 1990, H^m_tan spaces), Rauch-Massey compatibility at corners, axis 1/r regularity lemma, piecewise-smooth front transmission (Remark 2.3, was THEOREM* in r0) | SCHEMA | F2 | any consumption of the NONLINEAR per-phase R1 statement (the linearized Theorem 2(a)-(b) needs nothing) |
 | NG-2 | Oblique-front channel: upstream-sliding wall traces at weak strength; leading-point/apex reduction of downstream-confined disturbances to the normal-incidence threshold — neither stated nor proved | open (theory) | F2 | any consumption of the Pi* band for non-normal fronts; until then all pricing claims carry the "normal-front channel" qualifier |
-| NG-3 | Wall-interface corner compatibility for the H^1 extension of Theorem 1 (Remark 1.5.3(b)); the C^1 core is complete and unconditional. **r2 additions**: the geometric implication {uniform transversality of Lipschitz Gamma_w, Gamma_I} => {Omega_up Lipschitz} (demoted from r1's (D') to a remark; Grisvard model case named) and the corner leg of the multi-D existence clause consumed by Corollary 4's row-(a) remark | THEOREM* residual | F2 | first consumption of Theorem 1 at H^1 regularity on a domain with corners; any replacement of hypothesis (D'') by a transversality condition; any multi-D R2 consumption |
+| NG-3 | Wall-interface corner compatibility for the H^1 extension of Theorem 1 (Remark 1.5.3(b)); the C^1 core is complete and unconditional. **r2 additions**: the geometric implication {uniform transversality of Lipschitz Gamma_w, Gamma_I} => {Omega_up Lipschitz} (demoted from r1's (D') to a remark; Grisvard model case named) and the corner leg of the multi-D existence clause consumed by Corollary 4's row-(a) remark. **r3.4 additions (register mirror, ESC2-9 + ESC2-8)**: (i) corner inventory extended by the curves Gamma_mid intersect Gamma_w (never inventoried by 1.5.3; introduced in Section-1.6 prose r3.3, mirrored here r3.4), consumed by the Status-(a) H^1 run of (H-UP-fam) (Prop 1'', Section 1.6); (ii) VARIABLE-TYPE trace theory on Gamma^coll_s (family-wise, r3.6/AM-6) AND on Gamma_in's grazing/sonic loci (**r3.5 extension, ESC4-2**: u-bar.n_mid unconstrained by (D-coll)/Theorem 1'/Status (a), may cross {0, ±c-bar}; u-bar.n on Gamma_in equally unconstrained, with grazing GENERIC on an injector rim in the motivating class per Remark 1.5.5; both faces then outside both 1.5.3 smooth-portion regimes) — the Status-(a) H^1 leg is discharged as cited only for splits with BOTH data faces uniformly noncharacteristic (generically VIOLATED on Gamma_in in the motivating class, where the leg carries this residual, not the discharge); alternative discharge = the plain W^{1,1} Gauss-Green H^1 route on the (D'')-Lipschitz domain (no mollification debt on ANY face — r3.5), named-not-consumed | THEOREM* residual | F2 | first consumption of Theorem 1 at H^1 regularity on a domain with corners OR with variable-type (grazing/sonic) loci on a data face (r3.6, AM-7); any replacement of hypothesis (D'') by a transversality condition; any multi-D R2 consumption; any Status-(a)/H^1 consumption of (H-UP-fam) at Prop 1'' (r3.4) |
 | NG-4 | Multi-D impedance closures: uniform Kreiss analysis (surface modes) for linearized Euler with impedance BCs; Corollary 4 is 1-D normal-incidence only | open (theory) | F2 | contract-level consumption of "R2 holds for passive closures" beyond the 1-D model class |
 | NG-5 | Viscous upstream-influence channel (free interaction, shock-train/pseudo-shock creep through the subsonic wall layer): transmits influence below any Pi*, invisible to all four monitors M-a/M-a'/M-b/M-c (r2 count) | PRACTICE (scope exclusion) | program level (F2 + D-doc scope paragraph) | any claim that the monitor bounds upstream influence in the PHYSICAL (viscous) device; scope sentence must travel with every consumption |
 | NG-6 | (G2') global EOS clause: beyond-table strengths Pi > Pi_box are outside tabulated-EOS validity AND outside frozen thermally-perfect physics; band-edge saturation is the honest monitor state | PRACTICE | thermo backend owner (memory `thermo-tabulated-backend`) | any claim consuming Pi > Pi_box; discharge = table extension + re-derived Pi_box |
 | NG-7 | Theorem 2 falsifier (ii) subsonic control: no subsonic-closure artifact exists in the pipeline; control leg structurally gated; **r2 interim = minimal STEADY subsonic 1-D duct BVP (the r1 unsteady column RETIRED as mode-mismatched placebo, R2-4); interim adequacy check = deliberately-broken marcher must be flagged** | conditional (falsifier completeness) | F2 | first subsonic-closure artifact lands; then the control leg becomes mandatory in-window |
 | NG-8 | M0 L4-DEFAULT wording — **r2: carries BOTH wording deltas of the split certificate**: (i) recorded axial form vs proved NORMAL form u.n_I - c >= delta on tilted Gamma_d patches (M-a, causality consumer); (ii) the SEGMENT form u_x - c >= delta on Omega_{[x_0,x_I]} + box membership (M-a', steady/pricing consumers) — neither implies the other; no planarity pin found in [D-CONTRACT] | retro-propagation item (R4) | next M0 edit window | M0 [D-CONTRACT] L4-DEFAULT block restated as the SPLIT certificate (or planarity + segment pins added); until then every certificate check on a non-planar patch uses the normal direction, and every Theorem-2/3 consumption cites (M-a') |
-| NG-9 | (H-UP) interior upstream determinism for the S1 device class: uniqueness + finite propagation speed for the linearized problem across fronts/slip lines (transmission conditions for a discontinuous-coefficient symmetric hyperbolic system) — Proposition 1'''s modulo clause; the collar statement (Theorem 1') consumes nothing | SCHEMA (standard-physical, unwritten) | F2 | any consumption of FULL-Omega_up causal separation for the device data class (collar-only consumption of Theorem 1' needs nothing) |
+| NG-9 | (H-UP-fam) (r3 restated per E-4) interior upstream determinism for the S1 device class: UNIQUENESS-given-full-face-trace for the linearized problem across fronts/slip lines (transmission conditions for a discontinuous-coefficient symmetric hyperbolic system), at the collar-depth family of Proposition 1''. **r3 deltas**: the finite-propagation-speed clause is DROPPED from the consumed hypothesis (its burden is Lemma 1.4 on the collar, PROVED); the depth-h/2 enlargement adds only W^{1,infinity} territory, so the S1-class burden is unchanged vs the r2 (H-UP). The collar statement (Theorem 1') consumes nothing | SCHEMA (standard-physical, unwritten) | F2 | any consumption of FULL-Omega_up causal separation for the device data class (collar-only consumption of Theorem 1' needs nothing); note the Prop 1'' LABEL is separately gated on the E-4 adjudication (J-r2p-1), not on this gap alone |
 | NG-10 | (M-b) overpressure-surrogate legs beyond Lemma 3.2's class: deceleration events (u_d < u_1, blockages) and propagation of the resolved front through the NONUNIFORM downstream field (gradients can strengthen a front en route to Gamma_d) — no conservatism inequality proved | open (theory) | F2 | any (M-b) consumption via the overpressure surrogate outside the uniform pure-pressurization class; the primary measured-strength monitor needs nothing |
 | NG-11 | Piecewise-smooth-class 1-D uniqueness at finite strength (self-similar-class uniqueness IS cited, MP §V; Kang-Vasseur a-contraction EOS hypotheses unverified for gamma(T)) — deliberately UNCONSUMED: 3.3 needs only "AN admissible solution breaches" | unconsumed residual | F2 | any restoration of "THE exact entropy solution" phrasing, or any future consumption of uniqueness beyond the self-similar class |
 

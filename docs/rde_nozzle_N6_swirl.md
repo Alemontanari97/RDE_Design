@@ -154,3 +154,37 @@ unknown/equation per unit process + one adjoint row + a swirl oracle
 | N6-3 obstruction identity (closure fails iff not free vortex) | THEOREM | YES | Part B3 (double control) |
 | N6-3 strong only-if (no alternative reduction) | SCHEMA | NO — needs a classification argument | falsifier: exhibit a reduction |
 | Five-field optimality system | SCHEMA | NO — calculus of variations in function space | route named; counting brick already THEOREM |
+
+REGISTER CROSS-REFERENCES OF RECORD (added 2026-08-19, S-FOUNDATIONS-C
+Blocco 2; source: validation/sfoundations_raws_2026-08-13/phaseD/
+phaseD_meanswirl_formalization.md §6 register + §7 item 3; r2-pass
+provenance: r2pass/VERDICT_escalation.md §4 (landing gate OPEN) +
+r2pass/VERDICT_confirm.md §2 (doc2 DRY)):
+ - D.15 [MS-T-GAMONLY] Clause 1 (THEOREM, EOS-general) CONSUMES N6-3:
+   Gamma-only monitoring FALSELY LICENSES the control-surface
+   reduction — the §3 obstruction identity is the theorem's engine.
+   Clause 2 (minimality/iff) is SCHEMA = named gap G-g, OWNER: THIS
+   §5 line (shared falsifier with the "N6-3 strong only-if" row
+   above: exhibit an alternative pointwise reduction / a
+   variation-surviving cancellation family).
+ - D.19 [MS-T-PUMP] + D.20 [MS-T-ROTH] are the MECHANISM LAYER above
+   N6-3: azimuthal pressure pumping (rate Omega) is what DRIVES the
+   Gamma/h0 nonuniformity that triggers the §3 obstruction, and
+   rothalpy is the exact invariant the 2.5-D reduction splits. D.20
+   labels of record: THEOREM (smooth + contacts; contact split
+   released, VERDICT_escalation §4 leg 9) / THEOREM* (mass-crossing
+   fronts; carrier queued, gap G-a, owner the D.6 promotion task).
+ - D.14 [MS-DEF-TRIPLE] is the OPERATIONAL CONSUMER of the §3
+   obstruction identity (the TRIPLE monitor's OBS(xi) reads exactly
+   the (h0', Gamma Gamma'/y^2) deviation the identity prices). Its
+   LICENSING leg is explicitly SCHEMA-GATED on G-b1 — the gate binds
+   LICENSING use ONLY; the BLOCKING direction (G6 loud reject) is
+   unaffected. OWNER of G-b1: THIS §5 line. (G-b2, the per-campaign
+   derived tolerance constant, OWNER: first licensing campaign.)
+ DUTIES RECORDED ON THIS LINE (meanswirl §6 named gaps, verbatim
+ scope): (G-b1) sensitivity-functional lemma — prove
+ |objective error| <= S(W_ref, geometry) · OBS on the BV class,
+ W-extremum case treated explicitly (via psi-quadrature
+ integration-by-parts), or refute and add a W-extremum guard;
+ (G-g) D.15 Clause 2 — the open-set variation-quantifier +
+ power-separation proof (= the N6-3 strong-only-if SCHEMA leg above).

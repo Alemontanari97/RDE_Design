@@ -776,6 +776,10 @@ G1 (M1+)    ORACLE GATE (absolute): O1/O2/O3 or no science.
 G2 (M2)     VALUE GATE, now theorem-grade: bound-ladder gap per channel;
             gap < ~1% Isp on all of N1-N4 → pivot to certification/
             operability/duty-split value proposition (honest death).
+            [NOTE 2026-08-19 (S-FOUNDATIONS-C tree-diff §4 item 10):
+            external calibration anchor for the delta/(v) budget and
+            tolerance-ambition design = THRUST-STAND-CLASS accuracy
+            (~0.5-1%). Note only, no row.]
 G3 (M4)     UNSTEADINESS GATE: St|J1| large → rung-3 correction loop.
             [S14 duty (PAN-S14, PM lens): the trigger "large" must be
             a NUMBER with a derivation before A4 starts — currently
@@ -804,6 +808,11 @@ G5 (new)    LITERATURE GATE: A0.5 pass before any submission.
 G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
             (Crocco, completeness, H-I2) is rejected loud — no design on
             inconsistent data.
+            [ADDED 2026-08-19 (S-FOUNDATIONS-C, D6 §6 item 17): the
+            loud-reject set gains the D.14 [MS-DEF-TRIPLE] rejector +
+            the D.16 [MS-DEF-AMAUDIT] audit row — both PRACTICE,
+            SPECIFIED-NOT-ARMED until first ingestion; contract text
+            and grades in item 17.]
 
 ------------------------------------------------------------------------------
 ## 6. First 90 days (concrete, amended; STATUS REFRESH 2026-07-17)
@@ -1051,6 +1060,34 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
     then point the corresponding carrier/falsifier fields at it so
     those rejectors can fire in CI — same closure pattern as item 15
     (ME-5).
+17. MEAN-SWIRL CONTRACT ROWS (added 2026-08-19, S-FOUNDATIONS-C
+    Blocco 2; source: validation/sfoundations_raws_2026-08-13/phaseD/
+    phaseD_meanswirl_formalization.md §6 register + §7 item 4;
+    r2-pass provenance: r2pass/VERDICT_escalation.md §4 (leg 8, the
+    D.16 gross normalizer, released) + r2pass/VERDICT_confirm.md §2
+    (doc2 DRY)):
+    (a) D.16 [MS-DEF-AMAUDIT] angular-momentum AUDIT row — cycle AM
+    balance-residual against the D.6 budget (plane-stress moments
+    included), gross normalizer |rho u_x Gamma|, DERIVED tolerance,
+    too-clean flag, station-placement rule, signed + backflow-bearing
+    synthetic arming tests. Grade: PRACTICE, REJECTOR-GATED,
+    SPECIFIED-NOT-ARMED (arming = first dataset ingestion window).
+    (b) D.14 [MS-DEF-TRIPLE] monitor's G6 REJECTOR — the TRIPLE
+    spread OBS(xi) in TV form with C1 guard joins the gate-G6 stage-A
+    loud-reject set (see gate G6, §5). Grade: PRACTICE,
+    REJECTOR-GATED, SPECIFIED-NOT-ARMED. BLOCKING direction operative
+    at arming; LICENSING use stays SCHEMA-gated on G-b1 (owner: N6
+    doc §5 line).
+    A4 NORMALIZATION PIN (swirl5f DISPATCH §4 flag B-1): the
+    tangential-energy reading of these rows is KE-NORMALIZED, per the
+    D.13 contract-row pin landed this window (LAND-1, M0 VI.1 D.13
+    row) — the pin precedes ANY dataset ingestion (a unit mismatch
+    would fire the D.10 falsifier on convention, not physics).
+    (c) CARRIER phaseD_meanswirl_symcheck.py (ALL CHECKS PASS,
+    meanswirl doc §5 header): suite-group assignment AT COMMIT +
+    baseline row per lint (vii) discipline in the commit window.
+    This item is the DUTY LINE only — the actual suite wiring
+    happens at commit, not here (pinned-env/commit discipline).
 
 ------------------------------------------------------------------------------
 ## 7. Risk register deltas (vs roadmap)

@@ -66,6 +66,187 @@ UNBLOCKED: no on-file refutation of this document remains
 unconsumed (measured this window: r1_l0, r1_l1, r2_l0, r2_l1,
 r3_l0, r3_l1, r4_l0 — all cited by §6-bis/§6-ter/§6-quater).
 
+REVISION r4 (2026-08-18, S-FOUNDATIONS-C escalation window): the
+r2-BATCH adversarial-pass adjudication (`r2pass/VERDICT_r2pass.md`,
+judge of record; objection texts `r2pass/refute_r2batch_l0.md`,
+`r2pass/refute_r2batch_l1.md`) is APPLIED IN PLACE for the legs of
+that pass targeting THIS document: escalation E-3 (leg 6, D.18 —
+sustained L0-3/L1-3 BREAKS, L0-4 REPAIR, L0-5/L1-4/L1-5
+amendments) and amendment A-1 (leg 7, D.2 H-CVX — sustained
+L0-6/L1-6). Changes are marked "(r4)" at the point of change; the
+per-objection disposition ledger is §6-quinquies. Substance:
+(1) the D.18 FIRST IFF is RESTATED — the r3 display was FALSE in
+the ⟹ direction as printed, refuted by the document's OWN example
+(α); replaced by the unconditional operator identity + the two
+true conditionals; (2) the SECOND IFF's singular leg gains the
+previously UNPROVED n_m = 0 case (locally azimuthal front
+strata), WRITTEN here at the honest price of one more hypothesis
+on that stratum (arc H-CVX — the leg is no longer blanket
+EOS-free); (3) the L0-5/L1-4/L1-5 amendments land in the
+definition and the G-f spec; (4) D.2's H-CVX parenthetical is
+corrected per A-1 (genuine nonlinearity is G_fund ≠ 0, not
+G_fund > 0). LABEL BINDING OF RECORD: the judge downgrades
+J-r2p-2/J-r2p-3 hold BOTH D.18 iff clauses at SCHEMA — the r4
+restatement and case are the escalation's written content, NOT a
+self-upgrade; restoration path = the G-f battery per proofs-1,
+adjudication of E-3 pending. NOTE (VERDICT_r2pass §1/§4): the
+verification layer is UNPROVEN in the confirm direction this
+window (known-true seed FAILED); nothing in this revision may be
+cited as layer-certified and the Blocco-2 landing gate stays
+CLOSED for the r2-pass set.
+
+REVISION r5 (2026-08-18, S-FOUNDATIONS-C escalation window,
+UNTIL-DRY ROUND 2): the round-1 escalation refutations of the r4
+text — `r2pass/esc_doc2_r1_l0.md` (ESC-L0-1..ESC-L0-4) and
+`r2pass/esc_doc2_r1_l1.md` (ESC-1..ESC-4) — are APPLIED IN PLACE,
+marked "(r5)" at the point of change; the per-objection
+disposition ledger extends §6-quinquies (ROUND 2 table). All
+eight objections are FIXED at full rigor (no rebuttals — every
+objection verified correct against the r4 text). [r6 annotation,
+never erasure: TRUE as to the eight round-1 objections' own
+demands; the round-2 pass then found NEW defects inside four of
+the landed r5 fixes (ESC2-L0-1..4, R2L1-1..3, one BREAKS),
+consumed at r6 — §6-quinquies ROUND 3.] Substance:
+(1) the SECOND IFF's conclusion is RESTATED in JUMP-SET form —
+the r4 per-front dichotomy was FALSE in the ⟹ direction on an
+in-class MIXED front (ESC-L0-1) and the r4 combining step was
+non-exhaustive on int{n_φ = 0} patches of non-φ-invariant
+components (ESC-1); the front-set assembly is now WRITTEN
+(a.e.→everywhere trace bridge, ESC-2, + φ-arc flow-invariance
+argument, Sard-free); (2) arc H-CVX is REWORDED to the
+connected-adiabat form (the r4 quantifier was vacuously
+satisfiable on a detached Hugoniot branch, ESC-4; in-model
+free); (3) the two-of-three rider and witness (w1) are
+corrected (ESC-L0-3/ESC-3, ESC-L0-4); (4) the stale r3
+truth-certification tag "strengthened and made true" is
+retracted by annotation (ESC-L0-2). The r4 "complete AS
+WRITTEN" certification is RETRACTED and replaced by the r5
+proof-state sentence. LABELS UNCHANGED: both D.18 iff clauses
+stay at SCHEMA per J-r2p-2/J-r2p-3 — E-3 adjudication pending;
+restoration path = the G-f battery per proofs-1; the r2-pass
+layer/gate caveat of the r4 block carries forward verbatim.
+RECONCILIATION NOTE OF RECORD (r5, same window — state
+integrity): the r5 slot was INTERRUPTED after this header block
+was written and before any body edit landed (measured on resume:
+zero "(r5)" markers below this block; §6-quinquies ended at the
+r4 residue paragraph). The resuming reviser verified every
+round-1 objection ID against the live text (all eight defects
+still present, confirming the header's "verified correct"
+claim), then wrote the body edits and the ROUND 2 ledger this
+block promises; every claim of this block was re-verified against
+the completed text. No prior text or log was erased; per-ID
+reconciliation outcomes are recorded in the ROUND 2 table.
+
+REVISION r6 (2026-08-19, S-FOUNDATIONS-C escalation window,
+UNTIL-DRY ROUND 3): the round-2 escalation refutations of the r5
+text — `r2pass/esc_doc2_r2_l0.md` (ESC2-L0-1..4) and
+`r2pass/esc_doc2_r2_l1.md` (R2L1-1..3) — are APPLIED IN PLACE,
+marked "(r6)" at the point of change; the per-objection
+disposition ledger is the §6-quinquies ROUND 3 table. All seven
+objections verified correct against the r5 text and consumed
+FIXED (no rebuttals). Substance: (1) the SECOND IFF's conclusion
+containment is RESTATED — the r5 pointwise clause "every front's
+JUMP SET is contained in int{n_φ = 0}" was FALSE on an in-class
+COINCIDENCE-BOUNDARY witness, and the assembly step-(1)
+trace-continuity lemma was FALSE at in-class front crossings
+(R2L1-1 BREAKS; ESC2-L0-2): the front jump set is now DEFINED
+(across-the-front adjacent-piece-pair pin, with a priced
+H²-null-intersection class pin), the containment of record is
+int{n_φ = 0} ∪ N_F (N_F = the closed front-null
+crossing/edge/coincidence-boundary set), and step (3) runs on the
+a.e. grade it needs (the atom dies AS A MEASURE); (2) the clause
+"Ṽ piecewise-C¹ MERIDIONAL" was UNDERIVED at C¹ front grade
+(ESC2-L0-1: the section route needs a Sard step unavailable below
+C² — Whitney; the front-free-section route cannot force §0-grade
+curve structure on the exceptional set) — WEAKENED to the
+provable C¹-off-a-closed-rotation-invariant-set form, with the
+two dependent structure clauses derived DIRECTLY (traces on
+φ-invariant patches; essential-jump-circle + step-(2) product
+structure); the r5 certification "proved as written" is RETRACTED
+— the THIRD consecutive over-certification of the assembly,
+counter recorded; (3) witness (w1)'s exemplar certificates
+corrected (ESC2-L0-3/R2L1-3: the standing RDE wave-frame flow is
+neither smooth nor |w_rel|-bounded-away-from-c BY THIS DOCUMENT'S
+OWN RECORD — front-carrying, CJ locus in-scope); (4) falsifier
+(a)'s trigger re-bound to connected-adiabat H-CVX and the n_m = 0
+closure (ESC2-L0-4 — it still ran the retracted arc form against
+"the r4 closure"); (5) the in-model connectedness discharge now
+WRITES the one-line fact it consumed unstated:
+Γ_G = R_g/c_v = γ(T) − 1 > 0 > −2 (R2L1-2). A-1 (leg 7, D.2
+parenthetical) re-checked by BOTH round-2 lenses: STANDS, no
+regression, no edit needed. LABELS UNCHANGED: both D.18 iff
+clauses stay at SCHEMA per J-r2p-2/J-r2p-3 — escalation E-3
+adjudication pending; restoration path = the G-f battery per
+proofs-1; the r2-pass layer/gate caveat of the r4 block carries
+forward verbatim.
+
+REVISION r7 (2026-08-19, S-FOUNDATIONS-C escalation window,
+UNTIL-DRY ROUND 4): the round-3 escalation refutations of the r6
+text — `r2pass/esc_doc2_r3_l0.md` (F-1..F-4) and
+`r2pass/esc_doc2_r3_l1.md` (R3L1-1..4) — are APPLIED IN PLACE,
+marked "(r7)" at the point of change; the per-objection
+disposition ledger is the §6-quinquies ROUND 4 table. All eight
+objections verified correct against the r6 text and consumed
+FIXED (no rebuttals). Substance: (1) the CLASS PIN is RESTATED
+to price EXACTLY what the chain consumes — N_F front-H²-null
+DIRECTLY, with a sufficient checkable geometric form (p1)–(p3)
+(pairwise H²-null intersections + null edge sets + no
+cross-front accumulation outside a null set): the r6 pin bounded
+only pairwise INTERSECTIONS and its printed nullness claim was
+FALSE in-class (F-1's phantom-front witness — a jump-free C∞
+front accumulating on F over a fat Cantor set, pin-compatible,
+on an exact solution), and its rectifiability gloss was false at
+C¹ front grade and consumed by nothing (R3L1-2, Whitney
+tangential-contact construction); (2) the two conclusion
+STRUCTURE CLAUSES are re-stated AT THEIR DERIVED GRADES
+(off-N_F / H²-a.e.; clause (ii)'s product structure scoped to
+int{n_φ = 0} strata) — the r6 display printed them flat while
+the step-(3) salvage delivers a.e./off-N_F grade (R3L1-1 REPAIR
++ F-2); the PER-PAIR and ESSENTIAL jump grades are SEPARATED in
+step (1), with the essential-type clause (the only one step (3)
+consumes) stated unconditionally (F-1(iv)); the (⟸) re-read is
+re-run at the a.e. grade with no nullness premise; the r6
+certification "AT EXACTLY THE STRENGTH OF ITS STATED CLAUSES"
+is ANNOTATED as the FOURTH consecutive over-certification
+(counter updated) and replaced by the r7 grades-in-line
+sentence; (3) step (1)'s justification is re-cited from
+"per-piece C¹ regularity up to the front" (a regularity §0 does
+NOT grant) to the boundary-extension line (u1), hereby WRITTEN
+(R3L1-4); (4) witness (w1)'s smooth-instance rider is re-scoped
+to a FRONT-FREE subdomain meeting the D.19 pumping region — the
+r6 "any subdomain" universal certified predicates its citations
+do not deliver (F-3/R3L1-3; third consecutive
+transcribed-exemplar defect, mechanism recorded in-statement);
+(5) the G-f mixed-front item's pass-criterion is re-bound from
+the retracted r5 display to the containment of record (F-4).
+A-1 (leg 7, D.2 parenthetical): re-confirmed by BOTH round-3
+lenses, no regression, no edit. LABELS UNCHANGED: both D.18 iff
+clauses stay at SCHEMA per J-r2p-2/J-r2p-3 — escalation E-3
+adjudication pending; restoration path = the G-f battery per
+proofs-1; the r2-pass layer/gate caveat of the r4 block carries
+forward verbatim.
+
+REVISION r7.1 (2026-08-19, S-FOUNDATIONS-C Blocco-2 landing
+window): the three wording-class amendments SUSTAINED and
+ADJUDICATED by the confirming-round judge
+(`r2pass/VERDICT_confirm.md` §4) APPLIED IN PLACE, marked
+"(r7.1, AM-n)" at the point of change: AM-1 (= CR-1: the (⟸)
+re-read's third clause re-cited from the K = 0-fed clause (1b)
+— circular in the direction whose goal is K = 0 — to the ⟸
+givens themselves: the conclusion's without-pin gloss /
+step-(3) decomposition on the GIVEN ∂_φ V = 0, both routes
+judge-verified on-page); AM-2 (= CR-2: the unclaimed composite
+upgrade renamed (u1')/(u2), the token (u1) reserved for the
+WRITTEN extension lemma consumed only off N_F; mirrored in the
+register row and the ROUND-4 R3L1-1 disposition row); AM-3
+(= R4L1-2: clause (1b)'s justification restated — approximate
+limits exist BY DEFINITION at every essential-jump point, and
+at H²-a.e. point of each witness geometry of record — the
+underived universal dropped). Replaced wording quoted in place,
+never erased. NO label, grade, or strength claim changed
+(both D.18 iff clauses stay as of the r7 state; the
+over-certification counter stays at FOUR).
+
 LABEL DISCIPLINE: statement labels `MS-*` below are DOCUMENT-LOCAL.
 Registry/glossary minting happens at absorption (token-baseline
 ratchet, lint (xxiii)); existing tokens (H-AM1..H-AM5, [T-SLRW],
@@ -243,8 +424,16 @@ upward across a compressive Lax front UNDER
  (H-CVX, r2; r3 ARC REWORD) Bethe–Weyl convexity of the EOS ALONG
  THE CONNECTING HUGONIOT ARC: the fundamental derivative
  G_fund := 1 + ρ(∂c/∂ρ)_s/c is > 0 at every state of the Hugoniot
- locus joining the two end states (equivalently: the front's wave
- family is genuinely nonlinear along the connecting arc), with
+ locus joining the two end states (i.e. genuinely nonlinear WITH
+ the convex (compressive-shock) orientation — r4, A-1 of record,
+ L0-6/L1-6 SUSTAINED-AMENDMENT: the r3 parenthetical read
+ "equivalently: the front's wave family is genuinely nonlinear
+ along the connecting arc", a FALSE equivalence — genuine
+ nonlinearity is G_fund ≠ 0, not G_fund > 0, and an all-arc
+ G_fund < 0 (BZT) EOS is genuinely nonlinear yet is exactly what
+ this hypothesis exists to exclude; the displayed inequality
+ G_fund > 0 is the operative hypothesis, the parenthetical is a
+ gloss and no longer claims equivalence), with
  the Hugoniot well-defined there (Menikoff–Plohr weak
  conditions).
  r2 REPAIR OF RECORD: entropy monotonicity across Lax fronts is
@@ -1311,13 +1500,49 @@ writing each exact wave-frame row in cylindrical divergence form
 substitution absorbed into the RELATIVE azimuthal flux F_φ,rel,
 advective factor w_rel), the distributional residual of a
 piecewise-C¹ field decomposes as
- (a.c. part)  the displayed smooth-region K rows, off fronts;
+ (a.c. part)  per row, (1/r)∂_φ F_φ,rel off fronts — EQUAL to the
+   displayed advective K rows only MODULO an invertible triangular
+   recombination with the mass residual (r4, L1-5 of record: the
+   r3 line identified the a.c. parts with the displayed rows
+   outright, which is FALSE as a row-by-row identity). The
+   recombination identities, part of this DEFINITION:
+     div-form mass row = K_ρ;
+     div-form x-row    = K_u  + u  · K_ρ;
+     div-form r-row    = K_v  + v  · K_ρ;
+     div-form Γ-row    = K_Γ  + Γ  · K_ρ;
+     div-form s-row    = ρ K_s  + s  · K_ρ;
+     div-form h0-row   = ρ K_h0 + h0 · K_ρ
+   (the s and h0 K rows were displayed PER UNIT MASS, whence
+   their ρ factor — sharper than the objection's gloss; ρ bounded
+   away from 0 and the coefficients bounded, so the recombination
+   is invertible and triangular over K_ρ: "K = 0" is EQUIVALENT
+   in the two readings and both iff clauses are unaffected. BUT a
+   G-f executor transcribing the DISPLAYED advective rows as the
+   div-form a.c. parts would build a checker that FAILS on
+   correct fields — exactly the type-mismatch defect class this
+   document prosecutes elsewhere; the identities above are
+   therefore ALSO part of the G-f rejector spec, falsifier
+   block);
  (singular part)  an atom on each front with surface density
-   n_φ · [F_φ,rel]   per row (up to the declared surface-measure
-   normalization) — the n_φ-weighted jump of the relative
+   n_φ · [F_φ,rel]   per row (up to the surface-measure
+   normalization FIXED IN THE G-f COMPUTATION — r4, L0-5 of
+   record: the r3 parenthetical said "the declared surface-measure
+   normalization", referencing a declaration that exists NOWHERE
+   in this document, grep-verified by the refuter and the judge) —
+   the n_φ-weighted jump of the relative
    azimuthal flux: exactly the DIFFERENCE between the full 3-D RH
    residual [F_m·n_m] + n_φ[F_φ,rel] and the meridional RH
    residual [F_m·n_m] that the per-phase 2.5-D sections impose.
+   The meridional CANCELLATION in this "difference" reading is
+   itself a nontrivial identity between objects born with respect
+   to DIFFERENT measures and normals (the 3-D residual atom has
+   density [F·n] w.r.t. the r-weighted surface measure with the
+   unit 3-D normal n = (n_m, n_φ); the section-assembled residual
+   atom has density [F_m·n̂_m] w.r.t. curve-measure × dφ with the
+   unit 2-D normal n̂_m = n_m/|n_m|): a JACOBIAN identity
+   (|n_m| · dS-factor = section-curve factor) hereby NAMED as an
+   explicit G-f check target (r4, L0-5 — the r3 front instance
+   would have exercised it only implicitly).
 These atoms ARE the objects S.22's split-norm candidate prices:
 §5 and S.22 now type-check against each other. The row-by-row
 singular-density bookkeeping is a pen computation of the same
@@ -1366,12 +1591,111 @@ every fixed lab point. The DISTRIBUTIONAL K sees all of this: in
 (α)/(β) the singular part is NONZERO — the front atom IS the
 front-level difference between the two systems, invisible to the
 classical reading.)
-FIRST IFF (bookkeeping, now true): the wave-frame field solves
-the exact 3-D system DISTRIBUTIONALLY iff each azimuthal section
-solves the per-phase 2.5-D system distributionally (meridional RH
-included) AND K = 0 as a distribution — a.c. part and front atoms
-both. (By construction of K as the operator difference; the atom
-identity is the singular-density display above.)
+FIRST CLAUSE — RESTATED AT r4 (L0-3/L1-3 SUSTAINED-BREAKS; judge
+downgrade J-r2p-2 of record. The r3 display read: "FIRST IFF
+(bookkeeping, now true): the wave-frame field solves the exact
+3-D system DISTRIBUTIONALLY iff each azimuthal section solves the
+per-phase 2.5-D system distributionally (meridional RH included)
+AND K = 0 as a distribution — a.c. part and front atoms both."
+That biconditional is FALSE in the ⟹ direction as printed: K is
+DEFINED by the decomposition exact = reduced + K, so solving the
+exact system is equivalent to reduced-residual = −K, NOT to the
+printed conjunction. Two in-scope witnesses: (w1) an exact
+wave-frame solution genuinely φ-dependent OFF FRONTS and
+satisfying H-NC + H-WR has K ≠ 0 BY THE A.C. LEG of the second
+iff — e.g. the standing RDE wave-frame flow of record, [T-NSW]
+(sonic locus = the CJ hypersurface, empty interior; co-rotation
+locus empty interior; genuinely φ-dependent off fronts, of
+record via the D.19 pumping ∂_φp ≠ 0), or, for a SMOOTH
+instance, its restriction to a FRONT-FREE subdomain compactly
+inside the marching domain and clear of the CJ surface, chosen
+to MEET the D.19 pumping region (∂_φV ≢ 0 on the subdomain —
+nonempty by the pumping record ∂_φp ≠ 0 off fronts);
+front-freeness and the pumping intersection are stated
+HYPOTHESES of the instance, not derived, and [T-NSW](a) then
+supplies |w_rel| bounded away from c on the compact closure
+(r7 CORRECTION, F-3/R3L1-3; the r6 rider read: "its restriction
+to any subdomain compactly inside the marching domain and clear
+of the CJ surface, where [T-NSW](a) supplies |w_rel| bounded
+away from c" — TWO unproven universals in one clause: (i)
+genuine φ-dependence on EVERY such subdomain is not of record —
+the pumping record certifies ∂_φp ≠ 0 SOMEWHERE off fronts, not
+everywhere-locally, and a locally axisymmetric pocket
+(consistent with everything [T-NSW] certifies) would make that
+restriction a NON-member with K ≡ 0, the exemplar failing its
+K ≠ 0 role; (ii) smoothness was derived from a SONIC bound —
+[T-NSW](a) certifies |w_rel| > c on the marching domain, NOT
+front-freeness of it, and §0's own triple-point configuration
+puts oblique shocks/slip lines in-scope inside the hyperbolic
+region. The round-2 repair spec's "smooth subregion" qualifier
+and pointwise φ-dependence predicate were dropped in
+transcription — the THIRD consecutive generation of a defective
+transcribed (w1) exemplar spec (r4 false universal → r5
+non-member exemplar → r6 over-quantified restriction); prior
+text preserved in quotation, never erased)
+(r6 CORRECTION, ESC2-L0-3/R2L1-3; the r5 clause read: "(w1) a
+smooth genuinely φ-dependent exact wave-frame solution with
+w_rel bounded away from 0 and c — e.g. the standing RDE
+wave-frame flow of record, [T-NSW]" — but that exemplar is NOT a
+member of that class BY THIS DOCUMENT'S OWN RECORD: the standing
+flow is FRONT-CARRYING (w_rel ≈ −D_CJ at the interface
+presupposes the detonation front, the document's central
+singular object), hence not smooth on D × S¹; and it ATTAINS
+|w_rel| = c on the in-scope CJ locus (the H-NC block below: "the
+relative sonic locus IS the Chapman–Jouguet surface"), hence not
+bounded away from c — [T-NSW](a) certifies |w_rel| > c only ON
+THE MARCHING DOMAIN. The r5 wording had adopted the round-1
+suggested certificates verbatim; the transcribed spec, not the
+r5 mechanism, was defective — the OPERATIVE conditions really
+are H-NC + H-WR, which the standing flow satisfies, and the
+a.c.-leg contrapositive needs only genuine φ-dependence off
+fronts. Prior text preserved in quotation, never erased)
+(r5 CORRECTION, ESC-L0-4; the r4 text read: "(w1) any smooth
+genuinely φ-dependent exact wave-frame solution — the document's
+CENTRAL OBJECT — has K ≠ 0 by definition of the a.c. rows" — a
+FALSE universal carrying a FALSE certification: K ≠ 0 for
+φ-dependent fields is NOT definitional but exactly the second
+iff's nontrivial content, valid only under H-NC + H-WR, and the
+document's OWN w_rel = 0 kernel family recorded below is
+genuinely φ-dependent with every displayed row AND every
+div-form flux φ-independent; prior text preserved in quotation,
+never erased), LHS
+true, RHS conjunct false; (w2) the document's OWN example (α),
+recorded above: an exact distributional solution whose sections
+VIOLATE meridional RH and whose K carries a NONZERO front atom —
+LHS true, BOTH RHS conjuncts false, the two residual atoms equal
+and opposite under the 3-D RH. The "(bookkeeping, now true)"
+certification was false; only the ⟸ direction was true. This is
+a RESTATEMENT, not a check — annotation of record, prior text
+preserved above, never erased.) The bookkeeping of record is the
+UNCONDITIONAL OPERATOR IDENTITY, per row, as distributions on
+D × S¹_φ:
+  exact-residual(V) = 2.5D-residual(V) + K(V)
+(a.c. parts per the triangular-recombination display above; front
+atoms per the singular-density display), from which follow the
+TWO TRUE CONDITIONALS:
+ (i) GIVEN the azimuthal sections solve the per-phase 2.5-D
+     system distributionally (meridional RH included): V solves
+     the exact 3-D system distributionally IFF K(V) = 0;
+ (ii) GIVEN V solves the exact 3-D system distributionally: the
+     sections solve the per-phase system IFF K(V) = 0;
+equivalently the TWO-OF-THREE RULE: any two of
+{exact-residual = 0, 2.5D-residual = 0, K = 0} imply the third,
+and NO pairwise implication among the three — hence no pairwise
+biconditional — holds unconditionally: ALL SIX directions fail
+(r5 CORRECTION, ESC-L0-3/ESC-3; the r4 rider read: "each fails
+in one direction, with (w1)/(w2) the counterexamples of record"
+— misleading on the natural fails-one-holds-other reading, and
+(w1)/(w2) cannot witness the {2.5D, K} pair at all: BOTH of that
+pair's conjuncts are FALSE at (w1) and at (w2), so the
+biconditional is SATISFIED there; prior text preserved in
+quotation, never erased). Witnesses of record: (w1)/(w2) for the
+two directions out of exact-residual = 0 (exact ⇏ 2.5D,
+exact ⇏ K = 0); example (β) for 2.5D ⇏ exact and 2.5D ⇏ K = 0
+(sections solve, 3-D RH violated, nonzero front atom); any
+smooth φ-independent NON-solution field (K ≡ 0 identically,
+exact-residual = 2.5D-residual ≠ 0) for K = 0 ⇏ exact and
+K = 0 ⇏ 2.5D.
 SECOND IFF: for a field solving the exact 3-D wave-frame system,
 and under
   (H-NC — REWORDED at r2: the r1 phrase "|w_rel| ≠ c on every
@@ -1394,12 +1718,210 @@ and under
   justification) the co-rotation locus {w_rel = 0} has empty
   interior (in-scope justification: [T-NSW](a) gives
   |w_rel| > c > 0 on the marching domain),
+and under — LOAD-BEARING ONLY ON THE n_m = 0 FRONT STRATA of the
+singular leg (r4, L0-4 of record, judge downgrade J-r2p-3: the r3
+chain consumed n̂ = n_m/|n_m| and the section-imposed meridional
+RH, BOTH unavailable at front points with vanishing meridional
+normal; locally azimuthal sheets are IN-CLASS — §0/§5 admit ALL
+C¹ wave-steady front hypersurfaces with no n_m = 0 exclusion, and
+under the H-WR front-trace reading they are genuinely
+mass-crossing azimuthal shocks — so the ⟹ direction was UNPROVED
+there as printed; the case is WRITTEN below rather than excluded,
+because the detonation front of record is azimuthal-normal-
+dominated and a hypothesis exclusion would gut the theorem's
+in-scope instance) —
+  (H-CVX, CONNECTED-ADIABAT FORM — r5 REWORDING, ESC-4; the r4
+  arc form read: "on the n_m = 0 front strata the Hugoniot arcs
+  connecting the one-sided traces lie in the G_fund > 0 region,
+  Hugoniot well-defined (Menikoff–Plohr weak conditions)" — and
+  is VACUOUSLY satisfiable when the downstream trace sits on a
+  Hugoniot-locus component DETACHED from the branch through the
+  upstream state (the Menikoff–Plohr phase-transition regime;
+  global single-valuedness of the Hugoniot needs subsidiary
+  conditions — Bethe's Γ_G > −2 — beyond convexity): no
+  connecting arc exists, the entropy-monotonicity step pins
+  nothing, and vacuity here = FAILURE, because unlike D.2's use
+  (conditioning a monotonicity claim) this hypothesis must
+  EXCLUDE a state; prior text preserved in quotation, never
+  erased): on the n_m = 0 front strata the downstream trace lies
+  on the CONNECTED shock adiabat through the upstream trace —
+  existence and connectedness per the Menikoff–Plohr weak
+  conditions plus, where needed, the Γ_G > −2 single-valuedness
+  condition — with G_fund > 0 at every state of the adiabat
+  segment between the traces. PRICE, honest: with this
+  ingredient the
+  singular leg is NO LONGER blanket EOS-free — the n_m = 0 case
+  is EOS-general GIVEN connected-adiabat H-CVX; in the γ(T)-exact
+  closure of record H-CVX is discharged unconditionally (closed
+  form G_fund > 1, D.2, PLUS — r6, R2L1-2: connectedness /
+  single-valuedness is NOT a consequence of convexity alone, as
+  this very hypothesis line records via Bethe's Γ_G > −2, so the
+  r5 attribution of connectedness to the closed form ALONE
+  contradicted its own Bethe sentence; the missing in-model fact
+  is one line, hereby written: for the §0 gas model (p = ρ R_g T,
+  h = h(T), c_v = c_p − R_g > 0 by AUD-cp) the Grüneisen
+  coefficient is Γ_G = v(∂p/∂e)_v = R_g/c_v = γ(T) − 1 > 0 > −2,
+  so Bethe's subsidiary condition holds IDENTICALLY in-model —
+  and G_fund > 1 TOGETHER WITH Γ_G > 0 makes the shock adiabat
+  globally p-monotone and connected in range), so no detached
+  branch exists where the model is defined — the r4 defect was
+  in the EOS-general wording only, in-model exposure NIL — and
+  the case is FREE in-model,
 K = 0 AS A DISTRIBUTION iff the operation is DEGENERATE
-AXISYMMETRIC (r3 conclusion, strengthened and made true): all
-fields φ-independent off fronts, AND every front is either
-jump-free (removable) or a φ-INVARIANT (meridional × S¹, n_φ ≡ 0)
-surface with φ-independent one-sided limits.
-PROOF of the second iff under H-NC + H-WR (⟸ trivial; ⟹ was the
+AXISYMMETRIC — JUMP-SET FORM, RESTATED AT r5 (ESC-L0-1/ESC-1 of
+record; the r4 display read: "(r3 conclusion, strengthened and
+made true): all fields φ-independent off fronts, AND every front
+is either jump-free (removable) or a φ-INVARIANT (meridional ×
+S¹, n_φ ≡ 0) surface with φ-independent one-sided limits." That
+PER-FRONT dichotomy is FALSE in the ⟹ direction on an in-class
+MIXED front: one connected declared C¹ wave-steady front,
+φ-invariant over part of its parameter range and helical
+(n_φ ≠ 0) beyond, carrying a genuine meridional shock — strength
+tapering C⁰-to-zero at the ends, the standard shock-tip geometry
+— strictly inside the φ-invariant part, the field φ-independent
+throughout (ESC-L0-1's witness). K = 0 holds there, yet that
+single front is NEITHER jump-free NOR a φ-invariant n_φ ≡ 0
+surface. The stale r3 truth-certification tag "strengthened and
+made true" is RETRACTED by this annotation (ESC-L0-2): it stood
+on a display false WITHOUT the r4 H-CVX ingredient — on a
+Menikoff–Plohr non-convex EOS an isentropic nontrivial azimuthal
+sheet mounts, at the same construction grade as example (α), a
+K = 0 field with a non-axisymmetric front — and, per this
+restatement, false PER-FRONT even with it. Prior text preserved
+in quotation, never erased.) CONTAINMENT AND REGULARITY
+RESTATED AT r6 (R2L1-1 BREAKS + ESC2-L0-1 of record; the r5
+display read: "every front's JUMP SET is contained in
+int{n_φ = 0} (front-relative interior — ...); and V coincides
+a.e. with a piecewise-C¹ MERIDIONAL field Ṽ(x, r), so all
+one-sided limits are φ-independent and the essential jump set
+is a rotation-invariant (meridional-curve × S¹) set." TWO
+defects: (a) the pointwise int{n_φ = 0} containment — and with
+it the printed "equivalently" — is FALSE on an in-class
+COINCIDENCE-BOUNDARY witness (R2L1-1): an axisymmetric
+normal-shock disc Σ spanning the annulus, with a declared C¹
+wave-steady front F coinciding with Σ on a closed parameter
+patch P and departing helically (n_φ ≠ 0 a.e.) with C¹ contact
+beyond, plus C2' := closure(Σ ∖ P) carrying the rest of the
+shock; at q ∈ ∂P the across-the-front piece pair carries the
+FULL shock jump while n_φ(q) = 0 with {n_φ ≠ 0} accumulating at
+q, so F's jump set contains ∂P, which is NOT inside
+int{n_φ = 0} — yet ∂_φV = 0, K = 0, and the theorem's CORE holds
+on the witness; (b) "piecewise-C¹ MERIDIONAL Ṽ" in the §0 sense
+(finitely many C¹ curves) was UNDERIVED (ESC2-L0-1): fiber
+averaging delivers only Ṽ ∈ L¹_loc; the section route needs a
+regular-value/Sard step UNAVAILABLE at the class's C¹ front
+grade (Sard for ℝ² → ℝ needs C² — Whitney's C¹ counterexample —
+and consuming it would falsify the assembly's own "Sard-free"
+claim), and the front-free-section route yields C¹ only off a
+closed set whose §0-grade curve structure is blocked in-class (a
+single C¹ graph front can contain a Cantor-parametrized family
+of φ-circles). Prior text preserved in quotation, never erased.)
+JUMP-SET PIN (r6): a front F's JUMP SET is DEFINED via the
+across-the-front ADJACENT PIECE PAIRS — q ∈ F is a jump point
+iff some pair of C¹ pieces adjoining across F at q has unequal
+one-sided limits there — NEVER via normal-line traces, under
+which a transversal crossing with another, jump-carrying front
+would mis-attribute that front's jump to this one (R2L1-1's
+over-attribution twin). N_F := the closed set of points of F
+lying on another declared front, on F's own edge, or where the
+local adjacent-piece-pair structure changes. CLASS PIN (r7
+RESTATEMENT, priced honestly — F-1 REPAIR + R3L1-2 of record;
+the r6 pin read: "distinct declared fronts have pairwise
+H²-null intersections — patches of full 2-D coincidence are
+identified as one declared front there; under this pin N_F is
+front-H²-null (finitely many C¹ objects: crossings, triple
+curves, coincidence boundaries and edges are locally
+H¹-rectifiable)" — DEFECTIVE twice over: (i) the nullness claim
+was FALSE as printed: that pin bounded only pairwise
+INTERSECTIONS, while N_F's structure-change component is
+uncontrolled by it and can be FAT in-class under it — F-1's
+phantom-front witness adds to the R2L1-1 coincidence-boundary
+witness ONE jump-free C∞ front G, declared over an open set and
+ACCUMULATING on F exactly over a fat Cantor set E (Whitney
+zero-set): all pairwise intersections H²-null, the front-set
+union still closed, yet N_F ⊇ E-lift with H²(E-lift) > 0, on an
+in-class EXACT solution; (ii) the rectifiability gloss is false
+at C¹ front grade: TANGENTIAL contact makes intersections and
+edges essentially arbitrary closed sets — a Cantor dust of
+Hausdorff dimension 3/2 is H²-null, hence pin-compatible, yet
+NOT locally H¹-rectifiable (R3L1-2's Whitney construction) —
+and rectifiability is consumed by NOTHING downstream: only
+H²-nullity is. Prior text preserved in quotation, never
+erased): the pin of record now prices EXACTLY what the chain
+consumes — N_F IS FRONT-H²-NULL. Sufficient checkable geometric
+form, per configuration: (p1) distinct declared fronts have
+pairwise H²-null intersections (patches of full 2-D coincidence
+identified as one declared front there); (p2) every declared
+front is properly embedded up to an edge set of H² measure zero
+(locally H¹-rectifiable edges suffice WHERE they occur — no
+rectifiability is claimed or needed in general); (p3) no
+declared front accumulates on another outside an H²-null set.
+Under (p1)–(p3), N_F is front-H²-null: cross-front points are
+null by (p1) with accumulation residues null by (p3); edge
+points are null by (p2); and the structure-change component is
+contained in the union of the previous two, since the local
+adjacent-piece-pair structure along F (pieces = components of
+the front-set complement) can change only where the closure of
+the remaining front set meets F or where F's own edge is
+approached. Without the pin only the a.e./measure-grade clauses
+below are asserted (at ESSENTIAL-jump type — the type the
+H²-a.c. atoms see; steps (1)/(3)). The conclusion of record:
+  ∂_φ V = 0 AS A DISTRIBUTION on D × S¹_φ,
+equivalently: all fields φ-independent off fronts; every front's
+jump set MINUS N_F is contained in int{n_φ = 0} (front-relative
+interior — the locally φ-invariant strata: n_φ = 0 on an open
+front patch makes e_φ tangent there, so the rotation flow
+preserves the front and every jump point lies on a φ-arc inside
+it), hence every front's jump set is contained in
+int{n_φ = 0} ∪ N_F — i.e. in int{n_φ = 0} UP TO a front-null
+set, the nullness now holding BY the r7 class pin, which prices
+it directly (r7, F-1: under the r6 pin this "i.e." claimed an
+equivalence the pairwise-intersection pin could not buy —
+without the pin the honest gloss is "up to a closed set
+carrying no ESSENTIAL-jump mass on {n_φ ≠ 0}") (on the R2L1-1
+witness that null set is exactly ∂P ⊂ N_F: the witness PASSES
+the containment); and V coincides a.e.
+with a meridional field Ṽ(x, r) ∈ C¹ OFF A CLOSED
+ROTATION-INVARIANT MERIDIONAL SET, with the two structure
+clauses derived in assembly step (3) WITHOUT any global
+Ṽ-regularity claim, EACH STATED AT ITS DERIVED GRADE (r7
+GRADE ALIGNMENT, R3L1-1 REPAIR + F-2; the r6 display printed
+them flat — "one-sided limits on the locally φ-invariant front
+patches are φ-independent, and the ESSENTIAL jump set is a
+rotation-invariant (meridional-curve × S¹) set" — while the
+step-(3) salvage argument delivers only off-N_F/a.e. grade: the
+containment clause in this same display got its N_F price at r6
+and the structure clauses did not, an internally two-grade
+display; the a.e.→pointwise upgrade at N_F points ((u1')
+limit-matching AT N_F points plus the (u2) gluing across
+N_F-separated arc components — token disambiguated r7.1,
+AM-2 = CR-2, `r2pass/VERDICT_confirm.md` §4: the r7 text named
+this unclaimed composite "(u1) limit-matching plus gluing",
+colliding with the WRITTEN extension line (u1); (u1) itself,
+the extension lemma, IS written and consumed only off N_F)
+is NOT written and NOT claimed — the scoping option of R3L1-1's
+named repair is taken; prior text preserved in quotation, never
+erased): (i) one-sided limits on the locally φ-invariant front
+patches are φ-independent OFF N_F — everywhere off the priced
+exceptional set, hence H²-a.e. on the patch (N_F front-null by
+the r7 pin); the per-pair limits AT patch ∩ N_F points are not
+claimed; (ii) the ESSENTIAL jump set is rotation-invariant (a
+union of φ-circles — unconditional, by rotation invariance of
+the a.e. class), and is locally a C¹-curve × S¹ product where
+it meets a front's int{n_φ = 0} stratum, by the step-(2) graph
+structure — the product structure holds up to the same
+front-null N_F geometry as the containment. The stronger
+"piecewise-C¹ Ṽ" (§0 finite-curve grade) is neither claimed nor
+consumed by any downstream user of this iff.
+NO per-front dichotomy is asserted: a single declared front may
+be MIXED (jump-carrying on a φ-invariant part, jump-free on a
+helical part — the ESC-L0-1 witness PASSES this form, and the
+R2L1-1 coincidence-boundary witness PASSES it too).
+PROOF of the second iff under H-NC + H-WR, plus H-CVX
+(connected-adiabat form, r5) on the
+n_m = 0 strata (r4 case, r5 assembly, r6 scoping, r7 grade
+alignment + pin restatement) (⟸ trivial — re-read
+against the jump-set form in the assembly step below; ⟹ was the
 r1 hole). A.C. LEG (r1/r2, unchanged): off the co-rotation locus
 (H-WR makes its complement
 dense in each smooth region), K_u = K_v = K_s = 0 force
@@ -1418,11 +1940,24 @@ correct w w_rel/r ONLY where w_rel = 0 or r → ∞ (via
 w_rel/r + Ω = w/r); the conclusion was right, the printed
 identity false — the elimination line is added to the G-f
 rejector list as a one-line sympy check.
-SINGULAR LEG (r3, new — the front-atom part): on an exact 3-D
-solution the 3-D RH atoms vanish, so K's atoms reduce to minus
-the meridional-RH residual; K = 0 as a distribution then forces
-the meridional RH TOO, hence n_φ[F_φ,rel] = 0 row-by-row. At a
-front point with n_φ ≠ 0: [F_φ,rel] = 0 for every row —
+SINGULAR LEG (r3, new — the front-atom part; r4 SCOPE REPAIR,
+L1-4: the r3 sentence "on an exact 3-D solution the 3-D RH atoms
+vanish", quantified row-by-row over the six K rows, is FALSE for
+the s row — an exact solution's s-row atom at a mass-crossing
+shock is the entropy PRODUCTION m[s] > 0, not zero; the sentence
+is hereby SCOPED to the CONSERVATION-FORM rows (mass, momenta,
+energy), and the s-row atom is taken directly from the operator
+identity / singular-density display, which holds for arbitrary
+piecewise-C¹ fields independently of any production bookkeeping —
+the scoped fact is exactly what the r4 n_m = 0 case below
+consumes): on an exact 3-D solution the CONSERVATION-ROW 3-D RH
+atoms vanish, so K's conservation-row atoms reduce to minus the
+meridional-RH residual; K = 0 as a distribution then forces the
+meridional RH TOO, hence n_φ[F_φ,rel] = 0 row-by-row (the s row
+via its own atom, handled per case below). At a front point with
+n_φ ≠ 0 AND n_m ≠ 0 (r4 — the case split is now by n_m: the
+chain below consumes n̂ = n_m/|n_m| and is valid exactly where
+n_m ≠ 0): [F_φ,rel] = 0 for every row —
 g := ρ w_rel is continuous ([ρ w_rel] = 0) and by H-WR (front-
 trace reading) g ≠ 0 a.e.; then the azimuthal x- and r-rows
 g[u] = 0 and g[v] = 0 give [u] = [v] = 0, so the meridional-
@@ -1436,11 +1971,223 @@ read n̂_x[p] = n̂_r[p] = 0 directly, so [p] = 0. Either way the
 azimuthal θ-row g[w] + [p] = 0 gives [w] = 0; continuity of
 g = ρ w_rel with [w] = 0 and w_rel ≠ 0 gives [ρ] = 0; the
 remaining rows close [h0] = [s] = 0. ALL jumps vanish: the front
-is REMOVABLE where n_φ ≠ 0. A connected front component with n_φ ≡ 0 contains the
-φ-direction in its tangent space everywhere, hence is a union of
-φ-circles — a φ-INVARIANT (meridional × S¹) surface; its
-one-sided limits are φ-independent by the a.c. leg. Degenerate
-axisymmetric operation follows. WITHOUT H-NC the implication FAILS
+is REMOVABLE where n_φ ≠ 0 and n_m ≠ 0.
+CASE n_m = 0 (r4, NEW — the previously unproved stratum, L0-4 /
+J-r2p-3; since |n| = 1, n_m = 0 forces n_φ = ±1, and the sheet is
+INVISIBLE to the meridional sections — it appears in no section
+as a front curve, so the "K = 0 forces the meridional RH"
+reduction is VACUOUS there and the chain above cannot start).
+Here the exact 3-D RH itself (conservation rows, n = ±e_φ)
+gives: mass [g] = 0 with g := ρ w_rel continuous and ≠ 0 a.e. by
+the H-WR front-trace reading — a genuinely MASS-CROSSING
+azimuthal front, mass flux m = ±g ≠ 0; x/r rows
+[ρ u w_rel] = g[u] = 0 and likewise g[v] = 0, so [u] = [v] = 0;
+θ-row g[w] + [p] = 0 — equivalently, since r (hence Ωr) is
+continuous and [w_rel] = [w], [ρ w_rel² + p] = 0; energy row
+([F_φ,rel] with F_φ,rel = ρ w_rel h0 + Ω r p): g[h0] + Ωr[p] = 0,
+i.e. [I] = 0 (rothalpy, using the θ-row), which with
+[u] = [v] = 0 and r continuous reads [h + w_rel²/2] = 0. This is
+EXACTLY the 1-D normal-shock RH system in (ρ, w_rel, p): a
+NONTRIVIAL azimuthal normal shock is NOT excluded by RH alone,
+and an exact solution may genuinely carry one (with entropy
+production m[s] > 0). What K = 0 ADDS on this stratum is the
+s-row atom: the meridional s-part is zero (n_m = 0), so K_s's
+atom equals the FULL s-row atom of the exact solution — the
+production m[s] — and K = 0 forces m[s] = 0, hence [s] = 0
+(m ≠ 0). CLOSURE, and this is where the leg's EOS-free status
+honestly ends: a normal shock with ZERO entropy jump is trivial
+UNDER H-CVX (connected-adiabat form, r5/ESC-4: the downstream
+trace lies on the connected adiabat through the upstream trace
+BY HYPOTHESIS — the segment's existence is now supplied, not
+presupposed) — along that adiabat segment,
+G_fund > 0 makes s STRICTLY MONOTONE in shock
+strength (Bethe–Weyl; Menikoff–Plohr, Rev. Mod. Phys. 61 (1989)
+— the same package D.2 consumes, with the Hugoniot well-defined
+by its weak conditions), so [s] = 0 pins the zero-strength
+point: [ρ] = [w_rel] = [p] = 0, hence [w] = 0, and the energy
+row closes [h0] = 0. ALL jumps vanish: the sheet is REMOVABLE.
+(EOS-FREE this closure is UNPROVABLE: without a
+convexity/admissibility ingredient an ISENTROPIC nontrivial jump
+satisfying the mass/momentum/energy RH is not excluded — the
+non-convex-EOS counterexample class is Menikoff–Plohr's; hence
+the H-CVX pricing in the hypothesis line, and the r4 G-f
+azimuthal-sheet instance in the falsifier block.)
+ASSEMBLY (r5 — REWRITTEN; the r4 step read: "COMBINING the two
+cases: jumps vanish at every front point with n_φ ≠ 0, whether
+n_m ≠ 0 or n_m = 0. A connected front component with n_φ ≡ 0
+contains the φ-direction in its tangent space everywhere, hence
+is a union of φ-circles — a φ-INVARIANT (meridional × S¹)
+surface; its one-sided limits are φ-independent by the a.c. leg.
+Degenerate axisymmetric operation follows." — DEFECTIVE twice
+over: it silently upgraded the a.e.-grade H-WR inputs to the
+pointwise "every front point" (ESC-2), and its third branch
+quantified over components with n_φ ≡ 0, so int{n_φ = 0} patches
+of NON-φ-invariant components fell through all three cases
+(ESC-1) while the per-front conclusion it fed was itself false
+on a mixed front (ESC-L0-1); prior text preserved in quotation,
+never erased):
+(1) a.e.→EVERYWHERE BRIDGE (ESC-2 — previously consumed
+unstated; SCOPED at r6, R2L1-1/ESC2-L0-2 of record: the r5
+lemma read "One-sided traces of a piecewise-C¹ field are
+CONTINUOUS on each front, so the jump [V] is continuous there;
+... hence [V] ≡ 0 on {n_φ ≠ 0} and, by continuity, on its
+closure. Every front's jump set is therefore contained in
+int{n_φ = 0}." — FALSE as a blanket statement in the declared
+multi-front class: §0 itself admits front–front intersections
+(triple-point shear layers are in-scope physics; an
+axisymmetric Mach reflection has the C1 trace jumping at the
+crossing with C2, since the shock strengths differ on the two
+sides), and at a COINCIDENCE BOUNDARY (the R2L1-1 witness) the
+per-pair jump [V]_F equals V₊ − V₋ on the coincidence patch and
+0 on the helical flap — discontinuous exactly at ∂P — so the
+closure upgrade fails there. Prior text preserved in quotation,
+never erased): both cases divide by g = ρ w_rel, which the H-WR
+front-trace reading supplies ≠ 0 only a.e. on the front, so as
+written they prove — r7 GRADE SEPARATION, F-1(iv): the r6 line
+claimed "[V] = 0 (per-pair jump, full state vector) a.e. on
+{n_φ ≠ 0}" outright, but the per-pair case chains run only
+where the pair persists (structure changes break them), so at
+PER-PAIR type the a.e. claim was UNPROVEN exactly where N_F is
+fat — the following TWO clauses at their honest grades:
+(1a) [V] = 0 at PER-PAIR type a.e. on {n_φ ≠ 0} ∖ N_F, hence
+a.e. on {n_φ ≠ 0} under the r7 pin (N_F front-null);
+(1b) UNCONDITIONALLY (no pin), [V] = 0 at ESSENTIAL-jump type
+a.e. on {n_φ ≠ 0}: the essential jump is read through
+approximate limits, which exist BY DEFINITION at every
+essential-jump point, and at H²-a.e. point of each witness
+geometry of record, and are blind to piece-structure changes
+(a pinching sliver has density 0 at density points of its
+accumulation set) (r7.1, AM-3 = R4L1-2,
+`r2pass/VERDICT_confirm.md` §4: the r7 clause read "which
+exist H²-a.e. and are blind to piece-structure changes (a
+pinching sliver has density 0)" — the blanket H²-a.e.
+existence claim was underived and is consumed by nothing; the
+definitional reading at essential-jump points, plus the
+witness-geometry grade, is all the chain uses; replaced text
+quoted, never erased), so
+the same case chains run at essential type with no exceptional
+set — and this clause is the ONLY one step (3) consumes.
+ON F ∖ N_F — off the closed exceptional set of the jump-set pin
+(front-null by the r7 class pin) — each across-the-front
+adjacent piece pair persists locally and its one-sided traces
+ARE continuous: (u1), hereby WRITTEN (r7 CITATION CORRECTION,
+R3L1-4 — the r6 parenthetical cited "per-piece C¹ regularity up
+to the front", a regularity §0 does NOT grant: its class is C¹
+OFF the fronts with one-sided limits, values only; the operative
+one-line ingredient is): a C¹ piece with unrestricted one-sided
+limits at every front point has a CONTINUOUS boundary extension
+to its closed piece (the standard ε-argument: values near q′
+approach the extension at q as q′ → q along the front), and
+where the pair persists with no interfering front or
+piece-structure change, the per-pair traces are the two
+extensions — continuous. So [V] is
+continuous on F ∖ N_F; {g ≠ 0} ∩ {n_φ ≠ 0} is dense in the
+relatively open set {n_φ ≠ 0} (n_φ continuous on a C¹ front;
+and N_F is CLOSED, so {n_φ ≠ 0} ∖ N_F is relatively open and
+the H²-a.e.-full set {g ≠ 0} is dense in it — r7, F-1(iii): the
+r6 parenthetical justified this by "removing the H²-null N_F",
+consuming the nullness where only CLOSEDNESS is needed; the
+density conclusion never depended on the pin), hence [V] ≡ 0 on
+{n_φ ≠ 0} ∖ N_F and, by continuity within F ∖ N_F, on
+(cl{n_φ ≠ 0}) ∖ N_F. Every front's jump set MINUS N_F is
+therefore contained in F ∖ cl{n_φ ≠ 0} = int{n_φ = 0}, i.e.
+jump set ⊆ int{n_φ = 0} ∪ N_F. INSENSITIVITY NOTE (r6,
+ESC2-L0-2; r7 type clarification riding F-1's grade
+separation): step (3) integrates against H² and is blind to
+H²-null sets — the distributional closure consumes ONLY the
+a.e. grade at ESSENTIAL-jump type (clause (1b): [V] = 0
+essentially a.e. on {n_φ ≠ 0}, the type the H²-a.c. atom sees),
+which holds with no exceptional set and no pin at all; N_F and
+the per-pair grade affect only the pointwise geometry of the
+displayed containment, priced there explicitly.
+(2) FLOW-INVARIANCE of the residual strata: on int{n_φ = 0} we
+have n · e_φ = 0 on an open front patch, so e_φ is TANGENT to
+the front there and the rotation flow preserves the front
+locally — each point of the patch lies on a φ-arc contained in
+the front. No transversality or Sard-type genericity is consumed
+anywhere in this assembly.
+(3) DISTRIBUTIONAL-∂_φ CLOSURE (replaces the r4 per-front leap;
+r6 GRADE HONESTY, R2L1-1/ESC2-L0-1: the r5 step claimed the
+atom's density "dies POINTWISE" and concluded "Ṽ piecewise-C¹
+meridional" — the first needs only the a.e. grade step (1)
+actually delivers, and the second was UNDERIVED; the r5 wording
+is preserved in quotation in the conclusion annotation above):
+for a piecewise-C¹ component V the distributional derivative
+decomposes as (1/r)∂_φ V = {(1/r)∂_φ V} + n_φ [V] · (front
+atom), and the atom dies AS A MEASURE — whatever the
+surface-measure normalization, so the L0-5 G-f deferral is NOT
+consumed: where n_φ ≠ 0 the ESSENTIAL jump vanishes a.e. by
+step (1)'s unconditional clause (1b) (r7, F-1 — the r6
+parenthetical read "any H²-null exceptional set is invisible to
+the atom", again assuming the nullness; the atom is an H²-a.c.
+measure and sees only ESSENTIAL jumps, so no exceptional-set
+bookkeeping and no pin is consumed here at all), and where
+n_φ = 0 the pointwise factor n_φ vanishes. The a.c. leg kills
+the first term. Hence ∂_φ V = 0 as a distribution on D × S¹_φ;
+a distribution with vanishing φ-derivative on compact S¹ fibers
+is φ-independent, so V = Ṽ(x, r) a.e. with Ṽ ∈ L¹_loc.
+REGULARITY — exactly what is provable at C¹ front grade (r6):
+for (x₀, r₀) whose fiber {(x₀, r₀)} × S¹ is not fully contained
+in the closed front set there are a ball B ∋ (x₀, r₀) and an
+angle φ′ with B × {φ′} front-free, so Ṽ|_B = V(·, ·, φ′) ∈ C¹;
+hence Ṽ ∈ C¹ off the CLOSED set S := {(x, r) : fiber ⊆ front
+set}, rotation-invariant and meridional by construction. THE
+TWO STRUCTURE CLAUSES, derived directly, with no stronger
+Ṽ-regularity consumed (ESC2-L0-1's own salvage route, adopted):
+(i) on each locally φ-invariant front patch the step-(2) local
+product structure (front = C¹ meridional curve × φ-arc) makes
+the one-sided traces rotation-covariant; on each open PIECE
+adjoining the patch, V = Ṽ∘π a.e. plus per-piece continuity
+force V φ-independent ON THE PIECE (a continuous function equal
+a.e. to a φ-independent one on a connected open set is
+φ-independent there), so the trace through a fixed persisting
+pair — its (u1) boundary extension — is φ-independent wherever
+that pair adjoins, i.e. EVERYWHERE on patch ∖ N_F, hence
+H²-a.e. on the patch (r7 GRADE FIDELITY, F-2/R3L1-1: the r6
+transcription of this salvage read "V = Ṽ∘π a.e. then forces
+them φ-INDEPENDENT (one-sided traces ... are a.e.-determined
+...)" with the conclusion clause printed FLAT — the
+a.e.-determination mechanism reaches every patch point only OFF
+N_F, and per-pair limits AT structure-change points are exactly
+what the containment allows to differ; the clause grade is now
+carried in the display); on {n_φ ≠ 0} strata the per-pair jump
+vanishes a.e. and
+both one-sided limits coincide a.e. with Ṽ∘π, so the clause
+holds there at a.e. grade; (ii) an ESSENTIAL jump point carries
+its full φ-circle (rotation invariance of the a.e. class —
+unconditional), that
+circle lies — up to the N_F geometry priced in the display,
+front-null by the r7 pin — in a front's int{n_φ = 0} stratum,
+and int{n_φ = 0}
+is locally a C¹-curve × φ-arc product by step (2): the
+essential jump set is rotation-invariant, with the local
+curve × S¹ product structure where it meets int{n_φ = 0}
+strata — at exactly the grades stated in the conclusion (r7).
+Degenerate axisymmetric operation IN THE JUMP-SET
+FORM follows. (⟸, re-read against the jump-set form, stays
+trivial — RE-RUN AT THE a.e. GRADE, r7, F-1: the r6 re-read
+consumed "N_F is front-null under the class pin" as a printed
+premise, which the r6 pin did not deliver; the direction never
+needed it: ∂_φ V = 0 kills every a.c. K row classically off
+fronts, and each front atom n_φ [F_φ,rel] dies AS A MEASURE
+because n_φ [F_φ,rel] = 0 H²-a.e. on each front — off the jump
+set [F_φ,rel] = 0 (equal pair limits + state-continuity of the
+fluxes); on the jump set minus N_F, n_φ = 0 (containment); and
+on N_F ∩ {n_φ ≠ 0} the ESSENTIAL jump vanishes a.e. by the
+conclusion's own WITHOUT-PIN gloss — the jump-set form being
+re-read GRANTS that the residual set carries no ESSENTIAL-jump
+mass on {n_φ ≠ 0}, a ⟸ given (equivalently: the step-(3)
+decomposition applied to the GIVEN ∂_φ V = 0 — the a.c. part
+and the H²-a.c. front atom are mutually singular measures, so
+∂_φ V = 0 kills the atom n_φ [V] · (front atom) as a measure,
+i.e. the essential jump vanishes a.e. wherever n_φ ≠ 0) (r7.1,
+AM-1 = CR-1, `r2pass/VERDICT_confirm.md` §4: the r7 clause read
+"by step (1)'s unconditional clause (1b) — no nullness premise
+consumed", but clause (1b) is K = 0-FED — CIRCULAR in the
+direction whose goal is K = 0; both replacement routes verified
+on-page by the confirming judge; replaced text quoted, never
+erased) — no nullness premise consumed;
+under the r7 pin N_F is in any case front-null.) WITHOUT H-NC the implication FAILS
 pointwise: at w_rel² = c² there is a genuine one-parameter kernel
 (∂_φρ free; ∂_φw, ∂_φp slaved as above) — azimuthal acoustic
 disturbances stationary in the wave frame, the lock-in/resonance
@@ -1466,19 +2213,81 @@ swept angle per transit, NOT pointwise smallness of ∂_φV); STAGE 2
 of the exact-quotient claim ("the 2-D per-phase marches discard the
 θ-coupling — the only approximation in the chain") is hereby given
 its precise object list.
-Class: K list = DEFINITION (DISTRIBUTIONAL at r3) +
+Class: K list = DEFINITION (DISTRIBUTIONAL at r3; the triangular
+recombination identities part of the definition at r4) +
 carrier-checked internal consistency of the a.c. part
 (completeness = G-f, SCHEMA; the singular-density row-by-row
-bookkeeping rides G-f at the same grade); first iff = THEOREM
-(bookkeeping by construction, given the singular-density display);
-second iff = THEOREM under H-NC + H-WR (front-trace reading, r3)
-in the distributional reading — a.c. leg r1-supplied/r2-completed
-(the r1 clause silently divided by w_rel), singular leg
-r3-supplied (the r2 clause was FALSE on the front-carrying class,
-R4-1).
+bookkeeping, including the r4-named measure-normalization
+Jacobian identity, rides G-f at the same grade); FIRST CLAUSE
+(r4 restatement; riders corrected at r5; (w1) exemplar corrected
+at r6) and SECOND IFF (r5 JUMP-SET form; r6
+containment/regularity restatement) = SCHEMA per the judge downgrades
+J-r2p-2/J-r2p-3 of record (`r2pass/VERDICT_r2pass.md` §4(b)) —
+escalation E-3 adjudication pending; restoration path = the G-f
+battery per proofs-1. Proof state honestly described (r5; the r4
+sentence "the second iff's proof is complete AS WRITTEN under
+H-NC + H-WR (+ arc H-CVX on the n_m = 0 strata, r4)" is
+RETRACTED — it certified an assembly whose per-front conclusion
+was FALSE on an in-class mixed front and whose combining step
+left int{n_φ = 0} patches of non-φ-invariant components covered
+by no case, ESC-L0-1/ESC-1; prior text preserved in quotation,
+never erased): the
+restated first clause is bookkeeping by construction given the
+recombination + singular-density displays; the second iff, in
+its r7 form (per-pair jump-set pin + the r7 class pin pricing
+N_F front-null DIRECTLY; int{n_φ = 0} ∪ N_F containment;
+weakened Ṽ-regularity; structure clauses stated at their
+derived off-N_F/a.e. grades), is proved under
+H-NC + H-WR (+ connected-adiabat H-CVX on the n_m = 0 strata)
+at the grades its clauses now carry IN-LINE (r7 CORRECTION of
+record, R3L1-1(d) + F-1: the r6 sentence read "... AT EXACTLY
+THE STRENGTH OF ITS STATED CLAUSES" — REFUTED as printed: the
+r6 structure clauses were stated FLAT while the step-(3)
+salvage delivers off-N_F/a.e. grade, and the r6 class pin's
+"under this pin N_F is front-H²-null" was FALSE in-class (F-1's
+phantom-front witness), so the r6 clauses exceeded the written
+derivation — the FOURTH consecutive certification above the
+written proof; the over-certification counter of record now
+stands at FOUR; prior text preserved in quotation, never
+erased) (r6 RETRACTION of
+record: the r5 sentence read "the second iff, in its r5
+JUMP-SET form, is proved as written under H-NC + H-WR
+(+ connected-adiabat H-CVX on the n_m = 0 strata)" — REFUTED:
+the r5 display's pointwise int{n_φ = 0} containment was FALSE
+on the R2L1-1 coincidence-boundary witness, its step-(1) lemma
+FALSE at in-class front crossings, and its "Ṽ piecewise-C¹
+meridional" clause UNDERIVED, ESC2-L0-1; this was the THIRD
+consecutive round in which the assembly/conclusion carried an
+over-certification — "complete AS WRITTEN" at r4, "proved as
+written" on a defective display at r5 — the counter of record
+stands at THREE; prior text preserved in quotation, never
+erased) — a.c. leg
+r1-supplied/r2-completed (the
+r1 clause silently divided by w_rel), singular PER-POINT cases
+r3-supplied for n_m ≠ 0 (the r2 clause was FALSE on the
+front-carrying class, R4-1) and r4-supplied for n_m = 0 (the r3
+clause was UNPROVED there, L0-4), front-set ASSEMBLY r5-supplied
+and r6-scoped
+(a.e.→everywhere bridge + flow-invariance + distributional-∂_φ
+closure — honestly priced: r5 was the SECOND consecutive round in
+which the assembly step needed repair, r6 the THIRD (the
+r5 step-(1) lemma and conclusion clauses needed the r6
+scoping/weakening), and r7 the FOURTH: the r6 clause grades and
+the r6 pin's undelivered nullness price needed the r7
+grade-alignment and pin restatement) — and the LABELS stand at
+SCHEMA until the E-3 adjudication and the G-f battery land: no
+claim above its certification status.
 Gamma status: EOS-general (K_h0 uses only dh = T ds + dp/ρ; the
 kernel argument uses c² as a free positive symbol; the singular
-leg is EOS-free algebra on the flux jumps).
+leg is EOS-free algebra on the flux jumps EXCEPT the n_m = 0
+case, r4, which consumes H-CVX (connected-adiabat form at r5,
+ESC-4) — EOS-general GIVEN H-CVX,
+discharged unconditionally in the γ(T)-exact closure of record,
+where G_fund > 1 AND Γ_G = R_g/c_v = γ(T) − 1 > 0 > −2 (r6,
+R2L1-2 — Bethe's subsidiary condition holds identically
+in-model; the one-line fact the r5 attribution to the closed
+form alone left unstated) make the adiabat also connected in
+range, so the r5 rewording costs nothing in-model).
 FALSIFIER: (completeness) only the G-f independent re-derivation
 can reject — the current C4 CANNOT reject a common-mode
 transcription error, and a carrier re-run is a reproduction, not a
@@ -1496,7 +2305,57 @@ smooth-region-only check: the one-instance test that separates
 the two readings and would have caught the r2 type mismatch at
 authoring; PLUS (r3, N8) the K_h0 elimination identity
 K_h0 = (w w_rel/r)(∂_φw + w_rel ∂_φρ/ρ) as a one-line sympy
-check.
+check; PLUS (r4, E-3) three additions to the G-f spec:
+(a) an AZIMUTHAL-SHEET (n_m = 0) instance — a nontrivial 1-D
+normal-shock RH pair mounted as a locally azimuthal sheet must
+FAIL distributional K = 0 (nonzero s-row production atom m[s]);
+and the n_m = 0 case's own falsifier, RE-BOUND at r6
+(ESC2-L0-4: the r5 trigger still read "an EOS satisfying arc
+H-CVX together with a nontrivial azimuthal sheet carrying
+[s] = 0 would REFUTE the r4 closure" — but "arc H-CVX" is
+precisely the form the r5 hypothesis line RETRACTED as
+vacuously satisfiable, and "the r4 closure" is stale: a
+Menikoff–Plohr detached-branch EOS with an isentropic
+nontrivial azimuthal sheet satisfies arc H-CVX VACUOUSLY (the
+quantified arc set is empty) and would have fired the printed
+trigger while being exactly the out-of-hypothesis exhibit the
+parenthetical names — an executor-misguidance defect of the
+L1-5 class; prior text preserved in quotation, never erased):
+an EOS satisfying CONNECTED-ADIABAT H-CVX (the r5 form)
+together with a nontrivial azimuthal sheet carrying [s] = 0
+would REFUTE the n_m = 0 closure (a non-convex EOS admitting an
+isentropic nontrivial jump on a DETACHED branch is the expected
+out-of-hypothesis exhibit, not a refutation);
+(b) the triangular recombination identities (div-form row =
+advective K row + coefficient · K_ρ, WITH the ρ factors on the
+s/h0 rows) as one-line sympy checks — a G-f executor MUST
+transcribe the div-form a.c. parts through them: a checker
+built on the displayed advective rows as div-form parts fails
+on correct fields (L1-5);
+(c) the measure-normalization JACOBIAN identity
+(|n_m| · dS-factor = section-curve factor) as a NAMED check,
+never an implicit one (L0-5); PLUS (r5, ROUND 2)
+(d) the MIXED-FRONT instance (ESC-L0-1's witness: one connected
+declared front, tapering meridional shock strictly inside its
+φ-invariant part, helical jump-free beyond) — must PASS
+distributional K = 0 AND the r5 jump-set conclusion (r6 note:
+on THIS witness the r5 and r6 containments coincide — its jump
+set avoids N_F — so the r6 conclusion is passed identically)
+while
+REFUTING the r4 per-front dichotomy display: the one-instance
+test that separates the two conclusion forms and would have
+caught the r4 over-quantification at authoring; PLUS (r6,
+ROUND 3)
+(e) the COINCIDENCE-BOUNDARY instance (R2L1-1's witness:
+axisymmetric normal-shock disc Σ spanning the annulus; declared
+C¹ front F coinciding with Σ on a closed patch P, departing
+helically with C¹ contact beyond; C2' = closure(Σ ∖ P)) — must
+PASS distributional K = 0 AND the r6 conclusion (jump set ⊆
+int{n_φ = 0} ∪ N_F, with the null set exactly ∂P) while
+REFUTING the r5 pointwise clause (jump set ⊆ int{n_φ = 0}): the
+one-instance test that separates the r5 and r6 containment
+forms and would have caught the r5 over-quantification at
+authoring.
 
 ### Theorem D.19 [MS-T-PUMP] (pumping identities: what drives the TRIPLE spread)
 For the exact smooth 3-D wave-frame flow, along RELATIVE streamlines
@@ -1748,7 +2607,7 @@ attempted.
 | D.15 | MS-T-GAMONLY | Clause 1: Γ-only falsely licenses; Clause 2: minimality/iff needs variation quantifier (cancellation family, r1) | Clause 1 THEOREM; Clause 2 SCHEMA (r1 split — "machine-verified iff" retracted) | EOS-GENERAL | exhibit alternative reduction / variation-surviving cancellation family |
 | D.16 | MS-DEF-AMAUDIT | AM audit row, balance-residual (budget incl. plane-stress moments, r3), gross normalizer \|ρu_xΓ\| (r3/V-3 — backflow-cancellation-free), derived tol, too-clean flag; station-placement rule + signed arming (r2) + backflow arming synthetic (r3) | PRACTICE (rejector-gated) | EOS-FREE | signed arming test (r2) + backflow-bearing synthetic (r3) |
 | D.17 | MS-DEF-3DWF | 3-D wave frame; ξ↔φ | DEFINITION | EOS-FREE (r1) | strict-T0 mean-equality test (r1) |
-| D.18 | MS-DEF-KRES | commutator terms K — DISTRIBUTIONAL at r3 (a.c. rows + front atoms n_φ[F_φ,rel]; type-checks against S.22) (6 rows, 7 C4 checks — count reconciled r2); internal consistency verified; completeness = G-f; FIRST iff = distributional bookkeeping (r3 — classical reading was false both directions, helical-front counterexamples of record); second iff under H-NC (empty-interior wording, r2) + H-WR (co-rotation kernel r2; front-trace reading r3) with singular leg (r3); K_h0 elimination prefactor corrected w·w_rel/r (r3/N8) | DEFINITION (distributional) + SCHEMA (completeness, r1 downgrade); THEOREM (both iffs as restated, r3) | EOS-GENERAL (singular leg EOS-free) | G-f independent re-derivation + corruption rejectors; THREE kernel/front-instance rejectors (r2, r3) + K_h0 sympy check (r3) |
+| D.18 | MS-DEF-KRES | commutator terms K — DISTRIBUTIONAL at r3 (a.c. parts = div-form rows, equal to the displayed advective rows MODULO the invertible triangular K_ρ recombination stated in the definition, r4/L1-5; front atoms n_φ[F_φ,rel] up to the G-f-fixed surface-measure normalization, r4/L0-5, meridional-cancellation Jacobian identity a NAMED G-f target; type-checks against S.22) (6 rows, 7 C4 checks — count reconciled r2); internal consistency verified; completeness = G-f; FIRST CLAUSE RESTATED at r4 (unconditional identity exact = reduced + K + two true conditionals + two-of-three rule — the r3 iff was FALSE in ⟹ as printed, refuted by its own example (α), L0-3/L1-3); second iff under H-NC (empty-interior wording, r2) + H-WR (co-rotation kernel r2; front-trace reading r3) + arc H-CVX on n_m = 0 strata (r4/L0-4 — singular leg now covers locally azimuthal sheets via the K_s-atom [s] = 0 + Hugoniot entropy-monotonicity closure; atoms-vanish sentence scoped to conservation rows, r4/L1-4); K_h0 elimination prefactor corrected w·w_rel/r (r3/N8); SECOND-IFF CONCLUSION RESTATED IN JUMP-SET FORM at r5 (∂_φV = 0 distributionally; jump sets ⊆ int{n_φ = 0}; NO per-front dichotomy — the r4 display was FALSE on an in-class mixed front, ESC-L0-1/ESC-1; a.e.→everywhere bridge + flow-invariance + distributional-∂_φ assembly WRITTEN, ESC-2, Sard-free; H-CVX reworded to CONNECTED-ADIABAT form, ESC-4, in-model free; two-of-three rider + witness (w1) corrected, ESC-L0-3/ESC-3 + ESC-L0-4; stale "made true" tag retracted, ESC-L0-2; r4 "complete AS WRITTEN" retracted); ROUND 3 (r6): containment RESTATED — per-pair JUMP-SET PIN + H²-null-intersection class pin, jump set ⊆ int{n_φ = 0} ∪ N_F (N_F = crossing/edge/coincidence-boundary/structure-change set — front-null BY THE r7 RESTATED PIN, F-1: the r6 pin did not deliver the nullness it priced; the r5 pointwise int{n_φ = 0} form was FALSE on the coincidence-boundary witness, R2L1-1 BREAKS), step-(1) trace lemma SCOPED to F ∖ N_F (false at in-class crossings, ESC2-L0-2), step (3) run at the a.e. grade (atom dies as a measure); Ṽ-regularity WEAKENED to C¹-off-a-closed-rotation-invariant-set with both structure clauses derived directly (the "piecewise-C¹ Ṽ" clause was UNDERIVED — C¹-grade Sard obstruction, ESC2-L0-1); (w1) exemplar corrected (not smooth, not bounded away from c, ESC2-L0-3/R2L1-3); falsifier (a) trigger re-bound to connected-adiabat H-CVX / n_m = 0 closure (ESC2-L0-4); Γ_G = γ(T) − 1 > 0 > −2 in-model line written at both anchors (R2L1-2); r5 "proved as written" RETRACTED (third-round over-certification); ROUND 4 (r7): CLASS PIN RESTATED to price N_F front-H²-null DIRECTLY, sufficient form (p1)–(p3) = pairwise H²-null intersections + null edge sets + no cross-front accumulation outside a null set (the r6 pin bounded pairwise intersections ONLY and its nullness claim was FALSE in-class — F-1 phantom-front fat-Cantor accumulation witness; rectifiability gloss retracted, R3L1-2 tangential-contact Whitney construction); structure clauses RE-STATED at their derived grades — clause (i) φ-independent OFF N_F / H²-a.e. on the patch, clause (ii) rotation-invariance unconditional with the curve × S¹ product on int{n_φ = 0} strata (R3L1-1 REPAIR + F-2, scoping option; the a.e.→pointwise upgrade (u1')/(u2) NOT claimed — token disambiguated r7.1/AM-2, (u1) = the written extension lemma, consumed only off N_F); per-pair vs ESSENTIAL jump grades SEPARATED in step (1) — essential clause (1b) unconditional, the only one step (3) consumes (F-1(iv)); (⟸) re-read re-run at a.e. grade, no nullness premise; step-(1) justification re-cited to the WRITTEN boundary-extension line (u1) (R3L1-4); (w1) restriction rider re-scoped FRONT-FREE + pumping-region-meeting (F-3/R3L1-3, third transcribed-exemplar defect); G-f mixed-front item re-bound to the containment of record (F-4); r6 "at exactly the strength" certification ANNOTATED — over-certification counter at FOUR | DEFINITION (distributional) + SCHEMA (completeness, r1 downgrade); BOTH iff clauses SCHEMA per judge downgrades J-r2p-2/J-r2p-3 (`r2pass/VERDICT_r2pass.md`) — escalation E-3 adjudication pending; restoration path = G-f battery per proofs-1 | EOS-GENERAL (singular leg EOS-free EXCEPT n_m = 0 case: connected-adiabat H-CVX (r5), discharged γ(T)-exact via G_fund > 1 + Γ_G = γ − 1 > 0 (r6), r4/r5/r6) | G-f independent re-derivation + corruption rejectors; THREE kernel/front-instance rejectors (r2, r3) + K_h0 sympy check (r3) + azimuthal-sheet instance, recombination identities, measure-normalization Jacobian check (r4) + mixed-front instance (r5) + coincidence-boundary instance (r6) |
 | D.19 | MS-T-PUMP | ∂_φp pumps Γ and h0 (rate Ω); s at fronts only; data-facing bridge = PRACTICE (r1 scope) | THEOREM model-internal + PRACTICE (bridge) | EOS-GENERAL | independent recomputation; audited-channels dataset test |
 | D.20 | MS-T-ROTH | rothalpy D_rel I=0 (smooth machine-verified); front clauses SPLIT per type (r3/N3): [I]=0 mass-crossing only; contacts [I] FREE; corollary (a) restricted to contact-free bundles, verdict text "non-Euler OR contact crossing"; no rothalpy shortcut | THEOREM (smooth + contacts) / THEOREM* (mass-crossing fronts; 2 independent pen re-derivations, carrier queued G-a) | EOS-GENERAL | carrier C3+R1 (PASS, rejector fires); contact-clause falsifier (r3) |
 | S.22 | MS-S-KBOUND | reduction-residual bound target; g2 split — g2a RELABELED weak-vs-weak, fair only for shock-free references (r3/N4); g2b = known weak-strong failure on contacts; g3 transit-integrated (r1); g1 candidate retired — split norms OR (fork, r3) W^{−1,q}/dual-Lipschitz, merged with g3 (r2) | SCHEMA | EOS-gen route | K≡0 degenerate-case test |
@@ -1789,7 +2648,7 @@ closed-loop design in the generic N6-3 class (honest OPEN of
 record; OWNER: F2); (G-e) empirical vacuum — every §3 falsifier
 (F1–F4, A4) awaits the first ingested periodic chamber-CFD
 dataset; none has ever been computed in the read corpus (OWNER:
-first dataset ingestion window); (G-f) NEW at r1, spec EXTENDED at r2 AND r3 — D.18 K-list
+first dataset ingestion window); (G-f) NEW at r1, spec EXTENDED at r2, r3 AND r4 — D.18 K-list
 completeness: independent re-derivation of the exact 3-D rows
 (independent symbol set) + metric-corruption and K-corruption
 rejectors + the H-NC AND H-WR kernel-instance rejectors (r2 — the
@@ -1799,7 +2658,25 @@ phase-dependent-standoff normal-shock family must FAIL
 distributional K = 0 and PASS the smooth-region-only check) and
 the row-by-row singular-density bookkeeping of the r3
 distributional definition + (r3, N8) the K_h0 elimination
-identity as a one-line sympy check; the G_fund closed-form
+identity as a one-line sympy check + (r4, E-3) the triangular
+recombination identities as one-line sympy checks (executor MUST
+transcribe div-form a.c. parts through them — L1-5), the
+meridional-cancellation measure-normalization JACOBIAN identity
+as a NAMED check (L0-5), and the azimuthal-sheet (n_m = 0)
+instance (nonzero s-row production atom; H-CVX-pricing exposure
+— L0-4) + (r5, ROUND 2) the MIXED-FRONT instance (must PASS
+K = 0 and the r5 jump-set conclusion, REFUTE the r4 per-front
+dichotomy display — ESC-L0-1) (r7 RE-BIND, F-4: "the r5
+jump-set conclusion" names a display whose pointwise containment
+was RETRACTED at r6 — the pass-criterion of record is the
+r6/r7 containment int{n_φ = 0} ∪ N_F, which on THIS instance
+coincides with the r5 form because the witness's jump set
+avoids N_F, as the in-body falsifier-(d) note proves; an
+executor transcribes the containment of record, never the
+retracted display) + (r6, ROUND 3) the
+COINCIDENCE-BOUNDARY instance (must PASS K = 0 and the r6
+containment int{n_φ = 0} ∪ N_F, REFUTE the r5 pointwise
+int{n_φ = 0} clause — R2L1-1); the G_fund closed-form
 independent recomputation of D.2's H-CVX discharge rides the same
 carrier window (r3 note: pen-grade executions of it, two,
 already AGREE); until it lands the
@@ -1966,7 +2843,219 @@ executions (three kernel/front rejectors, metric/K-corruption
 checks, K_h0 sympy check, G_fund recomputation, singular-density
 bookkeeping) remain inside G-f/G-a with owner and window
 unchanged. File census measured this window: NO on-file
-refutation of this document remains unconsumed.
+refutation of this document remains unconsumed. [r4 annotation,
+never erasure: this census claim is TRUE RELATIVE TO the r3
+window it was measured in; the subsequently-filed r2-batch pass
+(`r2pass/` — refute_r2batch_l0.md, refute_r2batch_l1.md, judged
+in VERDICT_r2pass.md) raised objections against the r3 text of
+THIS document (legs 6 and 7), consumed at r4 in §6-quinquies.]
+
+------------------------------------------------------------------------------
+## §6-quinquies Escalation-window disposition ledger (r4, 2026-08-18):
+##   E-3 (leg 6, D.18) + A-1 (leg 7, D.2) from the r2-BATCH pass
+##   (judge of record: `r2pass/VERDICT_r2pass.md`)
+
+Sources: `r2pass/refute_r2batch_l0.md` (L0-1..L0-7) and
+`r2pass/refute_r2batch_l1.md` (L1-1..L1-8), adjudicated in
+`r2pass/VERDICT_r2pass.md` §2.1 (15 objection IDs raised, all
+sustained at some severity, 0 overruled). SCOPE OF THIS LEDGER:
+ONLY the sustained objections targeting THIS document — leg 6
+(D.18: L0-3, L1-3, L0-4, L0-5, L1-4, L1-5) and leg 7 (D.2:
+L0-6, L1-6 = amendment A-1). The remaining sustained objections
+of the pass (L0-1/L1-1 leg 3, L0-2/L1-2 leg 5, L0-7/L1-7 leg 14,
+L1-8 leg 17) target OTHER documents and are owned by their own
+escalations (E-1, E-2, E-4) and amendment A-2 — NOT consumed
+here, not dropped: named with owner. Disposition classes as in
+§6-bis.
+
+| Obj | Judge verdict | Item | Disposition |
+|-----|---------------|------|-------------|
+| L0-3 + L1-3 | SUSTAINED-BREAKS (⟹ J-r2p-2) | D.18 FIRST IFF false in the ⟹ direction as printed; refuted by the document's own example (α) and by any smooth φ-dependent exact solution | FIXED-BY-RESTATEMENT (r4) — replaced by the unconditional operator identity exact = reduced + K, the two true conditionals, and the two-of-three rule; the false "(bookkeeping, now true)" certification retracted in-statement with the prior display quoted, never erased; LABEL held at SCHEMA per J-r2p-2 (E-3 adjudication pending; restoration = G-f battery) |
+| L0-4 | SUSTAINED-REPAIR (⟹ J-r2p-3) | D.18 second iff singular leg UNPROVED on in-class n_m = 0 (locally azimuthal) front strata — n̂ = 0/0 there, meridional-RH reduction vacuous; surviving RH system = azimuthal normal shock with zero entropy jump, not closable EOS-free from H-NC + H-WR | FIXED-BY-CASE-WRITTEN (r4) — the n_m = 0 case WRITTEN (chosen over hypothesis exclusion: the detonation front of record is azimuthal-normal-dominated, exclusion would gut the in-scope instance): K_s's atom = the FULL production atom m[s] on the stratum (meridional part zero), K = 0 forces [s] = 0, and arc H-CVX closes the isentropic normal-shock system to the trivial jump via strict Hugoniot entropy monotonicity (Bethe–Weyl / Menikoff–Plohr, the same package D.2 consumes); PRICED HONESTLY: the singular leg is no longer blanket EOS-free (n_m = 0 case = EOS-general GIVEN arc H-CVX; discharged γ(T)-exact in-model); hypothesis line + gamma status + register updated; G-f azimuthal-sheet instance added; LABEL held at SCHEMA per J-r2p-3 |
+| L0-5 | SUSTAINED-AMENDMENT | "(up to the declared surface-measure normalization)" references a declaration existing nowhere (grep-verified); meridional-cancellation Jacobian identity unnamed as a check | FIXED (r4) — parenthetical reworded to "fixed in the G-f computation" with the defect recorded; the Jacobian identity (\|n_m\| · dS-factor = section-curve factor) NAMED as an explicit G-f check target in the definition, the falsifier block, and the (G-f) gap entry |
+| L1-4 | SUSTAINED-AMENDMENT | "on an exact 3-D solution the 3-D RH atoms vanish" false for the s row (production atom m[s] > 0 at mass-crossing shocks) | FIXED (r4) — sentence SCOPED to conservation-form rows; the s-row atom taken directly from the operator identity / singular-density display; the scoped fact is exactly what the new n_m = 0 case consumes |
+| L1-5 | SUSTAINED-AMENDMENT | "(a.c. part) = the displayed smooth-region K rows" false as a row-by-row identity (div-form rows differ by the triangular K_ρ recombination); a G-f executor transcribing displayed rows as div-form parts would fail on correct fields | FIXED (r4) — the recombination identities stated IN THE DEFINITION (with the exact ρ factors on the s/h0 rows — sharper than the objection's own gloss) AND added to the G-f rejector spec as one-line sympy checks with the executor rule |
+| L0-6 + L1-6 | SUSTAINED-AMENDMENT (= A-1) | D.2 H-CVX parenthetical "equivalently: ... genuinely nonlinear along the connecting arc" — false equivalence: GN is G_fund ≠ 0, not G_fund > 0; an all-arc BZT EOS is GN yet excluded | FIXED (r4) — replaced with "i.e. genuinely nonlinear WITH the convex (compressive-shock) orientation"; the false-equivalence mechanism recorded in-statement; displayed inequality named as the operative hypothesis |
+
+Residue this ledger, honest: NO new named gap minted — the G-f
+spec grew THREE named check targets (recombination identities,
+measure-normalization Jacobian identity, azimuthal-sheet
+instance), all carrier-side and commit-gated per the standing
+discipline, hence queued not executed in this doc-repair pass.
+LABEL STATE: D.18's two iff clauses stand at SCHEMA per
+J-r2p-2/J-r2p-3 pending the E-3 adjudication — the r4 restatement
+and written case are the escalation's CONTENT, not a
+self-upgrade; the restoration path is the G-f battery per
+proofs-1. NOTHING in this revision is layer-certified
+(VERDICT_r2pass §1: verification layer UNPROVEN in the confirm
+direction this window; Blocco-2 landing gate CLOSED for the
+r2-pass set — the §7 absorption of D.18/D.2 content touched here
+inherits that gate).
+
+### §6-quinquies ROUND 2 (r5, 2026-08-18): until-dry round-1
+### escalation refutations of the r4 text
+### (`r2pass/esc_doc2_r1_l0.md` ESC-L0-1..4,
+### `r2pass/esc_doc2_r1_l1.md` ESC-1..4)
+
+RECONCILIATION OF RECORD (state integrity, null=failure): the r5
+slot that authored the header block was INTERRUPTED before any
+body edit or ledger row landed (measured on resume: zero "(r5)"
+markers in the body; this table absent; all eight attacked r4
+passages still live at their quoted text). The resuming reviser
+re-verified each objection against the live r4 text (all eight
+CORRECT — no rebuttals), then wrote every body edit and this
+table in the same window. Disposition classes as in §6-bis. The
+two refuters' CONFIRMED registers (l0 B-1..B-11; l1 §3.1–§3.8)
+required no action and are cited as the round's confirmation
+record.
+
+| Obj | Class (refuter) | Item | Disposition |
+|-----|-----------------|------|-------------|
+| ESC-L0-1 | BREAKS-THE-LEG | r4 second-iff conclusion = PER-FRONT dichotomy, FALSE in ⟹ on an in-class MIXED front (tapering meridional shock inside the φ-invariant part of a partly-helical connected front); r4 "complete AS WRITTEN" certification attached | FIXED (r5) — conclusion RESTATED IN JUMP-SET FORM (∂_φV = 0 as a distribution; jump sets ⊆ int{n_φ = 0}; essential jump set rotation-invariant; NO per-front dichotomy asserted, mixed fronts explicitly admitted and the witness recorded in-statement as PASSING the new form); the r4 display quoted in the restatement, never erased; "complete AS WRITTEN" RETRACTED in the Class block with the r4 sentence quoted; assembly rewritten (see ESC-1); mixed-front instance added as falsifier (d) and G-f named instance |
+| ESC-L0-2 | REPAIR-NEEDED | stale r3 tag "(r3 conclusion, strengthened and made true)" — a standing truth-certification on a display false without the H-CVX ingredient (Menikoff–Plohr non-convex isentropic sheet) and false per-front even with it | FIXED (r5) — tag RETRACTED by annotation inside the restated conclusion, mechanism recorded (the isentropic-sheet construction at example-(α) grade), prior text preserved in quotation |
+| ESC-L0-3 | AMENDMENT | two-of-three rider: "each fails in one direction, with (w1)/(w2) the counterexamples of record" — misleading (all three biconditionals fail in BOTH directions) and (w1)/(w2) cannot witness the {2.5D, K} pair (both conjuncts false there, biconditional satisfied) | FIXED (r5) — rider replaced: ALL SIX directions fail; witnesses correctly attributed ((w1)/(w2) exact-side; example (β) for 2.5D ⇏ exact and 2.5D ⇏ K = 0; φ-independent non-solution for the K = 0 side); defect mechanism recorded in-statement; merged edit with ESC-3 |
+| ESC-L0-4 | AMENDMENT | witness (w1) "any smooth genuinely φ-dependent exact wave-frame solution ... has K ≠ 0 by definition of the a.c. rows" — false universal + false certification, refuted by the document's own w_rel = 0 kernel family | FIXED (r5) — (w1) re-scoped to an existential instance (w_rel bounded away from 0 and c, [T-NSW]) with K ≠ 0 derived from the a.c. leg under H-NC + H-WR, never "by definition"; the kernel-family collision recorded in-statement |
+| ESC-1 | REPAIR-NEEDED | r4 combining step non-exhaustive: int{n_φ = 0} patches of non-φ-invariant components covered by NO case (the n_φ ≡ 0 branch was component-quantified) | FIXED (r5) — assembly REWRITTEN in three steps: (1) a.e.→everywhere bridge, (2) flow-invariance of int{n_φ = 0} patches (e_φ tangent ⟹ rotation flow preserves the front — Sard-free, replacing the refuter's proposed a.e.-transversality φ-circle argument), (3) distributional-∂_φ closure (row-free decomposition (1/r)∂_φV = a.c. + n_φ[V]·atom; density dies pointwise, normalization-free — the L0-5 G-f deferral not consumed); the defective r4 step quoted in full, never erased |
+| ESC-2 | AMENDMENT | "jumps vanish at every front point" concluded from a.e.-grade H-WR inputs; the a.e.→everywhere continuity bridge consumed unstated | FIXED (r5) — bridge WRITTEN as assembly step (1): traces of piecewise-C¹ fields continuous on fronts, {g ≠ 0} ∩ {n_φ ≠ 0} dense in the relatively open {n_φ ≠ 0}, jump ≡ 0 there and on its closure |
+| ESC-3 | AMENDMENT | same rider as ESC-L0-3 (l1 lens: "all six pairwise implications fail"; attribution incomplete) | FIXED (r5) — same merged edit as ESC-L0-3; the l1 witness list (β + φ-independent non-solution) is the one adopted verbatim |
+| ESC-4 | AMENDMENT | arc-H-CVX wording vacuously satisfiable on a detached Hugoniot branch (Menikoff–Plohr phase-transition regime); vacuity = failure where the hypothesis must EXCLUDE a state; in-model harmless | FIXED (r5) — H-CVX reworded to the CONNECTED-ADIABAT form (downstream trace on the connected shock adiabat through the upstream trace, existence/connectedness per M–P weak conditions + Γ_G > −2 where needed, G_fund > 0 on the segment); closure step now cites the supplied (not presupposed) segment; in-model nil exposure recorded (γ(T)-exact adiabat connected in range); r4 wording quoted, never erased |
+
+Residue this table, honest: NO rebuttal issued — all eight
+round-1 objections verified correct and consumed FIXED. One new
+G-f named instance minted (mixed-front, falsifier (d)) —
+carrier-side, commit-gated, queued not executed, per the standing
+discipline. LABEL STATE UNCHANGED: both D.18 iff clauses at
+SCHEMA per J-r2p-2/J-r2p-3; E-3 adjudication pending; the
+until-dry round-2 refutation pass on THIS r5 text is the next
+consumer; layer/gate caveat of the r4 block carries forward.
+[r6 annotation, never erasure: the round-2 pass adjudicated the
+rows above as follows — ESC-L0-1/ESC-L0-2/ESC-L0-3+ESC-3/ESC-1
+DISCHARGED; ESC-2, ESC-L0-4, ESC-4 PARTIALLY DISCHARGED (the
+enumerated deliveries are accurate as enumerated; the residues
+are NEW defects in or omissions from the landed r5 text —
+ESC2-L0-2/R2L1-1, ESC2-L0-3/R2L1-3, ESC2-L0-4 respectively) —
+plus one r5-minted defect in the rewritten step (3)
+(ESC2-L0-1/R2L1-1). All consumed in ROUND 3 below.]
+
+### §6-quinquies ROUND 3 (r6, 2026-08-19): until-dry round-2
+### escalation refutations of the r5 text
+### (`r2pass/esc_doc2_r2_l0.md` ESC2-L0-1..4,
+### `r2pass/esc_doc2_r2_l1.md` R2L1-1..3)
+
+Sources read in full, both objection files plus their discharge
+audits of the round-1 rows (recorded in the annotation above).
+Every objection was independently re-verified against the live
+r5 text before consumption — all seven CORRECT, no rebuttal
+issued. A-1 (leg 7, D.2 H-CVX parenthetical) was re-checked by
+BOTH round-2 lenses (l0 C-13, l1 C-11/§1): STANDS, no
+regression, no edit; the D.2-vs-D.18 wording divergence (arc vs
+connected-adiabat) is DECLARED in D.18's hypothesis line and is
+not a defect. Disposition classes as in §6-bis.
+
+| Obj | Class (refuter) | Item | Disposition |
+|-----|-----------------|------|-------------|
+| R2L1-1 | BREAKS-THE-LEG | r5 conclusion clause "every front's JUMP SET ⊆ int{n_φ = 0}" + printed "equivalently" FALSE on the in-class COINCIDENCE-BOUNDARY witness (declared front coinciding with an axisymmetric shock disc on a patch P, departing helically with C¹ contact: F's per-pair jump set contains ∂P ⊄ int{n_φ = 0} while ∂_φV = 0 and K = 0 hold); step-(1) lemma ("one-sided traces ... CONTINUOUS on each front") false for multi-front in-class fields; "proved as written" certification attached — third consecutive round | FIXED (r6) — the objection's own transcription-grade repair adopted in full: (i) JUMP-SET PIN (across-the-front adjacent piece pairs, never normal-line traces — the over-attribution twin recorded) + a priced CLASS PIN (pairwise H²-null front intersections) making N_F front-null; (ii) containment RESTATED as jump set ⊆ int{n_φ = 0} ∪ N_F, i.e. int{n_φ = 0} up to a front-null set, witness recorded in-statement as PASSING the r6 form; (iii) step (1) SCOPED to F ∖ N_F where per-pair trace continuity IS true, step (3) re-run on the a.e. grade it needs (atom dies AS A MEASURE); "proved as written" RETRACTED, over-certification counter recorded at THREE; falsifier (e) + G-f coincidence-boundary instance minted; r5 text preserved in quotation throughout |
+| ESC2-L0-1 | REPAIR-NEEDED | conclusion/step-(3) clause "Ṽ piecewise-C¹ MERIDIONAL" (§0 finite-curve sense) UNDERIVED — section route needs C² Sard (Whitney's C¹ counterexample; would also falsify the assembly's "Sard-free" claim), front-free-section route yields only C¹ off a closed set without §0-grade curve structure (Cantor circle family inside one C¹ graph front); "proved as written" rides on it | FIXED (r6) — clause WEAKENED to the provable form (Ṽ ∈ C¹ off a closed rotation-invariant meridional set S, front-free-section derivation WRITTEN in step (3)); the two dependent structure clauses derived DIRECTLY per the objection's own salvage (trace a.e.-determination on φ-invariant patches; essential-jump-circle + step-(2) product structure); the stronger claim recorded as neither claimed nor consumed downstream; certification retraction shared with R2L1-1 |
+| ESC2-L0-2 | AMENDMENT | step-(1) blanket trace-continuity sentence false at in-class front–front intersections (§0's own triple-point shear layers; Mach reflection); argument survives off the H²-null intersection set | FIXED (r6) — merged into the R2L1-1 step-(1) scoping (N_F includes front–front intersections); the H²-null INSENSITIVITY NOTE written (step (3) blind to H²-null sets, only the a.e. grade consumed) |
+| ESC2-L0-3 | AMENDMENT | (w1) instance certificates ("smooth", "w_rel bounded away from 0 and c") refuted by the document's own record ([T-NSW] front-carrying; CJ locus attains \|w_rel\| = c in-scope); the ESC-L0-4 disposition transcribed a defective round-1 spec | FIXED (r6) — certificates replaced by the OPERATIVE ones (genuine φ-dependence off fronts + H-NC + H-WR; smooth instance = restriction to a compact subdomain of the marching domain clear of the CJ surface, [T-NSW](a)); provenance of the defective transcribed spec recorded; r5 wording preserved in quotation; payload (a.c.-leg mechanism) untouched, as both lenses confirm |
+| ESC2-L0-4 | AMENDMENT | falsifier (a) trigger still ran the RETRACTED "arc H-CVX" form against "the r4 closure" — the detached-branch exhibit satisfies arc H-CVX vacuously and would fire the trigger while the item's own parenthetical calls it out-of-hypothesis; executor-misguidance (L1-5 class) | FIXED (r6) — trigger RE-BOUND to connected-adiabat H-CVX (r5 form) and "the n_m = 0 closure"; the vacuous-satisfaction mechanism recorded in-statement; r5 wording preserved in quotation |
+| R2L1-2 | AMENDMENT | in-model connectedness discharge attributed no-detached-branch to G_fund > 1 ALONE, contradicting the same passage's own Bethe Γ_G > −2 accounting; the in-model fact Γ_G = γ(T) − 1 > 0 consumed unstated (two anchors) | FIXED (r6) — the one-line identity WRITTEN at both anchors (hypothesis-line discharge parenthetical; gamma-status block): Γ_G = v(∂p/∂e)_v = R_g/c_v = γ(T) − 1 > 0 > −2 for the §0 gas model (AUD-cp gives c_v > 0); connectedness re-cited to G_fund > 1 PLUS Γ_G > 0; the internal contradiction recorded in-statement |
+| R2L1-3 | AMENDMENT | (w1) exemplar not a member of the class (w1) mints (neither smooth nor bounded away from c); disposition-failure clause invoked on the adopted ESC-L0-4 wording | FIXED (r6) — same merged edit as ESC2-L0-3 (the objection's repair option (i): local/restriction instance); (w2)/example (α) noted as independently carrying the witness role in any case |
+
+Residue this table, honest: NO rebuttal issued — all seven
+round-2 objections verified correct and consumed FIXED. TWO
+prices paid and declared: (i) one new CLASS PIN minted (pairwise
+H²-null intersections of declared fronts, coincidence patches
+identified) — priced in the conclusion statement; WITHOUT it
+only the a.e./measure-grade clauses are asserted (the
+distributional core ∂_φV = 0 needs no pin); (ii) the conclusion
+now claims Ṽ ∈ C¹-off-a-closed-set, NOT §0-grade piecewise-C¹ —
+a genuine weakening, consumed by nothing downstream. One new G-f
+named instance minted (coincidence-boundary, falsifier (e)) —
+carrier-side, commit-gated, queued not executed. The round-2
+CONFIRMED registers (l0 C-1..C-14; l1 §3 C-1..C-12, §1 discharge
+audit) required no action and are cited as the round's
+confirmation record — in particular both lenses independently
+re-verified the six-direction witness table, the a.c.-leg
+contrapositive, the step-(2) graph argument, the n_m = 0
+monotonicity closure, and the ⟸ re-read. LABEL STATE UNCHANGED:
+both D.18 iff clauses at SCHEMA per J-r2p-2/J-r2p-3; E-3
+adjudication pending (the judge of the escalation window, not
+this reviser, closes it); restoration path = the G-f battery per
+proofs-1; the until-dry round-3 refutation pass on THIS r6 text
+is the next consumer; layer/gate caveat of the r4 block carries
+forward.
+[r7 annotation, never erasure: the round-3 pass adjudicated the
+rows above as follows — R2L1-1, ESC2-L0-2, ESC2-L0-4, R2L1-2
+DISCHARGED; ESC2-L0-1 and ESC2-L0-3/R2L1-3 PARTIALLY DISCHARGED
+(the enumerated deliveries are accurate as enumerated; the
+residues are NEW defects in the landed r6 text — R3L1-1/F-2 and
+R3L1-3/F-3 respectively, both transcribed-spec-runs-hot). Two
+r6-minted defects were found besides: the R2L1-1 row's phrase
+"making N_F front-null" and this table's CLASS PIN description
+carried the r6 pin's UNDELIVERED price (F-1 — the pin bounded
+only pairwise intersections; nullness now holds by the r7
+restated pin), and the step-(1) justification parenthetical
+mis-cited §0 (R3L1-4). All consumed in ROUND 4 below.]
+
+### §6-quinquies ROUND 4 (r7, 2026-08-19): until-dry round-3
+### escalation refutations of the r6 text
+### (`r2pass/esc_doc2_r3_l0.md` F-1..F-4,
+### `r2pass/esc_doc2_r3_l1.md` R3L1-1..4)
+
+Sources read in full, both objection files plus their
+discharge/mandate audits of the round-2 rows (recorded in the
+annotation above). Every objection was independently
+re-verified against the live r6 text before consumption — all
+eight CORRECT, no rebuttal issued. A-1 (leg 7, D.2 H-CVX
+parenthetical) was re-checked by BOTH round-3 lenses (l0 C-11,
+l1 C-13): STANDS, no regression, no edit. Disposition classes
+as in §6-bis. Merged edits are declared per row.
+
+| Obj | Class (refuter) | Item | Disposition |
+|-----|-----------------|------|-------------|
+| F-1 (l0) | REPAIR-NEEDED | r6 CLASS PIN does not deliver the nullness it prices: "under this pin N_F is front-H²-null" FALSE in-class (pin bounds only pairwise intersections; the structure-change/accumulation components can be FAT under it — phantom-front witness: jump-free C∞ front accumulating on F over a fat Cantor set, pin-compatible, exact solution); edge-rectifiability justification false at C¹ grade; FOUR consuming lines (conclusion "i.e." gloss; (⟸) premise; step-(1) "H²-null" density label; step-(1) per-pair a.e. claim) + structure clause (ii), register row, ROUND 3 ledger row inherit the price | FIXED (r7) — named repair option (A) taken AND the essential-type re-route of option (B) written where step (3) consumes it: CLASS PIN RESTATED to price N_F front-H²-null DIRECTLY (sufficient checkable form (p1)–(p3): pairwise H²-null intersections, null edge sets, no cross-front accumulation outside a null set — the phantom-front witness now violates (p3), out-of-pin honestly); the r6 pin quoted in full, never erased; conclusion gloss re-derived from the r7 pin with the without-pin essential-mass reading stated; step (1) SPLIT into clauses (1a) per-pair-off-N_F and (1b) ESSENTIAL-unconditional (the only clause step (3) consumes); density parenthetical re-justified by CLOSEDNESS of N_F (no nullness consumed); (⟸) re-read RE-RUN at the a.e. grade with no nullness premise; step-(3) atom parenthetical re-typed to essential jumps; register row and ROUND 3 ledger annotated |
+| R3L1-1 (l1) | REPAIR-NEEDED | conclusion structure clauses printed FLAT/global while the transcribed ESC2-L0-1 salvage delivers only a.e./off-N_F grade; a.e.→pointwise upgrade (u1)/(u2) nowhere written; no N_F price on the clauses though the containment in the SAME display got one; r6 certification "AT EXACTLY THE STRENGTH OF ITS STATED CLAUSES" therefore not true — fourth consecutive over-certification | FIXED (r7) — SCOPING option of the named repair taken (the (u1')/(u2) UPGRADE route is named and NOT claimed — token disambiguated r7.1/AM-2: (u1) = the written extension lemma): clause (i) re-stated "φ-independent OFF N_F — everywhere off the priced set, hence H²-a.e. on the patch; per-pair limits AT N_F points not claimed"; clause (ii) split — rotation-invariance UNCONDITIONAL, curve × S¹ product scoped to int{n_φ = 0} strata up to the front-null N_F geometry; step-(3)(i) derivation transcribed at F-2's exact mechanism (piece-wise φ-independence + (u1) extension, everywhere off N_F); r6 certification ANNOTATED as REFUTED-as-printed, counter recorded at FOUR, replaced by the r7 grades-in-line sentence; r6 display preserved in quotation |
+| F-2 (l0) | AMENDMENT | structure clause (i) ungraded in the conclusion display — the {n_φ ≠ 0} half carried "at a.e. grade", the φ-invariant half lost its qualifier in transcription of the salvage | FIXED (r7) — merged into the R3L1-1 grade alignment (same edit; F-2's mechanism (a)/(b) is the derivation now printed in step (3)(i), its grade "everywhere off N_F, a.e. on the patch" is the display's wording) |
+| F-3 (l0) | AMENDMENT | (w1) smooth-instance rider "restriction to ANY subdomain compactly inside the marching domain" mints an unproven universal (nowhere-locally-axisymmetric not of record); adopted R2L1-3 repair wording carried it — disposition-failure clause invoked; third consecutive transcribed-exemplar defect | FIXED (r7) — rider re-scoped: restriction to a FRONT-FREE subdomain MEETING the D.19 pumping region (∂_φV ≢ 0 on it, nonempty by the pumping record); front-freeness and the pumping intersection are stated HYPOTHESES, not derived; both defective universals quoted with mechanisms; the three-generation defect history recorded in-statement; merged edit with R3L1-3 |
+| F-4 (l0) | AMENDMENT | consolidated G-f entry's mixed-front item binds its pass-criterion to "the r5 jump-set conclusion" — a display retracted at r6 — with no annotation, while the in-body falsifier (d) twin is annotated; executor-misguidance (L1-5 class), exposure LOW (forms provably coincide on the instance) | FIXED (r7) — the falsifier-(d) note copied into the executor-facing G-f entry as a RE-BIND parenthetical: pass-criterion of record = the r6/r7 containment int{n_φ = 0} ∪ N_F, coinciding with the r5 form on this instance because the witness's jump set avoids N_F |
+| R3L1-2 (l1) | AMENDMENT | class-pin gloss "crossings, triple curves, coincidence boundaries and edges are locally H¹-rectifiable" false for tangential C¹ contact (Whitney zero-set: Cantor-dust intersection of dimension 3/2, H²-null yet not H¹-rectifiable); rectifiability consumed by nothing — only H²-nullity is | FIXED (r7) — gloss RETRACTED inside the r7 pin restatement (merged edit with F-1): the quoted r6 parenthetical is annotated with the Whitney mechanism; (p2) states "locally H¹-rectifiable edges suffice WHERE they occur — no rectifiability is claimed or needed in general"; the chain consumes H²-nullity only |
+| R3L1-3 (l1) | AMENDMENT | (w1) rider certifies smoothness from a SONIC bound ([T-NSW](a) is not a front census — in-scope oblique shocks/slip lines can enter the hyperbolic region) and does not re-certify φ-dependence under "any"; round-2 spec's "smooth subregion" + ∂_φV ≠ 0 predicate dropped in transcription — disposition-failure clause invoked | FIXED (r7) — same merged edit as F-3; both halves of the objection are the two quoted universals (i)/(ii) in the r7 annotation; the refuter's own repair phrase adopted (front-free + pumping-region-meeting, [T-NSW](a) consumed only for bounded-away-from-c on the compact closure) |
+| R3L1-4 (l1) | AMENDMENT | step-(1) justification cites "per-piece C¹ regularity up to the front" — strictly stronger than §0's values-only class grant; the true one-line ingredient (continuous boundary extension of a C¹ piece with everywhere one-sided limits) consumed unstated — the very line (u1) whose absence drives R3L1-1 | FIXED (r7) — the citation replaced and line (u1) WRITTEN in step (1) (the ε-argument named); as the objection notes, this repair merges naturally with R3L1-1's: (u1) now carries both the trace-continuity conclusion on F ∖ N_F and the step-(3)(i) extension argument; §0's class statement untouched (values-only grant is all (u1) needs) |
+
+Residue this table, honest: NO rebuttal issued — all eight
+round-3 objections verified correct and consumed FIXED. TWO
+prices paid and declared: (i) the CLASS PIN is STRENGTHENED —
+it now assumes (p2)/(p3) beyond the r6 pairwise clause, i.e. a
+genuinely stronger (still per-configuration checkable)
+hypothesis; WITHOUT it only the essential-type a.e. clauses are
+asserted (the distributional core ∂_φV = 0 and the ⟸ direction
+need no pin at all — both now derived pin-free); (ii) the two
+structure clauses are WEAKENED to their derived grades
+(off-N_F / H²-a.e.; product structure on int{n_φ = 0} strata
+only) — the flat clauses are neither claimed nor consumed by
+any downstream user of this iff (same census as the
+Ṽ-regularity weakening: S.22 identification and the G-f
+instances consume neither), and the (u1)/(u2) UPGRADE route
+that would restore them is named in the conclusion annotation
+and left UNCLAIMED. The over-certification counter of record
+moves THREE → FOUR (the r6 "at exactly the strength" sentence,
+annotated in the class block). No new G-f instance was needed
+this round (the falsifier list is unchanged; F-4 re-binds an
+existing item). The round-3 CONFIRMED registers (l0 C-1..C-14;
+l1 C-1..C-14 + §1 discharge audit) required no action and are
+cited as the round's confirmation record — in particular both
+lenses independently re-verified the containment set algebra,
+the essential-type atom argument's robustness to fat N_F (l0
+C-3: the closure mathematics withstands the r6 mislabels —
+exactly the re-route now printed), the falsifier-(d)/(e)
+verdicts, the Γ_G identity, and the falsifier-(a) executor
+readings. LABEL STATE UNCHANGED: both D.18 iff clauses at
+SCHEMA per J-r2p-2/J-r2p-3; E-3 adjudication pending (the judge
+of the escalation window, not this reviser, closes it);
+restoration path = the G-f battery per proofs-1; the until-dry
+round-4 refutation pass on THIS r7 text is the next consumer;
+layer/gate caveat of the r4 block carries forward.
 
 ------------------------------------------------------------------------------
 ## §7 Absorption targets (for the session's R4 pass; this doc = staging)

@@ -1951,3 +1951,131 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "CS3 deviation beyond the derived band on a certified instance (kills the implicit-rule fidelity claim); CS4 negative control NOT detected (kills the instrument); CS1 firing (kills the twin's independence-coupling)"
   gamma: "EOS-general"
+
+# ------- S-FOUNDATIONS-C Blocco-2 landing mints (2026-08-19; authorities:
+# phaseD/VERDICT_phaseD_proofs1.md sec.4/sec.5(ii) + r2pass/VERDICT_r2pass.md
+# sec.4 + r2pass/VERDICT_escalation.md sec.4 + r2pass/VERDICT_confirm.md +
+# validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md sec.3. HELD OUT of
+# this batch by declaration (VERDICT_confirm legs 3+5 OPEN): the
+# [C-XBVP](a')/G8 sub-clause row and the gap-graph landing — the standing
+# C-XBVP row is NOT extended here; the (a') hold-out is recorded in the
+# T-T0P row's scope. Also declared: the claims registry carries NO
+# per-theorem rows for the mean-swirl D.* class (D.13/D.4/Prop 1'' live in
+# M0 + the phaseD documents; checked 2026-08-19, no MS-* ids). -------------
+
+- id: T-T0P-E
+  kind: theorem
+  class: THEOREM
+  scope: "equivariance half of the S-T0P propagation program (phaseD proof loop, revision 8 of record); ABSTRACT EOS; hypothesis = the S1-ANCHORED UNIQUENESS PROPERTY of the solution class C(s), stated IN-STATEMENT (never assumed silently); judge label THEOREM (VERDICT_phaseD_proofs1 sec.3.1), leg 5 of the r2 pass N/A to this statement — supporting lemma family [L-EQV1..3]/[L-INV]/[L-STD]/[L-SPACE]/[L-COMPAT]/[L-XSON3]/[L-XREC]/[L-XWALL3]/[L-XC3D] all THEOREM, with the [X-T0P] battery as the owed executable rejector layer (owner F2)"
+  statement: "Conditional steadification: assume H1-H9; let s satisfy H3 (pure single-mode rotating data, speed OM, count n) and let C(s) have the S1-anchored uniqueness property (uniqueness against S1 elements only). Then every S1 element q of C(s) is a steady co-rotating pattern q(x,r,theta,t) = q_tilde(x,r,theta - OM t) with q_tilde 2pi/n-periodic in azimuth (proof: L-EQV3 full-group equivariance + L-INV data invariance + the uniqueness hypothesis + L-STD)."
+  doc: "docs/rde_nozzle_MASTER.md#[T-T0P-E], the EQUIVARIANCE HALF"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#§2 The equivariance half [T-T0P-E]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "three-target battery of record: (t1) a field q with q = g_tau q a.e. for ALL tau and q not of the standard form (kills L-STD); (t2) a non-pattern S1 element in a class VERIFIED to have the uniqueness property — premise checked, not assumed (kills the theorem); (t3) class non-preservation under g_(phi,tau) on a certified instance (kills L-EQV3)"
+  gamma: "EOS-general"
+
+- id: L-INC
+  kind: theorem
+  class: THEOREM
+  scope: "internal inclusion lemma of the S-T0P proof (S1 elements are legitimate H7' competitors), consumed when the S1-anchored uniqueness property is DERIVED from [T-T0P-U]; stratum (A) THEOREM; stratum (B) SCHEMA-INHERITED riding the [T-T0P] gap ledger (G2 = [C-XBVP](b) + G9 slip-sheet exclusion; no new gap minted); r2-pass leg 1 CONFIRMED both strata, released by VERDICT_escalation sec.4"
+  statement: "Every S1 element of the solution class C(s) satisfies the H7' competitor-class membership consumed by the uniqueness statement [T-T0P-U], so an S1 element may legitimately enter the weak-strong comparison as competitor; on stratum (A) the membership is proven outright, on stratum (B) it inherits the stratum's gap list."
+  doc: "docs/rde_nozzle_MASTER.md#[L-INC] (S1 elements are legitimate H7' competitors)"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#[L-INC] LEMMA"
+  inherits: ["C-XBVP"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "an S1 element of C(s) exhibited to FAIL an H7' membership clause on stratum (A) (kills the inclusion and re-opens l0r3-F1); on stratum (B) the falsifier rides the G2/G9 discharge instruments"
+  gamma: "EOS-general"
+
+- id: C-MAJDA-3DT
+  kind: conditional
+  class: SCHEMA
+  scope: "gap G3 of the [T-T0P] stratum-(B) ledger (minted revision 1, solution-class-specified revision 2, front-persistence wording revision 3); owner F2; consumed by stratum (B) only; STRICTLY STRONGER than and NOT implied by the registered planar-steady [C-MAJDA]/U3-H1 scalar (dimension jumps break front stability); honest pricing: convex-integration non-uniqueness (De Lellis-Szekelyhidi class) shows front-local conditions alone cannot restore uniqueness in a bare admissible L-inf class; declared sub-gap g3-b = regularity bridge from H6'-B membership to the H^s front class (instance certification or an explicit open flag with any discharge claim)"
+  statement: "Multi-D UNSTEADY Kreiss-Lopatinskii stability + front uniqueness within the piecewise weighted-anisotropic H^s front class (s >= s_0, front/corner compatibility to the required order; Majda/Metivier/Coulombel-Secchi technology), for the fitted front as PERSISTENT free lateral boundary of the x-IBVP (frequency variables (eta_y, eta_z, sigma_t)), evaluated on the certified compact front set."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G3 = [C-MAJDA-3DT]"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G3 = [C-MAJDA-3DT]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the bordered Lopatinskii determinant over the (eta_y, eta_z, sigma_t) half-space vanishing on the certified front set (numeric instance check; per the stop-proof sec.9 row this rejects the STABILITY half only and is class-mirrored — it can never certify the uniqueness half at H6'-B regularity, which lives in the SEPARATE conditional [C-WSF])"
+  gamma: "EOS-general"
+
+- id: C-XINJ
+  kind: conditional
+  class: SCHEMA
+  scope: "gap G7 of the [T-T0P] ledger; owner F2; consumed at the stop-proof sec.4 endgame ONLY, plus by the G8 falsifier/feasibility gate as an INSTRUMENT dependency (edge G8-falsifier -> G7-instrument); discharge routes: (r-a) abstract-EOS proof from a named mass-flux monotonicity / Bethe-Weyl-class condition (the only route keeping the chain abstract-EOS); (r-b) certified 1-D root-count over K by interval arithmetic ([X-T0P] item; on the standing gamma(T) tabulated model r-b needs certified table-interpolation enclosures); ideal-gas case classical"
+  statement: "GLOBAL injectivity of the axial flux F_x on the K-branch — one-sidedness of the supersonic root of the classical 1-D flux triple (m1, m2, H_pl); L-XSON3 proves only the local diffeomorphism. Acceptance criterion of record (r2-F8): a second supersonic root rejects ONLY if BOTH reconstructed 5-component states lie in K."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G7 = [C-XINJ]"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G7 = [C-XINJ]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "r-b exhibit: a second supersonic root with BOTH reconstructed states in K on a certified instance (kills the conditional and with it the (EU-x) formulation as stated)"
+  gamma: "EOS-general"
+
+- id: C-WSF
+  kind: conditional
+  class: SCHEMA
+  scope: "gap G11 of the [T-T0P] stratum-(B) ledger (minted revision 3 per r2b-F2); owner F2; SEPARATE from [C-MAJDA-3DT] because the class-specified G3 is a strong-vs-strong H^s statement and NO bridge moves the WEAK class into H^s (that would be a regularity theorem for arbitrary admissible weak solutions, false in general); without it stratum (B) reaches at best uniqueness among H^s front solutions; SCOPE: shocks only (per G9 — a-contraction does not cover contact sheets); primary discharge route = the in-house [S-ACFR] a-contraction / shifted-front transplant (walls free by the wall lemma)"
+  statement: "Weak-vs-fronted-strong uniqueness: relative-entropy comparison of an L-inf H7' competitor against an admissible fitted-front strong side in the x-march class, with the front as free lateral boundary and a per-slab front dissipation term of a sign."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G11 = [C-WSF]"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G11 = [C-WSF]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the a-contraction weight/shift inequality failing numerically on a certified front instance"
+  gamma: "EOS-general"
+
+- id: S-T0P-G12
+  kind: schema
+  class: SCHEMA
+  scope: "gap G12 of the [T-T0P] ledger — ROUTE DECLARATION, declared NOT written (Remark 5.3 of the stop proof); owner F2; ALSO a registered NOVELTY THREAT: the adjacent classical literature (P. Qu; the H. Yuan school, time-periodic supersonic Euler duct flows) is simultaneously the natural discharge technology and a threat to the internal-value claim — the literature queries are OWED at any paper claim (query-bounded novelty, R5)"
+  statement: "Minimal-load classical route for [T-T0P] statement (i): C^1-vs-C^1 uniqueness of the quasilinear symmetrizable x-IBVP (Li Ta-tsien semi-global energy framework + Secchi-class characteristic-boundary energy estimates at the slip wall), consuming NONE of G2/G7/G8/H7' — it needs only H5', H8' (or its G5 cone-localized removal), H9, the wall lemma's classical boundary-dissipativity content and L-SPACE; discharging it makes statement (i) on stratum (A) independent of the entire weak-strong stack."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G12 = minimal-load classical route"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#REMARK 5.3 (MINIMAL CONDITIONAL LOAD"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a published classical theorem instantiating the route on this class (discharges G12 AND prices the novelty claim — the intended outcome of the owed queries); or a demonstrated failure of the Li Ta-tsien/Secchi machinery on the slip-wall x-IBVP class (kills the declared route)"
+  gamma: "EOS-general"
+
+- id: T-T0P
+  kind: schema
+  class: SCHEMA
+  scope: "MAIN statement of the S-T0P proof program (target-theorem row registered at its judge label; the id carries the proof document's own name). SCHEMA on BOTH strata with SPLIT gap lists — shock-free stratum (A): G1/G2 (incl. structural trace clauses)/G7/G8 + H8'/H9; fitted-front stratum (B): additionally G3/G11/G9. Quantifier restricted to the T-PERIODIC class until G5; conclusions on cl(Omega_march) only; slip-free instances only (G9). HELD OUT of the 2026-08-19 landing by declaration (VERDICT_confirm legs 3+5 OPEN, doc1 revision 9 + one confirming round owed): the M0 main-statement text upgrade AND the G8/[C-XBVP](a') sub-clause registry row + gap-graph landing — this row records the standing label, it lands no main-statement text; any THEOREM* upgrade of stratum (A) is FORBIDDEN until (u1)-(u3) complete"
+  statement: "Target: on the L4 class with pure periodic rotating interface data and axisymmetric domain/BC, the certified solution class steadifies — [T-T0P-E] (equivariance half, THEOREM) composed with [T-T0P-U] (S1-anchored uniqueness, SCHEMA both strata) yields the steady co-rotating pattern; the composition inherits the union gap list of the consumed stratum."
+  doc: "docs/rde_nozzle_MASTER.md#the [T-T0P] MAIN-STATEMENT"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#Target label of record (revision 3): [T-T0P]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "TWO-TIER instance falsifier of record, BOTH tiers G10-gated (owner F2, capturing-mode twin trigger): tier 1 (kills the theorem) = a second solution WITH finitely-checkable class membership; tier 2 (kills the architecture's relevance) = any reproducible class-uncertified second K-valued entropy solution"
+  gamma: "EOS-general"
+
+- id: X-T0P
+  kind: schema
+  class: SCHEMA
+  scope: "SPEC/RESERVATION ROW for the owed [X-T0P] symbolic battery (KIND DEVIATION DECLARED: registered as schema, NOT carrier, because the battery is NOT YET BUILT — no script exists to anchor an ondemand spec; it becomes kind: carrier at build, F2 commit-gated window). The id is reserved now because the M0 partial landing of 2026-08-19 cites [X-T0P] as the executable rejector layer of the [T-T0P-E] lemma family (orphan-lint closure, no silent mint)"
+  statement: "Planned extension of X-XBVP P1-P3: symbolic/numeric 5-component checks at abstract-EOS random states (three compatibility identities; det J_5 = rho u det J_4 at w = 0; dS = 0 and d(rho u) = 0 in the 5-component slip solve; Hessian (m_w, m_w) entry vs g'/(theta rho u) and off-diagonal m_w zeros), BUNDLED with: the G7 r-b 1-D root-count over K (both-roots-in-K acceptance), the G8 segment line-search falsifier + feasibility gate (branch-continuation rule), the H5' q_perp box arithmetic + axial-range box-membership assert, the g4-a normal-Mach check, and the one-line asserts of the inline exhibits (q_perp ~ 1.13c; u.n ~ 0.854c)."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#These ARE the [X-T0P] carrier candidate"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#These ARE the [X-T0P] carrier candidate"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "yes"
+  falsifier: "at build, each battery item is itself a rejector (a failing identity on certified instances kills the corresponding lemma); the SPEC row is refuted if a named check is shown untestable as specified — then the battery spec must be re-derived before build"
+  gamma: "EOS-general"
+
+- id: S-SDI
+  kind: schema
+  class: SCHEMA
+  scope: "sector-decomposition identity — the swirl5f panel's F-2 MINT, landed 2026-08-19 at SCHEMA with ADVISORY provenance: swirl5f panel D+R (validation/swirl5f_panel_2026-08-19/, 10-agent panel incl. sympy-backed judge-verify; PANEL grades are NOT record grades, DISPATCH sec.3 row 1 + sec.6 rule 1); upgrade path = ONE house until-dry pass over the proof route in swirl5f_fun.md sec.1; newly LICENSES the O5-lite comparison (C) F_true(xi) vs F_2D(xi); scope caveats per R1.3 (what the identity does NOT say) and the refuter repairs DEF-3/DEF-6 (signed-integral type check; no-wall wedges, distributional reading at fronts)"
+  statement: "Exact half of 'cycle-mean thrust = per-phase sum': under H-A1/T0 (pure rigid rotation, n identical waves; xi <-> phi affine) J_exact = Int_Xi F_true(xi; S) dmu(xi) for EVERY admissible S, with mu the pushforward of normalized cycle time (uniform by rigid rotation) and F_true the exact per-sector thrust flux; remarks R1.1 (normalization type-check) and R1.2 (F_true is S-dependent, its mu-mean is not) ride the same route."
+  doc: "validation/swirl5f_panel_2026-08-19/swirl5f_fun.md#1.2 Proposition 1 (sector decomposition of the exact mean"
+  proof: "validation/swirl5f_panel_2026-08-19/swirl5f_FINAL_report.md#§5-bis FUNCTIONAL-IDENTITY VERDICT"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the house until-dry pass finding a defect in the Prop.-1 route (kills the mint at SCHEMA); instance falsifier: a T0-pure certified unsteady field whose time-mean control-surface thrust differs from the mu-integral of the measured per-sector F_true beyond quadrature bars (kills the identity's hypotheses on that instance)"
+  gamma: "EOS-general"

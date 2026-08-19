@@ -133,8 +133,48 @@ Subsonic patches remain admissible as a DECLARED CASE-CLASS (D1
 assumptions with the existing monitors (choking margin, R2
 characteristic-direction audit) and the documented Verdict
 downgrades. This names the class the certified apparatus already
-lives on (the u_x - c >= delta margin is the standing certificate);
-no theorem's scope changes.]
+lives on (the u_x - c >= delta margin was the standing certificate
+AS WRITTEN — planar-only; the certificate of record is now the
+L4-CERT split + normal form below); no theorem's scope changes.]
+[L4-CERT — SPLIT CERTIFICATE + NORMAL (CURVED-Gamma_d) FORM OF
+RECORD (landed 2026-08-19, S-FOUNDATIONS-C Blocco 2; sources:
+phaseD_meanswirl_formalization.md §7 item 6 / D.4 curved clause
+(CONFIRMED THEOREM) + VERDICT_contract_and_L4R1.md B.4 condition C-1
+(NG-8 retro-propagation, BLOCKING); provenance: VERDICT_r2pass §3 +
+VERDICT_escalation §4):
+ (i) NORMAL FORM (planar-only repair, REQUIRED): the margin
+ certificate of record is the MERIDIONAL-NORMAL form
+     m_n := u . n_m - c >= delta   (criterion M_n > 1),
+ with n_m the meridional unit normal field of Gamma_d —
+ frame-invariant (same mechanism as [T-NSW]), reducing EXACTLY to
+ the historical axial form m_x = u_x - c when Gamma_d is planar.
+ The bare "u_x - c" form is PLANAR-ONLY: on a curved/tilted Gamma_d
+ it can license an ill-posed march (tilted-element counterexample =
+ the audit-wiring rejector, D.4 r3). Every "u_x - c" occurrence
+ elsewhere in this document reads through this block (one-line
+ annotations at the sites).
+ (ii) SPLIT CERTIFICATE (C-1 retro-propagation): the L4-DEFAULT
+ certificate is TWO distinct certified objects, never silently
+ interchangeable —
+   (M-a)  NORMAL-ON-SURFACE: m_n >= delta on every patch of Gamma_d
+          (the interface-admission certificate = form (i));
+   (M-a') AXIAL-ON-SEGMENT + BOX: u_x - c >= delta along the marched
+          segment/volume PLUS certified box membership of the states
+          (the volume certificate the causality theorems consume).
+ Every Theorem-2/3 consumption of the L4=>R1 record cites (M-a')
+ EXPLICITLY; (M-a) alone never licenses them. The normal-direction
+ form (i) is the repair of BOTH halves on curved patches.
+ (iii) R1 VALIDITY WINDOW (hypothesis-legitimacy audit, R1-CAUSAL
+ verdict CERTIFIED): R1 is of record CONDIZIONATA on the window
+ W1-W4 — W1 every patch axially supersonic with MEASURED margin;
+ W2 the design vector strictly downstream of the CERTIFIED interface
+ as GEOMETRY-INVARIANCE (throat-area invariance is necessary, NOT
+ sufficient — Liu 2022 B-vs-C); W3 operating-point exogeneity;
+ W4 subsonic patches routed to the declared closure (O1-O4).
+ Monitors A1-A6: SPECIFIED, not armed (no run artifacts exist;
+ every "monitored" claim reads monitor-SPECIFIED).
+ (iv) NO-COFLOW DECLARATION: external coflow is explicitly OUT OF
+ SCOPE for this contract; Pa constant per D-DOM/D-JEX.]
 [H3-cl (D-CONTRACT vocabulary addition, S-GAUNTLET 2026-08-11):
 "certified phase-independent closure patch pattern" — the named
 sub-hypothesis of the O1-O4 subsonic case-class under which
@@ -208,7 +248,8 @@ GIVEN: envelope E (axisymmetric, L_E, R_E), attachment set Λ, constant
 Pa > 0; interface contract (Gamma_d, D, mu) with the stage-A admission
 audits passed (characteristic completeness on axially supersonic
 patches per Lemma 4; Crocco compatibility; per-phase spacelikeness
-margin; declared closure O1/O2/O3 on subsonic patches); constraint
+margin (m_n form on curved Gamma_d — D2.4 L4-CERT (i) / VI.1);
+declared closure O1/O2/O3 on subsonic patches); constraint
 vector c = (L, eps_max, L_p, curvature/angle bounds, symmetry class).
 [PROXY NOTE, dated 2026-08-05 (PAN-S14 §8 residue PP-4, second-lens
 verified): industrial heat-load and mass constraints enter (P) at
@@ -496,6 +537,47 @@ time-coupling and is where the Harroun threat lives (R22 decides);
 Falsifier: an L4-certified pure-periodic-data instance whose
 certified solution is NOT a steady co-rotating pattern (kills
 stage 1); owner of the full proof write-up: F2 theory window.
+[T-T0P PARTIAL LANDING OF RECORD (2026-08-19, S-FOUNDATIONS-C
+Blocco 2; proof of record = validation/sfoundations_raws_2026-08-13/
+phaseD/phaseD_stop_proof.md, revision 8; labels per
+VERDICT_phaseD_proofs1 §3.1; provenance: VERDICT_r2pass §3 +
+VERDICT_escalation §4). LANDED:
+ (1) [T-T0P-E], the EQUIVARIANCE HALF — THEOREM. Function-space
+ complete conditional assembly at ABSTRACT EOS; the hypothesis
+ (S1-anchored uniqueness of the certified solution) is stated
+ IN-STATEMENT, never assumed silently. Falsifier: the three-target
+ battery (t1) kills [L-STD] (an invariant field not of the standard
+ form), (t2) kills the theorem (a non-pattern S1 element in a class
+ VERIFIED to have the uniqueness property — premise checked, not
+ assumed), (t3) kills [L-EQV3] — genuine rejection power.
+ (2) Supporting lemma family, all THEOREM: [L-EQV1]/[L-EQV2]/
+ [L-EQV3]/[L-INV] (verbatim computations, full group);
+ [L-STD] (countable-dense closure + no-topology pointwise argument,
+ EOS-free); [L-SPACE] (re-scoped — determinacy in Remark only);
+ [L-COMPAT]/[L-XSON3]/[L-XREC]/[L-XWALL3]/[L-XC3D] (pen proofs
+ complete at abstract EOS; the [X-T0P] symbolic battery is the owed
+ EXECUTABLE rejector layer, owner F2 — labels hold as
+ complete-proof-here with the carrier duty named).
+ (3) [L-INC] (S1 elements are legitimate H7' competitors):
+ THEOREM on stratum (A) / SCHEMA-inherited on stratum (B) (rides
+ G2/G9; no new gap minted).
+ (4) [P-HB1] THEOREM; [P-HB2] THEOREM (linearity-of-homomorphism
+ clause in place; the D(a,b) rejector has genuine firing power);
+ [P-HB3](i') THEOREM (count(s|I) defined; data-space mollification
+ proof).
+ (5) CONSUMPTION SCOPING (Cor 5.1, mandatory caveat): [T-T0] and
+ [T-SLRW] fire on every certified solution of the T-PERIODIC class
+ ON cl(Omega_march) ONLY (surfaces/control volumes within the
+ marched domain), and on SLIP-FREE instances only (G9 breadth
+ pricing).
+ EXPLICIT DEFERRAL (honest, of record): the [T-T0P] MAIN-STATEMENT
+ upgrade (both strata SCHEMA with SPLIT gap lists) and the
+ G8/[C-XBVP](a') registry-row + gap-graph landing are HELD OUT
+ pending doc1's dry round (VERDICT_confirm: legs 3+5 OPEN; revision
+ 9 + one confirming round owed). No main-statement text is landed
+ here; the SCHEMA status of this [S-T0P] block for the main
+ statement is UNCHANGED, and the proof of record remains
+ phaseD_stop_proof.md.]
 CAUTION (verified weakening): T0 steadifies the PROBLEM; it does NOT
 transfer Rao's 2-D closed-form machinery to 3-D swirl (N6). N6 STATUS
 UPGRADE (2026-07-16, [F1/N6-S1], docs/rde_nozzle_N6_swirl.md +
@@ -541,7 +623,9 @@ strongly helical. Distinguish:
      from each of its points lies on one side: angle(w,e_x) + alpha
      < pi/2 with alpha = arcsin(c/|w|), i.e. cos(angle) > sin(alpha),
      i.e. w_x > c. Since w_x = u_x and c is frame-invariant:
-         AXIAL INTERFACE SPACELIKE  <=>  u_x > c,  IN EVERY FRAME.
+         AXIAL INTERFACE SPACELIKE  <=>  u_x > c,  IN EVERY FRAME
+     (plane x = const, i.e. planar Gamma_d; on curved Gamma_d the
+     statement reads in the normal form m_n — D2.4 L4-CERT (i)).
 PROOF of (b): the chain of equivalences above; each step elementary. QED.
 Consequences: CJ-sonicity licenses NO axial MOC (condition hierarchy
 C1 hyperbolicity ⊅ C2 axial marching (u_x>c) ; C3 = any time-like
@@ -549,6 +633,38 @@ foliation, helical in the wave frame, never constructed = N6; C4 = CJ
 type/firewall only). Rung-3a must be an implicit BVP (freezing +
 Newton-Krylov), which marches nothing. The huge relative swirl never
 enters rung 2: it IS the O(St) sweep term.
+
+[L4=>R1] CAUSAL-SEPARATION COMPOSITE OF RECORD (landed 2026-08-19,
+S-FOUNDATIONS-C Blocco 2; proof of record = validation/
+sfoundations_raws_2026-08-13/phaseD_L4_implies_R1.md, r3.5; labels
+per VERDICT_contract_and_L4R1.md B.3 as UPDATED by VERDICT_confirm
+§3; provenance: VERDICT_r2pass §3 + VERDICT_escalation §4 +
+VERDICT_confirm for legs 14/17). The composite is a CONDITIONAL
+COMPOSITE (judge flag J-2): NO unitary THEOREM label exists; the
+per-clause labels below are the ONLY quotable ones. BINDING
+QUOTABLE FORM:
+ (i) linearized causal separation on the monitored COLLAR of
+     Gamma_d — THEOREM (Thm 1'), modulo the PRACTICE bridges (H-RW)
+     and (M-c); the full-domain device-class form is THEOREM modulo
+     (H-UP-fam) (Proposition 1'' per VERDICT_confirm §3, the ceiling
+     granted at doc3 dry; NG-9 keeps the class instantiation).
+     HONESTY CLAUSE (travels with every consumption): in the
+     motivating class, Gamma_in uniform-noncharacteristicity is
+     generically VIOLATED — there the Status-(a) H^1 leg carries the
+     residual, not the discharge;
+ (ii) steady per-phase causal separation — THEOREM, conditional on
+     the SEGMENT certificate (M-a') (D2.4 L4-CERT split; never
+     claimable off the segment certificate);
+ (iii) finite-amplitude protection boundary priced for PLANAR NORMAL
+     UPSTREAM-FACING fronts ONLY (Pi* threshold, in-box; oblique =
+     NG-2, surrogate legs = NG-10), Euler+slip scope only (the
+     viscous channel is NG-5).
+"L4 => R1" WITHOUT these qualifiers is NOT a statement of record.
+Monitors (M-a)/(M-a')/(M-b)/(M-c): SPECIFIED, not armed (J-4 — no
+run artifacts; arming = implementing + running the harnesses with
+the rejector-of-the-rejector legs, filed as carrier rows).
+Amendments AM-4..AM-7 (VERDICT_confirm §4) are of record against
+the source document's text at composition.
 
 ------------------------------------------------------------------------------
 [T-T3] THEOREM 5 (T3 — the collapse, fixed wall). THEOREM.
@@ -823,6 +939,197 @@ the S18-corner rule applies forever) OR departure MEASURED
 the second is a POSITIVE program result, reported with equal
 prominence. Post-hoc bar widening, post-hoc convention choice, or
 silently dropped subsonic phases = protocol violations, not results.
+
+------------------------------------------------------------------------------
+[MS] MEAN-SWIRL / FLUX-NULLITY RECORD (landed 2026-08-19,
+S-FOUNDATIONS-C Blocco 2 — the §7-item-2 absorption; proof of
+record = validation/sfoundations_raws_2026-08-13/phaseD/
+phaseD_meanswirl_formalization.md at its r7 state; labels = the
+judge labels of VERDICT_phaseD_proofs1 §3.2 with the r2-pass
+adjudication applied; provenance: VERDICT_r2pass §3 +
+VERDICT_escalation §4 (+ VERDICT_confirm for leg 6). Setting: the
+UNSTEADY 3-D inviscid (or shear-declared) lab-frame flow in a
+control volume CV bounded by wetted walls Σ_w, an injection/
+faceplate boundary S_inj, and cross-sections S(x₁), S(x₂); axial
+angular-momentum density ℓ := ρ r u_θ = ρ Γ. ORIENTATION
+CONVENTIONS: n is the OUTWARD unit normal of ∂CV everywhere, S_inj
+included; τ·n is the traction exerted ON THE FLUID, so
+τ_w = ∮_{Σ_w} r (τ·n)_θ dA is the axial torque of the wall ON the
+fluid; every signed flux below is stated in this convention.)
+
+HYPOTHESIS BLOCK H-AM (operative clauses verbatim from the staging
+doc §3; the r1-r3 revision-history parentheticals are NOT
+transcribed — the staging text is of record):
+ H-AM0 (unsteady regularity — the function-space hypothesis):
+   the unsteady flow is piecewise C¹ on cl(CV) × [0, t_c] — fields
+   in L∞, finitely many C¹ moving front hypersurfaces across which
+   the unsteady RH conditions hold in the weak form, one-sided
+   limits at fronts, and NO energy/momentum concentration on
+   lower-dimensional sets (orifice lips, re-entrant CV corners,
+   measure-valued fronts): all flux integrands have well-defined
+   integrable boundary traces on ∂CV, and L(t) := ∫_CV ρΓ dV is
+   finite, CONTINUOUS — absolutely continuous on [0, t_c], so the
+   fundamental-theorem step ∫₀^{t_c} L′ dt = L(t_c) − L(0) holds —
+   and piecewise C¹ in t (continuity of L is exactly what
+   moving-front RH without surface angular-momentum concentration
+   delivers, and it is part of the HYPOTHESIS, not folklore).
+   AUDIT: H-AM0 is audited by CONCENTRATION tests —
+    (i) SOLVER-RESOLUTION SEQUENCE: the flux/torque integrals
+    recomputed on the dataset family at increasing SOLVER
+    resolution (not quadrature refinement — quadrature refinement
+    is a NON-REJECTOR on fixed-resolution data) must be Cauchy in
+    the BALANCE residual; divergence ⟹ H-AM0 red;
+    (ii) COLLAR SCALING at named suspects (orifice lips,
+    re-entrant CV corners): integrals of |ρΓu| over shrinking
+    collars must scale with the collar measure — an atom shows as
+    scale-independence.
+   Where NEITHER test is available (single-resolution data, no
+   local refinement), H-AM0 is ASSUMED-PER-DATASET — declared,
+   unaudited — and D.6's conditional (c2) must be reported as such.
+ H-AM1 (exact T0 periodicity): every field is t_c-periodic at every
+   fixed lab point; equivalently the interface/chamber data are in
+   the standing pure-periodic scope (T0-flatness monitor green).
+   Violation channel: aperiodic storage (mode transitions) — routed
+   OUT of this block (an H-AM1 exit, not a torque).
+ H-AM2 (inviscid or deviatoric-stress-declared): the deviatoric
+   stress is either zero (inviscid model) or its FULL boundary
+   angular-momentum moment is DECLARED — physical (molecular) +
+   modeled (Reynolds/SGS) + NUMERICAL shear alike — as THREE typed
+   budget entries, all in the §3 conventions (traction-on-fluid,
+   n outward):
+     τ_w      := ⟨∮_{Σ_w} r (τ·n)_θ dA⟩   (wall torque),
+     T_S(x)   := ⟨∮_{S(x)} r (τ·n)_θ dA⟩  (cross-plane stress
+                 moment, per audited station; integrand r τ_xθ),
+     T_inj    := ⟨∮_{S_inj} r (τ·n)_θ dA⟩ (faceplate stress
+                 moment).
+   AVERAGING TYPE: every entry is the CYCLE MEAN ⟨·⟩ (under strict
+   T0 the instantaneous integral is t-independent and the
+   distinction vanishes). The RESOLVED fluctuation covariance is
+   NOT part of this budget — it lives inside ⟨ρ u_x Γ⟩ itself.
+ H-AM3 (axisymmetric wetted geometry): every wetted surface is a
+   surface of revolution about the engine axis; non-axisymmetric
+   faceplate features (discrete orifices, posts) are explicitly
+   disposed of — either excluded via a flush CV at the orifice exit
+   planes (admissible declared bookkeeping) or carried as the
+   DISTINCT torque channel (1) of D.8 (the default listing of
+   record: "purely axial injection" does NOT imply zero boundary
+   Γ-flux, and silent folding hides the weakest hypothesis).
+ H-AM4 (declared injection flux): the injected angular-momentum
+   flux J_inj := −⟨∮_{S_inj} ρ Γ (u·n) dA + ∮_{S_inj} p r n_θ dA⟩
+   (n OUTWARD; the minus sign makes J_inj the flux INTO the CV) is
+   DECLARED, INCLUDING wave-induced backflow episodes (sign changes
+   of u·n within the cycle); J_inj = 0 for the idealized
+   axial-injection class with axisymmetric S_inj.
+ H-AM5 (no body torque): no azimuthal body force (no MHD, no swirl
+   vanes inside the CV).
+
+[MS-T-FLUXNULL] (D.6 — flux nullity / J_inj accounting). THEOREM*.
+Under H-AM0–H-AM5, the cycle-averaged axial angular-momentum flux
+through every ADMISSIBLE cross-section equals the declared inputs:
+  ⟨∮_{S(x)} ρ u_x Γ dA⟩ = J_inj + τ_w,decl(x) + T_S,decl(x)
+                          + T_inj,decl
+for a.e. station x (admissible = plane transversal to the front set
+for a.e. t; at a parked-front station the balance is asserted for
+the one-sided limits, which agree by RH normal-flux continuity of
+ρΓ), with τ_w,decl(x) CUMULATIVE in x (station-independence is a
+COROLLARY of the inviscid limb only). In the idealized class
+(inviscid, J_inj = 0):  ⟨∮_{S(x)} ρ u_x Γ dA⟩ = 0 — the
+area-integrated, MASS-FLUX-WEIGHTED cycle mean of Γ vanishes
+exactly at every admissible station. WHY THEOREM* (named
+conditionals): (c1) the ASSEMBLED-BALANCE symbolic check is QUEUED
+(gap G-a) — the geometric kernel ([T-SLRW]) and the local
+conservation identity are machine-verified, the assembled CV
+balance is a pen derivation independently reproduced by all four
+panel positions; (c2) H-AM0 — a MATHEMATICAL regularity hypothesis,
+audited per dataset by the concentration tests, else
+ASSUMED-PER-DATASET, never provable in the abstract. No physical
+conditional beyond H-AM0–H-AM5 remains. Gamma status: EOS-FREE.
+Falsifier (panel F1): on one periodic chamber-CFD dataset (≥2
+stations), A1(x) = ⟨∮ ρ u_x Γ dA⟩ normalized by the gross flux
+⟨∮ |ρ u_x Γ| dA⟩; refuted if |A1 − J_inj − τ_decl − T_S,decl −
+T_inj,decl| exceeds a DERIVED tolerance.
+ Rmk 3.1 (instantaneous form under strict T0). THEOREM. For a PURE
+ rotating wave, L(t) = ∫_CV ρΓ dV is CONSTANT in t, so the balance
+ holds at EVERY instant (J_inj read instantaneously; the two
+ readings coincide under strict T0). EOS-FREE. Falsifier: a
+ strict-T0 dataset on which L(t) varies beyond derived quadrature
+ bars.
+[D.7] (non-channels — the THEOREM-level negative). THEOREM* (same
+conditionals as D.6, its contrapositive reading). Under H-AM0–H-AM5
+no interior dynamics and no axisymmetric-surface mechanism can
+source net axial angular momentum: unequal wave counts,
+counter-rotating admixture, deflagrative asymmetries, throat
+convergence are NON-channels. "Wave-count asymmetries" must never
+be listed as a net-swirl mechanism. EOS-free. Falsifier: D.6's,
+restricted to a dataset realizing the named mechanism with all
+H-AM hypotheses audited green.
+[D.8] (torque-channel census). DEFINITION + THEOREM*
+exhaustiveness OVER {¬H-AM0..¬H-AM5}: (0) regularity breakdown
+(¬H-AM0 — concentration; breaks the accounting itself);
+(1) non-axisymmetric wetted geometry (¬H-AM3 — DISTINCT channel of
+record, never folded into (3); generically NONZERO in real
+hardware); (2) boundary deviatoric stress — wall torque AND
+cross-plane/faceplate stress moments (¬H-AM2; any dissipative
+dataset audits to its declared moment SUM, not to zero);
+(3) swirled/non-axial injection and backflow Γ-exchange (¬H-AM4 —
+the physically weakest hypothesis); (4) aperiodic storage (¬H-AM1
+— an exit, not a torque). EOS-FREE. Falsifier (panel F4, channel
+(1)): one wave passage over a discrete-orifice faceplate;
+engine-axis pressure torque zero within derived tolerance REFUTES
+the distinct channel.
+[MS-T-MEASURE] (D.9 — measure identities). (i) THEOREM
+(product-L¹ integrability class): ⟨u_θ⟩ = ⟨u_θ⟩_ṁ −
+cov(ρ u_x, u_θ)/⟨ρ u_x⟩; with D.6 (J_inj = 0) the INTEGRATED
+consequence ∮⟨ρu_x⟩⟨Γ⟩ dA = −∮ cov(ρu_x, Γ) dA — ONE scalar per
+cross-section; the pointwise reading "nonzero wherever cov ≠ 0"
+does NOT follow. (ii) THEOREM under strict T0: time mean at a
+fixed point = phase mean (μ of D2.3) = frozen-t azimuthal mean
+(the Z_n cell-sweep step: "n identical waves" means Z_n-invariance,
+so the fundamental-cell mean equals the S¹ mean). (iii) DEFINITION/
+discipline: the program's μ is a TIME measure, NOT the mass-flux
+measure constrained by D.6 — every swirl statement NAMES its
+measure (T3-CONTROL input (3)). EOS-free. Falsifier (panel F2):
+⟨u_θ⟩ field + A2 ≈ −A3 within derived bars.
+[MS-T-SKE] (D.10 — swirl-KE flux). THEOREM (positivity +
+unconstrainedness): E_θ := ⟨∮_S ρ u_x u_θ²/2 dA⟩ > 0 strictly on
+any station with through-flow ρ u_x > 0 a.e. and u_θ ≢ 0, and E_θ
+is NOT constrained by D.6 under ANY measure (θ-halves-at-each-
+radius exhibit: Γ-flux cancels r-fiberwise with E_θ arbitrary).
+First-order weight = measured record (σ/μ ≈ 0.70 ⇒ (σ/μ)² ≈ 0.5).
+PRACTICE twins (binding, T3-CONTROL inputs (2)/(5)): TWIN-A
+(zero-swirl) fair at the net-flux level ONLY — misattributes the
+E_θ debit (unrecoverable WITHIN the vaneless axisymmetric nozzle
+class of record — scope statement, N6-2 note), the radial-
+equilibrium pressure shift, the covariance wedge (D.9(i)), and the
+closure/margin class (D.5(iii)); TWIN-B REFUTED as fair; TWIN-C
+(flux-consistent) is the fair twin of record. EOS-free. Falsifier
+(panel A4) WITH THE NORMALIZATION PINNED (pin B-1, VI.1): A4 is
+the KE-NORMALIZED swirl-KE flux fraction; the corpus "3-6%" figure
+is KE-normalized, the h0-normalized reading is ~4x smaller
+(0.3-2.5%); the falsifier must NEVER fire on a unit mismatch
+(discriminating test: only the KE reading gives Ωr ≈ D_CJ).
+[D.11] (covariance sign). CONJECTURE — lands at the lowest class:
+on in-scope RDE chamber data cov(ρu_x, u_θ) > 0 wave-ward, hence
+by D.9(i) the plain time-mean swirl is net COUNTER-wave. EOS-free.
+Falsifier (panel F3): sign(A3) on the first dataset (awaits G-e).
+[D.12] (prohibition). PRACTICE. The statement "the time-mean
+interface state carries net Γ ≠ 0, a first-order omitted
+mean-field term" is REFUTED of record at the flux level and must
+NEVER be asserted by this program; the folk statement "the mean
+flow has no swirl" is EQUALLY unavailable (no time-mean tangential
+field is reported anywhere in the read corpus — empirical vacuum
+of record; falsifier: exhibit one).
+D.18 CROSS-REFERENCE (compact — DOC-2 GUARD: the
+over-certification counter on D.18 material stands at FOUR of
+record; nothing here states a strength above the in-line grades):
+[MS-DEF-KRES] (the reduction-residual / commutator terms K) is OF
+RECORD in the staging doc at its r7 state, NOT transcribed here.
+Labels: DEFINITION (distributional form) + SCHEMA completeness
+(gap G-f) + BOTH iff clauses SCHEMA (judge downgrades
+J-r2p-2/J-r2p-3; escalation E-3 CLOSED at these labels per
+VERDICT_confirm leg-6, with amendments AM-1..AM-3 of record
+against the staging text). Restoration of the iffs ONLY via the
+G-f battery (owner: carrier upgrade window, commit-gated).
 
 ------------------------------------------------------------------------------
 [T-T4] THEOREM 6 (T4 — plug simultaneous optimizability). THEOREM* (under the
@@ -1351,7 +1658,9 @@ response map; degrades declaredly at mode transitions (robust layer).
 RUNG 3a-LITE (B-lite) — addendum of record (2026-07-21, S12,
 [S-BLITE]): on the NOZZLE-ONLY domain with certified axial margin
 u_x - c >= delta > 0 (interface data class I1, Omega an INPUT from
-the data), Lemma 4's condition C2 is SATISFIED and the exact
+the data; this is the (M-a') segment certificate — D2.4 L4-CERT
+(ii); interface admission on curved Gamma_d reads in the normal
+form m_n, L4-CERT (i)), Lemma 4's condition C2 is SATISFIED and the exact
 wave-frame field is computable by 3-D helical SPACE-MARCHING (fitted
 sheet as per-station unknown, Lax in the x-as-time reading = G12-L2)
 at marching cost — no Newton-Krylov global solve, no camera, no
@@ -1368,13 +1677,60 @@ in 3-D, not an exception to it.
 ==============================================================================
 PART VI — IMPLEMENTATION FORMULATION (what the coder builds)
 
-VI.1 CycleFamily (contract C1): {P0, T0, thermo handle gamma(.;xi) |
-M_in(y;xi), theta_in(y;xi), s(y;xi), [vorticity]} + mu weights +
+VI.1 CycleFamily (contract C1; the [vorticity] placeholder is
+REPLACED of record by the D.13 [MS-DEF-CONTRACT] swirl row —
+DEFINITION + recovery THEOREM, landed 2026-08-19 from
+phaseD_meanswirl_formalization.md §4; provenance: VERDICT_r2pass §3
++ VERDICT_escalation §4): {P0, T0, thermo handle gamma(.;xi) |
+M_in(y;xi) — MERIDIONAL Mach profile (declaration of record: M_in
+is meridional, never total; D.5(iii)),
+theta_in(y;xi) — meridional flow angle,
+s(y;xi),
+w(y;xi) — swirl velocity profile; equivalently Gamma(y;xi) :=
+R(y)·w(y;xi), the transported invariant (D.2 [MS-T-TRANSPORT]); the
+evaluator carries Gamma as its transport row (one more
+unknown/equation per unit process, VI.4bis(iv) / N6 §4 note),
+h0(y;xi) — stagnation-enthalpy PROFILE (promotion of record: under
+the pre-swirl contract h0 was constant in y by construction, so any
+Delta_h0 monitor would have been VACUOUS — rejector-incapable;
+staging Rmk 4.1, THEOREM; scalar T0 retained as the phase-aggregate
+handle)} + mu weights +
 provenance + stage-A audit results (characteristic completeness; Crocco
-residual; spacelikeness margin min(M_x - 1) per phase; H-I2/choking
+residual; spacelikeness margin declared as m_n(xi) = ess inf_y
+(M_n - 1), M_n = (u n_x + v n_r)/c with n_m the meridional normal
+field of Gamma_d (D.4 curved clause / D2.4 L4-CERT (i); reduces to
+min(M_x - 1) exactly on planar Gamma_d; TOTAL Mach PROHIBITED as
+the audit quantity); H-I2/choking
 margins; projection norm if applied; T0 flatness/harmonic-decay
 certificate [S14 F-FLAT: carrier + derived threshold = plan item D6
-§6.5-bis; field named here so the contract cannot ship without it]). Generators: matched-cycle (case
+§6.5-bis; field named here so the contract cannot ship without it]),
+EXTENDED by: (a) the TRIPLE spread monitor of D.14 (G6 rejector;
+LICENSING leg = the TWO-leg SCHEMA gap G-b1/G-b2 — sensitivity
+functional + per-campaign derived constant; every licensing verdict
+carries the G-b1 conditional explicitly; BLOCKING direction usable
+now, conservative);
+(b) the angular-momentum audit row of D.16 (PRACTICE); (c) the m_n
+margin above. Data class: rows in BV ∩ L∞(y), piecewise C¹
+sufficient; through-flow sign convention declared (D.14 guard).
+STATE RECOVERY: UNIQUE under AUD-cp + AUD-c2T for ALL Mach numbers
+(THEOREM, gamma(T)-EXACT — two-line F′(T) > 0 proof of record;
+falsifier: a table instance with two distinct recovered states) and
+EXISTS only under AUD-hRANGE (flag-never-extrapolate).
+BLOCKING PINS before ANY first dataset ingestion (advisory
+provenance: validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md
+§4 — panel grades are NOT record grades):
+ (B-1) A4 NORMALIZATION PINNED: the corpus "tangential energy
+ fraction 3-6%" figure is KE-NORMALIZED; the h0-normalized reading
+ is ~4x smaller (0.3-2.5%); discriminating test: only the KE
+ reading gives Omega·r ≈ D_CJ; the D.10 falsifier must NEVER fire
+ on a unit mismatch — the A4 convention is a declared field of the
+ audit.
+ (B-2) h0-CONVENTION PROVENANCE CLAUSE: whether the generator's
+ h0(y;xi) includes u_theta²/2 is a REQUIRED declared field of the
+ contract (it decides the B2 fold/drop variant); rejector: the D.20
+ Delta-h0 = Omega·Delta-Gamma linkage fires on
+ convention-inconsistent data.
+Generators: matched-cycle (case
 A, exists), wave-structure model (case B, the one new physics module),
 calibrated/mission/DRO variants (cases C-F), file-based CFD.
 GENERATED data passes the same audits as imported data.
@@ -1531,7 +1887,8 @@ angle theta_B + clamped-spline wall nodes; arc-kernel geometry rtu/
 rtd as fixed inputs, GENO-twin contract) is recorded adaptively with
 per-cell Newton certification AND the per-cell AXIAL-MARGIN rejector
 (u_x - c > floor — the x-as-time causality the L-DoD truncation
-lemma requires; instance floor delta = min_margin(base)/K_RICH =
+lemma requires; an (M-a')-class segment certificate per D2.4
+L4-CERT (ii); instance floor delta = min_margin(base)/K_RICH =
 0.1202 m/s on the reduced twin case), replayed by the bucketed
 whole-loop-jit production engine (bit-level equivalence to the
 certified replay; O3.1 transpose identity = the Lemma-B guarantee,
@@ -1760,7 +2117,8 @@ on a LADDER of certified solution classes:
 tier t's class with margin vector m(Sigma) >= mu_0 > 0 }, the
 margin vector collecting the FOLD margin (distance from same-family
 characteristic coalescence; classically Eq. (4)/Sternin at the
-junction), the CAUSALITY margin u_x - c, and the uniform constants
+junction), the CAUSALITY margin u_x - c (the (M-a') segment
+reading, D2.4 L4-CERT (ii); m_n on curved Gamma_d), and the uniform constants
 of the certified class D(delta, L_x, C_geo, C_dat, h_min). Tiers:
 S_0 (shock-free, the current engine) SUBSET S_1 (finitely many
 FITTED fronts under RH + entropy + Lax + Lopatinskii certificates —
@@ -1785,7 +2143,8 @@ party to the priority dispute), with DIRECT page-verified
 counterproof in KT2015 p.186 Eq. (2.10) (delta R <= 0 on admissible
 variations => inequality + complementarity, slack on the "region of
 boundary extremum"). OURS: the quantified margin m(Sigma) (fold
-Eq. (4)/Sternin, causality u_x - c, uniform constants), the
+Eq. (4)/Sternin, causality u_x - c per D2.4 L4-CERT (ii), uniform
+constants), the
 MEASURED shadow price mu pricing shock-freeness, the certified
 ladder with the nesting theorem, the KS aggregation at derived rho,
 and the B-stationarity qualifier. DECLARED ASYMMETRY (carried with

@@ -1,5 +1,5 @@
 {
- "_note": "R28 ratchet baseline (S25-bis 2026-08-12): frozen per-file counts of the DECLARED legacy literal debt in validation/. New literals cannot enter (count may only ratchet DOWN, with this file updated to match). Classification duty: findings registry row test-suite:numeric-lint-scope-hole (F2-entry). S-CERT closing window 2026-08-13: birth rows added for the two audit-instrument files (o31cs_instrument.py 6, scert_raws moc08 driver 3 - measured by the lint itself; P0#2 repair of the final audit verdict, declared); their classification joins the same F2-entry duty.",
+ "_note": "R28 ratchet baseline (S25-bis 2026-08-12): frozen per-file counts of the DECLARED legacy literal debt in validation/. New literals cannot enter (count may only ratchet DOWN, with this file updated to match). Classification duty: findings registry row test-suite:numeric-lint-scope-hole (F2-entry). S-CERT closing window 2026-08-13: birth rows added for the two audit-instrument files (o31cs_instrument.py 6, scert_raws moc08 driver 3 - measured by the lint itself; P0#2 repair of the final audit verdict, declared); their classification joins the same F2-entry duty. S-FOUNDATIONS-C closing window 2026-08-19: birth row added for swirl5f_jv_check.py (37, measured by the lint itself) - PANEL-ADVISORY instrumentation deposited by the parallel swirl5f window AFTER its dispatch manifest was written (dispatch lists 10 files, .py not among them); the file is the panel's own sympy judge-verifier (its section 8), NOT an of-record carrier; classification (or removal with the panel folder's disposition) rides its section-8 consumption window, declared.",
  "files": {
   "validation/a1_ideal_march_jax.py": 48,
   "validation/a1_loopspeed_bench.py": 3,
@@ -34,6 +34,7 @@
   "validation/t3qs_sweep_protection.py": 25,
   "validation/thermotab_c1_jax.py": 46,
   "validation/u2_reflection_glancing.py": 20,
+  "validation/swirl5f_panel_2026-08-19/swirl5f_jv_check.py": 37,
   "validation/u3_bordered_front_solve.py": 7,
   "validation/validity_monitor.py": 15,
   "validation/xbvp_entropy_transfer.py": 24

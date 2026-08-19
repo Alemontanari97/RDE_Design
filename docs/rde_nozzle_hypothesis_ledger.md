@@ -177,3 +177,69 @@ rows) | Gamma: n/a (no mathematical content of its own)].
   (a-B2)) can reintroduce measure dependence; monitored through the
   PROTOCOL T3-CONTROL convention-spread rejector. Grounds: M0
   T-T3-SI hypothesis list.
+
+## SWIRL5F ADDENDUM (2026-08-19, S-FOUNDATIONS-C Blocco-2 landing —
+## absorption of the swirl five-field panel's PANEL-NEW hypothesis
+## rows per DISPATCH_swirl5f.md §3 row 12; nine rows added to the
+## living ledger — 33 -> 42. PROVENANCE CAVEAT, binding: source =
+## validation/swirl5f_panel_2026-08-19/ (10-agent panel, D+R +
+## sympy-backed judge-verify) — an inter-session ADVISORY whose
+## grades are NOT record grades; every row below is therefore PRICED
+## (never NECESSARY/DISCHARGED from panel evidence alone), each with
+## its meter/falsifier carried verbatim from the fused report §2.)
+
+- H3-w (interface swirl-profile SHAPE phase-invariance): PRICED —
+  the NEW hypothesis under which the five-field T3QS ray-cancellation
+  P1-P6 holds (panel claim 3, proven in-panel, license GATED on the
+  committed X-T3QS 5F carrier, F2 duty); violation channel: real data
+  expected to violate at some a_w > 0, opening an O(a_w*St_n) off-ray
+  hysteresis channel the 4F bookkeeping never had. Meter/falsifier:
+  a_w measured on first dataset; rejector R2' (phase-dependent w-hat
+  breaks P5). Until the carrier lands: the J1 bar is COMPUTED on
+  swirl data, never argued away.
+- H-SEG (segment-averaged linearization boundedly invertible):
+  PRICED — needed for the panel's EXACT error representation (ER);
+  OPEN on front-carrying slices (g2a weak-vs-weak, g2b contacts).
+  Meter: S.22 route + front census per dataset.
+- [H-sgn] (co-rotating swirl sign): PRICED — eps_theta co-rotating
+  (w > 0 wave-sense) in M_rel = M_Omega(1 - eps_theta) and the drift
+  coefficient; the D.11 CONJECTURE expects counter-wave plain-mean
+  swirl, conservative direction taken. Meter/falsifier: sign test on
+  first dataset (D.11's F3).
+- h0-convention (contract h0(y;xi) includes u_theta^2/2): PRICED,
+  and PINNED AS CONTRACT FIELD this window — decides the B2
+  fold/drop variant (1.5-3% thrust); the M0 VI.1 B-2 provenance
+  clause (landed 2026-08-19) makes the generator's convention a
+  REQUIRED declared field. Rejector: the D.20 Delta-h0 =
+  Omega*Delta-Gamma linkage fires on convention-inconsistent data.
+- H-VANELESS + no-free-jet (wetted surfaces = surfaces of
+  revolution, slip; no constant-pressure free-jet boundary): PRICED —
+  the five-field gradient formula is FALSE on a vaned wall and
+  UNDERIVED for external-expansion plug flows (free-boundary adjoint
+  = named OPEN leg of [S-5F]). Meter: geometry census + D.6/D.16
+  torque bookkeeping.
+- H-FROZEN-Gamma (zero mixing: Gamma, s advect unmixed to the exit):
+  PRICED — violation channel: turbulent sector/annulus mixing,
+  swirl-KE -> heat; the D.16 angular-momentum residual is BLIND to
+  mixing (internal torque). Meter: two-station A4 decay audit;
+  RANS/LES twin prediction (direction proven in-panel: frozen 5F
+  UNDERSTATES Isp on the plug family — conservative).
+- class-wide H-A1 (T0 purity uniformly over the design class A):
+  PRICED — needed by the 2-eps value-transfer uniformization route
+  (panel fun DEF-7: add "(0) H-A1 uniformly on A" to the
+  uniformization list); violation channel: design-induced mode change
+  (PB-5 boundary). Meter: operability maps.
+- a_Gamma ~ a_p, a_h0 ~ a_p (fluctuation-amplitude comparability):
+  PRICED — load-bearing for "torque co-leading" and for the K_h0
+  weighting; violation channels: phase-locked Gamma profiles
+  (a_Gamma << a_p, torque strictly dominant) or uniform-T0 blowdown
+  (a_h0 << a_p, work term dominates). Meter: per-field a_q measured
+  at ingestion (G-e window; per-field a_q also a D.13 contract pin).
+- H-REACH adjoint consumption (enrichment of the existing
+  streamtube-topology hypothesis, panel-surfaced): PRICED — the
+  five-field ADJOINT transport consumes H-REACH/H-FIB too (not only
+  the state-side Gamma(psi)/s(psi)/h0(psi) representation), so a
+  reachability violation (recirculation, spike-base separation
+  bubble) kills gradient validity along with state validity. Meter:
+  through-flow guard + streamline census (unchanged instruments, one
+  more consumer declared).

@@ -100,6 +100,30 @@ machine-first); the coming lint checks agreement between them.
   (historical text: `PROGRESS_2026-08-12_S24_f1b.md`, per plan §0.2 GT-1: the only one of
   the 27 pre-S-ORDINE session logs left untracked).
 
+## Registration addendum — non-raws advisory dir (2026-08-19, LAND-3 window)
+
+- **`swirl5f_panel_2026-08-19/`** — class: raw-block-equivalent
+  (inter-session advisory panel); status: RAW (grades NOT of record —
+  the ONLY licensed reading is the conversion table in its
+  `DISPATCH_swirl5f.md` §3; §8 verifier verdict PRESENT at registration
+  time, landed 2026-08-19); plan-anchor: swirl program (N6/§5 line,
+  D.13/D.14/D.16 contract rows — D6 §6 item 17; C51 + S-5F standing
+  queue); file count measured this window (`ls | wc -l`, SR-12): **12**
+  (11 `.md` + 1 `.py`; the dispatch's §7 duty (a) says "10 files" — a
+  figure stale from before the judge-verify round; its §2 manifest and
+  the measured count of record agree at 12, incl. `swirl5f_judgeverify.md` +
+  `swirl5f_jv_check.py`).
+  REGISTERED HERE, NOT AS A TABLE BLOCK ROW (declared, honest): lint
+  (xx) (`tests/test_advisory_index.py` check (a)) makes table block
+  rows bijective with top-level dirs whose NAME contains `raws` —
+  a table block row for this dir would be machine-rejected ("block
+  row without raws dir on disk"). Residue named: either extend the
+  lint's block-row scope (a carrier edit, pinned-env/commit
+  discipline, owner: next commit window) or rename the dir (breaks
+  the dispatch's self-references; user/orchestrator call); until
+  then THIS addendum is the registration of record for the dir
+  (DISPATCH §7 duty (a) consumed in this form).
+
 ---
 
 ## Index table (sorted alphabetically; `file` relative to `validation/`)
@@ -123,6 +147,8 @@ machine-first); the coming lint checks agreement between them.
 | ADVISORY_Scert_prompt_2026-08-12.md | session-prompt | CONSUMED | census R33; agnostic-milestone-review directive; sequenced R32 -> R33 -> F2 | consumed 2026-08-13, executed integrally as Part 2 under the wrapper's 2a-2e hooks; banner -> `PROGRESS_2026-08-13_Scert.md`; was ORDERED BY the Fservice_Scert wrapper prompt |
 | ADVISORY_SfoundationsC_prompt_2026-08-17.md | session-prompt | OF-RECORD | census R35 continuation (declared split of the 2026-08-17 session): landing package (r2 pass + M0 deltas), Phase C adjudications right-sized with escalation rule, Phase D centerpiece, gate completion | authored+committed at the part-1 R3 close; continuity carrier = sfoundations_raws SESSION_STATE_checkpoint.md; all 2026-08-17 user pins carried verbatim (models, breadth, rotation, right-sizing) |
 | PROGRESS_2026-08-17_Sfoundations.md | session-log | OF-RECORD | census R35 (part 1: Phases 0/A/B + hypothesis audit + contract/L4R1 + proofs-1 + coverage gate; CONSUMED-with-declared-split) | close arithmetic in-file (registry 157->224, ledger 48->51, lit 80->82); user catches of record (constraint ladder, topology errata, spike/bell oracle); orchestration ~6.9M subagent tokens with quota-resume declared |
+| PROGRESS_2026-08-19_SfoundationsC.md | session-log | OF-RECORD | census R35 (session C Blocchi 0-2: r2 pass + escalations + seed v3 both-directions PASS + legs 6/14 closed + gate OPEN + full M0/registry landing; split residuo = Blocchi 3-5 + doc1 legs 3+5) | boundary-touchpoint decisions of record (P_amb slot/C55, litreview cava RATIFIED, seed registry minted, Sonnet fork-ledger slot, rotation); 4 quota kills + prefix-cache lesson declared; SR-9 ~11.5M/60 agents/7 workflows; suite (vii) repair in-window; swirl5f §8 verifier verdict consumed in-window |
+| ADVISORY_SfoundationsC2_prompt_2026-08-19.md | session-prompt | OF-RECORD | census R35 split residuo (Blocchi 3-5: Fase C right-sized v2 + centerpiece R22-F + ledger fork/coverage gate/R3; prima azione parallela = doc1 rev-10 sufficient-grant) | authored+committed at the Blocchi-0-2 R3 close (rotation ratified); transcribes the 2026-08-19 boundary ratifications (Sonnet slot, litreview cava, refined dry criterion, per-cluster census, wave judges, no-reseed-at-unchanged-pool, R-4, no-script-edit-in-resume) + parked user decisions (UD/ADR-9, O5, Lean pricing, S-5F path A/B/C, C51 priority, G9 scope) |
 | ADVISORY_Scollapse_prompt_2026-08-11.md | session-prompt | CONSUMED | G2/T3/T0 theory line; parallel-session non-interference protocol | banner -> `ADVISORY_Scollapse_verdict_2026-08-11.md` |
 | ADVISORY_Scollapse_verdict_2026-08-11.md | advisory (Form-2+Form-3 discharge-verified verdict) | OF-RECORD | M0 [T-T3-SI]/[T-T3-MAP]/[X-T3CTRL] registrations; carriers dispatched F2/F2a/F3/F5a/F5b/F6 | §6 M0/registry deltas EXECUTED 2026-08-11; §7/§8 clause register + open-items list authoritative only here |
 | ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md | advisory (horizontal gauntlet ledger + red-team + ratification appendix) | OF-RECORD | D6 §0-pre absorption addendum; user scope-pins memory; F2a/F3/F4b/F5a/F5b/F6 duty owners | delta-execution half CONSUMED 2026-08-11; 34-row ledger + DUTY texts + user pin verbatim text authoritative only here |
@@ -201,7 +227,7 @@ machine-first); the coming lint checks agreement between them.
 | sdt_official_audit.md | doc-audit | OF-RECORD, LECTURE-ERA | repo-sota-standard | official Caltech SDToolbox zip vs vendored stack audit |
 | sdt_thrust_demos.md | doc-audit | OF-RECORD, LECTURE-ERA | repo-sota-standard | SDT official impulse demos vs course thrust models census |
 | **scert_raws_2026-08-13/** (block row) | raw-block | RAW | census R33 (S-CERT; contract: artefatti su file) | RAW block: S-CERT audit artifacts — sample_manifest.md (seed 20260813, strata declared), moc08_falsifier_driver.py + moc08_results.json (hook 2a, PASS), env fingerprints open/close (diff: unchanged); adjudicated verdicts live in `PROGRESS_2026-08-13_Scert.md` |
-| **sfoundations_raws_2026-08-13/** (block row) | raw-block | RAW | census R35 (S-FOUNDATIONS; dir keyed to the prompt date, session executed 2026-08-17) | RAW block: S-FOUNDATIONS artifacts — Phase-0 tranche candidates + dedup-backfill proposals, Phase-A blind brief (agnosticity-linted) + 4 attack trees (141 forks) + condensed slices, phaseB_tree_diff.md (diff of record), hypaudit/ (hypothesis-legitimacy verdicts, dual-seed certified), phaseD/ proof drafts + refutations (labels pending judge), contract_blind_* formalizations, COVERAGE_GATE_spec.md, SESSION_STATE_checkpoint.md, lint/suite run logs, env fingerprint; adjudicated verdicts live in the session log `PROGRESS_2026-08-17_Sfoundations.md` (at R3 close) |
+| **sfoundations_raws_2026-08-13/** (block row) | raw-block | RAW | census R35 (S-FOUNDATIONS; dir keyed to the prompt date, session executed 2026-08-17) | RAW block: S-FOUNDATIONS artifacts — Phase-0 tranche candidates + dedup-backfill proposals, Phase-A blind brief (agnosticity-linted) + 4 attack trees (141 forks) + condensed slices, phaseB_tree_diff.md (diff of record), hypaudit/ (hypothesis-legitimacy verdicts, dual-seed certified), phaseD/ proof drafts + refutations (labels pending judge), contract_blind_* formalizations, COVERAGE_GATE_spec.md, SESSION_STATE_checkpoint.md, lint/suite run logs, env fingerprint; adjudicated verdicts live in the session log `PROGRESS_2026-08-17_Sfoundations.md` (at R3 close). SUBDIR ADDENDUM (measured 2026-08-19, LAND-3 window, `ls` + `wc -l` per SR-12): `r2pass/` = **43** files — Blocco-1 r2 batched pass + dual-seed v2/v3 (2 SEED_PROTOCOL docs + 4 seed refutations) + briefs + until-dry escalation/confirming-round refutation files + 3 VERDICT files (`VERDICT_r2pass.md`, `VERDICT_escalation.md`, `VERDICT_confirm.md` — the landing-gate authorities); `landing/` = **4** files (Blocco-2 landing briefs LAND1/LAND2/LAND3/LANDA); both covered by THIS block row per the raws-dir convention (block rows are top-level; subdirs are note content) |
 | **sordine_raws_2026-08-13/** (block row) | raw-block | RAW | census R32 (S-ORDINE) | RAW block: 26 files, adjudicated verdicts live in `ADVISORY_SORDINE_plan_2026-08-13.md` (+ this session's own synthesis) |
 | **sota_gapmap_raws_2026-08-12/** (block row) | raw-block | RAW | census R26 (gap-map) / R29 (pipeline-sense) | RAW block: 17 files, adjudicated verdicts live in `ADVISORY_S24_sota_gapmap_2026-08-12.md` + `ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md` |
 | st_opt_validation.md | doc-validation | OF-RECORD, LECTURE-ERA | repo-sota-standard | Stechmann Table 1 nozzle-optimization validation |

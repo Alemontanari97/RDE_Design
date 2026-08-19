@@ -550,6 +550,26 @@ PB-5 (robust). Mode multistability and μ-misspecification: maximize
 E_π[J] or CVaR_β, π calibrated on operability maps; Wasserstein-DRO ball
 around nominal μ. The formulation of record whenever H-A1 fails.
 
+[P_amb SLOT OF RECORD, dated 2026-08-19 (S-FOUNDATIONS-C boundary
+touchpoint, user-ratified decision (a)): every PB-* statement is posed
+at a declared OPERATING AMBIENT SET P_amb — an interval/measure of
+ambient pressures with provenance (contract-datum discipline, same as
+μ) — with DEFAULT P_amb = {Pa0}, the single operating point of record
+(H-Pa unchanged: Pa constant over the cycle at each operating point).
+Structure the slot rides on, so no standing choice re-opens at
+instantiation: under the full-flowing/ambient-blind scope (H-T3.2) the
+interior per-phase fields are Pa-INDEPENDENT and F is AFFINE in Pa
+(T3 Lemma-C class), so the ν-averaged objective equals the objective
+at ⟨Pa⟩_ν wherever admissibility holds uniformly; the envelope binds
+through the ADMISSIBILITY constraints (separation g_sep, wake-regime
+fence — checked at the monotone-worst member, else pointwise) and any
+non-affine regime is OUTSIDE the certified class (H2' fence), excluded
+and declared, never silently averaged. The AGGREGATION FORM over
+P_amb (ν-mean vs minimax vs CVaR, PB-5 machinery) is a NAMED choice
+point (ledger row C55), adjudicated at first multi-point
+instantiation, not before. The default instantiation changes NOTHING
+in the standing apparatus.]
+
 Ladder bridges (rigor obligations, not slogans): rung1(=I4/T3,T4 oracles)
 ⊂ rung2(PB-1..3) —O(St) bridge P4→ rung3(T0/freezing, HB, shadowing) —
 coupling→ PB-4/PB-5.

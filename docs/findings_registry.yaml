@@ -1631,14 +1631,14 @@ entries:
   owner: "campaign windows (every champion Verdict carries the bracket line; wiring = F2 Verdict-field work)"
   trigger: "first champion design of record post-F2"
 - id: orchestration:until-dry-confirm-direction-unproven
-  status: CONFIRMED
-  severity: medium
-  magnitude: "LG-1 of the phaseD-proofs judge (2026-08-17): both proof loops closed NOT-DRY at the round cap with the FINAL revisions unrefuted, and the dual-seed known-true seed failed twice (refuter over-strictness: REPAIRABLE verdicts on true cores) — the until-dry refuter layer is PROVEN to kill (canaries positively falsified, twice) but UNPROVEN to confirm; survivals are not layer-certified and final labels rest on the judge's direct reading (declared). Repair path named by the judge: (a) one confirmation round on the final revisions OR the queued carrier executions (G-f/G-a/[X-T0P] battery) as the confirm-direction proof; (b) repair the known-true SEED PROTOCOL (seeds must be single-claim, label-matched, no fused legs) before the next loop self-certifies"
+  status: DOWNGRADED
+  severity: low
+  magnitude: "LG-1 of the phaseD-proofs judge (2026-08-17): the until-dry refuter layer was PROVEN to kill but UNPROVEN to confirm (known-true seed failed twice — v1 and SEED_PROTOCOL_v2, both adjudicated seed-authoring defects, not refuter blindness). CONFIRM DIRECTION DISCHARGED 2026-08-19 FOR THIS WINDOW AND THIS POOL CONFIGURATION: the SEED_PROTOCOL_v3 dual-seed run returned canary_killed=TRUE (third kill, positive falsification at source, judge re-derived at pen grade) AND knowntrue_survived=TRUE (SOUND-AS-LABELED on the pre-audited route; rule-7 pre-launch route audit executed) — the layer is proven in BOTH directions this window and the VERDICT_r2pass escrow was RELEASED (VERDICT_escalation sec.1/sec.4). The row does NOT die: it is REWRITTEN to the standing per-pool rule below (v2 rule 5 / v3 rule 8)"
   source: "validation/sfoundations_raws_2026-08-13/phaseD/VERDICT_phaseD_proofs1.md#LG-1"
   code: []
   mechanism: verification-layer-gap
-  owner: "S-FOUNDATIONS-C opening (the batched r2 adversarial pass doubles as the confirmation round; seed-protocol repair in the same prompt)"
-  trigger: "S-FOUNDATIONS-C opening, before any M0 landing consumes the rev-3/r3 labels"
+  owner: "standing per-pool rule (VERDICT_escalation sec.6, fifth residue): every NEW pool configuration (model set, effort tier, brief family) re-spends a dual-seed certification before its until-dry loop certifies itself; seed protocol v3 discipline binding (known-true route pre-audited against the binding standard by an agent OTHER than the seed author)"
+  trigger: "next until-dry refutation loop launched with a pool configuration different from the 2026-08-19 escalation pool"
 - id: contract:data-class-function-space-unpinned
   status: CONFIRMED
   severity: medium
@@ -2285,3 +2285,156 @@ entries:
   owner: "GENO repo (fix) + F2 (program: any GENO baseline whose kgrid re-anchors near a foot-above-wall geometry inherits the uncorrected corruption)"
   trigger: "next GENO kgrid re-anchor touch, or next foot_clamped-adjacent MoC_Gen_m/CircularContour_m change"
   note: "distinct from the appendix's MOC-16 (same dead-safety-net mechanism, out-of-scope per the (iii) MOC-01..09 boundary) -- this row is the source-(iv) instance, in scope"
+
+# ---- S-FOUNDATIONS-C Blocco-2 landing rows (2026-08-19, LAND-2):
+# (1) contract-diff P3 candidates F-4..F-10 (VERDICT_contract_and_L4R1.md
+#     Part A (ii); the P2 rows F-1..F-3 landed 2026-08-17 above);
+# (2) swirl5f panel record-facing flags (DISPATCH_swirl5f.md sec.3 row 14 +
+#     sec.4; panel grades are NOT record grades);
+# (3) escalation/confirm residues (r2pass verdicts);
+# (4) hypothesis-legitimacy-audit binding refuter amendments (hypaudit
+#     VERDICT, layer proven both directions per its final block). --------
+
+- id: contract:global-budget-closure-audits-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "stage-A lacks the global budget-closure audits both blinds demand: cycle-mean mass flux and enthalpy flux across Gamma_d checked against metered feed and injected enthalpy within combined uncertainty ([PDE] A4, [DATA] A1/A2) — cheap, catches datum-vs-machine inconsistency before any solve"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-4 (P3)"
+  code: []
+  mechanism: audit-scope-gap
+  owner: "F2a stage-A auditor build (rides the same window as the F-2 datum-side RH/entropy row)"
+  trigger: "first stage-A auditor implementation touch / first imported real-data family"
+- id: contract:design-sweep-invariance-falsifier-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the design-sweep invariance falsifier is unregistered: same combustor, >= 2 deliberately different downstream geometries, datum must be invariant within noise — the blind-data lens calls it THE primary rejecting test of the entire cut; it is the EXPERIMENTAL test of the [T-NSW]/phaseD-Thm-1 hypotheses and catches channels OUTSIDE the Euler+slip scope, exactly the NG-5 viscous channel phaseD declares invisible to every monitor (complementary to the theorem, not redundant)"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-5 (P3)"
+  code: []
+  mechanism: falsifier-gap
+  owner: "first-ingestion window with multi-geometry data (rig or CFD campaign); registration duty F2"
+  trigger: "first dataset family with >= 2 downstream geometries on one combustor"
+- id: contract:phase-gauge-jitter-alignment-unpinned
+  status: CONFIRMED
+  severity: low
+  magnitude: "unpinned of record: all audit statistics and functionals must be invariant under a global phase shift, and cycles must be phase-ALIGNED before averaging — otherwise wave jitter masquerades as amplitude uncertainty O(jitter x slope) at shocks ([DATA] Claim 2.5(N4)/7.5(i)); directly relevant to any future rig/CFD ingestion"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-6 (P3)"
+  code: []
+  mechanism: contract-slot-uninstantiated
+  owner: "F2 contract window (one gauge-invariance clause + the alignment prescription in the ingestion protocol)"
+  trigger: "first unsteady-generator ingestion (CFD or rig)"
+- id: contract:chi-character-map-unknown-band-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the sub/supersonic character map chi as a DATUM COMPONENT with an UNKNOWN band is absent: near-sonic points within k_c*U(M_n) must be classified UNKNOWN and forced to the conservative subsonic branch ([DATA] Claim 4.3); mostly MOOTED by the L4 default — load-bearing the day the declared subsonic case-class is used; feeds agenda row D-1 (choice ledger C52). NAMESPACE NOTE: this chi is DISTINCT from the swirl5f panel's dimensionless group chi_Omega = Omega*Gamma/h0 (glossary collision entry)"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-7 (P3)"
+  code: []
+  mechanism: contract-slot-uninstantiated
+  owner: "F2 contract window, sequenced with the C52 mixed-signature adjudication (choice-ledger row of the contract-diff agenda item)"
+  trigger: "first use of the declared subsonic case-class (D1 sec.4.3bis O1-O4)"
+- id: contract:quasi-steady-apriori-admission-number-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "no a-priori datum-computable admission number for rung I2: the per-phase defect has a DETONATION-SPEED-ORDER coefficient — delta_qs = (|u_theta - Omega r| + a)_max TV_alpha(datum) / (r_i ||d_x F_x||) per [PDE] C3.6 bound (3.3); [DATA] Claim 3.2: He ~ O(1) at kHz, CHECK don't assume; the record carries the loss only a posteriori (St|J1| bar, [J-CT1], T3QS) — instrument gap, not theory gap"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-8 (P3)"
+  code: []
+  mechanism: instrument-gap
+  owner: "F2 instrumentation window (one derived number per datum at stage-A; cross-refs the St carrier duty in problem-statement:st-marginal-numbers-uncarried)"
+  trigger: "first stage-A auditor implementation touch"
+- id: contract:wave-asymmetry-demotion-rule-unpinned
+  status: CONFIRMED
+  severity: low
+  magnitude: "unpinned demotion protocol: if the Z_m identical-waves residual fails, the datum demotes to m' = 1 with the LONG period; silent use of the short period rejects the pipeline ([PDE] A9, [DATA] A6(iv)); the periodic-wave scope pin fixes n but not the demotion protocol"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-9 (P3)"
+  code: []
+  mechanism: contract-slot-uninstantiated
+  owner: "F2 contract window (one demotion clause in the ingestion protocol)"
+  trigger: "first dataset whose identical-waves residual fails"
+- id: contract:wall-corner-trace-audit-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "datum corner traces vs the downstream wall condition are never audited to the order demanded by the solution class ([PDE] A10); NG-3-adjacent (phaseD corner/variable-type trace theory); absent as a datum audit"
+  source: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#F-10 (P3)"
+  code: []
+  mechanism: audit-scope-gap
+  owner: "F2a stage-A auditor build (rides the phaseD corner/variable-type trace residual named in the magnitude; blocking only for corner-touching data)"
+  trigger: "first datum whose Gamma_d meets a wall corner"
+- id: swirl5f:flag1-pb8-drift-suppression-overstated
+  status: CONFIRMED
+  severity: low
+  magnitude: "problem-book sec.8's much-less-than claim OVERSTATES the drift suppression (swirl5f asy lens, refuter-checked twice with independent symbol sets): the drift census is SIX pieces including drift-of-h0 and the full mass-row drift (1/r)d_phi(rho w); erratum duty on the PB sec.8 wording, magnitudes unchanged"
+  source: "validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md#Record-facing flags"
+  code: []
+  mechanism: overstatement-erratum
+  owner: "next problem-book touch (one wording erratum; advisory provenance — panel grades are not record grades)"
+  trigger: "next docs/rde_nozzle_problem_book.md sec.8 edit, or first consumption of the PB drift claim in a verdict"
+- id: swirl5f:flag3-tau-n-definition-unpinned
+  status: CONFIRMED
+  severity: low
+  magnitude: "two tau_n definitions coexist and differ O(1) on strongly turned streamlines: problem book tau_n = int dx/u vs S.22's (w_rel/r)(L/W); they agree at scaling order only — ONE definition must be pinned by a future carrier. DISTINCT from (and cross-referencing) problem-statement:st-marginal-numbers-uncarried, which prices the UNCARRIED numbers; this row prices the DEFINITION ambiguity those numbers would inherit"
+  source: "validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md#Record-facing flags"
+  code: []
+  mechanism: definition-ambiguity
+  owner: "the St carrier build named in problem-statement:st-marginal-numbers-uncarried (pin the definition in the same carrier)"
+  trigger: "St carrier build (pre-F5 / P-1 claim gate), or first S.22 consumption quoting tau_n"
+- id: swirl5f:c8-cj-locus-naming-approximate
+  status: CONFIRMED
+  severity: low
+  magnitude: "the name 'CJ locus' for {|w_rel| = c} (azimuthal SCALAR locus) coincides with [T-NSW](a)'s CJ surface on the relative VECTOR |w_vec| = c only where the meridional relative component is negligible (near-interface); away from the front the naming is APPROXIMATE — caveat duty on any consumption of the loci identification (swirl5f claim 6/16, verifier-confirmed in-panel)"
+  source: "validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md#Record-facing flags"
+  code: []
+  mechanism: naming-caveat
+  owner: "C51 adjudication window (the loci identification is its direct input; the caveat travels with it)"
+  trigger: "C51 adjudication, or first record text naming the CJ locus off-front"
+- id: swirl5f:f1-tth0-inline-ost-overclaim
+  status: CONFIRMED
+  severity: low
+  magnitude: "M0 [T-TH0] line ~376-377 inline '= Int F_steady dmu + O(St)' TYPOGRAPHICALLY asserts an O(St) bound whose status is the C-T1 CONJECTURE (no proven remainder at any St; second-order refinement on ray cycles only); M0's own T3-QS remark and PB sec.8 ('NOT self-licensing') already carry the honest reading — one-line erratum extending the honest reading to the inline formula (swirl5f fun flag F-1, extended to M0:377 by the panel judge round)"
+  source: "validation/swirl5f_panel_2026-08-19/swirl5f_fun.md#F-1 (mild OVERCLAIM in presentation"
+  code: []
+  mechanism: overstatement-erratum
+  owner: "next M0 [T-TH0] touch (one-line qualifier citing the conjecture status named in the magnitude)"
+  trigger: "next M0 Part III edit window"
+- id: swirl5f:blocking-pins-b1-b2-consumed
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the swirl5f dispatch's two BLOCKING pre-ingestion flags — B-1 (A4 tangential-energy-fraction normalization trap: KE-normalized 3-6% vs h0-normalized 0.3-2.5%, discriminating test Omega*r ~ D_CJ) and B-2 (h0-convention provenance: whether h0 includes u_theta^2/2 decides the B2 fold/drop variant; D.20 Delta-h0 = Omega*Delta-Gamma linkage as rejector) — were duties BEFORE any first dataset ingestion"
+  source: "validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md#§4 BLOCKING FLAGS"
+  code: []
+  mechanism: contract-pin-consumed
+  evidence: "CONSUMED AT LANDING 2026-08-19 (S-FOUNDATIONS-C Blocco 2, LAND-1's D.13 contract edit): M0 VI.1 now carries the 'BLOCKING PINS before ANY first dataset ingestion' block with (B-1) the A4 normalization pinned as a declared audit field and (B-2) the h0-convention provenance clause as a REQUIRED declared contract field with the D.20 linkage rejector (docs/rde_nozzle_MASTER.md, VI.1 CycleFamily block); recorded here so the dispatch duty does not re-mint"
+- id: proofs:doc1-revision9-confirming-round-owed
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the S-T0P stop-proof document is NOT DRY: the 2026-08-19 confirming round sustained 1 REPAIR-NEEDED (ECL0-1: missing S-slice-connectedness member in the G8 chart clauses — in-class disconnected-EOS witness fires the row's own registered kill condition) + 5 amendments (ECL0-2/ECL0-3/ECR1-2/ECR1-3/ECR1-4); revision 9 is owed consuming all six, followed by ONE two-lens confirming round on the rev-9 delta; on a zero-finding round doc1 is DRY and legs 3 AND 5 close together — until then the [T-T0P] main-statement M0 landing and the G8/[C-XBVP](a') registry row stay HELD OUT"
+  source: "validation/sfoundations_raws_2026-08-13/r2pass/VERDICT_confirm.md#R-1' (doc1 / legs 3 + 5"
+  code: []
+  mechanism: proof-loop-open
+  owner: "S-FOUNDATIONS-C next window (the verdict's own NEXT WINDOW mandate; no further rounds in the 2026-08-19 window)"
+  trigger: "next S-FOUNDATIONS-C / phaseD proof window opening"
+- id: orchestration:spec-seeding-transplant-rule
+  status: CONFIRMED
+  severity: low
+  magnitude: "standing discipline lesson, EIGHT-PLUS declared instances across the escalation + confirming loops (both lenses affected, including self-seeding; three of the final round's sustained findings were transplant misfits — ECL0-1 parity mechanism, ECL0-2 inverted caveat, ESC5-3 persistence gloss): a repair-spec clause transplanted verbatim from a refutation file seeds the NEXT round's finding; BINDING RULE: every repair clause is RESTATED against the row's own hypotheses, never transplanted verbatim"
+  source: "validation/sfoundations_raws_2026-08-13/r2pass/VERDICT_escalation.md#R-4 (spec-seeding pattern"
+  code: []
+  mechanism: orchestration-discipline
+  owner: "every future until-dry repair window (rule binding on revision authors; carried in the loop briefs)"
+  trigger: "next until-dry repair revision authored"
+- id: monitors:m8-window-convergence-source-trace
+  status: CONFIRMED
+  severity: medium
+  magnitude: "refuter-imposed monitor M8 on the H-DATA verdict (hypothesis-legitimacy audit, CERTIFIED layer): window-convergence/source-trace audit per Schotthofer 2024 (H-U3, F-A1/A2/A3) for any mu/cycle family extracted from an unsteady simulation — 9% vector error, gradient sign flips from a 29%-of-period window shift, a mode-competing regime where NO window works, period-mean drift; extraction fragility of simulation-sourced families is invisible to monitors M1-M7"
+  source: "validation/sfoundations_raws_2026-08-13/hypaudit/VERDICT_hypothesis_audit.md#M8 (refuter-imposed, SO-1)"
+  code: []
+  mechanism: monitor-gap
+  owner: "F2 monitor-arming window (the hypaudit's shared finding: the same monitor block recurs across four of six hypotheses — arming once discharges monitor debt bundle-wide)"
+  trigger: "first simulation-sourced mu/cycle family ingested, or the F2 monitor-arming window (whichever first)"
+- id: census:liu-2022-binding-insertions
+  status: CONFIRMED
+  severity: medium
+  magnitude: "Liu 2022 is the RECURRING BLIND SPOT of the assessor layer (missed in the axisym census, the R1 coupled-run sweep, the GAS-FROZEN SOTA census, the EULER-GSEP base anchors, the CONTRACT-MU convention library — every miss verdict-preserving or verdict-strengthening, but the citation corrections are BINDING): (i) add Liu 2022 + Zhu 2020 to the [I-GEO] axisymmetric census; (ii) Liu 2022 SO-3 into the SOTA census (only in-corpus finite-rate-through-nozzle RDE evaluation, 21-species/37-reaction; design layer frozen gamma=1.26 by fiat); (iii) Liu 2022 Eq.14 state-averaged stagnation reconstruction into the measure/convention library (third undeclared convention); (iv) Liu 2022 as the coarse published order-of-magnitude anchor for the A3 H-EXO null band (~4.3 points eta under fixed-constriction contour change; <= 0.1 point under purely-downstream truncation; ~1% mdot spread; viscous/reacting non-containment caveats declared) — the prior 'no external anchor' claim was overclaimed; ALSO the W2 correction: throat-area invariance is necessary-NOT-sufficient (Liu B-vs-C defeats a fixed-A_t operational test, eta 8.9 -> 13.2% at same eps = 87.3%)"
+  source: "validation/sfoundations_raws_2026-08-13/hypaudit/VERDICT_hypothesis_audit.md#Liu 2022 is the recurring blind spot"
+  code: []
+  mechanism: census-insertion-duty
+  owner: "F2 monitor-arming / census window (the insertions land in the monitor lists and censuses their verdicts name; this row is the carrier until then)"
+  trigger: "first consumption of the [I-GEO]/R1/GAS-FROZEN/EULER-GSEP/CONTRACT-MU verdicts in a design decision, or the F2 monitor-arming window"

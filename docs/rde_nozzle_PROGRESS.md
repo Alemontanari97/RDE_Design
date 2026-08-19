@@ -7,39 +7,54 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profondità, non per ricostruire lo stato.
 
-## ORA (2026-08-17, chiusura S-FOUNDATIONS PARTE 1 — census R35 =
-## CONSUMED-WITH-DECLARED-SPLIT. ESEGUITO: Fase 0 COMPLETA (coda
-## seeding VUOTA di record: tranche c/d/e + backfill dedup 59 span +
-## P1-mint; registry 157->224 righe lint-verdi); Fase A de-novo
-## CIECA (4 lenti, 141 fork; T0/T7/S1/Chenais/bound-ladder
-## RI-DERIVATI al buio); Fase B tree-diff DI RECORD (8 incumbent
-## sfidati, C28 4/4; C49 fit-vs-capture coniata); AUDIT IPOTESI
-## CERTIFICATO (dual-seed provato nei 2 sensi: 5 LDM + R1
-## CONDIZIONATA su finestra W1-W4; monitor NON armati = breccia viva
-## M0 VI.4bis(v), owner F2); CONTRATTO validato al buio (9
-## ri-derivazioni, 3 buchi P2 -> righe F-1/F-2/F-3; C50/C51 coniate)
-## + L4=>R1 THEOREM/THEOREM*; PROVE-1: equivarianza T-T0P-E
-## THEOREM function-space + blocco 2.5D-swirl etichettato (D.18
-## THEOREM* modulo G-f, downgrade judge); ATTERRAGGI M0 GATED alla
-## passata r2 (LG-1 + C-1/C-2/C-3, sessione C); COVERAGE GATE
-## (mandato utente): aritmetica a zero per categoria + critic
-## avversario. PIN UTENTE: modelli Fable-only (memoria), workflow
-## C/D, ampiezza SOTA per-fork, rotazione a confine, right-sizing
-## con escalation rule, census-lemma/PAP-RIM restano F2-exit. P0
-## NUOVO: MOC-10 GENO thrust double-count -> riferimenti spinta
-## GENO IN QUARANTENA (riga oracles:; albero GENO contaminato dalla
-## patch audit — restauro = S-GENOAUDIT resumption). Log:
-## validation/PROGRESS_2026-08-17_Sfoundations.md)
+## ORA (2026-08-19, chiusura S-FOUNDATIONS-C BLOCCHI 0-2 — rotazione
+## ratificata al confine Fase C. ESEGUITO: BLOCCO 1 = passata r2
+## batchata sui 18 leg delta (VERDICT_r2pass: 15 obiezioni/0
+## respinte; 4 leg rotti-o-da-riparare incl. D.18 prima iff FALSA
+## come stampata) + escalation E-1..E-4 until-dry + SEED PROTOCOL v3
+## con pre-audit indipendente -> LAYER PROVATO NEI DUE SENSI (LG-1
+## confirm DISCHARGED; registro esiti-semi coniato
+## docs/seed_outcome_registry.md) + conferma (VERDICT_confirm: leg 6
+## CHIUSO a SCHEMA/G-f-only; LEG 14 CHIUSO con etichetta guadagnata
+## "THEOREM modulo (H-UP-fam)") -> GATE APERTO, 16/18 leg
+## certificati-o-chiusi. BLOCCO 2 = LANDING COMPLETO in una
+## finestra: M0 [L4-CERT] (riparazione planar-only -> forma m_n a
+## normale meridiana + split certificate (M-a)/(M-a') C-1 + finestra
+## W1-W4 + no-coflow), riga D.13 con pin B-1/B-2, blocco mean-swirl
+## Parte III alle etichette judge, [T-T0P-E]+lemmi (enunciato main
+## DEFERRED con doc1), forma citabile L4=>R1 aggiornata; registry
+## claims 140->149 / findings 224->240 / C52+C53 / glossario;
+## N6 par.5 + D6 + indice; amendment A-1/A-2+AM-1..7 applicati;
+## dispatch swirl5f CONSUMATO (tabella conversione vincolante);
+## par.8 del panel LANDED in-window: CONVERGED-WITH-THREE-NAMED-
+## EDITS, item judge-original verifier-CONFIRMED (consumo = report
+## EDITED; 2 decisioni utente nuove a BLOCCATO 14: promozione S-5F
+## A/B/C + priorita' C51). SUITE 22/23 -> rosso (vii)
+## riparato in-window (birth row misurata per lo script del
+## verifier del panel) -> (vii) EXIT 0; suite integrale ri-eseguita
+## al commit. TOUCHPOINT UTENTE consumato: P_amb slot atterrato
+## (problem book + C53), CAVA LITREVIEW RATIFICATA, mini-registro
+## semi coniato, Sonnet slot ledger-fork confermato, rotazione SI'.
+## APERTO con owner: doc1 leg 3+5 (rev-10, prima azione parallela
+## prossima sessione; con essi [T-T0P] main + [C-XBVP](a') +
+## retro-annotazione [T-XWS]); swirl5f par.8 = finestra parallela
+## originaria. Pesi SR-9 ~11.5M/60 agenti nel log. Log:
+## validation/PROGRESS_2026-08-19_SfoundationsC.md)
 
-## NEXT (atomico): S-FOUNDATIONS-C (prompt committato
-## validation/ADVISORY_SfoundationsC_prompt_2026-08-17.md, sessione
-## FRESCA per decisione utente: blocco 1 riparazione seed-protocol +
-## passata r2 batchata -> blocco 2 pacchetto atterraggi M0 -> blocco
-## 3 aggiudicazioni Fase C right-sized -> blocco 4 centerpiece
-## T-DISC/T-RED/M-RED -> blocco 5 gate+R3); poi F2 blocco 0.
-## PARALLELO CONSENTITO (file disgiunti): S-GENOAUDIT resumption
-## sotto protocollo GENO (restauro albero, fix MOC-10, audit
-## impatto, SPEC_ideal_lengths_oracle).
+## NEXT (atomico): S-FOUNDATIONS-C parte 2 (sessione FRESCA,
+## rotazione ratificata; carrier = stesso prompt
+## ADVISORY_SfoundationsC_prompt_2026-08-17.md Blocchi 3-5 +
+## checkpoint SESSION_STATE): Blocco 3 aggiudicazioni Fase C
+## right-sized (C28 primo; censimento SOTA per-cluster
+## formalize-then-search; judge per ondata; zero ri-seed a pool
+## invariato) -> Blocco 4 centerpiece T-DISC/T-RED/M-RED until-dry
+## PIENO + 4 minori -> Blocco 5 ledger 141 fork (slot Sonnet
+## ratificato) + coverage gate COMPLETO + R3 pieno (censimento
+## R35 -> CONSUMED). PRIMA AZIONE PARALLELA: doc1 rev-10
+## (raccomandazione a checkpoint: grant G8 sufficiente-non-
+## ottimizzato) + conferma + chiusura leg 3+5. Poi F2 blocco 0.
+## PARALLELO CONSENTITO: S-GENOAUDIT resumption sotto protocollo
+## GENO.
 
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW —
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
@@ -192,7 +207,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R32 | S-ORDINE de-entropizzazione | CONSUMED-with-declared-split 2026-08-13 | split di record (regola contratto S7): tranche seeding (c) refuter/red-team S25-S25bis + (d) consumption map 4 advisory + (e) corpus lit 13-08 (~101+~40) = coda NOMINATA della prossima finestra seeding; il resto ESEGUITO (piano convergiuto+red-team, snapshot durabilita', indice 92, 4 registry nuovi, glossario 163, seeding 20->135, PROGRESS slim multiset-0, memoria, gate NOTHING-LOST PASS con rejector+loss-hunter provati, riconciliazione 516 scarto 0, CLAUDE.md R7+README ratificati) | ADVISORY_SORDINE_plan_2026-08-13 + PROGRESS_2026-08-13_Sordine.md |
 | R33 | S-CERT audit certificazione agnostico | CONSUMED 2026-08-13 | verdetto vincolante: NON-CERTIFICABILE, 2 P0 a HEAD ((vii) riparato in chiusura dichiarata; staleness import-closure = owner F2); P0-integrita' audit scaricato via dual-seed; triage completo a registro (157 righe findings); delta vs 2026-08-07: vecchio tier P0 consumato-verificato, difetti migrati oggetto->certificatore; MC8 sopravvive 8/8 | ADVISORY_Scert_prompt CONSUMED + PROGRESS_2026-08-13_Scert.md + scert_raws_2026-08-13/ |
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
-| R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED-with-declared-split 2026-08-17 (parte 1 ESEGUITA: Fase 0 coda-vuota + Fase A 141 fork ciechi + Fase B diff + audit ipotesi certificato + contratto/L4R1 + prove-1 etichettate + coverage gate; SPLIT di record = sessione C con prompt committato ADVISORY_SfoundationsC_prompt_2026-08-17.md: passata r2 + atterraggi M0 + aggiudicazioni Fase C + centerpiece R22-F; log PROGRESS_2026-08-17_Sfoundations.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
+| R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED-with-declared-split, aggiornata 2026-08-19 (parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero — i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | — | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
 
 ## BLOCCATO / GATE APERTI
@@ -251,6 +266,26 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     ambiente + regola sessioni parallele, sezione Preferenze);
     (b) memory-mirror UD-5-sub DECISA-NO (default confermato: il
     corpus memoria resta solo nel suo store).
+ 14. CONSUMATA (touchpoint confine Fase C, 2026-08-19, S-FOUNDATIONS-C):
+    (a) P_amb slot esplicito RATIFICATO ed ESEGUITO (problem book
+    P_amb SLOT OF RECORD + choice ledger C53 + glossario);
+    (b) CAVA LITREVIEW RATIFICATA (ADVISORY_litreview_confrontation:
+    le righe 39 innesti/33 correzioni/29 residui diventano
+    consumabili dai panel di Fase C — consumo per-riga alle finestre
+    che le toccano, mai in blocco); (c) mini-registro esiti-semi
+    RATIFICATO ed ESEGUITO (docs/seed_outcome_registry.md);
+    derivation-hash DEFERRED a F2; (d) slot Sonnet per il ledger
+    141-fork CONFERMATO (Blocco 5); (e) ROTAZIONE di sessione al
+    confine Fase C RATIFICATA (questa chiusura). RESTANO APERTE:
+    UD/ADR di BLOCCATO 9 + O5 numpy (ri-presentare alla prossima
+    chiusura R3) + pricing Lean (da presentare alla prossima R3)
+    + le DUE decisioni del dispatch swirl5f par.9 (2026-08-19):
+    (i) promozione [S-5F] da SCHEMA a build item — percorso A
+    free-vortex carry / B five-field engine+adjoint / C procurement
+    dati tangenziali (giustificazione quantificata = par.3 riga 8,
+    classi di bias B1-B5); (ii) priorita' dell'aggiudicazione C51
+    (il dispatch ne rafforza il caso: righe 6/13, lettura
+    data-anchored-shadow).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

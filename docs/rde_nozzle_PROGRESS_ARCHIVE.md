@@ -2448,3 +2448,39 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## con R22-F centerpiece T-DISC/T-RED/M-RED); poi F2 blocco 0
 ## (filelock / O5 numpy / adozione M6 + re-chain).
 
+
+------------------------------------------------------------------------------
+## ARCHIVED ORA/NEXT (outgoing at S-FOUNDATIONS-C close, 2026-08-19; SR-10)
+## ORA (2026-08-17, chiusura S-FOUNDATIONS PARTE 1 â€” census R35 =
+## CONSUMED-WITH-DECLARED-SPLIT. ESEGUITO: Fase 0 COMPLETA (coda
+## seeding VUOTA di record: tranche c/d/e + backfill dedup 59 span +
+## P1-mint; registry 157->224 righe lint-verdi); Fase A de-novo
+## CIECA (4 lenti, 141 fork; T0/T7/S1/Chenais/bound-ladder
+## RI-DERIVATI al buio); Fase B tree-diff DI RECORD (8 incumbent
+## sfidati, C28 4/4; C49 fit-vs-capture coniata); AUDIT IPOTESI
+## CERTIFICATO (dual-seed provato nei 2 sensi: 5 LDM + R1
+## CONDIZIONATA su finestra W1-W4; monitor NON armati = breccia viva
+## M0 VI.4bis(v), owner F2); CONTRATTO validato al buio (9
+## ri-derivazioni, 3 buchi P2 -> righe F-1/F-2/F-3; C50/C51 coniate)
+## + L4=>R1 THEOREM/THEOREM*; PROVE-1: equivarianza T-T0P-E
+## THEOREM function-space + blocco 2.5D-swirl etichettato (D.18
+## THEOREM* modulo G-f, downgrade judge); ATTERRAGGI M0 GATED alla
+## passata r2 (LG-1 + C-1/C-2/C-3, sessione C); COVERAGE GATE
+## (mandato utente): aritmetica a zero per categoria + critic
+## avversario. PIN UTENTE: modelli Fable-only (memoria), workflow
+## C/D, ampiezza SOTA per-fork, rotazione a confine, right-sizing
+## con escalation rule, census-lemma/PAP-RIM restano F2-exit. P0
+## NUOVO: MOC-10 GENO thrust double-count -> riferimenti spinta
+## GENO IN QUARANTENA (riga oracles:; albero GENO contaminato dalla
+## patch audit â€” restauro = S-GENOAUDIT resumption). Log:
+## validation/PROGRESS_2026-08-17_Sfoundations.md)
+
+## NEXT (atomico): S-FOUNDATIONS-C (prompt committato
+## validation/ADVISORY_SfoundationsC_prompt_2026-08-17.md, sessione
+## FRESCA per decisione utente: blocco 1 riparazione seed-protocol +
+## passata r2 batchata -> blocco 2 pacchetto atterraggi M0 -> blocco
+## 3 aggiudicazioni Fase C right-sized -> blocco 4 centerpiece
+## T-DISC/T-RED/M-RED -> blocco 5 gate+R3); poi F2 blocco 0.
+## PARALLELO CONSENTITO (file disgiunti): S-GENOAUDIT resumption
+## sotto protocollo GENO (restauro albero, fix MOC-10, audit
+## impatto, SPEC_ideal_lengths_oracle).

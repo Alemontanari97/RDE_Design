@@ -46,10 +46,17 @@
 #
 # COUNTS (verified at extraction time, see verification note below):
 #   annex rows of record (C1-C45): 45
-#   this registry: 51 rows (45 indexed + C46-C48 newly declared
+#   this registry: 55 rows (45 indexed + C46-C48 newly declared
 #     S25-bis rows + C49-C51 minted S-FOUNDATIONS 2026-08-17 — growth
 #     enumerated, not silent: C49 Phase-B diff omission, C50/C51 the
-#     blind-contract judge's C-4 deliveries)
+#     blind-contract judge's C-4 deliveries — + C52-C54 minted
+#     2026-08-19, S-FOUNDATIONS-C Blocco-2 landing: the remaining
+#     C-4 agenda items D-1/D-2/D-4 of
+#     validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md
+#     Part A (iv), landed as ledger rows per the same condition
+#     — + C55 minted 2026-08-19 at the S-FOUNDATIONS-C boundary
+#     touchpoint: P_amb aggregation form, the user-ratified parked
+#     decision (a), GATED-by-owner on first multi-point instantiation)
 #   tallies by status (red-team-corrected recount, replacing the
 #     document's own inconsistent "8/14/23" line — see the annex
 #     reading paragraph and docs/rde_nozzle_PROGRESS.md R25):
@@ -69,10 +76,10 @@
 #     MIXED: 3 (C29, C31, C39)
 #     SINGLE-AUTHOR: 13 (C1, C6, C11, C12, C13, C17, C18, C19, C27,
 #       C32, C44, C45, C47)
-#     NEVER: 28 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
+#     NEVER: 31 (C2, C5, C7, C8, C9, C10, C14, C16, C20, C21, C22,
 #       C25, C26, C28, C30, C33, C34, C35, C36, C37, C38, C40, C41,
-#       C42, C43, C49, C50, C51)
-#     TOTAL: 51 (7+3+13+28=51; C49 minted at S-FOUNDATIONS Phase B —
+#       C42, C43, C49, C50, C51, C52, C53, C54)
+#     TOTAL: 54 (7+3+13+31=54; C49 minted at S-FOUNDATIONS Phase B —
 #     the fit-vs-capture solution-representation choice had NO ledger
 #     row, caught by the de-novo diff). C48 (vmap-in-engine) is classed
 #     DECIDED here despite the census shorthand "gate-rejected as
@@ -639,6 +646,7 @@ entries:
   status: DECIDED
   evidence: "docs/rde_nozzle_PROGRESS.md#AGGIUDICAZIONE M6 DI RECORD"
   owner: "F2 (adoption = declared version change at a session boundary, m6gate re-formed on the corrected criterion, M3 precedent; candidate opt-in flag A1_VMAP_HESS=1 named in the interim)"
+  note: "m6gate FIRED at first implementation (dH 18% of Hessian scale = 5-6x the FD scheme's own asymmetry) -> root cause ISOLATED via three convergent probes (adjoint cross-lowering gradient floor ~1e-8 rel over ~250 implicit solves, FD-amplified ~7 orders; even sequential eager-vs-jit diverges 2.9e-2; the defect was the mixed-lowering formulation, not the batching) -> CORRECTED FORM (base in-batch, one lowering; lane-permutation control bitwise) measured dH 1.68x scheme asymmetry, INSIDE the derived K_RICH bound, batched self-asymmetry better than sequential -> classed ADOPTION-READY. Classed DECIDED (not SINGLE-AUTHOR/NEVER) because the verdict rests on a full converged multi-probe technical adjudication (m6gate + consumer diagnostic + root-cause isolation), not an un-surveyed choice; the residual open item is WHEN to adopt (a session-boundary version-change decision), not WHETHER the current default is justified. [PLACEMENT REPAIR 2026-08-19, declared: this note sat as a stray SECOND note: line under C51 — a duplicate key that OVERWROTE C51's own note for any machine parser; content is C48's (the m6gate verdict), relocated here verbatim in the Blocco-2 landing window.]"
 
 - id: C49
   choice: "Per-phase solution REPRESENTATION for design: fitted-front characteristic marching vs adjoint-consistent shock capturing vs two-tier (capturing explorer + fitted certifier)"
@@ -662,7 +670,7 @@ entries:
   status: NEVER
   evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-3 — Datum-space metric"
   owner: "F2 contract window (with finding contract:datum-uncertainty-contract-missing); genuine two-lens disagreement surfaced blind — Form-2 with each lens as its own advocate"
-  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition; the two blind formalizers genuinely disagree and the record is silent — a textbook Form-2 case with non-incestuous advocates already on file."
+  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition; the two blind formalizers genuinely disagree and the record is silent — a textbook Form-2 case with non-incestuous advocates already on file. Cross-reference appended 2026-08-19 (Blocco-2 landing, no adjudication): the acceptance+sensitivity SEMANTICS this metric must serve got their carriers this window — the uncertainty-contract finding row (findings registry, contract:datum-uncertainty-contract-missing) and the contract-diff metric-dispute record it cites; the adjudication itself remains OWED, unchanged."
 
 - id: C51
   choice: "Rung-3a wave-frame solver: implicit BVP (freezing + Newton-Krylov) vs azimuthal MARCHING of the periodic orbit"
@@ -672,5 +680,48 @@ entries:
   status: NEVER
   evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-5 — Wave-frame azimuthal MARCHING"
   owner: "rung-3a implementation window (adjudication owed at implementation time, not before — the judge's own sequencing)"
-  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition. The hyperbolicity-in-alpha regime condition is the decision criterion's core; outside the regime the marching option dies structurally."
-  note: "m6gate FIRED at first implementation (dH 18% of Hessian scale = 5-6x the FD scheme's own asymmetry) -> root cause ISOLATED via three convergent probes (adjoint cross-lowering gradient floor ~1e-8 rel over ~250 implicit solves, FD-amplified ~7 orders; even sequential eager-vs-jit diverges 2.9e-2; the defect was the mixed-lowering formulation, not the batching) -> CORRECTED FORM (base in-batch, one lowering; lane-permutation control bitwise) measured dH 1.68x scheme asymmetry, INSIDE the derived K_RICH bound, batched self-asymmetry better than sequential -> classed ADOPTION-READY. Classed DECIDED (not SINGLE-AUTHOR/NEVER) because the verdict rests on a full converged multi-probe technical adjudication (m6gate + consumer diagnostic + root-cause isolation), not an un-surveyed choice; the residual open item is WHEN to adopt (a session-boundary version-change decision), not WHETHER the current default is justified."
+  note: "Minted 2026-08-17 per the blind-contract judge's fourth closing condition. The hyperbolicity-in-alpha regime condition is the decision criterion's core; outside the regime the marching option dies structurally. INPUT APPENDED 2026-08-19 (S-FOUNDATIONS-C Blocco 2, swirl5f dispatch sec.6 rule 2): swirl5f claim 6 is available as DIRECT adjudication input — azimuthal-march spacelikeness == |w_rel| > c, and its degeneracy loci == the D.18 H-WR/H-NC kernel loci (one geometric object; verifier-CONFIRMED in-panel, status for THIS ledger = advisory input, panel grades never record grades; UPDATE 2026-08-19 close: the panel's §8 verifier verdict LANDED (converged, with three named edits applied to the panel report); the loci identification is verifier-confirmed at the phaseD source, so the input is no longer §8-gated); the dispatch's data-anchored-shadow reading (sec.3 row 13, user catch of record: the per-phase family reconstructs ONLY the data-anchored shadow of helical interior sheets, azimuthally-fed interior front segments are UNREACHABLE by the axial march) STRENGTHENS the marching route's case — route B treats helical sheets natively. The 'CJ locus' naming caveat travels with any consumption (findings row swirl5f:c8-cj-locus-naming-approximate)."
+
+- id: C52
+  choice: "Contract status of a MIXED / phase-crossing characteristic signature on Gamma_d (agenda item D-1 of the blind-contract diff): does a phase-migrating sonic line VOID the contract, or merely DOWNGRADE the Verdict?"
+  incumbent: "record reading: subsonic patches are a declared case-class with monitors (D1 sec.4.3bis O1-O4); the class stays ADMISSIBLE, H3-cl expected to FAIL on migrating patterns (K-P Fig. 6) with documented Verdict downgrades"
+  alternatives:
+    - "blind-PDE reading ((P3)): signature must be CONSTANT in phase and position; mixed signature is INADMISSIBLE outright — the sonic set is a free boundary of the prescription problem"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-1 — Mixed/phase-crossing characteristic signature"
+  owner: "F2 contract window (the judge's agenda: pin which reading governs; feeds the chi character-map finding row — findings registry, contract:chi-character-map-unknown-band-missing)"
+  note: "Minted 2026-08-19 (S-FOUNDATIONS-C Blocco-2 landing) per the blind-contract verdict's fourth closing condition: agenda items to the ledger. Mostly mooted by the L4 default; load-bearing the day the declared subsonic case-class is used."
+
+- id: C53
+  choice: "Gamma_d PLACEMENT policy (agenda item D-2): the record fixes Gamma_d without recording the trade; the two blinds DISAGREE WITH EACH OTHER on the preference direction — both monotone pressures must be recorded with the emptiness verdict"
+  incumbent: "record: Gamma_d fixed per case with no recorded placement trade"
+  alternatives:
+    - "blind-DATA: most UPSTREAM station with beta = 0 (transportability pressure: datum least contaminated by the design's own back-influence)"
+    - "blind-PDE: admissible band [z_I^-, z_I^+], POSSIBLY EMPTY, with DOWNSTREAM preference (phase-family reduction pressure); the emptiness verdict is part of the deliverable"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-2 — Placement as a band"
+  owner: "F2 contract window: a placement-band remark in M0 D2.4 (or this row's adjudication) naming the two monotone pressures and the emptiness verdict — the judge's own suggested carrier"
+  note: "Minted 2026-08-19 (Blocco-2 landing) per the blind-contract verdict's fourth closing condition. Genuine blind-vs-blind disagreement: two non-incestuous advocates already on file."
+
+- id: C54
+  choice: "Normative status of the mean-state rung I4 (agenda item D-4): ladder rung (record) vs BANNED reduction (blind-data Jensen counterexample — the mean-datum single solve has O(Var) error with NO small parameter); the two are compatible only if I4 carries the O(Var) no-small-parameter warning at its definition site"
+  incumbent: "M0 D2.4 keeps I4 as a ladder rung with NO warning at the site — VERIFIED 2026-08-19: the D2.4 ladder line reads 'I4 single mean state.' bare; the Blocco-2 M0 landing did NOT include the one-line annotation, so the agenda item is NOT consumed and this row stays OPEN"
+  alternatives:
+    - "blind-DATA Claim 3.4: BAN the mean-datum solve as a reduction (reject-only reading)"
+    - "compatibilization (the judge's named resolution): one-line I4 annotation in D2.4 carrying the O(Var) no-small-parameter warning — I4 stays a declared ladder rung, never an approximation claim"
+  status: NEVER
+  evidence: "validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-4 — Normative status of the mean state I4"
+  owner: "next M0 D2.4 touch (one-line I4 annotation; when the line lands this row flips DECIDED with the M0 anchor as evidence)"
+  note: "Minted 2026-08-19 (Blocco-2 landing) per the blind-contract verdict's fourth closing condition; consumption-check against the same-window M0 edit performed and negative (see incumbent)."
+
+- id: C55
+  choice: "P_amb aggregation form: how the objective aggregates over a declared operating-ambient interval/measure (mission-weighted mean vs minimax vs CVaR)"
+  incumbent: "single-point default P_amb = {Pa0} (slot minted, docs/rde_nozzle_problem_book.md P_amb SLOT OF RECORD 2026-08-19; no aggregation chosen — the default instantiation makes the question empty)"
+  alternatives:
+    - "nu-weighted mission mean: EXACT-equal to the single evaluation at <Pa>_nu wherever the full-flowing/ambient-blind affinity holds (H-T3.2, T3 Lemma-C class) — the classical trajectory-weighted design"
+    - "minimax over [Pa_min, Pa_max]: binds through the admissibility constraints (g_sep, wake fence) at the monotone-worst member"
+    - "CVaR_beta / Wasserstein-DRO over the ambient measure (PB-5 machinery extended from mu to the operating envelope)"
+  status: NEVER
+  evidence: "docs/rde_nozzle_problem_book.md#P_amb SLOT OF RECORD"
+  owner: "first multi-point instantiation of P_amb (adjudication owed at instantiation time, not before — the slot's own sequencing clause; until then the single-point default keeps the question empty)"
+  note: "Minted 2026-08-19 (S-FOUNDATIONS-C boundary touchpoint, user ratification of parked decision (a): explicit c-slot with single-point default). Structural facts the adjudication will consume: interior per-phase fields are Pa-INDEPENDENT on the certified class (ambient-blind, H-T3.2), F affine in Pa (so mean-aggregation collapses to a point evaluation wherever admissibility is uniform); the envelope binds ONLY through admissibility (separation/wake) and every non-affine regime is outside the certified class (H2' fence) — excluded and declared, never silently averaged. The ambient weight nu is a CONTRACT DATUM with provenance discipline identical to mu."
