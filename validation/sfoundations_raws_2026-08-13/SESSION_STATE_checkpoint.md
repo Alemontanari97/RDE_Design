@@ -284,6 +284,23 @@
 ## in the re-send ((6)(c) 'solo R22-CFD nostro' vs prior 'R22-CFD
 ## o procurement dedicato'): the BROADER prior form stays of
 ## record (addendum_c4), variance declared immaterial.
+## CHAIN INSERTION USER-RATIFIED (2026-08-20, PROGRESS row 18):
+## S-PRES (ESA milestone presentation, first external showing)
+## slots BETWEEN the C4 close and F2. Rigor consequences NAMED at
+## registration: findings :1455 trigger FIRES on first external
+## presentation of the two-stage per-phase claim (execute the S1
+## equivariance+uniqueness duty or present at declared SCHEMA);
+## D-44 gates adequacy claims (forchetta presented as provenance-
+## bracket); novelty stays query-bounded on slides; full trigger
+## sweep ('external presentation'/'public claim') = S-PRES Block-0
+## duty by measured command. Machine: record-extraction cite-only
+## -> narrative skeleton -> deck authoring -> rigor refuter (every
+## slide-claim <= its anchor's rigor class, zero orphan claims) +
+## comms review -> user loop. Session prompt authored at the C4
+## R3 close (inputs landed and citable: pipeline map = backbone,
+## forchetta = honesty slide, atlas + nozzle campaign = efflux/
+## practice section). R3 close duty ADDED: author ADVISORY_Spres
+## prompt + NEXT chain updated (C4 -> S-PRES -> F2).
 ## QUEUE OF RECORD (sequence): nozzle campaign lands -> field-atlas
 ## lands [DONE] -> Blocco-1 v2 continuation (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/

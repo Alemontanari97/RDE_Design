@@ -348,6 +348,29 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     owner nominati; BLOCCATO 9 resta gated ADR-D4, AG-6 resta duty
     della finestra P-1). I 3 ask paper fermi (More-Wild ECNoise,
     ASME V&V 20-2009, Xing-Stern 2010+2011) restano aperti.
+ 18. CATENA AGGIORNATA (utente, 2026-08-20, in-sessione C4):
+    tra la chiusura C4 e F2 si inserisce S-PRES — MILESTONE
+    PRESENTAZIONE ESA (prima presentazione esterna del progetto):
+    sviscerare il grafo di progetto con struttura da presentazione
+    scientifica SOTA (poco testo, non over-matematica, intro
+    affilata su letteratura + pratica ugelli RDE + efflusso reale,
+    nulla dato per scontato), OGNI slide-claim ancorato al record
+    alla sua classe di rigore (cite-only, zero claim orfani),
+    doppia review (refuter di rigore + review comunicazione) +
+    loop con l'utente. INPUT SORGENTE = i deliverable C4 (pipeline
+    decision map = spina dorsale; forchetta = slide onesta; field
+    atlas + campagna nozzle-RDE = sezione efflusso/pratica).
+    TRIGGER-SCAN OBBLIGATORIO al Block 0 di S-PRES (presentazione
+    esterna = atto trigger-bearing): (i) riga findings :1455
+    (equivariance+uniqueness S1) SPARA -> eseguire la duty o
+    presentare il claim two-stage dichiaratamente SCHEMA;
+    (ii) D-44: claim di adeguatezza gated (forchetta = bracket con
+    provenienza, mai adequacy dimostrata); (iii) novita'
+    query-bounded anche su slide; sweep completo dei trigger
+    'external presentation/public claim' da comando misurato.
+    Formato/durata = decisioni utente al Block 0 S-PRES. Il prompt
+    di sessione si autora alla chiusura R3 di C4 (quando gli input
+    sono atterrati e citabili).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:
