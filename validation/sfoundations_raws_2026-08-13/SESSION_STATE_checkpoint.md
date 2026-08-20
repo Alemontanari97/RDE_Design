@@ -28,6 +28,11 @@
 ## blockers); reconciled with the pinned-env rule: choice free,
 ## installs stay O5-class boundary-declared+fingerprinted. First
 ## consumers: Uno (C31 A/B), DFO/BO stack (C57 pilot).
+## PAPERS ARRIVED (2026-08-20): 12 PDFs identified page-1-verified,
+## renamed, MANIFEST.md in new_literature_foundations_c/ (missing
+## list included); Uno/ cloned + gitignored; C3 block-0: register
+## the 12 (root decision: move into literature/ or extend lint
+## roots) + fetch Uno paper/2304.11427/Becker-Rannacher.
 ## ============ SESSION C2 LIVE STATE (2026-08-19) ============
 ## [UPDATE ~landing window] WAVE-1 LANDED (wf_d6f1b0f0, 7/7, ~1.14M
 ## tok): VERDICT_wave1.md = 0 escalations; C28/C27 ADJUDICATED-SPLIT
