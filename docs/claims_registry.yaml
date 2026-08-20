@@ -1643,7 +1643,7 @@ entries:
 - id: T-XWS
   kind: theorem
   class: THEOREM*
-  scope: "weak-strong uniqueness for the steady BVP in x-as-time: C^1 shock-free solution with axial margin vs entropy weak solutions (branch-valued, same inflow data, slip walls); planar 2-D of record, axisym extension declared bookkeeping (S15, [RIGOR/A])"
+  scope: "weak-strong uniqueness for the steady BVP in x-as-time: C^1 shock-free solution with axial margin vs entropy weak solutions (branch-valued, same inflow data, slip walls); planar 2-D of record, axisym extension declared bookkeeping (S15, [RIGOR/A]). RETRO-ANNOTATION 2026-08-19 (stop_proof §8 duty, landed with the doc1-dry window): the §5 sandwich step (c_K|m_V-m_U|^2 <= eta(V|U) along comparison SEGMENTS) consumes the HULL/SEGMENT form of the convexity certificate — [C-XBVP](a'), row C-XBVP-aprime — not the pointwise (a) alone; the G8 gap named in the 3-D proof applies VERBATIM here (transfer doc §5/§6 annotated)"
   statement: "With a C^1 margin solution present, EVERY entropy weak solution of the BVP with the same inflow data coincides with it — shocked alternatives excluded BY THEOREM; Dafermos relative entropy transplanted to x with inflow (data match) + walls (T-XWALL) + Gronwall; gives D2.5 shock-free canonicity a BVP-native proof skeleton."
   doc: "docs/rde_nozzle_cauchy_bvp_transfer.md#§5 The transfer theorem"
   proof: "docs/rde_nozzle_cauchy_bvp_transfer.md#§5 The transfer theorem"
@@ -1657,7 +1657,7 @@ entries:
   kind: conditional
   class: SCHEMA
   scope: "the two named residuals of the Cauchy->BVP transfer (minted S15): (a) S-XCONV convexity discharge — DISCHARGED AT INSTANCE LEVEL (S15 reopened segment: X-IVXC interval certificate over the whole declared box, all (rho,S) by T-XRED; abstract-EOS statement = the remaining schema residue); (b) weak-side trace technicalities (Dafermos-class bookkeeping)"
-  statement: "T-XWS is THEOREM once (a) the x-entropy convexity is proven on all of K with margin — DONE for the ideal-gas instance/box of record (X-IVXC + T-XRED), open at abstract EOS — and (b) x-slice/wall normal traces hold for the weak class; neither touches the algebraic bricks T-XSON/T-XWALL (THEOREM at abstract EOS)."
+  statement: "T-XWS is THEOREM once (a) the x-entropy convexity is proven on all of K with margin — DONE for the ideal-gas instance/box of record (X-IVXC + T-XRED), open at abstract EOS — and (b) x-slice/wall normal traces hold for the weak class; neither touches the algebraic bricks T-XSON/T-XWALL (THEOREM at abstract EOS). Sub-clause (a') (hull/segment form, G8) = its own row C-XBVP-aprime, minted 2026-08-19."
   doc: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
   proof: "docs/rde_nozzle_remaining_conditionals.md#§1bis C-XBVP"
   inherits: []
@@ -2044,9 +2044,9 @@ entries:
 - id: T-T0P
   kind: schema
   class: SCHEMA
-  scope: "MAIN statement of the S-T0P proof program (target-theorem row registered at its judge label; the id carries the proof document's own name). SCHEMA on BOTH strata with SPLIT gap lists — shock-free stratum (A): G1/G2 (incl. structural trace clauses)/G7/G8 + H8'/H9; fitted-front stratum (B): additionally G3/G11/G9. Quantifier restricted to the T-PERIODIC class until G5; conclusions on cl(Omega_march) only; slip-free instances only (G9). HELD OUT of the 2026-08-19 landing by declaration (VERDICT_confirm legs 3+5 OPEN, doc1 revision 9 + one confirming round owed): the M0 main-statement text upgrade AND the G8/[C-XBVP](a') sub-clause registry row + gap-graph landing — this row records the standing label, it lands no main-statement text; any THEOREM* upgrade of stratum (A) is FORBIDDEN until (u1)-(u3) complete"
+  scope: "MAIN statement of the S-T0P proof program (target-theorem row registered at its judge label; the id carries the proof document's own name). SCHEMA on BOTH strata with SPLIT gap lists — shock-free stratum (A): G1/G2 (incl. structural trace clauses)/G7/G8 + H8'/H9; fitted-front stratum (B): additionally G3/G11/G9. Quantifier restricted to the T-PERIODIC class until G5; conclusions on cl(Omega_march) only; slip-free instances only (G9). HOLD-OUT CONSUMED 2026-08-19 (doc1 revision 10 DRY, legs 3+5 CLOSED — VERDICT_doc1_rev10 §4): the M0 main-statement text upgrade LANDED at the [S-T0P] site (item (6) of the Part-III landing block: statement (i)/(ii), t-periodic quantifier, cl(Omega_march) + slip-free caveats, G12 route declaration, gap-graph edges G5->G8 / G4->G8 (g4-d) / G8-falsifier->G7-instrument) and the G8/[C-XBVP](a') sub-clause row MINTED (id C-XBVP-aprime). Any THEOREM* upgrade of stratum (A) remains FORBIDDEN until (u1)-(u3) complete (upgrade path per stop_proof §4)"
   statement: "Target: on the L4 class with pure periodic rotating interface data and axisymmetric domain/BC, the certified solution class steadifies — [T-T0P-E] (equivariance half, THEOREM) composed with [T-T0P-U] (S1-anchored uniqueness, SCHEMA both strata) yields the steady co-rotating pattern; the composition inherits the union gap list of the consumed stratum."
-  doc: "docs/rde_nozzle_MASTER.md#the [T-T0P] MAIN-STATEMENT"
+  doc: "docs/rde_nozzle_MASTER.md#THE [T-T0P] MAIN STATEMENT"
   proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#Target label of record (revision 3): [T-T0P]"
   inherits: []
   carrier: []
@@ -2078,4 +2078,21 @@ entries:
   carrier: []
   suffices_symbolic: "no"
   falsifier: "the house until-dry pass finding a defect in the Prop.-1 route (kills the mint at SCHEMA); instance falsifier: a T0-pure certified unsteady field whose time-mean control-surface thrust differs from the mu-integral of the measured per-sector F_true beyond quadrature bars (kills the identity's hypotheses on that instance)"
+  gamma: "EOS-general"
+
+# ------- doc1-dry landing mint (2026-08-19, S-FOUNDATIONS-C2; authority
+# VERDICT_doc1_rev10 §4: revision 10 DRY, legs 3+5 CLOSED — the (a')
+# hold-out of the Blocco-2 batch comment above is CONSUMED). -------------
+
+- id: C-XBVP-aprime
+  kind: conditional
+  class: SCHEMA
+  scope: "[C-XBVP](a') = gap G8 of the stop_proof ledger: HULL/SEGMENT form of the convexity certificate — Hessian definiteness on a CONVEX set containing all comparison segments, staying on the branch; pointwise definiteness on K_M ((a)/[X-IVXC]) does NOT deliver the quadratic sandwich (non-convex Mach-box preimage; [S-XCONV] R1 subsonic indefiniteness makes it LOAD-BEARING). Consumed by [T-T0P-U]/[T-T0P] stratum (A) AND (retro-annotation of record) by the 2-D [T-XWS] sandwich step. GRANTED HALF of record (revision 10, sufficient-but-unoptimized): the STRONG SUFFICIENT CONDITION (H-G8-1)-(H-G8-4) — global joint convexity (strict on a hull neighborhood), slice-connected single-chart domain, hull in-chart, fiber regularity — every granted item derived at pen grade from the FULL set ((D1)-(D7)); NO viable abstract-EOS discharge route currently named (r1 gated on the conv(K_M) sonic-fold feasibility check; r2 = partial reduction with open coercivity; r3 instance-bound); on the standing gamma(T) tabulated model every instance route additionally needs certified table-interpolation enclosures (stated once in the G8 row for all three consumers). Gap-graph edges of record: G5 -> G8, G4 -> G8 (g4-d), G8-falsifier -> G7-instrument. Gamma detail: condition checkable per-EOS by direct inspection; instance certificates on the gamma = 1.4 box; table-enclosure duty on the standing gamma(T) model"
+  statement: "G8 sub-clause: the x-entropy relative-entropy sandwich holds with constant lambda_min/2 on every comparison segment whose W-hull satisfies the strong sufficient condition (H-G8-1)-(H-G8-4) of record (or, fallback branch, whose root-map continuity / image compactness is imposed directly as a member); the abstract-EOS discharge of the condition itself is OPEN at route level."
+  doc: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G8 = [C-XBVP](a')"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_stop_proof.md#G8 = [C-XBVP](a')"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "the revision-10 (f1)-(f5) list of record (stop_proof §13): (f1) break any (D1)-(D7) step from the FULL strong set; (f2) an EOS satisfying (H-G8-1)-(H-G8-4) with discontinuous hull root map / non-compact (v,S)-image / item (i) failing on a comparison segment; (f3) the moving-slice witness class INSIDE the strong class (W-A is excluded three ways of record — convexity, fiber jump, image accumulation); plus the r1 feasibility gate (conv(K_M) crossing the sonic fold kills route r1 in principle) and the [X-T0P] segment line-search falsifier (executable layer, owner F2)"
   gamma: "EOS-general"

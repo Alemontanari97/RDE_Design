@@ -101,7 +101,16 @@ Standing-queue intersections: C51 adjudication (consume claim 6 + report
 §5-ter as direct input); S-5F build decision (claims 4/8 + the 3-stage
 upgrade path A free-vortex / B five-field build / C data procurement
 discussed in the origin conversation — a USER plan decision, not made
-here); D.11/[H-sgn] dataset sign test; census of the origin conversation's
+here);
+[ANNOTATION 2026-08-19, user catch of record for the S-5F dossier
+(S-FOUNDATIONS-C2 window): path A's free-vortex carry rests on
+[T-N6-2] = THEOREM under UNIFORM (r*Gamma, h0, s) ONLY; on stratified
+per-phase fields the Kraiko-rotational x free-vortex combination is
+NOT a theorem of record — findings row
+theory:s5f-path-a-freevortex-stratified-gap minted same window: the
+dossier must present the fork (mixed lemma to write vs declared
+monitored-neglect scope armed by the TRIPLE spread monitor) before
+any path-A adoption.] D.11/[H-sgn] dataset sign test; census of the origin conversation's
 literature sweep (Miki Fig.4 tangential profile numbers, K-P +6%/+3%
 page-verified, corpus-wide time-mean-tangential-field vacuum
 search-proven over 26 PDFs) — litmap enrichment rows at landing.

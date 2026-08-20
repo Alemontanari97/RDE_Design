@@ -734,6 +734,150 @@ entries:
   status: WANTED
   owner: "P0 procurement (handoff 2026-08-13, literature window) — pmm.ipmnet.ru archive route (the G5 sweep already indexes this archive); feeds the R16 slip-line certificate acceptance test"
 
+# --- wave-1 adjudication rider, 2026-08-19 (S-FOUNDATIONS-C2 Blocco 3
+# --- landing; authority: VERDICT_wave1.md §4.7 AS CORRECTED BY
+# --- VERDICT_C9C11_supplement.md §4.4). Identities copied verbatim
+# --- from the citing panel texts at their declared depths (PANEL_C27
+# --- §2.3, PANEL_C9C11 §2.3, PANEL_C9C11_SUPPLEMENT §A.4/§B.5,
+# --- refute_C27 finding RC27-1, supplement-judge §0 web witnesses);
+# --- no new web claims made in this window. Dedup of this window:
+# --- ancourt_peter_atinault_2023 and lozano_ponsin_2025 EXIST above
+# --- and are NOT re-minted (the VERDICT §4.7 Lozano-Ponsin line is
+# --- STRUCK per RS911-8); Venditti-Darmofal 2000 NOT minted
+# --- (leg-(b)-conditional per the supplement judge §4.4). STATUS NOTE
+# --- of record: every row below is WANTED by machine rule (paper on
+# --- NO root — absence verified on all four roots by fresh filename
+# --- sweep this window; lint (xxii) forbids a path-less non-WANTED
+# --- row), and the adjudicated census-cited (registration-for-
+# --- citability, no read claim) vs procurement-item split is carried
+# --- in each owner field.
+
+- id: wanted_poon_martins_2007
+  identity: "Poon-Martins, 'An adaptive approach to constraint aggregation using adjoint sensitivity analysis', SMO 2007 (+ CASI 2005 conf.) — census identity at abstract-level (PANEL_C27.md §2.3, 2026-08-19; https://link.springer.com/article/10.1007/s00158-006-0061-7)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, VERDICT_wave1.md §4.7 + PANEL_C27.md §4.3; census-cited identity, no read claim)"
+
+- id: wanted_kennedy_hicken_2015
+  identity: "Kennedy-Hicken, 'Improved constraint-aggregation methods', CMAME 289:332-354, 2015, DOI 10.1016/j.cma.2015.02.017 — census identity at abstract-level (PANEL_C27.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, VERDICT_wave1.md §4.7 + PANEL_C27.md §4.3; census-cited identity, no read claim)"
+
+- id: wanted_lambe_kennedy_martins_2017
+  identity: "Lambe-Kennedy-Martins, 'An evaluation of constraint aggregation strategies for wing box mass minimization', SMO 2017 — census identity at title+context-level (PANEL_C27.md §2.3, 2026-08-19; https://link.springer.com/article/10.1007/s00158-016-1495-1)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, VERDICT_wave1.md §4.7 + PANEL_C27.md §4.3; census-cited identity, no read claim)"
+
+- id: wanted_shapiro_2009
+  identity: "Shapiro, 'Semi-infinite programming, duality, discretization and optimality conditions', 2008/2009 — SIP duality, dual variables are MEASURES on the index set; census identity at abstract-level (PANEL_C27.md §2.3, 2026-08-19; https://optimization-online.org/2008/07/2028/)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, VERDICT_wave1.md §4.7 + PANEL_C27.md §4.3; census-cited identity, no read claim)"
+
+- id: wanted_lopez_still_2007
+  identity: "Lopez-Still, 'Semi-infinite programming', EJOR 2007 (survey) — census identity at abstract-level (PANEL_C27.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, VERDICT_wave1.md §4.7 + PANEL_C27.md §4.3; census-cited identity, no read claim)"
+
+- id: wanted_samakhoana_grimmer_2025
+  identity: "Samakhoana-Grimmer, 'An Elementary Proof of the Near Optimality of LogSumExp Smoothing', Optimization Online, 2025-12-11 (upd. 2026-07-12) — PREPRINT: statement page-verified in the panel window, proof not checked in-repo, no peer review (RC27-4 evidence-level wording of record; PANEL_C27.md §2.3; https://optimization-online.org/2025/12/an-elementary-proof-of-the-near-optimality-of-logsumexp-smoothing/)"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (wave-1 registration rider, preprint tier; census-cited identity — the page-verified statement is the only content claim of record)"
+
+- id: wanted_paris_navarrina_block_aggregation
+  identity: "Paris-Navarrina-Colominas-Casteleiro, 'Block aggregation of stress constraints in topology optimization of structures', Advances in Engineering Software (sciencedirect S0965997809000568) — census identity at search-result/abstract level (refute_C27.md finding RC27-1 witness (i), 2026-08-19); year to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (grouped/regional aggregation option (m) witness, finding rc27-1 carried by VERDICT_wave1.md §1.2; census-cited identity, no read claim)"
+
+- id: wanted_enhanced_aggregation_local_stress_cmame
+  identity: "'An enhanced aggregation method for topology optimization with local stress constraints', CMAME (S0045782512003349) — interlacing regional measures, p-norm + max-normalization; census identity at search-result/abstract level (refute_C27.md finding RC27-1 witness (ii), 2026-08-19); authors/year to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (grouped/regional aggregation option (m) witness, finding rc27-1 carried by VERDICT_wave1.md §1.2; census-cited identity, no read claim)"
+
+- id: wanted_adaptive_aggregation_layout_cmame
+  identity: "'An improved adaptive constraint aggregation for integrated layout and topology optimization', CMAME (S0045782515000717) — adaptive aggregation DOMAINS and rho; census identity at search-result/abstract level (refute_C27.md finding RC27-1 witness (iii), 2026-08-19); authors/year to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-duty-c27-aggcond (grouped/regional aggregation option (m) witness, finding rc27-1 carried by VERDICT_wave1.md §1.2; census-cited identity, no read claim)"
+
+- id: wanted_becker_rannacher_2001
+  identity: "Becker & Rannacher 2001, the DWR method, Acta Numerica — adjoint-weighted residual as functional-error estimate, the estimator class itself; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+
+- id: wanted_venditti_darmofal_2002
+  identity: "Venditti & Darmofal 2002, output-based adaptation for aerodynamic functionals, JCP — census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19). DISTINCT from Venditti & Darmofal 2000 quasi-1D (JCP 164(1):204-227), which is NOT minted — leg-(b)-conditional per VERDICT_C9C11_supplement.md §4.4"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+
+- id: wanted_fidkowski_darmofal_2011
+  identity: "Fidkowski & Darmofal 2011, 'Review of Output-Based Error Estimation and Mesh Adaptation in CFD', AIAA J 49(4) — the field's reference review; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+
+- id: wanted_roache_gci_1994_1997
+  identity: "Roache GCI (1994/1997 line), grid convergence index — Fs=1.25 only with three grids + observed order, Fs=3 for two-grid studies; census identity at snippet + standard-practice level, exact edition to be settled at procurement (PANEL_C9C11.md §2.3, 2026-08-19; printed separately from Celik — separate rows per the panel's print)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+
+- id: wanted_celik_2008
+  identity: "Celik et al. 2008, J. Fluids Eng. policy statement — codified three-mesh observed-p GCI procedure; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+
+- id: wanted_eca_hoekstra_2014
+  identity: "Eca & Hoekstra 2014, LSQ-GCI, JCP 262:104-130 — least-squares fit of the power-series error model over >=4 grids, safety factor a function of observed order and fit standard deviation; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim; consumed by the interim observed-p GCI/LSQ regime)"
+
+- id: wanted_fidkowski_luo_2011
+  identity: "Fidkowski-Luo 2011, JCP (space-time/unsteady output-based DWR line, RC911-12 print carried in VERDICT_wave1.md §1.3/§4.7, refuter search-proven) — identity to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign leg (b) inputs — space-time DWR template line (VERDICT_wave1.md §2.4; procurement item, absence on roots verified 2026-08-19)"
+
+- id: wanted_fidkowski_2017
+  identity: "Fidkowski 2017, JCP (space-time/unsteady output-based DWR line, RC911-12 print carried in VERDICT_wave1.md §1.3/§4.7) — identity to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign leg (b) inputs — space-time DWR template line (VERDICT_wave1.md §2.4; procurement item, absence on roots verified 2026-08-19)"
+
+- id: wanted_cmame_2022_output_adaptation_review
+  identity: "CMAME 2022 output-based-adaptation review (space-time/unsteady DWR template line, RC911-12 print carried in VERDICT_wave1.md §1.3/§4.7) — identity to be settled on the PDF"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign leg (b) inputs — space-time DWR template line (VERDICT_wave1.md §2.4; procurement item, absence on roots verified 2026-08-19)"
+
+- id: wanted_hicken_zingg_2014
+  identity: "Hicken & Zingg 2014, 'Dual consistency and functional accuracy: a finite-difference perspective', J. Comput. Phys. 256:161-182, doi 10.1016/j.jcp.2013.08.014 — identity judge-web-verified at source (VERDICT_C9C11_supplement.md §0; RS911-4 corrected cite applied at both supplement sites BEFORE this mint; UTIAS public-PDF hosting verified)"
+  paths: []
+  status: WANTED
+  owner: "f2-c11-estimator-campaign — f11d order-of-convergence bookkeeping against a published criterion set (supplement PAPERS NEEDED item 2; axis-B synthesis anchor; procurement item, may be a download)"
+
+- id: wanted_thakur_nadarajah_2024
+  identity: "Thakur & Nadarajah 2024, 'Adjoint-based goal-oriented implicit shock tracking using full space mesh optimization', arXiv:2405.00904 — census identity at abstract level, fetched (PANEL_C9C11_SUPPLEMENT.md §A.4, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "axis-a modern-best steelman per VERDICT_C9C11_supplement.md §4.4 — f2-c9-meshlaw-campaign context; feeds the c49 phase-c advocate (procurement item, absence on roots verified 2026-08-19)"
+
+- id: wanted_budd_huang_russell_2009
+  identity: "Budd-Huang-Russell 2009, 'Adaptivity with moving grids', Acta Numerica — the moving-mesh family review; census at abstract depth (PANEL_C9C11_SUPPLEMENT.md §A.4); TITLE-tier registration per VERDICT_C9C11_supplement.md §4.4"
+  paths: []
+  status: WANTED
+  owner: "axis-a closure citability (title-tier registration, VERDICT_C9C11_supplement.md §4.4) — f2-c9-meshlaw-campaign context (procurement item, absence on roots verified 2026-08-19)"
+
 # ---------------------------------------------------------------
 # BULK CLASS ROWS — non-paper files, counted exactly (glob-free:
 # every count below was taken from a fresh ls/find this session)

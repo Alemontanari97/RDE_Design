@@ -28,7 +28,15 @@ round consumed per r2pass/VERDICT_confirm.md (ECL0-1..3 +
 ECR1-1..4, judge-merged to six distinct: 1 REPAIR-NEEDED — the
 slice-connectedness chart member, ECL0-1 — + 5 AMENDMENT, 0
 BREAKS-THE-LEG; statements, labels and route-level conclusions
-again UNCHANGED — 2026-08-19)). This document PROVES, at full function-space level, the
+again UNCHANGED — 2026-08-19), revision 10 = the closure-judge
+residues consumed per r2pass/VERDICT_doc1_closure.md (§1
+R9-A/R9-B/R9-C, §4 RES-DOC1-1/RES-DOC1-2: the R9-A REPAIR — the
+fiber-regularity member — plus the two carried amendments,
+executed TOGETHER with the RATIFIED strategic restatement of the
+G8 granted half as a SUFFICIENT-BUT-UNOPTIMIZED strong condition
+(H-G8-1)-(H-G8-4), staged epithets retired at every
+current-condition carrier; statements, labels and route-level
+conclusions again UNCHANGED — 2026-08-19)). This document PROVES, at full function-space level, the
 propagation lemma registered in M0 Part III as [S-T0P] (SCHEMA,
 landed by F-SERVICE from REFUTE_A / ASSESSMENT §3.1), and upgrades
 it to a SPLIT-GAP-LIST statement with every consumed conditional
@@ -113,7 +121,15 @@ S-slice of the EOS domain over hull v-values met by the roots
 an INTERVAL; else root uniqueness imposed directly as a
 member), falsifier-consequent member arithmetic and grant-head
 enumeration corrected — per revision 9,
-ECL0-1..3/ECR1-1..4), so the
+ECL0-1..3/ECR1-1..4, and RESTATED in revision 10 as the STRONG
+SUFFICIENT CONDITION (H-G8-1)-(H-G8-4) — global joint convexity
+(differential half strict on a hull neighborhood), slice-
+connected single-chart domain, hull in-chart, fiber regularity
+— SUFFICIENT-BUT-UNOPTIMIZED of record (minimality NOT claimed;
+gap accounting, not load-bearing theory), the fiber-regularity
+member added per VERDICT_doc1_closure R9-A, falsifier
+consequent re-sorted per R9-B, staged epithets retired at every
+current-condition carrier per R9-C — 2026-08-19), so the
 abstract-EOS status of the
 [T-T0P-U]/[T-T0P] chain is OPEN AT THE ROUTE LEVEL — see the
 per-statement table in §9.]
@@ -2137,97 +2153,176 @@ of use in the text above):
       (specific volume, internal energy) — the Bethe-Weyl
       class, the same class G7 route r-a already names —
       equivalently (theta > 0, partial Legendre inversion)
-      JOINT convexity of e(v, S). CONDITION OF RECORD, stated
-      in its STRICT form in revision 6 per E2L0-1 (the
-      revision-5 transcription printed the Grueneisen member
-      NON-strict, ">=" — the NECESSITY-direction inequality
-      transplanted into the sufficiency slot; see (m3)), and
-      DOMAIN-COMPLETED in revision 7 per E3L0-2 (the transfer
-      from "Hess e(v, S) PD" to item (i) consumes theta > 0 AT
-      HULL STATES three separate times — the chart W -> (v, S)
-      inverts eps = e(v, S) in S and needs e_S = theta != 0
-      along the hull before any Hessian can be read there; the
-      partial Legendre step above is flagged "(theta > 0)" and
-      runs pointwise where applied, i.e. hull-wide; and the
-      momentum block of the sufficiency assembly below is
-      (1/(rho theta)) I, NEGATIVE at a hull state with
-      theta < 0 even with Hess e(v, S) PD — theta is
-      FIRST-order EOS data no Hessian condition controls —
-      while §1 pins theta > 0 only "on the state region of
-      interest", segments LEAVE K, {theta > 0} is NOT convex
-      in W (theta composes the non-affine S(W)), and the
-      grant's convex physical region below carries no theta
-      clause: the consumption was real, named, and unpinned),
-      and CHART-COMPLETED in revision 8 per ER3L1-2/E4L0-2,
-      TOPOLOGY-COMPLETED in revision 9 per ECL0-1 (three
-      clauses the revision-7 parenthetical "(the
-      (v, S)-image of)" presupposed without writing — the
-      first two written in revision 8, the third found by the
-      confirming round firing the second's own registered
-      falsifier on a disconnected-slice witness:
-      (zeroth clause, TOTALITY — ER3L1-2) S(W) is DEFINED on
-      the WHOLE hull: at every hull point W_s, eps(W_s) lies
-      in the range of e(v(W_s), .) over the EOS's S-domain —
-      the chart's EXISTENCE, which theta > 0 does not deliver
-      (theta licenses uniqueness of the inversion — and that
-      only on an interval S-slice, revision 9 per ECL0-1 —
-      not surjectivity; the row's own in-class patch EOS of
-      (m2)/(m3) show hulls can exit a partially-defined EOS's
-      domain) — the abstract-EOS counterpart of the
-      table-domain precondition priced once at the closure
-      below; (root-quantifier clause — E4L0-2) theta > 0 is
-      read at EVERY S-root of eps(W) = e(v, S) over each hull
-      point, which — ON AN INTERVAL S-SLICE — forces the root
-      to be UNIQUE (two theta > 0 roots of e(v, .) = eps in
-      one interval slice would bracket a theta <= 0 root by
-      level-crossing parity: e(v, .) passes from above the
-      level just after the first root to below it just before
-      the second, and the traversed S-interval lies in the
-      EOS domain, so an intermediate root with e_S <= 0
-      exists); (slice-connectedness clause — ECL0-1, revision
-      9, the confirming round's REPAIR: the parity bracketing
-      and the continuation landing consume the domain
-      TOPOLOGY the two clauses above do not constrain — §1
-      pins no EOS domain, ER3L1-2 of record) each S-slice
-      {S : (v(W_s), S) in dom e} over a hull v-value that the
-      roots of eps(W_s) = e(v(W_s), .) meet is an INTERVAL —
-      under which the parity bracketing runs (the traversed
-      interval IS in the domain), the root is unique, the
-      (v, S)-image and the chart are single-valued, the root
-      map W -> S(W) is continuous on the compact hull
-      (single-upcrossing structure: e(v, .) - eps < 0 before
-      and > 0 after the unique root — the continuity the
-      assembly's compactness step and the bridge's uniformity
-      clause consume), and each per-segment continuation
-      lands on the DATA root — closing the in-class landing
-      mechanism of the per-branch reading; WITHOUT the clause
-      the mechanism fails in-class: a two-branch EOS
+      JOINT convexity of e(v, S). CONDITION OF RECORD —
+      LINEAGE (stage texts preserved verbatim in the §10-§13
+      history blocks; the staged epithets are RETIRED as
+      names of the current condition per R9-C, revision 10):
+      stated in its STRICT form in revision 6 per E2L0-1;
+      DOMAIN-COMPLETED (hull-theta member — theta consumed at
+      hull states three separate times by the transfer,
+      first-order EOS data no Hessian condition controls,
+      unpinned by §1's region-of-interest theta pin) in
+      revision 7 per E3L0-2; CHART-COMPLETED (totality zeroth
+      clause + universal root-quantifier) in revision 8 per
+      ER3L1-2/E4L0-2; TOPOLOGY-COMPLETED (slice-connectedness
+      as the chart's third clause) in revision 9 per ECL0-1 —
+      whose delivery sentence the closure round then broke:
+      the moving-slice witness W-A (every printed revision-9
+      member satisfied, root-map jump of magnitude 9 at
+      v = 1, item (i) negative at order one on straddle
+      pairs) showed root-map CONTINUITY underivable from
+      per-slice members (VERDICT_doc1_closure §1 R9-A, the
+      sustained REPAIR). RESTATED IN REVISION 10 per that
+      verdict (§1 R9-A adopted spec + §4 RES-DOC1-1/2) AND
+      the ratified strategy of record
+      (ADVISORY_SfoundationsC2_prompt_2026-08-19 § PRIMA
+      AZIONE PARALLELA): the granted half now stands on a
+      STRONG SUFFICIENT CONDITION — SUFFICIENT-BUT-
+      UNOPTIMIZED, four members, each checkable on a given
+      EOS by direct inspection, chosen STRONG so that every
+      granted item is DERIVED below from the FULL set; NO
+      sentence of this row claims any granted item from a
+      weaker subset of the printed members, and every "under
+      which" scopes to the full set. The members:
+      (H-G8-1) GLOBAL JOINT CONVEXITY: dom e (in the (v, S)
+      plane) is CONVEX; e is C^2 on dom e; Hess e(v, S) >= 0
+      (positive semidefinite) EVERYWHERE on dom e; and Hess e
+      is STRICTLY positive definite (lambda_min > 0) on the
+      compact neighborhood N of the hull's (v, S)-image whose
+      existence (H-G8-3) asserts. [Subsumes pointwise on N
+      the revision-6 strict members — e_vv > 0 (= c^2 > 0,
+      imposed hull-wide by the condition itself: §1 pins it
+      only "on the state region of interest"), e_SS > 0, and
+      the strict Grueneisen cross-term bound
+      e_vv e_SS > (e_vS)^2 (unpinned by §1); e_SS > 0
+      (= c_v > 0 via c_v = theta/e_SS, SIGN via (H-G8-2))
+      then FOLLOWS on N and remains the recorded necessary
+      scalar shadow. Convexity of dom e makes every S-slice
+      an interval — slices of a convex set are convex.]
+      (H-G8-2) SLICE-CONNECTED SINGLE-CHART DOMAIN: every
+      S-slice {S : (v, S) in dom e} is an INTERVAL (implied
+      by (H-G8-1); kept as a printed member — it is what the
+      fallback taxonomy and the falsifier consequent read),
+      and the domain carries ONE chart: theta = e_S > 0 at
+      EVERY point of dom e, so each e(v, .) is strictly
+      increasing on its slice and the inversion
+      S = S(v, eps) is single-valued wherever it exists —
+      one global chart, no branch atlas. [Subsumes the
+      revision-7 hull-theta member and the revision-8
+      root-quantifier member: hull-image states and S-roots
+      are points of dom e. NECESSITY exhibit unchanged
+      (ECL0-1's witness): the two-branch EOS
       e = e0(v) + h_i(S) on (v-range) x ([0, 1] ∪ [10, 11])
       (h_1 = 5^S - 1; h_2 = 1 + 2(S - 10) + 0.1 (S - 10)^2)
-      satisfies every OTHER member — Gibbs closure,
-      c^2 = v^2 e0'' > 0, theta = h_i' > 0 at every root,
-      Hess e = diag(e0'', h_i'') PD, totality via the h_1
-      branch — with a TWO-VALUED chart and an off-data-root
-      landing (ECL0-1's witness, judge-verified at pen grade:
-      the §13 E4L0-2 entry's own registered falsifier
-      firing); where slice-connectedness is not available,
-      root UNIQUENESS is imposed directly as a member in its
-      place):
-      theta > 0 AND Hess e(v, S) positive DEFINITE on (the
-      (v, S)-image of) the comparison-segment hull — the
-      image total and single-valued by the three chart
-      clauses above — i.e. the
-      hull-theta clause PLUS the strict pair e_vv > 0
-      (= c^2 > 0 — the §1-pinned QUANTITY, here imposed
-      hull-wide by the condition itself: §1 pins it only "on
-      the state region of interest", the same domain
-      limitation the hull-theta accounting above names; gloss
-      corrected in revision 8 per E4L0-4(a)) AND the strict
-      Grueneisen
-      cross-term bound e_vv e_SS > (e_vS)^2 (unpinned by §1);
-      e_SS > 0 (= c_v > 0 via c_v = theta/e_SS: the necessary
-      scalar shadow, the part revision 4 named) then FOLLOWS
-      from the strict pair and remains the recorded shadow.
+      satisfies Gibbs closure, c^2 = v^2 e0'' > 0,
+      theta = h_i' > 0 at every root, Hess PD, totality via
+      the h_1 branch, yet has a TWO-VALUED chart and an
+      off-data-root landing — OUT-OF-CLASS here twice over:
+      its slices are disconnected and its domain is
+      non-convex.]
+      (H-G8-3) HULL IN-CHART: every comparison state and
+      every point of every comparison W-segment (the
+      comparison-segment hull) lies in the convex physical
+      region {rho >= rho_min > 0}; at every hull point W_s
+      the chart is TOTAL — eps(W_s) lies in the range of
+      e(v(W_s), .) over the S-slice, so the (by (H-G8-2)
+      unique) root S(W_s) exists with
+      (v(W_s), S(W_s)) in dom e; and the hull's (v, S)-image
+      admits a COMPACT NEIGHBORHOOD N ⊂ dom e (equivalently:
+      the image keeps positive distance from the boundary of
+      dom e — the N that (H-G8-1)'s strictness clause and
+      derivation step (D3) consume). [The totality half is
+      the revision-8 zeroth clause — the chart's EXISTENCE,
+      which theta > 0 does not deliver (theta licenses
+      uniqueness, not surjectivity) and the abstract-EOS
+      counterpart of the table-domain precondition priced
+      once at the closure below; NECESSITY witness unchanged:
+      the row's own in-class patch EOS of (m2)/(m3) show
+      hulls can exit a partially-defined EOS's domain.]
+      (H-G8-4) FIBER REGULARITY (R9-A's member, adopted spec
+      of VERDICT_doc1_closure §1): over the hull's v-range
+      the S-fiber family of dom e varies continuously —
+      fiber endpoints continuous in v, fibers closed
+      intervals — equivalently the hull's (v, S)-image is
+      COMPACT; root-map continuity on the compact hull is
+      the member's DELIVERED conclusion (derived at (D3)
+      from the full strong set; imposed directly, together
+      with image compactness, in the fallback branch)
+      [R10-1 landing, VERDICT_doc1_rev10 §4(2)]. WHERE THE
+      STRONG SET ALREADY CARRIES
+      IT: under (H-G8-1) a convex dom e has interval S-fibers
+      (closed intervals on the closed-domain reading) whose
+      endpoint functions are concave (upper) / convex (lower)
+      in v, hence CONTINUOUS on the INTERIOR of the
+      v-projection; at hull-BOUNDARY v-values endpoint
+      continuity is NOT claimed from convexity alone —
+      handled explicitly: (H-G8-3)'s interior-neighborhood
+      clause keeps the image at positive distance from the
+      boundary of dom e, so derivation (D3) below never reads
+      a fiber endpoint, and the member's two conclusions
+      (image compactness; root-map continuity) are DERIVED
+      for the full strong set at (D3)-(D4). The member stays PRINTED — the granted items
+      are claimed from the FULL set only. FALLBACK BRANCH
+      (the judge's, kept): where fiber regularity is not
+      available (dom e not closed, image touching the domain
+      boundary, any strong member unverifiable on a given
+      EOS), root-map continuity on the compact hull / image
+      compactness is imposed DIRECTLY as a member in its
+      place — the fallback waives NO other member.
+      DERIVATION AT PEN GRADE (revision 10) — the FULL strong
+      set delivers every granted item; each step names what
+      it consumes; no step is claimed from a weaker subset:
+      (D1) per-slice uniqueness: theta > 0 on dom e
+      ((H-G8-2)) makes e(v, .) strictly increasing on each
+      interval slice ((H-G8-2), implied by (H-G8-1)), so
+      eps = e(v, S) has AT MOST ONE root per slice. The
+      retired parity-bracketing argument is no longer
+      load-bearing: uniqueness is monotonicity, not parity,
+      and the two-valued-chart mechanism cannot arise.
+      (D2) hull-wide chart: (H-G8-3)'s totality gives EXACTLY
+      one root S(W_s) at every hull point; the chart is
+      single-valued on the hull, and each per-segment
+      continuation lands on the DATA root — under a single
+      chart there IS only the data root.
+      (D3) root-map continuity + C^2: fix a hull point W_0
+      with image (v_0, S_0) in int N ((H-G8-3)). Choose
+      delta > 0 with the closed box
+      B = [v_0 - delta, v_0 + delta] x
+      [S_0 - delta, S_0 + delta] ⊂ int N ⊂ dom e; on B,
+      theta >= theta_min > 0 (continuity of e_S on the
+      compact B — (H-G8-1)'s C^2 + (H-G8-2)), so
+      e(v, S_0 + delta) - e(v, S_0) >= theta_min delta and
+      e(v, S_0) - e(v, S_0 - delta) >= theta_min delta for
+      every v in [v_0 - delta, v_0 + delta].
+      W -> (v(W), eps(W)) is continuous on the hull
+      (rho >= rho_min, (H-G8-3)), so for hull points W near
+      W_0: |eps(W) - e(v(W), S_0)| <= |eps(W) - eps(W_0)| +
+      |e(v_0, S_0) - e(v(W), S_0)| < theta_min delta, hence
+      e(v(W), S_0 - delta) < eps(W) < e(v(W), S_0 + delta);
+      strict monotonicity on the WHOLE slice ((D1), the slice
+      an interval containing S_0 +- delta and S(W)) places
+      THE root: S(W) in (S_0 - delta, S_0 + delta). So S is
+      continuous on the hull. C^2 upgrade:
+      F(W, S) := e(v(W), S) - eps(W) is C^2 near (W_0, S_0)
+      (e C^2 on int N; W -> (v, eps) smooth on
+      {rho >= rho_min}) with F_S = theta > 0, so the implicit
+      function theorem makes S(W) C^2 on a W-neighborhood of
+      the hull — the regularity the assembly's
+      Hessian-continuity step consumes.
+      (D4) image compactness: the (v, S)-image is the image
+      of the compact hull under the continuous map of (D3) —
+      COMPACT. (D3)-(D4) are exactly the two conclusions the
+      fiber machinery was for: THEOREMS under the strong set,
+      members only in the fallback branch.
+      (D5)-(D7) are the assembly below, unchanged in
+      mechanism with its splice re-scoped to (D3)-(D4): the
+      strict Legendre bridge (consuming theta > 0, (H-G8-2),
+      and strict PD of Hess e at image points inside N,
+      (H-G8-1)), the rest-state block decomposition with
+      momentum block 1/(rho theta) > 0 ((H-G8-2) +
+      (H-G8-3)), boost affinity, uniform lambda_min > 0 on
+      the compact hull ((D3)'s C^2 + (D4)), and the Bregman
+      double integral: item (i) with c = lambda_min/2.
       SUFFICIENCY, scoped and WRITTEN in revision 7 per
       E3L0-1/ER2L1-1 (the revision-6 note "pointwise
       strictness plus compactness of the comparison-segment
@@ -2250,9 +2345,11 @@ of use in the text above):
       is its instance; its abstract-EOS form is unstated and
       NOT needed — one convex member suffices for the device);
       at g = S it reads 0 < 1/c_v, i.e. c_v > 0, which the
-      CONDITION OF RECORD already contains — e_SS > 0 via the
-      strict pair, the SIGN of c_v = theta/e_SS via the
-      hull-theta clause; the strict pair ALONE does not
+      CONDITION OF RECORD already contains — e_SS > 0 via
+      (H-G8-1)'s strictness on N, the SIGN of
+      c_v = theta/e_SS via (H-G8-2)'s single-chart theta
+      (member attributions recalibrated in revision 10; the
+      exhibit below is unchanged); the strict pair ALONE does not
       contain it (theta is first-order data the pair does not
       constrain: the quadratic-patch FAMILY of (m2) taken in
       the OPPOSITE determinant regime — e0'' > 0,
@@ -2289,17 +2386,21 @@ of use in the text above):
       delivered by the bridge above,
       transfers to strict slice positivity because B is
       invertible), the momentum block is (1/(rho theta)) I > 0
-      by the hull-theta clause (d^2(-rho s)/dm_i dm_j
+      by (H-G8-2)'s theta > 0 read at the hull image, which
+      lies in dom e by (H-G8-3) (d^2(-rho s)/dm_i dm_j
       = (s_eps/rho) delta_ij = delta_ij/(rho theta) at m = 0),
       and the m-(rho, E) cross terms VANISH at m = 0 (each
       carries a factor m_i); boost affinity transports
       positive-definiteness to all velocities by congruence;
       continuity of Hess_W E (EOS C^2 — a §1-implicit
-      consumption, now stated — with the root map W -> S(W)
-      single-valued and continuous on the hull by the three
-      chart clauses, revision 9 per ECL0-1) plus compactness
-      of the hull's
-      state image give the uniform lower eigenvalue bound
+      consumption, now a member, (H-G8-1) — with the root map
+      W -> S(W) single-valued, continuous and C^2 near the
+      hull DERIVED from the FULL strong set at (D2)-(D3),
+      revision 10 per R9-A: continuity is no longer read off
+      per-slice members, and the revision-9 "by the three
+      chart clauses" splice is RETIRED) plus compactness of
+      the hull's state image — DERIVED at (D4), no longer a
+      bare premise — give the uniform lower eigenvalue bound
       lambda_min > 0, and the Bregman double integral gives
       item (i) with c = lambda_min/2. The necessity-direction
       chains (m1)-(m3) are untouched (they only ever consume
@@ -2350,30 +2451,52 @@ of use in the text above):
       breaks WITH the full non-strict triple satisfied —
       non-strict does NOT suffice, which is why the condition
       of record above is the STRICT form. On the
-      STANDING gamma(T) thermally-perfect closure the FULL
-      condition is DISCHARGED by the AUD-cp-class finite audit
-      (c_v > 0): s(tau, eps) = phi(eps) + R ln tau is SEPARABLE
-      there (cross term identically zero, Hessian diagonal), so
-      joint concavity reduces EXACTLY to c_v > 0 — and the
-      revision-6 STRICT form is discharged VERBATIM: the
-      diagonal Hessian diag(-R/tau^2, -1/(c_v T^2)) is strictly
-      negative definite iff c_v > 0, uniformly on compacts,
-      with strict determinant R/(tau^2 c_v T^2) > 0 automatic;
-      and the revision-7 hull-theta clause and quadruple pin
-      are FREE there: theta = T > 0 wherever the closure is
-      DEFINED (T is the table coordinate; hull evaluability
-      inside the tabulated range is the table-domain
-      precondition already priced once for all consumers in
-      this row), and g = S is the certified quadruple of
-      record; the revision-8/9 chart clauses are the SAME
-      precondition there: the tabulated range is an INTERVAL
-      (slice-connectedness FREE at the closure, revision 9
-      per ECL0-1 — the disconnected-slice witness has no
-      purchase), theta = T > 0 globally on the table
-      domain makes every S-root unique (monotone inversion),
-      and hull evaluability inside the tabulated range IS the
-      totality clause — the condition prices the ABSTRACT-EOS
-      accounting only.
+      STANDING gamma(T) thermally-perfect closure the GRANTED
+      ITEMS are DISCHARGED IN FULL by the AUD-cp-class finite
+      audit (c_v > 0): s(tau, eps) = phi(eps) + R ln tau is
+      SEPARABLE there (cross term identically zero, Hessian
+      diagonal), so joint concavity reduces EXACTLY to
+      c_v > 0 — the STRICT differential half of (H-G8-1) is
+      discharged VERBATIM: the diagonal Hessian
+      diag(-R/tau^2, -1/(c_v T^2)) is strictly negative
+      definite iff c_v > 0, uniformly on compacts, with
+      strict determinant R/(tau^2 c_v T^2) > 0 automatic;
+      (H-G8-2) is FREE there: every S-slice of the tabulated
+      domain is an INTERVAL (the disconnected-slice witness
+      has no purchase) and theta = T > 0 wherever the closure
+      is DEFINED (T is the table coordinate) makes the chart
+      SINGLE — every S-root unique by monotone inversion;
+      (H-G8-3) IS the table-domain precondition already
+      priced once for all consumers in this row (hull
+      evaluability strictly inside the tabulated range =
+      totality + the interior-neighborhood clause), and
+      g = S is the certified quadruple of record; (H-G8-4) is
+      FREE there — the one clause R9-A adds at the closure
+      (VERDICT_doc1_closure §3(b)): in (v, S) coordinates the
+      S-fibers are the closed intervals
+      [phi(T_min) + R ln v, phi(T_max) + R ln v], endpoints
+      CONTINUOUS in v, so the fiber family varies
+      continuously and the compact tabulated hull has compact
+      (v, S)-image. HONEST ACCOUNTING of the one member the
+      closure does NOT satisfy: (H-G8-1)'s DOMAIN half —
+      dom e convex in (v, S) — FAILS at the closure: the
+      tabulated domain's (v, S)-image is the R-ln-v-sheared
+      strip between the graphs S = phi(T_min) + R ln v and
+      S = phi(T_max) + R ln v, whose lower boundary is
+      concave in v, so chords between lower-boundary points
+      exit the strip from below — NOT convex. That member is
+      UNCONSUMED at the closure: within the strong set its
+      only derivational load is to IMPLY (H-G8-2)'s interval
+      half and (H-G8-4)'s fiber description, both of which
+      the closure verifies DIRECTLY above, so the granted
+      items discharge at the closure through the same
+      (D1)-(D7) chain with the implied members read off the
+      table geometry. This is the SUFFICIENT-BUT-UNOPTIMIZED
+      accounting made concrete: the strong set is ONE
+      sufficient certificate, not a necessary condition — the
+      closure is a point outside the strong class where the
+      granted items nonetheless discharge by direct audit;
+      the condition prices the ABSTRACT-EOS accounting only.
       FALSIFIER of the condition-claim (RECALIBRATED in
       revision 5 — the revision-4 clause "derive e_SS > 0 ...
       restores the unconditional grant" over-claimed
@@ -2398,25 +2521,37 @@ of use in the text above):
       Gibbs closure + c^2 > 0 + theta > 0
       ALONE, with no K-geometry input — THAT kills the
       condition-claim and restores the grant's PIN-READABLE
-      members IN THE WHOLE-DOMAIN BRANCH — the Hessian member
-      and hull-theta, where the theta pin itself goes
-      hull-wide — MODULO the chart clauses (totality,
-      root-quantifier, slice-connectedness): those are
+      members IN THE WHOLE-DOMAIN BRANCH — (H-G8-1)'s
+      DIFFERENTIAL half (the derived strict concavity IS its
+      Hessian content) and (H-G8-2)'s single-chart theta
+      half, the theta pin itself read whole-domain (its hull
+      and root restrictions — the retired hull-theta and
+      root-quantifier stages — are PIN-DELIVERED in this
+      branch: hull-image states and S-roots are domain points
+      the whole-domain reading covers, R9-B of record) —
+      MODULO the GEOMETRY members: (H-G8-3) totality +
+      interior neighborhood, (H-G8-2)'s interval half
+      (slice-connectedness), (H-G8-4) fiber regularity, and
+      (revision 10) (H-G8-1)'s DOMAIN half (dom-e convexity):
       domain/range GEOMETRY no reading of the pins and no
       concavity derivation delivers (pins constrain e's
       derivatives where e is DEFINED, never where it is
       defined; witness: the row's own accepted patch-EOS
       class with a0 large POSITIVE holds every §1 pin on its
       entire domain while a thin-S-band hull exits the
-      range), so the chart clauses stay STANDING members with
-      their own §13 falsifiers; in the ELSE branch
+      range), so the geometry members stay STANDING members
+      with their own §13 falsifiers — the per-slice
+      uniqueness CONSEQUENCE staying with the interval member
+      (uniqueness = (H-G8-2)'s monotone chart read ON an
+      interval slice, R9-B); in the ELSE branch
       the derivation has CONSUMED theta > 0 on the hull as an
       input and PRESUPPOSED the chart there (a strict
       s-concavity conclusion AT hull states is not a
       statement unless s(v, eps) is defined and single-valued
-      there), so a firing there kills the HESSIAN member ONLY
-      and leaves the grant conditional on hull-theta AND the
-      chart clauses — hull-theta
+      there), so a firing there kills the Hessian content
+      ONLY ((H-G8-1)'s differential half) and leaves the
+      grant conditional on (H-G8-2)'s theta AND the geometry
+      members — theta
       first-order data no concavity derivation controls,
       retaining its OWN falsifier (the E3L0-2 disposition
       row's: a printed line placing the hull inside the
@@ -2434,29 +2569,44 @@ of use in the text above):
       the condition, and the transplanted "modulo ER3L1-2's
       totality" caveat had been INVERTED in transcription
       into a delivery claim no refutation file asserts — an
-      R-4 transplant-mutation instance of record);
+      R-4 transplant-mutation instance of record; RE-SORTED
+      in revision 10 per VERDICT_doc1_closure R9-B, the
+      root-quantifier content moved OUT of the geometry
+      bucket into the pin-delivered enumeration above, and
+      the whole consequent RECALIBRATED to the (H-G8-1)-
+      (H-G8-4) taxonomy — recalibration declared, §13
+      REVISION 10);
       deriving e_SS > 0 alone kills only the (m1) necessity
       exhibit and leaves the grant conditional on the strict
       cross-term bound (m2 and m3 stand as the witnesses).
       Granted, FOR THE CERTIFIED QUADRUPLE g(S) = S (revision
       7 per E3L0-1/ER2L1-1; a general Harten member
-      additionally needs the g-condition) and under the STRICT
-      + hull-theta + CHART-COMPLETE
-      condition of record (grant-head enumeration PROPAGATED
-      in revision 9 per ECR1-3: revision 8 enlarged the
-      condition and updated every other carrier while this
-      operative granting sentence kept the revision-7
-      epithet — and without the chart members the universal
-      root-quantifier is VACUOUSLY satisfiable at a rootless
-      hull point (empty root set), ER3L1-2's mechanism
-      surviving in the enumeration): (i) E(V|U) >= c|DeltaW|^2 with all comparison
+      additionally needs the g-condition) and under the FULL
+      STRONG SUFFICIENT CONDITION of record
+      (H-G8-1)-(H-G8-4) — grant head RESTATED in revision 10:
+      the staged epithet chain is RETIRED here and at every
+      current-condition carrier per R9-C
+      (VERDICT_doc1_closure §1: the revision-9 grant head was
+      the one carrier of six the revision-9 sweep missed —
+      annotated at the §13 ECR1-3 entry); NON-OPTIMIZATION
+      DECLARED: the condition is SUFFICIENT ONLY, minimality/
+      necessity NOT claimed, weaker sufficient sets possible
+      and NOT sought (ratified strategy of record,
+      ADVISORY_SfoundationsC2_prompt_2026-08-19 § PRIMA
+      AZIONE PARALLELA; VERDICT_doc1_closure §4 = pass-
+      ownership authority only [R10-4 landing]) — this row
+      is gap ACCOUNTING for the abstract-EOS route, which
+      stays OPEN at route level, not load-bearing theory —:
+      (i) E(V|U) >= c|DeltaW|^2 (c = lambda_min/2, derived at
+      (D1)-(D7) above from the FULL set) with all comparison
       segments inside the convex physical region ({rho >=
       rho_min} IS convex in W — this half of the pricing was
       correct; that region carries NO theta clause and NO
-      chart clause, which is
-      why the hull-theta member and the chart members of the
-      condition are genuine
-      additions, E3L0-2/ER3L1-2/ECL0-1); (ii) flux smoothness on that hull, hence the
+      domain-geometry clause, which is why (H-G8-2)/(H-G8-3)/
+      (H-G8-4) and (H-G8-1)'s domain half are genuine
+      additions, E3L0-2/ER3L1-2/ECL0-1/R9-A); (ii) flux
+      smoothness on that hull ((H-G8-1)'s C^2 through the
+      C^2 chart of (D3)), hence the
       UPPER/commutator bounds along W-segments. What it does NOT
       deliver: the load-bearing LOWER sandwich, which is on the
       relative x-FLUX Q_x(V|U) = eta(V|U): with
@@ -2509,22 +2659,27 @@ of use in the text above):
       per E3L0-1/E3L0-2/ER2L1-1; chart totality +
       root-uniqueness clauses added in revision 8 per
       ER3L1-2/E4L0-2; slice-connectedness member added in
-      revision 9 per ECL0-1):
+      revision 9 per ECL0-1; RESTATED in revision 10 per
+      VERDICT_doc1_closure R9-A..C + the ratified
+      sufficient-but-unoptimized strategy):
       a PARTIAL reduction MODULO the named thermal-stability
-      condition (theta > 0 AND STRICT joint s-concavity in
-      (specific volume, internal energy) on the
-      comparison-segment hull — positive-definite
-      Hess e(v, S), chart total and single-valued there (the
-      revision-8/9 clauses incl. slice-connectedness),
-      granted half pinned to the
-      certified
-      quadruple g(S) = S — / Bethe-Weyl class, with
-      e_SS > 0 = c_v > 0 (sign via hull-theta, ER3L1-1) its
-      necessary scalar shadow; discharged
-      IN FULL, strict form and hull-theta included, at the
-      standing gamma(T)
-      closure by the AUD-cp-class c_v > 0 audit — separable s
-      and theta = T > 0 there) + OPEN x-flux segment
+      condition (of record in its revision-10 form: the FULL
+      STRONG SUFFICIENT CONDITION (H-G8-1)-(H-G8-4) — global
+      joint convexity of e(v, S) with strictness on a hull
+      neighborhood, slice-connected single-chart domain
+      (theta > 0 on dom e), hull in-chart, fiber
+      regularity — Bethe-Weyl class strengthened to a
+      trivially-checkable set, SUFFICIENT-BUT-UNOPTIMIZED,
+      granted half pinned to the certified quadruple
+      g(S) = S, with e_SS > 0 = c_v > 0 (sign via (H-G8-2)'s
+      theta, ER3L1-1) its necessary scalar shadow; granted
+      ITEMS discharged IN FULL at the standing gamma(T)
+      closure by the AUD-cp-class c_v > 0 audit — separable
+      s, theta = T > 0, interval fibers with v-continuous
+      endpoints; the one strong member the closure does not
+      satisfy, (H-G8-1)'s dom-e convexity, is UNCONSUMED
+      there, its implied loads verified directly — see the
+      AUD-cp note above) + OPEN x-flux segment
       coercivity (a G8-equivalent problem). CONSEQUENCE OF RECORD: NO
       named viable abstract-EOS G8 route exists at this revision
       (r1 feasibility-gated, possibly infeasible in principle; r3
@@ -2741,12 +2896,20 @@ VARIABLE-GAMMA STATUS (per statement):
     TOPOLOGY-COMPLETED — slice-connectedness member added
     (else root uniqueness imposed directly), consequent
     member arithmetic and grant-head enumeration corrected —
-    in revision 9 per ECL0-1..3/ECR1-1..4),
-    discharged
+    in revision 9 per ECL0-1..3/ECR1-1..4; RESTATED in
+    revision 10 per VERDICT_doc1_closure R9-A..C + the
+    ratified strategy as the FULL STRONG SUFFICIENT CONDITION
+    (H-G8-1)-(H-G8-4) — global joint convexity, slice-
+    connected single-chart domain, hull in-chart, fiber
+    regularity (R9-A's member) — SUFFICIENT-BUT-UNOPTIMIZED,
+    staged epithets retired at every current-condition
+    carrier), granted items discharged
     IN FULL at the standing
     gamma(T) closure by the AUD-cp-class c_v > 0 audit
     (separable s, strict form automatic, theta = T > 0 free
-    there); table conclusions UNCHANGED). On the standing gas model (gamma(T)
+    there, fibers interval-valued with v-continuous
+    endpoints; (H-G8-1)'s dom-e convexity unconsumed there —
+    see the AUD-cp note); table conclusions UNCHANGED). On the standing gas model (gamma(T)
     tabulated,
     thermo-tabulated backend) EVERY instance-certificate route
     additionally needs certified table-interpolation enclosures —
@@ -4224,9 +4387,30 @@ entry). Disposition key as in §10.
     (single-upcrossing structure — the continuity the
     assembly's compactness step and the bridge's uniformity
     clause consume), and each per-segment continuation lands
-    on the DATA root; where slice-connectedness is not
+    on the DATA root; [DELIVERY SENTENCE RE-SCOPED in
+    revision 10 per VERDICT_doc1_closure §1 R9-A, prior text
+    preserved: the continuity conclusion was NOT derivable
+    from the printed revision-9 members — the moving-slice
+    witness W-A (two strips ([0.5, 1) x [0, 1]) ∪
+    ([1, 1.5] x [10, 11]), every printed member satisfied,
+    root-map jump of magnitude 9 at the hull point v = 1,
+    item (i) negative at order one on straddle pairs,
+    judge-re-derived at pen grade) fires on it; under the
+    revision-10 STRONG SUFFICIENT CONDITION the conclusion
+    is DERIVED from the FULL set at (D1)-(D4) and the
+    witness class is OUT-OF-CLASS: W-A's two-strip domain
+    violates (H-G8-1)'s convex dom e, its fiber family jumps
+    at v = 1 violating (H-G8-4), and its hull image
+    accumulates at (1, 1) outside dom e violating
+    (H-G8-3)'s interior-neighborhood clause;] where
+    slice-connectedness is not
     available, root UNIQUENESS is imposed directly as a
-    member in its place; the parity line restated with the
+    member in its place; [FALLBACK RE-BASED in revision 10
+    per R9-A: the judge found the uniqueness-only fallback
+    inherits the continuity hole a fortiori — the operative
+    fallback branch now lives in (H-G8-4) and imposes
+    root-map continuity / image compactness DIRECTLY;] the
+    parity line restated with the
     traversed-interval hypothesis EXPLICIT ("ON AN INTERVAL
     S-SLICE ... and the traversed S-interval lies in the EOS
     domain"); the §13 E4L0-2 entry's falsifier line corrected
@@ -4238,7 +4422,18 @@ entry). Disposition key as in §10.
     record), or break the two-branch witness at any checked
     member (each verified by refuter and judge), or derive
     slice-connectedness or root uniqueness from the other
-    members (refuted by the same witness). Gamma/EOS status:
+    members (refuted by the same witness). [FALSIFIER ADDED
+    in revision 10 per R9-A — this list carried NO falsifier
+    for the continuity sub-claim: the MOVING-SLICE WITNESS
+    class (an EOS with every per-slice member holding and a
+    fiber-family jump — W-A of record) kills any continuity
+    claim resting on per-slice members alone; under the
+    revision-10 strong set the class is OUT-OF-CLASS (see
+    the re-scope annotation above), so the live falsifier of
+    the NEW grant is: exhibit an EOS satisfying the FULL
+    (H-G8-1)-(H-G8-4) whose hull root map is discontinuous
+    or whose hull (v, S)-image is non-compact — refuted by
+    derivation (D3)-(D4).] Gamma/EOS status:
     abstract-EOS only — FREE at the standing gamma(T)
     closure: the tabulated range is an INTERVAL, the
     disconnected-slice witness has no purchase (stated in the
@@ -4251,7 +4446,14 @@ entry). Disposition key as in §10.
     domain-unpinned EOS class. The domain ladder gains its
     outermost rung: K -> hull -> theta-pin region -> chart
     domain (totality) -> chart-domain TOPOLOGY
-    (slice-connectedness).)
+    (slice-connectedness). [LADDER EXTENDED in revision 10
+    per R9-A, prior text preserved — the new outermost rung:
+    K -> hull -> theta-pin region -> chart domain (totality)
+    -> chart-domain TOPOLOGY (slice-connectedness) ->
+    slice-FAMILY regularity (fiber endpoints continuous in
+    v / hull (v, S)-image compact — (H-G8-4), DERIVED from
+    the full strong set at (D3)-(D4), imposed directly in
+    the fallback branch).])
  ECL0-2 + ECR1-1  (leg 5, class AMENDMENT, lenses l0 + l1,
     confirming round — MERGED-AT-THE-CLAUSE by the judge:
     same clause, compatible mechanisms)
@@ -4282,6 +4484,22 @@ entry). Disposition key as in §10.
     conditional on hull-theta AND the chart clauses, both
     consumed or presupposed as inputs; the §13 revision-8
     echo annotated in place, prior text preserved.
+    [MEMBER RE-SORT in revision 10 per VERDICT_doc1_closure
+    §1 R9-B, prior text preserved: this entry's own repair
+    text MIS-SORTED the root-quantifier member into the
+    geometry bucket — that member is PIN-DELIVERED in the
+    whole-domain branch (S-roots are by definition points of
+    dom e, which the whole-domain proviso's theta reading
+    covers); the modulo bucket holds totality +
+    slice-connectedness + fiber regularity ONLY (the adopted
+    R9-B text, calibrated to the revision-9 + R9-A member
+    list; in the revision-10 strong taxonomy the same bucket
+    reads (H-G8-3) + (H-G8-2)'s interval half + (H-G8-4),
+    ENLARGED by (H-G8-1)'s domain half — a revision-10
+    member R9-B could not name, recalibration declared per
+    the R-4 binding rule); the uniqueness consequence stays
+    with the interval member; both body sites re-sorted
+    accordingly this pass.]
     Hypotheses/falsifier: kill by deriving totality (a
     range-coverage fact) from any reading of the §1 pins
     (impossible — the a0-positive patch witness), or by a
@@ -4354,7 +4572,18 @@ entry). Disposition key as in §10.
     gamma-table carrier is extended in the SAME pass
     (TOPOLOGY-COMPLETED per revision 9) so no carrier of the
     revision-9-enlarged condition is left stale — the ECR1-3
-    pattern not reproduced one revision later. Falsifier: a
+    pattern not reproduced one revision later. [ANNOTATION in
+    revision 10 per VERDICT_doc1_closure §1 R9-C, prior text
+    preserved: the "not reproduced" meta-claim OVER-CERTIFIED
+    — the revision-9 sweep extended five of six carriers and
+    MISSED the grant head itself, which kept the revision-8
+    epithet "STRICT + hull-theta + CHART-COMPLETE" while the
+    same revision minted TOPOLOGY-COMPLETE as a separate
+    stage; consumed in revision 10 by RETIRING the staged
+    epithets at every current-condition carrier in one
+    measured sweep (grep cited in the REVISION 10 block); the
+    benign defined-term reading that held ECR1-3 and R9-C at
+    AMENDMENT stands.]. Falsifier: a
     consumer reading the grant head's enumeration alone that
     still claims the grant on a totality-violating patch EOS
     — closed by the propagated enumeration; the benign
@@ -4458,3 +4687,278 @@ HONEST RESIDUE at revision 9:
      quadruple-pinned grant + x-flux coercivity), G3/G11, G9
      lift, G5/G12, G4 general branch, G2 structural clauses
      in bare L^inf.
+
+------------------------------------------------------------------
+
+REVISION 10 — closure-judge residues consumed + ratified strategic
+restatement (2026-08-19, S-FOUNDATIONS-C2 window). AUTHORITY:
+r2pass/VERDICT_doc1_closure.md (the closure-judge mandate: §1
+R9-A/R9-B/R9-C adopted specs, §3(c) instance-count ruling, §4
+residues RES-DOC1-1/RES-DOC1-2 — this pass is their named owner);
+ADVISORY_SfoundationsC2_prompt_2026-08-19.md § PRIMA AZIONE
+PARALLELA (the RATIFIED STRATEGY, checkpoint-ratified);
+r2pass/VERDICT_confirm.md preamble + §6 R-1'/R-5' (dry criterion
+of record; held-out set). Judge line numbers were
+revision-9-calibrated; every quoted passage was re-verified
+VERBATIM against the on-disk revision-9 file before editing — NO
+DRIFT FOUND (all sites matched within the judge's quoted ranges).
+
+STRATEGY DECLARATION (the load-bearing move of this revision,
+ratified): the G8/r2 granted half is RE-ESTABLISHED as a
+SUFFICIENT-BUT-UNOPTIMIZED condition on STRONG, trivially
+checkable hypotheses — (H-G8-1) global joint convexity (strict
+on a hull neighborhood), (H-G8-2) slice-connected single-chart
+domain, (H-G8-3) hull in-chart, (H-G8-4) fiber regularity (R9-A's
+member) — with every granted item DERIVED at pen grade from the
+FULL set ((D1)-(D7) in the condition text). NON-OPTIMIZATION is
+declared in the grant head and here: the condition is SUFFICIENT
+ONLY; minimality/necessity NOT claimed; weaker sufficient sets
+are possible and NOT sought (ratified strategy of record,
+ADVISORY_SfoundationsC2_prompt_2026-08-19 § PRIMA AZIONE
+PARALLELA; VERDICT_doc1_closure §4 = pass-ownership authority
+only [R10-4 landing]); the row is gap ACCOUNTING for the
+abstract-EOS route —
+which stays OPEN at route level — not load-bearing theory.
+Over-generality bought five rounds; this revision stops buying:
+no sentence of the row claims any granted item from a weaker
+subset of the printed members, and every "under which" scopes to
+the full strong set.
+
+ R9-A  (RES-DOC1-1, class REPAIR-NEEDED, both lenses merged,
+    closure-judge adjudicated)
+    the TOPOLOGY-COMPLETED condition lacked a slice-FAMILY
+    regularity member; root-map continuity was underivable
+    from per-slice members (moving-slice witness W-A: every
+    printed member satisfied, root-map jump of magnitude 9 at
+    v = 1, item (i) negative at order one) ............ CONSUMED
+    (MECHANISM: the fiber-regularity member is WRITTEN as
+    (H-G8-4) with the judge's adopted spec text (fiber
+    endpoints continuous in v, fibers closed intervals —
+    equivalently hull (v, S)-image compact) AND the judge's
+    fallback branch kept (root-map continuity / image
+    compactness imposed directly where fiber regularity is
+    unavailable; the fallback waives no other member; the
+    revision-9 uniqueness-only fallback re-based, annotation
+    at the ECL0-1 entry). Under the ratified restatement the
+    member's two conclusions are DERIVED from the FULL strong
+    set — (D3) box argument + implicit-function C^2 upgrade,
+    (D4) image compactness — so W-A is OUT-OF-CLASS three
+    ways: two-strip domain violates (H-G8-1)'s convex dom e;
+    fiber family jumps at v = 1 violating (H-G8-4); hull
+    image accumulates at (1, 1) outside dom e violating
+    (H-G8-3)'s interior-neighborhood clause. SAME-PASS
+    PROPAGATION executed at every judge-named carrier — the
+    edit-site list below. FALLBACK MEMBERS IMPOSED: NONE —
+    every derivation step closed from the strong set; the
+    printed fallback branch remains available for
+    out-of-strong-class EOS.)
+ R9-B  (RES-DOC1-2(1), class AMENDMENT, both lenses merged)
+    the falsifier-consequent's geometry bucket mis-sorted the
+    root-quantifier member (pin-delivered in the whole-domain
+    branch, since S-roots are domain points) ........... CONSUMED
+    (re-sorted at BOTH sites with the judge's adopted text:
+    body consequent (l.2500-2574 region: pin-delivered
+    enumeration now carries (H-G8-1)'s differential half +
+    (H-G8-2)'s theta half with the retired hull-theta and
+    root-quantifier stages named as its restrictions; modulo
+    bucket = geometry members only, uniqueness consequence
+    with the interval member) and §13 revision-9 echo
+    (annotation at l.4481, prior text preserved). DECLARED
+    RECALIBRATION per the R-4 binding rule: the judge's
+    modulo list "totality + slice-connectedness + fiber
+    regularity ONLY" was calibrated to the revision-9 + R9-A
+    member list; the revision-10 taxonomy ENLARGES the
+    geometry bucket by (H-G8-1)'s domain half (dom-e
+    convexity) — a member R9-B could not name; no reading of
+    the pins delivers it (same witness argument), so leaving
+    it out would have made the consequent FALSE.)
+ R9-C  (RES-DOC1-2(2), class AMENDMENT, both lenses merged)
+    grant-head epithet stale vs the same revision's stage
+    taxonomy; §13 ECR1-3 "not reproduced" meta-claim
+    over-certified (five-of-six carriers) .............. CONSUMED
+    (ROUTE CHOSEN of the judge's two: the staged epithets are
+    RETIRED as names of the current condition and replaced by
+    the single defined object "the FULL STRONG SUFFICIENT
+    CONDITION of record (H-G8-1)-(H-G8-4)" at EVERY
+    current-condition carrier in one measured pass; the stage
+    names survive ONLY in history recitals (lineage clauses;
+    §10-§13 blocks, append-only). ECR1-3 annotation added at
+    the entry's meta-claim naming the grant head as the
+    missed sixth carrier. MEASURED SWEEP of record (grep -n
+    -i "chart-complete|topology-complete|chart-completed|
+    topology-completed" on this file, this window, RE-RUN
+    after this block was appended): 18 token hits [R10-2
+    landing annotation, VERDICT_doc1_rev10 §4(3): correctly
+    18 LINE hits, 20 token instances under -o — the
+    pattern-quotation lines carry 4; wider staged-epithet
+    family (DOMAIN-COMPLETED; STRICT + hull-theta; bare
+    STRICT form) swept at both rev-10 lenses and re-measured
+    by the rev-10 closure judge: zero stale
+    current-condition carriers], ALL
+    classified = header lineage recital (115, 118); condition
+    lineage recital (2165, 2167); §9 gamma-table lineage
+    recital (2887, 2890); §13 history blocks and revision-10
+    annotations quoting the retired names (4186, 4288,
+    4561-4575, 4648-4649, 4679); this block's own R9-A
+    history reference and this grep pattern's two quoted
+    lines (4720, 4779-4780) — ZERO hits name the CURRENT
+    condition outside a lineage/history context. The
+    SIX current-condition carriers all print the (H-G8)
+    taxonomy: header audit line (l.118-132), condition of
+    record (l.2159-2341), grant head (l.2578-2607), honest
+    status line (l.2646-2685), §9 gamma-table carrier
+    (l.2880-2906), and THIS block's label summary.)
+
+EDIT-SITE LIST of this pass (line anchors measured in-window,
+post-edit): header status paragraph l.31-38 [R10-3 landing
+correction: l.31-39 — l.39 carries the recital tail] (revision-10
+recital);
+header audit line l.118-132 (R9-A/B/C + restatement clause);
+condition of record RESTATED l.2159-2341 (lineage compression;
+members (H-G8-1) l.2187, (H-G8-2) l.2202, (H-G8-3) l.2223,
+(H-G8-4) l.2242; derivation (D1)-(D7) l.2268-2341); sufficiency-
+passage member attributions l.2345-2350; momentum-block clause
+l.2384-2386; assembly splice re-scoped l.2391-2401; AUD-cp note
+l.2449-2496 (fiber clause + honest dom-e-convexity accounting);
+falsifier consequent re-sorted l.2500-2574; grant head
+l.2578-2607; honest status line l.2646-2685; §9 gamma-table
+carrier l.2880-2906; §13 revision-9 in-place annotations (prior
+text preserved, history append-only): ECL0-1 delivery re-scope
+l.4384, ECL0-1 falsifier addition l.4419, ECL0-1 fallback
+re-base l.4402 [R10-3 landing addition: mandate-conformal edit,
+separately declared at the R9-A mechanism entry — the inventory
+under-enumerated], domain ladder l.4443,
+R9-B echo l.4481, ECR1-3 meta-claim l.4569; this block. NO OTHER
+BYTE TOUCHED [R10-3 adjudication of record: the two witnesses
+(l.4402-4406, l.39) are mandate-conformal edits this list missed
+— AMENDMENT, VERDICT_doc1_rev10 §1 R10-3].
+
+LEG 3 (E-1) ZERO-EDIT PROOF of record (grep/hash, measured
+in-window): the §4 leg-3 body span was extracted by content
+anchors ("## §4 The uniqueness half" to "## §5 The main theorem",
+353 lines) BEFORE and AFTER this pass — MD5 identical:
+6ef096f238ef76bc0ea8965cd066ef96 (span at l.1071-1423 pre-edit,
+l.1087-1439 post-edit; the shift is header growth only; HASH
+COMMAND PINNED per the rev-10 judge's note: sed -n '<a>,<b>p'
+FILE | head -c -1 | md5sum — strip-final-newline convention;
+raw-span variant 0a186e9d252fc01bedb657e83013bc58). Zero
+revision-10 edits to the leg-3 body; the thread remains DRY of
+record at both lenses, held OPEN by the per-doc rule only.
+
+FALSIFIERS FOR THE NEW GRANT (the revision-10 list of record):
+ (f1) break any step of (D1)-(D7) from the FULL strong set at
+      derivation level (each step names its consumed members;
+      the box argument and the IFT upgrade are written).
+ (f2) the MOVING-SLICE WITNESS class (R9-A's): an EOS with
+      every per-slice member holding and a fiber-family jump.
+      Under the strong set this class MUST BE out-of-class,
+      and it is — shown member-by-member: W-A's disconnected
+      two-strip domain ([0.5, 1) x [0, 1]) ∪
+      ([1, 1.5] x [10, 11]) violates (H-G8-1)'s convex dom e;
+      its fiber family jumps at v = 1, violating (H-G8-4);
+      its hull (v, S)-image accumulates at (1, 1) outside
+      dom e, violating (H-G8-3)'s interior-neighborhood
+      clause. The live form: exhibit an EOS satisfying the
+      FULL (H-G8-1)-(H-G8-4) with a discontinuous hull root
+      map or non-compact hull image — refuted by (D3)-(D4).
+ (f3) an EOS in the full strong class with item (i) failing
+      on some comparison segment (kills (D5)-(D7); the
+      necessity chains (m1)-(m3) live OUTSIDE the class —
+      each violates a strong member — and stay as the
+      witnesses that members cannot be dropped).
+ (f4) a printed sentence of this row claiming a granted item
+      from a weaker subset of the printed members (kills the
+      non-optimization discipline; none exists — swept this
+      pass, every "under which" audited to scope to the full
+      set).
+ (f5) a derivation of any geometry member ((H-G8-1) domain
+      half, (H-G8-2) interval half, (H-G8-3), (H-G8-4)) from
+      the §1 pins (kills the standing-member accounting;
+      refuted by the a0-positive patch witness and the W-A
+      class).
+
+LABEL SUMMARY after revision 10: NO label motion (none in
+prospect — VERDICT_doc1_closure §4). [T-T0P] main remains SCHEMA
+of record; the §12 summary remains the summary of record; the
+route-level OPEN verdict on the abstract-EOS route, the two-piece
+r2 residue, the quadruple-pinned grant and the gamma-table
+conclusions STAND. G8's r2 residue: the thermal-stability piece
+now in the FULL STRONG SUFFICIENT form (H-G8-1)-(H-G8-4)
+(sufficient-but-unoptimized, granted half pinned to the certified
+quadruple g(S) = S), and the x-flux segment coercivity OPEN. All
+three closure-round findings discharge automatically at the
+standing gamma(T) closure (fibers interval-valued with
+v-continuous endpoints there — the R9-A clause; R9-B/R9-C are
+abstract-side text), with the honest note that the closure
+discharges the granted items DIRECTLY, as a point outside the
+strong class ((H-G8-1)'s dom-e convexity fails on the sheared
+(v, S)-strip and is unconsumed there — AUD-cp note).
+
+HONEST RESIDUE at revision 10:
+ (1) ADJUDICATION STATUS: these revision-10 repairs are
+     themselves UNADJUDICATED. The VERDICT_doc1_closure
+     until-dry mandate ENDED at that verdict (no further
+     rounds under it); the NEW mandate of record
+     (ADVISORY_SfoundationsC2 § PRIMA AZIONE PARALLELA)
+     orders ONE two-lens confirming round on the revision-10
+     delta (delta = content, per-lens ID prefixes, closure
+     judge). Legs 3 and 5 stay OPEN until it sustains zero
+     BREAKS/REPAIR under the dry criterion of record; the
+     held-out landings (the [T-T0P] main-statement landing,
+     the G8/[C-XBVP](a') registry row + gap-graph edges, the
+     [T-XWS] retro-annotation — VERDICT_confirm §6 R-5')
+     unblock only on DRY.
+ (2) CLOSURE ACCOUNTING, declared: (H-G8-1)'s domain half
+     (dom e convex in (v, S)) FAILS at the standing gamma(T)
+     closure (non-convex sheared strip — arithmetic in the
+     AUD-cp note). NOT a defect of the grant: the member's
+     only derivational load within the strong set is to
+     imply (H-G8-2)'s interval half and (H-G8-4), both
+     verified directly at the closure, so the granted items
+     discharge there through the same (D1)-(D7) chain. It IS
+     the concrete demonstration that the strong set is
+     sufficient-not-necessary — kept in plain sight per the
+     radical-honesty standard.
+ (3) R-4 BINDING RULE: the instance count of record advances
+     to ELEVEN declared instances (VERDICT_doc1_closure §3(c)
+     adopted: l1's enumeration — the continuity bucket, the
+     geometry bucket, and the epithet are instances nine
+     through eleven; the absorbing form "eight-plus" of
+     VERDICT_confirm R-1' stays true). SELF-AUDIT of this
+     pass against the transplant-misfit species (CR-2/R4L1-1
+     class): every carried phrase was recalibrated before
+     printing — the R9-B modulo list recalibrated to the
+     enlarged taxonomy (declared at the R9-B entry), the
+     R9-A member text re-anchored to (H-G8) names, the
+     judge's "under which" clauses re-scoped to the full
+     set; no revision-9 stage-calibrated phrase is printed
+     as current-condition text. The next round should attack
+     the revision-10 text AS strategy-and-spec-derived text,
+     per the standing lesson.
+ (4) Open mathematics unchanged: G8 segment coercivity
+     (route-level open; r2 residue = the (H-G8-1)-(H-G8-4)
+     sufficient-but-unoptimized thermal-stability condition
+     at abstract EOS, quadruple-pinned grant + x-flux
+     coercivity), G3/G11, G9 lift, G5/G12, G4 general
+     branch, G2 structural clauses in bare L^inf.
+
+[LANDING PASS ANNOTATION (2026-08-19, S-FOUNDATIONS-C2 landing
+window; authority = VERDICT_doc1_rev10 §4: revision 10 DRY, legs
+3+5 CLOSED, 0 breaks / 0 repairs, amendments R10-1..4 carried):
+the four adopted repair texts applied in-place above — R10-1
+member-gloss split at the (H-G8-4) member (+ the entailed
+harmonization 'two equivalent conclusions' -> 'two conclusions'
+at the same clause, declared here); R10-2 sweep-sentence
+annotation (line-vs-token unit + wider-family sweep recorded);
+R10-3 edit-site-list corrections (l.31-39; l.4402 anchor added);
+R10-4 citation resolution at both carriers; leg-3 hash command
+pinned. SAME-WINDOW LANDINGS EXECUTED ELSEWHERE (the §8 owed
+deltas, now discharged): the [T-T0P] main-statement upgrade at
+the M0 [S-T0P] site (SCHEMA both strata, split gap lists,
+t-periodic quantifier, cl(Omega_march) + slip-free caveats, G12
+route, gap-graph edges); the [C-XBVP](a')/G8 registry row
+(claims registry, falsifier = the (f1)-(f5) list above); the
+[T-XWS] retro-annotation (transfer doc §5 sandwich step + §6(a)
++ claims row + M0 Part II site). No content change to any proof;
+no label motion ([T-T0P] SCHEMA both strata; route-level
+abstract-EOS verdict OPEN).]

@@ -6,6 +6,249 @@
 # committed. THIS FILE now serves session C's opening (its Blocco 0
 # reads it integrally).]
 
+## ========== C2 CLOSED (2026-08-19 sera) — BOUNDARY ==========
+## Wave-2 LANDED (13 delta + C57 + common-mode row + confirm-lens
+## adjudication strict); lint tutti PASS (choice 57 / findings
+## 244/202 / claims 150 / glossario 173 / lit 103); env closeC2 DIFF
+## EMPTY; session log + C3 prompt COMMITTED this window; ORA/NEXT
+## riscritti (outgoing archiviato SR-10); R35 row aggiornata in
+## place. C3 OPENS from: C3 prompt + this checkpoint (i blocchi C2
+## sotto = storia; C3 riscrive il checkpoint fresco con archivio in
+## place, AG-5). PENDING-NAMED: rider lett. wave-2 (§4.15) = C3
+## block-0; 9 papers-needed (§4.16) inoltrati all'utente; touchpoint
+## decisioni utente. Suite verdict = quoted in the commit message.
+## ============ SESSION C2 LIVE STATE (2026-08-19) ============
+## [UPDATE ~landing window] WAVE-1 LANDED (wf_d6f1b0f0, 7/7, ~1.14M
+## tok): VERDICT_wave1.md = 0 escalations; C28/C27 ADJUDICATED-SPLIT
+## (ledger-enum MIXED) LANDED in choice_ledger + C43 aligned + C42
+## notified; 5 duty tokens + WAVE-1 + family row minted in glossary
+## (164 entries measured); C9/C11 deltas + lit rider GATED on the
+## directive-axis supplement (moving-mesh axis missing 0-hit, adjoint
+## discrete-vs-continuous thin — gate verdict in-window); supplement
+## workflow wf_a0149eeb IN FLIGHT (supplement -> refuter ->
+## conditional judge). WAVE-2 IN FLIGHT (wf_011c3478, 7 agents,
+## §0-bis/§0-ter binding). DOC1 REV-10 DRY OF RECORD (wf_8135f25a,
+## 4/4, ~0.71M tok; VERDICT_doc1_rev10: 0 breaks/0 repairs, legs 3+5
+## CLOSED, amendments R10-1..4 carried) + LANDING EXECUTED THIS
+## WINDOW: stop_proof 8 landing edits (R10-1 gloss split + entailed
+## harmonization, R10-2 annotation, R10-3 list corrections, R10-4
+## both carriers, hash command pinned, landing annotation at EOF);
+## M0 [T-T0P] MAIN STATEMENT landed at the [S-T0P] site (item (6):
+## split gap lists, t-periodic quantifier, cl(Omega_march)+slip-free,
+## G12 route, gap-graph edges G5->G8/G4->G8(g4-d)/G8-falsifier->
+## G7-instrument, G8 route accounting); claims C-XBVP-aprime MINTED
+## (claims 150 measured) + T-T0P hold-out consumed + T-XWS
+## retro-annotation (row + transfer doc §5 sandwich + §6(a'));
+## 3 claims-lint violations found+fixed in-window (anchor, gamma
+## enum, T-T0P-U bracket). ALL LINTS PASS post-landing: claims 0 /
+## glossary 0 (164) / findings 0 (240/198, families e+f green).
+## NEXT: supplement verdict -> C9/C11 deltas + lit-registry rider
+## (incl. Lozano-Ponsin 2025 distinct-from-2023 row) -> wave-2
+## verdict -> wave-2 landing -> wave 3 (constants family + C50 +
+## convergent batch + single-author halves) -> Blocco 4.
+## ===== POST-RESET WINDOW (2026-08-19 pomeriggio, usage restored) ====
+## SUPPLEMENT COMPLETE 3/3 (~0.32M): refuter 0 breaks/1 repair/6
+## amendments; judge VERDICT_C9C11_supplement.md = AXES STAND,
+## verdict_conflict null, FINAL delta texts §4.1-4.4. Notable refuter
+## catches: C52 collision (re-key C56, measured), arXiv:2009.07096
+## mis-attribution (= Peter-Renac-Labbe, NOT Lozano-Ponsin — [TITLE]
+## over-depth), Hicken-Zingg cite wrong (of record JCP 256:161-182,
+## 2014), lozano_ponsin_2025 row EXISTS on disk (:122-128,
+## read-partial, PDF held) => the LP-2025 procurement ask to the user
+## is MOOT. C9/C11 LANDED (ledger MIXED + judge-final supplement
+## texts; owner = the two F2 campaigns; C43 aligned earlier); C56
+## MINTED (adjoint realization per role; gradient role OWED to
+## C31TRIO); header count regenerated 56 (measured). S-5F USER CATCH
+## row minted: theory:s5f-path-a-freevortex-stratified-gap (path A
+## rests on [T-N6-2] uniformity; Kraiko-rotational x free-vortex on
+## stratified fields NOT theorem of record; fork = mixed lemma vs
+## declared monitored-neglect; dispatch §5 annotated; Tillyaeva 1975
+## = classical antecedent, WANTED). CONFIRM-ON-REPAIRS adopted
+## (BRIEF_wave2_refuter_judge.md new section; retro-covers wave-1's
+## 11 repairs in its first instance). Findings 241/199 open; claims
+## 150; choice 56; glossary 164 — ALL LINTS PASS at this point.
+## IN FLIGHT: (1) wf_a75563d7 blocco3-wave2-reconcile (8 slots:
+## 3 reconcile panels on the quota-kill partials + 3 refuters +
+## judge + confirm-on-repairs; C31TRIO ordered to adjudicate the C56
+## gradient role explicitly); (2) landing-mechanic agent (supplement
+## page fixes RS911-2/3/4 + lit rider rows per VERDICT §4.7 as
+## corrected; identity-fidelity-first, lint-gated); (3) agnostic
+## over-engineering/SOTA auditor (BRIEF_agnostic_audit_C2.md ->
+## AUDIT_agnostic_C2.md; user-requested; triage with user at
+## delivery). NEXT: wave-2 verdict -> wave-2 landing -> wave 3 ->
+## Blocco 4 centerpiece -> Blocco 5.
+## ===== RE-PRICED PLAN (2026-08-19, USER USAGE METER >50% USED — ====
+## user-reported, authoritative; my token indicator does NOT measure
+## it, memory point 7(f) minted on the catch): NO new agent launches
+## beyond the 3 in flight (wave-2 reconcile, landing-mechanic,
+## auditor DONE). Wave-2 lands in THIS session if usage holds; then
+## CLEAN BOUNDARY with DECLARED SPLIT: wave 3 + Blocco 4 centerpiece
+## + Blocco 5 (ledger 141 fork + coverage gate + R3 full) roll to
+## S-FOUNDATIONS-C3 with a committed prompt. Orchestrator-only work
+## (no agents) allowed meanwhile: audit-triage cheap fixes, landing
+## verifications, prompt authoring, commit window.
+## AGNOSTIC AUDIT LANDED (AUDIT_agnostic_C2.md, 12 findings, grades
+## review ABOVE / verification ABOVE / pipeline AT). Orchestrator
+## triage (user co-triage owed at touchpoint): AG-3 (wave-1 C27/C28
+## axis-gate verdict had no on-file carrier) -> FIXED BELOW; AG-4
+## (single-family common-cause unpriced) -> findings row to mint at
+## next registry window; AG-1 (no load-class valve at proof tier) ->
+## rule candidate: gap-accounting rows get sufficient-not-optimized
+## treatment EARLY (generalizes the user-ratified G8 strategy) — mint
+## with user at touchpoint; AG-2 (doc1's 4 applied repairs + wave-1
+## repair landings never confirm-passed) -> scope the NEXT
+## confirm-on-repairs instance (wave-3) to include them, named here;
+## AG-5 (checkpoint superseded history in live path) -> archive at
+## R3 close; AG-6 (40% revision logs in proof carrier) -> P-1
+## extraction-window duty, named; AG-10 (SR-12 placement) -> briefs
+## already carry measured-command duty, refuter g2 enforces; noted.
+## AG-3 FIX OF RECORD (the gate verdict, previously conversation-only):
+## wave-1 landing gate, axis = optimizer query-level on C27/C28:
+## PASSED on measured evidence — PANEL_C28 census axes 1-4 span the
+## aggregation/hidden-constraint/MPCC/production-solver query space
+## with 24 derivative-free-family hits and recency to 2026;
+## PANEL_C27 spans smooth-aggregate/exchange/SIP axes (recency
+## 1976-2026, newest Jul 2026); the query-level ENGINE axis proper
+## bears on C31 (wave-2), where §0-bis(1) binds it. Basis measured
+## 2026-08-19 (grep counts + census recency sections read).
+## WAVE-1 READ-DEPTH DECLARATION OF RECORD (was conversation-only,
+## filed 2026-08-19 after the user gravity call; measured basis:
+## grep of depth markers per panel): PANEL_C27 = 15 markers
+## (marked honestly pre-mandate); PANEL_C28 = 0; PANEL_C9C11 = 0.
+## Depth-marking as FORMAT was NOT mandated for wave 1 (briefs
+## predate the directive); substantive protections that HELD:
+## query-bounded absence claims, WANTED-tier routing of unread items
+## (never cited as read), per-row inflation attacks by refuters,
+## judge source-verification of load-bearing citations (§0.1).
+## No evidence of claims above held depth in wave 1; the FORMAT gap
+## is declared here, mandatory from wave 2 (§0-ter) onward.
+## PROCESS ROWS MINTED same window: process:orchestrator-acts-
+## file-carrier-sweep (retro-sweep = Blocco-5 coverage-gate
+## dimension; user question of record) +
+## methodology:single-family-verification-common-cause (AG-4
+## priced). Findings 243/201 open (measured at mint).
+## LANDING-MECHANIC DONE + ORCHESTRATOR-VERIFIED (measured): 3 page
+## fixes applied (B.1 neutral question, Peter-Renac-Labbe
+## re-attribution, Hicken-Zingg cite JCP 256:161-182 both sites);
+## lit rider 21 rows minted, 2 dedup-skipped (ancourt, lozano_
+## ponsin_2025) — lit registry 82->103 measured; lint lit/glossary/
+## findings PASS at the orchestrator's own run. CONFIRM-ON-REPAIRS
+## SUNSET CLAUSE added (anti-over-engineering, user calibration:
+## zero catches across instances 1-2 => auto-demotion to
+## escalation-triggered at the wave-3 landing). WAVE-1 LANDING NOW
+## FULLY COMPLETE (all 6 ledger deltas + C56 + rider + page fixes).
+## Remaining in flight: wf_a75563d7 wave-2 reconcile ONLY.
+## WAVE-2 EVENT (19:00 ca.): 3 RECONCILE PANELS DONE (~1.09M, on
+## disk 65-71k each, cached); all 3 refuters died on API 500
+## (server-side transient — NOT quota, pinned rule not triggered);
+## null=failure guard correctly blocked the judge. RESUMED 19:06
+## same runId (panels replay from cache; refuters+judge+confirm run
+## live). Distinct failure class from kills #1-#5: infrastructure,
+## retry-able, zero work lost by design.
+## ======= QUOTA KILL #5 (2026-08-19 ~13:05 local, DECLARED; =======
+## session limit resets 2:50pm America/New_York = 20:50 IT):
+## wave-2 wf_011c3478 ALL 3 PANELS DIED mid-flight (~552k tok/181
+## tool uses sunk, agents_done 0) BUT all three wrote files before
+## dying: PANEL_C31TRIO.md 15k / PANEL_C1REP.md 15k (both likely
+## PARTIAL) / PANEL_C2021.md 48k (likely near-complete) — ALL
+## UNVERIFIED (null=failure), salvage = RECONCILE pattern.
+## Supplement wf_a0149eeb: supplement agent DONE (PANEL_C9C11_
+## SUPPLEMENT.md 42k on disk, machine summary clean: moving-mesh
+## FOLDED-AS-NAMED-ARM F9a-R fixed-count seed redistribution;
+## adjoint CLOSED-COMBINATION discrete-AD weight + continuous line
+## as frame/referee + pin F11d; verdict_conflict null; 2 papers
+## needed = Venditti-Darmofal 2000 JCP 164 + Hicken-Zingg 2014 JCP
+## 250, build-time not closure-blocking) — REFUTER DIED on the
+## limit => UNVERIFIED, NO landing from it yet. ROOT CAUSE declared
+## honestly: orchestrator launched 7+3 agents concurrently without
+## budget weighing (memory orchestration-weight-sota POINT 7 minted
+## — usage-aware launch sequencing). COLLISION FLAG for landing:
+## the supplement proposes 'candidate row C52' but C52 is TAKEN
+## (LAND-2 D-1 agenda row) — renumber to next measured free id.
+## RESUME PLAN (on reset or credits, per pinned rule user decides):
+## (1) supplement: Workflow resumeFromRunId wf_a0149eeb (sup agent
+## replays from cache; refuter + conditional judge run live) —
+## FIRST and ALONE (gates wave-1 landing rider);
+## (2) wave-2: NEW workflow (agents_done 0 = nothing cached; never
+## resume-with-edit) with the 3 panel slots converted to RECONCILE
+## orders (read own partial, verify per-brief incl. §0-ter, complete
+## /repair, declare reconciliation; no duplication) -> refuters ->
+## judge; (3) then C9/C11+rider landing, wave-2 landing, wave 3.
+## R2 OPENING DONE, gate pre-esecuzione GO: HEAD 69adcc2 (= expected
+## close-C commit), branch OK, 3 stray owner files untouched; counts
+## measured in-window (SR-12): claims 149 / findings 240 (198 open ==
+## 176 CONFIRMED + 22 DOWNGRADED) / choice 55 / glossary 158 / lit 82
+## — ALL match close-C; ENV diff EMPTY vs env_fingerprint_closeC.txt
+## (29 pkgs; BOM/CRLF artifacts only). Memories read (choice-adj 6-7,
+## model-pin, context, orch-weight, never-postpone, formal-first,
+## nav-first). Carrier prompt = ADVISORY_SfoundationsC2_prompt_
+## 2026-08-19.md (Blocchi 3-5 + prima azione parallela doc1 rev-10).
+## IN FLIGHT (launched ~this window, both Fable, no re-seed — pool
+## unchanged per SEED_PROTOCOL_v3 PASS):
+## - wf_8135f25a-7b5 doc1-rev10-closure (4 agents: reviser [strategy
+##   = G8 grant SUFFICIENT-BUT-UNOPTIMIZED, strong hypotheses; RES-
+##   DOC1-1 R9-A fiber-regularity + RES-DOC1-2 R9-B/R9-C; leg-3 body
+##   ZERO EDITS] -> 2-lens confirm R10L0-/R10L1- -> closure judge,
+##   VERDICT_doc1_rev10.md; on DRY: legs 3+5 close, landing unblocks
+##   [T-T0P] main + G8/[C-XBVP](a') row + [T-XWS] retro-annotation).
+## - wf_d6f1b0f0-4aa blocco3-wave1 (7 agents: panels C28/C27/C9C11
+##   [formalize-then-search census, trees as advocates by file:line,
+##   cava ratified citable per-row] -> per-row refuters -> wave judge,
+##   VERDICT_wave1.md with escalation calls + proposed ledger deltas;
+##   ledger edits ONLY at landing window).
+## Briefs on file: r2pass/BRIEF_rev10_{reviser,confirm,judge}.md +
+## blocco3/BRIEF_wave1_{panels,refuter,judge}.md.
+## USER DIRECTIVE 2026-08-19 (mid-wave-1, stated twice; memory
+## choice-adjudication-convergence POINT 8 minted + wave-2 brief
+## §0-bis): GENERAL METHOD for every analysis — every sub-problem
+## encountered gets formalize -> modern-SOTA literature confrontation
+## -> read-depth honesty markers [FULL]/[ABS]/[TITLE] (no
+## hallucination, no approximate reading) -> PROCUREMENT ASK (user
+## uploads papers on request; panels carry a PAPERS NEEDED section).
+## User's examples (exposed live gaps, no ledger row existed:
+## verified by grep this window): optimizer query-level choice;
+## discrete-vs-continuous adjoint (stack of record = JAX custom_vjp
+## discrete AD-adjoint, never adjudicated); moving-mesh/r-adaptive +
+## adjoint-in-moving-mesh; adjoint-free routes (point 6 named DFO
+## since 08-17 but C31's alternative set is still all-gradient-based
+## = directive-to-ledger propagation defect).
+## WAVE-1 LANDING GATE (binding, declared here because wave-1 briefs
+## were already in flight when the directive arrived): before any
+## wave-1 ledger delta lands, orchestrator checks the panels' census
+## against the directive axes — C9/C11 must have closed moving-mesh/
+## r-adaptivity + discrete-vs-continuous adjoint + adjoint-free
+## estimation; C27/C28 the query-level axis; any miss = census
+## supplement round for that row BEFORE its delta lands (does not
+## re-open rows whose census already covered the axis). Candidate
+## new rows to mint at landing (dedup-verified absent this window):
+## adjoint discrete-vs-continuous; mesh-motion family. WANTED list
+## (11 rows, literature_registry.yaml:668-735) presented to user for
+## upload 2026-08-19 (Kraiko-1979 G5 + 3xP0 leading).
+## POINT 9 MINTED same window (user-invited self-improvement,
+## over-engineering-audited): WORLD-CLASS CENSUS PROTOCOL — (a)
+## PRISMA-lite query auditability (verbatim strings + communities
+## incl. Russian school + counts), (b) PRE-REGISTERED decision
+## criteria frozen before search, (c) MATERIALITY clause (immaterial
+## forks decided on cost + declared — the method's own anti-over-
+## engineering valve), (d) steelman at best modern instance, (e)
+## dated censuses + delta-sweep on later-phase consumption, (f)
+## per-row axis-bearing sentences. NOT adopted (ritual here): PRISMA
+## flow diagrams, database quotas, inter-rater stats. Carriers:
+## memory point 9 + wave-2 brief §0-ter + refuter duty (g2). Applies
+## wave-2+; wave-1 covered by its landing gate.
+## THIRD user clarification same window: the prassi covers MODELING
+## choices (the method's own foundations), is the standing
+## retroactive READING LENS, and is QUESTION-ANCHORED — every
+## formalization opens with THE SINGLE MAIN QUESTION the choice
+## answers; criteria derive from it (carrier: memory point 8 third
+## block + wave-2 §0-ter(b)). Retroactive precedent of record =
+## the hypothesis-legitimacy audit; modeling rows C24/C49/scope-pins
+## continue it in Phase C.
+## NEXT after both: wave-1 landing (ledger deltas + any escalations)
+## + doc1 landing if dry; then wave 2 (C31-IP/C32/C33 + C1/C2/C3/C49
+## + C20/C21), wave 3 (constants family + C50 + convergent batch +
+## single-author halves), Blocco 4 centerpiece, Blocco 5 close.
+##
 ## ============ SESSION C LIVE STATE (2026-08-17/18) ============
 ## Blocco 0: R2 opening DONE, gate pre-esecuzione GO (HEAD 5221529
 ## reconciled; q_mapping.* timestamp-only drift declared benign;

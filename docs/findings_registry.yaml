@@ -2438,3 +2438,47 @@ entries:
   mechanism: census-insertion-duty
   owner: "F2 monitor-arming / census window (the insertions land in the monitor lists and censuses their verdicts name; this row is the carrier until then)"
   trigger: "first consumption of the [I-GEO]/R1/GAS-FROZEN/EULER-GSEP/CONTRACT-MU verdicts in a design decision, or the F2 monitor-arming window"
+
+- id: theory:s5f-path-a-freevortex-stratified-gap
+  status: CONFIRMED
+  severity: high
+  magnitude: "USER CATCH 2026-08-19 (S-FOUNDATIONS-C2, S-5F dossier): the S-5F upgrade path A (free-vortex carry) rests on [T-N6-2], whose THEOREM hypotheses are UNIFORM (r*Gamma, h0, s) (M0:635-636); per-phase RDE fields are STRATIFIED (h0/s vary across streamlines and phases — the five-field/mean-swirl context; the TRIPLE (Gamma,h0,s) spread monitor row exists precisely because uniformity is not free), so the combination Kraiko-rotational (nonuniform h0/s profiling) x free-vortex swirl is NOT a theorem of record — no mixed lemma exists; path A cannot be presented as theorem-backed as-is"
+  source: "validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md#Standing-queue intersections"
+  code: ["docs/rde_nozzle_MASTER.md:635-636"]
+  mechanism: hypothesis-gap-unproven-combination
+  owner: "S-5F decision dossier (BLOCCATO 14 (d) touchpoint): the dossier MUST present the fork explicitly — (i) WRITE THE MIXED LEMMA (Kraiko-rotational x free-vortex on stratified per-phase fields; candidate S-5F/F2 theory item; classical antecedent = Tillyaeva 1975, WANTED procurement) vs (ii) declared monitored-neglect scope (path A carries the neglect declared, armed by the TRIPLE (Gamma,h0,s) spread monitor — cross-link problem-statement uniformity-monitor row); adoption of path A before (i) or (ii) = R5 violation"
+  trigger: "the S-5F promotion decision (user touchpoint); fires BEFORE any path-A adoption or any free-vortex-based dataset ingestion"
+  note: "Provenance: user catch in-session 2026-08-19; anchors docs/rde_nozzle_MASTER.md:635-636 ([T-N6-2] uniformity hypotheses) + wanted_tillyaeva_1975 (closest classical antecedent). Catch class: constraint-blind combination (same species as the bound-ladder constraint-aware-rungs catch); the monitored-neglect branch (ii) does NOT retire the lemma — it prices its absence; if S-5F chooses path B (five-field build), the row's fork transfers to the B-side swirl closure unchanged"
+
+- id: process:orchestrator-acts-file-carrier-sweep
+  status: CONFIRMED
+  severity: high
+  magnitude: "CLASS DEFECT proven live 2026-08-19 (agnostic audit AG-3 + user gravity call): the wave-1 axis-gate verdict lived ONLY in conversation until audited — the gate-pre-esecuzione 'logged verdict required' clause was violated by the orchestrator himself; structural cause = agent work is file-forced by construction, orchestrator work is not; PAST INSTANCES PLAUSIBLE AND UNSWEPT (absence claim not search-proven); spot-checks 2026-08-19 CLEAN on the three highest-load recent candidates (part-1 gates on checkpoint x3; phaseB diff = 25kB file of record; orchestrator fusion declared in session log)"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/AUDIT_agnostic_C2.md#AG-3"
+  code: ["validation/sfoundations_raws_2026-08-13/SESSION_STATE_checkpoint.md:94-102"]
+  mechanism: process-asymmetry-conversation-only-verdict
+  owner: "Blocco-5 COVERAGE GATE (this session family, extended spec): sweep dimension added — every gate/verdict/adoption/adjudication CLAIMED in ORA, session logs, checkpoints and commit messages of the S-FOUNDATIONS chain (R35 family, 2026-08-13 onward) must have its FILE CARRIER (checkpoint block, verdict file, registry row); a claimed act without carrier = finding with owner; absence claims only search-proven. Standing prevention = gate-pre-esecuzione clauses (D)/(E) (memory, minted 2026-08-19)"
+  trigger: "Blocco 5 coverage-gate run (this session or C3); prevention clauses live NOW"
+  note: "User question of record: 'potrebbero esserci stati altri buchi di questo tipo in passato' — this row is the honest answer: plausible, unswept, now owned. The sweep is bounded to the S-FOUNDATIONS chain first (highest density of orchestrator acts); pre-chain sessions ride a second tranche only if the first finds instances"
+
+- id: methodology:single-family-verification-common-cause
+  status: CONFIRMED
+  severity: medium
+  magnitude: "AG-4 (agnostic audit 2026-08-19): the ENTIRE verification stack (panels, refuters, judges, seed calibration incl. canary/known-true authoring) runs on a single model family by user pin (Fable-only, quality-priced); the common-cause blind-spot risk (a failure mode invisible to the whole family) was DECLARED in memory (cross-family refuter = deferred lever) but PRICED IN NO REGISTRY ROW until now"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/AUDIT_agnostic_C2.md#AG-4"
+  code: ["docs/seed_outcome_registry.md:1-10"]
+  mechanism: common-cause-verification-blindspot
+  owner: "USER decision when cross-family refuters become available/authorized (model pin holds until explicit user order); until then the compensating controls are: seed-layer certification both directions per pool, falsifier-bearing verdicts, measured halves (F2 campaigns) as model-independent rejection power"
+  trigger: "any future model-authorization touchpoint; also fires if a seed-calibration pass ever passes while a HUMAN catch shows a family-wide miss (that instance = the risk realized)"
+  note: "Prices the pin, does not challenge it: the user criterion of record ('solo se migliora oggettivamente l efficacia rigorosa') stands; this row exists so the residual risk is of record rather than conversational"
+
+- id: oracles:root-identity-replay-common-mode
+  status: CONFIRMED
+  severity: medium
+  magnitude: "Wave-2 candidate row minted at landing (VERDICT_wave2 par.4.14 item 2, PANEL_C2021 par.4.5; dedup re-measured twice, no existing row): gradient, DWR weight, adaptation indicator, certification ratio and P4 gate ALL linearize at (or read) the same replayed root — a converged-but-wrong-branch root is a COMMON-MODE input that every downstream instrument inherits silently (the priced ratio reads 0.0 at such a root; F11d verifies the weight GIVEN the root, never root identity)"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/VERDICT_wave2.md#4.14 Candidate rows handed to the landing"
+  code: ["validation/sfoundations_raws_2026-08-13/blocco3/PANEL_C2021.md:1-40"]
+  mechanism: common-mode-root-identity
+  owner: "C20 Tier-0 branch/fold monitors (duty F2-C20-CERTQUAL-CAMPAIGN) = the discharging instrument; premise-guard notes landed at C56 and C28 same window"
+  trigger: "F2-C20-CERTQUAL-CAMPAIGN Tier-0 landing; fires earlier if any oracle detects a wrong-branch converged root in production"
+  note: "The wave-2 premise-guard riders (C56 owner field; C28 duty rider) cite this mechanism; this row is their registry carrier"

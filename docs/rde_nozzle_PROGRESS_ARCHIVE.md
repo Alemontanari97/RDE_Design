@@ -2484,3 +2484,54 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## PARALLELO CONSENTITO (file disgiunti): S-GENOAUDIT resumption
 ## sotto protocollo GENO (restauro albero, fix MOC-10, audit
 ## impatto, SPEC_ideal_lengths_oracle).
+
+# ===== ARCHIVED AT C2 CLOSE (2026-08-19, SR-10 verbatim) =====
+
+## ORA (2026-08-19, chiusura S-FOUNDATIONS-C BLOCCHI 0-2 — rotazione
+## ratificata al confine Fase C. ESEGUITO: BLOCCO 1 = passata r2
+## batchata sui 18 leg delta (VERDICT_r2pass: 15 obiezioni/0
+## respinte; 4 leg rotti-o-da-riparare incl. D.18 prima iff FALSA
+## come stampata) + escalation E-1..E-4 until-dry + SEED PROTOCOL v3
+## con pre-audit indipendente -> LAYER PROVATO NEI DUE SENSI (LG-1
+## confirm DISCHARGED; registro esiti-semi coniato
+## docs/seed_outcome_registry.md) + conferma (VERDICT_confirm: leg 6
+## CHIUSO a SCHEMA/G-f-only; LEG 14 CHIUSO con etichetta guadagnata
+## "THEOREM modulo (H-UP-fam)") -> GATE APERTO, 16/18 leg
+## certificati-o-chiusi. BLOCCO 2 = LANDING COMPLETO in una
+## finestra: M0 [L4-CERT] (riparazione planar-only -> forma m_n a
+## normale meridiana + split certificate (M-a)/(M-a') C-1 + finestra
+## W1-W4 + no-coflow), riga D.13 con pin B-1/B-2, blocco mean-swirl
+## Parte III alle etichette judge, [T-T0P-E]+lemmi (enunciato main
+## DEFERRED con doc1), forma citabile L4=>R1 aggiornata; registry
+## claims 140->149 / findings 224->240 / C52+C53 / glossario;
+## N6 par.5 + D6 + indice; amendment A-1/A-2+AM-1..7 applicati;
+## dispatch swirl5f CONSUMATO (tabella conversione vincolante);
+## par.8 del panel LANDED in-window: CONVERGED-WITH-THREE-NAMED-
+## EDITS, item judge-original verifier-CONFIRMED (consumo = report
+## EDITED; 2 decisioni utente nuove a BLOCCATO 14: promozione S-5F
+## A/B/C + priorita' C51). SUITE 22/23 -> rosso (vii)
+## riparato in-window (birth row misurata per lo script del
+## verifier del panel) -> (vii) EXIT 0; suite integrale ri-eseguita
+## al commit. TOUCHPOINT UTENTE consumato: P_amb slot atterrato
+## (problem book + C53), CAVA LITREVIEW RATIFICATA, mini-registro
+## semi coniato, Sonnet slot ledger-fork confermato, rotazione SI'.
+## APERTO con owner: doc1 leg 3+5 (rev-10, prima azione parallela
+## prossima sessione; con essi [T-T0P] main + [C-XBVP](a') +
+## retro-annotazione [T-XWS]); swirl5f par.8 = finestra parallela
+## originaria. Pesi SR-9 ~11.5M/60 agenti nel log. Log:
+## validation/PROGRESS_2026-08-19_SfoundationsC.md)
+
+## NEXT (atomico): S-FOUNDATIONS-C parte 2 (sessione FRESCA,
+## rotazione ratificata; carrier = stesso prompt
+## ADVISORY_SfoundationsC_prompt_2026-08-17.md Blocchi 3-5 +
+## checkpoint SESSION_STATE): Blocco 3 aggiudicazioni Fase C
+## right-sized (C28 primo; censimento SOTA per-cluster
+## formalize-then-search; judge per ondata; zero ri-seed a pool
+## invariato) -> Blocco 4 centerpiece T-DISC/T-RED/M-RED until-dry
+## PIENO + 4 minori -> Blocco 5 ledger 141 fork (slot Sonnet
+## ratificato) + coverage gate COMPLETO + R3 pieno (censimento
+## R35 -> CONSUMED). PRIMA AZIONE PARALLELA: doc1 rev-10
+## (raccomandazione a checkpoint: grant G8 sufficiente-non-
+## ottimizzato) + conferma + chiusura leg 3+5. Poi F2 blocco 0.
+## PARALLELO CONSENTITO: S-GENOAUDIT resumption sotto protocollo
+## GENO.

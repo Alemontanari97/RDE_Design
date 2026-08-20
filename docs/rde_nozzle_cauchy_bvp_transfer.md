@@ -207,7 +207,15 @@ x1 in (0, L]:
 where Q collects the standard quadratic commutator
 (F(V) - F(U) - DF(U)(V-U) paired against derivatives of U). On the
 compact K: strict convexity (S-XCONV) gives
-c_K |m_V - m_U|^2 <= eta(V|U) <= C_K |m_V - m_U|^2, and the flux
+c_K |m_V - m_U|^2 <= eta(V|U) <= C_K |m_V - m_U|^2 [RETRO-ANNOTATION
+2026-08-19 (stop_proof §8 duty, doc1-dry window, VERDICT_doc1_rev10):
+this sandwich reads the Hessian along COMPARISON SEGMENTS, i.e. it
+consumes the HULL/SEGMENT form of the certificate — [C-XBVP](a'),
+gap G8, claims row C-XBVP-aprime — not pointwise definiteness on K
+alone; the named condition of record is the strong sufficient set
+(H-G8-1)-(H-G8-4) (sufficient-but-unoptimized) or its fallback
+members, stated in phaseD_stop_proof.md §9 G8 and carried here
+instead of silently], and the flux
 Lipschitz bounds give |Q| <= C'_K |m_V - m_U|^2 <= (C'_K / c_K)
 eta(V|U). With ||dU||_inf =: G (the C^1 bound of the strong
 solution), Gronwall in x yields
@@ -236,6 +244,14 @@ rde_nozzle_remaining_conditionals.md §1bis; components):
      certified compact K with margin (instance-certified now;
      interval-arithmetic proof over the box = the natural discharger,
      connects to the T4 global-maximum toolbox).
+     (a') [RETRO-ANNOTATION 2026-08-19] HULL/SEGMENT form (gap G8,
+     claims row C-XBVP-aprime): the §5 sandwich needs definiteness on
+     a CONVEX set containing all comparison segments, which pointwise
+     definiteness on a non-convex K does NOT deliver ([S-XCONV] R1
+     subsonic indefiniteness makes it load-bearing); condition of
+     record = the strong sufficient set (H-G8-1)-(H-G8-4) of
+     phaseD_stop_proof.md §9 G8, abstract-EOS discharge OPEN at route
+     level.
  (b) weak-side technicalities: x-slice normal traces and wall traces
      for the entropy solution class (Dafermos-class bookkeeping;
      strong traces available in BV; the strong side is C^1 and free).

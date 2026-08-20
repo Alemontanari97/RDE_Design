@@ -570,14 +570,61 @@ VERDICT_escalation §4). LANDED:
  ON cl(Omega_march) ONLY (surfaces/control volumes within the
  marched domain), and on SLIP-FREE instances only (G9 breadth
  pricing).
- EXPLICIT DEFERRAL (honest, of record): the [T-T0P] MAIN-STATEMENT
- upgrade (both strata SCHEMA with SPLIT gap lists) and the
- G8/[C-XBVP](a') registry-row + gap-graph landing are HELD OUT
- pending doc1's dry round (VERDICT_confirm: legs 3+5 OPEN; revision
- 9 + one confirming round owed). No main-statement text is landed
- here; the SCHEMA status of this [S-T0P] block for the main
- statement is UNCHANGED, and the proof of record remains
- phaseD_stop_proof.md.]
+ (6) THE [T-T0P] MAIN STATEMENT (landed 2026-08-19, S-FOUNDATIONS-C2:
+ doc1 revision 10 DRY of record, legs 3+5 CLOSED — authority
+ VERDICT_doc1_rev10 §4; proof of record = phaseD_stop_proof.md §5,
+ revision 10; the deferral formerly printed here is CONSUMED).
+ [T-T0P] SPLIT-GAP-LIST THEOREM (propagation/steadification; SCHEMA
+ on BOTH strata, §4-uniform-criterion labels). Assume H1-H10 and H3
+ (pure periodic single-mode rotating data, speed OM, wave count n).
+ Then (i) STEADIFICATION: every S1-class solution q in C(s) is a
+ steady co-rotating pattern q(x, r, theta, t) =
+ q_tilde(x, r, theta - OM t) a.e. on Omega_march x R, with q_tilde
+ n-fold azimuthally symmetric; and (ii) CANONICITY: q is the UNIQUE
+ element of the whole class C(s), weak competitors per H7'/H8'
+ included. QUANTIFIER OF RECORD (l1-F2): until G5 is written, C(s)
+ is the T-PERIODIC class — [T-T0P] proves the M0 sentence RESTRICTED
+ to t-periodic class elements. DOMAIN + FRONT-TYPE (Cor 5.1, carried
+ from the partial landing above): conclusions on cl(Omega_march)
+ only; SLIP-FREE instances only (G9 breadth pricing — the excluded
+ slip sheets are the physically generic RDE front type).
+ SPLIT GAP LISTS of record: stratum (A) (shock-free) inherits
+ G1 = [C-XBVP](a) + G2 = [C-XBVP](b) incl. the STRUCTURAL trace
+ clauses (b1')/(b2') + G7 = [C-XINJ] (consumed at the §4 endgame
+ only) + G8 = [C-XBVP](a') (hull/segment convexity — see the
+ registry row and the G8 accounting below), under H8' (t-periodic
+ class, BOTH sides; G5 = the named lift) and H9 (interface
+ normalization; tilted-interface branch = G4, FOUR clauses
+ g4-a..g4-d); stratum (B) (fitted fronts) additionally
+ G3 = [C-MAJDA-3DT] + G11 = [C-WSF] + the G9 restriction.
+ STATEMENT (i) DECOMPOSITION (G12, Remark 5.3 route declaration):
+ (i) additionally carries a DECLARED minimal-load classical route
+ whose conditional set avoids G2/G7/G8/H7' entirely — M0 must not
+ (and does not) enshrine the over-conditioned inheritance for (i);
+ (ii) carries the full stratum list. G8 ROUTE ACCOUNTING (corrected,
+ r2b-F1 + revision 10): NO viable abstract-EOS G8 route is currently
+ named; the granted half of route r2 stands on the STRONG SUFFICIENT
+ CONDITION (H-G8-1)-(H-G8-4) — global joint convexity (strict on a
+ hull neighborhood), slice-connected single-chart domain, hull
+ in-chart, fiber regularity — SUFFICIENT-BUT-UNOPTIMIZED of record
+ (gap accounting, not load-bearing theory; every granted item
+ derived from the FULL set, revision-10 pen-grade (D1)-(D7));
+ abstract-EOS status of the [T-T0P] chain (uniqueness half
+ included) = OPEN AT THE ROUTE LEVEL. GAP-GRAPH EDGES (landed with this delta): G5 -> G8
+ (the t-periodic lift is itself G8-dependent); G4 -> G8 (clause
+ g4-d, conservation-form/foliation source, r2b-F5); G8-falsifier ->
+ G7-instrument (r2b-F4: on the standing gamma(T) tabulated model the
+ G8 instance routes additionally need certified table-interpolation
+ enclosures — stated once in the G8 row for all three consumers).
+ FALSIFIER: two-tier instance falsifier, BOTH tiers G10-gated
+ (owner F2): tier 1 (kills the theorem) = a second solution with
+ finitely-checkable class membership; tier 2 (kills the
+ architecture's relevance) = any reproducible class-uncertified
+ second K-valued entropy solution; the executable rejector layer =
+ the [X-T0P] symbolic battery (reserved row, owner F2). The [S-T0P]
+ SCHEMA block above remains the stage-1 statement of record; this
+ main statement subsumes its propagation content on the certified
+ class.]
 CAUTION (verified weakening): T0 steadifies the PROBLEM; it does NOT
 transfer Rao's 2-D closed-form machinery to 3-D swirl (N6). N6 STATUS
 UPGRADE (2026-07-16, [F1/N6-S1], docs/rde_nozzle_N6_swirl.md +
