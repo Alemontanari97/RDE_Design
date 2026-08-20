@@ -154,6 +154,36 @@
 ## (five-field sees swirl CONTENT not helical topology; azimuthal
 ## march C51-route-B sees the helix natively) — carried in
 ## PROGRESS row 16 (parallel mint).
+## INIEZIONE (6) — C3 EXPERT EVALUATION ON PLAN ADEQUACY (user
+## message 2026-08-20, mid-flight; this block = file carrier;
+## dispositions declared): (a) FIELD-ATLAS ANTICIPATION = EVALUATED
+## AND ADOPTED IN TARGETED FORM: one agent renders+reads the
+## T-RED-bearing published fields of the corpus NOW (Harroun 2021
+## figs 12-20 + any field figures in the read-integral root-D
+## corpus), output feeds the revision rounds via disk + the
+## orchestrator judge-delivery check; the FULL systematic
+## field-reading pass stays with the UNRATIFIED BLOCCATO-16 session
+## (sovereignty preserved). (b) EXPECTATION OF RECORD: T-RED
+## gradient-level bound likely SCHEMA + M-RED duty, NOT closed
+## form — the judge-delivery check demands HONEST SCHEMA + named
+## duty, never forces closed-form rounds (right-sizing per the
+## expert call). (c) STRUCTURAL FACT OF RECORD for the forchetta:
+## NO external published referee exists for per-phase thrust error
+## (no unsteady c_F in the literature) — the bracket CLOSES only
+## via our R22-CFD or dedicated procurement; MUST be declared in
+## the forchetta table (delivery-check item; post-judge repair
+## round if absent). (d) EXPERT SENSE-REVIEW of the centerpiece
+## plan: TIMING MISS DECLARED — the until-dry launch preceded this
+## injection; the review runs NOW anyway (1 agent, plan+brief-as-
+## amended+machine design), catches consumed at judge delivery +
+## any post-judge repair round (in-flight briefs frozen, scripts
+## never edited under resume — the C3 rules hold). (e) TEMPORAL-
+## FORM candidate row REFINED: anchors to the WEAKENED-PIN regime
+## only — inside the periodic-wave pin the quotient makes the
+## cycle-average CANONICAL (not a choice); the alternatives
+## question lives where the pin is relaxed. Carrier addendum for
+## (b)/(c)/(e) = blocco3/BRIEF_blocco2_phaseD_addendum_c4.md (NEW
+## file — the in-flight brief stays frozen).
 ## ================= ARCHIVE (C/C2/C3 HISTORY, in place) ==============
 
 ## ========== C3 CLOSED (2026-08-20) — BOUNDARY ==========
