@@ -312,6 +312,37 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     foundations_c.md, identita' pagina-1 verificate) inclusi Uno
     published (user upload) + Becker-Rannacher 2001 (user upload);
     restano WANTED i 10 hard-procurement storici.
+ 16. PROPOSTA UTENTE REGISTRATA (2026-08-20, post-chiusura C3, da
+    ratificare al touchpoint C4 o F2-entry): SESSIONE DEDICATA
+    "topologia-e-modellistica" — (a) chiarire l'EFFETTIVA topologia
+    del campo in un ugello prova (candidato naturale: IE aerospike
+    Harroun 2021, campi pubblicati Figg. 12-20; Fig. 18 = exhibit
+    di record gia' nel brief T-RED) incl. i fogli d'urto elicoidali
+    alimentati azimutalmente; (b) aggiudicare A CONVERGENZA e col
+    protocollo censimento TUTTE le rappresentazioni di modellistica
+    disponibili: per-fase assiale 4-campi (attuale) / 2.5D
+    five-field (contenuto swirl, topologia assiale) / marcia
+    azimutale C51-route-B (elica nativa, |w_rel|>c) / ibridi /
+    3D-per-fase. SEQUENZIAMENTO PROPOSTO: dopo T-DISC/T-RED (C4)
+    che fissano cosa il modello DEVE vedere; consoliderebbe le
+    decisioni oggi sparse S-5F + C51 + census-lemma (i pin F2-exit
+    restano sovrani salvo ratifica esplicita). Ladder di
+    rappresentazione di record (chiarita 2026-08-20): 5-field vede
+    il CONTENUTO swirl ma NON la topologia elicoidale (limite
+    data-anchored-shadow = topologico, non di conteggio campi); la
+    marcia azimutale vede l'elica nativamente.
+ 16. TOUCHPOINT C4 APERTURA CONSUMATO (utente, 2026-08-20; carrier =
+    checkpoint C4 + questa riga): (a) usage meter dichiarato FRESCO
+    (<25%) = Blocco 1 (centerpiece 3 lenti until-dry + 4 minori +
+    judge) a forma piena autorizzata (7f onorata); (b) pricing Lean
+    = DEFER A F2-ENTRY (decisione utente; il dossier
+    validation/DOSSIER_lean_pricing_2026-08-20.md resta di record;
+    nessun lavoro Lean in C4; ri-presentazione al touchpoint
+    F2-entry); (c) calendari ADR-D4 + estrazione P-1 = ENTRAMBE LE
+    FINESTRE SI FISSANO AL TOUCHPOINT F2-ENTRY (coerente con gli
+    owner nominati; BLOCCATO 9 resta gated ADR-D4, AG-6 resta duty
+    della finestra P-1). I 3 ask paper fermi (More-Wild ECNoise,
+    ASME V&V 20-2009, Xing-Stern 2010+2011) restano aperti.
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

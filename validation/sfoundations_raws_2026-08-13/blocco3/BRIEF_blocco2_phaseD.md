@@ -109,7 +109,21 @@ SCALING-ESTIMATE repaired form, cite);(iv) averaging adequacy
 threshold OPEN per R26; Harroun 1.25-flat = the non-discrimination
 datum at its verified limits); (v) model-form bars (frozen-vs-eq
 few-percent class P-F14; base-pressure two-regime R8 with the
-nozzleless->plug ANALOGY declared). Each cell: bound-or-estimate +
+nozzleless->plug ANALOGY declared); (vi) OPTIMUM-SHIFT channel
+(user physical-intuition catch 2026-08-20, the sharpest form of the
+threat: value-adequacy != OPTIMUM-adequacy — the helical shock
+structure can move the TRUE argmax along design directions the
+reduced functional does not see; empirical marker = the shroud
+thrust-migration finding): the deliverable states the perturbation
+bound |argmax shift| <= delta/mu with mu = the MEASURED engine
+curvature at S* (segmented TR-Newton curvature, Hessians of record)
+and delta = the DESIGN-GRADIENT-level bound on the residual
+(T-RED's section (2) therefore delivers its bound schema at BOTH
+levels: value AND design-gradient of the residual operator on the
+admissible profile manifold); where the gradient-level bound is not
+yet derivable, the cell says so and names what would derive it
+(five-field content bound / route-B / M-RED gradient measurement) —
+never a value-level bound silently passed off as optimum coverage. Each cell: bound-or-estimate +
 provenance + what-tightens-it (T-DISC/T-RED/M-RED/R22-CFD, in
 order). The known worst-direction marker MUST appear: Paxson-Miki
 shroud finding (58.1% -> ~71.5% of ideal at FIXED area ratio —
