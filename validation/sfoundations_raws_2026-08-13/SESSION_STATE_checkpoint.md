@@ -1,8 +1,160 @@
 # S-FOUNDATIONS SESSION STATE — live checkpoint
-# REWRITTEN FRESH at C3 open (2026-08-20, per AG-5): C3 live state on
-# top; the ENTIRE C/C2 history preserved UNCHANGED below the ARCHIVE
-# marker (in-place archive, SR-10 spirit). Authority order:
+# REWRITTEN FRESH at C4 open (2026-08-20, per AG-5): C4 live state on
+# top; the ENTIRE C/C2/C3 history preserved UNCHANGED below the
+# ARCHIVE marker (in-place archive, SR-10 spirit). Authority order:
 # registries/lints > this file > conversational memory.
+
+## ============ SESSION C4 LIVE STATE (2026-08-20) ============
+## R2 OPENING + PRE-EXECUTION GATE — VERDICT OF RECORD (clause D:
+## this block is the file carrier; basis = measured commands this
+## window):
+## (A) PLAN ADHERENCE: session = R35 S-FOUNDATIONS-C4; carrier =
+## ADVISORY_SfoundationsC4_prompt_2026-08-20.md (committed at C3
+## close) + C2/C3 prompt rules (ALL standing) + this checkpoint +
+## PROGRESS NEXT (maps 1:1: Block 0 duties -> Blocco 1 Fase D
+## remainder [brief blocco3/BRIEF_blocco2_phaseD.md AS AMENDED] ->
+## Blocco 2 chain closure -> R3). No orphan step.
+## (B) UPSTREAM RIGOR: authorities of record not re-litigated
+## (VERDICT_wave3 + VERDICT_C50_form2 [C50 authority, supersedes] +
+## confirm_repairs_wave3 + REM_depth_ledger + RETRO_SWEEP_arrivals +
+## the C/C2 chain verdicts). Anchors verified this window (measured):
+## NEVER/SA ids 10/10 == expected (C25/C38/C51/C52/C53/C54/C55/C57
+## NEVER + C17/C18 SA, awk id/status pairing); brief on disk with
+## FORCHETTA deliverable (5) at :97 and Harroun Fig.18 exhibit in
+## part (2); DOSSIER_uno_fullread.md + GLOSSARY_SR4_resolution_
+## report.md on disk (the two C3 in-flight slots CONSUMED at C3
+## close; SR-4 lint re-run THIS window = PASS 45 families / 204
+## entries / 0 violations / unresolved 52 == baseline 52).
+## (C) VERDICT: **GO** with ONE declared deviation — HEAD 82aae7f !=
+## the C4 prompt's expected close-C3 commit (9854aa1); RECONCILED:
+## TWO post-close commits, BOTH [PIANO/R35]-tagged self-declared
+## addenda of the C3 close amending BRIEF_blocco2_phaseD.md
+## (f67b1a9 FORCHETTA TABLE deliverable 5; 82aae7f Harroun Fig.18
+## physical exhibit for T-RED — this one landed MID-WINDOW during
+## this very opening, user warning of record "attento, potrebbe
+## esserci un nuovo commit"); author check measured (git log %an):
+## no foreign commits; both say "C4 reads the brief as amended" —
+## honored. PARALLEL-SESSION CAUTION ARMED: re-verify HEAD before
+## every commit of this session; explicit pathspecs only (R7).
+## 3 stray owner files untouched (er.name, mailmap.txt,
+## 't --count HEAD:q'); Uno/ + GENO/ ignored/read-only.
+## (E) VERIFICATION DEPTH DECLARED AT PLAN TIME (per class):
+## Blocco 1 centerpiece R22-F = until-dry FULL, THREE lenses
+## (L0 variational / L1 PDE-hyperbolic / L2 asymptotics-measure),
+## author -> 3 refuters -> reviser, cap 4, refined dry criterion
+## (zero BREAKS/REPAIRS sustained at ALL lenses; amendments to the
+## closure judge), closure judge VERDICT_r22f.md; 4 minors (NTF w/
+## FAM seam, OBJ-DOM, delta-carrier sequenced w/ bound-ladder,
+## cross-lowering derivable part) = ONE refuter round +
+## auto-escalation on any surviving content objection; ONE Blocco-2
+## judge (VERDICT_blocco2.md w/ landing list; orchestrator lands,
+## R4 same window). Blocco 2 closure: 141-fork ledger = Sonnet
+## mechanical lint-gated (ratified slot; Fable for ANY judgment);
+## COVERAGE GATE full zero-arithmetic + dual-seeded adversarial
+## critic EXTENDED w/ the 3 C3 categories (orchestrator-acts sweep /
+## arrivals->consumer mapping 21 arrivals / FOUNDATION-CHOICE
+## ENUMERATION); PIPELINE DECISION MAP = 1 synthesis agent cite-only
+## + 1 refuter on every edge (dual-proof: the map is a claim
+## object). SEED LAYER: pool unchanged (Fable refuters) => NO
+## re-seed per SEED_PROTOCOL_v3 PASS + per-pool rule. null=failure;
+## resume-never-relaunch; SR-9 weights reported.
+## (F) read-then-quote: binding on every commit/log/claim line.
+## STANDING RULES NEW FROM C3 (honored this session): AG-1 load-
+## class valve; screen-vs-measured wording (abstract-depth verdict
+## = SCREEN); reads = declared pages ALWAYS; every paper arrival ->
+## registry row + consumer in the SAME session window.
+## COUNTS MEASURED IN-WINDOW (SR-12; grep/awk id-row + status
+## grouping): choice 58 (12 DECIDED / 36 MIXED / 2 SA / 8 NEVER) /
+## findings 244 (202 open = 180 CONFIRMED + 22 DOWNGRADED) / claims
+## 150 / glossary 204 entries + 45 families / lit 131 (45 R-INT +
+## 22 R-PART + 9 R-PART-triaged + 7 UNREAD + 48 WANTED) — ALL match
+## closeC3 expected. ENV: pip freeze diff vs env_fingerprint_
+## closeC3.txt = line-1 BOM artifact ONLY (known benign class), 29
+## pkgs, numpy 2.5.2 of record (O5 adopted); open fingerprint saved
+## as env_fingerprint_openC4.txt (29 lines).
+## BLOCK-0 DUTIES STATUS: (a) CONSUMED AT C3 CLOSE (verified on
+## disk this window: Uno dossier 44/44 §6 CONFRONT = NO-CHANGE;
+## SR-4 resolved 52==baseline, lint GREEN re-run). (b) 3
+## self-procured wave-3 papers ALREADY REGISTERED (measured:
+## sun_nocedal_2023_noisy_tr :1027, shi_xie_xuan_nocedal_2022
+## :1033, messud_etal_2021 :1039 w/ the Messud/Metivier attribution
+## flag in-row — the C3 suite run-1 repair did this); NO new user
+## uploads on disk (newest literature/ files = the 3 self-procured;
+## 35 PDFs measured == root-A expected) => the 3 firm asks
+## (More-Wild ECNoise, ASME V&V 20-2009, Xing-Stern 2010+2011)
+## STAY OPEN with the user. (c) TOUCHPOINT UTENTE = CONSUMED THIS
+## WINDOW (2026-08-20, answers of record; PROGRESS BLOCCATO row 16
+## minted same window): usage meter = USER-DECLARED FRESH (<25%) =>
+## Blocco 1 FULL FORM authorized (7f honored); Lean pricing = DEFER
+## TO F2-ENTRY (dossier stays of record, no Lean work in C4,
+## re-present at F2-entry); ADR-D4 + P-1 extraction calendar =
+## BOTH WINDOWS FIXED AT THE F2-ENTRY TOUCHPOINT. BLOCK 0 = FULLY
+## CONSUMED (gate GO + counts + env + slot outcomes verified +
+## registrations verified + touchpoint).
+## BLOCCO 1 LAUNCHED (this window): workflow wf_3be32cb8-795
+## (script persisted by the harness; carrier = BRIEF_blocco2_phaseD
+## .md AS AMENDED by f67b1a9+82aae7f): author:r22f + 4 minor
+## author->refuter pipelines in parallel -> until-dry loop 3 lenses
+## (L0/L1/L2, cap 4, refined dry criterion, null=failure: a dead
+## refuter slot voids the round's dry) -> reviser per round ->
+## R22F closure judge (VERDICT_r22f.md) -> Blocco-2 judge
+## (VERDICT_blocco2.md w/ consolidated landing list + R22-CFD
+## scheduling dossier). Max 27 slots, est. ~2-3M tok (meter FRESH,
+## full form authorized).
+## BLOCCO 2 ITEM (1) LAUNCHED CONCURRENTLY (declared deviation from
+## strict block seriality: file-disjoint, no content seam — inputs
+## = settled trees/diff/ledger; Sonnet ratified slot, mechanical
+## only, AMBIGUOUS-FOR-FABLE rule binding): brief =
+## blocco3/BRIEF_fork_ledger_141.md (authored this window), output
+## = blocco3/FORK_LEDGER_141.md; closes coverage-gate category 4
+## input. Fable adjudicates any AMBIGUOUS rows at the coverage-gate
+## window.
+## MID-WINDOW RECONCILIATION (parallel session, declared): THIRD
+## post-close addendum 2fba2eb landed AFTER the Blocco-1 launch:
+## (1) FORCHETTA gains channel (vi) OPTIMUM-SHIFT (argmax-shift <=
+## delta/mu; mu = measured engine curvature at S*, delta = DESIGN-
+## GRADIENT-level residual bound; T-RED bound schema owed at BOTH
+## value and gradient levels; gradient cells never silently covered
+## by value bounds) — the in-flight author may have read the
+## pre-amendment brief; CAPTURE MECHANISM DECLARED: the round
+## refuters read the brief from disk at attack time (post-
+## amendment) and a missing mandated channel = REPAIR-class; PLUS
+## deterministic orchestrator check at judge delivery: channel (vi)
+## + T-RED gradient-level schema PRESENT before any landing, else
+## escalation round via resume. (2) The parallel commit swept this
+## session's uncommitted PROGRESS row 16 into 2fba2eb while ALSO
+## minting its own row 16 (topology-and-modeling session proposal,
+## ratification owed at C4 closing touchpoint or F2-entry) —
+## numbering collision REPAIRED in-window (our row renumbered 17,
+## measured read); the topology-session RATIFICATION rides the C4
+## CLOSING touchpoint (informed by T-DISC/T-RED outcomes, per the
+## proposal's own sequencing). Early-commit of session-state files
+## adopted this window (declared reason: parallel-session sweep
+## risk on shared carriers).
+## INIEZIONE C3->C4 OF RECORD (user message 2026-08-20, parallel C3
+## session CLOSED; this block = the file carrier; each point -> a
+## named duty): (1) HEAD chain = 4 self-declared addenda acts in 3
+## commits up to 2fba2eb — reconciled (gate C above extended, no
+## foreign commits). (2) Blocco-1 brief READ-AS-AMENDED duty =
+## channel (vi) value+gradient T-RED bounds + Fig.18 exhibit +
+## per-term disposition (capture mechanism + deterministic judge-
+## delivery check declared above). (3) CLOSING-TOUCHPOINT DUTY:
+## present BLOCCATO 16 ratification (topology+modeling session on
+## a test nozzle) WITH EXTENDED SCOPE = systematic FIELD-READING
+## pass (render + read ALL published fields and inlet profiles of
+## the corpus — never done systematically, declared). (4) COVERAGE-
+## GATE DUTY (foundation-choice enumeration category): candidate
+## NEW row, dedup at mint: 'temporal form of the design functional:
+## cycle-average vs harmonic-balance adjoint vs time-spectral vs
+## windowed unsteady adjoint' — root-D anchors read integrally:
+## rubino_2018, schotthofer_2024, zahr_persson_2016; the averaging
+## THEORY is defended on record, the choice-against-alternatives
+## was NEVER adjudicated = FOURTH instance of the no-row class
+## (after C49/C56/C58). (5) Representation ladder of record noted
+## (five-field sees swirl CONTENT not helical topology; azimuthal
+## march C51-route-B sees the helix natively) — carried in
+## PROGRESS row 16 (parallel mint).
+## ================= ARCHIVE (C/C2/C3 HISTORY, in place) ==============
 
 ## ========== C3 CLOSED (2026-08-20) — BOUNDARY ==========
 ## WAVE 3 + depth D1/D2 + retro-sweep + confirm-2 + landing ALL

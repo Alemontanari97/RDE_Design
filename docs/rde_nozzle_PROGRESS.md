@@ -331,8 +331,13 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     il CONTENUTO swirl ma NON la topologia elicoidale (limite
     data-anchored-shadow = topologico, non di conteggio campi); la
     marcia azimutale vede l'elica nativamente.
- 16. TOUCHPOINT C4 APERTURA CONSUMATO (utente, 2026-08-20; carrier =
-    checkpoint C4 + questa riga): (a) usage meter dichiarato FRESCO
+ 17. TOUCHPOINT C4 APERTURA CONSUMATO (utente, 2026-08-20; carrier =
+    checkpoint C4 + questa riga; rinumerata 16->17 in-window: la
+    sessione parallela ha coniato la propria riga 16 nello stesso
+    intervallo e il commit 2fba2eb ha incluso questa riga non
+    committata — collisione dichiarata e riparata, numerazione
+    rigenerata da lettura misurata del file): (a) usage meter
+    dichiarato FRESCO
     (<25%) = Blocco 1 (centerpiece 3 lenti until-dry + 4 minori +
     judge) a forma piena autorizzata (7f onorata); (b) pricing Lean
     = DEFER A F2-ENTRY (decisione utente; il dossier
