@@ -246,6 +246,17 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     implementazione ADR-D4 â€” il panel (riga sopra) resta non
     implementato e la sua ratifica complessiva resta aperta;
     eseguire il solo headline in C3 sarebbe un passo orfano (R1).
+    ADR-D4 RIDER (G-11, nozzle-RDE arrivals 2026-08-20; carrier =
+    validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_
+    nozzle_rde_arrivals.md CT-4 + (e).2): at the gated ADR-D4
+    re-evaluation confront EXPLICITLY, all [ADV]: (1) definition-
+    mapping duty - P-B's DL_spike/L_cowl = REMOVED fraction of the
+    cowl length vs our RETAINED-fraction plug convention, NOT
+    commensurable without the explicit mapping; (2) P-B transient
+    band evidence - optimum at DL_spike = 40% L_cowl (retains ~60%
+    of the spike [INF]), cliff -5.78% at 80%; (3) P-A: 1.2% Isp
+    truncation cost + 'truncation does not affect inner field'
+    (Fig. 11 caption).
  10. CONSUMATA (F-SERVICE 2026-08-13): D-01/C31-minimale/C30 tutte
     RATIFICATE dall'utente ed ESEGUITE in-window (glossa cancellata
     ai due loci + claim 1 riscritto; T7(c) forma a cono minimale

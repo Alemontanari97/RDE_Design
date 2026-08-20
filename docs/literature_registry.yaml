@@ -613,12 +613,12 @@ entries:
 
 - id: liu_2022
   identity: "Liu, Cheng, Zhang & Wang 2022, aerospike nozzle for RDE via GA/gradient on time-averaged parameters, Aerosp. Sci. Tech. 120:107300"
-  paths: ["literature_review/liu_2022_aerospike_rde_ga_gradient_optimization.pdf"]
+  paths: ["literature_review/liu_2022_aerospike_rde_ga_gradient_optimization.pdf", "literature/liu_2022_aerospike_rde_design_ast120_107300_dupcopy.pdf"]
   status: READ-INTEGRAL
   where_read:
     - "literature_review/reports/liu_2022_aerospike_rde.md#Expert read"
     - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
-  summary: "Aerospike design on TIME-AVERAGED parameters + 3-D reactive CFD; 4 fixed geometries, no optimizer in the loop — 'average-then-classical' corpus member (claims 8/7; T-T3 and choking contact)."
+  summary: "Aerospike design on TIME-AVERAGED parameters + 3-D reactive CFD; 4 fixed geometries, no optimizer in the loop — 'average-then-classical' corpus member (claims 8/7; T-T3 and choking contact). PATH NOTE (census-defect order, 2026-08-20): duplicate copy uploaded 2026-08-20, relocated to literature/liu_2022_aerospike_rde_design_ast120_107300_dupcopy.pdf (root-A relocation, G-15 discharge) — NO new row, this row stays the row of record; re-read [FULL] 14/14 pp. this window (NOZZLE_RDE_STUDY_pA_liu_wang_2022.md), 12 prior findings STAND. ERRATA vs the prior report (P-A DIFF Delta-8, per validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pA_liu_wang_2022.md): ref [26] = PCI 37(3) not 37(2); ref [27] Goto has TEN authors (incl. Nakata, Uchiumi, Higashino); ref [39] Zhu 2020 title reads 'rotating detonation CHAMBER' not 'engine'; ref [34] Kurita author list = Kurita, Jourdaine, Tsuboi, Ozawa, Hayashi, Kojima; prior-report filename-correction duty (F1) remains open. CHOKING-ADVISORY NOTE (G-13, RE-HOMED HERE, declared: grep -niE 'choking|L4|margin' on docs/findings_registry.yaml executed this window found NO single choking-advisory home row — nearest neighbours = cycle-avg-machinery:F6-silent-clamp-unchoked :934 and litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking :2144, neither is the F5-row/L4-margin home): A-L6 = the sharpest uncertified-choking instance on record — P-A asserts M_t = 1.0 EVEN for the throatless Case A (pp. 7/9); corpus numbers carried: choked +4-7% Isp (Jourdaine [26]); Fotia 3-7% stagnation-pressure max at eps = 80% — all [ADV], per SYNTHESIS_nozzle_rde_arrivals.md G-13/CT-8."
 
 - id: ornano_2017
   identity: "Ornano, Braun, Saracoglu & Paniagua 2017, nozzle shape optimization for a pulsed detonation combustor, Adv. Mech. Eng. 9(2):1-9"
@@ -665,6 +665,40 @@ entries:
     - "literature_review/reports/teasley_2025_rdre_dev.md#Reader report"
     - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
   summary: "NASA RDRE development roadmap (CTE): the nozzle treated as a MANUFACTURING SUBCOMPONENT; 4-scalar sweep — gap witness (claims 8/7/5/6)."
+
+# --- nozzle-RDE arrivals campaign row mints (G-15, S-FOUNDATIONS-C4
+# --- 2026-08-20; authority = SYNTHESIS_nozzle_rde_arrivals.md (c)
+# --- G-15 REGISTRATION-PENDING DISCHARGED (2026-08-20, orchestrator
+# --- census decision, route (i) = the C3 staging->root-A precedent):
+# --- the 3 campaign PDFs RELOCATED into literature/ (root A) with
+# --- descriptive names; rows below are LIVE with updated paths; the
+# --- P-A duplicate relocated as liu_2022_aerospike_rde_design_ast120_
+# --- 107300_dupcopy.pdf (registered on the liu_2022 row paths, NO new
+# --- row). Staging folder retire: 3/4 moved; the P-C original is
+# --- file-locked (copied instead), its delete + folder rmdir ride the
+# --- R3 close (declared). Original FAIL + deviation history: see the
+# --- session log / landing-mechanic report.
+
+- id: li_xu_lv_lv_song_2023
+  identity: "Li, Xu, Lv, Lv & Song 2023 (NUAA), 'Numerical investigations of the nozzle performance for a rocket-based rotating detonation engine with film cooling', Aerosp. Sci. Technol. 136:108221, DOI 10.1016/j.ast.2023.108221 (page-1-faithful; campaign P-B). ERRATUM QUARANTINE (verbatim-per-synthesis, NRS-6): min V_cir 327.5 m/s attribution — the paper reads 'a/b = 1.0/1.5 and V_sec = 150 m/s' (p. 18); the slot file's '(1.5/1.0, 150)' is a transcription erratum, never re-enter downstream"
+  paths: ["literature/li_xu_lv_lv_song_2023_rde_film_cooling_nozzle_ast136_108221.pdf"]
+  status: READ-INTEGRAL
+  where_read: ["validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pB_li_xu_2023.md#1. IDENTITY + METHOD SUMMARY"]
+  summary: "Axisymmetric MoC (Zucrow-Hoffman units) + Rao/Vander-Veen shrouded-plug max-thrust surfaces at time-averaged stagnation constraints; steady-vs-transient C_fx gap ~2.8% uniform <=60% truncation, transient optimum DL_spike = 40% L_cowl (+0.52%), cliff -5.78% at 80%; exit V_cir 327.5-383.4 m/s (FILM-COOLED configs only, cooling-modulated) — all [ADV]."
+
+- id: li_xu_lv_yu_zhou_2025
+  identity: "Li, Xu, Lv, Yu & Zhou 2025 (NUAA), 'Numerical investigations of the nozzle performance of a rotating detonation engine with axially adjustable cowl and spike', Aerosp. Sci. Technol. 158:109878, DOI 10.1016/j.ast.2024.109878 (page-1-faithful; campaign P-C)"
+  paths: ["literature/li_xu_lv_yu_zhou_2025_adjustable_cowl_spike_ast158_109878.pdf"]
+  status: READ-INTEGRAL
+  where_read: ["validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pC_li_xu_2025.md#1. IDENTITY + METHOD SUMMARY"]
+  summary: "Axial cowl/spike misalignment + dynamic actuation on P-B's max-thrust MoC baseline; paired transient vs mass-weighted-averaged steady runs, C_fx gap 0.2-1.5% both signs, one mid-ranking flip (argmax HELD); RMSD_theta 8.16-14.63 deg = deviation-from-axial UPPER PROXY (eq. 20 conflates divergence + swirl; never booked against B5 in any direction) — all [ADV]."
+
+- id: jourdaine_2019
+  identity: "Jourdaine, Tsuboi, Ozawa, Kojima & Hayashi 2019, 'Three-dimensional numerical thrust performance analysis of hydrogen fuel mixture rotating detonation engine with aerospike nozzle', Proc. Combust. Inst. 37:3443-3451, DOI 10.1016/j.proci.2018.09.024 (page-1-faithful; campaign P-D)"
+  paths: ["literature/jourdaine_2019_h2_rde_aerospike_pci37_3443.pdf"]
+  status: READ-INTEGRAL
+  where_read: ["validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pD_jourdaine_2019.md#(1) IDENTITY + METHOD SUMMARY"]
+  summary: "Fixed 50-deg conic aerospike (explicitly non-optimized), open vs choked, micro-scale idealized premixed injection; choking raises chamber time-avg static p +50/60% and Isp +4-7% with subsonic chamber + upstream-running reflected shock; THE cited origin of the average-then-classical-design premise; self-graded 'the absolute values are completely different' (p. 3451) — all [ADV]."
 
 # ---------------------------------------------------------------
 # WANTED — papers on NO root (absence verified on all four roots
@@ -1171,6 +1205,204 @@ entries:
   paths: []
   status: WANTED
   owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — F-C21-2 replay-ball condition form (warm-start guarantees anchor); census-cited identity, no read claim"
+
+# --- (iii) MISSED-CLUSTER WANTED mints (G-18, S-FOUNDATIONS-C4
+# --- 2026-08-20; authority = SYNTHESIS_nozzle_rde_arrivals.md
+# --- section (f), W-01..W-30 Tier 1+2; W-28 = two DISTINCT papers
+# --- per the synthesis, minted as two rows; Tier-3 (17 items) NOT
+# --- minted, per the synthesis's own conditional 'register as
+# --- WANTED only if the cluster map wants completeness' — no such
+# --- order held. Dedup RE-RUN this window (SR-12): grep -niE over
+# --- this file on all candidate surnames — 0 hits among the 31
+# --- (near-names all DISTINCT papers: kaemming_paxson_2018 vs
+# --- W-30; sun_2019 vs W-21/W-24; ornano_2017 vs W-11;
+# --- wolanski_2013 vs W-29; harroun rows vs W-26 'Ruf'). ---
+
+- id: wanted_fotia_2016_rde_nozzle
+  identity: "Fotia, Schauer, Kaemming & Hoke 2016, 'Experimental study of the performance of a rotating detonation engine with nozzle', JPP 32(3):674-681 — cited by ALL FOUR campaign papers (P-A[30], P-B[21], P-C[14], P-D[23] garbled); the 3-7%-stagnation-pressure-at-eps-80% experiment; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-01 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_goto_2019_various_nozzles
+  identity: "Goto, Nishimura, Kawasaki, Matsuoka, Kasahara, Matsuo, Funaki, Nakata, Uchiumi & Higashino 2019, 'Propulsive performance and heating environment of RDE with various nozzles', JPP 35(1):213-223 — P-A[27], P-B[26], P-C[15]; the vacuum-chamber aerospike experiments; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-02 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_ma_bao_wang_2023
+  identity: "J.Z. Ma, Bao & Wang 2023, 'Experimental research of the performance and pressure gain in continuous detonation engines with aerospike nozzles', AST 140:108464 — P-C[12]; the brief-named 'Ma hot-fire'; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-03 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_zhu_2020_aerospike_chamber
+  identity: "Zhu, Wang, Wang, Zhao, Jiao, Wang & Fan 2020, 'Study on the performance of a rotating detonation chamber with different aerospike nozzles', AST 107:106338 — P-A[39], P-B[20], P-C[17]; EARLIEST average-then-design precedent per P-A p. 2; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-04 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_li_xu_huang_2022_design_method
+  identity: "R. Li, J. Xu & S. Huang 2022, 'Nozzle design method for rotating detonation engine', JPP 38(5):849-865 — P-B[34], P-C[22]; the design-method PARENT of P-B/P-C, highest method-lineage bearing; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-05 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_zhou_2023_pulse_operation
+  identity: "S. Zhou, Ma, Liu & Hu 2023, 'Experimental investigation on pulse operation characteristics of rotating detonation rocket engine', Fuel 354:129408 — P-C[13]; the brief-named 'Zhou conical' item; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-06 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_fotia_2019_aerospike_configs
+  identity: "Fotia, Kaemming, Codoni, Hoke & Schauer 2019, 'Experimental thrust sensitivity of an RDE to various aerospike plug-nozzle configurations', AIAA SciTech 2019 Forum — P-A[25]; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-07 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_chutkey_2014_annular_plug
+  identity: "Chutkey, Vasudevan & Balakrishnan 2014, 'Analysis of annular plug nozzle flowfield', JSR 51(2):478-490 — P-B[37]; truncated-plug base-pressure dataset, R8-ADJACENT (cold rig, not an RDE), candidate CFD-2-style reuse; Tier 1"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-08 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_fievisohn_2018_quasi2d_moc
+  identity: "Fievisohn, Hoke & Schauer 2018, 'Quasi-2D simulations of nozzled RDEs with the method of characteristics', AIAA 2018-0881 — P-B[24]; closest published cousin of our reduced-MoC class, elevated bearing; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-09 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_huang_2021_aerospike_rdc
+  identity: "Huang, Xia, Chen, Luan & You 2021, aerospike shock dynamics + RDC interaction, AST 117:106969 — P-B[25], P-C[23]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-10 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_braun_2017_unsteady_nozzles
+  identity: "J. Braun, Saracoglu & Paniagua 2017, 'Unsteady performance of RDEs with different exhaust nozzles', JPP 33(1):121-130 — P-B[18], P-C[20]; DISTINCT from the on-disk ornano_2017 row (same group, different paper); Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-11 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_schwer_2018_aerospike_pressure
+  identity: "Schwer, Kelso & Brophy 2018, 'Pressure characteristics of an aerospike nozzle in an RDE', AIAA 2018-4968 — P-B[19]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-12 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_bach_2020_stagnation_pg
+  identity: "Bach, Stathopoulos, Paschereit & Bohon 2020, stagnation-pressure pressure gain, eps 100->50% restriction, Combust. Flame 217:21-36 — P-A[56]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-13 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_betelin_2020_centerbody
+  identity: "Betelin, Nikitin & Mikhalchenko 2020, 3D numerical modeling of a cylindrical RDE with an inner body extending out of the nozzle (center-body length study 6/9/9.75 cm), Acta Astronaut. 176:628-646 — P-A[29]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-14 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_kurita_2020_aiaa0688
+  identity: "Kurita, Jourdaine, Tsuboi, Ozawa, Hayashi & Kojima 2020, H2/air RDE with aerospike nozzle, effects of nozzle geometries, AIAA 2020-0688 — P-D's own geometry follow-on; P-A[34]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-15 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_verma_2009_conical_aerospike
+  identity: "Verma 2009, annular conical aerospike nozzle with freestream effect, JPP 25(3):783-791 — P-A[58], P-C[44]; P-C's validation experiment; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-16 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_he_qin_liu_2015
+  identity: "He, Qin & Liu 2015, overexpanded aerospike separation, Chin. J. Aeronaut. 28(4):983-1002 — P-C[43]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-17 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_angelino_1964
+  identity: "Angelino 1964, 'Approximate method for plug nozzle design', AIAA J 2(10):1834-1835 — P-A[35], P-B[38]; THE design-method source; planar-only caveat of record rides the onofri_2002_plug_survey row summary; no dedicated row existed before this mint; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-18 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_hagemann_1998_advanced_nozzles
+  identity: "Hagemann, Immich, Nguyen & Dumnov 1998, 'Advanced rocket nozzles', JPP 14(5):620-634 — P-A[36]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-19 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_tsuboi_2017_wave_number
+  identity: "Tsuboi, Eto, Hayashi & Kojima 2017, wave-number effect on RDE performance (-10% Isp at 2 waves), JPP 33(1):100-111 — P-D[27]; CT-5's mode-count conflict partner; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-20 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_sun_2018_plume
+  identity: "Sun, Zhou, Liu, Lin & Lin 2018, 'Plume flowfield and propulsive performance analysis of an RDE', AST 81:383-393 — P-B[23]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-21 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_zhu_2022_outlet_configs
+  identity: "Zhu, Wang, Zhao, Wang & Fan 2022, outlet configurations vs wave propagation, Acta Astronaut. 200:388-399 — P-C[18]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-22 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_zhao_2022_exit_convergent_ratio
+  identity: "Zhao, Wang, Zhu et al. 2022, exit convergent ratio, liquid kerosene RDE, Acta Astronaut. 193:35-43 — P-C[19]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-23 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_sun_2021_outlet_ijhe
+  identity: "C. Sun, Zheng, Zhao, Li & Zhu 2021, outlet nozzles + outlet load, IJHE 46:18644-18660 — P-C[21]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-24 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_rankin_2014_cd_nozzle
+  identity: "Rankin [+ Hoke, Schauer — GARBLE FLAG per the synthesis, verify identities at procurement], CD-nozzle RDE experiment, AIAA 2014-1015 — P-D[21]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-25 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_ruf_mcconaughey_1997
+  identity: "Ruf & McConaughey 1997, the plume physics behind aerospike nozzle altitude compensation and slipstream effect, AIAA 97-3218 — P-A[57]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-26 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_tsuboi_2015_pci35
+  identity: "Tsuboi, Watanabe, Kojima & Hayashi 2015, PCI 35:2005-2013 — P-D's direct predecessor; P-D[20]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-27 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_shao_liu_wang_2010_cst
+  identity: "Shao, Liu & Wang 2010, CST 182(11-12):1586-1597 — earliest nozzle-effect CFD (member 1 of the synthesis W-28 'two DISTINCT entries' pair, minted as two rows); P-D[14]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-28a (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_shao_meng_wang_2010_cja
+  identity: "Shao, Meng & Wang 2010, 'Continuous detonation engine and effects of different types of nozzle on its propulsive performance', Chin. J. Aeronaut. 23:647-652 — earliest nozzle-effect CFD (member 2 of the W-28 pair); P-B[17]; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-28b (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_yi_2011_propulsive
+  identity: "Yi, Lou, Turangan, Choi & Wolanski 2011, 'Propulsive performance of a continuously rotating detonation engine', JPP 27(1):171-181 (+ the 2010 AIAA precursor) — P-B[33], P-D[10]/[22]; DISTINCT from the on-disk wolanski_2013 row; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-29 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+
+- id: wanted_kaemming_2017_reduced_order
+  identity: "Kaemming, Fotia, Hoke & Schauer 2017, 'Thermodynamic modeling of an RDE through a reduced-order approach', JPP 33(5):1170-1178 — P-B[15]; DISTINCT from the on-disk kaemming_paxson_2018 (EAP) row; Tier 2"
+  paths: []
+  status: WANTED
+  owner: "procurement queue W-30 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
 
 # ---------------------------------------------------------------
 # BULK CLASS ROWS — non-paper files, counted exactly (glob-free:

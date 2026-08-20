@@ -299,10 +299,71 @@
 ## comms review -> user loop. Session prompt authored at the C4
 ## R3 close (inputs landed and citable: pipeline map = backbone,
 ## forchetta = honesty slide, atlas + nozzle campaign = efflux/
-## practice section). R3 close duty ADDED: author ADVISORY_Spres
+## practice section). USER PRECISION 2026-08-20 (verbatim intent):
+## the deck MUST show the graph IN DETAIL and how EVERY link is
+## SOTA in its BRANCHING and its ADOPTION — rendered directly from
+## the foundations product: per-node = ledger row (alternatives
+## weighed w/ declared recency + loser-by-reason + fork-ledger
+## reconciliation) + adoption = pre-registered criteria + armed
+## falsifier + F2 duty where measured; honesty constraints on the
+## rendering: SOTA claims presented AS query-bounded censuses w/
+## declared depth (auditability = the strength), per-node status
+## enum shown truthfully (DECIDED/MIXED/NEVER), literature-coverage
+## claims cite the AMENDED census protocol (post census-gap row).
+## R3 close duty ADDED: author ADVISORY_Spres
 ## prompt + NEXT chain updated (C4 -> S-PRES -> F2).
-## QUEUE OF RECORD (sequence): nozzle campaign lands -> field-atlas
-## lands [DONE] -> Blocco-1 v2 continuation (GATE V2-LAUNCH honored:
+## CAMPAIGN CLOSED AT CONVERGENCE (wf 6/6 ~0.93M + close 2/2
+## ~0.17M): refuter 0 BREAK / 2 REPAIR / 3 AMEND / 4 NOTE (9 ids);
+## reviser applied ALL 9; CONFIRM instance = 9/9 FAITHFUL, 0
+## deviations, 0 unordered edits — synthesis fit for consumption.
+## Verdict: NOTHING crushes the project (8 consolidated threats, 0
+## fire as breaks; CT-3 = enrichment-amendment only; CT-4 rider ->
+## ADR-D4; CT-6 standing consumption rule: no nozzle-paper number
+## into bands). LANDING-MECHANIC DONE (registry-class grafts):
+## G-11 ADR-D4 rider on BLOCCATO 9 IN PLACE; G-13 RE-HOMED to the
+## liu_2022 row (declared, grep-cited: no F5/L4-margin home row
+## exists); G-14 SKIPPED-DECLARED (no Rao-baseline ledger row;
+## note stays synthesis-carried pending adjudicated home); G-15
+## liu_2022 path note + errata; G-18 = 31 WANTED minted (dedup 0
+## hit, Tier-3 17 NOT minted per the synthesis's own conditional).
+## ROOT DECISION EXECUTED (orchestrator, route (i) = C3 precedent):
+## campaign PDFs relocated to literature/ root A w/ descriptive
+## names; REGISTRATION-PENDING block DISCHARGED -> 3 live
+## READ-INTEGRAL rows; P-A duplicate registered on the liu_2022
+## paths (NO new row); P-C original file-locked -> COPIED, delete +
+## folder rmdir ride the R3 close (declared). LINTS PASS quoted:
+## lit 165 entries [79 WANTED], disk A/B/C/D = 39/47/77/59, 0
+## violations; findings 245/203, families e+f 58 choice + 174 lit.
+## FORK ADJUDICATION DONE (Fable slot, FORK_LEDGER_141_
+## adjudication.md): 48/50 NOT-COVERED = COVERED-BY-CLUSTER w/
+## anchors; 2 GENUINE gaps -> coverage-gate finding candidates
+## (H20 free-boundary p=Pa solve mechanics + shape-adjoint term,
+## owner F4b; P34 staged evidence hierarchy for engine-level
+## claims, owner P-1/G5-G6 window); H13 = genuine second anchor,
+## NOT drift, no registry edit; post-adjudication arithmetic 141 =
+## 139 covered + 2 candidates. Deviation D-1 declared (O15
+## out-of-universe anchor) + NAND-vs-SAND candidate row rider at
+## the C31 A/B F2-entry window.
+## BLOCCO-1 V2 LAUNCHED (wf_067d9ed0-cbc; GATE V2-LAUNCH honored
+## and quoted here per SR-C4-11/13): graft-reviser (G-01..G-08+
+## G-10 into the draft, [GRAFT-*] markers) -> 3-lens rounds cap 4
+## w/ per-lens single retry then CIRCUIT BREAKER (dead round =
+## voided, no cap burn, loop aborts declared) -> ntf+deltacarrier
+## refuters (deltacarrier carries the SR-C4-9 MIN-OBJDOM-3
+## sequencing duty) -> R22F closure judge -> Blocco-2 judge. DRY
+## RULE OF RECORD (SR-C4-11): dry <=> all 3 lens agents return
+## breaks+repairs==0 in the same round (structured outputs), and
+## the closure judge RECOUNTS the final round from the files.
+## RIGHT-SIZING RULE (SR-C4-13, in every round prompt): a
+## closed-form design-gradient demand beyond SCHEMA+named-duty is
+## NOT a BREAK (addendum (b)); revisers may classify
+## CONTESTED-BY-ADDENDUM-B; the judge adjudicates. Aux-carrier
+## pointers (addendum_c4 + FIELD_ATLAS + SYNTHESIS + 4 dossiers)
+## in EVERY prompt + CT-6 evidence rule; executable-counterexample
+## preference in all refuter slots.
+## QUEUE OF RECORD (sequence): nozzle campaign lands [DONE] ->
+## field-atlas lands [DONE] -> Blocco-1 v2 continuation [IN
+## FLIGHT] (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/
 ## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
 ## breaker, auxiliary pointers grep-verified, r<k> naming
