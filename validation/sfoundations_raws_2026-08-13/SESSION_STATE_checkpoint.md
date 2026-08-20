@@ -184,6 +184,76 @@
 ## question lives where the pin is relaxed. Carrier addendum for
 ## (b)/(c)/(e) = blocco3/BRIEF_blocco2_phaseD_addendum_c4.md (NEW
 ## file — the in-flight brief stays frozen).
+## ======= QUOTA KILL #6 (2026-08-20, DECLARED; usage restored =======
+## same day by user): Blocco-1 workflow wf_3be32cb8-795 died 7/27
+## (0.82M tok, 149 tool uses): DONE with artifacts ON DISK = author
+## r22f draft + 4 minor authors + refuters objdom (3 content obj)
+## + crosslowering (3 content obj); DEAD = ALL loop refuters/
+## revisers r1-r4 (loop burned cap on dead rounds — defect), both
+## judges, refuters ntf + deltacarrier. Field-atlas + sense-review
+## agents also killed; BOTH RESUMED via SendMessage on restore
+## (resume-never-relaunch); sense-review DELIVERED: SENSE_REVIEW_
+## centerpiece_plan_c4.md, 19 findings (3 BLOCKING: SR-C4-1
+## forchetta in NO lens scope; SR-C4-2 no addendum pointer in
+## frozen brief; SR-C4-15 v2 launch gate) + GATE V2-LAUNCH 7 lines
+## + GATE JUDGE-DELIVERY 13 lines (both BINDING on the v2 launch
+## and the landing). FORK LEDGER DONE (Sonnet slot): FORK_LEDGER_
+## 141.md, 141 reconciled = 90 COVERED / 50 NOT-COVERED / 1
+## AMBIGUOUS-FOR-FABLE (H13) / 0 PARTIAL; the 50+1 get Fable
+## adjudication at the coverage-gate window (mechanical extraction
+## undercounts cluster coverage BY DESIGN — not 50 findings yet).
+## ORCHESTRATION SELF-IMPROVEMENT (user-ordered re-evaluation,
+## adopted of record): (1) CIRCUIT BREAKER standing — a round with
+## ALL refuters dead = ABORT loop immediately (no cap burn, no
+## reviser launch), declare and wait; adopted in the v2 script.
+## (2) RECONCILE-CONTINUATION over blind resume when all completed
+## work is disk-persisted AND prompts need improvement: Blocco-1
+## continues as NEW workflow v2 (author + minor authors NOT re-run
+## — drafts on disk; rounds/judges get improved prompts); the
+## resume-cache at stake (7 slots) is fully represented on disk.
+## (3) GRAFT-INPUTS-BY-PROMPT rule — v1 defect declared: round
+## agents were never pointed at the addendum; every v2 round/judge
+## prompt carries explicit auxiliary-carrier pointers (addendum_c4
+## + FIELD_ATLAS + nozzle-RDE synthesis + threat ledger), verified
+## by grep per SR-C4-2. (4) Arrival-study slots render figures
+## visually (SOTA study = text + images).
+## USER ORDER 2026-08-20 (usage restored): 4 nozzle-RDE PDFs
+## uploaded to literature_addition_nozzle_rde/ — deep-study
+## campaign LAUNCHED (wf_b0b1235a-297: 4 per-paper readers ->
+## synthesis w/ threat ledger + graft list + missed-cluster WANTED
+## -> dual-direction refuter; brief = BRIEF_nozzle_rde_arrivals_
+## study.md, connectedness: confrontation stage = the on-disk
+## centerpiece draft, consumption arc per finding mandated).
+## Identities page-1 verified BY ORCHESTRATOR: P-A Liu-Wang AST
+## 120:107300 2022; P-B Li-Xu AST 136:108221 2023; P-C Li-Xu AST
+## 158:109878 2025; P-D Jourdaine PCI 37:3443 2019.
+## USER CHALLENGE 2026-08-20 (lit-census depth) = SUSTAINED 3/4,
+## measured: P-A was already procured + READ-INTEGRAL w/ expert
+## report (lit :615) — the user upload is a duplicate copy; P-B/
+## P-C/P-D NEVER surfaced anywhere (grep-proven) = the citation
+## neighborhood of P-A that no census chased. INSTRUMENTS MINTED:
+## findings row methodology:literature-census-citation-
+## neighborhood-gap (245 measured, lint PASS 245/203 read-then-
+## quoted) carrying the STANDING census-protocol amendment
+## (application-anchored query family mandatory + citation-
+## neighborhood sweep for every READ-INTEGRAL paper + adequacy
+## corpus application-fed by construction; memory write rides the
+## R3 close); immediate repair = the campaign's reference-list
+## extraction -> missed-cluster WANTED list. Full-suite run timed
+## out at 2-min tool cap in-window (suite needs ~5 min) — DEFERRED
+## DECLARED to the R3 close window; targeted lints run green
+## instead (findings 245 PASS, glossary PASS earlier).
+## QUEUE OF RECORD (sequence): nozzle campaign lands -> field-atlas
+## lands -> Blocco-1 v2 continuation (GATE V2-LAUNCH honored:
+## no author re-run, minors slate = ntf+deltacarrier only w/
+## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
+## breaker, auxiliary pointers grep-verified, r<k> naming
+## continuity) -> judges w/ GATE JUDGE-DELIVERY (13 lines) +
+## SR-C4-16 threat-ledger adjudication wiring + forchetta landing
+## site named (SR-C4-17) -> landing (R4 same window) -> coverage
+## gate (3 C3 categories + temporal-form row weakened-pin scoping
+## + fork-ledger 50+1 adjudication) -> PIPELINE DECISION MAP ->
+## R3 full close.
 ## ================= ARCHIVE (C/C2/C3 HISTORY, in place) ==============
 
 ## ========== C3 CLOSED (2026-08-20) — BOUNDARY ==========

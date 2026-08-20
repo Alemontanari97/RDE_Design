@@ -2482,3 +2482,14 @@ entries:
   owner: "C20 Tier-0 branch/fold monitors (duty F2-C20-CERTQUAL-CAMPAIGN) = the discharging instrument; premise-guard notes landed at C56 and C28 same window"
   trigger: "F2-C20-CERTQUAL-CAMPAIGN Tier-0 landing; fires earlier if any oracle detects a wrong-branch converged root in production"
   note: "The wave-2 premise-guard riders (C56 owner field; C28 duty rider) cite this mechanism; this row is their registry carrier"
+
+- id: methodology:literature-census-citation-neighborhood-gap
+  status: CONFIRMED
+  severity: high
+  magnitude: "USER CHALLENGE 2026-08-20 SUSTAINED 3/4 (measured, grep-proven in-window): of 4 user-uploaded directly-on-topic RDE-nozzle papers (literature_addition_nozzle_rde/), THREE were never surfaced by ANY census of the chain (Li-Xu-Lv-Lv-Song AST 136:108221 2023 film-cooling MoC nozzle; Li-Xu-Lv-Yu-Zhou AST 158:109878 2025 adjustable cowl/spike; Jourdaine-Tsuboi-Ozawa-Kojima-Hayashi PCI 37:3443 2019 choked aerospike) while the FOURTH (Liu-Cheng-Zhang-Wang AST 120:107300 2022) was procured AND read integrally with an expert report (lit-registry :615) — i.e. the missed three are the CITATION NEIGHBORHOOD of a paper we held read-integral; structural cause = census queries were METHOD-anchored (variational/adjoint/MoC/optimization) with no APPLICATION-anchored query family (aerospike-nozzle-RDE device CFD; NUAA/PKU/Kyushu schools) and NO citation-neighborhood sweep duty (backward references + forward citations) for read-integral papers"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/BRIEF_nozzle_rde_arrivals_study.md#CENSUS-DEFECT CONTEXT"
+  code: ["docs/literature_registry.yaml:615"]
+  mechanism: census-query-axis-gap-plus-missing-citation-chase
+  owner: "IMMEDIATE repair = the nozzle-RDE arrivals campaign (this session: 4 deep reads + missed-cluster WANTED list from the 4 reference lists, dedup at mint). STANDING repair = census-protocol amendment of record (this row is the carrier until the memory write at close): (i) every census MUST include an APPLICATION-anchored query family alongside method-anchored ones; (ii) every paper promoted to READ-INTEGRAL gets a declared CITATION-NEIGHBORHOOD sweep (backward refs at [TITLE] depth minimum + forward-cite query when a channel exists), gaps -> WANTED rows; (iii) the adequacy corpus (forchetta channels) is application-literature-fed BY CONSTRUCTION, not method-literature-fed"
+  trigger: "every future census window (protocol amendment binding from this session); the coverage gate of THIS session verifies the campaign executed the immediate repair"
+  note: "Honest scope: the miss does NOT retroactively invalidate landed method-side adjudications (their query-bounded absence claims were declared as such); it DOES weaken any adequacy-side claim that leaned on corpus completeness - the forchetta table must cite the 4 new papers where they bear (the campaign's graft list enforces this). User trust cost acknowledged of record."
