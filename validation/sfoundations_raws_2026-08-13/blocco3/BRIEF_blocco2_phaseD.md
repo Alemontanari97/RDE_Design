@@ -72,7 +72,18 @@ so — never assume before reading)), write the
 azimuthal-structure terms dropped by the per-phase-2D reduction as an
 EXPLICIT residual operator with hypothesis list + bound schema; the
 time-coupling half is G3/corrector-owned — name the boundary, do not
-re-derive it.
+re-derive it. PHYSICAL EXHIBIT OF RECORD (user, 2026-08-20): Harroun
+2021 Fig. 18, p.669 (literature_review/harroun_2021_...pdf, PDF page
+10) — instantaneous field of the IE aerospike under detonation-wave
+inflow: helical particle paths on the plug induced by the rotating
+oblique-shock footprint + non-axisymmetric separated-flow geometry
+("contrary to the axisymmetric separated flow region geometry
+expected for a constant-pressure engine", authors' words). This IS
+the phenomenon class the residual operator must carry; connect it
+explicitly to the data-anchored-shadow pin (swirl5f dispatch §3 row
+13: azimuthally-FED interior front segments UNREACHABLE by the axial
+march) and state per term whether it is BOUNDED here, deferred to
+C51-route-B/S-5F (cite their rows), or measured by M-RED.
 (3) [M-RED] the residual functional MEASURED on our own certified
 interface families: a SPEC with derived bands (band derivations
 published in the spec, zero CFD, zero magic constants) — this is a
