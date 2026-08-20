@@ -395,9 +395,72 @@
 ## cited + 9 new candidates (top: Lim-Humble AIAA 2020-0195,
 ## Stechmann PhD 2017, Schwer-Kailasanath AIAA 2012-3943) — mints
 ## ride the R3 close with dedup.
+## ===== QUOTA KILL #7 (2026-08-20, DECLARED; resets 3:50pm =====
+## America/New_York; usage restored same day, user resume order):
+## v2 workflow wf_067d9ed0-cbc died 19/21 (~3.23M tok, 468 tool
+## uses, ~110 min): ONLY the two judge slots died — ALL content
+## disk-persisted (4 rounds x 3 lenses + reviser r4 + graft +
+## both minor refuters). ZERO work lost (artifacts-first held
+## again). RESUMED same runId (no script edit, rule honored):
+## 19 cached, judges live. V2 LOOP RESULT OF RECORD (pre-judge):
+## NOT-DRY-AT-CAP, rounds 4, L1 dry FULL (r4: 0/0/0), L0 1 BREAK
+## + 1 REPAIR (mu functional-identity: probe proved the drafted
+## transfer form false-certifies 100x w/ printed checks passing,
+## corrected form exact; prox-regular disjunct 103x -> instance-
+## checked convexity), L2 1 residue (false-license disjunct,
+## strict-narrowing fix) — both fixes APPLIED by reviser r4
+## ([REV2-r4-*]), unverified-at-cap: judge adjudicates or
+## targeted escalation round. Channel (vi) final honest form:
+## delta AND L_H UNDERIVED, no argmax-shift number at any grade;
+## a-posteriori forms only w/ verifiable conditions; derivers in
+## order five-field -> route-B -> M-RED gradient -> R22-CFD.
+## MINOR REFUTERS DONE (v2): NTF = 3 content objections ALL
+## amendment-sized w/ repairs on page (MIN-NTF-1 PASS bound
+## 2*T -> 2*(T+floor), probe-proven; MIN-NTF-2 unit-transfer
+## factor undeclared, window survives by ~4 orders; MIN-NTF-3
+## trip-count falsifier over-broad, probe scene B) + probe exit 0;
+## seam consumption VERIFIED author-compliant; 5/5 citations
+## source-verified. DELTACARRIER = 4 content objections; SR-C4-9
+## DISCHARGED EXPLICITLY: (H6) does NOT survive MIN-OBJDOM-3
+## (killed same-domain hypothesis instantiated; anti-conservative
+## contamination; unlicensed fix-B ship-gate branch under false
+## verbatim flag) -> named repair H6' on page; DC-2 needs
+## certified-subclass restriction (analytic counter-state
+## confirms); Pa-convention scope mismatch (repair Pa>=0 + printed
+## convention line); G-12 scope sentence ABSENT (repair supplied);
+## DC-1 proof re-derived symbol-by-symbol SURVIVES, no shipped
+## number moves. ESCALATION EXPECTATION: all 7 content objections
+## carry named repairs on page — judge adjudicates
+## repairable-by-amendment vs escalation per standing rule.
+## USER-RATIFIED COST FRAME (2026-08-20, on the delta/L_H "new
+## math" question): tier (a) formal push ONLY inside the judge-
+## called escalation perimeter (R-14, basin radius, r4-fix
+## verification; ~0.3M); tier (b) M-RED execution = THE cheap
+## decisive unlock, F2-gated — PULL-FORWARD OPTION to present at
+## the closing touchpoint (user chain decision); tier (c) builds
+## (five-field/route-B) ONLY after M-RED numbers, at the
+## BLOCCATO-16 session. GAP-A/GAP-B VALUE FRAME registered
+## (S-PRES anchor): Gap B = J3D(x*_pf) - J3D(x*_legacy) =
+## measurable IN-HOUSE cheap (paired-run F2 demo, our functional
+## vs Veen/Angelino-at-mean); Gap A = distance to the
+## UNCOMPUTABLE true 3D optimum = bounded-only (delta/mu) +
+## R22-CFD spot-check; value condition = Gap B material AND
+## Gap A < Gap B. WORDING GUARD OF RECORD (user catch, sustained):
+## best-of-sweep != argmax — NO paper ever optimized the true 3D
+## case (no optimizer in any of the 4; P-M = hand-guided
+## redesign); the guard rides the (iv)/(vi) provenance notes at
+## landing.
 ## QUEUE OF RECORD (sequence): nozzle campaign lands [DONE] ->
 ## field-atlas lands [DONE] -> base-pressure harvest [DONE] ->
-## Blocco-1 v2 continuation [IN FLIGHT] (GATE V2-LAUNCH honored:
+## Blocco-1 v2 loop+minors [DONE, judges resumed in flight] ->
+## judges -> GATE JUDGE-DELIVERY (13 checks) -> escalation round
+## if called (tier-a perimeter) -> LANDING R4 (M0 + registry +
+## harvest provenance + sweep!=argmax guard) -> coverage gate
+## esteso -> pipeline decision map -> closing touchpoint (R22-CFD
+## dossier + BLOCCATO-16 ratification w/ extended field-reading
+## scope + M-RED pull-forward option + procurement list) -> R3
+## (census R35 -> CONSUMED, suite, index, fingerprint, S-PRES
+## prompt, commit, HANDOFF). (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/
 ## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
 ## breaker, auxiliary pointers grep-verified, r<k> naming
