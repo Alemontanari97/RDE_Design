@@ -22,6 +22,12 @@
 ## exploration-first vs certified closer, one pilot case) — candidate
 ## only, execution decided at the C57/F2-entry window with S-5F/C49;
 ## purpose = constitution-bias residue converted to measurement.
+## USER DIRECTIVE 2026-08-20 (memory sota-library-survey updated):
+## open-source SOTA maintained packages = DEFAULT for every
+## implementation, adoption UNCONSTRAINED (license/dep-count never
+## blockers); reconciled with the pinned-env rule: choice free,
+## installs stay O5-class boundary-declared+fingerprinted. First
+## consumers: Uno (C31 A/B), DFO/BO stack (C57 pilot).
 ## ============ SESSION C2 LIVE STATE (2026-08-19) ============
 ## [UPDATE ~landing window] WAVE-1 LANDED (wf_d6f1b0f0, 7/7, ~1.14M
 ## tok): VERDICT_wave1.md = 0 escalations; C28/C27 ADJUDICATED-SPLIT
