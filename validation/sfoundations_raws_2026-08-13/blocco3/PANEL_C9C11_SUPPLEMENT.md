@@ -9,6 +9,11 @@
 # both axes close consistently with the verdicts of record; zero conflicts.
 # Verdict class: SUPPLEMENT PROPOSAL (ledger/registry edits happen at the
 # landing window, not here; §4 carries exact proposed deltas).
+# RE-KEY ANNOTATION (2026-08-20, retro-sweep PAIR-9 catch, orchestrator
+# in-place): this file's "candidate row C52" (3 sites, §4 region) was
+# re-keyed C56 at the landing of record (VERDICT_C9C11_supplement.md §4.3:
+# C52 was TAKEN by LAND-2's D-1 agenda row). Read every in-file "C52"
+# proposal as C56; the ledger rows C52 and C56 are both correct of record.
 # Protocol of record (BINDING, followed here): BRIEF_wave2_panels.md §0-bis
 # (read-depth markers [FULL]/[ABS]/[TITLE], procurement channel, candidate
 # rows) + §0-ter (query trail verbatim with counts, question-anchored

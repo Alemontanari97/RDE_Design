@@ -1,12 +1,16 @@
 # LITERATURE REGISTRY — papers-as-code (S-ORDINE T2 step S6,
 # 2026-08-13). One typed entry per paper OF RECORD across FOUR roots:
-#   root A = literature/ (repo)            — 14 PDFs on disk (fresh ls)
+#   root A = literature/ (repo)            — 32 PDFs on disk (fresh ls
+#            2026-08-20; grew 14->32 at the C3 block-0 landing, see the
+#            reconciliation block below)
 #   root B = PARENT/ = "../" top level     — 47 files on disk (fresh ls)
 #   root C = GENO/ (independent repo, RO)  — 77 PDFs on disk (fresh find)
-#   root D = literature_review/ (repo)     — 58 files on disk (25 PDFs
+#   root D = literature_review/ (repo)     — 59 files on disk (26 PDFs
 #            + INDEX.md + lint_index_consistency.py + reports/ 31 md;
-#            recounted 2026-08-13 after the 4 REFUTE_* convergence-
-#            round reports landed post-S6)
+#            recounted 2026-08-20 C3 block-0: +1 PDF vs the 2026-08-13
+#            count = CF_ASO_Paper_PrePrint.pdf arrival 2026-08-14,
+#            row unread_cf_aso_preprint — prose line was stale, rider
+#            flag consumed; lint reads live disk and was already green)
 #
 # SOURCES OF RECORD (seeds, carried verbatim unless disk contradicted):
 #   validation/sordine_raws_2026-08-13/inventory_seg7_literature.md
@@ -42,8 +46,19 @@
 #     exclusion — the repo tracks this registry, not the binaries).
 #     Stated once here, not per row.
 #
-# FOUR-ROOT RECONCILIATION (discrepancy 0, fresh ls/find 2026-08-13):
-#   root A: disk 14 == rows 14 (13 A-only + 1 A+D dedup) + bulk 0
+# FOUR-ROOT RECONCILIATION (discrepancy 0; roots B/C/D fresh ls/find
+# 2026-08-13, root A re-measured 2026-08-20 at the C3 block-0 landing):
+#   root A: disk 35 == rows 34 (33 A-only + 1 A+D dedup) + bulk 1
+#           (re-measured 2026-08-20 C3 close: +3 wave-3 self-procured
+#           rows, MANIFEST_papers_foundations_c.md ADDENDUM 2)
+#           (the uno preprint-duplicate balance row — one PAPER row
+#           carries both uno files per the same-paper multi-path dedup
+#           rule; recounted from this window's edits 2026-08-20)
+#   2026-08-20 note (C3 block-0): root A grew 14 -> 32 (18 arrivals:
+#   13 identified + 4 addendum, relocated from the removed staging
+#   folder new_literature_foundations_c/, + Becker-Rannacher 2001 user
+#   upload landed mid-window; arrival record =
+#   validation/sfoundations_raws_2026-08-13/MANIFEST_papers_foundations_c.md)
 #   root B: disk 47 == rows  9 (4 B-only + 5 B+D dedup) + bulk 38
 #           (26 pptx + 5 extracts + 2 derived-cache + 3 assets + 2 md)
 #   root C: disk 77 == rows 20 (GENO/literature papers) + bulk 57
@@ -522,7 +537,7 @@ entries:
   where_read:
     - "literature_review/reports/kraiko_2016_two_sided.md#Expert read"
     - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
-  summary: "Two-sided asymmetric planar max-thrust nozzles by DIRECT optimization (RANS + GA + Bezier, zero optimality equations); VECTORIAL/Pareto thrust criterion = one of the three named structural non-containments of claim 18."
+  summary: "Two-sided asymmetric planar max-thrust nozzles by DIRECT optimization (RANS + GA + Bezier, zero optimality equations); VECTORIAL/Pareto thrust criterion = one of the three named structural non-containments of claim 18. C1REP cross-ref (wave-2 rider, PANEL_C1REP.md §2.3 via cava C8): its 9-parameter Bezier chart shows the classical Russian school itself using CONTROL-POINT charts for direct optimization, and its own table shows the exact-theory nozzle (Delta R_x 2.45%) beating all GA designs (2.90-3.68%) — feeds C1 and P-F19's analytic-spine cross-check."
 
 - id: efremov_kraiko_2004_augmentor
   identity: "Efremov & Kraiko 2004, Theory of an Ideal Jet Thrust Augmentor, Fluid Dyn. 39(4):621-632"
@@ -702,10 +717,12 @@ entries:
   owner: "F2a swirl window — swirl-precedent primary source"
 
 - id: wanted_breitkopf_ulbrich
-  identity: "Breitkopf & Ulbrich, arXiv:2509.22076"
-  paths: []
-  status: WANTED
-  owner: "Acquisition register — D25U leads follow-up"
+  identity: "Breitkopf & Ulbrich 2025, GRP optimal control / variational calculus, arXiv:2509.22076 (identity enriched from the manifest page-1 verification at arrival; id kept for in-place upgrade, C3 block-0 2026-08-20). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-p.1 abstract] (PAIR-8 bearing check: closest arrival to the proof layer, NO-BEARING with reason declared)"
+  paths: ["literature/breitkopf_ulbrich_2025_grp_optimal_control_variational_arxiv250922076.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+  owner: "D25U front-terms adjoint theory (consumer duty per MANIFEST_papers_foundations_c.md); first read establishes read-status — no summary before reading (UNREAD rule)"
 
 # --- P0 procurement list of record (handoff 2026-08-13, literature
 # --- window; each re-verified absent on all four roots) ---
@@ -807,22 +824,26 @@ entries:
   owner: "f2-duty-c27-aggcond (grouped/regional aggregation option (m) witness, finding rc27-1 carried by VERDICT_wave1.md §1.2; census-cited identity, no read claim)"
 
 - id: wanted_becker_rannacher_2001
-  identity: "Becker & Rannacher 2001, the DWR method, Acta Numerica — adjoint-weighted residual as functional-error estimate, the estimator class itself; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
-  paths: []
-  status: WANTED
-  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+  identity: "Becker & Rannacher, 'An optimal control approach to a posteriori error estimation in finite element methods', Acta Numerica (2001) pp. 1-102 (102pp, text layer present; page-1 verified by the orchestrator 2026-08-20 — USER UPLOAD, filename spelling 'rannacker' as on disk) — the DWR method, adjoint-weighted residual as functional-error estimate, the estimator class itself; earlier census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.3,40-41,46]"
+  paths: ["literature/becker_rannacker.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 3"
+  owner: "C11/DWR canon (f2-c11-estimator-campaign, VERDICT_wave1.md §2.4/§4.7); PDF arrived 2026-08-20 (coordinator update superseding the manifest's fetch-FAILED declaration), WANTED->UNREAD in place, id kept; first read establishes read-status"
 
 - id: wanted_venditti_darmofal_2002
-  identity: "Venditti & Darmofal 2002, output-based adaptation for aerodynamic functionals, JCP — census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19). DISTINCT from Venditti & Darmofal 2000 quasi-1D (JCP 164(1):204-227), which is NOT minted — leg-(b)-conditional per VERDICT_C9C11_supplement.md §4.4"
+  identity: "Venditti & Darmofal 2002, output-based adaptation for aerodynamic functionals, JCP — census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19). DISTINCT from Venditti & Darmofal 2000 quasi-1D (JCP 164:204-227), whose PDF arrived 2026-08-20 and now has its own row venditti_darmofal_2000 (the wave-1 'NOT minted — leg-(b)-conditional' deferral was superseded by the arrival; cross-note updated at the C3 block-0 landing)"
   paths: []
   status: WANTED
   owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
 
 - id: wanted_fidkowski_darmofal_2011
-  identity: "Fidkowski & Darmofal 2011, 'Review of Output-Based Error Estimation and Mesh Adaptation in CFD', AIAA J 49(4) — the field's reference review; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19)"
-  paths: []
-  status: WANTED
-  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7; census-cited identity, no read claim)"
+  identity: "Fidkowski & Darmofal 2011, 'Review of Output-Based Error Estimation and Mesh Adaptation in CFD', AIAA J 49(4), DOI 10.2514/1.J050073 — the field's reference review; census identity at snippet level (PANEL_C9C11.md §2.3, 2026-08-19); DOI from the manifest page-1 verification at arrival. Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.673-676]"
+  paths: ["literature/fidkowski_darmofal_2011_output_based_error_estimation_review_aiaaj.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 6"
+  owner: "f2-c11-estimator-campaign registration rider (VERDICT_wave1.md §2.4/§4.7) + output-based canon C9/C11 (manifest consumer duty); PDF arrived 2026-08-20, WANTED->UNREAD in place, id kept"
 
 - id: wanted_roache_gci_1994_1997
   identity: "Roache GCI (1994/1997 line), grid convergence index — Fs=1.25 only with three grids + observed order, Fs=3 for two-grid studies; census identity at snippet + standard-practice level, exact edition to be settled at procurement (PANEL_C9C11.md §2.3, 2026-08-19; printed separately from Celik — separate rows per the panel's print)"
@@ -861,22 +882,295 @@ entries:
   owner: "f2-c11-estimator-campaign leg (b) inputs — space-time DWR template line (VERDICT_wave1.md §2.4; procurement item, absence on roots verified 2026-08-19)"
 
 - id: wanted_hicken_zingg_2014
-  identity: "Hicken & Zingg 2014, 'Dual consistency and functional accuracy: a finite-difference perspective', J. Comput. Phys. 256:161-182, doi 10.1016/j.jcp.2013.08.014 — identity judge-web-verified at source (VERDICT_C9C11_supplement.md §0; RS911-4 corrected cite applied at both supplement sites BEFORE this mint; UTIAS public-PDF hosting verified)"
-  paths: []
-  status: WANTED
-  owner: "f2-c11-estimator-campaign — f11d order-of-convergence bookkeeping against a published criterion set (supplement PAPERS NEEDED item 2; axis-B synthesis anchor; procurement item, may be a download)"
+  identity: "Hicken & Zingg 2014, 'Dual consistency and functional accuracy: a finite-difference perspective', J. Comput. Phys. 256:161-182, doi 10.1016/j.jcp.2013.08.014 — identity judge-web-verified at source (VERDICT_C9C11_supplement.md §0; RS911-4 corrected cite applied at both supplement sites BEFORE this mint; UTIAS public-PDF hosting verified). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.161-165,174]"
+  paths: ["literature/hicken_zingg_2014_dual_consistency_functional_accuracy_jcp256.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 2"
+  owner: "f2-c11-estimator-campaign — f11d order-of-convergence bookkeeping against a published criterion set (supplement PAPERS NEEDED item 2; axis-B synthesis anchor; PDF arrived 2026-08-20, WANTED->UNREAD in place, id kept)"
 
 - id: wanted_thakur_nadarajah_2024
-  identity: "Thakur & Nadarajah 2024, 'Adjoint-based goal-oriented implicit shock tracking using full space mesh optimization', arXiv:2405.00904 — census identity at abstract level, fetched (PANEL_C9C11_SUPPLEMENT.md §A.4, 2026-08-19)"
-  paths: []
-  status: WANTED
-  owner: "axis-a modern-best steelman per VERDICT_C9C11_supplement.md §4.4 — f2-c9-meshlaw-campaign context; feeds the c49 phase-c advocate (procurement item, absence on roots verified 2026-08-19)"
+  identity: "Thakur & Nadarajah, 'Adjoint-based goal-oriented implicit shock tracking using full space mesh optimization' — on-disk file is the JOURNAL version JCP 523:113633 (2025) of arXiv:2405.00904 (NEWER than the original 2024 ask, declared per manifest page-1 verification); census identity at abstract level (PANEL_C9C11_SUPPLEMENT.md §A.4, 2026-08-19). Journal-version identity of record: JCP 523:113633 = the journal version of arXiv:2405.00904 (retro-sweep E5 rider). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.2,23,26,29]"
+  paths: ["literature/thakur_nadarajah_2025_goal_oriented_implicit_shock_tracking_jcp523.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 4"
+  owner: "axis-a modern-best steelman per VERDICT_C9C11_supplement.md §4.4 — f2-c9-meshlaw-campaign context; feeds the c49 phase-c advocate + C9 mesh-motion steelman (manifest consumer duty); PDF arrived 2026-08-20, WANTED->UNREAD in place, id kept"
 
 - id: wanted_budd_huang_russell_2009
   identity: "Budd-Huang-Russell 2009, 'Adaptivity with moving grids', Acta Numerica — the moving-mesh family review; census at abstract depth (PANEL_C9C11_SUPPLEMENT.md §A.4); TITLE-tier registration per VERDICT_C9C11_supplement.md §4.4"
   paths: []
   status: WANTED
   owner: "axis-a closure citability (title-tier registration, VERDICT_C9C11_supplement.md §4.4) — f2-c9-meshlaw-campaign context (procurement item, absence on roots verified 2026-08-19)"
+
+# ---------------------------------------------------------------
+# C3 BLOCK-0 LANDING, 2026-08-20 (S-FOUNDATIONS-C3 blocco 0; mandate
+# = VERDICT_wave2.md §4.15 wave-2 registration rider + arrival record
+# validation/sfoundations_raws_2026-08-13/MANIFEST_papers_foundations_c.md).
+# Two sub-blocks: (i) ARRIVALS — 18 PDFs landed in literature/ (root
+# A 14 -> 32 measured this window): rows minted UNREAD (no summary by
+# machine rule) or upgraded WANTED -> UNREAD in place above (ids
+# kept: wanted_breitkopf_ulbrich, wanted_hicken_zingg_2014,
+# wanted_fidkowski_darmofal_2011, wanted_thakur_nadarajah_2024,
+# wanted_becker_rannacher_2001 — the last a mid-window user upload
+# superseding the manifest's fetch-FAILED declaration);
+# (ii) WAVE-2 RIDER — identities copied from the citing panel texts
+# at their declared depths (PANEL_C31TRIO.md §4.4 + refute_C31TRIO.md
+# RC31T-3, PANEL_C1REP.md §4 rider, PANEL_C2021.md §4.6), minted
+# WANTED (paper on NO root, absence grep-proven by the panels and
+# re-verified against the fresh root-A ls this window). Dedup of this
+# window: Vanaret-Leyffer Uno / Byrd-Hribar-Nocedal / Nocedal-Wright
+# 2e / Masters / Huang-Zahr 2022 + 2304.11427 / PAS review 2025 /
+# Deuflhard CSM 35 / Yamamoto 1986 rider items = the ARRIVAL rows
+# below (cite-not-remint); kraiko_2016_two_sided cross-ref landed as
+# a summary one-liner on the existing row; held rows (Ancourt,
+# Giles-Pierce 2001, Giles-Ulbrich I-II, Lozano-Ponsin) NOT re-minted
+# per §4.15. MPCC/bundle modern items (2501.13835, 2604.18192,
+# 2604.18726) NOT minted — C28-F-1-gated deferral KEPT per §4.15.
+# ---------------------------------------------------------------
+
+# --- (i) ARRIVALS (manifest table 1 + addendum; page-1-verified
+# --- identities; UNREAD by machine rule — no summaries) ---
+
+- id: byrd_hribar_nocedal_1999
+  identity: "Byrd, Hribar & Nocedal 1999, 'An interior point algorithm for large-scale nonlinear programming', SIOPT 9(4):877-900 — tr_interior_point's algorithmic parent (page-1 verified per MANIFEST_papers_foundations_c.md; wave-2 rider item, PANEL_C31TRIO.md §4.4 + PAPERS NEEDED item 3). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.877,879,884 + whole-doc warm-absence scan]"
+  paths: ["literature/byrd_hribar_nocedal_1999_interior_point_nlp_siopt9.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 1"
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+  owner: "[P-IPADJ] source companion (C31 — barrier update law + multiplier semantics to be checked against the published algorithm, not only the scipy implementation); first read establishes read-status"
+
+- id: nocedal_wright_2006_2ed
+  identity: "Nocedal & Wright, 'Numerical Optimization', 2nd ed., Springer 2006 (book, 683pp; page-1 verified per MANIFEST_papers_foundations_c.md) — §6.2 SR1 + §8.1 FD error model are the cited targets (wave-2 rider item, PANEL_C31TRIO.md §4.4 + PAPERS NEEDED item 2)"
+  paths: ["literature/nocedal_wright_2006_numerical_optimization_2ed.pdf"]
+  status: UNREAD
+  owner: "[P-HESSREJ]/[P-QNCARRY] derived constants (C32/C33 legs — bands DERIVED from the stated error model, not asserted, per R5); first read establishes read-status"
+
+- id: giles_pierce_1997
+  identity: "Giles & Pierce 1997, adjoint equations in CFD, AIAA 97-1850 (page-1 verified per MANIFEST_papers_foundations_c.md). DISTINCT paper from giles_pierce_2000 (FTaC intro) and giles_pierce_2001 (JFM quasi-1D analytic adjoint) — dedup call declared at the C3 block-0 landing. Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-p.1 abstract] (PAIR-8 identity/bearing check only; live consumer excluded per the sweep brief)"
+  paths: ["literature/giles_pierce_1997_adjoint_equations_cfd_aiaa97_1850.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+  owner: "R27 bridge + F11d leg-1 oracle (manifest consumer duty); first read establishes read-status"
+
+- id: venditti_darmofal_2000
+  identity: "Venditti & Darmofal 2000, adjoint error estimation on the quasi-1D problem, JCP 164:204-227 (page-1 verified per MANIFEST_papers_foundations_c.md). The wave-1 'leg-(b)-conditional, NOT minted' deferral (VERDICT_C9C11_supplement.md §4.4) is superseded by the arrival — row minted at the C3 block-0 landing; cross-note updated at wanted_venditti_darmofal_2002. Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.204,207-208]"
+  paths: ["literature/venditti_darmofal_2000_adjoint_error_quasi1d_jcp164.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 5"
+  owner: "C11 leg (b) two-level algebra (manifest consumer duty); first read establishes read-status"
+
+- id: huang_zahr_2022
+  identity: "Huang & Zahr 2022, robust high-order implicit shock tracking (HOIST), JCP 454:110981 (arXiv:2105.00139; page-1 verified per MANIFEST_papers_foundations_c.md; wave-2 rider item, PANEL_C1REP.md §2.2/§4). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.3,18-19]"
+  paths: ["literature/huang_zahr_2022_implicit_shock_tracking_jcp454.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 4"
+  owner: "C49 implicit-tracking entry gate (manifest consumer duty; the W4 entry-gate re-evaluation waits on the full-text read per PANEL_C1REP.md PAPERS NEEDED item 2); first read establishes read-status"
+
+- id: huang_zahr_2023_companion
+  identity: "Huang & Zahr 2023, 'High-order implicit shock tracking boundary conditions for flows with parametrized shocks', arXiv:2304.11427 (companion of huang_zahr_2022; fetched 2026-08-20 per manifest addendum; wave-2 rider item, PANEL_C1REP.md §2.2). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.2,8]"
+  paths: ["literature/huang_zahr_2023_arxiv_2304_11427_companion.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 4"
+  owner: "C49 W4 entry-gate re-evaluation (manifest consumer duty); first read establishes read-status"
+
+- id: masters_etal_2017
+  identity: "Masters, Poole, Taylor, Rendall & Allen, 'Geometric Comparison of Aerofoil Shape Parameterization Methods', AIAA J, DOI 10.2514/1.J054943 (page-1 verified per MANIFEST_papers_foundations_c.md; wave-2 rider item, PANEL_C1REP.md §2.1 + PAPERS NEEDED item 1). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.1,4,13]"
+  paths: ["literature/masters_etal_2017_airfoil_parameterization_geometric_comparison_aiaaj.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 7"
+  owner: "C1 dof-budget guidance (manifest consumer duty — the 20-25-dof design-space-coverage claim awaits full-text verification); first read establishes read-status"
+
+- id: lauer_ansell_2025_pas
+  identity: "Lauer & Ansell 2025, review of parameterization methods for airfoil design, Prog. Aerospace Sci. (S0376042125000661; page-1 verified per MANIFEST_papers_foundations_c.md; wave-2 rider item, PANEL_C1REP.md §2.1, previously [TITLE] tier). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.19,30]"
+  paths: ["literature/lauer_ansell_2025_airfoil_parameterization_review_pas.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 7"
+  owner: "C1 modern layer (manifest consumer duty — upgrades the C1 modern-layer census-completeness claim from query-bounded to source-verified at read); first read establishes read-status"
+
+- id: deuflhard_2011_csm35
+  identity: "Deuflhard, 'Newton Methods for Nonlinear Problems: Affine Invariance and Adaptive Algorithms', Springer CSM 35, 2011 ed., DOI 10.1007/978-3-642-23899-4 (filename-identified per manifest, second batch 2026-08-20; wave-2 rider item, PANEL_C2021.md §4.6 + PAPERS NEEDED item 1)"
+  paths: ["literature/deuflhard_2011_newton_methods_affine_invariance_csm35.pdf"]
+  status: UNREAD
+  owner: "C20 Tier-1 band of record (manifest consumer duty); first read establishes read-status"
+
+- id: yamamoto_1986_numermath48
+  identity: "Yamamoto 1986, Newton-Kantorovich error bounds, Numer. Math. 48:91-98 (scan, page-1 VISUAL-verified per MANIFEST_papers_foundations_c.md; Gragg-Tapia/Potra-Ptak/Miel bounds). IDENTITY FLAG (declared, not adjudicated): PANEL_C2021.md §2.3 cites Yamamoto, 'A method for finding sharp error bounds for Newton's method under the Kantorovich assumptions', Numer. Math. 49 (1986) — volume 48 vs 49 discrepancy; this row follows the page-1 verification of the on-disk scan; whether the panel's vol-49 cite is this paper or a companion is settled at first read"
+  paths: ["literature/yamamoto_1986_newton_kantorovich_error_bounds_numermath48.pdf"]
+  status: UNREAD
+  owner: "C20 Tier-2 r_K strengthener (manifest consumer duty — duty executable without it, declared); first read establishes read-status and settles the vol-48/49 identity flag"
+
+- id: vanaret_leyffer_2026_uno
+  identity: "Vanaret & Leyffer, 'Implementing a unified solver for nonlinearly constrained optimization' (Uno), Math. Prog. Comp. (2026), DOI 10.1007/s12532-026-00310-9, publ. online 10 Jun 2026, 44pp, open access — uno_paper.pdf = PUBLISHED VERSION OF RECORD (USER UPLOAD 2026-08-20; page-1 verified VISUALLY; the PDF has NO TEXT LAYER, consumption requires page rendering — declared per manifest addendum); second path = the arXiv:2406.13454v2 PREPRINT of the SAME paper (same-paper multi-path dedup rule; the same-root second file is balanced by bulk_lit_uno_preprint_duplicate in the four-root arithmetic). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth uno_paper.pdf [PARTIAL-visual pp.14,16,18 (rendered; no text layer, declared)] + arXiv searchable copy [PARTIAL-pp.6,9-10,15,21]"
+  paths: ["literature/uno_paper.pdf", "literature/vanaret_leyffer_2026_uno_unified_solver_mpc_arxiv2406_13454.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 1"
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+  owner: "F2-C31-ENGINE-AB arm-B preset spec (the named flip candidate; full text needed BEFORE the O5-class install decision, PANEL_C31TRIO.md PAPERS NEEDED item 1); first read establishes read-status"
+
+- id: vanaret_montoison_2026_joss
+  identity: "Vanaret & Montoison 2026, Uno software paper, JOSS 11(123):10229, DOI 10.21105/joss.10229 (fetched 2026-08-20 per manifest addendum; DISTINCT paper from the MPC 2026 solver paper vanaret_leyffer_2026_uno — own row per the manifest's dedup call). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-pp.2-3]"
+  paths: ["literature/vanaret_montoison_2026_uno_joss10229.pdf"]
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 1"
+  owner: "C31 flip-candidate software identity (Uno solver companion); first read establishes read-status"
+
+- id: sun_nocedal_2023_noisy_tr
+  identity: "Sun & Nocedal, 'A Trust Region Method for the Optimization of Noisy Functions', arXiv:2201.00973, 34pp (page-1 verified at fetch 2026-08-20; wave-3 papers-needed ask 4, self-procured per MANIFEST_papers_foundations_c.md ADDENDUM 2)"
+  paths: ["literature/sun_nocedal_2023_noise_tolerant_tr_arxiv2201_00973.pdf"]
+  status: UNREAD
+  owner: "C34 trigger window (VERDICT_wave3 §9 ask 4: consumed deliberately at the [P-TRFLOOR] trigger)"
+
+- id: shi_xie_xuan_nocedal_2022_fd_interval
+  identity: "Shi, Xie, Xuan & Nocedal, 'Adaptive Finite-Difference Interval Estimation for Noisy Derivative-Free Optimization', arXiv:2110.06380, 39pp; published SISC 44(4) 2022 = citation of record (page-1 verified at fetch 2026-08-20; wave-3 ask 5, self-procured)"
+  paths: ["literature/shi_xie_xuan_nocedal_2022_fd_interval_estimation_arxiv2110_06380.pdf"]
+  status: UNREAD
+  owner: "F2-C44-FDSTEP duty (VERDICT_wave3 §9 ask 5)"
+
+- id: messud_etal_2021_ot_kr_misfit
+  identity: "arXiv:2101.00904, 'Optimal transport in full-waveform inversion: analysis and practice of the multidimensional Kantorovich-Rubinstein norm', 39pp — ATTRIBUTION FLAG: page-1 first author = Messud; the D1/wave-3 ask cited 'Metivier et al.' (id+title match the ask; nuance declared, settled at first read; page-1 verified at fetch 2026-08-20; wave-3 ask 8, optional non-blocking, self-procured)"
+  paths: ["literature/metivier_etal_2021_ot_misfit_arxiv2101_00904.pdf"]
+  status: UNREAD
+  owner: "C50 OT-closure optional enrichment (VERDICT_C50_form2 census note: would raise OT-closure reason 3 to [FULL]; non-blocking)"
+
+# --- (ii) WAVE-2 REGISTRATION RIDER (VERDICT_wave2.md §4.15) —
+# --- WANTED tier per procurement discipline; identities at the
+# --- panels' declared depths, census-cited, no read claims ---
+
+- id: wanted_conn_gould_toint_trm
+  identity: "Conn, Gould & Toint, 'Trust-Region Methods' (book; §11 nonsmooth is the cited target) — census identity at the panel's cited depth, NO year/venue stated in the panel text (PANEL_C31TRIO.md §4.4, 2026-08-19; identity flag declared at landing)"
+  paths: []
+  status: WANTED
+  owner: "f2-c31-engine wave-2 registration rider (VERDICT_wave2.md §4.15) — [P-BSTAT] companion; census-cited identity, no read claim"
+
+- id: wanted_nadarajah_jameson_2000
+  identity: "Nadarajah & Jameson, AIAA-2000-0667 (discrete-vs-continuous adjoint canon; + Stanford thesis lineage) — census identity at abstract level (PANEL_C31TRIO.md §2.2/§4.4, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c31-engine wave-2 registration rider (VERDICT_wave2.md §4.15) — C56 evidence leg; census-cited identity, no read claim"
+
+- id: wanted_warp_ip_warmstart_2026
+  identity: "WARP benchmark for primal-dual warm-starting of interior-point solvers, arXiv:2605.05728 (2026) — 'first systematic diagnosis of why primal-only warm-starts fail'; SEARCH-LEVEL provenance declared (refuter counter-search, refute_C31TRIO.md RC31T-3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "[P-IPADJ] warm-start item + F2-C31-ENGINE-AB arm-A design (RC31T-3 amendment carried by VERDICT_wave2.md §4.15); census-cited identity, no read claim"
+
+- id: wanted_dual_shifted_ipm_coap_2023
+  identity: "Dual-shifted projected-search interior-point method, COAP, DOI 10.1007/s10589-023-00549-1 (2023/24) — 'shifts on the dual variables allow the method to be safely warm-started'; SEARCH-LEVEL provenance declared (refute_C31TRIO.md RC31T-3, 2026-08-19; authors to be settled on the PDF)"
+  paths: []
+  status: WANTED
+  owner: "[P-IPADJ] warm-start item + F2-C31-ENGINE-AB arm-A design (RC31T-3 amendment carried by VERDICT_wave2.md §4.15); census-cited identity, no read claim"
+
+- id: wanted_conic_ipm_central_path_2025
+  identity: "Central-path smoothing warm-start for conic IPM, arXiv:2512.00693 (Dec 2025) — SEARCH-LEVEL provenance declared (refute_C31TRIO.md RC31T-3, 2026-08-19; title/authors to be settled on the PDF)"
+  paths: []
+  status: WANTED
+  owner: "[P-IPADJ] warm-start item + F2-C31-ENGINE-AB arm-A design (RC31T-3 amendment carried by VERDICT_wave2.md §4.15); census-cited identity, no read claim"
+
+- id: wanted_kulfan_cst_2008
+  identity: "Kulfan 2008, CST (class-shape transformation) universal parametric geometry chart — census identity at the panel's cited depth ('Kulfan CST (2008)', NO venue stated in the panel text; PANEL_C1REP.md §4 rider + W-gate adjudication [ABS], 2026-08-19; identity flag declared at landing)"
+  paths: []
+  status: WANTED
+  owner: "f2-c1 wave-2 registration rider (VERDICT_wave2.md §4.15 + PANEL_C1REP.md §4) — rejected-at-its-best citability for the C1 chart adjudication (few-dof strength quarantined to the exploration tier); census-cited identity, no read claim"
+
+- id: wanted_hicks_henne_1978
+  identity: "Hicks & Henne 1978, sine-bump airfoil shape parameterization (the classical ASO workhorse) — census identity at the panel's cited depth ('Hicks-Henne (1978)', NO venue stated in the panel text; PANEL_C1REP.md §4 rider + W4 adjudication [ABS], 2026-08-19; identity flag declared at landing)"
+  paths: []
+  status: WANTED
+  owner: "f2-c1 wave-2 registration rider (VERDICT_wave2.md §4.15 + PANEL_C1REP.md §4) — rejected-at-its-best citability for the C1 chart adjudication; census-cited identity, no read claim"
+
+- id: wanted_mdg_ice_2311_00701
+  identity: "MDG-ICE (Corrigan-Kercher-Kessler line), hypersonic viscous flows, arXiv:2311.00701 (2023) [TITLE/ABS] — census identity (PANEL_C1REP.md §2.2 + §4 rider, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c1/c49 wave-2 registration rider (VERDICT_wave2.md §4.15) — implicit-tracking upgrade-path census leg; census-cited identity, no read claim"
+
+- id: wanted_onofri_paciorri_2017_book
+  identity: "Onofri & Paciorri (eds.), 'Shock Fitting: Classical Techniques, Recent Developments, and Memoirs of Gino Moretti', Springer 2017 (book) — census identity at abstract level (PANEL_C1REP.md §2.2 + PAPERS NEEDED item 4, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "C49 absence-claim upgrade (the 'no adjoint story in the unstructured-fitting line' claim upgrades from query-bounded with the book's survey chapters); procurement priority BELOW the other C1REP asks per the panel's own print; census-cited identity, no read claim"
+
+- id: wanted_dfo_competitive_2505_09088
+  identity: "'Derivative-free optimization is competitive for aerodynamic design optimization in moderate dimensions', arXiv:2505.09088 (2025) [TITLE tier] — census identity (PANEL_C1REP.md §2.2 axis 4, 2026-08-19; also cited by PANEL_C31TRIO.md §4.5 unminted candidate row)"
+  paths: []
+  status: WANTED
+  owner: "f2-c1 wave-2 registration rider (VERDICT_wave2.md §4.15) — exploration-tier (axis 4) citability; census-cited identity, no read claim"
+
+- id: wanted_kantorovich_1948
+  identity: "Kantorovich 1948 — the ROOT OBJECT of the Newton-Kantorovich semi-local convergence school (theorem constants h = eta*omega <= 1/2, rho_- = (1 - sqrt(1-2h))/omega); census identity at theorem-statement level, NO title/venue stated in the panel text (PANEL_C2021.md §2.3/§4.6, 2026-08-19; identity flag declared at landing)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15 + PANEL_C2021.md §4.6); census-cited identity, no read claim"
+
+- id: wanted_ferreira_svaiter_kantorovich
+  identity: "Ferreira & Svaiter, 'Kantorovich's Theorem on Newton's Method', arXiv:1209.5704 (RE-VERIFIED at source in the panel window) — majorant-function proof defining 'good regions' + an INVARIANT SET for Newton iteration (the seed-ball form C21 needs); census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — Tier-2 Kantorovich seed-ball form; census-cited identity, no read claim (openly hosted per the panel — cheap fetch at the next lit window)"
+
+- id: wanted_ferreira_goncalves_svaiter_robust
+  identity: "Ferreira-Goncalves-Svaiter, robust-Kantorovich line for INEXACT Newton, arXiv:1110.3430 [ABS] — the explicitly 'robust' companion of the Ferreira-Svaiter line (reconcile repair of record, PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — inexact-Newton companion of the seed-ball form; census-cited identity, no read claim"
+
+- id: wanted_hauenstein_sottile_2012
+  identity: "Hauenstein & Sottile, alphaCertified (Algorithm 921), ACM TOMS 38(4), 2012 — Smale alpha-theory certificates for polynomial-system solutions, the canonical point-estimate certifier; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — alpha-theory certifier canon; census-cited identity, no read claim (author preprint openly hosted per the panel)"
+
+- id: wanted_breiding_rose_timme_2023
+  identity: "Breiding, Rose & Timme, 'Certifying zeros of polynomial systems using interval arithmetic', ACM TOMS 2023 (arXiv:2011.05000; RE-VERIFIED at source in the panel window) — Krawczyk-method certification built into HomotopyContinuation.jl certify, one-sided semantics; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — Tier-2 Krawczyk referee anchor ([X-IVXC] line); census-cited identity, no read claim"
+
+- id: wanted_issac_2024_krawczyk_tracking
+  identity: "'Certified homotopy tracking using the Krawczyk method', ISSAC 2024 (arXiv:2402.07053) — a-priori certified tracking, Krawczyk-based; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15); census-cited identity, no read claim"
+
+- id: wanted_icms_2024_interval_alpha
+  identity: "'Effective Alpha Theory Certification Using Interval Arithmetic: Alpha Theory over Regions', ICMS 2024 (arXiv:2405.04842; LNCS ch. 978-3-031-64529-7_29) — alpha certificates over regions via interval arithmetic; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15); census-cited identity, no read claim"
+
+- id: wanted_farrell_birkisson_funke_2015
+  identity: "Farrell, Birkisson & Funke, deflation techniques for finding distinct solutions of nonlinear problems, SISC 2015 (arXiv:1410.5620) — census identity at abstract level (PANEL_C2021.md §2.3/§4.6, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — deflation/branch-switching axis B; census-cited identity, no read claim"
+
+- id: wanted_signed_sigma_min_2208_05954
+  identity: "'Spatially quasi-periodic bifurcations from periodic traveling water waves and a method for detecting bifurcations using signed singular values', arXiv:2208.05954 (2022; RE-VERIFIED at source in the panel window) — SIGNED sigma_min fold test function, smooth through the fold, admits root bracketing; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — the modern form of the V-F7 fold monitor; census-cited identity, no read claim"
+
+- id: wanted_nurkanovic_2019_asrti
+  identity: "Nurkanovic et al., 'The Advanced Step Real-Time Iteration for NMPC' (2019) — predictor-corrector RTI variant with strengthened contraction guarantees; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — F-C21-2 replay-ball condition form (RTI anchor); census-cited identity, no read claim"
+
+- id: wanted_automatica_2021_memory_warmstart
+  identity: "'Online learning with stability guarantees: memory-based warm starting for real-time MPC', Automatica 2021 — warm-start validity as a first-class guaranteed property; census identity at abstract level (PANEL_C2021.md §2.3, 2026-08-19; authors to be settled on the PDF)"
+  paths: []
+  status: WANTED
+  owner: "f2-c20/c21 seed-validity program, wave-2 registration rider (VERDICT_wave2.md §4.15) — F-C21-2 replay-ball condition form (warm-start guarantees anchor); census-cited identity, no read claim"
 
 # ---------------------------------------------------------------
 # BULK CLASS ROWS — non-paper files, counted exactly (glob-free:
@@ -940,3 +1234,10 @@ bulk:
   count: 33
   covers: "literature_review/INDEX.md (procurement index + 3-clause lint contract) + literature_review/lint_index_consistency.py (armed lint, duty D-14) + literature_review/reports/ 31 md (25 per-paper expert reads, VERIFICATION_FABLE_2026-08-13.md, 00_APPARATUS_BRIEF.md, and the 4 REFUTE_A..REFUTE_D convergence-round refuter reports)"
   note: "The reports are the where-read anchors of record for every root-D row above; not papers themselves. Count ratcheted 29 to 33 on 2026-08-13 (S-ORDINE T2 lint step) when the four REFUTE_* refuter reports, landed after the S6 build, were folded in."
+
+- id: bulk_lit_uno_preprint_duplicate
+  class: preprint-duplicate
+  root: A
+  count: 1
+  covers: "literature/vanaret_leyffer_2026_uno_unified_solver_mpc_arxiv2406_13454.pdf — the arXiv:2406.13454v2 PREPRINT of the published uno_paper.pdf; both files live in the ONE paper row vanaret_leyffer_2026_uno per the same-paper multi-path dedup rule"
+  note: "Arithmetic balance row (C3 block-0, 2026-08-20): the coverage lint counts one row per root regardless of how many same-root paths the row carries; this row balances the second same-root file so root A reconciles at discrepancy 0 without splitting one paper into two rows."

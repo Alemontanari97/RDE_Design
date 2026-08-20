@@ -521,3 +521,7 @@ The six per-hypothesis verdicts above are hereby upgraded from
 verification layer. The binding refuter amendments (citation
 corrections, monitor additions M8, Liu-2022 census insertions)
 remain binding as stated.
+
+---
+
+[COVERAGE RETRO-UPDATE 2026-08-20, C3 landing: the audit's 12-hypothesis coverage accounting (carried at SESSION_STATE_checkpoint.md "Coverage: 12 hypotheses == 10 covered + 2 partial (GEOM→census-lemma F2-exit agenda; S1→phaseD proofs + C49)" — this file's own tables cover the six confronted bundles and list no S1 row, wording adapted accordingly) has its S1 agenda halves CONSUMED — [T-T0P] main landed in M0 (C2 landing, VERDICT_doc1_rev10 dry) and C49 adjudicated TWO-TIER of record (VERDICT_wave2.md §2.7/§4.8, fitted = sole certificate bearer); GEOM row unchanged (census-lemma F2-exit pin)]

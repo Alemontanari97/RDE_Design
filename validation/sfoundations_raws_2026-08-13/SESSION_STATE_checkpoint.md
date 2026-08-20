@@ -1,10 +1,420 @@
-# S-FOUNDATIONS SESSION STATE — live checkpoint (2026-08-17)
-# [CLOSE EXECUTED same day: all three workflows landed + judged;
-# LG-1 + C-4 deliveries + §2 mints + coverage-gate repairs consumed;
-# gate FINAL = PASS-WITH-CONSUMED-REPAIRS; ORA/NEXT rewritten, R35 =
-# CONSUMED-with-declared-split; env diff EMPTY; session C prompt
-# committed. THIS FILE now serves session C's opening (its Blocco 0
-# reads it integrally).]
+# S-FOUNDATIONS SESSION STATE — live checkpoint
+# REWRITTEN FRESH at C3 open (2026-08-20, per AG-5): C3 live state on
+# top; the ENTIRE C/C2 history preserved UNCHANGED below the ARCHIVE
+# marker (in-place archive, SR-10 spirit). Authority order:
+# registries/lints > this file > conversational memory.
+
+## ========== C3 CLOSED (2026-08-20) — BOUNDARY ==========
+## WAVE 3 + depth D1/D2 + retro-sweep + confirm-2 + landing ALL
+## CONSUMED (ledger 58 = 12/36/2/8; VERDICT_C50_form2 = C50
+## authority; CR-W3-R10-1 repaired in M0; C58 minted; SR-4 resolved
+## 158->52; Uno dossier full-read 44/44 with §6 CONFRONT =
+## NO-CHANGE-experiment-still-decides). O5 EXECUTED at boundary
+## (numpy 2.5.2; suite 23/23 PASS 305 s EXIT 0 on the new env; env
+## diff = numpy only, declared). Session log + C4 prompt COMMITTED
+## this window; ORA/NEXT rewritten (outgoing archived SR-10); R35
+## row updated in place; index 103 file rows + 4 block rows == disk
+## (lint PASS). Harroun c_F method verified verbatim at source
+## (user challenge; log records it). C4 OPENS from: C4 prompt +
+## this checkpoint (C3 blocks below = history per AG-5 convention;
+## C4 rewrites fresh with archive in place). USER ITEMS OPEN:
+## Lean decision + 3 paper asks + ADR-D4/P-1 calendar calls
+## (HANDOFF block in the session log).
+## ============ SESSION C3 LIVE STATE (2026-08-20) ============
+## R2 OPENING + PRE-EXECUTION GATE — VERDICT OF RECORD (clause D:
+## this block is the file carrier; basis = measured commands this
+## window):
+## (A) PLAN ADHERENCE: session = R35 S-FOUNDATIONS-C3; carrier =
+## ADVISORY_SfoundationsC3_prompt_2026-08-19.md (committed) + C2
+## prompt rules (all standing) + this checkpoint; tasks map 1:1 onto
+## PROGRESS NEXT (Blocco 0 rider+touchpoint+papers -> WAVE 3 ->
+## Blocco 2 Fase D remainder -> Blocco 3 chiusura R3). No orphan step.
+## (B) UPSTREAM RIGOR: authorities of record not re-litigated
+## (VERDICT_wave1/wave2 + supplement + confirm_repairs_wave2 +
+## VERDICT_doc1_rev10); anchors verified this window: [T-T0P] present
+## in M0 (6 hits, grep); wave-3 ledger rows present (C34:489 C35:499
+## C36:509 C41:562 C42:575 C43:585 C50:667, measured).
+## (C) VERDICT: **GO** with ONE declared deviation — HEAD 1fd5a4d !=
+## the C3 prompt's expected close-C2 commit (84b15a4); RECONCILED: the
+## 5 post-close commits are ALL [PIANO/R35]-tagged self-declared
+## addenda of the C2 close (78bc6b7 C57 rival-paradigm arm; 0787c53 +
+## 2b7ea51 double lint/honesty repair -> gate clause F minted;
+## c928386 SOTA-default directive + the explicit C3-opens-here note;
+## f46d707 Uno gitignore; 1fd5a4d papers arrival). Author check
+## measured (git log %an): no foreign commits. 3 stray owner files
+## untouched.
+## (E) VERIFICATION DEPTH DECLARED AT PLAN TIME (per class):
+## wave-3 constants family C34/35/36/41/42/43 = ONE cluster panel,
+## per-row verdicts, wave judge; C50 = Form-2 solo (two blind
+## formalizers as advocates); convergent batch C4/C17-C18/C24/C25/C38
+## = single verification + fused PER-ROW refuter; remainder rows =
+## per owner (F3/F4b/F5-owned EXCLUDED here by prompt); single-author
+## halves = meta-panel; CONFIRM-ON-REPAIRS instance 2 ALWAYS-ON
+## (instance 1 CAUGHT CR-W2-1 => sunset does NOT fire — declared)
+## with scope EXTENDED to doc1's 4 applied repairs (AG-2); escalation
+## rule = any surviving content objection -> full form; Blocco 2
+## centerpiece T-DISC/T-RED/M-RED = until-dry FULL (refined dry
+## criterion; judge adjudicates amendments); minors (NTF, OBJ-DOM,
+## delta-carrier sequenced w/ bound-ladder:constraint-aware-rungs-
+## missing, cross-lowering derivable part) = ONE refuter round +
+## auto-escalation; Blocco 3 ledger 141 fork = Sonnet mechanical
+## lint-gated (ratified slot; Fable for ANY judgment); coverage gate
+## = full per-category zero arithmetic + dual-seeded adversarial
+## critic + orchestrator-acts-file-carrier sweep. SEED LAYER: pool
+## unchanged (Fable refuters) => NO re-seed per SEED_PROTOCOL_v3 PASS
+## + per-pool rule; any new pool = new pair + rule-7 pre-audit.
+## (F) verdicts read-then-quote: binding on every commit/log/claim
+## line this session (minted 2026-08-20, gate-pre-esecuzione (F)).
+## COUNTS MEASURED IN-WINDOW (SR-12; Select-String id-row counts,
+## status grouping, token/family grep): choice 57 / findings 244
+## (202 open = 180 CONFIRMED + 22 DOWNGRADED) / claims 150 / glossary
+## 173 entries + 40 families / lit 103 — ALL match closeC2 expected.
+## ENV: pip freeze DIFF EMPTY vs env_fingerprint_closeC2.txt (29
+## pkgs); open fingerprint saved as env_fingerprint_openC3.txt.
+## (First pip-list diff showing pip==26.1.2 adjudicated = command
+## artifact: pip list includes pip itself, pip freeze is the record
+## convention — env UNCHANGED.)
+## BLOCK-0 DUTIES (queue of this window):
+## (a) wave-2 lit rider (~25 identities, VERDICT_wave2 §4.15,
+## identity-fidelity from panel texts) + 13-PDF arrival registration
+## (MANIFEST page-1-verified) = ONE landing-mechanic agent,
+## lint-gated. ROOT DECISION (orchestrator, declared, reversible):
+## the 13 PDFs MOVE to literature/ (root A) — no fifth root minted;
+## root-A reconciliation in the registry header updated by measured
+## ls; MANIFEST relocated to this raws dir as the arrival record.
+## (b) TOUCHPOINT UTENTE = CONSUMED THIS WINDOW (2026-08-20, all
+## answers of record; carrier = PROGRESS BLOCCATO rows 9+15 updated
+## in place same window): BLOCCATO 9(a) re-bless 242.5 constrained /
+## 9(b) keep trunc 0.20 — execution structurally gated to the ADR-D4
+## implementation window (R1: no orphan execution in C3); O5 numpy
+## 2.5.2 = ADOPT AT C3 CLOSE (boundary install + re-fingerprint +
+## suite re-check; env untouched until then); Lean pricing = present
+## WITH dossier at C3 R3 close; S-5F = DEFERRED to F2-entry (stays
+## SCHEMA; stratified-gap row trigger stays armed; dossier presented
+## with B1-B5 + fork); C51 = stays rung-3a in F2; G9 slip-sheet =
+## DEFERRED to F2-entry; AG-1 = ADOPTED standing rule (gap-accounting
+## rows get sufficient-not-optimized treatment EARLY; binding from
+## Blocco 2; memory mint this window); usage meter = USER-DECLARED
+## FRESH (<25%) => wave 3 full form authorized (7f honored).
+## (c) papers-needed residue: CONSUMED THIS WINDOW — Uno published
+## paper = USER UPLOAD (uno_paper.pdf, page-1 verified visually, NO
+## text layer declared) + fetched arXiv:2406.13454v2 preprint + JOSS
+## 10229 + arXiv:2304.11427 (Huang-Zahr companion); Becker-Rannacher
+## 2001: my fetch FAILED (paywalled, declared) but the USER UPLOADED
+## it same window (literature/becker_rannacker.pdf, page-1
+## text-verified: Acta Numerica (2001) pp. 1-102, 102 pp) — the
+## papers-needed list is FULLY CONSUMED except the 10 historical
+## hard-procurement WANTED rows. Root A measured 14 -> 32 PDFs (18
+## arrivals total; rider agent NOTIFIED via SendMessage: register ON
+## DISK/UNREAD, owner C11/DWR canon).
+## USER REMINDER OF RECORD (2026-08-20, folder map): literature/ =
+## root A (repo, PDFs of record, untracked binaries; NOW 31) and
+## literature_review/ = root D (repo: the 25 integral-read review
+## PDFs + INDEX.md + lint_index_consistency.py + 31+ reports) are
+## DISTINCT roots — registry header carries the reconciliation; new
+## arrivals land in root A, root D stays the litreview corpus.
+## RIDER DONE (1 slot Fable, ~0.15M, 49 tool uses): 34 rows minted
+## (12 UNREAD arrivals + 21 WANTED rider + 1 bulk) + 8 upgrades
+## in place (5 WANTED->UNREAD incl. becker_rannacher; thakur
+## journal-version note; root-A header rewritten measured 32==31+1);
+## 9 rider identities dedup-skipped to arrival rows; 7 identity
+## flags declared in-row; lit lint PASS read-then-quoted (128
+## entries, 0 violations, 4/4 seeded rejectors fired); invocation
+## deviation declared (pytest absent from pinned env -> stdlib
+## direct run). Report: blocco3/RIDER_wave2_lit_landing.md.
+## RESIDUE for close window: registry header root-D prose line
+## stale (58 vs 59 measured; CF_ASO arrival 2026-08-14) — one-line
+## measured fix rides the R3 close; lint already reads live disk.
+## BLOCK 0 = FULLY CONSUMED (gate GO + counts + env + rider +
+## touchpoint + papers). WAVE 3 briefs authored this window:
+## blocco3/BRIEF_wave3_panels.md + BRIEF_wave3_refuter_judge.md
+## (6 slots FAM/C50/CONV/REMMARCH/REMENG/REMPOL; §0/§0-bis/§0-ter
+## binding by reference; AG-1 valve + arrivals-on-disk + authority
+## non-relitigation clauses added; confirm instance 2 ALWAYS-ON with
+## AG-2 retro-scope on the 4 doc1 repairs; dry criterion refined).
+## IN FLIGHT: wave-3 workflow wf_662d80e1-846 (task w790cnrv8;
+## 6 panels -> 6 fused refuters pipelined -> wave judge -> confirm
+## instance 2 = 14 slots; pool unchanged Fable => no re-seed per
+## SEED_PROTOCOL_v3 + per-pool rule; meter user-declared fresh <25%
+## => full form authorized; Blocco 2 SERIALIZED after wave 3 by
+## orchestration rule 7a/7b — no concurrent heavy launches — AND by
+## the content seam C18/C34-C35 <-> NTF derivation).
+## BLOCCO-2 BRIEF AUTHORED this window (orchestrator-only while
+## wave 3 runs): blocco3/BRIEF_blocco2_phaseD.md — centerpiece
+## R22-F until-dry FULL (author -> 2 lenses L0 variational/
+## asymptotics + L1 PDE/hyperbolic -> reviser, cap 4, refined dry
+## criterion, closure judge VERDICT_r22f.md; spec = the
+## theory:r22-formal-decomposition magnitude field; T-DISC/T-RED
+## land in M0 w/ rigor class, M-RED spec derived bands, R22-CFD
+## re-scope = user dossier not a decision) + 4 minors one-round+
+## escalation (NTF theory half w/ wave-3 FAM seam; [OBJ-DOM] fix-A/
+## fix-B; delta-carrier lemma sequenced w/ bound-ladder rungs row;
+## cross-lowering derivable part) + one Blocco-2 judge
+## (VERDICT_blocco2.md with landing list; orchestrator lands).
+## SELF-IMPROVEMENT ACTS 2026-08-20 (user-invited review, executed
+## in-window): (1) root-D header prose line FIXED with measured
+## recount (59 == 26 PDF + 2 + 31 reports; lint re-run PASS
+## read-then-quoted: 128 entries, disk 32/47/77/59, 0 violations) —
+## rider flag consumed early per never-postpone; (2) JUDGE-STRAIN
+## CRITERION PRE-REGISTERED (clause-E act, declared BEFORE the
+## wave-3 judge runs): the wave-3 judge covers 6 panels + 6
+## refutations (2x the wave-1/2 load); at verdict delivery the
+## orchestrator checks per-row adjudication depth on the REM
+## clusters — CRITERION: every refuter attack classified
+## sustained/overruled with stated reason; any row whose named
+## attacks are left unadjudicated or blanket-dismissed = JUDGE
+## STRAIN, and that slot's rows get a dedicated second judge pass
+## (split-judge escalation) before landing. Pre-registered so the
+## check cannot be waived post-hoc.
+## DEPTH UPGRADES (user order 2026-08-20 "più profondità su C50 e
+## sui punti critici"; carrier = blocco3/BRIEF_wave3_depth_addendum
+## .md, NEW file — in-flight briefs frozen): D1 = C50 FULL FORM-2
+## escalation post-VERDICT_wave3 (advocate-PDE + advocate-DATA live
+## steelmen + dedicated C50 closure judge; VERDICT_C50_form2.md =
+## the C50 landing authority, supersedes the wave-3 delta if it
+## differs); D2 = REM depth pass UNCONDITIONAL (attack-ledger
+## verifier over all 20 REM rows; GAP rows not landable until the
+## split-judge re-pass); D3 = declared non-upgrades (no finder
+## re-runs, no re-seed, AG-4 untouchable inside the model pin —
+## user boundary call if ever). CENTERPIECE upgraded to THREE
+## refuter lenses (L0 variational / L1 PDE / L2 asymptotics-measure,
+## per the mandate row's own owner spec; BRIEF_blocco2_phaseD.md
+## edited pre-launch — legal, not yet in flight). Wave-3 status at
+## this edit (measured, file mtimes): 6/6 panels DONE on disk,
+## refuters 2/6 done (CONV, C50), judge not started.
+## RETRO-SWEEP LAUNCHED (user question 2026-08-20 "nulla di
+## retroattivo?"; instrument = census clause 9(e) delta-sweep at
+## ARRIVAL time + point-8 retroactive reading lens; brief =
+## blocco3/BRIEF_retro_sweep_arrivals.md, 1 agent in flight,
+## disjoint files from wave-3): 7 check pairs (Uno+BHN vs C31
+## premises/falsifiers; Hicken-Zingg vs F11d pin; Becker-Rannacher
+## vs C11; Thakur+Huang-Zahr vs C9/C49 gates; Venditti-Darmofal vs
+## estimator-class attribution; Fidkowski canon; Masters+PAS vs C1
+## duty), 4 exclusions declared with reason. Output verdicts ONLY
+## CONSISTENT/TENSION/ENRICHMENT — tensions enter via the rows' own
+## pinned falsifier protocols, never hand re-opening. Its
+## read-status promotions ride the landing.
+## RETRO SCOPE EXTENDED (user clarification: retroactivity over the
+## WHOLE committed S-FOUNDATIONS chain): retro-sweep agent gained
+## PAIR 8 (18 arrivals vs the committed proof layer [T-T0P]/
+## [T-T0P-E]/L4R1/mean-swirl/D.18/[T-XWS] — measured no-bearing
+## instead of assumed) + PAIR 9 (known-wrong-cite chain grep:
+## 2009.07096/Lozano, Hicken JCP-250, stray C52-as-C56; report-only)
+## via SendMessage same window. LANDING CHECKLIST addition: hyp-audit
+## COVERAGE TABLE retro-update — its S1 row was 'partial: phaseD
+## proofs + C49'; C49 is NOW adjudicated (wave-2 TWO-TIER) and
+## [T-T0P] landed => mark the S1 coverage half consumed with
+## anchors; GEOM row unchanged (census-lemma F2-exit). Standing
+## retro instruments of the chain, for the record: (1)
+## orchestrator-acts file-carrier sweep = Blocco-3 coverage-gate
+## dimension (row exists, fires this session); (2) confirm-on-
+## repairs retro-instances (1: wave-1 11 repairs; 2 in flight:
+## doc1 4 repairs); (3) falsifier-mediated re-entry (pinned per
+## row, never hand re-opening); (4) freshness delta-sweep 9(e) =
+## the retro-sweep agent. Phase A/B trees predate the census
+## protocol BY DESIGN (blind derivations, not censuses — §0-ter
+## inapplicable; their consumption is re-verified per-row by panels
+## + refuters at cite time, declared).
+## RETRO-SWEEP DONE (1 agent ~0.21M, 54 tool uses; report =
+## blocco3/RETRO_SWEEP_arrivals.md; 9 pairs, 0 verdict changes
+## proposed — discipline held): 1 TENSION naming-level (wave-2 C31
+## text says arm-B "Uno (filterSQP/funnel preset)"; published Uno
+## 2.2.0 par.5.2 = presets filtersqp/ipopt ONLY, funnel = an
+## options-selected globalization strategy, not a preset; NO
+## falsifier fires — wording rider E2 lands with the C31 note at
+## the landing window under the row's own protocol); WORDING
+## CORRECTION 2026-08-20 (user challenge on read-depth honesty,
+## sustained): PAIR-8 below is a SCREEN at declared depth
+## (abstract/identity + one bearing-reason per paper), NOT a
+## full-read measurement — the earlier "measured" wording was
+## above held depth; the screen's value = the no-bearing claim is
+## explicit and attackable instead of assumed; residual risk
+## (deep-buried relevance invisible at screen depth) priced by
+## materiality and re-opened by any consuming window's own read;
+## 8 enrichment
+## one-liners E1-E8 (equation-level BHN anchors, H-Z Definition-1
+## F11d bookkeeping, B-R par.5.1 menu for C11 leg (b), C49 gate
+## audit items + thakur journal identity, V-D prolongation warning,
+## F-D Duraisamy support for C56 role split, Masters dof-budget
+## prior for the C1 duty) = landing deltas; PAIR-8: 18/18 papers
+## measured ZERO bearing on the committed proof layer; PAIR-9: 1
+## wrong-cite family surviving (C52-as-C56 in PANEL_C9C11_
+## SUPPLEMENT.md x3, superseded-upstream non-load-bearing) ->
+## ANNOTATED IN PLACE this window (header re-key annotation);
+## 2009.07096 + Hicken-JCP250 verified clean everywhere else.
+## READ-STATUS PROMOTIONS EARNED: 15 papers -> [PARTIAL-<pages>]
+## (list in the report's machine summary; lit-registry rows flip at
+## the landing with where_read = RETRO_SWEEP_arrivals.md anchors).
+## WAVE-3 VERDICT ON DISK (05:27, 907 lines): 33/33 rows, 76
+## findings adjudicated, 0 BREAKS / 21 repairs / 39 amendments
+## sustained, 0 refuter findings overruled, escalations-by-rule
+## ZERO (structural D1/D2 only), candidate new rows 0, papers
+## needed 9 consolidated. Confirm instance 2 IN FLIGHT (scope = the
+## 21 repairs + 4 doc1 retro).
+## WAVE-3 WORKFLOW COMPLETE (14/14, 0 errors, ~2.11M tok, 501 tool
+## uses, ~54 min; SR-9). CONFIRM INSTANCE 2 = CAUGHT AGAIN (stage
+## 2/2 catches -> ALWAYS-ON standing beyond question): 21/21 wave-3
+## repairs verbatim-faithful, 34 anchors re-verified at source,
+## 0 broken repairs, 0 rows re-opened; sustained 0 breaks / 1
+## REPAIR / 1 amendment / 2 notes. THE REPAIR (CR-W3-R10-1,
+## adjudicator = orchestrator-on-file): the C2 doc1-landing block
+## claimed the [T-XWS] retro-annotation at the M0 Part-II site —
+## search-proven ABSENT there (landed only in claims + transfer
+## doc). ADJUDICATED AND FIXED THIS WINDOW (preferred option):
+## one-line (a')/C-XBVP-aprime retro-annotation added at the M0
+## :213 [T-XWS] site with CR-id provenance; claims lint re-run
+## PASS read-then-quoted (0 violations, exit 0). CR-W3-1 (C14
+## anchor splice) + CR-W3-2 (2 anchor nits) ride the landing list.
+## D1+D2 LAUNCHED: workflow wf_e036a59d-243 (task wy0905ov1; 4
+## slots: advocate-C50-pde + advocate-C50-data + REM-depth verifier
+## parallel -> dedicated C50 judge; advocates consume the
+## confirm-VERIFIED repair texts by brief order).
+## USER QUESTION OF RECORD (2026-08-20): is the AD/JAX foundation
+## over-engineering/stylistic, or a SOTA-answering choice? ANSWER
+## ADJUDICATED ON THE RECORD (orchestrator, this window; navigation
+## -first, G0 dossier re-read): axis 1 gradient-vs-adjoint-free =
+## covered (directive axis 4 closed per-row waves 1-2 + C57 +
+## rival-paradigm pilot arm); axis 2 adjoint realization = C56
+## CLOSED 3/3 roles w/ F11d residue; axis 3 JAX-framework = G0
+## (2026-07-17) DECIDED on executable evidence (52/52 derived-tol
+## Jacobian rejector; adjoint overhead 1.5% measured = the
+## affordability argument; X-GENOXC 218/218 w/ negative controls)
+## + armed loop-speed falsifier that the S25/S25-bis MET program
+## then did NOT fire. HONEST GAP (form): G0 predates the
+## choice-adjudication directive + census protocol; only 2
+## alternatives weighed with exercised-vs-unexercised asymmetry;
+## NO ledger row exists for the foundation choice (grep-verified,
+## only C56 touches the stack). REMEDY DECLARED: (1) LANDING LIST
+## ADDITION — mint ledger row C58 "differentiable-stack foundation:
+## AD-exact-gradient (JAX custom_vjp) vs hand-coded adjoint vs
+## AD-other-framework (Julia/Enzyme, Fortran+Tapenade, 2026
+## landscape) vs gradient-free foundation", status MIXED (G0 half
+## DECIDED-on-criteria w/ falsifier armed-and-not-fired; modern-
+## census half NEVER), owner = F2 entry engine window (same
+## decision surface as C31 A/B — a framework flip is only
+## actionable there), adjudication form = one census+refuter panel
+## as 9(e) delta-sweep of G0 vs the 2026 landscape; dedup at mint.
+## (2) Materiality declared: no live defect — armed falsifier
+## silent + C56/C57 cover the load-bearing axes; the gap is
+## census-form, priced at one F2 panel, not a C3 re-run.
+## USER RE-ANCHORING (2026-08-20, binding on the C58 row text at
+## mint): C58 is NOT an isolated G0 delta-sweep — its ENTRY
+## CONTRACT = the freshly adjudicated corpus (C56 one-lowering
+## discrete-AD weight + F11d duty, C31 A/B + information-only
+## multiplier discipline, C32/C33 curvature pins, C57 adjoint-free
+## tier, C9/C11 estimator architecture, engine:cross-lowering
+## rows): every framework alternative is weighed against the
+## OBLIGATIONS those verdicts created; question re-anchored from
+## G0's "can we get exact gradients affordably" (answered,
+## measured) to "which foundation best realizes the ADJUDICATED
+## architecture"; a C58 flip re-enters consuming rows ONLY via
+## their pinned falsifiers.
+## GRANULARITY GENERALIZATION (user: "OGNI significa ogni"): new
+## Blocco-3 COVERAGE-GATE CATEGORY — FOUNDATION-CHOICE ENUMERATION:
+## enumerate stack-level algorithmic decisions (float64 precision
+## policy, tabulated-thermo backend beyond C24 closure scope,
+## file-exchange interop, lowering policy, emerged others) -> each
+## has a ledger row or declared home, zero-arithmetic, dual-seeded
+## critic attacks the enumeration itself (C49/C56/C58 = the three
+## caught instances of the no-row class; the sweep makes the class
+## machine-checked).
+## PIPELINE DECISION MAP (user directive 2026-08-20 "connettere i
+## vari punti... l'intera pipeline con le sue ramificazioni
+## decisionali"): NEW DELIVERABLE at the wave-3 landing window —
+## docs/rde_nozzle_pipeline_decision_map.md: the end-to-end working
+## pipeline (data contract -> representation -> march/unit
+## processes -> certificates/qualification -> estimator/bands ->
+## optimizer/engine -> aggregation/frontier -> verdict) with EVERY
+## decision branch-point annotated: adjudicated choice of record +
+## rigor/status enum + conditions/falsifiers + open F2 duty +
+## cross-row dependency edges (the wave notifications). Authored
+## by ONE synthesis agent from the ledger/verdicts (cite-only,
+## zero new adjudication) + ONE refuter verifying every edge/
+## citation (the map is a claim object — dual-proof applies);
+## indexed + registry row same window; becomes the F2-entry
+## carrier map. Sequenced AFTER the wave-3 landing (map cites
+## final landed texts, not pre-landing drafts).
+## D1+D2 COMPLETE (wf_e036a59d-243, 4/4, ~0.48M; SR-9): D2 REM
+## depth ledger = 20/20 rows COMPLETE, 38/38 dispositions with
+## stated reason, ALL 5 flag classes ZERO, gap_rows [] => NO
+## split-judge re-pass, judge-strain criterion PASSED CLEAN (the
+## pre-registered check consumed); 3 minor observations non-
+## blocking. D1 C50 FORM-2: VERDICT_C50_form2.md (524 lines) =
+## SINGLE-CONTRACT-METRIC-PRODUCT-FORM — SUPERSEDES the wave-3
+## split-by-role delta (diff Delta1-6 declared in-file): d slot =
+## ONE metric (L1(A) phase-aligned fields + declared front
+## positions/speeds w/ bars, Linf(K) guard, TV side condition,
+## union 6-tuple); flux-weighted L2 + front block RE-HOMED as
+## U-slot grade-U-a certified instrument + C7.2 per-design
+## consumer obligation (C56 delivery route); product form (ii)
+## with scoped (i) = per-family fallback under F-PROD; falsifier
+## set enlarged (FS-3/FS-4/F-PROD/F-ARCH/F-GEOM); residues
+## forced-pick 0; papers blocking 0; duty F2-C50-CONTRACT-METRIC
+## superseding form (6 clauses); C50-ridden census anchors dedup
+## vs lit registry OWED at landing (judge's own note).
+## LANDING WINDOW OPEN (this window): LAND-W3-A agent =
+## docs/choice_ledger.yaml only (33 deltas verbatim from
+## VERDICT_wave3 sections 1-6 with C50 taken from VERDICT_C50_form2
+## section-4 blockquote; CR-W3-1 C14 splice; CR-W3-2 corrected
+## anchors; E2 Uno-preset rider + E1/E3-E8 enrichment one-liners at
+## their rows; C58 mint with the user-re-anchored entry-contract
+## text; header count 57->58 regenerated measured). LAND-W3-B agent
+## = lit registry (15 read-status promotions w/ where_read anchors
+## + thakur journal-identity note + C50-anchor dedup) + hyp-audit
+## coverage retro-update (S1 row: C49 half consumed w/ anchors) +
+## glossary duty tokens for new wave-3 duty names + findings rows
+## the verdicts order; both lint-gated read-then-quote; index rows
+## for the new blocco3 files = R3 close window (chain convention,
+## declared). -> orchestrator verification + counts (SR-12; the
+## verification ALSO triages the 3 REM_depth_ledger minor
+## observations obs-1/2/3 — non-blocking per the ledger, but each
+## gets an explicit consumed/declined disposition, never silence)
+## LANDING EXECUTED (both agents DONE, ~0.51M total; SR-9):
+## LAND-W3-A = 33 rows + 8 enrichments + CR-W3-1/2 + C50 Form-2
+## supersession verbatim + C58 minted (dedup quoted) + header 58
+## regenerated measured (12 DECIDED / 36 MIXED / 2 SA / 8 NEVER);
+## LAND-W3-B = 15/15 promotions + 0 dedup mints + hypaudit S1
+## annotation + 26 glossary entries; deviations all declared in
+## both reports. ORCHESTRATOR VERIFICATION on settled tree:
+## literature PASS / findings PASS (families e+f green, 58 choice
+## + 137 lit) / claims PASS; glossary FAIL 1 = SR-4 ratchet 158
+## unresolved vs baseline 52 (wave-3 landed texts' new token
+## families) -> SR-4 RESOLUTION AGENT IN FLIGHT (families + prose
+## fixes + entries, lint-gated, never baseline-bump). REM obs
+## triage EXECUTED: obs-1 = append-only reconciliation annotation
+## at VERDICT_wave3 EOF (per-ID tally 21+37+11+7=76 = tally of
+## record; section-11 line = slot-neutral count defect); obs-2
+## DECLINED-AS-ALREADY-DECLARED; obs-3 RECORDED. NEVER/SA of
+## record MEASURED post-landing: SA 2 = C17, C18 (derivation duty
+## F2-live, conv-confirmed); NEVER 8 = C25, C38 (F2-owned duties,
+## conv-confirmed) + C51 (rung-3a) + C52/C53 (F2 contract) + C54
+## (next M0 D2.4 touch) + C55 (usage-triggered, question empty
+## until multi-point P_amb) + C57 (F2-entry + pilot); every row
+## trigger-armed, none consumable-as-decided.
+## -> USER METER TOUCHPOINT (7f) NOW: meter reading for Blocco 2;
+## PRESENTS the wave-3 consolidated PAPERS NEEDED (9 asks, 5 firm;
+## VERDICT_wave3 machine summary; user upload channel); OPTIONS:
+## Uno full-read dossier in-session (1 slot, user depth concern);
+## C58-anticipation in C3 post-Blocco-2 vs scheduled F2-entry ->
+## (these two can run together, ~4 slots) -> wave-3 landing (ledger
+## deltas per authorities: VERDICT_C50_form2 for C50, REM ledger
+## gate for REM rows; PLUS lit-registry read-status promotion:
+## every arrival a panel actually read at [FULL] flips
+## UNREAD -> READ-* with where_read = that panel's census anchor —
+## user question 2026-08-20 made this explicit; papers are read AT
+## the consuming window, never stockpiled: Becker-Rannacher waits
+## for F2-C11, Uno published waits for [P-IPADJ]/F2) ->
+## launch Blocco 2 -> Blocco-2 landing ->
+## BLOCCO 3 (141-fork ledger Sonnet slot + coverage gate esteso
+## orchestrator-acts + NEW CATEGORY user-mandated 2026-08-20:
+## arrivals->consumer mapping arithmetic — 18/18 enumerated rows
+## each with named consumer duty + every [FULL] read this session
+## promoted UNREAD -> READ-* with where_read anchor; the dual-seeded
+## adversarial critic attacks THIS category too + R3 full: census
+## R35 -> CONSUMED, O5 numpy install AT CLOSE per touchpoint, Lean
+## dossier presentation, index, fingerprint, suite, commit,
+## HANDOFF). [root-D header one-liner: DONE early this window.]
+## ================= ARCHIVE (C/C2 HISTORY, in place) =================
 
 ## ========== C2 CLOSED (2026-08-19 sera) — BOUNDARY ==========
 ## Wave-2 LANDED (13 delta + C57 + common-mode row + confirm-lens

@@ -210,7 +210,11 @@ annihilation [T-XWALL] (THEOREM, abstract EOS, every g: the slip flux
 perturbation is isentropic at constant mass flux), convexity from the
 AXIAL margin [S-XCONV] (SCHEMA, instance-certified; sonic line =
 exact definiteness boundary), assembling to weak-strong uniqueness on
-the BVP [T-XWS] (THEOREM* inheriting [C-XBVP](a,b), ledger §1bis):
+the BVP [T-XWS] (THEOREM* inheriting [C-XBVP](a,b), ledger §1bis;
+retro-annotation 2026-08-20: leg (a) also admits the sufficient
+hull/segment form (a') of the G8 grant — own claims row
+C-XBVP-aprime, falsifiers stop_proof §13 (f1)-(f5); line landed per
+confirm catch CR-W3-R10-1, closing the doc1-landing claim of C2):
 with a C^1 margin solution present, shocked alternatives on the same
 inflow data are excluded BY THEOREM in the class. Canonicity across
 fronts stays with C-MAJDA, now cleanly separated.]

@@ -2535,3 +2535,62 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## ottimizzato) + conferma + chiusura leg 3+5. Poi F2 blocco 0.
 ## PARALLELO CONSENTITO: S-GENOAUDIT resumption sotto protocollo
 ## GENO.
+
+
+# ============ ARCHIVED 2026-08-20 (S-FOUNDATIONS-C3 close, SR-10): outgoing ORA/NEXT of the C2 close ============
+# PROGRESS â€” cycle-averaged variational nozzle program (living state)
+
+> Single source of truth della progressione. Aggiornare a OGNI chiusura
+> di sessione/fase (CLAUDE.md R3). PROTOCOLLO DI APERTURA (dalla S10,
+> ordine S9): memoria di progetto + L0 (SCAFFOLD Â§1: obiettivo e
+> regole) + docs/claims_registry.yaml (l'INDICE della teoria, lintato
+> dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
+> del proof layer, letto per profonditÃ , non per ricostruire lo stato.
+
+## ORA (2026-08-19 sera, chiusura S-FOUNDATIONS-C2 â€” split dichiarato
+## su trigger usage-meter utente >50%. ESEGUITO: (1) DOC1 REV-10 DRY
+## di record (0 breaks/0 repairs) -> LEG 3+5 CHIUSI; atterrati stessa
+## finestra: [T-T0P] MAIN in M0 (gap list divise, quantificatore
+## t-periodico, dominio+slip-free, G12, edges gap-graph), riga claims
+## C-XBVP-aprime (G8, falsificatori f1-f5), retro-annotazione [T-XWS]
+## (riga + transfer doc), 4 repair carried applicati (hash leg-3
+## pinnato). (2) FASE C ONDE 1+2 AGGIUDICATE E ATTERRATE: 16 righe
+## ledger â€” C28 frontiera prezzata ibrida (KKS-max su ratio tracciati,
+## gate assoluti), C27 due-costanti+banda, C9 legge adattiva target/
+## uniforme interim, C11 DWR-target/Richardson-referee (onere
+## invertito onorato), C43/C42 allineate, C56 realizzazione adjoint
+## per ruolo (3 ruoli CHIUSI), C31 engine as-is fino a
+## [P-IPADJ]+F2-C31-ENGINE-AB (candidato Uno, O5-class), C32
+## fresh-FD+[P-QNCARRY], C33 policy+F2-C33-CONSTRHESS, C1 migrazione
+## chart control-polygon (stessa spline space), C2 condizionale, C3
+## DECIDED confermata-riscopata, C49 TWO-TIER di record (fitted =
+## unico certificate bearer; risposta di record alla domanda utente
+## fit-vs-capture), C20 qualificazione a tier, C21 seed policy, C57
+## coniata (tier esplorazione globale). Supplemento assi direttiva
+## (mesh-mobile FOLDED arm F9a-R; adjoint discreto-peso/continuo-
+## referee + F11d) VERIFICATO. CONFIRM-ON-REPAIRS istanza 1 HA
+## CATTURATO un difetto vero (CR-W2-1) -> stage resta. (3) DIRETTIVE
+## UTENTE a registro: metodo generale question-anchored + protocollo
+## censimento world-class (punti 8/9); clausole gate (D) atti-
+## orchestratore-su-file + (E) profondita-verifica-a-piano; telemetria
+## onesta (7f). (4) AUDIT AGNOSTICO consegnato+triagiato (review
+## ABOVE / verification ABOVE / pipeline AT; AG-3 fixed, righe AG-4 +
+## retro-sweep coniate). (5) CATCH S-5F utente a registro (riga
+## theory:s5f-path-a-freevortex-stratified-gap). Incidenti dichiarati:
+## quota kill #5 (salvage RECONCILE, zero perdite) + triple API-500
+## (resume da cache). Counts misurati: choice 57 / findings 244 (202
+## open) / claims 150 / glossario 173 / lit 103. Env closeC2 = DIFF
+## EMPTY (29). Pesi SR-9 ~5.9M/33 slot. Log:
+## validation/PROGRESS_2026-08-19_SfoundationsC2.md)
+
+## NEXT (atomico): S-FOUNDATIONS-C3 (sessione FRESCA; carrier =
+## validation/ADVISORY_SfoundationsC3_prompt_2026-08-19.md + checkpoint
+## + prompt C2 per le regole): Blocco 0 (rider letteratura wave-2 ~25
+## identita + touchpoint decisioni (a)-(f)/AG-1/C51/S-5F + papers) ->
+## WAVE 3 (costanti-derivate, C50, batch convergenti, righe restanti,
+## confirm-on-repairs istanza 2 estesa ai repair doc1) -> BLOCCO 4
+## centerpiece T-DISC/T-RED/M-RED until-dry PIENO + 4 minori -> BLOCCO
+## 5 (ledger 141 fork + coverage gate esteso orchestrator-acts + R3
+## pieno, R35 -> CONSUMED). Poi F2 blocco 0.
+
+

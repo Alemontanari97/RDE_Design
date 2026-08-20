@@ -8,12 +8,15 @@ check before citing (GENO CLAUDE.md §1: never cite a reference you have not ver
 ---
 ## STATO ACQUISIZIONE (aggiornato 2026-08-13, dopo la consegna utente)
 
-**25 PDF in cartella**, etichettati `autore_anno_slug.pdf`, zero duplicati.
+**26 PDF in cartella** (ri-misurato 2026-08-20: +CF_ASO_Paper_PrePrint, arrivo 2026-08-14), etichettati `autore_anno_slug.pdf`, zero duplicati.
 Duplicati rimossi: `aerospace-10-00797 (1).pdf` (md5 identico), `s12567-023-00511-1 (2).pdf` (md5
 identico), e il preprint arXiv di Ancourt — **sostituito dalla versione pubblicata** Aerospace 2023,
 10, 797 (peer-reviewed = citabile; il preprint era lo stesso lavoro).
 
-ACQUISITI (25) — nomi ESATTI su disco, senza estensione:
+ACQUISITI (26) — nomi ESATTI su disco, senza estensione:
+`CF_ASO_Paper_PrePrint` (arrivo 2026-08-14, registrato nel literature
+registry come unread_cf_aso_preprint; aggiunto qui 2026-08-20 alla
+chiusura C3 — lint (ii)/(iii) riparato, conteggio ri-misurato) ·
 `ancourt_2023_adjoint_direct_characteristic_equations` ·
 `fernandes_2023_moc_shape_optimization_rocket_nozzles` ·
 `giles_pierce_2000_intro_adjoint_design` · **`giles_pierce_2001_analytic_adjoint_quasi1d_euler`** ·

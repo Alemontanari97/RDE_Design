@@ -1,7 +1,7 @@
 {
  "meta": {
   "script": "src/cycles/q_mapping.py",
-  "updated": "2026-08-19",
+  "updated": "2026-08-20",
   "T1_K": 300.0,
   "P1_Pa": 100000.0,
   "phi": 1.0,

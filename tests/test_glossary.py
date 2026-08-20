@@ -110,6 +110,19 @@ FAMILY_PATTERNS = (
     (r'^H-F\d+$', 'H-F<n>'),
     (r'^O-F\d+$', 'O-F<n>'),
     (r'^P-F\d+$', 'P-F<n>'),
+    # S-FOUNDATIONS-C3 Blocco-3 wave-3 landing 2026-08-20 (SR-4): the
+    # wave-3 refuter ids (R3FAM/R3CONV/R3REMENG/R3REMPOL/R3C50 slots),
+    # the wave-2 C31TRIO refuter ids, the wave-3 confirm-repair ids,
+    # the per-choice falsifier ids F-C<n>[-<m>], and the S-ORDINE
+    # closure-rule ids SR-<n> entered the ratchet corpus via the
+    # choice-ledger landing notes — five linked family rows added to
+    # the glossary in the same window (resolvers: the blocco3
+    # VERDICT/refute/confirm files; CLAUDE.md R7 for SR-<n>).
+    (r'^R3[A-Z][A-Z0-9]{1,6}-\d+$', 'R3<slot>-<n>'),
+    (r'^RC31T-\d+$', 'RC31T-<n>'),
+    (r'^CR-W3-\d+$', 'CR-W3-<n>'),
+    (r'^F-C\d+(?:-\d+)?$', 'F-C<n>'),
+    (r'^SR-\d+$', 'SR-<n>'),
 )
 
 # The 12 pinned collision groups (contract list) -> entry predicate:
