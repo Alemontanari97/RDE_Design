@@ -7,3 +7,6 @@ GENO/
 # third-party PDF binaries: never committed (S-ORDINE S2 declared exclusion; handoff duty 2026-08-13)
 literature/*.pdf
 literature_review/*.pdf
+
+# Uno/ is an INDEPENDENT git repo clone (C31 A/B flip candidate; never committed from here — same rule as GENO/, 2026-08-20)
+Uno/
