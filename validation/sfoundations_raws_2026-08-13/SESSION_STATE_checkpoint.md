@@ -450,17 +450,59 @@
 ## case (no optimizer in any of the 4; P-M = hand-guided
 ## redesign); the guard rides the (iv)/(vi) provenance notes at
 ## landing.
-## QUEUE OF RECORD (sequence): nozzle campaign lands [DONE] ->
-## field-atlas lands [DONE] -> base-pressure harvest [DONE] ->
-## Blocco-1 v2 loop+minors [DONE, judges resumed in flight] ->
-## judges -> GATE JUDGE-DELIVERY (13 checks) -> escalation round
-## if called (tier-a perimeter) -> LANDING R4 (M0 + registry +
-## harvest provenance + sweep!=argmax guard) -> coverage gate
-## esteso -> pipeline decision map -> closing touchpoint (R22-CFD
-## dossier + BLOCCATO-16 ratification w/ extended field-reading
-## scope + M-RED pull-forward option + procurement list) -> R3
-## (census R35 -> CONSUMED, suite, index, fingerprint, S-PRES
-## prompt, commit, HANDOFF). (GATE V2-LAUNCH honored:
+## JUDGES DELIVERED (resume 21/21, 0 errors, +0.51M): VERDICT_r22f
+## (602 lines): dry=false, 22 amendments carried, 0 contested
+## sustained, G-c leg (ii) DISCHARGED-CITABLE SUSTAINED (GP1997
+## [FULL] 17pp, region-of-influence citable; limits L1 heuristic-
+## not-theorem, L2 ~4x stays [INF]/X-GP01 open, L3 corrugated-locus
+## not covered; lit promotion rides landing), forchetta landing
+## site NAMED (M0 Part III new [R22F-FORCHETTA] section after the
+## new [T-DISC] block, anchor MEASURED :943-:945, corrects ':919'),
+## residues RES-CAP-1..6 (RES-CAP-1 = r4-delta unrefereed -> E-5
+## targeted pass owed before/at the 2.2-bis/(vi) M0 landing;
+## RES-CAP-6 = J-1 editorial header clobber at :956, [REV2-J1]
+## repair at landing). VERDICT_blocco2 (46KB): CENTERPIECE
+## RATIFIED (labels delegated, landing approved w/ RES-CAP-1+J-1
+## conditions); ALL FOUR MINORS ESCALATE (36/36 findings sustained
+## 13 content/10 wording/13 notes, 0 overruled; E-1 NTF, E-2
+## OBJ-DOM, E-3 DELTA-CARRIER sequenced after E-2 w/ H6' +
+## re-pinned ship-gate '[OBJ-DOM-IMPL] both sides OR net-panel
+## band', E-4 CROSS-LOWERING, E-5 = RES-CAP-1); SR-C4-9 sequencing
+## EXPLICIT (MIN-OBJDOM-3 sustained-binding; (b)/(c) consistent
+## ONLY under H6'; no (value,delta) row ships before both close);
+## threat ledger 8/8 ADOPTED; R22-CFD dossier PRESENTED (sec.6,
+## for the user touchpoint); landing list LB-1..LB-14 (minors' M0
+## statements DEFERRED to escalation close; lit promotions land
+## regardless); temporal-form NOT minted (SR-C4-19 honored).
+## GATE JUDGE-DELIVERY EXECUTED (13/13 GREEN, grep basis quoted in
+## conversation + this line: 6 channels present, 19 SE labels,
+## 58.1/71.5 marker, referee decl 8 hits, per-term disposition +
+## 7 route-B cites, mu carrier + 63 H-G refs, provenance
+## swirl5f 17/B-refs 11/ADV 33; ONE CHECK-ITEM disposition: 
+## not-a-BREAK lines are section-level (3) not per-amendment (22)
+## — accepted, judge has 0 contested + 22 carried explicit).
+## ESCALATION WORKFLOW LAUNCHED (wf_1dce3816-1fd, per the
+## VERDICT_blocco2 sec.3 form of record): E-1/E-2->E-3/E-4 =
+## author-reviser applying named repairs -> single fused-lens
+## refuter (right-sized declared per orchestration-weight; judge
+## licensed) until-dry cap 3; E-5 = ONE-round 3-lens restricted to
+## the [REV2-r4-*] delta + conditional reviser; escalation closure
+## judge = VERDICT_escalation_c4.md (label authority for minors,
+## RES-CAP-1 discharge call, sequencing-gate verdict, consolidated
+## landing addendum LB-6..LB-10 concretized).
+## QUEUE OF RECORD: escalations [IN FLIGHT] -> SINGLE LANDING
+## window (LB-1..LB-14 + escalation addendum + harvest provenance
+## + sweep!=argmax guard; landing-mechanic + CONFIRM instance
+## always-on) -> coverage gate esteso (3 categorie + mint
+## temporal-form/NAND-SAND/G-14-home + H20/P34 rows + dual-seeded
+## critic) -> pipeline decision map (sintesi cite-only + refuter
+## archi) -> closing touchpoint (R22-CFD dossier sec.6 + BLOCCATO
+## 16 ratification w/ extended field-reading + M-RED pull-forward
+## + procurement) -> R3 (census R35->CONSUMED, suite bg EXIT 0,
+## index, fingerprint closeC4, S-PRES prompt, cleanup P-C lock +
+## staging rmdir, commit, HANDOFF). CONTEXT WATCH: split-to-C5
+## trigger armed at ~15-20% remaining (C5 prompt authorable any
+## time; checkpoint lossless and committed). (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/
 ## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
 ## breaker, auxiliary pointers grep-verified, r<k> naming
