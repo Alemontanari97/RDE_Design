@@ -243,8 +243,49 @@
 ## out at 2-min tool cap in-window (suite needs ~5 min) — DEFERRED
 ## DECLARED to the R3 close window; targeted lints run green
 ## instead (findings 245 PASS, glossary PASS earlier).
+## FIELD-ATLAS DELIVERED (resumed agent, ~0.15M+0.15M across kill):
+## FIELD_ATLAS_targeted_c4.md — 48 figures / 44 entries / 8 papers,
+## all pages rendered + declared; 18 root-D skips with reasons;
+## nozzle-RDE 4 PDFs untouched (disjointness held). TOP BEARINGS:
+## exhibit phenomenon class confirmed in THREE independent codes
+## (Harroun/Miki/Liu); helix reaches the exit even in the optimized
+## Paxson-Miki V5 (no-axial-decay) + design-dependent reflected-
+## shock family crossing the interface upstream (Liu); inlet class
+## O(1) quantified (p 3:1-6:1, total-p 4:1, tangential +-300-400
+## m/s, corrugated sonic surface = the G-c locus); channel (vi)
+## BOTH signs (shroud worst marker + Liu Delta-M 0.11 value miss
+## vs benign rankings); averaging value-benign everywhere BUT
+## cycle-mean observables shift via unsteady-3D mechanisms, no
+## external per-phase referee (addendum (c) confirmed AT SOURCE);
+## normalization warning (nozzle term few-%% of gross; thrust
+## density in first 40%% of plug where the footprint lives). Its
+## PAPERS NEEDED (Schwer base-pressure, Humble&Lim source, P-M
+## follow-ups) = dedup vs the nozzle-campaign WANTED list at that
+## landing BEFORE procurement. All ADVISORY class.
+## CONVERGENCE UPGRADES ADOPTED (user question 2026-08-20, this
+## block = carrier): (i) the nozzle campaign CLOSES AT CONVERGENCE
+## — on refuter BREAK/REPAIR > 0: reviser pass on the synthesis +
+## confirm instance (always-on stage), orchestrator adjudication
+## on file; (ii) v2 lens prompts carry the EXECUTABLE-COUNTEREXAMPLE
+## PREFERENCE (when an attack is formalizable cheaply, run the
+## numeric/symbolic counterexample with pinned-env deps — the
+## meanswirl_symcheck precedent — prose-only refutation is the
+## fallback, not the default); (iii) named-not-adopted levers of
+## record: cross-family refuters (user pin decision), Lean (user-
+## deferred F2), external human referee (G5-gated by construction).
+## INIEZIONE-BIS DIFF (user re-send 2026-08-20 'trova aggiunte'):
+## points (1)-(5)+(6)(a-d) verified ALREADY OF RECORD (committed
+## b0a4c15/318d3fd); ONE true addition = (6)(e): the 10 arm-B spec
+## inputs of DOSSIER_uno_fullread.md par.3 ENTER the [P-IPADJ]
+## spec — REGISTERED at the machine-checked carrier (C31 ledger
+## row note, '[P-IPADJ] SPEC ENTRY CONTRACT' appended this window;
+## lint at next run) + completes the dossier's arrivals->consumer
+## mapping edge for coverage category (b). Minor wording variance
+## in the re-send ((6)(c) 'solo R22-CFD nostro' vs prior 'R22-CFD
+## o procurement dedicato'): the BROADER prior form stays of
+## record (addendum_c4), variance declared immaterial.
 ## QUEUE OF RECORD (sequence): nozzle campaign lands -> field-atlas
-## lands -> Blocco-1 v2 continuation (GATE V2-LAUNCH honored:
+## lands [DONE] -> Blocco-1 v2 continuation (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/
 ## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
 ## breaker, auxiliary pointers grep-verified, r<k> naming
