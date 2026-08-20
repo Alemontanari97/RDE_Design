@@ -256,7 +256,19 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     band evidence - optimum at DL_spike = 40% L_cowl (retains ~60%
     of the spike [INF]), cliff -5.78% at 80%; (3) P-A: 1.2% Isp
     truncation cost + 'truncation does not affect inner field'
-    (Fig. 11 caption).
+    (Fig. 11 caption). RIDER EXTENSION (base-pressure harvest
+    2026-08-20; carrier = blocco3/BASE_PRESSURE_HARVEST_c4.md):
+    (4) the p_b closure is ARGMAX-CRITICAL at near-flat value
+    (Humphreys 1971 pp. 1586-87: swapping the p_b model moved the
+    optimum base height x2.45 and tip slope 13.26->3.08 deg at
+    +0.26% thrust) - the truncation re-evaluation MUST state its
+    p_b closure + sensitivity; (5) the GENO/Veen closure
+    p_b = 0.846p/M^1.3 = a 1966 cold near-wake curve fit FAILED by
+    WG10 (never adopt as-is; N2 replacement duty); (6) the ONLY
+    hot-fire RDE base data = Purdue V1.4 NOZZLELESS CTAP (Harroun
+    2020/2021, open/closed transition P_a/P_c ~= 0.15, closed-wake
+    P_b/P_c ~= 0.08, open-wake base 17-20% below ambient) -
+    nozzleless, not truncated-plug: R8 vacuum confirmed.
  10. CONSUMATA (F-SERVICE 2026-08-13): D-01/C31-minimale/C30 tutte
     RATIFICATE dall'utente ed ESEGUITE in-window (glossa cancellata
     ai due loci + claim 1 riscritto; T7(c) forma a cono minimale

@@ -361,9 +361,43 @@
 ## pointers (addendum_c4 + FIELD_ATLAS + SYNTHESIS + 4 dossiers)
 ## in EVERY prompt + CT-6 evidence rule; executable-counterexample
 ## preference in all refuter slots.
+## BASE-PRESSURE HARVEST DONE (user catch: prior reads used the
+## topology lens, nobody harvested p_b; 1 slot ~0.23M, 16 sources,
+## pages declared; BASE_PRESSURE_HARVEST_c4.md): (1) ONE hot-fire
+## RDE base-pressure MEASUREMENT exists = Purdue V1.4 NOZZLELESS
+## CTAP (Harroun 2020 Figs.7-9 / 2021 Figs.13/16/17: ~0.59 atm at
+## 1.24 kg/s; open/closed transition P_a/P_c ~= 0.15; closed-wake
+## P_b/P_c ~= 0.08; open-wake base 17-20% BELOW ambient = RDE
+## ejector suction) — truncated-plug RDE vacuum CONFIRMED, both
+## Harroun papers state the no-correlation negative verbatim
+## (2021 p.669, 2020 p.7); (2) Schwer 2018 counter-datum sharpened
+## (no substantial RDE-vs-steady base change on their config =
+## configuration-dependent departure; analogy label STANDS);
+## (3) classical stack adjudicated: GENO/Veen p_b = 0.846p/M^1.3
+## traces to a 1966 near-wake curve fit (Rom via Humphreys 1971
+## Eq.12), FAILED by WG10 (Fick-Schmucker) => N2 MUST REPLACE IT;
+## WG10 bracket [+19%,-15%] = best pure-empirical on COLD data;
+## only validated classical piece = Nasuti-Onofri transition-PR
+## (~5%, cold clustered); (4) HUMPHREYS 1971 DESIGN-SENSITIVITY
+## EXHIBIT (pp.1586-87): swapping the p_b model moved optimum base
+## height x2.45 and tip slope 13.26->3.08 deg at only +0.26%
+## thrust — the p_b closure moves the ARGMAX while the value stays
+## flat = a channel-(vi)-shaped warning AT DESIGN LEVEL (candidate
+## forchetta (vi) provenance); (5) field admissions harvested
+## (Li-Xu Eq.26 p_b sourceless; SP-8120 no truncated-plug
+## optimization method). CT-6 held (all CFD values context-only).
+## CONSUMPTION ARCS DECLARED: (i) channel (v)+(vi) provenance
+## additions = Blocco-1 LANDING window (orchestrator-applied from
+## the harvest, declared — the in-flight rounds don't carry the
+## harvest pointer, it postdates the launch); (ii) ADR-D4 rider
+## extension on BLOCCATO 9 (done this window); (iii) the file =
+## N2/F4b input of record; (iv) procurement: 3 existing WANTED
+## cited + 9 new candidates (top: Lim-Humble AIAA 2020-0195,
+## Stechmann PhD 2017, Schwer-Kailasanath AIAA 2012-3943) — mints
+## ride the R3 close with dedup.
 ## QUEUE OF RECORD (sequence): nozzle campaign lands [DONE] ->
-## field-atlas lands [DONE] -> Blocco-1 v2 continuation [IN
-## FLIGHT] (GATE V2-LAUNCH honored:
+## field-atlas lands [DONE] -> base-pressure harvest [DONE] ->
+## Blocco-1 v2 continuation [IN FLIGHT] (GATE V2-LAUNCH honored:
 ## no author re-run, minors slate = ntf+deltacarrier only w/
 ## SR-C4-9 sequencing note in the deltacarrier prompt, circuit
 ## breaker, auxiliary pointers grep-verified, r<k> naming
