@@ -17,6 +17,11 @@
 ## place, AG-5). PENDING-NAMED: rider lett. wave-2 (§4.15) = C3
 ## block-0; 9 papers-needed (§4.16) inoltrati all'utente; touchpoint
 ## decisioni utente. Suite verdict = quoted in the commit message.
+## POST-CLOSE ADDENDUM (2026-08-20, user-ratified): C57 gains its
+## measured arm = the one-shot RIVAL-PARADIGM PILOT (uncertified
+## exploration-first vs certified closer, one pilot case) — candidate
+## only, execution decided at the C57/F2-entry window with S-5F/C49;
+## purpose = constitution-bias residue converted to measurement.
 ## ============ SESSION C2 LIVE STATE (2026-08-19) ============
 ## [UPDATE ~landing window] WAVE-1 LANDED (wf_d6f1b0f0, 7/7, ~1.14M
 ## tok): VERDICT_wave1.md = 0 escalations; C28/C27 ADJUDICATED-SPLIT
