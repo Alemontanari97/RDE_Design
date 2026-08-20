@@ -83,6 +83,30 @@ on ONE reference coupled configuration / field-facing demonstration
 on the Harroun pair), written as a scheduling-decision INPUT for the
 user (the scheduling decision itself is post-convergence, per the
 row's owner field — present, do not decide).
+(5) THE FORCHETTA TABLE (user mandate 2026-08-20, verbatim intent:
+"mi devi dare onestamente quale è la forchetta da aspettarsi, la
+situazione migliore e peggiore"): a per-channel BEST/WORST bracket of
+the 2D-per-phase-averaged vs 3D-unsteady gap, with provenance per
+cell and rigor class per bound. Channels (the loss decomposition of
+record): (i) time-coupling/unsteadiness ([T-T0P] gap lists +
+G3/corrector boundary); (ii) azimuthal-structure reduction (T-RED's
+own residual operator — this deliverable IS its quantified face);
+(iii) swirl/tangential content (B1 radial equilibrium 0.6-9% of p,
+B2 swirl-KE 1.5-3% thrust, B5 exit swirl 10-14 deg — swirl5f
+SCALING-ESTIMATE repaired form, cite);(iv) averaging adequacy
+(sizing ~1% area-ratio agreement Paxson-Miki vs the ranking
+threshold OPEN per R26; Harroun 1.25-flat = the non-discrimination
+datum at its verified limits); (v) model-form bars (frozen-vs-eq
+few-percent class P-F14; base-pressure two-regime R8 with the
+nozzleless->plug ANALOGY declared). Each cell: bound-or-estimate +
+provenance + what-tightens-it (T-DISC/T-RED/M-RED/R22-CFD, in
+order). The known worst-direction marker MUST appear: Paxson-Miki
+shroud finding (58.1% -> ~71.5% of ideal at FIXED area ratio —
+larger than the entire area-ratio design line; the registered
+swirl-breaker candidate). NO cell asserted above its held evidence
+class; SCALING-ESTIMATE cells labeled as such. This table is the
+user-facing adequacy bracket of record until M-RED/R22-CFD tighten
+it.
 Rigor targets: T-DISC and T-RED land in M0 with declared rigor class
 (R4 same window, landing executed by the orchestrator after the
 closure judge); M-RED = spec with derived bands; nothing lands from
