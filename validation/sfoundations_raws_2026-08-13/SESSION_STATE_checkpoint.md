@@ -490,7 +490,30 @@
 ## judge = VERDICT_escalation_c4.md (label authority for minors,
 ## RES-CAP-1 discharge call, sequencing-gate verdict, consolidated
 ## landing addendum LB-6..LB-10 concretized).
-## QUEUE OF RECORD: escalations [IN FLIGHT] -> SINGLE LANDING
+## ESCALATIONS COMPLETE (wf_1dce3816-1fd, 27/27, ~3.24M, 565 tool
+## uses; VERDICT_escalation_c4.md): ALL FOUR MINORS DRY (E-1 r2,
+## E-2/E-3/E-4 r3; zero-BREAK/REPAIR recounted from files SR-12);
+## E-5 not-dry-in-round but RES-CAP-1 DISCHARGED (3 REPAIRs found
+## + applied [ESC-E5-1/2/3], 0 BREAK unanimous; unrefereed line
+## RETIRED at landing); sequencing gate SATISFIED (mtime-proven;
+## ship-gate '[OBJ-DOM-IMPL] both sides OR net-panel band' = live
+## armed F2 gate on every future (value,delta) row); 53/53
+## findings sustained 0 overruled; FINAL labels adopted (NTF-2/3,
+## DC-1/2, CLG-D2 THEOREM*; OBJDOM-1/3, DC-3 THEOREM; OBJDOM-4
+## fix-A OF RECORD; rest at declared classes; centerpiece labels
+## = VERDICT_r22f sole authority, unchanged); landing addendum
+## LA-1..LA-7 concretizes LB-6..10; residues R-ESC-1..5 named
+## (incl. RES-E5-LAND mandatory editorial + R-ESC-3 M-RED
+## sampling-blindness -> R-15 rider). DECLARED FLAG: safety
+## classifier timeout on esc:ntf:ref1 — covered by the chain (its
+## file re-attacked at r2 + judge recount). PHASE D = FULLY
+## ADJUDICATED AT CONVERGENCE.
+## LANDING WORKFLOW LAUNCHED (wf_fb3ea049-4d5): LAND-A M0/doc
+## (verdicts' verbatim texts + [REV2-J1]/[ESC-J1-*]/RES-E5-LAND
+## editorial + [ORCH-HARV-*] orchestrator-attributed harvest notes
+## + sweep!=argmax guard) + LAND-B registry (LB-2..13 + LA rows +
+## 4 lints quoted) in parallel -> CONFIRM instance (always-on).
+## QUEUE OF RECORD: escalations [DONE] -> SINGLE LANDING
 ## window (LB-1..LB-14 + escalation addendum + harvest provenance
 ## + sweep!=argmax guard; landing-mechanic + CONFIRM instance
 ## always-on) -> coverage gate esteso (3 categorie + mint

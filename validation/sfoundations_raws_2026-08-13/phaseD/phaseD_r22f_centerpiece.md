@@ -569,7 +569,11 @@ wave-frame functional. The DESIGN-GRADIENT residual is
 with P_T = projection on the feasible directions (critical cone at the
 active set) and ||·||_{M*} the DUAL norm of the design-space metric M
 in which the engine curvature mu is an eigenvalue (metric NAMED —
-condition (3) below).
+condition (3) below) [ESC-E5-1: at-site identity bracket, applies
+REPAIR E5-L1-1(i) (esc_refute_r4delta_l1.md) — mu = the J_TRUE floor,
+[REV2-r4-1](a); the engine (measured-carrier) curvature instantiates
+it only UNDER H-G6, [REV2-r4-1](c); the metric-naming function of
+this sentence is unchanged].
 STRUCTURE (bound schema): by the adjoint representation the gradient
 gap inherits the residual operator: grad J_true − grad J_red =
 <psi_S, K(W_S)>-type pairings + front-sensitivity terms, so delta
@@ -779,7 +783,12 @@ the support-function form delta_cone of (B), g AND the cone are
 evaluated at the COMPUTED REDUCED OPTIMUM S*_red — the only
 computable choice, and exactly what the form-(T) VI chain consumes
 (<g(S*_red), d> paired with d in the cone at S*_red); the bound then
-reads ||S*_true − S*_red|| ≤ delta(S*_red)/mu. A future M-RED
+reads ||S*_true − S*_red|| ≤ delta(S*_red)/mu [ESC-E5-1: at-site
+identity bracket, applies REPAIR E5-L1-1(ii) (esc_refute_r4delta_l1
+.md; also discharges AMENDMENT E5-L0-3 limb (a), same site) — mu =
+the J_TRUE floor, [REV2-r4-1](a); measured-carrier instantiation
+only UNDER H-G6, [REV2-r4-1](c); this printed bound is the gradient
+route and licenses NO number until L_H lands (R-16)]. A future M-RED
 gradient-rider executor evaluates delta at S*_red and at no other
 point.
 
@@ -1796,7 +1805,13 @@ prox-regularity certificate does NOT license the forms — probes of
 record r22f_v2_probe_r4_l0_mu_identity_proxreg.py PART B and
 r22f_v2_probe_r4_l2_proxreg_annulus.py), OR the F2 curvature-
 corrected prox-regular refinement ([REV2-r4-2](a)) (F2, beside the O1
-discharge / R-13), OR branch-wise coverage via the cross-branch
+discharge / R-13) [ESC-E5-2: decider-branch scope mirror, applies
+REPAIR E5-L1-5 (esc_refute_r4delta_l1.md) — this branch's discharge
+cannot be read from the curvature formula alone: it is subject to the
+R-17 scope clause below (effective-curvature horn only; a derived
+form additionally requires the segment-feasibility clause; GLOBAL-
+argmax coverage on prox-regular nonconvex sets remains un-claimable)],
+OR branch-wise coverage via the cross-branch
 value-dominance check ([REV2-r3-1](b) — defined only where a
 component/branch decomposition exists, [REV2-r4-2](d)) with the
 measured sweep-sup eps_U ([REV2-r3-3] at [REV2-r4-3] class). Until decided, form (T)/(F) licensing
@@ -1831,7 +1846,21 @@ alone ([REV2-r4-1](c)); an acceptable dry outcome per addendum_c4
 R-17: the F2 curvature-corrected prox-regular refinement of H-G5
 ([REV2-r4-2](a): mu_eff = mu − |lambda*|·kappa_max, kappa_max =
 1/r_prox; SCHEMA) — optional refinement, NOT a licensing branch until
-derived; deciders beside the O1/R-13 block.
+derived; deciders beside the O1/R-13 block. [ESC-E5-2: scope clause,
+applies REPAIR E5-L1-5 (esc_refute_r4delta_l1.md; probe of record
+esc_probe_r4delta_lh_leg3_blindness.py part C, RUN in the refuter's
+window: on the annulus counter-model of record the printed clause
+PASSES — mu_eff = eps > 0 — while the re-licensed form-(T) bound is 0
+against actual shift 2): the curvature-corrected clause prices the
+effective-curvature horn ONLY and can license at most LOCAL-argmax
+tracking; any derived form additionally requires a segment-
+feasibility clause (the segment between S*_red and the candidate
+argmax feasible — the H-G5 rationale property), absent which the
+annulus counter-model of record (r22f_v2_probe_r4_l2_proxreg_annulus
+.py; esc_probe_r4delta_lh_leg3_blindness.py part C) is the standing
+refuter any derivation must refuse; GLOBAL-argmax coverage on
+prox-regular nonconvex sets remains un-claimable by this refinement.
+The R-14 decider branch carries the mirrored clause at its site.]
 
 # 7. PAPERS NEEDED
 
@@ -2147,6 +2176,7 @@ is flagged here for the closure judge.
 | R22F-L0-22 | NOTE | no action (positive verification record; limb (h) composition statement consistent with the joint fixes as applied) | — |
 | R22F-L1-16 | NOTE | no action (prior-objection resolution ledger + disposition-table arithmetic re-count — verified record) | — |
 | R22F-L1-17 | NOTE | no action (adversarial sweep, six attack lines withdrawn with reasons; DRY at L1) | — |
+| R22F-L2-24 | NOTE | no action (round-3 resolution ledger; each disposition verified at its edited site) [ESC-E5-3: row added, applies REPAIR E5-L2-1 (esc_refute_r4delta_l2.md) = AMENDMENT E5-L0-4 (esc_refute_r4delta_l0.md) — the COUNTS line 'NOTES 5' was already correct, the table was the incomplete side; inclusion rule [REV2-r3-8], courtesy NOTE rows retained] | — |
 | R22F-L2-25 | BREAK | FIXED | [REV2-r4-2] (joint with L0-20): fix shapes (a)-(d) all applied — H-G5 convexity-only (a), R-14 decider sentence with the does-NOT-license clause + probe citation (b), (vi) cell parenthesis convexity form ([REV2-r4-5](b)) (c), connected-nonconvex no-coverage extension of [REV2-r3-1](b) and the WORST cell ([REV2-r4-2](d), [REV2-r4-5](e)) (d) |
 | R22F-L2-26 | AMENDMENT | APPLIED | [REV2-r4-3] (joint with L0-21): SAMPLED-SUP (estimate) class label; sweep-refinement stability clause; sub-sample-width structure declared un-excluded; instantiates-never-discharges rule with certified closure kept at (U)/S.22 (R-1); cell carriage [REV2-r4-5](c) |
 | R22F-L2-27 | NOTE | no action (verified-green ledger) | — |
@@ -2173,3 +2203,60 @@ these round-4 fixes stand is the closure judge's adjudication; any
 not-adjudicated item is a NAMED RESIDUE held out per the escalation
 rule, never label-inflated (candidate residue names already in place:
 R-16 L_H, R-17 prox-regular refinement, R-15 extension).
+
+==============================================================================
+# 14. E-5 ESCALATION DISPOSITION TABLE ([ESC-E5] pass, RES-CAP-1
+# targeted round-4-delta refutation; E-5 REVISER, S-FOUNDATIONS-C4
+# escalation window, 2026-08-20; append-only)
+
+Inputs of record: esc_refute_r4delta_l0.md (0 B / 0 R / 4 A / 1 N),
+esc_refute_r4delta_l1.md (0 B / 2 R / 3 A / 2 N),
+esc_refute_r4delta_l2.md (0 B / 1 R / 4 A / 4 N). Mandate (VERDICT_
+blocco2.md E-5 + VERDICT_r22f RES-CAP-1): apply the SUSTAINED
+BREAK/REPAIR findings to the delta sites, append-only, [ESC-E5-<n>]
+markers. Zero BREAKs at all three lenses; three REPAIRs applied below.
+AMENDMENT-class findings are NOT adopted by this pass (the loop's own
+precedent — refuter-prescribed text broke twice, RES-CAP-1 reason
+line — and the E-1..E-4 rule: named repairs are INPUTS): each is
+routed to the landing edit ([REV2-r4-6]/L-2/[REV2-J1] editorial pass)
+as a named input, disposition DEFERRED-TO-LANDING below. Nothing was
+removed; every insertion carries its [ESC-E5-<n>] marker at-site.
+
+| Finding | Type | Disposition | Edit(s) |
+|---|---|---|---|
+| E5-L1-1 | REPAIR | APPLIED | [ESC-E5-1]: two at-site identity brackets — (i) §2.2-bis OBJECT paragraph (the metric/engine-curvature sentence), (ii) the [REV2-r3-2] printed bound delta(S*_red)/mu — each carrying mu = J_TRUE floor per [REV2-r4-1](a) + the H-G6 instantiation gate per [REV2-r4-1](c) |
+| E5-L1-5 | REPAIR | APPLIED | [ESC-E5-2]: R-17 scope clause (effective-curvature horn only; segment-feasibility clause required for any derived form; annulus counter-model = standing refuter; GLOBAL-argmax coverage un-claimable) + mirrored clause at the R-14 decider branch (discharge not readable from the formula alone) |
+| E5-L2-1 | REPAIR | APPLIED (joint with E5-L0-4 — same defect, one edit) | [ESC-E5-3]: §13 table row R22F-L2-24 (NOTE) added in ID order; COUNTS line unchanged (already correct at NOTES 5) |
+| E5-L0-4 | AMENDMENT | APPLIED via [ESC-E5-3] (joint with E5-L2-1, which sustains the same defect at REPAIR class) | see E5-L2-1 |
+| E5-L0-1 | AMENDMENT | DEFERRED-TO-LANDING (named input; same defect as E5-L2-4) | H-G5 "equivalently" gloss → sufficient/star-shapedness wording at both printings; probe of record esc_probe_r4delta_hg5_equivalence.py |
+| E5-L0-2 | AMENDMENT | DEFERRED-TO-LANDING (named input) | mu_eff symbol collision (H-G6 transfer vs R-17 prox refinement) → rename + composition sentence; L0-14(b) mu_curv precedent |
+| E5-L0-3 | AMENDMENT | limb (a) DISCHARGED by [ESC-E5-1](ii) (same site, same bracket); limbs (b) DEFERRED-TO-LANDING (named input; same defect as E5-L2-5) | at-site SAMPLED-SUP brackets at (F) and [REV2-r3-3](b) |
+| E5-L1-2 | AMENDMENT | DEFERRED-TO-LANDING (named input) | H-G6 deriver leg (3) SAMPLED-DIRECTIONAL (estimate) class clause + R-15/R-16 carriage; probe of record esc_probe_r4delta_lh_leg3_blindness.py parts A-B |
+| E5-L1-3 | AMENDMENT | DEFERRED-TO-LANDING (named input) | H-G6 existence (second-order front regularity) / L_H norm typing (M-operator) / mu_eff > 0 guard |
+| E5-L1-4 | AMENDMENT | DEFERRED-TO-LANDING (named input) | landing rename split mu_curv (gradient route, J_TRUE floor) vs mu_red (value route, measured J_red floor) — [REV2-r4-6] instruction touch |
+| E5-L2-2 | AMENDMENT | DEFERRED-TO-LANDING (named input) | H-G6 read on the (E)-certified ball with sustained band-lower-edge floor (mu_meas − b_E), never the bare point measurement; probe of record esc_probe_r4delta_hg6_pointfloor.py |
+| E5-L2-3 | AMENDMENT | DEFERRED-TO-LANDING (named input) | H-G6 tail: cross-channel bilinear blocks at second order not excluded; each L_H deriver must price them or prove them absent |
+| E5-L2-4 | AMENDMENT | DEFERRED-TO-LANDING (named input; joint with E5-L0-1) | see E5-L0-1 |
+| E5-L2-5 | AMENDMENT | DEFERRED-TO-LANDING (named input; joint with E5-L0-3(b)) | see E5-L0-3 |
+| E5-L0-5 | NOTE | no action (positive verification record, limbs (a)-(h)) | — |
+| E5-L1-6 | NOTE | no action (R-14 parenthetical hygiene touch at landing, named) | — |
+| E5-L1-7 | NOTE | no action (verified-green ledger + out-of-scope observations) | — |
+| E5-L2-6 | NOTE | no action (J-1/RES-CAP-6 clobber independently confirmed; [REV2-J1] landing repair sufficient) | — |
+| E5-L2-7 | NOTE | no action (value-route derivation positively attested) | — |
+| E5-L2-8 | NOTE | no action (estimate-class check-pass covered in substance; optional landing sharpening named) | — |
+| E5-L2-9 | NOTE | no action (verified-green ledger) | — |
+
+COUNTS (E-5 pass): BREAKS 0/0; REPAIRs applied 3/3 (E5-L1-1, E5-L1-5,
+E5-L2-1); AMENDMENTS applied 0 + discharged-by-repair 2 (E5-L0-4 via
+[ESC-E5-3]; E5-L0-3(a) via [ESC-E5-1]) + deferred-to-landing 8 as
+named inputs (E5-L0-1/2, E5-L0-3(b), E5-L1-2/3/4, E5-L2-2/3, with
+E5-L2-4/5 joint); NOTES 7 (no action owed). New markers this pass:
+[ESC-E5-1] (2 sites), [ESC-E5-2] (2 sites), [ESC-E5-3] (1 row), this
+table (§14). No probe run by this reviser (all three repairs are
+carriage/scope/bookkeeping edits; the refuters' probes of record
+stand — none needed re-running for any edit above). RES-CAP-1 STATUS
+NOTE for the closure judge: the three lenses' content verdict on the
+delta is unanimous SOUND / NO BREAK; whether the deferred AMENDMENT
+inputs must land before the "round-4 delta unrefereed" declared line
+is retired at the M0 landing of §2.2-bis and the (vi) row is the
+judge's adjudication, not this reviser's.
