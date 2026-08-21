@@ -2515,3 +2515,25 @@ entries:
   mechanism: instrumentation-gap
   owner: "F2 queue: 'M-RED campaign (O5-lite (A)-(E) on families F-a..F-d with bands B-1..B-4)' + the sec.3.6 gradient-measurement rider — beside X-T3QS-5F and the S.22 sub-scope theorem; runs under G1 + the T3-CONTROL protocol row; blocking pre-run pins B-1/B-2 (D.13 contract rows) + (J)/(H) a.c.-only convention"
   trigger: "F2 entry; any consumption of a forchetta (ii)/(iii) MEASURED reading"
+
+- id: plume:free-boundary-solve-mechanics-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "FORK-LEDGER-141 adjudication 2026-08-20 (H20, GENUINELY NOT-COVERED, 1 of the 2 genuine gaps in 141 forks): the free plume boundary p = Pa SOLVE mechanics — the boundary tracked as a characteristic interface with the free-boundary position carried in the state vector and its linearization carried as an adjoint/shape-derivative term — has NO home in the record: reg row plume:vortex-sheet-stability-unchecked checks STABILITY only, diff par.2.1/par.2.4 decouple the plume for bell sectors, but plug/E-D sectors (wetted solid extending into the plume region, H-F21 option (b)) REQUIRE the solve and its shape-adjoint term"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/FORK_LEDGER_141_adjudication.md#free plume boundary (p = Pa) SOLVE mechanics"
+  code: []
+  mechanism: solve-mechanics-gap
+  owner: "F4b external-expansion window (rides the diff par.2.9 base-pressure agenda entry, per the adjudication's own homing); DISTINCT by declaration from plume:vortex-sheet-stability-unchecked — that row owns the stability check, this row owns the solve mechanics + free-boundary adjoint/shape-derivative term (no re-mint: different defect object, shared boundary)"
+  trigger: "first plug/E-D (external-expansion) sector campaign whose geometry wets solid inside the plume region — the F4b window opening act"
+  note: "Minted 2026-08-21 at the S-FOUNDATIONS-C4 COVERAGE GATE (FOUNDATION-CHOICE ENUMERATION category, fork-gap seeding duty). Dedup by measured grep in the mint window (SR-12): grep -niE 'free.boundary|p ?= ?Pa|plume|shape-adjoint|shape.derivative' docs/findings_registry.yaml pre-mint hits only the stability row (:1607) and unrelated Kaemming-Paxson/Zahr-Persson litreview rows — no row carries the solve mechanics; the adjudication text itself homes the increment here ('the solve-mechanics increment lives in H20')."
+
+- id: claims:engine-level-staged-evidence-hierarchy-missing
+  status: CONFIRMED
+  severity: medium
+  magnitude: "FORK-LEDGER-141 adjudication 2026-08-20 (P34, GENUINELY NOT-COVERED, 2 of the 2 genuine gaps in 141 forks): the staged evidence hierarchy for engine-level claims — V0 continuous verification -> per-champion validation -> pre-registered, prediction-first rig/thrust-stand terminal test, with ordering and gaps published beforehand — was never adjudicated anywhere in the record; nearest record = diff par.4.10, which carries only the adjacent thrust-stand-class tolerance anchor and explicitly declares 'no row'"
+  source: "validation/sfoundations_raws_2026-08-13/blocco3/FORK_LEDGER_141_adjudication.md#staged evidence hierarchy for engine-level claims"
+  code: []
+  mechanism: evidence-ladder-gap
+  owner: "P-1/G5-G6 claims window (what evidence ladder an engine-level claim of this program requires, pre-registration discipline included — the adjudication's own homing)"
+  trigger: "first engine-level claim drafted for P-1 or any G5/G6 gate act; LIGHT-INSTANTIATION rider: S-PRES (external ESA presentation milestone, PROGRESS item 18) is a trigger-bearing external act — slide-level engine claims must DECLARE their evidence stage on this row's ladder at the S-PRES Block-0 trigger-scan, while the full hierarchy adjudication stays with the P-1/G5-G6 window"
+  note: "Minted 2026-08-21 at the S-FOUNDATIONS-C4 COVERAGE GATE (FOUNDATION-CHOICE ENUMERATION category, fork-gap seeding duty). Dedup by measured grep in the mint window (SR-12): grep -niE 'staged evidence|evidence hierarchy|thrust-stand' docs/findings_registry.yaml pre-mint hits only the Kaemming-Paxson base-force measurement-hygiene litreview row (:1959) — no row carries the evidence-ladder question; diff par.4.10's declared 'no row' is the adjudication's named nearest record."

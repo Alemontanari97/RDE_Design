@@ -123,6 +123,12 @@ FAMILY_PATTERNS = (
     (r'^CR-W3-\d+$', 'CR-W3-<n>'),
     (r'^F-C\d+(?:-\d+)?$', 'F-C<n>'),
     (r'^SR-\d+$', 'SR-<n>'),
+    # S-FOUNDATIONS-C4 coverage-gate REPAIR pass 2026-08-21 (SR-4):
+    # the adversarial-critic finding ids CGC-1..CGC-8 entered the
+    # ratchet corpus via the C61/C62 choice-ledger mint notes — one
+    # linked family row added to the glossary in the same window
+    # (resolver: blocco3/COVERAGE_GATE_critic_c4.md).
+    (r'^CGC-\d+$', 'CGC-<n>'),
 )
 
 # The 12 pinned collision groups (contract list) -> entry predicate:

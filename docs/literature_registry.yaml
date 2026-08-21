@@ -431,7 +431,7 @@ entries:
   status: READ-INTEGRAL
   where_read:
     - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
-  summary: "Two decoupled Rao problems; GENO S4/S5/S6 implementation bugs of record stand; base constants 0.846/M^1.3 -> sec.7.5 unreliability row."
+  summary: "Two decoupled Rao problems; GENO S4/S5/S6 implementation bugs of record stand; base constants 0.846/M^1.3 -> sec.7.5 unreliability row. | G-14 HOME (ORCHESTRATOR-ADJUDICATED at the S-FOUNDATIONS-C4 coverage gate, 2026-08-21; declared: grep-verified in the mint window, SR-12 — NO Rao-baseline choice row exists in docs/choice_ledger.yaml, so the graft lands as a lit-registry rider, not a ledger row): P-B Li-Xu 2023 implements Vander-Veen-Gentry-Hoffman; P-C 2025 approving cite does NOT upgrade the Veen constants (unreliability of record stands; G-14, nozzle campaign 2026-08-20). Source: validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_nozzle_rde_arrivals.md G-14 (unreliability row = onofri_2002_plug_survey summary, this registry). [Field carrier re-homed note->summary at the C4 coverage-gate REPAIR pass 2026-08-21: the four-roots lint declares 'note' for bulk rows only — content verbatim, placement conformant.]"
 
 - id: onofri_2002_plug_survey
   identity: "Onofri et al., plug nozzle survey, RTO-TR-AVT-007 / AIAA 2002-0584 (non-variational)"

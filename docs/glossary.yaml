@@ -134,6 +134,10 @@ families:
     resolver: "validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md"
     count_covered: 12
     note: "Merged refuter attacks of the same advisory (RF-1..RF-12; RF-9/RF-11 cited by the choice-ledger reconciliation); RF-1 intra-commit staleness is the one carried into standing rules (S25-bis close). Counts measured by grep -o sort -u, 2026-08-13."
+  - family: "CGC-<n>* (C4 coverage-gate adversarial-critic findings)"
+    resolver: "validation/sfoundations_raws_2026-08-13/blocco3/COVERAGE_GATE_critic_c4.md"
+    count_covered: 8
+    note: "CGC-1..CGC-8, the S-FOUNDATIONS-C4 coverage-gate adversarial completeness critic's findings (2026-08-21); cited by the C61/C62 choice-ledger mint notes and the repair pass of COVERAGE_GATE_c4.md. Family added same window as the first citing tokens (SR-4). Count = the critic file's own machine-summary findings array, measured at the repair pass."
   - family: "V-F<n>* (Phase-A variational deriver forks)"
     resolver: "validation/sfoundations_raws_2026-08-13/phaseA_tree_variational.md"
     count_covered: 34
@@ -276,6 +280,11 @@ families:
     resolver: "CLAUDE.md (R7 anti-entropy closure block, ratified 2026-08-13) + docs/rde_nozzle_PROGRESS.md"
     count_covered: 12
     note: "SR-1..SR-12 standing closure/accounting rules of the S-ORDINE ratification (SR-4 same-window token resolution; SR-12 measured-command counts — the rule cited inside wave-3 landing notes)."
+  # --- S-FOUNDATIONS-C4 coverage-gate SR-4 resolution (2026-08-21): 1 family ---
+  - family: "W-<nn>* (WANTED procurement queue)"
+    resolver: "docs/literature_registry.yaml (the 30 status-WANTED rows, owner = procurement queue W-<nn>) + validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_nozzle_rde_arrivals.md"
+    count_covered: 30
+    note: "W-01..W-27, W-28a, W-28b, W-29, W-30 — the missed-cluster citation-neighborhood WANTED mints of the nozzle-RDE arrivals campaign (G-18 census-defect repair, minted 2026-08-20; authority = SYNTHESIS section (f), Tier 1+2 only; W-28 = two distinct papers, hence 28a/28b; Tier-3 not minted per the synthesis's own conditional). Piece-level token resolution is carried by the companion entries row of the same window (a FAMILY_PATTERNS extension is a test-file edit, outside this glossary-only window's write scope). Count = 30, measured by grep on the owner fields in-window 2026-08-21."
 
 entries:
   # ---------------------------------------------------------------
@@ -1462,6 +1471,75 @@ entries:
     meaning: "S-FOUNDATIONS-C4 brief standing rule 9: the explicit sequencing-check duty between the OBJ-DOM and delta-carrier minors (silence forbidden) — discharged at VERDICT_blocco2 sec.4 (MIN-OBJDOM-3 binding, (H6') consistency form, sequence (b) before/with (c)) and re-verified SATISFIED at VERDICT_escalation_c4 sec.3."
     resolver: "validation/sfoundations_raws_2026-08-13/blocco3/BRIEF_blocco2_phaseD.md + validation/sfoundations_raws_2026-08-13/blocco3/VERDICT_blocco2.md#4"
     first_seen: "BRIEF_blocco2_phaseD (2026-08-20, S-FOUNDATIONS-C4)"
+
+  # ---------------------------------------------------------------
+  # S-FOUNDATIONS-C4 COVERAGE-GATE SR-4 RESOLUTION (2026-08-21):
+  # same-window token debt of the C4 registry landings (W-* WANTED
+  # queue, swirl5f pins vs M-RED bands collision, sec-3.6 rider
+  # residues, campaign terms). The W-<nn> family row above documents
+  # the family; the slash-enumerated rows below carry the lint's
+  # piece-level resolution (glossary-only window, no test edit).
+  # ---------------------------------------------------------------
+  - token: "W-01 / W-02 / W-03 / W-04 / W-05 / W-06 / W-07 / W-08 / W-09 / W-10 / W-11 / W-12 / W-13 / W-14 / W-15 / W-16 / W-17 / W-18 / W-19 / W-20 / W-21 / W-22 / W-23 / W-24 / W-25 / W-26 / W-27 / W-28a / W-28b / W-29 / W-30 (WANTED procurement queue members)"
+    namespace: "literature"
+    meaning: "Member enumeration of the W-<nn> WANTED procurement queue family (see the family row above): the 30 missed-cluster citation-neighborhood WANTED mints of the nozzle-RDE arrivals campaign (G-18 census-defect repair), one literature_registry row each (status WANTED, owner 'procurement queue W-<nn>'); W-28a/W-28b = two distinct papers per the synthesis; Tier-3 (17 items) deliberately not minted."
+    resolver: "docs/literature_registry.yaml + validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_nozzle_rde_arrivals.md"
+    first_seen: "literature_registry WANTED mints (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "B-1 / B-2 (swirl5f blocking ingestion pins)"
+    namespace: "flag"
+    meaning: "The two BLOCKING pre-ingestion pins of the swirl5f dispatch, landed as the M0 VI.1 'BLOCKING PINS before ANY first dataset ingestion' block (S-FOUNDATIONS-C Blocco 2, 2026-08-19): B-1 = A4 tangential-energy-fraction normalization trap (KE-normalized vs h0-normalized, discriminating test Omega*r ~ D_CJ); B-2 = h0-convention provenance clause (whether h0 includes u_theta^2/2 decides the B2 fold/drop variant; D.20 Delta-h0 = Omega*Delta-Gamma linkage as rejector). COLLISION: same surface tokens as the M-RED derived bands B-1..B-4 (next row) and the MoC doubt-ledger B<n> bucket (family row above) — always disambiguate by document."
+    resolver: "docs/rde_nozzle_MASTER.md (VI.1 CycleFamily BLOCKING PINS block) + docs/findings_registry.yaml"
+    first_seen: "swirl5f dispatch consumption row, findings_registry (2026-08-19)"
+  - token: "B-1 / B-2 / B-3 / B-4 (M-RED derived error bands)"
+    namespace: "term"
+    meaning: "The four derived error bands of the M-RED carrier spec (R22-F centerpiece Part 3; findings row pipeline:m-red-campaign): B-1 >=4-point St-ladder Richardson band; B-2 E_theta debit in dmdot = rho u_x dA; B-3 channel-split window-complement mass; B-4 registered h-independent window under the marched-domain margin floor m0 with per-mesh ladder re-check. COLLISION: distinct from the swirl5f blocking pins B-1/B-2 (previous row) and from the MoC doubt-ledger B<n> bucket."
+    resolver: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md (Part 3) + docs/findings_registry.yaml"
+    first_seen: "findings_registry pipeline:m-red-campaign row (2026-08-21, S-FOUNDATIONS-C4)"
+  - token: "R-9 / R-12 / R-13 / R-14 / R-15 / R-16 / R-17 (R22F rider residue ledger)"
+    namespace: "term"
+    meaning: "Residue ledger of the R22-F centerpiece sec-2.2-bis/3.6 gradient-measurement rider, of record in the M0 [T-RED] landing block: R-9 design-gradient residual delta (SCHEMA, underived); R-12 certified basin radius for the a-posteriori argmax-shift check ((E) curvature ladder); R-13 O1 gate (Danskin/Clarke cusp derivative) at a margin-active S*; R-14 H-G5/KS-margin-set convexity OPEN; R-15 (extended) eps_U sweep-sup measurement at SAMPLED-SUP class; R-16 curvature-transfer residual L_H (H-G6, UNDERIVED — licenses no number until it lands); R-17 F2 curvature-corrected prox-regular refinement (object renamed mu_prox). COLLISION: hyphenated surface form is unique to this ledger — distinct from census R<n> and litreview residuals R<n>."
+    resolver: "docs/rde_nozzle_MASTER.md (R-9..R-17 residue block of the rider) + validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md"
+    first_seen: "findings_registry theory:r22f-optimum-shift-gradient-route row (2026-08-21, S-FOUNDATIONS-C4)"
+  - token: "X-T3QS-5F"
+    namespace: "claim"
+    meaning: "Owed F2 executable battery: the five-field content bound (value + Hessian level) for the T3 quasi-steady reduction — first item of the F2 order in the r22f-optimum-shift findings row and named deriver of R-9/R-16; licenses the on-ray St^2 improvement (centerpiece R-5) when it lands. Not yet a claims-registry row (F2 mint)."
+    resolver: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md + docs/findings_registry.yaml"
+    first_seen: "phaseD_r22f_centerpiece (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "LA-1 / LA-2 / LA-3 / LA-4 / LA-5 / LA-6 (escalation-verdict landing amendments)"
+    namespace: "term"
+    meaning: "The landing-amendment items of VERDICT_escalation_c4 (Blocco-2 escalation closure, 2026-08-20), one per lane: LA-1 OBJ-DOM (minor b), LA-2 NTF (minor a), LA-3 delta-carrier (minor c), LA-4 cross-lowering (minor d), LA-5 the E-5/R22F landing instructions (two-symbol mu_curv/mu_red split; LA-5(ii) (vi)-row delta status; LA-5(iv) amends the r22f-optimum-shift findings row), LA-6 amends the LB-11 PROGRESS queue entry."
+    resolver: "validation/sfoundations_raws_2026-08-13/blocco3/VERDICT_escalation_c4.md"
+    first_seen: "VERDICT_escalation_c4 (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "CITATION-NEIGHBORHOOD"
+    namespace: "directive"
+    meaning: "Census-protocol amendment term of record (G-18 miss repair): every paper promoted to READ-INTEGRAL gets a declared citation-neighborhood sweep (backward references at title depth minimum + forward-cite query when a channel exists), gaps minted as WANTED rows; carried by the findings row methodology:literature-census-citation-neighborhood-gap until the standing memory write."
+    resolver: "docs/findings_registry.yaml + validation/sfoundations_raws_2026-08-13/blocco3/BRIEF_nozzle_rde_arrivals_study.md"
+    first_seen: "findings_registry census-defect row (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "READ-INTEGRAL / READ-PARTIAL (literature read-status enum)"
+    namespace: "term"
+    meaning: "Status enum of docs/literature_registry.yaml (header contract): READ-INTEGRAL = integral read with per-paper expert report; READ-PARTIAL / READ-PARTIAL(triaged) = partial or triaged read; the enum values also enter owner/note strings of other registries as tokens. Defined once in the literature-registry header, never re-stated."
+    resolver: "docs/literature_registry.yaml (header status enum)"
+    first_seen: "literature_registry header (2026-08-13); corpus-cited by C4 rows"
+  - token: "P-A / P-B / P-C / P-D (nozzle-RDE campaign papers)"
+    namespace: "literature"
+    meaning: "The four deep-read papers of the nozzle-RDE arrivals campaign (2026-08-20): P-A Liu-Cheng-Zhang-Wang 2022 (PKU), P-B Li-Xu-Lv-Lv-Song 2023 film-cooling MoC nozzle (NUAA), P-C Li-Xu-Lv-Yu-Zhou 2025 adjustable cowl/spike (NUAA), P-D Jourdaine-Tsuboi-Ozawa-Kojima-Hayashi 2019 choked aerospike; per-paper study files NOZZLE_RDE_STUDY_p{A..D}_*.md, bracketed numerals (e.g. P-B[21]) = reference-list positions. COLLISION: distinct from the paper:P-1/P-2 rows and every other P-* namespace (see the P* collision entries)."
+    resolver: "validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_nozzle_rde_arrivals.md + validation/sfoundations_raws_2026-08-13/blocco3/BRIEF_nozzle_rde_arrivals_study.md"
+    first_seen: "nozzle-RDE arrivals campaign (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "G-01 / G-02 / G-03 / G-04 / G-05 / G-06 / G-07 / G-08 / G-09 / G-10 / G-11 / G-12 / G-13 / G-14 / G-15 / G-16 / G-17 / G-18 (nozzle-RDE campaign grafts)"
+    namespace: "literature"
+    meaning: "The 18-item graft list of the nozzle-RDE arrivals campaign synthesis (2026-08-20): per-graft consumption arcs into the record (e.g. G-10 forchetta enrichment note, G-14 Vander-Veen-constants unreliability rider homed in the literature registry, G-18 = the census-defect repair carried by the methodology:literature-census-citation-neighborhood-gap findings row). COLLISION: distinct from plan gates G0-G6 (no zero-padding, no hyphen there)."
+    resolver: "validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_nozzle_rde_arrivals.md"
+    first_seen: "SYNTHESIS_nozzle_rde_arrivals (2026-08-20, S-FOUNDATIONS-C4)"
+  - token: "G5-G6 (submission gate range)"
+    namespace: "gate"
+    meaning: "Range shorthand for the plan gates G5 + G6 (D6 gate list; G5 = the human Kraiko-1979/PMM passage blocking every SUBMISSION per CLAUDE.md R6): the P-1 claims window in which engine-level claim evidence ladders are adjudicated — cited by the claims-hierarchy findings row owner field."
+    resolver: "docs/rde_nozzle_development_plan.md + docs/findings_registry.yaml"
+    first_seen: "findings_registry claims-hierarchy row (2026-08-21, S-FOUNDATIONS-C4)"
+  - token: "S-FOUNDATIONS-C4"
+    namespace: "session"
+    meaning: "Fourth continuation window of the S-FOUNDATIONS foundations campaign (2026-08-20/21): Blocco-1 Phase-D landing execution + escalations, nozzle-RDE arrivals campaign (P-A..P-D deep reads, W-* WANTED mints, graft landing), forchetta table centerpiece, and the extended COVERAGE GATE (3 added categories) closing the session; opens at the C3-close commit chain per the post-close addenda."
+    resolver: "validation/sfoundations_raws_2026-08-13/blocco3/BRIEF_blocco2_phaseD.md + validation/sfoundations_raws_2026-08-13/COVERAGE_GATE_spec.md + docs/rde_nozzle_PROGRESS.md"
+    first_seen: "S-FOUNDATIONS-C4 registry landings (2026-08-20/21)"
   - token: "G-12 (arrivals-synthesis graft item)"
     namespace: "term"
     meaning: "Graft item G-12 of the nozzle-RDE arrivals synthesis: the scope-context sentence 'choking/constriction = class-changing, outside what delta prices' — no statement change; carriage re-owned to escalation E-3 (CT-8 adjudication, VERDICT_blocco2 sec.5) and landed with [T-DCRX] per VERDICT_escalation_c4 LA-3."
