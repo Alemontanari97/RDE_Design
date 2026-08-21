@@ -49,6 +49,11 @@
 ## C3: orchestrator-acts + arrivals-mapping + foundation-enumeration
 ## + PIPELINE DECISION MAP + R3 pieno, R35 -> CONSUMED). Poi F2
 ## blocco 0.
+## QUEUE (C4 landing 2026-08-20, LB-11 AS AMENDED by LA-6): Blocco-2
+## escalations CLOSED (VERDICT_escalation_c4, 2026-08-20): E-1/E-2/
+## E-3/E-4 DRY, E-5/RES-CAP-1 DISCHARGED; sequencing gate SATISFIED;
+## landings LA-1..LA-5 owed at the M0/registry landing window;
+## ship-gate remains armed for F2 (value, delta) rows.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

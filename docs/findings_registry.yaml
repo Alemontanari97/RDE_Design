@@ -206,11 +206,11 @@ entries:
   severity: medium
   magnitude: "gradient axis GOVERNS: d(DJ)/dthB = 5.36e3 J-units/rad vs O3 acceptance 9.3 (5.8e2x, robust <=6x Dv caveat); value axis 1.0767e-4*p_t = O(da^2), Richardson-scoped, F7-cancelling => no recorded verdict moves"
   source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#THE MERGED SLIVER ROW"
-  code: ["validation/a1_toc_variational_jax.py:516-522", "validation/a1_toc_variational_jax.py:1130-1137"]
+  code: ["validation/a1_toc_variational_jax.py:530-534", "validation/a1_toc_variational_jax.py:1179-1186"]
   mechanism: correlated-error
-  owner: "[OBJ-DOM] objective-domain adjudication, F2 entry (fix-A theta=0 station vs fix-B declare coded J + scope value/gradient/Pa)"
+  owner: "[OBJ-DOM] objective-domain adjudication, F2 entry (fix-A theta=0 station vs fix-B declare coded J + scope value/gradient/Pa); ESCALATION E-2 CLOSED 2026-08-20 (VERDICT_escalation_c4: DRY at round 3, 2 BREAKs found in-loop and fixed): ADJUDICATED fix-A objective-of-record at F2 entry, interim = fix-B scoping (landed); OBJDOM-1 THEOREM as restated (truncation ladder O(th1^3) generic / O(th1^5) / O(th1^6) iff p'(0)=0 AND p'''(0)=0), OBJDOM-2 THEOREM*, OBJDOM-3 THEOREM; F-1 three-branch + F-2 two-path falsifiers pinned; duties [OBJ-DOM-IMPL]/[OBJ-DOM-AB]/[OBJ-DOM-REBASE]"
   trigger: "first F2 verdict consuming dJ/dthB AND before the R2 delta-carrier ships; discharge test = the audit's analytic throat-panel A/B"
-  note: "THE demonstrator: audit-CONFIRMED 2026-08-07, re-minted by the S25 math review with contradicted magnitude, caught by the refuter dedup clause"
+  note: "THE demonstrator: audit-CONFIRMED 2026-08-07, re-minted by the S25 math review with contradicted magnitude, caught by the refuter dedup clause; PHASE-D MINOR (b) 2026-08-20: authored (phaseD_minor_objdom.md: fix-A proposed of record, A/B protocol P-1..P-4/F-1..F-2 pinned) + one-round refutation (3 content objections SUSTAINED: OBJDOM-1(a) discrete/continuum exactness, F-1 bar incomplete under the endpoint branch, OBJDOM-5 cancellation hypothesis insufficient) — item ESCALATED TO FULL FORM per VERDICT_blocco2 §3 E-2 (next window); the fix-A adjudication direction verified grounded and expected to survive; NO doc scoping lands until the escalated round closes"
 - id: engine-core:F5-underived-factors
   status: CONFIRMED
   severity: medium
@@ -218,7 +218,7 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F5-underived-factors"
   code: ["validation/a1_ideal_march_jax.py:195-205"]
   mechanism: underived-constant
-  owner: "F2 (derivation paragraph or reclassification per flip row; gap-map C18 placement)"
+  owner: "F2 (derivation paragraph or reclassification per flip row; gap-map C18 placement); PHASE-D MINOR (a) 2026-08-20: derivation paragraph authored (phaseD_minor_ntf.md, NTF-1..NTF-5; incumbent 100 = valid instance, headroom 1.426; /2 flip = model prediction 51.665 > 50) + one-round refutation (3 content objections SUSTAINED: PASS constant 2T → 2(T+floor); UB transfer factor A_c undeclared; NTF-4 conjunction + over-broad F2 falsifier) — ESCALATED TO FULL FORM per VERDICT_blocco2 §3 E-1 (next window); seam compliance verified 6/6 (one C18/C20-Tier-1 window, no collisions); ESCALATION E-1 CLOSED 2026-08-20 (VERDICT_escalation_c4: DRY at round 2; boundary-strictness edit judge-ordered at landing, probe-verified): derivation LANDED — NTF-2 THEOREM* (repaired constant 2(T+floor)), NTF-3 window THEOREM* conditional on declared A_c + derived form SCHEMA (NTF = eta*kappa_q), NTF-1/NTF-4 SCHEMA (H5 explicit, strict regime kappa_eff > (1+m)*NTF), incumbent 100 = valid instance (headroom 1.426); measured halves = F2-NTF-FLOOR-POPULATION + F2-NTF-TERMCOUPLE-TRIPCOUNT"
   trigger: "F2 engine rebuild window; any sweep flip row = immediate derivation duty"
 - id: parametrization:natural-BC-lip-bias
   status: CONFIRMED
@@ -296,7 +296,7 @@ entries:
   source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#Delta carrier"
   code: []
   mechanism: missing-carrier
-  owner: "F2 entry: (value, delta) Verdict field + fixed-exit-area relaxation lemma to M0 with rigor class"
+  owner: "F2 entry: (value, delta) Verdict field + fixed-exit-area relaxation lemma to M0 with rigor class; PHASE-D MINOR (c) 2026-08-20: lemma authored (phaseD_minor_deltacarrier.md DC-1..DC-6; DC-1 proof re-derived in full by the refuter and SURVIVES) + one-round refutation (4 content objections SUSTAINED: (H6) fails MIN-OBJDOM-3 — repair (H6') two-branch; ship-gate unlicensed fix-B branch vs the row's banded-or-repaired trigger; DC-2 needs the W_cert certified-subclass restriction; Pa convention unpinned/Pa>0 excludes the vacuum objective) — ESCALATED TO FULL FORM per VERDICT_blocco2 §3 E-3, SEQUENCED with/after the [OBJ-DOM] escalation E-2 (SR-C4-9 verdict §4); G-12 scope-context sentence (choking/constriction = class-changing, outside what delta prices) = NAMED INPUT of the escalated window; M0 home ratified = Part III [T-DCRX] adjacent [T-EAP]/OP-0; ESCALATION E-3 CLOSED 2026-08-20 (VERDICT_escalation_c4: DRY at round 3; sequencing gate §4(3) SATISFIED — (b) closed first, (H6')/ship-gate block bit-identical across all rounds): lemma LANDED at [T-DCRX] — DC-1 THEOREM* (Pa >= 0), DC-2 THEOREM* under W_cert (phase-quantified), DC-3 THEOREM under V1-V2, DC-4 THEOREM (inequality; regime clause SCHEMA, DORMANT), DC-5 PRACTICE, DC-6 SCHEMA; ship-gate remains ARMED for every (value, delta) row: [OBJ-DOM-IMPL] both sides OR net-panel band included; duties [DC-F2-1..5] incl. certificate-on-entry + (H2b) report-on-fail"
   trigger: "sequenced with/after [OBJ-DOM]; ships only with the sliver banded or repaired"
 - id: pipeline:Q3-certifiability-composition
   status: CONFIRMED
@@ -332,7 +332,7 @@ entries:
   source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#STEP 13"
   code: ["validation/a1_toc_variational_jax.py:1697-1720"]
   mechanism: adjoint-reassociation-amplification
-  owner: "standing discipline of record: every gradient COMPARISON or FD stencil pins ONE lowering (O3.1/R-GRAD bands are same-lowering by construction — verified; the M6 corrected form encodes it); B-SHAPE CLAUSE of record (convergence review B-F10): one lowering = one compiled executable AND one batch shape (the lowering changes with B — measured B=1 vs B=9 divergence 6.0e-2); formal derivation of the chain amplification factor = F2-entry candidate alongside the NTF derivation, with the three named scaling experiments (chain-length N-ladder, margin-proximity, float32 contrast)"
+  owner: "standing discipline of record: every gradient COMPARISON or FD stencil pins ONE lowering (O3.1/R-GRAD bands are same-lowering by construction — verified; the M6 corrected form encodes it); B-SHAPE CLAUSE of record (convergence review B-F10): one lowering = one compiled executable AND one batch shape (the lowering changes with B — measured B=1 vs B=9 divergence 6.0e-2); formal derivation of the chain amplification factor = F2-entry candidate alongside the NTF derivation, with the three named scaling experiments (chain-length N-ladder, margin-proximity, float32 contrast); PHASE-D MINOR (d) 2026-08-20: chain-amplification derivation authored (phaseD_minor_crosslowering.md CLG-D1..D7 + F2-CLG-SCALE identification design E1/E2/E3) + one-round refutation (3 content objections SUSTAINED: forward-state coefficient channel (eps_N-class) unpriced by the u-linear THEOREM* — H7 or conditional-on-q=1 owed; b_L FD-step stability hypothesis unstated in D5/D6; E3 separation = ~4.4 decades, not seven) — ESCALATED TO FULL FORM per VERDICT_blocco2 §3 E-4; E3 remains the load-bearing discriminator at the corrected separation; ESCALATION E-4 CLOSED 2026-08-20 (VERDICT_escalation_c4: DRY at round 3; D3-conditioning + H7-magnitude + rms-product edits judge-ordered at landing): derivation LANDED — CLG-D2 THEOREM* under H1-H4+H6+H7 (u-linear conditional on q = 1, H7 sufficient, E3-adjudicated), CLG-D5 THEOREM* cross-branch / SCHEMA-cond-H8 same-branch, CLG-D6 SCHEMA-cond-H8, D1/D3/D4/D7 SCHEMA, D4-ALT CONJECTURE; F2-CLG-SCALE = E1/E2/E3 with H7/H8 cheap adjunct checks; Higham 2ed = conditional THEOREM-upgrade path only"
   trigger: "any new consumer comparing gradients across lowerings, or any cross-session gradient reproduction claim"
 - id: bench:speed-measurement-variance
   status: CONFIRMED
@@ -1463,7 +1463,8 @@ entries:
   source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#R22"
   code: []
   mechanism: epistemology-bias-from-literature
-  owner: "S-FOUNDATIONS centerpiece (Form-2 panel to convergence: variational/PDE/asymptotics experts + refuter; T-DISC and T-RED land in M0 with declared rigor class; M-RED = carrier with derived bands); R22-CFD scheduling decision AFTER the formal half converges"
+  evidence: "S-FOUNDATIONS-C4 Blocco 1 v2 EXECUTED to cap-4 (2026-08-20; carrier validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md, closure blocco3/VERDICT_r22f.md): (1) [T-DISC-1] THEOREM* + [T-DISC-2](i) THEOREM* (booking-level, physical-h0-fixed scope) + [T-DISC-3/4] SCHEMA — the p-only reduction CONVICTED with zero CFD, the full-state per-phase average exonerated on the fiber axis; (2) [T-RED] operator DEFINITION + K-bar=0 THEOREM* + two-channel THEOREM* (SBV-conditional) + design-gradient-level SCHEMA (sec.2.2-bis; delta AND L_H underived, named derivers) landed at D.18/[MS-DEF-KRES]; (3) M-RED carrier spec with derived bands B-1..B-4 (F2 duty named); (4) R22-CFD re-scoped to CFD-1/CFD-2, scheduling dossier presented not decided; (5) FORCHETTA adequacy bracket landed M0 Part III [R22F-FORCHETTA]; G-c leg (ii) DISCHARGED-citable (GP1997 sec.3.2+Fig.1 pp.12-13; limits L1/L2/L3; X-GP01 quantitative residue unchanged); NOT-DRY-AT-CAP: 2 BREAKs + 1 REPAIR at round 4, all judge-sustained as fixed; residues RES-CAP-1..6 named in the verdict (round-4 delta unrefereed = the held-out escalation)"
+  owner: "S-FOUNDATIONS centerpiece (Form-2 panel to convergence: variational/PDE/asymptotics experts + refuter; T-DISC and T-RED land in M0 with declared rigor class; M-RED = carrier with derived bands); R22-CFD scheduling decision AFTER the formal half converges; EXECUTED-TO-VERDICT 2026-08-20 (VERDICT_r22f NOT-DRY-AT-CAP approved-for-landing + VERDICT_blocco2 ratification): parts (1)-(5) delivered at closure grades; REMAINING = landing execution (L-A..L-F) + RES-CAP-1 targeted round-4-delta refutation pass + M-RED/F2 duties (rows theory:r22f-optimum-shift-gradient-route, pipeline:m-red-campaign) + the R22-CFD scheduling touchpoint (dossier PRESENTED, decision = user, post-convergence)"
   trigger: "S-FOUNDATIONS opening (chain of record: F-SERVICE+S-CERT -> S-FOUNDATIONS -> F2); any public adequacy claim remains gated per D-44 either way"
 - id: oracles:sonic-strip-probe-missing-d49
   status: CONFIRMED
@@ -1673,7 +1674,7 @@ entries:
   source: "docs/rde_nozzle_MASTER.md#B = min of the bound ladder"
   code: []
   mechanism: bound-tightness
-  owner: "F2 ladder window, sequenced with the delta-carrier relaxation lemma (Phase D item) and the (value, delta) Verdict field: add the B1^c per-phase constrained-classical rung + the KKT weak-duality rung to the min"
+  owner: "F2 ladder window, sequenced with the delta-carrier relaxation lemma (Phase D item) and the (value, delta) Verdict field: add the B1^c per-phase constrained-classical rung + the KKT weak-duality rung to the min; PHASE-D 2026-08-20: composition with the relaxation family DRAFTED (phaseD_minor_deltacarrier.md DC-3 monotone family a-c + DC-4 weak-duality rung with the unilateral-regime gate; DC-4 dormant until (P)-as-posed capped runs exist — regime-2 free-sign multipliers inadmissible) — rides the minor-(c) ESCALATION (VERDICT_blocco2 E-3); rungs remain F2"
   trigger: "first (value, delta) Verdict field shipped, or the first campaign artifact where delta is dominated by the constraint price rather than by design suboptimality"
 - id: oracles:geno-tocnoz-wall-thrust-double-count
   status: CONFIRMED
@@ -2493,3 +2494,24 @@ entries:
   owner: "IMMEDIATE repair = the nozzle-RDE arrivals campaign (this session: 4 deep reads + missed-cluster WANTED list from the 4 reference lists, dedup at mint). STANDING repair = census-protocol amendment of record (this row is the carrier until the memory write at close): (i) every census MUST include an APPLICATION-anchored query family alongside method-anchored ones; (ii) every paper promoted to READ-INTEGRAL gets a declared CITATION-NEIGHBORHOOD sweep (backward refs at [TITLE] depth minimum + forward-cite query when a channel exists), gaps -> WANTED rows; (iii) the adequacy corpus (forchetta channels) is application-literature-fed BY CONSTRUCTION, not method-literature-fed"
   trigger: "every future census window (protocol amendment binding from this session); the coverage gate of THIS session verifies the campaign executed the immediate repair"
   note: "Honest scope: the miss does NOT retroactively invalidate landed method-side adjudications (their query-bounded absence claims were declared as such); it DOES weaken any adequacy-side claim that leaned on corpus completeness - the forchetta table must cite the 4 new papers where they bear (the campaign's graft list enforces this). User trust cost acknowledged of record."
+
+- id: theory:r22f-optimum-shift-gradient-route
+  status: CONFIRMED
+  severity: medium
+  magnitude: "channel (vi) OPTIMUM-SHIFT of record: |argmax shift| <= delta/mu_curv is SCHEMA-licensed only — delta (design-gradient residual, R-9) AND L_H (curvature-transfer residual, H-G6/R-16) UNDERIVED; mu_curv of the licensed gradient-route forms = the J_TRUE curvature floor, and the measured segmented TR-Newton carrier is a J_RED Hessian instantiating it only under H-G6 (mu_eff = mu_meas - L_H) — until L_H lands the gradient route licenses NO number even a-posteriori from the measured carrier alone; the VALUE route (|shift| <= 2*sqrt(eps_U/mu_red), Theta(sqrt(eps)) tight; mu_red = the measured J_red floor) is the only measured-carrier-executable route, eps_U instantiated at SAMPLED-SUP (estimate) class under the sweep-refinement stability license, never discharged; licensing requires H-G5 feasible-set CONVEXITY (a prox-regularity certificate does NOT license — probes of record); KS-margin-set convexity at a margin-active S* OPEN (R-14); connected-nonconvex global-argmax coverage NOT claimed by any form"
+  source: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#2.2-bis"
+  code: ["validation/sfoundations_raws_2026-08-13/phaseD/r22f_v2_probe_r4_l0_mu_identity_proxreg.py:1-212", "validation/sfoundations_raws_2026-08-13/phaseD/r22f_v2_probe_r4_l2_proxreg_annulus.py:1-185"]
+  mechanism: rigor-gap
+  owner: "F2, in order: X-T3QS-5F five-field content bound (value + Hessian level) / C51-route-B / M-RED gradient-measurement rider (centerpiece sec.3.6: delta at S*_red, (E) basin-radius curvature ladder R-12, eps_U sweep-sup R-15, directional Hessian-gap for L_H R-16); O1 discharge gates form (C) at a margin-active S* (R-13)"
+  trigger: "any argmax-shift number quoted at any grade; any tightening of the forchetta (vi) cells; M-RED rider execution"
+  note: "row text = VERDICT_r22f sec.7.2 row (2) AS AMENDED by VERDICT_escalation_c4 LA-5(iv), the two-symbol landing split (mu -> mu_curv on the gradient route; mu -> mu_red on the value route, identified as the measured J_red floor); DECLARED syntactic adaptation at landing 2026-08-21: the ordered code keys were bare paths — the lint requires path:l1-l2 form, so both probe carriers are cited as whole-file spans (:1-212, :1-185)"
+
+- id: pipeline:m-red-campaign
+  status: CONFIRMED
+  severity: medium
+  magnitude: "M-RED = carrier spec of record (centerpiece Part 3): O5-lite legs (A)-(E) on certified families F-a..F-d with derived bands B-1..B-4 — >=4-point St-ladder Richardson (B-1); E_theta debit in dmdot = rho u_x dA (B-2); channel-split window-complement mass (B-3); registered h-independent window under the marched-DOMAIN margin floor m0 with per-mesh ladder re-check (B-4); MARGIN-EXCLUDED-PHASES bucket (Xi_sub not overloaded); mu_routed = 0 primary rule (aimed at synthesis, verified by the post-march one-scan) with declared marched-sector fallback; outcomes move forchetta channels (ii)/(iii) from SCALING-ESTIMATE to MEASURED per family (class-wide still (U)-gated); both outcomes pre-registered positive (T3-CONTROL)"
+  source: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#PART 3"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "F2 queue: 'M-RED campaign (O5-lite (A)-(E) on families F-a..F-d with bands B-1..B-4)' + the sec.3.6 gradient-measurement rider — beside X-T3QS-5F and the S.22 sub-scope theorem; runs under G1 + the T3-CONTROL protocol row; blocking pre-run pins B-1/B-2 (D.13 contract rows) + (J)/(H) a.c.-only convention"
+  trigger: "F2 entry; any consumption of a forchetta (ii)/(iii) MEASURED reading"

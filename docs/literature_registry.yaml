@@ -281,6 +281,7 @@ entries:
     - "validation/ADVISORY_rde_choking_2026-08-11.md#3-bis. HARROUN'S QUASI-CYCLE-AVERAGED C_F"
     - "literature_review/reports/harroun_2021_jpp_nozzle_perf.md#Expert read"
     - "validation/ADVISORY_litreview_confrontation_2026-08-13.md#2. TABELLA PAPER-PER-PAPER"
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#2.3 [T-RED-3] Physical exhibit of record"
   summary: "Choking BYPASSED (inlet state imposed 1D upstream, Eq. (7) cycle law); 8x base drag; delayed separation; MISQUOTE OF RECORD — 'near-perfect time-averaged expansion' DOES NOT EXIST in the paper; executes a cycle average and finds it BLIND at contour-ranking level (C_F=1.25 identical for two aerospikes the experiment separates) — the discriminating-failure datum for claim 19 scale."
 
 # ---------------------------------------------------------------
@@ -751,11 +752,12 @@ entries:
   owner: "F2a swirl window — swirl-precedent primary source"
 
 - id: wanted_breitkopf_ulbrich
-  identity: "Breitkopf & Ulbrich 2025, GRP optimal control / variational calculus, arXiv:2509.22076 (identity enriched from the manifest page-1 verification at arrival; id kept for in-place upgrade, C3 block-0 2026-08-20). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-p.1 abstract] (PAIR-8 bearing check: closest arrival to the proof layer, NO-BEARING with reason declared)"
+  identity: "Breitkopf & Ulbrich 2025, GRP optimal control / variational calculus, arXiv:2509.22076 (identity enriched from the manifest page-1 verification at arrival; id kept for in-place upgrade, C3 block-0 2026-08-20). Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-p.1 abstract] (PAIR-8 bearing check: closest arrival to the proof layer, NO-BEARING with reason declared); R22F bearing check 2026-08-20 ([ABS], p.1 of 34): C1 shock-position/inter-shock-state dependence via reference-space front-fixing transformation — retained as named F2 candidate TEMPLATE for the front-differentiability duties (g2b/contact-crossing calculus; M-RED leg (E) fitted-sheet sensitivity), NOT consumed."
   paths: ["literature/breitkopf_ulbrich_2025_grp_optimal_control_variational_arxiv250922076.pdf"]
   status: READ-PARTIAL
   where_read:
     - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#2.6"
   owner: "D25U front-terms adjoint theory (consumer duty per MANIFEST_papers_foundations_c.md); first read establishes read-status — no summary before reading (UNREAD rule)"
 
 # --- P0 procurement list of record (handoff 2026-08-13, literature
@@ -976,17 +978,22 @@ entries:
   owner: "[P-IPADJ] source companion (C31 — barrier update law + multiplier semantics to be checked against the published algorithm, not only the scipy implementation); first read establishes read-status"
 
 - id: nocedal_wright_2006_2ed
-  identity: "Nocedal & Wright, 'Numerical Optimization', 2nd ed., Springer 2006 (book, 683pp; page-1 verified per MANIFEST_papers_foundations_c.md) — §6.2 SR1 + §8.1 FD error model are the cited targets (wave-2 rider item, PANEL_C31TRIO.md §4.4 + PAPERS NEEDED item 2)"
+  identity: "Nocedal & Wright, 'Numerical Optimization', 2nd ed., Springer 2006 (book, 683pp; page-1 verified per MANIFEST_papers_foundations_c.md) — §6.2 SR1 + §8.1 FD error model are the cited targets (wave-2 rider item, PANEL_C31TRIO.md §4.4 + PAPERS NEEDED item 2); READ-PARTIAL 2026-08-20 (two Blocco-1 minors, authors+refuters): App. A p. 614 float model (A.30) verified at source (per-op model = (A.31), p. 615); §8.1 FD error model book pp. 194-197 [FULL] (eq. (8.5)-class total error (L/2)e + 2uL_f/e verified at source; author-declared range inconsistency 194-197 vs 194-199 — MIN-CROSSLOWERING-7 — recorded, narrower range is the verified one)."
   paths: ["literature/nocedal_wright_2006_numerical_optimization_2ed.pdf"]
-  status: UNREAD
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_ntf.md#6"
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_crosslowering.md#6"
   owner: "[P-HESSREJ]/[P-QNCARRY] derived constants (C32/C33 legs — bands DERIVED from the stated error model, not asserted, per R5); first read establishes read-status"
 
 - id: giles_pierce_1997
   identity: "Giles & Pierce 1997, adjoint equations in CFD, AIAA 97-1850 (page-1 verified per MANIFEST_papers_foundations_c.md). DISTINCT paper from giles_pierce_2000 (FTaC intro) and giles_pierce_2001 (JFM quasi-1D analytic adjoint) — dedup call declared at the C3 block-0 landing. Read-status promotion 2026-08-20 (C3 retro-sweep): earned depth [PARTIAL-p.1 abstract] (PAIR-8 identity/bearing check only; live consumer excluded per the sweep brief)"
   paths: ["literature/giles_pierce_1997_adjoint_equations_cfd_aiaa97_1850.pdf"]
-  status: READ-PARTIAL
+  status: READ-INTEGRAL
   where_read:
     - "validation/sfoundations_raws_2026-08-13/blocco3/RETRO_SWEEP_arrivals.md#PAIR 8"
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#2.4"
+  summary: "Green's-function adjoint construction; quasi-1D sonic-throat logarithmic singularity (sec.3.1.1 pp.11-12) with shock continuity (sec.3.1.2 p.12); the 2D region-of-influence / lateral-pressure-relief dichotomy keyed on sonic-line/streamline obliquity (sec.3.2 + Fig.1 pp.12-13; self-graded heuristic); stagnation-streamline n^{-1/2} singularity (pp.14-15). Basis of the G-c leg-(ii) DISCHARGED-citable verdict (R22F centerpiece sec.2.4, all 17 pages read 2026-08-20)."
   owner: "R27 bridge + F11d leg-1 oracle (manifest consumer duty); first read establishes read-status"
 
 - id: venditti_darmofal_2000
@@ -1030,15 +1037,19 @@ entries:
   owner: "C1 modern layer (manifest consumer duty — upgrades the C1 modern-layer census-completeness claim from query-bounded to source-verified at read); first read establishes read-status"
 
 - id: deuflhard_2011_csm35
-  identity: "Deuflhard, 'Newton Methods for Nonlinear Problems: Affine Invariance and Adaptive Algorithms', Springer CSM 35, 2011 ed., DOI 10.1007/978-3-642-23899-4 (filename-identified per manifest, second batch 2026-08-20; wave-2 rider item, PANEL_C2021.md §4.6 + PAPERS NEEDED item 1)"
+  identity: "Deuflhard, 'Newton Methods for Nonlinear Problems: Affine Invariance and Adaptive Algorithms', Springer CSM 35, 2011 ed., DOI 10.1007/978-3-642-23899-4 (filename-identified per manifest, second batch 2026-08-20; wave-2 rider item, PANEL_C2021.md §4.6 + PAPERS NEEDED item 1); READ-PARTIAL 2026-08-20 (NTF minor, author+refuter independently): book pp. 51-53 (Theta monitor, termination (2.13)-(2.14) — note (2.14) denominator 1−Theta²_{k−1}), pp. 96-98, pp. 130-131 (NLEQ-RES), pp. 147-148 (NLEQ-ERR 'error accuracy sufficiently above the machine precision', verified verbatim)."
   paths: ["literature/deuflhard_2011_newton_methods_affine_invariance_csm35.pdf"]
-  status: UNREAD
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_ntf.md#6"
   owner: "C20 Tier-1 band of record (manifest consumer duty); first read establishes read-status"
 
 - id: yamamoto_1986_numermath48
-  identity: "Yamamoto 1986, Newton-Kantorovich error bounds, Numer. Math. 48:91-98 (scan, page-1 VISUAL-verified per MANIFEST_papers_foundations_c.md; Gragg-Tapia/Potra-Ptak/Miel bounds). IDENTITY FLAG (declared, not adjudicated): PANEL_C2021.md §2.3 cites Yamamoto, 'A method for finding sharp error bounds for Newton's method under the Kantorovich assumptions', Numer. Math. 49 (1986) — volume 48 vs 49 discrepancy; this row follows the page-1 verification of the on-disk scan; whether the panel's vol-49 cite is this paper or a companion is settled at first read"
+  identity: "Yamamoto 1986, Newton-Kantorovich error bounds, Numer. Math. 48:91-98 (scan, page-1 VISUAL-verified per MANIFEST_papers_foundations_c.md; Gragg-Tapia/Potra-Ptak/Miel bounds). IDENTITY FLAG (declared, not adjudicated): PANEL_C2021.md §2.3 cites Yamamoto, 'A method for finding sharp error bounds for Newton's method under the Kantorovich assumptions', Numer. Math. 49 (1986) — volume 48 vs 49 discrepancy; this row follows the page-1 verification of the on-disk scan; whether the panel's vol-49 cite is this paper or a companion is settled at first read; READ-PARTIAL 2026-08-20 (NTF minor): pp. 91-92 rendered (no text layer) — Thm 1 Kantorovich, Thm 2 Gragg-Tapia eq. (7) two-sided bound VERIFIED on the on-disk scan (worst-case lower constant 2/(1+sqrt(2)) ≈ 0.828), Thm 3 Potra-Ptak, Thm 4 Miel; pp. 93-98 unread. IDENTITY FLAG (vol 48 vs 49) NOT settled by this read — the read consumed the on-disk scan only; flag stays open."
   paths: ["literature/yamamoto_1986_newton_kantorovich_error_bounds_numermath48.pdf"]
-  status: UNREAD
+  status: READ-PARTIAL
+  where_read:
+    - "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_ntf.md#6"
   owner: "C20 Tier-2 r_K strengthener (manifest consumer duty — duty executable without it, declared); first read establishes read-status and settles the vol-48/49 identity flag"
 
 - id: vanaret_leyffer_2026_uno

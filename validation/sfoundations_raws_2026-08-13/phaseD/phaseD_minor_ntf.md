@@ -141,7 +141,8 @@ error:
       H2's contraction ball supplies (cf. Deuflhard CSM 35,
       (2.10)-(2.14), book pp. 51-52, read [PAGES] [ESC-r2-2: span
       opened at (2.10), the first display ON the declared read
-      pages — p. 52 only REFERENCES (2.8), which sits on an unread
+      pages] [ESC-J1-NTF(d), OPTIONAL per ESC-NTF-r2-2: (2.10) is a
+      numbered display on p. 50, content-restated on p. 51 — p. 52 only REFERENCES (2.8), which sits on an unread
       page]; note (2.14)'s literal denominator at source is
       1 - Theta^2_{k-1}, not 1 - Theta — the form used here is the
       series bound, not the literal equation; cf. also Yamamoto
@@ -316,15 +317,17 @@ in an H3-consistent instance):
   at a converged cell lie within [floor_z/(1+m), floor_z]; m = 0.25
   declared sufficient-not-optimized, ratified or superseded by
   F2-NTF-TERMCOUPLE-TRIPCOUNT's measured band.
-- DETERMINISTIC-ENVELOPE regime, kappa_eff(cell) >= (1+m)*NTF: UNDER
-  H5 (whose lower edge gives realized step >= floor_z/(1+m) >= T(z)
+- DETERMINISTIC-ENVELOPE regime, kappa_eff(cell) > (1+m)*NTF
+  [ESC-J1-NTF(a): strict inequality per ESC-NTF-r2-1]: UNDER
+  H5 (whose lower edge gives realized step >= floor_z/(1+m) > T(z)
   in this regime), metric-termination is unreachable at that cell —
   the loop exhausts N_NEWTON = 30 trips (C17's cap becomes the de
   facto terminator — silent per-cell cost inflation) AND the cell
   then fails certification (probe scene D, exit 0 this window:
   kappa_eff = 2*NTF under H5, 0/200 terminations with cap exhausted,
   0/200 cert PASSes — the conditioned claim HOLDS).
-- NEAR-THRESHOLD band, NTF < kappa_eff(cell) < (1+m)*NTF: H3 is an
+- NEAR-THRESHOLD band, NTF < kappa_eff(cell) <= (1+m)*NTF
+  [ESC-J1-NTF(a): closed upper edge per ESC-NTF-r2-1]: H3 is an
   ENVELOPE — it bounds ||delta||, it does not pin each per-trip
   realization; per-trip fluctuation can dip a step below T, giving
   EARLY metric-termination while a fresh certification sample still
@@ -351,7 +354,8 @@ requires trip-count instrumentation under the NTF sweep showing
 metric-termination WITH MARGIN — steps consistently below
 T*(1 - band) for a declared band ([ESC-r2-1] = precisely a measured
 violation of H5's band) — at cells whose MEASURED kappa_eff
-sits >= (1+m)*NTF (deterministic-envelope regime). Near-threshold
+sits > (1+m)*NTF (deterministic-envelope regime, strict per
+[ESC-J1-NTF(a)]). Near-threshold
 early termination alone refutes nothing (it is the model's own
 fluctuation-band prediction). F2 duty, §5.
 
@@ -371,7 +375,8 @@ fluctuation-band prediction). F2 duty, §5.
   (envelope <= realized*(1+m)) wherever the NTF-4
   deterministic-envelope scoping needs the envelope object — so the
   measured worst 70.110 is a LOWER estimate of that cell's envelope
-  kappa (<= 87.6 at m = 0.25), and LB (measured object) and the
+  kappa (<= 87.64 at m = 0.25 [ESC-J1-NTF(b): outward rounding per
+  ESC-NTF-r2-3, R5]), and LB (measured object) and the
   NTF-4 regime split (envelope object) never silently use the same
   symbol for two numbers up to (1+m) apart.
 - F2-NTF-TERMCOUPLE-TRIPCOUNT: trip-count instrumentation under the
@@ -447,7 +452,7 @@ statements:
     same-threshold coupling — SCHEMA, SCOPED and CONDITIONED on the
     EXPLICIT hypothesis H5 (fluctuation band [floor_z/(1+m), floor_z],
     m = 0.25 declared; measured half = F2 trip-count duty):
-    unreachability only at kappa_eff >= (1+m)*NTF UNDER H5 (probe
+    unreachability only at kappa_eff > (1+m)*NTF UNDER H5 [ESC-J1-NTF(a)] (probe
     scene D confirms; scene C shows H1-H4 alone never imply it);
     near-threshold band = fluctuation regime (early termination +
     FAIL both possible, probe scene B); falsifier re-pinned
@@ -528,9 +533,36 @@ option chosen and declared); (iii)'s duty sentence placed in
 F2-NTF-FLOOR-POPULATION (the kappa-owning duty) with the trip-count
 duty riding via H5. The refuter's §1 verified-sound record (11/12 +
 the [ESC-r1-3] falsifier half) is untouched by this round: no
-[ESC-r2-*] marker rewrites any [ESC-r1-*] repair text — round 2 only
+[ESC-r2-*] marker REVERTS or WEAKENS [ESC-J1-NTF(c), per ESC-NTF-r2-4]
+any [ESC-r1-*] repair text — round 2 only
 adds the H5 hypothesis, two attribution touches, and the operational
 kappa_eff pin. Seam (§0): untouched again this round (no marker in
 §0); C34/C35 consumption unchanged. Rigor labels unchanged by round 2
 (NTF-4 stays SCHEMA, now honest per the refuter: "honest once H5 is
 explicit"). PAPERS NEEDED: none new (unchanged).
+
+## 11. [ESC-J1-NTF] JUDGE-ORDERED LANDING PRE-STEP (append-only,
+## applied 2026-08-20 BEFORE the M0 transcription; executes
+## VERDICT_escalation_c4 LA-2(i), quoted: "PRE-STEP (judge-ordered
+## edits, append-only marker [ESC-J1-NTF] quoting this verdict,
+## applied to phaseD_minor_ntf.md BEFORE transcription): (a) SS4 + SS8:
+## deterministic-envelope regime made STRICT — 'kappa_eff(cell) >
+## (1+m)*NTF'; near-threshold band 'NTF < kappa_eff(cell) <=
+## (1+m)*NTF'; in-bullet parenthetical 'realized step >=
+## floor_z/(1+m) > T(z)'; SS8 line 'unreachability only at kappa_eff >
+## (1+m)*NTF UNDER H5' (ESC-NTF-r2-1; probe scene F = executable
+## witness of record). (b) SS5: '<= 87.6' -> '<= 87.64' (ESC-NTF-r2-3,
+## R5 outward rounding). (c) SS10: 'rewrites' -> 'REVERTS or WEAKENS'
+## (ESC-NTF-r2-4; in-file bookkeeping). (d) OPTIONAL: the ESC-NTF-r2-2
+## clarifying parenthetical on (2.10).")
+
+Edits applied in place, each tagged [ESC-J1-NTF(a|b|c|d)] at-site;
+superseded fragments (verbatim): (a) ">= (1+m)*NTF" (twice in SS4 incl.
+the falsifier's regime reference, once in SS8), ">= T(z)" (in-bullet),
+"< (1+m)*NTF" (near-threshold upper edge); (b) "<= 87.6"; (c)
+"rewrites". The falsifier's closed ">=" SELECTION clause of the F2
+duty stays as printed (conservative, per the refuter — ESC-NTF-r2-1
+disposition). R-ESC-1 declared: these are refuter-named repair texts
+adopted by judge order without a further refutation round; any future
+refuter may attack them as marked text. No label moves (NTF-1..NTF-5
+labels per VERDICT_escalation_c4 SS5.1).

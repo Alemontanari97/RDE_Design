@@ -332,6 +332,31 @@ uniformly in xi); canonicity per D2.5 (exact shock-free, declared
 conditional across fronts).
 OBJECTIVE: J[S] = Int_Xi F[S; s(xi)] dmu(xi), legitimacy chain
 Theorem 0 -> T0 -> P4.
+[LAND-C4-LA1] OBJECTIVE DOMAIN [OBJ-DOM adjudicated, Phase D
+2026-08-20] (landed per VERDICT_escalation_c4 LA-1(i) — escalation
+E-2 CLOSED DRY at round 3; the §4 text's PROPOSED status lifted by
+that verdict; text verbatim from phaseD_minor_objdom.md :461-470; the
+interim fix-B scoping regime — value + gradient + Pa statements
+scoped, all three axes — lands WITH it): the functional of
+record at F2 entry is the panel-inclusive J_A (domain [0,theta_B]
++ contour; fix-A). Until [OBJ-DOM-IMPL] lands, the executed
+carrier computes the coded J on [theta_1, theta_B] + contour:
+value, gradient, and Pa-drop statements about the carrier are
+scoped to that domain, and the Pa-drop claim holds under the
+vacuum objective only. Discharge = analytic throat-panel A/B
+(F2 duty [OBJ-DOM-AB]); tilt of record 5.36e3 J-units/rad vs
+acceptance 9.3 (advisory §1.3). [Adjudicated statement labels per
+VERDICT_escalation_c4 §5.2: OBJDOM-1 THEOREM as restated (discrete
+identity + truncation-order ladder: generic O(th1^3) with coefficient
+−(pi/6)·rtd·p'(0)·yt; O(th1^6) ⇔ p'(0)=0 AND p'''(0)=0; O(th1^5)
+branch with coefficient (pi/10)·rtd·(p'''(0)/6)·yt); OBJDOM-2
+(absorption branch dead, >= 96x) THEOREM*; OBJDOM-3 (Pa-anchor)
+THEOREM; OBJDOM-4 = the DECISION OF RECORD (fix-A objective-of-record
+at F2 entry; fix-B scoping interim); OBJDOM-5 ((H6') composition +
+re-pinned ship-gate) SCHEMA, proof obligation discharged in the
+delta-carrier escalation; falsifiers F-1 (three-branch) / F-2 (both
+paths) pinned; duties [OBJ-DOM-IMPL]/[OBJ-DOM-AB]/[OBJ-DOM-REBASE]
+(F2). Carrier of record: phaseD_minor_objdom.md through [ESC-r3-*].]
 PROBLEM (P): find the PAIR (S*, delta) such that
  (i)   S* ∈ argmax_{A_h(c)} J (existence; P7 = function-class target
        with monitored failure boundary);
@@ -941,6 +966,533 @@ tier-1+vacuum corner (T-T3-SI). Per breaker:
  with the formal tier-1 lab; the TWIN-A misattribution caveats
  (swirl panel P4) apply outside the corner.
 
+[LAND-C4-LD RIDER — T-T3-MAP-context candidate cross-cite, [ADV]]
+(S-FOUNDATIONS-C4 landing 2026-08-20; executes VERDICT_r22f §7 L-D /
+[GRAFT-G05] landing rider [REV-NRS-5]): P-B F-01 (time-averaged
+stagnation constraints "empirically recognized", citing P-D) =
+candidate cross-cite in this T-T3-MAP context; [ADV] provenance,
+CT-6-clean, no number consumed.
+
+------------------------------------------------------------------------------
+[T-DISC] FIBER-SEPARATION THEOREM (Part III block, landed
+S-FOUNDATIONS-C4 2026-08-20)
+
+[LAND-C4-LA LANDING HEADER] Executes VERDICT_r22f §7 L-A at the
+J-V2-corrected anchor (after the T-T3-MAP block, before PROTOCOL
+T3-CONTROL — the fiber axis completes the breaker census with the
+projection axis). Carrier of record: validation/sfoundations_raws_
+2026-08-13/phaseD/phaseD_r22f_centerpiece.md Part 1 AT CLOSURE, with
+grades per VERDICT_r22f §1 (single label authority; unchanged by the
+E-5 pass, VERDICT_escalation_c4 §5.5) and ALL scopings ([REV2-r1-1..5],
+[REV2-r2-1]). READING RULE (binding, [REV2-r1-21]/[REV2-r2-8](b)): the
+corrected forms land, never the superseded sentences — fragments
+quoted inside marker blocks below as superseded are historical record
+and govern nothing. This block is round-3-refereed text (no round-4
+delta): no unrefereed-delta line applies here.
+
+DEFINITION D1.1 (admissible data class). A := the class of per-phase
+interface data families xi |-> s(xi) of the program's standing scope:
+pure periodic single-mode rotating wave (pin H3; monitor = T0 flatness,
+M0 VI.4bis), frozen thermally-perfect mixture (pin P1), interface
+normalization H9, mu = pushforward of the time measure (uniform under
+rigid rotation; [MS-T-MEASURE] D.9(ii)).
+Each s(xi) carries at least (p, h0, s, u_x, u_theta = Gamma/r) with the
+h0-CONVENTION DECLARED (whether h0 includes u_theta^2/2 — the D.13
+contract fact, swirl5f DISPATCH §4 B-2; consumed here as a hypothesis
+switch, not resolved here).
+
+DEFINITION D1.2 (p-only projection). pi: s(xi) |-> (P(xi), uniform),
+the map that retains the per-phase pressure trace P(xi) and replaces
+every other field by the phase-uniform default (the EAP-style /
+pressure-only reading of the interface). The FIBER over a pressure trace
+P is pi^{-1}(P) ∩ A.
+
+[REV2-r1-1] PIN (fixes amendment R22F-L0-7, applied): the "phase-uniform
+default" of D1.2 is PINNED = the family's OWN mu-means (each non-pressure
+field replaced by its mu-average over the cycle). The fiber over P is
+therefore the CALIBRATED-SCALARS fiber: it fixes P(xi) PLUS all field
+mu-means, and the fiber coordinate is exactly the fluctuation + swirl
+content that [T-DISC-1] sweeps and M-RED band B-2 measures. eps_fib
+([T-DISC-3]) is read under this pin. The canonical-constant reading
+(fiber = full preimage of the P trace, with O(1) h0/s trace variation)
+is EXCLUDED — it would decouple eps_fib from every B-2 output and is not
+the object of any statement in this block; the [T-DISC-4](a) scale
+sentence is read under the same pin ([REV2-r1-5]).
+
+The question of record (mandate row, part (1)): characterize the fibers
+and LOWER-BOUND the J-variation within a fiber — "exonerates or convicts
+THE AVERAGE with zero CFD (the (b) half of R22)". Objective J = the
+cycle-averaged thrust functional of record (Part I; two-regime
+decomposition where mu(Xi_sub) > 0, T-T3-MAP(d) — the statements below
+are made on the supersonic-map sector; the subsonic sector joins the
+mixture form and is out of this theorem's scope, declared).
+
+[T-DISC-1] FIBER NON-DEGENERACY.
+STATEMENT. THEOREM* (conditionals inherited and named below). For every
+admissible pressure trace P(xi) whose fiber contains an element with
+through-flow (rho u_x > 0 a.e. on the exit station), the fiber
+pi^{-1}(P) ∩ A contains a one-parameter family {s_lambda} with identical
+(P(xi), h0-trace, s-trace, mass-flux trace) and swirl-KE flux
+E_theta[s_lambda] ranging from 0 to a strictly positive value at the
+measured corpus scale, ALL satisfying every flux-nullity constraint of
+record. In particular pi is non-injective on physically distinguishable
+data and NO constraint of record pins E_theta given P(xi).
+PROOF (by citation, zero new derivation — the inputs are of record):
+(a) the cycle-averaged axial angular-momentum flux constraint is
+[MS-T-FLUXNULL] (D.6) THEOREM*: in the idealized class (inviscid,
+J_inj = 0) the area-integrated mass-flux-weighted cycle mean of Gamma
+vanishes at every admissible station;
+(b) [MS-T-SKE] (D.10) THEOREM: E_theta > 0 strictly under
+through-flow with u_theta ≢ 0, and E_theta is NOT constrained by D.6
+under ANY measure — the theta-halves-at-each-radius exhibit realizes
+Gamma-flux cancellation r-fiberwise with E_theta arbitrary;
+(c) K-bar = 0 fiberwise UNCONDITIONAL on periodic BV composites
+(swirl5f, verifier-confirmed: judgeverify ITEM 3.3, sympy witness) —
+adding the theta-halves swirl content to a periodic composite leaves
+the azimuthal-flux mean identically zero, so the construction stays
+inside the residual-mean constraint as well;
+(d) the first moment is a NON-breaker with the mandatory "IDEALIZED
+axial-injection class" qualifier (mean-swirl panel P1, cited at
+T-T3-MAP(c) — the mean-swirl covariance block of record).
+The family s_lambda := (theta-halves exhibit scaled by lambda) composed
+with the fiber's base element satisfies (a)-(c) for every lambda by (b);
+pressure, h0, s, mass-flux traces are untouched by construction of the
+exhibit (it permutes u_theta sign content across theta-halves at each
+radius and scales its magnitude, leaving p, h (hence s), and rho u_x
+fixed; h0 fixed under the DROP convention verbatim, and under the FOLD
+convention fixed provided the exhibit's E_theta budget is compensated in
+the meridional KE at fixed h — the compensated variant is admissible on
+any station with meridional KE headroom, hypothesis H1.3 below).
+WHY THEOREM* (named conditionals): inherits D.6's (c1) assembled-balance
+symbolic check QUEUED (gap G-a) and (c2) H-AM0 audited-per-dataset.
+[LAND-C4 R-6 MINT NOTE: the carrier's conditional (c3) — "the K-bar = 0
+leg carries ADVISORY provenance until the R4 landing window mints it
+(proof is pen-complete + machine-witnessed; no physical conditional)" —
+is RETIRED at this landing: the K-bar = 0 mint at record grade executed
+at the D.18/[MS-DEF-KRES] site in this same edit (VERDICT_r22f §7 L-B,
+R-6). Conditionals (c1)/(c2) remain.]
+HYPOTHESES: H1.1 through-flow rho u_x > 0 a.e. at exit; H1.2 idealized
+axial-injection class (J_inj = 0, H-AM0-H-AM5); H1.3 under the FOLD
+h0-convention, meridional-KE headroom for the compensated exhibit
+(trivially checkable per family; AG-1 valve: sufficient-not-optimized,
+declared); H1.4 standing pins H3/P1/H9.
+FALSIFIER: exhibit ONE constraint of record (theorem, certificate, or
+contract row) that determines E_theta from (P(xi), h0, s, mdot) on A —
+this collapses the fiber and kills the theorem. (D.10's own falsifier
+battery, panel A4 with pin B-1, is the executable layer; the KE-vs-h0
+normalization trap is priced there and must never fire the falsifier on
+a unit mismatch.)
+
+[T-DISC-2] J-SEPARATION LOWER BOUND WITHIN A FIBER.
+STATEMENT. Split-grade, declared per leg:
+(i) SIGN LEG — THEOREM* (SCOPED; BOOKING level under H2.2, on
+PHYSICAL-h0-FIXED comparisons — [REV2-r1-2] below): within a fiber, at
+fixed (P(xi), h0-trace, s-trace, exit geometry, exit static-pressure
+trace), the momentum-flux thrust per streamline is strictly decreasing
+in the swirl content Gamma^2: from the exact per-streamline relation
+u_e^2 = 2(h0 − h(p_e, s)) − v_e^2 − Gamma^2/r_e^2 (algebra verified:
+swirl5f judgeverify §5.3, re-derived and sympy-confirmed there),
+at fixed (mdot, h0, s, p_e, v_e, r_e) each increment of Gamma^2
+subtracts exactly Gamma^2/r_e^2 from u_e^2. The pressure-thrust term
+∫(p − Pa) dA is FIXED within the comparison BY HYPOTHESIS H2.2
+([REV2-r1-2](1): booking-level comparison, frozen exit conditions).
+Hence J separates single-signedly AT THE BOOKING LEVEL on
+physical-h0-fixed comparisons: J(s_lambda) strictly decreases in
+lambda^2 on the supersonic-map sector ([REV2-r1-2](2) scope; the
+uncompensated DROP branch is geometry-signed with the r_e = r_in
+degenerate corner).
+[REV2-r1-2] SCOPING REVISION (fixes R22F-L0-5, R22F-L0-6, R22F-L2-3;
+the carrier's original justification "(same P trace)" and unqualified
+"strictly decreases" are SUPERSEDED and never land — integrated above
+per [REV2-r1-21]):
+(1) PRESSURE-TERM FIXITY (L0-5): the thrust functional of record
+evaluates momentum flux + (p − Pa) on the EXIT/enclosing surface,
+not on the interface; the fiber's shared P trace is
+the INTERFACE trace and does not fix the exit term. Within the theorem
+the fixity holds BY HYPOTHESIS H2.2 (fixed exit geometry + exit
+static-pressure trace) — leg (i) is therefore a BOOKING-LEVEL
+comparison (frozen exit conditions), and is labeled as such.
+(2) CONVENTION SCOPE (L0-6/L2-3, probes r22f_v2_probe_r1_l0_fiber_
+sign_2eps.py PART C and r22f_v2_probe_r1_l2_drop_sign.py, both PASS):
+the strict decrease holds for PHYSICAL-h0-FIXED fiber comparisons —
+the FOLD convention, or the DROP family in the compensated-exhibit
+variant (H1.3 headroom). On the UNCOMPENSATED DROP branch the booked
+h0-trace is fixed while the physical total enthalpy grows with swirl,
+h0_phys(lambda) = h0_data + lambda^2 Gamma_0^2/(2 r_in^2), and the same
+exact algebra gives Delta u_e^2 = lambda^2 Gamma_0^2 (1/r_in^2 −
+1/r_e^2): momentum thrust INCREASES for r_e > r_in and the family is
+IDENTICALLY DEGENERATE (zero separation) at r_e = r_in. This is
+geometry-signed and matches the record's own B2 drop-bias clause
+(judgeverify §5.2, verifier R-B; ≈ 0 at r_e ≈ r_in). Leg (i)'s
+THEOREM* is SCOPED accordingly; the uncompensated DROP branch is
+routed to the geometry-signed formula (single-signed PER FAMILY, sign
+set by r_e/r_in; the r_e = r_in degeneracy is named beside R-7).
+(3) ACTUAL-PAIR STATUS (L0-5 deeper limb): for actual per-phase
+solution pairs H2.2 is not free — at fixed (h0, s, mdot, A_e) the exit
+pressure is an OUTPUT and moves with Gamma (the B1 radial-equilibrium
+companion, 0.6-9% of p, is its physical face). The actual-pair
+separation statement (booking debit COMPOSED with the B1 exit-pressure
+shift, sign adjudicated) is NOT asserted here at any theorem grade: it
+is the M-RED band B-2 measured question, named. (Refuter L0 probe
+evidence, PART B: in the synthetic counter-model the actual Delta J
+tracks the booking Delta J within ~0.2% and keeps its sign —
+plausibility context only, not proof.)
+(ii) MAGNITUDE LEG — SCALING-ESTIMATE (labeled; NOT a bound): the
+separation scale at measured corpus swirl content is the B2 booking
+class: 1.5-3% of thrust (FOLD variant, single-signed); under the DROP
+variant the booking bias is |bias| ≤ delta_int^2/2 and ≤ the fold value
+iff r_exit ≤ sqrt(2)·r_in (swirl5f §1 B2 REPAIRED form incl. verifier
+edit R-B; ADVISORY provenance). The underlying measured inputs: corpus
+tangential energy 3-6% KE-NORMALIZED (h0-normalized reading ~4x smaller,
+0.3-2.5% — pin B-1; D.10 falsifier text), u_theta/(Omega r)
+≈ 0.15-0.20 (DISPATCH §9 sweep, 26 PDFs), per-phase exit swirl angle
+10-14 deg (B5 row). Additionally the radial-equilibrium fiber companion:
+B1 pressure shift 0.6-9% of p (working 1.5-4%), single-signed, phase-
+coherent, "survives EVERY mu-average" (swirl5f §1 B1; SCALING-ESTIMATE).
+LOWER-BOUND READING (the mandate's ask, stated honestly): the theorem-
+grade content is that the within-fiber J-variation is BOUNDED BELOW BY A
+STRICTLY POSITIVE, SINGLE-SIGNED functional of the fiber coordinate
+(the E_theta debit: leg (i)); its NUMERICAL floor at corpus swirl
+content is estimate-class (leg (ii)) until M-RED measures it on certified
+families (M-RED band B-2). No numeric lower bound is asserted at
+THEOREM grade — asserting one would exceed the held evidence class.
+[REV2-r1-3] PROPAGATION (fixes R22F-L0-5/L0-6/L2-3 at this reading):
+the LOWER-BOUND READING above is SCOPED to the BOOKING level on
+physical-h0-fixed comparisons (FOLD or compensated variant; H1.3):
+"bounded below by a strictly positive, single-signed functional" holds
+THERE. On the uncompensated DROP branch the within-fiber variation is
+geometry-signed with the r_e = r_in degenerate corner (ZERO
+separation) — no strictly-positive floor is asserted on that branch.
+The actual-pair (free exit state) form is an M-RED/B-2 measured
+question, not a theorem of this block. The same scoping applies to the
+[R22F-FORCHETTA] (iii) rigor column ([REV2-r1-18]).
+HYPOTHESES: H2.1 = H1.* ; H2.2 fixed exit geometry and exit static
+pressure across the fiber comparison (no re-optimization inside the
+comparison — re-optimization transfer is priced by [T-DISC-3]); H2.3
+supersonic-map sector (per-phase map partial, T-T3-MAP(d)); H2.4
+h0-convention declared per family (fold/drop switch). AG-1 valve applied:
+H2.2/H2.3 are strong, trivially checkable, sufficient-not-optimized.
+FALSIFIERS: sign leg — one admissible instance with
+∂(mdot·u_e)/∂(Gamma^2) ≥ 0 at fixed (p_e, h0, s, v_e, r_e) (kills (i):
+it contradicts the exact relation, so it can only fire via a hypothesis
+exit — which is precisely what it would localize). Magnitude leg — a
+certified interface family whose computed exit-swirl debit at corpus
+E_theta scale falls below the M-RED derived bar B-2 (kills the 1.5-3%
+class for that family; the class claim retreats to the families where it
+is measured).
+
+[T-DISC-3] OPTIMIZATION CONSEQUENCE (2-EPSILON TRANSFER).
+STATEMENT (SCHEMA; landed in the [REV2-r1-4] corrected two-leg form
+with the [REV2-r2-1] corrected parenthetical — the pre-round statement
+and parenthetical are SUPERSEDED and never land, per [REV2-r1-21]/
+[REV2-r2-8](b); executable counterexamples against the superseded form
+are of record: r22f_v2_probe_r1_l0_fiber_sign_2eps.py PART A and
+r22f_v2_probe_r1_l2_two_eps.py). Let eps_fib(P) := sup over the fiber
+of |J(s) − J(s')| — the within-fiber separation, read under the D1.2
+pin [REV2-r1-1]; eps_fib(P) > 0 by [T-DISC-1]+[T-DISC-2](i) wherever
+the PHYSICAL-h0-FIXED variant is admissible (FOLD or compensated, H1.3
+headroom; [REV2-r1-2] scope), while on the uncompensated DROP branch
+the within-fiber variation is geometry-signed with the r_e = r_in
+degenerate corner (ZERO separation, [REV2-r1-3]) — no strictly-positive
+floor is asserted on that branch ([REV2-r2-1] corrected reading of
+record; round-1 probes witness the degenerate corner). TWO sound legs,
+each at its own grade:
+(a) ADEQUACY / UPPER leg (per-surrogate; claim 10 read verbatim;
+SCHEMA over the cited lemma): for a GIVEN surrogate G = g∘pi with
+uniform value-error premise (U_G): sup_Sigma |J_exact[Sigma] −
+G(Sigma)| ≤ eps_G, any legitimate argmax of G is at most 2·eps_G
+suboptimal for J_exact (swirl5f claim 10, PROVEN in-panel D+R;
+constant 2 sharp — two-point example; uniformity (U) OPEN twice over +
+class-wide H-A1; record theorem target = S.22 shock-free sub-scope,
+F2). The bound is PER-SURROGATE: eps_G — never eps_fib — enters it.
+The F5a conditional-gain template binds to the surrogate actually
+used: "gain net of 2·eps_G, eps_G = measured/assumed per family".
+(b) IRREDUCIBILITY / LOWER leg (the conviction direction; SCHEMA with
+the design-realizability premise NAMED): with eps_fib(P) read under
+the D1.2 pin [REV2-r1-1], and premise (DR): there exist admissible
+designs Sigma_1, Sigma_2 whose data s(Sigma_1), s(Sigma_2) lie in one
+fiber with |J(s(Sigma_1)) − J(s(Sigma_2))| = osc > 0 ([T-DISC-1]
+constructs same-fiber DATA pairs; their DESIGN realization is this
+named premise, checked per family at M-RED time). Then EVERY
+pi-factoring surrogate takes one value on the pair and has sup-error
+≥ osc/2; the BEST pi-factoring surrogate (fiber midrange) attains
+sup-error exactly sup_P eps_fib(P)/2 (L2 probe-verified); and by the
+sharpness construction a legitimate argmax selection can be up to the
+full oscillation suboptimal. NO refinement of p-only data reduces
+THIS floor — the irreducibility sentence attaches to leg (b) ONLY,
+never to leg (a)'s upper bound. Where (DR) is not yet checked, the
+consequence is scoped to the data-class reading (fiber non-degeneracy
+of the DATA, [T-DISC-1]) and says so.
+INTER-FIBER ranking error of a p-only surrogate is UNBOUNDED by fiber
+diameters (the L2 counterexample) — no statement of this block bounds
+it; only (U_G)-type premises do.
+HYPOTHESES: leg (a) = (U_G) per surrogate ((U) OPEN, named; on its
+current status the consequence holds with eps read as the measured/
+assumed value per family, not as a certified class constant) + H2.*;
+leg (b) = (DR) + the D1.2 pin.
+FALSIFIERS: claim 10's own (a two-point construction beating 2·eps_G);
+any proof that (U) fails structurally on A (would re-scope the lemma
+to sub-families); for (b): a proof that no admissible design pair
+realizes any non-degenerate fiber pair (kills (DR) class-wide; the
+conviction retreats to the data-class reading, declared).
+Every G2-class gain certificate over a p-only pipeline is therefore
+conditional: "gain net of 2·eps, eps = <measured/assumed>" (the F5a
+template duty, DISPATCH §5).
+
+[T-DISC-4] VERDICT SEMANTICS — WHAT IS CONVICTED, WHAT EXONERATED.
+STATEMENT. SCHEMA (dichotomy assembly; binding reading of
+[T-DISC-1..3]).
+(a) CONVICTED: the P-ONLY REDUCTION pi. Its fibers are non-degenerate
+([T-DISC-1], THEOREM*), J separates within them single-signedly
+([T-DISC-2](i), THEOREM*), at a scale whose current estimate is the
+1.5-3% thrust class plus the B1 0.6-9%-of-p companion (SCALING-ESTIMATE,
+labeled), and the loss is not recoverable by optimization downstream of
+pi ([T-DISC-3]). Pressure-only surrogates are therefore NOT adequate
+for percent-level thrust ranking on swirl-bearing RDE data — with zero
+CFD consumed. This is the (b) half of R22, discharged at the grades
+printed here.
+(b) NOT CONVICTED (exonerated at this axis): the per-phase FULL-STATE
+average — the program's own J, which carries (p, h0, s, u_x, Gamma) per
+phase. Nothing in the fiber argument touches it: its data do not factor
+through pi. Its residual exposure is the REDUCTION axis ([T-RED], at
+the D.18/[MS-DEF-KRES] site) and the adequacy axis ([R22F-FORCHETTA]
+channels (i), (ii), (iv)), not the fiber axis.
+(c) PROHIBITION carried forward: neither "the mean flow has no swirl"
+nor "the time-mean interface carries net Gamma ≠ 0 at first order" may
+be asserted (D.12 PRACTICE); T-DISC lives strictly at the
+E_theta/second-moment level, which flux nullity leaves free.
+[REV2-r1-5] PROPAGATION (fixes the downstream inheritance named by
+R22F-L0-4 CONSEQUENCE + R22F-L0-5/L0-6/L0-7): in (a) above, "J
+separates within them single-signedly" is read at the BOOKING level on
+physical-h0-fixed comparisons ([REV2-r1-2] scope; uncompensated DROP
+branch geometry-signed with the r_e = r_in degenerate corner); the
+"1.5-3% class plus the B1 0.6-9%-of-p companion" scale sentence is
+read under the D1.2 pin ([REV2-r1-1]: calibrated-scalars fiber — the
+scale claim is exactly what B-2 measures; no O(1) trace-variation
+reading); and "the loss is not recoverable by optimization downstream
+of pi ([T-DISC-3])" cites [T-DISC-3] leg (b) of [REV2-r1-4] (the
+irreducibility floor, premise (DR)) — NOT the superseded 2·eps_fib
+upper form.
+FALSIFIER (of the conviction's relevance, not its truth): an M-RED
+measurement campaign returning eps_fib below the smallest design delta
+the program ever certifies (then the conviction is real but priced
+irrelevant for our class — an honest positive outcome, reported as
+such).
+
+------------------------------------------------------------------------------
+[R22F-FORCHETTA] — Adequacy bracket of record (2D-per-phase-averaged
+vs 3D-unsteady; user-facing)
+
+[LAND-C4-LC LANDING HEADER] Executes VERDICT_r22f §7 L-C (site named
+per SR-C4-17: immediately after the new [T-DISC] block, beside
+T-T3-MAP and the breaker census its channels consume). Content
+transcribed VERBATIM from validation/sfoundations_raws_2026-08-13/
+phaseD/phaseD_r22f_centerpiece.md Part 5 AT CLOSURE (the [REV2-r1-15]
+header declaration, the [GRAFT-G10] enrichment note, the CELL RULES
+line, the six-channel table with the [REV2-r4-5] cell readings as
+amended at this landing by the E-5 deferred inputs per
+VERDICT_escalation_c4 LA-5 — two-symbol split mu_curv/mu_red
+[E5-L1-4], sustained-ball-floor mu_eff reading [E5-L2-2] — the
+[REV2-r1-17/18] reading notes, the notes blocks [GRAFT-G02..G07]
+under their CT-6 ceiling banner, and §5.1 roll-up + headline with the
+fitted-sheet qualifier). This table is the user-facing adequacy
+bracket of record until M-RED/R22-CFD tighten it (post-close addendum
+C3 mandate). Grades per VERDICT_r22f §1.
+(vi)-ROW DELTA STATUS (executes LA-5(ii)): round-4 delta refereed
+(E-5 targeted pass of record, esc_refute_r4delta_l{0,1,2}.md, 0
+BREAK; [ESC-E5-1/2/3] applied; deferred inputs executed at this edit
+per VERDICT_escalation_c4 LA-5).
+
+CELL RULES (enforced): bound-or-estimate declared; rigor class per
+bound; provenance per number; SCALING-ESTIMATE cells labeled [SE];
+what-tightens-it named in program order (T-DISC → T-RED → M-RED →
+R22-CFD); NO cell above its held evidence class.
+
+[GRAFT-G10] HEADER ENRICHMENT NOTE (grafted per SYNTHESIS §(c) G-10 /
+(e).6, CT-3 [REV-NRS-1]; the addendum-(c) record sentence itself is
+UNCHANGED — it is TRUE as written): nearest existing referees for the
+per-phase thrust error = P-B Fig. 15 / P-C Figs. 13+20b — same-solver
+URANS unsteady-vs-steady pairs at GLOBAL averaging — named and
+DISQUALIFIED for the two stated reasons (companion not
+per-phase-averaged; truth not external/experimental). The bracket still
+CLOSES only via our own R22-CFD or a dedicated data procurement — until
+then every cell is bound/estimate-class, never externally refereed.
+[ADV]
+
+[REV2-r1-15] STRUCTURAL DECLARATION OF RECORD (addendum_c4 (c),
+delivery-check item; table-header status: this paragraph IS
+the table's header note): NO EXTERNAL PUBLISHED REFEREE EXISTS for the
+per-phase thrust error: the literature carries NO unsteady c_F datum
+that discriminates the 2D-per-phase-averaged prediction against
+3D-unsteady truth (the Harroun 1.25-flat is quasi-cycle-averaged,
+verified verbatim at source 2026-08-20 — it is the non-discrimination
+datum, not a referee). CONSEQUENCE: the bracket CLOSES only via our
+own R22-CFD or a dedicated data procurement; until then EVERY cell of
+this table is bound/estimate-class, never externally refereed.
+(Enrichment — nearest existing referees, named and disqualified — is
+the [GRAFT-G10] note above.)
+
+[ORCH-HARV-1] ORCHESTRATOR HEADER GUARD (declared orchestrator
+addendum note — NOT judge text; provenance = validation/
+sfoundations_raws_2026-08-13/blocco3/BASE_PRESSURE_HARVEST_c4.md;
+[ADV]): best-of-sweep != argmax: no published work optimizes the true
+3D-unsteady case; sweep/redesign evidence is ranking-signal only.
+
+| Channel | BEST (situazione migliore) | WORST (situazione peggiore) | Rigor + provenance | What tightens it |
+|---|---|---|---|---|
+| (i) Time-coupling / unsteadiness | **0 (exact)** on the certified class: [T-T0P] steadifies — gap identically zero MODULO the split gap lists (stratum A: G1,G2,G7,G8; +G5 lift, G4 tilted-interface; stratum B: +G3,G11,G9) and Cor 5.1 scoping (cl(Omega_march), slip-free). BOUND class, conditional. | **CLASS EXIT, unbounded of record**: aperiodic storage / mode transitions are an H-AM1 exit, not a gap number; slip-sheet fronts (the physically generic RDE type) are EXCLUDED by G9; the steady-sweep corrector half is G3/corrector-owned (VI.4bis), unquantified of record. Guard = T0-flatness monitor + f_cycle contract field (A32, registry :1925). No number is asserted — asserting one would exceed evidence. | [T-T0P] SCHEMA on both strata; H-AM1 exit; boundary PRACTICE | R22-CFD-1 (class membership on a real coupled field); G5/G9 lifts (F2 theory); the corrector program (G3 owner) |
+| (ii) Azimuthal-structure reduction (T-RED's own face) | **O(St_n^2) on-ray; single-digit % plausible** [SE]: K-bar=0 kills the mean channel (THEOREM*, [T-RED-2](i)); first-order scale Lambda = 0.59-1.11·St_n, work-term 0.007-0.09 = 0.7-9% [SE] (verifier-repaired, judgeverify ITEMs 1.1, §5.4); on-ray St^2 cancellation exists in-panel but is LICENSE-GATED (X-T3QS-5F, F2) — NOT bankable in this cell yet. Read WITH the good-fitted-sheet condition ([REV2-r1-7/18](a)). | **>10% NOT EXCLUDED off-ray** (claim 9 verbatim, C-T1 OPEN) [SE]; azimuthally-fed interior front segments UNREACHABLE by the march (row-13 pin) with E5 magnitude DISPUTED-OPEN; Harroun Fig. 18 (p.669, page-verified centerpiece §2.3) is the physical instance of the mechanism class. | structure THEOREM* (machine-witnessed; K-bar=0 MINTED at record grade at this landing, R-6); magnitudes [SE]; swirl5f claims 2/9/11/13 + judgeverify | T-RED (D.18/[MS-DEF-KRES] site, structure) → M-RED bands B-1/B-3 (measures eps, splits (J)/(H)) → X-T3QS-5F license (F2) → R22-CFD-1 |
+| (iii) Swirl / tangential content | **B2 ≈ 0 + B1 at 0.6% of p** [SE]: drop-convention with r_exit ≈ r_in makes the booking bias ≈ 0 (geometry-signed, \|bias\| ≤ delta_int^2/2; ≤ fold iff r_exit ≤ sqrt(2)·r_in — verifier R-B repaired clause); B1 low end 0.6% of p; B3 low end 0.5% in T; B5 exit swirl 10 deg bookkeeping-only. | **B1 up to 9% of p + B2 3% of thrust (fold) + B5 14 deg** [SE], all single-signed/phase-coherent, "survives EVERY mu-average" (B1 row); **WORST-DIRECTION MARKER (mandatory): Paxson-Miki shroud finding — 58.1% → ~71.5% of the notional ideal at FIXED area ratio** (V7 = argmax ~71.5%; the recommended V5 = 70.0%; figures are percentage POINTS of ideal, C25 corrections at findings_registry.yaml:2026 per [REV2-r1-17]) — **larger than the entire area-ratio design line, declared unexplained by the authors, and the registered swirl-breaker candidate** (E_theta debit + recovery asymmetry AGAINST the plug; advisory :807-812): configuration-scale effects the 2D-per-phase average could be blind to. | all magnitudes [SE]: swirl5f §1 B1-B5 repaired forms + R-A/R-B edits; shroud = [REP] page-verified external datum; sign leg of the debit THEOREM* ([T-DISC-2](i)) under the [REV2-r1-2] scope (physical-h0-fixed / booking level; uncompensated DROP geometry-signed, r_e = r_in corner — [REV2-r1-18](b)) | T-DISC fiber bound (block above) → M-RED band B-2 (measures the debit) → F2a pre-registered shroud prediction → S-5F build decision (user, pending) |
+| (iv) Averaging adequacy (sizing vs ranking) | **~1% at sizing level** [REP]: Paxson-Miki area-ratio agreement 6.54 vs ~6.5 (R26, registry :2147); Harroun 1.25-flat read at its verified limits = no measured contradiction of sizing adequacy. | **RANKING THRESHOLD OPEN (R26)**: adequacy NOT demonstrated for percent-level contour ranking; in-class contour deltas are FRACTIONS of a point (Hoffman scale 0.04-0.34%; our +0.51% in-class, 3bis-D advisory :828-832) vs configuration spreads of TENS of points — the average could be blind exactly at design-relevant scale. Harroun 1.25-flat is a NON-DISCRIMINATION datum at verified limits (no thrust measured; no 3-D unsteady flared; "2-D AND averaged" not isolated; no bar — advisory :800-805), NOT proof of blindness. | [REP] external data, page-verified in the confrontation; threshold OPEN of record (R26, "decided by R22") | M-RED (eps vs in-class deltas — the in-house threshold reading) → R22-CFD-2 (Harroun pair, field-facing) → R22-CFD-1 |
+| (v) Model-form bars | **Few-% class, priced and monitored**: frozen-vs-equilibrium bracket at the low end of its class with per-champion re-execution (P-F14 duty, registry :1627; instrument = hypaudit GAS-FROZEN monitors); base pressure in closed-wake regime with declared two-regime closure (transition Pa/Pc ≈ 0.15, R8). | **[T-EQBR] +6.3..+7.0% on the internal instance** (can exceed claimed design deltas — the P-F14 row's own warning); **base-pressure model-form UNPRICED on truncated plug**: Pb/Pa = 1 inadmissible in BOTH regimes (base stays ~20% below ambient in open wake — Harroun p.8 via R8); NO truncated-plug RDE base measurement exists in the read corpus — the nozzleless→plug transfer is an **ANALOGY, declared** (R8, advisory :1136). | frozen bracket = measured internal instance ([T-EQBR]) + corpus class; R8 = [REP] + declared ANALOGY (R8 vacuum re-confirmed by the C4 base-pressure harvest — [ORCH-HARV-2] below); T-T4 sharpness physical hole open (advisory :855) | P-F14 per-champion re-execution (standing duty); R8 = external measurement (procurement class, not ours); R22-CFD-1 prices coupled model-form jointly |
+| (vi) OPTIMUM-SHIFT (value-adequacy ≠ optimum-adequacy) [REV2-r1-16] | **\|argmax shift\| ≤ delta/mu_curv, A-POSTERIORI form** [SCHEMA] (two-symbol landing split per E5-L1-4: mu_curv = gradient route, J_TRUE floor; mu_red = value route, measured J_red floor): mu_curv = the curvature floor of J_TRUE ([REV2-r4-1](a)); the MEASURED engine curvature at S* (segmented TR-Newton curvature, Hessians of record — the measured CARRIER, a J_RED Hessian) instantiates it ONLY UNDER H-G6 (mu_eff = (mu_meas − b_E) − L_H, read on the (E)-certified ball at the sustained band-lower-edge floor, never the bare point measurement [E5-L2-2]; L_H = the curvature-level face of the reduction residual, UNDERIVED — [REV2-r4-1](b)(c)): until L_H lands the GRADIENT route licenses NO number even a-posteriori from the measured carrier alone; critical-cone identification O1-GATED at a margin-active S*, [T-RED-2G] [REV2-r2-3](D)/H-G4 — POINT-measured, so the cell licenses ONLY the a-posteriori form, valid IF delta/mu_curv ≤ the certified basin radius (check per condition (1), radius deriver named [REV2-r2-3](E); cone-pairing + licensed forms (T)/(C) per [REV2-r2-3](A) UNDER H-G5 ([REV2-r3-1] as narrowed by [REV2-r4-2]: feasible-set CONVEXITY declared and checked per instance — a prox-regularity certificate does NOT license the forms; KS-margin-set status at a margin-active S* OPEN, residue R-14); constrained/KKT form per condition (2) as repaired; metric + typing per condition (3)/[REV2-r2-3](B); delta evaluated at S*_red per [REV2-r3-2]); VALUE-ROUTE bound available a-posteriori [SCHEMA] — the ONLY route whose floor mu_red is legitimately the measured carrier as-is (J_red-side derivation, [REV2-r4-1](d)): \|argmax shift\| ≤ 2·sqrt(eps_U/mu_red) with eps_U = the UNIFORM value-error level on the explored basin — measured instantiation = the sweep-sup of the M-RED value legs (A)-(B) along the §3.6 design sweep at SAMPLED-SUP (estimate) class, licensed only when sustained under the declared sweep-refinement re-check ([REV2-r4-3]); a single-family eps does NOT discharge the premise; measurement instantiates the premise at declared class, it NEVER discharges it — certified closure stays with (U)/S.22, R-1 ([REV2-r2-3](F) as repaired by [REV2-r3-3] and [REV2-r4-3]); a-posteriori check for this route: 2·sqrt(eps_U/mu_red) ≤ the certified basin radius ([REV2-r2-3](E)/R-12; reduced argmax inside the basin) + sweep-sup coverage declared + H-G5 status declared (a check-pass at estimate class is itself estimate-class, defeasible under sweep refinement [E5-L2-8]) — note the sqrt rate: value-level adequacy confines the shift only to O(sqrt(eps)), and ONLY the gradient-route delta/mu_curv can tighten optimum coverage to the in-class delta scale ([REV2-r2-6](a); superseded clause quoted there). | **delta AND L_H UNDERIVED ([REV2-r4-1](c)) — NO argmax-shift number exists at any grade, and none from the measured carrier alone**: the design-gradient-level residual bound is SCHEMA + named derivers only, and the curvature-transfer residual L_H (H-G6) is likewise SCHEMA + named derivers ([T-RED-2G]; addendum_c4 (b) right-sized), so the helical shock structure can move the TRUE argmax along design directions the reduced functional does not see, and no bound of record excludes it; on a NONCONVEX feasible set — CONNECTED nonconvex included, where branch-wise coverage is undefined ([REV2-r4-2](d)) — global-argmax coverage is NOT claimed by ANY form of this schema — feasible-set geometry, not only delta's underivation ([REV2-r3-1](b), H-G5/R-14). EMPIRICAL MARKERS: the shroud thrust-migration finding = the registered worst-direction marker (channel (iii) WORST cell, Paxson-Miki 58.1% → ~71.5% of ideal at fixed area ratio); second markers grafted at [GRAFT-G07] (P-B flat-vs-peaked, P-C mid-ranking flips, P-A design-point miss (numeral confined to [GRAFT-G07]) — all [ADV], no number enters the schema). A value-level bound is NEVER passed off as optimum coverage (brief :126, binding). | delta/mu_curv = SCHEMA ([T-RED-2G] soundness conditions (1)-(3) + functional identity [REV2-r4-1](a)); mu carrier = MEASURED (J_red Hessians of record; instantiates the J_TRUE floor only UNDER H-G6); delta = UNDERIVED, L_H = UNDERIVED (named derivers only, [REV2-r4-1]); markers [ADV]/[REP] per their rows | [T-RED-2G] derivers in order: five-field content bound (X-T3QS-5F, F2) → C51-route-B → M-RED gradient-measurement rider (centerpiece §3.6, F2) → R22-CFD-1 |
+
+[REV2-r1-17] ANCHOR-NAME NOTE (applied): the (iii) WORST cell's C25
+carrier is docs/findings_registry.yaml:2026 (content and line verified
+by the L2 refuter; no file named "corrections registry" exists — the
+C25 correction text lives verbatim at that line of findings_registry).
+
+[REV2-r1-18] CELL-READING PROPAGATIONS (of record): (a) the (ii) BEST
+cell's "single-digit % plausible" is read WITH the good-fitted-sheet
+condition restored ([REV2-r1-7] — load-bearing, tested by M-RED leg
+(E)); (b) the (iii) rigor column's "sign leg of the debit THEOREM*
+([T-DISC-2](i))" is read under the [REV2-r1-2] scope: physical-h0-fixed
+/ booking level; the uncompensated DROP branch is geometry-signed with
+the r_e = r_in degenerate corner — consistent with the (iii) BEST
+cell's own drop-convention clause.
+
+CELL NOTES (grafted per SYNTHESIS_nozzle_rde_arrivals.md §(c)
+G-02..G-07, confirm-verified; ALL [ADV]; evidence ceiling D-8/CT-6
+BINDING on every line below: mechanism/topology/gap-SCALE readings only
+— NO number below enters any bound, band, or cell value of the table
+above):
+
+[GRAFT-G02] Channel (i) cell note: P-C Figs. 15/16 clean periodicity =
+published realization of the pure-periodic pin class (realization
+instance at CFD class ONLY [REV-NRS-8]: CFD-realizability of the pin
+class, NOT hardware realism — which is CT-5's actual concern, R20
+residue unchanged); P-D choked subsonic chamber = boundary-text support
+(coupling received from outside the class). No number moves.
+
+[GRAFT-G03] Channel (ii) provenance: BEST — P-B 2.8% uniform
+steady-vs-transient C_fx gap (<=60% trunc) + P-C 0.2-1.5% both-signs
+gap = two external single-digit-% instances [ADV]
+(cruder-than-per-phase reduction — each an UPPER-class analog, stated).
+WORST note: P-B 80% divergence (-5.78%, "flow swirling induces the
+trailing shock wave in advance") = configuration-dependent growth
+mechanism.
+
+[GRAFT-G04] Channel (iii) cell note: P-B exit V_cir 327-383 m/s =>
+eps_theta ~0.17-0.20, swirl angle ~9.7-11.4 deg [INF] — independent
+external datum: eps_theta INSIDE the DISPATCH §9 band (0.15-0.20);
+swirl angle OVERLAPPING B5's (10-14 deg) LOW EDGE, not inside it (9.7
+sits below the floor) [REV-NRS-3]. FILM-COOLING CAVEAT (rides this cell
+note) [REV-NRS-3]: every P-B V_cir value is measured on FILM-COOLED
+configs (Fig. 24 = the cooling matrix); no uncooled-baseline exit V_cir
+exists anywhere in P-B, and the cooling system itself MODULATES the
+swirl — the datum remains a valid magnitude-class existence datum
+[ADV], scoped "film-cooled configs, cooling-modulated, no clean
+baseline". P-C RMSD_theta 8.16-14.63 deg = upper-proxy consistency
+only. DEFINITIONAL GUARD (mandatory, STRONGER form [REV-NRS-2]): P-C
+eq. 20 (p. 8) = mass-weighted total-flow-angle RMS deviation from axial
+— upper-proxy reading defensible [VER-class]; P-B prints NO RMSD
+formula anywhere in the paper (nomenclature p. 2: "flow deflection
+angle" only) — its meridional-vs-total status is UNDER-DETERMINED at
+held evidence. Operative rule, unconditional: RMSD_theta from EITHER
+paper is NEVER booked against B5 in ANY direction (neither as swirl
+value nor as certified upper bound); the only swirl datum is V_cir.
+Swirl-breaker family notes: P-B flat-jet suppression (F-24/F-25,
+actuated instance) + swirl-induced early trailing shock (F-11 tail),
+beside the registered Paxson-Miki candidate.
+
+[GRAFT-G05] Channel (iv) provenance: BEST — P-D F-6/F-22 (mean efflux =
+classic plume; the source claim) + P-A Figs. 9/12 (axisymmetric mean,
+no Mach disk in Case C) + A-L1 (exit Mach 2.58 vs 2.69: the ONE
+quantified external mean-design-point miss, ~4%) + P-C L16 (time-avg
+wall p obeys steady area law) + P-B F-11 (the steady design still
+selects a NEAR-OPTIMAL in-band truncation — coincidence of in-band
+argmax is at/below Fig. 15 resolution [REV-NRS-9]). WORST — P-C ranking
+flip (L11) + P-B transient-only +0.52% invisible on the flat steady
+curve — the in-class delta scale (compare our +0.51%, advisory
+:828-832). Both cells [ADV]. LANDING RIDER [REV-NRS-5]: executed at
+this landing — see the [LAND-C4-LD RIDER] line in the T-T3-MAP context
+above.
+
+[GRAFT-G06] Channel (v) notes: P-A base ~0.16 atm bubble topology
+(Fig. 12b) + P-C base-zone transient-vs-steady deformation (L8) = base
+model-form UNPRICED stands; P-B Chutkey cold-rig base dataset
+(Figs. 4-5) = R8-adjacent context that does NOT retire the
+nozzleless->plug ANALOGY label (cold annular rig, not an RDE); P-B exit
+gamma 1.2500-1.2515 = weak frozen-gamma datum (one-step chemistry: does
+NOT test [T-EQBR]); P-D F-12/F-24 = the live instance of model-form
+bars dominating absolute values.
+
+[ORCH-HARV-2] ORCHESTRATOR ADDENDUM NOTE, channel (v) cell note
+(declared orchestrator addendum — NOT judge text; provenance =
+validation/sfoundations_raws_2026-08-13/blocco3/
+BASE_PRESSURE_HARVEST_c4.md; all [ADV], CT-6-clean, no number enters
+any bound/band/cell): (a) Purdue V1.4 nozzleless CTAP datum — the ONLY
+hot-fire RDE base-pressure MEASUREMENT in the read corpus: 5
+radially-resolved tests ~0.59 atm at 1.24 kg/s (CTAP cycle-mean, 7
+ports, transducer-accuracy error bars); open/closed transition
+P_a/P_c ≈ 0.15 with the NPR 4.5-6.7 gap untested; closed-wake
+P_b/P_c ≈ 0.08; open wake ~17-20% below ambient (RDE ejector suction).
+(b) R8 VACUUM CONFIRMED by the targeted harvest: NO truncated-plug RDE
+base-pressure measurement and NO RDE-specific base-pressure correlation
+exists anywhere in the read corpus (both Harroun papers state the
+negative result verbatim: 2021 p. 669 verdict sentence; 2020 p. 7 "no
+way to create an analytical model"); the classical best-of-stack
+pure-empirical p_b model carries a [+19%, −15%] error band on cold
+measured data (WG10) — the classical model-form floor sitting UNDER
+the RDE-specific unpriced bars of this channel.
+
+[GRAFT-G07] Channel (vi) provenance list: P-B Fig. 15 (flat-vs-peaked)
+= second empirical marker; P-C Fig. 13 (argmax holds, mid-ranking
+flips) = brush instance; P-A Fig. 15b drag tail + 4% miss =
+value-adequate yet visibly non-stationary design. All [ADV]; no number
+enters the delta/mu schema.
+
+[ORCH-HARV-3] ORCHESTRATOR ADDENDUM NOTE, channel (vi) note (declared
+orchestrator addendum — NOT judge text; provenance = validation/
+sfoundations_raws_2026-08-13/blocco3/BASE_PRESSURE_HARVEST_c4.md §13;
+[ADV]): Humphreys-Thompson-Hoffman 1971 argmax-sensitivity exhibit
+(AIAA J 9(8), pp. 1586-1587): swapping the base-pressure closure
+Eq. (12) → Eq. (38) moved the optimum base height ×2.45 (0.954 → 2.34
+in) and the tip wall slope −13.26° → −3.08° while moving thrust only
++0.26% — the p_b closure moves the ARGMAX at O(1) with the VALUE
+nearly flat: a classical, design-level instance of exactly this
+channel's mechanism.
+
+BRACKET ROLL-UP (§5.1 of the carrier — honest aggregate; no fake
+summation). The channels are NOT independent and are not summed. Seam
+declarations: (iii) is a DATA-CONTENT fidelity channel (what the
+per-phase functional books from given data) while (ii) is the
+REDUCTION channel (what the 2D march drops from the true field) —
+B2's booking legs and K's ∂_phi p legs are disjoint by construction
+(booking lives in the functional at fixed data; K lives in the field
+equations), but both consume the same physical swirl, so a joint
+measurement (M-RED families F-c) is the only legitimate aggregator.
+Channel (i) is conditional-zero, not zero.
+[REV2-r1-19] (vi) SEAM: channel (vi) is an OPTIMUM-adequacy channel,
+not a value channel — it is never summed with (i)-(v); it composes
+with them only through the delta/mu schema ([T-RED-2G] at the
+D.18/[MS-DEF-KRES] site), whose delta consumes the (ii)/(iii)
+gradient-level content. The headline below is unchanged: no
+argmax-shift number is asserted at any grade.
+HEADLINE OF RECORD (the licensed phrasing, nothing stronger):
+- BEST: on-ray, corpus-swirl, in-class geometry — the gap is plausibly
+  SINGLE-DIGIT PERCENT (on ray-like cycles WITH A GOOD FITTED SHEET —
+  M-RED leg (E) tests it; [REV2-r3-7]), with the mean channel exactly
+  null (THEOREM*) and the booking debit at the 1.5-3%-of-thrust scale
+  [SE].
+- WORST: off-ray >10% NOT excluded [SE]; configuration-scale blindness
+  is the documented worst DIRECTION — the Paxson-Miki shroud line
+  (58.1% → ~71.5% of ideal at fixed area ratio) is bigger than the
+  whole area-ratio design line and unexplained; class exits (mode
+  transitions, slip sheets, separation) carry NO number of record.
+- The bracket TIGHTENS in the program order T-DISC → T-RED → M-RED →
+  R22-CFD; nothing else tightens it.
+
 PROTOCOL T3-CONTROL (pre-registered control row of record; class
 PRACTICE, rejector-gated per R5; carrier tag X-T3CTRL reserved,
 registry entry when the executable lands; S-GAUNTLET 2026-08-11;
@@ -1159,6 +1711,12 @@ the KE-NORMALIZED swirl-KE flux fraction; the corpus "3-6%" figure
 is KE-normalized, the h0-normalized reading is ~4x smaller
 (0.3-2.5%); the falsifier must NEVER fire on a unit mismatch
 (discriminating test: only the KE reading gives Ωr ≈ D_CJ).
+[LAND-C4-LF RECONCILE FLAG to the D.10 row owner (VERDICT_r22f §4
+forwarded note L2-10 / §7 L-F, 2026-08-20): the row's "~4x smaller
+(0.3-2.5%)" sits in internal tension with its own nominal arithmetic
+— ~4x of 3-6% = 0.75-1.5%; judgeverify computed 0.45-2%. Record-side
+blemish flagged for reconciliation by the row owner; no grade moves;
+the R22F centerpiece cites this row faithfully as printed.]
 [D.11] (covariance sign). CONJECTURE — lands at the lowest class:
 on in-scope RDE chamber data cov(ρu_x, u_θ) > 0 wave-ward, hence
 by D.9(i) the plain time-mean swirl is net COUNTER-wave. EOS-free.
@@ -1173,14 +1731,564 @@ of record; falsifier: exhibit one).
 D.18 CROSS-REFERENCE (compact — DOC-2 GUARD: the
 over-certification counter on D.18 material stands at FOUR of
 record; nothing here states a strength above the in-line grades):
-[MS-DEF-KRES] (the reduction-residual / commutator terms K) is OF
-RECORD in the staging doc at its r7 state, NOT transcribed here.
-Labels: DEFINITION (distributional form) + SCHEMA completeness
-(gap G-f) + BOTH iff clauses SCHEMA (judge downgrades
-J-r2p-2/J-r2p-3; escalation E-3 CLOSED at these labels per
-VERDICT_confirm leg-6, with amendments AM-1..AM-3 of record
-against the staging text). Restoration of the iffs ONLY via the
-G-f battery (owner: carrier upgrade window, commit-gated).
+[MS-DEF-KRES] / [T-RED] REDUCTION-RESIDUAL OPERATOR — TRANSCRIBED OF
+RECORD (S-FOUNDATIONS-C4 landing 2026-08-20).
+
+[LAND-C4-LB LANDING HEADER] Executes VERDICT_r22f §7 L-B (+ the L-D
+pointer) as amended by VERDICT_escalation_c4 LA-5. Carrier of record:
+validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece
+.md Part 2 + §2.2-bis AT CLOSURE (grades per VERDICT_r22f §1, single
+label authority; centerpiece labels UNCHANGED by the E-5 pass,
+VERDICT_escalation_c4 §5.5). REPLACEMENT DECLARED per the verdict's
+explicit order: the previous compact pointer of this block —
+superseded fragment, verbatim: "[MS-DEF-KRES] (the reduction-residual
+/ commutator terms K) is OF RECORD in the staging doc at its r7
+state, NOT transcribed here. Labels: DEFINITION (distributional form)
++ SCHEMA completeness (gap G-f) + BOTH iff clauses SCHEMA (judge
+downgrades J-r2p-2/J-r2p-3; escalation E-3 CLOSED at these labels per
+VERDICT_confirm leg-6, with amendments AM-1..AM-3 of record against
+the staging text). Restoration of the iffs ONLY via the G-f battery
+(owner: carrier upgrade window, commit-gated)." — is REPLACED by this
+transcription; the G-f/iff-restoration rule and the DOC-2 guard
+STAND unchanged (census completeness stays G-f SCHEMA; iff clauses
+SCHEMA; restoration only via the G-f battery). READING RULE (binding,
+[REV2-r1-21]/[REV2-r2-8]/[REV2-r3-10]/[REV2-r4-6]): superseded
+fragments quoted inside marker blocks below are historical record and
+govern nothing; the corrected forms are the sole text of record.
+ROUND-4 DELTA STATUS (executes LA-5(ii); the RES-CAP-1
+"round-4 delta unrefereed" declared line is RETIRED and REPLACED by):
+round-4 delta refereed (E-5 targeted pass of record,
+esc_refute_r4delta_l{0,1,2}.md, 0 BREAK; [ESC-E5-1/2/3] applied;
+deferred inputs executed at this edit per VERDICT_escalation_c4 LA-5).
+CROSS-POINTER (L-C): channels (ii)/(vi) quantified face: see
+[R22F-FORCHETTA], Part III.
+M-RED POINTER (L-D): Residual-functional measurement spec (M-RED,
+bands B-1..B-4, F2 execution): centerpiece Part 3, of record. (F2
+duty registered per VERDICT_r22f §7.2 row (3), registry-side.)
+K-BAR = 0 MINT (R-6 — EXECUTES HERE): the K-bar = 0 mean-nullity leg
+is MINTED AT RECORD GRADE at this landing (THEOREM*: pen proof +
+machine witness; holds on full BV — a.c. + Cantor + atoms). The
+ADVISORY-provenance conditional (c3) of [T-DISC-1] and the carrier
+§2.2(i) provenance line ("ADVISORY provenance pending R4 landing")
+are RETIRED in this same edit.
+SYMBOL BINDING AT THIS SITE (executes the landing rename
+[REV2-r2-3](C) as amended by [REV2-r4-1](a) and E5-L1-4 — two
+symbols, never one): mu_curv := the schema's curvature floor of
+J_TRUE (gradient route; the measured carrier instantiates it only
+UNDER H-G6); mu_red := the measured J_RED curvature floor (value
+route, carrier-as-is per [REV2-r4-1](d)). The S20 margin MULTIPLIER
+mu (KKT-with-margin-multiplier block, Part VI) is a DISTINCT object
+never referenced by this section. The renames are executed in the
+text below at every printed bound; "mu" survives only inside quoted
+superseded fragments and in the forms' own subscripted floors
+mu_T/mu_C (both instances of mu_curv on their cones).
+
+[T-RED-1] THE OPERATOR, EXPLICIT AND EXACT.
+DEFINITION (grade DEFINITION; identities THEOREM* — pen algebra
+independently verified with sympy witnesses; distributional form is
+this [MS-DEF-KRES] of record). Let
+U = (rho, rho u, rho v, rho Gamma, rho E) and let the lab azimuthal flux
+be F_theta(U) = (rho w, rho u w, rho v w, rho w Gamma + r p, (rho E + p) w).
+The wave-frame azimuthal flux is EXACTLY
+  F_phi,rel(W) = F_theta(U) − Omega r · U
+              = (rho w_rel, rho u w_rel, rho v w_rel,
+                 rho w_rel Gamma + r p, rho w_rel h0 + Omega r p)
+(row-for-row identity, energy row rho E w + p w − Omega r rho E =
+rho h0 w_rel + Omega r p: judgeverify ITEM 3.1, sympy PASS). The
+reduction-residual operator is
+  K(x, r, phi) := (1/r) ∂_phi [ F_phi,rel( W(x, r, phi) ) ]
+in the distributional sense, and the per-phase-2D
+reduction solves the K-DROPPED system: the azimuthal-structure terms
+dropped by the reduction are EXACTLY the six advective rows + front atoms
+of K (residual census: swirl5f claim 2 — PROVEN-HERE at advective level
+by 3 independent derivations, in-panel; RECORD STATUS: div-form
+completeness remains gap G-f SCHEMA, iff clauses SCHEMA — grades
+NOT inflated here; the sixth drift piece (w/r)∂_phi h0 included per
+repaired census, judgeverify §5.1).
+Equivalent-form identities of record (both exact, judgeverify §5.4):
+r·R_theta^(B) + Omega r^2 · K_rho = R_Gamma^(A) and
+R_E^(A) − Omega·R_Gamma^(A) = (1/r) ∂_phi (rho w_rel I), I = h0 − Omega Gamma.
+HYPOTHESIS LIST (operator level): H-RED-1 post-[T-T0P] quotient valid
+(inherits the FULL split gap lists: stratum (A) G1+G2+G7+G8 under H8'/H9
+with G5 the named lift and G4 the tilted-interface branch; stratum (B)
+additionally G3+G11+G9 — cited, owned there, not re-litigated); H-RED-2
+W in the periodic BV composite class in phi (bounded S1 fields, finitely
+many front crossings per period); H-RED-3 conventions: J1^K = St·J1^ledger
+normalization chain pinned (judgeverify ITEM 3.2, exact convention-pin;
+the F-5 hazard resolved by S_sweep := K/St); H-RED-4 (J)/(H) channel
+values read under the a.c.-only/psi-bar-pairing pin (convention-dependent
+split, necessity verified: judgeverify ITEM 3.3 tail).
+[REV2-r1-6] H-RED-2 STRENGTHENED (fixes R22F-L2-5; AG-1 valve:
+sufficient-not-optimized, trivially checkable on the intended class):
+H-RED-2 now reads — W piecewise-a.c. in phi, i.e. SBV composites
+(a.c. part + finitely many atoms, NO Cantor part). Rationale: BV
+admits a nonzero Cantor part (bounded + finitely many jumps does not
+imply SBV), which the two-channel census would leave unowned:
+on a BV-with-Cantor field a THIRD first-order channel exists and
+belongs to neither (J) nor (H). The intended piecewise-smooth-fields-
+with-fronts class is SBV trivially. The "exactly TWO first-order
+channels" claim and the rigor line are conditional on this SBV clause.
+
+[T-RED-2] BOUND SCHEMA.
+(i) MEAN NULLITY — THEOREM* (pen proof + machine witness; MINTED AT
+RECORD GRADE at this landing, R-6 — the carrier's "ADVISORY provenance
+pending R4 landing" line is retired): K-bar = 0 fiberwise
+UNCONDITIONALLY on periodic BV composites — the distributional
+phi-derivative of a periodic BV function has total signed mass zero
+over a period, a.c. + Cantor + atoms included (judgeverify ITEM 3.3).
+CONSEQUENCE: the reduction residual has NO mean-field first-order
+channel; exactly TWO first-order channels survive in J:
+  (J) the atom/jump pairing  <psi-bar, atom content>, and
+  (H) the a.c. covariance/hysteresis channel  −Cov^{ac}(psi, K),
+(swirl5f claim 9, mixed grade of record: channel structure verified,
+BOUNDS OPEN — C-T1). Magnitude status of record, licensed phrasing
+with the FITTED-SHEET condition restored ([REV2-r1-7], verbatim at
+source): "single-digit-% total PLAUSIBLE on ray-like sawtooth cycles
+WITH A GOOD FITTED SHEET; >10% NOT EXCLUDED" off-ray —
+SCALING-ESTIMATE class; the fitted-sheet qualifier is load-bearing
+(exactly what M-RED leg (E) tests).
+[REV2-r2-2] SITE POINTER: the "exactly TWO first-order channels"
+clause above is read under H-RED-2(SBV) per [REV2-r1-6] — on a
+BV-with-Cantor field a third first-order channel would exist; the SBV
+clause excludes it by hypothesis.
+(ii) FIRST-ORDER SCALES (all SCALING-ESTIMATE, labeled; verifier-repaired
+forms only): first-order coefficient scale Lambda = 0.59-1.11·St_n
+(R-C corrected band); pressure-work term order a_p·St_n·beta_w with
+beta_w = p/(rho h0) in [0.091, 0.160] envelope => 0.007-0.09 (judgeverify
+ITEM 1.1); dimensionless spine chi = Omega Gamma / h0 = 0.06-0.20
+(verifier-confirmed band), exact EOS-free closure chi·beta_tau = beta_w
+(STRONGER than printed — definition-level identity, judgeverify ITEM 1.1);
+spike-core band r_core/R_int ≳ sqrt(eps_theta·chi/2) ≈ 0.065-0.14 (R-A
+corrected; the printed 0.10-0.19 REFUTED for the record class).
+(iii) ON-RAY IMPROVEMENT — LICENSE-GATED (not usable): the St_n^2 on-ray
+cancellation (claim 3, H3-w) is PROVEN in-panel but LICENSE GATED on the
+committed X-T3QS 5F battery (F2 duty). Until it lands: the J1 bar is
+COMPUTED on swirl data, never argued away (DISPATCH §3 row 3 gate,
+binding here).
+(iv) UNIFORMITY — OPEN twice over ((U) + class-wide H-A1), decided by
+the S.22 shock-free sub-scope theorem (F2) + measured eps (M-RED/O5-lite).
+RIGOR LINE ([REV2-r2-4] form of record): operator definition
+DEFINITION (exact identities THEOREM*, machine-witnessed); census
+completeness G-f SCHEMA; K-bar = 0 THEOREM* (minted at record grade,
+R-6); two-channel reduction THEOREM* conditional on
+H-RED-2(SBV)/H-RED-3/H-RED-4; all magnitudes SCALING-ESTIMATE,
+labeled; uniformity OPEN ((U) + H-A1); time-coupling
+G3/corrector-owned, boundary named (the [T-RED] seam is the
+AZIMUTHAL-STRUCTURE half only; aperiodic/mode-transition content is
+an H-AM1 class EXIT, not a K term).
+
+PER-TERM DISPOSITION (of record; [REV2-r1-9/10] corrected readings):
+| K term (census of record) | Mechanism (ray family) | Disposition |
+|---|---|---|
+| sweep-advective rows: K_u, K_v, K_s + sweep parts of K_rho, K_Gamma, K_h0 (incl. sixth drift (w/r)∂_phi h0) | phase-lag on advective helix | mean of TOTAL K null (joint; no per-row nullity claimed — [REV2-r1-9]); first-order J-effect via (J)/(H) — magnitude MEASURED by M-RED (bands B-1/B-2); on-ray St^2 improvement deferred to X-T3QS-5F license (F2) |
+| pressure-torque/work legs: ∂_phi p in K_Gamma, K_h0 | amputated azimuthal aperture of the acoustic cone (swirl generation + wave work) | order-estimate (a_p·St_n·beta_w = 0.007-0.09, SCALING-ESTIMATE); structure deferred to C51-route-B / S-5F (route B treats helical sheets natively); magnitude MEASURED by M-RED |
+| front atoms (fitted-sheet jump content) | (J) channel; azimuthally-fed segments unreachable by the march (row 13 pin) | mean channel dead only JOINTLY with the a.c. parts (K-bar = 0, THEOREM*, SBV class); the atoms' own signed mass books into (J) ([REV2-r1-9]); J-pairing <psi-bar, atoms> MEASURED by M-RED protocol leg (E) (fitted-sheet ON/OFF); E5 magnitude DISPUTED-OPEN (needs measured Delta x_s standoff modulation — named decider); native treatment deferred to C51-route-B |
+| separation / viscous content of the exhibit | outside inviscid class | NOT a K term — boundary named (separated-phase monitor, T-T3-MAP(a)); no bound asserted |
+[REV2-r1-10] PER-INSTANCE CARRIAGE + D-4 GUARD: the exhibit-family
+CONNECTION ("this IS the phenomenon class K carries") is SCOPED to the
+K-CARRIED SUBSET of the [GRAFT-G01] exhibit family (carrier §2.3, of
+record; all [ADV], mechanism/topology only, CT-6/D-8 unchanged):
+P-A banded ramp footprint -> advective-helix rows (D-2 class); P-A
+REFLECTED shocks -> D-4 family: chamber-side, upstream of the
+interface — NOT K terms (D-4 misfiling guard verbatim: "do not misfile
+as K terms"); bears on CFD-1 coupling and must be declared in/out of
+the interface hypothesis (H3 class membership) at M-RED/CFD-1 time;
+P-B sweeping oblique wave -> advective-helix rows (D-2); P-C one-sided
+internal shock -> front-atom row; P-C deformed base ->
+separated/boundary row; P-D rotating front + oblique shock + triple
+point -> front-atom row; P-D choked-panel UPSTREAM azimuthal content
+-> D-4 family, NOT a K term (chamber-side coupling, CFD-1). The
+physical exhibit of record (Harroun 2021 Fig. 18, printed p. 669,
+page-verified) lives in carrier §2.3 as restored by [REV2-J1].
+FALSIFIERS ([T-RED] block): (f1) a periodic BV composite with nonzero
+fiberwise K-bar (kills (i) — machine witness exists against it); (f2)
+O5-lite leg (D) exponent 1 on a smooth on-ray cycle (kills the carrier
+assumptions of the two-channel frame); (f3) distributed O(1) mismatch in
+leg (C) outside the jump window (kills (J)-localization); (f4) a computed
+5F gradient contradicting the mechanism-to-ray map's sign structure on
+the migration family (the claim-7 deciding instrument).
+
+[T-RED-2G] DESIGN-GRADIENT-LEVEL BOUND SCHEMA (§2.2-bis of the
+carrier, AS AMENDED THROUGH [REV2-r4-1/2/3] AND the E-5 deferred
+inputs executed at this landing; grade SCHEMA; form per addendum_c4
+(b): honest SCHEMA + named derivers, closed form NOT claimed and NOT
+demanded).
+OBJECT (grade SCHEMA). On the admissible profile manifold (design
+space of record, segmented TR-Newton parameterization), let J_red be
+the reduced (per-phase-2D) functional and J_true the post-quotient
+wave-frame functional. The DESIGN-GRADIENT residual is
+  delta(S) := || P_T(S) [ grad J_true(S) − grad J_red(S) ] ||_{M*}
+with P_T = projection on the feasible directions (critical cone at the
+active set) and ||·||_{M*} the DUAL norm of the design-space metric M
+in which the engine curvature is an eigenvalue (metric NAMED —
+condition (3) below) [ESC-E5-1: at-site identity bracket, applies
+REPAIR E5-L1-1(i) (esc_refute_r4delta_l1.md) — mu_curv = the J_TRUE
+floor, [REV2-r4-1](a); the engine (measured-carrier) curvature
+instantiates it only UNDER H-G6, [REV2-r4-1](c); the metric-naming
+function of this sentence is unchanged].
+STRUCTURE (bound schema): by the adjoint representation the gradient
+gap inherits the residual operator: grad J_true − grad J_red =
+<psi_S, K(W_S)>-type pairings + front-sensitivity terms, so delta
+decomposes along the SAME channels as the value level —
+  (J)-gradient content: <∂_S psi-bar, atom content> + <psi-bar, ∂_S
+  atoms> (front-atom design sensitivity — the g2b/contact-crossing
+  calculus class, F2; the Breitkopf-Ulbrich reference-space template
+  is the named candidate instrument, retained as a named F2 candidate,
+  not consumed);
+  (H)-gradient content: ∂_S Cov^{ac}(psi, K).
+HYPOTHESES: H-G1 = H-RED-1..4 incl. the SBV clause ([REV2-r1-6]);
+H-G2 adjoint field psi_S exists and is regular on the B-4 registered
+window with the per-family DOMAIN-margin floor (marched-domain min
+margin per [REV2-r2-5](a), not entry-only); H-G3
+differentiable-front regime — no crossing events inside the
+perturbation ball (else the g2b calculus owns the term; named exit,
+not silent).
+WHAT DERIVES delta (the three named derivers, brief order, verbatim
+class): (1) five-field content bound (X-T3QS-5F battery, F2) — would
+bound the (H)-gradient channel on-ray; (2) C51-route-B (native
+helical-sheet treatment) — would bound the front-atom sensitivity
+structurally; (3) M-RED GRADIENT MEASUREMENT — named F2 duty RIDER on
+the carrier §3.6: gradient of legs (A)-(B) along the design sweep,
+evaluated in the measured Hessian's own parameterization.
+STATUS (honest): NO closed-form gradient bound is derivable at current
+record (the value-level magnitudes are themselves [SE]); this schema +
+the named derivers IS the deliverable at this rigor class (addendum_c4
+(b): an acceptable dry outcome; label inflation forbidden both ways).
+SOUNDNESS CONDITIONS (these BIND the [R22F-FORCHETTA] (vi) row):
+(1) BASIN CLAUSE: the perturbation bound |argmax shift| ≤ delta/mu_curv
+is the strongly-concave argmax-shift lemma; mu_curv must be a curvature
+FLOOR (smallest reduced-Hessian eigenvalue) of J_TRUE — functional
+identity declared, [REV2-r4-1](a) — holding UNIFORMLY on a
+neighborhood containing the shift ball. The segmented TR-Newton
+curvature of record is POINT-measured: it licenses only the
+A-POSTERIORI form — valid IF delta/mu_curv ≤ the certified basin
+radius, and the check is stated as part of any cell that uses it.
+(2) CONSTRAINED FORM: at an active-set optimum, the floor = reduced
+Hessian on the critical cone and delta = the PROJECTED design-gradient
+residual norm (feasible directions only); multiplier/margin shifts
+priced per the KKT-with-margin-multiplier formalization of record
+(S20 ladder — read per [REV2-r2-3](D): naming the stationarity
+STRUCTURE only, no perturbation/stability theorem). An
+unconstrained-form cell at a constrained S* would overclaim.
+(3) METRIC CONSISTENCY: delta is measured in the dual norm of the
+SAME design-space metric in which the floor is an eigenvalue;
+otherwise delta/mu_curv is not norm-invariant and any cell number is
+meaningless. The metric is named wherever the ratio is quoted.
+[REV2-r2-3] SOUNDNESS-CONDITION REPAIR + TYPING + CARRIER SPLIT +
+VALUE-ROUTE LEMMA (of record):
+(A) CONE-PAIRING RULE: the argmax-shift schema licenses
+EXACTLY TWO forms, and in each the residual delta and the curvature
+floor are taken on the SAME cone — never curvature on the small
+(critical) cone with residual projected onto that same small cone
+while the shift explores the large (tangent) one (probe
+r22f_v2_probe_r2_l0_activeset_shift.py of record: 500x violation and
+an unbounded-violation variant under exactly that pairing):
+  (T) TANGENT-CONE FORM (unconditional on convex feasible sets):
+  mu_T = the curvature floor of J_TRUE ([REV2-r4-1](a)) over the
+  TANGENT (feasible-direction) cone on the certified ball; delta_T =
+  the residual measured on the SAME cone (support-function form, (B)
+  below). Strong monotonicity / the VI argument give |argmax shift| ≤
+  delta_T/mu_T with NO active-set hypothesis. Cost: mu_T degrades
+  to the smallest feasible-direction curvature.
+  (C) CRITICAL-CONE FORM (sharper floor, license-gated): mu_C = the
+  critical-cone reduced-Hessian floor of J_TRUE ([REV2-r4-1](a))
+  and delta_C on the SAME critical cone are licensed ONLY under the
+  MULTIPLIER-MARGIN CLAUSE: every active-constraint multiplier ≥ its
+  NAMED margin against the perturbation (the Bonnans-Shapiro-class
+  strict-complementarity active-set-stability regime) — the clause is
+  part of the a-posteriori check list wherever this form is quoted,
+  alongside condition (1)'s basin check.
+(B) TYPING: the sound reading of the delta definition, DECLARED, is
+via the M-Riesz map — identify the gradient gap g with M^{-1}g,
+project M-orthogonally onto the cone, measure in ||·||_M —
+equivalently, by the Moreau decomposition, the support-function form
+  delta_cone := sup { <g, d> : d in cone, ||d||_M ≤ 1 },
+which is the form the VI argument of (A) consumes directly and makes
+the cone-pairing rule automatic (delta and the floor name the same
+cone by construction).
+(C) SYMBOL + SIGN HYGIENE (EXECUTED at this landing — see the SYMBOL
+BINDING paragraph above): the schema's curvature symbol at this site
+is mu_curv (gradient route, J_TRUE floor) with mu_red the value
+route's measured J_red floor (E5-L1-4 split); the S20 margin
+MULTIPLIER mu is a distinct object. Sign convention, declared: for
+concave J the floor is the smallest eigenvalue of −H_reduced
+(equivalently |largest eigenvalue of the negative-definite
+H_reduced|) — strictly positive; "smallest reduced-Hessian
+eigenvalue" is always read in this convention.
+(D) SCHEMA OBJECT vs MEASURED CARRIER + O1 GATE: the SCHEMA object is
+the curvature floor per (A) (form (T) or (C)); the MEASURED CARRIER
+of record is the segmented TR-Newton curvature in the driver's
+parameterization (S18/S24 lineage, Hessians of record). The carrier
+instantiates the schema object UNDER H-G6 (mu_eff = (mu_meas − b_E) −
+L_H, [REV2-r4-1](c) as completed by E5-L2-2) at an interior /
+margin-inactive S* — never flatly; the engine's Hessians of record
+are Hessians of the REDUCED (coded, per-phase-2D) functional, and the
+engine has never computed J_true (the premise of R22 itself)
+[superseded fragment, verbatim: "The carrier INSTANTIATES the schema
+object at an interior / margin-inactive S* (the F1/S22-S24
+margin-inactive instances are exactly this case)." — never lands
+flat]. At a MARGIN-ACTIVE S* — the record's own measured-supported
+hypothesis for the current engine optimum — the active multiplier,
+hence the critical cone and the reduced Hessian ON it, are NOT yet
+defined objects of record: OBLIGATIONS LEDGER O1 (Danskin/Clarke cusp
+derivative; until discharged the margin-active KKT is B-stationarity
+ONLY). The critical-cone identification of the measured carrier is
+therefore O1-GATED. New hypothesis line:
+  H-G4: at a margin-active S*, form (C) (and any critical-cone
+  reading of the measured carrier) is available only AFTER O1
+  discharges; until then only form (T) with the tangent-cone floor
+  is licensed there — UNDER H-G5 ([REV2-r3-1]; the feasible-set
+  hypothesis is carried at every licensing site, never flat: at the
+  margin-active S* the H-G5 status of the KS-aggregated margin set
+  is OPEN and declared, residue R-14).
+(E) BASIN-RADIUS DERIVER NAMED: the a-posteriori check of condition
+(1) needs a certified basin radius; its deriver is NAMED — a
+curvature re-measure ladder on balls around S* in the engine's own
+parameterization, run as a cheap extension of the M-RED
+gradient-measurement rider (carrier §3.6, F2), with radius = the
+largest ball on which the measured floor sustains its value within
+its own band. Residue R-12 carries it.
+(F) VALUE-ROUTE ARGMAX-SHIFT LEMMA (SCHEMA; probe
+r22f_v2_probe_r2_l2_value_grad_gap.py of record — bound verified on
+50 random + 4 adversarial families, rate shown TIGHT): under a
+uniform VALUE-error premise on the certified basin (a (U_G)-type
+premise; measured instantiation per [REV2-r3-3] [at [REV2-r4-3]
+SAMPLED-SUP (estimate) class — E5-L0-3(b)/E5-L2-5 at-site bracket] —
+the sweep-sup of the M-RED value legs (A)-(B) along the design sweep,
+NEVER a single-family point eps), the feasible-set hypothesis H-G5
+([REV2-r3-1]), and a curvature floor mu_red [for THIS route
+legitimately the MEASURED carrier (a J_RED floor) as-is — the
+J_red-side derivation, [REV2-r4-1](d)], |argmax shift| ≤
+2·sqrt(eps_U/mu_red). The rate is Theta(sqrt(eps)): value-level
+adequacy alone confines the shift only to O(sqrt(eps)) —
+sqrt(single-digit-%) is NOT the in-class design-delta scale in
+curvature-normalized units. ONLY the gradient-route delta/mu_curv
+(this section's schema, derivers named) can tighten optimum coverage
+to the in-class delta scale. This lemma is what the [R22F-FORCHETTA]
+(vi) BEST cell quotes; it consumes only already-named quantities
+(measured carrier per (D); eps_U per the [REV2-r3-3] sweep-sup
+instantiation at [REV2-r4-3] class) and demands no gradient bound
+(addendum_c4 (b) respected). The one-line derivation of record:
+J_red(x1) − J_red(x2) ≥ (mu_red/2)·shift², then 0 ≤ J_true(x2) −
+J_true(x1) ≤ 2·eps_U − (mu_red/2)·shift² — so (F)'s floor is
+LEGITIMATELY the measured carrier as-is, making the value route the
+ONLY route of this schema executable on the measured carrier today.
+The two routes' floors (mu_curv vs mu_red) are DISTINCT objects and
+are never treated as one.
+[REV2-r3-1] FEASIBLE-SET HYPOTHESIS H-G5 + LICENSING CARRIAGE (probe
+of record r22f_v2_probe_r3_l0_nonconvex_feasible.py: on a nonconvex
+two-branch feasible set BOTH licensed routes fail unboundedly while
+every other printed check PASSES; convex control tight; nonconvexity
+isolated as the sole killer):
+(a) HYPOTHESIS LINE (beside H-G1..H-G4; AG-1 valve: strong,
+trivially checkable where checkable, sufficient-not-optimized):
+  H-G5 ([REV2-r4-2](a) form of record, with the E5-L0-1/E5-L2-4
+  star-shapedness wording executed at this landing): the feasible set
+  intersected with the certified ball is CONVEX (sufficient, and the
+  property the arguments consume: the segment between S*_red and
+  every point of the shift ball feasible — star-shapedness about
+  S*_red; convexity implies it, not conversely [superseded fragment,
+  verbatim: "(equivalently: the segment between S*_red and every
+  point of the shift ball feasible;" — the false "equivalently" never
+  lands]; locally convex admissible via Tietze–Nakajima (for a closed
+  connected set, locally convex ⇒ convex — classical)) — declared and
+  checked per instance; trivially checkable for box/linear design
+  constraints; the prox-regular disjunct is WITHDRAWN as a licensing
+  branch (retained only as the named F2 curvature-corrected
+  refinement, R-17); for the KS-aggregated fold-margin set at a
+  margin-active S* its status is OPEN and says so (named beside
+  O1/R-13; residue R-14).
+RATIONALE: the VI/strong-monotonicity argument behind form (T) and
+the strong-concavity argument behind the value route (F) each consume
+segment feasibility between the two argmaxes. H-G5 is carried at
+EVERY licensing site: (T)'s definition, H-G4, R-13, the (F)
+hypothesis list, and the (vi) cell check list.
+(b) CONSTRUCTIVE COVERAGE REMARK: global argmax migration across
+feasible components / nonconvex lobes is a VALUE-comparison event,
+not a gradient event — it IS coverable by branch-wise application of
+the licensed forms plus a cross-branch value-dominance margin >
+2·eps_U (M-RED's own measured quantity under the [REV2-r3-3]
+instantiation). Absent that check, global-argmax coverage on a
+nonconvex feasible set is NOT claimed by ANY form of this schema.
+[TAIL, [REV2-r4-2](d): the branch-wise route is defined ONLY where a
+component/branch decomposition exists (disconnected feasible sets —
+there the 2·eps_U dominance constant is exact); on a CONNECTED
+nonconvex set no lobe-decomposition rule is declared and branch-wise
+coverage is UNDEFINED — no global-argmax coverage is claimed there by
+any form.]
+[REV2-r3-2] EVALUATION-POINT PIN: in the support-function form
+delta_cone of (B), g AND the cone are evaluated at the COMPUTED
+REDUCED OPTIMUM S*_red — the only computable choice, and exactly what
+the form-(T) VI chain consumes; the bound then reads
+||S*_true − S*_red|| ≤ delta(S*_red)/mu_curv [ESC-E5-1: at-site
+identity bracket, applies REPAIR E5-L1-1(ii) (esc_refute_r4delta_l1
+.md; also discharges AMENDMENT E5-L0-3 limb (a), same site) —
+mu_curv = the J_TRUE floor, [REV2-r4-1](a); measured-carrier
+instantiation only UNDER H-G6, [REV2-r4-1](c); this printed bound is
+the gradient route and licenses NO number until L_H lands (R-16)]. A
+future M-RED gradient-rider executor evaluates delta at S*_red and at
+no other point.
+[REV2-r3-3] eps_U INSTANTIATION OF RECORD (the withdrawn "=" identity
+never lands): eps_U is the UNIFORM value-error level on the basin the
+shift explores; its measured instantiation = the SUP over the M-RED
+value legs (A)-(B) sampled ALONG THE DESIGN SWEEP of the §3.6
+gradient-measurement rider (sweep coverage declared per family). A
+single-family eps does NOT discharge the premise; until the sweep sup
+is measured, the uniformity premise is OPEN and DECLARED [READ UNDER
+[REV2-r4-3]: measurement instantiates at declared class, never
+discharges — E5-L0-3(b)/E5-L2-5 at-site bracket]. A-POSTERIORI CHECK
+LIST, VALUE ROUTE (carried into the (vi) cell): (1) 2·sqrt(eps_U/
+mu_red) ≤ the certified basin radius (radius deriver = (E)/R-12; the
+reduced argmax verified inside the basin in the same check); (2)
+sweep-sup coverage declared per family; (3) H-G5 status declared.
+[REV2-r4-1] CURVATURE FUNCTIONAL-IDENTITY + H-G6 (of record; probe
+r22f_v2_probe_r4_l0_mu_identity_proxreg.py):
+(a) FUNCTIONAL IDENTITY DECLARED at every curvature sentence: the
+SCHEMA object in forms (T)/(C) and condition (1) is the curvature
+floor of J_TRUE on the certified ball/cone — the VI chain behind the
+licensed gradient-route forms consumes the strong-concavity modulus
+of J_TRUE along the feasible segment; sign convention (C) unchanged;
+the mu_curv rename at this landing carries this identity.
+(b) HYPOTHESIS LINE (beside H-G1..H-G5; AG-1 valve: strong, declared,
+sufficient-not-optimized):
+  H-G6 (curvature transfer; as completed at this landing by the E-5
+  deferred inputs): the measured carrier instantiates the J_TRUE
+  floor only up to the CURVATURE-level residual — mu_true_floor ≥
+  mu_meas − L_H, with L_H := the sup over the certified ball of the
+  design-Hessian residual norm ||H_true − H_red||_M (the SECOND-ORDER
+  face of the SAME reduction residual operator; by the adjoint
+  representation it decomposes along the same (J)/(H) channels at
+  second order PLUS cross-channel blocks bilinear in the first-order
+  residuals (not excluded; each L_H deriver must price them or prove
+  them absent) [E5-L2-3 executed]). H-G6 is read on the (E)-certified
+  ball with mu_meas = the SUSTAINED ball floor of the measured
+  carrier at its band-lower edge (the (E)/R-12 ladder object,
+  mu_meas − b_E) — never the bare point measurement; mu_eff =
+  (mu_meas − b_E) − L_H [E5-L2-2 executed; probe of record
+  esc_probe_r4delta_hg6_pointfloor.py]. GUARDS [E5-L1-3 executed]:
+  (existence) H_true is twice differentiable on the certified ball —
+  the second-order strengthening of H-G3; a front-topology or grazing
+  event inside the ball exits to the g2b calculus, named exit, and
+  L_H is DECLARED UNDEFINED there (refusal, not a number); (typing)
+  ||·||_M = the M-operator norm via the (B) Riesz identification;
+  (guard) mu_eff > 0 required, else instantiation refused.
+STATUS (honest, addendum_c4 (b) form): L_H is UNDERIVED of record —
+SCHEMA + named derivers, the exact mirror of delta's own treatment
+(R-9): (1) five-field content bound at Hessian level (X-T3QS-5F,
+F2); (2) C51-route-B; (3) M-RED gradient-rider EXTENSION — divided
+differences of the MEASURED gradient gaps along the §3.6 design
+sweep = measured directional Hessian-gap (a cheap extension of the
+same rider, beside the (E) curvature ladder). [E5-L1-2 executed:] the
+leg-(3) measurement instantiates L_H at SAMPLED-DIRECTIONAL
+(estimate) class ONLY — a finite-sample lower estimate along the
+SWEPT directions alone; off-sweep curvature-gap content and
+sub-sample-width structure are declared UN-EXCLUDED (probe of record
+esc_probe_r4delta_lh_leg3_blindness.py parts A-B); a directional
+estimate NEVER lands L_H by itself — landing requires deriver (1) or
+(2) at norm level, or a declared direction-coverage certificate;
+until then mu_eff licenses NO number (R-16 unchanged). New residue
+R-16.
+(c) CONSEQUENCE, carried into the [R22F-FORCHETTA] (vi) row: until
+L_H lands, the GRADIENT-route cells license NO number even
+a-posteriori from the measured carrier alone — the (vi) WORST cell's
+honesty line reads "delta AND L_H underived".
+(d) (F) IS MEASURED-CARRIER-SOUND (the asymmetry, stated): see (F)
+above — the value route's floor is legitimately the measured carrier
+as-is; the two routes' floors are DISTINCT objects.
+[REV2-r4-2] H-G5 CONVEXITY-ONLY LICENSING (of record; probes
+r22f_v2_probe_r4_l0_mu_identity_proxreg.py PART B and
+r22f_v2_probe_r4_l2_proxreg_annulus.py parts A-F): the licensing
+branch is CONVEXITY ONLY (H-G5 line above); the prox-regular disjunct
+is WITHDRAWN as a licensing branch — it is retained ONLY as a NAMED
+F2 REFINEMENT candidate carrying the curvature-corrected floor clause
+(SCHEMA; residue R-17 below) — never a bare disjunct. R-14's decider
+sentence carries the does-NOT-license clause (residue list below);
+the connected-nonconvex no-coverage extension is in [REV2-r3-1](b)'s
+tail and the (vi) WORST cell.
+[REV2-r4-3] eps_U SAMPLED-SUP CLASS + REFINEMENT-STABILITY CLAUSE (of
+record; probe r22f_v2_probe_r4_l2_proxreg_annulus.py part G): the
+measured sweep-sup is a FINITE-SAMPLE LOWER estimate of the basin sup
+and instantiates eps_U at SAMPLED-SUP (estimate) class ONLY — and
+only when the sweep-sup is SUSTAINED under the declared
+sweep-refinement re-check within its own band (refinement of the
+sweep SAMPLING, a named part of the §3.6 rider / R-15; a sup that
+grows under refinement = instantiation refused, declared);
+sub-sample-width residual structure is declared UN-EXCLUDED at this
+class. Measurement INSTANTIATES the (U_G)-type premise at declared
+class — it NEVER discharges it: certified closure of the uniformity
+premise remains with the (U)/S.22-class program (R-1).
+
+RESIDUES CARRIED AT THIS SITE (deciders named; per VERDICT_r22f §4/§5
+and VERDICT_escalation_c4 §7; F2 owners unchanged):
+R-9: design-gradient residual bound delta — SCHEMA only; deciders in
+order: X-T3QS-5F content bound, C51-route-B, M-RED
+gradient-measurement rider (§3.6, F2). Never label-inflated to a
+bound.
+R-12: certified basin radius for the a-posteriori argmax-shift check
+— deriver NAMED ((E)): curvature re-measure ladder on balls around
+S*, extension of the M-RED rider (F2); radius = largest ball
+sustaining the measured floor within its own band.
+R-13: O1 gate (Danskin/Clarke cusp derivative, OBLIGATIONS LEDGER,
+F4b theory WP — owner unchanged, cited not owned here): until it
+discharges, form (C) and any critical-cone reading of the measured
+carrier are unavailable at a margin-active S* (H-G4); every licensing
+of form (T)/(F) carries H-G5.
+R-14: H-G5 status of the KS-aggregated fold-margin feasible set at a
+margin-active S* — OPEN (no convexity certificate (nor any other
+licensing certificate) of record exists for the admissible profile
+manifold ∩ {margin ≥ 0} [E5-L1-6 hygiene applied]); deciders
+([REV2-r4-2](b) form of record): a CONVEXITY certificate for the
+margin set (a prox-regularity certificate does NOT license the forms
+— probes of record r22f_v2_probe_r4_l0_mu_identity_proxreg.py PART B
+and r22f_v2_probe_r4_l2_proxreg_annulus.py), OR the F2
+curvature-corrected prox-regular refinement (R-17) [ESC-E5-2:
+decider-branch scope mirror, applies REPAIR E5-L1-5
+(esc_refute_r4delta_l1.md) — this branch's discharge cannot be read
+from the curvature formula alone: it is subject to the R-17 scope
+clause below (effective-curvature horn only; a derived form
+additionally requires the segment-feasibility clause; GLOBAL-argmax
+coverage on prox-regular nonconvex sets remains un-claimable)], OR
+branch-wise coverage via the cross-branch value-dominance check
+([REV2-r3-1](b) — defined only where a component/branch decomposition
+exists) with the measured sweep-sup eps_U (at [REV2-r4-3] class).
+Until decided, form (T)/(F) licensing at a margin-active S* carries
+the declared-OPEN H-G5 line, and nonconvex global-argmax coverage is
+NOT claimed by any form of the schema.
+R-15 (extended): eps_U sweep-sup measurement at SAMPLED-SUP class +
+sweep-refinement stability re-check + the per-mesh floor-certificate
+ladder re-check — named parts of the M-RED §3.6 rider / protocol run
+(F2); the H-G6 deriver leg (3) (measured directional Hessian-gap, at
+SAMPLED-DIRECTIONAL (estimate) class per E5-L1-2) rides the same
+rider (M-RED value-deriver sampling blindness = residue R-ESC-3 of
+VERDICT_escalation_c4, owner = this rider/R-15 extension).
+R-16: curvature-transfer residual L_H (H-G6) — UNDERIVED of record;
+SCHEMA + named derivers (mirror of R-9): (1) X-T3QS-5F at Hessian
+level (F2); (2) C51-route-B; (3) M-RED gradient-rider extension.
+Until L_H lands, the gradient route licenses NO number even
+a-posteriori from the measured carrier alone ([REV2-r4-1](c)); an
+acceptable dry outcome per addendum_c4 (b) — never label-inflated.
+R-17: the F2 curvature-corrected prox-regular refinement of H-G5
+(mu_prox = mu − |lambda*|·kappa_max, kappa_max = 1/r_prox; SCHEMA)
+[E5-L0-2 executed: R-17's object RENAMED mu_prox — no symbol
+collision with H-G6's mu_eff; its "mu" is the H-G6-transferred floor
+where the carrier is measured (the two corrections compose additively
+at SCHEMA class: (mu_meas − b_E) − L_H − |lambda*|·kappa_max);
+underived until both legs land] — optional refinement, NOT a
+licensing branch until derived; deciders beside the O1/R-13 block.
+[ESC-E5-2 scope clause, applies REPAIR E5-L1-5 (probe of record
+esc_probe_r4delta_lh_leg3_blindness.py part C): the
+curvature-corrected clause prices the effective-curvature horn ONLY
+and can license at most LOCAL-argmax tracking; any derived form
+additionally requires a segment-feasibility clause (the segment
+between S*_red and the candidate argmax feasible — the H-G5 rationale
+property), absent which the annulus counter-model of record
+(r22f_v2_probe_r4_l2_proxreg_annulus.py;
+esc_probe_r4delta_lh_leg3_blindness.py part C) is the standing
+refuter any derivation must refuse; GLOBAL-argmax coverage on
+prox-regular nonconvex sets remains un-claimable by this refinement.]
+(Standing residues R-1..R-8, R-10, R-11 of the carrier §6 are NAMED
+there with deciders and carry unchanged; the ENTRY CONTRACT (U) —
+S.22 sub-scope uniformity — remains OPEN, F2 theorem target.)
 
 ------------------------------------------------------------------------------
 [T-T4] THEOREM 6 (T4 — plug simultaneous optimizability). THEOREM* (under the
@@ -1400,6 +2508,20 @@ up to the bell surrogate's C4 bar): any certified non-bell loss band
 exceeding it closes that cell for the bell with delta-certificate per
 D2.6(iv) — the tournament device that PB-2's empirical truncation
 band will arm.
+[LAND-C4-LA3 DC-6 ONE-LINER at the T3/T4 attainment site (SCHEMA,
+labels per VERDICT_escalation_c4 §5.3; full statement in the [T-DCRX]
+block below): T3's collapse is precisely attainment of the
+constraint-aware rung B1^c under pressure similarity — in that class
+the per-phase constrained optimum is phase-shared, so B_fam({eps, L})
+is attained by one design UPON its per-cell axial-supersonicity
+certificate (M cos(theta) > 1, the S1 margin check; the attainment
+claim is certificate-conditional), Pi_L -> 0 and delta^c ->
+delta_true: the [T-DCRX] decomposition degenerates exactly as the
+record demands (delta = 0 proven where M1-M3 structure exists,
+D2.6(iv)) — no contradiction between the lemma, the rung program, and
+the T3/T4 attainment results. FALSIFIER: a pressure-similar cycle
+with computed B1^c strictly above the T3-collapse optimum (beyond
+bands) breaks either this schema or the T3 chain.]
 
 REMARK (relation to EAP — verified against Kaemming-Paxson, AIAA
 2018-4567, NTRS 20180006890, full text read 2026-07-16). The industry's
@@ -1489,6 +2611,202 @@ ladder), and inherits its comparison protocol (equal cycle mass +
 throat area) as the frozen-family normalization. Together with the EAP
 remark above, this is the second citable bridge for paper P-1 (target
 venue: JPP class).
+
+------------------------------------------------------------------------------
+[T-DCRX] FIXED-EXIT-AREA RELAXATION LEMMA AND DELTA CARRIER (Part III
+block, landed S-FOUNDATIONS-C4 2026-08-21)
+
+[LAND-C4-LA3 LANDING HEADER] Executes VERDICT_escalation_c4 LA-3(i)
+(escalation E-3 CLOSED DRY at round 3; sequencing gate §3 SATISFIED —
+minor (b) closed first, (H6')/ship-gate block bit-identical across
+all rounds — so this landing is UNGATED). Carrier of record:
+validation/sfoundations_raws_2026-08-13/phaseD/
+phaseD_minor_deltacarrier.md as revised through [ESC-r3-*], landed per
+its §9; statement labels per VERDICT_escalation_c4 §5.3 (DC-1/DC-2
+THEOREM*, DC-3 THEOREM under V1-V2, DC-4 THEOREM inequality with
+SCHEMA regime clause DORMANT, DC-5 PRACTICE, DC-6 SCHEMA — the DC-6
+one-liner lands at the T3/T4 attainment site above, beside the
+[T-OP11e] instance). Site: adjacent the [T-GB]/OP-0 ceiling block
+(after the sonic-cap sharpening; site ratified twice). Conditional
+entry of record: [C-DCRX-CERT]. The judge-ordered LANDING-CUT edit
+(ESC-DELTACARRIER-r3-1) is executed at the phase-quantifier pin below.
+
+SETTING (per phase xi). Class W of per-phase designs (the engine's S1
+per-phase class, bell/TOC exit topology) sharing: (H1) shared-Sauer
+data contract — same transonic data (Sauer IVL), same throat area A_t,
+same per-phase mdot and stagnation state (h0, s0), flow irrotational-
+homentropic and shock-free (S1) downstream of the IVL, so h = h0 −
+q^2/2 on the (h0, s0) isentrope and C_IVL (momentum-flux +
+gauge-pressure integral over the IVL) is W-independent; (H2) fixed
+exit area: exit disk = flat disk of area A_e = eps·A_t at the lip,
+control volume {IVL, wall, axis, exit disk} (bell topology;
+annular/plug NOT covered — declared scope limit); (H2b) mdot/A_e <
+rho* c* (sonic state on the same isentrope; checkable per design);
+(H3) per-cell axial supersonicity u_x − c > 0 on the exit disk
+(certified a posteriori by the S1 margin machinery); (H4) constant
+ambient Pa >= 0, objective J[W] = Int_wall (p − Pa) n_x dA ([T-TH0]
+restricted per phase), steady per-phase Euler; (H5) smooth strictly-
+decreasing isentrope q -> (p, rho, c); (H5b) gamma_s := rho c^2/p >=
+1 (thermally-perfect frozen mixtures; table-checkable).
+Pa-ADJACENCY SENTENCE (mandatory, ESC-DELTACARRIER-r2-3): Pa >= 0
+deliberately widens (P)'s Pa > 0 (D2.6) to cover the executed vacuum
+objective — the [OBJ-DOM] Pa axis, already consumed by the DC-5(b)
+same-Pa-convention line; the argmax is untouched, the offset is the
+class-constant Pa·Int_wall n_x dA.
+Define lambda = q_e(eps) as the unique supersonic root of
+rho(lambda)·lambda = mdot/A_e on the (h0, s0) isentrope (exists and
+is unique under (H2b): rho q strictly decreasing from rho* c* to 0 on
+the supersonic branch); M_e(eps) = lambda/c(lambda) > 1; J_ideal(eps)
+:= C_exit^id − C_IVL, C_exit^id = A_e[rho(lambda) lambda^2 +
+p(lambda) − Pa].
+
+DC-1 (FIXED-EXIT-AREA RELAXATION LEMMA) [THEOREM* under the declared
+conditionals (a) (H3) a-posteriori certification, (b) bell-only exit
+topology, (c) S1 piecewise-C1 shock-free fields — [C-DCRX-CERT]].
+Under (H1)-(H5b), for every design W in the class: J[W] <=
+J_ideal(eps), with equality attained by the uniform axially-aligned
+exit STATE at M_e(eps) (the relaxation's maximizer; in-class
+attainment NOT claimed — no finite-length class member need realize
+it, and a ceiling needs no attainment). Consequently J_ideal(eps) is
+the L-UNCONSTRAINED FIXED-EPS CEILING: it binds every class member
+regardless of length or any other c-slot.
+PROOF. (i) Momentum theorem on the (H2) control volume (axis
+contributes nothing by symmetry; constant Pa integrates to zero over
+the closed surface): J[W] = C_exit[W] − C_IVL with C_exit[W] =
+Int_{A_e} [rho u_x^2 + (p − Pa)] dA; C_IVL class-common by (H1).
+(ii) Pointwise Lagrangian bound: with the multiplier lambda and the
+mass constraint Int_{A_e} rho u_x dA = mdot, C_exit[W] − lambda·mdot
+= Int_{A_e} Phi dA, Phi = G − Pa, G(q, u) := rho(q) u^2 −
+lambda rho(q) u + p(q), local state on the (h0, s0) isentrope,
+u := u_x in (c(q), q] ((H3) forces the supersonic branch). CLAIM:
+sup over admissible states of G = p(lambda), attained at (q, u) =
+(lambda, lambda). (ii.a) G is convex in u (rho > 0), so its max over
+u in [c(q), q] is at an endpoint. (ii.b) aligned endpoint A(q) :=
+G(q, q) = rho(q^2 − lambda q) + p; by (H5) A'(q) = rho (q − lambda)
+(1 − M^2), so on the supersonic branch (1 − M^2 < 0) the global
+branch max is A(lambda) = p(lambda). (ii.c) axially-sonic endpoint
+B(q) := G(q, c(q)): if q + c(q) >= lambda then B − A = rho (c − q)
+(c + q − lambda) <= 0; else c − lambda < −q gives B < p − rho c q <
+p(1 − gamma_s) <= 0 < p(lambda), using q > c (H3) and gamma_s >= 1
+(H5b). (iii) Assembly (exact weak duality): C_exit[W] <= lambda·mdot
++ A_e (p(lambda) − Pa) = C_exit^id, attained by the uniform aligned
+exit at M_e(eps), hence J[W] <= J_ideal(eps). QED.
+MU-INTEGRATED FORM: with phase-indexed data s(xi) = (mdot, h0, s0),
+phase-shared eps, and W satisfying (H1)-(H5b) at mu-a.e. xi,
+J_cycle[W] <= Int_Xi J_ideal(eps; s(xi)) dmu =: J_ideal_cycle(eps)
+(pointwise domination; measurability of xi -> J_ideal from continuity
+of the monotone root lambda(xi) in the data, R3 chain).
+FALSIFIER (DC-1): (numerical) any certified class member with
+(H1)-(H5b) verified and computed J[W] > J_ideal(eps) + ceiling band —
+executable at the twin (TOC run vs ideal march, same eps, tables,
+Sauer IVL); (analytic) any admissible (q, u) with G(q, u) >
+p(lambda). The (H3)-breakout rejector is DISCHARGED executable
+(esc_probe_deltacarrier_h3breakout.py, two-sided, PASS of record:
+half [A] verifies sup G <= p(lambda) with exact aligned attainment;
+half [B] drops (H3) and breaks the bound macroscopically — the
+hypothesis list IS load-bearing).
+
+DC-2 (DELTA SEMANTICS OF RECORD) [THEOREM*, inherits DC-1;
+[C-DCRX-CERT]]. Let A(c) be the admissible class of (P) (full
+constraint vector c, D2.6) and A(eps) the same class with every
+c-slot except the exit-area/eps slot (and the class-defining
+regularity) removed; W_cert := the certified subclass satisfying
+(H1)-(H5b) — in particular (H3), certified a posteriori (per-cell
+M cos(theta) > 1, the S1 margin check). PHASE-QUANTIFIER PIN OF
+RECORD ([ESC-r3-2a], with the judge-ordered landing-cut edit):
+(H2b)/(H3) are PER-PHASE predicates, so W_cert membership is
+evaluated at the phase data in play; in cycle-integrated displays
+(the mu-integrated form of DC-1, the B_fam(C) definition, DC-3)
+W_cert denotes the mu-a.e.-ALL-PHASE certified subclass —
+alternatively, write W_cert(xi) inside the integral (either pinning
+closes every proof; both readings agree for every named consumer).
+The named consumers (the certified S*, the classical solves under
+their a-posteriori certificates) are certified at every phase, so no
+conclusion moves under either reading; a MIXED reading (S certified
+at one phase only, read into a xi-independent symbol) is EXCLUDED.
+Then A(c) ∩ W_cert ⊆ A(eps) ∩ W_cert and, by DC-1 applied
+member-by-member on W_cert,
+  sup_{A(c) ∩ W_cert} J <= sup_{A(eps) ∩ W_cert} J <= J_ideal(eps);
+hence for any certified J[S*] (S* in A(c) ∩ W_cert by its own
+certificate): delta := J_ideal(eps) − J[S*] >= 0, with the exact
+(definitional) decomposition delta = Pi_c + delta_true, Pi_c :=
+J_ideal(eps) − sup_{A(c) ∩ W_cert} J >= 0 (constraint price),
+delta_true := sup_{A(c) ∩ W_cert} J − J[S*] >= 0 (true
+suboptimality) — the decomposition holds over the certified subclass
+and only there. The split (Pi_c vs delta_true) is NOT separately
+computable today — exactly the bound-ladder row's gap. SEMANTIC RULE
+(of record): every (value, delta) Verdict row says "distance to the
+L-unconstrained fixed-eps ceiling" — NEVER "distance to global at
+(eps, L)"; under tight L/eps_max delta can be Pi_c-dominated and go
+uselessly loose while the design is near-optimal (the number stays
+TRUE, only the loose direction is declared).
+SCOPE [ADV, synthesis (e).3/G-12, CT-6-clean — lands verbatim]:
+"J_ideal(eps) prices designs INSIDE the fixed-interface data class
+(H1); constriction/choking/exit-area moves that rewrite the chamber
+state are class-changing and outside what delta prices — the largest
+published performance lever lives there; pricing it is CFD-1's
+irreducible core."
+FALSIFIER (DC-2): a certified S in A(c) ∩ W_cert with J[S] >
+J_ideal(eps) (breaks the inclusion chain, hence DC-1; an uncertified
+exhibit breaks nothing — exactly the probe's half [B]); or a shipped
+Verdict row wording "distance to global at (eps, L)"
+(grep-detectable).
+
+RUNG-FAMILY POINTER (DC-3/DC-4; full statements + proofs in the
+carrier §§4-5). The relaxation family is DEFINED over the certified
+set: B_fam(C) := Int_Xi sup_{S' in A_phase(C) ∩ W_cert} F[S'; s(xi)]
+dmu(xi) — the ∩ W_cert restriction lives in the DEFINITION itself,
+phase-quantified per the pin above; membership of the named classical
+instantiations (Rao/Guderley-Armitage/Kraiko per-phase constrained
+solves, the B1^c rung) is an a-posteriori CERTIFICATE (per-cell exit
+axial supersonicity, M cos(theta) > 1, the same S1 margin check as
+every consumer; certificate-on-entry duty [DC-F2-2], report-on-fail)
+— the retracted "supersonic-exit by construction" inference does NOT
+land. DC-3 [THEOREM under V1 (A_phase(C) xi-independent) and V2
+(mu-measurability of the per-phase sup)]: J_cycle[S] <= B_fam(C) for
+any certified all-phase-feasible S; B_fam monotone non-increasing in
+C; B_fam({eps}) <= J_ideal_cycle(eps); adding the B1^c rung to the
+ladder min can only TIGHTEN delta — delta^c = min(B, B1^c) − J[S*]
+carries the semantics "distance to the C-relaxed ceiling" with Pi_c
+reduced by exactly the priced slots. DC-4 [THEOREM (the weak-duality
+inequality); regime clause SCHEMA; DORMANT]: for (P) as posed
+(unilateral caps) and ANY mu_i >= 0, sup_{A(c)} J <= sup_{A(eps)}
+[J − Sum_i mu_i (g_i − c_i)]; the rung consumes multipliers of the
+UNILATERAL regime only (T7(c) cone form) — the fixed-eps bookkeeping
+regime 2 carries FREE-SIGN lambda components which are NOT admissible
+weights, so the rung is DORMANT until (P)-as-posed capped runs exist
+([DC-F2-3] contingent).
+
+DC-5 (CARRIER PRACTICE RULES) [PRACTICE]. (a) ANTI-CONSERVATIVE
+DIRECTION: an under-estimated ceiling under-states delta, so delta is
+quoted against the UPPER band edge of J_ideal (two-resolution band +
+eps-achievement correction; lip/eps residual 4.4938e-3 measured at
+the twin); under branch (H6'-B) the upper edge is additionally
+WORSENED by the net-two-wall-panel band. (b) HYPOTHESES IN THE
+CARRIER: same eps, same thermo leaf/tables, same Sauer IVL/mdot —
+printed in the Verdict row; PLUS which (H6') branch the row shipped
+under ((H6'-A) fix-A panel-inclusive functional on BOTH sides of
+delta, or (H6'-B) both sides on the coded functional AND the explicit
+net-two-wall-panel band, anti-conservative sign declared); PLUS the
+same Pa convention (gauge/vacuum) declared — a delta row mixing a
+gauge ceiling against a vacuum J[S*] is wrong by exactly the
+class-constant Pa·Int_wall n_x dA; PLUS the (H2b) check result
+(mdot/A_e vs rho*·c* from the same tables). (c) SEQUENCING (binding):
+no (value, delta) row ships unless "[OBJ-DOM-IMPL] landed and used on
+both sides, OR the net-panel band included" — the ship-gate remains
+ARMED for every future (value, delta) row. FALSIFIER: a shipped delta
+row quoting the lower/central band edge, or missing the hypothesis
+line, is a carrier violation (grep-detectable).
+
+F2 DUTIES (measured halves, named): [DC-F2-1] (value, delta) Verdict
+field at the engine rung (ships under (H6') + DC-5); [DC-F2-2] B1^c
+rung executable WITH the certificate-on-entry rule; [DC-F2-3] KKT
+weak-duality rung instantiation (contingent, dormant until
+unilateral-regime runs exist); [DC-F2-4] ceiling band measurement at
+production resolution (upper-edge rule DC-5a); [DC-F2-5] DC-1
+rejector (twin J_TOC <= J_ideal check + the (H3)-violation breakout
+test; analytic form discharged by the probe of record) + the (H2b)
+check, report-on-fail, never proceed silently.
 
 ------------------------------------------------------------------------------
 [T-T7FS] THEOREM-SCHEMA 8 (T7/T2 — the averaged stationarity system). SCHEMA.
@@ -2327,6 +3645,241 @@ deeper-jump companion test is a SIGN TEST for Direction A — not
 decisive for O3; magnitude claims blocked until the
 dJ/d(depth) = -mu*dm/d(depth) derivation under H3 and the
 mu-estimator band exist.]
+
+[LAND-C4-LA2 NTF DERIVATION BLOCK — NEWTON_TOL_FACTOR THEORY HALF
+(engine-discipline / certificate block, landed S-FOUNDATIONS-C4
+2026-08-21). Executes VERDICT_escalation_c4 LA-2(ii) (escalation E-1
+CLOSED DRY at round 2). Carrier of record: validation/
+sfoundations_raws_2026-08-13/phaseD/phaseD_minor_ntf.md as revised
+through [ESC-r2-*] + the [ESC-J1-NTF] judge-ordered pre-step; labels
+per VERDICT_escalation_c4 §5.1. SITE DECLARATION: M0 prints no
+literal "C20 kappa-band program" block — this landing sits beside its
+M0 face, the certification-floor text of the block above (per-cell
+while-Newton metric <= the certification floor
+NEWTON_TOL_FACTOR*eps*scale; trip cap N_NEWTON = 30), and preserves
+the ONE C18/C20-Tier-1 window seam: the per-cell floor MEASUREMENT
+stays inside F2-C20-CERTQUAL-CAMPAIGN Tier-1 (window shared with C18,
+VERDICT_wave2 §2.8); C34's TR floor, C35's xtol_u arithmetic, and the
+Tier-1 kappa band itself are consumed as-is, never re-derived here.
+ OBJECT UNDER DERIVATION: the Newton loop exits when the undamped
+step satisfies step <= T(z) := NTF*EPS*sc(z), sc(z) = max(1, max|z|),
+EPS = float64 machine epsilon, cap N_NEWTON = 30 (C17);
+certification = one extra Newton step at the returned solution must
+move it by less than T(z) (worst ratio <= 1 over the certified
+population). NTF = 100.0 was the S-CERT P1 underived load-bearing
+constant (GAP-29 of record: NTF/2 FLIPS cert_verdict); this block is
+its derivation of record (theory half; measured halves = F2, below).
+ NTF-1 (roundoff-floor model) [SCHEMA, hypotheses H1-H4 declared]: at
+a true root the computed one-extra-step does NOT go to zero — it
+stalls at a floor ||dz_extra|| <= kappa_eff * EPS * sc(z), kappa_eff
+:= ||J^{-1}|| * gamma_R * S_R / sc (dimensionless per-cell
+amplification combining residual-evaluation noise, H3 envelope —
+measured-model route, not pure Higham: the residual mixes units
+across rows and includes tabulated-thermo interpolation — and
+Jacobian conditioning). kappa_eff is the certificate-side face of the
+SAME measured-noise object as the Tier-1 kappa(J)-aware band (C20)
+and the C44 FD-noise floor — one object, four riders. Measured
+instance (committed carrier s25bis_gap29_sweep.json):
+kappa_eff,worst in [51.7, 70.1] (base arm worst extra step
+70.110*EPS*sc; ntf50 arm 51.665*EPS*sc — threshold halved, floor
+moved only 1.357x: floor-dominated; worst-cell-may-differ caveat
+declared).
+ NTF-2 (two-sided certificate semantics) [THEOREM* on the repaired
+constant; the star discharges at the F2 floor measurement]: in the
+contraction regime (Theta <= 1/2, H2) the correction is a two-sided
+error estimator (geometric-series upper bound, cf. Deuflhard CSM 35
+(2.10)-(2.14); Gragg-Tapia/Yamamoto-1986-eq.(7) lower bound, c_L >=
+1/2 valid-conservative); floor-bounded noise can CANCEL part of the
+exact correction, so a PASS certifies ||z_hat − z*|| <= 2*(T(z) +
+floor_z) = 2*(NTF + kappa_eff(cell))*EPS*sc(z) <=
+2*NTF*(1 + 1/eta)*EPS*sc(z) (population-wide under NTF-3's LB), and
+a FAIL at a cell with kappa_eff < NTF witnesses genuine
+non-convergence. DISAMBIGUATION SENTENCE OF RECORD (lands verbatim;
+phaseD_minor_ntf.md §2 [ESC-r1-9]): "Two DISTINCT objects, stated so
+no downstream reader conflates them: the THRESHOLD object T(z) =
+floor_W = NTF*EPS*sc is what C34/C35 consume (correct for C35's
+premature-stop purpose, VERDICT_wave3 §1.2 — unchanged); the
+CERTIFIED-ERROR object is the strictly larger 2*(T+floor_z) <=
+2*T*(1+1/eta) above — consumers of a certified ERROR bound must take
+the latter, never T itself."
+ NTF-3 (window inequality + derived form) [window THEOREM*
+conditional-on-declared-A_c; derived form NTF = eta*kappa_q: SCHEMA;
+incumbent NTF = 100: PRACTICE-validated valid instance]: (LB,
+non-vacuity) NTF >= eta * kappa_eff,max over the certified
+population, headroom eta > 1 declared — no false-FAIL at a true
+root; (UB, soundness) for EACH downstream consumer c:
+2*(1+1/eta)*NTF*EPS*sc*A_c <= tol_c, A_c the DECLARED unit-transfer
+factor (AG-1 sufficient-not-optimized; consumers that are
+NTF-proportional re-price automatically and do not bind); (window
+nonemptiness) 2*(eta+1)*kappa_eff,max*EPS*sc*A_c <= tol_c — on the
+record case open by ~5 orders even at the worst A_c = 1e7 class
+(>= 4 orders conservative; the old ">11 orders" headline = the
+A_c = 1 special case, retired as headline). Derived form: NTF =
+eta*kappa_q, kappa_q = a declared upper quantile of the measured
+per-cell kappa_eff population; eta in [1.25, 2.5] declared,
+TWO-SIDED headroom (never blanket-"conservative"). INCUMBENT
+ADJUDICATION: NTF = 100 is a VALID INSTANCE of the derived form
+(measured headroom 100/70.110 = 1.426, inside the bracket); the
+GAP-29 /2 flip is the model's PREDICTION, not an anomaly
+(self-contained witness: the ntf50 arm's own 51.665 > 50, 3.3%
+margin) — one committed retro-validation instance of NTF-1.
+ NTF-4 (termination coupling, C17 seam) [SCHEMA, conditioned on the
+EXPLICIT hypothesis H5 (per-trip fluctuation band [floor_z/(1+m),
+floor_z], m = 0.25 declared sufficient-not-optimized; measured half
+= F2), STRICT regime scoping per ESC-NTF-r2-1 as ordered at LA-2]:
+in the deterministic-envelope regime kappa_eff(cell) > (1+m)*NTF,
+UNDER H5 (realized step >= floor_z/(1+m) > T(z)),
+metric-termination is unreachable at that cell — the trip cap
+becomes the de facto terminator (silent per-cell cost inflation) AND
+the cell then fails certification (probe scene D of record); in the
+near-threshold band NTF < kappa_eff(cell) <= (1+m)*NTF, early
+termination and certification-FAIL probabilities are BOTH nonzero
+(probe scene B). The LB of NTF-3 therefore protects BOTH contracts
+at once; below the floor only C17's trip cap guards. Envelope
+conversion: envelope <= realized*(1+m), so the measured worst 70.110
+is a LOWER estimate of that cell's envelope kappa (<= 87.64 at
+m = 0.25, outward-rounded).
+ NTF-5 (seam) [PRACTICE]: this block is the THEORY HALF of the ONE
+C18/C20-Tier-1 window; floor_W := NTF*EPS*sc consumed by C34/C35
+unchanged (threshold object, NOT the certified-error object).
+ F2 DUTIES NAMED AT THIS SITE (measured halves; nothing executed
+here): F2-NTF-FLOOR-POPULATION — per-cell kappa_eff measurement
+(converged-cell extra-step probes + ECNoise/More-Wild-class noise
+floor + float32 precision contrast for the EPS*sc scale law) across
+production marches, quantile + eta ratification; RIDES
+F2-C20-CERTQUAL-CAMPAIGN Tier-1 (window shared with C18 — no new
+window minted; four-rider/one-owner discipline preserved); the duty
+pins ONE operational kappa_eff = the REALIZED per-cell extra-step
+multiple (upper quantile = kappa_q), H5 converting realized ->
+envelope wherever the NTF-4 scoping needs the envelope object.
+F2-NTF-TERMCOUPLE-TRIPCOUNT — trip-count instrumentation under the
+NTF sweep (falsifier as re-pinned: margin-scoped,
+deterministic-envelope cells only, = a measured H5-band violation;
+also records the per-trip fluctuation band that ratifies or
+supersedes m = 0.25). Gate REFORM stays F2 (out of scope here); on
+any NTF change, C34's TR floor, C35's xtol_u and the O3.1 replay
+band re-price linearly. Falsifiers NTF-1..NTF-4 as printed in the
+carrier §§1-4 (floor tracking the requested tolerance below
+50*EPS*sc or a non-EPS*sc scale law; a planted-root PASS farther
+than 2*(T + measured-floor); kappa_eff,q95 > 80, or dispersion no
+declared eta covers; margin-scoped termination-with-margin at
+envelope-regime cells).]
+
+[LAND-C4-LA4 CLG CROSS-LOWERING GRADIENT-FLOOR DERIVATION BLOCK
+(engine-discipline block, landed S-FOUNDATIONS-C4 2026-08-21).
+Executes VERDICT_escalation_c4 LA-4(ii) (escalation E-4 CLOSED DRY
+at round 3). Carrier of record: validation/
+sfoundations_raws_2026-08-13/phaseD/phaseD_minor_crosslowering.md as
+revised through [ESC-r3-*] + the [ESC-J1-CLG] judge-ordered
+pre-step; labels per VERDICT_escalation_c4 §5.4. SITE DECLARATION:
+M0 prints no literal "same-lowering standing rule" line — the rule
+of record lives in findings row engine:cross-lowering-gradient-floor
+("every gradient COMPARISON or FD stencil pins ONE lowering";
+VERDICT_wave2 RC31T-2: cross-lowering pairs REJECTED as validation
+comparisons), and this block is its adjacent M0 derivation home,
+beside the [LAND-C4-LA2] NTF block whose eps_N object the D4-ALT
+channel names (one derivation program, no collisions).
+ SETTING: the replay objective J is computed through N ~ 250
+implicit 4x4 Newton-solved cell relations; the gradient g = dJ/dW by
+the exact adjoint (custom_vjp reverse sweep: per-stage transposed
+4x4 solve + accumulation). A "lowering" L = (compiled executable,
+batch shape B) — the B-SHAPE clause of record, consumed as INPUT.
+Hypotheses (AG-1-declared, checkable on recorded marches): H1
+IEEE-754 binary64, u = 2^-53; H2 per-stage kernel flop count <=
+m-bar; H3 kappa(A_k) <= kappa-bar; H4 adjoint transport gain G <
+inf; H5 (RMS refinement ONLY, PRACTICE) independent zero-mean
+per-stage injections; H6 lowering equivalence; H7 cross-lowering
+converged-state agreement at unit-roundoff grade with the
+coefficient maps uniformly Lipschitz AND uniformly bounded on the
+march tube (magnitude bounds sup_k ||dR_k/dW||, sup_k ||phi_k||
+absorbed in c); H8 b_L structural stability over an FD step
+(h-scaled form).
+ CLG-D1 (decomposition + same-lowering determinism) [SCHEMA]:
+g-hat_L(W) = g(W) + b_L(W) + eta_L(W) with b_L a DETERMINISTIC
+function of (executable, batch shape, W) — bitwise lane-permutation
+witness of record; the cross-lowering floor of record phi := max
+over lowering pairs of ||b_L − b_L'||/g_sc ~ 1e-8.
+ CLG-D2 (worst-case chain floor law — THE amplification factor)
+[THEOREM* under H1-H4 + H6 + H7 (H7 with the Lipschitz clause AND
+the magnitude-bounds clause); u-linear form CONDITIONAL on q = 1
+(H7 sufficient, E3-adjudicated); c depends on kernel shape AND the
+H7 regularity constants (C_s, the coefficient-map Lipschitz bounds,
+and the coefficient magnitude bounds)]: to first order in u, for any
+two lowerings, ||g-hat_L − g-hat_L'||/g_sc <= c*u*kappa-bar*G*N —
+equivalently the CHAIN AMPLIFICATION FACTOR Phi_chain :=
+(cross-lowering floor, rel)/u <= c*kappa-bar*G*N. WITHOUT H7 the
+bound gains the additive c'*eps_N-class*kappa-bar*G*N term (the
+D4-ALT channel; eps_N NTF-owned). Record consistency:
+Phi_chain(measured) ~ 1.3e8; at N = 250 the linear reading needs
+c*kappa-bar*G >= 5.2e5 — compatible (the kappa/G ranges are
+UNANCHORED order-of-magnitude, PRACTICE class, pending F2).
+ CLG-D3 (RMS refinement) [SCHEMA, conditional on the CLG-D2
+hypotheses (H1-H4, H6, H7) with H5]: E||g-hat_L − g-hat_L'||/g_sc ~
+c*u*kappa_eff*G_rms*sqrt(N), with kappa_eff*G_rms := rms_k(kappa_k
+G_k), the quadratic mean of the per-stage product.
+ CLG-D4 (value/gradient asymmetry) [SCHEMA]: the forward chain is
+SELF-CORRECTING (Newton re-convergence absorbs cross-lowering
+perturbations — J agrees at ~1e-15 = O(u)); the adjoint sweep has NO
+fixed point and transports every per-stage rounding discrepancy to
+the output un-repaired — the ~7-decade value-vs-gradient gap is
+STRUCTURAL. CLG-D4-ALT [CONJECTURE, named alternative]: the floor is
+the primal Newton-tolerance floor eps_N leaking into the adjoint
+coefficients (sqrt(u)-class; NTF-owned — this block does NOT derive
+eps_N); discriminated from D2/D3 by E3 below.
+ CLG-D5 (FD amplification law into H) [THEOREM* on the
+cross-lowering branch; same-lowering cancellation leg SCHEMA
+conditional on H8]: for Hessian columns by forward differences of
+the gradient with step h — CROSS-lowering pair: dH/H_sc ~ A_FD*phi,
+A_FD := 2*g_sc/(h*H_sc); measured A_FD(implied) ~ 1.2e7 = the "~7
+orders" of the mandate row (pair-matched 10^6.6-10^7.2, robust).
+SAME-lowering pair: UNDER H8 the systematic component b_L is
+common-mode and cancels to first order (the corrected in-batch-base
+M6 form meets its derived K_RICH x max(scheme asyms) band, the
+standing witness that H8 holds at the operating point of record).
+The h-value and H_sc identification are OWNED by F2-C44-FDSTEP —
+this block states the law, it does NOT adjudicate step choice.
+ CLG-D6 (pinning-discipline corollary) [SCHEMA conditional on H8]:
+at floor phi any gradient comparison or FD stencil across lowerings
+incurs irreducible noise >= phi*g_sc, FD-amplified by A_FD; within
+one lowering, under H8, the systematic part cancels to first order —
+the standing discipline ("every gradient COMPARISON or FD stencil
+pins ONE lowering") is hereby DERIVED, conditional on H8, as the
+unique zero-cost mitigation. This corollary ADDS no policy.
+ CLG-D7 (identification gap) [SCHEMA]: the current record (one N,
+one precision, one design neighborhood) CANNOT identify the
+N-exponent p in {1/2, 1}, the split of c*kappa-bar*G into
+conditioning vs transport, the u-exponent q (u^1 per D2/D3 vs
+sqrt(u)-class per D4-ALT), or the margin dependence of kappa-bar.
+ F2 DUTY SPEC OF RECORD — F2-CLG-SCALE (the three-experiment
+identification design; owner = F2 entry, alongside the NTF program;
+the cross-lowering pairs it measures are the OBJECT OF STUDY — no
+collision with the RC31T-2 rejection of such pairs as VALIDATION
+instruments): (E1) chain-length N-ladder — prediction P1: log-log
+slope p = 1/2 under H5 (D3), p = 1 worst-case (D2);
+nearest-hypothesis adjudication with CI, no magic threshold. (E2)
+margin-proximity — prediction P2: floor increases monotonically as
+certification margin shrinks, tracking the recorded kappa(A_k) of
+the worst cells; a flat response falsifies the kappa-bar leg of D2.
+(E3) float32 contrast — prediction P3: under q = 1 the floor ratio
+phi32/phi64 ~ 2^29 (f32 gradients O(1)-corrupted); under the
+sqrt-class D4-ALT ~ 2^14.5 — ~4.4 decades of separation, an
+unambiguous discriminator. Cheap adjuncts: H7 = recorded-march
+state-diff check; H8 = same-lowering scheme self-asymmetry at the
+consumer's h. All three run on recorded marches with the existing
+engine — zero package changes (env pinned), zero CFD.
+ SEAM DECLARATIONS (land verbatim, carrier §9): "NTF minor (a) owns
+the Newton-floor derivation (D4-ALT only NAMES the channel);
+F2-C44-FDSTEP owns FD step choice (D5 only states the law). One
+derivation program, no collisions." Higham ASNA 2ed = conditional
+THEOREM-upgrade path only (CLG-D2 stands at THEOREM* without it).
+Falsifiers: D1 — any same-executable same-batch-shape repeat on
+identical recorded inputs differing bitwise; D2/D3 — a measured
+floor exceeding the law once kappa-bar/G are measured, or
+super-linear N growth; D5 — measured dH outside the K_RICH band
+around A_FD*phi; D7 — joint non-separation (p-hat CI covering both
+1/2 and 1 AND E3 landing between the two predicted decades) => the
+law must be re-derived with a finer error model (declared escalation
+path).]
 
 [S22 REGISTRATION BLOCK — O4 DISCHARGED FOR THE S20 INSTANCE
 (BRANCH (c)), THE K_disc ~ A_0 BRIDGE FALSIFIED ON ITS NAMED TEST,

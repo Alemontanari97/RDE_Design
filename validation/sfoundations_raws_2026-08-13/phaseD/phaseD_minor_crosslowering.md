@@ -107,8 +107,12 @@ sufficient-not-optimized, declared as such):
   across lowerings at unit-roundoff grade,
   ||s-hat_L,k − s-hat_L',k|| <= C_s · u · ||s-hat_k|| for all k,
   with C_s moderate; and the coefficient maps
-  s -> (A_k, dR_k/dW, phi_k) are uniformly Lipschitz on the march
-  tube (constant absorbed in c) [ESC-r2-2: coefficient-sensitivity
+  s -> (A_k, dR_k/dW, phi_k) are uniformly Lipschitz AND uniformly
+  bounded on the march tube (magnitude bounds sup_k ||dR_k/dW||,
+  sup_k ||phi_k|| absorbed in c) [ESC-J1-CLG(b), per
+  ESC-CROSSLOWERING-r3-2: superseded fragment, verbatim — "uniformly
+  Lipschitz on the march tube (constant absorbed in c)"]
+  [ESC-r2-2: coefficient-sensitivity
   clause DECLARED — step (iv) of CLG-D2 converts the H7 state gap
   into O(u)-grade coefficient perturbations, which needs a Lipschitz
   bound on dA_k/ds (second derivatives of R_k) and likewise for
@@ -192,8 +196,11 @@ evidence: bitwise PASS.
 
 **Statement (THEOREM*).** Under H1-H4, H6, **and H7** [ESC-r1-1],
 there is a constant c depending on the per-stage kernel shape AND
-the H7 regularity constants (C_s and the coefficient-map Lipschitz
-bounds); its kernel-shape part is <= a small multiple of m-bar via
+the H7 regularity constants (C_s, the coefficient-map Lipschitz
+bounds, and the coefficient magnitude bounds) [ESC-J1-CLG(b), per
+ESC-CROSSLOWERING-r3-2: superseded fragment, verbatim — "(C_s and
+the coefficient-map Lipschitz bounds)"]; its kernel-shape part is
+<= a small multiple of m-bar via
 the standard gamma_m = m·u/(1−m·u) reassociation bound [ESC-r3-1:
 was "depending only on the per-stage kernel shape (c <= a small
 multiple of m-bar ...)" — false as printed, since step (iv) (per
@@ -288,12 +295,17 @@ falsifies H2-H4 as stated (compounding mechanism present).
 
 ## 4. CLG-D3 — RMS REFINEMENT (sqrt-N scaling)
 
-**Statement (SCHEMA, conditional on H5).** Under H1-H6 with H5, the
-expected floor scales as
+**Statement (SCHEMA, conditional on H5).** Under the CLG-D2
+hypotheses (H1-H4, H6, H7) with H5 [ESC-J1-CLG(a), per
+ESC-CROSSLOWERING-r3-1: superseded fragment, verbatim — "Under H1-H6
+with H5, the"], the expected floor scales as
 
   E ||g-hat_L − g-hat_L'|| / g_sc  ~  c · u · kappa_eff · G_rms · sqrt(N),
 
-with kappa_eff, G_rms the quadratic means of the per-stage factors.
+with kappa_eff · G_rms := rms_k(kappa_k G_k), the quadratic mean of
+the per-stage product [ESC-J1-CLG(c), per ESC-CROSSLOWERING-r3-3:
+superseded fragment, verbatim — "with kappa_eff, G_rms the quadratic
+means of the per-stage factors."].
 At the sqrt-N reading, the record requires c · kappa_eff · G_rms ≈
 1.3e8 / 15.8 ≈ 8.2e6 — also inside the plausible range; the
 N-ladder decides between D2-linear and D3-sqrt (see §8, prediction
@@ -664,3 +676,29 @@ ALL-PASS stands). Files written this window: this file only
 (in-place, markers [ESC-r3-0..3]). PAPERS NEEDED: unchanged (Higham
 2ed, THEOREM*->THEOREM upgrade path only; r2 refuter's PAPERS NEEDED
 was empty).
+
+## [ESC-J1-CLG] JUDGE-ORDERED LANDING PRE-STEP (append-only, applied
+## 2026-08-20 BEFORE the M0 transcription; executes
+## VERDICT_escalation_c4 LA-4(i), quoted: "PRE-STEP (judge-ordered
+## edits, append-only marker [ESC-J1-CLG] quoting this verdict,
+## applied to phaseD_minor_crosslowering.md BEFORE transcription —
+## the three r3-refuter named repairs, verbatim): (a) SS4 CLG-D3
+## statement: 'Under the CLG-D2 hypotheses (H1-H4, H6, H7) with H5,
+## the expected floor scales as ...' (r3-1). (b) SS1 H7 coefficient
+## clause extended: 'uniformly Lipschitz AND uniformly bounded on the
+## march tube (magnitude bounds sup_k ||dR_k/dW||, sup_k ||phi_k||
+## absorbed in c)'; SS3 statement parenthetical: '(C_s, the
+## coefficient-map Lipschitz bounds, and the coefficient magnitude
+## bounds)' (r3-2). (c) SS4: 'with kappa_eff * G_rms := rms_k(kappa_k
+## G_k), the quadratic mean of the per-stage product' (r3-3).")
+
+Edits applied in place, each tagged [ESC-J1-CLG(a|b|c)] at-site with
+its superseded fragment quoted verbatim in the tag. R-ESC-1 declared:
+refuter-named repair texts adopted by judge order without a further
+refutation round (probe unchanged — textual edits only); any future
+refuter may attack them as marked text. No label moves (CLG labels per
+VERDICT_escalation_c4 SS5.4: CLG-D2 THEOREM* under H1-H4+H6+H7 with
+the Lipschitz AND magnitude-bounds clause; CLG-D3 SCHEMA conditional
+on the CLG-D2 hypotheses + H5 with the joint rms_k(kappa_k G_k)
+definition; CLG-D5 THEOREM* cross-branch / SCHEMA-cond-H8 same-branch;
+CLG-D6 SCHEMA-cond-H8; D1/D4/D7 SCHEMA; D4-ALT CONJECTURE).

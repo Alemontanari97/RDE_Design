@@ -1156,6 +1156,17 @@ FJ-vs-Humphrey di Fig. 26** come risolto (sotto la nostra tolleranza dichiarata 
 | **R29** | *[nuovo, gap G-b]* Verso del cono per la **faccia terminale `ff°` quando esiste** (base pressure / mirror plug) | **Non ricavabile da KT2015**: il paper non contiene né plug né `p_b`. Va **derivato in proprio** — è l'unico pezzo di A13 che l'evidenza esterna non copre | **P1, owner F2/PB-2** |
 | **R20** | Provenienza hardware del pin "onda periodica pura a modo singolo" | Nessun dato pubblicato certifica un modo singolo **persistente in stato termico stazionario** (Teasley 2023: osservazioni quasi tutte all'avviamento). Il pin resta valido come **IPOTESI DI MODELLO** e perde la provenienza hardware. Lo deciderebbe: una campagna con imaging ad alta velocità in mainstage stazionario, o le durate di transizione pubblicate | **APERTO, owner F5** |
 
+[LAND-C4 R27 CARRIER APPEND — append-only, S-FOUNDATIONS-C4 landing
+completion 2026-08-21; executes VERDICT_r22f §7.2(4) at the R27 mirror
+row of the table above:] "R27 leg (ii) DISCHARGED-citable 2026-08-20
+(R22F centerpiece §2.4; VERDICT_r22f §6): GP1997 §3.2 + Fig. 1
+(pp. 12-13) read [FULL]; applied to the orthogonal-by-construction
+Sauer IVL the lateral-relief escape is unavailable at the exposed
+strip — the quasi-1D log model is literature-anchored. Leg (i)
+quantitative residue (≈4x [INF] constant; X-GP01) UNCHANGED. New limit
+L3: the interface-side corrugated-sonic locus is NOT covered by this
+discharge (domain-margin gate m0 + X-GP01 deciders)."
+
 ---
 
 ## 8. DUTIES

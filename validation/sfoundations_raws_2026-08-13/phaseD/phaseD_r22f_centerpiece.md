@@ -962,7 +962,22 @@ with the (U)/S.22-class program (R-1). The [REV2-r3-3](b) sentence
 DECLARED" is READ under this clause (the measured⇒discharged
 implication it invited is WITHDRAWN; the premise stays OPEN at
 certified grade after measurement, with the estimate-class
-instantiation available for a-posteriori checks that declare it). Harroun 2021 Fig. 18, printed
+instantiation available for a-posteriori checks that declare it).
+
+[REV2-J1] EDITORIAL HEADER REPAIR (landing pre-step, 2026-08-20;
+executes VERDICT_r22f §4 RES-CAP-6 / §7 L-B pre-step, quoted:
+"editorial repair REQUIRED AT LANDING — restore the header line
+'## 2.3 [T-RED-3] Physical exhibit of record + per-term disposition'
+(and the lead-in 'PHYSICAL EXHIBIT OF RECORD (page-verified this
+window):') immediately before 'Harroun 2021 Fig. 18, printed p. 669'
+via an append-only [REV2-J1] marker quoting this verdict. Not a
+content BREAK; a document-integrity defect of the final splice."
+Content below intact since round 1 (judge-verified; E5-L2-6/E5-L0-5(g)
+independently confirmed); nothing else touched by this repair.)
+
+## 2.3 [T-RED-3] Physical exhibit of record + per-term disposition
+
+PHYSICAL EXHIBIT OF RECORD (page-verified this window): Harroun 2021 Fig. 18, printed
 p. 669 (PDF page 10) — instantaneous pressure and Mach contours, particle
 flow paths, and reverse-flow regions for the IE-aerospike geometry,
 detonation-wave case. Verified content: helical particle paths wrap the

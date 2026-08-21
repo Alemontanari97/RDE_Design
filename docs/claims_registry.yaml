@@ -2096,3 +2096,181 @@ entries:
   suffices_symbolic: "no"
   falsifier: "the revision-10 (f1)-(f5) list of record (stop_proof §13): (f1) break any (D1)-(D7) step from the FULL strong set; (f2) an EOS satisfying (H-G8-1)-(H-G8-4) with discontinuous hull root map / non-compact (v,S)-image / item (i) failing on a comparison segment; (f3) the moving-slice witness class INSIDE the strong class (W-A is excluded three ways of record — convexity, fiber jump, image accumulation); plus the r1 feasibility gate (conv(K_M) crossing the sonic fold kills route r1 in principle) and the [X-T0P] segment line-search falsifier (executable layer, owner F2)"
   gamma: "EOS-general"
+
+# ---------------------------------------------------------------------------
+# S-FOUNDATIONS-C4 landing-completion rows (2026-08-21): registry index of
+# the Phase-D theory blocks landed in M0 (VERDICT_r22f L-A/L-B +
+# VERDICT_escalation_c4 LA-3(i)). DECLARED lint repair: the prior landing
+# window (API-cut before its tail) landed the M0 blocks without their
+# theory-as-code index rows, leaving 9 orphan IDs in lint (xv); these rows +
+# the [T-DCRX] row of this window discharge them. Grades = VERDICT_r22f
+# sec.1 (sole centerpiece label authority) and VERDICT_escalation_c4 sec.5.3.
+
+- id: C-R22F-DISC
+  kind: conditional
+  class: SCHEMA
+  scope: "The named conditional family of the [T-DISC] fiber-separation block (VERDICT_r22f sec.1): (c1) G-a projection-census completeness (SCHEMA, deriver queued); (c2) H-AM0 fiber non-degeneracy checked per dataset; hypothesis switches H1.1-H1.4 (incl. the H1.3 FOLD-headroom clause, AG-1 valve declared) and the H2.2 booking-level / physical-h0-fixed scope of the [T-DISC-2] sign leg; the ADVISORY-provenance conditional (c3) was RETIRED at landing by the R-6 K-bar=0 mint"
+  statement: "The [T-DISC-1/2] THEOREM* grades hold under this declared conditional list; each conditional is named at-site in the M0 block with its deciding deriver"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC-1] FIBER NON-DEGENERACY"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-1]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a dataset failing the per-dataset H-AM0 check, or a census counterexample breaking G-a completeness, de-rates the dependent statements per their printed at-site conditionals"
+  gamma: "EOS-general"
+
+- id: C-RED-SBV
+  kind: conditional
+  class: SCHEMA
+  scope: "The named conditional family of the [T-RED] reduction-residual block (VERDICT_r22f sec.1): H-RED-2 in the STRENGTHENED SBV form (W piecewise-a.c. in phi; [REV2-r1-6]) + H-RED-3 + H-RED-4 close the two-channel census (Cantor channel closed by hypothesis, declared); the class-wide uniformity premise (U) is OPEN with deciders named (R-1/S.22)"
+  statement: "The [T-RED-2] two-channel THEOREM* holds conditional on H-RED-2(SBV)/H-RED-3/H-RED-4; the (U) premise is declared OPEN, never silently consumed"
+  doc: "docs/rde_nozzle_MASTER.md#H-RED-2"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-RED-2]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "an in-class W violating the SBV composite hypothesis while the census conclusion is still asserted, or a measured Cantor-part channel contribution, breaks the conditional census at its printed site"
+  gamma: "EOS-general"
+
+- id: C-DCRX-CERT
+  kind: conditional
+  class: SCHEMA
+  scope: "The declared conditional list of [T-DCRX] (VERDICT_escalation_c4 sec.5.3): (a) (H3) per-cell exit axial supersonicity is an a-posteriori per-design certificate (S1 margin machinery, M cos(theta) > 1) - the lemma binds design-by-design conditional on that certificate, W_cert phase-quantified (mu-a.e.-all-phase pin); (b) bell-only exit topology (annular/plug not derived); (c) the momentum-theorem step assumes the class's piecewise-C1 shock-free S1 fields"
+  statement: "DC-1/DC-2 hold at THEOREM* under conditionals (a)-(c); membership of any consumer in W_cert is a checkable a-posteriori certificate, never a construction fact"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DCRX]"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_deltacarrier.md#WHY THEOREM* AND NOT THEOREM"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a certified consumer failing its M cos(theta) > 1 certificate silently consumed as a member (report-on-fail violated), or an annular/plug instance consuming the bell-only lemma"
+  gamma: "EOS-general"
+
+- id: T-DISC
+  kind: theorem
+  class: "THEOREM*"
+  scope: "Part III fiber-separation block (landed S-FOUNDATIONS-C4; carrier phaseD_r22f_centerpiece.md Part 1 at closure): the p-only projection axis of the breaker census - container of [T-DISC-1..4] at their per-statement grades (VERDICT_r22f sec.1)"
+  statement: "Fiber separation: the p-only reduction is CONVICTED with zero CFD ([T-DISC-1] fiber non-degeneracy THEOREM* + [T-DISC-2] J-separation THEOREM* booking-level on physical-h0-fixed comparisons) while the full-state per-phase average is exonerated on the fiber axis ([T-DISC-3/4] SCHEMA)"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC] FIBER-SEPARATION THEOREM"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-1]"
+  inherits: ["C-R22F-DISC"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "per-statement falsifiers printed in the M0 block (constraint-of-record exhibit for fiber degeneracy; a physical-h0-fixed pair with single-signed floor violated; a probe-verified midrange-oscillation counterexample to the 2-epsilon reassembly)"
+  gamma: "EOS-general"
+
+- id: T-DISC-1
+  kind: theorem
+  class: "THEOREM*"
+  scope: "Fiber non-degeneracy on the admissible data class A (D1.1 pins; D1.2 p-only projection with the calibrated-scalars fiber pin [REV2-r1-1])"
+  statement: "The p-only projection has non-degenerate fibers on A: distinct full-state families share the same p-trace with positive fiber diameter (proof by citation: D.6 THEOREM* + D.10 THEOREM + K-bar=0 minted at record grade + P1 non-breaker)"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC-1] FIBER NON-DEGENERACY"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-1]"
+  inherits: ["C-R22F-DISC"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "exhibit ONE constraint of record (theorem, certificate, or contract fact) collapsing the fiber to the p-trace on A - printed verbatim in the M0 block"
+  gamma: "EOS-general"
+
+- id: T-DISC-2
+  kind: theorem
+  class: "THEOREM*"
+  scope: "J-separation within a fiber; SCOPED of record: booking-level under H2.2, physical-h0-fixed comparisons only ([REV2-r1-2/3]); magnitude leg (ii) = SCALING-ESTIMATE, declared, never a bound"
+  statement: "Leg (i) sign: exact per-streamline algebra gives a theorem-grade strictly-positive single-signed floor on the physical-h0-fixed branch (uncompensated DROP branch geometry-signed; degenerate corner r_e = r_in named); leg (ii) magnitude: B2 1.5-3 percent fold class + B1 companion at SCALING-ESTIMATE, ADVISORY provenance declared; actual-pair form routed to M-RED/B-2, never asserted at theorem grade"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC-2] J-SEPARATION LOWER BOUND WITHIN A FIBER"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-2]"
+  inherits: ["C-R22F-DISC"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a physical-h0-fixed fiber pair with computed J-difference of the opposite sign to the printed floor (per-streamline algebra is exact - a violation kills the booking-level claim, not a band)"
+  gamma: "EOS-general"
+
+- id: T-DISC-3
+  kind: schema
+  class: SCHEMA
+  scope: "2-epsilon optimization consequence; two-leg reassembly [REV2-r1-4] with the [REV2-r2-1] corrected parenthetical as the landing form; inter-fiber unboundedness caveat printed"
+  statement: "Leg (a) per-surrogate upper bound under premise (U_G); leg (b) irreducibility lower bound under premise (DR) (midrange osc/2, probe-verified): optimizing the p-only surrogate controls J only up to the 2-epsilon transfer, and the fiber irreducibility floor is not removable by surrogate refinement"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC-3] OPTIMIZATION CONSEQUENCE (2-EPSILON TRANSFER)"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-3]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a family violating the (DR)-premised lower leg while satisfying its premise (probe of record re-runnable), or a quantifier-direction counterexample of the [REV2-r2-1] class"
+  gamma: "EOS-general"
+
+- id: T-DISC-4
+  kind: schema
+  class: SCHEMA
+  scope: "Verdict semantics: dichotomy assembly at the grades of its parts ([REV2-r1-5]); prohibition leg = PRACTICE (D.12, cited)"
+  statement: "What is convicted (the p-only reduction, booking-level under the D1.2 pin, citing leg (b) irreducibility) and what is exonerated (the full-state per-phase average, on the fiber axis only); the D.12 prohibition is consumed, not re-derived"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DISC-4] VERDICT SEMANTICS"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-DISC-4]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "any consumer reading the exoneration off the fiber axis, or the conviction outside the booking-level scope - both grep-detectable against the printed scopings"
+  gamma: "EOS-general"
+
+- id: T-RED
+  kind: theorem
+  class: "THEOREM*"
+  scope: "Reduction-residual operator block at D.18/[MS-DEF-KRES] (landed S-FOUNDATIONS-C4; carrier phaseD_r22f_centerpiece.md Part 2 at closure, AS AMENDED through [REV2-r4-1/2/3] + the E-5 deferred inputs per VERDICT_escalation_c4 LA-5): container of [T-RED-1] (operator), [T-RED-2] (bound schema), [T-RED-2G] (design-gradient-level schema)"
+  statement: "The azimuthal-reduction residual is carried by the explicit operator K with K-bar = 0 THEOREM* (full BV) and the two-channel census THEOREM* conditional on H-RED-2(SBV)/H-RED-3/H-RED-4; magnitudes stay SCALING-ESTIMATE; the on-ray St^2 form is license-gated; uniformity (U) is OPEN"
+  doc: "docs/rde_nozzle_MASTER.md#[MS-DEF-KRES] / [T-RED] REDUCTION-RESIDUAL OPERATOR"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-RED-1]"
+  inherits: ["C-RED-SBV"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "machine re-derivation of the wave-frame flux identity failing on a certified instance (identity is exact), or a measured two-channel split violating the census under its declared hypotheses"
+  gamma: "EOS-general"
+
+- id: T-RED-1
+  kind: definition
+  class: THEOREM
+  scope: "The operator K, explicit and exact (wave-frame flux identity machine-witnessed + re-derived by hand twice); census completeness stays G-f SCHEMA, declared, never inflated"
+  statement: "Definition of the reduction-residual operator K with its exact flux identities; the identities are exact algebra at record grade (R-6 mint executed at landing), the completeness of the census is a separate SCHEMA claim"
+  doc: "docs/rde_nozzle_MASTER.md#[T-RED-1] THE OPERATOR, EXPLICIT AND EXACT"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-RED-1]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a certified field on which the printed flux identity fails at machine precision (identity is exact - one counterexample kills it)"
+  gamma: "EOS-general"
+
+- id: T-RED-2
+  kind: theorem
+  class: "THEOREM*"
+  scope: "Bound schema: (i) K-bar = 0 on full BV (a.c. + Cantor + atoms) THEOREM* + two-channel census THEOREM* conditional; (ii) first-order scales SCALING-ESTIMATE; (iii) on-ray St^2 LICENSE-GATED (X-T3QS-5F, not usable); (iv) uniformity OPEN, deciders named"
+  statement: "K-bar = 0 (pen proof + machine witness, minted at record grade at landing); the residual splits into the two named channels under H-RED-2(SBV)/H-RED-3/H-RED-4; magnitude statements never exceed SCALING-ESTIMATE class"
+  doc: "docs/rde_nozzle_MASTER.md#[T-RED-2] BOUND SCHEMA"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-RED-2]"
+  inherits: ["C-RED-SBV"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a BV composite with K-bar mean measurably nonzero (kills the mean-channel theorem), or a licensed consumption of the (iii) on-ray form without the X-T3QS-5F license (gate violation, grep-detectable)"
+  gamma: "EOS-general"
+
+- id: T-RED-2G
+  kind: schema
+  class: SCHEMA
+  scope: "Design-gradient-level bound schema (sec.2.2-bis of the centerpiece, the addendum-(b) right-sized deliverable, AS AMENDED through [REV2-r4-1/2/3] and the E-5 pass): delta AND L_H UNDERIVED, named derivers only; two-symbol landing split mu_curv/mu_red (E5-L1-4); H-G5 convexity-only licensing; eps_U at SAMPLED-SUP (estimate) class"
+  statement: "|argmax shift| <= delta/mu_curv (gradient route, J_TRUE curvature floor, H-G6-gated) and |argmax shift| <= 2*sqrt(eps_U/mu_red) (value route, measured J_red floor, the only measured-carrier-executable route) - SCHEMA-licensed only; no argmax-shift number exists at any grade; registry carrier row theory:r22f-optimum-shift-gradient-route"
+  doc: "docs/rde_nozzle_MASTER.md#[T-RED-2G] DESIGN-GRADIENT-LEVEL BOUND SCHEMA"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_r22f_centerpiece.md#[T-RED-2G]"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "any argmax-shift number quoted at any grade from this schema before delta/L_H land (trigger of the findings row); a prox-regularity certificate consumed as licensing (probes of record reject)"
+  gamma: "EOS-general"
+
+- id: T-DCRX
+  kind: theorem
+  class: "THEOREM*"
+  scope: "Fixed-exit-area relaxation lemma and delta carrier (Part III, adjacent the [T-GB]/OP-0 ceiling block; landed per VERDICT_escalation_c4 LA-3(i), labels sec.5.3): DC-1/DC-2 THEOREM* under [C-DCRX-CERT]; DC-3 THEOREM under V1-V2; DC-4 THEOREM inequality with SCHEMA regime clause, DORMANT; DC-5 PRACTICE; DC-6 SCHEMA at the T3/T4 attainment site"
+  statement: "J[W] <= J_ideal(eps) for every certified class member (exact weak duality on the fixed-exit-area relaxation; equality at the uniform aligned exit STATE, in-class attainment not claimed); delta := J_ideal(eps) - J[S*] >= 0 with the exact decomposition delta = Pi_c + delta_true over the certified subclass, semantics of record = distance to the L-unconstrained fixed-eps ceiling"
+  doc: "docs/rde_nozzle_MASTER.md#[T-DCRX]"
+  proof: "validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_deltacarrier.md#DC-1 — FIXED-EXIT-AREA RELAXATION LEMMA"
+  inherits: ["C-DCRX-CERT"]
+  carrier: []
+  suffices_symbolic: "no"
+  falsifier: "a certified class member with (H1)-(H5b) verified and computed J[W] > J_ideal(eps) + ceiling band (twin-executable); analytically any admissible (q, u) with G(q, u) > p(lambda); the (H3)-breakout rejector of record must be ABLE to break the bound when (H3) is dropped - and does (esc_probe_deltacarrier_h3breakout.py, PASS)"
+  gamma: "EOS-general"
