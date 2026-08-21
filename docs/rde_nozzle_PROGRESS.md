@@ -7,53 +7,58 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profonditÃ , non per ricostruire lo stato.
 
-## ORA (2026-08-20, chiusura S-FOUNDATIONS-C3 â€” split dichiarato su
-## trigger usage-meter utente >75%. ESEGUITO: (1) BLOCCO 0: gate GO
-## su file (clausole A-F), rider lit (34 mint + 8 upgrade, lint PASS),
-## touchpoint consumato (BLOCCATO 9 DECISO re-bless 242.5 + trunc
-## 0.20 esecuzione gated ADR-D4; O5 numpy = adotta a chiusura; AG-1
-## ADOTTATA; S-5F/G9 -> F2-entry; C51 resta rung-3a), 21 paper
-## arrivati/registrati (root A 14->32+3, incl. upload utente Uno
-## published + Becker-Rannacher, identita' pagina-1 verificate).
-## (2) WAVE 3 COMPLETA (wf 14/14, 0 errori): 33 righe aggiudicate e
-## ATTERRATE, 0 BREAK / 21 repair / 39 amendment, 0 refuter cassati,
-## escalation-per-regola ZERO; ledger 58 righe (12/36/2/8 misurato);
-## C58 coniata (fondazione AD/JAX, user catch). (3) PROFONDITA'
-## user-ordered: C50 Form-2 PIENA (avvocati vivi + judge dedicato ->
-## metrica unica product-form, SUPERSEDE split-by-role, 0 residui);
-## passa REM incondizionata 20/20 pulita (judge non in strain,
-## criterio pre-registrato). (4) CONFIRM istanza 2 = SECONDA cattura
-## vera (CR-W3-R10-1 riparata in M0:213, lint PASS; stage always-on
-## di merito). (5) RETRO-SWEEP catena (domanda utente): 9 coppie, 1
-## tensione naming (preset Uno, nessun falsificatore spara, rider
-## atterrato), 8 ancore, PAIR-8 SCREEN dichiarato (sfida read-depth
-## utente SOSTENUTA, wording corretto su carrier), PAIR-9 annotato;
-## 15 promozioni UNREAD->READ-PARTIAL con pagine dichiarate. (6)
-## Direttive utente -> strumenti machine-checked: enumerazione
-## foundation-choice + arrivals-mapping = categorie coverage gate
-## C4; PIPELINE DECISION MAP = deliverable C4. In coda di chiusura:
-## SR-4 glossario (agente ripreso post-stall) + dossier Uno
-## full-read (user-ordered) + O5 numpy install + suite + commit â€”
-## esiti quotati nel log. Counts al landing: choice 58 / findings
-## 244 (202 open) / claims 150 / lit 128+9 bulk / glossario post-SR4
-## nel log. Log: validation/PROGRESS_2026-08-20_SfoundationsC3.md)
+## ORA (2026-08-21, CHIUSURA PIENA S-FOUNDATIONS-C4 — R35 -> CONSUMED.
+## ESEGUITO: (1) BLOCCO 0: gate GO su file (HEAD riconciliato su 4
+## addenda dichiarati + 1 mid-window), counts == closeC3, touchpoint
+## apertura (meter fresco; Lean DEFER a F2; calendari a F2-entry).
+## (2) FASE D DIMOSTRATA E ATTERRATA A CONVERGENZA: centerpiece R22F
+## 4 round x 3 lenti + 27 probe eseguibili (L1 dry pieno; residui
+## nominati delta/L_H UNDERIVED con derivatori ordinati five-field ->
+## route-B -> M-RED -> R22-CFD); 4 minori ESCALATI a forma piena e
+## TUTTI DRY (E-1 r2, E-2/3/4 r3; 53/53 finding sostenuti); E-5
+## delta-r4 refereed, RES-CAP-1 SCARICATO; [T-DISC] + [T-RED] +
+## [T-DCRX] + NTF + CLG + [R22F-FORCHETTA] IN M0 con classi finali;
+## G-c gamba (ii) SCARICATA-citabile (Giles-Pierce 1997 [FULL]);
+## landing confermato (confirm istanza = 3a cattura vera, 6 item
+## completati in-window). (3) LETTERATURA: campagna nozzle-RDE 4
+## paper (0 BREAK su 8 threat consolidati; regola CT-6 standing) +
+## FIELD ATLAS 48 figure + BASE-PRESSURE HARVEST (Purdue CTAP =
+## unica misura hot-fire; Veen 1966-fit FAILED -> N2 sostituisce;
+## Humphreys: p_b sposta argmax x2.45 a valore piatto) + THROAT
+## HARVEST (pin esibito, MAI verificato spettralmente da alcun CFD,
+## gap G1-G9 search-proven); sfida utente lit-census SOSTENUTA 3/4
+## -> emendamento protocollo censimento standing + 31 WANTED cluster
+## mancato. (4) COVERAGE GATE = PASS su file (dual-seed provato nei
+## 2 sensi: SEED-OMIT P34 catturato, SEED-DECOY C50 non flaggato;
+## critic -> 6a/7a istanza classe no-row: C61 p_b-closure + C62
+## quadratura-di-fase; NOVEL-ITEMS recuperata 32=31+1+0; ledger 62
+## = 12/36/12/2). (5) PIPELINE DECISION MAP di record (62 nodi + 45
+## archi verificati 100%, refuter 0 BREAK/0 REPAIR, amendment
+## applicati; doppio consumer F2 + S-PRES). (6) TOUCHPOINT CHIUSURA
+## (utente): CFD-2 in F2 / CFD-1 post-M-RED; BLOCCATO 16 RATIFICATA
+## a F2-entry (scope esteso field-reading); M-RED resta prima
+## campagna F2; procurement top-3 harvest + 3 ask fermi. Kill quota
+## #6/#7/#8 tutti a PERDITA ZERO (artifacts-first + resume). Counts
+## a chiusura (misurati): choice 62 / findings 249 (207 open) /
+## claims 163 / glossario 47 fam + 238 / lit 165 [79 WANTED] + 9
+## bulk. Suite: esito quotato nel log. Log:
+## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## NEXT (atomico): S-FOUNDATIONS-C4 (sessione FRESCA; carrier =
-## validation/ADVISORY_SfoundationsC4_prompt_2026-08-20.md + checkpoint
-## + prompt C2/C3 per le regole): Blocco 0 (esiti SR-4/dossier-Uno se
-## non consumati alla chiusura C3 + registrazione 3 self-procured +
-## touchpoint Lean/calendari se non consumato) -> BLOCCO 1 Fase D
-## restante (centerpiece R22-F until-dry 3 LENTI + 4 minori; brief
-## PRONTO blocco3/BRIEF_blocco2_phaseD.md) -> BLOCCO 2 chiusura
-## catena (ledger 141 fork Sonnet + coverage gate esteso 3 categorie
-## C3: orchestrator-acts + arrivals-mapping + foundation-enumeration
-## + PIPELINE DECISION MAP + R3 pieno, R35 -> CONSUMED). Poi F2
-## blocco 0.
-## QUEUE (C4 landing 2026-08-20, LB-11 AS AMENDED by LA-6): Blocco-2
-## escalations CLOSED (VERDICT_escalation_c4, 2026-08-20): E-1/E-2/
-## E-3/E-4 DRY, E-5/RES-CAP-1 DISCHARGED; sequencing gate SATISFIED;
-## landings LA-1..LA-5 owed at the M0/registry landing window;
-## ship-gate remains armed for F2 (value, delta) rows.
+## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
+## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
+## committato): Block 0 = trigger sweep da comando misurato (riga
+## :1455 two-stage -> eseguire duty S1 o presentare SCHEMA
+## dichiarato; D-44 su claim di adeguatezza; P34 istanziazione
+## leggera; novita' query-bounded) + decisioni utente
+## formato/durata -> estrazione cite-only dal record (pipeline map
+## = spina dorsale; forchetta = slide onesta; atlas + campagne =
+## sezione efflusso/pratica; Gap A/Gap B = value case; genealogia
+## Rao->Hoffman->Kraiko->noi) -> deck -> doppia review (rigor
+## refuter: ogni slide-claim <= classe dell'ancora + comms review)
+## -> loop utente. POI F2 blocco 0 (contatore 0/6; re-chain +
+## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
+## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
+## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
@@ -205,7 +210,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R32 | S-ORDINE de-entropizzazione | CONSUMED-with-declared-split 2026-08-13 | split di record (regola contratto S7): tranche seeding (c) refuter/red-team S25-S25bis + (d) consumption map 4 advisory + (e) corpus lit 13-08 (~101+~40) = coda NOMINATA della prossima finestra seeding; il resto ESEGUITO (piano convergiuto+red-team, snapshot durabilita', indice 92, 4 registry nuovi, glossario 163, seeding 20->135, PROGRESS slim multiset-0, memoria, gate NOTHING-LOST PASS con rejector+loss-hunter provati, riconciliazione 516 scarto 0, CLAUDE.md R7+README ratificati) | ADVISORY_SORDINE_plan_2026-08-13 + PROGRESS_2026-08-13_Sordine.md |
 | R33 | S-CERT audit certificazione agnostico | CONSUMED 2026-08-13 | verdetto vincolante: NON-CERTIFICABILE, 2 P0 a HEAD ((vii) riparato in chiusura dichiarata; staleness import-closure = owner F2); P0-integrita' audit scaricato via dual-seed; triage completo a registro (157 righe findings); delta vs 2026-08-07: vecchio tier P0 consumato-verificato, difetti migrati oggetto->certificatore; MC8 sopravvive 8/8 | ADVISORY_Scert_prompt CONSUMED + PROGRESS_2026-08-13_Scert.md + scert_raws_2026-08-13/ |
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
-| R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED-with-declared-split, aggiornata 2026-08-20 (parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
+| R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED PIENO 2026-08-21 (parte C4 2026-08-20/21: FASE D dimostrata e atterrata a convergenza (centerpiece R22F 4 round x 3 lenti + escalation 4 minori TUTTI DRY + E-5; M0 riceve [T-DISC]/[T-RED]/[T-DCRX]/NTF/CLG/[R22F-FORCHETTA] con classi finali; G-c (ii) scaricata-citabile); Fase C completata a 62 righe (C59-C62 coniate: forma-temporale, NAND/SAND, p_b-closure, quadratura — 7 istanze classe no-row totali); COVERAGE GATE PASS dual-seed provato; PIPELINE DECISION MAP di record (62 nodi/45 archi, refuter 0/0); campagne letteratura (nozzle-RDE 0-BREAK, field atlas, base-pressure, throat) + emendamento protocollo censimento su sfida utente sostenuta; touchpoint chiusura: CFD-2 in F2/CFD-1 post-M-RED, BLOCCATO 16 ratificata F2-entry, M-RED resta F2, procurement top-3+3; catena aggiornata C4 -> S-PRES -> F2; log PROGRESS_2026-08-21_SfoundationsC4.md. Parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
 
 ## BLOCCATO / GATE APERTI
@@ -399,6 +404,21 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     Formato/durata = decisioni utente al Block 0 S-PRES. Il prompt
     di sessione si autora alla chiusura R3 di C4 (quando gli input
     sono atterrati e citabili).
+ 19. TOUCHPOINT C4 CHIUSURA CONSUMATO (utente, 2026-08-21; carrier =
+    checkpoint C4 + questa riga): (a) R22-CFD: CFD-2 (demo pair
+    Harroun coi run per-fase nostri, barra = eps di M-RED, template
+    paired-run Li-Xu 2025, contratto BC documentato dal throat
+    harvest) ENTRA IN CODA F2; CFD-1 (test del pin su configurazione
+    accoppiata reale, item di calcolo massimo) SI DECIDE POST-M-RED
+    con dossier procurement/collaborazione e criteri di riferimento
+    PM22-conforme vs Jourdaine-patologico; (b) BLOCCATO 16
+    RATIFICATA: sessione topologia+modellistica A F2-ENTRY con scope
+    ESTESO alla passata field-reading sistematica (insieme ai dossier
+    S-5F/C51/C58/C60); (c) M-RED RESTA prima campagna F2 (nessun
+    pull-forward); (d) procurement ATTIVO = top-3 harvest
+    (Lim-Humble AIAA 2020-0195, Stechmann PhD 2017,
+    Schwer-Kailasanath AIAA 2012-3943) + i 3 ask fermi (More-Wild
+    ECNoise, ASME V&V 20-2009, Xing-Stern); il resto WANTED passivo.
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

@@ -2594,3 +2594,54 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## pieno, R35 -> CONSUMED). Poi F2 blocco 0.
 
 
+
+
+## ===== ORA/NEXT USCENTI alla chiusura C4 (archiviati 2026-08-21, SR-10) =====
+
+## ORA (2026-08-20, chiusura S-FOUNDATIONS-C3 â€” split dichiarato su
+## trigger usage-meter utente >75%. ESEGUITO: (1) BLOCCO 0: gate GO
+## su file (clausole A-F), rider lit (34 mint + 8 upgrade, lint PASS),
+## touchpoint consumato (BLOCCATO 9 DECISO re-bless 242.5 + trunc
+## 0.20 esecuzione gated ADR-D4; O5 numpy = adotta a chiusura; AG-1
+## ADOTTATA; S-5F/G9 -> F2-entry; C51 resta rung-3a), 21 paper
+## arrivati/registrati (root A 14->32+3, incl. upload utente Uno
+## published + Becker-Rannacher, identita' pagina-1 verificate).
+## (2) WAVE 3 COMPLETA (wf 14/14, 0 errori): 33 righe aggiudicate e
+## ATTERRATE, 0 BREAK / 21 repair / 39 amendment, 0 refuter cassati,
+## escalation-per-regola ZERO; ledger 58 righe (12/36/2/8 misurato);
+## C58 coniata (fondazione AD/JAX, user catch). (3) PROFONDITA'
+## user-ordered: C50 Form-2 PIENA (avvocati vivi + judge dedicato ->
+## metrica unica product-form, SUPERSEDE split-by-role, 0 residui);
+## passa REM incondizionata 20/20 pulita (judge non in strain,
+## criterio pre-registrato). (4) CONFIRM istanza 2 = SECONDA cattura
+## vera (CR-W3-R10-1 riparata in M0:213, lint PASS; stage always-on
+## di merito). (5) RETRO-SWEEP catena (domanda utente): 9 coppie, 1
+## tensione naming (preset Uno, nessun falsificatore spara, rider
+## atterrato), 8 ancore, PAIR-8 SCREEN dichiarato (sfida read-depth
+## utente SOSTENUTA, wording corretto su carrier), PAIR-9 annotato;
+## 15 promozioni UNREAD->READ-PARTIAL con pagine dichiarate. (6)
+## Direttive utente -> strumenti machine-checked: enumerazione
+## foundation-choice + arrivals-mapping = categorie coverage gate
+## C4; PIPELINE DECISION MAP = deliverable C4. In coda di chiusura:
+## SR-4 glossario (agente ripreso post-stall) + dossier Uno
+## full-read (user-ordered) + O5 numpy install + suite + commit â€”
+## esiti quotati nel log. Counts al landing: choice 58 / findings
+## 244 (202 open) / claims 150 / lit 128+9 bulk / glossario post-SR4
+## nel log. Log: validation/PROGRESS_2026-08-20_SfoundationsC3.md)
+
+## NEXT (atomico): S-FOUNDATIONS-C4 (sessione FRESCA; carrier =
+## validation/ADVISORY_SfoundationsC4_prompt_2026-08-20.md + checkpoint
+## + prompt C2/C3 per le regole): Blocco 0 (esiti SR-4/dossier-Uno se
+## non consumati alla chiusura C3 + registrazione 3 self-procured +
+## touchpoint Lean/calendari se non consumato) -> BLOCCO 1 Fase D
+## restante (centerpiece R22-F until-dry 3 LENTI + 4 minori; brief
+## PRONTO blocco3/BRIEF_blocco2_phaseD.md) -> BLOCCO 2 chiusura
+## catena (ledger 141 fork Sonnet + coverage gate esteso 3 categorie
+## C3: orchestrator-acts + arrivals-mapping + foundation-enumeration
+## + PIPELINE DECISION MAP + R3 pieno, R35 -> CONSUMED). Poi F2
+## blocco 0.
+## QUEUE (C4 landing 2026-08-20, LB-11 AS AMENDED by LA-6): Blocco-2
+## escalations CLOSED (VERDICT_escalation_c4, 2026-08-20): E-1/E-2/
+## E-3/E-4 DRY, E-5/RES-CAP-1 DISCHARGED; sequencing gate SATISFIED;
+## landings LA-1..LA-5 owed at the M0/registry landing window;
+## ship-gate remains armed for F2 (value, delta) rows.

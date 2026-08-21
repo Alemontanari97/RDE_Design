@@ -4,6 +4,30 @@
 # ARCHIVE marker (in-place archive, SR-10 spirit). Authority order:
 # registries/lints > this file > conversational memory.
 
+## ========== C4 CLOSED (2026-08-21) — BOUNDARY. R35 CONSUMED ==========
+## S-FOUNDATIONS COMPLETE: Fase D adjudicated+landed at convergence
+## (R22F 4x3 + 27 probes; 4 minors escalated ALL DRY; E-5/RES-CAP-1
+## discharged; M0 blocks [T-DISC]/[R22F-FORCHETTA]/[T-DCRX]/NTF/CLG
+## final classes; G-c(ii) discharged-citable; landing CONFIRMED, 3rd
+## true catch repaired). Ledger 62 = 12/36/12/2 (no-row class at 7:
+## C59-C62 minted this session). COVERAGE GATE PASS (dual-seed proven
+## both directions, on file). PIPELINE DECISION MAP refereed (62
+## nodes/45 edges, 0/0). Literature campaigns landed (nozzle-RDE
+## 0-BREAK, atlas, base-pressure, throat; census-protocol amendment
+## standing after sustained user challenge). Closing touchpoint of
+## record (PROGRESS row 19): CFD-2 in F2 / CFD-1 post-M-RED;
+## BLOCCATO-16 RATIFIED at F2-entry; M-RED stays F2; procurement
+## top-3+3. Suite: first run 22/23 -> numeric-lint birth rows
+## (25 probes, declared) -> re-run verdict quoted at the close
+## commit. Counts closeC4: choice 62 / findings 249(207) / claims
+## 163 / glossary 47+238 / lit 165[79W]+9. Fingerprint closeC4
+## saved (29 pkgs). Kills #6/#7/#8 all zero-loss. NEXT SESSION =
+## S-PRES (carrier ADVISORY_Spres_prompt_2026-08-21.md, committed;
+## opens from that prompt + this checkpoint per AG-5 — S-PRES
+## rewrites fresh with archive in place). HANDOFF: P-C locked
+## duplicate delete + staging rmdir at next window; G5 user send;
+## 3 stray never committed.
+
 ## ============ SESSION C4 LIVE STATE (2026-08-20) ============
 ## R2 OPENING + PRE-EXECUTION GATE — VERDICT OF RECORD (clause D:
 ## this block is the file carrier; basis = measured commands this
