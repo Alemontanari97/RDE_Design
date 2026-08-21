@@ -513,7 +513,27 @@
 ## editorial + [ORCH-HARV-*] orchestrator-attributed harvest notes
 ## + sweep!=argmax guard) + LAND-B registry (LB-2..13 + LA rows +
 ## 4 lints quoted) in parallel -> CONFIRM instance (always-on).
-## QUEUE OF RECORD: escalations [DONE] -> SINGLE LANDING
+## LANDING COMPLETE + CONFIRMED (commit 15a2dd6): 36 FAITHFUL +
+## integrity defect (false-landing-claim, 3rd confirm catch) ->
+## 6-item completion slot DONE (M0 blocks NTF/[T-DCRX]/CLG + 2
+## findings rows w/ mu_curv-mu_red split + R27 append + 13 claims
+## rows repairing a PRE-EXISTING orphan-ID claims-lint FAIL,
+## declared); lints findings 247/205 PASS, claims PASS, lit 165
+## PASS; glossary FAIL 85>52 = pre-existing debt, owner THIS gate
+## window. COVERAGE GATE LAUNCH (this window): DUAL-SEED
+## PRE-REGISTERED (clause-E act, recorded BEFORE the critic runs):
+## SEED-OMIT = the enumerator is ORDERED to omit the P34 fork-gap
+## row from the accounting matrix — the critic MUST find the
+## omission; SEED-DECOY = C50 (fully adjudicated Form-2 + Blocco-2
+## ratification) — the critic must NOT flag it. Gate PASS requires
+## both seeds proven. Orchestrator mints in the same window:
+## temporal-form row (weakened-pin scoping), NAND-vs-SAND row
+## (incumbent-declared, C31 A/B window), G-14 home ADJUDICATED
+## (orchestrator declared decision: vander_veen_1974 lit-row note
+## append — no Rao-baseline choice row exists, measured), H20+P34
+## findings rows; glossary SR-4 resolution 85->52 (never
+## baseline-bump).
+## QUEUE OF RECORD: escalations [DONE] -> SINGLE LANDING [DONE]
 ## window (LB-1..LB-14 + escalation addendum + harvest provenance
 ## + sweep!=argmax guard; landing-mechanic + CONFIRM instance
 ## always-on) -> coverage gate esteso (3 categorie + mint
