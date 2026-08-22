@@ -58,13 +58,32 @@ backup deck / M0.
 ## esplicitamente (perche' il gruppo investe sugli ugelli: il
 ## collo di bottiglia pressure-gain, i 4-13 punti di ideale sul
 ## tavolo).
-## (4) DECISIONE O5-CLASS al Block 0 (utente): l'authoring .pptx
-## richiede realisticamente python-pptx (NON nel pinned env, 29
-## pkg): opzioni = (a) install python-pptx dichiarato+fingerprint
-## al confine (O5-class, decisione utente); (b) authoring in
-## formato intermedio (HTML/markdown deck) con conversione manuale
-## utente; (c) editing XML diretto stdlib (fattibile ma fragile,
-## dichiarato). Presentare, non decidere.
+## (4) TOOLCHAIN RISOLTA (verificato 2026-08-22): python-pptx 1.0.2
+## E' GIA' nel pinned env (29 pkg, con lxml 6.1.1 + pillow 12.2.0)
+## — nessuna decisione O5, si autora .pptx direttamente.
+## (5) PIPELINE DI BUILD DI CASA (user pointer 2026-08-22, censita):
+## ../project_build/ = la pipeline che ha compilato Presentazione_
+## CVA_RDE — build_deck.py v7 (1425 righe, python-pptx) + decklib +
+## eqs.py (LaTeX->PNG) + add_notes.py (speaker notes da spec) +
+## specs/*.md per-slide + QA render loop + validate_reused_figs
+## (audit figure riusate con manifest) + ASSERT a build-time su
+## numerazione/puntatori backup + provenienza totale ("every
+## number, table and generated figure is traceable to a script and
+## a JSON artifact"). VERDETTO AGNOSTICO (orchestratore, di
+## record): la pipeline e' SOPRA lo standard di pratica per deck
+## tecnici — deck-as-code versionato + provenienza claim-carrier +
+## audit figure + assert = esattamente la disciplina R5 applicata
+## alle slide; ADOTTARLA come veicolo di S-PRES (estendere
+## ppt_Heister VIA questa pipeline: sezione nozzle + migliorie
+## Heister come codice, stessa tracciabilita'). Debolezze dichiarate
+## da gestire: build_deck.py monolite con lista-slide hardcoded
+## (l'estensione Heister = modulo/spec nuovi, non hack in coda),
+## file _bak legacy da non toccare, limiti di python-pptx su
+## master/template fidelity (verificare che il template Heister
+## sopravviva al round-trip di apertura+estensione: test early al
+## Block 0). Il Block-0 census delle due presentazioni resta; lo
+## stile CVA_RDE si aggiudica ANCHE alla luce del fatto che la sua
+## pipeline lo rende riproducibile.
 
 ## BLOCCO 0 (apertura)
 R2 + gate con verdetto su file. Counts rigenerati (attesi chiusura
