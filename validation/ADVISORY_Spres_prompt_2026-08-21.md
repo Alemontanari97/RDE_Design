@@ -85,6 +85,42 @@ backup deck / M0.
 ## stile CVA_RDE si aggiudica ANCHE alla luce del fatto che la sua
 ## pipeline lo rende riproducibile.
 
+## ADDENDUM UTENTE 2026-08-22 bis — VINCOLI FONDAMENTALI (verbatim
+## intent: "e' fondamentale, e dico fondamentale"):
+## (A) SEZIONE LETTERATURA RDE-NOZZLE CON I LORO PLOT: esposizione
+## chiara di COME il campo ha fatto design di ugelli RDE — i metodi
+## (Angelino ramp in Liu-Wang; MoC + max-thrust Rao/Vander-Veen in
+## Li-Xu; conico non-ottimizzato in Jourdaine; redesign manuale
+## CFD-guidato in Paxson-Miki; la genealogia Rao -> Hoffman
+## isoperimetrici -> Allman-Hoffman diretto -> Kraiko-Tillyaeva
+## adjoint coniugato) CON LE LORO FIGURE: crop dei plot originali
+## via il meccanismo di casa (extract_figs.py + manifest +
+## validate_reused_figs, gia' provato su 17 figure nel deck CVA) —
+## ogni figura riusata: citazione piena, pagina, audit nel manifest;
+## i loro NUMERI mostrati come loro (CT-6: mai presentati come
+## nostre bande). Le pagine-figura da croppare sono GIA' anchorate
+## nei dossier (campagna P-A..P-D, FIELD_ATLAS, THROAT_HARVEST,
+## BASE_PRESSURE_HARVEST: Liu Figg. 7/9/12/15, P-B Figg. 14/15/16/
+## 24, P-C Figg. 10/13/15/16/20b, P-D Figg. 4/8/9, KP18 Fig. 6 +
+## Tab. 1, Harroun Figg. 13/16/17/18, Humphreys pp. 1586-87).
+## (B) SVISCERAMENTO DEL GRAFO: la pipeline decision map presentata
+## COME GRAFO camminabile — ogni nodo con scelta di record +
+## alternative pesate + perche' + falsificatore/stato; ogni
+## affermazione del deck giustificata alla sua ancora. Non un
+## riassunto della mappa: LA mappa, resa visiva.
+## (C) IL DECK E' UN RETRO-AUDIT DICHIARATO ("lavoro a ritroso per
+## tastare robustezza e completezza"): regola vincolante — per OGNI
+## slide-claim la catena di ancore si CAMMINA A RITROSO fino alla
+## fonte (registro -> verdetto -> prova/misura); un claim che non
+## regge la camminata NON si ammorbidisce in slide: diventa FINDING
+## a registro (riga coniata, owner, trigger) e la slide dice la
+## verita' ridotta. Il rigor-refuter del Blocco 2 esegue la
+## camminata al 100% sui load-bearing e a campione sul resto; il
+## log di chiusura porta il VERDETTO DI ROBUSTEZZA della camminata
+## (quanti claim camminati, quanti ridotti, quanti finding coniati)
+## — la presentazione diventa cosi' essa stessa uno strumento di
+## verifica del programma, di record.
+
 ## BLOCCO 0 (apertura)
 R2 + gate con verdetto su file. Counts rigenerati (attesi chiusura
 C4: choice 62 = 12/36/12/2 / findings 249 (207) / claims 163 /
