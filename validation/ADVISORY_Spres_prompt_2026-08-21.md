@@ -121,6 +121,21 @@ backup deck / M0.
 ## — la presentazione diventa cosi' essa stessa uno strumento di
 ## verifica del programma, di record.
 
+## ADDENDUM 2026-08-22 quater — DURATA DI RECORD (utente, sessione
+## S-PRES GIA' IN VOLO al momento di questo addendum, dichiarato):
+## TARGET = 60 MINUTI. Conseguenze vincolanti: time-boxing per
+## sezione calcolato su 60' (budget indicativo da adattare allo
+## storyboard: apertura+BLUF ~3', contesto RDE + efflusso reale
+## ~10', pratica del campo coi loro plot ~10', il problema della
+## media ~5', il programma + grafo sviscerato ~15', onesta'/
+## forchetta ~7', roadmap + ask ~5', margine Q&A implicito ~5');
+## il core-15' resta come MODULO DI RESILIENZA (cut-list), non
+## come target; profondita' "ogni punto senza nulla per scontato"
+## = main deck 60' + grafo camminabile + backup deck dalla mappa
+## Q&A (la completezza vive nella tripletta, non in 200 slide).
+## La sessione in volo legge questo addendum come emendamento
+## dichiarato (pattern C3->C4 di record).
+
 ## BLOCCO 0 (apertura)
 R2 + gate con verdetto su file. Counts rigenerati (attesi chiusura
 C4: choice 62 = 12/36/12/2 / findings 249 (207) / claims 163 /
