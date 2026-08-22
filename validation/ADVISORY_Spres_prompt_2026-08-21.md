@@ -140,6 +140,28 @@ submissions, non presentazioni — ma il wording resta bounded).
 (b) DECISIONI UTENTE: formato (PPTX / PDF-Beamer / HTML deck),
 durata target, audience tecnica attesa, data della milestone.
 
+## ADDENDUM 2026-08-22 ter — 5 UPGRADE DI MODUS (review agnostica
+## del setup, adottati): (1) MESSAGE ARCHITECTURE FIRST: prima dello
+## skeleton si fissa il messaggio centrale unico + 3 pilastri +
+## SLIDE DI ASK esplicita (candidate gia' di record: collaborazione/
+## procurement CFD-1, accesso dati motore per la classe del pin,
+## canali paper) + slide BLUF in testa; ogni sezione con DOPPIO
+## takeaway dichiarato (ingegneristico + programmatico — il frame
+## Gap A/Gap B e' il ponte). (2) STORYBOARD GATE: approvazione
+## UTENTE dello storyboard (titolo+messaggio+figura per slide)
+## PRIMA dell'authoring pieno. (3) TIME-BOXING MODULARE: budget
+## minuti per sezione + CUT-LIST ordinata pre-decisa + core 15' +
+## moduli estendibili. (4) Q&A RED-TEAM: stage dedicato che
+## raccoglie le obiezioni SOSTENUTE dai refuter delle tre onde +
+## escalation (la banca-domande piu' dura esistente) e le converte
+## in mappa Domanda -> Risposta -> slide-backup (assi: tecnico,
+## programmatico, TRL, costi); il backup deck si costruisce DA
+## questa mappa. (5) SPEC DI VISUALIZZAZIONE DEL GRAFO come task di
+## design nominato: overview 8 stadi -> zoom per-stadio, codifica
+## visiva dello stato per nodo, archi-cluster evidenziati (62 nodi
+## MAI in una slide sola); il refuter comms verifica leggibilita'
+## per-layer.
+
 ## BLOCCO 1 — ESTRAZIONE + SKELETON (cite-only)
 Estrazione contenuti dal record (1-2 slot): ogni candidato-slide =
 claim + ancora + classe. ASSET SORGENTE (di record, committati):
