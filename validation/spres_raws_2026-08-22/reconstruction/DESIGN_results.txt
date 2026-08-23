@@ -1,0 +1,20 @@
+﻿=====  =====
+C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\ATLAS_RESEARCH_DESIGN.md
+MATRICE: 16 righe-aspetto (A-P, derivate da SCAFFOLD L0-L6 + M0 Parti I-VII + spina D6 F0-F6/G0-G6 + CH1-CH8) x 5 dimensioni = 80 celle.
+CELLE: 44 coperte, 6 FUORI-PERIMETRO dichiarate, 30 SCOPERTE (4 righe intere: G contratto-globale M1-M5, H licensing fuori-pin, J certificazione/oracoli, K contratto-dati; + riga trasversale P storia; + 10 parziali).
+CAPITOLI NUOVI DERIVATI: 3 â€” CH9 (certificazione+oracoli end-to-end, riga J), CH10 (contratto-dati/L4/G6/Annex B, riga K), CH-REF (atlante di riferimento, derivato dal lint id->capitolo); engine-speed/corrector-G3/P-2 aggiudicati ESTENSIONI (CH4 par.1.6, CH3 par.3, CH6 par.1.6), non capitoli.
+TEMPLATE: 8 sezioni, con par.6 STORIA (originale -> Fase A agnostica -> convergenza) e par.7 POSIZIONAMENTO (strumenti+senso, ogni ref = id di docs/literature_registry.yaml, 174 id misurati).
+CRITIC: 21/21 righe disposte in cella (riga 1 -> onda W-A riparazioni CH7/CH8; righe 2-3 verificate come gia' disposte; 4->CH8 par.1.7, 5->CH1 par.1.7, 6->CH1 par.1.2 EAP, 20->CH10; 21 -> mini-pass W-C) = test di auto-consistenza della matrice PASSATO.
+ESECUZIONE: 4 onde (W-A riparazioni 3 agenti; W-B 8 writer incl. historian trasversale par.6; W-C 5 refuter incl. anti-cita-a-vanvera sui registry-id; W-D lint+promozione docs/atlas/), ~0.95-1.4M token, 17 slot Fable.
+COMPLETAMENTO: 5 lint (registri->capitolo, manifest->disposizione, matrice->0 scoperte, critic 21/21 eseguite, template 8-sezioni con refs) + falsificatore del design (aspetto senza riga = matrice falsificata, onda si ferma).
+NARRATIVA (1 riga): il campo disegna l'ugello RDE mediando prima e sperando poi; noi dimostriamo QUANDO mediare e' esatto, misuriamo QUANTO costa quando non lo e', e consegniamo l'ottimo con certificato e contratto-dati, dichiarando dove il certificato oggi si ferma.
+ORDINE DI LETTURA/DECK: 7 atti â€” contesto campo (CH5) -> gap (CH5/CH9/CH10) -> domanda (CH1+CH8) -> metodo (CH2,CH3,CH7,CH4,CH8 par.1.7,CH10,CH9) -> evidenza (CH8/CH4/CH9) -> onesta' (CH6+CH1 par.1.7+CH9) -> roadmap+ask (CH6+Annex B).
+
+=====  =====
+PATH: c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\REFUTE_DESIGN.md
+VERDETTO: REGGE-CON-RIPARAZIONI â€” 16 findings: 2 BREAK / 6 REPAIR / 5 GAP / 3 NOTE (4 ALTA, 6 MEDIA, 6 BASSA); fronte 4 pulito (21/21 critic disposte, banco-utente chiuso transitivamente).
+Riparazioni urgenti:
+1. #2 (BREAK): template Â§6 STORIA battuta-2 "riderivazione Fase A" insoddisfacibile per CH4/CH9/CH10 (mai riderivati) â†’ ramo condizionale NON-RIDERIVATO + lint 5 emendato, altrimenti il lint di completamento forza fabbricazione o fallimento perpetuo.
+2. #1 (BREAK): conteggio celle falso tre volte (20+5+10=35â‰ 30; lista "10 parziali" con 12 item; ricount reale 37; M-ii/O-iii doppia-classificate) â†’ tabella per-cella delle 80 celle, lint-matrice ri-ancorato alla tabella non al numero.
+3. #3+#4 (REPAIR ALTA): W-B viola file-disgiunti (B8 historian co-edita tutti i capitoli coi writer B1-B7 nella stessa onda) e i Â§7 di CH1/CH3/CH8 sono senza owner (piÃ¹ clausola vacuitÃ  Â§7(a) per CH5/CH6 FUORI-PERIMETRO) â†’ B8 a round 2 + ownership esplicita nei brief.
+

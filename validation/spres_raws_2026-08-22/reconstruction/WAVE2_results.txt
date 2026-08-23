@@ -1,0 +1,70 @@
+﻿=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH5_literature_positioning.md
+Finding applicati: 10 / 10 (3 REPAIR, 1 DOWNGRADE, 3 GAP, 3 NOTE; tutte le ancore refuter verificate read-then-quote prima dell'edit)
+Edit piu' importante: [W2-R1] il deck punto 1 non dice piu' "nessuna ottimizzazione del problema mediato" ma "P-B ottimizza lo steady mediato GLOBALE; nessuno deriva condizioni di ottimalita' per la famiglia per-phase", con caveat ISABE-2003 sulla stessa slide.
+
+=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH1_formulation_ladder.md
+Finding applicati: 9 / 9 (4 REPAIR, 1 DOWNGRADE, 1 GAP, 3 NOTE â€” tutte le ancore refuter verificate read-then-quote prima dell'edit)
+Edit piu' importante [W2-R1]: portato lo stato LANDED del main statement [T-T0P] (M0:602-628) con i tre boundaries di record (classe t-periodica, cl(Omega_march), solo slip-free) in par.1.3/par.3/Q5/Q6, inclusa la risposta pre-cotta alla carta slip-sheets del panel.
+
+=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH2_averaged_optimality.md
+Finding applicati: 12 / 12 (5 REPAIR, 1 DOWNGRADE, 3 GAP, 3 NOTE â€” tutti con ancora refuter ri-verificata in finestra)
+Edit piu' importante: [W2-R1] split di classe su [T-T7FS] â€” struttura a 3 blocchi = THEOREM-SCHEMA "verified formally" (M0:2812, 2818), mentre il THEOREM* di record copre solo la differenziazione sotto l'integrale di ciclo (registry :580), in Â§1.1 e nella tabella per-claim.
+
+=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH4_machine_choices.md (tutte le ancore refuter verificate read-then-quote prima di ogni edit; disposizione appesa in coda).
+Finding applicati: 11 / 12 (5 REPAIR + 3 GAP + 3 NOTE; NOTE 12 registrato non-applicato: fix destinato alla banca Q&A a valle).
+Edit piÃ¹ importante: [W2-R2] â€” la chiusa di Q3 "50 pesate" corretta in "48 aggiudicate a convergenza + 2 SINGLE-AUTHOR (C17/C18) dichiarate con duty F2", perchÃ© era la risposta da banco che il ledger stesso smentiva.
+
+=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH6_value_honesty_roadmap.md
+Finding applicati: 11 / 11 (4 REPAIR, 2 DOWNGRADE, 3 GAP, 2 NOTE), tutte le ancore dei fix verificate read-then-quote (M0:1335-1339, :1348, :2316-2329, :3524-3525; findings:1926)
+Edit piu' importante: [W2-R5] la slide-bandiera PB-2 ora porta la locked formulation D-06 verbatim ("first genuinely averaged and NON-COLLAPSING shape problem ... a CYCLE instance") col near-miss Efremov-Kraiko 2004 come query-bound, disinnescando lo smontaggio russo-school in una domanda.
+
+=====  =====
+File riparato: C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH3_reduction_physics.md
+Finding applicati: 13 / 13 (7 REPAIR, 3 GAP, 3 NOTE â€” tutti con ancora ri-verificata alla fonte prima dell'edit)
+Edit piu' importante: [W2-R1]+[W2-R2] â€” nel banco Q1/Q3 e nella slide 3 la banda 0.7-9% e' ora attribuita al solo termine pressure-work (parte avvettiva senza numero di record, misurata da M-RED) e "sizing dimostrato" e' declassato a "supportato su un'istanza esterna [REP]", riportando le due celle piu' esposte sotto la classe di evidenza tenuta (M0:1309).
+
+=====  =====
+c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH8_design_space.md
+
+SINTESI (ASCII):
+1. FATTO [Formulazione di record]: design variable = SOLID SET nell'envelope; configurazioni = classi topologiche = OUTPUT (problem_book.md:339-353); settori bell / plug free-boundary (L_p, p_b slot N2 :347-348) / shrouded Veen / A_gen (E-D, clustered, non-axisym via P5).
+2. FATTO [THEOREM, EOS-general]: torneo gia' giocato all'eps-rung â€” [T-OP11e] (claims_registry.yaml:368-379, NON "T-GRP10": quello e' il carrier): plug domina debolmente bell puntualmente sotto sonic-cap, tie region + premium_bound per cella, carrier X-GRP10/X-GRP12 (8+6 controlli negativi); [T-T4] (:329-340, THEOREM*): plug pieno peak-phase ottimo, troncamento apre PB-2; [T-P7S1] (:589-600): esistenza argmax per level set per settore.
+3. FATTO [PRACTICE + SCHEMA]: driver brick-2 (validation/a1_toc_variational_jax.py:11-20,33) esercita SOLO il settore bell/TOC (theta_B + 8 heights, spline clamped/natural, lip eq, topologia fissata); la decomposizione in settori finiti e' SCHEMA senza rigor class dichiarata (MASTER.md:313-320); census S0-collapse = ADVISORY non ratificato, pin utente in census Â§7pin :329-384, amendments D2.1/D2.6 QUEUED (MASTER.md:306-327).
+4. APERTO grave: H20 free plume boundary p=Pa solve mechanics MISSING â€” plug/E-D REQUIRE it (pipeline_decision_map.md:183), owner F4b window.
+5. APERTO grave: C61 p_b = NEVER (Veen 0.846/M^1.3 legacy WG10-FAILED), slot N2, C-N2 da coniare a PB-2/OP-2 (map :184; claims_registry:181).
+DECK: "la configurazione e' un output, non un input" â€” torneo finito con primo verdetto plug>=bell alle chiusure (mai hardware), engine oggi = solo bell, mancanti H20+p_b nominati con owner.
+
+=====  =====
+c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\CH7_averaging_edifice.md
+
+Sintesi (8-12 righe ASCII):
+1. FATTO [THEOREM*]: la media di pressione e' convicted via fibre â€” nessun vincolo di record fissa E_theta data (P,h0,s,mdot) ([T-DISC-1], centerpiece :150-206) e J si separa single-signed a booking level con pesi 1.5-3% spinta + B1 0.6-9% di p [SE] ([T-DISC-2] :208-305).
+2. FATTO [THEOREM* cond. SBV]: il residuo di riduzione K (sei righe, = [MS-DEF-KRES] D.18 per dichiarazione testuale, saldatura piano2-in-piano1) ha media nulla fiberwise e SOLO due canali di primo ordine (J)/(H); St^2 on-ray LICENSE-GATED su X-T3QS-5F (centerpiece :459-553).
+3. FATTO [THEOREM/DEFINITION]: la scaletta descrittiva e' una sola â€” D.13 contratto STAGED (w/Gamma, h0 profile-grade con vacuity Remark 4.1, TRIPLE monitor TV, m_n) + upgrade path A/B/C swirl5f, con fork [T-N6-2] sul path A (meanswirl :1130-1304; DISPATCH :99-116).
+4. APERTO grave: decisioni UTENTE pendenti di record â€” S-5F build path A/B/C e priorita' C51 (DISPATCH :179-183) â€” piu' i pin BLOCCANTI B-1/B-2 prima di ogni ingestione dati.
+5. APERTO grave: canale (vi) optimum-shift SENZA numero a nessun grado (delta E L_H underived, R-9/R-16); vuoto empirico G-e (nessun falsificatore F1-F4/A4 mai calcolato); iff di D.18 a SCHEMA per downgrade giudice fino alla batteria G-f.
+6. DECK: un edificio a tre piani con catene until-dry esibite (r1-r7 + 4x3 lenti 66 findings + panel 10 agenti verificato) e la forchetta onesta senza referee esterno come punto di forza ESA, non debolezza.
+
+=====  =====
+PATH: c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\REFUTE_CH8.md
+VERDETTO: REGGE-CON-RIPARAZIONI â€” 0 BREAK / 4 REPAIR / 3 GAP / 1 DOWNGRADE / 2 NOTE (10 findings; anchor walk ~40/40, 2 difetti d'ancora).
+RIPARAZIONI PIU' URGENTI: (1) Q&A(2)/deck: dichiarare il loop T-T4â†’C-HT4â†’PB-2 â€” il falsificatore del "plug pieno vince" (banda PB-2, registry :181) e' oggi non-eseguibile per le STESSE mancanze C61+H20 di Q&A(3); (2) Â§1.3/Â§4(1): la connessione di S0 e' CONGETTURALE (hub argument dovuto, CEN-O4, census :68-69) â€” "percorribile con continuita'" e' sopra-classe e va condizionato.
+
+=====  =====
+PATH: c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\REFUTE_CH7.md
+VERDETTO: REGGE-CON-RIPARAZIONI â€” 0 BREAK, 6 REPAIR, 3 GAP, 3 NOTE (12 findings; anchor walk 100% eseguito, carrier symcheck rieseguito PASS con rejector che spara, nessuna inflazione di classe trovata).
+
+Riparazioni piÃ¹ urgenti:
+1. (GAP media, risposta 1) Aggiungere il falsificatore-di-rilevanza della condanna che il record stesso porta (centerpiece :426-430): se eps(K) misurato > separazione di fibra, la condanna della media Ã¨ vera ma prezzata sotto il canale (ii) â€” serve la clausola "peso relativo = misura congiunta M-RED".
+2. (REPAIR media, risposta 4) Citare il caveat vincolante VERDICT_r2pass Â§1/Â§4 (verification layer UNPROVEN in confirm, gate Blocco-2 CLOSED, portato verbatim fino a r7) + il giudice VERDICT_confirm.md di r7.1, e distinguere i round r1-r3 (ledger auto-applicati, senza giudice separato) dai round judged.
+
+=====  =====
+PATH: c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\COMPLETENESS_CRITIC.md
+VERDETTO: INCOMPLETA-CON-LISTA â€” 21 mancanze: 3 BLOCKING / 8 MAJOR / 10 MINOR (banco-utente: 5 coperte, 1 non coperta, 1 parziale).
+Le 3 piu' gravi: (1) CH7/CH8 hanno REFUTE (12+10 findings, 0 BREAK) ma onda-2 MAI applicata â€” nessuna tabella di disposizione, 22 findings pendenti; (2) storyboard B1 "4-13 punti di ideale sul tavolo" = numero portante del ponte senza ancora in alcun capitolo (il retro-audit dichiarato lo boccerebbe); (3) storyboard C13 "62 scelte ADJUDICATE" contraddice la riparazione CH4 W2-R2 (48 aggiudicate + 2 SINGLE-AUTHOR + 12 NEVER) sulla stessa slide che stampa il tally 12/36/12/2.
+

@@ -1,0 +1,20 @@
+﻿=====  =====
+C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\ATLAS_RESEARCH_DESIGN_v2.md
+
+NODI ALBERO: 21 (Q0 + 4 rami raccordo + 16 nodi-domanda; foglie di servizio dichiarate: N-L, N-P; CH-REF = annex fuori albero)
+CELLE (enumerate dalla tabella 80-righe, verificate per awk in finestra): COPERTA 31 / PARZIALE 14 / SCOPERTA 30 / FUORI-PERIMETRO 5 = 80
+CH->NODI: CH1->{A,B,H} CH2->{C} CH3->{D,M} CH4->{I} CH5->{N+senso trasversale} CH6->{O,L,M-roadmap} CH7->{E} CH8->{F,G} CH9nuovo->{J,P-gov} CH10nuovo->{K}; par.6 ovunque->P; CH-REF=servizio
+STANDARD NOMINATI: 7 (PRISMA, GRADE, ECSS, DO-178C, docs-as-code/Diataxis, FAIR, assertion-evidence) su 8 assi; 8vo = orchestrazione multi-agente, ASSENZA dichiarata query-bounded; claim SOTA senza asse citato = lint 6
+PIANO ONDE: W-A riparazioni+mint+indice (3 giudizio+1 meccanico) -> W-B.1 writer 7 slot file-disgiunti -> W-B.2 historian B8a/B8b round separato (post-writer, budget proprio) -> W-C refutazione 5 slot -> W-D lint 6+promozione; effort: giudizio=INHERIT max senza override, meccanici=ridotto dichiarato; ~1.1-1.6M token, 18 slot
+RIPARAZIONI: 16/16 applicate con marcatori [V2-R1..R16] e tabella disposizione finale (par. F)
+BREAK#2: battuta-2 STORIA condizionale a 3 esiti verificati dalle raws (a=riderivato Fase A/B par.3 + Fase D; b=stance-di-fork per-riga ledger; c=NON-RIDERIVATO con doppia prova alternativa o FINDING; 12 righe SILENT citate); fabbricazione vietata (F-des-3)
+BREAK#1: lint-matrice ancorato ALLA tabella per-cella, conteggi mai riassunti a mano (ricalcolo per enumerazione, SR-12)
+ID REGISTRY: tutte le forme corrette verbatim (grep in finestra); gelb_tadmor/paciorri_bonfiglioli = 0 righe -> K-ii ri-ancorata a D6 :256-263, upgrade solo su mint A4
+
+=====  =====
+c:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\spres_raws_2026-08-22\reconstruction\VERIFY_DESIGN_v2.md
+
+VERDETTO: PRONTO-PER-ESECUZIONE
+
+Conteggio: 16/16 finding APPLICATI e VERIFICATI alla sostanza. I 2 BREAK verificati contro le sorgenti primarie: (1) tabella Â§M contata a macchina â€” 80/80 celle, totali 31/14/30/5 e breakdown per-riga ESATTI, zero dup/mancanti, owner 44/44; (2) ramo NON-RIDERIVATO fedele alle raws Fase A/B/D alla riga (141=34/41/32/34 esatto, Â§3 items 1-7 confermati, 12 SILENT = lista identica, aritmetica 8+10+11+6+12+1=48 esatta, quote "off-limits" verbatim, phaseD completa su disco). Registry: 29/29 id verbatim, totale 174 ri-misurato. Albero 21 nodi, 16/16 falsificatori genuini; standard 7 nominati + 1 assenza query-bounded; onde file-disgiunte vere, effort giudizio = inherit max. Zero riparazioni bloccanti; 2 NOTE non bloccanti da applicare in-line all'apertura di W-A: (V-N1) "18 slot agente" -> 19 (off-by-one cosmetico, non gate-bearing); (V-N2) assegnare l'esecutore delle disposizioni findings in W-C al lancio.
+
