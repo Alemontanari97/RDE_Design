@@ -2548,3 +2548,14 @@ entries:
   owner: "S-PRES session 2 wave W-B.0 (LINEAGE_SWEEP_MATRIX: ~15 components x read corpus 49 READ-INTEGRAL + 33 READ-PARTIAL, mandatory cells, refuter on empty AND full cells; amendment v2.1 §1a) + template §3-bis ANTENATI DIRETTI + lint 7 (novelty claim without ancestors row = violation); STANDING method upgrade beyond S-PRES (self-improvement-at-convergence): every future corpus ingestion runs the isomorphism sweep, never thematic matching alone"
   trigger: "any novelty or lineage claim in atlas/deck/papers (lint 7 fires); any new literature ingestion window closing without a component-isomorphism pass"
   note: "Minted 2026-08-23 by R3-DELEGA of S-PRES-1 executed in the session-2 window. Dedup by measured grep in the mint window (SR-12): grep -niE 'lineage' docs/findings_registry.yaml pre-mint hits only unrelated rows (:1261 SNOPT lineage, :1335 Lyche-Morken removal lineage, :1441 Route-A attribution lineage, :2059 litreview Sternin/Shmyglevskii lineage residues) — no row carries the method-level recognition gap; grep -n 'lineage-recognition' = 0 hits."
+
+- id: oracles:o34-gradient-leg-unconsumed
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the O3.4 cross-code oracle has TWO legs of record; the flowfield leg is CLOSED (X-GENOXC, S10, interior-unit-process scope declared) but the GRADIENT leg (JAX grad vs GENO finite differences, D6 clause :826-830) has NO pass of record: the clause matured without a registered consumption -- any unscoped 'O3.4 PASS' claim silently inherits a leg that was never run (caught by REFUTE_CH9 F-8: CH9 now scopes every O3.4 statement per leg)"
+  source: "validation/spres_raws_2026-08-22/reconstruction/REFUTE_CH9.md#(d) FUORI-PERIMETRO (finding su file NON miei — non toccati)"
+  code: []
+  mechanism: oracle-coverage-gap
+  owner: "F2 oracle window (G1 chain): execute the O3.4 gradient leg (JAX grad vs GENO FD on the assembled march) or re-scope D6 :826-830 with a declared reason; rides beside the staleness import-closure F2 item"
+  trigger: "any 'O3.4 PASS' claim without per-leg scoping; F2 entry (oracle re-baseline); first cross-code gradient comparison run"
+  note: "Minted 2026-08-23 at the S-PRES session-2 atlas promotion window (R7 same-window rule). Dedup by measured grep in the mint window (SR-12): grep -n 'gradient-leg|gradient leg|:826' docs/findings_registry.yaml pre-mint -> 0 pertinent hits (only :2148 litreview residues row, unrelated). Discovered by refuter C1 (W-C.a) walking CH9 claims to source."

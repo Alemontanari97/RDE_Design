@@ -382,3 +382,23 @@ riproducibile; B7 CH7 p_b-superseded; C6 ledger/matrice) + C5
 (REFUTE_STORIE: trittico ancora-per-ancora, 12 hash, guardia 15,
 rami (a) indebiti) + fix preambolo CH9 (orchestratore). Esiti agli
 atterraggi.
+
+## PROMOZIONE docs/atlas/ — FREEZE (2026-08-23)
+
+Critic finale: verdetto MINI-ONDA -> 4 edit eseguiti (FC-1 re-stamp
+lint 8/8 PASS in addendum LINT_REPORT_WD; FA-1 conteggio CW-5 20;
+FD-4 mappa lettere gap nei NOTE C17-pre/C17; FC-2 arco Q&A-storie nel
+storyboard). Catena Q0->roadmap 20/20 saldature VERE; deck regge al
+primo ascolto; ratifiche CW e orchestratore CONFERMATE. FC-3/FC-4 =
+note alla finestra di promozione (disposte qui: matrici restano in
+raws come appendici citate; caveat omonimia C1 in CH_REF); FD-1/2/3/5
+= note all'authoring (in CRITIC_FINALE.md).
+PROMOSSI 13 file in docs/atlas/: CH1-CH10 + LINEAGE_LEDGER +
+ATLAS_TREE (post-FA-1) + CH_REF. Le matrici lineage (part1-3), i
+REFUTE, gli inventari e i report restano in raws come evidenza citata
+(convenzione L7: advisory mai normativa; l'atlas cita, la raw prova).
+MINT stessa finestra (R7): findings `oracles:o34-gradient-leg-
+unconsumed` (:2552, dedup grep quotato, anchor risolto al heading
+vero); glossario esteso W-A/W-B/W-C/W-D; lint registri POST-mint:
+findings PASS 251/0, glossary PASS 242/0, advisory PASS 106/5/0.
+L'ATLAS E' DI RECORD. Il deck ne è consumer (storyboard v3.1).

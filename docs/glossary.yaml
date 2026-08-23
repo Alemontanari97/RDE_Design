@@ -1570,7 +1570,7 @@ entries:
     meaning: "A DECLARED delegation of a session's R3 closing duties (CLAUDE.md R3/R7: PROGRESS log entry, ADVISORY_INDEX rows, suite re-run quoted, registry mints) to a named successor session, with the item list stated in the delegation order; the successor executes them in its own window with SR-12 measured counts. Instance of record: S-PRES-1 -> S-PRES session 2 (2026-08-23, executed same-day)."
     resolver: "validation/PROGRESS_2026-08-22_Spres1.md + validation/spres_raws_2026-08-22/SESSION2_LOG.md"
     first_seen: "S-PRES-1 closing injection (2026-08-23)"
-  - token: "W-B (atlas wave namespace W-A..W-D)"
+  - token: "W-A / W-B / W-C / W-D (atlas wave namespace)"
     namespace: "term"
     meaning: "Wave naming of the S-PRES atlas execution plan (design v2 par.W as amended by v2.1): W-A repairs/pre-requisites, W-B.0 lineage sweep (C-1ter matrix), W-B.1 per-node writers, W-B.2 historians (separate round), W-C refutation (sub-rounds a/b), W-D lint + promotion. DISTINCT by declaration from the W-* WANTED-paper mint namespace (e.g. W-09 Fievisohn) of the literature registry."
     resolver: "validation/spres_raws_2026-08-22/reconstruction/ATLAS_RESEARCH_DESIGN_v2.md + validation/spres_raws_2026-08-22/reconstruction/ATLAS_DESIGN_v2.1_AMENDMENT.md"
