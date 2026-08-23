@@ -1,0 +1,389 @@
+MASTER placeholders/shapes:
+  M: PLACEHOLDER (14) name='Segnaposto titolo 1' pos=(0.92,0.4) size=(11.5x1.45) text='Fare clic per modificare lo stile del titolo dello schema'
+  M: PLACEHOLDER (14) name='Segnaposto testo 2' pos=(0.92,2.0) size=(11.5x4.76) text='Fare clic per modificare gli stili del testo dello schema / Se'
+  M: PLACEHOLDER (14) name='Segnaposto data 3' pos=(9.06,6.76) size=(2.2x0.74) text='M. Fiore et al'
+  M: PLACEHOLDER (14) name='Segnaposto piè di pagina 4' pos=(1.57,6.76) size=(7.48x0.74) text='Modular Aerospike Nozzles for Upper Stage Applications'
+  M: PLACEHOLDER (14) name='Segnaposto numero diapositiva 5' pos=(11.26,6.76) size=(2.07x0.74) text='‹N›/17'
+  LAYOUT 'Diapositiva titolo':
+    L: name='Titolo 1' text='Fare clic per modificare lo stile del titolo dello schema'
+    L: name='Sottotitolo 2' text='Fare clic per modificare lo stile del sottotitolo dello sche'
+    L: name='Segnaposto data 3' text='M. Fiore et al'
+    L: name='Segnaposto piè di pagina 4' text='Modular Aerospike Nozzles for Upper Stage Applications'
+    L: name='Segnaposto numero diapositiva 5' text='‹N›'
+  LAYOUT 'Titolo e contenuto':
+    L: name='Titolo 1' text='Fare clic per modificare lo stile del titolo dello schema'
+    L: name='Segnaposto contenuto 2' text='Fare clic per modificare gli stili del testo dello schema / Se'
+    L: name='Segnaposto data 3' text='M. Fiore et al'
+    L: name='Segnaposto piè di pagina 4' text='Modular Aerospike Nozzles for Upper Stage Applications'
+    L: name='Segnaposto numero diapositiva 5' text='‹N›/17'
+
+===== SLIDE 1 =====
+  name='TextBox 1' TEXT_BOX (17) fonts=[32.0] pos=(2.28,0.52) size=(10.24x1.18)
+    TEXT: Rotating Detonation Engine Activities – T(H)RUST
+  name='Picture 15' PICTURE (13) pos=(0.0,4.86) size=(13.33x2.64)
+  name='Picture 13' PICTURE (13) pos=(0.0,4.86) size=(10.0x1.25)
+  name='Picture 16' PICTURE (13) pos=(2.28,4.13) size=(11.05x0.73)
+  name='TextBox 13' TEXT_BOX (17) fonts=[20.0] pos=(2.28,2.31) size=(10.9x0.44)
+    TEXT: Alessandro Montanari, Marco Grossi, Alex Falco, Francesco Nasuti
+
+===== SLIDE 2 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 2/18
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(4.57x0.56)
+    TEXT: Research Roads
+  name='CasellaDiTesto 4' TEXT_BOX (17) fonts=[28.0] pos=(0.36,0.83) size=(8.33x0.57)
+    TEXT: Group Overview
+  name='CasellaDiTesto 31' TEXT_BOX (17) fonts=[] pos=(0.5,2.08) size=(4.0x0.36)
+    TEXT: “Newborn” RDE activity
+  name='CasellaDiTesto 32' TEXT_BOX (17) fonts=[18.0] pos=(0.5,2.53) size=(4.0x1.53)
+    TEXT: About 1.5 years of active R&D on Rotating Detonation Engines
+  name='CasellaDiTesto 33' TEXT_BOX (17) fonts=[] pos=(4.67,2.08) size=(4.0x0.36)
+    TEXT: Numerical focus
+  name='CasellaDiTesto 34' TEXT_BOX (17) fonts=[18.0] pos=(4.67,2.53) size=(4.0x1.53)
+    TEXT: URANS / low-order in-house modelling of RDEs, oriented to industrially-relevant challenges
+  name='CasellaDiTesto 35' TEXT_BOX (17) fonts=[18.0] pos=(8.83,2.08) size=(4.0x0.36)
+    TEXT: International network
+  name='CasellaDiTesto 36' TEXT_BOX (17) fonts=[18.0] pos=(8.83,2.53) size=(4.0x1.53)
+    TEXT: Joint RDE activities with BEFAST Lab (NC State, Prof. James Braun), RMIT (Quentin Michalski) and ISAE-ENSMA (Prof. Marc Belleonue)
+  name='CasellaDiTesto 41' TEXT_BOX (17) fonts=[20.0] pos=(0.72,4.83) size=(5.25x0.42)
+    TEXT: HYPERDE
+  name='CasellaDiTesto 42' TEXT_BOX (17) fonts=[18.0] pos=(0.72,5.29) size=(5.25x1.31)
+    TEXT: A hybrid-dimensional CFD modelling framework that solves chamber, injector, plenum and expansion with a consistent low-order formulation
+  name='CasellaDiTesto 47' TEXT_BOX (17) fonts=[20.0] pos=(7.03,4.83) size=(5.58x0.36)
+    TEXT: Open research lines
+  name='CasellaDiTesto 48' TEXT_BOX (17) fonts=[18.0] pos=(7.03,5.29) size=(5.58x1.25)
+    TEXT: Study of hot topics of the RDE community: refill region, supersonic bladeless turbines, disk RDEs, nozzle design, heat flux
+  name='Freccia bidirezionale orizzontale 7' AUTO_SHAPE (1) fonts=[] pos=(6.13,5.36) size=(0.53x0.36)
+  name='Rettangolo 8' AUTO_SHAPE (1) fonts=[] pos=(0.5,4.33) size=(12.33x0.01)
+
+===== SLIDE 3 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 3/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[24.0] pos=(0.51,1.04) size=(12.61x0.91)
+    TEXT: HYPERDE  (HYbrid-dimensional PERformance-predictive numerical framework for Rotating Detonation Engines)
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='CasellaDiTesto 10' TEXT_BOX (17) fonts=[22.0] pos=(0.5,2.78) size=(5.69x0.44)
+    TEXT: Chamber
+  name='CasellaDiTesto 12' TEXT_BOX (17) fonts=[14.0] pos=(0.5,3.22) size=(5.69x0.25)
+    TEXT: 3D  /  Q2D (unwrapped)
+  name='CasellaDiTesto 13' TEXT_BOX (17) fonts=[18.0] pos=(0.5,3.47) size=(5.69x1.18)
+    TEXT: Fully 3D or “unwrapped” Q2D URANS/Eulerian solver for the annular chamber
+  name='CasellaDiTesto 15' TEXT_BOX (17) fonts=[22.0] pos=(7.14,2.78) size=(5.69x0.44)
+    TEXT: Plenum
+  name='CasellaDiTesto 16' TEXT_BOX (17) fonts=[14.0] pos=(7.14,3.22) size=(5.69x0.25)
+    TEXT: 3D  /  Q2D
+  name='CasellaDiTesto 17' TEXT_BOX (17) fonts=[18.0] pos=(7.14,3.47) size=(5.69x1.18)
+    TEXT: Fully 3D (2D for unwrapped) solver for the upstream feed plenum
+  name='CasellaDiTesto 18' TEXT_BOX (17) fonts=[22.0] pos=(0.5,4.79) size=(5.69x0.44)
+    TEXT: Injectors
+  name='CasellaDiTesto 19' TEXT_BOX (17) fonts=[14.0] pos=(0.5,5.21) size=(5.69x0.25)
+    TEXT: 3D  /  Q2D  /  Eulerian quasi-1D
+  name='CasellaDiTesto 23' TEXT_BOX (17) fonts=[18.0] pos=(0.5,5.49) size=(5.69x1.18)
+    TEXT: Quasi-1D solver captures the longitudinal transient response in strongly injector-coupled cases
+  name='CasellaDiTesto 24' TEXT_BOX (17) fonts=[22.0] pos=(7.14,4.79) size=(5.69x0.44)
+    TEXT: Expansion System
+  name='CasellaDiTesto 26' TEXT_BOX (17) fonts=[14.0] pos=(7.14,5.21) size=(5.69x0.25)
+    TEXT: 3D URANS  /  Q2D chamber coupling
+  name='CasellaDiTesto 28' TEXT_BOX (17) fonts=[18.0] pos=(7.14,5.49) size=(5.69x1.18)
+    TEXT: 3D URANS solver coupled with the chamber 3D/Q2D exhaust (choked and unchoked outflows)
+  name='CasellaDiTesto 20' TEXT_BOX (17) fonts=[18.0] pos=(0.51,2.08) size=(12.61x0.31)
+    TEXT: Rationale: each engine subsystem is solved at its most informative dimensionality
+
+===== SLIDE 4 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 4/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(8.7x0.55)
+    TEXT: Code Development and Capabilities
+  name='CasellaDiTesto 7' TEXT_BOX (17) fonts=[28.0] pos=(0.32,0.83) size=(7.25x0.57)
+    TEXT: General features of the solvers’ suite
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[18.0] pos=(0.5,2.06) size=(5.97x0.61)
+    TEXT: •  Finite volume method
+  name='CasellaDiTesto 4' TEXT_BOX (17) fonts=[18.0] pos=(0.5,2.75) size=(5.97x0.61)
+    TEXT: •  II order in space, up to III order in time
+  name='CasellaDiTesto 10' TEXT_BOX (17) fonts=[18.0] pos=(0.5,3.44) size=(5.97x0.61)
+    TEXT: •  Several turbulence models (easily extendable; strong modularity)
+  name='CasellaDiTesto 13' TEXT_BOX (17) fonts=[18.0] pos=(0.5,4.14) size=(5.97x0.61)
+    TEXT: •  Tabulated thermo properties, thermally perfect gas
+  name='CasellaDiTesto 32' TEXT_BOX (17) fonts=[18.0] pos=(6.86,2.06) size=(5.97x0.61)
+    TEXT: •  Flexible pre-processing tool, full integration with .yaml chemical datasets
+  name='CasellaDiTesto 33' TEXT_BOX (17) fonts=[18.0] pos=(6.86,2.75) size=(5.97x0.61)
+    TEXT: •  Strong CPU parallelization (OpenMP + MPI)
+  name='CasellaDiTesto 34' TEXT_BOX (17) fonts=[18.0] pos=(6.86,3.44) size=(5.97x0.61)
+    TEXT: •  Lots of degrees of freedom on numerics: Riemann solvers, integrated quantities, stiff chemical ODE solver, …
+  name='Rettangolo 35' AUTO_SHAPE (1) fonts=[] pos=(0.5,5.07) size=(5.86x0.01)
+  name='Rettangolo 36' AUTO_SHAPE (1) fonts=[] pos=(6.97,5.07) size=(5.86x0.01)
+  name='CasellaDiTesto 37' TEXT_BOX (17) fonts=[26.0] pos=(6.36,4.86) size=(0.61x0.44)
+    TEXT: +
+  name='CasellaDiTesto 38' TEXT_BOX (17) fonts=[18.0] pos=(1.11,5.49) size=(11.11x0.61)
+    TEXT: •  Interface with other in-house solvers (solid, multiphase, real-fluid)
+
+===== SLIDE 5 =====
+  name='Immagine 28' PICTURE (13) pos=(7.35,2.78) size=(1.43x3.33)
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 5/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='Immagine 8' PICTURE (13) pos=(0.04,2.78) size=(5.9x3.33)
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(12.33x1.62)
+    TEXT: Q2D solver — innovation w.r.t. recent literature /  / •  Rigorous treatment of diffusive fluxes and generic RANS equations / •  General derivation with z = z(x,y) — valid for generic width variations / •  Adaptation to CFD of the non-isentropic BFS boundary condition [1]
+  name='Immagine 23' PICTURE (13) pos=(9.17,2.78) size=(3.76x3.33)
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[10.0] pos=(0.5,6.39) size=(12.33x0.22)
+    TEXT: [1]  Fievisohn & Yu, “Steady-state analysis of RDE flowfields with the method of characteristics,” J. Propulsion and Power 33(1), 89–99, 2017.
+
+===== SLIDE 6 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 6/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(12.33x1.01)
+    TEXT: V&V /  / •  Validation against 1D ZND H2/Air detonation from SDT
+  name='Immagine 13' PICTURE (13) pos=(1.02,2.09) size=(5.02x4.46)
+  name='Immagine 16' PICTURE (13) pos=(7.3,2.09) size=(5.02x4.46)
+
+===== SLIDE 7 =====
+  name='Immagine 10' PICTURE (13) pos=(1.01,2.18) size=(4.72x4.19)
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 7/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(12.33x1.01)
+    TEXT: V&V /  / •  Validation against “unwrapped” literature test cases [2]
+  name='Immagine 18' PICTURE (13) pos=(7.23,2.09) size=(4.72x4.19)
+  name='CasellaDiTesto 19' TEXT_BOX (17) fonts=[10.0] pos=(0.5,6.39) size=(12.33x0.22)
+    TEXT: [2]  D. Schwer and K. Kailasanath, “Feedback into mixture plenums in rotating detonation engines,” 50th AIAA Aerospace Sciences Meeting, 2012.
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[] pos=(6.98,2.16) size=(0.51x4.24)
+  name='CasellaDiTesto 4' TEXT_BOX (17) fonts=[] pos=(9.33,-0.34) size=(0.7x4.9)
+
+===== SLIDE 8 =====
+  name='Immagine 17' PICTURE (13) pos=(4.81,2.43) size=(4.14x3.68)
+  name='Immagine 4' PICTURE (13) pos=(0.41,2.43) size=(4.27x3.79)
+  name='Rettangolo 23' AUTO_SHAPE (1) fonts=[] pos=(4.81,2.32) size=(8.39x4.06)
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 8/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(13.15x1.01)
+    TEXT: V&V /  / •  Extensive assessment of HYPERDE features (Q2D source terms, Q1D injectors-chamber, Q2D-3D connection)
+  name='Immagine 20' PICTURE (13) pos=(8.7,2.43) size=(4.27x3.79)
+  name='CasellaDiTesto 22' TEXT_BOX (17) fonts=[14.0] pos=(6.36,6.06) size=(3.72x0.31)
+    TEXT: AR = 0.4
+
+===== SLIDE 9 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 9/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(13.15x1.01)
+    TEXT: V&V /  / •  Extensive assessment of HYPERDE features (Q2D source terms, Q1D injectors-chamber, Q2D-3D connection)
+  name='Immagine 4' PICTURE (13) pos=(4.45,2.46) size=(4.45x3.96)
+  name='Immagine 10' PICTURE (13) pos=(8.88,2.47) size=(4.45x3.96)
+  name='Immagine 12' PICTURE (13) pos=(0.0,2.46) size=(4.45x3.96)
+
+===== SLIDE 10 =====
+  name='video' MEDIA (16) pos=(4.21,2.46) size=(4.45x3.96)
+  name='Immagine 17' PICTURE (13) pos=(9.09,2.56) size=(4.16x3.7)
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 10/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(7.8x0.55)
+    TEXT: Code Development and Capabilities
+  name='TextBox 10' TEXT_BOX (17) fonts=[18.0, 28.0] pos=(0.5,1.08) size=(13.15x1.01)
+    TEXT: V&V /  / •  Extensive assessment of HYPERDE features (Q2D source terms, Q1D injectors-chamber, Q2D-3D connection)
+  name='Immagine 4' PICTURE (13) pos=(0.0,2.46) size=(4.45x3.96)
+  name='Rettangolo 10' AUTO_SHAPE (1) fonts=[] pos=(2.53,2.32) size=(0.24x4.06)
+  name='Rettangolo 12' AUTO_SHAPE (1) fonts=[] pos=(3.11,2.56) size=(0.73x1.48)
+  name='Freccia in giù 18' AUTO_SHAPE (1) fonts=[] pos=(3.28,3.97) size=(0.53x0.8)
+  name='Freccia in giù 20' AUTO_SHAPE (1) fonts=[] pos=(8.77,4.01) size=(0.53x0.8)
+
+===== SLIDE 11 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 11/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.47) size=(10.16x0.6)
+    TEXT: Characterization of Refill Region Dynamics (with RMIT and NCSU)
+  name='Group 58' GROUP (6) pos=(0.9,2.68) size=(3.71x1.17)
+  name='Picture 69' PICTURE (13) pos=(5.2,2.51) size=(2.87x1.47)
+  name='Picture 69' PICTURE (13) pos=(5.2,2.51) size=(2.87x1.47)
+  name='Picture 72' PICTURE (13) pos=(8.18,2.46) size=(2.54x1.71)
+  name='Picture 69' PICTURE (13) pos=(5.2,2.51) size=(2.87x1.47)
+  name='Picture 72' PICTURE (13) pos=(8.18,2.46) size=(2.54x1.71)
+  name='Picture 74' PICTURE (13) pos=(10.78,2.6) size=(2.49x1.15)
+  name='TextBox 1' TEXT_BOX (17) fonts=[] pos=(0.67,4.71) size=(12.2x1.31)
+    TEXT: How does the geometry affect the refill region expansion process? / What happens if/when expansion yields supersonic Mach number in the layer? / Can the process be modelled? / How does the overall phenomenology impact the stagnation pressure losses?
+  name='TextBox 10' TEXT_BOX (17) fonts=[22.0] pos=(0.67,1.22) size=(12.2x1.75)
+    TEXT: Understanding physics of RDE refill regions with diverging inlets / Introduced to mitigate separation losses associated with backward-facing steps / Experimental and numerical evidence instead reports degraded overall performance
+  name='Group 416' GROUP (6) pos=(11.51,3.85) size=(1.33x2.52)
+  name='Rectangle 3' FREEFORM (5) fonts=[] pos=(11.55,6.18) size=(0.39x0.42)
+  name='Rectangle 3' FREEFORM (5) fonts=[] pos=(12.41,5.64) size=(0.39x0.42)
+  name='Oval 465' AUTO_SHAPE (1) fonts=[22.0] pos=(14.37,6.43) size=(2.53x0.21)
+    TEXT: Inlet extension added for supersonic cases
+
+===== SLIDE 12 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 12/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Characterization of Refill Region Dynamics
+  name='Picture 492' PICTURE (13) pos=(6.57,2.63) size=(6.53x1.6)
+  name='Picture 495' PICTURE (13) pos=(6.56,4.28) size=(6.59x1.58)
+  name='Picture 497' PICTURE (13) pos=(0.13,2.63) size=(6.48x1.64)
+  name='Picture 490' PICTURE (13) pos=(0.08,4.28) size=(6.54x1.6)
+  name='Picture 6' PICTURE (13) pos=(6.24,4.75) size=(0.73x3.12)
+  name='Straight Arrow Connector 29' LINE (9) pos=(2.99,5.82) size=(0.25x0.22)
+  name='TextBox 31' TEXT_BOX (17) fonts=[] pos=(1.71,5.96) size=(1.52x0.4)
+    TEXT: Inlet line
+  name='Straight Arrow Connector 15' LINE (9) pos=(8.72,5.51) size=(0.4x0.46)
+  name='Straight Arrow Connector 21' LINE (9) pos=(10.63,5.48) size=(0.0x0.41)
+  name='Straight Arrow Connector 26' LINE (9) pos=(11.75,5.46) size=(0.0x0.42)
+
+===== SLIDE 13 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 13/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Characterization of Refill Region Dynamics
+  name='Immagine 7' PICTURE (13) pos=(1.51,1.62) size=(10.79x4.27)
+
+===== SLIDE 14 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 14/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Supersonic Bladeless Turbines (with NCSU)
+  name='TextBox 10' TEXT_BOX (17) fonts=[] pos=(0.67,1.14) size=(12.2x2.09)
+    TEXT: CFD based design of NCSU supersonic wind tunnel / Capability up to Mach 4 for steady non-reactive flow / Swappable nozzle and second-throat diffuser system allowing for low feed pressure / Numerical analysis of phenomenology and working principle of bladeless turbines
+  name='Immagine 16' PICTURE (13) pos=(1.44,2.6) size=(4.31x3.83)
+  name='Immagine 18' PICTURE (13) pos=(8.01,2.6) size=(4.11x3.75)
+
+===== SLIDE 15 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 15/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Supersonic Bladeless Turbines (with NCSU)
+  name='TextBox 10' TEXT_BOX (17) fonts=[] pos=(0.67,1.14) size=(12.2x2.09)
+    TEXT: CFD based design of NCSU supersonic wind tunnel / Capability up to Mach 4 for steady non-reactive flow / Swappable nozzle and second-throat diffuser system allowing for low feed pressure / Numerical analysis of phenomenology and working principle of bladeless turbines
+  name='Immagine 8' PICTURE (13) pos=(5.58,2.76) size=(7.72x3.84)
+  name='Immagine 12' PICTURE (13) pos=(0.09,3.3) size=(5.74x2.52)
+  name='CasellaDiTesto 15' TEXT_BOX (17) fonts=[14.0] pos=(1.44,3.47) size=(3.72x0.31)
+    TEXT: p0 = 3 bar
+  name='CasellaDiTesto 17' TEXT_BOX (17) fonts=[14.0] pos=(1.44,4.94) size=(3.72x0.31)
+    TEXT: p0 = 4 bar
+
+===== SLIDE 16 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 16/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Supersonic Bladeless Turbines (with NCSU)
+  name='TextBox 10' TEXT_BOX (17) fonts=[] pos=(0.67,1.14) size=(12.2x1.48)
+    TEXT: Ongoing / Bladeless turbine shape optimization / CFD analysis and design of ejector-diffuser system for RDE testing
+  name='WhatsApp Video 2026-05-05 at 21.40.14' MEDIA (16) pos=(7.35,2.94) size=(5.89x3.32)
+  name='Immagine 24' PICTURE (13) pos=(0.09,3.04) size=(7.14x3.03)
+
+===== SLIDE 17 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 17/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Disk RDEs (with RMIT and ISAE-ENSMA)
+  name='TextBox 10' TEXT_BOX (17) fonts=[] pos=(0.67,1.14) size=(12.2x1.48)
+    TEXT: Collaboration with PPRIME lab  / CFD lead on design and analysis of disk RDEs operating with H2/Air
+  name='Immagine 4' PICTURE (13) pos=(8.27,2.57) size=(4.02x3.58)
+  name='Immagine 8' PICTURE (13) pos=(0.67,2.26) size=(4.72x4.2)
+  name='CasellaDiTesto 13' TEXT_BOX (17) fonts=[] pos=(1.68,6.14) size=(4.44x0.31)
+    TEXT: 3D URANS (or Euler)
+  name='CasellaDiTesto 16' TEXT_BOX (17) fonts=[] pos=(8.89,6.14) size=(4.44x0.31)
+    TEXT: Q2D URANS (or Euler)
+
+===== SLIDE 18 =====
+  name='Gruppo 6' GROUP (6) pos=(0.0,6.68) size=(13.33x0.81)
+  name='Segnaposto data 25' PLACEHOLDER (14) fonts=[] pos=(9.06,6.76) size=(2.2x0.74)
+    TEXT: T(H)RUST team
+  name='Segnaposto piè di pagina 26' PLACEHOLDER (14) fonts=[] pos=(1.57,6.76) size=(7.48x0.74)
+    TEXT: Rotating Detonation Engine Activities
+  name='Segnaposto numero diapositiva 27' PLACEHOLDER (14) fonts=[] pos=(11.26,6.76) size=(2.07x0.74)
+    TEXT: 18/18
+  name='Titolo 1' TEXT_BOX (17) fonts=[32.0] pos=(0.32,0.38) size=(11.28x0.55)
+    TEXT: Nozzle Design for RDEs
+  name='CasellaDiTesto 1' TEXT_BOX (17) fonts=[18.0] pos=(0.5,1.08) size=(8.06x4.81)
+    TEXT: •  Fully non-isentropic three-waves 2D / 2D-axisymmetric MoC solver developed as an in-house API / •  Primary application: nozzle design for ideal, TIC and optimized configurations / •  Implemented families: ideal (bell, plug, shrouded plug), Rao (optimal bell and plug) and Veen (optimal shrouded plug) /  /  /  /  /  / Open questions (and possible research paths) / •  Separation dynamics/topology 
+  name='Immagine 7' PICTURE (13) pos=(8.61,1.94) size=(3.92x3.47)
+  name='CasellaDiTesto 4' TEXT_BOX (17) fonts=[] pos=(9.03,5.49) size=(4.17x0.31)
+    TEXT: Optimized shrouded plug
+  name='CasellaDiTesto 10' TEXT_BOX (17) fonts=[10.0] pos=(0.5,6.0) size=(12.33x0.64)
+    TEXT: [3]  A. J. Harroun, S. D. Heister, J. H. Ruf, “Computational and experimental study of nozzle performance for rotating detonation rocket engines,” J. Propulsion and Power 37(5), 660–673, 2021. / [4]  D. P. Stechmann, S. D. Heister, A. J. Harroun, “Rotating detonation engine performance model for rocket applications,” J. Spacecraft and Rockets 56(3), 887–898, 2019.
+  name='Freccia in giù 12' AUTO_SHAPE (1) fonts=[] pos=(4.26,3.15) size=(0.53x1.07)
