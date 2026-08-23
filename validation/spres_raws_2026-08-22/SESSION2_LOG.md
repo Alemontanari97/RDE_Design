@@ -425,3 +425,10 @@ L'ATLAS E' DI RECORD. Il deck ne è consumer (storyboard v3.1).
 ## applicata a C7-ter/C17/C17-bis + note critic FD-*; poi BLOCCO 2
 ## via workflow (protocollo integrale sopra) e BLOCCO 3.
 ## ===== FINE GATE =====
+
+## SUITE DI CHIUSURA S2 — QUOTA DI RECORD (2026-08-23)
+## `python tests/run_all.py` POST-promozione/POST-mint/POST-gate:
+## **23/23 test groups PASS in 434 s, EXIT 0** (output integrale in
+## scratchpad suite_close_s2.txt). Dovere ereditato dalla sessione 3:
+## NESSUNO — confine pulito. HEAD di chiusura sessione 2 = questo
+## commit.
