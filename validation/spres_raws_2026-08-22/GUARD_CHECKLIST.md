@@ -26,6 +26,7 @@ indice, non una sorgente nuova.
 | 13 | CT-6 sui numeri altrui: ogni numero preso dai paper del campo porta la citazione piena e il caveat di non-riproduzione | commit 1514641 (A) + regola CT-6 standing |
 | 14 | DECISION CARD completa (6 campi: scelta / alternative con DATA+FONTE survey / verdetto+perché / RECENCY-SOTA check con flag staleness / falsificatore / trigger ri-esame con finestra) per OGNI scelta presentata; le 2 SA + 12 NEVER portano card "non-aggiudicata, finestra Y" stampata, mai omesse (= lint 8) | emendamento v2.1 §1g (iniezione utente 2026-08-23); card di riferimento: C31/engine con Uno + cluster F2-entry |
 | 15 | CONVERGENCE PROVENANCE: ogni battuta §6 STORIA porta data+processo+verdetto; ogni slide-claim load-bearing porta la riga claim→ancora→classe→quando+come a convergenza (sessione, processo, judge, landing) o "non-a-convergenza: classe+owner" STAMPATA; il verdetto di robustezza conta convergenza-piena / classe-dichiarata / ridotti / finding | emendamento v2.1 §5-bis (iniezione utente 2026-08-23) |
+| 16 | REGOLA DI CLASSE soppressione [GV-4]: ogni claim "X dominato/coperto perché teoremi Y" enumera il PERIMETRO dei teoremi E i CANALI RESIDUI non coperti con classe per ciascuno, o FINDING; la guardia 1 (tallone (J)) è l'ISTANZA vincolata di questa regola | emendamento v2.1 §5-ter (riparazione del generatore, test di generatività fronte (viii)) |
 
 Uso: il refuter/auditor riporta per ogni guardia HIT (violazione, con
 riga) o CLEAN; la lista dei conteggi entra nel log d'onda (W-C) e nel

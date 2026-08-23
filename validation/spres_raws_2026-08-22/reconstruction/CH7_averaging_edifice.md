@@ -39,15 +39,19 @@ diverse, sono in realtà UN solo edificio:
    comprarla?** → PIANO 3: il panel swirl five-field (upgrade path A/B/C,
    bias B1–B5, escapes E1–E11).
 
-La saldatura non è narrativa a posteriori: è scritta NEI file. Il piano 2
+Le prime due saldature sono scritte NEI file, testuali. Il piano 2
 definisce il suo operatore K dichiarando "distributional form is
 [MS-DEF-KRES] of record" — cioè D.18 del piano 1
 (`phaseD_r22f_centerpiece.md:461-463`); la forchetta consuma le classi di
 bias B1–B5 del piano 3 nelle celle (ii)/(iii)
-(`phaseD_r22f_centerpiece.md:1502-1503`); la scaletta descrittiva del piano 3
-(path A/B/C) è l'estensione della riga di contratto STAGED D.13 del piano 1
-(`phaseD_meanswirl_formalization.md:1130-1156`;
-`DISPATCH_swirl5f.md:99-116`).
+(`phaseD_r22f_centerpiece.md:1502-1503`). La terza è una LETTURA DI
+ASSEMBLAGGIO di questo capitolo, dichiarata come tale: i ponti testuali
+piano 3 → piano 1 sono i pin B-1/B-2 da fissare nella riga D.13
+(`DISPATCH_swirl5f.md:80`, :86) e il "3-stage upgrade path" A/B/C
+(:101-102); "STAGED" in D.13 significa "staged replacement text for M0
+VI.1" — staging per absorption (`phaseD_meanswirl_formalization.md:1130-1133`),
+non "gradino di una scaletta": la scaletta unica è la composizione che
+il capitolo esibisce, non una dichiarazione dei file.
 
 ### 1.2 PIANO 1 — Il modello di stato 2.5-D per-fase con swirl (che cosa entra)
 
@@ -125,19 +129,36 @@ riduzione (mass/x-mom/r-mom/Γ/s/h0 sweep + termini TORQUE e WORK,
 :1478-1483), in lettura DISTRIBUZIONALE (atomi sui fronti, identità di
 ricombinazione triangolare parte della definizione, :1488-1527). Le due
 clausole "iff" di D.18 stanno a SCHEMA per downgrade del giudice
-(J-r2p-2/J-r2p-3, `r2pass/VERDICT_r2pass.md`), path di restauro = batteria
-G-f (:2610, colonna classe). S.22 [MS-S-KBOUND] è il TARGET statement del
-bound del residuo (SCHEMA; il candidato-norma r1 RITIRATO due volte con le
-ragioni scritte — atomi di K sui fronti, cono avvolto azimutale — e la
-fork di norma registrata come decisione del T-RED owner, :2464-2507).
+(J-r2p-2/J-r2p-3,
+`validation/sfoundations_raws_2026-08-13/r2pass/VERDICT_r2pass.md` —
+attenzione al path: r2pass/ è SORELLA di phaseD/, non figlia; sotto
+citato in breve come `r2pass/VERDICT_r2pass.md`), path di restauro =
+batteria G-f (:2610, colonna classe). S.22 [MS-S-KBOUND] è il TARGET
+statement del bound del residuo (SCHEMA; il candidato-norma r1 RITIRATO
+a r2 con DOPPIA refutazione — atomi di K sui fronti, cono avvolto
+azimutale ("refuted twice over", :2472-2488); le correzioni r3 (falsa
+equivalenza sul sostituto) colpiscono il candidato SOSTITUTO, e la fork
+di norma sul sostituto è registrata come decisione del T-RED owner,
+:2464-2507).
 
 **(g) La catena until-dry del piano 1** (il "chi lo ha giudicato"): SETTE
 round di refutazione avversaria applicati IN PLACE, r1–r7 + r7.1
 (header blocks :24-248), con ledger per-obiezione §6-bis..§6-quinquies
-(:2693-3060) e giudice di batch `r2pass/VERDICT_r2pass.md` di record. Il
-processo è esso stesso documentato con onestà rara: quattro
-over-certificazioni consecutive dell'assembly D.18 ANNOTATE con contatore
-(:209-211), interruzione r5 riconciliata su file (:128-138), false-completeness
+(:2693-3060). La copertura dei giudici, dichiarata per-tratto: i round
+r1–r3 sono refutazioni APPLICATE DALL'AUTORE con ledger per-obiezione,
+SENZA giudice separato; il giudice di batch `r2pass/VERDICT_r2pass.md`
+copre il set r2-pass (downgrade J-r2p-2/3), e le amendment r7.1
+(AM-1..AM-3) sono aggiudicate dal giudice del confirming round
+`r2pass/VERDICT_confirm.md` §4 (:229-238) — il "giudice di batch" NON
+copre la catena intera. CAVEAT VINCOLANTE, parte del verdetto: per
+VERDICT_r2pass §1/§4 il verification layer è UNPROVEN in confirm
+direction (known-true seed FAILED), "nothing in this revision may be
+cited as layer-certified", e il Blocco-2 landing gate resta CLOSED per
+il set r2-pass — caveat portato avanti VERBATIM fino a r7
+(`phaseD_meanswirl_formalization.md:92-96`, :226-227). Il processo
+documenta le proprie retraction NEL testo: quattro over-certificazioni
+consecutive dell'assembly D.18 ANNOTATE con contatore (:209-211),
+interruzione r5 riconciliata su file (:128-138), false-completeness
 r2 corretta per annotazione mai per cancellazione (:40-47). Metodo di lavoro:
 §7 absorption targets — questo doc = staging, l'atterraggio in M0/N6/D6 è un
 pass R4 con siti nominati (:3061-3090).
@@ -279,16 +300,37 @@ Contenuti consumati dall'edificio:
    dichiarata — (iii) è canale di fedeltà DATI, (ii) è canale di RIDUZIONE,
    stessa fisica swirl, aggregatore legittimo solo la misura congiunta
    M-RED F-c (`phaseD_r22f_centerpiece.md:1713-1722`).
-3. **La scaletta descrittiva è una sola**: D.13 STAGED (+w/Γ, h0
-   profile-grade, TRIPLE, AM audit, m_n) = il gradino già scritto;
-   path A/B/C = i gradini successivi, con la fork [T-N6-2] sul path A e la
-   decisione utente pendente.
+3. **La scaletta descrittiva è una sola** [lettura di assemblaggio del
+   capitolo, dichiarata — non una saldatura testuale come le prime due]:
+   D.13 (+w/Γ, h0 profile-grade, TRIPLE, AM audit, m_n) = il gradino già
+   scritto; path A/B/C = i gradini successivi, con la fork [T-N6-2] sul
+   path A e la decisione utente pendente. Ancore dei ponti reali: pin
+   B-1/B-2 → riga D.13 (`DISPATCH_swirl5f.md:80`, :86) + "3-stage
+   upgrade path" (:101-102).
 4. **Il metodo di lavoro è lo stesso sui tre piani**: staging → refutazione
    until-dry → giudice → absorption targets (§7 piano 1; landing list
    VERDICT_r22f §7 piano 2; registration duty §7 dispatch piano 3), con la
    regola di consumo "panel grades are not record grades" e i mint
    (sector-decomposition F-2, K̄ = 0) che RIDONO la landing window invece di
    auto-promuoversi.
+
+### 1.6 Glossa minima (per il consumo storyboard/Q&A, pubblico misto)
+
+- **on-ray / off-ray**: sulla/fuori dalla famiglia di cicli quasi-stazionari
+  "ray-like" (es. dente di sega) — on-ray l'errore di riduzione scala come
+  St², off-ray come St (esponente = leg (D) di M-RED,
+  `phaseD_r22f_centerpiece.md:1206`; frase licenziata :527-533).
+- **fitted sheet**: la sheet del fronte FITTATA sui dati — l'ombra
+  data-anchored x_s(ξ) del fronte elicoidale usata dalla famiglia per-fase;
+  "good fitted sheet" è qualificatore load-bearing dell'headline, testato da
+  M-RED leg (E) (ibid. :528-533).
+- **booking level**: confronto a condizioni di USCITA CONGELATE (geometria +
+  traccia di pressione statica d'uscita fissate, ipotesi H2.2): ciò che il
+  funzionale registra a dati fissati, NON la coppia di soluzioni reali
+  (actual-pair → M-RED B-2; ibid. :229-232, :248-257).
+- **St_n**: il piccolo parametro della riduzione — avvolgimento azimutale
+  delle bicaratteristiche 3-D per transito meridionale, O(St) per transito
+  (`phaseD_meanswirl_formalization.md:2483-2488`).
 
 ---
 
@@ -333,6 +375,8 @@ Contenuti consumati dall'edificio:
 | Licenza X-T3QS-5F (R-5) — sblocca il St² on-ray | F2, carrier committato |
 | Mint F-2 (sector-decomposition) + grado record K̄ = 0 (R-6) | landing window M0/R4 |
 | L_H curvature-transfer UNDERIVED (R-16/RES-CAP-2) + δ gradient-bound (R-9) — il canale (vi) resta senza numero | F2: X-T3QS-5F Hessian-level → C51-route-B → rider M-RED |
+| R-12 certified basin radius per il check a-posteriori di argmax-shift (curvature re-measure ladder su palle attorno a S*) | estensione del rider M-RED §3.6 (F2) (`phaseD_r22f_centerpiece.md:1796-1800`) |
+| R-15/RES-CAP-4 eps_U sampled-sup + ladder re-check (consumato dalla value-route della cella (vi)) | rider M-RED §3.6 / protocol run (F2) (`phaseD_r22f_centerpiece.md:1836-1852`; `VERDICT_r22f.md:528-529`) |
 | Convessità KS-margin-set a S* margin-active (R-14/RES-CAP-3) + gate O1 (R-13) | F2 / F4b theory WP |
 | G-b1 lemma di sensitività del TRIPLE monitor (+ G-b2 tol per campagna) | N6 §5 line; gate di OGNI uso licenziante di D.14 |
 | G-a check simbolico D.6/D.20-fronti; G-f batteria completezza D.18 (restaura le iff da SCHEMA) | task promozione D.6 (F2); carrier upgrade G-f |
@@ -341,6 +385,12 @@ Contenuti consumati dall'edificio:
 | Pin bloccanti B-1 (normalizzazione A4) e B-2 (convenzione h0) nel testo D.13 | D.13/prima ingestione — BLOCKING |
 | Assenza referee esterno per l'errore di spinta per-fase (dichiarazione strutturale forchetta) | si chiude SOLO con R22-CFD nostro o procurement (R-8 per la base-pressure) |
 | Absorption non ancora eseguita: i tre piani sono raws/advisory UNTRACKED; landing list = VERDICT_r22f §7 + VERDICT_escalation_c4 §6 + dispatch §7 | orchestratore, landing window (R7/SR-6) |
+
+Questa tabella è una SELEZIONE orientata al deck, non un censimento: la
+lista completa dei residui è il centerpiece §6 (R-1..R-17,
+`phaseD_r22f_centerpiece.md:1783-1861`) + RES-CAP-1..6
+(`VERDICT_r22f.md:526-531`) — chi risponde in Q&A sulla cella (vi)
+consulta QUELLA lista, non questa.
 
 ---
 
@@ -354,12 +404,30 @@ parametro con contenuto swirl da 0 a scala corpus che NESSUN vincolo di
 record distingue ([T-DISC-1] THEOREM*), e J si separa dentro la fibra in
 modo single-signed a livello booking ([T-DISC-2](i) THEOREM* scoped) con
 peso di classe 1.5–3% della spinta [SE] più la companion B1 0.6–9% di p
-[SE]. Ciò che si PERDE trattenendo lo swirl nel modello 2.5-D è invece
-esattamente l'operatore K (sei righe + atomi) — di media nulla (K̄ = 0
-THEOREM*), due soli canali di primo ordine, single-digit % plausibile
-on-ray con fitted sheet, >10% non escluso off-ray [SE]. Guadagno netto:
-si scambia un errore NON VINCOLABILE e invisibile alla media con un residuo
-NOMINATO, a media nulla, misurabile (M-RED) e con la scaletta per ridurlo.
+[SE]. Scope della gamba di segno, dichiarato dal record: single-signed
+vale sui confronti physical-h0-fixed (FOLD o variante compensata); il
+ramo DROP non compensato è geometry-signed con separazione IDENTICAMENTE
+ZERO a r_e = r_in (`phaseD_r22f_centerpiece.md:237-247`), e la
+separazione ACTUAL-PAIR (exit state libero — ciò che un design reale fa)
+NON è asserita ad alcun grado teorematico: è la domanda misurata M-RED
+banda B-2 (:248-257, :287-289). Ciò che si PERDE trattenendo lo swirl
+nel modello 2.5-D è invece esattamente l'operatore K (sei righe +
+atomi) — di media nulla (K̄ = 0 THEOREM*), due soli canali di primo
+ordine, single-digit % plausibile on-ray con fitted sheet, >10% non
+escluso off-ray [SE]. Guadagno netto: si scambia un errore NON VINCOLATO
+DA ALCUN VINCOLO DI RECORD (falsificatore APERTO: esibire UN vincolo di
+record che determini E_θ da (P, h0, s, mdot) uccide il teorema —
+`phaseD_r22f_centerpiece.md:201-203`; non-vincolato-dal-record ≠
+impossibilità di vincolo) e invisibile alla media con un residuo
+NOMINATO, a media nulla, misurabile (M-RED) e con la scaletta per
+ridurlo. Clausola di RILEVANZA, portata dal record stesso (:426-430): il
+falsificatore della condanna non è della sua verità ma del suo peso — se
+l'eps_fib misurato da M-RED cade sotto il più piccolo delta di design
+che il programma certifichi, "the conviction is real but priced
+irrelevant for our class"; la condanna è strutturale, il suo PESO
+relativo al residuo K è la misura CONGIUNTA M-RED (famiglie F-c),
+pre-registrata — finché non misura ENTRAMBI, il confronto 1.5–3% [SE]
+vs ">10% non escluso off-ray" resta dichiarato aperto.
 
 **(2) "Qual è la scaletta di proposte per aumentare il grado descrittivo, e
 a che punto è la decisione?"**
@@ -373,7 +441,13 @@ path C (procurement dati tangenziali — il corpus ha un VUOTO search-proven
 sul campo tangenziale time-mean). Stato decisione: PENDENTE DI RECORD,
 è una decisione utente a confine di sessione, non presa dal panel
 (`DISPATCH_swirl5f.md:179-183`); la giustificazione quantificata esiste
-(claim 8, St_n-conditional).
+(claim 8, St_n-conditional). Contesto di record che pesa sulla
+decisione: l'aspettativa unanime di D.14 è che i dati RDE reali
+generalmente FALLIRANNO la triple-uniformity e ruoteranno sulla macchina
+field-level — "il mestiere del monitor è routing onesto, non
+benedizione" (`phaseD_meanswirl_formalization.md:1294-1298`): un peso
+dichiarato a favore dei gradini B/C e dell'urgenza della decisione
+stessa.
 
 **(3) "Cosa si perde facendo design per fasi assiali invece che 3D, e i
 relativi pesi di ognuno?"**
@@ -391,16 +465,28 @@ livello SIZING [REP], soglia di RANKING OPEN (R26); (v) model-form: frozen
 canale più tagliente atterra onesto. In più la lista chiusa E1–E11 di ciò
 che nessuna macchina per-fase cattura, con la lettura zero-winding (le
 sheet elicoidali interne entrano solo come ombra data-anchored). Nessuna
-somma finta: i canali non si sommano, l'aggregatore legittimo è M-RED.
+somma finta: i canali non si sommano; M-RED (famiglie F-c) è
+l'aggregatore legittimo della SOLA coppia swirl (ii)+(iii) — stessa
+fisica, seam dichiarata (`phaseD_r22f_centerpiece.md:1715-1722`); gli
+altri canali hanno owner propri: (i) è conditional-zero G3/corrector-owned
+(:449-457, :1722), (vi) compone con gli altri SOLO attraverso lo schema
+delta/mu (:1724-1729).
 
 **(4) "Dove sono le dimostrazioni until-dry di tutto questo e chi le ha
 giudicate?"**
 Tre catene, tutte su file. PIANO 1: 7 round r1–r7 (+r7.1) applicati in
 place con ledger per-obiezione (§6-bis..§6-quinquies,
-`phaseD_meanswirl_formalization.md:2693-3060`), giudice di batch
+`phaseD_meanswirl_formalization.md:2693-3060`) — copertura giudici
+dichiarata: r1–r3 = refutazioni applicate dall'autore, ledger-only,
+senza giudice separato; il set r2-pass è giudicato da
 `r2pass/VERDICT_r2pass.md` (downgrade J-r2p-2/3 tuttora vincolanti sulle
-iff di D.18), carrier `phaseD_meanswirl_symcheck.py` PASS con rejector che
-spara. PIANO 2: 4 round × 3 lenti, 66 findings, 14 probe; closure judge
+iff di D.18) COL SUO CAVEAT VINCOLANTE (verification layer UNPROVEN in
+confirm direction, known-true seed FAILED: "nothing in this revision may
+be cited as layer-certified", Blocco-2 landing gate CLOSED per il set
+r2-pass, portato avanti verbatim fino a r7 — :92-96, :226-227); le
+amendment r7.1 AM-1..AM-3 sono aggiudicate dal confirming-round judge
+`r2pass/VERDICT_confirm.md` §4 (:229-238). Carrier
+`phaseD_meanswirl_symcheck.py` PASS con rejector che spara. PIANO 2: 4 round × 3 lenti, 66 findings, 14 probe; closure judge
 `blocco3/VERDICT_r22f.md` (NOT-DRY-AT-CAP, approved-for-landing, labels §1
 = autorità unica) + escalation judge `blocco3/VERDICT_escalation_c4.md`
 (E-1..E-4 DRY, E-5 0-BREAK unanime, 53/53 sustained). PIANO 3: 4 deriver +
@@ -441,3 +527,42 @@ restaurata tre volte) — il processo rigetta davvero, non conferma.
    candidates of record per la slide ASK, con la giustificazione
    quantificata [SE] e i pin bloccanti B-1/B-2 già pronti per la prima
    ingestione dati.
+
+---
+
+## Disposizione riparazioni (W-A, 2026-08-23)
+
+Applicazione dei 12 finding di `REFUTE_CH7.md` (verdetto refuter:
+REGGE-CON-RIPARAZIONI, 0 BREAK / 6 REPAIR / 3 GAP / 3 NOTE). Ogni ancora
+citata ri-verificata alla fonte in questa finestra prima dell'uso
+(read-then-quote: centerpiece :158-160, :201-206, :223-257, :272-289,
+:426-430, :527-533, :1206, :1715-1729, :1783-1861; meanswirl :92-96,
+:226-227, :229-238, :1130-1133, :1294-1298, :2472-2493; VERDICT_r22f
+:526-531; DISPATCH :80, :86, :101-104; esistenza su disco di
+`validation/sfoundations_raws_2026-08-13/r2pass/VERDICT_r2pass.md` e
+`VERDICT_confirm.md` confermata via glob).
+
+| # | classe | che cosa è cambiato | esito |
+|---|---|---|---|
+| 1 | GAP/MEDIA | §4 risposta (1): aggiunta la clausola di RILEVANZA della condanna col falsificatore del record (`phaseD_r22f_centerpiece.md:426-430`) — "real but priced irrelevant" se eps_fib < delta di design; peso relativo a K = misura congiunta M-RED F-c, pre-registrata | RIPARATO |
+| 2 | REPAIR/MEDIA — **classificato ALTO dall'orchestratore, aggiudicato esplicitamente: ACCOLTO IN PIENO** (le tre omissioni (a)/(b)/(c) sono reali, verificate alle ancore :92-96, :226-227, :229-238; la domanda (4) chiede esattamente questa onestà) | §1.2(g) e §4 risposta (4): (a) caveat vincolante VERDICT_r2pass §1/§4 citato come parte del verdetto (layer UNPROVEN, "nothing... layer-certified", gate Blocco-2 CLOSED, carried verbatim fino a r7); (b) `r2pass/VERDICT_confirm.md` §4 nominato come giudice delle AM-1..AM-3 di r7.1; (c) distinzione dichiarata r1–r3 author-applied/ledger-only vs set giudicati (r2-pass, confirm) — "il giudice di batch NON copre la catena intera" | RIPARATO |
+| 3 | REPAIR/MEDIA | §4 risposta (1): "errore NON VINCOLABILE" → "non vincolato da alcun vincolo di record", con falsificatore APERTO citato (:201-203) e la distinzione non-vincolato-dal-record ≠ impossibilità | RIPARATO |
+| 4 | REPAIR/MEDIA | §4 risposta (1): frase di scope della gamba di segno — physical-h0-fixed (FOLD/compensato); ramo DROP non compensato geometry-signed, separazione ≡ 0 a r_e = r_in (:237-247); actual-pair NON asserita ad alcun grado, → M-RED B-2 (:248-257, :287-289) | RIPARATO |
+| 5 | REPAIR/MEDIA | §1.1 e §1.5(3): saldatura 3 ri-dichiarata LETTURA DI ASSEMBLAGGIO del capitolo (non testuale), ancorata ai ponti reali B-1/B-2 → D.13 (`DISPATCH_swirl5f.md:80`, :86) e "3-stage upgrade path" (:101-102); "STAGED" restituito al suo significato di record (staged replacement text per M0 VI.1, :1130-1133) | RIPARATO |
+| 6 | REPAIR/BASSA | §1.2(f): "ritirato due volte" → ritirato a r2 con DOPPIA refutazione ("refuted twice over", :2472-2488); correzioni r3 attribuite al candidato SOSTITUTO, fork di norma sul sostituto = decisione T-RED owner | RIPARATO |
+| 7 | REPAIR/BASSA | §4 risposta (3): aggregatore M-RED scopato alla SOLA coppia (ii)+(iii) (:1715-1722); owner degli altri canali nominati ((i) G3/corrector :449-457; (vi) solo via schema delta/mu :1724-1729). §1.5(2) già correttamente seam-scoped: invariato | RIPARATO |
+| 8 | GAP/BASSA | §3: clausola esplicita "selezione, non censimento" con puntatore alla lista completa (centerpiece §6 R-1..R-17 :1783-1861 + RES-CAP-1..6 `VERDICT_r22f.md:526-531`); aggiunte le righe R-12 (certified basin radius) e R-15/RES-CAP-4 (eps_U sampled-sup + ladder re-check, value-route cella (vi)) | RIPARATO |
+| 9 | GAP/BASSA | §4 risposta (2): aggiunta l'aspettativa unanime di record D.14 (:1294-1298) col suo peso dichiarato sulla decisione A/B/C | RIPARATO |
+| 10 | NOTE/BASSA | §1.2(g): "documentato con onestà rara" (comparativo non ancorato, guardia 9) → enunciato fattuale "documenta le proprie retraction NEL testo" | RIPARATO |
+| 11 | NOTE/BASSA | §1.2(f) (prima occorrenza): path completo `validation/sfoundations_raws_2026-08-13/r2pass/VERDICT_r2pass.md` + avviso "sorella di phaseD/, non figlia"; occorrenze successive dichiarate abbreviazioni | RIPARATO |
+| 12 | NOTE/BASSA | Nuova §1.6 "Glossa minima": on-ray/off-ray, fitted sheet, booking level, St_n — quattro definizioni di una riga, ognuna ancorata al sito di record (il glossario `docs/glossary.yaml` non porta queste voci: verificato via grep in finestra, quindi glossa in-capitolo e non pointer) | RIPARATO |
+
+Bilancio: 12/12 RIPARATI, 0 declassati, 0 respinti. Guardie toccate:
+G9 (finding 10, comparativo rimosso), G1/G2/G3 non ingaggiate dalle
+edit (nessuna gerarchia di gap C-3bis, nessun claim rung/T1c aggiunto),
+G4 non ingaggiata (nessun "campo" generico introdotto), G13/CT-6
+invariati (nessun numero di paper aggiunto). Nessun nuovo id di
+letteratura introdotto (tutte le ancore nuove sono file di record del
+repo). Arco di consumo: questo capitolo riparato = base stabile per B7
+(W-B.1) e per lo storico B8a; le sezioni §3-bis/§6/§7/DECK FEED restano
+territorio W-B, non toccato.

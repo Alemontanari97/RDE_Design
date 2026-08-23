@@ -74,15 +74,21 @@ simmetria), *"not by habit"*.
 ### 1.3 Il census topologico: la tassonomia classica collassa (ADVISORY)
 
 Il panel census (`validation/PANEL_topology_census_2026-07-22.md`, 5-lens panel
-+ 8-lens attack wave + 3-referee, 233/233 verdetti mappati; **ADVISORY, in
-attesa di ratifica utente**, `:1-17`) raffina la mappa dei settori. Headline
-(`:55-74`, THEOREM-sketch condizionale sui pin): bell, spike (pieno e
-troncato), shrouded plug, Migdal annulare, expansion-deflection e il bare
-annulus sono **tutti STRATI di UN solo settore clopen S0**; gli unici salti
-genuinamente discreti sono l'aggiunta di componenti DETACHED (famiglia
-D(m,n)); i settori P(h)/BR sono provati vuoti (lemma L1 + sealing A1, memoria
-`topology-census-pins`). Correzione Migdal di record (`:40-53`): "quale parete
-termina prima" NON e' un invariante; la coordinata di regime corretta e' il
++ 8-lens attack wave + 3-referee, 233/233 verdetti mappati — **con il caveat
+del header: il criterio di convergenza formale (unanimous clean 3-critic
+panel) NON fu raggiunto prima del troncamento infrastruttura** (`:11-13`);
+**ADVISORY, in attesa di ratifica utente**, `:1-17`) raffina la mappa dei
+settori. Headline (`:55-74`, THEOREM-sketch condizionale sui pin): bell, spike
+(pieno e troncato), shrouded plug, Migdal annulare, expansion-deflection e il
+bare annulus sono **tutti STRATI di UN solo settore clopen S0** (connessione
+di S0 congetturale — vedi sotto); gli unici salti genuinamente discreti sono
+l'aggiunta di componenti DETACHED (famiglia D(m,n)); i settori P(h)/BR sono
+**vuoti per L1 + sealing A1 nell'advisory** (riga DELETED, `:170`) — con L1
+CONDIZIONALE su CEN-O10 (`:102`): CEN-O10 e' PINNATO NONBLOCK+ ma la
+derivazione pin→lemma e' un target S15 dichiarato (`:359-364`), e tutto resta
+advisory (memoria `topology-census-pins`). Correzione Migdal **dichiarata
+nell'advisory** (tag [DECLARED], Round 2, `:40-53`): "quale parete termina
+prima" NON e' un invariante; la coordinata di regime corretta e' il
 **lip fan opening** Δν_lip ≥ 0.
 
 I **pin utente 2026-08-02** sono registrati nel census §7pin
@@ -103,11 +109,16 @@ analitico dichiarato: CEN-O4 (hub connectedness) + CEN-O5 (continuita' del
 valore alle facce) (`PANEL_topology_census_2026-07-22.md:378-384`).
 
 Conseguenza per la domanda utente: nella lettura census (advisory), il "passare
-da bell a spike" e' in gran parte un **cammino continuo dentro S0** (strati,
-non settori separati); il torneo discreto residuo e' contro la famiglia
-detached. Nella lettura of-record (problem book, SCHEMA) resta il torneo finito
-per settori. Le due letture sono compatibili: il census RIDUCE il numero di
-partite del torneo, non lo elimina.
+da bell a spike" e' un passaggio tra **strati di UN solo settore clopen S0 —
+ma la connessione di S0 e' CONGETTURALE**: l'advisory stesso scrive
+*"conjecturally connected (hub argument owed, CEN-O4)"*
+(`PANEL_topology_census_2026-07-22.md:68-69`) e CEN-O4 e' nel residuo
+analitico dichiarato dei pin (`:378-379`); solo singoli confini di strato
+(es. r_b → 0 sotto CEN-O2) hanno continuita' argomentata (`:60-62`). Il
+torneo discreto residuo e' contro la famiglia detached. Nella lettura
+of-record (problem book, SCHEMA) resta il torneo finito per settori. Le due
+letture sono compatibili: il census RIDUCE il numero di partite del torneo,
+non lo elimina.
 
 ### 1.4 Il torneo gia' giocato: i teoremi al rung delle chiusure
 
@@ -174,8 +185,9 @@ Due nodi della pipeline map (stage 8) bloccano l'esercizio dei settori (ii)-(iv)
 
 - **H20 — free plume boundary p = Pa, meccanica di SOLVE MANCANTE**
   (`docs/rde_nozzle_pipeline_decision_map.md:183`; findings
-  `plume:free-boundary-solve-mechanics-missing`, registry :2521, 1 di 2 gap
-  genuini FORK-141): *"no home in the record; plug/E-D sectors REQUIRE the
+  `plume:free-boundary-solve-mechanics-missing`,
+  `docs/findings_registry.yaml:2519` — la mappa lo cita come ":2521 ordinal";
+  1 di 2 gap genuini FORK-141): *"no home in the record; plug/E-D sectors REQUIRE the
   solve + shape-adjoint term"*. Distinto per dichiarazione dalla sola
   stabilita' (findings :1607) e dal modello di chiusura (C61). Finestra:
   F4b external-expansion.
@@ -204,10 +216,10 @@ chiusura p_b lo richiede (`PANEL_topology_census_2026-07-22.md:382-384`).
 | Settori (i) bell (dual-bell stesso settore), (ii) plug free-boundary (L_p, p_b/N2), (iii) shrouded plug Veen F=F_shroud+F_plug+F_kernel, (iv) A_gen: E-D/clustered/non-axisym via P5 | Formulazione di record | `docs/rde_nozzle_problem_book.md:345-353` | — |
 | Decomposizione in settori finiti + torneo finito degli ottimi per-settore | **SCHEMA** (rigor class di "FINITE" dichiaratamente NON assegnata; prova dovuta alla census-lemma session) | `docs/rde_nozzle_problem_book.md:354-363`; `docs/rde_nozzle_MASTER.md:313-320` | falsificatore implicito: un settore non-Chenais-compatto o una degenerazione senza semicontinuita' |
 | CAUTION: derivata topologica inaffidabile, confronto per settori interi | Posizione dichiarata (PRACTICE) | `docs/rde_nozzle_problem_book.md:361-363` | — |
-| Collasso a UN settore clopen S0 + famiglia D(m,n); P(h)/BR vuoti | THEOREM-sketch, **ADVISORY non ratificato** | `validation/PANEL_topology_census_2026-07-22.md:55-74`; `docs/rde_nozzle_MASTER.md:321-327` | due strati S0 non connettibili da cammino continuo in-class (`:73-74`) |
+| Collasso a UN settore clopen S0 (connessione CONGETTURALE, hub argument dovuto CEN-O4, `:68-69`) + famiglia D(m,n); P(h)/BR vuoti per L1+A1 (riga DELETED `:170`; L1 condizionale su CEN-O10 `:102`, pin→lemma dovuto S15 `:359-364`) | THEOREM-sketch, **ADVISORY non ratificato** (convergenza formale del panel NON raggiunta, `:11-13`) | `validation/PANEL_topology_census_2026-07-22.md:55-74`; `docs/rde_nozzle_MASTER.md:321-327` | due strati S0 non connettibili da cammino continuo in-class (`:73-74`) |
 | Pin utente 2026-08-02 (cono su Ω/Chenais, CEN-O1 permissiva, NONBLOCK+, Λ = cerchi di lip) | Decisioni utente di record; emendamenti D2.1/D2.6 QUEUED | `PANEL_topology_census_2026-07-22.md:329-384`; `docs/rde_nozzle_MASTER.md:306-312` | — (pin; la garanzia di generalita' e' verificata a `:371-377`) |
 | [T-OP11e] plug domina debolmente bell puntualmente (sonic-capped, tie region, premium_bound per cella); ranka CHIUSURE mai hardware | THEOREM (EOS-general) | `docs/claims_registry.yaml:368-379` | X-GRP10 (`tests/test_phase_diagram.py`, 8 controlli negativi) + X-GRP12 (`tests/test_phase_diagram_real.py`, 6 controlli negativi) |
-| [T-T4] argmax per-fase annidati ⇒ plug NON troncato peak-phase ottimo; troncamento apre PB-2 | THEOREM* (chiusura sonic-capped ideal-adaptation dichiarata; K-E citation duty) | `docs/claims_registry.yaml:329-340` | X-GRP06/X-GRP10/X-GRP12; oracle O2 o cella capped dove l'estensione perde |
+| [T-T4] argmax per-fase annidati ⇒ plug NON troncato peak-phase ottimo; troncamento apre PB-2 | THEOREM* (eredita **C-HT4** = chiusura sonic-capped ideal-adaptation, SCHEMA, `:171-182`, inherits `:336`; K-E citation duty) | `docs/claims_registry.yaml:329-340` | X-GRP06/X-GRP10/X-GRP12; oracle O2 o cella capped dove l'estensione perde; il falsificatore di C-HT4 (banda PB-2, `:181`) e' eseguibile solo sotto C61+H20 — C-N2 schedulata al kickoff PB-2/OP-2 |
 | [T-P7S1] esistenza argmax su ogni level set margin-certified, classe spline per settore | THEOREM* (residuo R-P7.2 dichiarato) | `docs/claims_registry.yaml:589-600` | sequenza massimizzante certificata senza limite convergente che raggiunge il sup |
 | Driver brick-2 esercita il solo settore bell/TOC: W=[theta_B, y_1..y_8], spline clamped/natural, lip eps equality, topologia fissata | PRACTICE ([X-TOCV], brick 2 CHIUSO di record) | `validation/a1_toc_variational_jax.py:1-50,108,1360,1748`; `docs/rde_nozzle_pipeline_decision_map.md:136,154-159` | i controlli negativi del driver (N1 gradiente corrotto, `:65`) |
 | H20: free plume boundary p=Pa solve mechanics MISSING; plug/E-D lo RICHIEDONO | OPEN (gap genuino FORK-141, 1 di 2) | `docs/rde_nozzle_pipeline_decision_map.md:183` | — (gap dichiarato) |
@@ -251,7 +263,10 @@ chiusura p_b lo richiede (`PANEL_topology_census_2026-07-22.md:382-384`).
 Nella FORMULAZIONE emerge: la variabile e' il solid set S, le configurazioni
 sono classi topologiche = output (`docs/rde_nozzle_problem_book.md:339-344`), e
 il census (advisory) riduce quasi tutta la tassonomia classica a strati di un
-solo settore S0 percorribile con continuita' (`PANEL_topology_census_2026-07-22.md:55-74`).
+solo settore S0 — la cui percorribilita' per cammino continuo in-class e'
+pero' CONGETTURALE, non acquisita: *"conjecturally connected (hub argument
+owed, CEN-O4)"* (`PANEL_topology_census_2026-07-22.md:55-74`, quote `:68-69`;
+CEN-O4 = residuo analitico S15, `:378-379`).
 Nell'ENGINE di oggi la categoria e' presupposta: il driver brick-2 cammina una
 sola chart (bell/TOC, grafo di parete, topologia fissata,
 `validation/a1_toc_variational_jax.py:11-20,33`). Risposta onesta in due
@@ -263,21 +278,37 @@ Giocato al rung delle chiusure certificate (eps-rung), esito di registro:
 [T-OP11e] — plug domina debolmente bell puntualmente sotto chiusura
 sonic-capped, tie region caratterizzata, device premium_bound certificato per
 cella, carrier X-GRP10/X-GRP12 con 8+6 controlli negativi
-(`docs/claims_registry.yaml:368-379`). Dentro la famiglia plug: [T-T4] — vince
-il plug pieno peak-phase; il troncato apre PB-2 (`:329-340`). Scope da
-dichiarare sempre: il torneo ranka **chiusure a pari eps_max, mai hardware**
-(`:371`); al livello shape-PDE il torneo non e' stato giocato (un solo settore
-ha un driver).
+(`docs/claims_registry.yaml:368-379`; ruoli distinti: X-GRP10 = oracolo
+gamma-const, `:961`; la classe EOS-general e' portata da X-GRP12, route reale
++ equilibrium bracket, `:989`). Dentro la famiglia plug: [T-T4] — vince il
+plug pieno peak-phase; il troncato apre PB-2 (`:329-340`). Da dichiarare in
+un colpo solo, prima che lo chieda il panel: (a) copertura — le partite
+GIOCATE sono due, bell-vs-plug ([T-OP11e]) e il match interno alla famiglia
+plug ([T-T4]); **shrouded plug (settore iii), expansion-deflection, famiglia
+detached D(m,n) e bare annulus non hanno oggi alcun entrant, a NESSUN rung**;
+(b) eredita' — il verdetto within-family eredita la chiusura **C-HT4
+(SCHEMA, sonic-capped ideal adaptation, `:171-182`; [T-T4] `inherits`
+`:336`)**, e il falsificatore dichiarato di C-HT4 e' esattamente la banda
+PB-2 troncamento/base-pressure — **eseguibile SOLO sotto una chiusura p_b
+dichiarata (C61, oggi NEVER) e con la meccanica H20 oggi mancante**; il
+programma lo sa e lo ha gia' schedulato (conditional C-N2 da coniare al
+kickoff PB-2/OP-2, `:181`). Scope da dichiarare sempre: il torneo ranka
+**chiusure a pari eps_max, mai hardware** (`:371`); al livello shape-PDE il
+torneo non e' stato giocato (un solo settore ha un driver).
 
 **(3) "Cosa vi manca per ottimizzare un plug troncato VERO (p_b, free boundary)?"**
-Tre pezzi, tutti gia' nominati nel record: (a) la chiusura p_b di programma —
-stato NEVER, slot N2, la Veen legacy e' WG10-FAILED e va sostituita
+Quattro pezzi, tutti gia' nominati nel record: (a) la chiusura p_b di
+programma — stato NEVER, slot N2, la Veen legacy e' WG10-FAILED e va sostituita
 (`docs/rde_nozzle_pipeline_decision_map.md:184`); (b) la meccanica di solve del
 free plume boundary p = Pa + il termine shape-adjoint — H20, gap genuino senza
 casa nel record, finestra F4b (`:183`); (c) il floor di validita' r_b (CEN-O8)
 nel vettore dei vincoli quando la chiusura p_b lo esige
-(`PANEL_topology_census_2026-07-22.md:382-384`). Il problema risultante e' PB-2,
-il primo problema di forma genuinamente mediato ([T-T4],
+(`PANEL_topology_census_2026-07-22.md:382-384`); (d) la **chart di settore
+nell'engine discreto**: anche con chiusura + solve, il driver brick-2 non ha
+una chart per il settore plug (oggi solo bell/TOC — aperto 5, migrazione
+B-spline F2-C1-CONTROL-CHART-MIGRATION aperta, owner F2 engine window,
+`docs/rde_nozzle_pipeline_decision_map.md:154-159`). Il problema risultante e'
+PB-2, il primo problema di forma genuinamente mediato ([T-T4],
 `docs/claims_registry.yaml:333`).
 
 **(4) "Expansion-deflection: e' nel vostro spazio o solo sulla carta?"**
@@ -297,12 +328,16 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
    solid set nell'envelope; bell, plug, shrouded plug, E-D = classi topologiche
    dell'output (formulazione di record,
    `docs/rde_nozzle_problem_book.md:339-353`). [Formulazione/Def.]
-2. **Il torneo e' finito e ha gia' un primo verdetto**: sotto la chiusura
-   sonic-capped il plug domina debolmente la bell puntualmente, con tie region
-   e device premium_bound certificato ([T-OP11e], THEOREM, carrier
-   X-GRP10/12); dentro la famiglia, il plug pieno peak-phase e' ottimo e il
-   troncamento apre il primo problema genuinamente mediato ([T-T4], THEOREM*).
-   Caveat obbligatorio a slide: **ranka chiusure, mai hardware**.
+2. **Il torneo per-settore (finitezza = SCHEMA, cfr. item 3) ha gia' un primo
+   verdetto**: sotto la chiusura sonic-capped il plug domina debolmente la
+   bell puntualmente, con tie region e device premium_bound certificato
+   ([T-OP11e], THEOREM, carrier X-GRP10/12); dentro la famiglia, il plug pieno
+   peak-phase e' ottimo e il troncamento apre il primo problema genuinamente
+   mediato ([T-T4], THEOREM*). Caveat obbligatori a slide: **ranka chiusure,
+   mai hardware**; e il verdetto within-family **eredita C-HT4 (SCHEMA)** — il
+   suo falsificatore (banda PB-2) diventa eseguibile solo chiudendo C61+H20,
+   gia' schedulato (C-N2 al kickoff PB-2/OP-2,
+   `docs/claims_registry.yaml:181`).
 3. **La decomposizione in settori e' uno SCHEMA dichiarato** (prova e classe
    dovute alla census-lemma session); il census advisory (pin utente 2026-08-02
    inclusi) indica il collasso a un settore S0 + famiglia detached — citabile
@@ -319,3 +354,38 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
    topologica (caution di record: il center body paga solo a taglia finita —
    si confrontano settori interi, `docs/rde_nozzle_problem_book.md:361-363`).
    [PRACTICE dichiarata]
+
+---
+
+## Disposizione riparazioni (W-A, 2026-08-23)
+
+Applicazione dei 10 finding di REFUTE_CH8 (writer A2, onda W-A). Ancore
+ri-verificate alla fonte in-window prima dell'uso (C-HT4
+`docs/claims_registry.yaml:171-182` + inherits [T-T4] `:336` + falsifier
+`:181`; census `:11-13`/`:40`/`:68-69`/`:102`/`:170`/`:359-364`/`:378-384`;
+findings `docs/findings_registry.yaml:2519` + mappa `:183` "registry :2521
+ordinal" verbatim; X-GRP10 `gamma-const-oracle` `:961`, X-GRP12 EOS-general
+`:989`).
+
+| # | classe | cambiamento (sezione+riga) | esito |
+|---|---|---|---|
+| 1 | REPAIR (ALTA) | §4(2) punto (b): loop C-HT4 dichiarato per esteso (eredita' SCHEMA, falsificatore = banda PB-2 eseguibile solo sotto C61+H20, C-N2 schedulata `:181`); §5 item 2: caveat di eredita' C-HT4 aggiunto; §2 riga [T-T4]: classe e falsificatore estesi con inherits `:336` | RIPARATO |
+| 2 | REPAIR (ALTA) | §1.3 (paragrafo "Conseguenza"): "cammino continuo dentro S0" sostituito con connessione CONGETTURALE (quote "conjecturally connected (hub argument owed, CEN-O4)" `:68-69`, residuo `:378-379`, continuita' argomentata solo ai confini di strato `:60-62`); §4(1): "percorribile con continuita'" condizionato con la stessa quote; §1.3 headline + §2 riga collasso: inciso congetturale | RIPARATO |
+| 3 | REPAIR (MEDIA) | §5 item 2, prima riga: "Il torneo e' finito" → "Il torneo per-settore (finitezza = SCHEMA, cfr. item 3)" | RIPARATO |
+| 4 | GAP (MEDIA) | §4(2) punto (a): enumerazione esplicita — giocate solo bell-vs-plug e plug-interno; shrouded plug, E-D, D(m,n) e bare annulus senza entrant a nessun rung | RIPARATO |
+| 5 | GAP (MEDIA) | §4(3): "Tre pezzi" → "Quattro pezzi", aggiunto (d) chart di settore nell'engine (aperto 5, F2-C1-CONTROL-CHART-MIGRATION, owner F2, `docs/rde_nozzle_pipeline_decision_map.md:154-159`) | RIPARATO |
+| 6 | DOWNGRADE (MEDIA) | §1.3: "Correzione Migdal di record" → "Correzione Migdal dichiarata nell'advisory (tag [DECLARED], Round 2)" — declassamento dichiarato: il census e' advisory non ratificato (`:13-14`), nessuna classe of-record disponibile | DECLASSATO (classe corretta = [DECLARED] in advisory) |
+| 7 | REPAIR (MEDIA) | §1.3: "provati vuoti" → "vuoti per L1+A1 nell'advisory" con ancora corretta `:170` (riga DELETED) + condizionalita' L1 su CEN-O10 (`:102`) + pin→lemma S15 (`:359-364`); §2 riga collasso allineata | RIPARATO |
+| 8 | GAP (BASSA) | §1.3, citazione panel: caveat header aggiunto accanto a 233/233 — criterio di convergenza formale NON raggiunto (`:11-13`) | RIPARATO |
+| 9 | NOTE (BASSA) | §1.6: ancora corretta a `docs/findings_registry.yaml:2519` (riga misurata) con glossa ":2521 ordinal" = testo verbatim della mappa `:183` (verificato in-window) | RIPARATO |
+| 10 | NOTE (BASSA) | §4(2): parentesi ruoli carrier — X-GRP10 = oracolo gamma-const (`:961`), EOS-general portato da X-GRP12 (`:989`) | RIPARATO |
+
+Esito complessivo: 9 RIPARATO + 1 DECLASSATO-con-ragione (finding 6: il
+claim non era riparabile ad ancora perche' nessuna classe of-record esiste
+per la correzione Migdal — il declassamento a [DECLARED]-in-advisory e' la
+classe vera, non un softening); 0 RESPINTO. Guardie GUARD_CHECKLIST
+verificate sul delta: 2/3 non toccate (nessun T1c, nessun rung quasi-1D
+introdotto), 8 non toccata (nessun claim best-of-sweep in CH8, §1.7 = W-B.1),
+9 non attivata (nessun claim di novita'), 1 non attivata (gerarchia gap non
+enunciata in CH8). Base per B6 (W-B.1: aggiunge §1.7/§3.5/§7) e per lo
+storico B8b.

@@ -80,7 +80,73 @@ o confronto alla riga; i FINDING portano riga citata.
   cut-list §2 (le card sono deck-bearing: nodi grafo + slide-scelta + L2);
   lint 7 già c'è.
 
+## Fronte (viii) — Test di generatività (ordine utente 2026-08-23; su emendamento COME RIPARATO, 493710a, [R-1]..[R-6] verificati applicati alla riga)
+
+Criterio meccanico: per ogni seed, LA regola che lo produce + il punto di
+emersione, camminati; agenti d'onda = ciechi alle catture. Fatto verificato
+in finestra per il seed 1: le 4 colonne-paper esistono nel registry
+INDIPENDENTEMENTE dalle catture (stechmann_2019 :318 PDF su disco,
+harroun_2021 :273 READ con report+advisory :281, kaemming_paxson_2018 :236,
+wanted_fievisohn_2018_quasi2d_moc :1280 WANTED → colonna [REP]-bounded per
+regola §1a).
+
+| seed | verdetto | meccanismo camminato / difetto |
+|---|---|---|
+| 1. LINEAGE (C-1 terza linea; C-1bis quarta) | **GENERATO** (le due linee) **+ 1 buco di CLASSE sull'asse-righe** | Terza linea: componenti "per-phase family" + "averaged functional" (in lista :33-37) × colonne stechmann_2019 / harroun_2021 / kaemming_paxson_2018 / fievisohn → celle OBBLIGATORIE (vuota solo "checked: none"); la domanda di cella "come la chiamano? cosa le manca vs noi" su harroun×averaged-functional produce il quesito peso/denominatore (⟨F/p⟩≠⟨F⟩/⟨p⟩) anche senza la duty dedicata; colonna Fievisohn = [REP]-bounded onesto. Quarta linea: componente "imposed-BC contract" È in lista × harroun_2021 (Eq.7, BC p-only, advisory :281 già nei materiali di triage) → cella piena → "cosa le manca vs noi" = il confronto col contratto Γ_d full-state. Emersione: celle LINEAGE_SWEEP_MATRIX (W-B.0) → compilazione LINEAGE_LEDGER (output-mandato L1/L2) → §3-bis via lint 7; C6 refuta vuote e piene. DIFETTO RESIDUO di classe: l'asse-righe (i 15 componenti) è fissato per fiat dal checkpoint; C6 attacca le CELLE, nessuna regola attacca la LISTA — un 16° componente mancante genera zero celle in silenzio: il prossimo seed di questa classe NON è generato → riparazione GV-1. |
+| 2. CARD-UNO (recency/staleness della survey) | **NON-GENERATO meccanicamente** (generato solo per diligenza volontaria) | Il campo 4 ORDINA il recency-check, ma nessuna regola meccanica lo OBBLIGA con una data confrontata all'oggi: lo sketch lint 8 [R-2] verifica la PRESENZA dei 6 header (grep), non il contenuto — un campo 4 vacuo ("attuale") passa il lint; la guardia 14 è campionaria ("campiona"), non totale. Il prossimo "Uno" emerge oggi solo se il writer compila con rigore non forzato. La scoperta in-onda del solver nuovo resta correttamente BOUNDED (G-11): ciò che il design deve generare è il FLAG con finestra, e il flag non è forzato → riparazione GV-2. |
+| 3. CONVERGENCE-PROVENANCE (§5-bis) | **NON-GENERATO da v2** (buco reale chiuso SOLO dall'ordine utente; §5-bis chiude la classe per QUELL'arco) | Camminata su v2: il trittico [V2-R2] è per-ARGOMENTO (battuta 1 porta sessione/commit; le battute 2-3 richiedono ancora ed esito, NON data+processo+verdetto per pezzo); il retro-audit [V2-R16] cammina claim→ancora→sorgente (esistenza/fedeltà), MAI claim→evento-di-convergenza. Il join per-claim slide↔storia non era prodotto da nessuna regola: granularità sbagliata da un lato, asse mancante dall'altro. §5-bis è ora la regola per l'arco slide↔atlas; ma il PROSSIMO join mancante su un altro arco (es. card↔ledger: quale processo ha aggiudicato la scelta? grafo↔atlas: provenance dei nodi-scelta) non ha generatore → riparazione GV-3. |
+| 4. TALLONE-(J) (C-3ter) | **NON-GENERATO come classe** (coperta la sola istanza) | La guardia 1 protegge LA gerarchia C-3bis col canale (J); nessuna regola di CLASSE obbliga "ogni claim di soppressione/dominanza enumera i primi ordini NON soppressi". Un nuovo claim del tipo "gap X dominato perché teoremi Y" fuori da C-3bis passa lint 5 (presenza sezioni), lint 8 (campi card), guardia 1 (istanza diversa): il prossimo tallone lo pesca di nuovo l'utente. Il record HA già il pattern (C-3bis enuncia (J)/(H)/swirl coerente; T0P dichiara le esclusioni G9) — manca solo la regola che lo esige → riparazione GV-4. |
+
+### Riparazioni proposte (regole di CLASSE, poche righe orchestratore, mai la sola cella)
+
+- **GV-1 (seed 1, brief W-B.0 + C6)**: l'asse-righe è un CLAIM, non una
+  premessa: L1/L2 aprono con un check di completezza — ogni stadio/nodo
+  della pipeline map refereed (62 nodi) mappa a ≥1 dei 15 componenti o
+  genera componente NUOVO (riga nuova dichiarata) o F-P motivata; C6 ha il
+  mandato esplicito di attaccare anche la LISTA ("componente mancante?"),
+  non solo le celle.
+- **GV-2 (seed 2, clausola semantica del lint 8 + guardia 14)**: i campi 2
+  e 4 devono contenere una DATA parsabile (grep `20[0-9]{2}`); il campo 4
+  deve contenere o "ATTUALE(perimetro, data-check)" o "STALE → finestra"
+  (token fissi, grep-abili); data assente o token assente = FINDING. La
+  guardia 14 passa da campionaria a totale SUI campi 4 (il grep è cheap; il
+  giudizio resta campionario sul merito).
+- **GV-3 (seed 3, falsificatore di design nuovo F-des-4)**: ogni ARCO DI
+  CONSUMO dichiarato tra strati di record (slide↔atlas, atlas↔M0/D-doc,
+  card↔ledger, grafo↔atlas, Q&A↔REFUTE) porta un JOIN-CONTRACT: chiave di
+  join + campi trasportati + chi lo verifica; arco senza contract = design
+  falsificato (stesso trattamento di F-des-2, che già fa questo per
+  albero↔matrice — la regola esiste, va estesa dalla struttura agli archi).
+  L'orchestratore enumera gli archi UNA volta nel log di W-A.
+- **GV-4 (seed 4, guardia 16 di classe + clausola template §4)**: "ogni
+  claim di soppressione/dominanza/copertura ('X soppresso/dominato perché
+  teoremi Y') enuncia NELLO STESSO enunciato: (a) il perimetro dei teoremi
+  (quale parte coprono), (b) la lista dei canali residui NON coperti,
+  ciascuno con classe (derived/underived/conditional); lista assente =
+  FINDING". Sketch refuter/retro-audit: grep suppress/soppress/dominat/
+  copre + walk. La guardia 1 resta come istanza di record della classe.
+
+**Esito del test**: 1 GENERATO su 4 (e con un buco di classe sull'asse). Il
+design emendato cabla bene le ISTANZE pescate dall'utente; le DIMENSIONI
+generative (asse-completezza, enforcement semantico, join-contract per arco,
+regola-di-classe sui residui) sono quelle che GV-1..GV-4 aggiungono — poche
+righe, nessun re-design (nuove regole = classe FINDING/F-des, coerenti col
+freeze §4 in quanto ordinate dal fronte (viii)).
+
 ## VERDETTO
+
+**AGGIORNAMENTO POST-RIPARAZIONE (fronte viii)**: R-1..R-6 verificate
+APPLICATE alla riga nell'emendamento committato 493710a ([R-1] §6d
+parentetico corretto 20+3+1, critic=25° dichiarato; [R-2] clausole di
+supersessione testuale su v2 + sketch comando lint 8; [R-3] routing
+VERBATIM C-1bis :146-165 nel brief B2; [R-4] 62/17/45 + refuso §6e;
+[R-5] §1f rimanda alla checklist come sorgente unica; [R-6] lint 8 nei
+NON-tagliabili). Il verdetto RIPARARE-PRIMA sotto è CONSUMATO → per i
+fronti (i)-(vii): ONDE-POSSONO-PARTIRE. Restano le riparazioni GV-1..GV-4
+del fronte (viii) (regole di classe, pre-W-A per GV-1/GV-2, pre-W-A log
+per GV-3, checklist per GV-4).
+
+Verdetto originale (storico, pre-riparazione):
 
 **RIPARARE-PRIMA** — R-1 e R-2 obbligatorie prima del lancio di W-A
 (conteggio interno incoerente + testi v2 non emendati su lint 5/D1/D2 =

@@ -46,7 +46,13 @@ Round dedicato TRA W-A e W-B.1 (temporalmente disgiunto, file propri):
   check ("checked: none"); mai riempita da riassunti altrui — colonna di
   un paper non su disco = dichiarata [REP]-bounded.
 - **Refuter dedicato C6 (W-C, giudizio)**: attacca celle vuote ("davvero
-  nessuno?") E piene ("isomorfismo genuino o superficiale?").
+  nessuno?") E piene ("isomorfismo genuino o superficiale?") **E LA
+  LISTA STESSA [GV-1]**: l'asse-righe non è per fiat — check di
+  completezza obbligatorio contro la pipeline decision map (62 nodi):
+  ogni nodo della mappa mappa a ≥1 componente della lista, o genera
+  riga-componente NUOVA, o è F-P con ragione; il check è parte del
+  mandato L1/L2 (compilazione) e C6 (attacco). Una componente mancante
+  scoperta a valle = F-des-1 (matrice falsificata).
 - **Due duty puntuali agganciate** (checkpoint C-1, nessuna casa in v2):
   (i) verifica-fonte Harroun 2021: QUALE peso e QUALE denominatore nel
   quasi-cycle-averaging (lettura mirata, paper su disco, anchor H21-F11)
@@ -150,7 +156,7 @@ Nel brief B5 (CH5/CH6): "il campo" SEMPRE istanziato — PKU / NUAA /
 KIT-Aoyama / NASA-Glenn / Purdue con paper (id registry). Inoltre
 l'orchestratore scrive UNA volta il file `GUARD_CHECKLIST.md` (raws),
 consumato DUE volte (refuter W-C sui capitoli; retro-audit Blocco 2 sul
-deck). **La lista delle guardie vive SOLO in quel file (oggi 15 —
+deck). **La lista delle guardie vive SOLO in quel file (oggi 16, dopo [GV-4] —
 sorgente unica; nessuna enumerazione parallela qui, per non creare liste
 divergenti) [R-5 applicata].**
 
@@ -173,7 +179,14 @@ completa a 6 campi**:
 
 **LINT 8 (nuovo)**: scelta presentata senza card completa (6/6 campi) =
 violazione → FINDING. Si aggiunge a lint 7; alimenta il retro-audit del
-deck come i lint 3/4/6/7.
+deck come i lint 3/4/6/7. **CLAUSOLA SEMANTICA [GV-2]** (il lint non
+verifica solo gli header): i campi 2 e 4 devono contenere una DATA
+parsabile (YYYY-MM o YYYY-MM-DD) E il campo 4 deve chiudere con UNO dei
+due token canonici — `ATTUALE(perimetro, data-check)` oppure
+`STALE → finestra-di-ri-esame` — così che il prossimo "Uno" emerga
+meccanicamente dal confronto data-survey vs oggi. Copertura TOTALE
+(grep su tutte le card), mai campionaria; il campionamento della
+guardia 14 è IN AGGIUNTA (qualità), non in sostituzione (presenza).
 
 **Card obbligatorie anche per il NON-aggiudicato**: le 2 righe
 SINGLE-AUTHOR + le 12 NEVER del choice ledger (conteggio di record
@@ -295,6 +308,32 @@ oppure la dichiarazione STAMPATA **"non-a-convergenza: classe+owner"**
   eredita la provenance attraverso l'arco verificato.
 - Refuter C5 (W-C.b): verifica che le STORIE portino data+processo+
   verdetto (guardia 15).
+
+==============================================================================
+## §5-ter — RIPARAZIONI DEL GENERATORE dal test di generatività [GV-*]
+
+Esito del fronte (viii) (VERIFY_AMENDMENT_v2.1.md): seed LINEAGE
+GENERATO (con caveat lista-per-fiat → GV-1); CARD-UNO, PROVENANCE,
+TALLONE-(J) NON-GENERATI → riparazioni alla DIMENSIONE, mai alla cella:
+
+- **[GV-1]** check di completezza dell'asse-componenti (cablato in §1a).
+- **[GV-2]** clausola semantica del lint 8 (cablata in §1g).
+- **[GV-3] F-des-4 — JOIN-CONTRACT (nuovo falsificatore del design)**:
+  ogni ARCO DI CONSUMO dichiarato (atlas→deck feed→storyboard;
+  §6 STORIA→retro-audit provenance; LINEAGE_LEDGER→§3-bis; choice
+  ledger→decision card; lint→robustness verdict) dichiara il proprio
+  CONTRATTO DI JOIN: quali campi la sorgente DEVE portare perché il
+  consumatore possa fare il join senza ricostruire (es. STORIA porta
+  data+processo+verdetto PERCHÉ il retro-audit joina su quelli). Un
+  arco dichiarato senza contratto di join, o un join impossibile a
+  valle = design FALSIFICATO, stesso trattamento di F-des-2 (stop,
+  emenda a registro). È l'estensione di F-des-2 dagli strati agli
+  archi: il buco §5-bis era esattamente un arco senza contratto.
+- **[GV-4] guardia 16 (regola di CLASSE)**: ogni claim di soppressione/
+  gerarchia ("X dominato/coperto perché teoremi Y") enumera il
+  PERIMETRO dei teoremi E la lista dei CANALI RESIDUI non coperti, con
+  classe per ciascuno — o FINDING. Il tallone (J) diventa l'istanza
+  della regola, non la regola (guardia 1 resta come istanza vincolata).
 
 ==============================================================================
 ## §6 — DEDUP E DECISIONI ORCHESTRATORE
