@@ -962,32 +962,16 @@ la riduzione lato CH8/CH4 è disposta all'orchestratore (file non miei).
    truncated-plug (value,delta) row entering the record, or F4b window
    entry — whichever fires first" (collocazione F4b: §1.5 [WB1-R5]).
 
-**CARD C59 — forma temporale del funzionale (cycle-average):**
-
-1. **Scelta**: C59 (`docs/choice_ledger.yaml:795-805`) — cycle-average vs
-   harmonic-balance adjoint vs time-spectral vs windowed unsteady adjoint.
-2. **Alternative censite (data + fonte)**: HB adjoint / time-spectral /
-   windowed unsteady adjoint — ancore di record `rubino_2018`,
-   `schotthofer_2024`, `zahr_persson_2016` (registry, root D,
-   READ-INTEGRAL); censimento alla mint **2026-08-21**
-   (`BRIEF_blocco2_phaseD_addendum_c4.md` §(e), scoping BINDING).
-3. **Verdetto + perché**: **NON AGGIUDICATA** nel senso del ledger (status
-   NEVER) MA con scoping vincolante di record: dentro il pin
-   onda-periodica il cycle-average è "CANONICAL-INSIDE-THE-PIN ... a
-   theorem-backed CONSEQUENCE, not a choice"; le alternative vivono SOLO
-   nei regimi a pin indebolito — la riga non riapre MAI il funzionale del
-   regime pinnato.
-4. **RECENCY/SOTA check**: censimento temporal-form datato 2026-08-21 sul
-   root D del registry (HB/time-spectral/windowed); check 2026-08-23:
-   nessun ingresso nuovo nel record. ATTUALE(root D registry +
-   addendum-c4 §(e), 2026-08-23).
-5. **Falsificatore**: un regime a pin indebolito (multi-frequenza /
-   aperiodico) che entra nello scope senza ri-aggiudicazione della riga =
-   violazione; dentro il pin, un controesempio alla canonicità del
-   quoziente romperebbe C59 e con esso il layer T0.
-6. **Trigger di ri-esame + finestra**: "F2-entry census window; trigger =
-   any weakened-pin regime (multi-frequency / aperiodic / windowed)
-   entering scope" (ledger :804).
+**CARD C59 — forma temporale del funzionale: PUNTATORE alla casa
+primaria [dedup SR-7 risolto, orchestratore 2026-08-23, esito D2/CH_REF]**
+La card completa 6/6 campi vive UNA volta in **CH4 §7-bis (card 7 —
+casa PRIMARIA per regola di ownership §1g: C59 è riga I, roster B4)**.
+Qui resta il join per il consumo di roadmap: C59 = NEVER con scoping
+vincolante di record ("CANONICAL-INSIDE-THE-PIN ... a theorem-backed
+CONSEQUENCE, not a choice" — le alternative HB/time-spectral/windowed
+vivono SOLO nei regimi a pin indebolito), trigger = weakened-pin
+regime entering scope, finestra F2-entry (ledger :804). Falsificatore
+e campi completi nella card primaria. Mai due card gemelle.
 
 ---
 

@@ -12,9 +12,48 @@
 ## (guardia 18 registro deck), CKP-S2-4 (consecutio: ATLAS_TREE =
 ## consecutio walk; critic con criterio fluenza). Checklist = 18
 ## guardie. STORYBOARD_v3.md scritto (49 slide, 93 feed, 0 persi).
-## IN VOLO: B8a/B8b (riparazioni C5 su §6: data 32459ca, taxonomy,
-## guardia-15 19 HIT, 2 residui CH10 §6) + storyboard v3.1 (registro
-## CKP-S2-3 + calibrazione Alley/Doumont/agenzia).
+## [AGGIORNATO al taglio-sessione] CHIUSI ANCHE: riparazioni C5 22
+## fix (guardia-15 0 residui), storyboard v3.1 COMPLETO (50 slide,
+## registro guardia 18, metro Alley/Doumont/agenzia, C13-val
+## TOC-vs-Rao con brick2_profiles_record.png, C17 expected-outcomes),
+## D2 (ATLAS_TREE 752 righe consecutio walk 20 transizioni + CH_REF
+## 307 righe: inventario (c) 41, coda-d'attacco 24 voci), ratifiche
+## CW-1/2/3, dedup C59 (primaria CH4). Commit: 236244d.
+## IN VOLO AL TAGLIO: SOLO D1 (8 lint, riprendibile; se perso:
+## rilanciare col brief nel transcript — contratto = v2 §L + clausola
+## [R-2] + lint 7/8).
+##
+## ===== HANDOFF SESSIONE 3 (ordine di apertura) =====
+## R2: memoria + M0 + PROGRESS + QUESTO file integrale (checkpoint +
+## CKP-S2-1..4) + GUARD_CHECKLIST (18). HEAD atteso >= 236244d.
+## (1) Consumare/rilanciare D1 → LINT_REPORT_WD.md: 8 verdetti;
+##     violazioni → fix owner o FINDING.
+## (2) CRITIC FINALE a max (1 agente giudizio): completezza atlas +
+##     ratifica disposizioni CW-1..5 di ATLAS_TREE + FLUENZA: walk
+##     catena teorica (ATLAS_TREE) E walk slide 1→50 di
+##     STORYBOARD_v3.md (CKP-S2-4 esteso); verdetto COMPLETA o
+##     mini-onda mirata.
+## (3) PROMOZIONE docs/atlas/: copiare CH1-CH10 + LINEAGE_LEDGER +
+##     ATLAS_TREE + CH_REF (+ matrici come appendici raws citate);
+##     righe ADVISORY_INDEX + registry STESSA finestra (R7): mint
+##     riga O3.4-leg (D6:826-830, da REFUTE_CH9 FP-1) + eventuali da
+##     lint; commit pathspec (MAI GENO/Uno/stray). = FREEZE ATLAS.
+## (4) GATE UTENTE (subito dopo): presentare STORYBOARD_v3.md (50
+##     slide, 60', cut-list, core-15') + DECISIONI: twin PB-2 (a)/(b)
+##     a vincoli identici (latest-start ~01/09) / S-5F path A/B/C +
+##     priorità C51 / eventuale priorità confronto parametrizzazioni
+##     (C1, F2-entry).
+## (5) Post-gate: authoring (pipeline ../project_build build_deck;
+##     patto E1-E7 + guardia 18 + guardia 15 nelle note; slide dalla
+##     tabella di join di STORYBOARD_v3) → BLOCCO 2 VIA WORKFLOW
+##     (4 stadi + audit formale 14 criteri (a)-(n) + 2 until-dry —
+##     protocollo INTEGRALE in questo file, blocco CKP-S2-2 esteso)
+##     → BLOCCO 3 R3 pieno (suite quotata, fingerprint, HANDOFF,
+##     delete P-C lockato, ratifiche R3-esteso atlas + lifecycle +
+##     maintenance rule).
+## Vincoli: freeze 29-30/08; design FROZEN; Fable ovunque; effort
+## giudizio inherit; pesi nel log (SR-9); conteggi rigenerati (SR-12).
+## ===== FINE HANDOFF =====
 ## NEXT (ordine): (1) atterraggi 3 in volo → commit; (2) W-D: D1
 ## meccanico 8 lint (v2 §L + lint 7 lineage + lint 8 card con
 ## clausola GV-2, comandi in finestra) + D2 orchestratore: ATLAS_TREE
@@ -164,6 +203,47 @@ Esito: W-A PASS. CH7/CH8 = base stabile per W-B; via a W-B.0.
   I loop a convergenza restano gated: panel giudice+refuter SOLO sulle
   contese sostenute post-W-C (forma canonica S14); critic finale =
   chiusura del loop di completezza; nessun round rituale.
+  **ESTENSIONE (utente, 2026-08-23): il Blocco 2 analizza anche
+  CONSECUTIO e COMPLETEZZA del DECK AUTORATO** (non solo dello
+  storyboard, già camminato dal critic — l'authoring può derivare):
+  il workflow del Blocco 2 porta QUATTRO stadi: (1) retro-audit
+  per-slide (claim→ancora→classe→provenance, conteggi dal codice);
+  (2) **JOIN DI COMPLETEZZA storyboard→deck** [F-des-4]: ogni slide
+  approvata al gate è atterrata nel pptx con l'asserzione fedele —
+  slide mancante/derivata = finding, mai taglio silenzioso (i tagli
+  passano dalla cut-list dichiarata); (3) **CONSECUTIO WALK
+  sull'autorato**: slide 1→N del pptx come al primo ascolto — ogni
+  asserzione segue dal già-visto, nessun concetto usato prima
+  d'essere introdotto, salto = finding di fluenza-deck (stesso
+  criterio CKP-S2-4, ri-eseguito sull'oggetto finale); (4) comms
+  review = **AUDIT FORMALE COMPLETO dato l'auditor (panel propulsione
+  ESA)** — matrice di criteri INTERA, per-slide e a livello-deck
+  (ordine utente 2026-08-23 "deve analizzare tutto"): (a) narrativa:
+  arco, consecutio, BLUF, transizioni; (b) assertion-evidence per
+  slide (titolo=frase piena, evidenza visiva dominante, un
+  messaggio); (c) leggibilità: body >=18pt, densità <=60 parole
+  nette, leggibile a 3 m, palette colorblind-safe, contrasto; (d)
+  coerenza interna: notazione/simboli unici deck-wide, unità SI,
+  acronimi definiti al primo uso, terminologia dal box nomenclatura,
+  contatori rigenerati; (e) figure: qualità/risoluzione, assi
+  leggibili, citazione piena + caveat CT-6 per ogni figura altrui,
+  manifest riuso + attribuzioni (audit provenienza pipeline); (f)
+  tempo: 60' con margine, minuti per sezione misurati, cut-list e
+  core-15' provati; (g) calibrazione audience: nulla assunto su RDE,
+  livello matematico CKP-S2-3, takeaway duale tecnico+programmatico
+  per sezione; (h) ask decision-ready; (i) copertura backup vs banca
+  domande; (j) note relatore complete (provenance guardia 15 +
+  script parlato); (k) inglese tecnico professionale, zero
+  AI-language; (l) SENSIBILITÀ: check export-control/IP/
+  dati-non-pubblici su ogni slide e figura — il deck ESCE
+  dall'organizzazione (numeri di record sì; dettagli implementativi/
+  path/nomi interni no; figure altrui solo crop citazione-piena);
+  (m) formato: 16:9, template/footer coerenti, i 7 difetti-forma
+  Heister misurati al census RIPARATI; (n) frontespizio con
+  versione/data/attribuzioni. Ogni criterio = riga con esito, mai
+  "stile ok" aggregato (metro: Alley/Doumont/prassi agenzia +
+  guardia 18 + patto E1-E7).
+  Q&A red-team a valle dei quattro.
 
 - **CKP-S2-3 (2026-08-23) — REGISTRO DEL DECK (correzione utente
   vincolante su storyboard/authoring/comms).** Verbatim (estratto):
@@ -224,6 +304,16 @@ Esito: W-A PASS. CH7/CH8 = base stabile per W-B; via a W-B.0.
   fluenza, distinto dai finding di completezza. Consumatori: brief
   D2 (W-D), brief critic, e il deck (che della consecutio è la
   proiezione a 60').
+  **ESTENSIONE (utente, stessa finestra)**: la prova "elegante e
+  rigorosa" della consecutio si esegue SULLO STORYBOARD v3.1, slide
+  per slide — il senso di una presentazione SOTA è esattamente lo
+  snocciolarsi logico, rigoroso ma comprensibile di ogni aspetto. Il
+  critic riceve DUE walk di fluenza: (a) l'atlas lungo ATLAS_TREE;
+  (b) il deck lungo STORYBOARD_v3.md slide 1→50: ogni asserzione
+  deve seguire da ciò che il panel ha già visto (nessun forward
+  reference non dichiarato, nessun concetto usato prima di essere
+  introdotto, ogni "perché" raggiungibile), comprensibile al primo
+  ascolto — ogni salto = finding di fluenza-deck.
 
 ## ONDA W-B.0 — LINEAGE SWEEP — CHIUSA (3 slot: L1 170k / L2 190k /
 L3 147k = 507k vs cap 250k; SFORO DICHIARATO, causa = GV-1/F-des-1:
@@ -270,6 +360,19 @@ REGGE 66/66; C6 lineage: matrice REGGE (0 celle cadute), ledger
 REGGE-CON-EMENDAMENTI (LL-36/37), lista COMPLETA-CON-EMENDAMENTI
 (C46→N-17), 4 falso-vuoto da campione 5.3%. CONTESE SOSTENUTE: 0 →
 NESSUN panel necessario. Q&A SEED consegnati da tutti i refuter.
+
+## RATIFICHE ORCHESTRATORE POST-D2 (2026-08-23, consecutio walk)
+
+I 3 salti di specifica trovati dal walk (CW-1/2/3 — buchi di §N/
+emendamento, non dei capitoli) sono RATIFICATI nelle collocazioni
+proposte da ATLAS_TREE: N-M dopo N-D (anello 7); N-A in apertura
+dell'atto 3 (la misura µ precede N-B); N-Q in atto 6 accanto a N-O —
+coerente con la collocazione C17-pre dello storyboard v3.1. CW-4
+(hazard lettere-gap) = regola di proiezione confermata (ogni consumo
+deck porta la nota); CW-5 conforme. Ratifica finale al critic.
+**C59 dedup [SR-7]**: primaria = **CH4 §7-bis** (regola di ownership
+§1g: C59 è riga I, roster B4); CH6 §8 → ridotta a puntatore
+(edit orchestratore, come C61 speculare).
 
 ## ROUND RIPARAZIONI + W-C.b (lanciati 2026-08-23)
 

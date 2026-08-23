@@ -597,12 +597,46 @@ C17. [atto 7] What tightens the bracket, in order — ASSERZIONE: la
     programma dichiara il pivot (certificazione e operabilità) — non
     insiste. Stato temporale: la fase è APPENA APERTA — nessun
     risultato di campagna viene promesso come già acquisito;
-    milestone: inizio/metà settembre. — EVIDENZA: timeline F2→F5 con
-    3 gate colorati. — [NOTE] join: CH6-feed-9 + CH6-feed-6 (G2
-    value gate) + CH6-feed-7 (D-44 gated) + CH3-feed-6 (M-RED bande
-    derivate, esiti pre-registrati) + CH3-feed-10 e CH1-feed-8
-    (B-lite metro cheap del residuo — in nota relatore come leva) +
-    checkpoint :93-94. — 1.5' — cut: MAI.
+    milestone: inizio/metà settembre. **EXPECTED OUTCOMES ON-SLIDE
+    (card compatte per campagna, tre campi ciascuna)**:
+    · CAMPAGNA RESIDUO (M-RED, detta "misura del residuo") —
+      DELIVERABLE: bande MISURATE del residuo per famiglia
+      certificata — due canali della forchetta passano da stima a
+      misura; ESITO IN ENTRAMBI I CASI: residuo piccolo → la
+      riduzione è promossa con barra quantificata; residuo grande →
+      sappiamo QUALE canale domina e la forchetta si stringe dal
+      lato giusto — informativo comunque; FINESTRA: la fase appena
+      aperta (milestone inizio/metà settembre).
+    · CONFRONTO TESTA-A-TESTA (twin, se ordinato — v. C17-bis) —
+      DELIVERABLE: il primo numero di Gap B su hardware fissato
+      (nostro design vs design a stato medio, a parità di vincoli);
+      ESITO IN ENTRAMBI I CASI: gap materiale → il metodo paga; gap
+      piccolo → il campo aveva ragione A QUEL RANGO — e saremmo i
+      primi a dimostrarlo con un confronto controllato: entrambi
+      pubblicabili; FINESTRA: economico, si può fare per primo.
+    · RUN ACCOPPIATO IN COPPIA (CFD-2) — DELIVERABLE: il prezzo
+      dell'errore della sostituzione medie→vero sul template
+      pubblicato dal campo; ESITO: barra confermata → la scala ~1%
+      del sizing regge; barra superata → il ranking-level è
+      dominante e la campagna di classe diventa prioritaria;
+      FINESTRA: dopo la misura del residuo.
+    · RUN DI RIFERIMENTO DI CLASSE (CFD-1) — DELIVERABLE: il decider
+      di classe (~12M celle) che àncora il bound su Gap A; ESITO:
+      dentro il bound → il bracket chiude; fuori → il canale
+      responsabile è identificato dalla decomposizione già in mano;
+      FINESTRA: decisione DOPO la misura del residuo — oggi si
+      decide il canale (ask 1), non il commit.
+    RIGA DI CHIUSURA ON-SLIDE: "ogni esito è pre-registrato:
+    sappiamo già cosa concluderemo in ciascun caso" — la forma
+    agency-grade dell'onestà. — EVIDENZA: timeline F2→F5 con 3 gate
+    colorati + le 4 card expected-outcome. — [NOTE] join: CH6-feed-9
+    + CH6-feed-6 (G2 value gate) + CH6-feed-7 (D-44 gated; "esiti
+    pre-registrati" = forma di record) + CH3-feed-6 (M-RED bande
+    derivate B-1..B-4, esiti pre-registrati) + CH6-feed-4 (twin
+    kill-or-validate, entrambi gli esiti informativi) + CH3-feed-10
+    e CH1-feed-8 (B-lite in nota come leva) + checkpoint :93-94;
+    nomi interni (M-RED/CFD-1/CFD-2/twin PB-2) in [NOTE], on-slide
+    le forme parlanti. — 1.5' — cut: MAI.
 C17-bis. [atto 6/7] Decisions we have NOT taken yet — ASSERZIONE: le
     decisioni ancora aperte, dette al panel prima che le chieda:
     (1) il confronto testa-a-testa sul plug troncato: numero
@@ -819,6 +853,17 @@ forchetta e l'ASK.]
    review; verifica per-slide aggiunta alla convenzione di registro;
    C18 resa esplicitamente DECISION-READY (cosa chiediamo / cosa serve
    per decidere / entro quando).
+9. **C17 con livello EXPECTED OUTCOME esplicito (micro-integrazione,
+   ordine utente "pianificazione del lavoro successivo e expected
+   outcomes")**: 4 card compatte on-slide — una per campagna (misura
+   del residuo / twin se ordinato / run accoppiato / run di classe),
+   tre campi ciascuna (DELIVERABLE / ESITO IN ENTRAMBI I CASI /
+   FINESTRA), in lingua ingegneristica (guardia 18, nomi interni in
+   [NOTE]); riga di chiusura on-slide "ogni esito è pre-registrato:
+   sappiamo già cosa concluderemo in ciascun caso". Fonti = i feed
+   già consumati da C17 (CH6-6/7/9, CH3-6, CH6-4): nessuna ricerca
+   nuova; C17-bis invariata (la card twin di C17 punta alla decisione
+   aperta lì dichiarata).
 
 ==========================================================================
 ## TABELLA DI JOIN feed→slide [F-des-4] — 93 feed, NESSUNO perso
