@@ -9,7 +9,7 @@ contro la pratica del campo (linea imposed-detonation-BC, THROAT_HARVEST).
 **Arco di consumo dichiarato**: storyboard v3 (via `## DECK FEED` in coda),
 banca Q&A red-team (§8), refuter W-C.a (REFUTE_CH10; guardie 6/7/10/11/14
 vive), mappa F2+ (§5). Template a 9 sezioni (1, 2, 3, 3-bis, 4-8);
-§6 STORIA = placeholder di round per W-B.2.
+§6 STORIA scritta dal round W-B.2 (slot B8b).
 
 Nota di nomenclatura (dovere di precisione, namespace "L4"): in questo
 capitolo convivono DUE oggetti chiamati L4 — (i) **L4 la classe-dati di
@@ -17,7 +17,10 @@ default** di D2.4 ("every patch of Gamma_d axially supersonic with margin",
 `docs/rde_nozzle_MASTER.md:125-138`) e (ii) **L4 il layer-ledger dei
 condizionali** (`docs/rde_nozzle_conditionals.md:1-2`, layer L4 del
 SCAFFOLD). Ogni occorrenza sotto è disambiguata ("L4-DEFAULT" per la
-classe, "ledger L4" per il layer).
+classe, "ledger L4" per il layer). Analoga disambiguazione per "U3": la
+**regola d'estrazione U3/U3'** del piano D6 (§1.5, §5, Q6) è un oggetto
+DISTINTO dal **discharger U3** del condizionale C-D25U (ledger L4,
+§1.4/§4.6) — stesso simbolo, due namespace.
 
 ---
 
@@ -47,7 +50,9 @@ state (`:122-124`).
 ### 1.2 PRECISIONE VINCOLANTE: Gamma_d NON è "the throat" (guardia 11)
 
 Riga di checkpoint di record, portata qui come contenuto ancorato (routing
-C-1bis, ordine utente; verbatim dal checkpoint, righe :158-165):
+C-1bis, ordine utente; verbatim dal checkpoint, righe :158-163 — la coda
+di routing :163-165 "All of this -> CH10…" non è citata, è l'ordine che
+questo capitolo esegue):
 
 > PRECISION for deck/atlas: Gamma_d is NOT "the throat" — it is the
 > axially-supersonic-with-margin station downstream of heat release
@@ -68,8 +73,9 @@ I tre ancoraggi di questa precisione, ciascuno al proprio record:
    **m_n := u·n_m − c ≥ delta** (`:139-166`) — la forma "u_x − c" nuda è
    planar-only.
 2. **La sonic line corrugata** (KP18 = `kaemming_paxson_2018`, Fig. 6):
-   *"corrugated sonic line: axial Mach 0.85 → 1.33, crossing M=1 TWICE per
-   cycle"* (`validation/sfoundations_raws_2026-08-13/blocco3/
+   due frammenti di harvest — *"corrugated sonic line: axial Mach
+   0.85 -> 1.33"* e *"the sonic line is crossed TWICE per cycle"*
+   (`validation/sfoundations_raws_2026-08-13/blocco3/
    THROAT_FIELD_HARVEST_c4.md:399-406`, riga S4 della tabella interfacce
    `:611`). È il PERCHÉ del margine: una stazione "alla gola" attraversa
    il locus di degenerazione due volte per ciclo — il contratto chiede la
@@ -94,11 +100,15 @@ pieno** — porzione pre-gola convergente E gola/superficie sonica tutta
 sonica-o-supersonica lungo ciclo e azimut; il **feedback ESISTE** se la
 gola — anche throatless geometrica: la superficie sonica fa da gate —
 presenta patch subsoniche, che sono i canali di risalita
-dell'informazione. È il PERCHÉ fisico dei due lati del contratto:
-**decoupling ⇔ choking pieno** è ciò che il margine m_n ≥ delta misura su
-Gamma_d patch per patch (L4-DEFAULT: [T-NSW] esclude l'influenza media a
-monte esattamente su quella classe), e **patch subsoniche ⇔ canale di
-feedback** è il perché O1-O4 è una case-class DICHIARATA con H2/H-I2 come
+dell'informazione. È il PERCHÉ fisico dei due lati del contratto, in DUE
+direzioni distinte a gradi dichiarati: **decoupling ⇒ choking pieno** (la
+direzione del pin — NECESSITÀ: il choking pieno è la condizione di
+ammissibilità di ogni claim di decoupling/one-way, ed è ciò che il
+margine m_n ≥ delta verifica su Gamma_d patch per patch); la direzione
+INVERSA non è il pin e vale nel record solo al livello MEDIO e sulla
+classe — su L4-DEFAULT [T-NSW] esclude per teorema l'influenza media a
+monte (lettura a piccole perturbazioni). E **patch subsoniche ⇒ canale di
+feedback**: è il perché O1-O4 è una case-class DICHIARATA con H2/H-I2 come
 class assumptions — una patch subsonica non è un dettaglio numerico, è un
 canale di risalita aperto. NESSUN claim di decoupling/one-way BC senza la
 condizione di choking citata; regime forte-transiente (unstart) = fuori
@@ -124,14 +134,14 @@ SPECIFIED-NOT-ARMED fino alla prima ingestione
 (`docs/rde_nozzle_development_plan.md:811-815`; M0 VI.1 :3076-3082).
 Invariante di Annex B: gli audit stage-A si applicano ANCHE ai dati
 GENERATI — "a generator emitting off-manifold data is a generator bug"
-(`docs/rde_nozzle_development_plan.md:1155-1157`).
+(`docs/rde_nozzle_development_plan.md:1150-1151`).
 
 ### 1.4 Ledger L4: quali condizionali il contratto eredita
 
 Il ledger dei condizionali (`docs/rde_nozzle_conditionals.md:1-16`) separa
 due nature che il capitolo tiene distinte: i condizionali **analitici**
 (C-D25U stabilità semiglobale uniforme, con struttura -a/-b/-c e
-discharger U1-U5; C-SBVF) — enunciati UNA volta nel ledger, ereditati BY
+discharger U1-U5; C-MAJDA) — enunciati UNA volta nel ledger, ereditati BY
 ID da ogni THEOREM* — e i condizionali di **chiusura/residuo numerico**
 del claims registry (C-HT4, C-IGMIX, C-O33: *"model closures and numeric
 residuals, NOT analytic gaps"*, `:7-9`). Per il contratto-dati la
@@ -193,9 +203,14 @@ C-1bis di record, portato verbatim dal checkpoint (righe :146-158):
 
 Ancore primarie della linea: `harroun_2021` Eq. 7 / Fig. 11 (H21-F11) — il
 contratto BC estratto integralmente dall'harvest: p-only, radially flat,
-swirl-free, T uniforme; gli autori stessi flaggano la T uniforme come
+swirl-free, T uniforme; profilo di record dell'harvest: log-decay sawtooth
+30 → ~2-6 atm per settore da 180° (il "30->2atm" del checkpoint è la
+compressione di quel range); gli autori stessi flaggano la T uniforme come
 controfattuale alla loro fonte (`THROAT_FIELD_HARVEST_c4.md:276`, `:296`,
-`:608`, `:763`); `harroun_2020` Eqs. 1-2 (stessa architettura);
+`:608`, `:763`). Caveat CT-6, valido per OGNI numero altrui del capitolo
+alla sua prima occorrenza: numeri di `harroun_2021` (e degli altri paper
+citati) riportati con citazione piena e MAI riprodotti da noi.
+Le altre ancore: `harroun_2020` Eqs. 1-2 (stessa architettura);
 `miki_2020` = l'antenato OPERATIVO (frozen unsteady inlet BC su 6
 geometrie); `paxson_miki_2022` (J cycle-averaged a livello CFD sulla
 stessa pratica). Antenati steady della prescrizione-dati:
@@ -246,7 +261,7 @@ auto-rigettante — *CFD/engine-data fino all'interfaccia → il tool a valle*
 1. **Contratto staged full-state** (D.13, §4 per l'analisi formale): non
    "dateci tutto", ma una scala dichiarata di ricchezza d'input — la
    **Annex B input taxonomy** (cella K-iv; `docs/rde_nozzle_development_plan.md:
-   1132-1160`): caso A (solo specs: propellente, φ, pressione media,
+   1132-1157`): caso A (solo specs: propellente, φ, pressione media,
    geometria annulus, Pa) → fully predictive, con il fixed full-flowing
    bell = Rao-at-⟨Pc⟩ BY THEOREM; caso B (+ modello di struttura d'onda
    non-CFD) → il full CFD-free tool, con il generatore di profili come
@@ -271,14 +286,19 @@ auto-rigettante — *CFD/engine-data fino all'interfaccia → il tool a valle*
    Il ponte formale è esatto, non retorico: la D1.2 di [T-DISC] definisce
    la **p-only projection** pi: s(xi) ↦ (P(xi), uniform) — *"the EAP-style
    / pressure-only reading of the interface"* (`docs/rde_nozzle_MASTER.md:
-   1004-1008`) — cioè LA classe di BC che la linea Paxson-Harroun impone; e
-   [T-DISC-1]/[T-DISC-2] (`:1030`, `:1086`) dimostrano che la fibra sopra
-   una traccia di pressione è non-degenere e J-separante: due dataset con
-   la STESSA P(theta) e contenuto full-state diverso producono ottimi
-   diversi. Il p-only BC non è un'approssimazione innocua: è una proiezione
-   che perde informazione J-rilevante, per teorema. La riparazione è il
-   contratto D.13 (+w/Gamma, h0 profile-grade, TRIPLE monitor, margine
-   m_n) — v. §4.
+   1004-1008`) — cioè LA classe di BC che la linea Paxson-Harroun impone;
+   e la catena convice la proiezione A GRADI DICHIARATI: [T-DISC-1]
+   (`:1030`, THEOREM*) dà fibre non-degeneri, [T-DISC-2] (`:1086`,
+   split-grade per gamba: sign leg THEOREM* SCOPED, confronti
+   physical-h0-fixed) dà la J-separazione dentro la fibra — due dataset
+   con la STESSA P(theta), le stesse medie di ciclo (pin [REV2-r1-1]:
+   fibra = calibrated-scalars) e contenuto di fluttuazione/swirl diverso
+   hanno J diversi; la conseguenza sugli OTTIMI è [T-DISC-3](b) (`:1184`,
+   SCHEMA, con la premessa (DR) design-realizability NOMINATA, "checked
+   per family at M-RED time"). Il p-only BC non è un'approssimazione
+   innocua: perde informazione J-rilevante dentro lo scope dichiarato. La
+   riparazione è il contratto D.13 (+w/Gamma, h0 profile-grade, TRIPLE
+   monitor, margine m_n) — v. §4.
 3. **Il rigetto come feature**: G6 loud-reject + stage-A + monitor armabili
    = il contratto può dire NO a un dataset reale (falsificatore di N-K).
    Novità query-bounded: il claim "nessun contratto-dati dichiarato nel
@@ -297,7 +317,7 @@ contract (+ (6) periodic data class dove indicato).
 
 | antenato (LL-id) | cosa fa | cosa gli manca vs noi |
 |---|---|---|
-| **LL-6** linea imposed-BC (Harroun Eq.7 p-only / pratica Paxson) — SEED C-1bis [P1.6] | impone una legge di ciclo analitica come inlet BC a un dominio ugello disaccoppiato (`harroun_2021` Eq.7: P(theta) rotante 30→2atm 13.8kHz, p-only, no swirl; H21-F11) | full-state, conteggio caratteristiche, metrica di contratto C50; è ESATTAMENTE la proiezione p-only che [T-DISC] convice (§3) |
+| **LL-6** linea imposed-BC (Harroun Eq.7 p-only / pratica Paxson) — SEED C-1bis [P1.6] | impone una legge di ciclo analitica come inlet BC a un dominio ugello disaccoppiato (`harroun_2021` Eq.7: P(theta) rotante 30 → ~2-6 atm per settore, 13.8 kHz — harvest :608, CT-6 §2a; p-only, no swirl; H21-F11) | full-state, conteggio caratteristiche, metrica di contratto C50; è ESATTAMENTE la proiezione p-only che [T-DISC] convice (§3) |
 | **LL-24** Miki 2020 — antenato OPERATIVO [P2.9] | frozen unsteady inlet BC applicato su 6 geometrie (`miki_2020`): la pratica imposed-BC portata a metodologia di design | nessun contratto dichiarato (classe dati, validità, audit); nessun rigetto; nessuna classe di rigore per fase |
 | **LL-2** Harroun 2021 (+2020) [P1.2+P3.11] | famiglia per-phase steady 2-D + C_F quasi-cycle-averaged; convenzione di media UNDECLARED (deep-check alla fonte, duty (a) chiuso: peso/denominatore non dichiarati, pp.670-671 + Eq.10) | media non pinnata (la nostra mu è dichiarata, T-O2); validazione = istanza senza tier (CT-3); BC p-only |
 | **LL-13** Fievisohn (JPP 2017 + PhD 2016) — SEED, [IO] [P2.S-1] | wave-frame + rotational shock-fitted MoC + **inflow BC**: il cugino più vicino della classe reduced-MoC (l'ugello resta [REP]-bounded via `wanted_fievisohn_2018_quasi2d_moc`, procurement 2018-0881 RAISED) | mai design, mai famiglia per-fase, mai contratto d'interfaccia con audit/margini |
@@ -346,11 +366,17 @@ Classi di rigore dichiarate riga per riga (R4/R5):
    teorema che regge l'argomento di chiusura: D1.2 p-only projection
    (:1004-1008) con pin [REV2-r1-1] (default fase-uniforme = le mu-medie
    della famiglia stessa: fibra = calibrated-scalars); [T-DISC-1] fiber
-   non-degeneracy (:1030); [T-DISC-2] J-separation lower bound within a
-   fiber (:1086); [T-DISC-3] 2-epsilon transfer sull'ottimizzazione
-   (:1184). Scope: classe A di D1.1 (pure periodic single-mode, frozen
-   thermally-perfect, H9, mu pushforward) — il teorema convice la
-   proiezione DENTRO la classe dichiarata, non oltre.
+   non-degeneracy (:1030, **THEOREM***); [T-DISC-2] J-separation lower
+   bound within a fiber (:1086, **split-grade per gamba**: sign leg
+   THEOREM* SCOPED, booking level sotto H2.2, confronti physical-h0-fixed;
+   ramo uncompensated-DROP geometry-signed a separazione ZERO nel corner
+   degenere — nessun floor positivo asserito lì); [T-DISC-3] 2-epsilon
+   transfer sull'ottimizzazione (:1184, **SCHEMA**; la gamba (b) porta la
+   premessa (DR) design-realizability nominata, checked per family a
+   M-RED time). Scope: classe A di D1.1 (pure periodic single-mode, frozen
+   thermally-perfect, H9, mu pushforward) — la catena convice la
+   proiezione DENTRO la classe dichiarata, non oltre, e ogni gamba parla
+   al SUO grado.
 6. **Condizionali ereditati** (ledger L4): C-D25U (-a/-b/-c con U5 NAMED
    MISSING) per gli heir THEOREM*; chiusure C-HT4/C-IGMIX/C-O33 =
    closure-conditional del registry, non gap analitici
@@ -369,21 +395,26 @@ empirica viva).
 
 ---
 
-## 5. STATO (dimostrato / parziale / aperto; decisioni con owner e trigger)
+## 5. STATO (dimostrato / parziale / aperto; decisioni con owner e trigger — cella K-v)
 
 **Dimostrato**: D2.4 + L4-DEFAULT + L4-CERT (THEOREM, con condizionali
-ledger); D.13 recovery theorem; h0-promotion (THEOREM); [T-DISC] 1/2/3
-(classe A dichiarata). **Parziale**: monitor TRIPLE/D.16 (PRACTICE,
-SPECIFIED-NOT-ARMED fino a prima ingestione; gamba licensing SCHEMA
-G-b1/G-b2); metrica C50 aggiudicata nella FORMA, istanziazione = duty F2.
+ledger); D.13 recovery theorem; h0-promotion (THEOREM); [T-DISC-1]
+(THEOREM*) e [T-DISC-2] sign leg (THEOREM* SCOPED, confronti
+physical-h0-fixed) su classe A dichiarata. **Parziale**: [T-DISC-3]
+(SCHEMA; gamba (b) con premessa (DR) nominata, checked per family a M-RED
+time); monitor TRIPLE/D.16 (PRACTICE, SPECIFIED-NOT-ARMED fino a prima
+ingestione; gamba licensing SCHEMA G-b1/G-b2); metrica C50 aggiudicata
+nella FORMA, istanziazione = duty F2.
 **Aperto** (owner/trigger espliciti):
 
 - **U3'** — PREMISE-OPEN, owner **F2a**; trigger = ingresso F2a; il
   contratto di estrazione NON si freeza prima (D6 :191-202, :264-267).
   In termini della regola di interpretazione (guardia 17 / CKP-S2-1,
-  §1.2): la premessa SCOPERTA di U3' è esattamente il **choking pieno** —
-  l'esistenza, lungo ciclo e azimut, di una gola/superficie sonica (anche
-  throatless geometrica) tutta sonica-o-supersonica che faccia da gate;
+  §1.2): la premessa SCOPERTA di U3' è la metà gola/superficie-sonica del
+  **choking pieno** — l'esistenza, lungo ciclo e azimut, di una superficie
+  sonica (anche throatless geometrica) tutta sonica-o-supersonica che
+  faccia da gate (identificazione parziale dichiarata: U3' possiede anche
+  corrector e monitor eseguibile, D6 :196-201);
   finché U3' non la adjudica (ipotesi + monitor eseguibile + il caso NO =
   patch subsonica con chiusura dichiarata), il decoupling che ogni lettura
   one-way presuppone resta un'ipotesi dichiarata, non un fatto.
@@ -399,8 +430,8 @@ G-b1/G-b2); metrica C50 aggiudicata nella FORMA, istanziazione = duty F2.
   `contract:datum-uncertainty-contract-missing`
   (`docs/findings_registry.yaml:1661`) e
   `contract:phase-gauge-jitter-alignment-unpinned`.
-- **C52/C53** — agenda del blind-contract diff, finestra F2 contract
-  window (card sotto).
+- **C52/C53/C54** — agenda del blind-contract diff (card sotto: C52/C53
+  finestra F2 contract window; C54 al prossimo touch di M0 D2.4).
 
 ### 5.1 DECISION CARD delle scelte presentate (formato §1g, 6 campi)
 
@@ -440,7 +471,7 @@ G-b1/G-b2); metrica C50 aggiudicata nella FORMA, istanziazione = duty F2.
 **CARD C52 — Status di una signature caratteristica MIXED/phase-crossing
 su Gamma_d** (riga NEVER del ledger: card "non-aggiudicata" stampata)
 
-1. *Scelta*: **C52** (`docs/choice_ledger.yaml:726`).
+1. *Scelta*: **C52** (`docs/choice_ledger.yaml:716`).
 2. *Alternative censite (data + fonte)*: lettura di record (patch
    subsoniche = case-class ammissibile con monitor, O1-O4, downgrade
    documentati) vs lettura blind-PDE (P3) (signature costante o
@@ -461,7 +492,7 @@ su Gamma_d** (riga NEVER del ledger: card "non-aggiudicata" stampata)
 **CARD C53 — Gamma_d PLACEMENT policy** (riga NEVER: card
 "non-aggiudicata" stampata)
 
-1. *Scelta*: **C53** (`docs/choice_ledger.yaml:737`).
+1. *Scelta*: **C53** (`docs/choice_ledger.yaml:726`).
 2. *Alternative censite (data + fonte)*: blind-DATA (stazione più a MONTE
    con beta = 0, pressione di trasportabilità) vs blind-PDE (banda
    ammissibile [z_I^-, z_I^+], POSSIBLY EMPTY, preferenza a VALLE) — i due
@@ -470,21 +501,167 @@ su Gamma_d** (riga NEVER del ledger: card "non-aggiudicata" stampata)
 3. *Verdetto*: **NON AGGIUDICATA** (status NEVER; il record fissa Gamma_d
    per caso senza registrare il trade).
 4. *RECENCY check*: censimento 2026-08-19, perimetro blind-contract diff —
-   **ATTUALE(perimetro: blind-contract diff D-2, data-check 2026-08-23)**.
-   Nota harvest a favore della futura aggiudicazione: la tabella
-   interfacce dà il decadimento assiale (87.8% pulse damping, S6) = DOVE
-   piazzare l'interfaccia per una corrugazione target
-   (`THROAT_FIELD_HARVEST_c4.md:613`).
+   **ATTUALE(perimetro: blind-contract diff D-2, data-check 2026-08-23)**
 5. *Falsificatore*: il verdetto di VUOTEZZA della banda è parte del
    deliverable — banda vuota = la policy a banda muore sul caso.
 6. *Finestra di ri-esame*: **F2 contract window** (carrier suggerito dal
-   judge: placement-band remark in M0 D2.4).
+   judge: placement-band remark in M0 D2.4). Input harvest disponibile
+   per l'aggiudicazione: la tabella interfacce dà il decadimento assiale
+   (87.8% pulse damping, S6) = DOVE piazzare l'interfaccia per una
+   corrugazione target (`THROAT_FIELD_HARVEST_c4.md:613`).
+
+**CARD C54 — Status normativo del rung I4 (single mean state) nella
+scala D2.4** (riga NEVER del ledger: card "non-aggiudicata" stampata;
+perimetro CH10: la scala I0-I4 è presentata in §1.1)
+
+1. *Scelta*: **C54** (`docs/choice_ledger.yaml:737`).
+2. *Alternative censite (data + fonte)*: blind-DATA Claim 3.4 (BAN del
+   mean-datum solve come riduzione — reject-only: errore O(Var) SENZA
+   parametro piccolo, controesempio Jensen) vs compatibilizzazione del
+   judge (annotazione one-line a I4 in M0 D2.4 col warning O(Var)
+   no-small-parameter: I4 resta rung DICHIARATO della scala, mai claim di
+   approssimazione) — censite dal blind-contract diff, minted 2026-08-19
+   (`validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md#D-4`).
+3. *Verdetto*: **NON AGGIUDICATA** (status NEVER; consumption-check
+   2026-08-19 NEGATIVO: la riga D2.4 legge ancora "I4 single mean state."
+   nuda — l'annotazione non è atterrata, riga OPEN).
+4. *RECENCY check*: censimento 2026-08-19, perimetro blind-contract diff,
+   con verifica di consumo su M0 eseguita nella stessa finestra —
+   **ATTUALE(perimetro: blind-contract diff D-4 + consumption-check M0,
+   data-check 2026-08-23)**
+5. *Falsificatore*: l'atterraggio dell'annotazione one-line in M0 D2.4
+   flippa la riga a DECIDED con l'anchor M0 come evidence (il ledger lo
+   pre-registra).
+6. *Finestra di ri-esame*: **prossimo touch di M0 D2.4** (owner della
+   riga; quando la line atterra, la card si chiude).
 
 ---
 
-## 6. STORIA
+## 6. STORIA (writer W-B.2, 2026-08-23 — trittico [V2-R2]; ogni battuta
+## porta DATA + PROCESSO + VERDETTO, campi di join del retro-audit §5-bis)
 
-[W-B.2]
+### 6.1 D2.4 [D-CONTRACT]: la terna (Gamma_d, data class, validity)
+
+- **Battuta 1 — derivazione originale.** DATA: anteriore al 2026-07-21
+  (datazione by-inclusion, dichiarata: il blocco D2.4 non porta data
+  propria; l'addendum S12 [D-GSEP] del 2026-07-21 emenda la stessa Parte
+  II di M0, `docs/rde_nozzle_MASTER.md:274`, quindi la struttura
+  contrattuale gli preesiste). PROCESSO: catena D1→M0 (D2.4,
+  `docs/rde_nozzle_MASTER.md:116-124`): interfaccia come superficie
+  fissa a valle di ogni rilascio di calore + tre requisiti R1/R2/R3 +
+  scala di idealizzazione I0-I4. VERDETTO: il contratto è la risposta di
+  record alla domanda-dati, non un formato file.
+- **Battuta 2 — (a) RIDERIVATO-PIENO (formalizzazione cieca).** DATA:
+  2026-08-17. PROCESSO: contract blind formalization S-FOUNDATIONS
+  (brief agnostico; workflow 10/10; judge
+  `validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md`).
+  VERDETTO: 9 elementi del contratto riderivati ciechi; 3 gap P2 emersi
+  = righe F-1/F-2/F-3 (data-class unpinned, audit RH/entropia del datum,
+  contratto d'incertezza) — arricchimenti, non smentite (commit 5221529).
+- **Battuta 3 — convergenza.** DATA: 2026-08-22/23 (S-PRES). PROCESSO:
+  precisione guardia 11 (Gamma_d NON è "the throat", checkpoint
+  `validation/spres_raws_2026-08-22/SESSION_STATE_checkpoint.md:158-163`)
+  + pin utente 2026-08-23 decoupling⇔choking pieno (guardia 17 /
+  CKP-S2-1, §1.2). VERDETTO: classe finale = contratto di record con
+  case-class subsonica DICHIARATA e lettura fisica del feedback fissata.
+
+### 6.2 L4-DEFAULT e il margine m_n ≥ delta
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-06 (blocco
+  [L4-DEFAULT OF RECORD, dated 2026-08-06 (S16, ledger pass 2)],
+  `docs/rde_nozzle_MASTER.md:125-138`). PROCESSO: campagna fondazioni
+  S15/S16 (ledger dei condizionali p1/p2 + default L4). VERDETTO:
+  default certificato con ogni patch assialmente supersonica CON
+  margine; H2/H-I2 DISCHARGED sul default per teorema
+  ([T-TH0]/[T-NSW]).
+- **Battuta 2 — (a) RIDERIVATO-PIENO con cap dichiarato.** DATA:
+  2026-08-17. PROCESSO: prova Phase D L4⇒R1
+  (`validation/sfoundations_raws_2026-08-13/phaseD_L4_implies_R1.md`,
+  1529 righe; refutazioni r1/r2; judge VERDICT_contract_and_L4R1.md,
+  autorità downgrade-only). VERDETTO: core THEOREM/THEOREM* con confine
+  unstart ONESTO (classe M_s>M_x esclusa+monitorata); caveat di record:
+  loop refuter cappato a round 2 NOT-DRY, dichiarato nel verdict stesso.
+- **Battuta 3 — convergenza.** DATA: 2026-08-17/20 (hypaudit).
+  PROCESSO: audit di legittimità delle ipotesi con dual-seed dedicato.
+  VERDETTO: [R1-CAUSAL] = **CONDIZIONATA** (l'unico verdetto non-LDM dei
+  sei: finestra W1-W4, mu(Xi_sub)>0 generico sui dati reali, monitor
+  suite unarmed = live breach di M0 VI.4bis(v), owner F2 —
+  `validation/sfoundations_raws_2026-08-13/hypaudit/VERDICT_hypothesis_audit.md:482`);
+  classe finale: teorema ESATTO solo su L4, condizionato-monitorato
+  fuori.
+
+### 6.3 Stage-A audit + G6 loud-reject
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-11 (piano v3,
+  finestra S21). PROCESSO: G6 coniato come gate nel piano ("G6 (new)
+  DATA-CONTRACT GATE ... rejected loud — no design on inconsistent
+  data", `docs/rde_nozzle_development_plan.md:808-810`; tabella gate
+  `:290`), con gli audit stage-A specificati (`:174-176`; M0 VI.1
+  :3067-3075). VERDETTO: gate dichiarato, operativo da F2a.
+- **Battuta 2 — (c) NON-ESERCITATO su dati reali (il NO di G6 non ha
+  mai sparato: nessun dataset reale è mai stato ingerito — dichiarato in
+  §5); doppia prova alternativa.** DATA: 2026-08-17 (hypaudit
+  `confront_contract.md`: bundle [CONTRACT-MU] E1-E5 =
+  LEGITTIMA-DICHIARATA-MONITORATA con E3 CONDIZIONATA dentro,
+  VERDICT_hypothesis_audit.md:381-385 — "the stage-A audits are work
+  the published SOTA never did", commit 5221529) + 2026-08-19
+  (estensione del loud-reject set: rejector TRIPLE D.14 +
+  angular-momentum D.16, PRACTICE SPECIFIED-NOT-ARMED,
+  `docs/rde_nozzle_development_plan.md:811-815`). PROCESSO: audit di
+  legittimità + estensione specificata del set. VERDETTO: la legittimità
+  del contratto è auditata; l'armamento del gate = evento futuro F2a con
+  owner — aperto dichiarato, non difetto taciuto.
+- **Battuta 3 — convergenza.** DATA: 2026-08-19 (Annex B). PROCESSO:
+  invariante "a generator emitting off-manifold data is a generator
+  bug" (`docs/rde_nozzle_development_plan.md:1155-1157`). VERDETTO:
+  classe PRACTICE-gate; gli audit valgono ANCHE sui dati generati —
+  nessuna asimmetria fidata.
+
+### 6.4 U3' PREMISE-OPEN e contact/slip (i due aperti F2a)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-11. PROCESSO:
+  censimento choking (`validation/ADVISORY_rde_choking_2026-08-11.md`,
+  5 paper) + addendum S21 eseguito integralmente (commit 1d9609a);
+  U3' scritto nel piano (`docs/rde_nozzle_development_plan.md:191-202`,
+  ribadito `:264-267`). VERDETTO: "U3 stays PREMISE-OPEN until U3'
+  closes; NO freeze of the extraction contract before".
+- **Battuta 2 — (c) NON-RIDERIVATO (l'apertura È il contenuto); doppia
+  prova alternativa dell'apertura.** DATA: 2026-08-21 (throat harvest
+  C4, commit 3b2b9e6: pin esibito ma MAI verificato spettralmente in
+  ALCUN CFD pubblicato, search-proven; KP18 Table 1 = unica statistica
+  quantitativa di gola; gap G1-G9) + 2026-08-17 (hypaudit: "L4 possibly
+  empty on real engines", VERDICT_hypothesis_audit.md:485). PROCESSO:
+  harvest a lente dedicata + audit ipotesi. VERDETTO: l'apertura è
+  corroborata da due lati indipendenti — genuina, non pigrizia.
+- **Battuta 3 — convergenza.** DATA: 2026-08-22/23 (S-PRES, guardia 11).
+  PROCESSO: la sonic line corrugata KP18 (M=1 attraversata due
+  volte/ciclo) diventa il PERCHÉ fisico del margine e della case-class
+  subsonica (§1.2). VERDETTO: owner F2a confermato; contact/slip default
+  = smeared-contact dichiarato con opzione FITTED a F4b
+  (`docs/rde_nozzle_development_plan.md:176-190`).
+
+### 6.5 Il ledger L4 dei condizionali (eredità BY ID)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-05/06 (S15/S16:
+  ledger pass 1 + pass 2 con L4-default; carrier
+  `docs/rde_nozzle_conditionals.md:1-16`). PROCESSO: campagna fondazioni
+  — i condizionali analitici (C-D25U, C-SBVF) enunciati UNA volta,
+  ereditati BY ID da ogni THEOREM*. VERDETTO: ledger di record.
+- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-17 (tree diff).
+  PROCESSO: 4/4 alberi ciechi atterrano su classi fitted-front
+  piecewise-smooth con la scoping Li-Yu/Majda ricostruita e "wild
+  non-uniqueness fenced by class fiat, declared openly"
+  (`validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:330-335`)
+  — il verdetto per-riga del diff è dichiarato come stance, non come
+  prova. VERDETTO: l'architettura condizionale-dichiarato è raggiunta
+  indipendentemente dai fork; la sostanza analitica dei singoli
+  condizionali resta quella del ledger.
+- **Battuta 3 — convergenza.** DATA: 2026-08-06 (C-MAJDA affilata a
+  U3-H1, S16) e separazione di natura nel claims registry (analitici vs
+  "model closures and numeric residuals, NOT analytic gaps",
+  `docs/rde_nozzle_conditionals.md:7-9`). PROCESSO: consolidamento.
+  VERDETTO: classe finale = ledger con due nature SEPARATE; ogni Verdict
+  a valle stampa i condizionali ereditati — mai ipotesi silenziose.
 
 ---
 
@@ -526,7 +703,7 @@ classe di disciplina adottata query-bounded.
 ## 8. DOMANDE DA PANEL (risposte ancorate)
 
 **Q1 (ESA, LA domanda attesa): "Che input vi serve da noi?"** — La
-risposta di record è la Annex B input taxonomy (D6 :1132-1160): al minimo
+risposta di record è la Annex B input taxonomy (D6 :1132-1157): al minimo
 le SPECS (caso A: propellente, φ, pressione media, geometria annulus, Pa)
 — il tool è fully predictive a quel rung (stage P34: prediction); ogni
 dato in più (waveform, tracce di pressione, spinta, f, n; profilo di
@@ -556,13 +733,17 @@ loud-reject (D6 :808-810). Il gate vale anche per i dati GENERATI da noi
 
 **Q5: "Harroun/Paxson fanno girare l'ugello con un BC imposto da anni: che
 cosa aggiungete?"** — Il loro BC è p-only: esattamente la proiezione
-pi di [T-DISC] D1.2 (M0 :1004-1008), e [T-DISC-1/2] dimostrano che la
-fibra sopra P(theta) è J-separante — due motori con la stessa traccia di
-pressione e swirl/h0 diversi hanno ottimi diversi. Il contratto staged
-full-state (D.13) è la riparazione theorem-driven, e la loro linea è il
-nostro antenato DICHIARATO (LL-6/LL-24, §3-bis) — con citazione piena e
-caveat CT-6 sui loro numeri (30→2 atm, 13.8 kHz: numeri di `harroun_2021`,
-non riprodotti da noi).
+pi di [T-DISC] D1.2 (M0 :1004-1008). Dentro la classe A: [T-DISC-1]
+(THEOREM*) + [T-DISC-2] sign leg (THEOREM* SCOPED) danno fibre
+non-degeneri e J-separazione — due dataset con la stessa traccia di
+pressione e le stesse medie di ciclo ma contenuto di fluttuazione/swirl
+diverso hanno J diversi, dove il confronto physical-h0-fixed è
+ammissibile; la conseguenza sugli OTTIMI è [T-DISC-3](b) (SCHEMA, con la
+premessa (DR) nominata). Il contratto staged full-state (D.13) è la
+riparazione theorem-driven, e la loro linea è il nostro antenato
+DICHIARATO (LL-6/LL-24, §3-bis) — con citazione piena e caveat CT-6 sui
+loro numeri (30 → ~2-6 atm per settore, 13.8 kHz: numeri di
+`harroun_2021`, harvest :608, non riprodotti da noi).
 
 **Q6: "Quando freezate il contratto d'estrazione?"** — Non prima di U3'
 (owner F2a): la regola U3 presuppone una superficie per-fase supersonica
@@ -597,7 +778,7 @@ classe):
 
 1. **"Per progettare l'ugello del VOSTRO motore ci bastano le specs — ogni
    dato in più sale una scala dichiarata di rigore."** — Annex B casi A-G,
-   `docs/rde_nozzle_development_plan.md:1132-1160`. Classe: contratto di
+   `docs/rde_nozzle_development_plan.md:1132-1157`. Classe: contratto di
    record; stage P34 = prediction (dichiarato on-slide). [LA risposta alla
    domanda ESA "che input vi serve" — il feed più prezioso.]
 2. **"Il dato non entra: viene AMMESSO — e il gate sa dire no."** — G6
@@ -615,12 +796,14 @@ classe):
    subsoniche = case-class dichiarata O1-O4
    (`docs/rde_nozzle_problem_book.md:302-321`). Classe: [IO] harvest +
    record D1; CT-6 sui numeri altrui.
-5. **"Il campo impone BC p-only; il nostro teorema dimostra che quella
+5. **"Il campo impone BC p-only; i nostri teoremi dimostrano che quella
    proiezione perde informazione di spinta — il contratto full-state È la
    riparazione."** — Harroun Eq.7 p-only (`harroun_2021`, harvest :608,
-   :763) vs [T-DISC] D1.2 + T-DISC-1/2 (`docs/rde_nozzle_MASTER.md:
-   1004-1008, 1030, 1086`); lineage LL-6/LL-24 (§3-bis). Classe: THEOREM
-   (scope classe A dichiarato).
+   :763) vs [T-DISC] D1.2 + T-DISC-1/2/3 (`docs/rde_nozzle_MASTER.md:
+   1004-1008, 1030, 1086, 1184`); lineage LL-6/LL-24 (§3-bis). Classe:
+   per gamba — T-DISC-1 THEOREM*, T-DISC-2 split-grade (sign leg THEOREM*
+   SCOPED), conseguenza-ottimi T-DISC-3(b) SCHEMA con premessa (DR);
+   scope classe A dichiarato (mai "THEOREM" secco on-slide).
 6. **"Nessuno dei quattro paper di riferimento dichiara una classe di
    dati; la periodicità è esibita nei CFD, mai verificata
    spettralmente."** — CH5 §1.1 + `THROAT_FIELD_HARVEST_c4.md:571-573,

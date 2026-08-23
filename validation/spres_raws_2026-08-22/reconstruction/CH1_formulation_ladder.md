@@ -249,10 +249,10 @@ con classe):
 
 | classe di flusso (census) | macchina | deliverable / classe | canali residui NON coperti (classe) |
 |---|---|---|---|
-| single/k-wave rotating mode | steadificazione T0 (esatta in classe); rung 2 mediato + barra O(St); ancora BVP wave-frame | Σ* + certificato PIENO; teoremi per-fase | rung-2 O(St) (prezzato P4, SCHEMA/corrector G3-owned); gap list G1–G12 di [T-T0P] (SCHEMA sui due strati); slip-free G9 + cl(Ω_march) (boundary dichiarati, §1.3); bridge = CONJECTURE-with-falsifier (:3013) |
+| single/k-wave rotating mode | steadificazione T0 (esatta in classe); rung 2 mediato + barra O(St); ancora BVP wave-frame | Σ* + certificato PIENO; teoremi per-fase | rung-2 O(St) (prezzato P4, SCHEMA/corrector G3-owned); gap list G1–G12 di [T-T0P] (SCHEMA sui due strati); slip-free G9 + cl(Ω_march) (boundary dichiarati, §1.3); bridge = CONJECTURE-with-falsifier (:3013); patch subsoniche FUORI dal default L4 = case-class DICHIARATA (D1 4.3bis O1-O4), canali di RISALITA dell'informazione — mai mediate in silenzio (consumo guardia 17 [B3-G17]) |
 | modulated / counter-rotating (RPO) | BVP periodico, (Ω,T) incognite, adjoint doubly-bordered; dimostratore 2-D+t | **PRACTICE** — "space-time tracking 3-D absent" (:3014) | nessun certificato di classe; tutta la riga è pratica dichiarata |
 | multistable mode set | ottimizzazione per-branch + layer robusto CVaR/DD-DRO sulla misura di modo | Σ* robusto; **SCHEMA/PRACTICE** (:3015) | misura di modo mal specificata = PB-5 (formulazione di record, CH1 §1.4); nessuna provenienza hardware della misura (R20) |
-| chaotic / mode-hopping | SOLO bound + surrogati robusti; shadowing RIFIUTATO ("hypotheses fail across shocks") | **RIFIUTO ONESTO dei certificati** + muro [S-GBE] | il muro è un CEILING, non un design: J_exact⁺ ≤ F_env(flussi medi d'interfaccia) sotto ipotesi E1–E5 dichiarate, niente Birkhoff (Cesàro finite-T + storage limitato); classe **SCHEMA**, carrier X-GBE PASS (`docs/claims_registry.yaml:1843-1854`); sul scope periodico il muro ergodico è Jensen-looser del muro per-fase (gap riportabile, :3016) |
+| chaotic / mode-hopping | SOLO bound + surrogati robusti; shadowing RIFIUTATO ("hypotheses fail across shocks") | **RIFIUTO ONESTO dei certificati** + muro [S-GBE] | il muro è un CEILING, non un design: J_exact⁺ ≤ F_env(flussi medi d'interfaccia) sotto ipotesi E1–E5 dichiarate, niente Birkhoff (Cesàro finite-T + storage limitato); classe **SCHEMA**, carrier X-GBE PASS di record 2026-08-06 (`docs/claims_registry.yaml:1843-1864` — blocco S-GBE :1843-1854 + blocco X-GBE :1856-1864 [fix WB1-C3-02]); sul scope periodico il muro ergodico è Jensen-looser del muro per-fase (gap riportabile, :3016) |
 
 Ancora del muro: [S-GBE] RESOLVED 2026-08-06 (S16 T4,
 `docs/rde_nozzle_GB_ergodic.md`), inline nella riga caotica della tabella
@@ -270,6 +270,23 @@ Strouhal governa, D1 ⊃ D2); (4) mixed-interface decision tree (O1–O4).
 Classe: strumentazione di record (PRACTICE armata, DEFINITION per il
 monitor).
 
+**Consumo guardia 17 — feedback ugello→camera [B3-G17]** (pin utente
+2026-08-23, `GUARD_CHECKLIST.md` riga 17; registrato in SESSION2_LOG
+CKP-S2-1). Il licensing per classe di flusso PRESUPPONE la lettura
+choking-pieno/patch-subsoniche: il decoupling a monte (assenza di
+feedback) si può asserire SOLO se la porzione pre-gola è convergente E la
+gola è tutta sonica o supersonica lungo ciclo/azimut; se la gola — anche
+throatless geometrica (superficie sonica senza gola geometrica) —
+presenta patch subsoniche, il feedback C'È: le patch sono i canali di
+risalita dell'informazione, case-class DICHIARATA (D1 4.3bis O1-O4,
+coerente con C-1bis/KP18 sonic line corrugata), mai mediate in silenzio.
+NESSUN claim di decoupling/one-way BC senza la condizione di choking
+citata; il regime forte-transiente (unstart) è fuori dalla lettura a
+piccole perturbazioni (confine dichiarato se toccato). **La regola è di
+CASA in CH10** (§1.2 lettura fisica del contratto, U3', Q7): questo
+capitolo la CITA come precondizione della tabella di licenza —
+cross-ref, non duplicazione.
+
 **H-iii — la query "dichiarazione del regime di validità nel campo"
 (protocollo bounded G-11, eseguita in-onda 2026-08-23).**
 - **q**: "il campo RDE-nozzle dichiara il REGIME DI VALIDITÀ della propria
@@ -282,7 +299,9 @@ monitor).
   `validity|applicab|regime.*valid|assumption.*declar` su litmap → 3 hit
   (:142, :613, :642; :613/:642 = sezione b6 nostra, non del campo); grep -i
   `validity|applicab|unstated|undeclared` su registry → hit solo su righe
-  del NOSTRO seed-validity program, zero sulle righe P-A..P-D.
+  NON-RDE (il NOSTRO seed-validity program f2-c20/c21 +
+  `rao_beck_booth_1999` :410, scuola classica — "optimum ON the validity
+  boundary"), zero sulle righe P-A..P-D [fix WB1-C3-01].
 - **ESITO: NOT-FOUND(q) sul campo RDE-nozzle istanziato** (guardia 4):
   NUAA `li_xu_lv_lv_song_2023`/`li_xu_lv_yu_zhou_2025` (gap
   steady-vs-transient riportati come DATI di campagna, nessun regime
@@ -593,11 +612,138 @@ a livello S1 owner F2 — dichiarato.
 
 ---
 
-## 6. STORIA
+## 6. STORIA — trittico condizionale [V2-R2] (writer B8a, W-B.2, 2026-08-23)
 
-[PLACEHOLDER — owner W-B.2 (B8a/B8b), trittico condizionale §T-§6 con
-data+processo+verdetto per battuta (emendamento §5-bis). NON compilata da
-questo writer per regola di non-interferenza.]
+Convenzione: ogni battuta porta DATA + PROCESSO + VERDETTO (vincolo §5-bis);
+le ancore di Fase A/B puntano a `validation/sfoundations_raws_2026-08-13/`
+(alberi ciechi datati 2026-08-17, `phaseB_tree_diff.md` 2026-08-17). Nessuna
+ancora di Fase A è asserita dove non esiste (F-des-3).
+
+**T-1. Il pin dati (onda rotante periodica pura, monitor T0-flatness).**
+- *Battuta 1 — derivazione originale*: 2026-07-16, sessione S6, addendum
+  utente di record — commit `ac78ec0` "periodic-wave standing scope +
+  algorithmic pins of record" (pin in M0 VI.4bis; enunciato M0:995).
+  PROCESSO: pin utente dichiarato + amendment M0 (`f28cb03` stesso giorno,
+  "M0 VI.4bis full-generality amendment"). VERDETTO: MODEL HYPOTHESIS
+  dichiarata, senza provenienza hardware (R20).
+- *Battuta 2 — seconda prova*: (c) **NON-RIDERIVATO: questo aspetto non ha
+  avuto riderivazione agnostica di record** — è un PIN utente, per
+  costruzione fuori dal perimetro derivativo di Fase A. Doppia prova
+  alternativa: pricing dei boundary nel blocco [S-T0P] (M0:560-561,
+  refutazioni 2026-08-17/19, `phaseD/VERDICT_phaseD_proofs1.md` +
+  `r2pass/VERDICT_doc1_rev10.md`) + monitor T0-flatness ARMATO come campo
+  obbligatorio del data contract (VI.4bis(v)) + routing fuori-pin a PB-5
+  (M0:108-114). PROCESSO: refuter Fase D che trattano il pin come ipotesi
+  prezzata; VERDETTO: ipotesi dichiarata con rejector armato, mai promossa.
+- *Battuta 3 — convergenza*: scope ri-affilato 2026-08-11 (finestra
+  POST-S21, corrector re-scoped a perturbazione dello sweep steady, memoria
+  `periodic-wave-data-scope`; M0 VI.4bis(ii) :3145-3150). Classe finale:
+  MODEL HYPOTHESIS + DEFINITION del monitor.
+
+**T-2. [D-MU] e il rung 2 (unica approssimazione O(St)).**
+- *Battuta 1*: 2026-07-16 — commit `7255e00` "program baseline: M0 master +
+  D1-D7" (D2.3 [D-MU], J = ∫F dμ; ladder rung in D6/problem book).
+  PROCESSO: derivazione single-author al baseline M0, con carrier
+  quantitativo T3/T4 vs S-H Table 1 lo stesso giorno (`e800a19`).
+  VERDETTO: DEFINITION + passo quasi-steady prezzato (P4).
+- *Battuta 2*: (a) RIDERIVATO-PIENO — Fase A/B 2026-08-17: item 1
+  "Steadification exactness (T-T0 road)" (`phaseB_tree_diff.md:315`,
+  H-F1(b) ri-deriva) + item 2 "Rao-collapse under averaging (T7 road)"
+  (`:325`, H-F35). PROCESSO: 4 alberi ciechi de-novo → diff vs record;
+  VERDETTO: CONVERGENT (theory-layer validations §3).
+- *Battuta 3*: classe finale DEFINITION [D-MU] + O(St) prezzato P4
+  (M0:444-450); correttore G3-owned, mai quantificato — dichiarato in
+  forchetta (i) al landing C4 (2026-08-21).
+
+**T-3. Stage-1: per-fase = quoziente esatto ([S-T0P] → [T-T0P]).**
+- *Battuta 1*: esattezza T0 al baseline 2026-07-16 (`7255e00`; consumata
+  dalla remark EAP `95d54de` stesso giorno, T0(i) "area avg = time avg");
+  forma a due stadi con aggiunto naive DEGENERE = riparazione REFUTE_A
+  2026-08-13 (sessione litreview-confrontation/F-SERVICE;
+  `docs/claims_registry.yaml:1903`). PROCESSO: derivazione + riparazione
+  carrier da confronto avversario con la letteratura. VERDETTO: [S-T0P]
+  SCHEMA con route di prova nominata.
+- *Battuta 2*: (a) RIDERIVATO-PIENO — doppia gamba: Fase A/B 2026-08-17,
+  H-F1(b) ri-deriva la steadificazione (`phaseB_tree_diff.md:315`); Fase D
+  proof loop 1 (S-T0P), giudice `phaseD/VERDICT_phaseD_proofs1.md`
+  (2026-08-17, 3 round × 2 lenti) → doc1 rev10 DRY di record 2026-08-19
+  (`r2pass/VERDICT_doc1_rev10.md`, S-FOUNDATIONS-C2). PROCESSO:
+  derivazione de-novo + refutazione until-dry con giudice. VERDETTO:
+  [T-T0P-E] THEOREM (metà equivarianza); main statement ATTERRATO.
+- *Battuta 3*: landing M0 2026-08-19 (M0:602-628): [T-T0P] SCHEMA sui due
+  strati con gap G1-G12 e tre boundaries (t-periodico, cl(Ω_march),
+  slip-free); write-up S1 resta owed (findings :1450-1458, trigger armato
+  da S-PRES stessa). Classe finale: SCHEMA + THEOREM parziale, dichiarati.
+
+**T-4. Contratto D2.4, ladder I0-I4 e default L4.**
+- *Battuta 1*: 2026-07-16 al baseline M0 (`7255e00`, D2.4 + ladder);
+  L4-DEFAULT OF RECORD 2026-08-06 (S16 [RIGOR/B], ledger pass 2, commit
+  `0b26dc7`; M0:125) e FRONT-CHAIN COMPLETION 2026-08-06 (S16 [RIGOR/A],
+  M0:221) con forma normale-meridiana m_n e split (M-a)/(M-a')
+  (M0:139-169). PROCESSO: campagna fondazioni S15/S16 (hypothesis ledger
+  con discharge). VERDETTO: DEFINITION/contract + [T-NSW] THEOREM.
+- *Battuta 2*: (a) RIDERIVATO-PIENO — Fase A contract-blind 2026-08-17:
+  brief cieco `contract_blind_brief.md` + doppia derivazione
+  (`contract_blind_data.md`/`contract_blind_pde.md`), giudice
+  `VERDICT_contract_and_L4R1.md` (2026-08-17); più item 3 "Certified
+  solution class (D2.5/S1 road): 4/4 trees" (`phaseB_tree_diff.md:330`).
+  PROCESSO: derivazione cieca + verdetto giudice. VERDETTO: CONVERGENT;
+  L4⇒R1 formalizzato in Fase D (`phaseD_L4_implies_R1.md`, 2026-08-19).
+- *Battuta 3*: R1 CONDIZIONATA alla finestra W1-W4 di record (M0:139-169);
+  classe finale come stampata in §2.
+
+**T-5. La biforcazione: T-T7RED / T-T4 / sharpness (PB-2).**
+- *Battuta 1*: nucleo al baseline 2026-07-16 (`7255e00` + check
+  quantitativo T3/T4 `e800a19`); demozione delle forme chiuse a oracoli
+  2026-07-16 (`ef0af1d`, "closed forms demoted to oracles" — la forma
+  primaria di T-T7RED diventa l'inversione reale); T-T4 corretto in S14
+  (PAN-S14 addendum 2026-08-04, arbiter-confirmed, M0:397). PROCESSO:
+  derivazione + panel D8 (2026-07-22, 16/16 CONFIRMED) + correzione
+  arbiter. VERDETTO: [T-T7RED] THEOREM; [T-T4] THEOREM* sotto [C-HT4].
+- *Battuta 2*: SPLIT per gamba. T-T7RED: (a) RIDERIVATO-PIENO via T7-road
+  H-F35 (`phaseB_tree_diff.md:325`, 2026-08-17). T-T4: (c)
+  **NON-RIDERIVATO: questo aspetto non ha avuto riderivazione agnostica di
+  record**; doppia prova alternativa = panel PAN-S14 arbiter-confirmed
+  (2026-07-22/2026-08-04) + carrier X-GRP06/10/12 + falsificatore O2 vivo
+  (`docs/claims_registry.yaml:339`). Clausola di SHARPNESS (max∫ < ∫max
+  strictly): (c) NON-RIDERIVATO e **doppia prova: ASSENTE** — enunciata di
+  record senza prova scritta (W2-R4, M0:2316-2319) e il carrier
+  quantitativo PB-2 è OPEN mai eseguito = **FINDING dichiarato**
+  (inventario `HISTORIAN_INV_a.md`).
+- *Battuta 3*: classi finali come §2; PB-2 resta il primo problema aperto
+  del programma (problem_book:532-536), nessuna data di record.
+
+**T-6. [T-T3-MAP] — la coincidenza cycle-vs-steady rifiutata come teorema.**
+- *Battuta 1*: 2026-08-11, S-GAUNTLET — breaker map of record (M0:879;
+  advisory `ADVISORY_Sgauntlet_generality_ledger_2026-08-11.md`).
+  PROCESSO: gauntlet avversario sulla generalità del ledger. VERDETTO:
+  SCHEMA container, claim generale RIFIUTATO, corner T-T3-SI provato.
+- *Battuta 2*: (c) NON-RIDERIVATO in Fase A come mappa; doppia prova
+  alternativa = S18 five-line hypothesis audit, precondizione NOMINATA del
+  clause S18 ESEGUITA in S24 T2a (2026-08-12, M0:4138-4140; log
+  `validation/PROGRESS_2026-08-12_S24_f1b.md`). PROCESSO: audit
+  pre-registrato su record S18. VERDETTO: corner-reading qualificata retta.
+- *Battuta 3*: classe finale SCHEMA container con classi per clausola
+  (claims:316-327); carrier CARRIER-A..E dispatch F5a/F2/F2a.
+
+**T-7. Riga H (licensing), [S-GBE] e B-lite.**
+- *Battuta 1*: tabella di licenza in M0 Parte V con la riga caotica
+  arbiter-annotata al panel S14 (2026-07-22/2026-08-04: named missing
+  lemma); [S-GBE] RESOLVED 2026-08-06 (S16 T4,
+  `docs/rde_nozzle_GB_ergodic.md`, M0 riga :3016); [S-BLITE] addendum
+  2026-07-21 (S12, commit `592107d` [F2-prep/BLITE]; M0:3027-3044).
+  PROCESSO: panel + campagna S16 con lemma scritto. VERDETTO: muro
+  ergodico SCRITTO, etichetta quasi-steady-only LIFTED.
+- *Battuta 2*: (c) NON-RIDERIVATO in Fase A (la ladder di licenza non è
+  nel perimetro degli alberi). Doppia prova alternativa per [S-GBE]:
+  carrier eseguibile X-GBE PASS (`docs/claims_registry.yaml:1843-1854`).
+  Per B-LITE: **doppia prova: ASSENTE** — [S-BLITE] è SCHEMA con brick
+  nominato G12-L1-3D MAI eseguito (M0:3037-3044) = **FINDING dichiarato**
+  (inventario). PROCESSO: censimento storico di questa battuta,
+  2026-08-23. VERDETTO: dichiarazioni come stampate, nessuna promozione.
+- *Battuta 3*: classi finali: tabella M0 V per riga (THEOREM…
+  SCHEMA/PRACTICE, rifiuto onesto sulla riga caotica); [S-GBE] SCHEMA con
+  carrier PASS; [S-BLITE] SCHEMA con brick nominato.
 
 ---
 
@@ -660,7 +806,9 @@ Bezier-chart + GA (LL-29, Kraiko 2016 — il LORO dato: l'exact batte i GA,
 evidenza PRO la rotta certificata) e la comunità aero ai censimenti di
 parametrizzazione (LL-28); nel corpus letto NESSUNA riga porta la
 parametrizzazione DENTRO un problema di forma mediato a misura pinnata —
-claim di assenza query-bounded al corpus (lint 7; join §3-bis/N-A).
+claim di assenza LEDGER-BOUNDED (join sulle righe N-20 del
+LINEAGE_LEDGER: LL-27/LL-28/LL-29, matrice W-B.0 20×82 a celle rese;
+lint 7; §3-bis/N-A) [fix WB1-C3-03].
 
 **(c) STANDARD DI RIFERIMENTO.** Asse **§C-7** (verifica multi-livello,
 classe journal-review avversaria): la scelta C1 è passata per panel a

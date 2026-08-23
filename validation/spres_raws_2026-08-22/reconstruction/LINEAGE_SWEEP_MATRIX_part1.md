@@ -1,7 +1,15 @@
 # LINEAGE SWEEP MATRIX — part 1 (slot L1, onda W-B.0, S-PRES session 2)
 
+**NOTA DI DRIFT [C6-REPAIR 2026-08-23]**: le ancore "CHn:righe" di
+questo file sono state stampate PRIMA della riscrittura dei CH1-CH10 da
+parte dell'onda W-B.1 (mtime 08:33-08:44) e NON sono più affidabili
+come numeri di riga (probe misurati: REFUTE_LINEAGE.md F-6). Il join
+downstream usa LL-id e i § dei CH, MAI numeri di riga CH. Le ancore
+non-CH (registry/findings/M0/LM/report/PDF) sono verificate sane da C6.
+
 Data: 2026-08-23. Ordine utente C-1ter di record (finding
-`methodology:lineage-recognition-gap`, `docs/findings_registry.yaml:2550`):
+`methodology:lineage-recognition-gap`, `docs/findings_registry.yaml:2541`
+[C6-REPAIR: era :2550]):
 la ricerca di lineage era tematica/citazionale, mai per isomorfismo
 strutturale — questo file esegue la META' 1 del prodotto cartesiano
 {15 componenti strutturali del metodo} x {41 id del mezzo corpus L1}.
@@ -10,11 +18,14 @@ strutturale — questo file esegue la META' 1 del prodotto cartesiano
 checkpoint C-1ter confrontate con i materiali di lettura DI RECORD, mai
 con il ricordo. Comandi misurati in questa finestra (SR-12):
 - righe registry: `Read docs/literature_registry.yaml` (tutte le 41 righe
-  del mezzo corpus stanno in :102-490);
+  del mezzo corpus stanno in :102-474 [C6-REPAIR: era ":102-490", che
+  includeva :476/:484 = viviano/valeriani, colonne L2]);
 - scan CH: `grep -ril <id> validation/spres_raws_2026-08-22/reconstruction/CH*.md`
   + `grep -noiE "<cognomi>" CH1..CH8` (41 id + 20 cognomi);
 - findings: `grep -n -iE "<id/cognomi>" docs/findings_registry.yaml`
-  (righe consumate: :1434, :2002, :2024, :2035, :2059, :2070, :2540, :2550);
+  (righe consumate: :1434, :1956, :2002, :2024, :2035, :2059, :2070,
+  :2541 [C6-REPAIR: ":2540/:2550" erano imprecise — A31/A33/A35 vive a
+  :1956-1967, il finding radice inizia a :2541]);
 - fonti di sezione: CH5 integrale; `docs/rde_nozzle_pipeline_decision_map.md`
   integrale (GV-1); `validation/ADVISORY_rde_choking_2026-08-11.md#3-bis`;
   estratti CH1:350-360, CH2:205-215/235-245/345-418, CH3:211-232,
@@ -50,7 +61,8 @@ chiamano? cosa le manca vs noi". Componenti non elencate in un blocco =
 3/6/7 l'assenza quasi-totale e' essa stessa il verdetto C2-NOT-FOUND(q) di
 record, LM:354-357).
 
-**Conteggio**: celle totali 41x15 = 615; PIENE = 80; "checked: none" = 535.
+**Conteggio**: celle totali 41x15 = 615; PIENE = 81; "checked: none" =
+534 [C6-REPAIR: era 80/535; +1 = harroun_2021 (9) C6-FILL].
 
 ---
 
@@ -61,8 +73,9 @@ record, LM:354-357).
   similarita' d'ingresso (Sec.4/5, antenati T-T3/T4, F-KO5); manca la
   famiglia indicizzata dalla fase sotto onda periodica.
 - (2) averaged functional: ISOMORFO sull'istanza TRAIETTORIA — funzionale
-  integrato nel tempo di volo; lo chiamano problema variazionale di
-  contouring "trajectory-averaged"; manca la misura di ciclo, T0-esattezza.
+  integrato nel tempo di volo; il NOSTRO record lo classifica
+  "trajectory-averaged" [C6-REPAIR: etichetta del registry/M0, non
+  lessico del paper]; manca la misura di ciclo, T0-esattezza.
 - (3) averaged wall conditions: ANTENATO DIRETTO E UNICO del corpus — loro
   (3.2) = condizione a parete PESATA integrata nel tempo (M0:2908-2926,
   page-verified S13); manca: media su fase (non su traiettoria), quoziente.
@@ -188,8 +201,8 @@ record, LM:354-357).
   domanda sul denominatore); manca teorema sul peso (per noi oggetto
   THEOREM-level).
 - (14) truncation/p_b: sec.VI.A + Fig.5 base-force subtraction = SOLO
-  igiene di misura (graft A31, findings :2540) — classe geometrica
-  sbagliata, non banda PB-2.
+  igiene di misura (graft A31, findings :1956-1967 [C6-REPAIR: era
+  :2540]) — classe geometrica sbagliata, non banda PB-2.
 - (15) monitors: Table 1 = l'UNICA statistica p0/T0 di gola pubblicata
   (spread Pt 237%); Fig. 6 sonic line corrugata = l'oggetto che il monitor
   T0-flatness guarda; manca il monitor formale con soglia.
@@ -213,10 +226,12 @@ record, LM:354-357).
   into a propulsive bound by the authors' own admission".
 - (8) mu measure: exhibit di dipendenza dallo stato di matching — ordering
   a 3 cicli che si INVERTE tra pre/post-combustion-base matching (graft
-  A33, attribuzione primaria Talley & Coy 2002; findings :2540) = precedente
+  A33, attribuzione primaria Talley & Coy 2002; findings :1956-1967
+  [C6-REPAIR: era :2540]) = precedente
   del META-principio "un ordering si inverte"; manca la misura formale mu.
 - (9) decomposition identity: decomposizione Delta-s + audit di bilancio
-  entropico PER-PHASE Eqq. (23),(31)-(32),(38) (graft A35: wiring gia'
+  entropico PER-PHASE Eqq. (23),(31)-(32),(38) (graft A35, findings
+  :1956-1967 [C6-REPAIR: era :2540]: wiring gia'
   in src/cycles, 3 condizioni vincolanti); manca l'identita' di
   decomposizione del funzionale J.
 - checked: none — 1, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15.
@@ -240,11 +255,18 @@ record, LM:354-357).
 - (6) periodic data class: la waveform Eq. (7) e' un dato PERIODICO imposto
   (istanza p-only); manca la classe di dati full-state + monitor T0.
 - (8) mu measure: VERIFICA ALLA FONTE (duty a) — vedi verdetto sotto.
+- (9) decomposition identity [C6-FILL, dalla lettura alla fonte del
+  refuter]: Fig. 21 + testo p.671 = split additivo del C_F per
+  SUPERFICIE (plug vs cowl, IE vs flared) — istanza per-superficie
+  della decomposizione di spinta (stesso genere della cella (9) di
+  shepherd_kasahara); manca l'identita' dimostrata, i residui
+  controllati e il per-fase.
 - (14) truncation/p_b: base drag 8x, separazione ritardata, "base pressure
   ... poorly predicted with either analytical models or previous empirical
   results" (p.672, Conclusions) — evidenza diretta sul canale p_b; manca
   chiusura/modello.
-- checked: none — 3, 4, 7, 9, 10, 11, 12, 13, 15.
+- checked: none — 3, 4, 7, 10, 11, 12, 13, 15 [C6-REPAIR: la (9) era
+  none, riempita C6-FILL].
 
 **VERDETTO DUTY (a) — peso/denominatore del quasi-cycle-averaging (C-1):**
 verificato alla fonte, pp. 670-671 + Eq. (10). Cosa il paper DICHIARA:
@@ -493,6 +515,7 @@ e' eseguito su tutti i 79).
 | C44 (5) | **NESSUNA** → N-17 | passi FD = numerica del driver |
 | M-RED (5) | 9 decomposition identity | misura del residuo di riduzione |
 | C31,C60,C57,C58,C48,C16,C32,C33,C34,C35,C36,C37,C27,C29,C30 (6) | **NESSUNA** → N-17 | engine/driver TR-Newton, NAND/SAND, exploration (C57 tocca 13), stack (C58 tocca 11) |
+| C46 (6) [C6-REPAIR] | **NESSUNA** → N-17 | padding policy engine-internal (choice_ledger :648; "not re-listed per stage" nella mappa, note_C46 — mancava dalla tabella) |
 | C39 (6) | 11 | provenienza moltiplicatori |
 | C40 (6) | N-17 (+4) | lip equality = seam transversality nell'engine |
 | C62 (6) | 8 mu measure | quadratura di fase su Xi = discretizzazione di mu |
@@ -510,7 +533,11 @@ e' eseguito su tutti i 79).
 
 ### Esito e PROPOSTE (per L2 e il refuter C6)
 
-**46 nodi mappano su una delle 15 componenti; 31 nodi NO; 2 nodi = F-P.**
+**45 nodi mappano su una delle 15 componenti; 32 nodi NO (incl. C46);
+2 nodi = F-P — totale 79.** [C6-REPAIR: la stesura dichiarava "46/31/2"
+ma la tabella ne conteneva 78 (C46 assente) e il 46 non era
+riproducibile — conteggio rifatto a mano dal refuter: 45/31/2 = 78,
++C46 → 45/32/2 = 79.]
 L'asse C-1ter copre i layer formulazione/riduzione/certificazione ma NON
 copre quattro layer interi della pipeline. Propongo **4 righe-componente
 NUOVE**:
@@ -519,8 +546,11 @@ NUOVE**:
   spline, BC, knot law, dof ratchet, warm start. Antenati nel mio mezzo
   corpus: Allman-Hoffman 1981 (metodo diretto parametrizzato); (fuori
   mezzo corpus: Kraiko 2016 Bezier 9-param, cross-ref C1REP registry :541).
-- **N-17 optimizer driver / engine** (C16, C27, C29-C37, C40, C44, C48,
-  C57, C60 + SDP-CAND-8 parziale, 17 nodi): TR-Newton segmentato,
+- **N-17 optimizer driver / engine** (C16, C27, C29-C37, C40, C44, C46,
+  C48, C57, C58, C60 + SDP-CAND-8 parziale, 18 nodi [C6-REPAIR: il
+  roster ometteva C58 — che la tabella qui sopra MANDA a N-17 — e C46;
+  reintegrati, "17 nodi" era un conteggio su insieme diverso]):
+  TR-Newton segmentato,
   NAND/SAND, exploration tier, quadratura numerica. Antenato nel mezzo
   corpus: nessuno (i classici usano condizioni chiuse o ricerca diretta) —
   colonna genuinamente moderna.
@@ -590,11 +620,12 @@ come sotto-nota di (8), scelta dichiarata).
 9. **Wintenberger-Shepherd 2004 (graft A35) → componente 9**: audit di
    bilancio entropico PER-PHASE Eqq. (23),(31)-(32),(38) → manca
    ri-derivazione frozen, campo contratto (Pt1,Tt1); wiring gia' in-repo.
-   Ancora: findings :2540.
+   Ancora: findings :1956-1967 [C6-REPAIR: era :2540].
 10. **Talley & Coy 2002 (via WS-2004 A33) → componente 8**: precedente del
     meta-principio "un ordering si inverte col matching state" → manca
     tutto il lato formale; full text NON in corpus (candidato procurement,
-    attribuzione primaria di record). Ancora: findings :2540.
+    attribuzione primaria di record). Ancora: findings :1956-1967
+    [C6-REPAIR: era :2540].
 11. **Sternin 1957/1959 "minimal weight" → componente 2 (PRE-KO?)**:
     candidato antenato averaged-measure PIU' VECCHIO di KO-1970, confidenza
     LOW, default-deflazionario (pesa parametri scalari, non un funzionale

@@ -1,10 +1,19 @@
 # LINEAGE_SWEEP_MATRIX — part 2 (slot L2, onda W-B.0 LINEAGE-SWEEP)
 
+**NOTA DI DRIFT [C6-REPAIR 2026-08-23]**: le ancore "CHn:righe" di
+questo file sono state stampate PRIMA della riscrittura dei CH1-CH10 da
+parte dell'onda W-B.1 (mtime 08:33-08:44) e NON sono più affidabili
+come numeri di riga (probe misurati: REFUTE_LINEAGE.md F-6). Il join
+downstream usa LL-id e i § dei CH, MAI numeri di riga CH. Le ancore
+non-CH (registry/findings/M0/LM/report/PDF) sono verificate sane da C6.
+Legenda [C6]: "pC:" = `validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pC_li_xu_2025.md`.
+
 **Stadio di confronto**: prodotto cartesiano {15 componenti strutturali
 del metodo (checkpoint C-1ter verbatim)} × {metà corpus 2, 41 id
 esclusivi L2} — ricerca per ISOMORFISMO STRUTTURALE, mai tematica
 (ordine utente C-1ter; finding di record
-`docs/findings_registry.yaml:2544` = la causa radice che questa onda
+`docs/findings_registry.yaml:2541` [C6-REPAIR: era :2544] = la causa
+radice che questa onda
 ripara). Base di ogni cella: riga registry
 (`docs/literature_registry.yaml`), CH1–CH8
 (`validation/spres_raws_2026-08-22/reconstruction/`),
@@ -136,7 +145,14 @@ paper non su disco, solo record.
 - (15): outer loop di freeze termodinamico Fig.1+Eq.(9) = candidato
   fixed-point (Sun NON lo itera mai); serve residual monitor+rejector
   nostro (A16, findings :1915).
-- checked: none — (1),(2),(4)-(8),(10)-(14).
+- (10) [C6-FILL, dal campione celle-vuote del refuter]: la costruzione
+  del contorno TOC E' una marcia MoC single-state a chiusura gamma(T)
+  (registry :552-559 "Rao TOC construction") — stesso genere delle
+  celle (10) di rao_1958/johnson_boney in part1; manca famiglia
+  per-fase e le condizioni di ottimalita' (che Sun NON ri-deriva, C14
+  findings :1994).
+- checked: none — (1),(2),(4)-(8),(11)-(14) [C6-REPAIR: la (10) era
+  none, riempita C6-FILL].
 
 ### hoffman_1987_ctp [REP]
 - (12): Table 3 (24 area ratio, 4 output) = oracolo length-band
@@ -292,9 +308,15 @@ paper non su disco, solo record.
 - (10): MoC assialsimmetrico (unit process Zucrow-Hoffman) su stato
   mediato — cugino crudo della marcia per-fase: una sola marcia, non
   una famiglia (registry :683-688).
-- (14): corner a p_b MEDIATO; Eq. (26) usa p_b al corner SENZA fonte,
-  su chiusura Veen giudicata FAILED da WG10 — lezione Humphreys non
-  consumata (CH5:454-456, 487-493).
+- (14) [RIFORMULATA C6 da VERIFY_PB_corner_pb.md, source-verified]: DUE
+  corner distinti (Fig. 13, p. 8): lip della SHROUD a p_inf AMBIENTE
+  (Eq. 22); base dello SPIKE a p_b = "averaged base pressure" (Eq. 26)
+  = media SPAZIALE sulla base (lessico plug troncato steady, MAI
+  cycle-averaging), fonte dell'equazione e provenienza del VALORE non
+  dichiarate; su chiusura Veen giudicata FAILED da WG10 — lezione
+  Humphreys non consumata. La mediazione RDE entra SOLO nei vincoli di
+  ristagno p0/T0 (cella (3)). [supersede la formulazione "corner a p_b
+  MEDIATO"; forma di record = LL-20]
 - checked: none — (1),(4)-(9),(11)-(13),(15).
 
 ### li_xu_lv_yu_zhou_2025 (P-C) [REP]
@@ -535,11 +557,15 @@ NUOVE (11):
 4. **Giles-Pierce 2000 (Reuther multipoint) → (2)/(8)**: J=Σw_i·F =
    antenato discreto-ensemble del funzionale pesato — pesi/forma MAI
    stampati (R11 = nostra inferenza). Ancora: findings :2117.
-5. **Li-Xu 2023 (P-B) → (3)+(14)**: Rao/Vander-Veen max-thrust su
-   stato mediato GLOBALE con corner a p_b mediato (Eq. 26 senza fonte)
-   — l'istanza cruda più vicina delle averaged wall conditions; manca
-   famiglia per-fase e ogni condizione SULLA media. Ancora: CH5:58-64,
-   454-456.
+5. **Li-Xu 2023 (P-B) → (3)+(14)** [RIFORMULATA C6 da
+   VERIFY_PB_corner_pb.md]: Rao/Vander-Veen max-thrust su stato steady
+   da p0/T0 TIME-AVERAGED ("empirically recognized", p. 5); corner: lip
+   shroud a p_inf ambiente (Eq. 22), base spike a p_b = "averaged base
+   pressure" (Eq. 26, media SPAZIALE di base, fonte e provenienza del
+   valore NON dichiarate) — l'istanza cruda più vicina; manca famiglia
+   per-fase e ogni condizione SULLA media. Forma di record = LL-20.
+   Ancora: VERIFY_PB_corner_pb.md; CH5 §P-B (numeri di riga CH
+   soggetti a NOTA DI DRIFT).
 6. **Sun 2019 / Liu 2022 / Miki 2020 → (9)**: decomposizione di spinta
    (F_mom, F_p, −pa·Ae) = antenato pubblicato della split
    a[Σ]·Pc+b[Σ] (A14) — mai identità dimostrata, mai per-fase.

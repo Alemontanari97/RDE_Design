@@ -643,7 +643,7 @@ GENO-indipendenti. [W2-R4]
 Caveat host DI RECORD sin da G0: i tempi assoluti sono host-dependent e
 non costituiscono record timing; le quantità decisionali sono rapporti
 host-invarianti (overhead adjoint ~1.5%, ratio grad/solve 1.593 ≤ 4)
-(G0 `:55-59`). [W2-R5] I MET di
+(G0 `:53-58`; 1.593 a `:168`) [W2-R5][W2b-F1]. I MET di
 S25-bis sono su baseline clean-host [X-SPDB] con criterio
 pessimistic-end pre-registrato, e la varianza di misura è essa stessa
 una riga di registro (speed-measurement-variance, PROGRESS `:149-150`).
@@ -682,6 +682,166 @@ Stage P34: V0 verification, dichiarato su slide.
    D-44 armato, mappa `:180`); nessuna ottimalità globale (C57 NEVER);
    nessun numero sperimentale. I confini detti prima delle domande.
    Classe: gate di record.
+
+---
+
+## 6. STORIA — trittico condizionale [V2-R2] (writer B8a, W-B.2, 2026-08-23)
+
+Ogni battuta: DATA + PROCESSO + VERDETTO (vincolo §5-bis). Nota di ramo:
+per le scelte-macchina la battuta 2 è spesso (b) STANCE-DI-FORK — il
+verdetto per-riga di Fase B (`validation/sfoundations_raws_2026-08-13/
+phaseB_tree_diff.md`, 2026-08-17) è una presa di posizione a livello di
+FORK, NON una riderivazione dell'implementazione. Le 12 righe SILENT del
+ledger (C2 cond., C5, C15, C16, C22, C23, C30, C40, C45, C46, C47, C48)
+sono ramo (c) per definizione (sotto la granularità degli alberi ciechi).
+
+**T-1. C58 — stack differenziabile JAX (DIR-G0).**
+- *Battuta 1*: 2026-07-20, sessione S10 — commit `cc878ef` "G0 DECIDED —
+  GENO built (WSL gfortran), tocnoz contour reproduced to 1e-10,
+  cross-code unit-process oracle X-GENOXC PASS; JAX primary stack"
+  (dossier `docs/rde_nozzle_G0_decision.md`; spike JAX già 2026-07-16,
+  `b54e571`). PROCESSO: gate G1-class con oracolo cross-code e controlli
+  negativi. VERDETTO: G0 DECIDED, JAX primario.
+- *Battuta 2*: (c) **NON-RIDERIVATO: questo aspetto non ha avuto
+  riderivazione agnostica di record** (C58 > C48: fuori dal perimetro
+  per-riga del diff Fase B). Doppia prova alternativa: flip clause
+  quantificata ARMATA e misurata (T1 1.593 ≤ 4; T2a 0.116 ≤ 1.197 s, G0
+  §4 note datate) + review S25 di G0/T2 (2026-08-12: il firing T2 di S18
+  era costo strutturale, non throughput di linguaggio — la decisione STA;
+  memoria `s25-engine-speed`). PROCESSO: re-esame a numeri con clausola
+  di ribaltamento. VERDETTO: MIXED, ri-censimento al cluster engine
+  F2-entry.
+- *Battuta 3*: caveat permanente dichiarato: Julia/Enzyme mai
+  benchmarkato su questo host (G0 §4 :199-201). Classe finale [REP].
+
+**T-2. C31 — driver TR-Newton segmentato a curvatura misurata (+ run di
+record S18).**
+- *Battuta 1*: 2026-08-06, sessioni S17-S18 (brick 2) — driver attivato
+  SU NUMERI (segmenti single-step → Hessiana piena misurata); run
+  end-to-end di record: KKT 7.745e-02 ≤ 1.156e-01, oracolo 91/91,
+  J* = 2.7761688e+07 (carrier
+  `validation/PROGRESS_2026-08-06_S18_brick2run.md`; R4 back-propagato
+  commit `01c41a6`; A1 BRICK 2 OF RECORD M0:3251-3253). PROCESSO: brick
+  gated con 4 tentativi dichiarati e oracoli. VERDETTO: PASS di record.
+- *Battuta 2*: (b) **STANCE-DI-FORK** — verdetto Fase B per-riga C31:
+  "CONVERGENT on family + DIVERGENT (IP half)"
+  (`phaseB_tree_diff.md:159`, 2026-08-17): presa di posizione a livello
+  fork (famiglia TR-Newton convergente, metà interior-point sfidata),
+  NON riderivazione dell'implementazione del driver. PROCESSO: diff
+  alberi ciechi vs ledger. VERDETTO: MIXED con [P-IPADJ] = prima azione
+  engine F2 sul critical path di C28.
+- *Battuta 3*: audit aggiuntivo del run: S24 T2a five-line hypothesis
+  audit sul twin S18 (2026-08-12, M0:4138-4140). Classe finale [REP];
+  engine falsifiers one/two/three vivi (VERDICT_wave2 par.1.1).
+
+**T-3. C24 — thermo a tabelle (backend-1).**
+- *Battuta 1*: 2026-07-21, sessione S11 — direttiva utente
+  [DIR-THERMOTAB] "tables = interface contract" (M0:3237; memoria
+  `thermo-tabulated-backend`, S11); carrier [X-THC1] tabelle quintic C1
+  eseguito al kickoff brick-2, S17, 2026-08-06 (memoria
+  `s17-brick2-kickoff`). PROCESSO: direttiva utente + carrier con
+  condizione C-A scaricata. VERDETTO: DECIDED.
+- *Battuta 2*: (b) **STANCE-DI-FORK** — verdetto Fase B per-riga C24:
+  "CONVERGENT + ENRICHING: V-F9 lands" (`phaseB_tree_diff.md:117-118`,
+  2026-08-17), rafforzato dall'item theory-layer 6 "Thermo road:
+  V-F9/H-F6 = certified gamma(T) tables with AD" (`:345`) — qui il fork
+  E la sostanza convergono, ma resta stance di fork sull'implementazione
+  (dCp-ingest gated C-B; C25/C26 righe separate, C25 NEVER). PROCESSO:
+  diff alberi. VERDETTO: CONVERGENT-ENRICHING.
+- *Battuta 3*: classe finale [REP]; C25 (table box) NEVER con finestra F2.
+
+**T-4. C49 — fitted-front marching come unico portatore di certificato.**
+- *Battuta 1*: pratica fitted dal G0 (2026-07-20, `cc878ef`: X-GENOXC su
+  processi unitari con punto d'urto fittato); come RIGA aggiudicata del
+  ledger: onda wave-2 blocco3, 2026-08-19
+  (`blocco3/VERDICT_wave2.md`; ledger C49
+  `docs/choice_ledger.yaml:682-692`), in risposta alla domanda utente
+  "perché si fitta una soluzione che potrebbe essere catturata".
+  PROCESSO: aggiudicazione a convergenza con refuter (ZERO finding sulla
+  riga). VERDETTO: fitted = certificatore; captured = explorer nominato
+  build-gated.
+- *Battuta 2*: (b) **STANCE-DI-FORK** — l'aggiudicazione wave-2
+  (2026-08-19) È il verdetto di fork di Fase B-estesa (blocco3); si
+  dichiara: nessuna riderivazione agnostica dell'implementazione del
+  march; la classe S1 certificata su cui poggia è però coperta da item 3
+  "Certified solution class: 4/4 trees" (`phaseB_tree_diff.md:330`).
+  PROCESSO: wave blocco3 + diff alberi sull'oggetto di classe.
+  VERDETTO: [REP].
+- *Battuta 3*: upgrade path HOIST/Zahr nominato con entry gate; frontiera
+  fit-vs-capture governata dal budget DWR (campagna C11 leg (b), F2).
+
+**T-5. C18 — NTF: da costante magica a forma derivata.**
+- *Battuta 1*: NEWTON_TOL_FACTOR = 100 come costante engine del brick 2
+  (S17/S18, 2026-08-06); GAP-29 sweep S25-bis (2026-08-12/13): soglia
+  MISURATA load-bearing (NTF/2 flippa il verdetto di certificazione).
+  PROCESSO: sweep pre-registrato. VERDETTO: load-bearing, non cosmetica.
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — minore (a) NTF:
+  derivazione `phaseD/phaseD_minor_ntf.md`, refutazione one-round
+  completa `refute_minor_ntf.md` + escalation a forma piena r1/r2 DRY
+  (`esc_refute_ntf_r1.md`, `esc_refute_ntf_r2.md` + probe
+  `esc_probe_ntf_*.py`, finestra C4 2026-08-20/21; "4 minori ESCALATI a
+  forma piena e TUTTI DRY", PROGRESS ORA :17-18). PROCESSO: derivazione
+  formale + escalation refuter. VERDETTO: NTF = η·κ_q, istanza valida.
+- *Battuta 3*: landing M0 [LAND-C4-LA2] (M0:3649-3766, 2026-08-21):
+  NTF-2/3 THEOREM*, NTF-1/4 SCHEMA, NTF-5 PRACTICE, falsificatori
+  NTF-1..4; la riga ledger resta SINGLE-AUTHOR con duty F2-live sulla
+  derivazione della costante.
+
+**T-6. La velocità come scelta algoritmica (S25/S25-bis).**
+- *Battuta 1*: 2026-08-12, sessione S25 — M-CHAIN (commit `07400a4`,
+  verbatim "every lever = executable invariance gate + measured gain +
+  adversarial diff-refuter"): 100.84 → 32.09 s, val_grad 6.6×;
+  STOP-CHECK onesto NOT-MET → S25-bis vincolante; S25-bis (2026-08-12/13)
+  = record 5.58 s, SEGMENTO e CAMPAGNA MET al criterio pessimistic-end
+  PRE-REGISTRATO (PROGRESS :119-129). PROCESSO: catena gated con
+  controlli negativi. VERDETTO: MET formale.
+- *Battuta 2*: (c) NON-RIDERIVATO in Fase A (fuori perimetro alberi);
+  doppia prova alternativa: diff-refuter avversario a convergenza sulla
+  catena (2 difetti VERI trovati e riparati a registro: memo key cieca,
+  engine-cache senza design class — commit `07400a4`) + diff convergiuto
+  di chiusura 21/4/0/0
+  (`validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md`; memoria
+  `s25bis-speed-complete`). PROCESSO: refutazione del processo di
+  velocizzazione stesso. VERDETTO: [REP] con caveat host.
+- *Battuta 3*: coda tipizzata alla chiusura C4: tier ONDEMAND sui 46
+  carrier + STALENESS LINK nel claims-lint, rejector provato e SPARATO
+  in-sessione (commit `32459ca`, 2026-08-21). Classe finale [REP].
+
+**T-7. La mappa delle decisioni (pipeline a 8 stadi).**
+- *Battuta 1*: 2026-08-21, chiusura S-FOUNDATIONS-C4 — mappa di record
+  `docs/rde_nozzle_pipeline_decision_map.md` (CITE-ONLY; 8 stadi, 79
+  nodi, 45 voci-arco, tally 12/36/12/2 misurato SR-12 :262-295).
+  PROCESSO: compilazione cite-only con comandi misurati. VERDETTO: 100%
+  archi verificati.
+- *Battuta 2*: (c) NON-RIDERIVATO (artefatto di navigazione, non
+  enunciato); doppia prova alternativa: passaggio refuter dedicato = 0
+  BREAK / 0 REPAIR / 5 AMENDMENT / 4 NOTE (mappa :317-339; "refuter 0
+  BREAK/0 REPAIR, amendment applicati", PROGRESS ORA :35-37, 2026-08-21).
+  PROCESSO: refutazione della mappa. VERDETTO: retta.
+- *Battuta 3*: doppio consumer dichiarato (F2 + S-PRES); i conflitti si
+  risolvono CONTRO la mappa (regola :7-14).
+
+**T-8. S-CERT e la disciplina dell'onestà (incidente 23/23 incluso).**
+- *Battuta 1*: 2026-08-13, sessione S-CERT (R33, prompt
+  `validation/ADVISORY_Scert_prompt_2026-08-12.md`) — audit OSTILE
+  context-free della catena di certificazione: verdetto vincolante
+  NON-CERTIFICABILE, 2 P0 a HEAD ((vii) riparato in-window; staleness
+  import-closure → owner F2); difetti MIGRATI dall'oggetto al
+  certificatore; MC8 regge 8/8 (memoria
+  `fservice-scert-double-session`; PROGRESS :211 riga R33). PROCESSO:
+  audit avversario per design. VERDETTO: NON-CERTIFICABILE dichiarato.
+- *Battuta 2*: (c) NON-RIDERIVATO (è esso stesso una seconda prova
+  ostile del certificatore); istanza gemella della disciplina: incidente
+  suite 23/23 — il commit di chiusura C4 `7dea386` (2026-08-21) citò
+  "23/23" PRIMA dell'evidenza verificata (run intermedio 22/23, cattura
+  tail-4 persa); colto dal ri-conteggio SR-12 dell'orchestratore e
+  sanato dal run di record commit `c9bacd9` (2026-08-21, git show
+  verificato in finestra §1.4). PROCESSO: rejector di conteggio SR-12.
+  VERDETTO: claim TRUE sul carrier giusto, incidente DICHIARATO mai
+  cancellato.
+- *Battuta 3*: classe finale [REP] (verdetti d'audit); la storia
+  operativa del programma include i propri incidenti come istanze della
+  disciplina, non come eccezioni.
 
 ---
 
@@ -763,9 +923,15 @@ generalisti (adjoint shape optimization aeronautica) è il §7(a):
 adottiamo i loro parent algoritmici (LL-30) e i loro criteri pubblicati
 (Hicken-Zingg, HOIST) MA aggiungiamo lo strato che a loro manca nel
 nostro problema: certificati con rejector per-numero (R5) + choice
-ledger tipizzato + per-fase. Claim di assenza: query-bounded in CH5
-(LM:354-362, sweep avversario 1971-2026 con 2 near-miss dichiarati) —
-non lo ri-deriviamo qui (navigation-first).
+ledger tipizzato + per-fase. Claim di assenza: query-bounded su DUE
+fonti DISTINTE [WB1-C3-09]: (i) i gap verdicts (b2) — C1 family-averaged
+contouring / C2 / C3 NOT-FOUND(q) — vivono in LM:354-362
+(`docs/rde_nozzle_literature_map.md`); (ii) lo sweep avversario
+1971-2026 coi 2 near-miss dichiarati (Kraiko-Tillyaeva 2015,
+ISABE-2003-117) vive in `validation/ADVISORY_litmap_extension_2026-08-13.md`
+(":17 … NOT found 1971-2026") — il litmap NON lo contiene. Il claim di
+assenza sta sull'UNIONE delle due fonti; non lo ri-deriviamo qui
+(navigation-first, riga di record in CH5).
 
 ### 7(c) STANDARD DI RIFERIMENTO (assi §C della conformity map)
 
@@ -793,9 +959,11 @@ card qui per le scelte che QUESTO capitolo presenta — 4 aggiudicate
 riga I toccate dal capitolo: C17, C18, C25, C38, C55, C57, C59, C60,
 C62). I token di roster C51/C52/C53/C54/C61 in §3 sono ENUMERAZIONE
 della mappa, non scelte presentate: le loro card vivono nei capitoli
-proprietari (contratto → CH10; scala/S-5F → CH8; p_b → CH8/CH10), per
-la regola di ownership §1g ("ogni altro writer compila le card delle
-scelte che il SUO capitolo presenta").]
+proprietari (C51 → CH7 §7; C52/C53/C54 → CH10 §5; **C61 → CH6 §8, casa
+PRIMARIA di record — dedup WB1-C3-17 risolto, orchestratore
+2026-08-23; CH8 tiene solo il puntatore**), per la regola di ownership
+§1g ("ogni altro writer compila le card delle scelte che il SUO
+capitolo presenta").]
 
 ### CARD C31/engine (card di riferimento OBBLIGATORIA)
 
@@ -1058,7 +1226,19 @@ queste righe, non ri-legge il capitolo.]
    papers"); la nostra catena design-adjoint per-fase discende dai
    parent FUORI campo (Byrd-Nocedal; Hoffman 1967) — lineage
    dichiarato, novità query-bounded.** — CH5 §1.1 (SYN:58-61) + §3-bis
-   LL-30/LL-7/LL-31 — [ADV]+[REP], query-bounded via CH5.
+   LL-30/LL-7/LL-31; assenza query-bounded su DUE fonti: LM:354-362
+   (gap verdicts b2) + `ADVISORY_litmap_extension_2026-08-13.md`
+   (sweep 1971-2026, 2 near-miss) [WB1-C3-09] — [ADV]+[REP].
+   **CAVEAT P-B OBBLIGATORIO** (slide che usa questo feed lo porta o
+   punta al box nomenclatura CH5 §1.1 [WB1-R3]): P-B (Li-Xu 2023) USA
+   il variazionale classico Rao/Vander-Veen — ma su UNO stato steady da
+   p0/T0 TIME-AVERAGED ("empirically recognized", p. 5), e il suo
+   p_b = "averaged base pressure" SPAZIALE sulla base del plug (Eq. 26,
+   nessun nesso dichiarato col cycle-averaging; fonte e provenienza del
+   valore NON dichiarate) — `VERIFY_PB_corner_pb.md` (source-verified
+   2026-08-23). "Nessun optimizer" ≠ "nessun variazionale": la frase
+   SYN vale per la catena di OTTIMIZZAZIONE, P-B resta il caso
+   variazionale-su-stato-mediato.
 9. **Il flip-candidate dell'engine ha nome, data e finestra: Uno
    (MPC 2026), A/B a constraint-set identico, decisione d'install
    O5-class, ri-esame al cluster F2-entry — il censimento solver è

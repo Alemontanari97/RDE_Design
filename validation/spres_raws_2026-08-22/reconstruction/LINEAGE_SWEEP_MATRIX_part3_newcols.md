@@ -1,5 +1,14 @@
 # LINEAGE_SWEEP_MATRIX — part 3 NEW COLUMNS (slot L3, onda W-B.0 LINEAGE-SWEEP, S-PRES session 2)
 
+**NOTA DI DRIFT [C6-REPAIR 2026-08-23]**: le ancore "CHn:righe" di
+questo file sono state stampate PRIMA della riscrittura dei CH1-CH10 da
+parte dell'onda W-B.1 (mtime 08:33-08:44) e NON sono più affidabili
+come numeri di riga (probe misurati: REFUTE_LINEAGE.md F-6 — es.
+CH4:238-240 per Masters ora punta a contenuto thermo; il contenuto
+Masters sta a CH4:255 allo stato attuale). Il join downstream usa LL-id
+e i § dei CH, MAI numeri di riga CH. Le ancore non-CH
+(registry/findings/M0/LM/report/PDF) sono verificate sane da C6.
+
 Data: 2026-08-23. Mini-pass MIRATO post-GV-1: il check GV-1 (part1) ha
 falsificato l'asse a 15 componenti (finding F-des-1) — questo file rende
 le **5 componenti NUOVE** su TUTTO il corpus (82 id, celle obbligatorie).
@@ -65,8 +74,9 @@ propria (N-17). Le celle (11) di part2 restano valide come cross-ref.
 chiamano? cosa le manca vs noi". Ogni cella resa: compilata o
 "checked: none".
 
-**Conteggio**: celle totali 5×82 = 410; PIENE = 33 (N-16: 4, N-17: 12,
-N-18: 6, N-19: 5, N-20: 6); "checked: none" = 377.
+**Conteggio**: celle totali 5×82 = 410; PIENE = 35 (N-16: 4, N-17: 12,
+N-18: 6, N-19: 7, N-20: 6); "checked: none" = 375 [C6-REPAIR: era
+33/377; +2 = P-B e P-C su N-19, C6-FILL dal campione celle-vuote].
 
 ---
 
@@ -276,7 +286,7 @@ esiste nel corpus (CT-3). Le 5 celle sotto sono ISTANZE/DATUM di
 refereeing ad-hoc — evidenza PRO la necessità del tier, mai la
 procedura; framing dichiarato per non contraddire CT-3.
 
-### Celle piene (5)
+### Celle piene (7) [C6-REPAIR: era 5; +P-B, +P-C]
 - **harroun_2021**: coppia CFD+esperimento in cui l'esperimento SEPARA i
   due aerospike che il C_F medio non separa (1.25 flat; registry
   :273-285) = il discriminating-failure datum — referee ad-hoc che
@@ -297,8 +307,19 @@ procedura; framing dichiarato per non contraddire CT-3.
   average-state (+43% a 1.4 kPa, registry :202-208) = confronto
   modello-esperimento puntuale in cui l'esperimento arbitra il regime;
   manca struttura di tier e falsificatori pre-registrati.
+- **li_xu_lv_lv_song_2023 (P-B)** [C6-FILL, dal campione celle-vuote
+  del refuter]: il CFD TRANSIENT arbitra il design fatto sullo stato
+  steady mediato — Fig. 15 flat-vs-peaked (la media globale non VEDE
+  l'ottimo, cliff −5.78% a 80%; registry :683-688) = referee ad-hoc
+  interno, stessa classe-istanza di harroun_2021; manca tier/gate
+  formale (istanza, non procedura: CT-3 conservato).
+- **li_xu_lv_yu_zhou_2025 (P-C)** [C6-FILL]: coppie PAIRED
+  transient-vs-steady-mediato con flip a metà ranking e argmax HELD
+  (registry :690-695) = protocollo referee ad-hoc dell'adeguatezza
+  della media; manca gerarchia di evidenza dichiarata e falsificatori
+  pre-registrati.
 
-### checked: none (77)
+### checked: none (75) [C6-REPAIR: era 77; P-B e P-C spostate in piene]
 kraiko_osipov_1970, shmyglevskii_1980, giles_ulbrich_2010_part1,
 giles_ulbrich_2010_part2, lozano_ponsin_2025, gonzalez_viana_2025,
 sternin_1961, lozano_2018, lozano_2019, morris_2005, owens_hanson_2007,
@@ -320,8 +341,9 @@ kraiko_2001_plug, kraiko_2016_two_sided, efremov_kraiko_2004_augmentor,
 hoffman_1987_ctp, fernandes_2023, rubino_2018, zahr_persson_2016,
 schotthofer_2024, janc_2025, liu_2022 (A-L6: choking ASSERITO senza
 verifica = l'anti-referee, già reso in (15) part2), harroun_2021 → vedi
-sopra, miki_2020, teasley_2023, teasley_2025, li_xu_lv_lv_song_2023,
-li_xu_lv_yu_zhou_2025, jourdaine_2019, wanted_breitkopf_ulbrich,
+sopra, miki_2020, teasley_2023, teasley_2025 [C6-REPAIR: P-B e P-C
+rimosse da questa lista, celle riempite sopra], jourdaine_2019,
+wanted_breitkopf_ulbrich,
 wanted_becker_rannacher_2001, wanted_fidkowski_darmofal_2011 (stima
 d'errore output-based = estimator INTERNO → resta in (12)),
 wanted_hicken_zingg_2014, wanted_thakur_nadarajah_2024,
@@ -331,7 +353,8 @@ masters_etal_2017, lauer_ansell_2025_pas, deuflhard_2011_csm35,
 yamamoto_1986_numermath48, vanaret_leyffer_2026_uno,
 vanaret_montoison_2026_joss.
 [Nota contabile: harroun_2021 elencato per leggibilità del punto-CT-3 —
-la sua cella è PIENA; il conteggio none di questa colonna è 77.]
+la sua cella è PIENA; il conteggio none di questa colonna è 75
+(post-C6; era 77).]
 
 ---
 
@@ -421,6 +444,15 @@ DICHIARATO "misura sull'insieme operativo (P_amb)"; l'opzione di part1
 "quinta candidata riga N-20 operating-envelope aggregation" è DECADUTA
 perché l'id N-20 è ora occupato dalla parametrizzazione del design
 (flag part2, brief orchestratore).**
+
+**VINCOLO DI CONSUMO [C6, adjudicato REFUTE_LINEAGE §5]**: la
+sotto-etichetta "misura sull'inviluppo operativo (P_amb)" viaggia CON
+C55 in OGNI consumo downstream (§3-bis, storyboard, deck, Q&A): una
+cella o claim (8) su C55 consumati SENZA sotto-etichetta re-innescano
+l'escalation N-21 (mai riuso di N-20). Dichiarato inoltre [C6]: il flag
+part2 "parametrizzazione del design" è assorbito da **N-20+N-16
+CONGIUNTAMENTE** (censimento basis → N-20; dof-budget/prior 20-25 →
+N-16 — le celle masters/lauer vivono in entrambe), non da N-20 sola.
 
 Ragioni (3, dichiarate):
 1. **Demarcazione nominata, non conflazione muta**: misura di FASE

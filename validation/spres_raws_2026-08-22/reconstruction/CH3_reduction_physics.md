@@ -656,9 +656,129 @@ ad allora ogni cella è bound/estimate-class e la presentazione lo dice.
 
 ## 6. STORIA
 
-[PLACEHOLDER — owner W-B.2 (B8a/B8b), trittico condizionale §T-§6 con
-data+processo+verdetto per battuta (emendamento §5-bis). NON compilata da
-questo writer per regola di non-interferenza.]
+Trittico condizionale [V2-R2] (writer B8a, W-B.2, 2026-08-23).
+
+Ogni battuta: DATA + PROCESSO + VERDETTO (vincolo §5-bis). Nota di
+perimetro: il nucleo di questo capitolo è nato DENTRO la Fase D
+(S-FOUNDATIONS-C4, 2026-08-20/21) — per questi argomenti la battuta 2 in
+ramo (a) cita i file phaseD col verdetto del giudice, e la refutazione
+until-dry è essa stessa la seconda prova.
+
+**T-1. La correzione formal-first (genesi della decomposizione R22).**
+- *Battuta 1*: 2026-08-13 — correzione metodologica dell'UTENTE: la
+  review di letteratura aveva importato l'epistemologia empirica del
+  campo ("R22 si decide con un esperimento CFD"); ordine = decomposizione
+  formale-prima, CFD ri-scopato a residuo irriducibile. Riga di record:
+  `docs/findings_registry.yaml:1459-1468`
+  (`theory:r22-formal-decomposition`, mechanism
+  `epistemology-bias-from-literature`); memoria standing
+  `formal-first-epistemology`. PROCESSO: direttiva utente a registro.
+  VERDETTO: T-DISC/T-RED/M-RED/R22-CFD = il piano di record, "no longer
+  the decider".
+- *Battuta 2*: (c) NON-RIDERIVATO (è una decisione metodologica, non un
+  enunciato); doppia prova alternativa = la decomposizione ESEGUITA a
+  convergenza in C4 (2026-08-20/21): i quattro oggetti nominati sono
+  atterrati con giudici (`blocco3/VERDICT_r22f.md`,
+  `blocco3/VERDICT_escalation_c4.md`, 2026-08-20). PROCESSO: esecuzione
+  del piano con refutazione. VERDETTO: direttiva CONSUMATA con evidenza.
+- *Battuta 3*: classe finale: standing directive + landing M0 C4.
+
+**T-2. [T-DISC] — fiber-separation (condanna p-only, esonero full-state).**
+- *Battuta 1*: finestra C4, 2026-08-20 — PART 1 del centerpiece
+  (`phaseD/phaseD_r22f_centerpiece.md:108-431`, mtime 2026-08-20; mandato
+  = riga registry `theory:r22-formal-decomposition`). PROCESSO:
+  derivazione formale author-draft con pin [REV2-r1-1] e prova per
+  citazione (MS-T-FLUXNULL, MS-T-SKE, K̄=0). VERDETTO: THEOREM*/SCHEMA
+  per gamba come stampato.
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — 4 round × 3 lenti
+  (L0/L1/L2) = 66 findings (4 BREAK, 23 REPAIR), 14 probe eseguiti dai
+  refuter (probe di record `r22f_v2_probe_r1_l0_fiber_sign_2eps.py`,
+  `r22f_v2_probe_r1_l1_atom_mass.py`, ecc.); giudice
+  `blocco3/VERDICT_r22f.md:508-521` (2026-08-20): NOT-DRY-AT-CAP ma
+  APPROVED FOR LANDING, labels §1 = autorità unica; escalation E-1..E-4
+  DRY + E-5 0 BREAK unanime, 53/53 findings SUSTAINED
+  (`blocco3/VERDICT_escalation_c4.md:542-553`, 2026-08-20). PROCESSO:
+  refutazione avversaria multi-lente con probe. VERDETTO: sostenuto.
+- *Battuta 3*: landing M0 2026-08-21 (chiusura C4, gate NOTHING-LOST
+  dual-seed PASS): [T-DISC-1] THEOREM* (c1/c2 nominati), [T-DISC-2]
+  split-grade, [T-DISC-3]/[T-DISC-4] SCHEMA (M0:977-1280). Classi finali
+  come §2.
+
+**T-3. [T-RED] — l'operatore K e K̄ = 0.**
+- *Battuta 1*: doppia radice datata: (i) le sei righe K nascono come
+  D.18 [MS-DEF-KRES] del piano mean-swirl — panel 2026-08-11
+  (`validation/ADVISORY_mean_swirl_panel_2026-08-11.md`) formalizzato in
+  Fase D (`phaseD/phaseD_meanswirl_formalization.md`, mtime 2026-08-19);
+  (ii) K̄ = 0 confermato UNCONDITIONAL dal verifier del panel swirl5f
+  (finestra parallela 2026-08-17→19, `DISPATCH_swirl5f.md:64`).
+  PROCESSO: panel + formalizzazione + verifier sympy. VERDETTO: identità
+  riga-per-riga machine-witnessed (sympy PASS).
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — PART 2 del centerpiece
+  (`phaseD_r22f_centerpiece.md:432-1182`) con saldatura testuale a D.18
+  (:459-481), tre derivazioni indipendenti in-panel del censimento righe
+  + doppia derivazione a mano L1 + judgeverify ITEM 3.1; giudice
+  `VERDICT_r22f.md:77` (2026-08-20). PROCESSO: derivazioni indipendenti
+  convergenti + refuter. VERDETTO: DEFINITION + identità THEOREM*;
+  completezza = G-f SCHEMA ("grades NOT inflated").
+- *Battuta 3*: K̄ = 0 **MINTED a grado record** al landing C4 2026-08-21
+  (prova a penna + testimone macchina su BV pieno, M0:1768-1773,
+  :1833-1838); "esattamente due canali (J)/(H)" THEOREM* condizionato
+  SBV. Classi finali come §2.
+
+**T-4. [R22F-FORCHETTA] — i sei canali.**
+- *Battuta 1*: finestra C4, 2026-08-20 — PART 5 del centerpiece
+  (:1458-1743), mandato utente verbatim in testa ("mi devi dare
+  onestamente quale è la forchetta da aspettarsi..."). PROCESSO: tabella
+  bound-or-estimate per cella con regola "NO cell above its held evidence
+  class". VERDETTO: per-cella, mai aggregata.
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — i round refuter hanno
+  colpito e riparato la tabella (qualificatore good-fitted-sheet caduto e
+  RESTAURATO in tre siti dopo tre round, :1745-1755; header
+  no-external-referee verificato verbatim alla fonte 2026-08-20);
+  giudice `VERDICT_r22f.md:106-122` (2026-08-20). PROCESSO: refutazione
+  multi-round con riparazioni tracciate. VERDETTO: sostenuta con residui
+  RES-CAP nominati.
+- *Battuta 3*: landing M0 2026-08-21 (M0:1283-1494) con i graft harvest
+  C4 (GRAFT-G03/G04/G07, ORCH-HARV-1/2/3 — letteratura 2026-08-20/21) e
+  regola di composizione [REV2-r1-19]. Classi finali per cella come §1.3.
+
+**T-5. Il canale (vi): delta e L_H UNDERIVED (optimum-shift).**
+- *Battuta 1*: finestra C4, 2026-08-20/21 — schema a due vie con
+  derivazione one-line della via valore (M0:2051-2077) e dichiarazione
+  UNDERIVED per delta/L_H con TRE deriver nominati in ordine
+  (M0:1946-1952, :2018-2026). PROCESSO: derivazione parziale +
+  dichiarazione onesta del non-derivato. VERDETTO: SCHEMA; "NO
+  argmax-shift number exists at any grade".
+- *Battuta 2*: (c) NON-RIDERIVATO — per costruzione: il residuo dichiara
+  se stesso underived. Doppia prova alternativa SULLA DICHIARAZIONE:
+  escalation delta-r4 (RES-CAP-1) refereed a 0 BREAK unanime con 3 REPAIR
+  judge-verified (`blocco3/VERDICT_escalation_c4.md`, 2026-08-20; probe
+  `esc_probe_r4delta_*.py`) + probe nonconvex con violazione illimitata
+  isolata (M0:2078-2112). PROCESSO: escalation a forma piena. VERDETTO:
+  la dichiarazione di underivedness regge; il numero resta ASSENTE per
+  costruzione (owner F2, deriver ordinati) — non un finding: aperto
+  strutturato di record.
+- *Battuta 3*: classe finale SCHEMA su entrambe le route; RES-CAP-1
+  SCARICATO in chiusura C4 (2026-08-21, PROGRESS ORA :19-20).
+
+**T-6. M-RED e il fatto no-external-referee.**
+- *Battuta 1*: finestra C4, 2026-08-20 — spec M-RED PART 3 del
+  centerpiece (:1184-1391) con bande B-1..B-4 DERIVATE; riga findings
+  `docs/findings_registry.yaml:2509-2517`; header strutturale
+  no-external-referee (M0:1322-1333) con Harroun 1.25-flat verificato
+  verbatim alla fonte 2026-08-20. PROCESSO: spec di carrier con
+  protocollo T3-CONTROL, entrambi gli esiti pre-registrati positivi.
+  VERDETTO: PRACTICE (spec).
+- *Battuta 2*: (c) NON-RIDERIVATO come esecuzione (la campagna è
+  F2-QUEUED, mai girata); doppia prova alternativa SULLA SPEC: ogni banda
+  è stata riparata da probe refuter di record (:1237-1374) e il giudice
+  ha coperto la PART 3 (`VERDICT_r22f.md:90-97`, 2026-08-20); i pin
+  bloccanti B-1/B-2 vengono dal dispatch swirl5f (2026-08-19).
+  PROCESSO: refutazione della spec. VERDETTO: spec sostenuta; esecuzione
+  = duty F2 sotto G1, esito class-wide (U)-gated.
+- *Battuta 3*: classe finale PRACTICE/F2-QUEUED; "the bracket TIGHTENS in
+  the program order T-DISC → T-RED → M-RED → R22-CFD; nothing else
+  tightens it" (M0:1493-1494).
 
 ---
 
@@ -738,7 +858,9 @@ di classe DWR.
    LL-17/LL-18) e dalla litmap §b6 (time-homogenization / quasi-steady
    validity).
 3. **Verdetto + perché**: both-routes con gate DATA-DRIVEN (mai
-   assunzione strutturale — emendamento utente di VI.4bis): la route
+   assunzione strutturale — emendamento utente nell'HEADER di VI.4bis,
+   M0:3131-3137: "periodic structure is EXPLOITED AT RUNTIME when
+   certified, never assumed structurally" [fix WB1-C3-08]): la route
    cheap è esatta al primo ordine sotto T0 certificato e costa un solve
    linearizzato; "a licensed specialization, not a replacement".
 4. **RECENCY/SOTA check**: direttiva 2026-07-16, re-scoping 2026-08-11;

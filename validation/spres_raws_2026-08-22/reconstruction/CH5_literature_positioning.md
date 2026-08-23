@@ -132,10 +132,14 @@ domanda ESA quasi certa "come vi posizionate rispetto all'EAP".
 > frame CH6 §1.1. In più le etichette argmax-level C-3bis gap(A)/gap(B)
 > hanno le lettere SCAMBIATE rispetto a Gap A/Gap B (gap(A)~Gap B,
 > gap(B)~Gap A — mappa dichiarata in CH6 §1.2-bis). **Namespace "G",
-> famiglie distinte**: G0-G6 = gate del piano D6; la litmap ha numerazioni
-> proprie (i gap-verdetti qui citati sono C1-C4, LM:354-362; il ponte è
-> G14); G1-G12 = gap-list T0P (CH3); GRAFT-Gxx = graft M0. Su slide mai
-> "G1" nudo: sempre col namespace dichiarato.
+> famiglie distinte**: G0-G6 = gate del piano D6; **litmap G1-G12 =
+> l'executive gap summary della litmap (LM:19-30), quarta famiglia
+> [WB1-C3-11]** — attivamente citata come "riga G5" (LM:23, "average
+> first, design second"): la "riga G5" della litmap NON è il gate G5 del
+> piano (passo umano Kraiko) né il gap G5 della lista T0P; la litmap ha
+> anche numerazioni proprie per i gap-verdetti (C1-C4, LM:354-362; il
+> ponte è G14); G1-G12 = gap-list T0P (CH3); GRAFT-Gxx = graft M0. Su
+> slide mai "G1" o "G5" nudi: sempre col namespace dichiarato.
 
 ### 1.2 La dicotomia D-1 e le due figure-ancora D-6
 
@@ -772,6 +776,143 @@ e' NOMINATO, non negato: aperti 1, 2 e 7 di questo capitolo.
 
 ---
 
+## 6. STORIA (writer W-B.2, 2026-08-23 — trittico [V2-R2]; ogni battuta
+## porta DATA + PROCESSO + VERDETTO, campi di join del retro-audit §5-bis)
+
+### 6.1 La genealogia variazionale steady (Rao → Hoffman → Kraiko)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-12/13. PROCESSO:
+  mappa di generalizzazione refuter-passed su 24 PDF
+  (`validation/ADVISORY_generality_litmap_2026-08-12.md`, sessione
+  parallela) + sweep adversarial 1971-2026
+  (`validation/ADVISORY_litmap_extension_2026-08-13.md`). VERDETTO:
+  linea canonica verificata su fonti primarie (LM:271-283), con lo
+  schema comune a DUE moltiplicatori confermato contro cinque fonti.
+- **Battuta 2 — (c) NON-RIDERIVATO (una genealogia non si rideriva);
+  doppia prova = protocollo litreview a contraddittorio simmetrico +
+  refuter d'onda.** DATA: 2026-08-13 (confronto alla riga su 25 paper,
+  39 graft / 33 correzioni / zero teoremi caduti,
+  `validation/ADVISORY_litreview_confrontation_2026-08-13.md`) +
+  2026-08-23 (REFUTE_CH5.md, onda W-A, riparazioni disposte nel blocco
+  "Disposizione riparazioni" di questo capitolo). PROCESSO: tier
+  [IO]/[REP]/[APERTO], confronto alla riga mai al brief. VERDETTO: la
+  linea sopravvive al contraddittorio nei due assi paper+claim.
+- **Battuta 3 — convergenza.** DATA: 2026-08-20/21 (finestra C4, chiusura
+  in-house del caveat Eq. 14 su RAO.pdf primario, LM:381-386). PROCESSO:
+  correzioni incorporate di record (Rao TOP = ARS J. 1960; "Rao 1961" =
+  paper SPIKE; Eq. 14 = corner/transversality verificata per-pagina).
+  VERDETTO: classe finale [REP] su fonte primaria in-repo.
+
+### 6.2 La dicotomia D-1 e il posizionamento dei 4 metodi
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-20. PROCESSO:
+  campagna nozzle-RDE 4 paper su ORDINE UTENTE (lancio commit b0a4c15;
+  chiusura A CONVERGENZA commit a85e355: 0 BREAK su 8 threat
+  consolidati, reviser 9/9 + confirm 9/9 FAITHFUL); lettura INTEGRALE +
+  matrice a 7 assi + threat ledger. VERDETTO: nessun paper del campo
+  esegue la riduzione per-phase; D-1 è [ADV-FIG] in quattro codici
+  indipendenti.
+- **Battuta 2 — (c); doppia prova = threat ledger + refuter d'onda.**
+  DATA: 2026-08-20 (CT-1..CT-8 consolidate, con CT-6 regola standing di
+  consumo: numeri loro, contesto, mai bande nostre) + 2026-08-23
+  (REFUTE_CH5.md). PROCESSO: le threat furono costruite APPOSTA per
+  schiacciare il progetto e non lo schiacciarono ("nothing crushes the
+  project", commit a85e355). VERDETTO: posizionamento regge sotto
+  attacco dedicato.
+- **Battuta 3 — convergenza.** DATA: 2026-08-20 (chiusura campagna).
+  PROCESSO: D-1 fissata come fenomenologia. VERDETTO: classe finale
+  [ADV-FIG], "licenses NO magnitude" — mai promossa a numero.
+
+### 6.3 I gap query-bounded C1-C4 e la formulazione P2/G14
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-13 (query-bounded
+  di record, LM:442-456, su base litmap 2026-08-12). PROCESSO: query
+  ensemble/phase-averaged con perimetro dichiarato. VERDETTO:
+  NOT-FOUND(q) su C1/C2/C3; C4 PARTIAL; blind spot dichiarato = TOC
+  Kraiko 1979 non verificata (passo umano G5 raccomandato pre-stampa).
+- **Battuta 2 — (c); doppia prova = contraddittorio + ratifica con
+  concessioni.** DATA: 2026-08-13. PROCESSO: sweep adversarial con i due
+  near-miss NOMINATI (Kraiko-Tillyaeva 2015, ISABE-2003-117 —
+  `validation/ADVISORY_litmap_extension_2026-08-13.md`, "all claims
+  survive, 2 near-misses named") + ratifica D-01 eseguita (commit
+  ea2abce: glossa CANCELLATA a literature_map+theorem_ledger, claim 1
+  P2/G14 RISCRITTO al blocco di record con equivalenza generica +
+  catena in-school KT2015 CONCESSE). VERDETTO: il claim sopravvive
+  SOLO nella forma ristretta a tre rami (i)/(ii)/(iii) — la concessione
+  è parte del claim.
+- **Battuta 3 — convergenza.** DATA: 2026-08-13 (forma finale a
+  registro). PROCESSO: riscrittura di record. VERDETTO: classe finale =
+  claim di novità query-bounded con confini e concessioni dichiarati.
+
+### 6.4 Le correzioni utente come eventi storici del capitolo
+
+- **Battuta 1 — la misquote Harroun (ritirata).** DATA: 2026-08-13
+  (finestra sessione letteratura chiusa: glossa e claim-Harroun
+  RITIRATI; la ratifica D-01 esegue la cancellazione della glossa a
+  literature_map+theorem_ledger — commit ea2abce). PROCESSO: sfida
+  utente → verifica alla fonte → RITIRO a registro, mai ammorbidimento.
+  VERDETTO: ritiro di record.
+- **Battuta 2 — il catch p_b/corner di QUESTA sessione
+  (source-verified).** DATA: 2026-08-23. PROCESSO: dubbio utente ("loro
+  usano p0 e T0 mediate, credo — cosa sarebbe p_b lì?") → verifica
+  MIRATA sul PDF P-B pp. 4-11
+  (`validation/spres_raws_2026-08-22/reconstruction/VERIFY_PB_corner_pb.md`).
+  VERDETTO: (a) p0/T0 mediate CONFERMATO — l'utente ha ragione; (b) i
+  DUE corner sono distinti: corner T a p_inf (Eq. 22), corner J a p_b
+  (Eq. 26); (c) "averaged base pressure" = media SPAZIALE steady sulla
+  base, MAI collegata dal paper al time-averaging RDE, e il VALORE di
+  p_b usato nel design è SENZA fonte dichiarata — correzione LL-20.
+- **Battuta 3 — convergenza (il pattern di metodo).** DATA: 2026-08-20
+  (sfida utente sulla profondità del lit-census SOSTENUTA 3/4 misurato,
+  commit b0a4c15: P-B/P-C/P-D mai emersi = vicinato di citazioni non
+  inseguito → emendamento standing del protocollo censimento, riga
+  findings coniata). PROCESSO: le correzioni utente entrano come eventi
+  datati e producono regole standing, non scuse. VERDETTO: il capitolo
+  è onesto PERCHÉ questa catena di catch è a registro.
+
+### 6.5 L'harvest delle ancore fisiche (KP18, Humphreys, Veen)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-20 (base-pressure
+  harvest su user catch topology-lens, commit b3da86d: 16 fonti con
+  pagine dichiarate; Purdue CTAP = unica misura hot-fire; Veen
+  0.846p/M^1.3 tracciata al fit cold 1966 e WG10-FAILED → N2 deve
+  sostituirla; Humphreys: lo swap di p_b sposta l'argmax ×2.45 a valore
+  quasi piatto +0.26%) + 2026-08-21 (throat harvest, commit 3b2b9e6:
+  KP18 Fig. 6 sonic line corrugata + Table 1 unica statistica
+  quantitativa di gola). PROCESSO: harvest a lente dedicata, crop e
+  numeri per-pagina. VERDETTO: ancore [REP]/[FIG] di record.
+- **Battuta 2 — (c); doppia prova.** DATA: 2026-08-20 (rider ADR-D4
+  ESTESO su BLOCCATO 9, items 4-6: p_b argmax-criticality, Veen
+  never-adopt, Purdue datum — commit b3da86d) + 2026-08-23 (la verifica
+  P-B di questa sessione CORROBORA indipendentemente la criticità N2:
+  il paper di design del campo usa p_b senza dichiararne la fonte,
+  VERIFY_PB_corner_pb.md). PROCESSO: doppio consumo indipendente della
+  stessa warning. VERDETTO: la warning "channel-(vi)-shaped" regge.
+- **Battuta 3 — convergenza.** DATA: 2026-08-20/21. PROCESSO: regola
+  CT-6 standing (numeri loro, mai bande nostre); Humphreys = exhibit del
+  principio "ogni chiusura N2 va prezzata a livello design-gradient,
+  non a valore" (BPH:623-625). VERDETTO: classe [REP] su numeri altrui,
+  consumo vincolato.
+
+### 6.6 La guardia best-of-sweep vs argmax (L11/L12)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-20 (user catch
+  SOSTENUTO, commit 904f950: "best-of-sweep != argmax wording guard").
+  PROCESSO: catch utente in finestra C4, forma di record in M0
+  ([ORCH-HARV-1]). VERDETTO: guardia coniata — nessun confronto in
+  letteratura è un confronto con un argmax.
+- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-23 (marcatura
+  W2-R8 in §1.8). PROCESSO: la lettura L11 è DICHIARATA come
+  [INF]/sintesi-capitolo da pC:375-379 + CT-2, non frase di record — il
+  verdetto per-riga è portato come stance, con L12 tenuto verbatim
+  ([REP p. 11]: "approximately applicable", condizionato alla frequenza,
+  dichiarato dal campo stesso). VERDETTO (stance): istanza [ADV] che
+  "brushes" la cella (vi), mai chiusura.
+- **Battuta 3 — convergenza.** DATA: 2026-08-23 (forma d'atlas).
+  PROCESSO: consumo vincolato in §1.8. VERDETTO: classe finale = marker,
+  mai prova di stabilità dell'argmax; il rischio ranking resta
+  R26/M-RED (CH6).
+
 ## 7. Posizionamento / conformity (template §7; nodo N-N) [WB1]
 
 **(a) STRUMENTI — clausola di vacuità [V2-R4]**: NESSUNO STRUMENTO
@@ -825,6 +966,10 @@ capitolo fuori da quest'asse.
    variazionale classico; NESSUNO deriva condizioni di ottimalità per la
    famiglia mediata/per-fase." — SYN:31-39, 58-61; LM:354-357 — [REP]
    per-cella, corpus [ADV]; caveat ISABE [SE] sulla STESSA slide.
+   [FORMA DI SLIDE VINCOLANTE per ogni consumo della frase C-5 "no
+   optimizer" (WB1-C3-10): i feed di altri capitoli (es. CH4 feed 8)
+   joinano QUESTA forma, mai la frase C-5 nuda — Q2 di questo capitolo:
+   "il deck NON deve dire 'nessuno ottimizza'".]
 2. "Due figure del campo raccontano il rischio: P-B Fig. 15 (steady
    piatto che non vede l'ottimo transient +0.52%, cliff −5.78%) e P-C
    Fig. 13 (flip di ranking a gap 0.2-1.5%)." — SYN:97-102, 353-358 —

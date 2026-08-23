@@ -577,7 +577,136 @@ restaurata tre volte) — il processo rigetta davvero, non conferma.
 
 ---
 
-*(§6 STORIA: territorio W-B.2 — non scritto qui, numerazione riservata.)*
+## 6. STORIA — trittico condizionale [V2-R2] (writer B8a, W-B.2, 2026-08-23)
+
+Ogni battuta: DATA + PROCESSO + VERDETTO (vincolo §5-bis). Questo §6 porta
+per mandato anche la VERITÀ STORICA della correzione utente C-1: la catena
+delle prove sull'averaging esisteva su tre piani separati e la sessione
+S-PRES ha FATICATO a rintracciarla come oggetto unico — si scrive, non si
+nasconde.
+
+**T-1. La correzione utente C-1 (genesi del capitolo).**
+- *Battuta 1*: 2026-08-22, sessione S-PRES — correzione dell'UTENTE: alla
+  domanda sull'edificio dell'averaging la sessione non ha saputo esibire
+  la catena come oggetto unico (i tre piani vivevano in
+  `phaseD/phaseD_meanswirl_formalization.md`,
+  `phaseD/phaseD_r22f_centerpiece.md` e
+  `validation/swirl5f_panel_2026-08-19/` senza mappa di saldatura); il
+  capitolo CH7 nasce come risposta (header :3-8, "Nasce da una CORREZIONE
+  UTENTE"). Precedente di disciplina: regola di connessione artefatti,
+  correzione utente 2026-08-20 (memoria `artifact-connectedness-rule`:
+  ogni deliverable nasce CONNESSO — l'orfananza dei tre piani era
+  esattamente il difetto nominato da quella regola). PROCESSO: correzione
+  utente a registro + ricostruzione dedicata. VERDETTO: capitolo di
+  saldatura scritto, con le saldature classificate (testuali vs
+  assemblaggio, §1.5).
+- *Battuta 2*: (c) NON-RIDERIVATO (è un evento storico); doppia prova =
+  questo stesso trittico che data e ancora i tre piani, joinabile dal
+  retro-audit del deck (C5). VERDETTO: verità storica dichiarata.
+- *Battuta 3*: la lezione è assorbita come regola d'onda dell'atlas
+  (stadio di confronto + arco di consumo nel brief di ogni artefatto).
+
+**T-2. PIANO 1 — mean-swirl 2.5-D (D.1-D.20 + S.22).**
+- *Battuta 1*: 2026-08-11 — panel mean-swirl a convergenza della finestra
+  parallela POST-S21 (`validation/ADVISORY_mean_swirl_panel_2026-08-11.md`,
+  mtime 2026-08-11 16:23; memoria `post-s21-sera-choking-census`);
+  formalizzazione Fase D: `phaseD/phaseD_meanswirl_formalization.md`
+  (landing draft, mtime 2026-08-19, header :4-16 — "verdetto panel
+  2026-08-11 mai atterrato verbatim in M0"). PROCESSO: panel
+  giudice+refuter → formalizzazione a 20 enunciati con classi e
+  falsificatori. VERDETTO: advisory-class, staging per absorption.
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — catena until-dry r1-r7 +
+  r7.1 applicata in place (header blocks :24-248) con carrier sympy
+  `phaseD_meanswirl_symcheck.py` (OVERALL PASS, rejector R1 spara);
+  giudici di batch: `r2pass/VERDICT_r2pass.md` (2026-08-18, downgrade
+  J-r2p-2/3 sulle iff di D.18) e `r2pass/VERDICT_confirm.md` §4
+  (2026-08-19, amendment AM-1..AM-3). **CAVEAT VINCOLANTE, parte del
+  verdetto e della storia**: il verification layer è UNPROVEN in confirm
+  direction (known-true seed FAILED) — "nothing in this revision may be
+  cited as layer-certified", Blocco-2 landing gate CLOSED per il set
+  r2-pass, caveat portato VERBATIM fino a r7 (formalization :92-96,
+  :226-227). Inoltre i round r1-r3 sono refutazioni APPLICATE DALL'AUTORE
+  senza giudice separato (dichiarato, §1.2(g)); le quattro
+  over-certificazioni consecutive di D.18 sono ANNOTATE con contatore
+  (:209-211). PROCESSO: until-dry con retraction documentate nel testo.
+  VERDETTO: classi per enunciato come §2; niente auto-promozione.
+- *Battuta 3*: absorption NON ancora eseguita (§7 absorption targets,
+  :3061-3090): i tre piani restano raws/advisory UNTRACKED; landing = pass
+  R4 con siti nominati (aperto in §3).
+
+**T-3. PIANO 2 — centerpiece R22-F.**
+- *Battuta 1*: finestra C4, 2026-08-20 —
+  `phaseD/phaseD_r22f_centerpiece.md` (mtime 2026-08-20; mandato = riga
+  registry `theory:r22-formal-decomposition`, nata dalla correzione
+  formal-first dell'utente 2026-08-13, `docs/findings_registry.yaml:
+  1459-1468`). PROCESSO: author draft formale a valle della direttiva.
+  VERDETTO: PART 1-5 con classi dichiarate per gamba.
+- *Battuta 2*: (a) RIDERIVATO-PIENO in Fase D — 4 round × 3 lenti = 66
+  findings (4 BREAK, 23 REPAIR), 14 probe dei refuter; giudice
+  `blocco3/VERDICT_r22f.md` (2026-08-20): NOT-DRY-AT-CAP ma APPROVED FOR
+  LANDING, labels §1 autorità unica (:510-513); escalation E-1..E-4 DRY,
+  E-5 delta-r4 0 BREAK unanime, 53/53 SUSTAINED
+  (`blocco3/VERDICT_escalation_c4.md:542-553`, 2026-08-20). PROCESSO:
+  refutazione multi-lente + escalation. VERDETTO: sostenuto con RES-CAP
+  nominati.
+- *Battuta 3*: landing M0 alla chiusura C4 (2026-08-21): [T-DISC]/[T-RED]/
+  [R22F-FORCHETTA] con classi finali (vedi CH3 §6 T-2..T-4 per il
+  dettaglio — non duplicato qui).
+
+**T-4. PIANO 3 — panel swirl five-field.**
+- *Battuta 1*: finestra parallela 2026-08-17→19 —
+  `validation/swirl5f_panel_2026-08-19/DISPATCH_swirl5f.md` (mtime
+  2026-08-19; 10 agenti, ~2.0M token; memoria `swirl5f-panel-2026-08-19`).
+  PROCESSO: 4 deriver a lente distinta + 4 refuter avversari + giudice +
+  judge-verifier sympy; 45 defect items TUTTI disposti, 11 contraddizioni
+  cross-lens risolte con algebra ri-eseguita. VERDETTO:
+  CONVERGED-WITH-THREE-NAMED-EDITS (:12-33).
+- *Battuta 2*: (a)-IN-PANEL con clausola di provenienza: derivazioni
+  indipendenti convergenti E refutazione interna al panel = doppia prova
+  interna; MA regola vincolante "panel grades are NOT record grades"
+  (`DISPATCH_swirl5f.md:118-128`) — nessun grado passa a record senza
+  mint (identità sector-decomposition = MINT CANDIDATE F-2). PROCESSO:
+  panel a convergenza con verifier. VERDETTO: advisory di record,
+  consumo dichiarato a ogni uso.
+- *Battuta 3*: decisioni UTENTE pendenti di record: build S-5F path A/B/C
+  (con fork [T-N6-2] su path A, annotazione utente) + priorità C51
+  (:179-183); pin bloccanti B-1/B-2 da fissare in D.13 prima di ogni
+  ingestione dati.
+
+**T-5. K̄ = 0 — l'invariante che attraversa i tre piani.**
+- *Battuta 1*: derivato in-panel swirl5f e confermato UNCONDITIONAL dal
+  verifier (2026-08-19, `DISPATCH_swirl5f.md:64`, :147); consumato come
+  gamba (c) di [T-DISC-1] e cuore di [T-RED-2](i) nel centerpiece
+  (2026-08-20, :512-539). PROCESSO: derivazione multipla indipendente +
+  witness sympy. VERDETTO: PROVEN in-panel.
+- *Battuta 2*: (a) RIDERIVATO-PIENO — la stessa identità è provata in
+  DUE processi disgiunti (panel swirl5f 2026-08-19; refutazione
+  centerpiece 2026-08-20 con probe), tre provenienze in un solo enunciato
+  (§1.3 PART 1). PROCESSO: convergenza cross-processo. VERDETTO:
+  confermato in entrambi.
+- *Battuta 3*: **MINTED a grado record** al landing C4, 2026-08-21
+  (THEOREM* su BV pieno, prova a penna + testimone macchina; M0:1768-1773,
+  :1833-1838) — l'unico pezzo dei tre piani già passato per la landing
+  window; il resto attende absorption (T-2/T-4 battuta 3).
+
+**T-6. Le tre saldature (e il loro stato di prova).**
+- *Battuta 1*: saldature 1-2 = TESTUALI nei file di Fase D (2026-08-19/20:
+  T-RED→D.18 `phaseD_r22f_centerpiece.md:461-463`; forchetta→B1-B5
+  `:1502-1503`); saldatura 3 (scaletta descrittiva unica D.13 → path
+  A/B/C) = LETTURA DI ASSEMBLAGGIO di questo capitolo, 2026-08-22,
+  dichiarata come tale (§1.5.3). PROCESSO: ricostruzione S-PRES con
+  classificazione esplicita testuale-vs-assemblaggio. VERDETTO: le prime
+  due poggiano sui giudici dei rispettivi file; la terza no.
+- *Battuta 2*: saldature 1-2: (a) coperte dai giudici di Fase D
+  (`VERDICT_r22f.md:77` per la definizione condivisa K; consumo B1-B5
+  refereed nelle celle (ii)/(iii)). Saldatura 3: (c) NON-RIDERIVATA e
+  **doppia prova: ASSENTE** allo stato attuale — è una lettura di
+  assemblaggio single-pass del writer W-B.1, in attesa della refutazione
+  d'onda W-C = **FINDING dichiarato** (inventario `HISTORIAN_INV_a.md`;
+  si scarica quando W-C passa il capitolo). PROCESSO: censimento storico
+  2026-08-23. VERDETTO: onesto, non promosso.
+- *Battuta 3*: classe finale: saldature 1-2 = fatti testuali di record;
+  saldatura 3 = lettura dichiarata deck-bearing con refutazione attesa.
 
 ## 7. POSIZIONAMENTO / CONFORMITY (celle E-ii forma [V2-R6] + residuo E-iii) [W-B.1/B7]
 
@@ -624,12 +753,19 @@ Che cosa fa il campo con le medie, senza struttura per-fase (ancora
 CH5 §1.1, verificata in finestra): la prassi dei quattro paper del
 corpus C4 è la **media GLOBALE** — campo mediato su tempo e fase in UN
 solo stato steady equivalente, poi design classico su quello stato
-(CH5:27-39, box di record): P-A rampa Angelino a input time-averaged,
-P-B MoC max-thrust su UN singolo stato mediato globalmente con corner a
-p_b mediato, P-C nessun design nuovo, P-D esplicitamente non
-ottimizzato (CH5:52-71); comunanza C-1 "average-then-classical-design"
-mai testata a livello di ranking (= la nostra questione aperta R26) e
-C-5 "nessuno dei quattro è una riduzione per-phase" (CH5:73-80). Le
+(CH5:27-39, box di record): P-A rampa Angelino a input time-averaged;
+P-B MoC max-thrust Rao/Vander-Veen su UN singolo stato steady da p0/T0
+TIME-AVERAGED — forma source-verified dei corner
+(`VERIFY_PB_corner_pb.md`, consumata da CH5 [WB1-R10]): la mediazione
+RDE entra SOLO nei vincoli di ristagno p0/T0; i corner sono lip della
+shroud a p_inf AMBIENTE (Eq. 22) e base dello spike a p_b = "averaged
+base pressure" (Eq. 26) = media SPAZIALE sulla base (lessico plug
+troncato steady, MAI cycle-averaging; senza fonte citata né
+provenienza dichiarata del valore); P-C nessun design nuovo; P-D
+esplicitamente non ottimizzato (CH5:52-81); comunanza C-1
+"average-then-classical-design" mai testata a livello di ranking (= la
+nostra questione aperta R26) e C-5 "nessuno dei quattro è una
+riduzione per-phase" (CH5:83-93). Le
 istanze quasi-1D del campo (blowdown 0-D per-phase LL-3, EAP rung
 int-max LL-4 — righe del ledger, casa CH5/CH2) mediano senza operatore
 di residuo.

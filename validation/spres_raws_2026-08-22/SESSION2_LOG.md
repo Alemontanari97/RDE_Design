@@ -114,8 +114,73 @@ Esito: W-A PASS. CH7/CH8 = base stabile per W-B; via a W-B.0.
   §5 U3', §8 Q&A); tocca anche la lettura del margine m_n
   (L4-DEFAULT) e la case-class O1-O4.
 
-## ONDA W-B.0 — LINEAGE SWEEP (lanciata 2026-08-23)
+- **CKP-S2-2 (2026-08-23) — VEICOLO WORKFLOW per il Blocco 2 (decisione
+  utente).** Su proposta orchestratore, l'utente ratifica ("sì se porta
+  maggior rigore e completezza e sicurezza e sota-ness"): il RETRO-AUDIT
+  del deck (walk per-slide claim→ancora→classe→provenance→verdetto) e il
+  Q&A RED-TEAM (until-dry sulle obiezioni sostenute) si eseguono come
+  WORKFLOW deterministico (pipeline per-item, output strutturato,
+  journal/resume, conteggi del ROBUSTNESS VERDICT calcolati dal codice
+  — mai dichiarati da un agente). Guadagni dichiarati: copertura
+  per-enumerazione (nessuna slide saltabile in silenzio), aritmetica
+  machine-generated, resume robusto. Nota C-5: sull'asse orchestrazione
+  NESSUNO standard mondiale esiste (conformity map asse 8) — la
+  "sota-ness" del veicolo resta claim query-bounded, mai "standard".
+  I loop a convergenza restano gated: panel giudice+refuter SOLO sulle
+  contese sostenute post-W-C (forma canonica S14); critic finale =
+  chiusura del loop di completezza; nessun round rituale.
 
-Shape: 2 slot giudizio (L1, L2), inherit max, corpus 82 id splittato
-41/41 (righe-paper disgiunte, file part1/part2 + merge orchestratore).
-Esiti qui all'atterraggio.
+## ONDA W-B.0 — LINEAGE SWEEP — CHIUSA (3 slot: L1 170k / L2 190k /
+L3 147k = 507k vs cap 250k; SFORO DICHIARATO, causa = GV-1/F-des-1:
+asse falsificato, 5 componenti nuove obbligatorie — non deriva).
+Matrice 20 comp × 82 paper, tutte le celle rese (~196 piene);
+Harroun peso/denominatore UNDECLARED (fonte pp.670-671); Fievisohn
+method-paper JPP 2017 + PhD trovati su disco (colonna [IO] 6 comp);
+LINEAGE_LEDGER 35 righe + 4 seed (merge orchestratore, contratto di
+join F-des-4 in testa).
+
+## ONDA W-B.1 — WRITER — CHIUSA 7/7 (commit e84adee; ~1.4M tok
+inclusi resume post-session-limit — 7 slot morti al reset e RIPRESI
+dal transcript, zero perdite, check scheletro 0 duplicazioni).
+CH9+CH10 nuovi; N-Q first-level col tallone (J); riga H licensing;
+M1-M5; §3-bis ovunque; ~25 card (11 non-aggiudicate stampate);
+5 query NOT-FOUND(q) search-proven. Correzioni utente in-window:
+CKP-S2-1 guardia 17 (feedback ugello→camera) cablata in CH10;
+catch p_b/P-B source-verified (VERIFY_PB) → CH5/ledger riformulati;
+catch PM22 "J" → LL-5 affilata (Eq.1 = metrica cycle-time-averaged,
+mai funzionale posto).
+
+## ONDA W-B.2 — STORICI — CHIUSA 2/2 (B8a 215k al cap; B8b 194k).
+§6 STORIA in tutti e 10 i capitoli, trittico con data+processo+
+verdetto (vincolo §5-bis); split (a)/(b)/(c) onesto; ZERO ancore
+fabbricate; 4 FINDING "doppia prova: ASSENTE" (inventari INV_a/b);
+fuori-perimetro: collisione namespace C31, ancora stale :1455.
+
+## ONDA W-C.a — REFUTAZIONE — CHIUSA 5/5, **0 BREAK COMPLESSIVI**
+(C1 183k / C2 170k / C3 449k / C4 128k / C6 234k ≈ 1.16M vs cap
+400k: SFORO DICHIARATO, cause = scope reale dei capitoli cresciuti
++ C3 100% load-bearing su 8 capitoli + C6 matrice 203 piene + 76
+vuote campionate; tripwire non applicabile come deriva: copertura =
+contratto). Esiti: C1 CH9 REGGE-CON-RIPARAZIONI (4 REPAIR eseguite
+in-window, top: scoping gambe O3.4; DEVIAZIONE DICHIARATA: C1 ha
+editato CH9 fuori-§6 mentre B8b scriveva §6 — due writer stesso file
+stesso round, esito misurato senza collisione, regola ribadita per i
+round successivi); C2 CH10 REGGE-CON-RIPARAZIONI (6 REPAIR accodate
+→ B2; top: declassamento T-DISC, condizionale C-SBVF inesistente,
+"⇔"→"solo se" — difetto di formulazione DELL'ORCHESTRATORE nel
+messaggio a B2, catturato dal refuter); C3 sezioni nuove: 8/8
+REGGE±riparazioni, 17 finding (1 ALTA: CH6 feed-1 scope), 3 DECK
+FEED bloccati per lo storyboard fino a riparazione; C4 mini-pass
+REGGE 66/66; C6 lineage: matrice REGGE (0 celle cadute), ledger
+REGGE-CON-EMENDAMENTI (LL-36/37), lista COMPLETA-CON-EMENDAMENTI
+(C46→N-17), 4 falso-vuoto da campione 5.3%. CONTESE SOSTENUTE: 0 →
+NESSUN panel necessario. Q&A SEED consegnati da tutti i refuter.
+
+## ROUND RIPARAZIONI + W-C.b (lanciati 2026-08-23)
+
+7 resume owner-per-file (B2 CH10+C54; B3 CH1 gap-guardia-17; B4 CH4
+×2+nota G0; B5 CH6 feed-1 ALTA + C61 dedup; B6 CH8 G-iii
+riproducibile; B7 CH7 p_b-superseded; C6 ledger/matrice) + C5
+(REFUTE_STORIE: trittico ancora-per-ancora, 12 hash, guardia 15,
+rami (a) indebiti) + fix preambolo CH9 (orchestratore). Esiti agli
+atterraggi.

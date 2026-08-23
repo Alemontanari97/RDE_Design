@@ -262,21 +262,45 @@ I cinque meccanismi, con le istanze di record:
   Allman-Hoffman, non global search deterministico). Upgrade a
   confronto pieno solo se l'orchestratore minta righe WANTED (A4).
 
-**G-iii — il campo, alla query (search-proven, perimetro chiuso).**
+**G-iii — il campo, alla query (search-proven, perimetro chiuso;
+forma riparata WB1-C3-16).**
 Claim: *nessun paper P-A..P-D dichiara un meccanismo di globalita'*.
-Query eseguita in-window 2026-08-23: `grep -i "global optim|globality|
-global search|branch.and.bound|Lipschitz|deflat|multi-?start|globally
-optimal|global maximum|global minimum"` sui quattro study file
-`NOZZLE_RDE_STUDY_p{A,B,C,D}_*.md` (esistenza del perimetro provata per
-glob: 4 file presenti in `validation/sfoundations_raws_2026-08-13/blocco3/`)
-+ `docs/rde_nozzle_literature_map.md` + `docs/literature_registry.yaml`
-→ **0 match**. I quattro paper (glossario `docs/glossary.yaml:1523-1527`):
-P-A Liu-Cheng-Zhang-Wang 2022 (PKU), P-B Li-Xu 2023 (NUAA), P-C Li-Xu
-2025 (NUAA), P-D Jourdaine et al. 2019 — ottimizzano o confrontano
-geometrie senza mai dichiarare esistenza, meccanismo o forza di
-globalita'. Perimetro CHIUSO: registry + litmap + P-A..P-D; STOP —
-nessuna estensione oltre il perimetro dichiarato. [Riga candidata a
-registro: MINT-PENDING F-2.]
+Comando ESATTO, riproducibile dalla radice repo (ri-eseguito in-window
+2026-08-23, dopo la riesecuzione del refuter C3):
+
+```
+grep -niE 'global optim|globality|global search|branch.and.bound|Lipschitz|deflat|multi-?start|globally optimal|global maximum|global minimum' \
+  validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pA_liu_wang_2022.md \
+  validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pB_li_xu_2023.md \
+  validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pC_li_xu_2025.md \
+  validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_pD_jourdaine_2019.md \
+  docs/rde_nozzle_literature_map.md docs/literature_registry.yaml
+```
+
+**Esito VERO**: 0 hit sui quattro study file (0/0/0/0; esistenza del
+perimetro provata per glob), 0 hit sul litmap, **2 hit sul registry** —
+squalificati uno per uno:
+
+- `docs/literature_registry.yaml:1197` (match su "deflation
+  techniques", campo identity) e `:1200` (match su
+  "deflation/branch-switching axis B", campo owner): entrambe le righe
+  appartengono all'UNICA entry `wanted_farrell_birkisson_funke_2015` —
+  cioe' la riga WANTED censita DA NOI (status WANTED, identita' a
+  livello abstract, nessun claim di lettura), la stessa che §1.7 M4
+  cita come posizionamento-mondo. NON e' un paper del campo P-A..P-D e
+  NON dichiara un meccanismo di globalita' di alcun design consegnato:
+  e' il nostro censimento dello strumento M4. Non qualifica contro il
+  claim.
+
+Il claim quindi SOPRAVVIVE nella forma esatta: nessuno dei quattro
+paper di campagna (glossario `docs/glossary.yaml:1523-1527`: P-A
+Liu-Cheng-Zhang-Wang 2022 (PKU), P-B Li-Xu 2023 (NUAA), P-C Li-Xu 2025
+(NUAA), P-D Jourdaine et al. 2019) dichiara esistenza, meccanismo o
+forza di globalita'; gli unici hit del perimetro sono le nostre righe
+censite, dichiarate come tali. Perimetro CHIUSO: registry + litmap +
+P-A..P-D; STOP — nessuna estensione oltre il perimetro dichiarato.
+[Riga candidata a registro, nella forma corretta qui sopra:
+MINT-PENDING F-2.]
 
 **G-iv — la proposta del programma**: *"Every Verdict states its
 mechanism and strength"* — con le tre forze canoniche verbatim:
@@ -529,6 +553,153 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
 
 ---
 
+## 6. STORIA (writer W-B.2, 2026-08-23 — trittico [V2-R2]; ogni battuta
+## porta DATA + PROCESSO + VERDETTO, campi di join del retro-audit §5-bis)
+
+### 6.1 La formulazione configuration-free (S come variabile di design)
+
+- **Battuta 1 — derivazione originale.** DATA: anteriore al 2026-07-22
+  (datazione by-inclusion, dichiarata: il panel census del 2026-07-22 la
+  consuma come base; il blocco del problem book non porta data propria).
+  PROCESSO: problem book D1 (`docs/rde_nozzle_problem_book.md:337-353`).
+  VERDETTO: "Configurations are the TOPOLOGY CLASSES of S — outputs of
+  the optimization, not inputs".
+- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-17 (Phase A/B
+  S-FOUNDATIONS). PROCESSO: un albero cieco produsse un claim di
+  DISCONNESSIONE topologica; l'errata di record lo aggiudica contro il
+  census — "census S0-collapse beats the blind tree's disconnectedness
+  claim; P-F17 divergence → Phase C agenda" (USER CATCH, commit
+  5221529; verdetti per-riga nel tree diff dichiarati come stance).
+  VERDETTO (stance dichiarata): il record batte il fork; la divergenza è
+  consumata in agenda, non ignorata.
+- **Battuta 3 — convergenza.** DATA: 2026-08-21 (pipeline decision map,
+  refuter 0 BREAK). PROCESSO: la formulazione entra nella mappa come
+  spina di stage. VERDETTO: classe finale = formulazione di record; il
+  raffinamento census resta ADVISORY in attesa di ratifica utente.
+
+### 6.2 Decomposizione in settori + torneo finito
+
+- **Battuta 1 — derivazione originale.** DATA: problem book (SCHEMA,
+  `docs/rde_nozzle_problem_book.md:354-363`, senza data propria) +
+  2026-07-22 (counting theorem del census, THEOREM-sketch condizionale,
+  `validation/PANEL_topology_census_2026-07-22.md:55-74`). PROCESSO:
+  cono uniforme ⇒ finitezza dei settori; Chenais+S1 ⇒ esistenza
+  per-settore; ottimo totale = torneo. VERDETTO: M0 dichiara che
+  "'FINITE' here carries NO declared rigor class at this site of record"
+  (`docs/rde_nozzle_MASTER.md:313-320`).
+- **Battuta 2 — mista, per gamba.** (a) RIDERIVATO-PIENO sulla gamba
+  ESISTENZA: DATA 2026-08-17; PROCESSO derivatori ciechi — H-F34 cita
+  Chenais 1975 verbatim sulla classe uniform-cone, V-F15 aggiunge la
+  forma condizionale con H-STAB
+  (`validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:336-338`);
+  VERDETTO: architettura (i) riderivata cieca. (c) NON-RIDERIVATO sulla
+  gamba FINITEZZA: la prova è DOVUTA alla census-lemma session
+  (schedulata F2-exit, `docs/rde_nozzle_PROGRESS_ARCHIVE.md:413`);
+  doppia prova alternativa = il panel census stesso (5-lens + 8-lens
+  attack + 3-referee, 233/233 verdetti mappati) CON il caveat di header
+  dichiarato: il criterio di convergenza formale NON fu raggiunto prima
+  del troncamento infrastruttura (`PANEL_topology_census_2026-07-22.md:11-13`).
+  VERDETTO: esistenza confermata; finitezza resta SCHEMA con debito
+  nominato.
+- **Battuta 3 — convergenza.** DATA: nessun evento di chiusura ancora
+  (stato al 2026-08-23). PROCESSO: le due letture (torneo per settori /
+  census S0) sono aggiudicate COMPATIBILI in §1.3. VERDETTO: classe
+  finale SCHEMA + THEOREM-sketch condizionale; il census RIDUCE le
+  partite del torneo, non lo elimina.
+
+### 6.3 I pin utente 2026-08-02 (cono su Ω, PERMISSIVA, NONBLOCK+, Λ)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-02 (pin utente di
+  record, census §7pin,
+  `validation/PANEL_topology_census_2026-07-22.md:329-384`). PROCESSO:
+  decisioni utente registrate nel panel (cono sul lato FLUIDO/Chenais;
+  CEN-O1 PERMISSIVA; CEN-O10 NONBLOCK+; CEN-O11 Λ = i due cerchi di
+  lip), con garanzia di generalità verificata (`:371-377`). VERDETTO:
+  pin decisi, nessuna geometria fisica rimossa.
+- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-05 (state-pointer
+  notes datate in M0). PROCESSO: i pin sono DECISIONI, non derivazioni —
+  M0 li porta come puntatori di stato (`docs/rde_nozzle_MASTER.md:306-312`
+  e `:321-327`) che dichiarano gli emendamenti D2.1/D2.6 QUEUED; la
+  derivazione pin→lemma è target dichiarato
+  (`PANEL_topology_census_2026-07-22.md:359-364`). VERDETTO (stance):
+  vincolanti come pin, non promossi a teoria.
+- **Battuta 3 — convergenza.** DATA: NON ancora avvenuta (census-lemma
+  rigor session schedulata F2-exit). PROCESSO: residuo analitico
+  dichiarato CEN-O4 (hub connectedness) + CEN-O5 (`:378-384`).
+  VERDETTO: stato onesto = pin di record + sessione dovuta.
+
+### 6.4 Il torneo alle chiusure: T4 / [T-OP11e] / la dicotomia
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-07-21/22 (T3-QS
+  remark S12, M0:462; precedente trajectory-averaged page-verified S13
+  2026-07-22, M0:2908) e 2026-08-04 (PAN-S14: antenato del meccanismo di
+  simultaneous-optimality di T4, M0:2920; classi F riviste dal panel).
+  PROCESSO: derivazione in-house della catena T3/T4 + carrier X-GRP10/12
+  per [T-OP11e]. VERDETTO: T4 nesting THEOREM*; [T-OP11e] THEOREM
+  EOS-general con device di torneo certificato per cella.
+- **Battuta 2 — (a) RIDERIVATO-PIENO (cieco).** DATA: 2026-08-17.
+  PROCESSO: derivatori ciechi Phase A → tree diff §3 item 5: "delta = 0
+  iff one shape is per-phase optimal mu-a.e. = the T3/T4 dichotomy
+  criterion re-derived" (V-F25 P1, interchange bound = il nostro
+  int-max bound;
+  `validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:339-344`).
+  VERDETTO: il criterio della dicotomia riderivato alla cieca; "any J >
+  B is an instant solver-bug rejector" = la dottrina bound-as-oracle
+  riderivata con esso.
+- **Battuta 3 — convergenza.** DATA: 2026-08-12 (S24 T2a: audit delle 5
+  ipotesi del twin S18 PERFORMED, precondizione nominata del T-T3-MAP,
+  M0:4138-4140). PROCESSO: audit di precondizione + scope clause.
+  VERDETTO: classe finale THEOREM/THEOREM* con lo scope vincolante "i
+  winner rankano CHIUSURE a pari eps_max, mai hardware"
+  (claims:368-379).
+
+### 6.5 Il driver un-settore (bell/TOC) e il delta formulazione↔codice
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-06 (A1 BRICK 2 OF
+  RECORD, sessioni S17-S18, M0:3251-3253; carrier [X-TOCV], log S17
+  passi 4-11 + S18 passi 3-7). PROCESSO: costruzione del driver
+  variazionale TOC end-to-end (heights-as-dofs, TR-Newton segmentato).
+  VERDETTO: strada variazionale ESISTE end-to-end — su UN settore, a
+  topologia fissata ("dJ/dtheta_B exact at fixed topology").
+- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-17 (tree diff,
+  verdetti per-riga dichiarati come stance). PROCESSO: C1 design basis =
+  DIVERGENT-ENRICHING HIGH (`phaseB_tree_diff.md:22`); C9 mesh law =
+  DIVERGENT HIGH 4/4 (`:66`); C31 optimizer = CONVERGENT su famiglia +
+  DIVERGENT sulla metà IP (`:159`). VERDETTO (stance): le divergenze
+  sono state consumate dalle aggiudicazioni Phase C a convergenza
+  (finestre C2-C4, 2026-08-19/21), mai lasciate implicite.
+- **Battuta 3 — convergenza.** DATA: 2026-08-21 (pipeline map stage 6).
+  PROCESSO: cluster C1-C8 di record con la migrazione control-chart
+  CONVERGIUTA come scelta aperta (F2-C1-CONTROL-CHART-MIGRATION,
+  `docs/rde_nozzle_pipeline_decision_map.md:154`). VERDETTO: classe
+  finale PRACTICE onesta — la generalità configuration-free vive nella
+  formulazione e nel torneo alle chiusure, NON ancora nell'engine
+  (dichiarazione §1.5, mai ammorbidita).
+
+### 6.6 H20 / C61: i gap free-boundary come scoperte datate
+
+- **Battuta 1 — derivazione originale (dei GAP, non di una teoria).**
+  DATA: 2026-08-20/21. PROCESSO: fork adjudication 141 (commit a85e355:
+  "2 genuine gaps (H20 F4b; P34 P-1 window)", 90/50/1/0 riconciliati) +
+  coverage gate C4 (commit fd2d444: **C61 p_b-closure MINTED**, 6a
+  istanza della classe no-row) + base-pressure harvest (commit b3da86d:
+  Veen 0.846p/M^1.3 tracciata al fit cold 1966 WG10-FAILED; exhibit
+  Humphreys ×2.45). VERDETTO: due mancanze DISTINTE (modello C61 vs
+  meccanica H20, edge E12 della mappa `:218`).
+- **Battuta 2 — (c) NON-RIDERIVATO esplicito (nessuna derivazione
+  esiste: è il contenuto del nodo); doppia prova dell'ASSENZA.** DATA:
+  2026-08-20/21. PROCESSO: l'assenza è search-proven due volte con
+  strumenti indipendenti — la riconciliazione fork-141 (che trova H20
+  come 1 di SOLI 2 gap genuini su 141 fork) e la coverage gate dual-seed
+  (che minta C61 sotto critic avversario provato nei due sensi).
+  VERDETTO: gap genuini di record, non dimenticanze.
+- **Battuta 3 — convergenza.** DATA: 2026-08-21 (registrazione slot).
+  PROCESSO: p_b = SLOT DICHIARATO N2 nel problem book (`:347-348`) con
+  verdetto "MUST REPLACE IT" su Veen; conditional C-N2 da coniare al
+  kickoff PB-2/OP-2 (`docs/claims_registry.yaml:181`). VERDETTO: classe
+  finale OPEN/NEVER dichiarata con owner e finestre (F4b; PB-2/OP-2) —
+  lo stato onesto È il risultato.
+
 ## 7. Posizionamento / conformity (celle F-ii + riga G) [W-B.1/B6]
 
 ### 7(a) STRUMENTI
@@ -686,31 +857,16 @@ THEOREM/THEOREM*/SCHEMA di CLAUDE.md R4.
    aggiudicata come CLUSTER con C31 A/B, C58, C60, [P-IPADJ]
    (`docs/rde_nozzle_pipeline_decision_map.md:138,199-204`).
 
-**CARD C61 — chiusura base-pressure p_b (NEVER: non-aggiudicata, stampata per obbligo §1g)**
-1. **Scelta**: C61 (`docs/choice_ledger.yaml:818-829`) — incumbent
-   DICHIARATO senza adozione di programma: la Veen 0.846p/M^1.3 vive
-   solo nella catena LEGACY (WG10-FAILED); il p_b di programma e' lo
-   SLOT N2 (`docs/rde_nozzle_problem_book.md:347-348`).
-2. **Alternative censite** (harvest BASE_PRESSURE_HARVEST_c4.md,
-   2026-08-20): WG10 empirical bracket [+19%,−15%] (Onofri 2002,
-   RTO-TR-AVT-007); modello di transizione Nasuti-Onofri ([MODEL-VAL]
-   WG10 pp.10-11); chiusura N2 derivata (owner dello slot, verdetto
-   WG10 su Eq.(5.1): "N2 MUST REPLACE IT"); chiusura misurata
-   (CTAP classe V1.4, unica misura hot-fire RDE, Purdue nozzleless).
-3. **Verdetto**: **NON AGGIUDICATA** (status NEVER di record).
-4. **RECENCY/SOTA check**: harvest datato 2026-08-20 (recente), MA la
-   base empirica sottostante e' cold-flow 2002 (WG10) — il verdetto
-   "MUST REPLACE IT" e' esso stesso la dichiarazione di staleness del
-   modello legacy → **STALE → finestra-di-ri-esame N2/F4b (la chiusura
-   va derivata/misurata, non ereditata)**.
-5. **Falsificatore** (della futura scelta): la banda PB-2
-   troncamento/base-pressure oltre le barre
-   (`docs/claims_registry.yaml:181`); l'exhibit Humphreys ×2.45
-   (argmax O(1) a valore piatto, §1.7 G-v) e' il warning storico che
-   la card deve superare.
-6. **Trigger + finestra**: prima riga (value,delta) truncated-plug che
-   entra nel record, O ingresso finestra F4b — chi spara prima
-   (ledger `:829`); coniazione C-N2 al kickoff PB-2/OP-2.
+**CARD C61 — chiusura base-pressure p_b: PUNTATORE alla casa primaria
+[dedup WB1-C3-17 RISOLTO, orchestratore 2026-08-23]**
+La card completa 6/6 campi vive UNA volta in **CH6 §8 (casa PRIMARIA,
+decisione B5 con ragione dichiarata: la scelta e' costitutiva di PB-2 e
+il trigger C61 e' PB-2-shaped)**. Qui resta solo il join richiesto
+dall'obbligo §1g per le scelte che questo capitolo presenta (§1.6):
+C61 = NEVER, incumbent legacy Veen WG10-FAILED, slot di programma N2
+(`docs/rde_nozzle_problem_book.md:347-348`), STALE → finestra N2/F4b;
+falsificatore e trigger nella card primaria. Mai due card gemelle
+(regola anti-entropia SR-7).
 
 ---
 
@@ -756,6 +912,18 @@ query-bounded sul perimetro ledger); le guardie 2/3 restano rispettate
 (§1.7 M3 usa il naming "oracolo quasi-1D senza contouring", nessun
 T1c).]
 
+[Riparazione B6 post-refuter, 2026-08-23 — WB1-C3-16 (REPAIR MEDIA)
+APPLICATA: query G-iii rieseguita dal writer nel perimetro dichiarato,
+comando stampato in forma -E ESATTA riproducibile, esito vero
+dichiarato (0/0/0/0 study file + 0 litmap + 2 hit registry
+`:1197`/`:1200` squalificati uno per uno = la nostra riga censita
+`wanted_farrell_birkisson_funke_2015`, non un paper del campo); DECK
+FEED 6 allineato alla forma corretta; MINT-PENDING F-2 eredita la
+forma riparata. WB1-C3-17 (NOTE BASSA) applicata a costo zero: nota di
+dedup sotto la card C61 (§7(d)) con rinvio all'orchestratore per la
+casa primaria unica. Il merito del claim G-iii sopravvive (conferma
+del refuter stesso).]
+
 ---
 
 ## DECK FEED (B6, W-B.1 — asserzioni candidate-slide, frase piena + ancora + classe)
@@ -790,8 +958,11 @@ T1c).]
 6. **Nessuno dei quattro paper di campagna del campo (PKU Liu 2022,
    NUAA Li-Xu 2023/2025, Jourdaine 2019) dichiara un meccanismo di
    globalita' — il contratto per-Verdict e' il nostro delta.** — query
-   G-iii (0 match, perimetro registry+litmap+P-A..P-D, 2026-08-23,
-   CH8 §1.7) — [search-proven NOT-FOUND(q); MINT-PENDING F-2]
+   G-iii rieseguita 2026-08-23 (forma riparata WB1-C3-16): 0 hit sui
+   4 study file + 0 sul litmap; i 2 hit registry (`:1197`/`:1200`) =
+   la NOSTRA riga censita `wanted_farrell_birkisson_funke_2015`,
+   squalificata con ragione in §1.7 — [search-proven NOT-FOUND(q) con
+   hit squalificati dichiarati; MINT-PENDING F-2]
 7. **Il p_b sposta l'argmax del plug troncato di ×2.45 a valore quasi
    piatto (Humphreys 1971): la piattezza del valore NON certifica il
    design — per questo il target M3 e' l'unimodalita' della duty

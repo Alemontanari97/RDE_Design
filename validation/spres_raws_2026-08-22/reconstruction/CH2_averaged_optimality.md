@@ -296,7 +296,9 @@ al pass del refuter C6 (LL-1 è nel gruppo dei seed/righe con verifica
 page-verified di record). Formato: antenato → cosa fa → cosa gli manca.
 
 - **LL-1 Kraiko-Osipov 1970** (`kraiko_osipov_1970`, registry :102;
-  componenti 2/3/4/11) — **citazione OBBLIGATORIA** (M0:2908-2926,
+  componenti 1/2/3/4/11 — la (1) in istanza DEGENERE, collasso alla
+  famiglia classica sotto similarità d'ingresso, matrix part1:60-62;
+  rilevanti al nodo N-C: 2/3/4/11) — **citazione OBBLIGATORIA** (M0:2908-2926,
   page-verified S13; gate umano G5 su submission, CLAUDE.md R6).
   Cosa fa: per l'istanza TRAIETTORIA della stessa struttura, condizione a
   parete PESATA integrata nel tempo (loro (3.2), peso = adjoint di
@@ -331,7 +333,7 @@ page-verified di record). Formato: antenato → cosa fa → cosa gli manca.
   antenato discreto-ensemble del funzionale pesato. **Residuo R11
   DICHIARATO**: pesi e forma della somma MAI stampati nel paper — la
   J-somma è inferenza nostra, e resta bounded finché R11 non chiude
-  [P2.4; matrix part2:80-90; LINEAGE_LEDGER.md:134-135]. Cosa gli manca:
+  [P2.4; matrix part2:80-90; LINEAGE_LEDGER.md:139-140]. Cosa gli manca:
   misura di ciclo continua, condizioni di parete, per-phase.
 
 Perimetro di novità conseguente (già query-bounded in §1.8): l'antenato
@@ -479,7 +481,133 @@ dal gate umano G5 su Kraiko finché un umano non ha fatto il passaggio
 
 ---
 
-*(§6 STORIA: territorio W-B.2 — non scritto qui, numerazione riservata.)*
+## 6. STORIA — trittico condizionale [V2-R2] (writer B8a, W-B.2, 2026-08-23)
+
+Ogni battuta: DATA + PROCESSO + VERDETTO (vincolo §5-bis). Ancore Fase A/B:
+`validation/sfoundations_raws_2026-08-13/` (alberi ciechi 2026-08-17,
+`phaseB_tree_diff.md` 2026-08-17).
+
+**T-1. [T-T7FS] — il sistema a tre blocchi e la differenziazione sotto
+l'integrale di ciclo.**
+- *Battuta 1*: 2026-07-16, campagna rigore-S8 — commit `86fac06`
+  "[F1/T7-FS + F1/P7]: T7 and P7 attacked in function space — the chain of
+  (P) closes at THEOREM* grade" (prova
+  `docs/rde_nozzle_T7_P7_functionspace.md`); testo di record P1 §5-7 con
+  boxed warning: 2026-07-20, S10, commit `c0e3051`. PROCESSO: attacco in
+  function space + stesura P1. VERDETTO: THEOREM* sulla differenziazione,
+  struttura THEOREM-SCHEMA.
+- *Battuta 2*: (a) RIDERIVATO-PIENO — Fase A/B 2026-08-17, item 2
+  "Rao-collapse under averaging (T7 road): H-F35 proves-sketch"
+  (`phaseB_tree_diff.md:325`); più panel D8 PAN-S14 2026-07-22 (16/16
+  team-CONFIRMED, commit `7be8b98`). PROCESSO: derivazione de-novo cieca +
+  panel a convergenza. VERDETTO: CONVERGENT sul road T7.
+- *Battuta 3*: spina condizionale unica [C-D25U] dichiarata dal 2026-07-17
+  (commit `c4d5a95`, conditionals ledger L4); ipotesi H-EXO aggiunta alla
+  finestra litreview (2026-08-13, registry :1929). Classe finale come §2.
+
+**T-2. [T-P3] — f2 = −λ2, il moltiplicatore dai dati al lip.**
+- *Battuta 1*: 2026-07-16, rigore-S8 — commit `f54dbf2` "[F1/P3]: averaged
+  multiplier gap ATTACKED — THEOREM* in shock-free S1" + `514d037`
+  "Prop. A3, f2 = transported adjoint invariant" (prova
+  `docs/rde_nozzle_P3_multipliers.md`). PROCESSO: attacco derivativo con
+  doppia route (Prop. A2 dual-route `35e95f2`). VERDETTO: THEOREM*
+  shock-free, eredita [C-MAJDA] sui fronti fittati.
+- *Battuta 2*: (c) **NON-RIDERIVATO: questo aspetto non ha avuto
+  riderivazione agnostica di record** (non è tra i 7 item theory-layer di
+  `phaseB_tree_diff.md:315-347`). Doppia prova alternativa: panel D8
+  PAN-S14 2026-07-22 (16/16) + carrier eseguibile O3.3 bench PASS al
+  criterio primario, campagna S19 2026-08-06/07 (memoria
+  `s19-o33-campaign`; [C-O33] aperta ma QUANTIFICATA — residuo dichiarato,
+  P1:200-203). PROCESSO: panel + campagna di misura pre-registrata.
+  VERDETTO: identificazione THEOREM*/pending [C-O33].
+- *Battuta 3*: classe finale THEOREM* con residui R-P3.1/2 nominati
+  (M0:2930-2934).
+
+**T-3. Il locus S19 — superficie ottima = C+ kernel-stopped.**
+- *Battuta 1*: 2026-08-06/07, sessione S19 (campagna O3.2/O3.3, M0:3291) —
+  la misura sul C+ completo fino all'asse dà drift 2.9e-01 (identità
+  falsificata), sulla superficie kernel-stopped 9.5e-03; re-issue in norma
+  registrata 9.4809e-03 in S21 (2026-08-07, M0:3613). PROCESSO: rejector
+  misurato che ha SPARATO → correzione di locus. VERDETTO: locus
+  correction di record.
+- *Battuta 2*: (c) NON-RIDERIVATO in Fase A; doppia prova alternativa = il
+  falsificatore misurato stesso (due misure discriminanti a due decadi di
+  distanza) + qualificatore di scope aggiunto dall'audit C1 in S21
+  (2026-08-07, M0:368, :2821: identificazione limitata al sottoclasse
+  irrotazionale-omoentropico). PROCESSO: audit di scope post-correzione.
+  VERDETTO: THEOREM* scoped.
+- *Battuta 3*: classe finale THEOREM* dentro T-T7FS(a), scope dichiarato.
+
+**T-4. La forma a CONO di (**') + [T-T7CN] + content split.**
+- *Battuta 1*: forma free-endpoint (Rao Eq. (14)) al testo P1 2026-07-20
+  (`c0e3051`); RIFORMA a cono = ratifica utente C31, 2026-08-13, sessione
+  F-SERVICE (R36) — con mint del lemma [T-T7CN] e controesempio a due fasi
+  (memoria `fservice-scert-double-session`; M0:2830-2874). PROCESSO:
+  ratifica utente su proposta istruita + prova elementare con
+  controesempio. VERDETTO: THEOREM (T-T7CN), conversa FALSA.
+- *Battuta 2*: (c) NON-RIDERIVATO in Fase A: la forma a cono (2026-08-13)
+  precede gli alberi (2026-08-17), ma la riga endpoint non compare tra gli
+  item theory-layer §3 del diff (`phaseB_tree_diff.md:315-347`) — nessuna
+  ancora di Fase A viene fabbricata (F-des-3). Doppia prova alternativa:
+  prova di record del lemma con
+  controesempio esplicito + rejector S3/A39 armato (il tool DEVE accettare
+  one-phase-out/mean-in, M0:2871-2874) + cross-check KT2015 (2.10)/(2.13)
+  page-verified. PROCESSO: prova + rejector + confronto alla fonte.
+  VERDETTO: THEOREM con falsificatore vivo.
+- *Battuta 3*: content split (assiale binario / radiale porta l'averaging)
+  registrato nello stesso blocco M0:2875-2894; classe finale come §2.
+
+**T-5. Il BOXED WARNING (media naive sbagliata fuori T3) e il twin.**
+- *Battuta 1*: boxed warning nel testo di record P1 §5-7, 2026-07-20
+  (`c0e3051`, "averaged system T7/(**') with boxed naive-average
+  warning"); twin warning (dual-infeasibility, regime-qualified) alla
+  finestra della ratifica C31, 2026-08-13 (M0:2895-2907). PROCESSO:
+  derivazione + controesempio esistenziale a due fasi. VERDETTO:
+  corollario THEOREM* + THEOREM esistenziale.
+- *Battuta 2*: boxed warning: (a) parziale via T7-road H-F35
+  (`phaseB_tree_diff.md:325`, 2026-08-17) + rejector eseguibili gruppi
+  (vi)/(xii) e T1c/G5/G6 (numeri re-misurati suite S25-bis,
+  `validation/s25bis_closing_suite.log:61-76`, 2026-08-13). Twin warning:
+  (c) NON-RIDERIVATO e il falsificatore di rilevanza a due segni NON è mai
+  stato eseguito sul parco esistente (dichiarato in §3.6) — la prova
+  esistenziale c'è, la seconda prova di RILEVANZA è **ASSENTE** =
+  **FINDING dichiarato** (inventario `HISTORIAN_INV_a.md`). PROCESSO:
+  diff Fase B + rejector; censimento onesto. VERDETTO: come stampato.
+- *Battuta 3*: classi finali §2; la classe eps* stantia a −2.39% resta
+  l'istanza storica dell'artefatto naive (P1:106-107).
+
+**T-6. [T-T7RED] e la demozione delle forme chiuse a oracoli.**
+- *Battuta 1*: 2026-07-16 — commit `ef0af1d` "[F1/OP-0-gamma]: gamma
+  purged from the executable ceiling — real-thermo primary route, closed
+  forms demoted to oracles" (direttiva rafforzata `cbee622` S5); carrier
+  run_all gruppo (xii), eps*_real 3.49-3.52. PROCESSO: inversione di
+  architettura per direttiva gamma-variabile + carrier. VERDETTO: THEOREM
+  EOS-general con forma chiusa demota a oracolo (pin VI.4bis(iii)).
+- *Battuta 2*: (a) RIDERIVATO-PIENO — T7-road H-F35
+  (`phaseB_tree_diff.md:325`) + thermo road item 6 "V-F9/H-F6 = certified
+  gamma(T) tables with AD" (`:345`), 2026-08-17. PROCESSO: alberi ciechi
+  convergenti su route reale + tabelle certificate. VERDETTO: CONVERGENT.
+- *Battuta 3*: rejector T1c/G5/G6 al rango dichiarato, numeri di record
+  re-misurati 2026-08-13 (suite S25-bis); classe finale THEOREM.
+
+**T-7. La genealogia (Kraiko-Osipov 1970, Hoffman 1967, concessione
+KT2015).**
+- *Battuta 1*: 2026-07-16 — sweep PMM 1957-1990 di record, "top flag
+  Kraiko-Osipov 1970" (commit `344ddfb`); Hoffman 1967 full page-level
+  read (`079f882`); adjudicazione contenimento K-O: 2026-07-22, S13,
+  commit `581ccb1` + precedente page-verified (M0:2908-2926). PROCESSO:
+  sweep sistematico + lettura alla pagina + adjudicazione. VERDETTO: [REP]
+  page-verified, citazione obbligatoria.
+- *Battuta 2*: (c) NON-RIDERIVATO (non derivabile: è storia esterna);
+  doppia prova alternativa = confronto litreview avversario alla riga,
+  2026-08-13 (25 paper, `ADVISORY_litreview_confrontation_2026-08-13.md`;
+  concessione query-bounded adjoint≡moltiplicatore litmap:451-456; morte
+  di "first averaged-thrust variational problem" per Efremov-Kraiko 2004,
+  M0:2320-2330). PROCESSO: contraddittorio simmetrico paper/claim
+  (protocollo di record). VERDETTO: claim di novità ristretti alle forme
+  bloccate D-06.
+- *Battuta 3*: gate umano G5 (Kraiko-1979/PMM) resta il blocco di ogni
+  SUBMISSION (CLAUDE.md R6); classe finale [REP] + query-bounded.
 
 ## 7. POSIZIONAMENTO / CONFORMITY (cella C-ii) [W-B.1/B7]
 
@@ -610,7 +738,8 @@ rde_nozzle_T7_P7_functionspace.md:40-84; VERIFICATION_FABLE_2026-08-13.md:
    (rejector eseguibile).
 4. "Il moltiplicatore di fase si legge al lip: f2 = −lambda2, in forma
    chiusa, senza risolvere alcun sistema adjoint." — ancora P1:58-63;
-   M0:2826-2934 — classe THEOREM* (T-P3, eredita C-MAJDA sui fronti).
+   M0:2826 (first integral) + M0:2930-2934 ([T-P3] classe) — classe
+   THEOREM* (T-P3, eredita C-MAJDA sui fronti).
 5. "Continuo-prima in formulazione, discreto AD come realization
    per-ruolo, con oracolo O3.1 a machine precision e dual-consistency
    come referee (F11d)." — ancora choice_ledger.yaml:760-769 (C56);

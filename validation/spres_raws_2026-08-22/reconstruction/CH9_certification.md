@@ -10,7 +10,8 @@ docs/findings_registry.yaml (righe audit-scert, grep in finestra),
 docs/claims_registry.yaml (classi e carrier, righe citate per numero),
 docs/rde_nozzle_development_plan.md (D6, gate), docs/rde_nozzle_SCAFFOLD.md
 (§2/§5). **Arco di consumo**: refuter C1 (W-C.a, REFUTE_CH9) contro
-GUARD_CHECKLIST.md; §6 STORIA = writer W-B.2 (qui solo placeholder);
+GUARD_CHECKLIST.md; §6 STORIA = SCRITTA da B8b (W-B.2, 2026-08-23 —
+preambolo aggiornato dall'orchestratore al landing, ex-placeholder);
 storyboard v3 consuma il blocco `## DECK FEED`; le decision card joinano
 su {antenato, ancora, data} per il grafo camminabile [F-des-4].
 
@@ -42,7 +43,7 @@ gate di staleness CIECO al drift di import-closure/env — **aperto, owner
 F2** (findings_registry.yaml:1508, riga
 `audit-scert:staleness-import-closure-blind`), corroborato POSITIVAMENTE
 dal carrier X-CDKAT (−13.9% di drift sui numeri di record con stamp
-pass=2026-08-11 intatto, findings:1517). Questo capitolo presenta il NO
+pass=2026-08-11 intatto, findings:1511, riga carrier-evidence :1517). Questo capitolo presenta il NO
 detto come LA PROVA che il falsificatore del nodo è vivo — mai come un
 incidente da ammorbidire: una catena che non ha mai detto NO non ha mai
 dimostrato di poterlo dire.
@@ -69,7 +70,8 @@ evidenza dichiarato, senza barre derivate, senza un test che possa
 rigettare. Istanze di record:
 
 - `harroun_2021`: la validazione è una istanza senza tier — CT-3 del
-  threat ledger (CH5 §, righe 129-137: i "nearest referee-shaped pairs"
+  threat ledger (CH5 righe 222-227 [anchor corretto da C1, REFUTE_CH9
+  F-10]: i "nearest referee-shaped pairs"
   P-B Fig. 15 / P-C Figg. 13+20b sono squalificati per compagno mediato
   globalmente e verità same-family URANS); convenzione di media
   UNDECLARED nel paper (LINEAGE_LEDGER LL-2, deep-check pp. 670-671 +
@@ -130,10 +132,15 @@ certificazione con potere di veto**, quattro pezzi:
    (D6:580-582); O3.1 = esattezza del trasposto (identità dot-product al
    floor macchina, Lemma B); O3.2 = test d'ordine sul tangente; O3.3 =
    match dei moltiplicatori closed-form vs campo adjoint AD
-   (claims_registry.yaml:197-205); O3.4 = oracolo cross-code GENO
-   ([X-GENOXC], claims:795). Più i KAT (known-answer tests: flagdef
-   KAT_BFUN a gamma=1.4 closed-form, jitter sintetico, certdiag KAT —
-   D6:40,130,422) e il **dual-seed**: ogni batch di audit porta un seed
+   (claims_registry.yaml:197-205); O3.4 = oracolo cross-code GENO, due
+   leg di record: leg flowfield CHIUSA S10 ([X-GENOXC], claims:795 —
+   scope dichiarato: interior unit process only, non wall/corner/shock
+   né contorno assemblato), leg gradiente (JAX grad vs GENO FD,
+   P2_outline:251) dichiarata atterrare con il motore A1 (D6:826-830) e
+   SENZA pass di record in finestra = residuo dichiarato [C1 F-8]. Più
+   i KAT (known-answer tests: flagdef KAT_BFUN a gamma=1.4 closed-form
+   D6:130, jitter sintetico D6:422, certdiag KAT D6:40) e il
+   **dual-seed**: ogni batch di audit porta un seed
    known-true E un canary falso; l'audit passa solo se conferma il vero E
    rifiuta il falso (PROGRESS_2026-08-13_Scert.md, P0#1 DISCHARGED
    esattamente così).
@@ -230,17 +237,20 @@ Tre fatti formali portano il peso del capitolo:
 ## §5 STATO (aperti con owner e trigger)
 
 Dimostrato / eseguito: G1 armato (D6:775); O3.1 a precisione macchina sui
-brick + common-mode chiuso a unit-process ([X-O31CS]); O3.4 cross-code
-PASS con entrambi i negative control che rigettano ([X-GENOXC]); dual-seed
+brick + common-mode chiuso a unit-process ([X-O31CS]); O3.4 leg
+flowfield PASS con entrambi i negative control che rigettano
+([X-GENOXC], scope interior unit process; la leg gradiente di O3.4
+resta senza pass di record — residuo dichiarato, D6:826-830, primo
+blocco oracoli F2 [C1 F-8]); dual-seed
 provato in entrambe le direzioni (S-CERT P0#1 discharged); MC8 8/8.
 
 Aperti, ciascuno con owner e trigger (mai riempiti qui):
 
 | aperto | riga registro | owner | trigger |
 |---|---|---|---|
-| Staleness gate cieco a import-closure/env drift (P0#3); include il canale tracked-but-uncommitted | `audit-scert:staleness-import-closure-blind` (findings:1508) | **F2** | F2 entry; carrier-evidence X-CDKAT (findings:1517, −13.9% con stamp intatto) |
+| Staleness gate cieco a import-closure/env drift (P0#3); include il canale tracked-but-uncommitted | `audit-scert:staleness-import-closure-blind` (findings:1508) | **F2** | F2 entry; carrier-evidence X-CDKAT (findings:1511, riga carrier-evidence :1517, −13.9% con stamp intatto) |
 | pass= futuri accettati (auto-disinnesco latente) | `audit-scert:future-pass-dates-accepted` (findings:1562) | F2 | F2 entry, stessa fix family del P0#3 |
-| C-O33 aperta ma QUANTIFICATA: residuo design-class della corner row, non gap del motore; riformulazione margin-constrained | claims:197-205 + `registry-legacy:C-O33-STALE-CONDITIONAL` (findings:747, DISCHARGED-statement S21) | F2 (M0 Parte VI) | primo blocco oracoli F2 / ordine S-CERT (findings:1486) |
+| C-O33 aperta ma QUANTIFICATA: residuo design-class della corner row, non gap del motore; riformulazione margin-constrained | claims:197-205 + `registry-legacy:C-O33-STALE-CONDITIONAL` (findings:747, DISCHARGED-statement S21) | F2 (M0 Parte VI) | primo blocco oracoli F2 (claims:201 owner F2; finestra condivisa con `oracles:a1-gp01-quasi1d-not-built`, il cui trigger è findings:1486 — anchor ri-attribuito da C1, F-9) |
 | Rejector H4 doctored-code_id vacuo | `audit-scert:h4-doctored-rejector-vacuous` (findings:1553) | F2 | F2 entry |
 | Classe ondemand senza artefatti di run persistiti (evidence layer) | `audit-scert:ondemand-no-run-artifacts` (findings:1571) | F2 | F2 entry |
 | Canale anti-re-mint: 3 classi di evasione dimostrate | `audit-scert:anti-remint-evasion-classes` (findings:1535) | F2 | F2 entry |
@@ -251,12 +261,135 @@ Nessuna decisione utente pendente propria di questo nodo; le decisioni
 di quadro (F2 entry) vivono in CH6 §3.
 
 ==============================================================================
-## §6 STORIA — [W-B.2]
+## §6 STORIA (writer W-B.2, 2026-08-23 — trittico [V2-R2]; ogni battuta
+## porta DATA + PROCESSO + VERDETTO, campi di join del retro-audit §5-bis)
 
-(placeholder: il trittico derivazione→seconda prova→convergenza è scritto
-dal writer W-B.2 con data+processo+verdetto per battuta, guardia 15; per
-questo nodo la battuta 2 attesa è di forma (c) NON-RIDERIVATO con doppia
-prova = dual-seed + dual-code GENO + refuter S-CERT, design v2 §T-§6.)
+### 6.1 G1 e la gerarchia degli oracoli (il gate assoluto)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-07-16 (protocollo di
+  aderenza CLAUDE.md R5/R6, data dichiarata in testa al protocollo) con il
+  piano D6 come carrier ("O1/O2/O3 or no science",
+  `docs/rde_nozzle_development_plan.md:775`; riga gate `:285`). PROCESSO:
+  stesura del piano a fasi con gate + disciplina R5 (test che RIGETTANO,
+  tolleranze derivate). VERDETTO: G1 dichiarato ASSOLUTO alla nascita del
+  piano — blocca il lavoro a valle, non solo la pubblicazione.
+- **Battuta 2 — (a) RIDERIVATO-PIENO (architettura).** DATA: 2026-08-17
+  (Phase A/B S-FOUNDATIONS, derivatori ciechi su brief agnostico).
+  PROCESSO: tree diff dei 4 alberi ciechi vs il record. VERDETTO: la
+  classe di soluzione certificata è raggiunta da 4/4 alberi con
+  "capturing never a certificate"
+  (`validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:330-335`)
+  e la certificabilità-come-vincolo-prezzato è raggiunta 4/4 — "the
+  strongest single methodological validation in the diff" (`:347-350`).
+- **Battuta 3 — convergenza.** DATA: 2026-08-13 (S-CERT). PROCESSO: il
+  gate applicato al certificatore stesso (§3 punto 4). VERDETTO: nessun
+  flip; classe finale PRACTICE di governance (vincolante), con
+  l'architettura convalidata cieca alle spalle.
+
+### 6.2 T-LEMB / O3.1: l'esattezza del trasposto
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-06 (sessioni
+  S17-S18, brick 2 A1 di record: "the VARIATIONAL TOC ROAD EXISTS
+  END-TO-END", `docs/rde_nozzle_MASTER.md:3251-3253`; enunciato e classe
+  in `docs/claims_registry.yaml:485-497`). PROCESSO: derivazione Lemma B
+  (march fitted block-triangular ⇒ reverse-AD = sweep adjoint trasposto)
+  + carrier con identità dot-product al floor macchina. VERDETTO: THEOREM
+  finite-dim; limite mesh ESCLUSO e separato (S-LBML, SCHEMA,
+  claims:656-668).
+- **Battuta 2 — (c) NON-RIDERIVATO (nessuna riderivazione cieca del
+  lemma); doppia prova alternativa.** DATA: 2026-08-13 ([X-O31CS]
+  costruito all'apertura S-CERT, decisione utente A2=(a)) + 2026-07-20
+  (dual-code GENO [X-GENOXC], pass= della riga carrier,
+  claims:795-800). PROCESSO: twin numpy-complex primal-independent +
+  complex-step IFT vs il custom_vjp del motore (CS3 dentro bande
+  DERIVATE 1.9e-8..9.5e-8; negative control CS4 che DIMOSTRA il buco
+  common-mode e lo rigetta dal lato indipendente) + oracolo cross-code
+  interior unit process 218/218 con negative control che rigettano.
+  VERDETTO: identità confermata da due strumenti indipendenti; coverage
+  interior-only DICHIARATA (owner F2, claims:1945).
+- **Battuta 3 — convergenza.** DATA: 2026-08-13 (S-CERT). PROCESSO:
+  audit del certificatore. VERDETTO: l'esattezza non protegge dallo
+  staleness — X-CDKAT −13.9% con stamp intatto (findings:1511, riga carrier-evidence :1517); classe
+  finale THEOREM (T-LEMB) + residuo staleness owner F2 (findings:1508).
+
+### 6.3 Il dual-seed (canary + known-true)
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-08-13. PROCESSO:
+  ordine utente "NOTHING-LOST da principio a FIRING GATE" (rejector
+  seminati: un detector che non spara sul proprio seed è rotto —
+  prompt S-ORDINE, commit f3c5df5) → prima esecuzione bidirezionale alla
+  chiusura S-CERT. VERDETTO: P0 audit-integrity SCARICATO — canary
+  REFUTED con falsificazione positiva alla fonte, known-true CONFIRMED,
+  0 slot nulli (PROGRESS_2026-08-13_Scert.md, P0#1).
+- **Battuta 2 — (c) strumento, non teorema; doppia prova = istanze
+  indipendenti di fuoco.** DATA: 2026-08-17/20 (hypaudit: SEED-A canary
+  CAUGHT, SEED-B known-true non flaggato,
+  `validation/sfoundations_raws_2026-08-13/hypaudit/VERDICT_hypothesis_audit.md:15-19`;
+  il primo seed MIS-DESIGN fu catturato dal refuter e ri-eseguito —
+  catch onesto di record, commit 5221529) + 2026-08-21 (coverage gate
+  C4: SEED-OMIT P34 catturato, SEED-DECOY C50 non flaggato, commit
+  fd2d444). PROCESSO: ri-esecuzione su tre finestre indipendenti.
+  VERDETTO: lo strumento è provato in ENTRAMBE le direzioni su tre
+  occasioni datate distinte.
+- **Battuta 3 — convergenza.** DATA: 2026-08-17 (S-FOUNDATIONS parte 1).
+  PROCESSO: adozione come gate R3 standing ("instrument
+  adopted-as-candidate standing R3 gate", commit 5221529). VERDETTO:
+  classe PRACTICE con rejector che DEVE sparare sul seed; nessuna
+  regressione registrata da allora.
+
+### 6.4 Il NO di record: NON-CERTIFICABILE (evento datato)
+
+- **Battuta 1 — derivazione originale (l'evento).** DATA: 2026-08-13
+  (contract `validation/ADVISORY_Scert_prompt_2026-08-12.md`; verdetto
+  in PROGRESS_2026-08-13_Scert.md, SESSION VERDICT). PROCESSO:
+  find→verify avversario a due passate (21 agenti, verifier
+  default-REFUTE, campione stratificato seed 20260813, judge finale +
+  Form-3 red-team). VERDETTO: **NON-CERTIFICABILE, 2 P0 a HEAD** —
+  (vii) riparato in-window con dichiarazione; staleness import-closure
+  APERTO owner F2.
+- **Battuta 2 — (c) NON-RIDERIVATO (un verdetto d'audit non si
+  rideriva); doppia prova = dual-seed + dual-code GENO + refuter
+  S-CERT.** DATA: 2026-08-13. PROCESSO: (i) dual-seed dedicato
+  (P0#1 discharged, entrambe le direzioni); (ii) catena dual-code
+  ([X-GENOXC] claims:795 + MOC-08 falsificatore ESEGUITO PASS nella
+  stessa finestra: J_def riprodotto a 1e-14 rel, meccanismo common-mode
+  della claim-19 REGGE); (iii) lo stack refuter S-CERT stesso, che alla
+  prima passata RIFIUTÒ l'auto-assoluzione su un verification layer non
+  provato. VERDETTO: il NO regge alle sue stesse controprove — è
+  segnale, non rumore.
+- **Battuta 3 — convergenza.** DATA: 2026-08-13 (DELTA del final judge)
+  → consumo S-PRES 2026-08-23. PROCESSO: confronto misurato con l'audit
+  2026-08-07. VERDETTO: "the 2026-08-07 defects were in the certified
+  object; the 2026-08-13 defects are in the certifier" — pavimento
+  salito, tetto in coda F2; MC8 8/8; classe finale = verdetto d'audit di
+  record, presentato come LA PROVA che il falsificatore del nodo è vivo
+  (§1). Residui tutti nominati con owner (findings:1508/1535/1553/
+  1562/1571).
+
+### 6.5 O3.4 cross-code GENO: accordo ≠ verità
+
+- **Battuta 1 — derivazione originale.** DATA: 2026-07-20 (pass= della
+  riga carrier [X-GENOXC], claims:795-800). PROCESSO: oracolo G0
+  cross-code all'interior unit process (218/218 clean-core; negative
+  control corrupted-child 100%→0%, wrong pairing 84x). VERDETTO: PASS
+  con entrambi i controlli negativi che rigettano; scope dichiarato
+  interior-only.
+- **Battuta 2 — (c); doppia prova = l'audit critico del PARTNER di
+  cross-code.** DATA: 2026-08-13 (S-GENOAUDIT parallela,
+  `validation/ADVISORY_moc_zucrow_fidelity_2026-08-13.md`: unit process
+  gemellati ESATTI, ma accordo Ch.16≡Ch.17 VACUO sul rotazionale e ramo
+  cross-stream mai esercitato) + 2026-08-17 (P0 MOC-10 wall-thrust
+  double-count su output committati: **riferimenti di spinta GENO messi
+  in QUARANTENA**, commit 5221529). PROCESSO: dubbi-a-convergenza
+  applicati all'oracolo stesso. VERDETTO: il programma ha dimostrato DA
+  SÉ che l'accordo cross-code non è verità, e ha quarantenato il proprio
+  oracolo dove serviva.
+- **Battuta 3 — convergenza.** DATA: 2026-08-13 (dottrina standing "mai
+  assumere GENO bug-free"; lista di invarianti indipendenti — O3.1-cs è
+  esattamente questo). PROCESSO: sostituzione della fiducia cross-code
+  con strumenti primal-independent. VERDETTO: classe finale carrier
+  PRACTICE con scope e quarantena dichiarati; la coppia
+  [X-GENOXC]+[X-O31CS] è la forma matura del nodo.
 
 ==============================================================================
 ## §7 POSIZIONAMENTO / CONFORMITY (tre metà)
@@ -266,7 +399,9 @@ prova = dual-seed + dual-code GENO + refuter S-CERT, design v2 §T-§6.)
 | strumento del nodo | mondo-SOTA (id registry) | cosa usiamo | perché |
 |---|---|---|---|
 | errore del passo Newton | `yamamoto_1986_numermath48` (bound Kantorovich a-posteriori) | certificazione per-cella del march ([X-TOCV], claims:1253: "per-cell certification") con floor derivato ‖A‖_inf × floor_z ([X-O31CS] CS1, honest catch di record: il moltiplicatore magico 1e6x è stato RIMOSSO derivando il floor) | il bound è derivabile dalla struttura del problema, non stimato |
-| intervallo FD | `shi_xie_xuan_nocedal_2022_fd_interval` | intervalli complex-step h=1e-20 dove possibile ([X-O31CS]), FD a intervallo derivato altrove (C44, owner F2-C44-FDSTEP) | il principio è lo stesso: l'intervallo è un output derivato, non un input magico |
+| intervallo FD | `shi_xie_xuan_nocedal_2022_fd_interval` | intervalli complex-step h=1e-20 dove possibile ([X-O31CS]), FD a intervallo derivato altrove (C44 — card non stampata qui:
+aggiudicazione wave-3 2026-08-20 enum MIXED, choice_ledger:622-631,
+owner F2-C44-FDSTEP, finestra F2 [C1 F-13]) | il principio è lo stesso: l'intervallo è un output derivato, non un input magico |
 | stima d'errore sul funzionale | DWR: `wanted_becker_rannacher_2001`, `wanted_fidkowski_darmofal_2011`; GCI: `wanted_roache_gci_1994_1997`, `wanted_celik_2008` | disciplina R5: tolleranze DERIVATE + test che RIGETTANO (rejector), bande per canale con fisica nominata (CH3 §1.3) | vedi CARD J/2 — R5 come legge di certificato, DWR complemento nominato |
 | verifica del gradiente | `zahr_persson_2016` (gradient verification sotto periodicità) | O3.1 identità dot-product al floor macchina + [X-O31CS] primal-independent | l'identità esatta (T-LEMB THEOREM) batte il confronto a tolleranza dove è disponibile |
 | verità indipendente | dual-code: GENO-Fortran ([DIR-G0], claims:1184) | O3.4 [X-GENOXC] + regola "cross-code agreement ≠ truth" (sotto, §7(b)) | vedi CARD J/1 |
@@ -281,9 +416,12 @@ prova = dual-seed + dual-code GENO + refuter S-CERT, design v2 §T-§6.)
    tool matrix D6 §4: Julia+Enzyme (alternate dichiarata), Tapenade
    (fallback).
 3. *Verdetto + perché*: JAX primario (O3.1 a precisione macchina su
-   52/52 spikes, X-G0/X-G0AX; loop ~322 µs con grad/solve ~1.01) + GENO
-   mai modificato come referee cross-code ([X-GENOXC] PASS, entrambi i
-   negative control rigettano).
+   52/52 spikes, X-G0/X-G0AX; solve del singolo unit process ~322
+   µs/call, solve+grad ~327 µs = overhead adjoint ~1.5%,
+   G0_decision.md §(ii) — caveat di record: i µs assoluti sono
+   host-dependent e "do NOT constitute a record timing" [C1 F-11]) +
+   GENO mai modificato come referee cross-code ([X-GENOXC] PASS leg
+   flowfield, entrambi i negative control rigettano).
 4. *Recency/SOTA check*: censimento stack datato 2026-07-17;
    **STALE → finestra F2-entry** (cluster di ri-esame C58 delta-sweep vs
    landscape 2026 + card C31/engine con Uno, emendamento §1g; il ruolo
@@ -335,7 +473,7 @@ sparato)**
    `future-pass-dates-accepted` riapre la scelta a F2 entry).
 5. *Falsificatore*: un carrier "fresh" con numeri di record che non
    riproducono — **SPARATO**: X-CDKAT −13.9% con stamp intatto
-   (findings:1517).
+   (findings:1511, riga carrier-evidence :1517).
 6. *Trigger di ri-esame*: F2 entry (owner F2, righe findings:1508/1562).
 
 ### (a-bis) IL METODO COME STRUMENTO — governance theory-as-code (cella P-ii, [V2-R12])
@@ -495,7 +633,9 @@ R. Per un teorema negativo altrui e un'aggiudicazione nostra:
 `giles_ulbrich_2010_part1`/`_part2` mostrano che l'adjoint discreto su
 shock catturati può convergere male (scope 1-D scalare dichiarato); la
 card C49 (choice_ledger.yaml:682-692, wave-2 2026-08-19, zero finding
-del refuter) fissa: fitted = unico certificate bearer, captured =
+del refuter; card estesa nell'atlas: CH4 §(c) C49 + tabella scelte riga
+C49, falsificatori pinnati e carrier |J_capture − J_fitted| [C1 F-14])
+fissa: fitted = unico certificate bearer, captured =
 explorer nominato build-gated, shock tracking implicito = upgrade path
 con entry gate pubblicato.
 
