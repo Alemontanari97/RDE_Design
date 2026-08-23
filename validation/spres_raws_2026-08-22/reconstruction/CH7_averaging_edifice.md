@@ -394,6 +394,53 @@ consulta QUELLA lista, non questa.
 
 ---
 
+## 3-bis. ANTENATI DIRETTI (lineage claim, nodo N-E) [W-B.1/B7]
+
+Join dichiarato (contratto [F-des-4], LINEAGE_LEDGER.md:8-16): ogni
+claim di novità di questo nodo cita ≥1 riga LL (lint 7); prosa integrale
+nelle parti sorgente (Pn.r). Stato righe: CANDIDATE fino al pass del
+refuter C6 (LL-13/LL-14 sono seed utente, confermati dalle parti,
+restano attaccabili). Formato: antenato → cosa fa → cosa gli manca.
+
+- **LL-14 Kraiko-Tillyaeva 2015** (`kraiko_tillyaeva_2015`, registry
+  :498; componenti 3/11/12). Cosa fa: problema conjugate/moltiplicatori
+  COMPLETO per ugello Laval (inclusa la parte subsonica), catena
+  Route B→A interna alla scuola ((2.2)→(2.9)→(2.10)→(2.12), CONCESSA di
+  record) + antenati di certificati: (2.9) = re-espressione del residuo
+  Hoffman-E, (2.5)-(2.6) = terza classe di certificato F4b, (2.11) =
+  candidato oracolo adjoint closed-form [O6] [P2.S-2; matrix
+  part2:51-68]. Cosa gli manca: famiglia MEDIATA (tutto single-state),
+  adjoint discreto/AD, soglie derivate e rejector sui certificati. È la
+  scuola che possiede il precedente swirling (riga 2.2(f) di G5, §7(a)).
+- **LL-13 Fievisohn** (Yu JPP 33(1) 2017 method-paper + PhD UMD 2016,
+  **[IO]** da sweep-disco di record; il nozzled AIAA 2018-0881 =
+  `wanted_fievisohn_2018_quasi2d_moc`, registry :1280, [REP]-bounded,
+  procurement RAISED; componenti 1?/5/6/7/10/15). Cosa fa: IL cugino
+  pubblicato più vicino — wave-frame ESPLICITO ("wave-fixed reference
+  frame", la stessa mossa del nostro quoziente), rotational shock-fitted
+  MoC con unit process Zucrow-Hoffman + slip-line dedicato, inflow BC
+  feed-coupled [P2.S-1; matrix part2:443-500]. Cosa gli manca: il ciclo
+  è ENDOGENO (iterato a convergenza, non classe-dati IMPOSTA con
+  monitor), mai design, mai famiglia per-fase, mai ottimalità/certificati;
+  nessun capitolo ugello nel TOC del PhD — l'estensione nozzled vive
+  solo nel paper assente da disco (nessun claim oltre la riga [REP]).
+- **LL-9 Wintenberger-Shepherd 2004** (`wintenberger_shepherd_2004`,
+  registry :261; componente 9). Cosa fa: audit di bilancio entropico
+  PER-PHASE (Eqq. (23), (31)-(32), (38) — graft A35, wiring già in
+  src/cycles con 3 condizioni vincolanti) [P1.9; matrix part1:210-222].
+  Cosa gli manca: l'identità di decomposizione del funzionale J (il
+  nostro mint-pending F-2) e ogni struttura di design sulla famiglia.
+
+Perimetro di novità conseguente: il campo possiede il quoziente
+wave-frame operativo (LL-13), la macchina moltiplicatori+certificati
+single-state (LL-14) e l'audit per-fase (LL-9); ciò che nessuna riga
+porta è l'edificio a tre piani di questo capitolo — stato 2.5-D
+per-fase CON residuo di riduzione nominato + forchetta + scaletta di
+upgrade; sul lato swirling-contouring il claim di novità resta BOUNDED
+dal procurement Tillyaeva 1975 (§7(a)).
+
+---
+
 ## 4. Domande da panel (banco utente, con risposta)
 
 **(1) "Cosa perdiamo con lo swirl e cosa guadagniamo rispetto a fare design
@@ -530,6 +577,102 @@ restaurata tre volte) — il processo rigetta davvero, non conferma.
 
 ---
 
+*(§6 STORIA: territorio W-B.2 — non scritto qui, numerazione riservata.)*
+
+## 7. POSIZIONAMENTO / CONFORMITY (celle E-ii forma [V2-R6] + residuo E-iii) [W-B.1/B7]
+
+### 7(a) STRUMENTI — mean-swirl / trasporto Γ = R·w sui CARRIER SURROGATI di record
+
+Il posizionamento del trasporto di swirl per-fase (riga w/Γ del
+contratto D.13, §1.2(a)) contro il precedente classico si fa — per
+disciplina di record — su TRE carrier surrogati, non sul paper primario:
+
+1. **D6 G5, riga di contenuto 2.2(f)** (D6 :803-806, verificata alla
+   riga in finestra): "swirling-flow control-surface contouring —
+   Tillyaeva Izv. AN MZhG 1975 no. 3 full-text check against T-N6-2's
+   free-vortex closure". La riga è un DUTY del gate letteratura G5
+   (scope extension PAN-S14), non un confronto eseguito: il record ha
+   già nominato il check, non lo ha fatto.
+2. **`kraiko_tillyaeva_2015`** (registry :498) = la GENEALOGIA: la
+   scuola Kraiko-Tillyaeva possiede sia la catena moltiplicatori→
+   certificati (LL-14, §3-bis) sia l'autrice del precedente swirling —
+   il posizionamento passa per la scuola letta [IO/REP di riga], mai
+   per il paper non letto.
+3. **[T-N6-2] free-vortex come TERMINE INTERNO**: la chiusura
+   free-vortex è già dentro la nostra macchina come carry di path A,
+   con l'annotazione utente di record (DISPATCH_swirl5f.md:105-113,
+   verificata alla riga): THEOREM SOLO sotto (rΓ, h0, s) UNIFORMI; su
+   campi per-fase stratificati la combinazione NON è un teorema di
+   record — fork lemma-misto vs monitored-neglect armato dal TRIPLE
+   monitor (D.14), da presentare prima di ogni adozione.
+
+**Confronto diretto con `wanted_tillyaeva_1975` = PENDING-PROCUREMENT
+DICHIARATO** (registry :742-746, verificata alla riga): status WANTED,
+paths [], russo [HARD] per INDEX.md, owner di riga "Next lit window —
+N6-2 novelty bound; closest classical antecedent to our data class".
+Regola vincolante di questa sezione: NESSUN summary del paper assente —
+ciò che si può dire di Tillyaeva 1975 è SOLO l'identità della riga
+registry e il duty 2.2(f) di G5; ogni claim di novità sul contouring
+con swirl resta BOUNDED da questo procurement (lo dice l'owner stesso:
+"novelty bound"). Fino al full-text check, lo slot slide corrispondente
+porta la forma onesta "precedente candidato, non letto, procurement
+aperto" — mai una posizione di merito.
+
+### 7(b) SENSO [V2-R9] — i precedenti dell'edificio averaging 2.5-D
+
+Che cosa fa il campo con le medie, senza struttura per-fase (ancora
+CH5 §1.1, verificata in finestra): la prassi dei quattro paper del
+corpus C4 è la **media GLOBALE** — campo mediato su tempo e fase in UN
+solo stato steady equivalente, poi design classico su quello stato
+(CH5:27-39, box di record): P-A rampa Angelino a input time-averaged,
+P-B MoC max-thrust su UN singolo stato mediato globalmente con corner a
+p_b mediato, P-C nessun design nuovo, P-D esplicitamente non
+ottimizzato (CH5:52-71); comunanza C-1 "average-then-classical-design"
+mai testata a livello di ranking (= la nostra questione aperta R26) e
+C-5 "nessuno dei quattro è una riduzione per-phase" (CH5:73-80). Le
+istanze quasi-1D del campo (blowdown 0-D per-phase LL-3, EAP rung
+int-max LL-4 — righe del ledger, casa CH5/CH2) mediano senza operatore
+di residuo.
+
+Il gap che l'edificio occupa: il campo media SENZA contabilità di ciò
+che la media perde; l'edificio dei tre piani mette accanto alla media
+l'operatore di ciò che si perde (K esplicito, §1.3) e il suo prezzo
+(forchetta, §1.3 PART 5). Guardia 16 (regola di classe), applicata a
+questo enunciato: il canale MEDIO è coperto da teorema con perimetro
+dichiarato — K̄ = 0 vale FIBERWISE su compositi BV periodici,
+condizionale H-RED-2(SBV) (centerpiece :512-539) — e i canali RESIDUI
+non coperti sono nominati con classe: (J) atomi/salti sui fronti
+(primo ordine NON soppresso, delta underived — il tallone (J), guardia
+1) e (H) covarianza/isteresi a.c. ([SE] per le scale, §2). Nessuna
+gerarchia di gap si enuncia qui oltre questo perimetro.
+
+### 7(c) STANDARD DI RIFERIMENTO (asse §C)
+
+Asse governante: **§C-1 (copertura letteratura, classe PRISMA)** —
+criterio di conformità: read-status onesto stampato (WANTED con paths
+[], [IO]/[REP] per cella nella matrice lineage), claim di
+assenza/novità SOLO query-bounded, procurement dichiarato con owner di
+riga; il PENDING-PROCUREMENT Tillyaeva di §7(a) è l'istanza esatta
+della disciplina (il confronto NON si fa finché la fonte non è letta).
+Divergenza dichiarata: adottiamo la disciplina (query+flusso+status),
+non la checklist PRISMA formale. Secondo asse citato: §C-2 (GRADE-class)
+per le classi per-cella della forchetta (§2), mai sopra la loro classe.
+
+**DECISION CARD C51 — non-aggiudicata** (obbligo emendamento v2.1 §1g
+per le righe NEVER presentate; questo capitolo presenta la decisione
+pendente in §1.4/§5.6):
+
+| campo | contenuto |
+|---|---|
+| 1. scelta | C51 — solver wave-frame rung-3a: implicit BVP (freezing + Newton-Krylov, incumbent M0) vs MARCHING azimutale dell'orbita periodica (choice_ledger.yaml:706-714, status NEVER) |
+| 2. alternative censite (data+fonte) | marching azimutale emerso BLIND dal formalizer PDE (mint 2026-08-17, VERDICT_contract_and_L4R1.md#D-5); input diretto appended 2026-08-19: swirl5f claim 6 (spacelikeness ≡ \|w_rel\| > c, loci di degenerazione ≡ kernel loci D.18 — verifier-confirmed, advisory) |
+| 3. verdetto | **NON AGGIUDICATA** (sequenza del giudice stesso: aggiudicazione dovuta a implementation time, non prima) |
+| 4. RECENCY/SOTA check | censimento datato 2026-08-17/19 (perimetro: blind-contract diff + panel swirl5f). **ATTUALE(perimetro: ledger C51 + DISPATCH_swirl5f, data-check 2026-08-23)** |
+| 5. falsificatore / criterio | condizione di regime hyperbolicity-in-alpha: fuori dal regime \|w_rel\| > c il marching muore strutturalmente (cuore del criterio di decisione, nota di riga) |
+| 6. trigger ri-esame (finestra) | rung-3a implementation window (owner di riga); la PRIORITÀ di C51 è decisione utente pendente di record (DISPATCH_swirl5f.md:100-101; §3 riga 2) — candidate per la slide ASK |
+
+---
+
 ## Disposizione riparazioni (W-A, 2026-08-23)
 
 Applicazione dei 12 finding di `REFUTE_CH7.md` (verdetto refuter:
@@ -566,3 +709,45 @@ letteratura introdotto (tutte le ancore nuove sono file di record del
 repo). Arco di consumo: questo capitolo riparato = base stabile per B7
 (W-B.1) e per lo storico B8a; le sezioni §3-bis/§6/§7/DECK FEED restano
 territorio W-B, non toccato.
+
+---
+
+## DECK FEED (asserzioni candidate-slide, assertion-evidence) [W-B.1/B7]
+
+1. "Un edificio, tre piani: che cosa entra nello stato per-fase (2.5-D
+   con swirl), che cosa si perde esattamente (operatore K esplicito),
+   quanto costa salire (path A/B/C) — con le saldature esibite, non tre
+   slide scollegate." — ancora §1.5; centerpiece :461-463 — classe:
+   struttura di record (provenienze per-piano dichiarate).
+2. "Il design su pressione media è convicted via fibre: nessun vincolo
+   di record fissa E_theta dati (P, h0, s, mdot); pesi di classe
+   1.5-3% spinta + B1 0.6-9% di p, dichiarati [SE]." — ancora
+   centerpiece :150-206, :259-270 — classe THEOREM* (gamba di segno
+   scoped) + [SE].
+3. "Il residuo di riduzione ha media NULLA e due soli canali di primo
+   ordine: (J) fronti (delta underived — il tallone si dichiara sempre)
+   e (H) covarianza; SBV-conditional." — ancora centerpiece :512-539 —
+   classe THEOREM* + guardie 1/16.
+4. "La forchetta onesta a sei canali: best on-ray single-digit %
+   plausibile (fitted sheet), worst off-ray >10% non escluso; il canale
+   optimum-shift SENZA numero (delta, L_H underived) — l'onestà
+   mostrata, non nascosta." — ancora centerpiece :1499-1506,
+   :1731-1743 — classe per-cella (nessuna sopra la sua).
+5. "Il monitor decide, non benedice: TRIPLE monitor in total variation;
+   un monitor Gamma-only licenzierebbe il falso; aspettativa dichiarata
+   che i dati reali ruotino sulla macchina field-level." — ancora
+   meanswirl :1210-1304, :1306-1367, :1294-1298 — classe THEOREM
+   (clause 1) + SCHEMA (gap licenziante) + PRACTICE.
+6. "Il confronto col precedente classico più vicino (Tillyaeva 1975) è
+   PENDING-PROCUREMENT dichiarato: WANTED, russo [HARD], owner nominato
+   — la slide porta la forma onesta, mai un summary del paper
+   assente." — ancora registry :742-746; D6 :803-806 — classe:
+   disciplina §C-1 (read-status di record).
+7. "Il cugino pubblicato più vicino è Fievisohn (wave-frame rotational
+   MoC, [IO] dal method-paper 2017): mai design, mai famiglia per-fase
+   — il quoziente esiste nel campo, l'edificio no." — ancora LL-13;
+   matrix part2:443-500 — classe [IO] con riga nozzled [REP]-bounded.
+8. "Due decisioni utente pendenti presentate come ASK: S-5F path A/B/C
+   (con la fork [T-N6-2] su path A) e priorità C51 (card
+   non-aggiudicata stampata)." — ancora DISPATCH :100-113; §7 card
+   C51 — classe: decisioni pendenti di record.

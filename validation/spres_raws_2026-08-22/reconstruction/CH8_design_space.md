@@ -206,6 +206,106 @@ distinte, entrambe necessarie per un plug troncato vero. A cio' si aggiunge
 CEN-O8 (floor di validita' r_b) che entra nel vettore dei vincoli quando la
 chiusura p_b lo richiede (`PANEL_topology_census_2026-07-22.md:382-384`).
 
+### 1.7 Il contratto di globalita' M1-M5: ogni ottimo consegnato dichiara il suo meccanismo (riga G) [W-B.1/B6]
+
+Sorgente unica: **M0 Parte IV — THE GLOBAL-OPTIMALITY CONTRACT**
+(`docs/rde_nozzle_MASTER.md:2982-3005`, verificata alla riga in-window
+2026-08-23). Il punto di partenza e' un'esclusione per teorema:
+*"'Without hypotheses' is excluded by theorem"* — (i) senza classe
+ammissibile nessun massimizzatore esiste (Isp strettamente crescente in
+eps: vuoto); (ii) senza solution concept J e' indefinito; (iii) senza
+misura la media e' indefinita. *"HYPOTHESES ARE THE PROBLEM'S
+DEFINITION; the ledger instruments every one"* (`:2984-2988`). Il
+contratto per ogni Sigma* consegnato: **EXISTENCE** (P7: compattezza di
+Chenais + continuita' S1 uniforme in xi + convergenza dominata) +
+**NECESSARY** (T7 con (**')) + **SECOND-ORDER** (reduced-Hessian) +
+**GLOBALITY per meccanismo DICHIARATO** (`:2989-2993`).
+
+I cinque meccanismi, con le istanze di record:
+
+- **M1 — duality-gap zero contro la bound ladder** (J_ideal, Int-max,
+  integral-flux) → certified global. Istanza di record: **[T-T4]** — il
+  testo M0 e' esplicito, *"T4 is an instance"* (`:2994-2995`;
+  [T-T4] THEOREM*, `docs/claims_registry.yaml:329-340`). E' il
+  meccanismo con cui il torneo di §1.4 e' gia' stato giocato.
+- **M2 — collapse transfer**: l'uguaglianza puntuale di **[T-T3]**
+  (THEOREM, `docs/claims_registry.yaml:277-289`) eredita la globalita'
+  classica del design al valore medio (`:2996-2997`).
+- **M3 — struttura monotona/unimodale** (`:2998-2999`). Le istanze di
+  record sono i teoremi del repo al **rung "oracolo quasi-1D" = oracolo
+  SENZA contouring (solo eps)** — naming C-2 di record: mai "il caso
+  ugello 1-DOF"; il rung fissa QUALE media entra nella condizione di
+  adattamento, il contouring vincolato non c'entra (il verbatim M0
+  *"repo 1-DOF theorems are instances"* va letto con questo naming).
+  **Target dichiarato nel contratto**: *"unimodality of the
+  truncated-plug duty variable"* (`:2999`) — cioe' esattamente PB-2.
+- **M4 — enumerazione esaustiva dei punti stazionari (deflated
+  continuation) + bound gap, finito-dimensionale** (`:3000-3001`).
+  Posizionamento mondo (forma emendata, decisione A4 di record,
+  `SESSION2_LOG.md:87-88`): la deflated continuation HA la sua riga
+  registry citabile — `wanted_farrell_birkisson_funke_2015` (Farrell,
+  Birkisson & Funke, SISC 2015, deflation techniques;
+  `docs/literature_registry.yaml:1196-1200`, status WANTED, census
+  identity PANEL_C2021.md §2.3/§4.6, asse B deflation/branch-switching)
+  — identita' censita, NESSUN claim di lettura. Il quadro LOCALE
+  dell'engine cita `nocedal_wright_2006_2ed`
+  (`docs/literature_registry.yaml:980-987`, READ-PARTIAL: SR1 §6.2 +
+  modello d'errore FD §8.1) — SOLO per il locale, mai come carrier
+  degli oggetti globali.
+- **M5 — certified deterministic global search
+  (Lipschitz/branch-and-bound) a 2-4 DOF** (`:3002-3003`).
+  Posizionamento mondo: **NOT-FOUND(q)** — query eseguita in-window
+  2026-08-23: `grep -i "Lipschitz|branch.and.bound|DIRECT"` su
+  `docs/literature_registry.yaml` → nessuna riga registry per solver
+  Lipschitz-global/branch-and-bound (i match esistenti riguardano
+  "direct characteristic equations" e "direct method" nel senso
+  Allman-Hoffman, non global search deterministico). Upgrade a
+  confronto pieno solo se l'orchestratore minta righe WANTED (A4).
+
+**G-iii — il campo, alla query (search-proven, perimetro chiuso).**
+Claim: *nessun paper P-A..P-D dichiara un meccanismo di globalita'*.
+Query eseguita in-window 2026-08-23: `grep -i "global optim|globality|
+global search|branch.and.bound|Lipschitz|deflat|multi-?start|globally
+optimal|global maximum|global minimum"` sui quattro study file
+`NOZZLE_RDE_STUDY_p{A,B,C,D}_*.md` (esistenza del perimetro provata per
+glob: 4 file presenti in `validation/sfoundations_raws_2026-08-13/blocco3/`)
++ `docs/rde_nozzle_literature_map.md` + `docs/literature_registry.yaml`
+→ **0 match**. I quattro paper (glossario `docs/glossary.yaml:1523-1527`):
+P-A Liu-Cheng-Zhang-Wang 2022 (PKU), P-B Li-Xu 2023 (NUAA), P-C Li-Xu
+2025 (NUAA), P-D Jourdaine et al. 2019 — ottimizzano o confrontano
+geometrie senza mai dichiarare esistenza, meccanismo o forza di
+globalita'. Perimetro CHIUSO: registry + litmap + P-A..P-D; STOP —
+nessuna estensione oltre il perimetro dichiarato. [Riga candidata a
+registro: MINT-PENDING F-2.]
+
+**G-iv — la proposta del programma**: *"Every Verdict states its
+mechanism and strength"* — con le tre forze canoniche verbatim:
+*"global"*, *"within delta of global, certified"*, *"local + enumerated
+competitors"* (`:3004-3005`). Questo e' il deliverable di riga G: non
+"abbiamo l'ottimo", ma "ogni Verdict dichiara con quale meccanismo e a
+che forza".
+
+**G-v — lo stato onesto di oggi**: il tier di esplorazione globale
+dell'engine e' **C57 = NEVER** (mai aggiudicato; local-only da
+continuation/warm start; `docs/rde_nozzle_pipeline_decision_map.md:138`;
+gia' dichiarato in CH4 Q2: i certificati attestano stazionarieta' KKT
+locale con trasversalita', NON ottimalita' globale) — card stampata in
+§7. Il target M3 (unimodalita' della duty variable del truncated plug)
+e' il ponte dichiarato tra il contratto e PB-2 — e il PERCHE' e'
+gia' nel record come exhibit di sensibilita' d'argmax: Humphreys-
+Thompson-Hoffman 1971 (AIAA J 9(8):1586-1587), scambiando la chiusura
+p_b Eq.(12)→Eq.(38) l'altezza di base ottima si muove **×2.45**
+(0.954→2.34 in) e la pendenza di tip −13.26°→−3.08° con spinta
++0.26% — **l'argmax nelle design variables a vincoli fissi
+(troncamento/base, il problema PB-2) si muove a O(1) mentre il VALORE
+resta quasi piatto** (`docs/rde_nozzle_MASTER.md:1455-1464`,
+[ORCH-HARV-3], [ADV]; numeri altrui: citazione piena, non riprodotti —
+CT-6). Da qui **la guardia di questa sezione (guardia 8)**:
+piattezza di valore NON certifica l'argmax, quindi **i numeri di
+campagna si presentano SEMPRE come best-of-sweep certificato, MAI come
+ottimo globale senza il meccanismo M1-M5 dichiarato**. Best-of-sweep ≠
+argmax: e' la riga da avere pronta prima che la chieda il panel.
+
 ---
 
 ## 2. Stato per-claim
@@ -254,6 +354,78 @@ chiusura p_b lo richiede (`PANEL_topology_census_2026-07-22.md:382-384`).
 6. **R-P7.2** — argmax certificato vs sup non certificato sul level set
    (residuo dichiarato di [T-P7S1], `docs/claims_registry.yaml:592`). Owner:
    dossier global-maximum / census-lemma (M0 Card 4, `docs/rde_nozzle_MASTER.md:319-320`).
+
+### 3.5 Dove atterrano questi aperti nel piano: la fase F3 GEOMETRY CLASSES [W-B.1/B6]
+
+Gli aperti 1/2/4/5 non sono orfani di calendario: il piano di record ha
+una fase NOMINATA che li raccoglie — **F3 GEOMETRY CLASSES** (D6,
+`docs/rde_nozzle_development_plan.md:214`, verbatim verificato alla
+riga: *"F3 GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary)"*).
+Il suo posto nell'ordine delle fasi (`:214-229`):
+
+- **ENTRY** (`:214-217`): RaoPlug S1/S2 fix in GENO atterrato OPPURE
+  status single-oracle dichiarato (Rao 1961 spike Table-1); margine
+  Λ-form del mirror plug/C- PROVATO o dichiarato conditional PRACTICE.
+- **EXIT** (`:217-222`): plug optimum CERTIFICATO + oracolo spike
+  Table-1 (M_E=2.4, gamma=1.23) in bande derivate; almeno UNA istanza
+  plug var-gamma o stratificata; T-GB de-rated a THEOREM* con ipotesi
+  nominata OPPURE il falsificatore di forma 2-D truncated-plug eseguito
+  PRIMA che il primo plug optimum certificato venga consegnato.
+- **ORDINE**: F3 viene dopo F2 (i gate di entry presuppongono l'exit
+  F2) ed e' **ORDER-INTERCHANGEABLE con F4b dato l'exit F2** (ISS-6,
+  adottata dall'esperto RDE, `:227-229`); de-risk del plug-march a
+  livello spike AUTORIZZATO in parallelo a F2 (RK1 front-load,
+  `:222-223`). Budget cappato ISS-4 (3-4 sessioni, cap 3h/sessione sui
+  run decisivi, max 2 campagne decisive per istanza; l'esaurimento del
+  cap spara il fallback BY RULE, `:224-227`).
+
+La lettura per questo capitolo: **F3 e' la fase in cui i settori
+free-boundary ricevono il loro primo entrant nel torneo a livello
+engine** (aperto 5), con H20/C61 che cavalcano la finestra F4b
+adiacente (aperti 1-2) e PB-2 come primo problema mediato della coppia
+(aperto 4). Il capitolo la nomina perche' il deck deve poter rispondere
+"QUANDO?" con una fase di piano citabile, non con un rinvio generico
+(critic 8, cella F-v del design v2).
+
+### 3-bis. ANTENATI DIRETTI (lineage, dal LINEAGE_LEDGER) [W-B.1/B6]
+
+Claim di lineage SOLO dal ledger (guardia 10; join su {LL-id,
+componenti} per contratto [F-des-4]); tutte le righe sono **CANDIDATE
+finche' il refuter C6 (W-C) non passa**
+(`validation/spres_raws_2026-08-22/reconstruction/LINEAGE_LEDGER.md`,
+header + righe citate). Gli antenati dei nodi N-F/N-G:
+
+- **LL-23 — Hoffman 1987 CTP (+NASA RP-1104)** (componenti 14/12;
+  N-16): truncate-compress-tangency + length-band oracolo + design
+  chart di pratica **senza governance**. E' l'antenato diretto della
+  linea troncamento (PB-2/[T-T4]) e dell'oracolo length-band: il campo
+  troncava gia', ma come chart di pratica, senza certificati.
+- **LL-25 — Kraiko 2001 (linea Shmyglevskii)** (4/12): condizioni a
+  disuguaglianza + slip-line strutturale → antenato dell'**acceptance
+  test F4b** (la finestra degli aperti 1-2).
+- **LL-27 — Allman-Hoffman 1981** (N-16/N-20/N-17): metodo direct su
+  contorno a pochi dof **col prezzo misurato** vs indiretto — antenato
+  della domanda "quanti dof e a che prezzo" che la chart C1 eredita.
+- **LL-28 — Masters 2017 + Lauer-Ansell 2025** (N-20/N-16): censimento
+  delle parametrizzazioni + prior 20-25 dof; **trasferimento a ugelli
+  MoC = scope dichiarato** (mai assunto). Antenato diretto della cella
+  F-ii (§7).
+- **LL-29 — Kraiko 2016** (N-20/N-17): Bezier-chart + GA dentro la
+  scuola classica; **il loro dato: exact batte i GA — PRO la nostra
+  rotta** (chart certificata + condizioni, non ricerca diretta cieca).
+- **LL-31 — linea direct-search (Kraiko-2016 GA, Fernandes, Valeriani,
+  Ornano)** (N-17): engine senza condizioni di ottimalita'; i loro
+  dati = evidenza PRO il driver certificato (il contrario della rotta,
+  usato come controprova).
+
+Nessun claim di novita' di nodo senza ≥1 LL-id (lint 7): per N-F la
+novita' e' la coppia {configurazione come output del solid set,
+torneo per-settore certificato} — nessuna riga LL la copre (il piu'
+vicino: LL-23/LL-29 restano dentro UNA configurazione data); per N-G
+la novita' e' il contratto M1-M5 per-Verdict — nessuna riga LL porta
+un meccanismo di globalita' dichiarato (coerente con l'esito G-iii,
+§1.7). Entrambi i claim restano query-bounded (guardia 9) sul
+perimetro del ledger (82 paper, matrice 20×82).
 
 ---
 
@@ -357,6 +529,191 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
 
 ---
 
+## 7. Posizionamento / conformity (celle F-ii + riga G) [W-B.1/B6]
+
+### 7(a) STRUMENTI
+
+Terna mondo-SOTA / cosa usiamo / perche', per i tool propri del nodo:
+
+1. **Chart di parametrizzazione per-settore** — mondo:
+   `masters_etal_2017` (censimento geometrico delle parametrizzazioni
+   airfoil, AIAA J; registry `docs/literature_registry.yaml:1023-1029`,
+   READ-PARTIAL pp.1,4,13) + `lauer_ansell_2025_pas` (review 2025
+   Prog. Aerospace Sci.; `:1031-1037`, READ-PARTIAL pp.19,30) — le due
+   fonti del censimento di record (wave-2 rider PANEL_C1REP.md §2.1,
+   2026-08-19; retro-sweep 2026-08-20). Noi: cubica interpolante
+   clamped/natural heights-as-dofs, **una chart per settore
+   topologico** dentro la classe spline certificata, con migrazione
+   convergiuta alla chart B-spline control-polygon dello STESSO spazio
+   (C1 MIXED, `docs/choice_ledger.yaml:164-174`;
+   `docs/rde_nozzle_pipeline_decision_map.md:154`). Perche': la classe
+   certificata porta i teoremi di esistenza per-settore ([T-P7S1]) e i
+   certificati di ammissibilita'; il dof-budget del mondo entra come
+   PRIOR a scope dichiarato, mai come bound di programma.
+2. **Il contratto M1-M5 come strumento di consegna** (riga G): ogni
+   Verdict dichiara meccanismo e forza (§1.7; M0
+   `docs/rde_nozzle_MASTER.md:2982-3005`). Mondo: il quadro locale e'
+   `nocedal_wright_2006_2ed` (`:980-987`); per M4 la riga censita
+   `wanted_farrell_birkisson_funke_2015` (`:1196-1200`); per M5
+   NOT-FOUND(q) (query in §1.7). Perche': e' il pezzo che il campo non
+   dichiara (esito G-iii) e che trasforma "ottimo" da parola a
+   contratto.
+3. **Devices di torneo** — premium_bound certificato per cella +
+   controlli negativi ([T-OP11e], carrier X-GRP10/X-GRP12,
+   `docs/claims_registry.yaml:368-379,949-961,977-989`): il confronto
+   cross-settore alle chiusure e' esso stesso uno strumento con
+   rejector, non un grafico.
+
+### 7(b) SENSO
+
+Il tema della cella F-ii: **parametrizzazione per-settore vs
+level-set/CAD-based**. La rotta level-set/topology-optimization
+metterebbe il cambio di topologia DENTRO una sola rappresentazione
+continua; il record la rifiuta per ragione fisica dichiarata — la
+CAUTION topological-derivative (`docs/rde_nozzle_problem_book.md:361-363`):
+un corpo infinitesimo in corrente supersonica produce solo wave drag,
+il center body paga solo a taglia finita, quindi **si confrontano
+settori interi** (torneo finito, esistenza per-settore via Chenais
+[T-P7S1]) invece di seguire germi topologici. La rotta CAD-based/global
+(CST, Bezier, B-spline; censimento `masters_etal_2017` +
+`lauer_ansell_2025_pas`, scope transfer a ugelli MoC dichiarato, LL-28)
+e' invece ADOTTATA nella variante per-settore della classe certificata
+(C1). I precedenti del tema sono in §3-bis (LL-23/25/27/28/29/31); il
+dato Kraiko-2016 "exact batte i GA" (LL-29) e la linea direct-search
+senza condizioni (LL-31) sono evidenza PRO la chart certificata con
+condizioni di ottimalita'. Il gap che il nodo occupa (query-bounded,
+perimetro ledger 82 paper + P-A..P-D, §1.7): shape optimization mediata
+per-fase con chart per-settore certificate + torneo alle chiusure +
+meccanismo di globalita' dichiarato — nessun paper del perimetro
+combina i tre pezzi.
+
+### 7(c) STANDARD DI RIFERIMENTO
+
+L'asse della conformity map §C che governa il metodo di questo nodo e'
+l'**asse §C-3 — tracciabilita', classe ECSS/DO-178C** (design v2
+`ATLAS_RESEARCH_DESIGN_v2.md:279`): ogni scelta del nodo e' una riga
+di ledger tipizzata con owner/trigger (C1/C57/C61), ogni claim
+load-bearing ha id, casa nell'albero e carrier con rejector; le
+DECISION CARD qui sotto sono l'istanza visibile del trace
+bidirezionale scelta↔verifica. Divergenza dichiarata (dalla mappa
+stessa): nessun audit esterno ne' certificazione DI standard — si
+adotta la CLASSE di disciplina. Asse di supporto per la riga G:
+**§C-2 — gradazione dell'evidenza, classe GRADE** (`:278`): i
+meccanismi M1-M5 e le tre forze canoniche del Verdict sono esattamente
+una gradazione dichiarata della certezza, mappata sulle classi
+THEOREM/THEOREM*/SCHEMA di CLAUDE.md R4.
+
+### 7(d) DECISION CARD (formato §1g dell'emendamento v2.1, 6 campi)
+
+**CARD F-ii — rappresentazione dello spazio di design: per-settore vs level-set/CAD-based**
+1. **Scelta**: working class A = chart spline finito-dimensionali
+   PER SETTORE topologico dentro le classi C^{1,1}/cono uniformi
+   (`docs/rde_nozzle_problem_book.md:365-368`), col torneo finito come
+   meccanismo cross-settore (§1.2).
+2. **Alternative censite**: (i) level-set/topology-opt (topologia dentro
+   una rappresentazione continua) — censita come alternativa nella
+   cella F-ii del design v2 (2026-08-22, orchestratore S-PRES,
+   `ATLAS_RESEARCH_DESIGN_v2.md:331`); NESSUNA survey di record
+   dedicata al level-set per ugelli supersonici — dichiarato, non
+   riempito; (ii) CAD-based/global parametrization (CST/Bezier/
+   B-spline) — censite da `masters_etal_2017` + `lauer_ansell_2025_pas`
+   (PANEL_C1REP.md §2.1, 2026-08-19; retro-sweep 2026-08-20).
+3. **Verdetto + perche'**: per-settore. La CAUTION
+   topological-derivative di record (`:361-363`) toglie il fondamento
+   fisico all'esplorazione a germi; Chenais+[T-P7S1] danno esistenza
+   per-settore; il torneo alle chiusure e' gia' giocato ([T-OP11e]).
+4. **RECENCY/SOTA check**: censimento parametrizzazioni ancorato a una
+   review 2025 (`lauer_ansell_2025_pas`) riletta 2026-08-20; lato
+   level-set il censimento e' solo design-cell (2026-08-22) senza
+   survey dedicata → per il ramo (ii) **ATTUALE(perimetro
+   parametrizzazioni curve airfoil→MoC con transfer scope dichiarato,
+   check 2026-08-23)**; per il ramo (i) **STALE → finestra census-lemma
+   session (F2-exit): survey level-set dedicata da mintare se il ramo
+   si riapre**.
+5. **Falsificatore**: un run level-set/topology-opt supersonico che
+   produca un ottimo certificato cross-settore in-class che batta il
+   vincitore del torneo per-settore a pari vincoli; oppure una prova
+   che la derivata topologica sia informativa a taglia finita in
+   questo regime.
+6. **Trigger di ri-esame + finestra**: census-lemma rigor session
+   (SCHED F2-exit, `docs/rde_nozzle_PROGRESS_ARCHIVE.md:413`) — se la
+   promozione del census cambia la struttura dei settori, la scelta di
+   rappresentazione si riapre.
+
+**CARD C1 — chart di base del settore (design basis class)**
+1. **Scelta**: C1 (`docs/choice_ledger.yaml:164-174`) — incumbent:
+   cubica interpolante clamped/natural heights-as-dofs; direzione
+   convergiuta: migrazione alla chart B-spline control-polygon dello
+   STESSO spazio spline certificato.
+2. **Alternative censite**: B-spline control polygon (de Boor/Boehm),
+   CST (Kulfan), Hicks-Henne — ledger C1; aggiudicazione wave-2
+   `VERDICT_wave2.md#4.5` (2026-08-19); dof-prior Masters 2017
+   (retro-sweep 2026-08-20, transfer scope 2-D external-aero Euler
+   dichiarato).
+3. **Verdetto + perche'**: MIXED (adjudicated-split): incumbent
+   verdict-bearing finche' i tre falsificatori di migrazione non
+   passano; la nuova chart porta certificati di ammissibilita'
+   Bernstein-exact nello stesso spazio certificato.
+4. **RECENCY/SOTA check**: censimento basi = panel wave-2 2026-08-19 +
+   review 2025 in registry; il prior dof attende la verifica full-text
+   (`docs/literature_registry.yaml:1029`, flag dichiarato) →
+   **ATTUALE(perimetro basi spline/CST/B-spline per contorni 2-D,
+   check 2026-08-23)**.
+5. **Falsificatore**: i tre falsificatori di migrazione di
+   `VERDICT_wave2.md#4.5` (il primo ri-pinnato sulla risposta
+   innocent-data della chart con conversion-map pin per-uso).
+6. **Trigger + finestra**: duty **F2-C1-CONTROL-CHART-MIGRATION**
+   (items 0-6 + driver leg; GAP-21 carrier) — finestra F2 engine
+   window (`docs/rde_nozzle_pipeline_decision_map.md:154`).
+
+**CARD C57 — tier di esplorazione globale (NEVER: non-aggiudicata, stampata per obbligo §1g)**
+1. **Scelta**: C57 (`docs/choice_ledger.yaml:771-780`) — incumbent:
+   NESSUNO (local-only da continuation/warm start).
+2. **Alternative censite** (ledger C57, directive-axis verification
+   2026-08-19; census esplorazione PANEL_C2021.md §2.3, 2026-08-19):
+   layer globale DFO/BO/evolutionary sopra il closer certificato;
+   captured-explorer reuse (tier C49); multi-start continuation sulla
+   macchina di branch esistente (linea V-F26/V-F7).
+3. **Verdetto**: **NON AGGIUDICATA** (status NEVER di record).
+4. **RECENCY/SOTA check**: censimento alternative datato 2026-08-19
+   (wave-2/PANEL_C2021) → **ATTUALE(perimetro solver/explorer census
+   2026, check 2026-08-23)**.
+5. **Falsificatore** (della futura scelta): un competitor enumerato da
+   M4/M5 che batta il best-of-sweep del closer locale a pari
+   certificati — e' la ragione per cui i numeri restano best-of-sweep
+   (guardia 8, §1.7).
+6. **Trigger + finestra**: **F2-entry adjudication window**,
+   aggiudicata come CLUSTER con C31 A/B, C58, C60, [P-IPADJ]
+   (`docs/rde_nozzle_pipeline_decision_map.md:138,199-204`).
+
+**CARD C61 — chiusura base-pressure p_b (NEVER: non-aggiudicata, stampata per obbligo §1g)**
+1. **Scelta**: C61 (`docs/choice_ledger.yaml:818-829`) — incumbent
+   DICHIARATO senza adozione di programma: la Veen 0.846p/M^1.3 vive
+   solo nella catena LEGACY (WG10-FAILED); il p_b di programma e' lo
+   SLOT N2 (`docs/rde_nozzle_problem_book.md:347-348`).
+2. **Alternative censite** (harvest BASE_PRESSURE_HARVEST_c4.md,
+   2026-08-20): WG10 empirical bracket [+19%,−15%] (Onofri 2002,
+   RTO-TR-AVT-007); modello di transizione Nasuti-Onofri ([MODEL-VAL]
+   WG10 pp.10-11); chiusura N2 derivata (owner dello slot, verdetto
+   WG10 su Eq.(5.1): "N2 MUST REPLACE IT"); chiusura misurata
+   (CTAP classe V1.4, unica misura hot-fire RDE, Purdue nozzleless).
+3. **Verdetto**: **NON AGGIUDICATA** (status NEVER di record).
+4. **RECENCY/SOTA check**: harvest datato 2026-08-20 (recente), MA la
+   base empirica sottostante e' cold-flow 2002 (WG10) — il verdetto
+   "MUST REPLACE IT" e' esso stesso la dichiarazione di staleness del
+   modello legacy → **STALE → finestra-di-ri-esame N2/F4b (la chiusura
+   va derivata/misurata, non ereditata)**.
+5. **Falsificatore** (della futura scelta): la banda PB-2
+   troncamento/base-pressure oltre le barre
+   (`docs/claims_registry.yaml:181`); l'exhibit Humphreys ×2.45
+   (argmax O(1) a valore piatto, §1.7 G-v) e' il warning storico che
+   la card deve superare.
+6. **Trigger + finestra**: prima riga (value,delta) truncated-plug che
+   entra nel record, O ingresso finestra F4b — chi spara prima
+   (ledger `:829`); coniazione C-N2 al kickoff PB-2/OP-2.
+
+---
+
 ## Disposizione riparazioni (W-A, 2026-08-23)
 
 Applicazione dei 10 finding di REFUTE_CH8 (writer A2, onda W-A). Ancore
@@ -389,3 +746,68 @@ introdotto), 8 non toccata (nessun claim best-of-sweep in CH8, §1.7 = W-B.1),
 9 non attivata (nessun claim di novita'), 1 non attivata (gerarchia gap non
 enunciata in CH8). Base per B6 (W-B.1: aggiunge §1.7/§3.5/§7) e per lo
 storico B8b.
+
+[Nota B6, W-B.1 2026-08-23: le sezioni §1.7, §3.5, §3-bis, §7 e il DECK
+FEED sono state AGGIUNTE dopo questa disposizione senza toccare le
+riparazioni W-A; la guardia 8, sopra "non toccata", e' ora ESERCITATA
+in §1.7 come previsto dalla checklist ("CH8 §1.7 in scrittura W-B.1");
+la guardia 9 e' ora attivata e soddisfatta in §3-bis (novita'
+query-bounded sul perimetro ledger); le guardie 2/3 restano rispettate
+(§1.7 M3 usa il naming "oracolo quasi-1D senza contouring", nessun
+T1c).]
+
+---
+
+## DECK FEED (B6, W-B.1 — asserzioni candidate-slide, frase piena + ancora + classe)
+
+1. **Il TIPO di ugello e' un OUTPUT dell'ottimizzazione, non un input:
+   la variabile di design e' il solid set nell'envelope, e bell / plug /
+   shrouded plug / expansion-deflection sono classi topologiche del
+   risultato.** — `docs/rde_nozzle_problem_book.md:339-353` —
+   [Formulazione di record / Def.] *(feed di punta del capitolo)*
+2. **Il torneo tra configurazioni ha gia' un primo verdetto alle
+   chiusure certificate: il plug domina debolmente la bell puntualmente
+   sotto chiusura sonic-capped, con tie region caratterizzata — e il
+   verdetto ranka CHIUSURE a pari eps_max, mai hardware.** —
+   [T-OP11e], `docs/claims_registry.yaml:368-379`, carrier
+   X-GRP10/X-GRP12 — [THEOREM, EOS-general]
+3. **Dentro la famiglia plug vince il plug pieno peak-phase; il
+   troncamento rompe l'annidamento e apre il primo problema di forma
+   genuinamente mediato (PB-2).** — [T-T4],
+   `docs/claims_registry.yaml:329-340` (eredita C-HT4, SCHEMA) —
+   [THEOREM* con eredita' dichiarata]
+4. **Ogni ottimo consegnato dichiara il suo meccanismo di globalita'
+   (M1-M5) e la sua forza — "global" / "within delta of global,
+   certified" / "local + enumerated competitors" — mai la parola
+   "ottimo" senza contratto.** — M0 IV,
+   `docs/rde_nozzle_MASTER.md:2982-3005` — [contratto di record /
+   proposta G-iv]
+5. **Best-of-sweep ≠ argmax: i numeri di campagna si presentano come
+   best-of-sweep certificato, mai come ottimo globale senza meccanismo
+   dichiarato.** — M0 IV + GUARD_CHECKLIST guardia 8; C57 NEVER,
+   `docs/rde_nozzle_pipeline_decision_map.md:138` — [regola di
+   presentazione / PRACTICE]
+6. **Nessuno dei quattro paper di campagna del campo (PKU Liu 2022,
+   NUAA Li-Xu 2023/2025, Jourdaine 2019) dichiara un meccanismo di
+   globalita' — il contratto per-Verdict e' il nostro delta.** — query
+   G-iii (0 match, perimetro registry+litmap+P-A..P-D, 2026-08-23,
+   CH8 §1.7) — [search-proven NOT-FOUND(q); MINT-PENDING F-2]
+7. **Il p_b sposta l'argmax del plug troncato di ×2.45 a valore quasi
+   piatto (Humphreys 1971): la piattezza del valore NON certifica il
+   design — per questo il target M3 e' l'unimodalita' della duty
+   variable del truncated plug.** — `docs/rde_nozzle_MASTER.md:1455-1464`
+   [ORCH-HARV-3] + M0 :2999 — [[ADV] exhibit + target di contratto;
+   CT-6: numeri citati, non riprodotti]
+8. **Stato engine detto onestamente: oggi il driver esercita UN settore
+   (bell/TOC, 9 dof); i settori free-boundary hanno owner e finestre
+   nominate (H20/C61 → F4b, chart → F2), e la fase di piano che li
+   raccoglie si chiama F3 GEOMETRY CLASSES (plug/aerospike primary).**
+   — [X-TOCV] + `docs/rde_nozzle_development_plan.md:214` — [PRACTICE +
+   piano di record]
+9. **La rotta di parametrizzazione e' per-settore nella classe spline
+   certificata (migrazione B-spline convergiuta), non
+   level-set/derivata topologica — e il dato della scuola classica
+   "exact batte i GA" (Kraiko 2016) e' evidenza PRO la rotta
+   certificata.** — CAUTION `docs/rde_nozzle_problem_book.md:361-363` +
+   card C1 (§7) + LL-29 (CANDIDATE, C6 pending) — [PRACTICE/MIXED +
+   lineage CANDIDATE]

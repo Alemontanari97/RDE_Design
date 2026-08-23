@@ -287,6 +287,63 @@ umano G5 su Kraiko-1979/PMM blocca ogni SUBMISSION (CLAUDE.md R6).
 
 ---
 
+## 3-bis. ANTENATI DIRETTI (lineage claim, nodo N-C) [W-B.1/B7]
+
+Join dichiarato (contratto [F-des-4], LINEAGE_LEDGER.md:8-16): ogni claim
+di novità di questo nodo cita ≥1 riga LL (lint 7); la prosa integrale di
+ogni riga vive nella parte sorgente (Pn.r). Stato righe: CANDIDATE fino
+al pass del refuter C6 (LL-1 è nel gruppo dei seed/righe con verifica
+page-verified di record). Formato: antenato → cosa fa → cosa gli manca.
+
+- **LL-1 Kraiko-Osipov 1970** (`kraiko_osipov_1970`, registry :102;
+  componenti 2/3/4/11) — **citazione OBBLIGATORIA** (M0:2908-2926,
+  page-verified S13; gate umano G5 su submission, CLAUDE.md R6).
+  Cosa fa: per l'istanza TRAIETTORIA della stessa struttura, condizione a
+  parete PESATA integrata nel tempo (loro (3.2), peso = adjoint di
+  traiettoria W(t)) + endpoint time-averaged + collasso alla famiglia
+  classica sotto similarità d'ingresso [P1.1; matrix part1:59-75].
+  Cosa gli manca: misura di ciclo, esattezza (T0), quoziente, collasso
+  puntuale con confine provato, certificati, identificazione adjoint P-2
+  (già §1.8).
+- **LL-7 Hoffman 1967** (`hoffman_1967`, registry :372; componenti
+  4/10/11/12). Cosa fa: campi di moltiplicatori lambda_1..lambda_5 su PDE
+  lungo le STESSE caratteristiche del flusso (continuous adjoint avant la
+  lettre — metà 1967 del ponte G14/P2), residuo di ottimalità a-posteriori
+  E (Eq. 78), e la prova (p.676) che la biiezione di corner muore per gas
+  reagente [P1.7; matrix part1:348-361]. Cosa gli manca: forma
+  discreta/AD, l'identificazione continuo⇄discreto, il sistema mediato
+  (**').
+- **LL-16 Efremov-Kraiko 2004** (`efremov_kraiko_2004_augmentor`,
+  registry :543; componente 2). Cosa fa: problema variazionale di spinta
+  PERIOD-AVERAGED, Eq. (1.7), Kraiko-signed — è il falsificatore di
+  record della frase "first averaged-thrust variational problem" (frase
+  DEAD) [P2.1; matrix part2:117-127]. Cosa gli manca: il contorno di
+  PARETE — il problema aggira lo shared-wall (formulato come bound
+  steady/ideal-limit), quindi non tocca il blocco (b) né (**').
+- **LL-17 Rubino 2018** (`rubino_2018`, registry :579; componenti 2/11).
+  Cosa fa: discrete adjoint harmonic-balance DUALITY-PRESERVING per
+  obiettivi period-averaged — il gemello di macchina più vicino della
+  nostra coppia funzionale-mediato + adjoint [P2.2; matrix
+  part2:164-175]. Cosa gli manca: riduzione per-phase, condizioni di
+  parete Rao-type, contouring d'ugello (setting turbomacchine RANS).
+- **LL-19 Giles-Pierce 2000 multipoint** (`giles_pierce_2000`, registry
+  :516; componenti 2/8). Cosa fa: obiettivo multipoint J = Σ w_i F_i =
+  antenato discreto-ensemble del funzionale pesato. **Residuo R11
+  DICHIARATO**: pesi e forma della somma MAI stampati nel paper — la
+  J-somma è inferenza nostra, e resta bounded finché R11 non chiude
+  [P2.4; matrix part2:80-90; LINEAGE_LEDGER.md:134-135]. Cosa gli manca:
+  misura di ciclo continua, condizioni di parete, per-phase.
+
+Perimetro di novità conseguente (già query-bounded in §1.8): l'antenato
+copre la STRUTTURA pesata (LL-1), i moltiplicatori su caratteristiche
+(LL-7), il funzionale period-averaged (LL-16), la macchina adjoint
+mediata (LL-17), l'ensemble pesato discreto (LL-19); ciò che NESSUNA
+riga porta è la combinazione per-fase + misura di ciclo + shared wall +
+(**') in forma cono + certificati — novità residua = articolazione +
+operazionalizzazione (literature_map:451-456, CONCESSO di record).
+
+---
+
 ## 4. Domande da panel
 
 **(1) "La shared-wall condition mediata: che differenza di CONTORNO produce
@@ -422,6 +479,94 @@ dal gate umano G5 su Kraiko finché un umano non ha fatto il passaggio
 
 ---
 
+*(§6 STORIA: territorio W-B.2 — non scritto qui, numerazione riservata.)*
+
+## 7. POSIZIONAMENTO / CONFORMITY (cella C-ii) [W-B.1/B7]
+
+### 7(a) STRUMENTI — adjoint continuo per-fase vs discrete-adjoint AD
+
+Terna mondo-SOTA / cosa usiamo / perché (id verificati con grep in
+finestra su docs/literature_registry.yaml).
+
+**Il mondo**: la prassi prevalente del design adjoint è il
+DISCRETE-adjoint AD; la tassonomia continuo/discreto di riferimento è
+`giles_pierce_2000` (registry :516; matrix part2:80-90 — l'equivalenza
+generica "adjoint = moltiplicatore" p.397 è CONCEDED di record); il
+criterio di qualità del discreto è la dual consistency di
+`wanted_hicken_zingg_2014` (registry :920-926, PDF arrivato, id tenuto
+per upgrade in place; Def. 1 JCP 256 p.164 + caveat pubblicato: la
+consistenza primale NON implica quella duale — C56 note); gli hazard
+pubblicati del discreto su Euler inviscido sono `lozano_2018` (registry
+:162: tassonomia delle singolarità adjoint, log-singularity alla gola
+sonica) e `lozano_2019` (registry :170: mesh-divergence — locus
+CORRETTO di record: wall/trailing-edge-driven, non lo shock); il ramo
+ANALITICO continuo è `giles_pierce_1997` (registry :989, adjoint
+equations AIAA 97-1850) e `giles_pierce_2001` (registry :507: adjoint
+quasi-1D analitico in 4 regimi — adottato come ORACOLO indipendente
+[X-GP01], matrix part2:70-78, non come antenato del nostro discreto).
+
+**Cosa usiamo** (doppio registro per-RUOLO, riga C56 del ledger,
+choice_ledger.yaml:760-769): al livello di FORMULAZIONE
+l'identificazione CONTINUA per-fase — il first integral
+f2 = −lambda2(xi) (§1.2, [T-P3] THEOREM*): il moltiplicatore di portata
+della fase si LEGGE dai soli dati al lip, senza risolvere alcun sistema
+adjoint; al livello di ESECUZIONE il discrete AD-adjoint
+(custom_vjp, one-lowering) come realization di record del gradiente.
+
+**Perché continuo-prima**: (i) la macchina classica dà lambda2 in forma
+chiusa misurabile — struttura derivata, non solve numerico (§1.2); (ii)
+il sistema mediato (**') è formulato al livello Hadamard/adjoint
+continuo perché la biiezione di corner muore per gas reagente (Hoffman
+1967 p.676, §1.8): il continuo è il livello a cui i teoremi vivono.
+**Dove il discreto rientra**: O3.1 — il verdetto G0 di record
+(D6 :753-774, verificato alla riga): JAX primary con gradient fidelity
+a machine precision (spikes 52/52 + O3.1, carrier X-G0/X-G0AX,
+D6 :762-763); il discreto è il carrier ESEGUIBILE del gradiente e O3.1
+il suo rejector; il residuo numerico dell'identificazione
+continuo⇄discreto resta [C-O33] (§3.4), e la dual-consistency è il
+criterio-referee (C56 note: F11d = esecuzione all'estimator-site, con
+il criterio pubblicato Hicken-Zingg citato per pagina). La scelta di
+STACK (C58/G0, JAX vs alternative) è della riga I: card owner B4/CH4 —
+qui solo l'ancora G0.
+
+**DECISION CARD C56** (formato emendamento v2.1 §1g, 6 campi):
+
+| campo | contenuto |
+|---|---|
+| 1. scelta | C56 — adjoint REALIZATION per-ruolo (gradient / DWR weight / indicator): discrete AD-adjoint vs continuo separately-discretized vs sintesi dual-consistent (choice_ledger.yaml:760-769, status MIXED, tre ruoli CLOSED) |
+| 2. alternative censite (data+fonte) | (i) discrete AD-adjoint (incumbent); (ii) continuo separately-discretized (linea Ancourt/Lozano-Ponsin); (iii) sintesi dual-consistent (criteri Hicken-Zingg). Censimento: mint 2026-08-19, VERDICT_C9C11_supplement.md §4.3; aggiudicazione wave-2 2026-08-19 (PANEL_C31TRIO §3.1-bis + PANEL_C1REP §3.4-bis, VERDICT_wave2 §2.10); ancoraggio criteri pubblicati 2026-08-20 (retro-sweep: HZ Def. 1 JCP 256 p.164; Fidkowski-Darmofal 2011 p.676) |
+| 3. verdetto + perché | gradient role = discrete AD-adjoint (esatto per la discretizzazione, O3.1-verificabile a machine precision); linea continua = frame + referee (l'identificazione f2 = −lambda2 [T-P3]); indicator role chiuso per transitività (f2 = −lambda2, stesso oggetto); weight role chiuso dal supplement C11 con F11d pinnato |
+| 4. RECENCY/SOTA check | survey datata 2026-08-19/20 (perimetro: registry + census C9/C11 + panel wave-2). **ATTUALE(perimetro: registry 174 + VERDICT_C9C11_supplement + wave-2; data-check 2026-08-23)** — con finestra di ri-sweep nominata: cluster F2-entry (C31/C58 delta-sweep vs landscape 2026) |
+| 5. falsificatore | F11d che SPARA (bookkeeping d'ordine dual-consistency contro HZ Def. 1 — il caveat pubblicato vieta di derogarlo su evidenza primale) riapre la riga; guardia di premessa: blind spot wrong-branch fino a C20 Tier-0 (C56 note) |
+| 6. trigger ri-esame (finestra) | F2-C11-ESTIMATOR-CAMPAIGN (esecuzione F11d, owner di riga); un F11d sparato riapre C56, non C11; finestra = F2 |
+
+### 7(b) SENSO — precedenti e gap (query-bounded)
+
+Tre banche mai mutuamente citate (Hoffman 1967, Giles-Pierce 2001,
+Lozano-Ponsin 2025 — literature_map:428-456, già §1.8); ensemble
+discreto pesato = LL-19 (R11 dichiarato, §3-bis); macchina adjoint
+period-averaged completa = LL-17 (HB, senza per-fase né parete);
+funzionale period-averaged senza parete = LL-16. Il gap che il nodo
+occupa: NESSUNA banca fa l'identificazione adjoint per-fase su misura
+di ciclo con transversality PESATA in forma cono — l'equivalenza
+generica adjoint≡moltiplicatore e la catena Route B→A interna alla
+scuola classica sono CONCESSE (query-bounded 2026-08-13,
+literature_map:451-456); novità residua = articolazione +
+operazionalizzazione (§1.8, §3-bis).
+
+### 7(c) STANDARD DI RIFERIMENTO (asse §C)
+
+Asse governante: **§C-3 (tracciabilità, classe ECSS/DO-178C)** —
+criterio di conformità: ogni claim di gradiente ha catena id→carrier→
+rejector (O3.1 52/52 a tolleranza derivata, X-G0/X-G0AX; F11d con
+criterio pubblicato citato per pagina); divergenza dichiarata: nessun
+audit esterno né certificazione DI — adottiamo la CLASSE di disciplina
+(trace bidirezionale + lint automatici). Secondo asse citato: §C-2
+(gradazione evidenza, classe GRADE) per le classi THEOREM*/pending
+[C-O33] con cui questo capitolo stampa ogni identificazione.
+
+---
+
 ## Disposizione riparazioni (onda 2)
 
 Riparatore S-PRES, 2026-08-23. Ogni fix applicato con read-then-quote:
@@ -445,3 +590,40 @@ rde_nozzle_T7_P7_functionspace.md:40-84; VERIFICATION_FABLE_2026-08-13.md:
 | 10 | NOTE | APPLICATO [W2-R10] — §3.6: sigla disambiguata "falsificatore-C32 (M0:2895, CLAIM-16 companion)", collisione con choice_ledger C32 dichiarata (miglioria senza rischio) |
 | 11 | REPAIR | APPLICATO [W2-R11] — Q5 allineata al deck point 4: [C-D25U] = unico conditional analitico DELLA SPINA di differenziazione; [C-MAJDA]/[C-O33] nominati a parte |
 | 12 | NOTE | APPLICATO [W2-R12] — ancora VERIFICATION_FABLE_2026-08-13.md:355 aggiunta all'OPEN §3.6 come carrier dell'esistenziale (rafforza, verdetto OPEN invariato) |
+
+---
+
+## DECK FEED (asserzioni candidate-slide, assertion-evidence) [W-B.1/B7]
+
+1. "Nessuna fase soddisfa la propria condizione di parete — la mu-media
+   sì: l'ugello ottimo di ciclo non è l'ugello ottimo di nessun punto
+   operativo." — ancora P1:68-71; M0:2827-2829 — classe THEOREM*
+   (T-T7FS(b)).
+2. "Tre modi di mediare, uno solo è condizione necessaria del problema
+   vero: la media PESATA delle condizioni (**'); naive e design-su-dato-
+   medio falliscono fuori dalla classe di collasso T3." — ancora
+   P1:96-114; M0:2856-2861; [T-T3] M0:746-754 — classe THEOREM* +
+   boxed warning.
+3. "La media sbagliata costa Isp misurato: dIsp +3.33…+9.71 s su 6 casi
+   (rango dichiarato: rejector all'oracolo senza contouring, solo
+   eps)." — ancora s25bis_closing_suite.log:61-76 — classe PRACTICE
+   (rejector eseguibile).
+4. "Il moltiplicatore di fase si legge al lip: f2 = −lambda2, in forma
+   chiusa, senza risolvere alcun sistema adjoint." — ancora P1:58-63;
+   M0:2826-2934 — classe THEOREM* (T-P3, eredita C-MAJDA sui fronti).
+5. "Continuo-prima in formulazione, discreto AD come realization
+   per-ruolo, con oracolo O3.1 a machine precision e dual-consistency
+   come referee (F11d)." — ancora choice_ledger.yaml:760-769 (C56);
+   D6:753-774 (G0) — classe: decisione di record (ruoli CLOSED) +
+   PRACTICE (O3.1).
+6. "La struttura pesata ha un antenato dichiarato e a citazione
+   obbligatoria: Kraiko-Osipov 1970, parete pesata W(t); la novità
+   residua è query-bounded (articolazione + operazionalizzazione)." —
+   ancora M0:2908-2926; LL-1; literature_map:451-456 — classe [REP]
+   page-verified + query-bounded.
+7. "Una sola spina condizionale: [C-D25U], dichiarata una volta ed
+   ereditata per ID — non una nube di caveat." — ancora P1:128-150 —
+   classe: voce di onestà (THEOREM* con conditional nominato).
+8. "Il contorno cycle-wall 2-D non è mai stato computato: OPEN
+   dichiarato, owner F2." — ancora §3.3; M0:2840-2845 — classe OPEN
+   di record.

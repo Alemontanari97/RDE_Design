@@ -92,6 +92,28 @@ override di effort per-agente sul tool Agent) + orchestratore. 1 round.
 
 Esito: W-A PASS. CH7/CH8 = base stabile per W-B; via a W-B.0.
 
+## CORREZIONI UTENTE DI SESSIONE 2 (vincolanti)
+
+- **CKP-S2-1 (2026-08-23, iniezione in-onda W-B.1) — interpretazione
+  del feedback ugello→camera.** Verbatim utente: "attento
+  all'interpretazione del feedback ugello camera, ci dovrebbe essere
+  solo se la porzione pre gola è convergente e con gola tutta sonica o
+  supersonica, o se la gola, anche throatless geometrica, è a patch
+  subsoniche". Lettura di record (coerente con C-1bis/KP18 e D1 4.3bis
+  O1-O4): il DECOUPLING (assenza di feedback a monte) è asseribile
+  SOLO sotto choking pieno — pre-gola convergente + gola/superficie
+  sonica tutta sonica-o-supersonica lungo ciclo e azimut; il feedback
+  ESISTE quando la gola (anche senza gola geometrica: throatless, la
+  superficie sonica fa da gate) presenta patch subsoniche — le patch
+  sono i canali di risalita dell'informazione verso la camera. Nessun
+  claim di decoupling/one-way-BC senza la condizione citata; il
+  regime forte-transiente (unstart) resta fuori dalla lettura a
+  piccole perturbazioni (confine da dichiarare se toccato).
+  Cablaggio: guardia 17 in GUARD_CHECKLIST (consumata da W-C e
+  retro-audit); resume mirato B2 per CH10 (§1 contratto/margine,
+  §5 U3', §8 Q&A); tocca anche la lettura del margine m_n
+  (L4-DEFAULT) e la case-class O1-O4.
+
 ## ONDA W-B.0 — LINEAGE SWEEP (lanciata 2026-08-23)
 
 Shape: 2 slot giudizio (L1, L2), inherit max, corpus 82 id splittato

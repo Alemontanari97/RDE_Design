@@ -159,7 +159,15 @@ inflated here"; M0:1786-1807).
   (M0:1953-1956). I tre deriver NOMINATI in ordine: (1) five-field
   content bound X-T3QS-5F (F2); (2) C51-route-B (trattamento nativo dei
   fogli elicoidali); (3) M-RED gradient-measurement rider §3.6
-  (M0:1946-1952). Anche **L_H** — la faccia a livello curvatura del
+  (M0:1946-1952). **Cross-ref di licenza [B3-BLITE] (CH1 §1.7 H-v)**:
+  accanto ai deriver esiste il metro esatto CHEAP del residuo — B-lite
+  [S-BLITE], verbatim di record "the cheap exact meter of the rung-2
+  sweep/D2 residual" (M0:3027-3044, verbatim :3037-3038): sul dominio
+  nozzle-only con margine assiale certificato u_x − c ≥ δ il campo
+  wave-frame ESATTO si calcola per space-marching elicoidale 3-D a costo
+  di march (adjoint verbatim per Lemma B) — lo strumento che può
+  ARBITRARE i deriver senza il solve globale né la camera; brick nominato
+  da verificare per primo: G12-L1-3D. Anche **L_H** — la faccia a livello curvatura del
   residuo di riduzione (H-G6: mu_eff = (mu_meas − b_E) − L_H) — è
   UNDERIVED con deriver nominati (M0:2018-2026; forchetta (vi),
   M0:1348): finché L_H non atterra, la via gradiente non licenzia
@@ -186,6 +194,14 @@ quantificata. Guardia = monitor di piattezza T0 + campo di contratto
 f_cycle. "No number is asserted — asserting one would exceed evidence"
 (M0:1343). Classe: [T-T0P] SCHEMA sui due strati; boundary PRACTICE.
 Tightener: R22-CFD-1, lift G5/G9 (F2), programma correttore.
+**Scope esplicito del corrector (cella M-i) [B3-MI]: il corrector O(St)
+di record è una PERTURBAZIONE DELLO SWEEP STEADY sull'ancora wave-frame
+— one linearized solve, ingaggiato QUANDO T0 applica (modo single/k-wave
+certificato); la route generale unsteady (O5) resta SEMPRE in pipeline e
+la route cheap è "a licensed specialization, not a replacement"
+(M0 VI.4bis(ii), :3145-3150, verificato alla riga 2026-08-23; memoria
+periodic-wave-data-scope). Il corrector NON è un solve instazionario: è
+la derivata del sweep steady rispetto alla fase.**
 
 **(ii) Riduzione della struttura azimutale** — *eliche, fronti interni,
 la faccia propria di T-RED: ciò che varia in phi e il march 2D non
@@ -231,7 +247,12 @@ accordo area-ratio Paxson-Miki 6.54 vs ~6.5 (R26, registry :2147);
 Harroun 1.25-flat letto ai suoi limiti verificati = nessuna
 contraddizione misurata dell'adeguatezza di sizing. WORST: **"RANKING
 THRESHOLD OPEN (R26)"** — i delta di contorno in-class sono FRAZIONI di
-punto (scala Hoffman 0.04-0.34%; il nostro +0.51% in-class) contro
+punto (scala Hoffman 0.04-0.34%; il nostro +0.51% in-class — CON il
+caveat **band-underinclusion di record** stampato accanto [B3-C12]:
+l'errore di rappresentazione di classe M→2M è sotto-coperto dalla
+differenza J M-vs-2M, bound sistematico grezzo ~6e4 contro il surplus
+2.0407e5, **~30% del datum**, M0:4216-4219 — il caveat È parte del
+numero ovunque il numero compaia) contro
 spread di configurazione di DECINE di punti: "the average could be blind
 exactly at design-relevant scale". Harroun 1.25-flat è un dato di
 NON-DISCRIMINAZIONE (nessuna spinta misurata, nessun 3D unsteady flared,
@@ -415,6 +436,59 @@ da M0, dichiarato per il retro-audit del deck.
     solo settore supersonic-map; il settore subsonico raggiunge la forma
     mixture ed è fuori scope del teorema, dichiarato (M0:1025-1028) — da
     dire se il deck consuma [T-DISC].
+12. **G3 senza numero di kill (+ G4 nominato) [B3-G34]** (cella M-v/D-v):
+    il gate di unsteadiness **G3** ("St|J1| large → rung-3 correction
+    loop") è, verbatim D6 e verificato alla riga 2026-08-23,
+    **"currently the only gate whose kill threshold cannot reject"**
+    (`docs/rde_nozzle_development_plan.md:783-786`): il trigger "large"
+    deve diventare un NUMERO con derivazione prima che parta A4. La via
+    di chiusura è di record ed è **F5b**: "G3 unsteadiness trigger
+    derived as a NUMBER BEFORE the corrector"
+    (`docs/rde_nozzle_development_plan.md:271-273`, verificato alla
+    riga) — oggi quel numero è ASSENTE, e l'assenza DICHIARATA è
+    l'aperto (è anche il falsificatore del nodo N-M). Accanto va
+    NOMINATO il **G4 DECOUPLING GATE** ("D2 error dominates →
+    wave-frame objective", `docs/rde_nozzle_development_plan.md:787`):
+    mai esercitato, nessuna soglia di record — la sua esistenza è la
+    valvola strutturale se il residuo di riduzione domina. Owner: F5b
+    (corrector nello scope VI.4bis(ii), cf. [B3-MI] §1.3(i)); eco
+    roadmap in CH6 §1.5. Classe: PRACTICE/aperto dichiarato di piano.
+
+---
+
+## 3-bis. ANTENATI DIRETTI (lineage claims — nodi N-D / N-M) [B3-LIN]
+
+Contratto di join [F-des-4]: ogni claim di novità dei nodi ospitati cita
+≥1 LL-id del `LINEAGE_LEDGER.md` (lint 7); righe CANDIDATE fino al pass
+del refuter C6.
+
+**N-D (il residuo esatto della riduzione):**
+- **LL-22 — convenzioni di media non dichiarate** (Liu Eq.14; quarta
+  istanza in P-C `li_xu_lv_yu_zhou_2025`): il campo media senza dichiarare
+  peso/denominatore — la nostra μ è l'unica PINNATA (T-O2). È l'antenato
+  IN NEGATIVO del censimento K: chi non dichiara la media non può scrivere
+  l'oggetto che la riduzione scarta. Il claim di assenza dell'operatore K
+  esibito in forma chiusa resta query-bounded al corpus (§5.1).
+- **LL-4 — Kaemming-Paxson 2018 EAP** (`kaemming_paxson_2018`): porta la
+  DOMANDA (che errore fa la media?) al rung int-max, ma con le ipotesi di
+  riduzione unstated/unpriced (M0:2537-2539) — antenato della domanda
+  senza lo strumento (forchetta per-canale, classi di cella).
+
+**N-M (la correzione di unsteadiness):**
+- **LL-4**: il correttore P4 è "EAP's missing error bar" (M0:2537-2539) —
+  l'antenato industriale definisce esattamente il buco che il corrector
+  prezza.
+- **LL-17 Rubino 2018** (`rubino_2018`) + **LL-18 Zahr-Persson 2016**
+  (`zahr_persson_2016`): la macchina adjoint periodica (HB discrete
+  adjoint duality-preserving period-averaged; adjoint fully-discrete
+  sotto periodicità + verifica gradiente + monodromia) = antenati della
+  **ROUTE GENERALE** del corrector (il lato O5/unsteady di VI.4bis(ii)),
+  ciò che il programma specializza con la route cheap licensed sotto T0.
+  **Decisione di scoping dichiarata (mandato B3, no-dup)**: LL-17/LL-18
+  sono citati QUI solo sull'asse corrector/route-generale del nodo N-M;
+  la loro genealogia rispetto all'adjoint per-fase del sistema di
+  OTTIMALITÀ appartiene al nodo N-C (CH2, writer B7) — asse diverso,
+  stesso ledger, nessuna duplicazione di claim.
 
 ---
 
@@ -580,6 +654,126 @@ ad allora ogni cella è bound/estimate-class e la presentazione lo dice.
 
 ---
 
+## 6. STORIA
+
+[PLACEHOLDER — owner W-B.2 (B8a/B8b), trittico condizionale §T-§6 con
+data+processo+verdetto per battuta (emendamento §5-bis). NON compilata da
+questo writer per regola di non-interferenza.]
+
+---
+
+## 7-DWR. POSIZIONAMENTO / CONFORMITY (cella D-ii; owner B3) [B3-P7]
+
+La cella: perché la contabilità dell'errore di riduzione è una FORCHETTA
+per-canale "a mano" con fisica nominata, e non un estimator goal-oriented
+di classe DWR.
+
+**(a) STRUMENTI — forchetta per-canale vs DWR goal-oriented.**
+- *Mondo-SOTA (id registry)*: `wanted_becker_rannacher_2001` — il canone
+  dual-weighted residual (menu pubblicato degli operatori di enrichment,
+  pp.40-41, con effectivity misurate); `venditti_darmofal_2000` — adjoint
+  error quasi-1D, la forma two-level fine-space residual;
+  `wanted_fidkowski_darmofal_2011` — la review output-based adaptation.
+- *Cosa usiamo*: per l'errore di RIDUZIONE/modello, la forchetta
+  per-canale a fisica nominata [R22F-FORCHETTA] (M0:1283-1494), regola di
+  cella binding "NO cell above its held evidence class" (M0:1305-1309);
+  per l'errore di DISCRETIZZAZIONE del march, il DWR è ADOTTATO davvero —
+  target primary con AD-weight discreto + referee Richardson/GCI
+  permanente (riga C11, `docs/choice_ledger.yaml:269-279`).
+- *Perché per-canale con fisica nominata*: (1) il DWR presuppone un DUALE
+  COMPUTABILE del problema di riferimento; per l'errore di riduzione il
+  riferimento è il 3D-unsteady VERO, il cui residuo a livello gradiente è
+  delta UNDERIVED e senza arbitro esterno pubblicato (M0:1953-1956;
+  M0:1322-1333) — un "DWR sulla riduzione" fingerebbe esattamente il
+  duale che il record dichiara di non avere; (2) i sei canali hanno
+  fisica DISTINTA (time-coupling / azimutale / swirl / adequacy /
+  model-form / optimum-shift), ciascuno con owner, classe e falsificatore
+  propri — un aggregato a numero singolo cancellerebbe la struttura che
+  la disciplina di cella impone (i canali NON si sommano, M0:1466-1481);
+  (3) dove il duale computabile ESISTE (la discretizzazione del march) il
+  programma usa il DWR sul serio (C11) — la spartizione è PER ASSE
+  (model-form vs discretizzazione), non un rifiuto del DWR.
+
+**DECISION CARD — contabilità dell'errore di riduzione (6 campi, §1g):**
+1. **Scelta**: forchetta per-canale a fisica nominata [R22F-FORCHETTA]
+   (M0:1283-1494) come contabilità dell'errore di riduzione/model-form.
+   Nessuna riga choice_ledger propria (dichiarato): la riga estimator
+   C11 (`docs/choice_ledger.yaml:269-279`) governa l'asse DISTINTO della
+   discretizzazione.
+2. **Alternative censite (data+fonte)**: DWR/goal-oriented
+   (`wanted_becker_rannacher_2001`, `venditti_darmofal_2000`,
+   `wanted_fidkowski_darmofal_2011`) — censite dal panel C9/C11
+   (2026-08-19, PANEL_C9C11.md + VERDICT_C9C11_supplement.md) e dalla
+   wave-1 S-FOUNDATIONS (2026-08-19, VERDICT_wave1.md §2.4); retro-sweep
+   ancore Becker-Rannacher/Venditti-Darmofal 2026-08-20.
+3. **Verdetto + perché**: per-canale — il duale del problema VERO non è
+   computabile al record corrente (delta/L_H underived, no external
+   referee); i canali portano classi/owner/falsificatori distinti; DWR
+   adottato sull'asse dove il suo duale esiste (C11). Spartizione per
+   asse, dichiarata.
+4. **RECENCY/SOTA check**: censimento DWR 2026-08-19 (panel + wave-1),
+   con `wanted_fidkowski_darmofal_2011` (review di campo) su disco e
+   consumo dichiarato per asse; nessuna forma DWR per model-form error di
+   riduzione unsteady→per-fase trovata in registry al check 2026-08-23.
+   **ATTUALE(registry 174 + ledger C11, 2026-08-23)**.
+5. **Falsificatore**: un duale computabile del problema vero (o un
+   surrogato certificato del suo gradiente) che produca un bound
+   per-design più stretto della forchetta a parità di classe di evidenza;
+   oppure M-RED che misura un canale fuori banda (la forchetta si ri-tara,
+   M0:1178-1182).
+6. **Trigger di ri-esame (finestra)**: F2 — M-RED (bande B-1..B-4,
+   F2-QUEUED) + F2-C11-ESTIMATOR-CAMPAIGN leg (b); **finestra F2-entry**.
+
+**DECISION CARD — route del corrector O(St) (cella M-i; 6 campi, §1g):**
+1. **Scelta**: corrector = perturbazione dello SWEEP STEADY sull'ancora
+   wave-frame (one linearized solve), specializzazione LICENZIATA quando
+   T0 applica; route generale unsteady (O5) sempre in pipeline — M0
+   VI.4bis(ii) (:3145-3150). Nessuna riga choice_ledger propria: direttiva
+   pinnata di record (S5/S6, 2026-07-16; re-scoping memoria
+   periodic-wave-data-scope), dichiarato.
+2. **Alternative censite (data+fonte)**: (a) confronto unsteady pieno O5
+   (route generale, VIVA in pipeline); (b) macchina adjoint periodica
+   HB/fully-discrete (`rubino_2018`, `zahr_persson_2016`) — censite dallo
+   sweep lineage W-B.0 (2026-08-23, LINEAGE_SWEEP_MATRIX part2, righe
+   LL-17/LL-18) e dalla litmap §b6 (time-homogenization / quasi-steady
+   validity).
+3. **Verdetto + perché**: both-routes con gate DATA-DRIVEN (mai
+   assunzione strutturale — emendamento utente di VI.4bis): la route
+   cheap è esatta al primo ordine sotto T0 certificato e costa un solve
+   linearizzato; "a licensed specialization, not a replacement".
+4. **RECENCY/SOTA check**: direttiva 2026-07-16, re-scoping 2026-08-11;
+   lo sweep lineage del 2026-08-23 non ha esibito una route più economica
+   CON certificato (LL-17/LL-18 = route generale, non cheap). Check
+   2026-08-23. **ATTUALE(registry + litmap b6 + LINEAGE_LEDGER,
+   2026-08-23)**.
+5. **Falsificatore**: il monitor T0-flatness rigetta la purezza di modo
+   (licenza cheap revocata, route generale obbligata); o residuo del
+   corrector oltre le barre O(St) sul bench O5-lite.
+6. **Trigger di ri-esame (finestra)**: **F5b** — G3 trigger derivato come
+   NUMERO PRIMA del corrector (D6:271-273); finestra F5b (con G3/G4 come
+   aperto dichiarato, §3.12).
+
+**(b) SENSO.** Il campo RDE prezza l'errore steady-vs-transient come DATO
+puntuale di campagna — NUAA `li_xu_lv_lv_song_2023` (2.8% uniforme ≤60%
+trunc), `li_xu_lv_yu_zhou_2025` (0.2-1.5%, un flip mid-ranking) — mai
+come contabilità per-canale con classi di evidenza; la comunità
+output-based (Becker-Rannacher → Venditti-Darmofal → Fidkowski-Darmofal)
+possiede l'errore di DISCRETIZZAZIONE, non il model-form di riduzione. Il
+gap che la cella occupa: una contabilità dell'errore di RIDUZIONE
+per-canale, classe-dichiarata, con misura pre-registrata (M-RED) —
+query-bounded al corpus (lint 7; join §3-bis).
+
+**(c) STANDARD DI RIFERIMENTO.** Asse **§C-2** (classe GRADE): ogni cella
+della forchetta porta la propria classe di evidenza (THEOREM*/[SE]/[REP]/
+[ADV]) con la regola binding "NO cell above its held evidence class"
+(M0:1305-1309) — conformità piena alla STRUTTURA GRADE (livello
+dichiarato + ragioni di upgrade/downgrade); divergenza dichiarata: i
+livelli sono le classi R4 del programma, non i domini clinici. Asse di
+supporto **§C-6** (assertion-evidence): la slide-forchetta mostra le
+classi in cella come differenziatore, non come disclaimer (§5.3).
+
+---
+
 ## Disposizione riparazioni (onda 2)
 
 Onda 2 eseguita 2026-08-23 su REFUTE_CH3.md (verdetto
@@ -605,3 +799,48 @@ M0:1886 (R8), M0:1025-1028 (R9), M0:1343 (R13), registry
 | 11 | NOTE | APPLICATO [W2-R11] (variante dichiarativa) — nota off-by-one registry in testa al §2; cite di M0 lasciate intatte per fedelta' al record, drift dichiarato per il retro-audit |
 | 12 | NOTE | APPLICATO [W2-R12] — "il campo confonde" sostituito con la forma ancorata (tensione R26, registry :2148) |
 | 13 | NOTE | APPLICATO [W2-R13] — scoping Cor 5.1 (cl(Omega_march), slip-free) restaurato nella voce (i) BEST (M0:1343 verificata) |
+
+---
+
+## DECK FEED
+
+Asserzioni candidate-slide (assertion-evidence: frase piena + ancora +
+classe), compilate per lo storyboard v3 — che joina QUI, non ri-legge il
+capitolo (contratto §3 emendamento).
+
+1. "Il residuo della riduzione è un operatore ESPLICITO K — 6 righe
+   avvettive + atomi di fronte, identità verificate a macchina — non una
+   speranza." — M0:1786-1807 — DEFINITION + THEOREM* (censimento G-f
+   SCHEMA, da dire).
+2. "Il canale medio del residuo è esattamente NULLO; sopravvivono
+   esattamente due canali al primo ordine, (J) e (H)." — M0:1833-1853 —
+   THEOREM* mintato (clausola SBV H-RED-2 dichiarata).
+3. "Il teorema condanna la riduzione a sola pressione con ZERO CFD, ed
+   esonera — su quell'asse — la media full-state che usiamo." —
+   M0:1242-1259 — THEOREM*/SCHEMA (scope booking a voce).
+4. "La forchetta a 6 canali con la CLASSE stampata in ogni cella; i
+   canali non si sommano; il +0.51% porta il suo band-underinclusion
+   (~30% del datum) stampato accanto." — M0:1341-1348, 1466-1481,
+   4216-4219 — classi per cella ([SE]/[REP]/THEOREM*).
+5. "Nessun numero di argmax-shift esiste a nessun grado — delta e L_H
+   sono underived con deriver nominati e ordinati: la disciplina È il
+   claim." — M0:1348, 1953-1956, 1946-1952 — SCHEMA.
+6. "Nessun arbitro esterno pubblicato esiste per l'errore di spinta
+   per-fase — lo dichiariamo noi per primi, e costruiamo l'arbitro:
+   M-RED, bande DERIVATE B-1..B-4, esiti pre-registrati." —
+   M0:1322-1333; findings_registry:2509-2517 — dichiarazione strutturale
+   + carrier spec (PRACTICE T3-CONTROL).
+7. "G3 è oggi l'unico gate il cui kill threshold non può rigettare; F5b
+   lo chiude derivando il trigger come NUMERO prima del corrector — e lo
+   diciamo noi." — D6:783-786, 271-273 — aperto dichiarato di piano
+   (PRACTICE).
+8. "Il corrector è una perturbazione dello sweep STEADY (one linearized
+   solve), licenza data-driven sotto T0; la route generale unsteady resta
+   in pipeline." — M0:3145-3150 (VI.4bis(ii)) — direttiva di record.
+9. "Per il model-form: forchetta per-canale a fisica nominata; per la
+   discretizzazione: DWR adottato davvero (C11, AD-weight + referee) —
+   spartizione per asse, dichiarata." — M0:1283-1494;
+   choice_ledger:269-279 — scelta con card (§7-DWR).
+10. "B-lite è il metro esatto CHEAP del residuo rung-2: arbitra i deriver
+    a costo di march, senza camera." — M0:3027-3044 (verbatim
+    :3037-3038) — [S-BLITE] SCHEMA, brick G12-L1-3D nominato.

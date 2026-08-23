@@ -2,7 +2,14 @@
 
 Capitolo di ricostruzione S-PRES (2026-08-22/23). Stadio di confronto: M0,
 registries (claims/findings/choice), pipeline decision map, PROGRESS, checkpoint
-S-FOUNDATIONS. Questo testo NON aggiudica nulla di nuovo: ricostruisce, ancora,
+S-FOUNDATIONS; [WB1] + checkpoint S-PRES (abbreviato **CKP-S** =
+`validation/spres_raws_2026-08-22/SESSION_STATE_checkpoint.md`, correzioni
+utente C-3/C-3bis/C-3ter di record 2026-08-23) e piano D6
+(`docs/rde_nozzle_development_plan.md`). Nota di lettura: "checkpoint" NUDO in
+questo capitolo = il checkpoint S-FOUNDATIONS
+(`validation/sfoundations_raws_2026-08-13/SESSION_STATE_checkpoint.md`), come
+nelle ancore già poste; il checkpoint S-PRES è SEMPRE citato CKP-S. Questo
+testo NON aggiudica nulla di nuovo: ricostruisce, ancora,
 dichiara gli aperti. Ogni claim porta ancora (file:riga) e classe di rigore.
 Consumo dichiarato: storyboard v3, banca Q&A red-team, mappa F2+.
 
@@ -60,11 +67,21 @@ any single-phase design." È il punto dove la media del ciclo produce un ottimo
 GENUINAMENTE diverso da ogni design a fase singola (rottura del nesting di T4:
 la sharpness clause del teorema di nesting — "a length cap L < l(xi_peak), a
 base-pressure model at a truncation plane, or non-ideal adaptation break the
-nesting: then max Int < Int max STRICTLY" (`docs/rde_nozzle_MASTER.md:2316-2319`),
-con classe dichiarata "the nesting and the constrained-KKT structure are
-THEOREM (standard)" (M0:3524-3525) [W2-R6]; il numero PB-2 stesso: **MAI
-computato** — nessuna riga (value,delta) truncated-plug esiste nel record,
-vedi trigger C61 sotto).
+nesting: then max Int < Int max STRICTLY" (`docs/rde_nozzle_MASTER.md:2316-2319`)
+[W2-R6]. **Classe, forma riconciliata a CH1 Q4 [WB1-R1] (critic 10)**: il
+NESTING (la parte positiva) è provato — THEOREM 6 [T-T4], classe THEOREM*
+sotto la chiusura di ideal-adaptation [C-HT4] (M0:2303-2315); la frase
+"the nesting and the constrained-KKT structure are THEOREM (standard)"
+(M0:3524-3525) copre il nesting e la struttura KKT vincolata, NON la
+strictness; la **STRICTNESS sotto troncamento/caps è clausola ENUNCIATA di
+record DOPO il QED ma SENZA prova scritta** (nemmeno l'ipotesi implicita
+mu({xi: l(xi) > L}) > 0 è enunciata — CH1 Q4 [W2-R4],
+`CH1_formulation_ladder.md:362-374`); il carrier quantitativo è PB-2 (OPEN);
+il numero PB-2 stesso: **MAI computato** — nessuna riga (value,delta)
+truncated-plug esiste nel record, vedi trigger C61 sotto. Su slide (e in
+storyboard C7-ter, canale orchestratore): "qui la differenza è la struttura"
+si dice SOLO nella forma "nesting provato; strictness = clausola senza prova
+scritta; carrier = PB-2 OPEN").
 
 **Guard di priorità sulla bandiera (locked formulation D-06)** [W2-R5]: la
 forma di record del claim di novità è VINCOLATA — "PB-2 LOCKED FORMULATION OF
@@ -114,6 +131,129 @@ Cosa serve per computarlo, dal record:
   FOUNDATION-grade: the closure choice moves the DESIGN, not just the value"
   (`docs/choice_ledger.yaml:830`).
 
+### 1.2-bis Quale gap domina, su quale asse? (nodo N-Q, first-level — C-3/C-3bis/C-3ter) [WB1-R2]
+
+[Sorgente normativa: blocco C-3/C-3bis/C-3ter di CKP-S :198-255 —
+correzioni utente di record 2026-08-23, portate ALLA RIGA (mai parafrasi
+a memoria). Nodo N-Q istanziato dall'emendamento v2.1 §1d: albero a 22
+nodi, N-Q agganciato DIRETTAMENTE a Q0 (first-level, accanto ai rami
+R-I..R-IV — è LA domanda di valore che li attraversa). Celle servite
+qui: Q-i, Q-iii, Q-iv; Q-v in §3 (A-9); Q-ii = F-P dichiarata (§7(a)).]
+
+**(i) Il frame three-design (la spina del value case del deck).** Tre
+design, tre gap (CKP-S:198-204): **x\*_mean** = design classico sul dato
+medio — il comparatore è I4 (§1.2), e di record "I4 comparator has ZERO
+computed instances" (CKP-S:198-199); **x\*_pf** = il nostro (ottimo
+della famiglia per-fase); **x\*_3D** = l'ottimo 3D vero,
+"uncomputable" (CKP-S:200). I tre gap, verbatim (CKP-S:200-202):
+"Gaps: formulation (never computed, PB-2/twin), model (= Gap A, no
+number, delta/L_H underived), composition (field controls NOTHING)".
+Lettura dichiarata del terzo asse [INF]: le coppie del frame sono tre —
+mean↔pf (formulazione), pf↔3D (modello), mean↔3D = la COMPOSIZIONE dei
+due, il gap in cui il campo vive senza controllarne alcun pezzo.
+**Nota di mappa OBBLIGATORIA (collisione di lettere)**: le etichette
+C-3bis qui sotto — gap(A) = pf-vs-mean, gap(B) = pf-vs-3D — hanno le
+lettere SCAMBIATE rispetto al frame di valore §1.1 (Gap B = salto
+misurabile pf-vs-legacy; Gap A = distanza dal 3D): gap(A)~Gap B,
+gap(B)~Gap A; C-3bis è la forma A LIVELLO ARGMAX della value condition
+— "= the value condition at argmax level" (CKP-S:229-230). La domanda
+utente di record è FIRST-LEVEL TREE NODE: "which gap dominates, on
+which axis?" (CKP-S:202-204).
+
+**(ii) WORKING HYPOTHESIS (dichiarata e falsificabile — mai teorema).**
+Forma finale C-3bis a vincoli fissi (CKP-S:215-230; la forma precedente
+mescolava gli assi eps-free vs constrained — "user catch correct",
+CKP-S:216-217): a (eps,L) FISSI e settore fisso, l'argomento
+STRUTTURALE ("declared hypothesis, not theorem", CKP-S:218-219) è
+asimmetrico:
+
+- **gap(A) pf-vs-mean NON ha teorema di soppressione**: "it is fed at
+  FIRST order by Jensen on the Hadamard shape density G(x;s) over 10:1
+  data excursions (shared-wall integrand nonlinear in s)"
+  (CKP-S:219-222).
+- **gap(B) pf-vs-3D ha TRE teoremi di soppressione** che ne uccidono i
+  primi ordini SULLA PARTE LISCIA: "[T-T0P] exact steadification
+  in-pin; K-bar=0 fiberwise; T-DISC full-state exoneration"
+  (CKP-S:222-225), coi primi ordini residui "CONFINED to named
+  channels" (CKP-S:225-226).
+
+Quindi "PLAUSIBLY |x\*_pf − x\*_mean| > |x\*_3D − x\*_pf| at fixed
+constraints" (CKP-S:228-230): plausibilmente **(A) > (B) in-settore** —
+enunciato VALIDO SOLO insieme al tallone (J) del punto (iii), mai da solo
+(guardia 1). Entità del gap di formulazione: "entity FULLY OPEN"
+(CKP-S:206-207).
+Fuori settore la mappa si ribalta: "model gap dominates CROSS-SECTOR
+risk (swirl-breaker shroud 13+ pts, anti-spike ~1-4% predicted family
+gap, STRUCTURAL-only)" (CKP-S:207-209) — le minacce a scala di
+configurazione "act BETWEEN configurations, less in-play at fixed
+sector" (CKP-S:227-228).
+
+**(iii) REGOLA C-3ter — la gerarchia MAI senza il tallone (J)
+(guardia 1); perimetro dei teoremi e canali residui con classe
+(guardia 16 [GV-4]).** Il perimetro: i tre teoremi coprono "the
+SMOOTH/advective part" (CKP-S:245-246). Il fronte obliquo rotante
+(helical sheet) è visto dal per-fase solo come "the DATA-ANCHORED
+SHADOW x_s(xi) (per-phase meridional trace)"; NON visti: "the azimuthal
+obliquity of the jump + azimuthally-fed interior segments (unreachable,
+E4/E5) + the slip-line behind it (G9: slip-sheets OUTSIDE T0P scope,
+'physically generic RDE front type')" (CKP-S:238-245). I canali residui,
+enumerati con classe:
+
+- **(J) front jumps** — "IS the un-suppressed first order of gap(B) —
+  no number (SBV-conditional, delta underived)" (CKP-S:247-248): il
+  TALLONE nominato della gerarchia.
+- **(H) hysteresis** — canale residuo nominato, nessun numero
+  (CKP-S:226).
+- **swirl coerente B1-B5** — canale residuo, con la variante di record
+  "B2~0 drop-variant" (CKP-S:226-227).
+- **slip-sheets G9** — fuori scope T0P (CKP-S:243-244); "G9 slip-line
+  lift = F2 deriver" (CKP-S:253).
+
+**Regola vincolante, verbatim**: "The C-3bis hierarchy (A)>(B) holds on
+the smooth part; its named Achilles heel = (J). If (J) is large, (B)
+can dominate even in-sector" (CKP-S:248-251); "Deck/atlas rule: state
+the hierarchy WITH the (J) heel, never without" (CKP-S:254-255).
+
+**(iv) DEATH SCENARIO (la paura utente, resa misurabile).** Verbatim
+(CKP-S:230-237): "DEATH SCENARIO (user fear: pf close to mean AND far
+from 3D) requires TWO independent failures: (A)-small needs G
+quasi-linear over 10:1 (gasdynamics is not) AND (B)-large needs
+suppression failure (large (J)/(H), slip-sheets G9, swirl gradient) —
+each measurable separately: (A) by the TWIN at identical constraints
+(cheap, FIRST), (B) by M-RED + 5F sign test. Twin-first ordering = the
+honest kill-or-validate." Il twin è CHEAP e va PER PRIMO: o uccide la
+gerarchia (kill) o la valida sul lato (A) — esito informativo in
+entrambi i casi.
+
+**(v) Decisori pre-registrati (entrambi gli esiti informativi).**
+CKP-S:209-214: "(i) M-RED bands, (ii) TWIN family-vs-I4 at IDENTICAL
+constraints (same eps, L, closure, sector; output = shape delta + J
+delta) — twin spec SHARPENED by user correction, (iii) 5F gradient +
+sign test (S-5F user decision pending), (iv) CFD-2/CFD-1. Both
+outcomes pre-registered informative; G2 kill-gate = honest death"
+(G2: §1.5). Il lato (B) si misura con le front legs di M-RED "(B-1/B-3,
+comparison C: F_true vs F_2D per phase)", con la "KP18 corrugated sonic
+line as the throat-reaching evidence" (CKP-S:251-253). Stato (celle
+Q-i/Q-iv/Q-v): PB-2 OPEN (A-1); decisioni utente PENDENTI con owner e
+finestra in A-9 (§3): twin (a)/(b) e S-5F path A/B/C + priorità C51.
+
+**Cella Q-iii — il campo separa i tre gap? Query eseguita (protocollo
+bounded G-11, emendamento §6a).** Query q (2026-08-23, in-window):
+perimetro CHIUSO = `docs/literature_registry.yaml` (174 id) +
+`docs/rde_nozzle_literature_map.md` + slot P-A..P-D
+(`validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_p{A,B,C,D}_*.md`);
+pattern misurati in finestra: `formulation gap|design gap|three-design|
+mean-designed vs|x*_mean` su registry e litmap (0 hit entrambi) e
+`error budget|decompos|attribut/separat (gap|error|source)` sugli slot.
+**Esito: NOT-FOUND(q)** — nessuna fonte del perimetro separa i tre gap
+di DESIGN (formulazione / modello / composizione). I near-object
+trovati sono decomposizioni di PERDITA DI FLUSSO, non di gap di design:
+P-B "three-part TRANSIENT flow-loss decomposition" (pB:175, F-15,
+"stated but not separately quantified" pB:363); P-A perdita totale
+14.2% "UNDECOMPOSED ... no decomposition offered" (pA:259-261); P-D
+bookkeeping Eqs. (1)-(3) (pD:410). STOP (nessun procurement in-onda,
+G-11). Eco in CH5 §1.6 [WB1].
+
 ### 1.3 Le guardie pubbliche: D-44 e P34
 
 - **D-44 — gate sui claim pubblici di adeguatezza** (armato, e vincola QUESTO
@@ -151,8 +291,10 @@ OPEN, decided by R22". La forma di record in forchetta, canale (iv)
 Paxson-Miki area-ratio agreement 6.54 vs ~6.5"; WORST = "**RANKING THRESHOLD
 OPEN (R26)**: adequacy NOT demonstrated for percent-level contour ranking ...
 Harroun 1.25-flat is a NON-DISCRIMINATION datum at verified limits ... NOT
-proof of blindness". Classe: [REP] sul livello sizing; OPEN dichiarato sul
-ranking. Nessun referee esterno esiste per la parte per-fase: "NO EXTERNAL
+proof of blindness". Classe: [REP] sul livello sizing — **su UN'ISTANZA
+esterna** (forma vincolante CH3 [W2-R2], `CH3_reduction_physics.md:594-596`:
+sizing "SUPPORTATO a ~1% su un'istanza esterna", mai "dimostrato") [WB1-R3];
+OPEN dichiarato sul ranking. Nessun referee esterno esiste per la parte per-fase: "NO EXTERNAL
 PUBLISHED REFEREE EXISTS for the per-phase thrust error: the literature carries
 NO unsteady c_F datum that discriminates the 2D-per-phase-averaged prediction
 against 3D-unsteady truth" ([REV2-r1-15], `docs/rde_nozzle_MASTER.md:1322-1331`,
@@ -185,6 +327,37 @@ Ordine ratificato al touchpoint C4 (`docs/rde_nozzle_PROGRESS.md:407-421`):
    B-1/B-3 → X-T3QS-5F license (F2) → R22-CFD-1" e E29 (deriver (vi))
    (`docs/rde_nozzle_pipeline_decision_map.md:236-237`).
 
+**G2 — VALUE GATE, il kill criterion del programma (theorem-grade)**
+[WB1-R4] (critic 7): il piano codifica GIÀ l'esito sfavorevole, verbatim
+(D6 :776-778): "G2 (M2) VALUE GATE, now theorem-grade: bound-ladder gap per
+channel; gap < ~1% Isp on all of N1-N4 → pivot to certification/
+operability/duty-split value proposition (honest death)". La nota
+2026-08-19 (D6 :779-782, S-FOUNDATIONS-C tree-diff §4 item 10) fissa
+l'ancora di calibrazione esterna del budget delta/(v) e dell'ambizione di
+tolleranza: "THRUST-STAND-CLASS accuracy (~0.5-1%)" — "Note only, no
+row". Il pivot dell'"honest death" è quindi NOMINATO nel piano, non
+improvvisato in Q&A (consumo in Q1); e la soglia del kill si confronta con
+ciò che un banco di spinta sa misurare.
+
+**Collocazione di F4b nella catena (il QUANDO relativo di PB-2)**
+[WB1-R5] (critic 18): la finestra F4b (declared-topology fitted fronts /
+truncated-plug; entry D6 :233-238) ENTRA a F2-exit ed è
+ORDINE-INTERSCAMBIABILE con F3: "F3 and F4b are ORDER-INTERCHANGEABLE
+given F2 exit (both entry gates independent of each other)" (D6 :228-232).
+Quindi il computo PB-2 (trigger C61, §1.2) cade DOPO M-RED e la coda CFD-2
+(entrambe dentro F2), nella finestra F3/F4b — il cui ordine relativo non è
+pinnato, per piano — mentre la decisione CFD-1 (post-M-RED) può cadere
+prima o in parallelo. Il TWIN di N-Q (§1.2-bis) è invece cheap e
+twin-first: non attende F4b (decisione utente pendente, A-9).
+
+**Rischi di programma (riga di ancoraggio)** [WB1-R6] ([V2-R11]): ogni
+slide-rischi si ancora al RISK REGISTER del piano — D6 §7 "Risk register
+deltas (vs roadmap)" (:1093 e segg.): RK-A (rischio scoop P2' da
+Lozano-Ponsin 2025, con annotazione S14 "PARTIALLY REALIZED" e deferral
+count portato dall'item 9), RK-B (quadrature-switch neglect), RK-C
+(data-contract violations) — mai una lista-rischi improvvisata fuori
+registro.
+
 ### 1.6 Le ASK di record
 
 Dal record, non inventate per il deck:
@@ -199,9 +372,22 @@ Dal record, non inventate per il deck:
   high-speed imaging in steady mainstage, or published transition durations"
   (`docs/findings_registry.yaml:2148`; owner "F5 (R20)", :2152). L'ask: imaging
   ad alta velocità in mainstage termicamente stazionario, o durate di
-  transizione pubblicate.
-- **Canale paper**: P-1, venue JPP ("I documenti di teoria sono la sorgente del
-  paper (P-1, venue JPP)", `CLAUDE.md` R4).
+  transizione pubblicate. **Scope dichiarato [WB1-R8] (critic 14)**: R20
+  parla di DATASET HARDWARE ("no published dataset ..."); il lato CFD è un
+  claim DISTINTO e bounded al corpus letto — il pin è ESIBITO nei CFD del
+  corpus ma mai verificato spettralmente (riga CH5 §1.2 [WB1], con grep
+  in-window) — i due scope non vanno MAI fusi in un unico "search-proven"
+  su slide.
+- **Canale paper** [WB1-R7] (critic 19): P-1, venue JPP ("I documenti di
+  teoria sono la sorgente del paper (P-1, venue JPP)", `CLAUDE.md` R4).
+  **P-2 (paper compagno): freeze FIRED, datato 2026-08-11** — "P-2 freeze
+  FIRED dated 2026-08-11 (P2_outline header block; C1 blocker adjudicated
+  freeze-with-declared-conditional, owner F2)"; fallback di record: "P-2
+  publishes on S19 two-knob numbers" (D6 :85-100). La risposta di record a
+  "cosa pubblicate e quando": P-1 in costruzione dai doc di teoria, P-2
+  congelato con blocker C1 dichiarato (owner F2); G5 blocca le SUBMISSION,
+  non le presentazioni (CH2 §1.8) — il wording query-bounded vincola
+  comunque (CKP-S :81-82).
 - **Procurement documentale attivo**: "top-3 harvest (Lim-Humble AIAA
   2020-0195, Stechmann PhD 2017, Schwer-Kailasanath AIAA 2012-3943) + i 3 ask
   fermi (More-Wild ECNoise, ASME V&V 20-2009, Xing-Stern); il resto WANTED
@@ -247,6 +433,10 @@ il numero" il programma risponde con la STRUTTURA, non con una promessa: vedi
 | 15 | R20: nessun dataset pubblicato certifica onda single-mode persistente in thermal steady state; pin = MODEL HYPOTHESIS | Residuo [REP]-based, OPEN | findings :2145-2153 | Deciso da imaging steady-mainstage o transition durations |
 | 16 | Roadmap deciders: M-RED (prima campagna F2) → CFD-2 (coda F2, template Li-Xu paired) → CFD-1 (post-M-RED, ~12M-cell, user decision) | Decisione utente ratificata + pipeline map | PROGRESS :407-421; pipeline map :77, :236-237 | G1 haste-risk dichiarato sulla mappa |
 | 17 | Bussola: comunicare senza gonfiare UNA SOLA classe di rigore | TERM vincolante della milestone | ADVISORY_Spres_prompt :233-235 | Refuter di rigore sul deck (doppia review) |
+| 18 | N-Q working hypothesis: a (eps,L) e settore fissi, gap(A) pf-vs-mean senza teorema di soppressione (Jensen su G(x;s), escursioni 10:1) vs gap(B) pf-vs-3D con TRE teoremi sulla parte liscia → plausibilmente (A)>(B) in-settore (enunciabile SOLO col tallone (J), riga 19 — guardia 1) | IPOTESI DICHIARATA falsificabile (mai teorema) [WB1] | CKP-S:215-230 | Death scenario = 2 fallimenti indipendenti: (A) twin a vincoli identici (cheap, FIRST); (B) M-RED front legs + 5F sign test (CKP-S:230-237) |
+| 19 | Tallone (J): front jumps = primo ordine NON soppresso di gap(B), SBV-conditional, delta underived; se (J) grande, (B) può dominare anche in-settore; gerarchia MAI enunciata senza il tallone | Regola C-3ter vincolante (guardie 1/16) [WB1] | CKP-S:245-255 | M-RED comparison C (F_true vs F_2D per fase); G9 slip-line lift = F2 deriver |
+| 20 | G2 VALUE GATE theorem-grade: gap < ~1% Isp su tutti N1-N4 → pivot certification/operability/duty-split (honest death); calibrazione thrust-stand-class ~0.5-1% (nota, no row) | Gate di piano [WB1] | D6:776-782 | Deciso dai deciders §1.5; consumo Q1 |
+| 21 | P-2 freeze FIRED 2026-08-11, blocker C1 = conditional dichiarata owner F2; fallback S19 two-knob | Stato di record [WB1] | D6:85-100 | — |
 
 ---
 
@@ -280,8 +470,46 @@ il numero" il programma risponde con la STRUTTURA, non con una promessa: vedi
 - **A-8 — Base measurement truncated-plug RDE: inesistente nel corpus letto**
   (findings :2095) — procurement/misura, non chiudibile in-house.
 
+- **A-9 — Decisioni utente PENDENTI del nodo N-Q (cella Q-v)** [WB1]: (a)
+  **twin PB-2 (a)/(b) a vincoli IDENTICI** (stesso eps, L, chiusura,
+  settore; output = shape delta + J delta, spec SHARPENED dall'utente,
+  CKP-S:210-212) — presentata al GATE STORYBOARD con costo; **latest-start
+  ~01/09**, oltre cui la slide resta nella forma onesta; (b) **S-5F path
+  A/B/C + priorità C51** — idem (emendamento v2.1 §6a G-10; memoria
+  swirl5f-panel). Owner: utente (gate storyboard); finestra: pre-authoring
+  (~01/09). Fino ad allora PB-2 resta OPEN (A-1) e la gerarchia N-Q resta
+  IPOTESI DICHIARATA col tallone (J) stampato (§1.2-bis).
+
 Nessuno di questi aperti va riempito di plausibilità nel deck: si dichiarano
 con owner e trigger, come sopra.
+
+---
+
+## 3-bis. Antenati diretti (lineage claim — template §3-bis; nodi N-O/N-L/N-Q) [WB1]
+
+Join sul `LINEAGE_LEDGER.md` (merge W-B.0) per {LL-id, componenti},
+contratto [F-des-4]; ogni riga del ledger è CANDIDATE finché il refuter C6
+(W-C) non passa. Righe pertinenti ai claim di novità di questo capitolo:
+
+- **LL-21 (Sun 2019 / Liu 2022 / Miki 2020)** — "decomposizione di spinta
+  pubblicata, mai identità dimostrata né per-fase": l'antenato della
+  nostra attribuzione di valore per canali; ciò che manca vs noi =
+  l'identità di decomposizione [MINT-PENDING F-2: sector-decomposition
+  identity J_exact = ∫ F_true dµ — THEOREM in-panel, non ancora numerato
+  in M0] e il grado per-fase.
+- **LL-22 (convenzioni di media non dichiarate — Liu Eq.14, P-C; +
+  Harroun LL-2)** — "la nostra µ è l'unica pinnata (T-O2)":
+  antenato-per-contrasto del frame di valore — senza µ dichiarata, nessun
+  Gap B è nemmeno DEFINIBILE, e nessun confronto pf-vs-mean è riproducibile.
+- **LL-35 (Ornano 2017)** — "gerarchia staged implicita a 3 stadi =
+  analogo più vicino di P34, senza tier dichiarato": antenato della ladder
+  di evidenza P34 (§1.3) — il campo la pratica implicita, il programma la
+  dichiara per slide (rider :2538).
+- **N-Q (frame three-design, §1.2-bis)** — ANTENATI: **NOT-FOUND(q)** —
+  query Q-iii eseguita in-window (§1.2-bis, perimetro chiuso G-11):
+  nessuna fonte del perimetro separa i tre gap di design; near-object =
+  decomposizioni di perdita di flusso (P-B F-15 → LL-21), mai di gap di
+  design. (lint 7)
 
 ---
 
@@ -291,12 +519,19 @@ con owner e trigger, come sopra.
 Risposta onesta dal record: (i) il frame è costruito per essere falsificabile —
 la value condition "Gap B material AND Gap A < Gap B" (checkpoint :471-472) è
 un rejector, non uno slogan: se il paired-run misura Gap B trascurabile, il
-programma lo DICE, e questo è esattamente il punto di R26: "adequate for
-sizing" a ~1% è già [REP] (M0:1346) — un Gap B piccolo sarebbe un datum
+programma lo DICE, e questo è esattamente il punto di R26: il sizing è
+SUPPORTATO a ~1% **su un'istanza esterna** [REP] (M0:1346; forma CH3, mai
+"dimostrato" [WB1-R3]) — un Gap B piccolo sarebbe un datum
 misurato che stringe la soglia R26 sul caso testato, sempre come bracket con
 provenienza, mai adequacy dimostrata: D-44 vale in entrambe le direzioni,
 anche su un esito favorevole alla media ("fires on any public adequacy claim,
-either way", pipeline map :180). [W2-R1] (ii) Restano in piedi i pezzi che non dipendono dal segno
+either way", pipeline map :180). [W2-R1] E il piano codifica GIÀ questo esito
+come gate, non come imbarazzo: **G2 VALUE GATE, theorem-grade** — "gap <
+~1% Isp on all of N1-N4 → pivot to certification/operability/duty-split
+value proposition (honest death)" (D6 :776-778, con la calibrazione
+thrust-stand-class ~0.5-1% come ancora esterna, :779-782) [WB1-R4]: il
+pivot è nominato nel piano di sviluppo, la risposta a "cosa resta" è di
+record prima della domanda. (ii) Restano in piedi i pezzi che non dipendono dal segno
 di Gap B: il corpus dei teoremi di riduzione/struttura (forchetta canali
 (i)-(iii), M0:1343-1345, classi SCHEMA/THEOREM\*), PB-2 come problema
 matematico nuovo (problem_book :532-537 — la rottura del nesting non dipende
@@ -457,6 +692,21 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
    armati PRIMA dei numeri (claims :2262), gate D-44 che vincola questo stesso
    deck, ladder P34 dichiarata per ogni claim engine-level in slide. [TERM
    milestone, ADVISORY_Spres_prompt :233-235; ARMED GATE; finding :2538]
+7. **La slide N-Q — la spina del value case** [WB1]: tre design (x\*_mean:
+   il comparatore I4 con ZERO istanze computate nel campo / x\*_pf: il
+   nostro / x\*_3D: incomputabile), tre gap (formulazione / modello /
+   composizione); working hypothesis DICHIARATA: (A)>(B) in-settore —
+   **SEMPRE col tallone (J) sulla STESSA slide** ("state the hierarchy WITH
+   the (J) heel, never without", CKP-S:254-255); death scenario = due
+   fallimenti indipendenti, ciascuno misurabile; twin-first =
+   kill-or-validate onesto; decisori pre-registrati, entrambi gli esiti
+   informativi. Sulla slide anche la riga: "il campo non separa i tre gap —
+   NOT-FOUND(q)" (query §1.2-bis). [IPOTESI DICHIARATA + regola C-3ter
+   vincolante + query-bounded; CKP-S:198-255]
+   Nota di forma per la slide PB-2 (punto 2): la classe si dice nella forma
+   riconciliata [WB1-R1] — "nesting provato (THEOREM* sotto [C-HT4]);
+   strictness = clausola enunciata senza prova scritta; carrier = PB-2
+   OPEN" — mai "qui la struttura è tutta THEOREM".
 
 ---
 
@@ -466,7 +716,11 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
 - **CFD-2**: demo CFD accoppiata "paired" (nostro design vs baseline, template Li-Xu 2025), in coda F2.
 - **CFD-1**: simulazione CFD massima (~12M-cell cost class) su configurazione accoppiata reale — il test del pin; decisione utente post-M-RED.
 - **R22**: la linea di verifica CFD del programma (M-RED → CFD-2 → CFD-1) che decide le soglie di adeguatezza.
-- **F2/F4b/F5**: fasi del piano di sviluppo (D6): F2 = teoria+campagne correnti; F4b = finestra truncated-plug; F5 = finestra dati/hardware.
+- **F2/F4b/F5**: fasi del piano di sviluppo (D6): F2 = teoria+campagne correnti; F4b = finestra truncated-plug/fitted-fronts (entry a F2-exit, D6 :233-238); F5 = finestra dati/hardware (RDE machine, D6 :252).
+- **F3** [WB1, critic 8]: fase GEOMETRY CLASSES del piano (D6 :214-232), "plug/aerospike primary", 3-4 sessioni — la fase in cui si ottimizza un plug VERO; ordine-interscambiabile con F4b a F2-exit (D6 :228-232).
+- **F6** [WB1, critic 8]: fase 3-D / HARDWARE BRIDGE (orizzonte, non budgetata; D6 :275-278): demonstrator B-lite elicoidale + ancora sperimentale (RK-E) o gap industriale #1 dichiarato.
+- **Gap A/Gap B vs gap(A)/gap(B)** [WB1]: lettere SCAMBIATE tra il frame di valore §1.1 e le etichette argmax-level C-3bis: gap(A) pf-vs-mean ~ Gap B; gap(B) pf-vs-3D ~ Gap A — mappa dichiarata in §1.2-bis(i).
+- **P-B / p_b / PB-2 / Gap B** [WB1, critic 9]: quattro oggetti distinti — box di disambiguazione completo in CH5 §1.1; casa definitiva CH-REF.
 - **I4**: baseline a stato medio singolo (⟨Pc⟩, T0, γ) con design classico Rao/GENO (problem book).
 - **N2**: lo slot dichiarato (non ancora aggiudicato) per la chiusura di base pressure p_b del programma.
 - **eps / eps_U**: errore di riduzione misurato da M-RED; eps_U = suo livello uniforme sul basin esplorato (sweep-sup).
@@ -488,3 +742,160 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
 | 9 | GAP | APPLICATO [W2-R9] — nuova Q7 sull'indecidibilita' odierna di "Gap A < Gap B" con percorso di decidibilita' dal record (value-route 2*sqrt(eps_U/mu_red) verificata a M0:1348, deriver chain E29) |
 | 10 | GAP | APPLICATO [W2-R10] — legenda minima 8 righe in coda (§6): M-RED, CFD-1/2, R22, F2/F4b/F5, I4, N2, eps |
 | 11 | NOTE | APPLICATO [W2-R11] — Q2: i due "primo" query-bounded (per costruzione / perimetro R20 search-proven); miglioramento senza rischio |
+
+---
+
+## 7. Posizionamento / conformity (template §7; nodi N-O/N-L/N-Q) [WB1]
+
+**(a) STRUMENTI — clausola di vacuità [V2-R4]**: NESSUNO STRUMENTO
+PROPRIO. Puntatori alle celle FUORI-PERIMETRO della tabella §M del design
+v2 + emendamento: **O-ii** ("nessuno strumento proprio; CH6 §7(a) =
+clausola di vacuità [V2-R4]"), **L-ii** (la spina è governance; la SOTA
+tool matrix D6 §4 :737 è ASSORBITA nella colonna (ii) trasversale
+[V2-R11]), **Q-ii** (i decisori — twin, M-RED, 5F, CFD — sono strumenti
+delle righe B/D/E/I, assorbimento dichiarato, emendamento §1d). Il lint 5
+riconosce la clausola.
+
+**(b) SENSO**: vive in §1.1-§1.4 e §1.2-bis di questo capitolo e nella
+colonna-senso trasversale di CH5.
+
+**(c) STANDARD DI RIFERIMENTO (lint 6)**: il metodo di questo capitolo è
+governato dall'asse **§C-2 (classe GRADE)** della conformity map del
+design v2 — ogni claim di valore porta la classe dichiarata, "NO cell
+above its held evidence class" (M0:1309); divergenza dichiarata come da
+mappa (si adotta la STRUTTURA di GRADE — livello + ragioni di
+upgrade/downgrade — non i domini clinici). Il consumo deck è governato
+dall'asse **§C-6 (assertion-evidence)** col retro-audit dichiarato.
+Nessun claim "SOTA" è fatto in questo capitolo fuori da questi assi.
+
+---
+
+## 8. Decision card delle scelte presentate (lint 8; emendamento §1g) [WB1]
+
+Questo capitolo presenta due scelte del choice ledger (C61 in §1.2/Q6;
+C59 in Q4); entrambe classe NEVER → card "non-aggiudicata, finestra Y"
+STAMPATA (mai omesse, §1g).
+
+**CARD C61 — chiusura base-pressure p_b (truncated plug / shrouded):**
+
+1. **Scelta**: C61 (`docs/choice_ledger.yaml:818-830`) — chiusura p_b;
+   incumbent DICHIARATO senza adozione di programma: Veen 0.846·p/M^1.3
+   praticata nella SOLA catena legacy; lo slot di programma è N2.
+2. **Alternative censite (data + fonte survey)**: WG10 empirical bracket
+   [+19%,−15%]; Nasuti-Onofri transition-PR ([MODEL-VAL], WG10 pp. 10-11);
+   derived N2 closure (verdetto WG10 su Eq. (5.1): "N2 MUST REPLACE IT");
+   measured V1.4-class CTAP (Purdue, unica misura RDE, Pa/Pc~0.15) —
+   survey = `BASE_PRESSURE_HARVEST_c4.md` (campagna arrivi
+   S-FOUNDATIONS-C4, **2026-08-20**; mint riga ledger 2026-08-21).
+3. **Verdetto + perché**: **NON AGGIUDICATA** (status NEVER) — incumbent
+   legacy WG10-FAILED, nessun default silenzioso: lo slot resta dichiarato
+   finché il trigger non spara.
+4. **RECENCY/SOTA check**: la survey (2026-08-20) copre il corpus classico
+   delle chiusure p_b (WG10/Humphreys/Nasuti-Onofri) + l'UNICO dato RDE
+   hot-fire esistente (Purdue CTAP); check 2026-08-23: nessun elemento
+   nuovo entrato nel record da allora. ATTUALE(chiusure p_b classiche +
+   unico dato RDE hot-fire, 2026-08-23).
+5. **Falsificatore**: una riga (value,delta) truncated-plug computata
+   SENZA sensibilità alla chiusura dichiarata = violazione (nota C61: la
+   chiusura muove il DESIGN — Humphreys ×2.45); una misura CTAP-class
+   fuori dal bracket dichiarato uccide la chiusura adottata.
+6. **Trigger di ri-esame + finestra**: verbatim ledger :829 — "first
+   truncated-plug (value,delta) row entering the record, or F4b window
+   entry — whichever fires first" (collocazione F4b: §1.5 [WB1-R5]).
+
+**CARD C59 — forma temporale del funzionale (cycle-average):**
+
+1. **Scelta**: C59 (`docs/choice_ledger.yaml:795-805`) — cycle-average vs
+   harmonic-balance adjoint vs time-spectral vs windowed unsteady adjoint.
+2. **Alternative censite (data + fonte)**: HB adjoint / time-spectral /
+   windowed unsteady adjoint — ancore di record `rubino_2018`,
+   `schotthofer_2024`, `zahr_persson_2016` (registry, root D,
+   READ-INTEGRAL); censimento alla mint **2026-08-21**
+   (`BRIEF_blocco2_phaseD_addendum_c4.md` §(e), scoping BINDING).
+3. **Verdetto + perché**: **NON AGGIUDICATA** nel senso del ledger (status
+   NEVER) MA con scoping vincolante di record: dentro il pin
+   onda-periodica il cycle-average è "CANONICAL-INSIDE-THE-PIN ... a
+   theorem-backed CONSEQUENCE, not a choice"; le alternative vivono SOLO
+   nei regimi a pin indebolito — la riga non riapre MAI il funzionale del
+   regime pinnato.
+4. **RECENCY/SOTA check**: censimento temporal-form datato 2026-08-21 sul
+   root D del registry (HB/time-spectral/windowed); check 2026-08-23:
+   nessun ingresso nuovo nel record. ATTUALE(root D registry +
+   addendum-c4 §(e), 2026-08-23).
+5. **Falsificatore**: un regime a pin indebolito (multi-frequenza /
+   aperiodico) che entra nello scope senza ri-aggiudicazione della riga =
+   violazione; dentro il pin, un controesempio alla canonicità del
+   quoziente romperebbe C59 e con esso il layer T0.
+6. **Trigger di ri-esame + finestra**: "F2-entry census window; trigger =
+   any weakened-pin regime (multi-frequency / aperiodic / windowed)
+   entering scope" (ledger :804).
+
+---
+
+## Disposizione W-B.1 (slot B5; celle L-v/O-v/Q-i/Q-iii/Q-iv/Q-v; critic 7/10/13/18/19)
+
+| # | Item del mandato | Disposizione |
+|---|---|---|
+| Q-i/Q-iv | §1.2-bis N-Q | APPLICATO [WB1-R2] — frame three-design + working hypothesis + tallone (J) (guardie 1/16) + death scenario + decisori, tutto ancorato ALLA RIGA a CKP-S:198-255 |
+| Q-iii | query "il campo separa i tre gap?" | ESEGUITA in-window, perimetro chiuso G-11 → NOT-FOUND(q), near-object nominati, STOP; eco CH5 §1.6 |
+| Q-v | decisioni pendenti | APPLICATO — A-9 (§3): twin (a)/(b) + S-5F A/B/C + C51, owner utente, finestra ~01/09 |
+| critic 7 | G2 VALUE GATE + thrust-stand | APPLICATO [WB1-R4] — §1.5 + Q1 (D6 :776-782 verificata in finestra) |
+| critic 10 | PB-2 forma CH1 | APPLICATO [WB1-R1] — §1.2 riconciliato (nesting THEOREM* / strictness senza prova scritta / carrier PB-2 OPEN) + nota slide in §5.7 |
+| critic 13 | hedge sizing single-instance | APPLICATO [WB1-R3] — §1.4 + Q1 (forma CH3 W2-R2) |
+| critic 18 | collocazione F4b | APPLICATO [WB1-R5] — §1.5 (D6 :228-238 verificata) |
+| critic 19 | canale paper P-1 + P-2 freeze | APPLICATO [WB1-R7] — §1.6 (D6 :85-100 verificata) + riga claim 21 |
+| [V2-R11] | riga rischi → RISK REGISTER | APPLICATO [WB1-R6] — §1.5 (D6 §7 :1093, RK-A/B/C) |
+| critic 14 | scope R20 vs CFD | APPLICATO [WB1-R8] — §1.6 (metà CFD in CH5 §1.2) |
+| critic 8 | legenda F3/F6 | APPLICATO — §6 (D6 :214-232, :275-278) |
+| §1g | decision card | APPLICATO — §8: card C61 + C59 "non-aggiudicata, finestra Y" (6/6 campi, token ATTUALE) |
+| [V2-R4] | vacuità §7(a) + metà (c) | APPLICATO — §7 (celle O-ii/L-ii/Q-ii; assi §C-2/§C-6) |
+| §3-bis | antenati LL-21/LL-22/LL-35 + N-Q | APPLICATO — §3-bis (join {LL-id}, dicitura MINT-PENDING F-2 uniforme §6c) |
+
+---
+
+## DECK FEED (asserzioni candidate-slide; frase piena + ancora + classe)
+
+1. "Tre design: x\*_mean — il comparatore I4, con ZERO istanze computate
+   nel campo — x\*_pf (il nostro) e x\*_3D (incomputabile): tre gap —
+   formulazione, modello, composizione — e la domanda di valore è quale
+   domina, su quale asse." — CKP-S:198-204 — frame di record (N-Q).
+2. "A vincoli fissi (eps,L) e settore fisso il gap di formulazione non ha
+   alcun teorema di soppressione, mentre il gap di modello ne ha tre sulla
+   parte liscia ([T-T0P], K-bar=0 fiberwise, [T-DISC]): plausibilmente
+   (A)>(B) in-settore — ipotesi dichiarata e falsificabile, non teorema."
+   — CKP-S:215-230 — IPOTESI DICHIARATA. [VINCOLO: questa asserzione va
+   in slide SOLO insieme alla 3 (tallone (J)) — guardia 1, mai separate.]
+3. "Il tallone dichiarato della gerarchia: i front jumps (J) sono il primo
+   ordine NON soppresso del gap di modello (SBV-conditional, delta
+   underived); se (J) è grande, il modello può dominare anche in-settore
+   — la gerarchia non si enuncia MAI senza questa riga." — CKP-S:245-255
+   — regola C-3ter (guardia 1).
+4. "Lo scenario di morte del programma richiede DUE fallimenti
+   indipendenti, e ciascuno è misurabile separatamente: (A) dal TWIN a
+   vincoli identici (cheap, per primo — kill-or-validate); (B) dalle front
+   legs di M-RED + 5F sign test." — CKP-S:230-237 — decisori
+   pre-registrati, entrambi gli esiti informativi.
+5. "Il campo non separa i tre gap: NOT-FOUND(q) su perimetro chiuso
+   (registry 174 id + litmap + P-A..P-D); i near-object sono
+   decomposizioni di perdita di flusso (P-B F-15), mai di gap di design."
+   — CH6 §1.2-bis (query in-window) — claim query-bounded.
+6. "Il programma ha un kill criterion theorem-grade: G2 VALUE GATE — gap
+   < ~1% Isp su N1-N4 → pivot nominato a certificazione/operabilità
+   (honest death); l'ambizione si calibra su accuratezza thrust-stand-class
+   ~0.5-1%." — D6:776-782 — gate di piano.
+7. "La value condition 'Gap B material AND Gap A < Gap B' è un rejector
+   armato, oggi INDECIDIBILE — e lo diciamo: nessun numero esiste su
+   nessun lato prima di M-RED." — checkpoint S-FOUNDATIONS :466-472;
+   M0:1348 — frame + SCHEMA, D-44 gated.
+8. "PB-2: il nesting è provato (THEOREM* sotto [C-HT4]); la strictness è
+   clausola enunciata senza prova scritta; il carrier quantitativo è PB-2,
+   OPEN e mai computato." — M0:2303-2319; CH1 Q4 — forma riconciliata.
+9. "Roadmap con ordine e classi di costo: M-RED (cheap decisive unlock) →
+   CFD-2 (paired, template Li-Xu) → CFD-1 (~12M-cell, decisione
+   post-M-RED); F3/F4b a F2-exit ordine-interscambiabili; canale paper
+   P-1 JPP + P-2 freeze FIRED 2026-08-11." — PROGRESS:407-421;
+   D6:228-238, :85-100 — decisioni ratificate.
+10. "L'onestà è strumentata, non dichiarata: D-44 arma questo stesso deck,
+    ogni claim engine-level porta lo stage P34, le scelte non aggiudicate
+    portano card stampata con finestra." — pipeline map :180; findings
+    :2538; §8 — gate armati.

@@ -81,6 +81,23 @@ P4 (`docs/rde_nozzle_MASTER.md:444-450`); il termine di storage è pura
 contabilità, esattamente zero in media per periodicità
 (`docs/rde_nozzle_MASTER.md:451-461`).
 
+**Remark EAP — il posizionamento industriale di [D-MU] (verificato alla
+riga 2026-08-23) [B3-EAP].** L'Equivalent Available Pressure del filone
+industriale (`kaemming_paxson_2018`; consumo a valle in `paxson_miki_2022`)
+è, verbatim dalle sue Eq. 1-8, la COORDINATA DI PRESSIONE di J_ideal:
+expand-then-average (mai mixed-out-then-expand), pesi mass-flux
+algebricamente identici ai nostri flussi time-integrated (O1), calcolata nel
+detonation frame dove "area average = time average" — cioè il nostro T0(i)
+usato tacitamente come fatto, provato qui come teorema
+(`docs/rde_nozzle_MASTER.md:2526-2534`). Delta di record: EAP porta le
+ipotesi quasi-steady e di disaccoppiamento azimutale (le nostre D1+D2)
+"UNSTATED and UNPRICED — the P4 corrector is, among other things, EAP's
+missing error bar" (`docs/rde_nozzle_MASTER.md:2537-2539`); e la
+formalizzazione "CONTAINS and COMPLETES the EAP doctrine rather than
+competing with it" (`docs/rde_nozzle_MASTER.md:2543-2544`). Classe: remark
+di record M0 Parte III, fonte [IO] (full text letto 2026-07-16, NTRS
+20180006890).
+
 ### 1.3 Il quoziente: per-fase = quoziente esatto + rung 2 dichiarato
 
 Il claim onesto di record è a DUE STADI (forma REFUTE_A 2026-08-13, che
@@ -221,6 +238,91 @@ porta TUTTO il contenuto di averaging
 (`docs/rde_nozzle_P1_sections_5_7.md:90-94`,
 `docs/rde_nozzle_MASTER.md:2875-2884`).
 
+### 1.7 Riga H — licensing: fin dove vale il metodo (nodo N-H) [B3-H]
+
+Principio di record (M0 Parte V, `docs/rde_nozzle_MASTER.md:3008-3045`,
+verificato alla riga 2026-08-23): **"The flow — not the method — selects
+the reduction, per design point"** (:3010). La tabella di licenza per
+classe di flusso, portata QUI con i canali residui per riga (guardia 16:
+ogni claim di copertura enumera perimetro E canali residui non coperti,
+con classe):
+
+| classe di flusso (census) | macchina | deliverable / classe | canali residui NON coperti (classe) |
+|---|---|---|---|
+| single/k-wave rotating mode | steadificazione T0 (esatta in classe); rung 2 mediato + barra O(St); ancora BVP wave-frame | Σ* + certificato PIENO; teoremi per-fase | rung-2 O(St) (prezzato P4, SCHEMA/corrector G3-owned); gap list G1–G12 di [T-T0P] (SCHEMA sui due strati); slip-free G9 + cl(Ω_march) (boundary dichiarati, §1.3); bridge = CONJECTURE-with-falsifier (:3013) |
+| modulated / counter-rotating (RPO) | BVP periodico, (Ω,T) incognite, adjoint doubly-bordered; dimostratore 2-D+t | **PRACTICE** — "space-time tracking 3-D absent" (:3014) | nessun certificato di classe; tutta la riga è pratica dichiarata |
+| multistable mode set | ottimizzazione per-branch + layer robusto CVaR/DD-DRO sulla misura di modo | Σ* robusto; **SCHEMA/PRACTICE** (:3015) | misura di modo mal specificata = PB-5 (formulazione di record, CH1 §1.4); nessuna provenienza hardware della misura (R20) |
+| chaotic / mode-hopping | SOLO bound + surrogati robusti; shadowing RIFIUTATO ("hypotheses fail across shocks") | **RIFIUTO ONESTO dei certificati** + muro [S-GBE] | il muro è un CEILING, non un design: J_exact⁺ ≤ F_env(flussi medi d'interfaccia) sotto ipotesi E1–E5 dichiarate, niente Birkhoff (Cesàro finite-T + storage limitato); classe **SCHEMA**, carrier X-GBE PASS (`docs/claims_registry.yaml:1843-1854`); sul scope periodico il muro ergodico è Jensen-looser del muro per-fase (gap riportabile, :3016) |
+
+Ancora del muro: [S-GBE] RESOLVED 2026-08-06 (S16 T4,
+`docs/rde_nozzle_GB_ergodic.md`), inline nella riga caotica della tabella
+M0 (:3016) — il named missing lemma è SCRITTO, l'etichetta
+quasi-steady-only del muro superiore è LIFTED; i rung inferiori
+(attainability) restano steady-setting.
+
+**H-ii — gli strumenti di licensing** (M0:3017-3026 + VI.4bis(v)
+M0:3162-3166): (1) **thrust-trace flatness** = distanza dalla
+steadificabilità — e il flatness monitor è OBBLIGATORIO in ogni data
+contract (VI.4bis(v)); (2) **census refresh per accepted optimizer step**
+(tier-flip detection): la classe di flusso viene RI-VERIFICATA a ogni
+passo accettato, mai assunta; (3) St_n e numeri di drift DAI DATI (un solo
+Strouhal governa, D1 ⊃ D2); (4) mixed-interface decision tree (O1–O4).
+Classe: strumentazione di record (PRACTICE armata, DEFINITION per il
+monitor).
+
+**H-iii — la query "dichiarazione del regime di validità nel campo"
+(protocollo bounded G-11, eseguita in-onda 2026-08-23).**
+- **q**: "il campo RDE-nozzle dichiara il REGIME DI VALIDITÀ della propria
+  media / del proprio metodo di design (quasi-steady, averaging), con
+  prezzo d'errore?"
+- **Perimetro CHIUSO**: `docs/literature_registry.yaml` (174 id) +
+  `docs/rde_nozzle_literature_map.md` + campagne P-A..P-D (`liu_2022`,
+  `li_xu_lv_lv_song_2023`, `li_xu_lv_yu_zhou_2025`, `jourdaine_2019`).
+- **Comandi misurati in finestra**: grep -i
+  `validity|applicab|regime.*valid|assumption.*declar` su litmap → 3 hit
+  (:142, :613, :642; :613/:642 = sezione b6 nostra, non del campo); grep -i
+  `validity|applicab|unstated|undeclared` su registry → hit solo su righe
+  del NOSTRO seed-validity program, zero sulle righe P-A..P-D.
+- **ESITO: NOT-FOUND(q) sul campo RDE-nozzle istanziato** (guardia 4):
+  NUAA `li_xu_lv_lv_song_2023`/`li_xu_lv_yu_zhou_2025` (gap
+  steady-vs-transient riportati come DATI di campagna, nessun regime
+  dichiarato); Purdue `harroun_2021` (convenzione di media UNDECLARED nel
+  paper — deep-check LL-2, pp.670-671 + Eq.10); NASA-Glenn/AFRL
+  `kaemming_paxson_2018` (ipotesi D1+D2 "UNSTATED and UNPRICED",
+  M0:2537-2539) e `paxson_miki_2022` (OFAT senza bande); `jourdaine_2019`
+  (3-D unsteady, nessuna dichiarazione di regime della media usata);
+  `liu_2022` (assioma average-then-design dichiarato verbatim, mai
+  prezzato — litmap:91-93). **Unica istanza ADIACENTE trovata, FUORI dal
+  campo RDE** (scuola classica): `kraiko_osipov_1970` dichiara
+  l'approssimazione quasi-stazionaria con "validity footnote, unpriced"
+  (litmap:141-142, testo citato) — dichiarata ma NON prezzata. **STOP**
+  (nessun procurement in-onda). Eco: CH5 (riga N).
+- Classe dell'esito: NOT-FOUND(q), query-bounded al perimetro sopra.
+
+**H-iv — il rifiuto onesto come proposta (materiale deck).** La riga
+caotica non è una lacuna da nascondere: è la proposta honesty-first del
+programma — il metodo DICE dove i suoi certificati non valgono, con lo
+strumento che rileva l'uscita di classe (flatness monitor + census
+refresh) e con il muro [S-GBE] che al posto del certificato consegna un
+ceiling PROVATO sotto ipotesi dichiarate. Combinato con H-iii: il campo
+non dichiara il proprio regime di validità; noi dichiariamo il nostro E il
+punto esatto in cui rifiutiamo il certificato. Classe: posizionamento su
+fatti di record (tabella M0 V + NOT-FOUND(q) sopra).
+
+**H-v — B-lite, il metro cheap del rung 2** ([S-BLITE], addendum di
+record 2026-07-21, S12; M0:3027-3044): sul dominio NOZZLE-ONLY con margine
+assiale certificato u_x − c ≥ δ > 0 (dati classe I1, Ω INPUT dai dati;
+certificato (M-a') di L4-CERT), la condizione C2 del Lemma 4 è SODDISFATTA
+e il campo wave-frame ESATTO è computabile per space-marching elicoidale
+3-D a costo di march (fitted sheet come incognita per-stazione), con
+l'adjoint che si solleva verbatim per Lemma B. Verbatim di record:
+**"B-lite is the cheap exact meter of the rung-2 sweep/D2 residual"**
+(M0:3037-3038, verificato alla riga). L'ancora PIENA della Parte V resta
+necessaria dove entra la camera (Ω come output, tasche subsoniche,
+reazione). Brick nominato da verificare per primo: G12-L1-3D. Cross-ref:
+CH3 §1.2 lo cita accanto ai deriver di delta/L_H come l'arbitro a costo di
+march. Classe: scheda [S-BLITE] di record (SCHEMA con brick nominato).
+
 ---
 
 ## 2. Stato per-claim
@@ -281,6 +383,53 @@ porta TUTTO il contenuto di averaging
    inferenza NON verificata), Harroun M.S. Thesis 2019 ("the closest prior
    art... NOT READ"), Levin-Manulovich 2010, Billings 2000
    (`docs/rde_nozzle_MASTER.md:2339-2350`).
+
+---
+
+## 3-bis. ANTENATI DIRETTI (lineage claims — nodi N-A / N-B / N-H) [B3-LIN]
+
+Contratto di join [F-des-4]: ogni claim di novità dei nodi ospitati cita
+≥1 LL-id del `LINEAGE_LEDGER.md` (lint 7); righe CANDIDATE fino al pass
+del refuter C6, salvo i SEED confermati dalle parti.
+
+**N-A (il problema e i suoi dati — contratto, misura μ):**
+- **LL-1 Kraiko-Osipov 1970** (`kraiko_osipov_1970`): parete pesata W(t)
+  integrata nel tempo + condizioni endpoint time-averaged, moltiplicatori
+  su caratteristiche → cosa gli manca vs noi: misura di ciclo μ PINNATA
+  ([D-MU]), steadificazione T0/quoziente, certificati. Citazione
+  OBBLIGATORIA in ogni claim di primato (già cablata nei caveat D-06,
+  §4 Q3). Nota H-iii: la sua footnote di validità (dichiarata, unpriced,
+  litmap:141-142) è l'istanza adiacente più vicina alla NOSTRA disciplina
+  di regime dichiarato.
+- **LL-3 Stechmann 2019** (`stechmann_2019`, SEED utente): blowdown 0-D
+  per-phase con media mass-weighted DICHIARATA, famiglie fisse → manca:
+  contorno variazionale, contratto d'interfaccia Γ_d, classe-dati
+  certificata.
+- **LL-11 Sternin 1957/1959**: possibile antenato PRE-KO della linea
+  variazionale a media temporale — confidenza LOW, **procurement-gated**
+  (residuo R3 del ledger): NESSUN claim finché non letto; dichiarato qui
+  perché il §3-bis è il posto dove l'assenza va detta, non taciuta.
+
+**N-B (quando mediare è esatto):**
+- **LL-4 Kaemming-Paxson 2018 EAP** (`kaemming_paxson_2018`, SEED): rung
+  int-max + ricostruzione state-averaged + statistiche di gola → manca: le
+  ipotesi D1+D2 sono unstated/unpriced; il correttore P4 è la loro barra
+  d'errore mancante (remark §1.2, M0:2537-2539).
+- **LL-16 Efremov-Kraiko 2004** (`efremov_kraiko_2004_augmentor`):
+  variazionale di spinta period-averaged (Eq. 1.7, p.624, page-verified)
+  SENZA contorno di parete, che COLLASSA a steady per ammissione degli
+  autori (M0:2320-2330) → è la ragione per cui la formulazione PB-2 di
+  record è BLOCCATA nella forma D-06 ("genuinely averaged and
+  NON-COLLAPSING", §4 Q3), mai "the first averaged-thrust variational
+  problem".
+
+**N-H (licensing):**
+- **ANTENATI: NOT-FOUND(q)** — nessuna riga del LINEAGE_LEDGER (LL-1..35)
+  copre una ladder di licenza per classe di flusso con rifiuto dichiarato
+  dei certificati; query di supporto = H-iii (§1.7: il campo non dichiara
+  il regime di validità; perimetro chiuso citato lì, STOP). L'istanza
+  adiacente parziale resta la validity footnote unpriced di LL-1
+  (dichiarazione senza prezzo né strumento di monitoraggio).
 
 ---
 
@@ -444,6 +593,85 @@ a livello S1 owner F2 — dichiarato.
 
 ---
 
+## 6. STORIA
+
+[PLACEHOLDER — owner W-B.2 (B8a/B8b), trittico condizionale §T-§6 con
+data+processo+verdetto per battuta (emendamento §5-bis). NON compilata da
+questo writer per regola di non-interferenza.]
+
+---
+
+## 7. POSIZIONAMENTO / CONFORMITY (cella A-ii — residuo; owner B3) [B3-P7]
+
+Residuo dichiarato in §M: la classe-spline è nel ledger (coperta CH4
+§1.3); QUI il confronto con il censimento mondiale delle parametrizzazioni.
+
+**(a) STRUMENTI — classe di base del design vs il censimento mondiale.**
+- *Mondo-SOTA (id registry)*: `masters_etal_2017` — confronto geometrico
+  sistematico delle parametrizzazioni airfoil: B-spline ~42 dv medi
+  (range 28-72) per convergenza one-count, correlazione lineare errore
+  geometrico/errore di forza, tolleranza Kulfan/CST insufficiente di >1
+  ordine; `lauer_ansell_2025_pas` — censimento parametrizzazioni 2025,
+  prior 20-25 dof (LL-28: trasferimento a ugelli MoC = scope DICHIARATO,
+  non nostro claim).
+- *Cosa usiamo*: C1 incumbent = cubica interpolante clamped/natural,
+  heights-as-dofs, VERDICT-BEARING; direzione di migrazione convergiuta
+  (WAVE-2 2026-08-19) = chart B-spline control-polygon dello STESSO
+  spazio spline certificato, con certificati di ammissibilità
+  Bernstein-exact (`docs/choice_ledger.yaml:164-174`).
+- *Perché*: i certificati di ammissibilità (R5) vivono sullo SPAZIO, non
+  sul chart — la migrazione di chart non tocca la classe certificata; il
+  prior esterno di dof-budget (28-72 dv) incornicia il nostro conteggio
+  con scope di trasferimento dichiarato (2-D external-aero Euler, mai
+  bound program-side — retro-sweep 2026-08-20); il confronto con le
+  alternative censite è aggiudicato a livello ledger, non per preferenza.
+
+**DECISION CARD — C1 "Design basis class" (6 campi, §1g):**
+1. **Scelta**: C1 (`docs/choice_ledger.yaml:164-174`) — base del design:
+   cubica interpolante clamped/natural, heights-as-dofs (incumbent
+   verdict-bearing); direzione convergiuta: migrazione al chart B-spline
+   control-polygon dello stesso spazio certificato.
+2. **Alternative censite (data+fonte)**: B-spline control polygon
+   (de Boor/Boehm), CST (Kulfan), Hicks-Henne — censite dall'annex S24
+   gapmap (2026-08-12, `validation/ADVISORY_S24_sota_gapmap_2026-08-12.md`)
+   e ri-aggiudicate WAVE-2 S-FOUNDATIONS (2026-08-19,
+   `validation/sfoundations_raws_2026-08-13/blocco3/VERDICT_wave2.md#4.5`);
+   prior dof-budget `masters_etal_2017` (retro-sweep 2026-08-20);
+   censimento 2025 `lauer_ansell_2025_pas` (harvest C4, 2026-08-20).
+3. **Verdetto + perché**: adjudicated-split, enum MIXED — la direzione è
+   convergiuta (chart B-spline = nuovo asse dei certificati
+   Bernstein-exact) ma l'incumbent resta verdict-bearing finché i tre
+   falsificatori di migrazione non passano; il rigetto D6 S20 del
+   control-point SWITCH resta intatto sul suo asse (era un cambio di
+   spazio, non di chart).
+4. **RECENCY/SOTA check**: survey aggiudicata 2026-08-19; copertura
+   letteratura fino al censimento 2025 (`lauer_ansell_2025_pas`);
+   prior Masters con scope di trasferimento dichiarato; nessun censimento
+   più recente in registry al check 2026-08-23.
+   **ATTUALE(registry 174 + corpus wave-2, 2026-08-23)**.
+5. **Falsificatore**: i tre falsificatori di migrazione della riga C1 —
+   il primo ri-pinnato sulla chart innocent-data response con pin
+   conversion-map; più il rejector di oscillazione dell'asse D6.
+6. **Trigger di ri-esame (finestra)**: duty F2-C1-CONTROL-CHART-MIGRATION
+   (items 0-6 + driver leg; GAP-21 carrier) — **finestra F2-entry**.
+
+**(b) SENSO.** I precedenti del tema: la scuola classica arriva a
+Bezier-chart + GA (LL-29, Kraiko 2016 — il LORO dato: l'exact batte i GA,
+evidenza PRO la rotta certificata) e la comunità aero ai censimenti di
+parametrizzazione (LL-28); nel corpus letto NESSUNA riga porta la
+parametrizzazione DENTRO un problema di forma mediato a misura pinnata —
+claim di assenza query-bounded al corpus (lint 7; join §3-bis/N-A).
+
+**(c) STANDARD DI RIFERIMENTO.** Asse **§C-7** (verifica multi-livello,
+classe journal-review avversaria): la scelta C1 è passata per panel a
+convergenza + refuter con burden esplicito (WAVE-2), criterio di
+conformità = riga ledger con evidence/owner/falsificatori; divergenza
+dichiarata: reviewer interno a convergenza, il passaggio esterno resta
+G5/JPP. Asse di supporto **§C-3** (tracciabilità ECSS/DO-178C-class):
+catena id→ledger→duty F2 con carrier e rejector.
+
+---
+
 ## Disposizione riparazioni (onda 2)
 
 Riparatore W2, 2026-08-23. Ogni ancora citata dal refuter è stata aperta e
@@ -461,3 +689,49 @@ M0:139-169, M0:2303-2319, P1:96-104, litmap:19-24, findings_registry:1450-1458).
 | 7 | NOTE (BASSA) | APPLICATO [W2-R7] — migliora senza rischio: ancora spostata su litmap:23, quantificatore ammorbidito e marcato [REP survey / query-bounded] |
 | 8 | NOTE (BASSA) | APPLICATO [W2-R8] — migliora senza rischio: §3.1 riconcilia owed vs landed e segnala la staleness dell'ancora findings_registry:1455 come manutenzione fuori scope S-PRES |
 | 9 | NOTE (BASSA) | APPLICATO [W2-R9] — migliora senza rischio: §5.2 scoping "catena DI FORMULAZIONE" + condizionalità stage-1 = ipotesi dichiarate, non approssimazioni |
+
+---
+
+## DECK FEED
+
+Asserzioni candidate-slide (assertion-evidence: frase piena + ancora +
+classe), compilate per lo storyboard v3 — che joina QUI, non ri-legge il
+capitolo (contratto §3 emendamento).
+
+1. "La pratica pubblicata del campo disegna a I4 (average-first,
+   design-second); il programma vive a I2/I3 con misura μ pinnata." —
+   litmap:23 (riga G5) + M0:122-124 — [REP survey query-bounded] +
+   DEFINITION.
+2. "Per-fase = quoziente esatto + UNA sola approssimazione dichiarata
+   O(St), con le condizionalità stage-1 (t-periodico, slip-free,
+   cl(Ω_march)) come ipotesi stampate." — claims:1903; M0:533-628;
+   M0:444-450 — SCHEMA + [T-T0P-E] THEOREM.
+3. "Sappiamo ESATTAMENTE dove il design a stato medio basta e dove no:
+   solo-ε ⇒ coincide (con la media PESATA); plug pieno ideal-adapted ⇒
+   design di picco; troncamento/caps ⇒ max∫ < ∫max STRICTLY (PB-2)." —
+   claims:381-392, 329-340; M0:2316-2319 — THEOREM / THEOREM* / clausola
+   di sharpness (senza prova scritta, dichiarato).
+4. "Nessuna fase soddisfa la propria wall condition — la media μ sì; fuori
+   T3 la media naive è SBAGLIATA." — M0:2827-2829; P1:96-104 — SCHEMA
+   [T-T7FS] + boxed warning di record.
+5. "EAP contenuta e completata: il correttore P4 è la barra d'errore
+   mancante di EAP." — M0:2526-2544 (`kaemming_paxson_2018`) — remark
+   [IO] di record.
+6. "La licenza segue il FLUSSO, non il metodo: single-wave → certificato
+   pieno; RPO → PRACTICE; multistabile → layer robusto; caotico → RIFIUTO
+   ONESTO + muro [S-GBE]." — M0:3008-3016; claims:1843-1854 — classi per
+   riga (THEOREM…SCHEMA/PRACTICE), canali residui in tabella §1.7.
+7. "Il campo non dichiara il regime di validità della propria media:
+   NOT-FOUND(q) sul perimetro chiuso; unica istanza adiacente K-O 1970,
+   footnote dichiarata ma unpriced." — CH1 §1.7 H-iii; litmap:141-142 —
+   NOT-FOUND(q) query-bounded.
+8. "B-lite è il metro esatto CHEAP dello sweep rung-2: campo wave-frame
+   esatto a costo di march, adjoint verbatim." — M0:3027-3044 (verbatim
+   :3037-3038) — [S-BLITE] SCHEMA con brick nominato G12-L1-3D.
+9. "Un solo numero in-class: +0.51%, CON il band-underinclusion (~30% del
+   datum) stampato accanto — contro la scala Rao 0.04-0.34% (numeri loro,
+   CT-6)." — M0:4207-4234, 4216-4219; literature_registry:568 — misura
+   con caveat dichiarati.
+10. "Ogni claim di primato in forma bloccata D-06, con K-O 1970 citato e
+    i P0 non letti dichiarati." — M0:2320-2350 — regola di record
+    (guardia 9/13).

@@ -57,11 +57,21 @@ fotografia del campo:
   SYN:559-562, caveat di record sulla riga onofri :441).
 - **P-B (Li-Xu 2023, NUAA)** — MoC assialsimmetrico (unit process
   Zucrow-Hoffman) + superfici variazionali **MAX-THRUST
-  Rao/Vander-Veen** shrouded-plug, con corner a p_b MEDIATO
-  (SYN:33). E' l'unico dei quattro che usa il variazionale classico —
-  applicato pero' a UN singolo stato steady mediato globalmente
-  (vincoli di ristagno time-averaged "empirically recognized",
-  F-01, che cita P-D come origine; SYN:34).
+  Rao/Vander-Veen** shrouded-plug su stato steady da p0/T0
+  TIME-AVERAGED ("empirically recognized", p. 5 §3.1). **[WB1-R10]
+  Riformulazione source-verified dei corner** (catch utente,
+  `VERIFY_PB_corner_pb.md`): la mediazione RDE entra SOLO nei vincoli
+  di ristagno p0/T0; i corner sono DUE (Fig. 13, p. 8) — lip della
+  shroud a p_inf AMBIENTE (Eq. 22) e base dello spike troncato a
+  p_b = "averaged base pressure" (Eq. 26), dove "averaged" = media
+  SPAZIALE sulla base (lessico plug troncato steady), MAI
+  cycle-averaging; Eq. 26 senza fonte citata E senza provenienza
+  dichiarata del valore di p_b (che entra anche nella spinta, Eq. 18,
+  termine +pi r_J^2 p_b). La forma SYN:33 "corner a p_b MEDIATO" e'
+  superseded da questa riga. E' l'unico dei quattro che usa il
+  variazionale classico — applicato pero' a UN singolo stato steady
+  mediato globalmente (vincoli di ristagno time-averaged "empirically
+  recognized", F-01, che cita P-D come origine; SYN:34).
 - **P-C (Li-Xu 2025, NUAA)** — **nessun design nuovo**: prende il
   design max-thrust di P-B come baseline e studia misalignment
   assiale cowl/spike + attuazione dinamica (SYN:33).
@@ -81,6 +91,51 @@ piu' cruda della nostra; nessuna certificazione di classe, nessuna
 barra d'errore, e "no optimizer appears anywhere in the four papers"
 (SYN:58-61 — vedi la domanda 2 del panel per la lettura corretta di
 questa frase accanto al variazionale di P-B).
+
+**[WB1-R1] Istanziazione C-7 del "campo" (guardia 4 — mai "the field"
+generico).** Su slide e in mappa, "il campo" = i gruppi NOMINATI coi loro
+paper, id registry verbatim: **PKU** (`liu_2022` = P-A); **NUAA**
+(`li_xu_lv_lv_song_2023` = P-B, `li_xu_lv_yu_zhou_2025` = P-C);
+**KIT/Aoyama** (`jourdaine_2019` = P-D); **NASA-Glenn**
+(`kaemming_paxson_2018` EAP, `paxson_miki_2022`); **Purdue**
+(`harroun_2021`, `harroun_2020`, `stechmann_2019`). Fonte della regola:
+CKP-S C-7 :270-271 (CKP-S =
+`validation/spres_raws_2026-08-22/SESSION_STATE_checkpoint.md`).
+
+**[WB1-R2] Eco della remark EAP (posizionamento di J vs la metrica
+pressure-gain del campo; casa principale CH1 §1.2, qui l'eco — critic 6).**
+La linea NASA-Glenn porta la metrica standard del campo: l'Equivalent
+Available Pressure di Kaemming-Paxson (`kaemming_paxson_2018`). La remark
+di record (M0:2526-2539, full text letto 2026-07-16): EAP_i è "the
+PRESSURE-COORDINATE of J_ideal" — expand-then-average mai
+mixed-out-then-expand, quantità mass-flux-weighted "algebraically
+identical to our time-integrated fluxes (O1)", nel frame di detonazione
+dove "area average = time average", cioè il nostro T0(i) "used tacitly as
+a fact, proved here as a theorem"; **EAP_i(axial) <= J_ideal(total)** (due
+rung adiacenti della ladder); e EAP porta le ipotesi quasi-steady e
+azimuthal-decoupling (le nostre D1+D2) "UNSTATED and UNPRICED — the P4
+corrector is, among other things, EAP's missing error bar". Il carrier CFD
+della stessa linea è `paxson_miki_2022` (LL-5). È la risposta pronta alla
+domanda ESA quasi certa "come vi posizionate rispetto all'EAP".
+
+> **[WB1-R3] Box nomenclatura (critic 9; casa definitiva CH-REF — qui il
+> box di consumo).** Quattro oggetti che collidono foneticamente, MAI da
+> confondere su slide: **P-B** = il paper Li-Xu 2023
+> (`li_xu_lv_lv_song_2023`); **p_b** = la pressione di base — ATTENZIONE
+> alla doppia accezione [WB1-R10]: **p_b in P-B** = "averaged base
+> pressure" SPAZIALE sulla base del plug (Eq. 26, lessico plug steady,
+> nessun nesso col cycle-averaging; fonte e provenienza del valore NON
+> dichiarate — `VERIFY_PB_corner_pb.md`), mentre **p_b nel nostro
+> programma** = la chiusura di base pressure del troncamento (slot N2,
+> riga ledger C61; namespace PB-2/Humphreys); **PB-2** = il flag problem del
+> problem book (CH6 §1.2); **Gap B** = il salto di valore misurabile del
+> frame CH6 §1.1. In più le etichette argmax-level C-3bis gap(A)/gap(B)
+> hanno le lettere SCAMBIATE rispetto a Gap A/Gap B (gap(A)~Gap B,
+> gap(B)~Gap A — mappa dichiarata in CH6 §1.2-bis). **Namespace "G",
+> famiglie distinte**: G0-G6 = gate del piano D6; la litmap ha numerazioni
+> proprie (i gap-verdetti qui citati sono C1-C4, LM:354-362; il ponte è
+> G14); G1-G12 = gap-list T0P (CH3); GRAFT-Gxx = graft M0. Su slide mai
+> "G1" nudo: sempre col namespace dichiarato.
 
 ### 1.2 La dicotomia D-1 e le due figure-ancora D-6
 
@@ -110,6 +165,44 @@ Insieme sono i marker empirici delle celle (iv)/(vi) della forchetta
 (SYN:358) — secondo e terzo marker accanto alla linea Paxson-Miki
 (SYN:107-110). Classe: [ADV], nessun numero entra nello schema
 delta/mu (SYN:263-264).
+
+Tre righe-figura aggiuntive [WB1], stesse regole (loro numeri, CT-6;
+abbreviazioni: pA/pB/pD =
+validation/sfoundations_raws_2026-08-13/blocco3/NOZZLE_RDE_STUDY_p{A,B,D}_*.md):
+
+- **[WB1-R4] P-B Fig. 16 (p. 10) — il feedback ugello→camera** (critic
+  16): p_0/p_infinity all'uscita del combustore sale monotono e T_0 ha un
+  picco al variare della troncatura — "the nozzle back-reacts on chamber
+  p_0/T_0 with truncation" (pB:405; F-13 [REP pp. 10-11 + Fig. 16],
+  pB:164, 283); consolidata in CT-1 come voce "drift p0-T0"
+  (SYN:54, 76-78). È la faccia-figura della minaccia CT-1 (§1.3).
+  Classe: [ADV-FIG].
+- **[WB1-R5] P-C Fig. 20/21/22 (pp. 16-17) — la forza laterale rotante**
+  (critic 11): forza laterale istantanea ~25-35% della spinta assiale
+  istantanea (450-670 N vs 1500-1860 N, [INFER] dello slot), direzione
+  phi_L che spazza 0-360 gradi a ogni ciclo (Fig. 21b sawtooth) [REP
+  pp. 14, 17, Fig. 21] (pC:187-195). Lo slot la aggiudica "the cleanest
+  published face of 'instantaneous azimuthal asymmetry is O(10x) the
+  time-averaged percent effects'", con "large per-phase content,
+  near-cancelling mean — the K-bar = 0 phenomenology" e media implicita
+  ~0 ("near-zero implied mean") (pC:269-275, 301-303). L'identificazione
+  "faccia pubblicata di K-bar=0" è quindi ADJUDICATA NELLO SLOT
+  ([FIG]+[INFER], corpus [ADV]), non nuova qui: la slide C10 dello
+  storyboard ha ora la sua catena d'ancore.
+- **[WB1-R6] Il pin di classe-dati nei CFD del corpus: ESIBITO, mai
+  verificato spettralmente** (critic 14). La metà positiva: P-C riporta
+  "clean single-mode periodicity at every station across all [five
+  configurations]" (pC:253, 347) e strutture wave-locked (pC:599;
+  "multi-peak phase-locked fine structure post-throat", THH:613); P-B
+  dichiara l'onda "persistent single-mode rotating wave" (pB:396); P-A
+  "single-mode stable by construction" (pA:257); P-D "their solver locks
+  to ONE wave" (pD:368-370). La metà negativa, BOUNDED al corpus letto
+  (query in-window: grep -i 'spectral|FFT|mode purity' sui 4 slot = 0
+  hit di verifica): NESSUNO dei quattro esegue una verifica SPETTRALE
+  della purezza di modo — l'esibizione è a livello di forma
+  d'onda/periodicità osservata, mai un test. Scope da NON fondere su
+  slide col fatto R20, che riguarda i dataset HARDWARE (CH6 §1.6
+  [WB1-R8]).
 
 ### 1.3 Il threat ledger consolidato CT-1..CT-8
 
@@ -291,6 +384,29 @@ mediato; condizioni di ottimalita' sotto vincolo periodic-wave
 solver differenziabile, demo adjoint su RDC inverse problem) — "makes
 the discrete falsifier buildable. Watch 2026+" (ADV-LX:38-40).
 
+**[WB1-R8] Eco N-Q (cella Q-iii)**: alla lista dei gap query-bounded si
+aggiunge la query eseguita in W-B.1 (perimetro chiuso G-11: registry 174
+id + litmap + slot P-A..P-D): *"il campo separa i tre gap di design —
+formulazione / modello / composizione?"* — **NOT-FOUND(q)**. I
+near-object sono decomposizioni di PERDITA di flusso, mai di gap di
+design: P-B "three-part TRANSIENT flow-loss decomposition" (pB:175;
+"stated but not separately quantified", pB:363); P-A 14.2% "UNDECOMPOSED
+... no decomposition offered" (pA:259-261). Query, pattern e STOP in CH6
+§1.2-bis.
+
+**[WB1-R9] Eco N-H (cella H-iii — handoff B3, query eseguita in CH1
+§1.7)**: *"il campo RDE-nozzle dichiara il regime di validità della
+propria media/metodo con prezzo d'errore?"* — **NOT-FOUND(q)** sul campo
+istanziato: NUAA (`li_xu_lv_lv_song_2023`, `li_xu_lv_yu_zhou_2025`),
+Purdue (`harroun_2021` — media UNDECLARED), NASA-Glenn/AFRL
+(`kaemming_paxson_2018` "UNSTATED and UNPRICED", `paxson_miki_2022`),
+KIT/Aoyama (`jourdaine_2019`), PKU (`liu_2022` — assioma dichiarato mai
+prezzato); unica istanza adiacente FUORI campo RDE = `kraiko_osipov_1970`
+"validity footnote, unpriced" (litmap:141-142). Testo completo della
+query e perimetro: CH1 §1.7 (non duplicati qui). Coerente con la
+conclusione (3) di P-C (§1.8, L12): "approximately applicable" sotto
+premessa kHz è una PREMESSA dichiarata, mai un prezzo d'errore.
+
 ### 1.7 Harvest di ancore: gola corrugata, Humphreys, Veen Eq. 9
 
 - **KP18 Fig. 6 — la sonic line corrugata** (THH:398-412, [REP p.10]
@@ -323,6 +439,16 @@ the discrete falsifier buildable. Watch 2026+" (ADV-LX:38-40).
   modello puro-empirico classico (Univ. Rome Eq. 5.7) porta comunque
   una banda [+19%, -15%] su dati freddi misurati (BPH:488-492,
   600-602): il floor di model-form del canale (v).
+- **[WB1-R7] L'ordine delle escursioni per-fase: il bracket pubblicato**
+  (critic 16): il numero-frame "10:1" delle correzioni utente C-2/C-3bis
+  (CKP-S:206, :221 — "Jensen ... over 10:1 data excursions") sta DENTRO
+  il bracket pubblicato del corpus: **~6:1 in gola** (KP18 Table 1,
+  Pt8/Pt3 max/min 4.07/0.67, THH:415-421) fino a **~20:1 alla stazione
+  combustore** ("jump + exponential relaxation, peak/trough ~20:1 at
+  combustor station", P-C Fig. 15(a-d)+16, THH:613). Regola di slide: o
+  il bracket ancorato (6:1-20:1, coi loro numeri, CT-6), o "O(10:1)"
+  SOLO come cifra del frame utente con ancora CKP-S — mai come numero
+  di record nostro.
 
 ### 1.8 La guardia best-of-sweep vs argmax e la conclusione (3) di P-C
 
@@ -375,6 +501,10 @@ Due letture gemelle dallo stesso punto del record (pC:138-152):
 | 17 | Veen Eq. 9 = WG10 Eq. (5.1), FAILED per Fick-Schmucker; best classico Univ. Rome = [+19%,-15%] su dati freddi | [REP] WG10 + verdetto MODEL-UNREL | BPH:465-472, 488-492, 605-610 | N2 deve sostituire la chiusura ereditata (BPH:718) |
 | 18 | P-C conclusion (3): teoria max-thrust Veen "approximately applicable" sotto premessa kHz | [REP p. 11/16] — auto-dichiarazione del campo, non teorema | pC:147-152 | R26 resta aperta al ranking (SYN:373-385) |
 | 19 | Frase no-external-referee di record STRETTAMENTE VERA cosi' come scritta; nearest referees P-B/P-C nominati e squalificati (media globale; URANS same-family) | verdetto re-test [REV-NRS-1] | SYN:465-492 | il bracket chiude solo via R22-CFD nostro o procurement dedicato (SYN:490-492) |
+| 20 | P-B Fig. 16: l'ugello retro-agisce su p0/T0 di camera con la troncatura (voce "drift p0-T0" di CT-1) | [ADV-FIG], CT-6 [WB1-R4] | pB:164, 283, 405; SYN:54, 76-78 | — |
+| 21 | P-C Fig. 20/21/22: forza laterale ~25-35% dell'assiale rotante a frequenza d'onda, media implicita ~0 — faccia pubblicata della fenomenologia K-bar=0 (aggiudicazione dello slot) | [FIG]+[INFER], corpus [ADV], CT-6 [WB1-R5] | pC:187-195, 269-275, 301-303 | — |
+| 22 | Pin single-mode ESIBITO nei CFD del corpus (periodicita' osservata, strutture wave-locked) ma MAI verificato spettralmente da nessuno dei 4 | bounded al corpus letto (grep in-window) [WB1-R6] | pC:253, 347, 599; pB:396; pA:257; pD:368-370; THH:613 | scope distinto da R20 (hardware, CH6 §1.6) |
+| 23 | Escursioni per-fase pubblicate: bracket ~6:1 (gola, KP18 Table 1) - ~20:1 (combustore, P-C); il "10:1" del frame utente sta nel bracket | [REP]+[FIG], CT-6 [WB1-R7] | THH:415-421, 613; CKP-S:206, 221 | — |
 
 ---
 
@@ -416,6 +546,51 @@ Due letture gemelle dallo stesso punto del record (pC:138-152):
 
 ---
 
+## 3-bis. Antenati diretti (lineage claim — template §3-bis; nodo N-N) [WB1]
+
+Join sul `LINEAGE_LEDGER.md` (merge W-B.0) per {LL-id, componenti},
+contratto [F-des-4]; ogni riga del ledger è CANDIDATE finché il refuter
+C6 (W-C) non passa (i SEED utente sono confermati dalle parti, restano
+attaccabili). La linea EVALUATION per-fase + le istanze crude del campo:
+
+- **LL-3 Stechmann 2019** (`stechmann_2019`, Purdue): blowdown 0-D
+  per-phase, media mass-weighted DICHIARATA, famiglie FISSE — l'inizio
+  della linea evaluation; manca vs noi: contouring variazionale sulla
+  famiglia.
+- **LL-2 Harroun 2021 (+2020)** (`harroun_2021`, `harroun_2020`,
+  Purdue): famiglia per-phase steady 2-D + C_F quasi-cycle-averaged,
+  convenzione di media UNDECLARED (peso/denominatore UNDECLARED nel
+  paper, pp. 670-671 + Eq. 10 — duty (a) chiuso alla fonte); manca:
+  media dichiarata, condizioni di ottimalità, tier di validazione (CT-3).
+- **LL-4 Kaemming-Paxson 2018 EAP** (`kaemming_paxson_2018`,
+  NASA-Glenn): rung int-max + ricostruzione state-averaged + statistiche
+  di gola; manca: la barra d'errore (la remark [WB1-R2]: "the P4
+  corrector is EAP's missing error bar").
+- **LL-5 Paxson-Miki 2022** (`paxson_miki_2022`, NASA-Glenn): J
+  cycle-averaged a livello CFD, OFAT, "senza ottimalità né bande".
+- **LL-20 Li-Xu 2023 (P-B)** (`li_xu_lv_lv_song_2023`, NUAA): Rao su
+  stato steady da p0/T0 time-averaged — istanza cruda della scommessa
+  average-then-design; corner: lip a p_inf ambiente (Eq. 22), base a
+  p_b = media SPAZIALE di base (Eq. 26, senza fonte né provenienza del
+  valore — forma corretta source-verified, `VERIFY_PB_corner_pb.md`,
+  che supersede la dicitura ledger "corner a p_b mediato"); manca: la
+  famiglia per-fase e le condizioni di ottimalità MEDIATE
+  (C2 NOT-FOUND(q)).
+- **LL-22 convenzioni di media non dichiarate** (Liu Eq. 14, P-C; +
+  Harroun LL-2): "terza+quarta istanza — la nostra µ è l'unica pinnata
+  (T-O2)".
+
+Copertura lint 7 dei claim di novità del capitolo: C1/C2 (contouring
+famiglia-mediata / corner conditions mediate) → antenati più vicini
+LL-20 + LL-16 (Efremov-Kraiko 2004: variazionale period-averaged SENZA
+parete, già MANDATORY in §1.5) + LL-1 (Kraiko-Osipov 1970, parete
+pesata W(t), citazione OBBLIGATORIA); C3 (ponte multiplier-adjoint) →
+LL-14 (KT2015: catena Route B→A interna) + LL-12 (Giles-Ulbrich 2010,
+teorema negativo); linea evaluation → LL-2..LL-5 sopra. Nessun claim di
+novità di questo capitolo resta senza riga di lineage.
+
+---
+
 ## 4. Domande da panel
 
 **(1) "Come distinguete il vostro claim di novita' da Kraiko-Egoryan
@@ -440,8 +615,10 @@ near-miss dichiarato e il suo full text e' UNREAD (ADV-LX:25-31).
 'nessuno ottimizza' e' falsa?"**
 Se detta cosi', sarebbe indifendibile — e infatti NON e' la frase di
 record. P-B applica le superfici variazionali max-thrust
-Rao/Vander-Veen, ma a UN singolo stato steady mediato GLOBALMENTE con
-corner a p_b mediato (SYN:33-34): consuma la soluzione classica
+Rao/Vander-Veen, ma a UN singolo stato steady mediato GLOBALMENTE
+(p0/T0 time-averaged; corner a p_inf ambiente e a p_b spaziale di
+base, Eq. 22/26 — forma source-verified [WB1-R10],
+`VERIFY_PB_corner_pb.md`; SYN:33-34): consuma la soluzione classica
 single-state, non pone il problema mediato. La frase C-5 "no
 optimizer appears anywhere in the four papers" (SYN:58-61) si legge
 nel suo contesto: nessun loop di ottimizzazione, nessuna riduzione
@@ -592,3 +769,94 @@ e' NOMINATO, non negato: aperti 1, 2 e 7 di questo capitolo.
 | 8 | NOTE | APPLICATO [W2-R8] — guardia §1.8 taggata [INF]/sintesi-capitolo (miglioria senza rischio) |
 | 9 | NOTE | APPLICATO [W2-R9] — claim 10: "DOI dove presenti", 1994 ZhVMMF senza DOI (LM:302 verificato) |
 | 10 | NOTE | APPLICATO [W2-R10] — D-6 §1.2: "deve mostrare" marcato come direttiva di consumo S-PRES, frase di record = "the two figures the loop must see" (SYN:353 verificato) |
+
+---
+
+## 7. Posizionamento / conformity (template §7; nodo N-N) [WB1]
+
+**(a) STRUMENTI — clausola di vacuità [V2-R4]**: NESSUNO STRUMENTO
+PROPRIO — questo è il capitolo-senso per eccellenza. Puntatore alla
+cella **N-ii = FUORI-PERIMETRO** della tabella §M del design v2
+("riga-senso per eccellenza; gli strumenti del campo sono censiti nella
+colonna (iii) delle altre righe; CH5 §7(a) = clausola di vacuità con
+puntatore QUI"). Il lint 5 riconosce la clausola. **Lint 8 senza oggetto
+qui, dichiarato**: nessuna SCELTA di programma è presentata in questo
+capitolo — le scelte citate hanno casa e card altrove (C61 → CH6 §8; il
+rider CT-4 sul troncamento → dossier ADR-D4, SYN:387-411).
+
+**(b) SENSO**: è l'intero §1 (i 4 metodi, la genealogia, i gap, gli
+harvest) + §3-bis (lineage).
+
+**(c) STANDARD DI RIFERIMENTO (lint 6)**: il metodo di questo capitolo è
+governato dall'asse **§C-1 (classe PRISMA)** della conformity map del
+design v2 — query dichiarate, criteri di inclusione, flusso censito
+(registry 174 id con read-status onesto READ-INTEGRAL/READ-PARTIAL/
+UNREAD/WANTED), claim di assenza SOLO NOT-FOUND(q); divergenza
+dichiarata come da mappa: si adotta la DISCIPLINA (query+flusso+status),
+non la checklist 27-item nata per trial clinici — nessun claim di
+PRISMA-compliance formale. Nessun claim "SOTA" è fatto in questo
+capitolo fuori da quest'asse.
+
+---
+
+## Disposizione W-B.1 (slot B5; celle N-v/A-iii; critic 6/9/11/14/16 + C-7)
+
+| # | Item del mandato | Disposizione |
+|---|---|---|
+| C-7 (guardia 4) | campo istanziato | APPLICATO [WB1-R1] — §1.1: PKU/NUAA/KIT-Aoyama/NASA-Glenn/Purdue con id registry verbatim (grep-verificati in finestra) |
+| critic 6 | remark EAP eco | APPLICATO [WB1-R2] — §1.1 (M0:2526-2539 verificata alla riga; casa principale CH1 §1.2) |
+| critic 9 | box nomenclatura | APPLICATO [WB1-R3] — §1.1 box P-B/p_b/PB-2/Gap B + swap gap(A)/(B) + namespace G; casa definitiva CH-REF; legenda CH6 §6 con puntatore |
+| critic 16 | P-B Fig. 16 | APPLICATO [WB1-R4] — §1.2 riga con ancore pB:164/283/405 + SYN:54,76-78; riga claim 20 |
+| critic 11 | P-C Fig. 21 | APPLICATO [WB1-R5] — §1.2 riga con ancore pC:187-195/269-275/301-303; identificazione K-bar=0 = aggiudicazione DELLO SLOT, dichiarata; riga claim 21 |
+| critic 14 (A-iii) | pin esibito/mai spettrale | APPLICATO [WB1-R6] — §1.2 riga a due metà, bounded al corpus (grep in-window), scope separato da R20; riga claim 22 |
+| critic 16 | ordine O(10:1) | APPLICATO [WB1-R7] — §1.7 bracket ancorato 6:1-20:1 (THH:415-421, 613) + regola di slide; riga claim 23 |
+| Q-iii | eco | APPLICATO [WB1-R8] — §1.6 (query in CH6 §1.2-bis) |
+| H-iii (handoff B3) | eco | APPLICATO [WB1-R9] — §1.6 (query completa in CH1 §1.7) |
+| §3-bis | antenati LL-2..LL-5, LL-20, LL-22 | APPLICATO — §3-bis (join {LL-id}; copertura lint 7 dei claim C1/C2/C3) |
+| [V2-R4] | vacuità §7(a) + metà (c) | APPLICATO — §7 (puntatore N-ii F-P; asse §C-1; lint 8 vacuo dichiarato) |
+
+---
+
+## DECK FEED (asserzioni candidate-slide; frase piena + ancora + classe)
+
+1. "Nei 4 paper RDE-nozzle letti integralmente — PKU `liu_2022`, NUAA
+   `li_xu_lv_lv_song_2023`/`li_xu_lv_yu_zhou_2025`, KIT-Aoyama
+   `jourdaine_2019` — P-B ottimizza lo steady mediato GLOBALE col
+   variazionale classico; NESSUNO deriva condizioni di ottimalità per la
+   famiglia mediata/per-fase." — SYN:31-39, 58-61; LM:354-357 — [REP]
+   per-cella, corpus [ADV]; caveat ISABE [SE] sulla STESSA slide.
+2. "Due figure del campo raccontano il rischio: P-B Fig. 15 (steady
+   piatto che non vede l'ottimo transient +0.52%, cliff −5.78%) e P-C
+   Fig. 13 (flip di ranking a gap 0.2-1.5%)." — SYN:97-102, 353-358 —
+   [ADV], CT-6 dichiarata on-slide.
+3. "P-C Fig. 21: forza laterale ~25-35% dell'assiale, rotante a frequenza
+   d'onda, media implicita ~0 — la faccia pubblicata della fenomenologia
+   K-bar=0." — pC:187-195, 269-275, 301-303 — [FIG]+[INFER] slot, CT-6.
+4. "P-B Fig. 16: l'ugello retro-agisce su p0/T0 di camera al variare
+   della troncatura — il coupling dati-ugello è la minaccia CT-1, e vive
+   FUORI dalla classe fixed-interface." — pB:405; SYN:76-78, 87-94 —
+   [ADV-FIG] + fatto di programma.
+5. "Il pin single-mode è ESIBITO nei CFD del corpus (P-C: periodicità
+   single-mode a ogni stazione) ma NESSUNO dei quattro lo verifica
+   spettralmente." — pC:253, 347; grep in-window — bounded al corpus
+   letto; scope distinto da R20.
+6. "La scuola Rao-Guderley-Kraiko consegna il per-phase brick a
+   generalità piena (inflow vorticoso non uniforme, EOS arbitraria); il
+   problema MEDIATO sotto onda periodica non esiste in letteratura:
+   C1/C2 NOT-FOUND(q)." — LM:299-320, 354-357 — teoremi del campo [REP]
+   + claim query-bounded.
+7. "EAP = la coordinata-pressione di J_ideal; le sue ipotesi (le nostre
+   D1+D2) sono UNSTATED e UNPRICED — il corrector P4 è la barra d'errore
+   mancante dell'EAP." — M0:2526-2539 — remark di record.
+8. "Humphreys 1971: cambiare la chiusura p_b sposta l'argmax di x2.45
+   col valore quasi piatto (+0.26%); la chiusura che il campo RDE eredita
+   (Veen Eq. 9) è WG10-FAILED." — BPH:619-625, 605-610 — [REP] fonte
+   primaria.
+9. "Le escursioni per-fase pubblicate vanno da ~6:1 in gola (KP18
+   Table 1) a ~20:1 al combustore (P-C)." — THH:415-421, 613 —
+   [REP]+[FIG], CT-6.
+10. "Nessun paper del campo dichiara il regime di validità della propria
+    media con un prezzo d'errore (NOT-FOUND(q), campo istanziato); e
+    nessun referee esterno per-phase esiste: il bracket lo chiudiamo noi
+    o non è chiuso." — CH1 §1.7 (H-iii); M0:1322-1331; SYN:490-492 —
+    query-bounded + dichiarazione strutturale di record.

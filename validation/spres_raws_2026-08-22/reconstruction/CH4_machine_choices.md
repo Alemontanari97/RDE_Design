@@ -10,6 +10,14 @@ da-zero di concetti standard da manuale (trust region, AD, adjoint, MoC):
 sono pedagogia per il panel, NON claim del programma, e non portano ancora
 di record.]
 
+[W-B.1 estensione B4, 2026-08-23 (emendamento v2.1, nodo N-I): aggiunti il
+puntatore Annex B in §1.2, la riga suite 23/23 in §1.4, §1.6 "La velocità
+come scelta algoritmica" (riga I-v: ADJUDICATO estensione, non capitolo
+nuovo — design v2 §M :349), §3-bis ANTENATI, §7 (celle I-ii/I-iii),
+§7-bis DECISION CARD (owner riga I) e il blocco DECK FEED. La numerazione
+salta §6 (STORIA, owner W-B.2 — non toccata). Ogni ancora nuova è stata
+riaperta e verificata in finestra (read-then-quote).]
+
 ---
 
 ## 1. Ricostruzione
@@ -91,6 +99,14 @@ I 36 MIXED sono invece scelte **aggiudicate-split**: incumbent che porta
 il verdetto + target/challenger con falsificatori pinnati e duty F2
 (vedi le righe lette in §1.3). Classe di questo paragrafo: [REP]
 (mappa + righe ledger citate).
+
+**Puntatore (non duplicazione): la tassonomia degli input.** Il contratto
+di ciò che ENTRA nella pipeline (lo stadio 1) ha una tassonomia di record:
+**ANNEX B di D6** — "Input taxonomy for the CFD-free design tool"
+(`docs/rde_nozzle_development_plan.md:1133`; citata anche da M0 `:4263`).
+La sua ricostruzione critica (classi di caso, contratto Γ_d, C-1bis) vive
+in **CH10** (nodo contratto, writer B2): qui SOLO il puntatore — regola
+anti-duplicazione dell'atlas.
 
 ### 1.3 Le scelte portanti, col perché (concetto da zero → scelta →
 ### alternative → falsificatore)
@@ -305,6 +321,20 @@ sperimentale, nessun banco.**
   (t_GENO della re-run S18; la misura 0.286 s è la nota S17
   FAIL-as-implemented, `:148`) = PASS, gate APERTO (G0 §4 nota S18
   `:160-171`); T1 grad/solve 1.593 ≤ 4 (`:168`). Classe: [REP]. [W2-R1]
+- **Suite di regressione: 23/23 gruppi PASS — CON incidente dichiarato**
+  (riga I-v). Il run verificato di record: 23/23 gruppi di test PASS in
+  234 s, EXIT 0, righe per-gruppo catturate integralmente ((i)-(xxiii),
+  incluso il lint numerico (vii) post-riparazione) — commit `c9bacd9`
+  (2026-08-21, verificato con `git show` in finestra). **L'incidente,
+  detto per intero**: il commit di chiusura C4 (7dea386) aveva citato
+  "23/23" PRIMA della sua evidenza verificata — un run intermedio aveva
+  stampato 22/23 con le righe per-gruppo perse per un errore di cattura
+  (tail-4) dell'orchestratore; classe R5, colto dal ri-conteggio
+  dell'orchestratore stesso e annotato nel log di sessione. Il claim
+  sta TRUE con il run di c9bacd9 come carrier — e l'incidente resta
+  dichiarato, non cancellato: è un esempio della disciplina SR-12
+  (nessun conteggio ereditato, solo comandi misurati in finestra).
+  Classe: [REP] (carrier = commit c9bacd9 + log annotato).
 - **Un numero di onestà**: il floor di variabilità cross-lowering
   dell'adjoint attraverso ~250 solve impliciti è ~1e-8 relativo sul
   gradiente — scoperto perché un gate (m6gate) ha SPARATO, causa radice
@@ -347,6 +377,60 @@ sperimentale, nessun banco.**
   alla root rigiocata e ereditano il blind spot di branch finché C20
   Tier-0 non atterra (nota C56, `docs/choice_ledger.yaml:769`).
 
+### 1.6 La velocità come scelta algoritmica (S25/S25-bis)
+[Riga I-v; ADJUDICATO = estensione di questo capitolo, non capitolo
+nuovo (design v2 §M `:349`).]
+
+Il programma NON ha trattato la velocità come tuning da ingegnere: l'ha
+trattata come una **scelta algoritmica sotto la stessa disciplina di
+tutte le altre** — ogni leva di speed-up = gate di invarianza eseguibile
++ guadagno misurato + diff-refuter avversario (dual-proof standard,
+esteso per direttiva utente in-sessione; commit `07400a4`, S25 M-CHAIN,
+verbatim "every lever = executable invariance gate + measured gain +
+adversarial diff-refuter").
+
+- **La catena S25 (M-CHAIN, dispatch M0→M1→M2→M4→M3→M5a/b)**: baseline
+  clean-host di record **100.84 s → 32.09 s** (3.1×) a fine S25;
+  **val_grad 6.420 s → 0.979 s = 6.6×** (il "vg 6.6×" di record —
+  commit `07400a4`, misura M-C; il quesito Q2/A-G RISOLTO, la
+  conseguenza del falsificatore NON spara). Ogni leva accettata dal suo
+  gate (m12gate/m4gate/m5gate: wall BITWISE, contatori riconciliati,
+  controlli negativi che sparano). Classe: [REP], caveat host di G0
+  ereditato (i rapporti sono decisionali, i secondi assoluti no).
+- **I refuter hanno trovato 2 difetti veri — riparati a registro**
+  (commit `07400a4`): (1) memo key cieca ai knob di classe → `_mkey`
+  legge M_NODES/KNOT_XI/N_NEWTON a request time; (2) engine-cache key
+  senza la design class (HIGH) → class nella ekey + CLASS-KEY REJECTOR
+  aggiunto a m4gate. Il processo di velocizzazione è stato esso stesso
+  refutato, non solo misurato.
+- **Lo STOP-CHECK onesto** (fine S25): segmento ~46 s vs ≤ 30 = NOT-MET
+  senza M5c (controfattuale tenuto) → M5c+M6 = S25-bis VINCOLANTE, non
+  opzionale (commit `07400a4`). Nessun "quasi-MET" dichiarato MET.
+- **S25-bis, contatore finale FORMALE (criterio pessimistic-end
+  PRE-REGISTRATO)**: catena 100.84 → 32.09 → **record 5.58 s**; replay
+  0.236 s; val_grad 0.449 s; Hessiana 4.5-7.0 s (≤ 8); SEGMENTO = MET
+  (14.9 s [M-D] / 20.1 s [M-E] vs ≤ 30), CAMPAGNA = MET (~10-14 min
+  pessimistic vs ≤ 25) (`docs/rde_nozzle_PROGRESS.md:119-125`; carrier
+  [X-SPDB], riga R22 `:200`). **STOP-WHEN-MET onorato come raffinato
+  dall'utente**: fuori solo l'overengineering (H2/H5/O1-O4/N8 =
+  conditional nominate con trigger), dentro le migliorie reali — M6
+  tentato col suo gate, e il gate ha RIGETTATO: il rigetto È il
+  verdetto (PROGRESS `:126-129`). Classe: [REP].
+- **La coda meccanica è essa stessa tipizzata**: chiusura C4 del canale
+  velocità = tier **ONDEMAND tipizzato su tutti i 46 carrier** +
+  **STALENESS LINK** nel claims-lint (pass date ≤ ultimo commit che
+  tocca il carrier; rejector "stale pass date" seminato e provato a
+  ogni run — e SPARATO per davvero in-sessione su un carrier non
+  committato) (commit `32459ca`; riga R3c, PROGRESS `:181`). Anche la
+  contabilità della velocità ha un rigettatore. Classe: [REP].
+
+Perché questa sezione sta nel capitolo "scelte": la velocità DECIDE
+scelte di record — il gate di produzione T2a e la flip clause di
+linguaggio C58 sono definiti in secondi misurati (G0 §4, §1.3(a));
+la review S25 di G0/T2 (riga R7c, PROGRESS `:185`) è il precedente per
+cui un numero di velocità può riaprire una scelta di stack. La velocità
+è un input del choice ledger, non un vanto da slide.
+
 ---
 
 ## 2. Stato per-claim
@@ -369,6 +453,8 @@ sperimentale, nessun banco.**
 | 14 | OBJ-DOM: fix-A obiettivo di record a F2-entry; impl OPEN | THEOREM (OBJDOM-1/3), THEOREM* (OBJDOM-2) | mappa `:172` (findings `:211-212`) | trigger: primo verdetto F2 con dJ/dthB, prima dello ship delta-carrier |
 | 15 | D-44: ogni claim pubblico di adeguatezza è GATED (forchetta = bracket, mai adeguatezza dimostrata) | gate armato di record | mappa `:180` | spara su qualunque claim pubblico, prima o dopo R22 |
 | 16 | P34: i numeri engine di questo capitolo = stage V0 verification; gerarchia stessa mai aggiudicata | dichiarazione di stage; gap OPEN | mappa `:181` | rider LIGHT-INSTANTIATION su S-PRES |
+| 17 | Suite 23/23 gruppi PASS (234 s, EXIT 0) CON incidente dichiarato: 7dea386 citò 23/23 PRIMA dell'evidenza (run 22/23, cattura tail-4 persa; classe R5, auto-colto) | [REP] (carrier = run c9bacd9) | commit `c9bacd9` (git show verificato in finestra) | il ri-conteggio SR-12 È il rejector che ha colto l'incidente |
+| 18 | Velocità = scelta algoritmica: M-CHAIN S25 100.84→32.09 s, val_grad 6.420→0.979 s (6.6×), ogni leva gate+refuter; 2 difetti veri trovati dai refuter e riparati; STOP-CHECK onesto NOT-MET → S25-bis | [REP] | commit `07400a4`; PROGRESS `:119-129`, `:181`, `:185` | gate m12/m4/m5 con controlli negativi; STOP-CHECK controfattuale tenuto |
 
 ---
 
@@ -401,6 +487,53 @@ sperimentale, nessun banco.**
    (memoria `s18-brick2-closed:52-56`; classe [INF] da memoria, da
    ri-verificare a F2).
 9. **Julia/Enzyme non benchmarkato** su questo host (G0 §4 `:199-201`).
+
+---
+
+## 3-bis. ANTENATI DIRETTI (lineage, nodo N-I)
+
+[Emendamento v2.1 §1b: righe dal `LINEAGE_LEDGER.md` (merge W-B.0);
+stato delle righe = CANDIDATE finché il refuter C6 (W-C) non passa —
+dichiarato, non nascosto. Join su {LL-id, componente} (contratto
+[F-des-4]). Ogni claim di novità di questo nodo cita ≥1 LL-id (lint 7).]
+
+- **LL-30 — Byrd-Hribar-Nocedal 1999 + Nocedal-Wright 2006** (comp.
+  N-17): il **parent algoritmico dell'engine** — `tr_interior_point` di
+  scipy discende dall'algoritmo IP large-scale di BHN (SIOPT 9:877-900);
+  SR1 (§6.2) e il modello d'errore FD (§8.1) di Nocedal-Wright sono le
+  fonti delle costanti DERIVATE del programma (C44, [P-HESSREJ]).
+  Cosa gli manca vs noi: nessuna disciplina di certificato sui numeri
+  prodotti, nessun contratto information-only sui moltiplicatori.
+- **LL-15 — Uno (Vanaret-Leyffer 2026)** (N-17): il flip candidate
+  arm-B della card C31 (§7-bis) — solver unificato SQP/IP a preset;
+  guardia identical-certified-outcomes + decisione O5-class d'install.
+  Antenato "in avanti": è il ri-esame programmato, non un precedente.
+- **LL-31 — linea direct-search del campo ugelli (Kraiko-2016 GA,
+  Fernandes, Valeriani, Ornano)** (N-17): engine senza condizioni di
+  ottimalità; **i loro stessi dati sono evidenza PRO il driver
+  certificato** (Kraiko 2016: il metodo esatto batte i GA — LL-29).
+- **LL-7 — Hoffman 1967** (comp. 4/10/11/12): campi di moltiplicatori
+  su caratteristiche per flusso reagente — l'antenato di dominio
+  dell'adjoint di §1.3(b); il suo E-residual Eq. (78) è consumato come
+  certificato VI.3. Cosa gli manca: AD discreto, i tre ruoli, F11d.
+- **LL-12 — Giles-Ulbrich 2010** (comp. 11): il **teorema negativo**
+  (adjoint discreto su shock catturati) = antenato diretto
+  dell'AGGIUDICAZIONE C49 (fitted-front unico portatore di certificato,
+  §1.3(c)): la scelta di record discende da un limite pubblicato, non
+  da una preferenza (scope dichiarato 1-D scalare nella nota C49).
+- **LL-32 — Johnson-Boney 1975 + Scofield-Hoffman 1971** (N-18):
+  precedenti tabulated-EOS/real-gas MoC del [DIR-THERMOTAB] — la
+  tabulazione termodinamica nel MoC non è nostra invenzione; nostra è
+  l'interfaccia-contratto differenziabile C1 con oracolo (C24).
+- **LL-33 — Browne-Shepherd SDT** (N-18): il lato GENERATORE (CJ/ZND,
+  Cantera-class); la giunzione formale generatore→interfaccia-tabelle
+  **non è formalizzata dal campo** — il contratto S11 la occupa
+  (claim di lineage, non NOT-FOUND: la riga LL-33 lo dice).
+
+Contro-lettura onesta: nessuna di queste righe è un NOT-FOUND — il nodo
+N-I NON rivendica novità dell'engine in sé; la novità rivendicata è la
+CATENA (design-adjoint certificata per-fase dentro il campo RDE-nozzle),
+ed è query-bounded in §7(b) via CH5.
 
 ---
 
@@ -552,6 +685,314 @@ Stage P34: V0 verification, dichiarato su slide.
 
 ---
 
+## 7. Posizionamento / conformity del nodo N-I (celle I-ii / I-iii)
+
+[La numerazione salta §6: STORIA, owner W-B.2. Tre metà fisse per
+template §T-§7; id registry VERBATIM, tutti confermati con grep in
+finestra su `docs/literature_registry.yaml`.]
+
+### 7(a) STRUMENTI — la terna mondo-SOTA / cosa usiamo / perché (cella I-ii)
+
+- **Driver: TR-Newton segmentato vs SQP/IP.** Mondo-SOTA: interior
+  point large-scale — `byrd_hribar_nocedal_1999` (SIOPT 9:877-900,
+  READ-PARTIAL pp.877/879/884: barrier law p.879, moltiplicatori
+  least-squares Eq. (3.15)) è il **parent algoritmico** di scipy
+  trust-constr (LL-30); `nocedal_wright_2006_2ed` (§6.2 SR1, §8.1
+  modello d'errore FD pp.194-197 [FULL] — la fonte delle bande DERIVATE
+  di [P-HESSREJ]/[P-QNCARRY]); filter-SQP/SLQP pesati nel ledger C31;
+  `vanaret_leyffer_2026_uno` (Uno, MPC 2026, pubbl. 10-06-2026) +
+  `vanaret_montoison_2026_joss` (JOSS 2026, paper software DISTINTO) =
+  il solver unificato flip-candidate. Cosa usiamo: trust-constr IP +
+  driver TR-Newton segmentato a curvatura misurata. Perché: i flip
+  della wall-search rendono i segmenti single-step (curvatura BFGS non
+  si forma → si misura), attivazione su numeri (§1.3(d)).
+- **Rumore e passo certificabile.** Mondo-SOTA rumore:
+  `sun_nocedal_2023_noisy_tr` (TR per funzioni rumorose; status
+  registry UNREAD DICHIARATO — consumo deliberato al trigger
+  [P-TRFLOOR], owner C34: non lo citiamo oltre l'identità). Passo
+  certificabile: `deuflhard_2011_csm35` (affine invariance, monitor
+  Θ pp.51-53, NLEQ-ERR pp.147-148 verificato verbatim) +
+  `yamamoto_1986_numermath48` (bound Kantorovich two-sided Gragg-Tapia
+  Thm 2; identity flag vol. 48-vs-49 DICHIARATO nel registry, non
+  aggiudicato) = la linea C20 Tier-1/Tier-2 (§1.3(g)). Perché: la
+  qualificazione del certificato deve poggiare su bound pubblicati,
+  non su ratio di comodo.
+- **Stack AD: JAX custom_vjp vs Enzyme.** La decisione G0 vive in D6
+  `docs/rde_nozzle_development_plan.md:753-774` (verificata in
+  finestra): JAX primario (custom_vjp + implicit rules), Julia+Enzyme
+  = alternate DICHIARATO, GENO-Fortran = riferimento dual-code
+  indipendente; falsificatore loop-speed tenuto (assembled loop
+  impraticabile → flip a Julia+Enzyme, `:773-774`). Dettaglio evidenze
+  in §1.3(a); recency in card C58 (§7-bis).
+- **MoC fitted-front vs shock-tracking implicito.** Mondo-SOTA:
+  `huang_zahr_2022` (HOIST, JCP 454:110981, robust high-order implicit
+  shock tracking) + `wanted_thakur_nadarajah_2024` (adjoint-based
+  goal-oriented tracking full-space; su disco la versione journal JCP
+  523:113633, 2025 — più NUOVA dell'ask 2024, dichiarato nel registry).
+  Cosa usiamo: fitted-front marching (C49). Perché: unico portatore di
+  certificato nella classe S1; la linea implicita = upgrade path
+  NOMINATO con entry gate sulle checklist PUBBLICATE della linea stessa
+  (HZ §5.2-5.3; Thakur p.26 open issues) — il confine fit-vs-capture è
+  governato dal budget DWR, non da gusto (§1.3(c), LL-12).
+- **Thermo tabulata (S11) vs Cantera-in-the-loop.** Mondo-SOTA lato
+  generatore: `browne_shepherd_sdtoolbox_2018` (SDT, CJ/ZND — LL-33);
+  precedenti tabulated-EOS nel MoC = LL-32. Cosa usiamo: tabelle
+  quintic C1 come CONTRATTO d'interfaccia (C24, [X-THC1]); Cantera
+  resta il generatore di fiducia, mai nel loop differenziato. Perché:
+  milioni di valutazioni differenziabili per solve; NASA-direct tenuto
+  come ORACOLO (C-A scaricata). Threat 2025 censita: LL-34 (Janc,
+  finite-rate differenziabile non-tabulato) = falsificatore costruibile.
+
+### 7(b) SENSO — pipeline nostra vs framework ASO del campo (cella I-iii)
+
+Ancora di record: **CH5 §1.1** — i quattro paper coupled RDE+nozzle del
+corpus C4 (campo ISTANZIATO, guardia 4: P-A Liu-Wang 2022 PKU; P-B/P-C
+Li-Xu 2023/2025 NUAA; P-D Jourdaine 2019 KIT/Aoyama) praticano CFD
+pubblicata + trade study discreto o sweep: P-A "NO optimizer", P-C
+nessun design nuovo, P-D "NONE — esplicitamente non ottimizzato", e la
+sintesi consolidata dice verbatim **"no optimizer appears anywhere in
+the four papers"** (CH5 §1.1, SYN:58-61; P-B usa il variazionale
+classico ma su UN solo stato mediato globalmente). **Nessuna catena
+design-adjoint** nel campo RDE-nozzle: il gap che il nodo N-I occupa è
+la catena design-adjoint certificata per-fase. Lignaggio dichiarato
+(lint 7): gli antenati dell'engine vivono FUORI dal campo (LL-30
+Byrd-Nocedal; LL-7 Hoffman per il dominio ugelli reagenti); dentro il
+campo la linea è direct-search/GA (LL-31), i cui dati sono evidenza PRO
+il driver certificato (LL-29). Il confronto con i framework ASO
+generalisti (adjoint shape optimization aeronautica) è il §7(a):
+adottiamo i loro parent algoritmici (LL-30) e i loro criteri pubblicati
+(Hicken-Zingg, HOIST) MA aggiungiamo lo strato che a loro manca nel
+nostro problema: certificati con rejector per-numero (R5) + choice
+ledger tipizzato + per-fase. Claim di assenza: query-bounded in CH5
+(LM:354-362, sweep avversario 1971-2026 con 2 near-miss dichiarati) —
+non lo ri-deriviamo qui (navigation-first).
+
+### 7(c) STANDARD DI RIFERIMENTO (assi §C della conformity map)
+
+Gli assi che governano il metodo di QUESTO nodo (design v2 §C, mappa
+citata non duplicata): **asse 3 (tracciabilità, classe ECSS/DO-178C)**
+— la catena id→nodo→verifica del choice ledger + i lint machine-checked
+sono il nostro trace bidirezionale; divergenza dichiarata: nessun audit
+esterno né certificazione DI standard. **Asse 5 (FAIR/provenance)** —
+nessun numero engine senza script committato + test + commit di nascita
+(R5; i numeri di §1.4/§1.6 ne sono le istanze). Per i confronti di
+strumenti in §7(a) vale l'**asse 2 (GRADE-class)**: ogni claim porta la
+classe di rigore e il read-status onesto del registry (READ-PARTIAL con
+pagine, UNREAD dichiarato). Claim "SOTA" di questo capitolo senza asse
+citato = violazione lint 6 — per questo ogni voce di §7(a) porta l'id
+registry e lo status.
+
+---
+
+## 7-bis. DECISION CARD — riga I (owner B4, emendamento v2.1 §1g)
+
+[Formato vincolante a 6 campi. Fonte delle righe: `docs/choice_ledger.yaml`
+(righe riaperte e citate in §1.3). Perimetro di ownership DICHIARATO:
+card qui per le scelte che QUESTO capitolo presenta — 4 aggiudicate
+(C31, C58, C49, C24) + 9 "non-aggiudicata" (le righe SA/NEVER della
+riga I toccate dal capitolo: C17, C18, C25, C38, C55, C57, C59, C60,
+C62). I token di roster C51/C52/C53/C54/C61 in §3 sono ENUMERAZIONE
+della mappa, non scelte presentate: le loro card vivono nei capitoli
+proprietari (contratto → CH10; scala/S-5F → CH8; p_b → CH8/CH10), per
+la regola di ownership §1g ("ogni altro writer compila le card delle
+scelte che il SUO capitolo presenta").]
+
+### CARD C31/engine (card di riferimento OBBLIGATORIA)
+
+1. **Scelta**: C31 — optimizer engine (ledger `:481-493`).
+2. **Alternative censite (data+fonte)**: IPOPT / filter-SQP
+   (Fletcher-Leyffer) / SLQP / **Uno** / proximal-bundle (D6:738, mai
+   costruito) — censimento del panel wave-2 **2026-08-19**
+   (`PANEL_C31TRIO` via `VERDICT_wave2.md#4.1`, sfoundations_raws);
+   dossier Uno full-read **2026-08-20** (`DOSSIER_uno_fullread.md` §3,
+   10 input di spec arm-B, consumati nel contratto [P-IPADJ] per
+   ordine utente); censimento warm-start IP **2023-2026** = input
+   [P-IPADJ] (nota C31). Registry: `vanaret_leyffer_2026_uno` (MPC
+   2026, pubbl. 2026-06-10, versione pubblicata = upload utente
+   2026-08-20) + `vanaret_montoison_2026_joss` (JOSS 2026, riga
+   propria). **Repo Uno QUARANTINATO in `Uno/` — mai nei commit, come
+   GENO/.**
+3. **Verdetto + perché**: incumbent = scipy trust-constr IP (in uso da
+   S22) sotto disciplina INFORMATION-ONLY dei moltiplicatori fino a
+   [P-IPADJ]; driver = TR-Newton segmentato a curvatura misurata,
+   attivato SU NUMERI (§1.3(d)). Uno = flip candidate (install =
+   decisione O5-class); A/B pinnato a constraint-set identico con
+   guardia identical-certified-outcomes; falsifier-two CONDIZIONATO al
+   leg semantico del falsifier-one (aggiudicazione orchestratore di
+   record, nota C31).
+4. **RECENCY/SOTA-ness del censimento**: il censimento solver è DATATO
+   (2026-08-19/20) e dichiarato tale; copre il landscape 2026 incluso
+   Uno (paper 2026-06) e la linea warm-start 2023-2026; la sua
+   ri-verifica è COLLOCATA nel cluster di ri-esame F2-entry (C31-A/B +
+   C58 delta-sweep vs landscape 2026 + SDP-CAND-8, mappa `:199-206`).
+   `ATTUALE(engine NLP nonlineare vincolato incl. Uno 2026, 2026-08-23)`
+5. **Falsificatore**: engine falsifiers one/two/three (VERDICT_wave2
+   §1.1 via ledger); la guardia identical-certified-outcomes sull'A/B.
+6. **Trigger ri-esame + finestra**: [P-IPADJ] = PRIMA azione engine F2
+   sul critical path di C28; **finestra NOMINATA = F2-entry** (cluster
+   superficie A; nessuna fase apre con NEVER sui componenti che
+   consuma, PROGRESS `:213` scope R35(a)).
+
+### CARD C58/stack differenziabile
+
+1. **Scelta**: C58 — fondazione dello stack AD (ledger `:783-793`).
+2. **Alternative censite (data+fonte)**: hand-coded adjoint /
+   AD-in-altro-framework (Julia+Enzyme, Fortran+Tapenade, landscape
+   2026) / gradient-free — censimento G0 **2026-07-17** (DIR-G0,
+   `docs/rde_nozzle_G0_decision.md`; D6 `:753-774`); riga C58 coniata
+   **2026-08-20** con entry contract (la domanda ri-ancorata da "gradienti
+   esatti affordable" a "quale fondazione realizza l'architettura
+   aggiudicata").
+3. **Verdetto + perché**: JAX primario, custom_vjp + implicit-function
+   rules ("never unrolled"); evidenza 52/52 Jacobiano in tolleranza
+   derivata, overhead adjoint ~1.5%, X-GENOXC 218/218 con controlli
+   negativi (§1.3(a)).
+4. **RECENCY/SOTA-ness del censimento**: la survey di fondazione è
+   del **2026-07-17** e il ledger stesso ORDINA il delta-sweep di G0
+   vs il landscape 2026 (owner C58: "census+refuter panel as 9(e)
+   delta-sweep"); Julia/Enzyme mai benchmarkato su questo host
+   (G0 §4 `:199-201`). `STALE → finestra F2-entry (delta-sweep 9(e),
+   cluster superficie A)`
+5. **Falsificatore**: loop-speed flip clause ARMATA e quantificata
+   (T1 1.593 ≤ 4; T2a 0.116 ≤ 1.197 s, PASS; review S25 = firing T2
+   di S18 strutturale, decisione STA); assembled-loop impraticabile →
+   flip Julia+Enzyme (D6 `:773-774`).
+6. **Trigger ri-esame + finestra**: ri-censimento C58 al cluster
+   engine **F2-entry** (stessa superficie A della C31).
+
+### CARD C49/rappresentazione (fitted-front)
+
+1. **Scelta**: C49 — rappresentazione per-fase per il design (ledger
+   `:682-692`).
+2. **Alternative censite (data+fonte)**: capturing adjoint-consistent
+   come solver unico / two-tier col carrier |J_captured − J_fitted| /
+   implicit shock tracking moderno (HOIST `huang_zahr_2022`;
+   `wanted_thakur_nadarajah_2024` JCP 523:113633) — aggiudicazione
+   wave-2 **2026-08-19** (`VERDICT_wave2.md#4.8`, 4 alberi de-novo
+   ciechi come avvocati genuini); entry-gate items ancorati al
+   retro-sweep **2026-08-20** (HZ §5.2-5.3 + Thakur p.26).
+3. **Verdetto + perché**: fitted-front = UNICO portatore di
+   certificato (classe S1); capturing = tier esploratore nominato
+   build-gated; argomento portante = adjoint front-motion term (classe
+   Giles-Pierce) + teorema negativo Giles-Ulbrich (LL-12, scope 1-D
+   scalare dichiarato). ZERO finding refuter sulla riga.
+4. **RECENCY/SOTA-ness del censimento**: censimento 2026-08-19/20;
+   copre la linea implicita 2022-2025 (HOIST JCP 454; Thakur versione
+   journal 2025, più nuova dell'ask). `ATTUALE(shock handling per
+   marcia MoC certificata, 2026-08-23)`
+5. **Falsificatore**: 4 falsificatori pinnati sul tier esploratore;
+   frontiera fit-vs-capture governata dal budget DWR (C11 leg (b)).
+6. **Trigger ri-esame + finestra**: duty F2/F5-C49-CAPTURE-EXPLORER
+   (nominata, non schedulata); entry gate dell'upgrade implicito su
+   checklist pubblicate — spara quando la linea le soddisfa.
+
+### CARD C24/thermo tabulata
+
+1. **Scelta**: C24 — chiusura termodinamica (ledger `:408-416`).
+2. **Alternative censite (data+fonte)**: NASA-direct (solo oracolo,
+   condizione C-A) / dCp-ingest (gated C-B) / Cantera-in-the-loop
+   (scartata dalla direttiva S11 tables-as-interface) — survey
+   `ADVISORY_S24_thermo_closure_survey` **2026-08-12** (riga R23,
+   PROGRESS `:201`); verifica wave-3 **2026-08-20** (nota C24).
+   Precedenti di campo: LL-32 (Johnson-Boney 1975, Scofield-Hoffman
+   1971); generatore: LL-33 (`browne_shepherd_sdtoolbox_2018`).
+3. **Verdetto + perché**: [X-THC1] tabelle quintic C1 (backend-1),
+   status DECIDED; C-A SCARICATA nel carrier (oracolo NASA-direct a
+   roundoff, tocco M3 S25); il contratto d'interfaccia è la tabella.
+4. **RECENCY/SOTA-ness del censimento**: survey 2026-08-12; la threat
+   2025 è censita dal lineage sweep **2026-08-23** (LL-34, Janc 2025:
+   finite-rate differenziabile NON-tabulato = vettore di minaccia
+   nominato). `ATTUALE(chiusure thermo per marcia differenziabile,
+   2026-08-23)`
+5. **Falsificatore**: condizioni C-B/C-C/C-D aperte e nominate;
+   LL-34 = falsificatore COSTRUIBILE del backend-1.
+6. **Trigger ri-esame + finestra**: F2 (C-B..C-D, owner dichiarato);
+   il box tabella (C25) e l'out-of-box (C26) sono righe SEPARATE con
+   finestre proprie (card C25 sotto).
+
+### Card "non-aggiudicata, finestra Y" (2 SA + 7 NEVER toccate qui — MAI omesse)
+
+1. **C17 — trip cap N_NEWTON=30** [SINGLE-AUTHOR]. (2) Alt: derivazione
+   dal contraction budget — censita in `ADVISORY_S24_sota_gapmap`
+   **2026-08-12**; cross-reconciled 2026-08-13, wave-3 2026-08-20
+   ("no derivation or panel adjudication found", ledger `:342`).
+   (3) **NON AGGIUDICATA** (KAT prova che morde, non la deriva).
+   (4) censimento 2026-08-12/20: `ATTUALE(costanti Newton del driver,
+   2026-08-23)`. (5) nessun falsificatore pinnato — lo pinna la
+   finestra. (6) **Finestra: F2** (owner delta VERDICT_wave3 par.3).
+2. **C18 — costanti di floor (NTF=100, C_FLOOR=8)** [SINGLE-AUTHOR].
+   (2) Alt: Higham gamma_n / More-Wild noise floors — gapmap
+   **2026-08-12**; sweep GAP-29 ESEGUITO S25-bis.
+   (3) **NON AGGIUDICATA** (lo sweep è misura sull'incumbent — 1 flip —
+   non un confronto Higham/More-Wild; la FORMA NTF=η·κ_q è derivata,
+   la costante no). (4) `ATTUALE(floor di certificazione, 2026-08-23)`.
+   (5) sweep GAP-29 (NTF/2 flippa) = rejector già provato. (6)
+   **Finestra: derivazione F2-live** (condivisa col Tier-1 C20).
+3. **C25 — box tabella (1050/3900 K, N_TAB=8192)** [NEVER]. (2) Alt:
+   box envelope-derived + margine dichiarato + certificato per-run —
+   gapmap **2026-08-12**, verifica wave-3 2026-08-20.
+   (3) **NON AGGIUDICATA** (i letterali restano underived; l'attacco
+   "over-engineering" fu judge-REJECTED, che non è un'aggiudicazione).
+   (4) `ATTUALE(dominio tabelle, 2026-08-23)`. (5) H-F6 reachable-set
+   box = l'oggetto che C45/C26 consumano per nome. (6) **Finestra: F2
+   (con C-C/C-D)**.
+4. **C38 — dichiarazione di stazionarietà outcome-II** [NEVER]. (2)
+   Alt: certificato di B-stationarity / reporting normalizzato —
+   gapmap **2026-08-12** (GAP-2 "squarely on-axis", pipeline-sense
+   R4). (3) **NON AGGIUDICATA**. (4) `ATTUALE(stazionarietà
+   nonsmooth, 2026-08-23)`. (5) i carrier committati con qualifier
+   "until O1" (claims `:1350`, `:1874`) = i casi che la policy deve
+   comporre. (6) **Finestra: F2**.
+5. **C55 — aggregazione P_amb** [NEVER, strutturalmente vuota]. (2)
+   Alt: nu-weighted mean / minimax / CVaR-DRO — slot mintato
+   **2026-08-19** (problem book, P_amb SLOT OF RECORD).
+   (3) **NON AGGIUDICATA** — domanda VUOTA sotto il default single-point
+   (mappa `:66`). (4) `ATTUALE(aggregazione ambiente, 2026-08-23)`.
+   (5) — (la struttura: F affine in Pa, envelope morde solo via
+   ammissibilità). (6) **Finestra: prima istanziazione multi-punto di
+   P_amb** (aggiudicazione dovuta a istanziazione, non prima).
+6. **C57 — tier di esplorazione globale** [NEVER]. (2) Alt: layer
+   DFO/BO/evolutionary sopra il closer certificato / captured-explorer
+   C49 / multi-start continuation — mint wave-2 **2026-08-19**
+   (VERDICT_wave2 §4.14); pilota rival-paradigm ratificato dall'utente
+   **2026-08-20** come CANDIDATE. (3) **NON AGGIUDICATA** (il
+   certificate-first resta assiologia dichiarata, mai head-to-head).
+   (4) `ATTUALE(esplorazione globale, 2026-08-23)`. (5) il pilota
+   one-shot (J per arm + budget + costo di certificazione del
+   vincitore) = il falsificatore disegnato. (6) **Finestra: F2-entry**
+   (con C31 A/B e C49 explorer).
+7. **C59 — forma temporale del funzionale** [NEVER, strutturalmente
+   vuota]. (2) Alt: harmonic-balance / time-spectral / windowed
+   unsteady adjoint — mint **2026-08-21** (coverage gate C4; ancore
+   rubino_2018, schotthofer_2024, zahr_persson_2016).
+   (3) **NON AGGIUDICATA** — dentro il pin dell'onda il cycle-average
+   è CANONICO (conseguenza teorematica, scoping VINCOLANTE): la
+   domanda è vuota finché il pin regge. (4) `ATTUALE(forme temporali
+   del funzionale, 2026-08-23)`. (5) — (le alternative vivono SOLO a
+   pin indebolito). (6) **Finestra: trigger = regime weakened-pin
+   (multi-frequenza / aperiodico) in scope**.
+8. **C60 — NAND vs SAND (LNKS)** [NEVER]. (2) Alt: SAND full-space
+   one-shot / ibridi — mint **2026-08-21** (coverage gate; pesata
+   FUORI ledger in `docs/rde_nozzle_pipeline_audit.md:105` "deferred,
+   not dismissed"). (3) **NON AGGIUDICATA** (incumbent NAND DICHIARATO:
+   praticato, supporti misurati, head-to-head mai corso). (4)
+   `ATTUALE(architettura state-design coupling, 2026-08-23)`. (5) un
+   flip futuro rientra nelle righe consumatrici SOLO via i loro
+   falsificatori pinnati (disciplina C58). (6) **Finestra: F2-entry
+   (cluster con C57/C58/[P-IPADJ])**.
+9. **C62 — quadratura di fase su Ξ** [NEVER]. (2) Alt: Gauss /
+   adattiva event-stratified / QMC / risoluzione declared-canonicity
+   (pattern C59) — mint **2026-08-21** (coverage gate; unica ancora di
+   copertura = diff par.2.10). (3) **NON AGGIUDICATA** (clausola di
+   onestà del critic: l'asse è pesato UNA volta, senza tabella di
+   alternative). (4) `ATTUALE(quadratura del funzionale mediato,
+   2026-08-23)`. (5) findings `:988` (barra di quadratura omessa) = il
+   promemoria armato. (6) **Finestra: F2 cluster numerica; trigger =
+   primo accuracy budget della campagna** (il budget non chiude senza
+   barra di quadratura nominata).
+
+---
+
 ## Disposizione riparazioni (onda 2)
 
 [Refuter: REFUTE_CH4.md, verdetto REGGE-CON-RIPARAZIONI, 0 BREAK /
@@ -572,3 +1013,58 @@ ancora del refuter aperta e verificata prima dell'edit.]
 | 10 | NOTE | APPLICATO [W2-R10] — ordinali FORK-141 esplicitati (H20 = 1 of 2, P34 = 2 of 2; mappa PM-6 `:332` verificata) |
 | 11 | NOTE | APPLICATO [W2-R11] — attribuzione "a weight cannot referee itself" spostata su nota C11 `:279` / supplemento §4.2 (verbatim verificato in C11 `:279`) |
 | 12 | NOTE | NON-APPLICATO — il fix proposto ("avete mai pubblicato un numero poi risultato falso?" → G0 `:177-198`, LEDGER TRUTH REPAIR) è indirizzato alla banca Q&A (artefatto a valle dell'arco di consumo), non a questo capitolo; registrato qui perché lo storyboard/banca lo consumino |
+
+---
+
+## DECK FEED
+
+[Emendamento v2.1 §3 (G-4): asserzioni candidate-slide in frase piena
+(assertion-evidence) + ancora + classe. Lo storyboard v3 joina su
+queste righe, non ri-legge il capitolo.]
+
+1. **Ogni scelta algoritmica della macchina è un oggetto tipizzato con
+   status, alternative pesate e falsificatore: 62 righe, 12 DECIDED /
+   36 MIXED / 12 NEVER / 2 SINGLE-AUTHOR — e vi mostriamo anche le
+   non pesate, ognuna con la sua finestra.** — mappa
+   `docs/rde_nozzle_pipeline_decision_map.md:287-309` — [REP].
+2. **Il gradiente è esatto per il problema discreto che risolviamo
+   davvero: 52/52 entrate di Jacobiano in tolleranza DERIVATA, adjoint
+   a ~1.5% del solve, oracolo cross-code 218/218 con controlli negativi
+   che rigettano.** — G0 `:33-59, :94-104` — [REP].
+3. **Il run di record chiude con trasversalità KKT 7.7e-02 contro
+   soglia derivata 1.156e-01 e oracolo cross-code 91/91 — stage V0
+   verification, dichiarato su slide.** —
+   `validation/PROGRESS_2026-08-06_S18_brick2run.md` + rider P34 —
+   [REP] + dichiarazione di stage.
+4. **La velocità è stata una scelta algoritmica, non tuning: ogni leva
+   con gate di invarianza + refuter; 100.84→32.09 s (S25, val_grad
+   6.6×) → record 5.58 s e target MET formali pre-registrati (segmento
+   14.9-20.1 s vs ≤30; campagna 10-14 min vs ≤25).** — commit
+   `07400a4`; PROGRESS `:119-125` — [REP], caveat host dichiarato.
+5. **Un certificato che non può bocciare non è un certificato: NTF ha
+   forma derivata η·κ_q e lo sweep GAP-29 prova che la soglia morde —
+   NTF/2 flippa il verdetto.** — M0:3649-3766 [LAND-C4-LA2]; PROGRESS
+   `:155-160` — THEOREM*/SCHEMA + [REP].
+6. **La suite dice 23/23 E il record dichiara l'incidente: il claim era
+   stato citato PRIMA dell'evidenza, il ri-conteggio l'ha colto, il run
+   verificato è il carrier.** — commit `c9bacd9` — [REP] (slide di
+   onestà, accoppiare alla #7).
+7. **Abbiamo commissionato un audit ostile alla nostra catena di
+   certificazione: verdetto NON-CERTIFICABILE, 2 P0 — uno riparato in
+   finestra, uno con owner F2. Il sistema funziona perché boccia noi.**
+   — PROGRESS `:211` (R33) — [REP].
+8. **Nel campo RDE-nozzle nessuno dei quattro paper coupled ha un
+   optimizer nella catena ("no optimizer appears anywhere in the four
+   papers"); la nostra catena design-adjoint per-fase discende dai
+   parent FUORI campo (Byrd-Nocedal; Hoffman 1967) — lineage
+   dichiarato, novità query-bounded.** — CH5 §1.1 (SYN:58-61) + §3-bis
+   LL-30/LL-7/LL-31 — [ADV]+[REP], query-bounded via CH5.
+9. **Il flip-candidate dell'engine ha nome, data e finestra: Uno
+   (MPC 2026), A/B a constraint-set identico, decisione d'install
+   O5-class, ri-esame al cluster F2-entry — il censimento solver è
+   DATATO e dichiarato tale.** — card C31 (§7-bis); ledger `:481-493`
+   — [REP].
+10. **Il fitted-front è l'unico portatore di certificato per un motivo
+    pubblicato (teorema negativo di Giles-Ulbrich), e l'upgrade
+    implicito ha un entry gate sulle checklist pubblicate della linea
+    stessa.** — ledger C49 `:682-692`; §3-bis LL-12 — [REP].
