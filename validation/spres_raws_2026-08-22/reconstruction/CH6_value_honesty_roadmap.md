@@ -788,15 +788,17 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
   VERDETTO: working hypothesis DICHIARATA e falsificabile — formulation
   gap plausibilmente dominante IN-SECTOR, model gap dominante come
   rischio CROSS-SECTOR; entrambi gli esiti pre-registrati informativi.
-- **Battuta 2 — (b) STANCE-DI-FORK (le tre battute utente, ciascuna col
-  suo verdetto dichiarato come stance).** DATA: 2026-08-23, in
-  sequenza nella stessa finestra. PROCESSO e VERDETTI per-riga:
+- **Battuta 2 — eventi-correzione datati di record (forma CH5 §6.4:
+  non classificabile a/b/c — nessun fork di Fase B è coinvolto)
+  [fix ST-C5-12].** DATA: 2026-08-23, in
+  sequenza nella stessa finestra. PROCESSO e VERDETTI per-evento:
   (i) **C-3bis** (user press): l'analisi comparativa precedente MISCHIAVA
   gli assi (eps-free vs constrained) — "user catch correct" a checkpoint;
   forma corretta a (eps,L) FISSI: gap(A) NON ha teoremi di soppressione
   (Jensen sulla densità di forma G su escursioni 10:1) mentre gap(B) ne
   ha TRE ([T-T0P], K-bar=0, T-DISC) — quindi PLAUSIBILMENTE
-  |x*_pf − x*_mean| > |x*_3D − x*_pf| a vincoli fissi; STANCE: "declared
+  |x*_pf − x*_mean| > |x*_3D − x*_pf| a vincoli fissi; postura
+  dichiarata a checkpoint: "declared
   hypothesis, not theorem", con lo scenario-morte utente decomposto in
   DUE fallimenti indipendenti misurabili separatamente (twin-first =
   kill-or-validate onesto). (ii) **C-3ter** (user catch, finale):
@@ -805,7 +807,8 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
   SMOOTH/avvettiva; il canale (J) (salti del fronte) è il primo ordine
   NON soppresso di gap(B) — tallone d'Achille NOMINATO della gerarchia,
   senza numero (SBV-conditional, delta underived). VERDETTO complessivo
-  (stance): gerarchia (A)>(B) asseribile SOLO col tallone (J) dichiarato.
+  (dichiarato a checkpoint): gerarchia (A)>(B) asseribile SOLO col
+  tallone (J) dichiarato.
 - **Battuta 3 — convergenza.** DATA: 2026-08-23 (regola deck/atlas a
   checkpoint). PROCESSO: "state the hierarchy WITH the (J) heel, never
   without"; deciders ordinati (twin a vincoli identici PRIMA, poi M-RED
@@ -825,15 +828,20 @@ non esiste NESSUN numero su nessun lato della disuguaglianza — la condizione
   base-pressure). VERDETTO (forma riconciliata CH1 Q4): nesting PROVATO
   (THEOREM* sotto [C-HT4]); STRICTNESS = clausola enunciata DOPO il QED
   SENZA prova scritta; carrier quantitativo = PB-2, OPEN.
-- **Battuta 2 — (c); doppia prova = sweep adversarial + lock di
-  formulazione.** DATA: 2026-08-13. PROCESSO: il near-miss
-  Efremov-Kraiko 2004 TROVATO dallo sweep 1971-2026
-  (`validation/ADVISORY_litmap_extension_2026-08-13.md`) e CONSUMATO
-  nella formulazione LOCKED D-06 (batch R4, commit ea2abce: "PB-2 LOCKED
+- **Battuta 2 — (c); doppia prova = confronto litreview + sweep
+  adversarial + lock di formulazione.** DATA: 2026-08-13. PROCESSO: il
+  near-miss Efremov-Kraiko 2004 TROVATO dal confronto litreview
+  25-paper (`validation/ADVISORY_litreview_confrontation_2026-08-13.md:107`,
+  anche :277/:285) [fix ST-C5-11: attribuzione del finder corretta —
+  E-K 2004 non compare nello sweep litmap_extension] e CONSUMATO nella
+  formulazione LOCKED D-06 (batch R4, commit ea2abce: "PB-2 LOCKED
   formulation + 7-item caveat list"; blocco M0:2320-2326,
-  page-verified). VERDETTO: il claim di novità sopravvive SOLO nella
-  forma vincolata "first genuinely averaged and NON-COLLAPSING shape
-  problem" — la frase generica è DEAD of record.
+  page-verified); lo sweep 1971-2026
+  (`validation/ADVISORY_litmap_extension_2026-08-13.md`) aggiunge i due
+  near-miss KT2015/ISABE-2003-117 e NON scalfisce il lock. VERDETTO: il
+  claim di novità sopravvive SOLO nella forma vincolata "first
+  genuinely averaged and NON-COLLAPSING shape problem" — la frase
+  generica è DEAD of record.
 - **Battuta 3 — convergenza.** DATA: 2026-08-21 (C61 mintata alla
   coverage gate, commit fd2d444 — il trigger del computo). PROCESSO:
   ricognizione dei prerequisiti (chiusura p_b N2, baseline

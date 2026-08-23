@@ -355,8 +355,10 @@ di quadro (F2 entry) vivono in CH6 §3.
   stessa finestra: J_def riprodotto a 1e-14 rel, meccanismo common-mode
   della claim-19 REGGE); (iii) lo stack refuter S-CERT stesso, che alla
   prima passata RIFIUTÒ l'auto-assoluzione su un verification layer non
-  provato. VERDETTO: il NO regge alle sue stesse controprove — è
-  segnale, non rumore.
+  provato ("pass refused to certify itself on a broken verification
+  layer", `validation/PROGRESS_2026-08-13_Scert.md:184`
+  [fix ST-C5-19]). VERDETTO: il NO regge alle sue stesse controprove —
+  è segnale, non rumore.
 - **Battuta 3 — convergenza.** DATA: 2026-08-13 (DELTA del final judge)
   → consumo S-PRES 2026-08-23. PROCESSO: confronto misurato con l'audit
   2026-08-07. VERDETTO: "the 2026-08-07 defects were in the certified

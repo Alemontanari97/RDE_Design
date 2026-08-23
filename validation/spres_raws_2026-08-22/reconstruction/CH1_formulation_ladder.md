@@ -689,7 +689,10 @@ ancora di Fase A è asserita dove non esiste (F-des-3).
   solution class (D2.5/S1 road): 4/4 trees" (`phaseB_tree_diff.md:330`).
   PROCESSO: derivazione cieca + verdetto giudice. VERDETTO: CONVERGENT;
   L4⇒R1 formalizzato in Fase D (`phaseD_L4_implies_R1.md`, 2026-08-19).
-- *Battuta 3*: R1 CONDIZIONATA alla finestra W1-W4 di record (M0:139-169);
+- *Battuta 3 — convergenza* [fix ST-C5-02]: DATA: 2026-08-06 (S16,
+  FRONT-CHAIN COMPLETION + ledger pass 2, commit `0b26dc7`). PROCESSO:
+  campagna fondazioni [RIGOR/A]/[RIGOR/B] con hypothesis-ledger discharge.
+  VERDETTO: R1 CONDIZIONATA alla finestra W1-W4 di record (M0:139-169);
   classe finale come stampata in §2.
 
 **T-5. La biforcazione: T-T7RED / T-T4 / sharpness (PB-2).**
@@ -710,8 +713,11 @@ ancora di Fase A è asserita dove non esiste (F-des-3).
   record senza prova scritta (W2-R4, M0:2316-2319) e il carrier
   quantitativo PB-2 è OPEN mai eseguito = **FINDING dichiarato**
   (inventario `HISTORIAN_INV_a.md`).
-- *Battuta 3*: classi finali come §2; PB-2 resta il primo problema aperto
-  del programma (problem_book:532-536), nessuna data di record.
+- *Battuta 3 — convergenza* [fix ST-C5-02]: DATA: 2026-08-04 (PAN-S14
+  addendum, correzione T-T4 arbiter-confirmed, M0:397). PROCESSO: panel a
+  convergenza + arbiter sul claim register. VERDETTO: classi finali come
+  §2; PB-2 resta il primo problema aperto del programma
+  (problem_book:532-536), nessuna data di record — dichiarato.
 
 **T-6. [T-T3-MAP] — la coincidenza cycle-vs-steady rifiutata come teorema.**
 - *Battuta 1*: 2026-08-11, S-GAUNTLET — breaker map of record (M0:879;
@@ -723,8 +729,12 @@ ancora di Fase A è asserita dove non esiste (F-des-3).
   clause S18 ESEGUITA in S24 T2a (2026-08-12, M0:4138-4140; log
   `validation/PROGRESS_2026-08-12_S24_f1b.md`). PROCESSO: audit
   pre-registrato su record S18. VERDETTO: corner-reading qualificata retta.
-- *Battuta 3*: classe finale SCHEMA container con classi per clausola
-  (claims:316-327); carrier CARRIER-A..E dispatch F5a/F2/F2a.
+- *Battuta 3 — convergenza* [fix ST-C5-02]: DATA: 2026-08-12 (S24 T2a:
+  precondizione nominata PERFORMED, M0:4138-4140). PROCESSO: audit
+  pre-registrato delle 5 ipotesi del clause S18 + qualificatori
+  corner-reading portati. VERDETTO: classe finale SCHEMA container con
+  classi per clausola (claims:316-327); carrier CARRIER-A..E dispatch
+  F5a/F2/F2a.
 
 **T-7. Riga H (licensing), [S-GBE] e B-lite.**
 - *Battuta 1*: tabella di licenza in M0 Parte V con la riga caotica
@@ -736,14 +746,19 @@ ancora di Fase A è asserita dove non esiste (F-des-3).
   ergodico SCRITTO, etichetta quasi-steady-only LIFTED.
 - *Battuta 2*: (c) NON-RIDERIVATO in Fase A (la ladder di licenza non è
   nel perimetro degli alberi). Doppia prova alternativa per [S-GBE]:
-  carrier eseguibile X-GBE PASS (`docs/claims_registry.yaml:1843-1854`).
+  carrier eseguibile X-GBE PASS (`docs/claims_registry.yaml:1843-1864` —
+  il PASS del carrier vive a :1856-1860 [fix ST-C5-01]).
   Per B-LITE: **doppia prova: ASSENTE** — [S-BLITE] è SCHEMA con brick
   nominato G12-L1-3D MAI eseguito (M0:3037-3044) = **FINDING dichiarato**
   (inventario). PROCESSO: censimento storico di questa battuta,
   2026-08-23. VERDETTO: dichiarazioni come stampate, nessuna promozione.
-- *Battuta 3*: classi finali: tabella M0 V per riga (THEOREM…
-  SCHEMA/PRACTICE, rifiuto onesto sulla riga caotica); [S-GBE] SCHEMA con
-  carrier PASS; [S-BLITE] SCHEMA con brick nominato.
+- *Battuta 3 — convergenza* [fix ST-C5-02]: DATA: 2026-08-06 (S16 T4,
+  [S-GBE] RESOLVED — named missing lemma SCRITTO, etichetta
+  quasi-steady-only LIFTED). PROCESSO: campagna S16 [RIGOR/A] con lemma +
+  carrier X-GBE (`docs/claims_registry.yaml:1843-1864` [fix ST-C5-01]).
+  VERDETTO: classi finali: tabella M0 V per riga (THEOREM…SCHEMA/PRACTICE,
+  rifiuto onesto sulla riga caotica); [S-GBE] SCHEMA con carrier PASS;
+  [S-BLITE] SCHEMA con brick nominato.
 
 ---
 

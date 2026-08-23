@@ -600,11 +600,16 @@ nasconde.
   utente a registro + ricostruzione dedicata. VERDETTO: capitolo di
   saldatura scritto, con le saldature classificate (testuali vs
   assemblaggio, §1.5).
-- *Battuta 2*: (c) NON-RIDERIVATO (è un evento storico); doppia prova =
-  questo stesso trittico che data e ancora i tre piani, joinabile dal
-  retro-audit del deck (C5). VERDETTO: verità storica dichiarata.
-- *Battuta 3*: la lezione è assorbita come regola d'onda dell'atlas
-  (stadio di confronto + arco di consumo nel brief di ogni artefatto).
+- *Battuta 2* [fix ST-C5-15]: (c) NON-RIDERIVATO (è un evento storico).
+  DATA: 2026-08-23 (censimento storico di questa finestra). PROCESSO:
+  trittico W-B.2 che data e ancora i tre piani + camminata del refuter
+  storie W-C.b (REFUTE_STORIE, blocco CH7), joinabile dal retro-audit del
+  deck (C5). VERDETTO: verità storica dichiarata.
+- *Battuta 3 — convergenza* [fix ST-C5-15]: DATA: 2026-08-22/23 (design
+  atlas v2 + amendment v2.1). PROCESSO: la correzione diventa regola
+  d'onda dell'atlas (stadio di confronto + arco di consumo obbligatori
+  nel brief di ogni artefatto; `ATLAS_RESEARCH_DESIGN_v2.md`). VERDETTO:
+  lezione assorbita a livello di processo, non solo di contenuto.
 
 **T-2. PIANO 1 — mean-swirl 2.5-D (D.1-D.20 + S.22).**
 - *Battuta 1*: 2026-08-11 — panel mean-swirl a convergenza della finestra
@@ -630,9 +635,10 @@ nasconde.
   over-certificazioni consecutive di D.18 sono ANNOTATE con contatore
   (:209-211). PROCESSO: until-dry con retraction documentate nel testo.
   VERDETTO: classi per enunciato come §2; niente auto-promozione.
-- *Battuta 3*: absorption NON ancora eseguita (§7 absorption targets,
-  :3061-3090): i tre piani restano raws/advisory UNTRACKED; landing = pass
-  R4 con siti nominati (aperto in §3).
+- *Battuta 3 — convergenza*: DATA: NON ancora avvenuta (stato al
+  2026-08-23). PROCESSO: absorption = pass R4 con siti nominati (§7
+  absorption targets, :3061-3090). VERDETTO: i tre piani restano
+  raws/advisory UNTRACKED; landing dovuto (aperto in §3).
 
 **T-3. PIANO 2 — centerpiece R22-F.**
 - *Battuta 1*: finestra C4, 2026-08-20 —
@@ -661,9 +667,13 @@ nasconde.
   judge-verifier sympy; 45 defect items TUTTI disposti, 11 contraddizioni
   cross-lens risolte con algebra ri-eseguita. VERDETTO:
   CONVERGED-WITH-THREE-NAMED-EDITS (:12-33).
-- *Battuta 2*: (a)-IN-PANEL con clausola di provenienza: derivazioni
-  indipendenti convergenti E refutazione interna al panel = doppia prova
-  interna; MA regola vincolante "panel grades are NOT record grades"
+- *Battuta 2* [fix ST-C5-14]: (c) **NON-RIDERIVATO in Fase A/B/D: il
+  panel swirl5f è una finestra parallela, non una fase di
+  S-FOUNDATIONS** — nessuna ancora di fase viene fabbricata (F-des-3).
+  Doppia prova alternativa: panel a convergenza con 4 deriver a lente
+  distinta + 4 refuter avversari + judge-verifier sympy (derivazioni
+  indipendenti convergenti E refutazione interna), SOTTO la regola
+  vincolante "panel grades are NOT record grades"
   (`DISPATCH_swirl5f.md:118-128`) — nessun grado passa a record senza
   mint (identità sector-decomposition = MINT CANDIDATE F-2). PROCESSO:
   panel a convergenza con verifier. VERDETTO: advisory di record,
@@ -697,16 +707,25 @@ nasconde.
   dichiarata come tale (§1.5.3). PROCESSO: ricostruzione S-PRES con
   classificazione esplicita testuale-vs-assemblaggio. VERDETTO: le prime
   due poggiano sui giudici dei rispettivi file; la terza no.
-- *Battuta 2*: saldature 1-2: (a) coperte dai giudici di Fase D
-  (`VERDICT_r22f.md:77` per la definizione condivisa K; consumo B1-B5
-  refereed nelle celle (ii)/(iii)). Saldatura 3: (c) NON-RIDERIVATA e
-  **doppia prova: ASSENTE** allo stato attuale — è una lettura di
-  assemblaggio single-pass del writer W-B.1, in attesa della refutazione
-  d'onda W-C = **FINDING dichiarato** (inventario `HISTORIAN_INV_a.md`;
-  si scarica quando W-C passa il capitolo). PROCESSO: censimento storico
-  2026-08-23. VERDETTO: onesto, non promosso.
-- *Battuta 3*: classe finale: saldature 1-2 = fatti testuali di record;
-  saldatura 3 = lettura dichiarata deck-bearing con refutazione attesa.
+- *Battuta 2* [fix ST-C5-13]: saldature 1-2: (a) coperte dai giudici di
+  Fase D (`VERDICT_r22f.md:78-81` per la definizione condivisa K — :77 è
+  il separatore di tabella [fix ST-C5-05]; consumo B1-B5 refereed nelle
+  celle (ii)/(iii)). Saldatura 3: (c) NON-RIDERIVATA; **doppia prova =
+  REFUTE_CH7 #5 (REPAIR MEDIA, camminata su §1.1+§1.5(3): forma "STAGED"
+  bocciata, riparazione "lettura di assemblaggio dichiarata, ancorata a
+  B-1/B-2 + :101-102" APPLICATA — la forma attuale di §1.5.3 è il
+  prodotto post-refutazione)**; residuo = re-refutazione della forma
+  riparata, CONSUMATO dalla camminata storica W-C.b (REFUTE_STORIE
+  ST-C5-13, 2026-08-23: la classificazione assemblaggio-vs-testuale
+  regge). FINDING F-4 dell'inventario RIFORMULATO di conseguenza (non
+  più "ASSENTE"). PROCESSO: refutazione di capitolo + camminata storica.
+  VERDETTO: onesto, non promosso.
+- *Battuta 3 — convergenza* [fix ST-C5-15]: DATA: 2026-08-23 (refutazione
+  W-A CH7 #5 applicata + camminata storica W-C.b). PROCESSO: refuter di
+  capitolo → riparazione applicata → ri-camminata del refuter storie.
+  VERDETTO: classe finale: saldature 1-2 = fatti testuali di record;
+  saldatura 3 = lettura di assemblaggio dichiarata deck-bearing,
+  refutata e riparata (F-4 riformulata).
 
 ## 7. POSIZIONAMENTO / CONFORMITY (celle E-ii forma [V2-R6] + residuo E-iii) [W-B.1/B7]
 

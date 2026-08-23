@@ -711,8 +711,11 @@ sono ramo (c) per definizione (sotto la granularità degli alberi ciechi).
   memoria `s25-engine-speed`). PROCESSO: re-esame a numeri con clausola
   di ribaltamento. VERDETTO: MIXED, ri-censimento al cluster engine
   F2-entry.
-- *Battuta 3*: caveat permanente dichiarato: Julia/Enzyme mai
-  benchmarkato su questo host (G0 §4 :199-201). Classe finale [REP].
+- *Battuta 3 — convergenza* [fix ST-C5-09]: DATA: 2026-08-12 (review S25
+  di G0/T2 — ultima ri-convergenza della scelta a numeri). PROCESSO:
+  re-esame gate-based con flip clause tenuta armata. VERDETTO: classe
+  finale [REP]; caveat permanente dichiarato: Julia/Enzyme mai
+  benchmarkato su questo host (G0 §4 :199-201).
 
 **T-2. C31 — driver TR-Newton segmentato a curvatura misurata (+ run di
 record S18).**
@@ -748,7 +751,10 @@ record S18).**
   E la sostanza convergono, ma resta stance di fork sull'implementazione
   (dCp-ingest gated C-B; C25/C26 righe separate, C25 NEVER). PROCESSO:
   diff alberi. VERDETTO: CONVERGENT-ENRICHING.
-- *Battuta 3*: classe finale [REP]; C25 (table box) NEVER con finestra F2.
+- *Battuta 3 — convergenza* [fix ST-C5-09]: DATA: 2026-08-21 (pipeline
+  decision map, stage 3, righe C24-C26 `:90-92`). PROCESSO: consolidamento
+  nella mappa CITE-ONLY refereed (0 BREAK). VERDETTO: classe finale
+  [REP]; C25 (table box) NEVER con finestra F2.
 
 **T-4. C49 — fitted-front marching come unico portatore di certificato.**
 - *Battuta 1*: pratica fitted dal G0 (2026-07-20, `cc878ef`: X-GENOXC su
@@ -760,15 +766,22 @@ record S18).**
   PROCESSO: aggiudicazione a convergenza con refuter (ZERO finding sulla
   riga). VERDETTO: fitted = certificatore; captured = explorer nominato
   build-gated.
-- *Battuta 2*: (b) **STANCE-DI-FORK** — l'aggiudicazione wave-2
-  (2026-08-19) È il verdetto di fork di Fase B-estesa (blocco3); si
-  dichiara: nessuna riderivazione agnostica dell'implementazione del
-  march; la classe S1 certificata su cui poggia è però coperta da item 3
-  "Certified solution class: 4/4 trees" (`phaseB_tree_diff.md:330`).
-  PROCESSO: wave blocco3 + diff alberi sull'oggetto di classe.
-  VERDETTO: [REP].
-- *Battuta 3*: upgrade path HOIST/Zahr nominato con entry gate; frontiera
-  fit-vs-capture governata dal budget DWR (campagna C11 leg (b), F2).
+- *Battuta 2* [fix ST-C5-08]: (c) **NON-RIDERIVATO: questo aspetto non ha
+  avuto riderivazione agnostica di record** — C49 > C48, NESSUN verdetto
+  per-riga di Fase B esiste (il diff §1 copre C1-C48; unico tocco
+  adiacente: candidatura "C49-class" a `phaseB_tree_diff.md:233`).
+  Doppia prova alternativa: aggiudicazione wave-2 blocco3 a ZERO finding
+  refuter (2026-08-19, `blocco3/VERDICT_wave2.md`; ledger C49
+  `docs/choice_ledger.yaml:682-692`) + la classe S1 certificata su cui il
+  fitted poggia, riderivata 4/4 dagli alberi (item 3,
+  `phaseB_tree_diff.md:330`). PROCESSO: wave blocco3 + diff alberi
+  sull'oggetto di classe. VERDETTO: [REP]; etichetta di ramo onesta —
+  l'implementazione del march NON è coperta dagli alberi ciechi.
+- *Battuta 3 — convergenza* [fix ST-C5-09]: DATA: 2026-08-19 (verdetto
+  wave-2, riga C49 chiusa a zero finding). PROCESSO: aggiudicazione a
+  convergenza con upgrade path pinnato. VERDETTO: upgrade path HOIST/Zahr
+  nominato con entry gate; frontiera fit-vs-capture governata dal budget
+  DWR (campagna C11 leg (b), F2).
 
 **T-5. C18 — NTF: da costante magica a forma derivata.**
 - *Battuta 1*: NEWTON_TOL_FACTOR = 100 come costante engine del brick 2
@@ -803,9 +816,14 @@ record S18).**
   (`validation/ADVISORY_S25bis_diff_convergence_2026-08-12.md`; memoria
   `s25bis-speed-complete`). PROCESSO: refutazione del processo di
   velocizzazione stesso. VERDETTO: [REP] con caveat host.
-- *Battuta 3*: coda tipizzata alla chiusura C4: tier ONDEMAND sui 46
-  carrier + STALENESS LINK nel claims-lint, rejector provato e SPARATO
-  in-sessione (commit `32459ca`, 2026-08-21). Classe finale [REP].
+- *Battuta 3 — convergenza* [fix ST-C5-07]: DATA: **2026-08-12** (commit
+  `32459ca`, chiusura "C4"-di-S25 — etichetta INTERNA del canale velocità
+  S25, `[F-SERVICE/S25][PIANO/R3c] C4 MECHANICAL CLOSURE`; da NON
+  confondere con la finestra S-FOUNDATIONS-C4 del 2026-08-20/21 —
+  namespace C4: v. REFUTE_STORIE §FP). PROCESSO: chiusura meccanica del
+  canale velocità con tier ONDEMAND tipizzato sui 46 carrier + STALENESS
+  LINK nel claims-lint, rejector provato e SPARATO in-sessione.
+  VERDETTO: classe finale [REP].
 
 **T-7. La mappa delle decisioni (pipeline a 8 stadi).**
 - *Battuta 1*: 2026-08-21, chiusura S-FOUNDATIONS-C4 — mappa di record
@@ -818,8 +836,10 @@ record S18).**
   BREAK / 0 REPAIR / 5 AMENDMENT / 4 NOTE (mappa :317-339; "refuter 0
   BREAK/0 REPAIR, amendment applicati", PROGRESS ORA :35-37, 2026-08-21).
   PROCESSO: refutazione della mappa. VERDETTO: retta.
-- *Battuta 3*: doppio consumer dichiarato (F2 + S-PRES); i conflitti si
-  risolvono CONTRO la mappa (regola :7-14).
+- *Battuta 3 — convergenza* [fix ST-C5-09]: DATA: 2026-08-21 (chiusura
+  C4, mappa di record). PROCESSO: regola CITE-ONLY con passaggio refuter
+  consumato. VERDETTO: doppio consumer dichiarato (F2 + S-PRES); i
+  conflitti si risolvono CONTRO la mappa (regola :7-14).
 
 **T-8. S-CERT e la disciplina dell'onestà (incidente 23/23 incluso).**
 - *Battuta 1*: 2026-08-13, sessione S-CERT (R33, prompt
@@ -839,9 +859,12 @@ record S18).**
   verificato in finestra §1.4). PROCESSO: rejector di conteggio SR-12.
   VERDETTO: claim TRUE sul carrier giusto, incidente DICHIARATO mai
   cancellato.
-- *Battuta 3*: classe finale [REP] (verdetti d'audit); la storia
-  operativa del programma include i propri incidenti come istanze della
-  disciplina, non come eccezioni.
+- *Battuta 3 — convergenza* [fix ST-C5-09]: DATA: 2026-08-13 (verdetto
+  S-CERT, R33) e 2026-08-21 (sanatoria incidente 23/23 col run `c9bacd9`).
+  PROCESSO: audit ostile context-free + rejector di conteggio SR-12.
+  VERDETTO: classe finale [REP] (verdetti d'audit); la storia operativa
+  del programma include i propri incidenti come istanze della disciplina,
+  non come eccezioni.
 
 ---
 

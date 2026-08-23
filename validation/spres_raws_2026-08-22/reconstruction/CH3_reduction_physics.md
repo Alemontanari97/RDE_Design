@@ -681,7 +681,10 @@ until-dry è essa stessa la seconda prova.
   atterrati con giudici (`blocco3/VERDICT_r22f.md`,
   `blocco3/VERDICT_escalation_c4.md`, 2026-08-20). PROCESSO: esecuzione
   del piano con refutazione. VERDETTO: direttiva CONSUMATA con evidenza.
-- *Battuta 3*: classe finale: standing directive + landing M0 C4.
+- *Battuta 3 — convergenza* [fix ST-C5-06]: DATA: 2026-08-21 (chiusura
+  S-FOUNDATIONS-C4). PROCESSO: landing M0 con gate NOTHING-LOST dual-seed
+  PASS. VERDETTO: classe finale: standing directive + landing M0 C4 con i
+  quattro oggetti nominati a classe dichiarata.
 
 **T-2. [T-DISC] — fiber-separation (condanna p-only, esonero full-state).**
 - *Battuta 1*: finestra C4, 2026-08-20 — PART 1 del centerpiece
@@ -717,7 +720,8 @@ until-dry è essa stessa la seconda prova.
   (`phaseD_r22f_centerpiece.md:432-1182`) con saldatura testuale a D.18
   (:459-481), tre derivazioni indipendenti in-panel del censimento righe
   + doppia derivazione a mano L1 + judgeverify ITEM 3.1; giudice
-  `VERDICT_r22f.md:77` (2026-08-20). PROCESSO: derivazioni indipendenti
+  `VERDICT_r22f.md:78-81` (2026-08-20; :77 è il separatore di tabella
+  [fix ST-C5-05]). PROCESSO: derivazioni indipendenti
   convergenti + refuter. VERDETTO: DEFINITION + identità THEOREM*;
   completezza = G-f SCHEMA ("grades NOT inflated").
 - *Battuta 3*: K̄ = 0 **MINTED a grado record** al landing C4 2026-08-21
@@ -776,9 +780,12 @@ until-dry è essa stessa la seconda prova.
   bloccanti B-1/B-2 vengono dal dispatch swirl5f (2026-08-19).
   PROCESSO: refutazione della spec. VERDETTO: spec sostenuta; esecuzione
   = duty F2 sotto G1, esito class-wide (U)-gated.
-- *Battuta 3*: classe finale PRACTICE/F2-QUEUED; "the bracket TIGHTENS in
-  the program order T-DISC → T-RED → M-RED → R22-CFD; nothing else
-  tightens it" (M0:1493-1494).
+- *Battuta 3 — convergenza* [fix ST-C5-06]: DATA: 2026-08-21 (landing C4
+  della forchetta e della spec). PROCESSO: landing M0 gate NOTHING-LOST
+  dual-seed PASS; esecuzione schedulata F2 sotto G1. VERDETTO: classe
+  finale PRACTICE/F2-QUEUED; "the bracket TIGHTENS in the program order
+  T-DISC → T-RED → M-RED → R22-CFD; nothing else tightens it"
+  (M0:1493-1494).
 
 ---
 

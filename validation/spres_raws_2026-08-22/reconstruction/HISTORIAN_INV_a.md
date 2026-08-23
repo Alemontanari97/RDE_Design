@@ -38,29 +38,31 @@
 | T-5 canale (vi) delta/L_H UNDERIVED | escalation E-5 delta-r4 0 BREAK sulla DICHIARAZIONE + probe nonconvex; il numero è assente PER COSTRUZIONE (aperto strutturato, owner F2, deriver ordinati) — NON finding | `blocco3/VERDICT_escalation_c4.md`; M0:1946-1952, :2078-2112 |
 | T-6 M-RED (esecuzione) | spec refutata da probe (bande riparate) + giudice PART 3; esecuzione F2-QUEUED sotto G1 — NON finding (structurally-gated dichiarato) | `phaseD_r22f_centerpiece.md:1237-1374`; `VERDICT_r22f.md:90-97` |
 
-### CH4 (8 argomenti; split (a)=1, (b)=3, (c)=4)
+### CH4 (8 argomenti; split (a)=1, (b)=2, (c)=5 — [fix ST-C5-08]: T-4/C49 rietichettata (c))
 | Argomento (c) | Doppia prova alternativa | Ancora |
 |---|---|---|
 | T-1 C58 stack JAX (fuori perimetro diff C1-C48) | flip clause quantificata armata (T1/T2a misurati) + review S25 G0/T2 | `docs/rde_nozzle_G0_decision.md` §4 :144-198; memoria `s25-engine-speed` |
+| T-4 C49 fitted-front (C49>C48, nessun verdetto per-riga Fase B) [fix ST-C5-08] | wave-2 blocco3 ZERO finding + classe S1 riderivata 4/4 (item 3); adiacenza fork phaseB:233 | `blocco3/VERDICT_wave2.md` (2026-08-19); `phaseB_tree_diff.md:330, :233`; ledger C49 :682-692 |
 | T-6 velocità S25/S25-bis | diff-refuter avversario (2 difetti veri riparati) + diff convergiuto 21/4/0/0 | commit `07400a4`; `ADVISORY_S25bis_diff_convergence_2026-08-12.md` |
 | T-7 mappa pipeline | passaggio refuter dedicato 0 BREAK/0 REPAIR/5 AMENDMENT/4 NOTE | `docs/rde_nozzle_pipeline_decision_map.md:317-339` |
 | T-8 S-CERT + incidente 23/23 | l'audit ostile context-free È la seconda prova; incidente colto dal rejector di conteggio SR-12 | PROGRESS :211 (R33); commit `c9bacd9` vs `7dea386` |
 | (testata) 12 righe SILENT del ledger | sotto la granularità degli alberi ciechi — ramo (c) per definizione, doppia prova = i carrier per-riga del ledger dove esistono | `phaseB_tree_diff.md:393-399`; `docs/choice_ledger.yaml` |
 
-### CH7 (6 argomenti; split (a)=4, (b)=0, (c)=2)
+### CH7 (6 argomenti; split (a)=3, (b)=0, (c)=3 — [fix ST-C5-14]: T-4 rietichettata (c))
 | Argomento (c) | Doppia prova alternativa | Ancora |
 |---|---|---|
-| T-1 correzione utente C-1 (evento storico) | il trittico stesso (join C5 su data+processo+verdetto) | CH7 header :3-8; memoria `artifact-connectedness-rule` |
-| T-6 saldatura 3 (scaletta descrittiva unica) | **ASSENTE — FINDING F-4**: lettura di assemblaggio single-pass W-B.1, refutazione W-C attesa; si scarica al pass W-C sul capitolo | CH7 §1.5.3; `DISPATCH_swirl5f.md:80, :101-102` |
+| T-1 correzione utente C-1 (evento storico) | il trittico stesso + camminata refuter storie W-C.b (join C5 su data+processo+verdetto) | CH7 header :3-8; memoria `artifact-connectedness-rule`; REFUTE_STORIE blocco CH7 |
+| T-4 panel swirl5f (finestra parallela, non Fase A/B/D) [fix ST-C5-14] | panel a convergenza con judge-verifier sympy; "panel grades are NOT record grades" — advisory, consumo dichiarato a ogni uso | `DISPATCH_swirl5f.md:12-33, :118-128` (2026-08-19) |
+| T-6 saldatura 3 (scaletta descrittiva unica) [fix ST-C5-13] | **doppia prova = REFUTE_CH7 #5** (camminata §1.1+§1.5(3) + riparazione APPLICATA: forma attuale di §1.5.3 = prodotto post-refutazione); residuo re-refutazione CONSUMATO da W-C.b (REFUTE_STORIE ST-C5-13) | CH7 §1.5.3; `REFUTE_CH7.md` #5; `DISPATCH_swirl5f.md:80, :101-102` |
 
-## 2. FINDING "doppia prova ASSENTE" (totale B8a: 4)
+## 2. FINDING "doppia prova ASSENTE" (totale B8a: 3 + 1 riformulata [fix ST-C5-13])
 
 | ID | Capitolo | Contenuto | Scarico nominato |
 |---|---|---|---|
 | F-1 | CH1 §6 T-5 | sharpness di THEOREM 6 enunciata senza prova scritta; carrier PB-2 mai eseguito | write-up da mintare (W2-R4) + campagna PB-2 (owner: nessuna data di record) |
 | F-2 | CH1 §6 T-7 | [S-BLITE] SCHEMA con brick G12-L1-3D nominato mai eseguito | esecuzione brick (finestra F2) |
 | F-3 | CH2 §6 T-5 | twin warning: falsificatore di rilevanza a due segni mai eseguito sul parco | esecuzione a cap unilaterale attivo (regime-qualified) |
-| F-4 | CH7 §6 T-6 | saldatura 3 = lettura di assemblaggio senza seconda prova | refutazione onda W-C sul capitolo |
+| F-4 (RIFORMULATA) | CH7 §6 T-6 | saldatura 3 = lettura di assemblaggio; **doppia prova = REFUTE_CH7 #5** (camminata + riparazione applicata) — NON più "ASSENTE" [fix ST-C5-13] | residuo (re-refutazione della forma riparata) CONSUMATO dalla camminata storica W-C.b (REFUTE_STORIE ST-C5-13, 2026-08-23) |
 
 ## 3. FUORI-PERIMETRO (finding che toccano file non miei)
 
@@ -71,6 +73,13 @@
    CH4 la prima. Il join del retro-audit deck (C5) e lo storyboard devono
    disambiguare a ogni occorrenza ("ratifica C31" vs "ledger C31") — owner:
    storyboard v3 / W-C / GUARD_CHECKLIST (file non miei).
+1-bis. **Collisione di namespace "C4"** [fix ST-C5-07, registrata in
+   REFUTE_STORIE §FP item 2]: "C4" = finestra S-FOUNDATIONS-C4
+   (2026-08-20/21) MA ANCHE etichetta interna S25 ("C4 MECHANICAL
+   CLOSURE", commit `32459ca`, 2026-08-12) — il meccanismo che ha
+   prodotto l'unico errore di data del corpus storie (CH4 T-6 b3,
+   riparato). Stessa disposizione della collisione "C31": riga nel box
+   nomenclatura/CH-REF (file non miei).
 2. **Ancora stale nota ma fuori dai miei file**: la riga findings
    `docs/findings_registry.yaml:1455` cita M0:463-498 per [S-T0P] che vive a
    M0:533+ (già dichiarata in CH1 §3.1 [W2-R8] come manutenzione fuori scope

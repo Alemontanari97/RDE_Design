@@ -553,7 +553,8 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
   record alla domanda-dati, non un formato file.
 - **Battuta 2 — (a) RIDERIVATO-PIENO (formalizzazione cieca).** DATA:
   2026-08-17. PROCESSO: contract blind formalization S-FOUNDATIONS
-  (brief agnostico; workflow 10/10; judge
+  (brief agnostico; "workflow 10/10" = verbatim nel messaggio del commit
+  5221529, non nel giudice [fix ST-C5-24]; judge
   `validation/sfoundations_raws_2026-08-13/VERDICT_contract_and_L4R1.md`).
   VERDETTO: 9 elementi del contratto riderivati ciechi; 3 gap P2 emersi
   = righe F-1/F-2/F-3 (data-class unpinned, audit RH/entropia del datum,
@@ -561,9 +562,12 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
 - **Battuta 3 — convergenza.** DATA: 2026-08-22/23 (S-PRES). PROCESSO:
   precisione guardia 11 (Gamma_d NON è "the throat", checkpoint
   `validation/spres_raws_2026-08-22/SESSION_STATE_checkpoint.md:158-163`)
-  + pin utente 2026-08-23 decoupling⇔choking pieno (guardia 17 /
-  CKP-S2-1, §1.2). VERDETTO: classe finale = contratto di record con
-  case-class subsonica DICHIARATA e lettura fisica del feedback fissata.
+  + pin utente 2026-08-23 sul feedback, in DUE direzioni a gradi
+  dichiarati: **decoupling ⇒ choking pieno** (la direzione del pin,
+  necessità); inversa SOLO a livello medio via [T-NSW] sulla classe L4
+  (guardia 17 / CKP-S2-1, forma esatta in §1.2) [fix ST-C5/B2-res1].
+  VERDETTO: classe finale = contratto di record con case-class
+  subsonica DICHIARATA e lettura fisica del feedback fissata.
 
 ### 6.2 L4-DEFAULT e il margine m_n ≥ delta
 
@@ -577,7 +581,8 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
 - **Battuta 2 — (a) RIDERIVATO-PIENO con cap dichiarato.** DATA:
   2026-08-17. PROCESSO: prova Phase D L4⇒R1
   (`validation/sfoundations_raws_2026-08-13/phaseD_L4_implies_R1.md`,
-  1529 righe; refutazioni r1/r2; judge VERDICT_contract_and_L4R1.md,
+  2105 righe, wc -l in finestra 2026-08-23 [fix ST-C5-22];
+  refutazioni r1/r2; judge VERDICT_contract_and_L4R1.md,
   autorità downgrade-only). VERDETTO: core THEOREM/THEOREM* con confine
   unstart ONESTO (classe M_s>M_x esclusa+monitorata); caveat di record:
   loop refuter cappato a round 2 NOT-DRY, dichiarato nel verdict stesso.
@@ -603,8 +608,10 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
   §5); doppia prova alternativa.** DATA: 2026-08-17 (hypaudit
   `confront_contract.md`: bundle [CONTRACT-MU] E1-E5 =
   LEGITTIMA-DICHIARATA-MONITORATA con E3 CONDIZIONATA dentro,
-  VERDICT_hypothesis_audit.md:381-385 — "the stage-A audits are work
-  the published SOTA never did", commit 5221529) + 2026-08-19
+  VERDICT_hypothesis_audit.md:381-385 — "The program's stage-A audits
+  are non-redundant work the SOTA never did",
+  VERDICT_hypothesis_audit.md:459 [fix ST-C5-20]; eco nel commit
+  5221529) + 2026-08-19
   (estensione del loud-reject set: rejector TRIPLE D.14 +
   angular-momentum D.16, PRACTICE SPECIFIED-NOT-ARMED,
   `docs/rde_nozzle_development_plan.md:811-815`). PROCESSO: audit di
@@ -613,7 +620,8 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
   owner — aperto dichiarato, non difetto taciuto.
 - **Battuta 3 — convergenza.** DATA: 2026-08-19 (Annex B). PROCESSO:
   invariante "a generator emitting off-manifold data is a generator
-  bug" (`docs/rde_nozzle_development_plan.md:1155-1157`). VERDETTO:
+  bug" (`docs/rde_nozzle_development_plan.md:1150-1152`
+  [fix ST-C5-21]). VERDETTO:
   classe PRACTICE-gate; gli audit valgono ANCHE sui dati generati —
   nessuna asimmetria fidata.
 
@@ -645,17 +653,20 @@ perimetro CH10: la scala I0-I4 è presentata in §1.1)
 - **Battuta 1 — derivazione originale.** DATA: 2026-08-05/06 (S15/S16:
   ledger pass 1 + pass 2 con L4-default; carrier
   `docs/rde_nozzle_conditionals.md:1-16`). PROCESSO: campagna fondazioni
-  — i condizionali analitici (C-D25U, C-SBVF) enunciati UNA volta,
+  — i condizionali analitici (C-D25U, C-MAJDA [fix ST-C5/B2-res2: il
+  precedente "C-SBVF" non esiste nei registri]) enunciati UNA volta,
   ereditati BY ID da ogni THEOREM*. VERDETTO: ledger di record.
-- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-17 (tree diff).
-  PROCESSO: 4/4 alberi ciechi atterrano su classi fitted-front
-  piecewise-smooth con la scoping Li-Yu/Majda ricostruita e "wild
-  non-uniqueness fenced by class fiat, declared openly"
-  (`validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:330-335`)
-  — il verdetto per-riga del diff è dichiarato come stance, non come
-  prova. VERDETTO: l'architettura condizionale-dichiarato è raggiunta
-  indipendentemente dai fork; la sostanza analitica dei singoli
-  condizionali resta quella del ledger.
+- **Battuta 2 — (a) RIDERIVATO-PIENO, scoped alla gamba ARCHITETTURA
+  [fix ST-C5-23: l'ancora è il theory-layer phaseB §3 item 3, non un
+  verdetto per-riga §1 — etichetta allineata].** DATA: 2026-08-17
+  (tree diff). PROCESSO: 4/4 alberi ciechi atterrano su classi
+  fitted-front piecewise-smooth con la scoping Li-Yu/Majda ricostruita
+  e "wild non-uniqueness fenced by class fiat, declared openly"
+  (`validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md:330-335`).
+  VERDETTO: l'architettura condizionale-dichiarato è riderivata
+  indipendentemente dai fork; la sostanza analitica dei SINGOLI
+  condizionali NON è riderivata e resta quella del ledger — scope
+  dichiarato.
 - **Battuta 3 — convergenza.** DATA: 2026-08-06 (C-MAJDA affilata a
   U3-H1, S16) e separazione di natura nel claims registry (analitici vs
   "model closures and numeric residuals, NOT analytic gaps",

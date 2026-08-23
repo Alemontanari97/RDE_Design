@@ -520,8 +520,11 @@ l'integrale di ciclo.**
   `s19-o33-campaign`; [C-O33] aperta ma QUANTIFICATA — residuo dichiarato,
   P1:200-203). PROCESSO: panel + campagna di misura pre-registrata.
   VERDETTO: identificazione THEOREM*/pending [C-O33].
-- *Battuta 3*: classe finale THEOREM* con residui R-P3.1/2 nominati
-  (M0:2930-2934).
+- *Battuta 3 — convergenza* [fix ST-C5-03]: DATA: 2026-08-13 (F-SERVICE,
+  batch R4: il blocco M0 di [T-P3] consolidato con i residui R-P3.1/2
+  nominati). PROCESSO: batch di retro-propagazione R4 + carrier O3.3 al
+  suo rango. VERDETTO: classe finale THEOREM* con residui R-P3.1/2
+  nominati (M0:2930-2934), [C-MAJDA] ereditato per ID.
 
 **T-3. Il locus S19 — superficie ottima = C+ kernel-stopped.**
 - *Battuta 1*: 2026-08-06/07, sessione S19 (campagna O3.2/O3.3, M0:3291) —
@@ -536,7 +539,11 @@ l'integrale di ciclo.**
   (2026-08-07, M0:368, :2821: identificazione limitata al sottoclasse
   irrotazionale-omoentropico). PROCESSO: audit di scope post-correzione.
   VERDETTO: THEOREM* scoped.
-- *Battuta 3*: classe finale THEOREM* dentro T-T7FS(a), scope dichiarato.
+- *Battuta 3 — convergenza* [fix ST-C5-03]: DATA: 2026-08-07 (S21:
+  re-issue in norma registrata 9.4809e-03 + qualificatore di scope
+  dall'audit C1, M0:3613, :368). PROCESSO: re-issue misurato + audit di
+  scope. VERDETTO: classe finale THEOREM* dentro T-T7FS(a), scope
+  irrotazionale-omoentropico dichiarato.
 
 **T-4. La forma a CONO di (**') + [T-T7CN] + content split.**
 - *Battuta 1*: forma free-endpoint (Rao Eq. (14)) al testo P1 2026-07-20
@@ -554,8 +561,11 @@ l'integrale di ciclo.**
   one-phase-out/mean-in, M0:2871-2874) + cross-check KT2015 (2.10)/(2.13)
   page-verified. PROCESSO: prova + rejector + confronto alla fonte.
   VERDETTO: THEOREM con falsificatore vivo.
-- *Battuta 3*: content split (assiale binario / radiale porta l'averaging)
-  registrato nello stesso blocco M0:2875-2894; classe finale come §2.
+- *Battuta 3 — convergenza* [fix ST-C5-03]: DATA: 2026-08-13 (stessa
+  finestra F-SERVICE della ratifica — esplicitata). PROCESSO: ratifica
+  utente + registrazione blocco M0. VERDETTO: content split (assiale
+  binario / radiale porta l'averaging) registrato nello stesso blocco
+  M0:2875-2894; classe finale come §2.
 
 **T-5. Il BOXED WARNING (media naive sbagliata fuori T3) e il twin.**
 - *Battuta 1*: boxed warning nel testo di record P1 §5-7, 2026-07-20
@@ -565,7 +575,9 @@ l'integrale di ciclo.**
   derivazione + controesempio esistenziale a due fasi. VERDETTO:
   corollario THEOREM* + THEOREM esistenziale.
 - *Battuta 2*: boxed warning: (a) parziale via T7-road H-F35
-  (`phaseB_tree_diff.md:325`, 2026-08-17) + rejector eseguibili gruppi
+  (`phaseB_tree_diff.md:325`, 2026-08-17) + item 5 delta-mechanism — "the
+  T3/T4 dichotomy criterion re-derived" (`phaseB_tree_diff.md:339-344`
+  [fix ST-C5-04]) + rejector eseguibili gruppi
   (vi)/(xii) e T1c/G5/G6 (numeri re-misurati suite S25-bis,
   `validation/s25bis_closing_suite.log:61-76`, 2026-08-13). Twin warning:
   (c) NON-RIDERIVATO e il falsificatore di rilevanza a due segni NON è mai
@@ -573,8 +585,12 @@ l'integrale di ciclo.**
   esistenziale c'è, la seconda prova di RILEVANZA è **ASSENTE** =
   **FINDING dichiarato** (inventario `HISTORIAN_INV_a.md`). PROCESSO:
   diff Fase B + rejector; censimento onesto. VERDETTO: come stampato.
-- *Battuta 3*: classi finali §2; la classe eps* stantia a −2.39% resta
-  l'istanza storica dell'artefatto naive (P1:106-107).
+- *Battuta 3 — convergenza* [fix ST-C5-03]: DATA: 2026-08-13 (numeri di
+  record dei rejector re-misurati alla suite di chiusura S25-bis,
+  `validation/s25bis_closing_suite.log:61-76`). PROCESSO: suite di
+  regressione con rejector che possono rigettare (R5). VERDETTO: classi
+  finali §2; la classe eps* stantia a −2.39% resta l'istanza storica
+  dell'artefatto naive (P1:106-107).
 
 **T-6. [T-T7RED] e la demozione delle forme chiuse a oracoli.**
 - *Battuta 1*: 2026-07-16 — commit `ef0af1d` "[F1/OP-0-gamma]: gamma
@@ -606,8 +622,11 @@ KT2015).**
   M0:2320-2330). PROCESSO: contraddittorio simmetrico paper/claim
   (protocollo di record). VERDETTO: claim di novità ristretti alle forme
   bloccate D-06.
-- *Battuta 3*: gate umano G5 (Kraiko-1979/PMM) resta il blocco di ogni
-  SUBMISSION (CLAUDE.md R6); classe finale [REP] + query-bounded.
+- *Battuta 3 — convergenza* [fix ST-C5-03]: DATA: 2026-08-13 (lock della
+  forma D-06 post-confronto, commit `ea2abce`). PROCESSO: contraddittorio
+  litreview → riscrittura vincolata dei claim; gate umano G5
+  (Kraiko-1979/PMM) resta il blocco standing di ogni SUBMISSION
+  (CLAUDE.md R6). VERDETTO: classe finale [REP] + query-bounded.
 
 ## 7. POSIZIONAMENTO / CONFORMITY (cella C-ii) [W-B.1/B7]
 

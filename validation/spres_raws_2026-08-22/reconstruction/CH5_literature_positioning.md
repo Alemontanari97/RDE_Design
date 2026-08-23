@@ -901,13 +901,15 @@ e' NOMINATO, non negato: aperti 1, 2 e 7 di questo capitolo.
   PROCESSO: catch utente in finestra C4, forma di record in M0
   ([ORCH-HARV-1]). VERDETTO: guardia coniata — nessun confronto in
   letteratura è un confronto con un argmax.
-- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-23 (marcatura
-  W2-R8 in §1.8). PROCESSO: la lettura L11 è DICHIARATA come
-  [INF]/sintesi-capitolo da pC:375-379 + CT-2, non frase di record — il
-  verdetto per-riga è portato come stance, con L12 tenuto verbatim
-  ([REP p. 11]: "approximately applicable", condizionato alla frequenza,
-  dichiarato dal campo stesso). VERDETTO (stance): istanza [ADV] che
-  "brushes" la cella (vi), mai chiusura.
+- **Battuta 2 — (c) NON-RIDERIVATO [fix ST-C5-10: L11 non è una riga
+  ledger e non ha verdetto per-riga Fase B — etichetta (b) ritirata];
+  doppia prova alternativa.** DATA: 2026-08-23 (marcatura W2-R8 in
+  §1.8). PROCESSO: la lettura L11 è DICHIARATA come
+  [INF]/sintesi-capitolo da pC:375-379 + CT-2, non frase di record;
+  doppia prova = L12 tenuto verbatim ([REP p. 11]: "approximately
+  applicable", condizionato alla frequenza, dichiarato dal campo
+  stesso) + regola CT-2 + REFUTE_CH5 (onda W-A). VERDETTO: istanza
+  [ADV] che "brushes" la cella (vi), mai chiusura.
 - **Battuta 3 — convergenza.** DATA: 2026-08-23 (forma d'atlas).
   PROCESSO: consumo vincolato in §1.8. VERDETTO: classe finale = marker,
   mai prova di stabilità dell'argmax; il rischio ranking resta

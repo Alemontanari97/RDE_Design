@@ -1,5 +1,40 @@
 # SESSION2_LOG — S-PRES sessione 2 (2026-08-23, log corrente)
 
+## ===== CHECKPOINT DI STATO (2026-08-23, contesto ~25% — ripresa
+## lossless da qui + memoria + questo file) =====
+## HEAD = f6f3cf9 (catena: 493710a emendamento v2.1 → 032f16a W-A+
+## delega → e84adee W-B.1 → f6f3cf9 storie+refutazione+riparazioni).
+## FATTO: W-A, W-B.0 (matrice 20×82, LINEAGE_LEDGER 37 righe
+## ADJUDICATED, regola F-9 (3)/(3s)), W-B.1 7/7, W-B.2 10/10 storie,
+## W-C.a 5/5 + C5 = TUTTA la refutazione a 0 BREAK, round riparazioni
+## 7/7 + C61 primaria CH6. Correzioni utente cablate: CKP-S2-1
+## (guardia 17 feedback), CKP-S2-2 (workflow Blocco 2), CKP-S2-3
+## (guardia 18 registro deck), CKP-S2-4 (consecutio: ATLAS_TREE =
+## consecutio walk; critic con criterio fluenza). Checklist = 18
+## guardie. STORYBOARD_v3.md scritto (49 slide, 93 feed, 0 persi).
+## IN VOLO: B8a/B8b (riparazioni C5 su §6: data 32459ca, taxonomy,
+## guardia-15 19 HIT, 2 residui CH10 §6) + storyboard v3.1 (registro
+## CKP-S2-3 + calibrazione Alley/Doumont/agenzia).
+## NEXT (ordine): (1) atterraggi 3 in volo → commit; (2) W-D: D1
+## meccanico 8 lint (v2 §L + lint 7 lineage + lint 8 card con
+## clausola GV-2, comandi in finestra) + D2 orchestratore: ATLAS_TREE
+## consecutio-walk + CH-REF (mappa id→nodo, inventario rami (c) da
+## INV_a/b, annex CODA-D'ATTACCO: 12 NEVER+2 SA card, 4 ASSENTE,
+## D6:828 O3.4-leg, procurement Talley-Coy/Sternin/Tillyaeva/W-09,
+## collisioni namespace C31+C4); (3) critic finale a max
+## (completezza + FLUENZA CKP-S2-4); (4) promozione docs/atlas/
+## (copia capitoli+ledger+tree+chref; righe ADVISORY_INDEX + registry
+## stessa finestra R7; commit pathspec); (5) GATE UTENTE: storyboard
+## v3.1 + twin PB-2 (latest-start ~01/09) + S-5F/C51 (+priorità
+## confronto parametrizzazioni); (6) authoring (pipeline
+## ../project_build build_deck; guardie 15/18); (7) Blocco 2 VIA
+## WORKFLOW (CKP-S2-2); (8) Blocco 3 R3 (suite quotata, fingerprint,
+## HANDOFF, delete P-C lockato, ratifiche R3-esteso+lifecycle).
+## VINCOLI VIVI: freeze atlas 29-30/08; cap+tripwire; design FROZEN;
+## mai GENO/Uno/stray nei commit; Fable ovunque; effort giudizio =
+## inherit. Agenti riprendibili per resume (id nel transcript).
+## ===== FINE CHECKPOINT =====
+
 Log d'onda corrente della sessione 2 (esecuzione atlas → deck). Il log
 adjudicato finale confluisce nel PROGRESS/R3 a chiusura. SR-9: pesi
 riportati per slot (token = subagent_tokens misurati dal task runner).
@@ -129,6 +164,66 @@ Esito: W-A PASS. CH7/CH8 = base stabile per W-B; via a W-B.0.
   I loop a convergenza restano gated: panel giudice+refuter SOLO sulle
   contese sostenute post-W-C (forma canonica S14); critic finale =
   chiusura del loop di completezza; nessun round rituale.
+
+- **CKP-S2-3 (2026-08-23) — REGISTRO DEL DECK (correzione utente
+  vincolante su storyboard/authoring/comms).** Verbatim (estratto):
+  "nella presentazione non devi dare i numeri esatti delle cose
+  coperte, dei teoremi, delle prove, ma è fondamentale il rigore e il
+  filare dello sviscerarsi logico ingegneristico del problema, della
+  sua modellizzazione, del vantaggio e dell'idea e del metodo in più
+  rispetto alla letteratura, della formalizzazione matematica e scelta
+  e perché di adjoint e quale ottimizzatore, di magari l'esempio di
+  TOC che abbiamo fatto e confrontato con Rao (abbiamo anche
+  un'immagine)... presentazione SOTA e professionale senza
+  informazioni utili a noi per V&V o troppo AI-language". LETTURA DI
+  RECORD (intento, non lista pedissequa): (i) i conteggi di
+  contabilità interna (62/48/12, 52/52, 218/218, 91/91, 23/23, tally
+  card/lint/guardie, "93 feed") NON vanno on-slide — vivono nelle
+  NOTE RELATORE e nel layer di retro-audit (dove il join provenance
+  li richiede comunque); (ii) NIENTE gergo di processo on-slide
+  (query-bounded, NOT-FOUND(q), card 6-campi, stage P34, guardia N,
+  feed, SCHEMA/THEOREM* come sigle nude): i concetti si dicono in
+  lingua ingegneristica ("verificato contro entrambi i codici", "il
+  regime di validità non è mai prezzato in letteratura", "questo
+  passaggio ha la struttura di prova dichiarata, non la prova
+  completa"); (iii) la spina è il FILO LOGICO-INGEGNERISTICO:
+  problema fisico → modellazione (perché la famiglia per-fase) →
+  idea/vantaggio vs letteratura → formalizzazione (condizioni di
+  ottimalità mediate) → PERCHÉ l'adjoint e quale (continuo-prima,
+  discreto-esatto) → QUALE ottimizzatore e perché → EVIDENZA che la
+  macchina funziona: **slide di validazione TOC-vs-Rao con
+  l'immagine di casa** (il metodo in JAX riproduce l'ottimo classico
+  — poi va dove Rao non può) → limiti onesti → roadmap/ask; (iv)
+  l'onestà resta STRUMENTATA ma si mostra col contenuto (limiti
+  detti, livelli di evidenza, kill criterion), non con la
+  contabilità. Cablaggio: guardia 18 in checklist; storyboard v3.1
+  ordinato (revisione di registro + slide TOC/Rao); vincola anche
+  comms review e Q&A del Blocco 2.
+
+- **CKP-S2-4 (2026-08-23) — CONSECUTIO (requisito utente sull'esito di
+  sessione).** Verbatim (estratto): "questa sessione deve riuscire a
+  scorrere fluidamente, alla fine di tutto, in tutta la teoria, in
+  tutta la sua complessità, avendo chiaro la consecutio
+  logico-matematica-ingegneristica di livello mondiale di ogni anello
+  del modello e dello studio che ci sta dietro ogni scelta". LETTURA
+  DI RECORD: la correttezza per-anello (verificata dalle onde) NON
+  basta — l'atlas deve PERCORRERSI come UNA catena: ogni anello segue
+  dal precedente con il perché esplicito, ogni scelta col suo studio
+  alle spalle raggiungibile in un salto. CABLAGGIO (2 punti):
+  (i) il mandato W-D/D2 per ATLAS_TREE.md è PROMOSSO da spina-indice
+  (puntatori alle 9 sezioni) a **CONSECUTIO WALK**: l'ordine di
+  lettura dell'intera teoria (Q0 → rami → nodi nell'ordine logico
+  §N) con, per ogni transizione, la riga connettiva "perché questo
+  segue da quello" (ancorata, mai narrativa libera) — il documento
+  con cui una sessione futura o un lettore percorre TUTTO senza
+  salti; (ii) il CRITIC FINALE riceve il criterio di FLUENZA come
+  test esplicito: camminare l'intera teoria da Q0 alla roadmap come
+  farebbe un referee di livello mondiale — ogni punto in cui la
+  consecutio si rompe (un anello che non segue, una scelta senza
+  studio raggiungibile, un salto logico non dichiarato) = FINDING di
+  fluenza, distinto dai finding di completezza. Consumatori: brief
+  D2 (W-D), brief critic, e il deck (che della consecutio è la
+  proiezione a 60').
 
 ## ONDA W-B.0 — LINEAGE SWEEP — CHIUSA (3 slot: L1 170k / L2 190k /
 L3 147k = 507k vs cap 250k; SFORO DICHIARATO, causa = GV-1/F-des-1:

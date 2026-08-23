@@ -616,13 +616,18 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
   CEN-O1 PERMISSIVA; CEN-O10 NONBLOCK+; CEN-O11 Λ = i due cerchi di
   lip), con garanzia di generalità verificata (`:371-377`). VERDETTO:
   pin decisi, nessuna geometria fisica rimossa.
-- **Battuta 2 — (b) STANCE-DI-FORK.** DATA: 2026-08-05 (state-pointer
-  notes datate in M0). PROCESSO: i pin sono DECISIONI, non derivazioni —
-  M0 li porta come puntatori di stato (`docs/rde_nozzle_MASTER.md:306-312`
-  e `:321-327`) che dichiarano gli emendamenti D2.1/D2.6 QUEUED; la
-  derivazione pin→lemma è target dichiarato
-  (`PANEL_topology_census_2026-07-22.md:359-364`). VERDETTO (stance):
-  vincolanti come pin, non promossi a teoria.
+- **Battuta 2 — (c) NON-RIDERIVATO (pin utente: per costruzione fuori
+  dal perimetro derivativo — forma CH1 T-1) [fix ST-C5-16]; doppia
+  prova alternativa.** DATA: 2026-08-06 (nota state-pointer
+  M0:306-312, "PINS SINCE DECIDED", datata 2026-08-06; la nota
+  M0:313-320 porta 2026-08-05 [fix ST-C5-17]). PROCESSO: i pin sono
+  DECISIONI, non derivazioni — M0 li porta come puntatori di stato
+  (`docs/rde_nozzle_MASTER.md:306-312` e `:321-327`) che dichiarano gli
+  emendamenti D2.1/D2.6 QUEUED; doppia prova = garanzia di generalità
+  verificata nel census (nessuna geometria fisica rimossa dai pin,
+  `PANEL_topology_census_2026-07-22.md:371-377`) + derivazione
+  pin→lemma nominata come target (`:359-364`). VERDETTO: vincolanti
+  come pin, non promossi a teoria.
 - **Battuta 3 — convergenza.** DATA: NON ancora avvenuta (census-lemma
   rigor session schedulata F2-exit). PROCESSO: residuo analitico
   dichiarato CEN-O4 (hub connectedness) + CEN-O5 (`:378-384`).
@@ -679,8 +684,11 @@ e la distinzione va detta cosi', senza riempire l'OPEN.
 ### 6.6 H20 / C61: i gap free-boundary come scoperte datate
 
 - **Battuta 1 — derivazione originale (dei GAP, non di una teoria).**
-  DATA: 2026-08-20/21. PROCESSO: fork adjudication 141 (commit a85e355:
-  "2 genuine gaps (H20 F4b; P34 P-1 window)", 90/50/1/0 riconciliati) +
+  DATA: 2026-08-20/21. PROCESSO: fork adjudication 141 (FORK_LEDGER_141
+  DONE "90/50/1/0 reconciled" = commit b0a4c15; aggiudicazione "48/50
+  covered-by-cluster, 2 genuine gaps (H20 F4b; P34 P-1 window)" =
+  commit a85e355 [fix ST-C5-18: doppia ancora, il conteggio vive in
+  b0a4c15]) +
   coverage gate C4 (commit fd2d444: **C61 p_b-closure MINTED**, 6a
   istanza della classe no-row) + base-pressure harvest (commit b3da86d:
   Veen 0.846p/M^1.3 tracciata al fit cold 1966 WG10-FAILED; exhibit
