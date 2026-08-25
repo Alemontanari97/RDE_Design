@@ -33,17 +33,24 @@ OUTPPTX = os.path.join(HERE, "SPRES_deck_v1.pptx")
 _RAW = SLIDES_A + SLIDES_B + SLIDES_C12 + SLIDES_C34
 MAIN_SPECS = [sp for sp in _RAW if not sp.get("to_backup")]
 # final order of record (spine wave MOVE-1/MOVE-2, combined walk verified):
-DECK_ORDER = (["A1", "A2", "A3", "A4", "A5", "A7", "A8", "A9", "A10", "A11",
+# S4v2 (CKP-S4-2): nozzle part = 9 slides; A2 killed; no asks; deck
+# closes on the plan slide with the takeaway line.
+DECK_ORDER = (["A1", "A3", "A4", "A5", "A7", "A8", "A9", "A10", "A11",
                "A12a", "A12b", "A13", "A14", "A15", "A16", "A17", "A18",
-               "A19", "A20", "B1", "A6", "C1", "C3", "C4", "C5", "C6", "C7",
-               "C7-bis-pre", "C7-bis", "C7-ter", "C8", "C8-bis", "C9", "C10",
-               "C13", "C14", "C13-val", "C16", "C16-bis", "C11", "C17-pre",
-               "C17", "C18", "C19"])
+               "A19", "A20", "B1", "A6", "C4", "C7-bis", "C7-ter", "C9",
+               "C13", "C13-val", "C11", "C17"])
 assert sorted(DECK_ORDER) == sorted(sp["id"] for sp in MAIN_SPECS), \
     "DECK_ORDER out of sync with main specs"
 MAIN_SPECS = sorted(MAIN_SPECS, key=lambda sp: DECK_ORDER.index(sp["id"]))
 CUT_SPECS = [sp for sp in _RAW if sp.get("to_backup")]
-ALL_SPECS = MAIN_SPECS + SLIDES_D + CUT_SPECS  # cuts land after backup, declared
+# Backup demarcation slide (user order S4): main-only page numbering,
+# backup opens with a "Backup Slides" divider; backup counters = B-n.
+DIVIDER_SPEC = dict(id="BKDIV", kind="new", layout="divider", minutes=0,
+                    title="Backup Slides", content=dict(),
+                    notes="Divider - backup section begins (S4 order: "
+                          "main-only numbering; backup slides carry B-n).")
+ALL_SPECS = (MAIN_SPECS + [DIVIDER_SPEC] + SLIDES_D
+             + CUT_SPECS)  # cuts land after backup, declared
 
 # ----------------------------------------------------------------- lint 18
 # on-slide register lint (guard 18 + user rule 2026-08-23: no internal /
@@ -638,14 +645,15 @@ def ly_roadmap_cards(prs, fs, spec):
                   [(e, {"size": 12, "color": GRAY})],
                   [(wdw, {"size": 12, "color": TEAL, "italic": True})]],
                  role="caption", size=12, line_spacing=1.0, space_after=4)
-    add_text(s, 0.5, 4.85, 12.35, 0.62, c["gap_line"], role="caption",
+    add_text(s, 0.5, 4.95, 12.35, 0.62, c["gap_line"], role="caption",
              size=13, color=GRAY, italic=True)
-    add_band(s, 0.5, 5.5, 12.35, 0.62, c["kill_line"], ec=RED, fc=RED_BG,
+    add_band(s, 0.5, 5.7, 12.35, 0.68, c["kill_line"], ec=RED, fc=RED_BG,
              size=13, color=GRAY)
-    add_text(s, 0.5, 6.2, 12.35, 0.4, c["closing"], role="caption",
-             size=14, color=RED, bold=True, align=PP_ALIGN.CENTER)
-    n = _collect(spec["id"], c["gap_line"], c["kill_line"], c["closing"],
-                 c["timeline_label"],
+    if c.get("closing"):
+        add_text(s, 0.5, 6.45, 12.35, 0.3, c["closing"], role="caption",
+                 size=14, color=RED, bold=True, align=PP_ALIGN.CENTER)
+    n = _collect(spec["id"], c["gap_line"], c["kill_line"],
+                 c.get("closing", ""), c.get("timeline_label", ""),
                  *[" ".join(cc) for cc in c["cards"]])
     return s, n
 
@@ -695,10 +703,13 @@ def ly_summary(prs, fs, spec):
              color=TEAL, bold=True)
     add_text(s, 7.0, 2.15, 6.0, 2.2, bullets(c["prog_bullets"], size=15),
              role="body", size=18, line_spacing=1.05, space_after=5)
-    add_band(s, 0.6, 4.6, 12.3, 0.85, c["closing"], ec=RED, fc=RED_BG,
-             size=15, color=GRAY, align=PP_ALIGN.CENTER)
+    # S4: pipeline reprise ABOVE the closing band, clear of the footer
+    # (Listener-1 layout defect: old placement collided with the band at
+    # 6.76); band becomes the final statement before the footer.
     f, _ = c["fig"]
-    img_scaled(s, respath(f), 1.95, 5.52, 9.5, 1.6)
+    img_scaled(s, respath(f), 1.35, 4.45, 10.6, 1.42)
+    add_band(s, 0.6, 5.98, 12.3, 0.68, c["closing"], ec=RED, fc=RED_BG,
+             size=15, color=GRAY, align=PP_ALIGN.CENTER)
     n = _collect(spec["id"], c["closing"], c["eng_bullets"],
                  c["prog_bullets"])
     return s, n
@@ -730,6 +741,18 @@ def ly_backup_table(prs, fs, spec):
               body_size=12.5, row_h=0.5)
     add_text(s, 0.6, 5.6, 12.2, 0.6, c["note_line"], role="caption",
              size=13, color=LGRAY, italic=True)
+    return s, 0
+
+
+def ly_divider(prs, fs, spec):
+    """Backup demarcation slide (user order S4): one big centered title."""
+    s = new_slide(prs, fs, spec["title"])
+    t = s.shapes.title
+    t.top, t.height = Inches(3.0), Inches(1.2)
+    p = t.text_frame.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    for r in p.runs:
+        r.font.size = Pt(40)
     return s, 0
 
 
@@ -777,16 +800,186 @@ def main():
     for target_idx, (spec, slide, _n) in enumerate(built):
         move_slide(prs, slide, target_idx)
 
-    # ---- footers/counters (fix 2): unique, regenerated
+    # ---- footers/counters (fix 2 + S4 order): main-only numbering
     total = len(built)
+    n_main_phys = len(MAIN_SPECS)
     from spreslib import fix_page_total, add_footer_texts
+
+    def set_backup_counter(slide, label):
+        """Replace the copied band counter (field + '/18') with a literal."""
+        for sh0 in slide.shapes:
+            for ts in _iter_text_shapes(sh0):
+                if "/18" in ts.text_frame.text:
+                    ts.text_frame.text = label
+                    runs = ts.text_frame.paragraphs[0].runs
+                    if runs:
+                        runs[0].font.size = Pt(14)
+                        runs[0].font.bold = True
+                        runs[0].font.color.rgb = L.WHITE
+                        runs[0].font.name = FONT
+
     for i, (spec, slide, _n) in enumerate(built, start=1):
         if spec["id"] == "A1":
             continue
-        set_footer(slide, i, total)
-        fix_page_total(slide, total)
+        if i <= n_main_phys:
+            set_footer(slide, i, n_main_phys)
+            fix_page_total(slide, n_main_phys)
+        else:
+            label = "" if spec["id"] == "BKDIV" else f"B-{i - n_main_phys - 1}"
+            set_backup_counter(slide, label)
         if spec["kind"] == "new":
             add_footer_texts(slide)
+
+    # ---- typography normalization + machine asserts (CKP-S3-5(i))
+    # host canon measured 2026-08-23: title 32pt bold RED at (0.32, 0.38);
+    # footer texts at top 6.76 (label left 1.57 / team centered at 9.06).
+    from pptx.util import Inches as _In, Emu as _Emu
+    from pptx.enum.text import PP_ALIGN as _AL
+    typo_problems = []
+
+    def _first_run(sh):
+        for p_ in sh.text_frame.paragraphs:
+            for r_ in p_.runs:
+                if r_.text.strip():
+                    return r_, p_
+        return None, None
+
+    def _title_shape(slide):
+        best = None
+        for sh in slide.shapes:
+            if not getattr(sh, "has_text_frame", False):
+                continue
+            if sh.top is None or sh.top > _In(1.2):
+                continue
+            r_, _p = _first_run(sh)
+            if r_ is None or not r_.font.size:
+                continue
+            if r_.font.size.pt >= 28:
+                if best is None or sh.top < best.top:
+                    best = sh
+        return best
+
+    for i, (spec, slide, _n) in enumerate(built, start=1):
+        if spec["id"] in ("A1", "BKDIV"):
+            continue
+        t = _title_shape(slide)
+        if t is None:
+            typo_problems.append(f"TYPO {spec['id']}: no title shape found")
+            continue
+        # ENFORCE the full title identity on every slide (host included),
+        # once and for all (user order S4): identical box, TOP anchor,
+        # zero margins, autofit KILLED (PowerPoint shrinks placeholder
+        # titles on overflow — LibreOffice does not show it), every run
+        # forced to 32pt bold RED in the deck font.
+        from pptx.enum.text import (MSO_ANCHOR as _AN,
+                                    MSO_AUTO_SIZE as _AS)
+        from pptx.util import Pt as _Pt
+        t.left, t.top = _In(0.32), _In(0.38)
+        t.width, t.height = _In(12.7), _In(0.95)
+        _tf = t.text_frame
+        _tf.vertical_anchor = _AN.TOP
+        _tf.word_wrap = True
+        try:
+            _tf.auto_size = _AS.NONE
+        except Exception:
+            typo_problems.append(f"TYPO {spec['id']}: autofit not killable")
+        for _m in ("margin_left", "margin_right", "margin_top",
+                   "margin_bottom"):
+            setattr(_tf, _m, _Emu(0))
+        for _p2 in _tf.paragraphs:
+            _p2.alignment = _AL.LEFT
+            for _r2 in _p2.runs:
+                _r2.font.size = _Pt(32)
+                _r2.font.bold = True
+                _r2.font.name = FONT
+                _r2.font.color.rgb = RED
+        r_, _p = _first_run(t)
+        if spec["kind"] == "new":
+            if r_.font.size.pt != 32:
+                typo_problems.append(
+                    f"TYPO {spec['id']}: title size {r_.font.size.pt} != 32")
+            if not r_.font.bold:
+                typo_problems.append(f"TYPO {spec['id']}: title not bold")
+        # SUBTITLE canon (user order S4, istanza 3): host slides carry teal
+        # sub-heads in mixed 24/28pt, bold/non-bold — the visible "some
+        # titles bold, some not". Enforce ONE identity on the heading line
+        # (first paragraph only — some boxes carry body below): 28pt teal
+        # bold, deck font.
+        for sh0 in slide.shapes:
+            if sh0 is t or not getattr(sh0, "has_text_frame", False):
+                continue
+            if sh0.top is None or sh0.top > _In(1.3):
+                continue
+            fr, fp = _first_run(sh0)
+            if fr is None or not fr.font.size:
+                continue
+            if 24 <= fr.font.size.pt <= 30:
+                for _r3 in fp.runs:
+                    _r3.font.size = _Pt(28)
+                    _r3.font.bold = True
+                    _r3.font.name = FONT
+                    _r3.font.color.rgb = TEAL
+        # footer texts: ENFORCE one exact geometry + format on every slide
+        # (host placeholders included; group children only reformatted —
+        # their position is the band's, already canonical).
+        def _near(v, target_in, tol=0.02):
+            return v is not None and abs(_Emu(v).inches - target_in) <= tol
+        for sh0 in slide.shapes:
+            for ts in _iter_text_shapes(sh0):
+                txt0 = ts.text_frame.text.strip()
+                # stale template page-number field inside the host band
+                # group ("n/17"): blank it (the real counter is the
+                # regenerated placeholder)
+                if re.fullmatch(r"\d+/17", txt0):
+                    ts.text_frame.text = ""  # removes stale field element
+                    continue
+                if txt0 in ("Rotating Detonation Engine Activities",
+                            "T(H)RUST team"):
+                    _team = txt0.startswith("T(H)")
+                    if ts is sh0:  # top-level: safe to move
+                        ts.left = _In(9.06 if _team else 1.57)
+                        ts.top = _In(6.71)   # = red band box (6.71 x 0.81)
+                        ts.width = _In(2.2 if _team else 7.48)
+                        ts.height = _In(0.81)
+                    _ftf = ts.text_frame
+                    _ftf.vertical_anchor = _AN.MIDDLE
+                    for _m in ("margin_left", "margin_right", "margin_top",
+                               "margin_bottom"):
+                        setattr(_ftf, _m, _Emu(0))
+                    for _p2 in _ftf.paragraphs:
+                        _p2.alignment = _AL.CENTER
+                        for _r2 in _p2.runs:
+                            _r2.font.size = _Pt(14)
+                            _r2.font.bold = True
+                            _r2.font.name = FONT
+                            _r2.font.color.rgb = L.WHITE
+        for sh0 in slide.shapes:
+            for ts in _iter_text_shapes(sh0):
+                txt = ts.text_frame.text.strip()
+                if txt == "Rotating Detonation Engine Activities":
+                    if not (_near(ts.top, 6.71) and _near(ts.left, 1.57)):
+                        typo_problems.append(
+                            f"TYPO {spec['id']}: foot label at "
+                            f"({_Emu(ts.left).inches:.2f},"
+                            f"{_Emu(ts.top).inches:.2f}) != (1.57,6.71)")
+                    if (spec["kind"] == "new"
+                            and ts.text_frame.paragraphs[0].alignment
+                            != _AL.CENTER):
+                        typo_problems.append(
+                            f"TYPO {spec['id']}: foot label not centered "
+                            "(host canon = centered placeholder)")
+                elif txt == "T(H)RUST team":
+                    if not (_near(ts.top, 6.71) and _near(ts.left, 9.06)):
+                        typo_problems.append(
+                            f"TYPO {spec['id']}: team text at "
+                            f"({_Emu(ts.left).inches:.2f},"
+                            f"{_Emu(ts.top).inches:.2f}) != (9.06,6.71)")
+                    if (spec["kind"] == "new"
+                            and ts.text_frame.paragraphs[0].alignment
+                            != _AL.CENTER):
+                        typo_problems.append(
+                            f"TYPO {spec['id']}: team text not centered")
+    ACC.lint.extend(typo_problems)
 
     out = OUTPPTX
     for suffix in ("", "_new", "_new2", "_new3"):
@@ -810,16 +1003,19 @@ def main():
     assert len(ids) == len(set(ids)), "duplicate slide ids"
     n_main = len(MAIN_SPECS)
     n_cut = len(CUT_SPECS)
-    assert n_main == 45, f"main census {n_main} != 45 (CKP-S3-4)"
-    assert n_cut == 5, f"cut census {n_cut} != 5 (C2,C3-bis,C12,C15,C17-bis)"
+    # S4v2 (CKP-S4-2): 19 host + B1 + 9 nozzle = 29 main; 22 cuts
+    assert n_main == 29, f"main census {n_main} != 29 (CKP-S4-2)"
+    assert n_cut == 22, f"cut census {n_cut} != 22 (CKP-S4-2 cut-list)"
     # word budget report
     manifest = [
         "# DECK_MANIFEST — SPRES_deck_v1 (join carrier for Block 2)",
         "",
-        f"Slides: {total} total = {n_main} main + {len(SLIDES_D)} backup "
-        f"+ {n_cut} CUT-to-backup (declared cut-list, CKP-S3-4: C2, C3-bis, "
-        "C12, C15, C17-bis; merges: C13-pre->C13, C3-bis claim->C3, "
-        "C17-bis->C18 card; A6 moved post-B1, CKP-S3-2). Storyboard join "
+        f"Slides: {total} total = {n_main} main + 1 divider + "
+        f"{len(SLIDES_D)} backup + {n_cut} CUT-to-backup (cut-list S4: "
+        "C3-bis, C12, C15, C17-bis, C16-bis(S4e); C2 PROMOTED to main "
+        "post-C9 (S4); C-ADJ added (S4); merges: C13-pre->C13, C3-bis "
+        "claim->C3, C17-bis->C18 card; A6 post-B1, CKP-S3-2). Main-only "
+        "numbering; backup counters B-n (S4 order). Storyboard join "
         "unit = 50 (A12 = declared pair).",
         "",
         "Net-word rule (declared): body strings of the spec (bullets, bands,"

@@ -39,7 +39,7 @@ SLIDES_A = [
     ),
     # ------------------------------------------------------------------ A2
     dict(
-        id="A2", kind="new", layout="bluf", minutes=1.0, cut="MAI",
+        id="A2", kind="new", layout="bluf", minutes=0, cut="S4v2", to_backup=True,
         title="Today",
         content=dict(
             agenda=[
@@ -370,27 +370,29 @@ SLIDES_B = [
     # ------------------------------------------------- A6 (moved after B1)
     dict(
         id="A6", kind="new", layout="fig_plus_eq", minutes=2.0, cut="pos3",
-        title="This exhaust is periodic — and averaging it is the crux",
+        title="The RDE exhaust is periodic — the literature designs on its time-average",
         content=dict(
             fig=("figs_paper/kp_orig_eap_construction.png",
                  "Nonuniform RDE exhaust — Kaemming & Paxson, AIAA 2018-1101 (Equivalent Available Pressure)"),
             eq="eqs/eq_eap.png",
-            eq_caption="the field's accepted average: a thrust-equivalent pressure — no error bar",
+            eq_caption="the literature's accepted average: one equivalent pressure for the whole cycle",
             bullets=[
-                "Every published design route starts from an averaged flow — but naive total-pressure averages mis-state performance (the field's own published caution).",
-                "And the accepted average has no error bar — our programme constructs it.",
+                "The real exhaust rotates at kHz: every flow quantity swings within each cycle.",
+                "Every published nozzle-design route replaces it with a steady average before designing — the authors of the average themselves caution that naive averaging mis-states performance.",
             ],
         ),
         notes=(
-            "SCRIPT: Before the designs, one fact to hold. This flow is "
-            "periodic, not steady - and every design route you are about to "
-            "see starts by averaging it. Kaemming and Paxson, the authors of "
-            "the pressure metric this field uses, published the warning "
-            "themselves: average total pressure naively and you get the "
-            "wrong answer. What nobody has published is the error bar on "
-            "the average you do use. Building that bar, for design, is "
-            "precisely our programme. Keep this in mind for every slide "
-            "that follows.\n"
+            "SCRIPT (S4v2): Before the designs, one fact to hold. This "
+            "exhaust is periodic, not steady: a detonation front rotates "
+            "at kilohertz, and every quantity the nozzle sees swings "
+            "within each cycle. The literature designs its nozzles by "
+            "first replacing that flow with a steady time-average - "
+            "every published route does. And the authors of the accepted "
+            "average published the warning themselves: average the total "
+            "pressure naively and you mis-state performance. Whether "
+            "designing on ANY average is even the right problem - that "
+            "is the question this section answers, formally. Keep it in "
+            "mind for every slide that follows.\n"
             "[CKP-S3-2 wired] A6 MOVED from primer-3 to post-B1 hinge (user "
             "order at the Block-1 loop: in the primer the averaging warning "
             "had no visible link; here it is the bridge into the nozzle "

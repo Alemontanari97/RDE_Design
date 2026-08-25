@@ -40,8 +40,17 @@ EQ = os.path.join(_HERE, "eqs") + os.sep
 GRAPH = os.path.join(_HERE, "graph") + os.sep
 
 # role-typed font floors (style pact E, machine-assertable)
+# title = 32 (host canon, CKP-S3-5(i): one title identity everywhere)
 ROLE_SIZES = dict(body=18, body_big=20, caption=12, chip=13, cite=10,
-                  head=15, kicker=24, title=30)
+                  head=15, kicker=24, title=32)
+
+# typography canon (CKP-S3-5(i), measured from the host deck 2026-08-23):
+# titles 32 pt bold RED at (0.32, 0.38); footer texts on the red band at
+# top 6.76 — label left-aligned at 1.57, team CENTERED in its box at 9.06.
+TITLE_LEFT, TITLE_TOP = 0.32, 0.38
+# footer texts: same box as the red band (6.71 x 0.81), MIDDLE-anchored —
+# the band's page number is MIDDLE-anchored, so all three center together
+FOOT_TOP, FOOT_H, FOOT_LABEL_LEFT, FOOT_TEAM_LEFT = 6.71, 0.81, 1.57, 9.06
 _SIZE_LOG = []   # (slide_idx_hint, role, size) — consumed by build asserts
 
 
@@ -289,12 +298,13 @@ def new_slide(prs, footer_src_slide, title_text, kicker=None):
             ph._element.getparent().remove(ph._element)
     # title placeholder, repositioned & styled to host visual identity
     t = s.shapes.title
-    t.left, t.top = Inches(0.32), Inches(0.30)
+    t.left, t.top = Inches(TITLE_LEFT), Inches(TITLE_TOP)
     t.width, t.height = Inches(12.7), Inches(0.95)
     tf = t.text_frame
     tf.word_wrap = True
     tf.vertical_anchor = MSO_ANCHOR.TOP
     p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.LEFT
     r = p.add_run()
     r.text = title_text
     r.font.size = Pt(ROLE_SIZES["title"])
@@ -343,12 +353,16 @@ def fix_page_total(slide, total):
 
 def add_footer_texts(slide):
     """Footer texts for NEW slides (placeholders removed): foot label +
-    team, white bold 14 pt on the red band (host canon)."""
-    add_text(slide, 1.57, 6.80, 7.48, 0.4,
+    team, white bold 14 pt on the red band. Geometry/alignment replicate
+    the HOST footer placeholders exactly (CKP-S3-5(i) istanza 2, measured:
+    top 6.76; label left at 1.57; team CENTERED in its 2.2-in box at 9.06)."""
+    add_text(slide, FOOT_LABEL_LEFT, FOOT_TOP, 7.48, FOOT_H,
              "Rotating Detonation Engine Activities", role="caption",
-             size=14, color=WHITE, bold=True)
-    add_text(slide, 9.06, 6.80, 2.2, 0.4, "T(H)RUST team", role="caption",
-             size=14, color=WHITE, bold=True)
+             size=14, color=WHITE, bold=True, align=PP_ALIGN.CENTER,
+             anchor=MSO_ANCHOR.MIDDLE)
+    add_text(slide, FOOT_TEAM_LEFT, FOOT_TOP, 2.2, FOOT_H, "T(H)RUST team",
+             role="caption", size=14, color=WHITE, bold=True,
+             align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
 
 def set_footer(slide, page, total, foot_text="Rotating Detonation Engine Activities"):

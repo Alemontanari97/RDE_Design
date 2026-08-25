@@ -7,7 +7,29 @@
 > dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
 > del proof layer, letto per profonditÃ , non per ricostruire lo stato.
 
-## ORA (2026-08-21, CHIUSURA PIENA S-FOUNDATIONS-C4 — R35 -> CONSUMED.
+## ORA (2026-08-25, S-PRES CHIUSA — milestone ESA CONSUMATA con pivot
+## dichiarato: deck finale COMPLETATO DALL'UTENTE per conto proprio
+## (Desktop/Presentazione_ESA.pptx, 22 main + backup, 2026-08-24 —
+## fuori repo, READ-ONLY); il deck di repo SPRES_deck_v1.pptx (69
+## slide, architettura v2: 19 host + B1 + 9 nozzle) resta carrier di
+## pipeline, superseded come deliverable. SESSIONI 3+4 (log =
+## validation/spres_raws_2026-08-22/deck_build/BUILD_LOG.md, integrale:
+## CKP-S3-1..5, CKP-S4-1..3): authoring assert-gated; enforcement
+## tipografico totale; onde listener (atto + full-deck + teoria, ~2.4M
+## tok subagenti, ultima onda uccisa dal limite di spesa -> harvest
+## inline HARVEST_LOTB_S4, zero perdite); ordini utente eseguiti (9
+## slide nozzle, NO ASKS, "the literature", verità formale, A2/C18
+## kill). PIVOT (CKP-S4-3): sessione chiusa con le FASI-PROVA per
+## l'atlas — P1 TRACE (trace/TRACE_ESA_FINAL.md: certificazione-per-
+## consumo sul deck reale: 17/20 claim ANCHORED incl. F-ATLAS-1
+## applicato dal consumatore; 5 finding TR-1..5), P2 CONSECUTIO
+## (trace/CONSECUTIO_S4.md: 9 decisioni con catene + 4 lezioni), P3
+## harvest Lotto B (H-1 scala L1/L2/L3 refuter-passed per P-1, H-2..
+## H-5). MINT: 2 righe findings (atlas:ch5-instantaneous-vs-reference-
+## steady-mislabel = F-ATLAS-1; atlas:flight-context-coverage-gap =
+## TR-5), lint PASS 253/0 violazioni. Vecchio ORA (S-FOUNDATIONS-C4)
+## sotto, storico.
+## [storico] ORA (2026-08-21, CHIUSURA PIENA S-FOUNDATIONS-C4 — R35 -> CONSUMED.
 ## ESEGUITO: (1) BLOCCO 0: gate GO su file (HEAD riconciliato su 4
 ## addenda dichiarati + 1 mid-window), counts == closeC3, touchpoint
 ## apertura (meter fresco; Lean DEFER a F2; calendari a F2-entry).
@@ -44,21 +66,17 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
-## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
-## committato): Block 0 = trigger sweep da comando misurato (riga
-## :1455 two-stage -> eseguire duty S1 o presentare SCHEMA
-## dichiarato; D-44 su claim di adeguatezza; P34 istanziazione
-## leggera; novita' query-bounded) + decisioni utente
-## formato/durata -> estrazione cite-only dal record (pipeline map
-## = spina dorsale; forchetta = slide onesta; atlas + campagne =
-## sezione efflusso/pratica; Gap A/Gap B = value case; genealogia
-## Rao->Hoffman->Kraiko->noi) -> deck -> doppia review (rigor
-## refuter: ogni slide-claim <= classe dell'ancora + comms review)
-## -> loop utente. POI F2 blocco 0 (contatore 0/6; re-chain +
-## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
-## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
-## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
+## NEXT (atomico): F2 BLOCCO 0 (contatore 0/6; re-chain + finestra
+## engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima campagna;
+## CFD-2 in coda F2; CFD-1 post-M-RED con criteri PM22-vs-Jourdaine;
+## sessione topologia+modellistica a F2-entry; BLOCCATO-16 ratifica a
+## F2-entry). EREDITÀ S-PRES da ingerire a F2-entry (leggere PRIMA:
+## BUILD_LOG CKP-S4-* + trace/CONSECUTIO_S4.md): D4 forma-obiettivo
+## head-to-head (per-fase vs I4 a vincoli identici, twin-first), D5
+## disciplina numeri (grandezza+scope+caveat Humphreys), H-1 scala
+## L1/L2/L3 per la prosa del paper, TR-1..4 = riparazioni-suggerite
+## per il deck utente PRIMA del talk (10 min sul suo file), finding
+## atlas ch5-mislabel da consumare alla prossima finestra atlas.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

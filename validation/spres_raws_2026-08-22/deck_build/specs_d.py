@@ -77,16 +77,16 @@ SLIDES_D = (
             id="D-F", kind="new", layout="backup_table", minutes=0, cut="backup",
             title="Backup — the honesty table, complete",
             content=dict(
-                note_line=("all six channels, best/worst, evidence class, and what tightens each — "
+                note_line=("all six error sources, best/worst, how estimated, and what tightens each — "
                            "the main deck showed the highlights (C11)"),
-                table_header=["channel", "best case", "worst case", "evidence", "what tightens it"],
+                table_header=["source", "best", "worst", "how estimated", "what tightens it"],
                 table=[
-                    ("Mean azimuthal residual", "exactly 0", "exactly 0", "theorem (declared perimeter)", "—"),
-                    ("Swirl booking debt", "1.5% of thrust", "3% of thrust", "order estimate", "residual-measurement campaign"),
-                    ("Data-fidelity biases", "0.6% of pressure", "9% of pressure", "order estimate + literature", "data contract + campaign"),
-                    ("Front jumps (weak point)", "no number yet", "—", "declared open", "derivation chain, then campaign"),
-                    ("Sizing level", "~1%", "~1%", "literature, page-verified", "paired coupled run"),
-                    ("Optimum shift", "no number at any grade", "—", "declared open", "head-to-head comparison"),
+                    ("Mean azimuthal residual", "exactly 0", "exactly 0", "proven (hypotheses stated)", "—"),
+                    ("Swirl thrust unmodelled", "1.5% of thrust", "3% of thrust", "order estimate", "residual-measurement campaign"),
+                    ("Input-data bias", "0.6% of pressure", "9% of pressure", "order estimate + literature", "data contract + campaign"),
+                    ("Jumps at the wave fronts", "no number yet", "—", "open — derivation planned", "derivation chain, then campaign"),
+                    ("Designing the nozzle alone", "~1%", "~1%", "literature, page-verified", "coupled-pair run"),
+                    ("Optimum shift", "no number yet", "—", "open", "head-to-head comparison"),
                 ],
             ),
             notes=(

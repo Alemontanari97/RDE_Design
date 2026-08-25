@@ -2559,3 +2559,25 @@ entries:
   owner: "F2 oracle window (G1 chain): execute the O3.4 gradient leg (JAX grad vs GENO FD on the assembled march) or re-scope D6 :826-830 with a declared reason; rides beside the staleness import-closure F2 item"
   trigger: "any 'O3.4 PASS' claim without per-leg scoping; F2 entry (oracle re-baseline); first cross-code gradient comparison run"
   note: "Minted 2026-08-23 at the S-PRES session-2 atlas promotion window (R7 same-window rule). Dedup by measured grep in the mint window (SR-12): grep -n 'gradient-leg|gradient leg|:826' docs/findings_registry.yaml pre-mint -> 0 pertinent hits (only :2148 litreview residues row, unrelated). Discovered by refuter C1 (W-C.a) walking CH9 claims to source."
+
+- id: atlas:ch5-instantaneous-vs-reference-steady-mislabel
+  status: CONFIRMED
+  severity: medium
+  magnitude: "CH5 par.1 (docs/atlas/CH5_literature_positioning.md:149-151) lists 'four instances' of the instantaneous-vs-mean dichotomy; at the sources TWO of the four are transient-vs-REFERENCE-STEADY, not time-mean: P-C Fig.10 caption verbatim (pdf p.9) 'Mach numbers ... for transient (left) and reference steady states (right)'; P-B Fig.14 caption verbatim (pdf p.9) '... steady (left) and transient (right)'. P-A Fig.7-vs-9 and P-D Fig.9-vs-4 hold (P-D Fig.4 = 'Time-averaged exhaust flow structure' verbatim). No record claim falls (transient/steady-companion is the spine of C4); the chapter wording overstates the mean leg on 2 of 4 exhibits"
+  source: "validation/spres_raws_2026-08-22/deck_build/BUILD_LOG.md#FINDING F-ATLAS-1"
+  code: []
+  mechanism: atlas-caption-drift
+  owner: "atlas maintenance window (CH5 par.1 rewrite: split the four instances into 2 transient-vs-mean + 2 transient-vs-reference-steady; atlas FROZEN, edit via finding per the freeze rule)"
+  trigger: "any consumption of CH5 par.1 'four instances'; next atlas edit window"
+  note: "Minted 2026-08-25 (S-PRES S4 close; found by USER 2026-08-23, source-verified in-window). Dedup by measured grep in the mint window (SR-12): Select-String 'reference-steady|reference steady|four instances' docs/findings_registry.yaml pre-mint = 0 hits. CONSUMPTION ALREADY OBSERVED: the user final deck (Desktop/Presentazione_ESA.pptx s16) applies the honest caption form (TRACE_ESA_FINAL.md row 16) - the repair wording is field-proven."
+
+- id: atlas:flight-context-coverage-gap
+  status: CONFIRMED
+  severity: low
+  magnitude: "the atlas/lit registry covers the technical corpus only; a real consumer (user final ESA deck, slide 5 '2021-2026: detonation leaves the laboratory') needed a full slide of flight-demo/programme context (JAXA S-520-31 2021, Warsaw UT 2021, NASA RDRE 251 s 2023, Venus 2025, Astrobotic 300 s 2026, DARPA Gambit, GE, funding) and had to self-source it: ZERO of those items trace to any record anchor - the claims are unverifiable from the program record (TRACE_ESA_FINAL.md row 'slide 5', verdict FUORI-SCOPE)"
+  source: "validation/spres_raws_2026-08-22/deck_build/trace/TRACE_ESA_FINAL.md#TABELLA"
+  code: []
+  mechanism: atlas-scope-gap
+  owner: "literature/atlas maintenance (decide: WANTED cluster 'flight demos & programmes' with sourced one-pager, or declared out-of-scope with a pointer to where such context lives)"
+  trigger: "next external-communication artifact (talk, proposal, paper intro) needing state-of-flight context; next lit-registry window"
+  note: "Minted 2026-08-25 (S-PRES S4 close, P1 TRACE). Dedup by measured grep in the mint window (SR-12): Select-String 'flight' docs/findings_registry.yaml pre-mint = 0 hits."

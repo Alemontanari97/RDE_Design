@@ -15,7 +15,7 @@ class -> convergence.
 SLIDES_C12 = [
     # ------------------------------------------------------------------ C1
     dict(
-        id="C1", kind="new", layout="dichotomy_figs", minutes=1.0, cut="no",
+        id="C1", kind="new", layout="dichotomy_figs", minutes=0, cut="S4v2", to_backup=True,
         title="One nozzle, two flowfields",
         content=dict(
             main_fig=("figs_paper/pc_fig10_dichotomy.png",
@@ -60,45 +60,71 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C2
     dict(
-        id="C2", kind="new", layout="c2_throat", minutes=0, cut="pos4", to_backup=True,
-        title="The throat is not steady — and not the design interface",
+        # PROMOTED TO MAIN (user order S4, 2026-08-23): placed after C9 —
+        # the published evidence for the full-state contract + the
+        # operating-point message. Was backup (cut pos4); declared.
+        id="C2", kind="new", layout="c2_throat", minutes=0, cut="S4v2", to_backup=True,
+        title="Not just pressure — the whole interface state varies",
         content=dict(
             fig1=("figs_paper/kp18_fig6_sonicline.png",
                   "Corrugated sonic line — Kaemming & Paxson, AIAA 2018-1101, Fig. 6"),
             fig2=("figs_paper/kp18_tab1_throat.png",
-                  "Published throat statistics — ibid., Table 1"),
-            fig3=("figs/fig_c2_interface.png", None),  # home micro-schema
+                  "Every quantity, not just pressure — ibid., Table 1"),
+            fig3=("figs/fig_c2_interface.png", None),  # home schema (S4 SOTA redraw)
             bullets=[
-                "The sonic line is corrugated — M = 1 crossed twice per cycle; ~6:1 throat excursions.",
-                "Design interface: the supersonic-with-margin station downstream of heat release.",
-                "None of the four studies ahead declares its data class.",
+                "Across one cycle: total pressure ~4:1, total temperature ~40%, Mach 0.85–1.33 (published).",
+                "The sonic surface is corrugated: subsonic and supersonic bands coexist — 'choked' is not uniform.",
+                "How much stays subsonic is set by geometry and operating point — published both ways. We measure it per phase, never assume it.",
             ],
         ),
         notes=(
-            "SCRIPT: Zoom on the throat. It is not steady - the sonic line "
-            "corrugates and crosses Mach one twice per cycle - and with heat "
-            "release downstream, it is not even the right design interface. We "
-            "design at the station that is axially supersonic with margin, "
-            "downstream of the heat release. One more fact you will not find "
-            "stated in the design papers: the data class - a clean periodic "
-            "rotating wave - is exhibited in the CFDs, never verified "
-            "spectrally.\n"
-            "[PROVENANCE - guard 15] Sonic line + Table 1 -> CH10-feed-3 "
-            "(Γ_d interface: THEOREM T-TH0/T-NSW backing) + CH10-feed-4 "
-            "(KP18 = kaemming_paxson_2018, [IO], CT-6). 'Nobody declares the "
-            "class' -> CH10-feed-6 + CH5-feed-5 (search-proven, bounded to "
-            "the read corpus - query-bounded wording lives HERE). Guard 11: "
-            "Γ_d is NOT 'the throat' - margin station per L4-DEFAULT; "
-            "corrugated sonic line (KP18) is the reason; subsonic patches = "
-            "declared case-class (D1 4.3bis O1-O4), never silently averaged. "
-            "FD-2 applied: 'the four studies we are about to see' "
-            "(forward-declared, resolved in C3).\n"
-            "[GUARD 18] 'search-proven' and class names in notes only."
+            "SCRIPT (S4 rework, user order): Here is what the nozzle "
+            "actually receives, in the field's own data. Not just a "
+            "pressure trace: EVERY quantity varies across the cycle - "
+            "total pressure four to one, total temperature by forty "
+            "percent, axial Mach from zero-point-eight-five to one-point-"
+            "three. And look at the sonic line: it is corrugated - "
+            "subsonic and supersonic bands COEXIST at the same station; "
+            "'choked' is an average statement, not a uniform state. "
+            "Whether any subsonic band survives depends on the geometry "
+            "AND the operating point: at high stagnation pressure and "
+            "mass flow the interface tends fully sonic-supersonic even "
+            "WITHOUT a physical throat - the published NASA shrouded-plug "
+            "case has no chamber throat and is supersonic at every phase "
+            "(M 1.1-1.4) - while a low-contraction case keeps subsonic "
+            "bands even when effectively choked, and a hard throat on a "
+            "micro-scale chamber can drive the whole chamber subsonic "
+            "with shocks running back upstream. No published study sweeps "
+            "that transition - so our data contract MEASURES the "
+            "phase-resolved Mach sign at the interface instead of "
+            "assuming it, and we design at the station that is axially "
+            "supersonic with margin, downstream of the heat release.\n"
+            "[PROVENANCE - guard 15] All-quantities spread + sonic "
+            "corrugation -> KP18 Table 1 / Fig. 6 (THROAT_HARVEST A.7 "
+            "[FIG/REP]: Pt 4.07/0.67/1.43, Tt 41%, Mx 0.86-1.33, sonic "
+            "line crossed twice; 'both subsonic and supersonic portions' "
+            "verbatim p. 10). Operating-point discriminator -> harvest "
+            "B(c) operational monitor (i): 'configuration-dependent, "
+            "must be measured, not assumed' (KP18-F6 yes-subsonic at low "
+            "contraction vs PM22-F3 no-subsonic, throatless, M 1.1-1.4 "
+            "at all phases, A.8 [REP/FIG]); high-p0 tendency SUPPORTED "
+            "not proven: Jourdaine OPEN config 'principally sonic or "
+            "supersonic' vs CHOKED micro config chamber 'mainly "
+            "subsonic' + upstream reflected shock (A.1 [REP]); Liu "
+            "M_t=1.0 even throatless = ASSERTION of record (A-L6, A.2). "
+            "No sweep of the transition = gap G6/G7 (search-proven, "
+            "harvest D). Guard 11: design interface = margin station per "
+            "L4-DEFAULT, NOT the geometric throat; subsonic patches = "
+            "declared case-class (D1 4.3bis O1-O4). CT-6: on-slide "
+            "numbers are figure/table readings with author-year "
+            "captions, no band inputs.\n"
+            "[GUARD 18] harvest ids, 'search-proven', class names in "
+            "notes only."
         ),
     ),
     # ------------------------------------------------------------------ C3
     dict(
-        id="C3", kind="new", layout="grid4_methods", minutes=1.5, cut="no",
+        id="C3", kind="new", layout="grid4_methods", minutes=0, cut="S4v2", to_backup=True,
         title="How the field designs RDE nozzles today",
         content=dict(
             grid=[
@@ -182,7 +208,7 @@ SLIDES_C12 = [
     # ------------------------------------------------------------------ C4
     dict(
         id="C4", kind="new", layout="c4_chain", minutes=2.0, cut="MAI",
-        title="Same hardware, two flowfields — and the optimum moves",
+        title="Checked on the literature's own data: the two answers differ",
         content=dict(
             main_fig=("figs_paper/pb_fig15_cfx.png",
                       "Steady vs transient thrust coefficient across truncation — Li, Xu et al., AST 136:108221 (2023), Fig. 15"),
@@ -191,20 +217,31 @@ SLIDES_C12 = [
             thumb=("figs_paper/pb_fig16_feedback.png",
                    "Nozzle→chamber feedback with truncation — ibid. 2023, Fig. 16"),
             steps=[
-                ("1", "Same solver, paired runs: steady-from-averages differs from transient — and the nozzle feeds back into the chamber."),
-                ("2", "Steady curve flat (0.965–0.971) where the transient peaks at 40% (+0.52%) and falls at 80% (−5.78%); the ranking of five cowl/spike settings inverts (0.2–1.5%)."),
-                ("3", "No published work prices this error."),
+                ("1", "Same solver, paired runs: the average-designed answer differs from the periodic one — the steady curve is flat where the true flow has an optimum and a cliff."),
+                ("2", "The ranking of five geometries inverts between the two — and no published work quantifies this error."),
+                ("3", "The literature's own verdict: classical nozzle theory 'approximately' applicable — sizing supported at ~1%; which geometry is best: open."),
             ],
         ),
         notes=(
-            "SCRIPT: The chain, in three acts, on THEIR data - same solver, "
-            "paired runs. One: the fields differ, and the nozzle talks back to "
-            "the chamber as truncation changes - which forbids assuming "
-            "decoupling without verifying choking. Two: the difference reaches "
-            "design - the steady curve is flat exactly where the transient has "
-            "a real optimum and a real cliff; the true optimum is INVISIBLE to "
-            "the curve the field designs on; and rankings between geometries "
-            "invert mid-table. Three: nobody prices this substitution error.\n"
+            "SCRIPT (S4v2, absorbs C7): Does the averaging matter? Check "
+            "it on the literature's own data - same solver, paired runs. "
+            "The steady, average-designed companion differs from the "
+            "periodic flow; the steady curve is flat exactly where the "
+            "true flow has a real optimum at forty percent truncation and "
+            "a real cliff at eighty - the true optimum is invisible to the "
+            "curve the literature designs on. And the ranking of five "
+            "cowl-and-spike settings inverts between the two. Numbers on "
+            "the slide: plus half a percent at the peak, minus five point "
+            "eight at the cliff. No published work quantifies this error. "
+            "The literature itself has reached the honest verdict: "
+            "classical maximum-thrust theory is - their word - "
+            "'approximately' applicable: sizing is supported at the "
+            "one-percent level, but WHICH geometry is best is open. "
+            "Quantifying that adverb is this programme.\n"
+            "[S4v2 MERGE] C7 verdict band absorbed as step 3 (C7 full "
+            "quote card in backup); 'approximately'/sizing-vs-ranking "
+            "anchors = C7's notes (CH5-feed-3, [REP] quote page-verified; "
+            "sizing ~1% [REP] Paxson-Miki 6.54 vs ~6.5).\n"
             "[PROVENANCE - guard 15] Fig.15/Fig.13 -> CH5-feed-2 ([ADV], "
             "CT-6, page-verified pp.10-11); Fig.16 feedback -> CH5-feed-4 "
             "([ADV-FIG], threat CT-1 adjacency). GUARD 17 (binding, user pin "
@@ -220,7 +257,7 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C5
     dict(
-        id="C5", kind="new", layout="fig_bullets", minutes=1.0, cut="no",
+        id="C5", kind="new", layout="fig_bullets", minutes=0, cut="S4v2", to_backup=True,
         title="A 1971 warning: the closure alone moves the optimum",
         content=dict(
             fig=("figs_paper/hum_table.png",
@@ -299,7 +336,7 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C6
     dict(
-        id="C6", kind="new", layout="timeline_rao", minutes=1.5, cut="no",
+        id="C6", kind="new", layout="timeline_rao", minutes=0, cut="S4v2", to_backup=True,
         title="Seventy years of variational design — extended to the periodic system",
         content=dict(
             timeline=[
@@ -338,7 +375,7 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C7
     dict(
-        id="C7", kind="new", layout="quote_twolevel", minutes=1.5, cut="MAI",
+        id="C7", kind="new", layout="quote_twolevel", minutes=0, cut="S4v2", to_backup=True,
         title="The field's own conclusion: 'approximately applicable' — with no error bar",
         content=dict(
             quote=("“the maximum thrust theory… proposed by Veen et al. is approximately "
@@ -372,7 +409,7 @@ SLIDES_C12 = [
     ),
     # --------------------------------------------------------- C7-bis-pre
     dict(
-        id="C7-bis-pre", kind="new", layout="cards4_timeline", minutes=1.5, cut="no",
+        id="C7-bis-pre", kind="new", layout="cards4_timeline", minutes=0, cut="S4v2", to_backup=True,
         title="The per-phase idea has ancestors — and we declare them",
         content=dict(
             cards=[
@@ -418,7 +455,7 @@ SLIDES_C12 = [
     # -------------------------------------------------------------- C7-bis
     dict(
         id="C7-bis", kind="new", layout="two_problems", minutes=2.0, cut="MAI",
-        title="Two different optimization problems",
+        title="Designing on the average solves a different problem — provably",
         content=dict(
             left=dict(
                 head="The field: average FIRST",
@@ -487,8 +524,10 @@ SLIDES_C12 = [
                  "the first genuinely averaged shape problem opens",
                  True),
             ],
-            honesty_band=("Its size at contouring is open — not presumed small (10:1 inlet, ~6:1 throat, "
-                          "~20:1 combustor swings). The machine is ready: it is the first campaign."),
+            honesty_band=("The head-to-head — our per-phase design vs the classical design at cycle-mean "
+                          "p₀/T₀, identical constraints — has never been computed, by anyone. First signal, "
+                          "simplest rung: the wrong mean moves the optimum area ratio by +44–87% (3–10 s "
+                          "of Isp). The machine is ready: it is the first campaign."),
         ),
         notes=(
             "SCRIPT: Honesty about where this is a theorem. Rung one: no "
@@ -530,7 +569,7 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C8
     dict(
-        id="C8", kind="new", layout="fig_bullets_tag", minutes=1.5, cut="no",
+        id="C8", kind="new", layout="fig_bullets_tag", minutes=0, cut="S4v2", to_backup=True,
         title="Per-phase is not an approximation — it is a change of coordinates",
         content=dict(
             fig=("figs/fig_c8_quotient.png",
@@ -566,7 +605,7 @@ SLIDES_C12 = [
     ),
     # -------------------------------------------------------------- C8-bis
     dict(
-        id="C8-bis", kind="new", layout="envelope_sectors", minutes=1.5, cut="no",
+        id="C8-bis", kind="new", layout="envelope_sectors", minutes=0, cut="S4v2", to_backup=True,
         title="The design space: configurations are outputs, not inputs",
         content=dict(
             fig=("figs/fig_c8bis_envelope.png", None),  # envelope + 4 sector cards w/ status
@@ -616,45 +655,67 @@ SLIDES_C12 = [
     # ------------------------------------------------------------------ C9
     dict(
         id="C9", kind="new", layout="fig_bullets", minutes=1.5, cut="no",
-        title="Same pressure trace, different thrust",
+        title="Same pressure reading, different thrust",
         content=dict(
-            fig=("figs/fig_c9_fiber.png",
-                 None),  # home fiber schema: P-trace fixed, family of compatible states
+            fig=("figs/fig_c9_gauge.png",
+                 None),  # home cartoon (CKP-S3-5(d)): same gauge, different swirl, different thrust
             bullets=[
-                "Same pressure trace, different swirl content → different thrust — no CFD needed: a pressure-only description cannot rank designs.",
-                "The full-state per-phase mean passes on this axis. Stakes: 1.5–3% of thrust.",
-                "The field imposes only pressure at the boundary — our full-state contract is the repair.",
+                "A gauge at the inlet reads the same for both flows — but one swirls, and thrust differs (1.5–3%).",
+                "Pressure alone cannot rank designs: the boundary must carry the full state — which swings p₀ ~4:1 and T₀ ~40% within one cycle (published).",
+                "Feeding recorded chamber data to the nozzle is established practice (Miki 2020; Paxson & Miki 2022) — our own Q2D chamber solver produces it in-house.",
             ],
         ),
         notes=(
-            "SCRIPT: Can any pressure-only average be enough? No - and we "
-            "can show it without a single CFD run. Fix the pressure trace at "
-            "the interface: a whole family of physically distinct states "
-            "remains - different swirl, different fluctuation content - and "
-            "they produce different thrust. So pressure-only reduction is "
-            "condemned; the full-state per-phase mean is exonerated on that "
-            "axis. Stakes: one-and-a-half to three percent of thrust, "
-            "contributions up to nine percent of pressure. And the contract "
-            "consequence: the field's practice of imposing only pressure at "
-            "the boundary throws thrust information away - our full-state "
-            "data contract is exactly the repair.\n"
+            "SCRIPT (rebuilt per CKP-S3-5(d) - explain, not enumerate): "
+            "Imagine two inlet flows and one pressure gauge. The gauge reads "
+            "exactly the same for both. But one flow goes straight in and "
+            "the other arrives swirling - and they give different thrust, "
+            "because swirl carries momentum the gauge cannot see. No CFD "
+            "run is needed to establish this: it is a counting argument on "
+            "the states compatible with one pressure trace. Consequence: "
+            "any design method fed only pressure at the boundary cannot "
+            "rank designs - the boundary must carry the full state: "
+            "pressure, temperature, all velocity components. Stakes: "
+            "one-and-a-half to three percent of thrust. Feasibility - and "
+            "this matters: taking the CHAMBER state and imposing it at the "
+            "nozzle inlet is established field practice. NASA recorded a "
+            "full periodic state - total pressure, total temperature, "
+            "velocities, species - from their Q2D chamber code and "
+            "replayed it as the nozzle inlet condition (Miki 2020); the "
+            "same architecture drives the shrouded-plug redesign of Paxson "
+            "and Miki 2022; Harroun imposes an analytic pressure-only law. "
+            "We stand on that practice with two upgrades: the data must be "
+            "FULL-state (exactly what pressure-only imposition throws "
+            "away), and it enters through a contract with rejecting checks "
+            "instead of being fed in unaudited. And the source is in "
+            "house: our group's validated Q2D chamber solver - the one "
+            "shown in the code section - produces precisely this class of "
+            "data.\n"
             "[PROVENANCE - guard 15] Fiber non-degeneracy + separation -> "
             "CH3-feed-3, REPAIRED FORM of record (REFUTE_CH10 F1, classes "
             "PER LEG): T-DISC-1 THEOREM* (fibers non-degenerate); T-DISC-2 "
             "split-grade SCOPED (in-fiber separation, booking-level, "
             "physical-h0-fixed); T-DISC-3(b) SCHEMA with premise (DR) - "
-            "never bare 'THEOREM'; the slide says it in words ('declared "
-            "proof structure with its explicit premise'). Exoneration -> "
-            "CH10-feed-5 (T-DISC-4(b) SCHEMA). Stakes 1.5-3% / up to 9% -> "
-            "[SE] scaling estimates (M0:1140-1151; swirl5f B1/B2). Weights "
-            "-> CH7-feed-2 ([SE]). Lineage LL-6/LL-24.\n"
-            "[GUARD 18] class names per leg live here; on-slide phrasing "
-            "carries the distinction in engineering words."
+            "never bare 'THEOREM'. Exoneration -> CH10-feed-5 (T-DISC-4(b) "
+            "SCHEMA). Stakes 1.5-3% / up to 9% -> [SE] scaling estimates "
+            "(M0:1140-1151; swirl5f B1/B2). Weights -> CH7-feed-2 ([SE]). "
+            "Imposed-BC precedent -> CH10 lineage LL-24 (Miki 2020 = "
+            "operative ancestor: recorded Q2D limit-cycle replayed as "
+            "unsteady inlet BC, THROAT_HARVEST A.6 [REP p.5]); LL-5 "
+            "(Paxson-Miki 2022 same architecture, 'unsteady (but "
+            "periodic) inlet boundary condition', radially uniform, "
+            "A.8); LL-6 (Harroun Eq.7 analytic p-only end-member, A.5). "
+            "In-house Q2D source = host credential A9 (HYPERDE Q2D, "
+            "V&V A10-A13); capability claim is CLASS-level (same data "
+            "class as Miki's Q2D source), no campaign promised - user "
+            "order 2026-08-23 in-window (S4 lot 2).\n"
+            "[GUARD 18] internal names (T-DISC legs, LL-*, harvest ids) "
+            "live here; on-slide only author-year forms."
         ),
     ),
     # ------------------------------------------------------------------ C10
     dict(
-        id="C10", kind="new", layout="operator_fig", minutes=1.5, cut="no",
+        id="C10", kind="new", layout="operator_fig", minutes=0, cut="S4v2", to_backup=True,
         title="What the reduction drops is explicit — and measurable",
         content=dict(
             fig=("figs_paper/pc_fig21_lateral.png",
@@ -693,55 +754,89 @@ SLIDES_C12 = [
     ),
     # ------------------------------------------------------------------ C11
     dict(
+        # S4 LOT-A REWORK (act_rework/REWRITE_FINAL.md [41/C11], applied)
         id="C11", kind="new", layout="honesty_table", minutes=2.0, cut="no",
-        title="The residual error, channel by channel",
+        title="Where the remaining error lives, source by source",
         content=dict(
-            table_header=["channel", "best case", "worst case", "evidence"],
+            table_header=["source", "best", "worst", "how estimated"],
             table=[
-                ("Mean azimuthal residual", "exactly 0", "exactly 0", "theorem (declared perimeter)"),
-                ("Swirl booking debt", "1.5% of thrust", "3% of thrust", "order estimate"),
-                ("Data-fidelity biases", "0.6% of pressure", "9% of pressure", "order estimate + literature"),
-                ("Jumps at the fronts (the heel)", "no number yet — derivation road named", "—", "declared open"),
-                ("Sizing level", "~1%", "~1%", "literature, page-verified"),
-                ("Optimum shift", "no number at any grade — the first campaign measures it", "—", "declared open"),
+                ("Mean azimuthal residual", "exactly 0", "exactly 0", "proven (hypotheses stated)"),
+                ("Swirl thrust unmodelled", "1.5% of thrust", "3% of thrust", "order estimate"),
+                ("Input-data bias", "0.6% of pressure", "9% of pressure", "order estimate + literature"),
+                ("Jumps at the wave fronts", "no number yet — derivation planned", "—", "open"),
+                ("Designing the nozzle alone", "~1%", "~1%", "literature, page-verified"),
+                ("Optimum shift", "first campaign measures it", "—", "open"),
             ],
             bullets=[
-                "Channels do not sum. Best case: single-digit %; off-axis, >10% not excluded.",
-                "Largest adverse marker, published: +13 points of ideal from a shroud at fixed area ratio — unexplained (Paxson & Miki 2022).",
-                "Our one in-class number: +0.51% ± ~30% — Rao's classical scale: 0.04–0.34%.",
-                "No external referee exists: we close the bracket, or it stays open.",
+                "Sources do not add: best case single-digit %; with strong swirl, >10% not excluded.",
+                "Largest adverse signal published: +13 points of ideal from a shroud, unexplained (Paxson & Miki 2022).",
+                "No published benchmark separates this prediction from the true unsteady flow — we measure it ourselves.",
             ],
         ),
         notes=(
-            "SCRIPT: Our honesty table - the highlights; the full table is "
-            "in backup. Channel by channel, best and worst, each cell with "
-            "its evidence level: theorem, our measurement, order estimate, "
-            "or literature datum. Read the two 'no number yet' rows first: "
-            "the front jumps and the optimum shift - we say it, and the "
-            "road to a number is named and ordered. Best case, off-axis "
-            "excluded, single-digit percent is plausible; off-axis, more "
-            "than ten percent is not excluded. Our one in-class number, "
-            "half a percent, carries a thirty-percent uncertainty - "
-            "against Rao's classical hundredths-to-thirds of a percent, "
-            "their numbers. And no external referee exists for this error: "
-            "either we close the bracket, or it stays open.\n"
+            "SCRIPT (S4 rework): This is our error budget: every source "
+            "of error we know, its best and worst case, and how each "
+            "number was obtained - a theorem, an order estimate, or a "
+            "published datum. Start with the two rows that have no number "
+            "yet: for the jumps at the wave fronts, the derivation that "
+            "will produce the number is already laid out; for the shift "
+            "of the optimum, the measurement is in the plan two slides "
+            "ahead. These sources do not add into a single figure - they "
+            "are different physics at different confidence levels - so "
+            "the summary is a band: best case, with weak swirl, "
+            "single-digit percent overall is plausible; with strong "
+            "swirl, more than ten percent is not excluded. One computed "
+            "case of ours gained +0.51 percent - and the uncertainty on "
+            "that figure is about thirty percent of the value itself, "
+            "relative, so read it as roughly half a percent, not as a "
+            "promise of more. And that case sits in a design class where "
+            "the certification boundary binds before the periodic physics "
+            "can differentiate the contours - a property of that class, "
+            "measured as such, not a ceiling of the method: at the "
+            "simplest rung the wrong mean already moves the optimum area "
+            "ratio by 44 to 87 percent, worth 3 to 10 seconds of Isp. "
+            "For scale: Rao's classical method is credited with 0.04 to "
+            "0.34 percent - their numbers, in their regime. The largest "
+            "published signal in the adverse direction: Paxson and Miki, "
+            "2022, add a shroud at fixed area ratio and the plug gains "
+            "thirteen points of ideal - unexplained by the authors; if "
+            "swirl content is doing that, it is exactly the worst row of "
+            "this table. And note what the literature does not contain: "
+            "no published benchmark separates a phase-averaged prediction "
+            "like ours from the true unsteady three-dimensional flow. So "
+            "nobody else can settle this table for us - the measurements "
+            "that fill it are ours to make, and they come next.\n"
             "[PROVENANCE - guard 15] Table cells -> CH3-feed-4 (classes "
             "per cell, forchetta §; CH7 PART 5 headline :1731-1743): mean "
-            "channel THEOREM* (K-bar=0, perimeter H-RED-2); booking debt "
-            "1.5-3% [SE]; B1 0.6-9% p [SE]+lit; heel delta/L_H UNDERIVED "
-            "-> CH3-feed-5 (SCHEMA + derivers named: five-field -> "
-            "route-B -> M-RED -> R22-CFD); sizing ~1% [REP]; optimum-"
-            "shift no number (:1506). +0.51%±~30% -> CH1-feed-9 (band-"
-            "underinclusion declared); Rao 0.04-0.34% their numbers "
-            "(CT-6). No-referee -> CH5-feed-10 + CT-3 STRICT form: no "
-            "published referee THAT DISCRIMINATES the per-phase-averaged "
-            "prediction against 3D-unsteady truth (restrictive clause is "
-            "part of the sentence - binding for Q&A). Conditional spine "
-            "C-D25U -> CH2-feed-7 (here only). Guard 6 / D-44: bracket, "
-            "NEVER adequacy - the slide shows a bracket and never claims "
-            "the average adequate for contour ranking.\n"
-            "[GUARD 18] class sigle/registry ids here; evidence column on "
-            "slide uses plain words."
+            "channel THEOREM* (K-bar=0, perimeter H-RED-2); swirl-thrust "
+            "row (was 'booking debt', plain-word relabel, same 1.5-3% "
+            "[SE]); input bias 0.6-9% p [SE]+lit; wave-front jumps (was "
+            "'heel') delta/L_H UNDERIVED -> CH3-feed-5 (SCHEMA + derivers "
+            "named: five-field -> route-B -> M-RED -> R22-CFD - the "
+            "'derivation planned' cell; NO forward pointer to the plan "
+            "slide for this row); 'Designing the nozzle alone' (was "
+            "'sizing level', same ~1% [REP], substitution reading "
+            "cross-consistent with C17 card 3); optimum-shift row -> C17 "
+            "card 2 head-to-head (:1506), the only row resolving there. "
+            "+0.51%+-~30% -> CH1-feed-9 (band-underinclusion declared; "
+            "+-30% RELATIVE, said in script). Class-diagnosis sentence -> "
+            "[C-O33] quantified, cause = design class (cert-limited, "
+            "margin inactive; 3 instances S20/S22/S24 of record; M0 tier "
+            "ladder) - context weld, weakens the small number's reading, "
+            "adds no claim; rung-1 44-87% / 3-10 s -> CH2-feed-3 "
+            "(PRACTICE with rejector, same anchor as C7-ter panel 1). "
+            "Rao 0.04-0.34% their numbers (CT-6). No-benchmark bullet -> "
+            "CH5-feed-10 + CT-3 STRICT form: no published referee THAT "
+            "DISCRIMINATES the per-phase-averaged prediction against "
+            "3D-unsteady truth (restrictive clause on-slide: 'this "
+            "prediction ... from the true unsteady flow'). Conditional "
+            "spine C-D25U -> CH2-feed-7 (here only). Guard 6 / D-44: the "
+            "slide shows a band, never claims adequacy.\n"
+            "[S4 BUDGET NOTE] honesty_table sits near the ~100 declared "
+            "cap after trims - measured at build; exemption declared in "
+            "BUILD_LOG if exceeded, never silent.\n"
+            "[GUARD 18] class sigle/registry ids here; table uses plain "
+            "words only."
         ),
     ),
     # ------------------------------------------------------------------ C12

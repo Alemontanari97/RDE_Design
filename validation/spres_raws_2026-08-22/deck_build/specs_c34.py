@@ -21,7 +21,8 @@ SLIDES_C34 = [
                  "Variational contour vs classical Rao contour, with deviation panel — in-house, two independent routes"),
             bullets=[
                 "By a route independent of the classical construction, the machine recovers Rao's contour: max deviation ~2·10⁻³ of throat radius.",
-                "Two routes, one contour — the field's benchmark, passed.",
+                "Two routes, one contour — the literature's benchmark, passed.",
+                "And it is fast: one design segment in 15–20 s; a full validation campaign in 10–14 minutes.",
             ],
         ),
         notes=(
@@ -48,6 +49,47 @@ SLIDES_C34 = [
             "regeneration outside contract - BUILD_LOG decision).\n"
         ),
     ),
+    # ---------------------------------------------------------------- C-ADJ
+    # NEW SLIDE (user order CKP-S3-5(c), S4): first-encounter adjoint
+    # explainer, placed before C13. Declared deviation: main deck 45 -> 46.
+    dict(
+        id="C-ADJ", kind="new", layout="fig_bullets", minutes=0, cut="S4v2", to_backup=True,
+        title="What is an adjoint — the whole gradient for one extra solve",
+        content=dict(
+            fig=("figs/fig_cadj_cost.png",
+                 None),  # home cost schematic: N+1 flow solves vs forward+backward
+            bullets=[
+                "The objective is one number: J, the cycle-averaged thrust of the shared wall.",
+                "To improve a shape we need its slope dJ/d(shape) — for hundreds of wall parameters.",
+                "The adjoint: one flow solve + one backward solve → every derivative at once, exact — the gradient a trust-region Newton then climbs.",
+            ],
+        ),
+        notes=(
+            "SCRIPT (first-encounter language, user order): Before showing "
+            "the machine, the one idea it runs on. Everything we optimize "
+            "is a single number: J, the cycle-averaged thrust delivered by "
+            "the shared nozzle wall. To improve a shape you need to know "
+            "which way to move it - the slope of J with respect to every "
+            "wall parameter, and there are hundreds. The obvious route: "
+            "wiggle one parameter, re-solve the flow, repeat - hundreds of "
+            "flow solutions for a single design step. The adjoint route: "
+            "solve the flow once forward, then solve ONE auxiliary problem "
+            "backward - the adjoint - and it returns the derivative with "
+            "respect to ALL parameters at once, exactly, for the price of "
+            "roughly one extra solve. That exact gradient is what the "
+            "trust-region Newton optimizer climbs, a few seconds per "
+            "iteration. That is the entire trick - the rest of the "
+            "machine is discipline around it.\n"
+            "[PROVENANCE - guard 15] Pedagogical slide: no new record "
+            "claims. Adjoint-exactness anchor = same as C14 card 2 "
+            "(discrete-exact gradient; CH9-feed-4 THEOREM T-LEMB, "
+            "reverse-AD = transposed adjoint); cost structure (1 forward "
+            "+ 1 backward per gradient) = standard adjoint identity, "
+            "program carrier X-TOCV first dJ/dW (S17/S18, of record). "
+            "Figure = home schematic fig_cadj_cost.png (no data).\n"
+            "[GUARD 18] internal names (X-TOCV, T-LEMB) here only."
+        ),
+    ),
     # ------------------------------------------------------------------ C13
     dict(
         id="C13", kind="new", layout="graph_l0", minutes=2.0, cut="no",
@@ -56,8 +98,9 @@ SLIDES_C34 = [
             fig=("figs/fig_method_flow.png", None),  # CKP-S3-3: method flow; dense graphs -> backup
             fig_note="six stages shown — the full eight-stage engineering record is in backup",
             bullets=[
-                "Every choice on a register, with alternatives and a test that can reject it — open choices declared, with a named lead and date.",
-                "No published design method ships inside a chain built to reject it.",
+                "The objective is one number: J, the cycle-averaged thrust of the shared wall.",
+                "The adjoint: one forward + one backward solve → the exact dJ/d(shape) for every wall parameter — trust-region Newton climbs it in seconds.",
+                "Every choice sits on a register with alternatives and a test that can reject it.",
             ],
         ),
         notes=(
@@ -105,7 +148,7 @@ SLIDES_C34 = [
     ),
     # ------------------------------------------------------------------ C14
     dict(
-        id="C14", kind="new", layout="cards3", minutes=1.5, cut="no",
+        id="C14", kind="new", layout="cards3", minutes=0, cut="S4v2", to_backup=True,
         title="Inside the optimizer stage — including what we will re-examine",
         content=dict(
             cards=[
@@ -179,7 +222,7 @@ SLIDES_C34 = [
     ),
     # ------------------------------------------------------------------ C16
     dict(
-        id="C16", kind="new", layout="numbers_bars", minutes=1.0, cut="MAI",
+        id="C16", kind="new", layout="numbers_bars", minutes=0, cut="S4v2", to_backup=True,
         title="Speed was engineered, not found — validation becomes affordable",
         content=dict(
             fig=("figs/fig_c16_bars.png", None),  # target-vs-measured bars
@@ -212,7 +255,10 @@ SLIDES_C34 = [
     ),
     # --------------------------------------------------------------- C16-bis
     dict(
-        id="C16-bis", kind="new", layout="audit_timeline", minutes=1.5, cut="no",
+        # MOVED TO BACKUP (CKP-S3-5(e), S4): the audit process-story leaves
+        # the main deck; honesty shows via content (C11 table). Q&A-ready.
+        id="C16-bis", kind="new", layout="audit_timeline", minutes=0,
+        cut="S4e", to_backup=True,
         title="We commissioned a hostile audit — and the chain failed us",
         content=dict(
             timeline_cards=[
@@ -261,40 +307,52 @@ SLIDES_C34 = [
     ),
     # --------------------------------------------------------------- C17-pre
     dict(
-        id="C17-pre", kind="new", layout="three_gaps", minutes=1.5, cut="no",
-        title="Which gap dominates — the honest map",
+        # S4 LOT-A REWORK (act_rework/REWRITE_FINAL.md [42/C17-pre], applied)
+        id="C17-pre", kind="new", layout="three_gaps", minutes=0, cut="S4v2", to_backup=True,
+        title="Which gap dominates — and how we would find out",
         content=dict(
             columns=[
-                ("mean-state design", "the comparator — which nobody has computed in this head-to-head, us included"),
-                ("our per-phase design", "the programme"),
-                ("true 3D optimum", "incomputable — for anyone"),
+                ("mean-state design", "designs to the time-averaged flow; never compared head-to-head, by anyone"),
+                ("our per-phase design", "this method"),
+                ("true 3D optimum", "incomputable, for anyone"),
             ],
-            gaps_label="three gaps: formulation · model · composition — the value question is which dominates, on which axis",
-            hypothesis=("Working hypothesis (declared, falsifiable): at fixed constraints the formulation "
-                        "gap dominates — three suppression results on the model gap, none on formulation. "
-                        "Its weak point, stated with it: front jumps are unsuppressed, no number yet — if "
-                        "large, the model gap can dominate."),
+            gaps_label=("three distances: formulation (which problem you solve) · model (which physics "
+                        "you keep) · end to end, the total — the question is which dominates"),
+            hypothesis=("Working hypothesis, testable: at fixed constraints the formulation gap dominates "
+                        "— three exact results each close a piece of the model gap (its smooth part); "
+                        "none touch formulation. Its weak point: the wave-front jumps carry no bound yet "
+                        "— if large, the model gap can win."),
             heel=None,
-            death_line=("Programme failure needs two independent misses — both measurable: head-to-head + "
-                        "residual measurement."),
+            death_line=("The programme fails only if two independent measurements both go against it: "
+                        "the head-to-head and the residual measurement."),
         ),
         notes=(
-            "SCRIPT: The value map, honestly. Three designs on the board: "
-            "the mean-state design - the comparator, which nobody has ever "
-            "computed in this controlled head-to-head, us included; ours; "
-            "and the true three-D optimum, which nobody can compute. Three "
-            "gaps between them - formulation, model, composition - and the "
-            "value question is which dominates. Our working hypothesis - "
-            "declared, falsifiable, not a theorem: at fixed constraints "
-            "the formulation gap dominates, because on the model gap we "
-            "hold three suppression results on the smooth part - the "
-            "exact change of coordinates, the vanishing mean channel, the "
-            "exonerated full-state mean, the three results you saw - "
-            "while on the formulation gap there is none. But always with "
-            "the heel: the front jumps are the unsuppressed first order "
-            "of the model gap, no number yet - if large, the model "
-            "dominates anyway. And programme death needs two independent "
-            "failures, each measurable separately.\n"
+            "SCRIPT (S4 rework): Three designs on one axis: a design "
+            "built on the time-averaged flow; ours, built phase by phase; "
+            "and the true three-dimensional optimum, which nobody can "
+            "compute. Between them, two gaps in series - a formulation "
+            "gap: you asked the wrong question of the flow; and a model "
+            "gap: you kept the wrong physics - and the end-to-end "
+            "distance to the truth is their composition, the third thing "
+            "on the map. The value question of the whole enterprise is "
+            "which of these dominates. Note the left comparison first: "
+            "nobody has ever computed a time-averaged design against a "
+            "phase-resolved one at equal constraints - us included; it "
+            "is the first measurement on our plan. Our working "
+            "hypothesis - a hypothesis, not a theorem, and it can be "
+            "proven wrong: at fixed constraints, the formulation gap "
+            "dominates. The grounds: three of the results you have "
+            "already seen close pieces of the model gap on its smooth "
+            "part - the exact change of coordinates, the vanishing mean "
+            "equation, the cleared full-state average - while nothing "
+            "yet bounds the formulation gap. The weak point travels with "
+            "the hypothesis, on the same slide: the jumps at the wave "
+            "fronts are the one unbounded first-order piece of the model "
+            "gap - if they turn out large, the model gap can dominate "
+            "anyway. And the programme fails only if two independent "
+            "measurements both go against it - the head-to-head and the "
+            "residual measurement; each of them is on the plan that "
+            "follows.\n"
             "[FD-5(ii) wired] the spoken back-pointer to C8/C9/C10 is in "
             "the script above ('the three results you saw').\n"
             "[PROVENANCE - guard 15] Three designs / three gaps -> "
@@ -309,78 +367,117 @@ SLIDES_C34 = [
             "/ gap(B)=model of the three-design frame DO NOT coincide "
             "with the historical namespace Gap A / Gap B (inverted): "
             "on-slide and in speech use ONLY the words 'formulation'/"
-            "'model', never bare letters. (C17 defines Gap A/Gap B "
-            "inline in the historical sense - see its note.)\n"
+            "'model', never bare letters. (S4: C17 no longer shows "
+            "letters either - historical namespace lives in C17's note "
+            "for Q&A only.)\n"
             "[GUARD 18] channel letters and NOT-FOUND here."
         ),
     ),
     # ------------------------------------------------------------------ C17
     dict(
+        # S4 LOT-A REWORK (act_rework/REWRITE_FINAL.md [43/C17], applied;
+        # head-to-head card sharpened to the atlas form CH6:440/490 —
+        # comparator = classical variational design at cycle-mean p0/T0,
+        # identical constraints; same claim, sharper comparator)
         id="C17", kind="new", layout="roadmap_cards", minutes=1.5, cut="MAI",
-        title="What tightens the bracket, in order — every outcome pre-registered",
+        title="Four measurements, in order — consequences fixed before the data",
         content=dict(
-            timeline_label="the roadmap = what tightens the bracket, in order",
+            timeline_label="",
             cards=[
-                ("1 · MEASURE THE RESIDUAL",
-                 "measured residual bands, per certified family",
-                 "small → promoted, with a bar; large → dominant channel named",
-                 "first campaign — starting now"),
-                ("2 · HEAD-TO-HEAD",
-                 "first number: our design vs mean-state design, equal constraints",
-                 "material gap → method pays; small → field proven right — both publishable",
-                 "cheap; machine ready — first campaign"),
-                ("3 · PAIRED COUPLED RUN",
-                 "price of the substitution, on the field's template",
-                 "bar holds → ~1% sizing stands; exceeded → class run becomes priority",
-                 "after the residual measurement"),
-                ("4 · REFERENCE-CLASS RUN",
-                 "~12M-cell decider anchoring the 3D bound",
-                 "inside → bracket closes; outside → channel identified",
-                 "decided after the residual — today: channel, not commit"),
+                ("1 · Residual",
+                 "how much the phase-averaged equations miss, on nozzles already solved",
+                 "small → error bars tighten; large → dominant source named",
+                 "first — cheapest"),
+                ("2 · Head-to-head",
+                 "our per-phase design vs the classical design at cycle-mean p₀/T₀ — identical constraints; no such number exists yet",
+                 "either result publishable",
+                 "machine ready — first campaign"),
+                ("3 · Coupled pair",
+                 "same nozzle with and without the combustor: the cost of designing alone",
+                 "~1% holds → estimate stands; exceeded → step 4 moves up",
+                 "after step 1"),
+                ("4 · Full 3D reference",
+                 "~12M-cell reference the literature lacks",
+                 "inside its band → the error band closes; outside → failing source named",
+                 "route chosen now; commit decided after step 1"),
             ],
-            gap_line=("Gap B (ours vs mean-state) is measurable in-house; Gap A (distance to the true 3D "
-                      "optimum) no one can compute — we bound it."),
-            kill_line=("Declared stop criterion: measured gain below ~1% Isp → pivot to certification & "
-                       "operability."),
-            closing="Every outcome is pre-registered: the decision rule is fixed before the data arrive.",
+            gap_line=("Ours vs time-averaged: measurable in-house. The true 3D optimum: computable by "
+                      "no one — we bound it."),
+            kill_line=("Stop criterion: measured gain below ~1% Isp → effort pivots to certification "
+                       "and operability."),
+            closing=("First per-phase variational design method for RDE nozzles — "
+                     "the head-to-head number comes next. Thank you."),
         ),
         notes=(
-            "SCRIPT: The roadmap is not a wish list - it is the ordered "
-            "list of what tightens the bracket, and every outcome is "
-            "pre-registered. First and cheapest: measure the residual on "
-            "certified families - it builds the referee that does not "
-            "exist in the literature; either outcome is informative. The "
-            "head-to-head: the machine is ready, and it is the first "
-            "campaign of the phase that opens now - no number exists on "
-            "any side before it runs; a material gap pays the method, a "
-            "small gap makes the field right at that rank and we would "
-            "be the first to prove it - both publishable. Then the "
-            "paired coupled run on the field's template; and only after "
-            "the residual measurement, the reference-class decision - "
-            "today we decide the CHANNEL, not the commit. Gap B we "
-            "measure in-house; Gap A nobody can compute - we bound it. "
-            "And the honest death criterion: below about one percent of "
-            "measured Isp gain, we pivot to certification and "
-            "operability - we do not insist. The phase is JUST opened: "
-            "no campaign result is promised as acquired.\n"
-            "[GATE DECISION WIRED] Twin (b): the card reads 'first "
-            "campaign of the phase' - NOT 'if ordered'; consistent with "
-            "C7-ter and C17-bis.\n"
-            "[PROVENANCE - guard 15] Roadmap order -> CH6-feed-9; G2 "
-            "value gate -> CH6-feed-6; value condition armed-rejector, "
-            "today undecidable -> CH6-feed-7 (D-44 gated; 'pre-"
-            "registered outcomes' = form of record); M-RED derived bands "
-            "B-1..B-4 pre-registered -> CH3-feed-6; twin kill-or-"
-            "validate both-informative -> CH6-feed-4; B-lite cheap lever "
-            "-> CH3-feed-10 + CH1-feed-8 (notes only). Internal names "
-            "(M-RED / CFD-2 / CFD-1 / twin PB-2) live HERE; slides "
-            "carry the speaking forms (guard 18).\n"
-            "[GAP-LETTERS MAP - FD-4/CW-4] Gap A / Gap B on this slide "
-            "= HISTORICAL namespace (A = distance to true 3D optimum; "
-            "B = ours vs mean-state), defined inline on the slide; do "
-            "NOT confuse with the three-design frame letters of "
-            "C17-pre (inverted) - in speech use the words, not bare "
-            "letters, when crossing the two frames.\n"
+            "SCRIPT (S4 rework): This is the measurement plan, and the "
+            "order is the content: four steps, each with its two "
+            "possible outcomes and what each outcome triggers - fixed "
+            "now, before any data arrive. Step one, the cheapest: "
+            "measure the residual - take nozzle families the machine "
+            "has already solved and checked, put them back into the "
+            "full phase-averaged equations, and read how much is "
+            "missed. Small residual: the error bars tighten and the "
+            "family is promoted with a stated bar; large residual: it "
+            "names which error source dominates - either outcome is "
+            "informative, and it also builds the referee that the "
+            "literature does not contain. Step two, the head-to-head - "
+            "the reason this programme exists: our per-phase design "
+            "against the classical variational design built on "
+            "cycle-mean stagnation pressure and temperature, identical "
+            "constraints, swirl bracketed out - does the optimal "
+            "contour move, and how much thrust does the difference "
+            "carry? Today no such number exists, on any side; a "
+            "material gap pays for the method, a small gap proves "
+            "standard practice right at that rank and we would be the "
+            "first to prove it - both results are publishable. Step "
+            "three: a paired simulation of the same nozzle with and "
+            "without the combustor coupled, on the kind of template "
+            "the field already uses - it prices what we give up by "
+            "designing the nozzle alone. If the literature's roughly "
+            "one-percent estimate holds, that row of the error table "
+            "stands; if it is exceeded, the big reference run moves up "
+            "the queue. Step four, the largest: a twelve-million-cell "
+            "unsteady reference simulation - the benchmark the field "
+            "lacks; today we choose only how to procure it, partner or "
+            "purchase - whether to commit the run is decided after "
+            "step one. One distance we can measure entirely in-house - "
+            "ours against the time-averaged design; the other - the "
+            "distance to the true three-dimensional optimum - no one "
+            "can compute, so we bound it. And the stop criterion is "
+            "fixed in advance: if the measured gain falls below about "
+            "one percent of Isp, we stop pushing performance and pivot "
+            "to certification and operability. The campaign has just "
+            "opened: none of these results is promised as acquired.\n"
+            "[S4 HEAD-TO-HEAD FORM] card 2 comparator = atlas CH6 :440 "
+            "(I4 = Rao/GENO design on cycle-mean (<Pc>, T0, gamma)) + "
+            ":490 (twin PB-2 at IDENTICAL constraints: same eps, L, "
+            "closure); 'ZERO computed instances' of the comparator in "
+            "the record (CH6 :712). Twin-first = kill-or-validate "
+            "(CH6 :223-225). Internal names (I4, twin PB-2) here only.\n"
+            "[GATE DECISION WIRED] Twin (b): card 2 reads 'first "
+            "campaign' - NOT 'if ordered'; consistent with C7-ter and "
+            "the backup open-decisions slide.\n"
+            "[PROVENANCE - guard 15] Order of the four steps -> "
+            "CH6-feed-9 (on-slide word 'roadmap' dropped, order kept); "
+            "G2 value gate -> CH6-feed-6; value condition armed-"
+            "rejector, today undecidable -> CH6-feed-7 (D-44 gated; "
+            "'consequences fixed before the data' = plain form of the "
+            "pre-registration of record); M-RED derived bands B-1..B-4 "
+            "-> CH3-feed-6; twin kill-or-validate both-informative -> "
+            "CH6-feed-4; B-lite cheap lever -> CH3-feed-10 + CH1-feed-8 "
+            "(notes only). Card 4 'inside its band -> the error band "
+            "closes' = Guard 6 / D-44 form (band closure, never a "
+            "validation verdict). Internal names (M-RED / CFD-2 / CFD-1 "
+            "/ twin PB-2 / I4) live HERE; slides carry speaking forms "
+            "(guard 18).\n"
+            "[GAP-LETTERS MAP - FD-4/CW-4, S4 UPDATE] Gap letters A/B "
+            "appear NOWHERE on slide or in speech anymore (S4 rework): "
+            "band 1 says the two distances in words ('ours vs "
+            "time-averaged' / 'the true 3D optimum'). Historical "
+            "namespace (A = distance to true 3D optimum; B = ours vs "
+            "mean-state) kept HERE for Q&A cross-reference only; "
+            "C17-pre's frame letters are inverted vs this namespace - "
+            "always words, never letters.\n"
         ),
     ),
     # --------------------------------------------------------------- C17-bis
@@ -425,55 +522,55 @@ SLIDES_C34 = [
     ),
     # ------------------------------------------------------------------ C18
     dict(
-        id="C18", kind="new", layout="ask_cards", minutes=1.5, cut="MAI",
-        title="Three asks — each one decision-ready",
+        # S4 LOT-A REWORK (act_rework/REWRITE_FINAL.md [44/C18], applied)
+        id="C18", kind="new", layout="ask_cards", minutes=0, cut="S4v2-noasks", to_backup=True,
+        title="Three requests: a reference simulation, engine data, publication support",
         content=dict(
             cards=[
-                ("1 · The reference-class run",
-                 "WHAT: collaboration or procurement, ~12M-cell class decider",
-                 "TO DECIDE: the channel — the commit comes after the residual measurement",
-                 "WHEN: channel now; run later"),
-                ("2 · Engine data in the declared class",
-                 "WHAT: high-speed pressure / hot-fire imaging",
-                 "TO DECIDE: which rig, which instrumentation window",
-                 "WHEN: starting now"),
-                ("3 · Publication & procurement",
-                 "WHAT: venues for the method papers + three key papers we cannot access",
-                 "TO DECIDE: endorsement of channels",
-                 "WHEN: at your convenience"),
+                ("1 · Reference 3D simulation",
+                 "What: ~12M-cell reference run, by collaboration or procurement",
+                 "To decide: the route — partner or purchase; the commit is decided after the residual measurement",
+                 "When: route now, run later"),
+                ("2 · Engine test data",
+                 "What: high-speed pressure traces or hot-fire imaging",
+                 "To decide: which rig, which instrumentation",
+                 "When: starting now"),
+                ("3 · Publication & access",
+                 "What: venues for the method papers; three key papers we cannot access",
+                 "To decide: endorsement",
+                 "When: at your convenience"),
             ],
-            input_band=("'What input does your method need?' — Specs suffice to design; every extra datum "
-                        "climbs a declared reliability ladder (full ladder in backup). Data is not fed in: "
-                        "it is admitted — and the entry gate can say no. (A contract prediction — not yet "
-                        "exercised on real data.)"),
+            input_band=("'What input does the method need?' Specs suffice to design; each added "
+                        "measurement raises the confidence grade (scale in backup). Data outside the "
+                        "required class is rejected — not yet exercised on real data."),
         ),
         notes=(
             "[F-4] Open-items card moved OFF-slide (three asks means three "
             "cards): still open, said if asked - mean-swirl route; one "
             "wall closure; data contract (choking hypothesis, named lead); "
             "one gate threshold to be derived as a number. Full open-items "
-            "slide in backup. Reliability ladder: backup slide.\n"
-            "[F-4] Open-items card moved OFF-slide (three asks means three "
-            "cards): still open, said if asked - mean-swirl route; one "
-            "wall closure; data contract (choking hypothesis, named lead); "
-            "one gate threshold to be derived as a number. Full open-items "
-            "slide in backup. Reliability ladder: backup slide.\n"
-            "SCRIPT: Three asks, each decision-ready - what we ask, what "
-            "you need in order to decide, by when. One: the reference-"
-            "class run - today we ask only for the CHANNEL, collaboration "
-            "or procurement; the commit decision comes after the residual "
-            "measurement, exactly as the roadmap ordered. Two: engine "
-            "data in the class the method requires - high-speed pressure "
-            "or hot-fire imaging sufficient to verify stagnation-"
-            "temperature flatness and cycle frequency. Be aware: our "
-            "monitor DECIDES, it does not bless - it is built to reject "
-            "data outside the class, and we expect real data to exercise "
-            "it. Three: publication channels, and three key papers we "
-            "cannot access. And the question every panel asks - what "
-            "input do you need: specs suffice; more data climbs a "
-            "declared ladder - that ladder is on the slide, cases A to "
-            "G. Evidence level said honestly: this is a contract "
-            "prediction, not yet exercised on a real dataset.\n"
+            "slide in backup. Reliability ladder: backup slide (moved off "
+            "the band per F-4 option b, S4).\n"
+            "SCRIPT (S4 rework): Three requests - for each: what we ask, "
+            "what you would need to decide, and when. First, the "
+            "reference simulation: today we ask only for the route - a "
+            "collaboration or a procurement; the decision to actually "
+            "run it comes after the residual measurement, exactly in "
+            "the order of the plan you just saw. Second, engine test "
+            "data in the class the method needs: high-speed pressure "
+            "traces or hot-fire imaging, sufficient to verify that "
+            "stagnation temperature is flat over a cycle and to read "
+            "the cycle frequency. One property to be aware of: the "
+            "input screen decides, it does not bless - it is built to "
+            "reject data outside that class, and we expect real data "
+            "to exercise it. That screening has not yet been tried on "
+            "a real dataset. Third: publication venues for the method "
+            "papers, and three key papers we currently cannot access. "
+            "And the question every panel asks - what input does your "
+            "method need: engine specifications alone are enough to "
+            "produce a design; every additional measurement raises the "
+            "confidence grade of the result, on a scale spelled out in "
+            "the backup.\n"
             "[PROVENANCE - guard 15] Specs-ladder Annex B -> CH10-feed-1 "
             "(the most valuable feed; stage P34 'prediction' declared - "
             "tag here, words on slide); G6 loud-reject never exercised "
@@ -487,41 +584,66 @@ SLIDES_C34 = [
     ),
     # ------------------------------------------------------------------ C19
     dict(
-        id="C19", kind="new", layout="summary", minutes=1.0, cut="MAI",
-        title="A method you can audit — fast enough to validate economically",
+        # S4 LOT-A REWORK (act_rework/REWRITE_FINAL.md [45/C19], applied).
+        # BUDGET DECLARATION (REFUTE (12)): summary layout ≈66 net words
+        # > 60 cap and 5 bullets > 3 — two-column record grammar is the
+        # declared treatment; see BUILD_LOG S4 lot A.
+        id="C19", kind="new", layout="summary", minutes=0, cut="S4v2", to_backup=True,
+        title="What we discard is measurable — validation costs minutes, not weeks",
         content=dict(
             eng_head="For the engineers",
             eng_bullets=[
                 "the first per-phase variational design method for RDE nozzles",
                 "what the reduction discards is an explicit, measurable operator",
-                "an honest error bracket, channel by channel, each cell with its evidence level",
+                "an error budget, source by source, each with its estimate",
             ],
-            prog_head="For the programmes",
+            prog_head="For the decision-makers",
             prog_bullets=[
                 "validation in minutes, not weeks",
-                "an incremental plan, already priced, with pre-registered outcomes — and a declared stop criterion",
+                "a stepwise plan with known costs, fixed consequences, and a stop criterion",
             ],
-            closing=("Honesty here is not a disclaimer — it is built into the method: limits stated on "
-                     "the slides, with their evidence levels."),
-            fig=("figs/fig_method_flow.png", "signature"),  # F-2/F-23: same naming as C13, legible size
+            closing=("The method's limits are on these slides — each with a number, or the named way "
+                     "to get one."),
+            fig=("figs/fig_method_flow.png", "signature"),  # F-2/F-23: same naming as C13, legible, clear of footer
         ),
         notes=(
-            "SCRIPT: Two take-aways. For the engineers: the first per-"
-            "phase variational design method for RDE nozzles, with the "
-            "discarded physics turned into an explicit measurable "
-            "operator and an honest per-channel error bracket. For the "
-            "programmes: a machine fast enough to make validation an "
-            "economic act, an incremental plan already priced with "
-            "pre-registered outcomes, and a declared honest-death "
-            "criterion. And the line I want to leave you with: our "
-            "honesty is not a disclaimer - it is instrumented inside "
-            "the method. You saw the limits written on the slides, with "
-            "their evidence levels. Thank you.\n"
-            "[PROVENANCE - guard 15] Instrumented honesty -> CH6-feed-10 "
-            "(D-44 / P34 / card discipline - the instrumentation SAID "
-            "with content, sigle here; guard 18); dual takeaway -> "
-            "MESSAGE_ARCHITECTURE (takeaway duali). 'First' in D-06 "
-            "locked form, query-bounded (guard 9) - spoken as in A2.\n"
+            "SCRIPT (S4 rework): Two things to retain. For the "
+            "engineers: this is, as far as our search of the literature "
+            "has found, the first per-phase variational design method "
+            "for RDE nozzles. What the reduction throws away is not "
+            "hand-waved - it is an explicit operator you can evaluate, "
+            "so the approximation itself is measurable. The error "
+            "budget is stated source by source, each entry with how it "
+            "was estimated - a theorem, an order estimate, or a "
+            "published datum - and where there is no number yet, the "
+            "way to get one is named. For the decision-makers: the "
+            "machine validates a design in minutes, not weeks - so "
+            "testing this method is cheap. The plan is stepwise, its "
+            "costs are known, and the consequence of each possible "
+            "outcome is fixed before the data arrive - including the "
+            "point where we would stop: below about one percent of "
+            "measured Isp gain, effort pivots to certification and "
+            "operability. How much better a nozzle designed this way "
+            "will fly, nobody yet knows - no number exists, on any "
+            "side, until the head-to-head runs; it is the first "
+            "measurement of the campaign. That number is what we came "
+            "here to go and get. Thank you.\n"
+            "[PROVENANCE - guard 15] Closing band = per-limit claim, "
+            "verified at build (heel: road named on C11; optimum shift: "
+            "campaign on C17; input screen: real data on C18; "
+            "formulation gap: head-to-head on C17); the open-decisions "
+            "backup slide is NOT claimed by the main slides. "
+            "Instrumented honesty -> CH6-feed-10 (D-44 / P34 / card "
+            "discipline - shown by the band's content, the word "
+            "'honesty' never said; sigle here; guard 18); dual takeaway "
+            "-> MESSAGE_ARCHITECTURE. 'First' SPOKEN in the D-06 "
+            "locked, query-bounded form (guard 9), rendered in the "
+            "script verbatim ('as far as our search of the literature "
+            "has found') - POINTER RECONCILED S4: A2 as built is "
+            "agenda-only (CKP-S3-2) and carries no primacy sentence; "
+            "the old note 'spoken as in A2' is superseded by this "
+            "in-script rendering. Closing question answered by "
+            "abstention (no gain number claimed) -> C17 card 2 anchor.\n"
         ),
     ),
 ]

@@ -290,6 +290,247 @@ ovunque; commit pathspec (mai GENO/stray; data/q_mapping.* NON nostri).
   milestone/deadline = 1 hit legittimo (A1); owner/window = 2 hit
   legittimi. Comando nel log di sessione, misurato in-window [SR-12].
 
+### LOTTO 2 — (i) tipografia + (c) slide adjoint + (d) rework C9: ESEGUITO, in giro utente
+- **(i) NORMALIZZAZIONE TIPOGRAFICA (anticipata su ordine utente in-window)**,
+  causa-radice MISURATA (probe _probe_typography.py, mai a occhio):
+  (1) titoli host = textbox 32pt bold ancorati in BASSO in box H=0.60
+  (testo a ~0.55-0.98"; i titoli a 2 righe TRABOCCAVANO sopra il box, es.
+  A14) vs nuove = placeholder 30pt ancorato in ALTO a 0.30 → CANONE UNICO
+  applicato a TUTTE le slide (A1 esclusa): box (0.32, 0.38) × 12.7 × 0.95,
+  anchor TOP, 32pt bold RED Palatino (font già identici, misurato);
+  (2) footer host = placeholder a top 6.76 CENTRATO nel box vs nuove =
+  textbox a 6.80 left → nuove riallineate a (1.57/9.06, 6.76) CENTER.
+  ASSERT nel builder (blocco typo in build_deck_spres.py, tolleranza
+  ±0.02"): size/bold titolo, geometria e centratura footer — build FAIL
+  se violate. ROLE_SIZES title 30→32 (floor 28 invariato).
+  Residuo dichiarato: titolo A14 resta a 2 righe (62 char) — sfiora il
+  sottotitolo host a 1.22", non collide; eventuale accorciamento = tocco
+  di contenuto host, da ordinare.
+- **(c) SLIDE C-ADJ COSTRUITA** (What is an adjoint — the whole gradient
+  for one extra solve): posizione pre-C13; fig di casa fig_cadj_cost.png
+  (N solve vs forward+backward, palette deck, _fig_s4_lot2.py); 3 bullet
+  primo-incontro (J, dJ/d(shape), 1+1 solve → TR-Newton); note = script
+  disteso + provenance (T-LEMB/X-TOCV in note, guard 18). DEVIAZIONE
+  DICHIARATA: main 45→46 (ordine utente CKP-S3-5(c)); assert census
+  aggiornato 46; totale 68.
+- **(d) C9 RIFATTA** (slide 34): titolo "Same pressure reading, different
+  thrust"; visual = cartoon due condotti + manometri identici, swirl
+  diverso, spinta diversa (fig_c9_gauge.png, di casa); 3 bullet piani.
+- **WELD IMPOSED-BC/Q2D (user catch in-window, atlas-verificato)**: la
+  domanda "era noto prendere lo stato camera/gola e imporlo come BC?" ha
+  risposta DI RECORD: CH10 lineage LL-24 (Miki 2020 = antenato operativo,
+  replay periodico dello stato Q2D come inlet BC del dominio ugello,
+  THROAT_HARVEST A.6), LL-5 (Paxson-Miki 2022, stessa architettura, A.8),
+  LL-6 (Harroun Eq.7 analitica p-only, A.5); posizione CH10: pratica del
+  campo = imposed-BC SENZA contratto, noi = stessa architettura CON
+  contratto d'ammissione. NON era consumato da alcuna slide → cablato in
+  C9 bullet 3 (autore-anno on-slide) + script/note (claim capability Q2D
+  in-house = CLASS-level, nessuna campagna promessa; ancora = credenziale
+  host A9 HYPERDE Q2D). 
+- Build: 68 slide, lint 0, OK. NOTA: canonico LOCKATO (PowerPoint aperto
+  dall'utente) → salvato su SPRES_deck_v1_new.pptx; riallineare a file
+  chiuso. QA render: s3-vs-s4 uniformi (titolo+footer), s14 sanata,
+  s34/s36 verificate.
+- APERTO (ordine utente in-window, fine lotto 2): slide 41-46 (atto
+  finale C16-bis→C19) "non si capiscono, AI flavor, non SOTA" →
+  proposta lotto 3 = rebuild dell'atto con workflow naive-listener
+  (sotto, da ratificare col giro).
+
+### LOTTO 3 (in corso) — ordini utente in-window + workflow atto finale
+- **C2 PROMOSSA IN MAIN** (ordine utente: "slide 64 nel punto giusto, non
+  backup"): posizione post-C9 (35/46); titolo "Not just pressure — the
+  whole interface state varies"; bullet nuovi (tutte le grandezze variano
+  KP18 Tab.1; superficie sonica corrugata con bande subsoniche; estensione
+  = geometria+punto di lavoro, "published both ways", misurata mai
+  assunta). VERIFICA FISICA della tesi utente (alta p0/portata → tutto
+  sonico anche throatless) DA ATLAS+HARVEST: SUPPORTATA non provata —
+  PM22 throatless M 1.1-1.4 a tutte le fasi (A.8) e Jourdaine open
+  "principally sonic or supersonic" (A.1) = polo FOR; KP18 bassa
+  contrazione = bande subsoniche anche "effectively choked" (A.7);
+  Jourdaine choked micro = camera subsonica con shock a monte; NESSUNO
+  sweep pubblicato della transizione (gap G6/G7) → il monitor misura il
+  segno di Mach per fase. Tutto nelle note C2 con ancore harvest.
+- **fig_c2_interface.png RIDISEGNATA SOTA** (ordine utente): taglio
+  meridiano canale+plug, fronte rotante, superficie sonica corrugata con
+  bande M<1/M>1, interfaccia di progetto a valle (in _fig_s4_lot2.py).
+- **C16-bis → BACKUP eseguito** (CKP-S3-5(e); destinazione = backup con
+  Q&A-readiness, raccomandazione orchestratore non obiettata al giro).
+  Main = 46 (45 CKP-S3-4 + C-ADJ + C2 − C16-bis); cut-list = C3-bis,
+  C12, C15, C17-bis, C16-bis(S4e).
+- **NUMERAZIONE MAIN-ONLY + DIVISORE** (ordine utente): contatori n/46
+  solo sulle main; slide di demarcazione "Backup Slides" (BKDIV, layout
+  divider) a posizione 47; backup marcate B-1..B-22 (set_backup_counter
+  sostituisce campo+/18 del band). Totale fisico 69.
+- **TIPOGRAFIA: ENFORCEMENT TOTALE** (ordine utente "una volta per
+  tutte"): il pass del builder ora RISCRIVE (non solo verifica) ogni
+  titolo (box/anchor/margini-0/autofit KILLED — PowerPoint restringe i
+  placeholder in overflow, LibreOffice no: era il residuo invisibile ai
+  QA — ogni run 32pt bold RED font deck) e ogni footer top-level
+  (geometria esatta, margini 0, CENTER, 14pt bold white) su host+nuove.
+  Probe post-build su _new: zero deviazioni titolo/footer (residui =
+  sottotitoli teal host 28pt = design host, A1 esente). Build 69 slide
+  lint 0 OK. File: canonico RIAPERTO dall'utente in PowerPoint → build
+  su SPRES_deck_v1_new.pptx; _new intermedie PRECEDENTI ELIMINATE
+  (igiene: un solo file per stato); riallineare canonico a file chiuso.
+- **TR-NEWTON: aggiudicazione verificata in atlas** (domanda utente):
+  CH4 §6 (d) C31 = ledger choice_ledger.yaml:481-493 — TR-Newton
+  segmentato a curvatura misurata = driver di record, alternative censite
+  (quasi-Newton, proximal-bundle, [P-IPADJ] interior-point adjoint),
+  survey SOTA datata 2026-08-19/20 ATTUALE con ri-sweep nominato a
+  F2-entry (cluster C31/C58 vs landscape 2026); criteri pubblicati
+  ancorati (Hicken-Zingg, Fidkowski-Darmofal, CH2:684). Il deck lo dice
+  su C14 + backup B-12/B-13 (optimizer full record).
+- **WORKFLOW ATTO FINALE LANCIATO** (ordine utente): run wf_a5a1f897-8a9,
+  4 agenti sequenziali (listener-naive sui render 34-46 → rewriter con
+  BRIEF vincolante → refuter record/registro → converger + listener-2);
+  carrier = act_rework/BRIEF.md (regole CKP-S3-1 + lista vietata +
+  contratti SENSE spine + arco di consumo dichiarato); deliverable =
+  act_rework/REWRITE_FINAL.md, consumo = orchestratore S4 → specs →
+  rebuild → gate utente. [SR-9: shape 4 agenti seq, peso a consuntivo
+  alla chiusura.]
+
+- **AUDIT FULL-DECK LANCIATO** (ordine utente in-window: "audit simile per
+  tutto il deck tranne backup" = lettera (f) operativa): run
+  wf_8140508c-b17, 5 agenti (4 listener paralleli: full-arc 1-46 +
+  sezioni 1-22 / 23-35 / 36-41, + synthesizer con tabella difetti per
+  severità, pattern trasversali, slide PASS intoccabili, batching in
+  2-3 lotti per il giro utente); slide host 3-21 = HOST-LIMITED (riparo
+  solo titoli/caption/note). Render sorgente = deck_audit/s-01..46 dal
+  build corrente (_new, 69 slide, enforcement attivo). L'atto 42-46
+  resta al workflow act-rework (wf_a5a1f897), nessuna sovrapposizione
+  di scrittura: entrambi read-only sul deck, artefatti in cartelle
+  disgiunte. [SR-9 a consuntivo alla chiusura.]
+
+## CKP-S4-1 (utente, 2026-08-23, VINCOLANTE) — PERSONA ESATTA + CONVERGENZA A 4 ASSI
+Verbatim: "il target di ascoltatore deve essere esattamente quello che
+sarà, e deve essere a convergenza con piena chiarezza, completezza,
+comprensione e collocazione." LETTURA DI RECORD: (1) persona listener =
+l'audience DI RECORD (decisione utente S1, PROGRESS_2026-08-22_Spres1
+:28-30): **ESA propulsion panel** — ingegneri di propulsione senior,
+esperti di ugelli classici/CFD, zero interni RDE assunti
+(nothing-assumed physics intro), che valutano il gruppo e DECIDONO
+sulle tre richieste; 60'. Mai più listener generici. (2) Il ciclo
+audit → riparo → re-audit itera CON LISTENER FRESCO della persona
+esatta fino a PASS per-slide su QUATTRO assi: CHIAREZZA (parafrasabile
+in una frase dal panel), COMPLETEZZA (nessuna domanda essenziale senza
+risposta o senza rinvio esplicito a note/backup), COMPRENSIONE
+(takeaway del listener == contratto SENSE della spine), COLLOCAZIONE
+(slide al posto giusto nell'arco; contenuto al livello giusto
+main/backup/note). Verdetto di convergenza = tabella per-slide 4-assi,
+tutte PASS. I run già in volo (wf_a5a1f897 atto, wf_8140508c full-deck)
+valgono come PRIMA ONDA (difetti trovati restano difetti); il gate di
+convergenza usa la persona esatta da qui in poi.
+
+### LOTTO A — ATTO FINALE IMPLEMENTATO (REWRITE_FINAL 5 slide + duty residue)
+- Workflow act-rework CONSUMATO [SR-9: 4 agenti seq, 305k tok, 47 tool
+  use, 17 min; listener→rewriter→refuter (31 PASS / 8 STRENGTHENED / 8
+  REGISTER-HIT / 1 UNANCHORED / 1 SENSE-LOST, riparazioni word-exact)
+  →converger, LISTENER-2 = 5/5 SENSE YES]. Audit full-deck CONSUMATO
+  come prima onda [SR-9: 5 agenti (4 parallel + synth), 386k tok, 132
+  tool use, 9 min; sintesi = 43 difetti, batching B/C/D].
+- IMPLEMENTATO nelle spec (C11 in specs_c12; C17-pre/C17/C18/C19 in
+  specs_c34): titoli-asserzione nuovi, lessico "source" ovunque
+  (channel/heel/booking-debt/sizing → parole ingegneri), C17 = catena
+  frecce 4 step con conseguenze, C18 = 3 richieste in lingua piana,
+  C19 = chiusura senza universali né "honesty" narrata. Lessico
+  sincronizzato anche su backup D-F (tabella completa).
+- **DICHIARAZIONI DI BUDGET (mai silenzio)**: C19 summary ≈66 parole
+  nette > cap 60 e 5 bullet > 3 — trattamento dichiarato = grammatica
+  two-column di record (REFUTE (12)); C11 honesty_table vicino al cap
+  ~100 (tabella 6 righe = il contenuto della slide); C17 porta 2 bande
+  slim oltre le card (forma d'ordine, REFUTE (10)).
+- Duty residue scaricate: (3) pointer C19 "spoken as in A2" RICONCILIATO
+  (A2 è agenda-only: forma query-bounded guard-9 resa in-script, nota
+  superseded dichiarata); (6) s-60/D-F NON era stub — tabella completa
+  già in build (F-3 scaricata), solo sync lessicale; fix collisione
+  footer C19 in ly_summary (reprise sopra la banda, bottom ≤5.9");
+  ly_roadmap_cards closing opzionale.
+- **WELD HEAD-TO-HEAD (domanda utente in-window, atlas-verificata)**:
+  card 2 di C17 affilata alla forma d'atlante CH6 :440 (I4 = Rao/GENO
+  su (⟨Pc⟩,T0,γ)) + :490 (twin a vincoli IDENTICI) + :712 (comparatore
+  ZERO computed instances) — on-slide: "our per-phase design vs the
+  classical design at cycle-mean p₀/T₀ — identical constraints; no such
+  number exists yet". Script C17 la dichiara "the reason this programme
+  exists". Script C11 aggiunge la DIAGNOSI DI CLASSE del +0.51%
+  ([C-O33] quantificata: cert-limited a margine inattivo, 3 istanze
+  S20/S22/S24; il rung-1 già +44-87% argmax / 3-10 s Isp) — weld di
+  contesto, indebolisce la lettura del numero piccolo, zero claim nuovi.
+
+## ===== CKP-S4-2 (utente, 2026-08-23, VINCOLANTE) — ARCHITETTURA v2 =====
+Ordini utente in-window (verbatim compressi): (1) "da slide 22 a 46,
+parte nozzle, troppe slide, troppa roba... massimo 10 slides"; (2) "è
+terribile la slide di richiesta, NON CHIEDIAMO NULLA, e non capisco il
+senso di slide 46"; (3) "slide 2 non ha senso di esistere, partire
+dalla 3"; (4) "eliminare le immagini illeggibili, come la tabella di
+Humphreys"; (5) titoli/footer: sottotitoli host non uniformi (FATTO:
+enforcement 28pt teal bold prima riga, probe verde) + footer non
+centrato nella barra rossa (FATTO: label/team/numero tutti MIDDLE sul
+box banda 6.71x0.81, assert aggiornato; campo residuo "n/17" del
+gruppo host azzerato).
+DECISIONI DI STRUTTURA (deviazioni dichiarate, ordine utente prevale
+su CKP-S3-4 "cuore intoccabile" e su A2/C18 di storyboard):
+- A2 (agenda) → KILL dal main (backup, dichiarata); si apre A1 → A3.
+- C18 (asks) → KILL dal main (backup per Q&A): il deck PRESENTA, non
+  chiede; la chiusura non promette richieste.
+- SCHELETRO NOZZLE v2 (≤10 slide, posizioni 21+: B1 resta a 20):
+  N1 hinge = A6⊕C1 (efflusso periodico; il campo disegna su una media
+     senza barra d'errore; due flowfield);
+  N2 evidenza = C4⊕C5 (ranking inverte, Li-Xu; 1971 argmax ×2.45 SOLO
+     testo — scan Humphreys ELIMINATO perché illeggibile; verdetto
+     censimento C3 in una riga);
+  N3 tesi = C7 INVARIATA (protetta);
+  N4 formulazione = C7-bis (protetta, riparazioni Lotto B; C7-bis-pre
+     e C8-essenza in script);
+  N5 dove si apre + domanda head-to-head = C7-ter v2 (Lotto B);
+  N6 contratto dati = C9⊕C2 (manometro + tutte-le-grandezze + pratica
+     imposed-BC + Q2D in-house);
+  N7 macchina = C-ADJ⊕C13 (idea adjoint + 6 stadi);
+  N8 prova+prezzo = C13-val⊕C16 (riproduce Rao; minuti non settimane);
+  N9 budget errori = C11 (+essenza C10 in script);
+  N10 piano+chiusura = C17⊕C19 (4 misure + takeaway; ZERO asks).
+- A BACKUP (dichiarati): A2, C1, C3, C5(scan), C6, C7-bis-pre, C8,
+  C8-bis, C10, C13(grafo pieno già), C14, C16, C17-pre, C18, C19-forma
+  -vecchia assorbita in N10. Main v2 = 19 (A1,A3..A20) + B1 + 10 = 30.
+- ESECUZIONE: dopo l'atterraggio del workflow Lotto B (wf_46daf52e, i
+  cui testi alimentano N4/N5 e i backup teorici), implementazione in
+  UN passo (DECK_ORDER v2 + spec merged + assert census 30 + A2/C18
+  cut) → rebuild → render → gate persona-esatta 4 assi (CKP-S4-1).
+
+### S4v2 IMPLEMENTATA (2026-08-23, build verde 69 = 29 main + div + 39 bk)
+- Nozzle = 9: A6(rework: "the literature designs on its time-average",
+  verità formale nello script) → C4(rework: evidenza + verdetto
+  'approximately' assorbito da C7) → C7-bis(titolo: "Designing on the
+  average solves a different problem — provably") → C7-ter(banda =
+  head-to-head mai computato + segnale rung-1) → C9(+numeri interfaccia
+  ex-C2) → C13(bullet: J/adjoint/registro) → C13-val(+velocità ex-C16)
+  → C11 → C17(closing takeaway, chiude il deck, zero asks).
+- Lingua: "the literature" ovunque on-slide (mai "the field").
+- Cut S4v2 → backup (17 nuovi, census 22): A2, C1, C2, C3, C5(scan
+  Humphreys via dal main), C6, C7, C7-bis-pre, C8, C8-bis, C10, C-ADJ,
+  C14, C16, C17-pre, C18(no-asks), C19. Assert 29/22 aggiornati.
+- PENDING: integrazione Lotto B (wf_46daf52e) al suo arrivo —
+  cherry-pick su C7-bis/C7-ter main + backup teorici; poi gate persona
+  4-assi. Residuo dichiarato: script/notes dei superstiti citano ancora
+  qua e là slide ora in backup (segnale-posti A2, "two slides ahead") —
+  passata di coerenza note al gate.
+
+## ===== CKP-S4-3 (utente, 2026-08-25, VINCOLANTE) — CAMBIO DI ROTTA =====
+(1) DECK COMPLETATO DALL'UTENTE per conto proprio; versione finale =
+Desktop/Presentazione_ESA (fuori repo, di proprietà utente — READ-ONLY
+per noi, oggetto di prova, mai deliverable nostro da qui in poi).
+Il thread deck-authoring S-PRES Blocchi 1-3 è CHIUSO dall'utente.
+(2) Lotto B workflow: rewriter+refuter COMPLETATI (REWRITE_LOTB_v1 +
+REFUTE_LOTB_v1 su disco, NON consumati), converger MORTO su limite di
+spesa mensile [SR-9: 3 agenti, 297k tok, 36 tool use, 22 min; 2/3
+done]. Da direttiva modello-pinnato: STOP, nessun relaunch, harvest
+inline dei 2 artefatti superstiti.
+(3) NUOVA ROTTA (ordine utente): completare la sessione con le fasi
+che valgono come PROVE PER L'ATLAS — tracciabilità, prove di lettura,
+consequenzialità logica di ogni scelta — informative per il resto del
+lavoro (F2, paper). Esecuzione SOLO a valle di rielaborazione critica
+(consegnata nel turno). VINCOLO OPERATIVO: quota critica — zero
+subagenti/workflow da qui a fine sessione, tutto inline e mirato.
+
 ## STATO (aggiornare a ogni confine)
 - [x] R2 apertura + censimento asset (PDF tutti localizzati; mappa
   P-A/P-B/P-C/P-D/KP18/P-M/HUM/RAO in FIGS_MANIFEST quando atterra)
