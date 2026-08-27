@@ -1,0 +1,34 @@
+##### twin FINAL (2-constraint) 21:19:17
+== [F3] Rao's world, dual-code: GENO field -> our march ==
+   gas identified from the reference field: Rg=415.7255  ts=3500.00  ps=6.00819e+06 (gamma=1.230)
+   reference: 362725 field points, 4632 wall points, x -0.1279..0.9387
+   kernel top ED: 196 pts, (0.000,1.000) -> (0.939,0.340)
+   ambient pa = PA_PC*p0 = 2.133e+05 Pa -> jet speed q_at_pa = 2688.1 m/s
+
+   x0    rows  cert(glob)  where          wedge  nonfin  |dq|/q mean/max      |dth| mean/max deg
+   ------------------------------------------------------------------------------------------------
+   0.30   35   5.74e-01  ('edge', 7)      861      0   1.64e-04/1.50e-03    9.73e-03/1.43e-01
+   0.30   52   5.64e-01  ('edge', 12)    1286      0   1.71e-04/1.50e-03    9.47e-03/1.43e-01
+   0.20   35   4.31e-01  ('edge', 6)      739      0   1.93e-04/2.51e-03    1.23e-02/2.16e-01
+   0.20   53   1.17e+00  ('edge', 5)     1119      0   1.96e-04/2.48e-03    1.20e-02/2.16e-01
+   0.10   34   1.67e+00  ('edge', 14)     544      0   3.61e-04/5.99e-03    2.56e-02/3.51e-01
+   0.10   52   1.36e+00  ('edge', 10)     780      0   3.36e-04/4.61e-03    2.64e-02/3.51e-01
+  [PASS] P1 x0=0.30 the march certifies (worst 5.64e-01 at ('edge', 12))
+  [FAIL] P1 x0=0.20 the march certifies (worst 1.17e+00 at ('edge', 5))
+  [FAIL] P1 x0=0.10 the march certifies (worst 1.36e+00 at ('edge', 10))
+
+   derived band (reference reconstruction, 1:2 / 1:4):
+     |dq|/q  mean 1.02e-06 / 2.49e-06   max 9.04e-06 / 2.88e-05
+     |dth|   mean 1.49e-04 / 3.55e-04   max 9.05e-04 / 3.27e-03 deg
+   the wedge gap (1.7e-04 mean) sits 68x above the reconstruction floor: the instrument resolves it
+  [PASS] P2 no nonfinite point below ED
+  [PASS] P2 97.0% of the wedge within q 1e-03 (declared S8 threshold; need >= 95%)
+  [PASS] P2 96.3% of the wedge within theta 1.5e-03 rad (declared S8 threshold; need >= 95%)
+
+   P3 (reported): |dq|/q mean at x0 = 0.30: 1.71e-04, 0.20: 1.96e-04, 0.10: 3.36e-04
+   resolution-stable (N 41/61/81 identical to 3%) and mildly GROWING toward the lip:
+   upstream cuts inherit stronger start-line gradients at fixed rows; the pre-registered
+   improvement is NOT observed at this station count -- reported, not gated.
+
+VERDICT: FAIL
+##### exit=1 21:22:33

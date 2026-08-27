@@ -1,0 +1,33 @@
+##### rao1961_control_surface 16:47:20
+== [F3-entry] Rao 1961 worked example, rebuilt from his Eqs. (6),(7),(9),(11),(12) ==
+   inputs: gamma = 1.23, M_E = 2.40, theta_E = -8.25 deg, p_b = 0.0
+   first integrals at E:  -lambda_2 = 0.666221   -lambda_3 = 4.125920e-04
+
+-- Eq. (8) at E: the ambient this design is optimal for --
+   p_a/P_c ours = 0.035565   Rao = 0.0355   rel = 1.82e-03
+  [PASS] p_a/P_c reproduced (3 s.f. as printed)
+
+-- THE STRONG CHECK: our surface AT his terminus --
+   at R_D/R_E = 0.137 (his):  M = 2.2029   theta = -19.687 deg   (Rao: -19.73)
+  [PASS] theta(R) on the control surface reproduces Rao's terminus to his printing precision (0.05 deg)
+   his Eq. (9) residual AT his own terminus = +0.023306  (scale 0.658 -> 3.5 %)
+   FINDING: the published terminus does not satisfy the
+   published terminal condition; the surface itself does.
+
+-- the control surface, E -> D --
+   M      : 2.4000 -> 2.1929      (Rao's Fig. 2: 2.4 -> ~2.05)
+   theta  : -8.25 -> -20.65 deg  (Rao: -8.25 -> -19.73)
+   R/R_E  : 1.0000 -> 0.1233      (Rao: 1.0 -> 0.137)
+   [reported] the ROOT of his Eq. (9) on our surface lies at R/R_E = 0.1233, theta = -20.65 deg -- 10.0 % inboard of his published stop
+
+-- his Eqs. (11), (12) and the length integral --
+   eps  (pi R_E^2/A*)   ours 3.8094   Rao 3.8100   rel 1.49e-04
+  [PASS] eps reproduced
+   X_D/R_E              ours 1.1640   Rao 1.1640   rel 1.32e-06
+  [PASS] X_D/R_E reproduced
+   C_F (vacuum)         ours 1.5804   Rao 1.5800   rel 2.53e-04
+  [PASS] C_F reproduced
+  [PASS] N1 rejector: gamma = 1.4 breaks p_a/P_c (rel 8.46e-02)
+
+VERDICT: PASS
+##### exit=0 16:47:24

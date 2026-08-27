@@ -1,0 +1,46 @@
+##### rao1961_oracle 16:47:20
+== [F3-entry] Rao 1961 spike oracle: is the reference usable? ==
+   source: literature/rao1961_spike_tables.md (owner-supplied full text, 2026-08-13)
+
+-- A: reproduce Rao's IDEAL spike C_F from 1-D closed form (gamma = 1.23) --
+   eps = 3.81   M_e = 2.6261  p_e/p_c = 0.044033  C_F(ours) = 1.5909  C_F(Rao) = 1.5909  rel = 1.98e-05
+  [PASS] A eps=3.81 ideal C_F reproduced to the printing precision
+   eps = 10.69  M_e = 3.4161  p_e/p_c = 0.010557  C_F(ours) = 1.7326  C_F(Rao) = 1.7326  rel = 2.14e-05
+  [PASS] A eps=10.69 ideal C_F reproduced to the printing precision
+  [PASS] N1 rejector: gamma = 1.4 breaks check A (min rel 2.24e-02 > bar)
+
+-- B: the paper against itself --
+   eps=3.81   opt    C_F/C_Fi printed 0.9934  recomputed 0.993400  rel 3.80e-08
+  [PASS] B 3.81/opt C_F ratio consistent with its own C_F column
+  [PASS] B 3.81/opt L/L_i consistent with its own L/R_E column
+   eps=3.81   trunc  C_F/C_Fi printed 0.9921  recomputed 0.992080  rel 2.02e-05
+  [PASS] B 3.81/trunc C_F ratio consistent with its own C_F column
+  [PASS] B 3.81/trunc L/L_i consistent with its own L/R_E column
+   eps=10.69  opt    C_F/C_Fi printed 0.9967  recomputed 0.996710  rel 1.02e-05
+  [PASS] B 10.69/opt C_F ratio consistent with its own C_F column
+  [PASS] B 10.69/opt L/L_i consistent with its own L/R_E column
+   eps=10.69  trunc  C_F/C_Fi printed 0.9957  recomputed 0.995729  rel 2.91e-05
+  [PASS] B 10.69/trunc C_F ratio consistent with its own C_F column
+  [PASS] B 10.69/trunc L/L_i consistent with its own L/R_E column
+   body text ideal L/R_E = 2.428 vs Table 3 2.433 -> rel 2.06e-03
+  [PASS] B the ONE known text-vs-table discrepancy is small (< 0.5 %)
+  [PASS] B body-text ideal C_F agrees with Table 3
+  [PASS] B body-text 0.993 agrees with Table 3's 0.9934
+
+-- C: contour tables vs their own summary --
+  [PASS] C Table 1 last row X/R_E matches L/R_E of Table 3
+  [PASS] C Table 1 last row R/R_E matches R_D/R_E of Table 3
+  [PASS] C Table 2 last row X/R_E matches L/R_E of Table 3
+  [PASS] C Table 2 last row R/R_E matches R_D/R_E of Table 3
+
+-- D: Rao's own optimum-over-truncated gain (REPORTED) --
+   eps = 3.81   optimum beats truncated ideal by +0.133 % (L/L_i = 0.479)
+   eps = 10.69  optimum beats truncated ideal by +0.099 % (L/L_i = 0.529)
+   for comparison, S23 on OUR world, free-form vs truncated
+   fan streamline: -0.011 %% +- 0.017 %% at L/L_i = 0.429.
+   NOT judged here: different baselines (his = ideal spike
+   cut short; ours = the fan streamline). Settling it needs
+   a run at gamma = 1.23, eps = 3.81 -- the next step.
+
+VERDICT: PASS -- the Rao 1961 tables ARE usable as an oracle
+##### exit=0 16:47:20

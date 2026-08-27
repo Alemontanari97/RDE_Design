@@ -1,0 +1,20 @@
+##### rao1961_ideal_spike 16:47:26
+== [F3-entry] Rao's IDEAL SPIKE, sonic lip (his §5) ==
+   validation FIRST: his published ideal lengths, gamma = 1.23
+
+   eps = 3.81   M_e = 2.6261  total fan turn = 50.546 deg
+      throat: R_T/R_E = 0.9128 at x/R_E = -0.1059  (flow leaves at -50.55 deg)
+      tip:    y = 4.77e-01  ->  X/R_E = 2.8941   Rao = 2.433   rel = 1.90e-01
+  [FAIL] eps=3.81 the contour CLOSES on the axis
+  [FAIL] eps=3.81 length reproduces Rao's ideal X/R_E
+
+   eps = 10.69  M_e = 3.4161  total fan turn = 71.409 deg
+      throat: R_T/R_E = 0.9850 at x/R_E = -0.0447  (flow leaves at -71.41 deg)
+      tip:    y = 4.96e-01  ->  X/R_E = 2.9553   Rao = 3.271   rel = 9.65e-02
+  [FAIL] eps=10.69 the contour CLOSES on the axis
+  [FAIL] eps=10.69 length reproduces Rao's ideal X/R_E
+  [PASS] N1 rejector: gamma = 1.4 breaks both lengths (min rel 9.60e-02)
+
+VERDICT: FAIL
+##### exit=1 16:47:41
+ALL DONE 16:47:41

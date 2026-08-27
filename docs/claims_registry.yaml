@@ -2358,3 +2358,101 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "its rejector (two routes computed in DIFFERENT ambient gauges must not agree; measured separation 5.8x against a declared 3x bar), the cut-independence check (flux route spread 0.40 percent across four stations), the record check (reproduces the recorded thrust to 1.0e-04), and the refusal-to-extrapolate guard that raises rather than clamping outside a boundary polyline's span"
   gamma: "EOS-general"
+
+- id: X-RAOTB
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 ENTRY, Rao 1961 spike (single-oracle status) — TABLE ORACLE (S26 2026-08-26, measured 18/18 on s2; carrier written 2026-08-13 from the paper obtained that day, transcribed in literature/rao1961_spike_tables.md); on-demand carrier (env: jax); checks A (closed-form ideal C_F column reproduced at the printing precision, gamma=1.4 rejector), B (Table 3 internal ratios C_F and L/L_i consistent with their own columns for eps 3.81 and 10.69, opt and trunc rows; body-text vs table), C (Table 1/2 last rows == Table 3 L/R_E, R_D/R_E); nothing marched"
+  statement: "Rao's 1961 published tables are internally consistent to their printing precision and usable as a known-answer oracle for the plug sector (the F3-entry 'single-oracle status' leg; corrects the N-74 'unverifiable' status of the registry's Rao Tab.1 numbers now that the paper is in hand)."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_oracle.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "any table row inconsistent with its own columns beyond printing precision, or the gamma=1.4 rejector NOT breaking check A (a gamma-blind oracle is no oracle)"
+  gamma: "gamma-const-oracle"
+
+- id: X-RAOCS
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 ENTRY — Rao's OPTIMUM RECONSTRUCTED FROM HIS OWN FIRST INTEGRALS (S26 2026-08-26, measured 6/6); on-demand carrier (env: jax); Eqs. (6)-(7): w cos(theta+alpha)/cos alpha = const and R rho w^2 sin^2 theta tan alpha = const along the terminal characteristic (our lambda_2/lambda_3 transversality instrument, f2 constancy) + corner relation Eq. (8) at E; reproduces p_a/P_c 0.0355, eps 3.81, X_D/R_E 1.164, C_F 1.58 and theta(R) to his 0.05 deg terminus, without any march"
+  statement: "Rao's optimum plug (M_E 2.4, theta_E -8.25 deg, gamma 1.23) follows from the constancy of the two exit-surface multipliers alone; the classical plug-sector known answer is therefore available independently of any marching code, and its multipliers are the same objects our discrete adjoint field approximates on the last column."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_control_surface.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "p_a/P_c, eps, X_D, C_F or the terminus angle outside his printing precision; the gamma=1.4 rejector NOT breaking p_a/P_c (rel > 5e-3 required)"
+  gamma: "gamma-const-oracle"
+
+- id: X-RAOFN
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 ENTRY — OBJECTIVE IDENTITY across the plug sector and the classical method (S26 2026-08-26, measured 3/3); on-demand carrier (env: jax); OUR thrust functional (control-surface mass/thrust integrals, 2 pi y weight, p_a gauge) evaluated on RAO's reconstructed control surface returns HIS eps (1.5e-4) and C_F (2.5e-4); rejector: a 1% velocity error moves C_F outside the print bar (4.1e-2)"
+  statement: "Our J IS Rao's objective: a comparison of our spline optimum against his contour compares SHAPES, not objectives — the cross-class licence (same functional in every sector) instantiated on the plug/Rao pair."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_our_functional.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "eps or C_F from our functional outside Rao's printing bar; the 1% velocity rejector landing inside the bar"
+  gamma: "gamma-const-oracle"
+
+- id: X-RAOIS
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 — RAO'S IDEAL SPIKE (Sec. 5, sonic lip, throat radius from Eq. (12)) BUILT WITH A PLANAR CENTRED FAN: FALSIFIER FIRED, result of record (S26 2026-08-26, 4 FAIL / 1 PASS); on-demand carrier (env: jax); the wall streamline never reaches the axis — it turns axial and stops at y = R_T/(1+R_T) (0.47721 / 0.49622 for eps 3.81 / 10.69, matched by the script to 3e-5 = the TWO-DIMENSIONAL mass balance) whereas every ideal row of his Table 3 closes at R_D = 0 (X/R_E 2.433 / 3.271); MEASURED LESSON (GENO theory doc ch. 7.2, 2026-08-26): in axisymmetric flow the centred fan is a POINT relation, not a field — the source S ~ sin(theta)/y drifts the state along every ray (GENO phase-1 rays: 0.1 in M, 3.6 deg in theta over 2.4 y_E; planar control 2e-8); the construction is NOT Rao's and may not be used as his baseline; the full-expansion Rao-vs-spline A/B (open-queue item 3) stays BLOCKED on an axisymmetric ideal-spike baseline (GENO theta_E=0 member, or a corner march)"
+  statement: "The planar-fan closed form of the ideal spike is refuted by its own pre-registered falsifier: it cannot close on the axis by construction (2-D mass weight), so no full-expansion comparison may rest on it."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_ideal_spike.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "pre-registered: a contour that flattens instead of closing on the axis, or a length off Rao's Table 3, means this is not his construction — FIRED; the gamma=1.4 rejector still discriminates (9.6e-2)"
+  gamma: "gamma-const-oracle"
+
+- id: X-RAOWD
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 — RAO'S WORLD MARCHED FROM A PLANAR-FAN START LINE ON A VERTICAL CUT: FALSIFIER FIRED, result of record (S26 2026-08-26 re-run); on-demand carrier (env: jax); Table-1 contour marched by our plug march from planar-fan states on a cut at x0 = 0.30/0.20/0.10/0.05 with row count scaled to the cut width: certification 5.0e-2 / 5.1e10 / 1.1e11 / 32 — NON-monotone in x0, no convergence; cause geometric: the wall sits a finite distance below the lip already at the throat (R/R_E 0.782 at X/R_E -0.016), the cut spans 0.37-0.27 R_E however small x0 is, and the planar states differ from the axisymmetric field by O(10 deg) on the control surface (P2 probes 4-9 deg); superseded as the way into Rao's world by the dual-code twin [X-RAOTW]"
+  statement: "A planar-fan start line on a cut of finite width inside the fan region is NOT a convergent approximation of the axisymmetric field: the error has a floor set by the cut width, which the geometry of Rao's spike forbids to shrink; the start line must be the corner itself (rays computed outward) or a computed field."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_world.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "pre-registered: no convergence in x0 means the start construction is wrong, not merely coarse — FIRED (certification non-monotone 5e-2 -> 5e10 -> 1e11 -> 32); the P2 probe at R/R_E 0.137 reads the same wall node for every x0 (instrument row non-informative, declared)"
+  gamma: "gamma-const-oracle"
+
+- id: X-RAOTW
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 ENTRY — RAO'S WORLD, DUAL-CODE TWIN: GENO's axisymmetric RaoPlug field (gamma 1.23, legacy p_b=0 corner-stop run = Rao's own rule, reproduces his Table 1 at mean 2.44e-3 over 16/16 points; run dir GENO/CASES/raoplug_run_legacy, regenerated in-dir with bin/GENO of 2026-08-09) as OUR start line; VERDICT PASS 6/6 of record (S26 2026-08-26, log validation/_rao1961_twin/run_of_record_legacy_2026-08-26.log); on-demand carrier (env: jax + a GENO run directory via RAO_GENO_RUN); FIRST EXECUTION found and fixed three defects in the never-run draft (D1 default gconst gas instead of GENO's — identify Rg 415.7255 / p0 6.00818e6 / T0 3500 FROM the field; D2 jet speed read at the max-y point = near-sonic lip instead of q_at_pa(0.0355 p0); D3 the field is the KERNEL bounded above by the C- control surface ED, not a p=p_a jet — grade only the wedge below ED, where the domains of dependence coincide, EDGE_FILL=6 spans the fictitious cut-top fan); P1 certification 2.6e-2 / 0.36 / 0.55 at x0 0.30/0.20/0.10 (wall cells); P2 0 nonfinite points below ED, 97.1% of the wedge within q 1e-3 and 95.8% within theta 1.5e-3 rad = the DECLARED cross-code thresholds of the certified full-field twin [X-GENOP-class, S8 level], coverage >= 0.95; the wedge gap (5.0e-4 mean, 1.7e-3 max in q; 0.017 deg mean in theta) sits 101x above the reference-reconstruction floor (5e-6, full-vs-subsampled cloud, reported not gated); P3 reported: resolution-stable (N 41/61/81 to 3%) and NOT improving upstream (6.9e-4 at x0 0.10); second instance (2-constraint mass-set field): P2 PASS 97.0%/96.3%, P1 marginal FAIL at the kernel-top seam (edge cells 1.17/1.36 at x0 0.20/0.10) = NAMED RESIDUAL, not retuned; DEVIATION DECLARED: the drafted P2 gate (reference-reconstruction band) was rederived to the S8 precedent because the cross-code gap sits above both truncations by the S8 finding"
+  statement: "Our certified plug march reproduces GENO's axisymmetric field over Rao's optimum contour, in his gas, at the declared cross-code level — the prerequisite for letting the SQP score designs in Rao's world (the plug-sector O3.3) is met on the reference of record."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_twin.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "P1 worst residual > 1 on the reference field at N=61; any nonfinite mesh point below ED; coverage below 0.95 at either threshold; the twin's own D1/D2 defects re-entering (a default-gas or max-y jet speed reproduces certification 1e16, measured)"
+  gamma: "gamma-const-oracle"
+
+- id: X-O31R
+  kind: carrier
+  ondemand: "env=jax; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F2b — O3.1 DOT-PRODUCT TEST THROUGH THE STRATIFIED (rotational-inlet) PLUG MARCH with the W-5 transport clamp active (S26 2026-08-26, measured 6/6; carrier written 2026-08-13); on-demand carrier (env: jax); recorded march certified; replay reproduces the primal; <w, J v> vs <J^T w, v> agreement 9.2e-8 relative against a DERIVED detection floor 3.2e-6 (tol/|rhs|, 35x inside); negative control = a fixed 1e-3 multiplicative adjoint corruption REJECTED and above the floor (the S24 lesson: a rejector world must carry load — the first draft's control cancelled against v and was refuted by its own firing)"
+  statement: "The reverse-AD adjoint of the general-inlet (s, h0-transporting, clamped) plug march is the transpose of its forward derivative at machine level: the design-gradient channel for stratified RDE-exhaust inlets is certified (open-queue item 9 of the S24 handoff)."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/o31_rot.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "agreement above the derived floor; the 1e-3 control not rejected; the control below the floor (test blind)"
+  gamma: "EOS-general"

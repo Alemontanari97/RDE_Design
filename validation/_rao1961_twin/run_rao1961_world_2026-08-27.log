@@ -1,0 +1,27 @@
+##### rao1961_world 17:50:56
+== [F3] Rao's world: his contour marched by OUR solver ==
+   lip fan: M 1 -> 2.7454 (p_a/p_c = 0.0355); theta -51.91 -> 2.10 deg
+   at M_E = 2.4 the fan gives theta = -8.250 deg (Rao: -8.25)
+   at the sonic throat theta = -51.91 deg (Table 1 contour: -51.92)
+
+   x0     width   rows  cells   cert      dy_row
+   ------------------------------------------------------
+   0.30   0.3705    41   3045  5.037e-02  0.00926
+  [PASS] x0 = 0.30 certifies with row-scaled start
+   0.20   0.3396    38   2756  5.133e+10  0.00918
+  [FAIL] x0 = 0.20 certifies with row-scaled start
+   0.10   0.2980    33   2398  1.139e+11  0.00931
+  [FAIL] x0 = 0.10 certifies with row-scaled start
+   0.05   0.2696    30   2182  3.225e+01  0.00930
+  [FAIL] x0 = 0.05 certifies with row-scaled start
+
+   -- P2: marched field on the lip C+ vs the reconstruction --
+   R/R_E   reconstruction   x0=0.30   x0=0.20   x0=0.10   x0=0.05
+   0.300      -13.952       -22.977   -15.408    -0.867   -18.252
+   0.200      -16.649       -18.438   -11.182   -14.972   -20.266
+   0.137      -19.687       -20.266   -20.266   -20.266   -20.266
+   (a converging start construction moves these toward the
+    reconstruction as x0 shrinks; a broken one does not)
+
+VERDICT: FAIL
+##### exit=1 17:51:31

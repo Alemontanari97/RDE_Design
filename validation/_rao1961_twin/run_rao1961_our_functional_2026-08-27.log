@@ -1,0 +1,14 @@
+##### rao1961_our_functional 16:47:24
+== [F3-entry] OUR thrust functional on RAO's control surface ==
+   world: gamma 1.23  p_c 2.000e+07 Pa  T_0 3600.0 K  R_E 1.0 m
+   surface: 4001 nodes, R/R_E 0.1370 -> 1.0000, M 2.2029 -> 2.4000
+
+   OUR mass integral  -> mdot = 8.776390e+03 kg/s -> A* = 8.246878e-01 m^2
+   eps  (pi R_E^2/A*)   ours 3.8094   Rao 3.8100   rel 1.49e-04
+  [PASS] eps from OUR functional reproduces Rao
+   C_F  (vacuum)        ours 1.5804   Rao 1.5800   rel 2.53e-04
+  [PASS] C_F from OUR functional reproduces Rao
+  [PASS] N1 rejector: a 1 % velocity error moves C_F outside the bar (rel 4.07e-02)
+
+VERDICT: PASS -- our objective IS Rao's objective
+##### exit=0 16:47:26
