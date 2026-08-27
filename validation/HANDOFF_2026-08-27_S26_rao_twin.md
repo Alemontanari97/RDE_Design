@@ -26,6 +26,12 @@ authoritative for the S21-S24 narrative and GENO). Narrative:
   2 pi y_D p_a to 0.5 percent; Eq. (9) closes at D. First posing 4/6
   was an instrument zone next to the start line (attributed by moving
   the cut), re-posed and declared.
+- **SQP-RETURN PASS 6/6 ([X-RAOSQ], run of record 2910 s):** from 20
+  bands off, the [X-PSPL] driver on an 8-knot spline returns to Rao's
+  contour (1.07e-4 vs band 2.4e-4, |grad| 7.8e5 -> 86, J* = J_fit +
+  0.3 N); the sign-flipped driver walks away once its budget reaches
+  radius ~1.2e-2 (SEG_R1 = 14 calibrated by a probe). The plug sector
+  now holds both halves of the bell's O3.3 licence.
 
 ## 2. Numbers of record
 
@@ -59,13 +65,19 @@ P1 seam residual 1.17/1.36 (x0 0.20/0.10).
    the frozen replay** (wall foot search consuming start rows: AD
    values that follow the cut, FD bands 1e8). Keep design-variation
    support out of it, or the near-cut direction poisons every
-   reference-scaled control.
+   reference-scaled control. Second instance: a spline knot whose
+   cardinal function reaches into that zone raised the gradient floor
+   on Rao's own wall 60x (3.7e5 vs 6.3e3) and stalled the return.
+8. **A rejector that does not move is undecided, not fired.**
+   Thrust-minimizing steps leave the certifiable class first (records
+   at 1e15..1e16); the reject-and-shrink driver needs enough segments
+   for the radius to reach the scale where a certifiable descent
+   exists (~1.2e-2 here). Budget it, and read "no motion" as FAIL only
+   at the radius floor.
 
 ## 4. Open queue
 
-(1) the SQP-return stage of the plug O3.3 (spline design vector in
-Rao's world, return from a perturbed start inside a derived band);
-(2) axisymmetric ideal-spike baseline (GENO theta_E=0 member or corner
+(1) axisymmetric ideal-spike baseline (GENO theta_E=0 member or corner
 march) -> Rao-vs-spline A/B at L ~ 5.825 (`PSPL_L` promoted, x_end
 extended); (3) findings rows for [X-RAOIS]/[X-RAOWD] (pending-declared);
 (4) Italian document: W-5 closed + this chain (stash@{0}); (5) L-sweep

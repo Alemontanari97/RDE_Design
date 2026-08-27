@@ -186,16 +186,58 @@ bump family was re-posed after attribution (near-cut instrument zone);
 the tip identity was promoted from reported to gated after two
 consistent measurements; P4's control amplitude was calibrated.
 
+## 8. Addendum 2026-08-27 (after commit 5c4cde4): the SQP-return stage [X-RAOSQ]
+
+The second half of the bell precedent, on the plug: started off Rao's
+optimum, does the driver come back? `rao1961_sqp_return.py`: 8-knot
+spline design on the spike in Rao's world (twin posing), tip pinned at
+y_D (no base model), the [X-PSPL] segmented trust-constr driver
+verbatim in logic, bands derived from the spline representation error,
+the march resolution ladder (K 81 vs 161: |dJ| 7.8e3 N) and the
+gradient floor measured on Rao's own wall (location term g/c with the
+curvature c from the perturbation itself).
+
+**v1 (knots over the whole design region): 5/6** — P1, P2, P4a/b, R1
+pass; RETURN fails (7.0e-3 -> 4.3e-3 vs 3.8e-4). Cause measured: the
+gradient floor on Rao's wall was 3.7e5 N/m — the first knot deforms the
+near-cut instrument zone that [X-RAOO3] v2 had excluded — so the driver
+chased noise (repeated rejected trials, one uncertified base); and the
+location band lacked the g/c term. **v2 (near-cut zone frozen to Rao's
+wall, knots on [x0 + 0.35 L_r, x_D], band_W = K(e_rep + g/c), rejector
+bookkeeping fixed): P1-P4 PASS** — floor 6.3e3 (60x lower), return
+4.98e-3 -> 1.07e-4 inside 2.4e-4, |grad| 7.8e5 -> 86, J* = J_fit + 0.3 N
+— **R1 undecided**: with 6 segments every thrust-minimizing trial was an
+uncertifiable record (radii 5e-2..2.1e-2) and the driver never moved,
+read as FAIL by discipline. **Probe (14 segments):** the radius must
+reach ~1.2e-2 before a certifiable descent step exists, then the walk
+leaves Rao (5.0e-3 -> 1.09e-2, J -3.1e4 N) -> SEG_R1 = 14 calibrated,
+declared. **Run of record (v2 + SEG_R1 = 14): 6/6 PASS** in 2910 s —
+every number of v2 reproduced, R1 walks away. Logs in
+`_rao1961_twin/`: `run_sqpret_posing1`, `run_sqpret_v2`,
+`run_sqpret_r1probe` (+ `r1_probe_2026-08-27.py`),
+`run_of_record_sqpret` (all 2026-08-27). Registry [X-RAOSQ]; numeric-lint
+birth rows 19 (carrier) + 2 (probe), measured.
+
+What it means: with [X-RAOO3] (value) and [X-RAOSQ] (motion) the plug
+sector has both halves of the bell's licence — the SQP's plug optima
+are anchored to the classical known answer. Deviations declared: the
+design support re-posed after attribution (the near-cut zone, second
+instance of the [X-RAOO3] finding); the location band re-derived with
+the gradient-floor term; the rejector's segment budget calibrated by a
+probe. Lesson for the record: **a rejector that does not move is
+undecided, not fired — thrust-minimizing steps leave the certifiable
+class first, and the reject-and-shrink loop needs the budget to find
+the radius where a certifiable descent exists.**
+
 ## NEXT (atomic)
 
-The SQP-RETURN stage of the plug O3.3: a spline design vector on
-[x0, x_D] in Rao's world (twin start line, [X-RAOO3] posing), TR-SQP
-from a perturbed start, return to Rao's contour inside a band derived
-from the spline representation error + the march ladder — the plug
-analogue of [X-TOCV]'s "from a 1.5 percent perturbed start". Then the
-axisymmetric ideal-spike baseline (GENO RaoPlug theta_E=0 member, or a
-corner march) -> the full-expansion Rao-vs-spline A/B at L ~ 5.825 m
-(`PSPL_L`, open-queue item 3).
+The axisymmetric ideal-spike baseline (GENO RaoPlug theta_E=0 member,
+or a corner march from the sonic lip) -> the full-expansion
+Rao-vs-spline A/B at L ~ 5.825 m (`PSPL_L`, open-queue item 3). The
+plug-sector O3.3 is complete in both halves ([X-RAOO3] value,
+[X-RAOSQ] motion); F3 EXIT still needs the certified plug optimum +
+Table-1 oracle in derived bands on OUR world and one var-gamma /
+stratified plug instance.
 
 ## BLOCCATO
 

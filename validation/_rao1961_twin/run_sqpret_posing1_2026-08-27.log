@@ -1,0 +1,43 @@
+##### rao1961_sqp_return run 1 2026-08-27 18:25:45
+== [F3] SQP-return in Rao's world: perturbed start -> back to Rao? ==
+   gas Rg=415.7255 ts=3500.00 ps=6.00818e+06; pa=2.133e+05; q_at_pa=2688.1; x_D=1.1766
+   start line 53 rows at x0=0.30 (F_in 4.13461e+06 N); knots M=8 (tip pinned at y_D=0.1233); clamped slope0=-0.6167
+-- S1: the reference in spline space and the derived bands --
+  e_rep (spline vs GENO wall) max 9.436e-05 -> band_W 3.774e-04
+  W_fit record cert 4.974e-01; J_fit 4.51950016e+06 (K=81) vs 4.52728263e+06 (K=161): |dJ| 7.782e+03
+  grad floor |g(W_fit)|inf 3.683e+05 -> gtol 1.473e+06 ; band_J 3.132e+04
+-- S2: the perturbed start (1.5 percent, alternating) --
+  start: dist to Rao 7.032e-03 (= 18.6x band_W); cert 3.243e-02; J_p 4.51222958e+06 (J_fit - J_p = +7.2706e+03); |grad|inf 9.100e+05
+-- S3: TR-SQP (maximize) from the perturbed start --
+    max [seg  0] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    max [seg  1] trial J = 4.39469866e+06 REJECTED -> revert, radius 3.750e-02
+    max [seg  2] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    max [seg  2] no motion at radius 3.750e-02 -> retry at 1.875e-02
+    max [seg  3] base REJECTED (record not certified (worst 1.420e+01)) -> revert, radius 1.406e-02
+    max [seg  4] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    max [seg  5] J = 4.51927575e+06  |grad|inf = 3.028e+05  cert = 1.306e-01
+    max [seg  6] trial J = 4.49836952e+06 REJECTED -> revert, radius 1.582e-02
+    max [seg  7] J = 4.51927575e+06  |grad|inf = 3.028e+05  cert = 1.306e-01
+    max [seg  8] J = 4.52011728e+06  |grad|inf = 1.319e+05  cert = 3.224e-02
+    max [seg  9] trial J = 4.48104714e+06 REJECTED -> revert, radius 1.780e-02
+    max [seg 10] J = 4.52011728e+06  |grad|inf = 1.319e+05  cert = 3.224e-02
+    max [seg 11] trial J = 4.50075046e+06 REJECTED -> revert, radius 1.335e-02
+  result: 12 records, worst accepted cert 1.306e-01; J* 4.52011728e+06 (J* - J_fit = +6.1712e+02, J* - J_p = +7.8877e+03); |grad|inf 1.319e+05; dist 4.339e-03
+  [PASS] P1 every accepted base certified (worst 1.306e-01 <= 1)
+  [PASS] P2 CONVERGENCE |grad J(W*)|inf 1.319e+05 <= gtol 1.473e+06
+  [FAIL] P3 RETURN max|y(W*) - y_GENO| 4.339e-03 <= band_W 3.774e-04 (start was 18.6x)
+  [PASS] P4a VALUE J(W*) > J(W_pert) (+7.8877e+03)
+  [PASS] P4b VALUE |J(W*) - J(W_fit)| 6.171e+02 <= band_J 3.132e+04
+-- S4: R1 rejector - the sign-flipped objective from the same start --
+    min [seg  0] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    min [seg  1] base REJECTED (record not certified (worst 8.815e+16)) -> revert, radius 3.750e-02
+    min [seg  2] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    min [seg  3] base REJECTED (record not certified (worst 4.191e+13)) -> revert, radius 2.813e-02
+    min [seg  4] J = 4.51222958e+06  |grad|inf = 9.100e+05  cert = 3.243e-02
+    min [seg  5] J = 4.38558995e+06  |grad|inf = 5.867e+06  cert = 9.828e-02
+  minimizer: 6 records; J -inf (J_p - J = +inf); dist to Rao 5.136e-02 (start 7.032e-03)
+  [PASS] R1 REJECTOR: sign-flipped driver ends FARTHER from Rao (5.136e-02 > 7.032e-03)
+
+== 5/6 PASS  (1683.3 s) ==
+VERDICT: FAIL
+##### exit=1 2026-08-27 18:53:51

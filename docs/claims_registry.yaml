@@ -2470,3 +2470,17 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "P2 failing in every interior direction while N2 passes (the engine is not stationary where Rao's optimum is); the tip identity outside the tip direction's FD band; J(perturbed) >= J(Rao); a near-cut direction re-entering the bump support without its FD band exposing the instrument zone; the reference record not certifying"
   gamma: "gamma-const-oracle"
+
+- id: X-RAOSQ
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 — THE SQP-RETURN STAGE OF THE PLUG O3.3 (S26 2026-08-27; VERDICT PASS 6/6, run of record validation/_rao1961_twin/run_of_record_sqpret_2026-08-27.log, 2910 s): in Rao's world ([X-RAOTW]/[X-RAOO3] posing: GENO legacy p_b=0 field at x0 0.30 as start line, gas from the field, q_at_pa, EDGE_FILL) the [X-PSPL] segmented TR-SQP driver on an 8-knot cubic-spline design of the spike (knots on [x0 + 0.35 L_r, x_D], tip pinned at Rao's y_D so no base-pressure model enters, the near-cut zone frozen to Rao's wall) walks from a 1.5 percent alternating perturbation (distance 4.98e-3 = 20.8x the band) BACK to Rao's contour: max|y - y_GENO| 1.07e-4 inside band_W 2.4e-4 = K_RICH (e_rep 4.8e-5 + g_floor/c_hat 1.2e-5), |grad|_inf 7.8e5 -> 86 (gtol 2.5e4 = K_RICH x the 6.3e3 floor measured on Rao's own wall), J* - J_fit = +0.3 N (band_J 3.1e4), J* - J_pert = +6.4e3 N, every accepted base certified (worst 0.48); REJECTOR R1: the sign-flipped driver walks AWAY (dist 5.0e-3 -> 1.09e-2, J -3.1e4 N) once its budget lets the trust radius fall to ~1.2e-2 (five uncertifiable thrust-minimizing trials first; budget SEG_R1 = 14 calibrated by the probe run_sqpret_r1probe_2026-08-27.log, declared). DECLARED HISTORY: v1 (knots over the whole (x0, x_D]) 5/6 with the return stopping at 4.3e-3 — the first knot deformed the near-cut instrument zone (gradient floor 3.7e5 vs 6.3e3 after freezing it; the [X-RAOO3] finding again) and the location band lacked the gradient-floor term g/c; v2 5/6 with R1 undecided at a 6-segment budget (no certifiable descent step above radius 2.1e-2); logs run_sqpret_posing1, run_sqpret_v2, run_sqpret_r1probe kept. Together with [X-RAOO3] this is the plug-sector counterpart of [X-TOCV]'s TR-SQP-from-a-perturbed-start on the bell"
+  statement: "Started 20 bands off Rao's optimum in his world, our certified TR-SQP returns to it inside a band derived from the spline representation error and the measured gradient floor, closes the gradient to a hundredth of that floor's tolerance, and its sign-flipped twin walks away: the SQP's plug-sector optima are anchored to the classical known answer both in value (stationarity, [X-RAOO3]) and in motion (return)."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_sqp_return.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "P3 failing with P2 passing (a second stationary point of the spline space); P2 failing (the driver cannot close where [X-RAOO3] says the gradient vanishes); J(W*) <= J(W_pert); R1 not walking away within its calibrated budget; any accepted base uncertified"
+  gamma: "gamma-const-oracle"

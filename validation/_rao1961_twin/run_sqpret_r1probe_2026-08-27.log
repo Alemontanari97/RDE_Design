@@ -1,0 +1,20 @@
+##### R1 probe 2026-08-27 19:36:20
+   gas Rg=415.7255 ts=3500.00 ps=6.00818e+06; pa=2.133e+05; q_at_pa=2688.1; x_D=1.1766
+   start line 53 rows at x0=0.30 (F_in 4.13461e+06 N); wall frozen to Rao's on [0.30, 0.6068]; knots M=8 on [0.6068, 1.1766] (tip pinned at y_D=0.1233); clamped slope0=-0.4697
+R1 PROBE: start dist 4.975e-03; minimizer with 14 segments
+    min [seg  0] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg  1] base REJECTED (record not certified (worst 4.928e+16)) -> revert, radius 3.750e-02
+    min [seg  2] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg  3] base REJECTED (record not certified (worst 1.691e+16)) -> revert, radius 2.813e-02
+    min [seg  4] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg  5] base REJECTED (record not certified (worst 3.552e+15)) -> revert, radius 2.109e-02
+    min [seg  6] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg  7] base REJECTED (record not certified (worst 1.841e+16)) -> revert, radius 1.582e-02
+    min [seg  8] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg  9] base REJECTED (record not certified (worst 9.408e+15)) -> revert, radius 1.187e-02
+    min [seg 10] J = 4.51309343e+06  |grad|inf = 7.814e+05  cert = 4.840e-01
+    min [seg 11] J = 4.48247284e+06  |grad|inf = 2.522e+06  cert = 4.840e-01
+    min [seg 12] base REJECTED (record not certified (worst 3.271e+16)) -> revert, radius 1.335e-02
+    min [seg 13] J = 4.48247284e+06  |grad|inf = 2.522e+06  cert = 4.840e-01
+R1 PROBE RESULT: 14 records, worst cert 4.840e-01, J 4.48247284e+06, dist 1.088e-02 (start 4.975e-03) -> WALKS AWAY  (1045 s)
+##### exit=0 2026-08-27 19:53:47
