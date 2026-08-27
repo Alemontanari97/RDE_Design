@@ -101,7 +101,16 @@ from scipy.optimize import brentq, minimize            # noqa: E402
 NPASS = [0, 0]
 PA = CC.PA
 X0 = IA.X0
-L = IA.L_REF                    # fixed length: last knot sits here
+# LENGTH, PROMOTED (2026-08-13). Default = IA.L_REF, so every prior
+# path is bit-identical; PSPL_L sets it. This is the knob the open
+# queue names as the blocker for the ONE decisive comparison left on
+# the plug: Rao-vs-spline is VOID at L = 2.5 m (mass + length exhaust
+# Rao's two degrees of freedom, so the ambient becomes an OUTPUT --
+# the classical design there implies 1.7e6 Pa against the case's
+# 7.6e5). The fair test is at FULL EXPANSION, L ~ 5.825 m for this
+# world, where mass AND ambient can both be met and the two methods
+# answer the same question.
+L = float(os.environ.get("PSPL_L", IA.L_REF))
 THE_OPT = 0.0                   # exhaust angle selected by step 15
 M_NODES = int(os.environ.get("PSPL_M", 6))
 K_ST = int(os.environ.get("PSPL_K", 81))    # march wall stations
@@ -135,7 +144,11 @@ def build_case(w, thE=THE_OPT, N=None):
     y0 = brentq(lambda ys: IA.start_mass(w, fan, ys, Nr)
                 - w["mdot"], 0.45 * w["RMAX"], 0.985 * w["RMAX"],
                 xtol=1e-9)
-    sx, sy = IA.spike(fan, y0)                 # incumbent streamline
+    # the incumbent streamline must reach BEYOND the requested length:
+    # W0 interpolates it at the knots, the last of which sits at x = L.
+    # IA.spike's default stops at X_END + 0.3 = 3.3, which silently
+    # truncates for any L past that -- the second half of "promote L".
+    sx, sy = IA.spike(fan, y0, x_end=max(IA.X_END, L) + 0.3)
     yw0 = float(np.interp(X0, sx, sy))
     slope0 = float(np.tan(fan["field"](X0, yw0)[1]))   # flow-tangent
     ye0 = fan["LIP"][1] + np.tan(fan["th_e"]) * X0
