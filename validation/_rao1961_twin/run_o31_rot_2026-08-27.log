@@ -1,0 +1,14 @@
+##### o31_rot 16:51:03
+== [F2a] O3.1 on the STRATIFIED march (jax 0.10.2) ==
+  record: 1992 cells, cert worst 4.691e-02, 33.2 s
+  [PASS] the recorded stratified march is certified
+  feet outside their chord in this record: -1 (the clamp corner is INACTIVE on this design)
+  [replay fidelity] max|replay - primal| = 0.000e+00
+  [PASS] P1 replay reproduces the primal stratified march
+  [O3.1] <w,Jv> = -9.5362314051e-04  <J^T w,v> = -9.5362322812e-04  |diff| = 8.761e-11 (tol 3.076e-09)
+  [PASS] P2 O3.1 dot-product on the STRATIFIED march
+  [power] detection floor 3.225e-06 relative; measured agreement 9.187e-08 relative (35x inside)
+  [PASS] N1 negative control: a 1e-3 relative adjoint error is rejected
+  [PASS] N1b the control is above the detection floor (the test can see it at all)
+VERDICT: PASS
+##### exit=0 16:52:23
