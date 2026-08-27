@@ -2456,3 +2456,17 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "agreement above the derived floor; the 1e-3 control not rejected; the control below the floor (test blind)"
   gamma: "EOS-general"
+
+- id: X-RAOO3
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-08-27; suite=none"
+  class: PRACTICE
+  scope: "F3 — O3.3 FOR THE PLUG SECTOR (S26 2026-08-27; VERDICT PASS 7/7 at x0 = 0.30 = run of record AND at x0 = 0.20; logs validation/_rao1961_twin/run_of_record_o33_v2_x030_2026-08-27.log, run_o33_v2_x020_2026-08-27.log): Rao's 1961 optimum contour, marched from GENO's legacy p_b=0 field ([X-RAOTW] posing, gas from the field, q_at_pa, EDGE_FILL), is STATIONARY for our two-route thrust functional under our certified plug march — AD gradient along six interior endpoint-pinned bumps 8e1..4e2 N/m inside the per-direction K_RICH FD-Richardson+ripple bands (3e5..4e7), against 7e4..4.3e5 on a perturbed wall (N2 > 10x, measured ~1000x); J(Rao) > J(perturbed) by 2.1e3 N; TIP IDENTITY: the tip-moving gradient equals the base-term counterweight of Rao's y_D-stationarity with p_b = 0, 2 pi y_D p_a, to 0.46 percent / 0.11 percent (1.660e5 vs 1.653e5 N/m, inside the tip direction's own FD band 2.9e3 / 2.4e3); Rao's corner relation Eq. (9) closes at the marched D to 5.4e-4 / 6.5e-4 against 1.6e-2 / 1.2e-2 on a tip-lifted wall (P4 < 1/10). FIRST POSING (bell-identical bump family from 0.20 L_r) 4/6: the direction nearest the start line carried a CUT-FOLLOWING AD value (9.2e4 at x0 0.30 -> 1.3e5 at x0 0.20) with FD bands 1e8 — the frozen-replay non-smoothness of the wall foot search on the Cauchy start rows, an instrument zone, not physics — and the corner control (lift 0.02) was too weak; RE-POSED v2 declared: bump support excluded from the first 0.35 L_r after the cut, corner control lift 0.05, tip identity promoted from reported to gated after two consistent measurements; first-posing and attribution logs kept (run_o33_posing1_x030, run_o33_attribution_x020). The bell's O3.3 (a1_o33_toc, C-O33) now has its plug-sector counterpart; the SQP-return stage (spline design vector in Rao's world, return from a perturbed start inside a derived band) is the next carrier, not this one"
+  statement: "In Rao's world, on the reference of record, our AD wall-gradient vanishes along admissible interior variations of Rao's optimum, does not vanish on a perturbed wall nor along the tip-moving direction — where it equals Rao's base-term counterweight 2 pi y_D p_a to 0.5 percent — and Rao's optimum is a thrust maximum: the plug-sector known answer is stationary for the very functional and gradient the SQP consumes (the plug-sector O3.3)."
+  doc: "validation/PROGRESS_2026-08-27_S26_rao_modo1.md"
+  proof: "validation/rao1961_o33.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "P2 failing in every interior direction while N2 passes (the engine is not stationary where Rao's optimum is); the tip identity outside the tip direction's FD band; J(perturbed) >= J(Rao); a near-cut direction re-entering the bump support without its FD band exposing the instrument zone; the reference record not certifying"
+  gamma: "gamma-const-oracle"

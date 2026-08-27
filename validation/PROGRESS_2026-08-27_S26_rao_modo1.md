@@ -105,15 +105,97 @@ fictitious cut-top fan). Verdict of record (legacy field): P1 3/3, P2
 
 ## 6. Closing suite (measured, SR-12)
 
-See the CLOSING block appended at commit time.
+Runs of record re-executed 2026-08-27 for the pass stamps (all eight
+verdicts identical to 2026-08-26; logs in `validation/_rao1961_twin/`):
+oracle 18/18, control-surface 6/6, functional 3/3, ideal-spike 1/5
+(falsifier), world 1/4 (falsifier), o31_rot PASS, twin legacy PASS 6/6,
+twin 2-constraint FAIL 4/6 (P1 seam).
+
+`python tests/run_all.py` on the final pre-commit tree, 2026-08-27
+16:12-16:15: **14/23 groups PASS in 161 s, EXIT 1.** The nine FAILs,
+each attributed by its own output: (xiii), (xiv), (xvi), (xviii) =
+`ModuleNotFoundError: sympy` (pinned s2 env, install forbidden);
+(xix), (xxii), (xxiii) = DEAD PATH literature PDFs absent on s2 (the
+glossary's 52 unresolved tokens == its baseline 52: this window minted
+none); (xv), (xvii) = the seven new carrier rows citing this log, which
+had "no committed history" before commit — cleared by the first commit
+of the window (post-commit confirmation below).
+
+Comparison measured on a clean worktree at HEAD c1498ee (before this
+window's edits), `run_all.py --fast`: 12/19 vs 13/19 on the final tree;
+the only differences are (vii) numeric lint FAIL -> PASS and (xx)
+advisory index FAIL -> PASS (both repaired here) and (xv) PASS -> FAIL
+(the uncommitted-log staleness above). The five persistent reds are
+identical on both trees: environmental, not of this window.
+
+Post-commit confirmation (measured after commits 21ae689 / bbbe5f8 /
+dc1e458): claims lint (xv) PASS 0 violations; on-demand tier (xvii)
+PASS (32 accounted, all fresh); numeric lint (vii) PASS; advisory
+index (xx) PASS. Suite side-effect DECLARED and reverted, not
+committed: `run_all.py` regenerated `data/phase_diagram.{json,md}`,
+`data/q_mapping.{json,md}` and `figs/phase_diagram_op11.png` with
+platform round-off (1e-16 rel on `ek`, 1e-13 on `ideal_vs_ek`; s2 numpy
+2.4.6 vs the pinned 2.5.2), timestamps and a re-rendered PNG — churn,
+not content (`git checkout --` on the five files).
+
+Commits of the window: 21ae689 (F3 entry Rao chain + twin + registry +
+log/handoff), bbbe5f8 ([X-O31R]), dc1e458 (PSPL_L + s25 m0), and the
+closing hygiene commit carrying this block.
+
+## 7. Addendum 2026-08-27 (after the closing commit dc4b339): the plug-sector O3.3 [X-RAOO3]
+
+The step the twin unblocked, executed the same day. `rao1961_o33.py`
+mirrors `a1_o33_toc.py` STAGE=stationarity on the plug: our march from
+GENO's legacy field at x0, GENO's (= Rao's) wall on [x0, x_D] with six
+interior endpoint-pinned Gaussian bumps + a tip blip, one reverse pass
+for the seven projected derivatives, FD-Richardson+ripple bands per
+direction, a perturbed-wall control, Rao's corner relation Eq. (9) at
+the marched end. Base pressure never modelled: for pinned ends the base
+term is a constant; for the tip direction it yields a PREDICTION.
+
+**First posing (bell-identical bump family from 0.20 L_r), x0 0.30:
+4/6.** P1 cert 2.6e-2; P2 pass (dirs 2-5 at 1.7e2..5e2 vs bands
+3e5..1e6; dirs 0-1 with FD bands 1e8 — vacuous); N1 pass with the tip
+identity at **1.0046** of 2 pi y_D p_a; P3 pass (+1.9e3 N); N2 FAIL, P4
+FAIL. Attribution run (x0 0.20): the near-cut direction FOLLOWS the cut
+(9.2e4 -> 1.3e5, FD band 2e8), dirs 1-5 stay at 1e2..1e3, tip identity
+0.9989 — the zone right after the start line, where the wall cell's
+multi-column foot search consumes Cauchy rows, is not smooth under the
+frozen replay: instrument, not physics; N2 failed only because that
+value set the reference scale. P4's control (tip lift 0.02) was too
+weak against a reference residual (5.4e-4) at the cross-code level.
+
+**v2 (declared re-posing: bump support excluded from the first
+0.35 L_r after the cut, corner control lift 0.05, tip identity promoted
+to a gated check with its FD band): 7/7 PASS at x0 = 0.30 (run of
+record) and 7/7 at x0 = 0.20.** Interior AD gradients 8e1..4e2 N/m
+(perturbed wall 7e4..4.3e5: N2 ~1000x); J(Rao) - J(pert) = +2.1e3 N;
+tip gradient 1.660e5 vs prediction 1.653e5 (band 2.9e3) and 1.651e5 vs
+1.653e5 (band 2.4e3); Eq. (9) at D: 5.4e-4 / 6.5e-4 vs 1.6e-2 / 1.2e-2
+on the tip-lifted wall. Logs: `_rao1961_twin/run_o33_posing1_x030`,
+`run_o33_attribution_x020`, `run_of_record_o33_v2_x030`,
+`run_o33_v2_x020` (all 2026-08-27). Numeric-lint birth row 17
+(measured). Registry row [X-RAOO3], pass 2026-08-27; carried by the
+fifth commit of the window.
+
+What it means: the plug sector now has what the bell had since S19 —
+the classical optimum is stationary for the very functional and
+gradient the SQP consumes, and its live variable (the tip height) obeys
+Rao's own base-term balance to 0.5 percent. Deviations declared: the
+bump family was re-posed after attribution (near-cut instrument zone);
+the tip identity was promoted from reported to gated after two
+consistent measurements; P4's control amplitude was calibrated.
 
 ## NEXT (atomic)
 
-Build the axisymmetric ideal-spike baseline (GENO RaoPlug theta_E=0
-member, or a corner march from the sonic lip) -> unblock the
-full-expansion Rao-vs-spline A/B at L ~ 5.825 m (`PSPL_L`, open-queue
-item 3). Then the plug-sector O3.3: the SQP rediscovering Rao's optimum
-in his world from a perturbed start, on the twin's start line.
+The SQP-RETURN stage of the plug O3.3: a spline design vector on
+[x0, x_D] in Rao's world (twin start line, [X-RAOO3] posing), TR-SQP
+from a perturbed start, return to Rao's contour inside a band derived
+from the spline representation error + the march ladder — the plug
+analogue of [X-TOCV]'s "from a 1.5 percent perturbed start". Then the
+axisymmetric ideal-spike baseline (GENO RaoPlug theta_E=0 member, or a
+corner march) -> the full-expansion Rao-vs-spline A/B at L ~ 5.825 m
+(`PSPL_L`, open-queue item 3).
 
 ## BLOCCATO
 

@@ -20,6 +20,12 @@ authoritative for the S21-S24 narrative and GENO). Narrative:
   6/6 on GENO's legacy p_b=0 field** ([X-RAOTW]). Two constructions
   falsified and registered as such: the planar-fan ideal spike
   ([X-RAOIS]) and the planar start line on a wide cut ([X-RAOWD]).
+- **PLUG-SECTOR O3.3 PASS 7/7 at two cuts ([X-RAOO3], same day):**
+  Rao's optimum is stationary for our functional under our march;
+  the tip-moving gradient equals Rao's base-term counterweight
+  2 pi y_D p_a to 0.5 percent; Eq. (9) closes at D. First posing 4/6
+  was an instrument zone next to the start line (attributed by moving
+  the cut), re-posed and declared.
 
 ## 2. Numbers of record
 
@@ -49,13 +55,19 @@ P1 seam residual 1.17/1.36 (x0 0.20/0.10).
    thresholds + coverage (precedent [X-GENOP-class]).
 6. Repo hygiene on a parallel line: numeric-lint baseline and advisory
    index do not follow your files — add rows in-window (R7).
+7. **The first ~0.35 L after a Cauchy start line is not gradable by
+   the frozen replay** (wall foot search consuming start rows: AD
+   values that follow the cut, FD bands 1e8). Keep design-variation
+   support out of it, or the near-cut direction poisons every
+   reference-scaled control.
 
 ## 4. Open queue
 
-(1) axisymmetric ideal-spike baseline (GENO theta_E=0 member or corner
+(1) the SQP-return stage of the plug O3.3 (spline design vector in
+Rao's world, return from a perturbed start inside a derived band);
+(2) axisymmetric ideal-spike baseline (GENO theta_E=0 member or corner
 march) -> Rao-vs-spline A/B at L ~ 5.825 (`PSPL_L` promoted, x_end
-extended); (2) plug-sector O3.3 (SQP rediscovers Rao's optimum in his
-world); (3) findings rows for [X-RAOIS]/[X-RAOWD] (pending-declared);
+extended); (3) findings rows for [X-RAOIS]/[X-RAOWD] (pending-declared);
 (4) Italian document: W-5 closed + this chain (stash@{0}); (5) L-sweep
 and suboptimal theta_i sweep; (6) [X-FMTR] 1% residual; (7) O3.3 locus;
 (8) swirl + stratification; (9) rotational-inlet twin (GENO
