@@ -2645,3 +2645,18 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## E-3/E-4 DRY, E-5/RES-CAP-1 DISCHARGED; sequencing gate SATISFIED;
 ## landings LA-1..LA-5 owed at the M0/registry landing window;
 ## ship-gate remains armed for F2 (value, delta) rows.
+
+## ===== DELTA CENSIMENTO 2026-08-27 (linea parallela brick-2 plug, S26;
+## append-only SR-10; la tabella consolidata in PROGRESS e' stata editata
+## IN PLACE) =====
+## R20: cella stato estesa in place — gamba F3-entry "single-oracle Rao
+## 1961" MISURATA (X-RAOTB/CS/FN/TW + O3.3 plug X-RAOO3/X-RAOSQ), da
+## dichiarare alla ratifica; cella trigger: margine Lambda-form del
+## mirror C- ancora da provare.
+## R37 (nuova): LINEA BRICK-2 PLUG S21-S26 = CONSUMED-with-residue
+## 2026-08-27; residui e artefatti come da riga.
+## BLOCCATO 20 (nuovo): decisioni owner della linea (push/fork; GENO
+## blessing; documento italiano; R4 in M0).
+## ORA-PARALLELO e NEXT-PARALLELO aggiunti come blocchi additivi; la
+## catena principale (S-PRES -> F2 blocco 0) e' invariata.
+

@@ -230,6 +230,32 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     independent of each other) — if F3 stalls on its external risks
     (RaoPlug S1/S2; C- mirror), F4b may start first without
     re-adjudication. FALLBACK: spike-only capture.
+    STATUS OF RECORD (brick-2 plug line, parallel to F2, 2026-08-27;
+    log validation/PROGRESS_2026-08-27_S26_rao_modo1.md): the ENTRY leg
+    "single-oracle status (Rao 1961 spike Table-1) declared" is
+    MEASURED — tables usable as an oracle [X-RAOTB], Rao's optimum
+    reconstructed from his own first integrals [X-RAOCS], our thrust
+    functional == his on his control surface [X-RAOFN], dual-code twin
+    on GENO's legacy p_b=0 field PASS 6/6 [X-RAOTW] — and the plug
+    sector's O3.3 holds in BOTH halves: Rao's optimum stationary for our
+    functional under our march (interior AD gradient at the floor, tip
+    identity dJ_wall/dy_D = 2 pi y_D p_a to 0.5 percent, Eq. (9) at D)
+    [X-RAOO3] 7/7 at two cuts, and the [X-PSPL] TR-SQP returns to Rao's
+    contour from 20 bands off with the sign-flipped driver walking away
+    [X-RAOSQ] 6/6. Two constructions falsified and registered
+    ([X-RAOIS] planar-fan ideal spike; [X-RAOWD] planar start line on a
+    wide cut: in axisymmetric flow the centred fan is a point relation).
+    Also of record on the line: W-5 CLOSED, general (rotational) inlet
+    [X-RMAR], O3.1 through the stratified march [X-O31R]. NOT YET for
+    entry: the plug/C- mirror Lambda-form margin (unproven, undeclared);
+    RaoPlug S1/S2 in GENO landed but uncommitted (GENO protocol N-75).
+    NOT YET for exit: certified plug optimum + Table-1 oracle in derived
+    bands on OUR world (the full-expansion Rao-vs-spline A/B waits on an
+    axisymmetric ideal-spike baseline), a var-gamma/stratified plug
+    instance, T-GB de-rating or the 2-D truncated-plug falsifier.
+    Formal declaration of the entry leg = owner ratification at the
+    next F2/F3 touchpoint (the line's state is carried by its own
+    log/handoff; PROGRESS row R37).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
@@ -858,6 +884,21 @@ G6 (new)    DATA-CONTRACT GATE: any CycleFamily failing stage-A audits
 9.  Variational TOC brick (A1 brick 2: dJ/dSigma + TR-SQP + (**')/
     corner on the assembled march) — UNLOCKS O3.3 = P-2's numeric
     half; then P-2 submission-ready (modulo G5).
+    [STATUS 2026-08-12 (S20 steps 7-8): brick CLOSED at S18, O3.3
+    bench PASS at S19, and the design-class residue (a) is now
+    MEASURED. [D1] PASSES — [C-O33] 6.6295e-02 -> 1.1151e-02 on an
+    m = 12 adaptive class, full bench 18/18, cycle 2 converged
+    in-stratum, J = 2.7781374e+07 (best of the line). The lever is the
+    LIP knot interval, not the f2-indicator ranking: at the canonical
+    theta = 0.5 the lip interval is never marked and [D1] FAILS — a
+    CORRECTION to the T1 decision of record (goal-oriented refinement
+    must be oriented to the goal actually measured, and f2 drift is
+    not that goal). [C-O33] stays OPEN at 1.47x its band; the named
+    experiment is a JOINT basis-and-mesh ladder, since with NW = 60 a
+    sub-station lip interval puts the AD derivative below the march's
+    own resolution (three of four support probes VOID for exactly
+    that reason). Local branch s20-step78-o33-designclass, not pushed
+    by user order.]
     [NEXT-1 since S11; THREE user-ordered deferrals declared
     (S12/S13/S14) — tag corrected S14 (W1 of PAN-S14): PROTECTED
     NEXT-1 for S15, no fourth deferral short of a gate failure.

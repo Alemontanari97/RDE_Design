@@ -44,6 +44,37 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
+## ORA-PARALLELO (2026-08-27, LINEA BRICK-2 PLUG, branch `brick2-plug`
+## = origin/rde-nozzle-program 6be51b9 + 22 commit locali; push read-only,
+## catena principale NON toccata: questo blocco e' ADDITIVO). ESEGUITO
+## nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
+## della linea (14 commit) su 6be51b9 con date originali + commit di
+## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
+## 1961" MISURATA: tabelle usabili [X-RAOTB] 18/18, ottimo ricostruito
+## dai suoi integrali primi [X-RAOCS] 6/6, identita' dell'obiettivo
+## [X-RAOFN] 3/3, twin dual-code sul campo GENO legacy p_b=0 [X-RAOTW]
+## PASS 6/6 (cuneo sotto ED al livello S8: 97.1%/95.8%); due
+## falsificatori SCATTATI e registrati ([X-RAOIS] spike ideale a
+## ventaglio piano; [X-RAOWD] linea di partenza piana su taglio largo:
+## in assialsimmetrico il ventaglio e' una relazione di punto, non un
+## campo); (3) O3.3 DEL SETTORE PLUG in ENTRAMBE le meta': valore
+## [X-RAOO3] 7/7 a due tagli (stazionarieta' + identita' di punta
+## dJ/dy_D = 2 pi y_D p_a a 0.5%) e moto [X-RAOSQ] 6/6 (TR-SQP da 20
+## bande torna a Rao: 1.07e-4 vs 2.4e-4, |grad| 7.8e5 -> 86, rigettatore
+## a segno invertito si allontana); (4) O3.1 sulla marcia stratificata
+## [X-O31R] 6/6; PSPL_L promossa; (5) igiene R7: 33 righe baseline
+## numeric-lint + 11 righe indice per i file della linea (mai entrati
+## nei due canali), lint (vii)/(xv)/(xvii)/(xx) PASS; suite completa
+## 14/23 = 9 rossi ambientali su s2 (sympy assente; PDF assenti),
+## identici su HEAD pulito; (6) riparazione no-downgrade: l'artefatto
+## upstream validation/s25_spdb_m0.json ripristinato (il rerun s2 del
+## 13/08 vive in s25_spdb_m0_s2_2026-08-13.json, attribuito). Unica
+## riga upstream del registry toccata: X-A1IM pass 08-12 -> 08-13
+## (restamp posteriore, dichiarato). Deviazione R4 dichiarata: la
+## lezione del ventaglio e' scritta nel doc di teoria GENO (cap. 7.2),
+## non ancora in M0/D-doc.
+
 ## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
 ## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
 ## committato): Block 0 = trigger sweep da comando misurato (riga
@@ -59,6 +90,14 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
+## NEXT-PARALLELO (linea brick-2 plug, 2026-08-27): (1) baseline
+## assialsimmetrica dello spike ideale (membro theta_E=0 di GENO o
+## marcia dallo spigolo sonico) -> A/B Rao-vs-spline a piena espansione
+## L~5.825 (PSPL_L; voce 3 della coda S24); (2) F3 EXIT: ottimo plug
+## certificato + oracolo Tab. 1 in bande derivate SUL NOSTRO mondo +
+## un'istanza a gamma variabile/stratificata; (3) righe findings per
+## [X-RAOIS]/[X-RAOWD] (pending-declared SR-6); (4) documento italiano
+## brick-2 (W-5 chiuso, catena Rao) — decisione owner.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
@@ -166,7 +205,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
   bench [X-SPDB].
 
 
-## CENSIMENTO â€” TABELLA CONSOLIDATA R1-R36 (S-ORDINE 2026-08-13, S8;
+## CENSIMENTO â€” TABELLA CONSOLIDATA R1-R37 (S-ORDINE 2026-08-13, S8;
 ## estesa in-place R34-R36 dalle finestre 2026-08-13:
 ## una riga per item, stato = il blocco delta PIU' RECENTE che la
 ## tocca; la storia dei delta vive VERBATIM in
@@ -195,7 +234,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R17 | preprint | LOCK | utente | â€” |
 | R18 | O5 ordine dei limiti (numpy 2.5.2) | GATED | decisione utente a confine sessione (gamba C7; S24+1 opz altrimenti F2 entry) | registry: conditional-class O5 |
 | R19 | mu sign test | CONSUMED S24 | â€” | log S24 (mu=0 sul ladder; meta' GENO -> R13) |
-| R20 | item F2/F3/F5a gia' di record | CARRIED | near-axis, duties F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK], plug/C- mirror, X-T3CTRL | D6 F2/F3 |
+| R20 | item F2/F3/F5a gia' di record | CARRIED (F3 entry leg "single-oracle Rao 1961" MEASURED 2026-08-27 sulla linea brick-2: [X-RAOTB]/[X-RAOCS]/[X-RAOFN]/[X-RAOTW] + O3.3 plug [X-RAOO3]/[X-RAOSQ]; da DICHIARARE alla ratifica) | near-axis, duties F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK], plug/C- mirror (margine Lambda-form: ancora da provare), X-T3CTRL | D6 F2/F3; PROGRESS_2026-08-27_S26_rao_modo1.md |
 | R21 | C7 gamba refine/classe-ricca + O5 | SCHED | S24+1 opzionale pre-autorizzata, altrimenti F2 entry | â€” |
 | R22 | ENGINE SPEED | CONSUMED S25+S25bis | â€” | contatore di record: segmento 14.9-20.1 s vs 30 MET, campagna 10-14 min vs 25 MET; [X-SPDB] |
 | R23 | survey termo condizioni | CONSUMED-with-residue | C-A SCARICATA S25; C-B/C-C/C-D GATED (owner F2 / primo ingest ATLAS); flag GPLv3 FLINT lato GENO | ADVISORY_S24_thermo_closure_survey |
@@ -212,6 +251,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
 | R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED PIENO 2026-08-21 (parte C4 2026-08-20/21: FASE D dimostrata e atterrata a convergenza (centerpiece R22F 4 round x 3 lenti + escalation 4 minori TUTTI DRY + E-5; M0 riceve [T-DISC]/[T-RED]/[T-DCRX]/NTF/CLG/[R22F-FORCHETTA] con classi finali; G-c (ii) scaricata-citabile); Fase C completata a 62 righe (C59-C62 coniate: forma-temporale, NAND/SAND, p_b-closure, quadratura — 7 istanze classe no-row totali); COVERAGE GATE PASS dual-seed provato; PIPELINE DECISION MAP di record (62 nodi/45 archi, refuter 0/0); campagne letteratura (nozzle-RDE 0-BREAK, field atlas, base-pressure, throat) + emendamento protocollo censimento su sfida utente sostenuta; touchpoint chiusura: CFD-2 in F2/CFD-1 post-M-RED, BLOCCATO 16 ratificata F2-entry, M-RED resta F2, procurement top-3+3; catena aggiornata C4 -> S-PRES -> F2; log PROGRESS_2026-08-21_SfoundationsC4.md. Parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
+| R37 | LINEA BRICK-2 PLUG S21-S26 (parallela, branch brick2-plug, rebasata su 6be51b9 il 2026-08-27; 22 commit locali, push read-only) | CONSUMED-with-residue 2026-08-27 | residui: baseline spike ideale assialsimmetrico -> A/B Rao-vs-spline a piena espansione; F3 EXIT sul nostro mondo; righe findings [X-RAOIS]/[X-RAOWD]; documento italiano; residuo P1 di cucitura del twin sul campo 2-vincoli; accesso push/fork (owner) | validation/PROGRESS_2026-08-27_S26_rao_modo1.md + HANDOFF_2026-08-27_S26_rao_twin.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR (S21-S24) + X-RAOTB/CS/FN/IS/WD/TW/O3/SQ + X-O31R (S26); log di record in validation/_rao1961_twin/ |
 
 ## BLOCCATO / GATE APERTI
 
@@ -419,6 +459,19 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     (Lim-Humble AIAA 2020-0195, Stechmann PhD 2017,
     Schwer-Kailasanath AIAA 2012-3943) + i 3 ask fermi (More-Wild
     ECNoise, ASME V&V 20-2009, Xing-Stern); il resto WANTED passivo.
+
+ 20. LINEA BRICK-2 PLUG (2026-08-27, decisioni owner, non bloccanti
+    per la catena principale): (a) accesso push o fork per
+    `brick2-plug` (AlexFalco5 read-only: 22 commit locali; l'upstream
+    continua a muoversi, prossimo rebase per la ricetta in memoria);
+    (b) GENO: blessing e commit di RaoPlug N-65/N-66 + i fix che fanno
+    girare il run legacy p_b=0 (riproduce la Tab. 1 di Rao a 2.44e-3),
+    CASES/raoplug_gamma123 + plugnoz_axi, sorgente del doc di teoria
+    (cap. 7.2 "The lip fan in axisymmetric flow") — gated dal protocollo
+    GENO (N-75); (c) documento italiano brick-2 (stash@{0}) da
+    aggiornare (W-5 chiuso, catena Rao) o tenere fuori; (d) retro-
+    propagazione R4 in M0/D-doc della lezione "ventaglio = relazione di
+    punto in assialsimmetrico" (oggi solo nel doc GENO).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:
