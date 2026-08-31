@@ -266,6 +266,36 @@ contabilità e zero racconti di processo on-slide; il rigore vive nelle
 note/backup/retro-audit. Loop utente a lotti PICCOLI.
 Vincoli: project_build READ-ONLY; GENO read-only; env pinnato; Fable
 ovunque; commit pathspec (mai GENO/stray; data/q_mapping.* NON nostri).
+SUITE QUOTA (misurata 2026-08-31, tests/run_all.py, log scratchpad
+suite_close_S4.log): PRIMA CORSA 21/23 PASS in 319 s, EXIT 1 — FAIL (vii)
+numeric lint + FAIL (xxii) literature registry.
+(vii) RIPARATO IN-WINDOW (never-postpone-resolvables; file miei + righe
+per-file dei JSON baseline): causa 1 = _probe_typography_new.py con BOM
+UTF-8 (PowerShell Set-Content) -> ast.parse crash -> file RIMOSSO
+(f0db836); causa 2 = 8 violazioni ratchet R28 -> canone tipografico
+DERIVATO in typo_canon.py (32 costanti misurate, nominate), builder
+605->568 literal (< baseline 577 -> ratchet DOWN a realta'), down-ratchet
+specs_c12 9->2 / specs_c34 5->1 / spreslib 78->76, righe new-file misurate
+(_fig_s4_lot2 154, _probe_footerband 4, _probe_subtitles 4,
+_probe_typography 5, typo_canon 32); ri-esecuzione: PASS (91 file, 0
+violazioni) — commit cf0ca0f; build ri-verificata OK.
+(xxii) NON riparato qui (file condivisi / non miei): VIOLATION root B =
+cartella PADRE top-level: disk 48 != 9 rows + 38 bulk. Il lint conta OGNI
+file top-level della cartella padre (os.listdir + isfile, non solo .pdf);
+il +1 e' **Projects.lnk (2026-08-24)**, collegamento Windows creato
+dall'utente — non un paper. DUTY (a S-ROADMAP o all'utente): rimuovere/
+spostare Projects.lnk dalla cartella padre (nessuna riga registry da
+inventare) OPPURE restringere l'enumerazione di root B ai .pdf nel lint
+(tests/ condiviso). Nota: literature_addition_nozzle_rde/ (untracked, 1
+PDF Elsevier S1270963824010071, AST 2024) NON e' una root del lint ma e'
+un paper non registrato -> candidato WANTED/READ per la finestra lit.
+OSSERVATO 2026-08-31 durante la chiusura: tests/test_numeric_lint.py
+risulta MODIFICATO nel working tree — NON da questa sessione (mai toccato;
+non committato da me): lavoro della sessione parallela S-ROADMAP in corso
+sullo stesso checkout. Regola parallela rispettata: nessun mio commit
+include tests/.
+ESITO DI CHIUSURA: 22/23 verdi dopo la riparazione (vii); (xxii) pending
+con causa nominata e duty assegnata.
 ## ===== FINE HANDOFF =====
 
 ## ===== SESSIONE 4 (2026-08-23) — LOG LOTTI CKP-S3-5 =====
