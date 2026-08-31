@@ -2844,3 +2844,13 @@ entries:
   mechanism: record-landing-pending
   owner: "user decision (landing window): move the digests under validation/ with ADVISORY_INDEX rows + literature registry rows (Kliegel-Levine 1969, Rice 2003, NPAC, SUPIN) + D6 item 12 amendment; consumed by the F2.REPR session (duty a) and the C12 band duty (duty b)"
   trigger: "F2.REPR session opening; next literature-registry window; any citation of the NASA tools in a record document"
+- id: method:sroadmap-single-author-placements-unrefuted
+  status: CONFIRMED
+  path: critical
+  severity: medium
+  magnitude: "self-review at S-ROADMAP close (2026-08-31): the session ran inline with ZERO subagents by declared ceiling, so its two largest outputs are SINGLE-AUTHOR and UNREFUTED against the repo's own claim-dual-proof standard: (1) the path: triage of 213 OPEN findings (44 critical / 125 non-critical / 44 paper) assigned in one pass by one author with a declared lever (TWIN on case-A data) but no adversarial pass; (2) the 88 declared overrides + 73 OUT rules inside tools/roadmap_derive.py - a hand-authored placement layer INSIDE a 'derived' artifact: lint (xxiv) proves COVERAGE (every object has a step or an OUT:why), not PLACEMENT CORRECTNESS (an object put in the wrong step passes the lint); (3) two steps (F2.REPR, F3.TOURNAMENT) minted by the tool lead the plan of record instead of following it (precedence inversion until the D6 addendum is ratified); (4) the claims-registry coverage hole (45 open theory objects) was found only on a user question - no completeness critic ran"
+  source: "validation/PROGRESS_2026-08-31_Sroadmap.md#REVIEWER"
+  code: [tools/roadmap_derive.py:150-320]
+  mechanism: single-author-unrefuted
+  owner: "F2-B0 FIRST act (before any engine work): one refuter pass over (a) the 44 critical + a random 30 of the non-critical tags, (b) the 88 overrides, (c) the OUT rules - persona: adversarial plan referee; brief = flip-or-confirm per row with anchor; budget declared under R8; outcome lands as tag flips + override edits + regenerated roadmap; PLUS the completeness-critic pattern (what source is NOT a join input?) run once"
+  trigger: "F2-B0 opening (blocking for the TWIN protocol pre-registration, which consumes the critical set); any citation of the critical count as a program fact before the pass"

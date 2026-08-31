@@ -248,3 +248,27 @@
 
 ## COMMITS (this session)
 - 620f6e9 = the S-ROADMAP closing commit (all files above by explicit pathspec; GENO untouched; stray dirs untracked); branch commit count after it = 297 (`git rev-list --count HEAD`). A second micro-commit stamps this hash into the log + PROGRESS ORA.
+
+## REVIEWER (self-review at close, adversarial plan-referee persona; of record)
+STRENGTHS: roadmap derived from machine sources with a coverage lint and
+seeded rejectors; every deviation of the authored advisory recorded as a
+finding; three user catches (tournament, 3-D counterpart, claims coverage)
+all landed as steps/findings/sources in-window; counts measured; suite
+quoted plain; zero GENO writes; zero subagents by declared ceiling.
+WEAKNESSES (each a row or a duty): (1) single-author, unrefuted outputs -
+path: tags and the override/OUT layer (finding method:sroadmap-single-
+author-placements-unrefuted, path critical, owner F2-B0 FIRST act);
+(2) lint (xxiv) proves coverage, not placement correctness - declared;
+(3) two tool-minted steps lead the plan until the D6 addendum is
+ratified (precedence inversion, declared; draft in scratchpad, NOT in
+the record); (4) BLOCKING count 44+3 = 47 > the advisory expectation
+~40 - reported, not trimmed; (5) claims-coverage hole found by user
+question, not by a completeness critic - the critic pattern is now a
+named F2-B0 duty; (6) record_query is lexical grep over a hand-fixed
+manifest (30 entries), not semantic retrieval - adequate for anchors,
+not for concepts; (7) GENO health = report only (B-GENO).
+VERDICT: session CLOSABLE as CONSUMED-with-declared-residuals - the
+deliverables are of record, linted, committed; the residuals are typed
+rows with owner + trigger, and the first act of F2-B0 is the refuter
+pass, before any engine work. NOT citable until that pass: "44 critical"
+as a program fact; "placement of X in step Y" as adjudicated.

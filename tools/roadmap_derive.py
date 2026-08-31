@@ -310,6 +310,9 @@ FINDING_OVERRIDES = {
                     '(duty a: G12-L1-3D cross-check; duty b: Kliegel-Levine band)'),
     'theory:s5f-path-a-freevortex-stratified-gap':
         ('F2.REPR', 'S-5F decision dossier = the representation session'),
+    'method:sroadmap-single-author-placements-unrefuted':
+        ('F2-B0', 'owner: F2-B0 FIRST act (refuter pass over tags + '
+                  'overrides)'),
     'plan:full-envelope-tournament-no-named-d6-step':
         ('F3.TOURNAMENT', 'the step minted by this finding (anchors in the '
                           'step row)'),
