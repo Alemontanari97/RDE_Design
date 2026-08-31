@@ -96,3 +96,42 @@ solo pathspec; stray dirs non nostri restano untracked.
 | 7 | CFD-1 decisione | canale (partner/procurement) deciso dopo il residuo; commit solo se banda superata | decisione registrata, nessun run promesso |
 Regola trasversale: ogni sessione apre gate-first (R8) e chiude R3+R7 con
 conteggi misurati; il cammino critico si rilegge a ogni apertura.
+
+================================================================================
+## E. ADDENDUM 2026-08-31 (domanda utente: "il full ottimizzatore che spanna
+##    ogni geometria per dati vincoli, per quando?") — CORREZIONE AL CAMMINO
+Di record (CH8 :541-548, :981-984; D6 :214-227 F3; :233-240 F4b):
+- La generalita' configuration-free (un corpo solido nell'inviluppo, classi
+  che EMERGONO, ottimo globale = torneo tra ottimi di settore, spline
+  certificate per settore) e' della FORMULAZIONE, non ancora dell'ENGINE.
+- Oggi il driver esercita UN settore: bell/TOC, 9 dof (theta_B + 8 heights,
+  spline C^2, lip equality, TR-Newton segmentato) [PRACTICE, X-TOCV].
+- I settori free-boundary (plug/aerospike/E-D/shrouded) hanno DUE mancanti
+  nominati: H20 (solve del plume boundary p = Pa + shape-adjoint) e C61/N2
+  (chiusura p_b, mai adottata; Veen legacy FAILED) — owner e finestre F4b /
+  PB-2 / OP-2.
+- FASE DI PIANO: **F3 GEOMETRY CLASSES (3-4 sessioni; plug/aerospike
+  primary)**, ENTRY = F2 exit + RaoPlug S1/S2 fix in GENO (o status
+  single-oracle dichiarato) + margine Lambda-form plug/C- PROVATO o PRACTICE
+  dichiarata; EXIT = ottimo plug certificato + oracolo spike Table-1 in bande
+  derivate + >= 1 istanza var-gamma/stratificata + falsificatore di forma del
+  plug troncato 2-D eseguito PRIMA del primo ottimo plug certificato; budget
+  ISS-4 (cap 3 h/sessione, max 2 campagne decisive, contatore m/4, fallback
+  BY RULE). F3 e F4b (fronti fitted, 2-3 sessioni) sono ORDER-INTERCHANGEABLE
+  dato F2 exit. Il "full envelope" (tutte le classi + torneo) = F3 EXIT (+F4b
+  per i fronti data-borne); il de-risk del plug-march a livello spike e'
+  AUTORIZZATO in parallelo a F2 (RK1 front-load).
+CONSEGUENZA SUL CAMMINO CRITICO (correzione dichiarata alle sezioni B e D):
+il TWIN DECISIVO vive dove il teorema di rottura vale — il PLUG TRONCATO —
+quindi richiede il settore plug nell'engine (F3), non solo F2. Il twin su
+bell/TOC ESISTE gia' (F1b, S24: +0.51% +-30%, cert-limited) ed e' il twin
+del settore corrente, NON quello decisivo. Cammino critico CORRETTO:
+F2-B0 -> M-RED (residuo, delta/L_H) -> [RK1 plug-march de-risk in parallelo]
+-> F3 settore plug (H20 + chiusura p_b C61/N2 + oracolo spike) -> TWIN
+decisivo su plug troncato -> CFD-2 -> (CFD-1) -> P-1. Schema D aggiornato:
+inserire "F3 plug sector (3-4 sess., budget ISS-4)" tra la riga 3 e la riga
+4; la riga 4 eredita ENTRY = F3 exit (o istanza plug certificata). U1 deve
+scrivere il cammino in QUESTA forma. Per il torneo su TUTTE le classi
+(inviluppo pieno): F3 exit + F4b — nessuna data di calendario di record
+(solo ordine + budget per sessione); stima di ordine: F2 (2-4 sess.) +
+F3 (3-4) + F4b (2-3) = ~7-11 sessioni da qui.
