@@ -245,3 +245,6 @@
 6. Untracked dirs not ours (NASA_STUFF_Nozzle_Inlet/, Three-Dimensional-
    Nozzle-Design-Code/, literature_addition_nozzle_rde/, er.name,
    mailmap.txt, "t --count HEAD:q") left untouched, pending user.
+
+## COMMITS (this session)
+- 620f6e9 = the S-ROADMAP closing commit (all files above by explicit pathspec; GENO untouched; stray dirs untracked); branch commit count after it = 297 (`git rev-list --count HEAD`). A second micro-commit stamps this hash into the log + PROGRESS ORA.

@@ -15,7 +15,7 @@
 | campo | valore (misurato in finestra, SR-12) |
 |---|---|
 | Fase D6 | F2 GENERAL ENGINE **non ancora aperta** (contatore "F2 session 0/6"); F0/F1/F1b CLOSED di record (D6 :91, :137); F3/F4b/F5/F6 non aperte |
-| HEAD | branch `rde-nozzle-program`; apertura S-ROADMAP = bff3338; commit di chiusura elencati nel log |
+| HEAD | branch `rde-nozzle-program`; apertura S-ROADMAP = bff3338; chiusura = 620f6e9 (+ micro-commit stamp); conteggio commit 297 |
 | Ultimo gate | lint registri (xix)/(xx)/(xxii)/(xxiii) + roadmap (xxiv) PASS; suite completa: esito quotato nel log |
 | Ultima sessione | S-ROADMAP (advisory ADVISORY_Sroadmap_prompt_2026-08-31.md CONSUMED; log validation/PROGRESS_2026-08-31_Sroadmap.md) |
 | Passo atomico | vedi NEXT (F2-B0) |
