@@ -531,6 +531,31 @@ lavoro (F2, paper). Esecuzione SOLO a valle di rielaborazione critica
 (consegnata nel turno). VINCOLO OPERATIVO: quota critica — zero
 subagenti/workflow da qui a fine sessione, tutto inline e mirato.
 
+## ===== HANDOFF (sessione parallela S-ROADMAP aperta dall'utente 2026-08-31) =====
+STATO DI QUESTA SESSIONE (S-PRES S4, coda di chiusura): R3/R7 eseguite —
+PROGRESS in place (ORA 08-25, NEXT = S-ROADMAP, BLOCCATO 18 CONSUMED CON
+PIVOT, righe censimento R37/R38), ADVISORY_INDEX (riga advisory
+PENDING-CONTRACT + addendum blocco raws 456 file), findings mint 2 righe,
+memoria aggiornata; lint misurati in-finestra: (xix) PASS 253/0, (xx) PASS
+107/107 (riparato da 1 violazione status-enum), (xxii) PASS. Commit di
+chiusura: c4dc1d0, 3fa7839, dad95dd, e4b7366, 78c19a9, 07237c1.
+IN VOLO: tests/run_all.py (suite completa) lanciata 2026-08-31 in
+background — esito NON ancora quotato; rischio noto = test (vii) baseline
+new-file sui nuovi script deck_build (_probe_*.py, _fig_s4_lot2.py,
+_extract_esa_final.py). REGOLA PARALLELA: questa sessione NON accetta
+baseline né tocca tests/ finché S-ROADMAP è aperta (file condivisi);
+l'esito viene quotato QUI e, se (vii) fallisce, la duty "accettare le
+righe baseline dei 6 script S4" passa a S-ROADMAP (o a chi chiude per
+ultimo), dichiarata come pending. File che questa sessione può ancora
+toccare: SOLO questo BUILD_LOG + scratchpad. Untracked non nostri
+(pending conferma utente per lo spazzatura "t --count HEAD:q"):
+NASA_STUFF_Nozzle_Inlet/, Three-Dimensional-Nozzle-Design-Code/,
+literature_addition_nozzle_rde/, er.name, mailmap.txt.
+Conteggi rigenerati da comando in questa finestra (SR-12): findings 253
+(211 OPEN), index 107 file rows + 5 block rows, deck_build 387 file,
+spres_raws 456 file, commit branch 292 (= 286 + 6 di chiusura).
+## ===== FINE HANDOFF =====
+
 ## STATO (aggiornare a ogni confine)
 - [x] R2 apertura + censimento asset (PDF tutti localizzati; mappa
   P-A/P-B/P-C/P-D/KP18/P-M/HUM/RAO in FIGS_MANIFEST quando atterra)
