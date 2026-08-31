@@ -26,7 +26,7 @@
 | GENO health | patch strumentazione NON inerte nel working tree GENO (src/lib/MoC_Gen_m.f90 +42, Profile_m.f90 +95 incl. AUDIT VARIANT B; diff == validation/RAW_geno_audit_instrumentation_2026-08-13.patch, md5 822ca4f); build WSL ultima = link error (Jul 17); quarantena + ri-baseline md5 = passo BLOCKING F2-B0 (ROADMAP) — GENO letto SOLO in read-only in S-ROADMAP |
 
 ## NEXT (atomico)
-F2-B0 (F2 BLOCCO 0, contatore 0/6; R8 gate-first in apertura; passi derivati F2-B0 -> F2.REPR): (1)
+F2-B0 (F2 BLOCCO 0, contatore 0/6; CARRIER = validation/ADVISORY_F2B0_prompt_2026-08-31.md, PENDING-CONTRACT; primo atto BLOCCANTE = passata di refuter su tag path:/override/OUT + completeness critic; poi touchpoint T1-T5; passi derivati F2-B0 -> F2.REPR): (1)
 rileggere docs/ROADMAP_critical_path.md rigenerata (lint xxiv PASS);
 (2) GENO health: quarantena patch (comando pre-verificato nel log
 S-ROADMAP) + ri-baseline md5 con build — su autorizzazione utente
