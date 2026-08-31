@@ -66,7 +66,11 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## NEXT (atomico): F2 BLOCCO 0 (contatore 0/6; re-chain + finestra
+## NEXT (atomico): S-ROADMAP (1 sessione; carrier = validation/
+## ADVISORY_Sroadmap_prompt_2026-08-31.md: cammino critico al TWIN +
+## campo path: nei registri + START_HERE/record_query + triage soli-tag
+## + R8 gate-first + PROGRESS snello + GENO health + P1_outline) POI
+## F2 BLOCCO 0 (contatore 0/6; re-chain + finestra
 ## engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima campagna;
 ## CFD-2 in coda F2; CFD-1 post-M-RED con criteri PM22-vs-Jourdaine;
 ## sessione topologia+modellistica a F2-entry; BLOCCATO-16 ratifica a
