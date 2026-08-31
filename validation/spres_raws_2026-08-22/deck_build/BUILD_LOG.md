@@ -553,7 +553,7 @@ NASA_STUFF_Nozzle_Inlet/, Three-Dimensional-Nozzle-Design-Code/,
 literature_addition_nozzle_rde/, er.name, mailmap.txt.
 Conteggi rigenerati da comando in questa finestra (SR-12): findings 253
 (211 OPEN), index 107 file rows + 5 block rows, deck_build 387 file,
-spres_raws 456 file, commit branch 292 (= 286 + 6 di chiusura).
+spres_raws 456 file, commit branch 292 (git rev-list --count HEAD dopo 383a855 = 291 + questo; 7 commit di chiusura: c4dc1d0, 3fa7839, dad95dd, e4b7366, 78c19a9, 07237c1, 383a855; il '286' della finestra 08-31 mattina era pre-chiusura).
 ## ===== FINE HANDOFF =====
 
 ## STATO (aggiornare a ogni confine)
