@@ -16,6 +16,7 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.util import Inches, Pt
 
 import spreslib as L
+import typo_canon as TC  # S4 typography canon (measured host values, named)
 from spreslib import (Presentation, RED, TEAL, GRAY, LGRAY, WHITE, AMBER,
                       TEAL_BG, RED_BG, FONT, add_text, add_kicker, add_cite,
                       add_img, img_scaled, bullets, add_table, add_card,
@@ -645,12 +646,12 @@ def ly_roadmap_cards(prs, fs, spec):
                   [(e, {"size": 12, "color": GRAY})],
                   [(wdw, {"size": 12, "color": TEAL, "italic": True})]],
                  role="caption", size=12, line_spacing=1.0, space_after=4)
-    add_text(s, 0.5, 4.95, 12.35, 0.62, c["gap_line"], role="caption",
+    add_text(s, 0.5, TC.ROADMAP_GAPLINE_TOP_IN, 12.35, 0.62, c["gap_line"], role="caption",
              size=13, color=GRAY, italic=True)
-    add_band(s, 0.5, 5.7, 12.35, 0.68, c["kill_line"], ec=RED, fc=RED_BG,
+    add_band(s, 0.5, TC.ROADMAP_KILL_TOP_IN, 12.35, TC.ROADMAP_KILL_H_IN, c["kill_line"], ec=RED, fc=RED_BG,
              size=13, color=GRAY)
     if c.get("closing"):
-        add_text(s, 0.5, 6.45, 12.35, 0.3, c["closing"], role="caption",
+        add_text(s, 0.5, TC.ROADMAP_CLOSING_TOP_IN, 12.35, TC.ROADMAP_CLOSING_H_IN, c["closing"], role="caption",
                  size=14, color=RED, bold=True, align=PP_ALIGN.CENTER)
     n = _collect(spec["id"], c["gap_line"], c["kill_line"],
                  c.get("closing", ""), c.get("timeline_label", ""),
@@ -707,8 +708,9 @@ def ly_summary(prs, fs, spec):
     # (Listener-1 layout defect: old placement collided with the band at
     # 6.76); band becomes the final statement before the footer.
     f, _ = c["fig"]
-    img_scaled(s, respath(f), 1.35, 4.45, 10.6, 1.42)
-    add_band(s, 0.6, 5.98, 12.3, 0.68, c["closing"], ec=RED, fc=RED_BG,
+    img_scaled(s, respath(f), TC.SUMMARY_FIG_LEFT_IN, TC.SUMMARY_FIG_TOP_IN,
+               TC.SUMMARY_FIG_MAXW_IN, TC.SUMMARY_FIG_MAXH_IN)
+    add_band(s, 0.6, TC.SUMMARY_BAND_TOP_IN, 12.3, TC.SUMMARY_BAND_H_IN, c["closing"], ec=RED, fc=RED_BG,
              size=15, color=GRAY, align=PP_ALIGN.CENTER)
     n = _collect(spec["id"], c["closing"], c["eng_bullets"],
                  c["prog_bullets"])
@@ -748,11 +750,11 @@ def ly_divider(prs, fs, spec):
     """Backup demarcation slide (user order S4): one big centered title."""
     s = new_slide(prs, fs, spec["title"])
     t = s.shapes.title
-    t.top, t.height = Inches(3.0), Inches(1.2)
+    t.top, t.height = Inches(TC.DIVIDER_TITLE_TOP_IN), Inches(TC.DIVIDER_TITLE_H_IN)
     p = t.text_frame.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
     for r in p.runs:
-        r.font.size = Pt(40)
+        r.font.size = Pt(TC.DIVIDER_PT)
     return s, 0
 
 
@@ -849,12 +851,12 @@ def main():
         for sh in slide.shapes:
             if not getattr(sh, "has_text_frame", False):
                 continue
-            if sh.top is None or sh.top > _In(1.2):
+            if sh.top is None or sh.top > _In(TC.TITLE_ZONE_TOP_IN):
                 continue
             r_, _p = _first_run(sh)
             if r_ is None or not r_.font.size:
                 continue
-            if r_.font.size.pt >= 28:
+            if r_.font.size.pt >= TC.TITLE_MIN_PT:
                 if best is None or sh.top < best.top:
                     best = sh
         return best
@@ -874,8 +876,8 @@ def main():
         from pptx.enum.text import (MSO_ANCHOR as _AN,
                                     MSO_AUTO_SIZE as _AS)
         from pptx.util import Pt as _Pt
-        t.left, t.top = _In(0.32), _In(0.38)
-        t.width, t.height = _In(12.7), _In(0.95)
+        t.left, t.top = _In(TC.TITLE_LEFT_IN), _In(TC.TITLE_TOP_IN)
+        t.width, t.height = _In(TC.TITLE_W_IN), _In(TC.TITLE_H_IN)
         _tf = t.text_frame
         _tf.vertical_anchor = _AN.TOP
         _tf.word_wrap = True
@@ -889,13 +891,13 @@ def main():
         for _p2 in _tf.paragraphs:
             _p2.alignment = _AL.LEFT
             for _r2 in _p2.runs:
-                _r2.font.size = _Pt(32)
+                _r2.font.size = _Pt(TC.TITLE_PT)
                 _r2.font.bold = True
                 _r2.font.name = FONT
                 _r2.font.color.rgb = RED
         r_, _p = _first_run(t)
         if spec["kind"] == "new":
-            if r_.font.size.pt != 32:
+            if r_.font.size.pt != TC.TITLE_PT:
                 typo_problems.append(
                     f"TYPO {spec['id']}: title size {r_.font.size.pt} != 32")
             if not r_.font.bold:
@@ -908,21 +910,21 @@ def main():
         for sh0 in slide.shapes:
             if sh0 is t or not getattr(sh0, "has_text_frame", False):
                 continue
-            if sh0.top is None or sh0.top > _In(1.3):
+            if sh0.top is None or sh0.top > _In(TC.SUBTITLE_ZONE_TOP_IN):
                 continue
             fr, fp = _first_run(sh0)
             if fr is None or not fr.font.size:
                 continue
-            if 24 <= fr.font.size.pt <= 30:
+            if TC.SUBTITLE_PT_MIN <= fr.font.size.pt <= TC.SUBTITLE_PT_MAX:
                 for _r3 in fp.runs:
-                    _r3.font.size = _Pt(28)
+                    _r3.font.size = _Pt(TC.SUBTITLE_PT)
                     _r3.font.bold = True
                     _r3.font.name = FONT
                     _r3.font.color.rgb = TEAL
         # footer texts: ENFORCE one exact geometry + format on every slide
         # (host placeholders included; group children only reformatted —
         # their position is the band's, already canonical).
-        def _near(v, target_in, tol=0.02):
+        def _near(v, target_in, tol=TC.GEOM_TOL_IN):
             return v is not None and abs(_Emu(v).inches - target_in) <= tol
         for sh0 in slide.shapes:
             for ts in _iter_text_shapes(sh0):
@@ -937,10 +939,12 @@ def main():
                             "T(H)RUST team"):
                     _team = txt0.startswith("T(H)")
                     if ts is sh0:  # top-level: safe to move
-                        ts.left = _In(9.06 if _team else 1.57)
-                        ts.top = _In(6.71)   # = red band box (6.71 x 0.81)
-                        ts.width = _In(2.2 if _team else 7.48)
-                        ts.height = _In(0.81)
+                        ts.left = _In(TC.FOOT_TEAM_LEFT_IN if _team
+                                      else TC.FOOT_LABEL_LEFT_IN)
+                        ts.top = _In(TC.BAND_TOP_IN)   # = red band box
+                        ts.width = _In(TC.FOOT_TEAM_W_IN if _team
+                                       else TC.FOOT_LABEL_W_IN)
+                        ts.height = _In(TC.BAND_H_IN)
                     _ftf = ts.text_frame
                     _ftf.vertical_anchor = _AN.MIDDLE
                     for _m in ("margin_left", "margin_right", "margin_top",
@@ -949,7 +953,7 @@ def main():
                     for _p2 in _ftf.paragraphs:
                         _p2.alignment = _AL.CENTER
                         for _r2 in _p2.runs:
-                            _r2.font.size = _Pt(14)
+                            _r2.font.size = _Pt(TC.FOOT_PT)
                             _r2.font.bold = True
                             _r2.font.name = FONT
                             _r2.font.color.rgb = L.WHITE
@@ -957,7 +961,8 @@ def main():
             for ts in _iter_text_shapes(sh0):
                 txt = ts.text_frame.text.strip()
                 if txt == "Rotating Detonation Engine Activities":
-                    if not (_near(ts.top, 6.71) and _near(ts.left, 1.57)):
+                    if not (_near(ts.top, TC.BAND_TOP_IN)
+                            and _near(ts.left, TC.FOOT_LABEL_LEFT_IN)):
                         typo_problems.append(
                             f"TYPO {spec['id']}: foot label at "
                             f"({_Emu(ts.left).inches:.2f},"
@@ -969,7 +974,8 @@ def main():
                             f"TYPO {spec['id']}: foot label not centered "
                             "(host canon = centered placeholder)")
                 elif txt == "T(H)RUST team":
-                    if not (_near(ts.top, 6.71) and _near(ts.left, 9.06)):
+                    if not (_near(ts.top, TC.BAND_TOP_IN)
+                            and _near(ts.left, TC.FOOT_TEAM_LEFT_IN)):
                         typo_problems.append(
                             f"TYPO {spec['id']}: team text at "
                             f"({_Emu(ts.left).inches:.2f},"
