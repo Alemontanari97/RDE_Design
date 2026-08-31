@@ -65,6 +65,21 @@ DISTINCT check-family) -- two new families:
       construction (no code: field in the choice schema).
 Both families carry in-memory seeded rejectors (doctored dead anchor;
 ownerless NEVER row) proven every run, same pattern as (a)-(d).
+
+S-ROADMAP EXTENSION (2026-08-31, advisory
+validation/ADVISORY_Sroadmap_prompt_2026-08-31.md U1/U3 — the
+critical-path TRIAGE field):
+  (g) PATH family: every OPEN entry (CONFIRMED / DOWNGRADED) carries
+      `path: critical | non-critical | paper` = its relation to the
+      program's decisive number (the head-to-head TWIN, per-phase vs
+      I4 design at identical constraints on the truncated plug; the
+      derived roadmap docs/ROADMAP_critical_path.md is the consumer).
+      critical = left open at TWIN time the number is uncitable or
+      wrong; paper = consumed only by a paper/claim/literature window;
+      non-critical = everything else (a phase duty that does not gate
+      the number). The tag is TRIAGE ONLY: it never changes status
+      (closures need evidence, R5). Seeded rejectors: OPEN row without
+      `path:` and an out-of-enum value must both FIRE.
 """
 import io
 import os
@@ -83,6 +98,7 @@ DEFTW_SRC = os.path.join(ROOT, 'validation', 'def_twin_falsifier.py')
 STATUSES = ('CONFIRMED', 'DOWNGRADED', 'REFUTED', 'DISCHARGED',
             'SUPERSEDED')
 OPEN = ('CONFIRMED', 'DOWNGRADED')
+PATHS = ('critical', 'non-critical', 'paper')   # (g) S-ROADMAP triage enum
 SEVERITIES = ('high', 'medium', 'low')
 BASE = ('id', 'status', 'severity', 'magnitude', 'source', 'code',
         'mechanism')
@@ -121,7 +137,17 @@ def check(entries):
                       else ('evidence',))
         missing = [f for f in req if f not in e]
         extra = [f for f in e if f not in req + ('note', 'evidence',
-                                                 'owner', 'trigger')]
+                                                 'owner', 'trigger',
+                                                 'path')]
+        # (g) PATH family: required on OPEN rows, enum-checked wherever
+        # present (a closed row may keep its last tag for history)
+        if st in OPEN and 'path' not in e:
+            v.append('%s: OPEN entry without path: (critical | '
+                     'non-critical | paper) — S-ROADMAP triage field '
+                     'required' % eid)
+        if 'path' in e and e.get('path') not in PATHS:
+            v.append('%s: path %r not in %s' % (eid, e.get('path'),
+                                                 PATHS))
         if missing:
             v.append('%s: %s entry missing %s (OPEN => owner+trigger;'
                      ' CLOSED => evidence)' % (eid, st, missing))
@@ -181,8 +207,17 @@ def seeded_rejectors():
     good = dict(id='seed-ok', status='CONFIRMED', severity='low',
                 magnitude='"m"', source='docs/findings_registry.yaml',
                 code=['tests/test_findings_registry.py:1-5'],
-                mechanism='seed', owner='here', trigger='never')
+                mechanism='seed', owner='here', trigger='never',
+                path='non-critical')
     demos = []
+    e0 = dict(good, id='seed-nopath')
+    e0.pop('path')
+    demos.append(('open-without-path (S-ROADMAP g)', [e0],
+                  lambda vs: any('without path' in t for t in vs)))
+    e0b = dict(good, id='seed-badpath', path='blocking')
+    demos.append(('path-out-of-enum (S-ROADMAP g)', [e0b],
+                  lambda vs: any('path' in t and 'not in' in t
+                                 for t in vs)))
     e1 = dict(good, id='seed-noowner')
     e1.pop('owner')
     demos.append(('open-without-owner', [e1],
@@ -518,7 +553,11 @@ def run():
     ok_stale = derive_staleness_check()
     ok_fam, n_choice, n_lit, vs_fam = run_families()
     n_open = sum(1 for e in entries if e.get('status') in OPEN)
+    n_path = {k: sum(1 for e in entries if e.get('status') in OPEN
+                     and e.get('path') == k) for k in PATHS}
     ok = not vs and ok_seed and ok_stale and ok_fam
+    print('  path: triage over OPEN rows: %s'
+          % ', '.join('%s %d' % (k, n_path[k]) for k in PATHS))
     print('  %-52s %s (%d entries, %d open, %d violations; H4 '
           'artifact channel %s; families e+f %s: %d choice + %d lit '
           'rows, %d violations)'

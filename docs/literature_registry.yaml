@@ -59,7 +59,7 @@
 #   folder new_literature_foundations_c/, + Becker-Rannacher 2001 user
 #   upload landed mid-window; arrival record =
 #   validation/sfoundations_raws_2026-08-13/MANIFEST_papers_foundations_c.md)
-#   root B: disk 47 == rows  9 (4 B-only + 5 B+D dedup) + bulk 38
+#   root B: disk 48 == rows  9 (4 B-only + 5 B+D dedup) + bulk 39 (+1 Projects.lnk in bulk_parent_assets, 2026-08-31)
 #           (26 pptx + 5 extracts + 2 derived-cache + 3 assets + 2 md)
 #   root C: disk 77 == rows 20 (GENO/literature papers) + bulk 57
 #           (52 vendor docs + 5 GenoPlug figures, glob expanded: the
@@ -1446,8 +1446,8 @@ bulk:
 - id: bulk_parent_assets
   class: asset
   root: B
-  count: 3
-  covers: "PARENT/Presentazione_CVA.pdf (render of the deliverable pptx), PARENT/SDToolbox.zip (official upstream snapshot, audit input of validation/sdt_official_audit.md), PARENT/brick2_profiles_record.png (S18 record figure, MISPLACED outside the repo)"
+  count: 4
+  covers: "PARENT/Projects.lnk (Windows shortcut, non-content, appeared 2026-08-24; registered 2026-08-31 S-ROADMAP at the (xxii) root-B drift 48 != 47), PARENT/Presentazione_CVA.pdf (render of the deliverable pptx), PARENT/SDToolbox.zip (official upstream snapshot, audit input of validation/sdt_official_audit.md), PARENT/brick2_profiles_record.png (S18 record figure, MISPLACED outside the repo)"
   note: "Single copies; the zip and png are unique-at-risk items in the seg7 ledger."
 
 - id: bulk_parent_lecture_prose

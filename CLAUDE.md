@@ -15,11 +15,17 @@ messaggio di commit. Se non sai in quale fase si colloca un passo,
 fermati e chiediti perché lo stai facendo.
 
 ### R2 — Apertura di sessione
-Prima di qualsiasi lavoro: (1) leggere la memoria di progetto;
+Prima di qualsiasi lavoro: (0) leggere `docs/START_HERE.md` PER PRIMO
+(mappa dei layer, direttive standing, comando di query
+`tools/record_query.py`); (1) leggere la memoria di progetto;
 (2) leggere `docs/rde_nozzle_MASTER.md` (M0 — riferimento di record:
 in conflitto con altri doc, M0+D1-D7 vincono); (3) leggere
-`docs/rde_nozzle_PROGRESS.md` (ORA/NEXT/BLOCCATO); (4) dichiarare
-esplicitamente da dove si riparte e in quale fase del piano.
+`docs/rde_nozzle_PROGRESS.md` (ORA/NEXT/BLOCCATO); (4) rigenerare e
+rileggere la roadmap DERIVATA (`python tools/roadmap_derive.py` →
+`docs/ROADMAP_critical_path.md`, lint (xxiv) verde: nessun cammino
+"completo" è citabile senza quel PASS); (5) dichiarare esplicitamente
+da dove si riparte, in quale fase del piano e in quale passo della
+roadmap (path: critical / non-critical / paper).
 
 ### R3 — Chiusura di fase e di sessione (rendicontazione obbligatoria)
 A fine sessione, e SEMPRE a fine fase: aggiornare
@@ -68,10 +74,30 @@ mai un documento precedente [SR-12]. Git: GENO/ ignorato; add SOLO
 per pathspec espliciti, mai `git add -A`. Mappa layer/registry:
 docs/rde_nozzle_SCAFFOLD.md §6.
 
+### R8 — Sessione GATE-FIRST (S-ROADMAP 2026-08-31, ratificata)
+Ogni sessione DICHIARA in apertura, su file (log di sessione o
+checkpoint), PRIMA di qualsiasi authoring: (i) il CONSUMATORE / la
+persona esatta del deliverable (mai listener generici; CONSECUTIO D1);
+(ii) i CRITERI D'USCITA misurabili — per gli artefatti comunicativi i
+4 assi CKP-S4-1 (chiarezza / completezza / comprensione /
+collocazione); (iii) il TETTO di budget d'orchestrazione (subagenti,
+round, token) — riportato a R3 col consumo misurato (SR-9); superarlo
+= decisione utente, mai silenziosa. Regole derivate (lezioni L1-L4
+CONSECUTIO_S4): un difetto di forma ricorrente → enforcement + assert
+alla prima occorrenza, mai verifica-only; listener = persona esatta,
+delta-audit, mai full ripetuti; la compressione all'essenziale è una
+decisione di cornice posta all'utente a inizio authoring. Il cammino
+critico si rilegge a ogni apertura (R2 punto 4): il campo `path:` nei
+registri (findings + BLOCCATO) è l'unica classificazione BLOCKING
+citabile.
+
 ## Riferimenti canonici (ordine di lettura)
+00. `docs/START_HERE.md` — mappa dei layer + direttive + query (≤60 righe).
 0. `docs/rde_nozzle_MASTER.md` (M0) — teoria di record, prove complete.
 0b. `docs/rde_nozzle_PROGRESS.md` — stato vivente (ORA/NEXT/BLOCCATO/LOG).
 1. `docs/rde_nozzle_development_plan.md` (D6) — fasi, gate, tool matrix.
+1b. `docs/ROADMAP_critical_path.md` — cammino critico DERIVATO (mai
+    editato a mano; `tools/roadmap_derive.py`, lint (xxiv)).
 2. D1-D5, D7 — profondità per argomento (mappa in M0 Parte VII).
 Le note storiche (`cycle_averaged_variational_nozzle.md`,
 `mathematical_foundations_rde_nozzle.md`) portano banner di

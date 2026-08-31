@@ -675,7 +675,7 @@ entries:
   alternatives:
     - "vmap value_and_grad batched entry inside the M4 engine (SOTA, plan as broadcast operands, zero per-segment recompile) — IMPLEMENTED and gate-tested, REJECTED as default"
   status: DECIDED
-  evidence: "docs/rde_nozzle_PROGRESS.md#AGGIUDICAZIONE M6 DI RECORD"
+  evidence: "docs/rde_nozzle_PROGRESS_ARCHIVE.md#AGGIUDICAZIONE M6 DI RECORD"
   owner: "F2 (adoption = declared version change at a session boundary, m6gate re-formed on the corrected criterion, M3 precedent; candidate opt-in flag A1_VMAP_HESS=1 named in the interim)"
   note: "m6gate FIRED at first implementation (dH 18% of Hessian scale = 5-6x the FD scheme's own asymmetry) -> root cause ISOLATED via three convergent probes (adjoint cross-lowering gradient floor ~1e-8 rel over ~250 implicit solves, FD-amplified ~7 orders; even sequential eager-vs-jit diverges 2.9e-2; the defect was the mixed-lowering formulation, not the batching) -> CORRECTED FORM (base in-batch, one lowering; lane-permutation control bitwise) measured dH 1.68x scheme asymmetry, INSIDE the derived K_RICH bound, batched self-asymmetry better than sequential -> classed ADOPTION-READY. Classed DECIDED (not SINGLE-AUTHOR/NEVER) because the verdict rests on a full converged multi-probe technical adjudication (m6gate + consumer diagnostic + root-cause isolation), not an un-surveyed choice; the residual open item is WHEN to adopt (a session-boundary version-change decision), not WHETHER the current default is justified. [PLACEMENT REPAIR 2026-08-19, declared: this note sat as a stray SECOND note: line under C51 — a duplicate key that OVERWROTE C51's own note for any machine parser; content is C48's (the m6gate verdict), relocated here verbatim in the Blocco-2 landing window.]"
 
