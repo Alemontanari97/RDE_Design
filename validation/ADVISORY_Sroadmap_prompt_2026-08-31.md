@@ -135,3 +135,53 @@ scrivere il cammino in QUESTA forma. Per il torneo su TUTTE le classi
 (inviluppo pieno): F3 exit + F4b — nessuna data di calendario di record
 (solo ordine + budget per sessione); stima di ordine: F2 (2-4 sess.) +
 F3 (3-4) + F4b (2-3) = ~7-11 sessioni da qui.
+
+================================================================================
+## F. ADDENDUM 2026-08-31 — REGOLA DI CERTEZZA (domanda utente: "non avevi
+##    visto il piano nella sua interezza? come fai a esserne certo ora?")
+AMMISSIONE DI RECORD: lo schema D e la sezione B sono stati AUTORATI da
+contesto parziale (NEXT di PROGRESS + fette di CH6/CH10 + memorie + grep
+mirati su D6), NON da una lettura integrale di D6 (1157 righe, fasi F0-F6 +
+7 gate), della pipeline decision map ne' di CH8. Prova del buco: lo schema
+ignorava F3, F4b, F5 (RDE MACHINE) e F6 (hardware bridge). La certezza NON
+si ottiene per lettura (nemmeno integrale: la lettura non e' verificabile);
+si ottiene per DERIVAZIONE + LINT. Percio' U1 e' RISCRITTA cosi':
+U1' ROADMAP DERIVATA, NON AUTORATA. Sorgenti-macchina (tutte esistenti,
+    misurate 2026-08-31): D6 tabella fasi F0..F6 (:37,:55,:101,:160,:214,
+    :233,:252,:275) + 7 gate G0-G6; docs/rde_nozzle_pipeline_decision_map.md
+    (di record, refuter 0 BREAK); validation/spres_raws_2026-08-22/
+    graph_derisk/pipeline_graph.json (79 nodi / 45 archi, assert-gated);
+    docs/choice_ledger.yaml (62 righe); docs/findings_registry.yaml (253,
+    211 OPEN); PROGRESS BLOCCATO (17). tools/roadmap_derive.py legge queste
+    sorgenti e produce docs/ROADMAP_critical_path.md come TABELLA di passi
+    con, per ogni passo: fase D6, gate, nodi di pipeline consumati, righe
+    ledger, finding/BLOCCATO taggate. tests/test_roadmap_coverage.py =
+    BIIEZIONE: ogni fase, gate, nodo, riga ledger, finding OPEN e voce
+    BLOCCATO compare in >= 1 passo OPPURE porta il tag esplicito OUT:<why>
+    (paper-only / non-critical / horizon-F6); rejector seminato (un nodo
+    orfano piantato deve far FALLIRE il lint). Il cammino critico al TWIN
+    decisivo (sez. E) e' una VISTA filtrata (path: critical) di quella
+    tabella, mai un documento separato scritto a mano.
+R2' di S-ROADMAP: lettura INTEGRALE di D6 e della pipeline decision map
+    (non grep), PRIMA di scrivere tools/roadmap_derive.py; ogni deviazione
+    tra lo schema D di questa advisory e la roadmap derivata va LOGGATA
+    come finding di metodo (classe: authored-from-partial-context).
+Precedenti che provano la fattibilita' del metodo NEL record: ADVISORY_INDEX
+biiezione 90/90 con lint (xx); findings registry con rejector seminati (253,
+0 violazioni); TRACE_ESA_FINAL (20 righe tracciate a carrier). Lo stesso
+strumento va applicato AL PIANO. Fino al PASS di quel lint, NESSUNA
+affermazione "il cammino e' completo" e' citabile — nemmeno la sezione E.
+ATLAS COME SORGENTE (domanda utente, verificata 2026-08-31): l'atlas
+RENDICONTA il piano — 290 menzioni di fase F0-F6 nei capitoli (CH4 62,
+CH6 50, CH8 34, CH3 29, CH9 29, CH1 19, CH_REF 18, CH10 15, ...), CH6 §
+"Collocazione di F4b nella catena" + "F3 and F4b ORDER-INTERCHANGEABLE",
+ATLAS_TREE ATTO 7 = ROADMAP, ogni oggetto (C61/N2, H20, delta/L_H, ...)
+porta il SUO atterraggio di fase. La vista dell'atlas e' INDICIZZATA PER
+OGGETTO (per ogni oggetto: quando/dove atterra); D6 e' INDICIZZATO PER FASE
+(per ogni fase: cosa entra/esce). Il buco NON era nel record: era la
+mancanza del JOIN macchina fra le due viste — e la mia lettura parziale.
+tools/roadmap_derive.py DEVE fare quel join (fase x oggetti-atlas x
+registri) e il lint di copertura deve contare ANCHE le menzioni di fase
+nell'atlas: ogni "F<n>" citato in un capitolo = un oggetto che deve
+comparire nel passo di quella fase o portare OUT:<why>. Il record e' completo
+per costruzione; la certezza e' il lint del join, non la mia memoria.
