@@ -395,6 +395,10 @@ BLOC_OVERRIDES = {
     'B-CFD1': ('F2.CFD-2', 'PROGRESS B19(a): CFD-1 decided POST-M-RED, '
                'inside the F2 CFD window'),
     'B-GENO': ('F2-B0', 'PROGRESS NEXT item (2): GENO health at F2 BLOCCO 0'),
+    'B-SREVIEW': ('F2.REPR', 'the S-REVIEW GO / NO-GO gates the NEXT session '
+                 '(PROGRESS NEXT + both carriers); without this declared '
+                 'override the CARRY_FORWARD default would home the row at '
+                 'F2.ENGINE (S-REVIEW refuter PROMPT-2, 2026-09-05)'),
     'B-G5': ('PAPER', 'G5 blocks SUBMISSIONS only (D6:289)'),
     'B12': ('PAPER', 'WANTED procurement rows consumed by lit/claim windows'),
     'B-RAOPLUG': ('F3.RK1', 'D6:214-218 F3 ENTRY condition; de-risk RK1 '

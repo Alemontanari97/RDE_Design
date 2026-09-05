@@ -201,3 +201,90 @@ organizzazione 7 rigore / 5 economia; codebase 8 verifica / 5 ingegneria /
     riga di censimento con owner per ogni item [KNOWLEDGE].
  Cio' che la revisione NON alza: copertura funzionale e velocita' in se' —
  le alzano le sessioni di costruzione che il GO deve sbloccare.
+
+================================================================================
+## G. ADDENDUM UTENTE (ordine in corso di sessione, 2026-09-05; append-only —
+## registrato nel log R8 di validation/PROGRESS_2026-08-31_Sreview.md)
+
+La vera domanda di ricerca è Q0: "COME si ottimizza l'ugello di un RDE" — non
+solo Q1 "il disegno sulla famiglia del ciclo batte il disegno sulla media" (la
+NOSTRA affilatura di Q0) né Q2 "il TWIN su spina troncata" (il NOSTRO esperimento
+decisivo). La revisione deve giudicare se abbiamo preso la strada migliore,
+quindi si aggiunge un LIVELLO 0 sopra il paradigma: LA STRADA.
+
+ 1. ENUNCIATO AGNOSTICO AL LIVELLO Q0. Il PROBLEM_STATEMENT deve porre Q0
+    (obiettivo candidato: Isp/spinta media, robustezza sull'inviluppo,
+    operabilità, costo; dati disponibili A-G; vincoli; requisito di
+    certificazione; budget) e NON presupporre funzionale cycle-averaged,
+    decomposizione per-fase, MoC, adjoint, TWIN: quelli sono INCUMBENT da
+    confrontare, non premesse. Lint di agnosticità: zero id del repo E zero
+    termini della nostra costituzione (cycle-averaged, per-fase, TWIN,
+    quasi-stazionario) nell'enunciato.
+ 2. STAGE A esteso: i derivatori de-novo producono anche l'albero delle STRADE
+    per Q0 — almeno: (a) disegno sulla media + verifica transitoria (la
+    letteratura RDE oggi); (b) funzionale cycle-averaged con decomposizione
+    per-fase (noi); (c) ottimizzazione unsteady diretta con adjoint nel tempo;
+    (d) ottimizzazione STAZIONARIA nel riferimento d'onda (campo elicoidale 3D,
+    B-lite/route-B: la dinamica azimutale entra esatta, niente St); (e)
+    ROM/space-time o surrogati data-driven + ottimizzazione globale; (f)
+    ottimizzazione robusta sull'inviluppo (casi D-F) se la leva vera non è
+    ciclo-vs-media ma operabilità; (g) leve fisiche alternative (base
+    pressure, troncamento, dual-bell temporale) come oggetto primario; (h)
+    ibridi — es. PROGETTARE per-fase ed EVALUARE entrambi i bracci nel
+    riferimento d'onda (il delta libero da St al livello della valutazione; il
+    residuo per-fase tocca solo l'argmax = oggetto [T-RED]/OPTSHIFT/M-RED).
+    Per ogni strada: che domanda risponde davvero, costo alla risposta
+    credibile, generalità (settori, classi di dato), falsificabilità, tempo al
+    numero.
+ 3. DIFF vs la nostra strada (record: M0 Parte I-II assiomi; VI.4bis(ii)
+    correttore O(St); blocco [S-BLITE]; D6 G3 :783 "St·|J1| grande" = soglia
+    mai derivata; [T-DISC]/[T-RED] con δ e L_H underived → M-RED; C51/ROUTE-B;
+    U3' premessa aperta; protocollo TWIN §4). Giudizio esplicito su tre punti:
+    Q1 è l'affilatura giusta di Q0? Q2 è l'esperimento che risponde a Q0 o
+    solo a Q1? il rung della rappresentazione (per-fase / O(St) / wave-frame)
+    va scelto separatamente per progettista ed evaluatore?
+ 4. STAGE B sulla STRADA come voce load-bearing di default (falsificatore
+    concordato prima: "quale misura ci farebbe cambiare strada"), red team del
+    nord esteso da Q2 a Q0.
+ 5. LANDING: righe choice-ledger di livello 0 PROPOSTE da ratificare (strada
+    di ottimizzazione; definizione dell'obiettivo; esperimento decisivo; classe
+    di dato del test decisivo), e il GO/NO-GO per F2.REPR/F2.ENGINE diventa
+    CONDIZIONATO al verdetto sulla strada: GO se la nostra strada è CONFIRM o è
+    la PILOT-arm di una strada ibrida; NO-GO/RIPIANIFICAZIONE se una strada
+    alternativa domina su credibilità×costo con falsificatore concordato.
+
+Vincoli invariati (UNA sessione, workflow nelle fasi derive/diff/converge/
+verify, landing inline, niente riderivazione teorica né campagne, tetto T1).
+Se il tempo stringe, la voce STRADA ha priorità su ogni altro sottoproblema di
+Stage B.
+
+================================================================================
+## H. ADDENDUM UTENTE (ordine in corso di sessione, 2026-09-05; append-only —
+## registrato nel log R8 di validation/PROGRESS_2026-08-31_Sreview.md)
+
+H1 BRANCH LEDGER (copertura senza rabbit hole). L'albero delle strade/scelte
+   NON si espande tutto: criterio di profondità = valore dell'informazione —
+   si scende in un ramo solo se la sua risoluzione può CAMBIARE il GO/NO-GO o
+   la strada. Ogni ramo visto va nel BRANCH LEDGER su file con stato ESPANSO /
+   POTATO (ragione) / RINVIATO (trigger + owner): "non analizzato" non esiste,
+   esiste solo "potato con ragione". Ampiezza completa ai livelli 0 e 1;
+   profondità dove diff × peso lo giustifica.
+H2 NUMERO DI SCOPING St (misurato dal record, non dichiarato — è
+   un'aritmetica su dati di record, non una campagna): per la famiglia caso A
+   (numero d'onde, D_CJ da Cantera, raggio dell'anulus, lunghezza dell'ugello,
+   velocità assiale media) calcola St = f_onda·L/u con banda sull'inviluppo
+   dei parametri di record; consuma il finding
+   problem-statement:st-marginal-numbers-uncarried (path paper) dandogli un
+   carrier committato con rejector; dichiara quale rung licenzia (per-fase /
+   correttore O(St) / wave-frame) e usa il numero come input MISURATO della
+   voce L0 STRADA e del red team del nord. Se St risulta O(1), la strada
+   per-fase da sola non è difendibile e la voce L0 lo deve dire.
+H3 PRIOR SOTA DEI CAMPI ADIACENTI, solo nella fase DIFF (mai nell'enunciato
+   agnostico né ai derivatori): il giudice-diff verifica che l'albero de-novo
+   abbia considerato la pratica SOTA dei flussi periodicamente non stazionari
+   (turbomacchine: riferimento rotante stazionario; metodi in frequenza
+   harmonic-balance / time-spectral con adjoint) e dell'ottimizzazione di
+   forma adjoint-based stazionaria; ogni item di questo tipo entra come
+   [KNOWLEDGE] → riga di censimento letteratura con owner di procurement
+   (protocollo litreview), MAI come evidenza; il lint di agnosticità resta su
+   enunciato e output dei derivatori.

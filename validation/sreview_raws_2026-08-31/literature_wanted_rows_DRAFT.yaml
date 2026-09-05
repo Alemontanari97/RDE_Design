@@ -1,0 +1,133 @@
+# LITERATURE REGISTRY — WANTED rows minted by the S-REVIEW [KNOWLEDGE] census (§H.3; 2026-09-05)
+# Source: KNOWLEDGE_rows_from_judges.md (115 rows / 111 identities from the 12 structured diff-judge returns + SP0 §7);
+# 13 identities already had rows (giles_pierce, fick_schmucker_1996, nasuti_onofri_1999, hagemann_1998, rankin_2017,
+# goto_2019, fotia_2016, humphreys_1971, schwer_2018, harroun_2021, paxson_miki_2022, rubino_2018, zahr_persson_2016);
+# the 21 below are ABSENT (grep on identity tokens, measured) and enter as WANTED with a procurement owner — NEVER as
+# evidence (litreview tiers: every claim citing them is [APERTO] until the PDF is on disk and page-read).
+# Appended to docs/literature_registry.yaml at landing (lint xxii).
+
+- id: wanted_lakshminarayana_1996
+  identity: "Lakshminarayana B., Fluid Dynamics and Heat Transfer of Turbomachinery, Wiley 1996 — steady rotating-frame / sector-periodic practice (SP0/SP1 adjacent-field prior; [abstract] by the derivers)"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census (§H.3) — needed by the ROAD item (wave-frame steady evaluator = turbomachinery rotating-frame practice); procurement = user upload; consumer F2.REPR evaluator-role branch"
+
+- id: wanted_denton_1992
+  identity: "Denton J.D., The calculation of three-dimensional viscous flow through multistage turbomachines, J. Turbomach. 114(1):18-26, 1992 — mixing-plane averaging (SP-CARM/SP1 adjacent-field prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — mixing-plane averaging as the classical-comparator 'flux-consistent mean state' precedent (EXP item); procurement = user upload"
+
+- id: wanted_wang_he_2010
+  identity: "Wang D.X. & He L., Adjoint aerodynamic design optimization for blades in multistage turbomachines, J. Turbomach. 132, 2010 — rotating-frame discrete adjoint (SP1/SP3 adjacent-field prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the only cited rotating-frame ADJOINT precedent (road (d) cost tier 3); procurement = user upload; consumer ROAD item cost fork"
+
+- id: wanted_hall_thomas_clark_2002
+  identity: "Hall K.C., Thomas J.P. & Clark W.S., Computation of unsteady nonlinear flows in cascades using a harmonic balance technique, AIAA J. 40(5):879-886, 2002 — harmonic-balance canon (SP1 prior; [full] by one deriver)"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — HB/time-spectral family rejected by 4/4 blind derivations under the pin (C59 CONFIRM-by-diff); rubino_2018 (READ) covers the adjoint side; procurement = user upload if C59's weakened-pin trigger fires"
+
+- id: wanted_mcmullen_jameson_2006
+  identity: "McMullen J.S. & Jameson A., The computational efficiency of non-linear frequency domain methods, JCP 212, 2006 — time-spectral canon (SP1 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same family as hall_thomas_clark_2002; procurement = user upload on the C59 trigger"
+
+- id: wanted_gopinath_jameson_2005
+  identity: "Gopinath A.K. & Jameson A., Time spectral method for periodic unsteady computations over two- and three-dimensional bodies, AIAA 2005-1220 — time-spectral (SP1 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same family; procurement = user upload on the C59 trigger"
+
+- id: wanted_van_der_weide_2005
+  identity: "van der Weide E., Gopinath A.K. & Jameson A., Turbomachinery applications with the time spectral method, AIAA 2005-4905 (SP1 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same family; procurement = user upload on the C59 trigger"
+
+- id: wanted_jameson_1988
+  identity: "Jameson A., Aerodynamic design via control theory, J. Sci. Comput. 3:233-260, 1988 — continuous-adjoint canon (SP3 prior; [full])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — discrete-vs-continuous adjoint axis (memory directive point 8; C31 alternatives); procurement = user upload; consumer F2.ENGINE SP3 duty"
+
+- id: wanted_alexandrov_lewis_2001
+  identity: "Alexandrov N.M., Lewis R.M., Gumbert C.R., Green L.L. & Newman P.A., Approximation and model management in aerodynamic optimization with variable-fidelity models, J. Aircraft 38(6):1093-1101, 2001 (+ Alexandrov et al. 1998 SIOPT trust-region model management) — the multi-fidelity TR mechanism of the hybrid (SP1 A13 / SP0 row 14; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the mechanism 'wave-frame value corrections inside the reduced design loop' has NO ledger row (SP1 A13 NEW); procurement = user upload; consumer ROAD verdict / F2.ENGINE"
+
+- id: wanted_peherstorfer_2018
+  identity: "Peherstorfer B., Willcox K. & Gunzburger M., Survey of multifidelity methods in uncertainty propagation, inference, and optimization, SIAM Review 60(3):550-591, 2018 (SP0/SP4 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — multi-fidelity management survey behind the hybrid; procurement = user upload"
+
+- id: wanted_marble_candel_1977
+  identity: "Marble F.E. & Candel S.M., Acoustic disturbance from gas non-uniformities convected through a nozzle, J. Sound Vib. 55(2):225-243, 1977 — compact-nozzle transfer functions (SP1 corrector prior; the problem book §8 names Marble-Candel without a registry row)"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the O(St) corrector's cell-problem lineage (D1 §8); procurement = user upload; consumer F2.M-RED G3 instrument"
+
+- id: wanted_paxson_2014
+  identity: "Paxson D.E., Numerical analysis of a rotating detonation engine in the relative reference frame, AIAA 2014-0284 — wave-fixed-frame RDE simulation (SP0/SP1 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the field's own rotating-frame steady RDE practice (road (d) precedent); procurement = user upload; consumer ROAD item"
+
+- id: wanted_korst_1956
+  identity: "Korst H.H., A theory for base pressures in transonic and supersonic flow, J. Appl. Mech. 23:593-600, 1956 (SP-PB prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — base-pressure closure family (C61 N2 slot); procurement = user upload; consumer PB item / F3.PLUG C61 window"
+
+- id: wanted_ito_fujii_hayashi_2002
+  identity: "Ito T., Fujii K. & Hayashi A.K., Computations of axisymmetric plug-nozzle flowfields: flow structures and thrust performance, JPP 18(2):254-260, 2002 (+ AIAA 99-3211) — open/closed wake, truncation (SP-PB prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — truncated-plug wake regimes for the p_b set; procurement = user upload; consumer PB item"
+
+- id: wanted_anand_gutmark_2019
+  identity: "Anand V. & Gutmark E., Rotating detonation combustors and their similarities to rocket and gas turbine engines, PECS 73:182-234, 2019 — combustor-side loss magnitudes 5-15% (SP-OBJ/SP0 lever table; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the lever ordering (combustor vs configuration vs contour) the P-1 must carry (SP-OBJ row 3); procurement = user upload; consumer PAPER claims window"
+
+- id: wanted_raman_prakash_gamba_2023
+  identity: "Raman V., Prakash S. & Gamba M., Nonidealities in rotating detonation engines, Annu. Rev. Fluid Mech. 55:639-674, 2023 (SP-OBJ prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same lever table; procurement = user upload"
+
+- id: wanted_sutton_biblarz
+  identity: "Sutton G.P. & Biblarz O., Rocket Propulsion Elements, 9th ed., Wiley 2017 — contour-loss magnitudes 1-3%, frozen-vs-equilibrium 1-8% (SP7/SP-OBJ prior; textbook, [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the trees' pin magnitudes are UNVERIFIED textbook numbers; the record's MEASURED [T-EQBR] ceiling supersedes them for the frozen pin; procurement = user upload (library copy)"
+
+- id: wanted_drela_1998
+  identity: "Drela M., Pros and cons of airfoil optimization, in Frontiers of Computational Fluid Dynamics 1998 — multipoint design practice (SP-CARM/SP1 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — multipoint (weighted-state) design as the classical-comparator precedent (EXP item); procurement = user upload"
+
+- id: wanted_summerfield_1954
+  identity: "Summerfield M., Foster C.R. & Swan W.C., Flow separation in overexpanded supersonic exhaust nozzles, Jet Propulsion 24:319-321, 1954 — separation criterion (SP2/SP-OBJ prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — the g_sep detection-criterion family (D-GSEP declared empirical closure); procurement = user upload; consumer F2a contract"
+
+- id: wanted_schmucker_1974
+  identity: "Schmucker R.H., Flow processes in overexpanded chemical rocket nozzles, NASA TM-77396 (1984, transl. of DLR 1973/74) — separation criterion (SP2 prior; [abstract])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same family (the record's 'Summerfield/Schmucker criterion hook', D1 §9 H-T3.2); procurement = user upload"
+
+- id: wanted_stark_separation
+  identity: "Stark R., Flow separation in rocket nozzles, a simple criteria, AIAA 2005-3940 (SP2 prior; [title])"
+  paths: []
+  status: WANTED
+  owner: "S-REVIEW [KNOWLEDGE] census — same family; procurement = user upload"

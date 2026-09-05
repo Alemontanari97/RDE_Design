@@ -21,7 +21,7 @@ structure, not a new structure).
 2. **S-PRES (ESA) graph backbone** — the presentation session consumes
    the stage/edge graph as its pipeline narrative skeleton
    (comparison stage: PROGRESS item 18 S-PRES Block-0 trigger-scan,
-   `docs/rde_nozzle_PROGRESS.md:390-400`; consumption arc: S-PRES
+   `docs/rde_nozzle_PROGRESS_ARCHIVE.md` (S-PRES Block-0 trigger-scan block, formerly PROGRESS lines 390-400 before the S-ROADMAP slimming) [MAP-AM-9]; consumption arc: S-PRES
    Block 0).
 
 **STATUS ENUM** (from the `docs/choice_ledger.yaml` header, :20, in
@@ -177,7 +177,7 @@ own parametrization grouping. No adjudication implied.)
 
 | Node | Choice of record | Status | Conditions / falsifiers | Open duty | Edges |
 |---|---|---|---|---|---|
-| ⊘ D-44 — public adequacy-claim gate | any public adequacy claim GATED (forchetta = bracket with provenance, never demonstrated adequacy) — `findings_registry.yaml:1468` trigger + `:2163` owner "F2 or F5 (D-44; R22 = the single highest-value tranche-2 item)"; S-PRES Block-0 trigger-scan item (ii) (`docs/rde_nozzle_PROGRESS.md:395`) | ⊘ ARMED GATE | fires on any public adequacy claim, either way (before/after R22) | S-PRES Block-0 trigger-scan; R22-CFD deciders | E31 |
+| ⊘ D-44 — public adequacy-claim gate | any public adequacy claim GATED (forchetta = bracket with provenance, never demonstrated adequacy) — `findings_registry.yaml:1468` trigger + `:2163` owner "F2 or F5 (D-44; R22 = the single highest-value tranche-2 item)"; S-PRES Block-0 trigger-scan item (ii) (`docs/rde_nozzle_PROGRESS_ARCHIVE.md`, trigger-scan item (ii), formerly PROGRESS line 395) [MAP-AM-9] | ⊘ ARMED GATE | fires on any public adequacy claim, either way (before/after R22) | S-PRES Block-0 trigger-scan; R22-CFD deciders | E31 |
 | ⊘ P34 — staged evidence hierarchy for engine-level claims (findings `claims:engine-level-staged-evidence-hierarchy-missing`) | V0 continuous verification → per-champion validation → pre-registered prediction-first rig/thrust-stand terminal test; never adjudicated anywhere in the record (2 of 2 genuine FORK-141 gaps, registry :2530 ordinal; the other = H20) [MAP-AM-6] | ⊘ OPEN | trigger: first engine-level claim drafted for P-1 or any G5/G6 gate act; LIGHT-INSTANTIATION rider on S-PRES (slide-level claims declare their evidence stage) | P-1/G5-G6 claims window | E32 |
 | ⊘ R22-CFD scheduling | see Stage 2 row (single node, two stage-faces: 3D rung + terminal evidence decider) | ⊘ USER-DECISION PENDING | `VERDICT_blocco2` §6 (SR-C4-5: presented, not decided) | user, post-convergence | E28 |
 | ⊘ H20 — free plume boundary p = Pa SOLVE mechanics (findings `plume:free-boundary-solve-mechanics-missing`) | no home in the record; plug/E-D sectors REQUIRE the solve + shape-adjoint term (1 of 2 genuine FORK-141 gaps, registry :2521 ordinal) [MAP-AM-6] | ⊘ OPEN | distinct-by-declaration from findings :1607 (stability only) and from C61 (closure model) | F4b external-expansion window (rides the diff par.2.9 base-pressure agenda entry — registry homing; N2 is C61's declared slot, related window only, `docs/rde_nozzle_problem_book.md:348`) [MAP-AM-7] | E12 |
@@ -333,6 +333,7 @@ Source of every finding:
 | PM-7 — H20 open-duty cell added "N2" beyond the registry homing (registry: "F4b external-expansion window (rides the diff par.2.9 base-pressure agenda entry)"; N2 = C61's slot) | NOTE | APPLIED: cell tightened to the registry homing; N2 kept only as a declared related-window note pointing at C61's slot | [MAP-AM-7] |
 | PM-8 — (a) `VERDICT_contract_and_L4R1.md` lives one dir above blocco3; (b) OPTSHIFT row omitted the registry row's third trigger "M-RED rider execution" (:2498) | NOTE | APPLIED: (a) path line added to PRIMARY SOURCES; (b) third trigger added to the OPTSHIFT conditions cell | [MAP-AM-8] ×2 |
 | PM-9 — positive verification record (what did NOT break) | NOTE | NO ACTION OWED: record-only finding; carried here for navigability | — |
+| MAP-AM-9 — S-REVIEW 2026-09-05 (`tools/anchor_census.py`, lever F3): the two former PROGRESS line anchors (lines 390-400 and 395) were DEAD (PROGRESS slimmed to ~120 lines at S-ROADMAP 2026-08-31; the S-PRES Block-0 trigger-scan block now lives in PROGRESS_ARCHIVE) | AMENDMENT | APPLIED: both anchors re-pointed to `docs/rde_nozzle_PROGRESS_ARCHIVE.md` (trigger-scan block) with the former line numbers kept as history; no status, edge or label moved | [MAP-AM-9] x2 |
 
 Disposition rule inherited from the refuter's verdict: none of these
 edits moves a status, an edge's existence, or a label of record; the
