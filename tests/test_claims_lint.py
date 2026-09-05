@@ -93,7 +93,7 @@ MATH_KINDS = ('theorem', 'conditional', 'conjecture', 'schema')
 # Typed ondemand spec (C4 closure; carrier-only field, see docstring (c);
 # envfp group added F2-B0 2026-09-05 — optional in the grammar, REQUIRED
 # by check() for stamps dated >= ENVFP_EPOCH):
-ODSPEC_RX = re.compile(r'^env=(jax|gfortran|jax\+geno); '
+ODSPEC_RX = re.compile(r'^env=(jax|gfortran|jax\+geno|cantera); '   # cantera added S-REVIEW 2026-09-05 ([X-STSC] record-arithmetic carrier)
                        r'pass=(\d{4}-\d{2}-\d{2}); suite=(none|\S.*?)'
                        r'(?:; fail=(\d{4}-\d{2}-\d{2}))?'
                        r'(?:; envfp=([0-9a-f]{8}))?$')

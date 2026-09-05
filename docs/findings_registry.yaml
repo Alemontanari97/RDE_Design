@@ -890,15 +890,15 @@ entries:
   owner: "pre-F5 / F2a (U3' owns the extraction-surface premise; CycleFamily stage-A v0 owns the auditor): standalone stage-A auditor with loud-reject controls (Crocco-inconsistent synthetic family; axially-subsonic patch without declared closure)"
   trigger: "F5 entry / first stratified interface contract consumed of record"
 - id: problem-statement:st-marginal-numbers-uncarried
-  status: CONFIRMED
+  status: DOWNGRADED
   path: paper
-  severity: medium
-  magnitude: "the numbers driving the program's central error-budget verdict (f = 3-30 kHz, tau_n = 20-150 us => St = O(0.1-1) MARGINAL => P4 corrector mandatory, (P)(v) St bar) carry no citation and no committed carrier; tau_n = int dx/u is computable on the certified march and was never computed - nothing can currently reject the stated range (R5 violation inside a normative doc)"
+  severity: low
+  magnitude: "CARRIER LANDED 2026-09-05 (S-REVIEW, user order section H.2): [X-STSC] validation/st_scoping_number.py = record arithmetic (matched cycle CH4/O2 20 atm with the record CJ solver, annuli of record 140/45 mm, the S18 W* TOC contour, n in {1,2,3}, cycle T0 band), rejectors R1-R4 fire; MEASURED St_n: bell 0.35-0.60 at the record head count (MARGINAL, corrector mandatory), plug class 0.27-1.41 (worst 1.41: the frozen-time rung alone is NOT defensible on the decisive sector). Original defect (f = 3-30 kHz, tau_n = 20-150 us stated without carrier or citation in problem book :471-478) is now REJECTABLE by the carrier; RESIDUE: (i) tau_n on the CERTIFIED march (the carrier uses the quasi-1D estimate with the rigorous-in-class bracket [L/u_e, L/a*]), (ii) literature citation for the f range (record geometry used instead), (iii) wave-speed deficit band (U_CJ used, one-sided caveat)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:st-marginal-numbers-uncarried"
-  code: ["docs/rde_nozzle_problem_book.md:471-478"]
+  code: ["docs/rde_nozzle_problem_book.md:471-478", "validation/st_scoping_number.py:1-60"]
   mechanism: underived-constant
-  owner: "pre-F5 / P-1 claim gate: commit the St carrier (tau_n on the certified TOC march at the anchor states, t_c from the matched-cycle machinery, derived bars, corrupted-u rejector) + literature citation for the f range"
-  trigger: "P-1 draft citing St / the P4 obligation, or F5 entry"
+  owner: "F2.ENGINE instrumentation (certified-march tau_n at the first march touch, replaces the quasi-1D estimate) + P-1 claim gate (f-range citation + deficit band)"
+  trigger: "first F2.ENGINE march touch; P-1 draft citing St / the P4 obligation"
 - id: problem-statement:t4-gamma-status-undeclared
   status: CONFIRMED
   path: paper

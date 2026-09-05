@@ -2274,3 +2274,17 @@ entries:
   suffices_symbolic: "no"
   falsifier: "a certified class member with (H1)-(H5b) verified and computed J[W] > J_ideal(eps) + ceiling band (twin-executable); analytically any admissible (q, u) with G(q, u) > p(lambda); the (H3)-breakout rejector of record must be ABLE to break the bound when (H3) is dropped - and does (esc_probe_deltacarrier_h3breakout.py, PASS)"
   gamma: "EOS-general"
+
+- id: X-STSC
+  kind: carrier
+  ondemand: "env=cantera; pass=2026-09-05; suite=none; envfp=e100f996"
+  class: PRACTICE
+  scope: "ST SCOPING NUMBER of the case-A family (S-REVIEW 2026-09-05, user order carrier section H.2): the per-wave Strouhal number St_n = f_wave * tau_n computed as ARITHMETIC ON RECORD DATA, no campaign — matched detonation cycle CH4/O2 at Pcp = 20 atm, Ti = 200 K (data/st_nozzle_opt.json states det|CH4|20|1.66 and det|CH4|20|1.00, the record CJ solver re-run for U_CJ with PR/TCJ/gamma gated to the cache at TOL cross_solver_rel); annuli of record 140 mm (examples/example_design_10kN.py, A_t 32.4 cm2, ~3 heads) and 45 mm (examples/SOLUTION_headtohead.md, A_t 4.3 cm2, ~2 heads); the S18 W* TOC contour of record (validation/s20_adaptive_design.json, L = 4 yt, natural cubic spline clamped-left) for the bell class and L_ideal(1 - trunc) at trunc 0.20/0.30/0.40 for the plug class; wave count n in {1,2,3}; cycle T0 from T_CJ down to T_CJ PR^(-(g-1)/g). Mean axial velocity = quasi-1D isentropic on the record contour (PRACTICE) with the rigorous-in-class bracket tau in [L/u_e, L/a*] printed beside it. MEASURED 2026-09-05: bell St_n in [0.153, 0.679] over the envelope, [0.347, 0.599] at the record head count (MARGINAL: first-order unsteady corrector MANDATORY, wave-frame backstop); plug class St_n in [0.268, 1.415] (worst n = 3, end-of-cycle T0, 20% truncation: the frozen-time rung ALONE IS NOT DEFENSIBLE on the decisive sector at the record head count); acoustic compactness He up to 1.39. Declared caveats: wave speed = U_CJ (a velocity deficit LOWERS St, one-sided); plug lip radius ~ mean annulus radius; certified-march tau_n = the F2.ENGINE instrumentation upgrade of finding problem-statement:st-marginal-numbers-uncarried (DOWNGRADED with this carrier)."
+  statement: "For the class-A CH4/O2 family of record the per-wave Strouhal number is MARGINAL on the bell class (0.35-0.60 at the record head count) and reaches O(1) on the truncated-plug class (up to 1.41): the licensing rung of the time treatment on the decisive sector is NOT the frozen-time rung alone — the O(St) corrector or a wave-frame evaluation is a MEASURED obligation, not a declared one."
+  doc: "validation/st_scoping_number.py"
+  proof: "validation/st_scoping_number.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "R1 corrupted-u (x10) must move St outside its own band (fires); R2 wrong-unit U_CJ (km/s fed as m/s) must be REJECTED by the record-consistency gate at TOL cross_solver_rel (fires); R3 quasi-1D tau_1D must lie inside [L/u_e, L/a*] on every row (holds); R4 a seeded reversed contour must fail the supersonic area-Mach inversion loudly (fires); external: a certified-march tau_n (F2.ENGINE) outside the printed bracket at any record instance falsifies the quasi-1D estimate; a measured wave-speed deficit > 30% at the record instance moves the plug worst case below 1 and re-opens the license rule"
+  gamma: "gamma-const-oracle"
