@@ -715,6 +715,40 @@ entries:
   status: UNREAD
   owner: "next lit window — first read establishes identity and read-status; no summary before reading (UNREAD rule)"
 
+- id: barnhart_1997_npac
+  identity: "Barnhart, Paul J. (NYMA Inc., for NASA Lewis) 1997, 'NPAC — Nozzle Performance Analysis Code', NASA CR-204129, July 1997, contract NAS3-27186 (page-1-faithful; T3 landing 2026-08-31, exploration window 2026-08-25)"
+  paths: ["literature/barnhart_1997_npac_nozzle_performance_analysis_code_cr204129.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/nasa_tools_raws_2026-08-25/digest_NPAC_CR204129.md#Digest"
+    - "validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md#1. Rows of record"
+  summary: "Control-volume + internal-flow nozzle performance methodology (C_FG/C_d/C_V bookkeeping; over/under-expansion, divergence, friction, heat transfer, mass addition/loss); v2 adjudication: SUPPORT fixture for the registered control-surface thrust-identity finding (exact oracle = Eq.11-vs-Eq.12 closure ONLY; Eq.57 is lambda-corrected, NOT an identity — digest corrected by REFUTE_NPAC); C_FG/C_d/C_V crosswalk LOW (cycle-averaged conventions already theorems [T-T3-SI]); friction/heat-transfer layer = mint-or-drop DECISION PENDING (T3 residue, F2-exit touchpoint)."
+
+- id: rice_2003_moc_tools
+  identity: "Rice, T. (JHU/APL) 2003, '2D and 3D Method of Characteristic Tools for Complex Nozzle Development, Final Report', RTDC-TPS-481, June 30 2003, NASA CASI 20030067852 (page-1-faithful; T3 landing 2026-08-31). Companion source-code release: NASA LEW 20180 'Three-Dimensional-Nozzle-Design-Code' (clone at PARENT/Three-Dimensional-Nozzle-Design-Code, master @ 09ba559, READ-ONLY, NR-license clean-room constraint UPHELD — never port, shipped outputs only)"
+  paths: ["literature/rice_2003_2d3d_moc_nozzle_tools_rtdc_tps481_casi20030067852.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/nasa_tools_raws_2026-08-25/digest_Rice2003_RTDC-TPS-481.md#Digest"
+    - "validation/nasa_tools_raws_2026-08-25/digest_repo_3DNozzleCode.md#Source-code digest"
+    - "validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md#1. Rows of record"
+  summary: "2-D (STT) + 3-D (reference-plane conoid) MoC nozzle tools; v2 adjudication L-1 MEDIUM: third-party conoid-compatibility algebra = zero-cost symbolic cross-check source for the G12-L1-3D brick (CAVEAT of record: printed eq. 15/29 psi-coefficient is a report TYPO — use the code CompEqu 3D_MOCGrid.cpp:2163-2180 or Armstrong, never the printed form); Table-4 KAT floor DATA-VERIFIED from shipped full_mesh.plt (LOW as R5 oracle — bias grows with refinement, no derived band); repo KLThroat start-line REFUTED as fidelity source (transcription bugs, -8%/-14% interior start-line Mach; M<=1.5 clamp); W-1 Rao-only discontinuous exit-pressure profile vs DE-side bucket = LOW-MEDIUM ADJUDICATE (cheap, F2)."
+
+- id: slater_2024_supin
+  identity: "Slater, John W. (NASA GRC) 2024, 'SUPIN: A Tool for the Aerodynamic Design and Analysis of Supersonic Inlets', NASA/TM-20240008586, October 2024 (page-1-faithful; T3 landing 2026-08-31)"
+  paths: ["literature/slater_2024_supin_supersonic_inlet_design_tm20240008586.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/nasa_tools_raws_2026-08-25/digest_SUPIN_TM20240008586.md#Digest"
+    - "validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md#1. Rows of record"
+  summary: "Supersonic-inlet design/analysis tool TM; v2 adjudication: ALL rows LOW/HORIZON (inlet-side system context = scope pin); closed-form theta-beta-M + shock-point unit process = citable prior art for the case-B oblique-shock-chain leg; rotationality drop behind curved shocks = named ANTI-PATTERN for the case-B generator (s(y;xi) is the payload); NURBS-refit shock-cancellation break (pp. 157, 267) = LOW cautionary witness for C1 (MoC solved ON the spline wall, never refit). RESIDUAL: REFUTE_SUPIN completeness audit pending (completeness-only — cannot raise any weight, can only add omissions)."
+
+- id: wanted_kliegel_levine_1969
+  identity: "Kliegel J.R. & Levine J.N. 1969, AIAA J. 7(7) — second-order transonic throat solution (small throat radius of curvature; exact title to be page-verified at acquisition). PRIORITY 2 of D6 item 12 (T3 landing 2026-08-31)"
+  paths: []
+  status: WANTED
+  owner: "Acquisition register / next lit window — C12 band-term source: choice_ledger C12 requires the KL 2nd-order mass-flow correction EVALUATED as band term (F2-C12-STARTLINE-REJECTOR); the LEW 20180 repo KLThroat implementation CANNOT substitute (transcription-corrupted, REFUTE_repo item 4); CRITIC G2-b datum: KL CD at gamma=1.4, R=1 = 0.98950 vs repo-shipped 0.984756 (0.48% gap = exactly the wanted band term)"
+
 - id: wanted_kraiko_1979_variational
   identity: "Kraiko A.N., Variational Problems of Gas Dynamics (Variatsionnye zadachi gazovoi dinamiki), Nauka, Moscow 1979 — the G5 human-passage book (census R15); confrontation residue R5 named it with no WANTED row (gap caught by the tranche (e) sweep 2026-08-17)"
   paths: []
@@ -1257,7 +1291,7 @@ entries:
   identity: "R. Li, J. Xu & S. Huang 2022, 'Nozzle design method for rotating detonation engine', JPP 38(5):849-865 — P-B[34], P-C[22]; the design-method PARENT of P-B/P-C, highest method-lineage bearing; Tier 1"
   paths: []
   status: WANTED
-  owner: "procurement queue W-05 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+  owner: "procurement queue W-05 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f)); NAMED CONSUMER (binding tightened at F2-B0 2026-08-31, refuter-R2 completeness catch): the F2.CFD-2 step's Li-Xu paired-demo template — the CFD-2 brief names this row at its opening"
 
 - id: wanted_zhou_2023_pulse_operation
   identity: "S. Zhou, Ma, Liu & Hu 2023, 'Experimental investigation on pulse operation characteristics of rotating detonation rocket engine', Fuel 354:129408 — P-C[13]; the brief-named 'Zhou conical' item; Tier 1"

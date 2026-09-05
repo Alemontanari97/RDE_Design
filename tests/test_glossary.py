@@ -129,6 +129,17 @@ FAMILY_PATTERNS = (
     # linked family row added to the glossary in the same window
     # (resolver: blocco3/COVERAGE_GATE_critic_c4.md).
     (r'^CGC-\d+$', 'CGC-<n>'),
+    # F2-B0 window 2026-08-31 (SR-4): the engine-cluster panel refuter
+    # ids REF-<n>, the judge's verdict sections V-C<n>, the named PROGRESS
+    # BLOCCATO row ids and the TWIN-protocol rejectors R-TWIN-<n> entered
+    # the ratchet corpus via the choice-ledger verdict notes and findings
+    # owners -- four linked family rows added to the glossary in the same
+    # window (resolvers: PANEL_engine_REFUTER, VERDICT_engine_cluster,
+    # PROGRESS BLOCCATO table, TWIN_PROTOCOL_preregistration).
+    (r'^REF-\d+$', 'REF-<n>'),
+    (r'^V-C\d+$', 'V-C<n>'),
+    (r'^B-(?:G5|VENUE|ADR|G0|RAOPLUG|CFD1|GENO|S5F)$', 'B-<NAME>'),
+    (r'^R-TWIN-\d+$', 'R-TWIN-<n>'),
 )
 
 # The 12 pinned collision groups (contract list) -> entry predicate:

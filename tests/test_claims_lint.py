@@ -20,13 +20,34 @@ the numeric lint (vii) for claims:
       run_all.py; validation/ scripts invoked by a registered tests
       module). Otherwise the value must match the STRICT spec
       "env=<jax|gfortran|jax+geno>; pass=YYYY-MM-DD; suite=<none|...>"
-      and the STALENESS LINK is enforced: the last git commit date
-      touching the carrier file must be <= the pass date (day
-      granularity, declared), else VIOLATION — editing a carrier
-      without re-running its gate and re-dating pass turns this lint
-      RED. Uncommitted carrier files are a violation outright.
-      git-unavailable hosts get a declared skip note (the ONDEMAND
-      tier of run_all.py re-checks on execution hosts).
+      and the STALENESS LINK is enforced over the carrier's
+      TRANSITIVE LOCAL IMPORT CLOSURE (F2-B0 2026-09-05 fix of
+      audit-scert:staleness-import-closure-blind — the file-only link
+      let 6/19 carriers read "fresh" with closure modules committed
+      after their pass): the max last-commit date over every local
+      module the carrier imports (recursively) must be <= the pass
+      date (day granularity, declared), else VIOLATION; a TRACKED
+      file anywhere in the closure with UNCOMMITTED changes is a
+      violation outright (second mechanism of the same finding);
+      pass dates in the FUTURE are a violation
+      (audit-scert:future-pass-dates-accepted); stamps dated
+      2026-08-31 or later REQUIRE the envfp=<8-hex> field = the
+      md5[:8] of the host python/numpy/scipy/jax version string
+      (importlib.metadata, no heavy imports) and it must MATCH the
+      current host's fingerprint — an env drift (the X-CDKAT −13.9%
+      evidence class) turns the lint RED until the gate re-runs on
+      the new env (legacy stamps before that date carry no envfp by
+      declaration). A gate that was RE-RUN and FAILED is declared with
+      fail=YYYY-MM-DD (>= pass): the pass date becomes historical (no
+      staleness violation), the carrier is listed LOUD as FAILING, and
+      an OPEN findings row must OWN it (its id in the row text) -- a
+      fail= stamp without an owning finding is a violation (never a
+      silent downgrade, never a bless). kind: conditional rows must be
+      open-class (SCHEMA/CONJECTURE) -- that closes the THEOREM* ->
+      inherits -> conditional -> roadmap-join chain as an invariant
+      (F2-B0 completeness critic). git-unavailable hosts get a declared
+      skip note (the ONDEMAND tier of run_all.py re-checks on execution
+      hosts).
   (d) SCHEMA: exact field set per entry; kind/class/gamma/suffices
       enums; class THEOREM* => nonempty inherits; kind theorem with
       suffices_symbolic yes => nonempty carrier; every entry has a
@@ -69,12 +90,121 @@ SUFFICES = ('yes', 'no', 'n/a')
 # gamma/suffices "n/a" is legal ONLY on non-mathematical kinds:
 NA_KINDS = ('directive', 'paper', 'carrier', 'oracle', 'definition')
 MATH_KINDS = ('theorem', 'conditional', 'conjecture', 'schema')
-# Typed ondemand spec (C4 closure; carrier-only field, see docstring (c)):
+# Typed ondemand spec (C4 closure; carrier-only field, see docstring (c);
+# envfp group added F2-B0 2026-09-05 — optional in the grammar, REQUIRED
+# by check() for stamps dated >= ENVFP_EPOCH):
 ODSPEC_RX = re.compile(r'^env=(jax|gfortran|jax\+geno); '
-                       r'pass=(\d{4}-\d{2}-\d{2}); suite=(none|\S.*)$')
+                       r'pass=(\d{4}-\d{2}-\d{2}); suite=(none|\S.*?)'
+                       r'(?:; fail=(\d{4}-\d{2}-\d{2}))?'
+                       r'(?:; envfp=([0-9a-f]{8}))?$')
 ID_RX = re.compile(r'\[((?:T|D|C|S|J|X|O|DIR|PAP)-[A-Za-z0-9-]+)\]')
+ENVFP_EPOCH = '2026-08-31'   # stamps from this date carry envfp (declared)
 
 _GIT_DATES = {}          # memo: relpath -> (date_or_None, note)
+
+
+def _today():
+    import datetime
+    return datetime.date.today().isoformat()
+
+
+_CLOSURES = {}           # memo: relpath -> [closure relpaths]
+_UNCOMMITTED = {}        # memo: relpath -> bool
+_IMPORT_RX = re.compile(r'^\s*(?:from|import)\s+([A-Za-z_]\w*)', re.M)
+
+
+def env_fingerprint():
+    """md5[:8] of the host env version string (cheap: importlib.metadata,
+    never imports the packages). The env half of the staleness link."""
+    import hashlib
+    from importlib import metadata
+    parts = ['py=%d.%d' % sys.version_info[:2]]
+    for pkg in ('numpy', 'scipy', 'jax'):
+        try:
+            parts.append('%s=%s' % (pkg, metadata.version(pkg)))
+        except Exception:
+            parts.append('%s=absent' % pkg)
+    return hashlib.md5(';'.join(parts).encode()).hexdigest()[:8]
+
+
+def _local_closure(relpath):
+    """Transitive LOCAL import closure of a carrier (repo-relative,
+    posix paths). A module name resolves locally iff <dir>/<name>.py
+    (the carrier's own dir) or validation/<name>.py exists; stdlib and
+    site-packages names resolve to nothing and are ignored."""
+    if relpath in _CLOSURES:
+        return _CLOSURES[relpath]
+    seen, stack = [], [relpath.replace(os.sep, '/')]
+    while stack:
+        p = stack.pop()
+        if p in seen:
+            continue
+        seen.append(p)
+        full = os.path.join(ROOT, p.replace('/', os.sep))
+        if not os.path.isfile(full):
+            continue
+        src = io.open(full, encoding='utf-8', errors='replace').read()
+        pdir = p.rsplit('/', 1)[0] if '/' in p else ''
+        for name in _IMPORT_RX.findall(src):
+            for cand in (('%s/%s.py' % (pdir, name)) if pdir else
+                         ('%s.py' % name),
+                         'validation/%s.py' % name):
+                if (cand not in seen and os.path.isfile(
+                        os.path.join(ROOT, cand.replace('/', os.sep)))):
+                    stack.append(cand)
+    _CLOSURES[relpath] = seen
+    return seen
+
+
+def _has_uncommitted(relpath):
+    if relpath not in _UNCOMMITTED:
+        try:
+            out = subprocess.run(
+                ['git', '-C', ROOT, 'status', '--porcelain', '--',
+                 relpath], capture_output=True, text=True, timeout=60)
+            _UNCOMMITTED[relpath] = (out.returncode == 0
+                                     and bool(out.stdout.strip()))
+        except OSError:
+            _UNCOMMITTED[relpath] = False
+    return _UNCOMMITTED[relpath]
+
+
+_FIND_TEXT = {}
+
+
+def open_findings_mentioning(eid):
+    """OPEN findings-registry rows (CONFIRMED/DOWNGRADED) whose text
+    contains eid -- the ownership check for fail= carriers."""
+    if 'text' not in _FIND_TEXT:
+        fp = os.path.join(ROOT, 'docs', 'findings_registry.yaml')
+        _FIND_TEXT['text'] = io.open(fp, encoding='utf-8-sig').read()
+    hits = []
+    for blk in re.split(r'(?m)^- id:\s*', _FIND_TEXT['text'])[1:]:
+        if re.search(r'(?m)^  status:\s*(CONFIRMED|DOWNGRADED)\s*$', blk) \
+                and eid in blk:
+            hits.append(blk.split('\n', 1)[0].strip())
+    return hits
+
+
+def closure_last_commit(relpath):
+    """(date, note, culprit): the staleness date of the carrier's WHOLE
+    local import closure = max last-commit date over its files, with
+    the maximizing file as culprit; uncommitted tracked changes
+    anywhere in the closure -> (None, 'uncommitted changes', file).
+    Falls back to the single-file semantics on git-unavailable hosts
+    (note propagated, declared skip upstream)."""
+    worst, culprit = None, relpath
+    for p in _local_closure(relpath):
+        d, note = carrier_last_commit(p)
+        if note == 'git unavailable':
+            return None, note, p
+        if note == 'no committed history':
+            return None, note, p
+        if _has_uncommitted(p):
+            return None, 'uncommitted changes', p
+        if worst is None or d > worst:
+            worst, culprit = d, p
+    return worst, '', culprit
 
 
 def carrier_last_commit(relpath):
@@ -201,6 +331,11 @@ def check(entries, suite=None):
             v.append('%s: empty statement' % eid)
         if e['class'] == 'THEOREM*' and not e['inherits']:
             v.append('%s: THEOREM* with empty inherits' % eid)
+        if e['kind'] == 'conditional' and e['class'] not in ('SCHEMA',
+                                                             'CONJECTURE'):
+            v.append('%s: conditional row with closed class %s (THEOREM* '
+                     'inherits must be open-class join inputs)'
+                     % (eid, e['class']))
         if (e['kind'] == 'theorem' and e['suffices_symbolic'] == 'yes'
                 and not e['carrier']):
             v.append('%s: symbolic-sufficient theorem without carrier' % eid)
@@ -232,15 +367,53 @@ def check(entries, suite=None):
                 if not m:
                     v.append('%s: malformed ondemand spec %r' % (eid, od))
                 else:
-                    last, note = carrier_last_commit(path)
-                    if note == 'no committed history':
-                        v.append('%s: ondemand carrier file %s has no '
-                                 'committed history' % (eid, path))
-                    elif last is not None and last > m.group(2):
+                    passd, faild, envfp = (m.group(2), m.group(4),
+                                           m.group(5))
+                    if faild:
+                        if faild < passd:
+                            v.append('%s: fail=%s precedes pass=%s'
+                                     % (eid, faild, passd))
+                        if faild > _today():
+                            v.append('%s: FUTURE fail date %s' % (eid, faild))
+                        if not open_findings_mentioning(eid):
+                            v.append('%s: fail=%s declared but no OPEN '
+                                     'findings row owns %s (a failing '
+                                     'carrier must be owned, never '
+                                     'silently downgraded)'
+                                     % (eid, faild, eid))
+                    if passd > _today():
+                        v.append('%s: FUTURE ondemand pass-of-record %s '
+                                 '(> today %s) — a future date defuses '
+                                 'the staleness gate permanently'
+                                 % (eid, passd, _today()))
+                    last, note, culprit = closure_last_commit(path)
+                    if faild:
+                        pass          # declared FAILING: pass date historical
+                    elif note == 'no committed history':
+                        v.append('%s: ondemand carrier closure file %s has '
+                                 'no committed history' % (eid, culprit))
+                    elif note == 'uncommitted changes':
+                        v.append('%s: ondemand carrier closure file %s has '
+                                 'UNCOMMITTED tracked changes (the git '
+                                 'link cannot vouch for the tree)'
+                                 % (eid, culprit))
+                    elif last is not None and last > passd:
                         v.append('%s: STALE ondemand pass-of-record %s < '
-                                 'last commit %s touching %s'
-                                 % (eid, m.group(2), last, path))
+                                 'last commit %s touching closure file %s'
+                                 % (eid, passd, last, culprit))
                     # note 'git unavailable' -> declared skip (run() prints)
+                    if max(passd, faild or passd) >= ENVFP_EPOCH:
+                        if not envfp:
+                            v.append('%s: ondemand stamp %s lacks envfp '
+                                     '(required from %s, finding '
+                                     'audit-scert:staleness-import-'
+                                     'closure-blind)' % (eid, passd,
+                                                         ENVFP_EPOCH))
+                        elif envfp != env_fingerprint():
+                            v.append('%s: ENV DRIFT — stamp envfp %s != '
+                                     'current host %s (re-run the gate '
+                                     'on this env and re-stamp)'
+                                     % (eid, envfp, env_fingerprint()))
             elif path.startswith('tests/'):
                 if "'%s'" % mod not in run_src:
                     v.append('%s: tests module %s not registered in '
@@ -319,9 +492,53 @@ def seeded_rejector_demo(entries, suite):
     else:
         print('  [rejector] stale-ondemand demo SKIPPED '
               '(declared: git unavailable on this host)')
+    # 5: FUTURE pass date must be rejected (F2-B0 fix,
+    #    audit-scert:future-pass-dates-accepted)
+    m5 = copy.deepcopy(entries)
+    t5 = next(e for e in m5 if e['id'] == t['id'])
+    t5['ondemand'] = re.sub(r'pass=\d{4}-\d{2}-\d{2}', 'pass=2999-01-01',
+                            t5['ondemand'])
+    demos.append(('FUTURE ondemand pass date seeded (%s)' % t['id'], m5))
+    # 6: post-epoch stamp WITHOUT envfp must be rejected (F2-B0 fix,
+    #    audit-scert:staleness-import-closure-blind env half)
+    m6 = copy.deepcopy(entries)
+    t6 = next(e for e in m6 if e['id'] == t['id'])
+    t6['ondemand'] = re.sub(
+        r'pass=\d{4}-\d{2}-\d{2}', 'pass=%s' % _today(),
+        re.sub(r'; envfp=[0-9a-f]{8}$', '', t6['ondemand']))
+    demos.append(('post-epoch stamp without envfp seeded (%s)' % t['id'],
+                  m6))
+    # 7: doctored envfp must be rejected as ENV DRIFT
+    m7 = copy.deepcopy(entries)
+    t7 = next(e for e in m7 if e['id'] == t['id'])
+    t7['ondemand'] = (re.sub(r'; envfp=[0-9a-f]{8}$', '',
+                             re.sub(r'pass=\d{4}-\d{2}-\d{2}',
+                                    'pass=%s' % _today(),
+                                    t7['ondemand']))
+                      + '; envfp=00000000')
+    demos.append(('doctored envfp (ENV DRIFT) seeded (%s)' % t['id'], m7))
+    # 8: fail= stamp on a fabricated carrier that NO open finding owns
+    m8 = copy.deepcopy(entries)
+    m8.append(dict(id='X-SEEDFAIL', kind='carrier', ondemand=(
+        'env=jax; pass=2026-08-01; suite=none; fail=%s; envfp=%s'
+        % (_today(), env_fingerprint())), **{'class': 'PRACTICE'},
+        scope='seed', statement='seed', doc=t['doc'], proof=t['proof'],
+        inherits=[], carrier=[], suffices_symbolic='n/a',
+        falsifier='seed', gamma='n/a'))
+    demos.append(('fail= carrier with NO owning finding seeded',
+                  m8, 'no OPEN findings row owns'))
+    # 9: conditional-kind row demoted to a closed class
+    m9 = copy.deepcopy(entries)
+    c9 = next(e for e in m9 if e['kind'] == 'conditional')
+    c9['class'] = 'PRACTICE'
+    demos.append(('conditional row with closed class seeded (%s)' % c9['id'],
+                  m9, 'conditional row with closed class'))
     ok = True
-    for label, mutated in demos:
-        rejected = bool(check(mutated, suite))
+    for demo in demos:
+        label, mutated = demo[0], demo[1]
+        needle = demo[2] if len(demo) > 2 else None
+        vs = check(mutated, suite)
+        rejected = (any(needle in x for x in vs) if needle else bool(vs))
         ok &= rejected
         print('  [rejector] %-58s %s'
               % (label, 'REJECTED (PASS)' if rejected else 'ACCEPTED (FAIL)'))
@@ -348,6 +565,15 @@ def run():
                                      for kv in sorted(kinds.items()))))
     ran, dr_ok, dr_msg = dual_route_parse(text, entries)
     print('  dual-route: %s' % dr_msg)
+    failing = []
+    for e in entries:
+        if e.get('kind') == 'carrier' and e.get('ondemand', 'no') != 'no':
+            mm = ODSPEC_RX.match(e['ondemand'])
+            if mm and mm.group(4):
+                failing.append((e['id'], mm.group(4)))
+    for fid, fd in failing:
+        print('  [FAILING carrier, declared] %s fail=%s owned by %s'
+              % (fid, fd, ', '.join(open_findings_mentioning(fid)) or '?'))
     rej_ok = seeded_rejector_demo(entries, suite)
     ok = not violations and dr_ok and rej_ok
     print('  %-52s %s (%d violations)'

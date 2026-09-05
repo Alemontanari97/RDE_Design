@@ -274,8 +274,8 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#test-suite:numeric-lint-scope-hole"
   code: ["tests/test_numeric_lint.py:160-230"]
   mechanism: underived-constant
-  owner: "F2-entry hygiene window: per-file classification of the baselined 621 (ratchet baseline = validation/numeric_lint_baseline_validation.json)"
-  trigger: "F2 entry; any file touched for content classifies its own literals in the same window"
+  owner: "INCREMENTAL classification (decided at F2 block-0 2026-09-05; C47 incumbent ratchet = the enforcement): each validation/ file touched for CONTENT classifies its own baselined literals in that same window; NO dedicated classification window is scheduled -- the 621-literal remainder shrinks by touch and can never grow (ratchet fires on growth); ratchet baseline = validation/numeric_lint_baseline_validation.json"
+  trigger: "any validation/ file touched for content (classify in the same window); any ratchet growth event"
 - id: conditional:filelock-lru-cap
   status: CONFIRMED
   path: non-critical
@@ -318,13 +318,13 @@ entries:
   trigger: "before the first genuinely averaged shape problem (PB-2 class)"
 - id: record-path:cert-verdict-recorder-dependence
   status: CONFIRMED
-  path: non-critical
+  path: critical
   severity: medium
-  magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25); CLASS WIDENED of record (convergence review RF-7): the mechanism covers ANY thresholded record decision — cert verdict, truncation float(z[0])>L, wall_search revision, margin-floor raise — per-instance gate = the m5cgate dec-vector identity"
+  magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25); CLASS WIDENED of record (convergence review RF-7): the mechanism covers ANY thresholded record decision — cert verdict, truncation float(z[0])>L, wall_search revision, margin-floor raise — per-instance gate = the m5cgate dec-vector identity CROSS-VERSION INSTANCE 2026-09-05 (F2 block-0 closure-aware re-run of X-LOCD, two recorders): the S20/S22 rejection SIGNATURE reproduces deterministically on both recorders ([1.06, 1.17, 1.455, 1.698, 2.458]) but the RE-RECORD binary verdicts of those cert-marginal designs (cert_worst 1.06-2.46, i.e. within a factor K_RICH of the bound) do NOT: per-column recorder (default today) -> rej-1 and rej-4 now CERTIFY and the S22-certified base FAILS (cert_worst 2.023e+00); per-cell recorder (A1_COLEXEC=0, the S22-era path) -> base re-certifies (3.084e-01) but rej-1, rej-3, rej-5 now CERTIFY; S22 of record had 5/5 rejected + base certified. The O4 scientific verdict is UNCHANGED on both (branch (c) unanimous on every reproduced rejection, bridge falsifier fires), so the class-construction mechanism of record stands; what is version- and recorder-bound is the BINARY certification verdict AT MARGINAL DESIGNS. Consequence for the TWIN (why path flips to critical): a final design certified only marginally could flip PASS/FAIL under a recorder or version change -> the protocol now requires certification WITH MARGIN (TWIN protocol amendment A-1: cert_worst <= 1/K_RICH under the pinned recorder for a quotable arm; the band (1/K_RICH, 1] = cert-marginal, quotable only if both recorders agree) THIRD INSTANCE same day: the FRESH X-AKNO walk (per-column recorder) reproduces the S20 outcome class (same knots, certified prefix J to 4 digits, outcome II) but crawls a DIFFERENT frontier (first-offender cert_worst 1.916 at cell 2010; returned base J 2.7775710e+07 vs 2.7775702e+07; KKT 255 vs 380) -- the crawl path through marginal designs is not version-stable, the outcome class is"
   source: "validation/a1_toc_variational_jax.py#MEASURED PROPERTY OF RECORD"
-  code: ["validation/a1_toc_variational_jax.py:255-330"]
+  code: ["validation/a1_toc_variational_jax.py:255-330", "validation/locus_diagnosis.py:1-60"]
   mechanism: seed-noise-at-marginal-cell
-  owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); DEMONSTRATION DUTY (convergence map class B): per-cell isolation — find THE flipping cell at Wp/mild and show its damped-trial path divergence explicitly (cheap, next window); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it"
+  owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); DEMONSTRATION DUTY (convergence map class B): per-cell isolation — find THE flipping cell at Wp/mild and show its damped-trial path divergence explicitly (cheap, next window); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it -- F2.ENGINE DUTIES ADDED 2026-09-05: (i) X-LOCD re-form (the carrier asserts determinism + branch classification = its scientific content; re-record binary verdicts of cert-marginal designs become INFORMATIONAL rows with the recorder pinned as an explicit argument; then re-run and lift fail=); (ii) every certification-bearing carrier prints the active recorder in its Verdict and pins it in its ondemand spec; (iii) the certified-with-margin requirement (1/K_RICH) enters the certificate stack as a ship-gate row"
   trigger: "any future consumer comparing certifications across recorders; the per-cell demo at the next open window"
 - id: engine:vmap-hessian-adjoint-divergence
   status: CONFIRMED
@@ -781,7 +781,7 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#registry-legacy:G12-2B-PHANTOM-CHECK"
   code: ["validation/g12_shock_linearization.py:183-192"]
   mechanism: doc-code-mismatch
-  owner: "F0-hygiene remainder: amend the docstring + X-G12/C-MAJDA wording to the two endpoint bricks, or implement the law check (vanishing order/prefactor fit with derived band + corrupted-law rejector)"
+  owner: "touch-gated hygiene remainder (the original phase-zero hygiene owner is a CLOSED phase -- re-homed 2026-09-05 per ROADMAP sec.5-bis; executes at its trigger touch, in whatever phase touches it): amend the docstring + X-G12/C-MAJDA wording to the two endpoint bricks, or implement the law check (vanishing order/prefactor fit with derived band + corrupted-law rejector)"
   trigger: "next g12/X-G12 touch, or a C-MAJDA consumer citing the tracking law"
 - id: registry-legacy:C-O33-STALE-CONDITIONAL
   status: DISCHARGED
@@ -870,14 +870,15 @@ entries:
   evidence: "S21 step 6 T3(i): irrotational-homentropic qualifiers landed at (P)(ii) + T7(a) (+ the P3 sites) + registry T-P3 scope; the executable field-level rejector = standing P-2 freeze blocker row, owner F2 (see theory-core:F1-f2-closed-form-rotational-leak - one repair, two audit rows)"
 - id: problem-statement:flatness-monitor-unarmed
   status: CONFIRMED
-  path: non-critical
+  path: critical
   severity: medium
   magnitude: "the single monitor fencing the whole averaged objective's scope (pure periodic rotating-wave data; monitor = T0 flatness, 'mandatory in every data contract') has NO committed carrier: CycleFamily NOT STARTED, plan item 5-bis defers the script + derived threshold + impure-mode rejector - the guarantee 'never silently averaged' is currently unfalsifiable in-repo (declared pending in the plan, not at the M0 sites)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:flatness-monitor-unarmed"
   code: []
   mechanism: rejector-weakness
-  owner: "pre-F5 / D6 item 5-bis: CycleFamily v0 + the T0-flatness carrier (derived threshold, two-mode and n-transition rejectors); cheap now: a monitor-carrier-PENDING flag at the M0 D2.3/VI.4bis(v) sites"
-  trigger: "F5 entry / first averaged-data contract consumed; any impure-mode or mode-transition data entering the program"
+  owner: "F2a data-contract window (D6:174-176 of record: T0-flatness monitor with DERIVED threshold, G6 loud-reject operative FROM F2a; M0 VI.1 names the certificate field so the contract cannot ship without it): CycleFamily v0 + the T0-flatness carrier (derived threshold, two-mode and n-transition rejectors) per D6 item 5-bis; cheap now: a monitor-carrier-PENDING flag at the M0 D2.3/VI.4bis(v) sites"
+  trigger: "F2a contract build = first averaged-data contract consumed (the TWIN's case-A family); any impure-mode or mode-transition data entering the program"
+  note: "path flipped non-critical->critical + owner re-homed pre-F5 -> F2a by the F2-B0 refuter pass 2026-09-05 (REFUTER_R1_tags.md Table B: the previous owner was STALE against D6:174-176 — the monitor is an F2a deliverable inside gate G6, and the first averaged-data contract is consumed at F2a, not F5)"
 - id: problem-statement:stage-a-audits-premised-not-implemented
   status: CONFIRMED
   path: non-critical
@@ -926,7 +927,7 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:label-namespace-collisions"
   code: ["docs/rde_nozzle_MASTER.md:206-211"]
   mechanism: process
-  owner: "F0-hygiene remainder: namespace rename pass (IF-O*, ORC-O*) at the D2.6 sites + Def 3.3 tombstone + doc-lint candidate rejecting bare O-digit tokens matching two label spaces"
+  owner: "touch-gated hygiene remainder (the original phase-zero hygiene owner is a CLOSED phase -- re-homed 2026-09-05 per ROADMAP sec.5-bis; executes at its trigger touch, in whatever phase touches it): namespace rename pass (IF-O*, ORC-O*) at the D2.6 sites + Def 3.3 tombstone + doc-lint candidate rejecting bare O-digit tokens matching two label spaces"
   trigger: "next D2.6/D1 touch, or the first misreading incident of record"
 - id: problem-statement:geno-line-refs-unpinned
   status: CONFIRMED
@@ -936,7 +937,7 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#problem-statement:geno-line-refs-unpinned"
   code: ["docs/rde_nozzle_problem_book.md:203-204"]
   mechanism: citation
-  owner: "F0-hygiene remainder: stamp GENO code citations with the pinned build hash (GENO fca273a is now of record as the KAT'd build) + lint rejecting hash-less GENO file:line citations"
+  owner: "touch-gated hygiene remainder (the original phase-zero hygiene owner is a CLOSED phase -- re-homed 2026-09-05 per ROADMAP sec.5-bis; executes at its trigger touch, in whatever phase touches it): stamp GENO code citations with the pinned build hash (GENO fca273a is now of record as the KAT'd build) + lint rejecting hash-less GENO file:line citations"
   trigger: "next D1/G0-dossier touch"
 - id: cycle-avg-machinery:F1-dual-route-tautology
   status: CONFIRMED
@@ -1206,7 +1207,7 @@ entries:
   source: "validation/AUDIT_agnostic_2026-08-07.md#ledger-coherence:d3-claims-field-misnomer"
   code: ["data/gamma_cycle_probe.json:1453-1457"]
   mechanism: process
-  owner: "F0-hygiene remainder: rename the field (stale_note_claims_struck, schema-bump note) + golden-test rule that no *claims* key in data of record carries struck values without a struck/stale marker"
+  owner: "touch-gated hygiene remainder (the original phase-zero hygiene owner is a CLOSED phase -- re-homed 2026-09-05 per ROADMAP sec.5-bis; executes at its trigger touch, in whatever phase touches it): rename the field (stale_note_claims_struck, schema-bump note) + golden-test rule that no *claims* key in data of record carries struck values without a struck/stale marker"
   trigger: "next gamma_cycle_probe regeneration"
 - id: driver-nonsmooth:no-B-stationarity-certificate
   status: CONFIRMED
@@ -1293,11 +1294,11 @@ entries:
   status: CONFIRMED
   path: critical
   severity: medium
-  magnitude: "res.v is consumed raw into verdict-adjacent quantities (lam -> Pa_impl) and an except-pass turns extraction failure into mu_use = 0.0 with no counter; the driver checks stationarity + feasibility, never complementarity; measured arithmetic reproduced: at the S24 stop |mu*m| = 3.55e3 — a derived complementarity band fires on exactly the case that was caught BY HAND (barrier artifact demoted at step 13d)"
+  magnitude: "res.v is consumed raw into verdict-adjacent quantities (lam -> Pa_impl) and an except-pass turns extraction failure into mu_use = 0.0 with no counter; the driver checks stationarity + feasibility, never complementarity; measured arithmetic reproduced: at the S24 stop |mu*m| = 3.55e3 — a derived complementarity band fires on exactly the case that was caught BY HAND (barrier artifact demoted at step 13d) DELTA 2026-09-05 (F2 block-0 engine-cluster panel, refuter REF-16/REF-17, verified at source by the orchestrator; the anti-re-mint rule routed this here, same code span): (i) margin_governor.py:620-622 reads mu_est = +vlist[-1][0] with NO negation -- the sign OPPOSITE to the scipy res.v convention of record (S24 T1: mu(M0) = -res.v[-1][0] >= 0 for the lower-bound margin inequality; def_twin_falsifier.py:40-41 and a1_toc_variational_jax.py:2356 follow the convention) -- and :645-649 feeds it to mu_dual_clause whose result GATES the carrier verdict (ok &= dok): a committed carrier PASS/FAIL rests on the sign of an [P-IPADJ]-unadjudicated quantity; (ii) :638 forces mu_use = 0.0 whenever the margin is inactive and mu_dual_clause (:462-466) then checks mu == 0.0 at inactive margins with slack = 0.0 -- a TAUTOLOGY at the call site: the of-record smearing symptom (S24 res.v = +4.86e4 at an INACTIVE constraint) can never fire it; (iii) the C31 information-only multiplier discipline is 2/3 practiced on disk and enforced by no assert or lint"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-12"
-  code: ["validation/a1_toc_variational_jax.py:2356-2364", "validation/margin_governor.py:617-639"]
+  code: ["validation/a1_toc_variational_jax.py:2356-2364", "validation/margin_governor.py:617-649", "validation/margin_governor.py:458-470"]
   mechanism: rejector-weakness
-  owner: "complementarity band as a check() row + counter on the except-pass path (cheap first rows) + [R2'] LSQ multiplier re-estimate on the recorded S18/S24 gradients (Gill-Murray-Wright; Wachter-Biegler three-part termination) — F2 driver window"
+  owner: "complementarity band as a check() row + counter on the except-pass path (cheap first rows) + [R2'] LSQ multiplier re-estimate on the recorded S18/S24 gradients (Gill-Murray-Wright; Wachter-Biegler three-part termination) — F2 driver window -- CONSUMED AS INPUT by [P-IPADJ] (F2 first engine act on C28's critical path; verdict F2 block-0 2026-09-05, VERDICT_engine_cluster V-C31): repair the sign to the S24 convention, replace the tautological inactive-margin check with a test on the RECORDED res.v (the S24 +4.86e4 symptom must FIRE it), add the enforcement assert the discipline lacks; re-run [X-MGOV] and re-stamp"
   trigger: "first margin-active verdict, or any verdict leaning on res.v (Pa_impl class) or a near-threshold KKT residual"
 - id: constraints:mask-rung-freeze-granularity
   status: CONFIRMED
@@ -1616,9 +1617,9 @@ entries:
 # judge's declared handoff defect; every row below = a CONFIRMED finding
 # that survived default-REFUTE verification) -------
 - id: audit-scert:staleness-import-closure-blind
-  status: CONFIRMED
-  path: critical
+  status: DISCHARGED
   severity: high
+  evidence: "tests/test_claims_lint.py#TRANSITIVE LOCAL IMPORT CLOSURE + tests/test_ondemand_carriers.py#shared closure-aware helper + validation/PROGRESS_2026-08-31_F2B0.md#LOG-7 (F2 block-0 2026-09-05: staleness link now over the transitive local import closure with the culprit named, tracked-but-uncommitted closure files = violation, env fingerprint envfp REQUIRED and matched on stamps >= 2026-08-31, fail= grammar for gates re-run and failed; seeded rejectors stale/future/missing-envfp/doctored-envfp/fail-without-owner all REJECTED 9/9; the gate MEASURED the 6/19 stale carriers S-CERT predicted (X-SCANM, X-O32, X-AKNO, X-CDKAT, X-LOCD, X-TBAK) and forced their re-runs: 3 re-stamped with runs, 3 declared FAILING with owners; X-CDKAT record numbers refreshed with the env pin)"
   magnitude: "P0#3 of the final verdict: the ondemand staleness link checks only the carrier FILE's last commit vs pass= — 6/19 carriers reported 'fresh' with import-closure modules committed after their pass-of-record; SECOND mechanism (same fix family): tracked-but-uncommitted carrier edits evade the link while the docstring claims the opposite; POSITIVELY corroborated by carrier evidence: X-CDKAT record numbers drifted -13.9% under env/lowering change with stamp pass=2026-08-11 intact"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P0"
   code: ["tests/test_claims_lint.py:20-29"]
@@ -1633,8 +1634,8 @@ entries:
   source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
   code: ["validation/certdiag_kat.py:1-20"]
   mechanism: staleness
-  owner: "F2 (re-stamp discipline: statement-number refresh + band derivation for env-sensitive floors becomes mandatory at re-stamp; causal attribution via pinned env = declared MC1 drop)"
-  trigger: "next X-CDKAT touch or re-stamp"
+  owner: "F2.ENGINE window of F2-C20-CERTQUAL-CAMPAIGN: derive the BAND for the env-sensitive certification floor (baseline cert_worst 2.106398e-01 at S21 -> 1.813425e-01 at S-CERT and again at the 2026-09-05 re-run: the drift is stable across the two later runs). LANDED 2026-09-05 (F2 block-0 re-stamp): statement-number REFRESH in the X-CDKAT scope + env pin envfp=e100f996 in the ondemand stamp (closure-aware staleness gate) -- causal attribution is now measurable across pinned envs; the MC1 drop is declared"
+  trigger: "next X-CDKAT re-stamp on a DIFFERENT envfp (attribution run); the C20 certification-floor campaign (band)"
 - id: provenance:f7-design-vector-irrecoverable
   status: CONFIRMED
   path: non-critical
@@ -1666,9 +1667,9 @@ entries:
   owner: "F2 + next seeding window (magnitude guard in suite group (xii) + registry falsifier extension)"
   trigger: "F2 entry, or the next T-EQBR citation in an external-facing document"
 - id: audit-scert:h4-doctored-rejector-vacuous
-  status: CONFIRMED
-  path: non-critical
+  status: DISCHARGED
   severity: medium
+  evidence: "tests/test_findings_registry.py#_verdict (F2 block-0 2026-09-05: the H4 doctored-code_id seed now routes THROUGH the same _verdict() comparison the real channel uses, so a corrupted checker would fail its own seed; run of record prints 'seeded rejector [doctored code_id THROUGH the checker]: REJECTED (as required)'; LOG-7(a))"
   magnitude: "the H4 'doctored code_id' seeded rejector cannot fail by construction (compares a constant to a fresh hash — always unequal) and is cited as repair evidence; its siblings route through check() and can genuinely fail"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
   code: ["tests/test_findings_registry.py:274-277"]
@@ -1676,9 +1677,9 @@ entries:
   owner: "F2 (rewrite the seed through the checker like its siblings; re-adjudicate the registry row citing it)"
   trigger: "next test_findings_registry touch"
 - id: audit-scert:future-pass-dates-accepted
-  status: CONFIRMED
-  path: non-critical
+  status: DISCHARGED
   severity: low
+  evidence: "tests/test_claims_lint.py#FUTURE ondemand pass-of-record + tests/test_ondemand_carriers.py#FUTURE pass (F2 block-0 2026-09-05: pass > today and fail > today are violations; seeded rejector 'FUTURE ondemand pass date seeded' REJECTED on the run of record; LOG-7(a))"
   magnitude: "the staleness gate accepts pass= dates in the future, permanently defusing itself (latent — no active instance found in the registry)"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P2"
   code: ["tests/test_claims_lint.py:230-243"]
@@ -1727,14 +1728,15 @@ entries:
   trigger: "first instance exhibiting a fold/multiple steady branches, or the F2 certification-list design window"
 - id: plume:vortex-sheet-stability-unchecked
   status: CONFIRMED
-  path: non-critical
+  path: critical
   severity: low
   magnitude: "the free plume boundary is a compressible vortex sheet whose linear stability is REGIME-dependent (KH-unstable below the convective-Mach threshold, Miles/Papamoschou-Roshko class); the certificate currently ASSERTS nothing either way — H-F3/H-F13 mandate a phase-by-phase convective-Mach CHECK plus the control-surface decoupling certificate (far-plume instability does not void thrust if decoupled)"
   source: "validation/sfoundations_raws_2026-08-13/phaseB_tree_diff.md#Plume vortex-sheet stability"
   code: []
   mechanism: monitor-scope-gap
-  owner: "F4b/F5-adjacent (external-expansion sectors; joins the certification monitor list when plug/expansion-deflection campaigns open)"
-  trigger: "first certified campaign in an external-expansion sector"
+  owner: "F3 plug sector certification-monitor list (the plug/expansion-deflection campaign IS the TWIN's sector: phase-by-phase convective-Mach check + control-surface decoupling certificate join the H20/C61 window; F4b/F5 external-expansion sectors inherit)"
+  trigger: "first certified campaign in an external-expansion sector (= F3.PLUG opening; the row's own trigger fires at the TWIN's sector)"
+  note: "path flipped non-critical->critical by the F2-B0 refuter pass 2026-09-05 (REFUTER_R1_tags.md Table B: the trigger fires at the TWIN's own truncated-plug campaign; plug plume is not decoupled per the record's H20 adjudication); owner re-homed F4b/F5-adjacent -> F3.PLUG with the same evidence"
 - id: thermotab:fundamental-derivative-audit-missing
   status: CONFIRMED
   path: non-critical
@@ -2462,7 +2464,7 @@ entries:
 
 - id: moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net
   status: CONFIRMED
-  path: non-critical
+  path: critical
   severity: medium
   magnitude: "closed-with-proof already on disk (GENO/docs/analisi_drift_portata_ch17.md, section 'La prova empirica'): an instrumented log from a prior session (idealnoz Ch.17, column 511, rows j=27/j=28) shows SL kseg=1 tf=0.00000 yfoot=1.0085882 col1y=1.0077696 col2y=1.0069965 -- the foot falls ABOVE the wall, outside the segment; t_foot is clamped to 0 and the foot state (rho3,V3,p3,theta3) becomes the WALL state, not the interior field, corrupting rho4/q4 via isentrope+Bernoulli; the clamp persists across ALL PC passes. The foot_clamped flag DOES fire in production (k_seg==1 .and. t_foot<0), but PHASE 2 never reads it (PHASE 1 zeroes the flag first) -- the correction the code provides for exactly this event NEVER RUNS; a documented production event that should have been intercepted was not. The GENO registry's own classification of this asymmetry (N-12, 'cosm -- proven inert: PHASE1 lagged resets the flags before PHASE2') is CIRCULAR: the flag is inert BECAUSE it is zeroed, and the zeroing is justified by the (unverified) claim that the clamp cannot fire"
   source: "validation/LEDGER_dubbi_moc_2026-08-13.md#CHIUSO 2026-08-13 SENZA NUOVO RUN"
@@ -2470,7 +2472,7 @@ entries:
   mechanism: dead-safety-net-circular-justification
   owner: "GENO repo (fix) + F2 (program: any GENO baseline whose kgrid re-anchors near a foot-above-wall geometry inherits the uncorrected corruption)"
   trigger: "next GENO kgrid re-anchor touch, or next foot_clamped-adjacent MoC_Gen_m/CircularContour_m change"
-  note: "distinct from the appendix's MOC-16 (same dead-safety-net mechanism, out-of-scope per the (iii) MOC-01..09 boundary) -- this row is the source-(iv) instance, in scope"
+  note: "distinct from the appendix's MOC-16 (same dead-safety-net mechanism, out-of-scope per the (iii) MOC-01..09 boundary) -- this row is the source-(iv) instance, in scope. Path flipped non-critical->critical by the F2-B0 refuter pass 2026-09-05 (REFUTER_R1_tags.md Table B: documented uncorrected corruption in the Ch.17 moc_gen chain that the F2b twin-agreement gate leans on — same clause as the critical sibling moc-audit:ledger-c1-thermo-audit-outcome-bundle)"
 
 # ---- S-FOUNDATIONS-C Blocco-2 landing rows (2026-08-19, LAND-2):
 # (1) contract-diff P3 candidates F-4..F-10 (VERDICT_contract_and_L4R1.md
@@ -2661,8 +2663,8 @@ entries:
   code: ["validation/sfoundations_raws_2026-08-13/SESSION_STATE_checkpoint.md:94-102"]
   mechanism: process-asymmetry-conversation-only-verdict
   owner: "Blocco-5 COVERAGE GATE (this session family, extended spec): sweep dimension added — every gate/verdict/adoption/adjudication CLAIMED in ORA, session logs, checkpoints and commit messages of the S-FOUNDATIONS chain (R35 family, 2026-08-13 onward) must have its FILE CARRIER (checkpoint block, verdict file, registry row); a claimed act without carrier = finding with owner; absence claims only search-proven. Standing prevention = gate-pre-esecuzione clauses (D)/(E) (memory, minted 2026-08-19)"
-  trigger: "Blocco 5 coverage-gate run (this session or C3); prevention clauses live NOW"
-  note: "User question of record: 'potrebbero esserci stati altri buchi di questo tipo in passato' — this row is the honest answer: plausible, unswept, now owned. The sweep is bounded to the S-FOUNDATIONS chain first (highest density of orchestrator acts); pre-chain sessions ride a second tranche only if the first finds instances"
+  trigger: "next orchestration-heavy session close (re-armed 2026-09-05: the original trigger window — Blocco 5 coverage-gate, C3/C4 — RAN 2026-08-21 with NO evidence in its log that this sweep executed, so the row was stale-open, not touch-gated; refuter R2 F2-B0 catch); prevention clauses live NOW"
+  note: "User question of record: 'potrebbero esserci stati altri buchi di questo tipo in passato' — this row is the honest answer: plausible, unswept, now owned. The sweep is bounded to the S-FOUNDATIONS chain first (highest density of orchestrator acts); pre-chain sessions ride a second tranche only if the first finds instances. re-homed 2026-09-05 (F2 block-0): owner window updated from the consumed Blocco-5 gate to the next orchestration-heavy close; the F2-B0 session itself applied the prevention clauses (all orchestrator verdicts on file in validation/f2b0_raws_2026-08-31/)"
 
 - id: methodology:single-family-verification-common-cause
   status: CONFIRMED
@@ -2767,8 +2769,8 @@ entries:
   source: "validation/spres_raws_2026-08-22/reconstruction/REFUTE_CH9.md#(d) FUORI-PERIMETRO (finding su file NON miei — non toccati)"
   code: []
   mechanism: oracle-coverage-gap
-  owner: "F2 oracle window (G1 chain): execute the O3.4 gradient leg (JAX grad vs GENO FD on the assembled march) or re-scope D6 :826-830 with a declared reason; rides beside the staleness import-closure F2 item"
-  trigger: "any 'O3.4 PASS' claim without per-leg scoping; F2 entry (oracle re-baseline); first cross-code gradient comparison run"
+  owner: "F2.ENGINE oracle block (G1 chain) -- re-scoped with declared reason at F2 block-0 2026-09-05 (order 5): the gradient leg (JAX adjoint vs GENO finite differences on the assembled march) is STRUCTURALLY GATED by oracles:geno-tocnoz-wall-thrust-double-count (critical, GENO-side fix): GENO's performance thrust is contaminated (+7.27e3 / +2.33e4 N by exact-formula reconstruction) so it cannot serve as the FD oracle until fixed; the T2 quarantine + green WSL build (2026-09-05) restored the GENO binary, so the leg is executable once the fix lands. protocol pre-registered: parameter p in {eps, xtronc} on the GENO TOC wall family; chain-rule identity <dJ/dW, dW/dp>_JAX (X-TOCV adjoint, W(p) = GENO wall at p resampled into the spline class, dW/dp by two-step Richardson FD) vs FD_GENO(J)(p), band = K_RICH two-step Richardson on both FD legs, ONE lowering pinned (engine:cross-lowering-gradient-floor), negative control = a corrupted tangent must break the identity; SEQUENCING: after [OBJ-DOM-IMPL] (the J consumed must be the fix-A objective domain, else the two codes differentiate different J's) and after the double-count fix"
+  trigger: "GENO double-count fix landed (S-GENOAUDIT resumption, census R13) AND [OBJ-DOM-IMPL] landed -> first F2.ENGINE oracle act; any 'O3.4 PASS' claim without per-leg scoping"
   note: "Minted 2026-08-23 at the S-PRES session-2 atlas promotion window (R7 same-window rule). Dedup by measured grep in the mint window (SR-12): grep -n 'gradient-leg|gradient leg|:826' docs/findings_registry.yaml pre-mint -> 0 pertinent hits (only :2148 litreview residues row, unrelated). Discovered by refuter C1 (W-C.a) walking CH9 claims to source."
 
 - id: atlas:ch5-instantaneous-vs-reference-steady-mislabel
@@ -2815,9 +2817,9 @@ entries:
   owner: "F2-exit / F3-entry touchpoint (user): re-home H20 (findings row owner) and C61 (choice ledger owner) to the F3 plug step, OR ratify F4b as the home and amend D6 F3 EXIT accordingly; until then tools/roadmap_derive.py carries the override with this row as its citation"
   trigger: "F3 entry act, or any (value, delta) truncated-plug row entering the record (C61 trigger), whichever first"
 - id: plan:full-envelope-tournament-no-named-d6-step
-  status: CONFIRMED
-  path: non-critical
+  status: DISCHARGED
   severity: medium
+  evidence: "docs/rde_nozzle_development_plan.md#DATED ADDENDUM 2026-09-05 (user-ratified at F2-B0 touchpoint T1: F3.TOURNAMENT named with ENTRY = >=2 certified sectors + census-lemma/PAP-RIM, EXIT = tournament Verdict with S*(c) + rigor-class upgrade of FINITE, budget ISS-4, two-sector fallback)"
   magnitude: "the program's stated design mechanism - configuration-free formulation (design variable = solid set S in the envelope, configurations = topology classes as OUTPUTS, docs/rde_nozzle_problem_book.md:337-353) + finite sector tournament (:354-363, SCHEMA) with the geometry-free premium_bound tournament device (M0 Part IV, [T-OP11e] scope remark) and the M1-M5 globality contract (atlas CH8 sec.1.7) - has NO named step in the D6 phase spine: `grep -in tournament|sector docs/rde_nozzle_development_plan.md` = 2 hits, both the DEF-sector of F1 (S-ROADMAP 2026-08-31, user question 'dove e' il full ottimizzatore su tutte le geometrie?'). D6 F3 GEOMETRY CLASSES EXIT (:219-222) certifies ONE sector (plug) + one var-gamma instance; the engine today exercises ONE sector (bell/TOC, [X-TOCV]); the cross-sector tournament at contour level (all classes in the engine + comparison at the true constraint vector c, deflated-continuation M4 for stationary-point enumeration, census-lemma R5c + PAP-RIM R6c scheduled F2-exit) is homed only by the authored advisory E ('full envelope = F3 exit + F4b') and by atlas CH8 sec.3.5 ('F3 = first free-boundary entrant in the engine-level tournament'), never by the plan of record. path: non-critical BY DEFINITION of the tag (the decisive number is the single-sector TWIN); goal-critical for the program"
   source: "docs/rde_nozzle_development_plan.md#F3  GEOMETRY CLASSES"
   code: []
@@ -2825,9 +2827,9 @@ entries:
   owner: "D6 amendment at the F3-entry touchpoint (user): mint the F3.TOURNAMENT step of record (ENTRY = >= 2 certified sectors in the engine + census-lemma/PAP-RIM landed; EXIT = S*(c) by tournament with premium_bound certificate + bound gap; budget ISS-4) OR declare it F4b/F5-owned; until then tools/roadmap_derive.py carries the DERIVED step F3.TOURNAMENT (path non-critical) with this row as its citation"
   trigger: "F3 entry act; or the first Verdict claiming a cross-sector optimum S*(c); or any public claim that the tool 'optimizes over all geometries'"
 - id: plan:representation-ladder-3d-counterpart-no-named-d6-step
-  status: CONFIRMED
-  path: critical
+  status: DISCHARGED
   severity: medium
+  evidence: "docs/rde_nozzle_development_plan.md#DATED ADDENDUM 2026-08-31 (user-ratified at F2-B0 touchpoint T1: F2.REPR named with ENTRY/EXIT/BUDGET/FALLBACK; the ladder ADJUDICATION itself is the step's own content, carried by its placed objects S-5F/C49/C51/C59 and the TWIN-protocol A-REPR amendment duty in validation/TWIN_PROTOCOL_preregistration_2026-08-31.md)"
   magnitude: "the program's 3-D / unsteady COUNTERPARTS of the per-phase axial model exist in the record but are scattered, with no named D6 step: (i) representation ladder = per-phase 4-field axial (current engine) / 2.5D five-field [S-5F] (SCHEMA, build decision user-pending) / azimuthal marching C51-route-B (native helix, ledger C51 NEVER, ROUTE-B deferred deriver) / hybrids / 3D-per-phase (pipeline decision map stage 2); (ii) CFD counterpart = R22-CFD re-scoped formal-first to CFD-2 (paired demo, F2 queue) + CFD-1 (coupled-configuration pin test, ~12M cells, user decision post-M-RED) with T-DISC/T-RED/M-RED as the formal half; (iii) 3-D MoC line = B-lite helical space-march [S-BLITE] + A5 wave-frame anchor (D6:646-666) + Ransom/Hoffman/Thompson 3-D MOC to locate (D6:1023) = F5b/F6 horizon; the ONLY act that adjudicates the ladder is the user-proposed session topologia-e-modellistica (PROGRESS B16, ratified at F2-entry with extended field-reading scope by B19(b)) - a BLOCCATO row, not a plan step (S-ROADMAP 2026-08-31, user question: e la controparte con MoC 3D azimutale o CFD?)"
   source: "docs/rde_nozzle_pipeline_decision_map.md#STAGE 2"
   code: []
@@ -2835,9 +2837,9 @@ entries:
   owner: "F2-B0 (the B16/B19(b) session executes it: adjudicate at convergence with the census protocol; land the verdict as a D6 amendment naming the step F2.REPR with ENTRY/EXIT/budget) - until then tools/roadmap_derive.py carries the DERIVED step F2.REPR (path critical: the TWIN protocol must state which representation both arms use)"
   trigger: "F2-B0 opening; the TWIN protocol pre-registration (representation of both arms must be declared); any claim about 3-D/azimuthal/CFD coverage of the tool"
 - id: plan:nasa-3d-moc-tools-adjudication-not-landed
-  status: CONFIRMED
-  path: non-critical
+  status: DISCHARGED
   severity: low
+  evidence: "validation/PROGRESS_2026-08-31_F2B0.md#LOG-3 (T3 landing executed 2026-08-31: 12 exploration files -> validation/nasa_tools_raws_2026-08-25/ with ADJUDICATION_v2 of record; 3 NTRS PDFs identified page-1 and moved to literature/ with registry rows barnhart_1997_npac / rice_2003_moc_tools / slater_2024_supin + wanted_kliegel_levine_1969 PRIORITY 2; code clone -> PARENT read-only; ADVISORY_INDEX block row; D6 item-12 additions + Taylor-fan gloss in the dated addendum; T3 residues registered for the F2-exit touchpoint)"
   magnitude: "parallel exploration 2026-08-25/31 (memory nasa-nozzle-tools-exploration): NPAC CR-204129, Rice 2003 JHU/APL MoC 2D/3D + cloned repo Three-Dimensional-Nozzle-Design-Code, SUPIN TM-20240008586 deep-read with refuted adjudication (ADJUDICATION_v2.md of record for the study); verdict: two named duties served - duty (a) Rice/Armstrong conoid-ray compatibility algebra as a free symbolic cross-check of the never-executed brick G12-L1-3D (M0:3041-3042), duty (b) Kliegel-Levine AIAA J 1969 MISSING from the literature registry while C12 needs its 2nd-order mass-flow band term (D6 item 12 priority 2); everything else LOW/HORIZON (B-lite is formulation-agnostic, not the 3-D MoC; Armstrong != Ransom/Hoffman/Thompson, D6:1023 still open); two zero-cost GENO twin experiments named, not run. ALL artefacts UNTRACKED in NASA_STUFF_Nozzle_Inlet/ and Three-Dimensional-Nozzle-Design-Code/ (no ADVISORY_INDEX row, no literature rows, no D6/M0 landing) - a study outside the record until landed"
   source: "docs/rde_nozzle_development_plan.md#Ransom/Hoffman/Thompson 3-D MOC"
   code: []
@@ -2845,12 +2847,47 @@ entries:
   owner: "user decision (landing window): move the digests under validation/ with ADVISORY_INDEX rows + literature registry rows (Kliegel-Levine 1969, Rice 2003, NPAC, SUPIN) + D6 item 12 amendment; consumed by the F2.REPR session (duty a) and the C12 band duty (duty b)"
   trigger: "F2.REPR session opening; next literature-registry window; any citation of the NASA tools in a record document"
 - id: method:sroadmap-single-author-placements-unrefuted
-  status: CONFIRMED
-  path: critical
+  status: DISCHARGED
   severity: medium
+  evidence: "validation/f2b0_raws_2026-08-31/REFUTER_R1_tags.md#Summary + validation/f2b0_raws_2026-08-31/REFUTER_R2_overrides_completeness.md#MEASURED TOTALS + validation/PROGRESS_2026-08-31_F2B0.md#LOG-5 (F2-B0 order 1 executed 2026-09-05, 2 adversarial Fable referees + orchestrator judge merge, MEASURED FLIP COUNTS: tags 75/75 adjudicated = 45 critical all CONFIRM + sample 27 CONFIRM/3 FLIP nc->critical applied; overrides 89 = 82 CONFIRM / 2 FLIP (C54 x2 -> F2.ENGINE) / 2 MOVE (C-XINJ, C-XBVP-aprime -> F2-B0) / 3 reason-AMENDs; OUT 73 = 61 CONFIRM / 12 challenged (systemic pre-F5 regex defect FIXED in the tool with PRE_RX, 8 rows -> F5, 1 -> F3.TOURNAMENT by trigger-named consumer, 1 -> F2.REPR, 1 stale-owner re-homed); 3 sub-step hijacks overridden (B-S5F -> F2.REPR, 2 CFD-keyword rows -> F2.ENGINE); ZERO critical objects wrongly OUT, ZERO wrong-phase critical placements; completeness critic: R27 censimento-only object MINTED, wanted_li_xu_huang binding named in-row, THEOREM* minting-discipline residual named (lint candidate), HANDOFF leak proven-then-consumed by T5; prompt refuted = PASSES with 5 low findings PROMPT-1..5 registered in the session log; roadmap regenerated + lint (xxiv) PASS post-merge quoted in the log)"
   magnitude: "self-review at S-ROADMAP close (2026-08-31): the session ran inline with ZERO subagents by declared ceiling, so its two largest outputs are SINGLE-AUTHOR and UNREFUTED against the repo's own claim-dual-proof standard: (1) the path: triage of 213 OPEN findings (44 critical / 125 non-critical / 44 paper) assigned in one pass by one author with a declared lever (TWIN on case-A data) but no adversarial pass; (2) the 88 declared overrides + 73 OUT rules inside tools/roadmap_derive.py - a hand-authored placement layer INSIDE a 'derived' artifact: lint (xxiv) proves COVERAGE (every object has a step or an OUT:why), not PLACEMENT CORRECTNESS (an object put in the wrong step passes the lint); (3) two steps (F2.REPR, F3.TOURNAMENT) minted by the tool lead the plan of record instead of following it (precedence inversion until the D6 addendum is ratified); (4) the claims-registry coverage hole (45 open theory objects) was found only on a user question - no completeness critic ran"
   source: "validation/PROGRESS_2026-08-31_Sroadmap.md#REVIEWER"
   code: [tools/roadmap_derive.py:150-320]
   mechanism: single-author-unrefuted
   owner: "F2-B0 FIRST act (before any engine work): one refuter pass over (a) the 44 critical + a random 30 of the non-critical tags, (b) the 88 overrides, (c) the OUT rules - persona: adversarial plan referee; brief = flip-or-confirm per row with anchor; budget declared under R8; outcome lands as tag flips + override edits + regenerated roadmap; PLUS the completeness-critic pattern (what source is NOT a join input?) run once"
   trigger: "F2-B0 opening (blocking for the TWIN protocol pre-registration, which consumes the critical set); any citation of the critical count as a program fact before the pass"
+
+# ---- F2-B0 session rows (2026-09-05) ----
+
+- id: carriers:x-o32-negative-control-uncertifiable-on-current-tree
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "F2 block-0 closure-aware staleness re-run 2026-09-05 of the O3.2 carrier X-O32 (validation/o32_mesh_convergence.py, pass-of-record 2026-08-12; import closure a1_toc_variational_jax / a1_ideal_march_jax / a1_march_scan / thermotab_c1_jax committed 2026-08-13): S1 estimator KAT PASS (1.67e-13), S2 ideal ladder r=1..4 replay==record PASS, S3 TOC ladder r=1..4 replay==record PASS, then S4 NEGATIVE CONTROL aborts -- the deliberately degraded foot first-order march (make_solvers_foot, foot_thc1) is UNCERTIFIABLE at r=1 (toc_ladder assert cert_worst <= 1 fires with worst = inf), so the pre-registered N1 rejection-by-h^2-band test NEVER EXECUTES: the negative control is INCONCLUSIVE, not passed, and the carrier's pass stamp no longer reproduces on the current tree (claims registry X-O32 now carries fail=2026-09-05). HYPOTHESIS (not proven): the M5c per-column executor's nonfinite -> +inf certification mapping (a1_toc_variational_jax.py:996-1001, landed S25-bis after the pass) now surfaces a non-converged lane of the degraded march that the legacy path handled differently. DISCRIMINATOR pre-registered: re-run with A1_COLEXEC=0 (legacy arbitration) -- same failure = genuine regression of the degraded march under the 2026-08-13 record-path edits; PASS = guard-induced, and then S4 must be made certification-aware (an uncertifiable degraded march is itself a REJECTION outcome, asserted as such, never silent). Full log: validation/f2b0_raws_2026-08-31/rerun_o32.log DISCRIMINATOR 1 EXECUTED 2026-09-05 (A1_COLEXEC=0, legacy per-cell arbitration): S1-S3 PASS again, S4 fails IDENTICALLY (foot level r=1 not certified, worst inf) -> hypothesis A (M5c per-column nonfinite->+inf guard) REFUTED: the degraded first-order march is uncertifiable on BOTH record paths of the current tree, so the mechanism sits in the 2026-08-13 record-path/certification edits shared by both paths (or in the env). DISCRIMINATOR 2 pre-registered and launched in-window: the same bench on a git worktree at 07400a4 (the tree of the 2026-08-12 pass) under the SAME env e100f996 -- S4 PASS there = regression introduced by the 2026-08-13 commits (bisect 8046434 / ea2abce next); S4 FAIL there too = env-induced (jax 0.11 / numpy 2.5.2 vs the pass-era env), then the carrier's pass was env-bound and the envfp discipline is exactly the repair DISCRIMINATOR 2 EXECUTED 2026-09-05 (git worktree at 07400a4 = the tree of the 2026-08-12 pass, GENO reachable read-only, SAME env e100f996): S1-S3 PASS, S4 fails IDENTICALLY (foot level r=1 not certified, worst inf) -> hypothesis B (2026-08-13 record-path commits) REFUTED; ENV-INDUCED is the SURVIVING HYPOTHESIS BY ELIMINATION (not a positive demonstration: the pass-era env is not available to re-run; two candidate mechanisms were refuted, one remains): the degraded first-order negative-control march produces a non-finite Newton step under the current jax/numpy/scipy stack while the sound paths (S1-S3) are env-robust on both trees. VERDICT of the pair: the 2026-08-12 pass is at least ENV-BOUND and the closure-aware envfp stamp introduced this session is the repair for that class; no commit bisect is warranted. Remaining duty (F2.ENGINE first bench act): make S4 certification-aware (an uncertifiable degraded march = a REJECTION outcome asserted as such, with the offending non-finite step logged), then re-run to PASS and lift fail="
+  source: "validation/PROGRESS_2026-08-31_F2B0.md#LOG-7"
+  code: ["validation/o32_mesh_convergence.py:467-505", "validation/a1_toc_variational_jax.py:996-1001"]
+  mechanism: carrier-nonreproducible-negative-control
+  owner: "F2.ENGINE oracle/bench window (rides mesh-amr:observed-order-not-at-band-sites, same O3.2 object): both pre-registered discriminators EXECUTED at F2 block-0 (legacy arbitration: same failure; pass-era tree under today's env: same failure) => env-induced = surviving hypothesis by elimination on the degraded negative-control march; duty = re-form S4 as certification-aware rejection (offending non-finite step logged), re-run X-O32 to a PASS on the current env and lift fail=; C-O33 statement carries the dated caveat until then"
+  trigger: "F2.ENGINE first bench touch; any citation of X-O32 numbers as current; lifting the fail= stamp on X-O32"
+
+- id: twin-protocol:preregistration-2026-08-31
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "the DECISIVE TWIN protocol is PRE-REGISTERED of record (validation/TWIN_PROTOCOL_preregistration_2026-08-31.md, F2-B0 order 7): truncated-plug sector (F3), case-A Annex-B data with the declared case-B flip clause, identical-constraint vector (eps/L/truncation/p_b-closure/floors) rejector-enforced, both arms on the SAME mu and SAME representation (A-REPR placeholder pinned by F2.REPR), materiality ~1% Isp with the 0.5-1% thrust-stand band (D6:779-782 note), both outcomes pre-registered publishable, rejectors R-TWIN-0..6 named with seeded tests, claim gated D-44+G5. This row is the protocol's GUARDIAN: it stays OPEN until the TWIN runs under the protocol, and any deviation without a dated amendment in the protocol file is a firing of R-TWIN-0"
+  source: "validation/TWIN_PROTOCOL_preregistration_2026-08-31.md#1. The question"
+  code: []
+  mechanism: pre-registration-guardian
+  owner: "F3.TWIN executor (consumes the protocol; instance pin at F3.TWIN opening by measured command); F2.REPR owes amendment A-REPR; F2.ENGINE owes the constraint-tolerance repair named in protocol section 5.1"
+  trigger: "first TWIN arm run (protocol hash-check R-TWIN-0); F2.REPR verdict (A-REPR amendment lands); any public claim wording (D-44+G5 side)"
+
+- id: question:b1-quarantine-shmyglevskii-6-vs-G
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "censimento row R27 carried an open QUESTION visible to NO join input (completeness-critic catch, F2-B0 refuter pass): the B1 quarantine question — is the Shmyglevskii identity (6) the same object as our (G)/Lambda-form boundary? — has a NAMED falsifier ([X-VMON] grid comparison) and owner F4b, but lived only in the PROGRESS censimento table, which the roadmap join does not read; by its own declaration it is a QUESTION, not a defect (this row exists so the join sees the open object, honoring that classification via the mechanism field)"
+  source: "docs/rde_nozzle_PROGRESS.md#R27"
+  code: []
+  mechanism: open-question-carrier
+  owner: "F4b certificate window (the [X-VMON] grid identity check rides the first fitted-front/Lambda-form touch of F4b)"
+  trigger: "F4b entry; any citation of the (6)-vs-(G) identity as settled either way"

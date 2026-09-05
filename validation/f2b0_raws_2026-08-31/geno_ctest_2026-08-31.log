@@ -1,0 +1,81 @@
+  FAIL: x_cm.dat (expected 9b787fd35531438040fcd60651dee14c, got 00f378a3dc3b08945ce9dc027fa4f40b)
+  FAIL: p_cp.dat (expected a61cc96c02d7a4582856ed29fc847b5a, got 87b5cf89e8482d241e376119b2916528)
+  FAIL: u_cp.dat (expected b28e36dece408963302cf6009c8904e4, got 7514967f438899acc1ab623a15d6e82a)
+  FAIL: v_cp.dat (expected b350652fd443e47c8c336b0d8942aad2, got 01704536de53cb9b70cc5e937e25f9fe)
+  OK:   dimensions.dat
+  OK:   gamma_cp.dat
+  checked 16 file(s)
+=== migdalnoz_ni50: FAIL ===
+
+      Start 25: tocnoz_flint
+23/28 Test #21: idealnoz_flint_gen ...............   Passed   54.48 sec
+      Start 26: tocnoz_gen_flint
+24/28 Test #24: migdalnoz_ni50_gen ...............***Failed  Error regular expression found in output. Regex=[FAIL:]  9.91 sec
+=== migdalnoz_ni50_gen: running GENO ===
+  solver completed (exit 0)
+  NaN/Inf scan...
+  NaN/Inf: clean (3 files scanned)
+  sanity check performance.dat...
+  performance (annular): OK (Mi=1.500000 Me=3.541517 mdot=1.69994054E+02)
+  geometry check profile_cm.dat...
+  profile_cm.dat: OK (493 points, monotone x, y>0, divergent)
+  geometry check profile_cp.dat...
+  profile_cp.dat: OK (563 points, monotone x, y>0, divergent)
+  baseline validation...
+  FAIL: u_cm.dat (expected 7d6e778fb4f2f38a9b18e6b21f3dc631, got 9598ddb4c99cda4ce5f4654c3aa36213)
+  OK:   performance.dat
+  FAIL: x_cp.dat (expected 435a4151a95fff7e1905bd071282f497, got b9924accb5185d9f96fd0d712e109b3a)
+  FAIL: y_cp.dat (expected d820fa8ccf85431936a8fe260d5278cc, got b12001995ac7c712f1bc590d140653c8)
+  OK:   gamma_cm.dat
+  FAIL: v_cm.dat (expected 9e195bced75c89349c979eb43b0ea503, got 9dbe824a2688a04ce102782d0f4b846e)
+  FAIL: y_cm.dat (expected c400eb9548105639400c57c0b1e87931, got 959972a2e4f338d5c6da51eb136df431)
+  FAIL: rho_cp.dat (expected 52c30b879284e4f3495eb1366df131e8, got 7b4e0bd6442836e2ef168597b305f89a)
+  FAIL: rho_cm.dat (expected ee61b64cfa0d7a3874352f37a7037f57, got cf7cabfd0095b36567785dbc107324bd)
+  FAIL: p_cm.dat (expected 9dfe7c8321a7fbddf784c1651f9568b0, got f678392eb1a43bff86af7a512b13fa3f)
+  FAIL: x_cm.dat (expected 036d7fef09307c857ef6b975d2e863e9, got 1d5d5cc1b59fe5e611580fee91ffa089)
+  FAIL: p_cp.dat (expected c8e03858db78c51357a10fdf9c3b7089, got 1b3e21db1cd043d33de0a3b45eb67af7)
+  FAIL: u_cp.dat (expected 4ae8e7ac7a3be089af31edea753dd076, got ae25cafd219b43f0cd7c828a17db7235)
+  FAIL: v_cp.dat (expected b04b482dcbd8eab640bc7429971f71ce, got 386c759ebbe45e41d397881ccc79dcd4)
+  OK:   dimensions.dat
+  OK:   gamma_cp.dat
+  checked 16 file(s)
+=== migdalnoz_ni50_gen: FAIL ===
+
+      Start 28: guard_h7_theta_i
+25/28 Test #28: guard_h7_theta_i .................   Passed    1.21 sec
+26/28 Test #22: conicnoz_flint_gen ...............   Passed   65.91 sec
+27/28 Test #25: tocnoz_flint .....................   Passed   63.02 sec
+28/28 Test #26: tocnoz_gen_flint .................   Passed   61.56 sec
+
+37% tests passed, 17 tests failed out of 27
+
+Label Time Summary:
+guard          =   1.21 sec*proc (1 test)
+integration    = 1338.06 sec*proc (25 tests)
+unit           =   1.08 sec*proc (2 tests)
+
+Total Test time (real) = 353.42 sec
+
+The following tests did not run:
+	 14 - veennoz (Disabled)
+
+The following tests FAILED:
+	  3 - idealnoz (Failed)
+	  4 - ticnoz (Failed)
+	  5 - tocnoz (Failed)
+	  6 - ticnoz_flint (Failed)
+	  9 - planarnoz (Failed)
+	 10 - planarnoz_cur (Failed)
+	 11 - conicnoz (Failed)
+	 12 - plugnoz (Failed)
+	 13 - plugnoz_plan (Failed)
+	 15 - idealnoz_gen (Failed)
+	 16 - ticnoz_gen (Failed)
+	 17 - ticnoz_flint_gen (Failed)
+	 18 - planarnoz_gen (Failed)
+	 19 - planarnoz_cur_gen (Failed)
+	 20 - conicnoz_gen (Failed)
+	 23 - migdalnoz_ni50 (Failed)
+	 24 - migdalnoz_ni50_gen (Failed)
+Errors while running CTest
+CTEST_PIPE_EXIT=0

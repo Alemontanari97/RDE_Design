@@ -301,13 +301,22 @@ def derive_staleness_check():
     if cid is None:
         print('  RECORD_PATH_MODULES not parseable — channel FAIL')
         return False
-    ok = tail.get('code_id') == cid
+
+    def _verdict(art_tail, tree_cid):
+        """THE channel comparison (single authority for real check AND
+        seed — F2-B0 2026-08-31 fix of audit-scert:h4-doctored-
+        rejector-vacuous: the old seed compared a constant to a fresh
+        hash outside the checker and could never fail)."""
+        return art_tail.get('code_id') == tree_cid
+
+    ok = _verdict(tail, cid)
     print('  H4 derive artifact vs tree: tail.code_id %s / tree %s '
           '-> %s' % (str(tail.get('code_id'))[:12], cid[:12],
                      'FRESH' if ok else
                      'STALE (re-run stage_derive on this tree)'))
-    seed_ok = ('0' * 64) != cid
-    print('  seeded rejector [doctored code_id mismatch]: %s'
+    doctored = dict(tail, code_id='0' * 64)
+    seed_ok = not _verdict(doctored, cid)
+    print('  seeded rejector [doctored code_id THROUGH the checker]: %s'
           % ('REJECTED (as required)' if seed_ok
              else 'NOT REJECTED — channel broken'))
     return ok and seed_ok

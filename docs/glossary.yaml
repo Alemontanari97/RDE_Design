@@ -286,6 +286,22 @@ families:
     count_covered: 30
     note: "W-01..W-27, W-28a, W-28b, W-29, W-30 — the missed-cluster citation-neighborhood WANTED mints of the nozzle-RDE arrivals campaign (G-18 census-defect repair, minted 2026-08-20; authority = SYNTHESIS section (f), Tier 1+2 only; W-28 = two distinct papers, hence 28a/28b; Tier-3 not minted per the synthesis's own conditional). Piece-level token resolution is carried by the companion entries row of the same window (a FAMILY_PATTERNS extension is a test-file edit, outside this glossary-only window's write scope). Count = 30, measured by grep on the owner fields in-window 2026-08-21."
 
+  - family: "REF-<n>* (F2-B0 engine-cluster panel refuter findings)"
+    resolver: "validation/f2b0_raws_2026-08-31/PANEL_engine_REFUTER.md"
+    count_covered: 25
+    note: "REF-1..REF-25 (1 KILL / 11 WEAKEN / 13 NOTE) of the Form-2 engine-cluster panel refuter, F2-B0 2026-09-05; judged in VERDICT_engine_cluster_2026-08-31.md; cited by the choice-ledger C31/C32/C37/C57/C58/C60 verdict notes and by findings constraints:multiplier-rejector-missing (REF-16/17 delta). SR-4: entered the ratchet corpus via those notes in the same window."
+  - family: "V-C<n>* (F2-B0 engine-cluster verdict sections)"
+    resolver: "validation/f2b0_raws_2026-08-31/VERDICT_engine_cluster_2026-08-31.md"
+    count_covered: 6
+    note: "V-C31, V-C32/C37, V-C57, V-C58, V-C60, V-SDP-CAND-8: the judge's per-row verdict sections of the F2-B0 engine-cluster panel (2026-09-05); the ledger notes cite them as the authority chain (no duplication in the ledger)."
+  - family: "B-<NAME>* (PROGRESS BLOCCATO row ids)"
+    resolver: "docs/rde_nozzle_PROGRESS.md#BLOCCATO / GATE APERTI"
+    count_covered: 8
+    note: "B-G5, B-VENUE, B-ADR, B-G0, B-RAOPLUG, B-CFD1, B-GENO, B-S5F: the named rows of the slim PROGRESS BLOCCATO table (S-ROADMAP 2026-08-31); the derived roadmap joins them by id through the path: column; cited in findings/ledger owner texts from F2-B0 on."
+  - family: "R-TWIN-<n>* (decisive-TWIN protocol rejectors)"
+    resolver: "validation/TWIN_PROTOCOL_preregistration_2026-08-31.md#7. Rejectors"
+    count_covered: 7
+    note: "R-TWIN-0 (protocol drift) .. R-TWIN-6 (objective-domain guard): the pre-registered rejectors of the decisive-TWIN protocol (F2-B0 2026-09-05), each with a seeded test; guardian findings row twin-protocol:preregistration-2026-08-31."
 entries:
   # ---------------------------------------------------------------
   # PINNED COLLISION FAMILY: O5
@@ -1595,3 +1611,18 @@ entries:
     meaning: "The roads x insertion-points matrix directive (standing, user pin 2026-08-06): every candidate road formally adjudicated at every insertion point, without over-math (depth = the slot contract); census row R6c SCHED at F2-exit (same window as the census-lemma R5c). Consumed by the F3.TOURNAMENT step of the derived roadmap."
     resolver: "docs/rde_nozzle_PROGRESS.md + docs/ROADMAP_critical_path.md"
     first_seen: "memory roads-insertion-matrix-directive (2026-08-06); census row R6c (S-ORDINE 2026-08-13); glossary row 2026-08-31"
+
+  # ---------------------------------------------------------------
+  # F2-B0 window 2026-09-05 (SR-4 same-window resolution): standalone
+  # tokens minted by the TWIN protocol and the engine-cluster verdict
+  # ---------------------------------------------------------------
+  - token: "A-REPR"
+    namespace: "twin-protocol"
+    meaning: "Amendment slot of the decisive-TWIN pre-registration: the REPRESENTATION of BOTH arms, pinned by the F2.REPR verdict (identical for both arms); until it lands, rejector R-TWIN-5 refuses any arm run."
+    resolver: "validation/TWIN_PROTOCOL_preregistration_2026-08-31.md#4. The two arms"
+    first_seen: "F2-B0 2026-09-05 (TWIN protocol section 4; findings twin-protocol:preregistration-2026-08-31 owner)"
+  - token: "F2-C60-HYBRID"
+    namespace: "duty"
+    meaning: "Optional lever from the C60 ADJUDICATED-PARTITION verdict: terminal full-space KKT polish at the end of a NAND run + ONE re-march to restore converged-state certificate semantics; ordered after [P-IPADJ]; a named lever, not scheduled."
+    resolver: "validation/f2b0_raws_2026-08-31/VERDICT_engine_cluster_2026-08-31.md#V-C60"
+    first_seen: "F2-B0 2026-09-05 (VERDICT V-C60; choice ledger C60 owner/note)"

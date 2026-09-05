@@ -1,0 +1,85 @@
+== ADAPTIVE KNOT CLASS [X-AKNO] (JAX 0.11.0; stage all; budget 4 cycles / 5400 s / 3 insertions-per-cycle) ==
+-- S1 selftest: known-answer indicator + marking rejectors --
+    single-jump chain: interval-5 mass fraction 1.000, Doerfler(0.5) marks [5]
+  [known-answer: >= 99% of mass in the jump interval and Doerfler marks exactly it] PASS
+    flat chain: Doerfler(0.5) marks 4 intervals
+  [flat-drift control: more than one interval marked (no false concentration)] PASS
+  [zero-mass chain yields an empty marked set] PASS
+-- baseline: S18 optimum W* (8 uniform nodes) --
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=132 (engine entry #2) [M5c bucket row]
+  record: 3964 cells, cert worst 1.739e-01, min margin 0.4809 m/s
+  [baseline re-certified] PASS
+  [P4] instance margin floor delta = min_margin(W*)/K_RICH = 0.1202 m/s
+  [W* 8-node] indicator mass per knot interval (total 1.2101e+02, max/mean concentration 3.34):
+      [ 0.121,  0.606) : 5.0595e+01  ( 41.8%)
+      [ 0.606,  1.090) : 2.2900e+01  ( 18.9%)
+      [ 1.090,  1.575) : 9.7697e+00  (  8.1%)
+      [ 1.575,  2.060) : 4.0945e+00  (  3.4%)
+      [ 2.060,  2.545) : 2.8267e+00  (  2.3%)
+      [ 2.545,  3.030) : 2.7401e+00  (  2.3%)
+      [ 3.030,  3.515) : 6.7659e+00  (  5.6%)
+      [ 3.515,  4.000) : 2.1316e+01  ( 17.6%)
+      Doerfler theta=0.3 marks [0]
+      Doerfler theta=0.5 marks [0, 1]
+      Doerfler theta=0.7 marks [0, 1, 7]
+  [S2 live marking is a STRICT subset of intervals (indicator carries information)] PASS
+  goal metric at baseline (r=1 and r=2 -> measured noise floor)...
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 92, 70, 75, 32)  [M-B churn row]
+  [colexec] per-column executor built: Lpad=79 (engine entry #3) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=263 (engine entry #4) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (40, 79, 81, 183, 139, 148, 63)  [M-B churn row]
+  baseline corner mismatch: 6.6295e-02 (r=1), 6.6368e-02 (r=2) -> tol_stop = K_RICH x |diff| = 2.9411e-04
+-- enrichment cycles (Doerfler theta = 0.5; stop on measured improvement < tol_stop, rise, empty set, or budget) --
+  [cycle 1] insert 2 knot(s) at [0.3146 0.7026] -> class m = 10; warm-start wall deviation 4.441e-16 (measured, declared)
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 92, 70, 75, 32)  [M-B churn row]
+  [cycle 1 O3.1 at warm start] PASS
+  [precond] measuring diagonal curvature (2n gradient evals)...
+  [precond] diag |H| in [1.587e+07, 2.043e+09] (kappa_diag 11.3); D = [5.438 0.748 0.491 0.479 0.975 1.031 1.009 1.    0.991 1.    1.513]
+  [colexec] per-column executor built: Lpad=119 (engine entry #5) [M5c bucket row]
+  [seg 0] nit 2  J = 2.7773582e+07  KKT 1.442e+06  radius -> 1.000e-01  flips 1
+  [memo] first-hit controls: fresh-record bitwise equality PASS, perturbed-W miss PASS
+  [engine] bucket-shape signature #2 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 79, 57, 62, 19)  [M-B churn row]
+  [colexec] per-column executor built: Lpad=121 (engine entry #6) [M5c bucket row]
+  [seg 1] nit 2  J = 2.7773884e+07  KKT 2.350e+05  radius -> 1.000e-01  flips 2
+  [engine] bucket-shape signature #3 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 81, 59, 64, 21)  [M-B churn row]
+  [colexec] per-column executor built: Lpad=122 (engine entry #7) [M5c bucket row]
+  [seg 2] nit 2  J = 2.7774930e+07  KKT 1.599e+05  radius -> 1.000e-01  flips 3
+  [engine] bucket-shape signature #4 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 82, 60, 65, 22)  [M-B churn row]
+  [colexec] per-column executor built: Lpad=123 (engine entry #8) [M5c bucket row]
+  [seg 3] nit 2  J = 2.7775370e+07  KKT 3.767e+04  radius -> 1.000e-01  flips 3
+  [seg 4] base REJECTED (early-abort (M5b, opt-in gate site): cell 1999 (interior) uncertified at ratio 2.452e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 5.000e-02
+  [seg 5] nit 2  J = 2.7775370e+07  KKT 3.767e+04  radius -> 5.000e-02  flips 3
+  [seg 6] base REJECTED (early-abort (M5b, opt-in gate site): cell 1999 (interior) uncertified at ratio 2.452e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 2.500e-02
+  [seg 7] nit 2  J = 2.7775370e+07  KKT 3.767e+04  radius -> 2.500e-02  flips 3
+  [seg 8] base REJECTED (early-abort (M5b, opt-in gate site): cell 1999 (interior) uncertified at ratio 2.452e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 1.250e-02
+  [seg 9] nit 2  J = 2.7775370e+07  KKT 3.767e+04  radius -> 1.250e-02  flips 3
+  [seg 10] base REJECTED (early-abort (M5b, opt-in gate site): cell 1999 (interior) uncertified at ratio 2.452e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 6.250e-03
+  [seg 11] nit 2  J = 2.7775367e+07  KKT 3.531e+04  radius -> 6.250e-03  flips 4
+  [engine] bucket-shape signature #5 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 83, 61, 66, 23)  [M-B churn row]
+  [seg 12] nit 2  J = 2.7775631e+07  KKT 5.619e+04  radius -> 6.250e-03  flips 5
+  [colexec] per-column executor built: Lpad=124 (engine entry #9) [M5c bucket row]
+  [seg 13] nit 2  J = 2.7775627e+07  KKT 5.552e+03  radius -> 6.250e-03  flips 6
+  [engine] bucket-shape signature #6 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 84, 62, 67, 24)  [M-B churn row]
+  [seg 14] nit 3  J = 2.7775711e+07  KKT 2.552e+02  radius -> 6.250e-03  flips 6
+  [seg 15] base REJECTED (early-abort (M5b, opt-in gate site): cell 2010 (interior) uncertified at ratio 1.916e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 3.125e-03
+  [seg 16] nit 3  J = 2.7775711e+07  KKT 2.552e+02  radius -> 3.125e-03  flips 6
+  [seg 17] base REJECTED (early-abort (M5b, opt-in gate site): cell 2010 (interior) uncertified at ratio 1.916e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 1.563e-03
+  [seg 18] nit 3  J = 2.7775711e+07  KKT 2.552e+02  radius -> 1.563e-03  flips 6
+  [seg 19] base REJECTED (early-abort (M5b, opt-in gate site): cell 2010 (interior) uncertified at ratio 1.916e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> revert to last certified base, radius cap -> 1.000e-03
+  [seg 20] nit 3  J = 2.7775711e+07  KKT 2.552e+02  radius -> 1.000e-03  flips 6
+  [seg 21] reject-and-shrink EXHAUSTED at the radius floor (early-abort (M5b, opt-in gate site): cell 2010 (interior) uncertified at ratio 1.916e+00 — first offender, march refused [replayed callback record failure, M1 memo]) -> returning the last CERTIFIED base; KKT reported OPEN (certifiability-limited)
+  [cycle 1] TR-SQP: segments 22, re-records 18, nit 32, 892 s; status 3, KKT 2.552e+02 (gtol 9.751e-01), constr 0.000e+00
+  [cycle 1] CERTIFIABILITY-LIMITED outcome (declared, outcome II): reject-and-shrink exhausted, KKT OPEN at 2.552e+02 — [D1]-INELIGIBLE by the validity condition
+  [cycle 1] P4 audit: min margin 0.4809 >= floor 0.1202
+  [cycle 1 P4 margin-floor audit] PASS
+  [cycle 1 O3.1 at the new optimum] PASS
+  [cycle 1] J(warm start) = 2.7761688e+07 -> J(returned certified base) = 2.7775710e+07; corner mismatch = 6.6837e-02 [INFORMATION ONLY: non-stationary design, excluded from [D1] by the validity condition]
+  [cycle 1 certifiability-limited stop still produced a CERTIFIED objective improvement over its warm start] PASS
+  [stop] enrichment OBSTRUCTED at the certifiability boundary of cycle 1's walk — adjudication (certdiag + user decision) is the named next step
+-- summary --
+  goal history: [0.066295]
+  best: cycle 0, m = 8 dofs, goal = 6.6295e-02  (S19 baseline 6.6295e-02)
+  [D1] UNTESTABLE on this run: no cycle converged in-stratum, so no [D1]-eligible design exists — the design-class diagnosis is NEITHER confirmed NOR falsified; the obstruction goes to adjudication (certdiag + user decision)
+  design of record written to C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s20_adaptive_design.json
+VERDICT: FAIL

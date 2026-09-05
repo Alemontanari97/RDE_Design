@@ -88,8 +88,9 @@ STEPS = [
      'decided here at convergence with the census protocol, field-'
      'reading pass on Harroun Figg. 12-20', 'critical',
      'PROGRESS B16 + B19(b) (ratified F2-entry, scope extended); MAP stage '
-     '2 (C49, S-5F, ROUTE-B, C51, R22-CFD, C59); D6 has no named step '
-     '(finding plan:representation-ladder-3d-counterpart-no-named-d6-step)'),
+     '2 (C49, S-5F, ROUTE-B, C51, R22-CFD, C59); D6 ADDENDUM of record '
+     '(dated 2026-09-05, user-ratified at F2-B0 T1: named step with '
+     'ENTRY/EXIT/BUDGET/FALLBACK)'),
     ('F2.ENGINE', 'F2', 'F2a/F2b GENERAL ENGINE: F2a = DATA CONTRACT as the '
      'input surface (interface datum = per-phase profiles M_in, theta_in, '
      's, h0 on Gamma_d; stage-A audits Crocco/completeness/H-I2 + T0-'
@@ -126,12 +127,13 @@ STEPS = [
      'in the engine (bell/TOC, plug, shrouded plug, E-D/other A_gen '
      'sectors) + the FINITE SECTOR TOURNAMENT at the true constraint '
      'vector (premium_bound device, M4 deflated continuation, census-'
-     'lemma + PAP-RIM at F2-exit) -> S*(c) as OUTPUT; no named D6 step '
-     'of record (finding plan:full-envelope-tournament-no-named-d6-step)',
+     'lemma + PAP-RIM at F2-exit) -> S*(c) as OUTPUT; named by the D6 '
+     'ADDENDUM of record (dated 2026-09-05, user-ratified at F2-B0 T1)',
      'non-critical',
      'problem_book :337-363 (SCHEMA); M0 tournament device (Part IV); '
      'atlas CH8 §1.2/§1.7/§3.5; advisory E "full envelope = F3 exit + '
-     'F4b"; D6 F3 EXIT :219-222 covers ONE sector only'),
+     'F4b"; D6 F3 EXIT :219-222 covers ONE sector only; D6 dated '
+     'addendum 2026-09-05 (ENTRY/EXIT/BUDGET/FALLBACK)'),
     ('F4b', 'F4b', 'DECLARED-TOPOLOGY FITTED FRONTS = OBLIQUE SHOCKS of the '
      'RDE exhaust entering through the datum (front taxonomy (b): data-'
      'borne / boundary-entering per-phase oblique wave system, plug/shroud '
@@ -170,6 +172,21 @@ STEPS = [
 STEP_IDS = [s[0] for s in STEPS]
 STEP_BY_ID = {s[0]: s for s in STEPS}
 
+# Step STATUS of record (F2-B0 close 2026-09-05, closing-refuter repair R7):
+# F2 sub-steps are no longer a flat 'NEXT (0/6)'; a consumed sub-step is
+# printed CONSUMED and every object still homed at it is CARRIED FORWARD
+# (declared, printed in section 5-ter) to the next open step — F2-entry
+# duties not executed by the block-0 session are the entry duties of the
+# engine window. Anchors: PROGRESS ORA "Fase D6" + census R39.
+STEP_STATUS = {
+    'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
+    'F2.REPR': 'NEXT (F2 session 2/6; gated by the S-REVIEW GO, BLOCCATO B-SREVIEW)',
+    'F2.ENGINE': 'QUEUED (F2 budget 4-6 sessions)',
+    'F2.M-RED': 'QUEUED (first F2 campaign, B19(c))',
+    'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
+}
+CARRY_FORWARD = {'F2-B0': 'F2.ENGINE'}   # consumed step -> next open step
+
 # Sub-step keyword rules inside F2 / F3 (applied AFTER the phase is fixed
 # by a literal token in the source row; declared here, printed in the doc).
 F2_SUBRULES = [
@@ -191,6 +208,13 @@ F3_SUBRULES = [
 # Phase-token regex (declared exclusions: commit tags "[F1/...]",
 # hyphen-prefixed ids "H-F1", "F-1", slash-prefixed "l1-F2/" forms).
 PHASE_RX = re.compile(r'(?<![\w\-\[])F([0-6])(b|a)?(?![\w])')
+# Refuter R2 (F2-B0 2026-09-05) systemic fix: the hyphen exclusion above
+# also ate GENUINE hyphen-joined phase references "pre-F5"/"post-F2"
+# (8 measured victims fell OUT as touch-gated). A "pre-F<n>" duty is
+# consumed BEFORE F<n> = F<n>-entry at the latest, so it places AT F<n>
+# (same as its siblings whose triggers repeat the bare token). Placement
+# only — parse_atlas keeps PHASE_RX alone (mention counts unchanged).
+PRE_RX = re.compile(r'(?:pre|post)-F([0-6])(b|a)?(?![\w])')
 
 
 def phase_of_token(m):
@@ -203,7 +227,8 @@ def phase_of_token(m):
 
 
 def phases_in(text):
-    return [phase_of_token(m) for m in PHASE_RX.finditer(text or '')]
+    return ([phase_of_token(m) for m in PHASE_RX.finditer(text or '')]
+            + [phase_of_token(m) for m in PRE_RX.finditer(text or '')])
 
 
 # ---------------------------------------------------------------------------
@@ -233,11 +258,14 @@ NODE_OVERRIDES = {
                 'post-M-RED'),
     'C55': ('OUT:event-gated', 'ledger C55 sequencing clause: adjudication '
             'owed at first multi-point P_amb instantiation (Annex B case D)'),
-    'C54': ('OUT:touch-gated', 'ledger C54: flips DECIDED at the next M0 '
-            'D2.4 touch (one-line annotation)'),
+    'C54': ('F2.ENGINE', 'rides C53\'s M0 D2.4 write window (ledger C53 '
+            'owner: the F2 contract window writes the placement-band remark '
+            'into M0 D2.4; C54\'s "next M0 D2.4 touch" is that scheduled '
+            'touch) — refuter R2 2026-09-05, was OUT:touch-gated'),
     'T-DISC': ('OUT:landed', 'MAP stage 7: LANDED, open duty "—"'),
     'D-44': ('F3.TWIN', 'the TWIN is the first public adequacy claim; '
-             'MAP :180 + findings :1468'),
+             'MAP :180 + findings litreview:residue-r22-r27-disentanglement-'
+             'experiment-and-adjoint-weight-transfer (by id, R2 repair)'),
     'P34': ('PAPER', 'MAP :181 P-1/G5-G6 claims window'),
     'H20': ('F3.PLUG', 'D6:214-227 precedence over the registry F4b homing '
             '(findings plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug)'),
@@ -245,14 +273,35 @@ NODE_OVERRIDES = {
     'DUTY-10': ('F5', 'MAP [MAP-AM-1]: DUTY-10(a) F5b, (b) F6 — placed at '
                 'the earlier slot'),
     'OBJ-DOM': ('F2-B0', 'trigger "first F2 verdict consuming dJ/dthB" '
-                '(findings :211-212); consumed again at F3.TWIN'),
+                '(findings variational-driver:objective-omits-throat-panel, '
+                'cited by id per refuter R2 anchor-drift repair); consumed '
+                'again at F3.TWIN'),
     'DELTA-CARRIER': ('F2.ENGINE', 'ship-gate ARMED for every (value,delta) '
                       'row (MAP :173); consumed again at F3.TWIN'),
     'OPTSHIFT': ('F2.M-RED', 'MAP :174 owner "F2, in order ... M-RED rider"'),
     'R22F-FORCHETTA': ('F2.M-RED', 'MAP :170 "M-RED campaign + RES-CAP '
                        'residues"'),
     'CLG': ('F2.ENGINE', 'MAP :115 F2-CLG-SCALE'),
-    'SDP-CAND-8': ('F2-B0', 'MAP :116 F2-entry engine census'),
+    'SDP-CAND-8': ('OUT:retired-with-named-reason', 'F2-B0 engine-cluster '
+                   'VERDICT 2026-09-05 (V-SDP-CAND-8): consumer EXTINCT '
+                   'search-proven (no SDP solve, import or duty in the '
+                   'living plan; moment-SOS rejected with cause D7 :105); '
+                   'S17 Clarabel/MOSEK decision annotated in the verdict; '
+                   'revival triggers named (SOS head-to-head re-queued, '
+                   'premium-bound revival at F3.TOURNAMENT, LMI/SDP '
+                   'certificate re-formulation) -> fresh mint at that '
+                   'window'),
+    'C57': ('F2.REPR', 'F2-B0 VERDICT 2026-09-05 (V-C57): adjudicated at '
+            'surface A (NEVER->MIXED); remaining duty = the pilot decision '
+            'table at F2.REPR jointly with S-5F/C49 (ratification joint '
+            'clause); representation-conditional re-entry'),
+    'C58': ('F2.REPR', 'F2-B0 VERDICT 2026-09-05 (V-C58): JAX-primary '
+            'reaffirmed, row repaired; remaining duty = 9(e) delta-sweep '
+            'census (a)-(g) at/after F2.REPR (REF-6 window coherence)'),
+    'C60': ('F2.REPR', 'F2-B0 VERDICT 2026-09-05 (V-C60): '
+            'ADJUDICATED-PARTITION (NEVER->MIXED); remaining duty = '
+            'representation-conditional re-entry at F2.REPR + SAND '
+            'triggers (H20 at F3.PLUG) + block-triangularity falsifier'),
     'M-RED': ('F2.M-RED', 'MAP :129 F2-QUEUED'),
     'C28': ('F2.ENGINE', 'duties [P-CERTKS]+[P-BSTAT] in the GAP-1/GAP-2 '
             'window = F2 (findings driver-nonsmooth:no-B-stationarity-'
@@ -261,6 +310,8 @@ NODE_OVERRIDES = {
             'F2-DUTY-C29-MASKGRAIN) — same F2 window'),
 }
 LEDGER_OVERRIDES = {
+    'C57': NODE_OVERRIDES['C57'], 'C58': NODE_OVERRIDES['C58'],
+    'C60': NODE_OVERRIDES['C60'],
     'C51': NODE_OVERRIDES['C51'], 'C55': NODE_OVERRIDES['C55'],
     'C54': NODE_OVERRIDES['C54'], 'C61': NODE_OVERRIDES['C61'],
     'C30': NODE_OVERRIDES['C30'], 'C49': NODE_OVERRIDES['C49'],
@@ -297,25 +348,36 @@ FINDING_OVERRIDES = {
         ('F2-B0', 'owner "F2 (D-20, priority)", trigger "F2 entry (first '
                   'oracle block)"'),
     'oracles:o34-gradient-leg-unconsumed':
-        ('F2-B0', 'trigger "F2 entry (oracle re-baseline)"'),
+        ('F2.ENGINE', 'RE-SCOPED with declared reason at F2-B0 2026-09-05 '
+                      '(order 5): structurally gated by the GENO thrust '
+                      'double-count fix + [OBJ-DOM-IMPL]; protocol '
+                      'pre-registered in the row; first F2.ENGINE oracle act'),
     'oracles:root-identity-replay-common-mode':
         ('F2.ENGINE', 'duty F2-C20-CERTQUAL-CAMPAIGN Tier-0'),
     'engine-core:F5-underived-factors':
         ('F2.ENGINE', 'NTF derivation duty F2-live (C18); the "F5" in the '
                       'id is the audit finding number, not a phase'),
-    'plan:representation-ladder-3d-counterpart-no-named-d6-step':
-        ('F2.REPR', 'the step minted by this finding'),
-    'plan:nasa-3d-moc-tools-adjudication-not-landed':
-        ('F2.REPR', 'landing decision belongs to the representation session '
-                    '(duty a: G12-L1-3D cross-check; duty b: Kliegel-Levine band)'),
     'theory:s5f-path-a-freevortex-stratified-gap':
         ('F2.REPR', 'S-5F decision dossier = the representation session'),
-    'method:sroadmap-single-author-placements-unrefuted':
-        ('F2-B0', 'owner: F2-B0 FIRST act (refuter pass over tags + '
-                  'overrides)'),
-    'plan:full-envelope-tournament-no-named-d6-step':
-        ('F3.TOURNAMENT', 'the step minted by this finding (anchors in the '
-                          'step row)'),
+    'phase-diagrams:eps-tolerance-omits-quadrature-bar':
+        ('F3.TOURNAMENT', 'its own trigger names "the sector tournament '
+                          'consuming premium_bound at face value" (refuter '
+                          'R2 2026-09-05; pre-F5 regex fix would give F5 — '
+                          'the trigger-named consumer is more specific)'),
+    'swirl5f:c8-cj-locus-naming-approximate':
+        ('F2.REPR', 'owner names the C51 adjudication window — a placed '
+                    'F2.REPR object (refuter R2 2026-09-05; was OUT for '
+                    'want of a phase token)'),
+    'swirl-f2a:angular-momentum-audit-row-missing':
+        ('F2.ENGINE', 'the D.14/D.16 angular-momentum rows are BUILT at '
+                      'F2a (the F2.ENGINE step title owns them); the CFD '
+                      'dataset is the ARMING event, not the build window '
+                      '(refuter R2 2026-09-05; was a CFD-keyword hijack '
+                      'to F2.CFD-2)'),
+    'contract:phase-gauge-jitter-alignment-unpinned':
+        ('F2.ENGINE', 'owner literal "F2 contract window"; declared '
+                      'sequencing with ledger C50 (F2.ENGINE) — refuter '
+                      'R2 2026-09-05 (was a CFD-keyword hijack)'),
     'twin-falsifier:c3-mesh-refinement-unadjudicated':
         ('F2.ENGINE', 'owner "F2 (the C7 refine/enriched-class leg)"; the '
                       '"branch F1" in the trigger is a twin BRANCH label '
@@ -326,6 +388,10 @@ FINDING_OVERRIDES = {
 }
 
 BLOC_OVERRIDES = {
+    'B-S5F': ('F2.REPR', 'every S-5F object (node, claim, path-A finding) '
+              'is F2.REPR; the row\'s "rung-3a" text is an M-RED-regex '
+              'hijack (refuter R2 2026-09-05); owner = user at the '
+              'F2-entry touchpoint INSIDE the B16 session'),
     'B-CFD1': ('F2.CFD-2', 'PROGRESS B19(a): CFD-1 decided POST-M-RED, '
                'inside the F2 CFD window'),
     'B-GENO': ('F2-B0', 'PROGRESS NEXT item (2): GENO health at F2 BLOCCO 0'),
@@ -342,8 +408,9 @@ CLAIM_OVERRIDES = {
     'C-IGMIX': ('OUT:priced-by-theorem', 'finite-rate bracket priced by '
                 '[T-EQBR] (D6 scope pin P1: finite-rate outside by '
                 'declaration, T-EQBR = the necessity guard)'),
-    'S-S1U': ('F2-B0', 'findings :1455 trigger (equivariance+uniqueness S1) '
-              'fires at any external act; F2 theory window'),
+    'S-S1U': ('F2-B0', 'findings theory:s-t0p-proof-writeup-pending trigger '
+              '(equivariance+uniqueness S1, cited by id per R2 anchor-drift '
+              'repair) fires at any external act; F2 theory window'),
     'S-N6SO': ('F2.REPR', 'non-free-vortex swirl closure = the S-5F path-A '
                'fork (findings theory:s5f-path-a-freevortex-stratified-gap)'),
     'J-OP11': ('F3.TOURNAMENT', 'falsifier = "sector tournament with '
@@ -360,19 +427,37 @@ CLAIM_OVERRIDES = {
                    '(D6:233-238)'),
     'S-ACFR': ('F4b', 'a-contraction front route = fitted-front certificate '
                'class (F4b; carrier X-ACFR in suite)'),
-    'C-MAJDA-3DT': ('F6', '3-D Lopatinskii (eta_y, eta_z) = the B-lite/3-D '
-                    'helical march conditional (G12-L1-3D brick, F6)'),
-    'C-XINJ': ('F4b', 'second supersonic root on a certified front = fitted-'
-               'front admissibility (DUTY-9 RR/MR row, F4b)'),
+    'C-MAJDA-3DT': ('F6', 'discharge machinery: multi-D unsteady '
+                    'Lopatinskii (eta_y, eta_z) computable only at the '
+                    'B-lite/3-D helical line (G12-L1-3D brick, F6). '
+                    'DECLARED TENSION (refuter R2 2026-09-05): the row\'s '
+                    'literal owner is F2 via the [T-T0P] stratum-(B) '
+                    'ledger — placement STANDS because stratum (B) is the '
+                    'FRONTED extension, not owed at F2 exit (stratum (A), '
+                    'shock-free, is what the F2 engine consumes); if the '
+                    'record ever makes stratum-(B) closure an F2 exit '
+                    'condition, this override flips by its own clause'),
+    'C-XINJ': ('F2-B0', 'the row\'s own consumers are F2 objects: [T-T0P] '
+               'ledger gap G7, stop-proof sec.4 endgame, G8 gate; discharge '
+               'route (r-b) = the [X-T0P] battery (placed F2-B0) — refuter '
+               'R2 2026-09-05 (was F4b via an unanchored DUTY-9 gloss)'),
     'C-WSF': ('F4b', 'a-contraction weight/shift inequality on a certified '
-              'front (F4b certificate class)'),
+              'front (F4b certificate class; primary discharge route = '
+              '[S-ACFR], itself F4b — R2-verified against the row text)'),
     'S-T0P-G12': ('F2-B0', 'stop-proof gap route; findings theory:s-t0p-'
                   'proof-writeup-pending (F2 theory window)'),
     'X-T0P': ('F2-B0', 'the owed X-T0P rejector battery (same finding)'),
-    'S-SDI': ('F2-B0', 'S-T0P family mint (same theory window)'),
-    'C-XBVP-aprime': ('F4b', 'Cauchy-BVP transfer conditional across fitted '
-                      'fronts (revision-10 list, stop_proof §13); consumed '
-                      'by the F4b certificate class'),
+    'S-SDI': ('F2-B0', 'swirl5f panel F-2 mint (validation/swirl5f_panel_'
+              '2026-08-19/ — NOT an S-T0P family object; reason corrected '
+              'per refuter R2 2026-09-05); upgrade path = house until-dry '
+              'pass in the F2 theory window; co-consumer F2.M-RED '
+              '(licenses the O5-lite comparison (C))'),
+    'C-XBVP-aprime': ('F2-B0', 'the row\'s own consumption statement: '
+                      '[T-T0P] family stratum (A) (SHOCK-FREE; the row names the -U variant) + the '
+                      '2-D [T-XWS] sandwich step; executable falsifier '
+                      'layer = the [X-T0P] battery (F2-B0) — refuter R2 '
+                      '2026-09-05 (was F4b, contradicted by the row text; '
+                      'the strongest wrong-direction override of the pass)'),
     'C-R22F-DISC': ('F2.M-RED', 'per-dataset H-AM0 check = M-RED/forchetta '
                     'campaign (MAP E28)'),
     'C-RED-SBV': ('F2.M-RED', 'SBV composite hypothesis of [T-RED] = M-RED '
@@ -401,9 +486,13 @@ CLAIM_OVERRIDES = {
                 'item 11)'),
     'C-P4RZ': ('F5', 'analytic residual of S-P4F (O(St) license, cycle '
                'monodromy) = F5b corrector window (D6:271-273)'),
-    'C-XBVP': ('F4b', 'Cauchy->BVP transfer residuals across fitted fronts '
-               '(findings theory-core:F4-CXBVP-ledger-dangling-pointer for '
-               'the ledger mint; certificate class F4b)'),
+    'C-XBVP': ('F4b', 'conditions [T-XWS]; residue (a) convexity carried by '
+               'X-IVXC (F2 suite, instance-discharged), residue (b) '
+               'weak-side trace technicalities = front-class machinery -> '
+               'F4b certificate-class discharge home (reason re-anchored '
+               'to the row text by refuter R2 2026-09-05, F2 co-consumer '
+               'declared; findings theory-core:F4-CXBVP-ledger-dangling-'
+               'pointer for the ledger mint)'),
     'S-GBE': ('F5', 'ergodic transfer of the G-B ceiling = F5a bound-ladder '
               'consumer (findings registry-legacy:GBE-CONCAVITY-NEAR-FLOOR, '
               'pre-F5)'),
@@ -652,12 +741,23 @@ class Unresolved(Exception):
 _UNRES = []
 
 
+_CARRIED = []      # (kind, id, from_step, to_step)
+
+
 def _place(kind, oid, obj, text, overrides):
     try:
-        return place(kind, oid, obj, text, overrides)
+        steps, out, why = place(kind, oid, obj, text, overrides)
     except Unresolved as e:
         _UNRES.append(str(e))
         return [], 'OUT:UNRESOLVED', None
+    moved = []
+    for st in steps:
+        if st in CARRY_FORWARD:
+            _CARRIED.append((kind, oid, st, CARRY_FORWARD[st]))
+            st = CARRY_FORWARD[st]
+        if st not in moved:
+            moved.append(st)
+    return moved, out, why
 
 
 def derive():
@@ -834,7 +934,8 @@ def render(d):
         if p:
             status = ('CLOSED' if p['closed'] else
                       'CLOSED-by-succession' if pid == 'F0' else
-                      'NEXT (0/6)' if pid == 'F2' else 'NOT-OPENED')
+                      STEP_STATUS.get(sid, 'NEXT (0/6)') if pid == 'F2'
+                      else 'NOT-OPENED')
             anchor = 'D6:%d' % p['line']
             entry, exit_, fb = (clip(p['entry'], 140), clip(p['exit'], 140),
                                 clip(p['fallback'], 90))
@@ -928,6 +1029,17 @@ def render(d):
         L.append('|---|---|---|')
         for s, oid, tag in d['stale']:
             L.append('| %s | %s | %s |' % (s, oid, tag))
+    else:
+        L.append('none')
+    L.append('')
+    L.append('## 5-ter. CARRY-FORWARD (objects homed at a CONSUMED sub-step, '
+             'carried to the next open step; declared rule CARRY_FORWARD)')
+    L.append('')
+    if _CARRIED:
+        L.append('| kind | id | homed at (consumed) | carried to |')
+        L.append('|---|---|---|---|')
+        for kind, oid, a, b in _CARRIED:
+            L.append('| %s | %s | %s | %s |' % (kind, oid, a, b))
     else:
         L.append('none')
     L.append('')

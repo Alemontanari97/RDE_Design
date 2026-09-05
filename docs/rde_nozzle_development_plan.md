@@ -1140,7 +1140,7 @@ formulation's payoff). Cases, by input richness:
 | Case | Input | Generator | Interface | Active channels | Verdict class |
 |---|---|---|---|---|---|
 | A | specs only (propellant, φ, mean pressure, annulus geometry, Pa) | Cantera CJ/HP → S-H matching → exponential blowdown → (P0,T0,γ)(ξ), μ log-uniform | I3 | N1, N2, N4 (NOT N3) | fully predictive; fixed full-flowing bell = Rao-at-⟨Pc⟩ BY THEOREM (H-T3.3 holds by construction at I3) — the tool states it, does not rediscover it; added value = N1 (temporal dual-bell), N2 (truncated plug/duty split), γ_eff |
-| B | A + wave-structure model (non-CFD) | per-phase profile generator: Fievisohn-Yu-class shock-fitted combustor MOC, or CJ + Taylor fan + oblique-shock chain → M_in(y;ξ), θ_in(y;ξ), s(y;ξ) | I2 | + N3 (first-order breaker) | the full CFD-free tool; profile generator = the ONE new physics module, validated once against reference data, then standalone |
+| B | A + wave-structure model (non-CFD) | per-phase profile generator: Fievisohn-Yu-class shock-fitted combustor MOC, or CJ + Taylor fan (= Taylor–Zel'dovich unsteady rarefaction, NOT Taylor–Maccoll; gloss of record, NASA-tools adjudication 2026-08-31) + oblique-shock chain → M_in(y;ξ), θ_in(y;ξ), s(y;ξ) | I2 | + N3 (first-order breaker) | the full CFD-free tool; profile generator = the ONE new physics module, validated once against reference data, then standalone |
 | C | A/B + partial experiment (pressure traces, thrust, f, n) | calibration: PR, Ω_w, n; measured waveform → EMPIRICAL μ | I3/I2 calibrated | as A/B with true μ | sensitivity-to-μ reported (exponential vs measured) |
 | D | + mission profile Pa(t) | product measure μ_cycle ⊗ μ_trajectory (T3 Corollary-2 duality: Pa and Pc enter alike) | ×mission | + altitude dual-bell channel | full-flowing bell collapses to design at (⟨Pc⟩,⟨Pa⟩) by theorem; separation breaks both averages jointly |
 | E | + throttle envelope | mixture measure Σ w_i μ_cycle(point_i) | nested | all, wider μ | one contour over the operating envelope, weights declared |
@@ -1155,3 +1155,59 @@ Build status: case A = assembly of existing validated pieces (Cantera
 chain + Table-1 + closed forms; RaoPlug S1/S2 fix prerequisite for plug
 cases); case B = the one new module; C-G = light wiring on the measure
 formulation.
+
+## DATED ADDENDUM 2026-09-05 (user-ratified, F2-B0 touchpoint T1) —
+## named steps F2.REPR and F3.TOURNAMENT + item-12 additions
+
+PLACEMENT NOTE (declared): this addendum lands at the END of the file,
+never inline in the F2/F3 blocks — inserting lines mid-file would shift
+every "D6 :NNN" line reference carried by the record (M0, advisories,
+tool anchors). The two steps below are OF THE PLAN from this date; the
+derived roadmap (tools/roadmap_derive.py, lint (xxiv)) anchors them here.
+Origin: S-ROADMAP derivation 2026-08-31 (the machine join made the two
+sub-windows visible; drafts refuted at F2-B0, order 1).
+
+**F2.REPR — REPRESENTATION LADDER** (inside F2, at F2 entry; = the
+ratified "topologia+modellistica" session, PROGRESS B16/B19(b)).
+ENTRY: F2-B0 gate act done; field-reading pass on the Harroun IE
+aerospike fields (Figg. 12-20) prepared. CONTENT: adjudicate AT
+CONVERGENCE with the census protocol the representation of the
+per-phase field: 4-field axial (current engine) / 2.5-D five-field
+[S-5F] (build decision A/B/C, fork mixed-lemma vs monitored-neglect) /
+azimuthal marching C51-route-B (native helix) / hybrids / 3-D-per-phase;
+C49 fitted vs captured; C58/C60 stack consequences; C59 temporal form;
+NASA-tools duty (a): Rice/Armstrong conoid algebra as the G12-L1-3D
+symbolic cross-check source (eq. 15/29 typo caveat of record). EXIT:
+one representation pinned for BOTH arms of the TWIN protocol
+(pre-registration amendment A-REPR cites it); ledger rows C49/C51/C59 +
+S-5F leave NEVER/PENDING with a dated verdict; this addendum's step
+consumed. BUDGET: 1 session (ISS-4 cap, 3 h decisive runs). FALLBACK:
+current 4-field axial declared for the TWIN, ladder rows re-owned to
+F5b/F6 with trigger.
+
+**F3.TOURNAMENT — FULL-ENVELOPE OPTIMIZER** (inside F3, after the plug
+sector and the decisive TWIN). ENTRY: >= 2 certified sectors in the
+engine (bell/TOC [X-TOCV] + plug, F3.PLUG EXIT) + census-lemma (R5c)
+and PAP-RIM (R6c) landed (both SCHED F2-exit today). CONTENT: the
+finite sector tournament of the configuration-free formulation
+(problem_book :337-363, SCHEMA) at the TRUE constraint vector c:
+per-sector certified optima + premium_bound tournament device
+([T-OP11e] scope remark) + M4 deflated continuation for stationary-
+point enumeration; S*(c) = OUTPUT. EXIT: one Verdict with the
+tournament table, bound gap per sector, delta-certificate; "FINITE"
+upgraded from no-class to a declared rigor class or declared
+conditional. BUDGET: 1-2 sessions, ISS-4. FALLBACK: two-sector
+tournament (bell vs plug) with the others declared OUT by name.
+Other A_gen sectors (shrouded plug/Veen, E-D) and data-borne fronts
+remain F4b/F5-owned.
+
+**Item-12 additions** (NASA-tools adjudication of record,
+validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md §5(a),
+landed at F2-B0 T3): + Kliegel & Levine, AIAA J. 7(7) 1969 —
+**PRIORITY 2** (C12 band-term source: 2nd-order transonic mass-flow/CD
+correction; the LEW-20180 repo implementation is transcription-
+corrupted and CANNOT substitute; registry row wanted_kliegel_levine_
+1969). + Armstrong AEDC-TR-78-68 — OPTIONAL (F6 horizon, conoid-
+algebra alternate to Rice). NOTE: the :1023 "Ransom/Hoffman/Thompson
+3-D MOC (to locate)" line stays OPEN — Armstrong is NOT that lineage;
+check Zucrow-Hoffman Vol. 2 on disk before procuring.

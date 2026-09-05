@@ -1,0 +1,36 @@
+== [X-TBAK] tolerance-ball margin backoff (JAX 0.11.0; DUTY-6(i), F1 close) ==
+-- B0: baseline W* val field + derived governor context --
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=132 (engine entry #2) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 92, 70, 75, 32)  [M-B churn row]
+  [PASS] baseline certified
+  N = 3498 lanes; m_ref = 6.810298e-01; mu_0_1 = 3.405149e-01; rho = 7.6683e+02
+  [PASS] gradient finite at nominal
+  m0(W*) = KS(base) = 6.803943e-01; ||grad m||_1 at nominal = 1.868067e+00
+-- B1: backoff coefficient L_TB (measured-sup surrogate) --
+  [PASS] gradient finite at worst vertex
+  ||grad m||_1 at vertex(delta_max) = 1.080266e+01
+  L_TB OF RECORD (this class, 9-dof bell tier-0) = K_RICH * max = 4.321063e+01 per unit ball radius
+  backoff rule: Delta(delta) = L_TB * delta; ship gate m(W) >= Delta(delta) at DECLARED delta
+-- B2: R-TB1 bound validity over declared deltas [0.0001, 0.001, 0.01] --
+  delta 1.0e-04: drop 1.881133e-04 vs Delta(delta) 4.321063e-03 (ratio drop/delta = 1.8811e+00)
+  [PASS] R-TB1: drop <= Delta at delta 1.0e-04
+  delta 1.0e-03: drop 2.236508e-03 vs Delta(delta) 4.321063e-02 (ratio drop/delta = 2.2365e+00)
+  [PASS] R-TB1: drop <= Delta at delta 1.0e-03
+  delta 1.0e-02: drop 5.576236e-02 vs Delta(delta) 4.321063e-01 (ratio drop/delta = 5.5762e+00)
+  [PASS] R-TB1: drop <= Delta at delta 1.0e-02
+-- B3: R-TB2 synthetic margin-active nominal (mu_0* = KS(base) -> m = 0 by construction) --
+  active nominal margin = 0.000e+00; perturbed (delta 1.0e-02) margin = -5.576236e-02
+  [PASS] R-TB2 FIRES: tolerance-perturbed re-certification FAILS at the margin-active nominal (margin < 0)
+-- B4: R-TB3 ship-gate discrimination --
+  [PASS] R-TB3a: active nominal REJECTED by ship gate at delta 1.0e-04
+  [PASS] R-TB3a: active nominal REJECTED by ship gate at delta 1.0e-03
+  [PASS] R-TB3a: active nominal REJECTED by ship gate at delta 1.0e-02
+  healthy rung-1 nominal margin m = 3.398794e-01 (floor mu_0_1)
+  [PASS] R-TB3b: accepted at delta 1.0e-04 AND perturbed margin 3.3969e-01 >= 0 (certificate survives the ball)
+  [PASS] R-TB3b: accepted at delta 1.0e-03 AND perturbed margin 3.3764e-01 >= 0 (certificate survives the ball)
+  delta 1.0e-02: rung-1 nominal NOT shippable (Delta 4.3211e-01 > m 3.3988e-01) — honest verdict, backoff binds
+  [PASS] R-TB3b: at least one declared delta accepted at rung 1 (gate non-vacuous on the healthy instance)
+  [PASS] R-TB3c: NO-BACKOFF control shows the C028 defect (active nominal accepted with Delta = 0, perturbed margin < 0)
+PER-CLASS NOTE (tier-invariant transition duty, binding): L_TB above is of record ONLY for this class (bell tier-0, 9-dof, baseline plan); every tier/class transition re-derives it.
+VERDICT: PASS

@@ -3039,7 +3039,12 @@ is the cheap exact meter of the rung-2 sweep/D2 residual; the FULL
 anchor of this Part remains necessary exactly where the camera
 enters (Omega as output, subsonic pockets, reaction, R10). Named
 brick to verify first: the 3-D axial-flux eigenstructure
-(G12-L1-3D, symbolic carrier candidate). "Marches nothing" (Lemma 4)
+(G12-L1-3D, symbolic carrier candidate; third-party cross-check
+source of record [PRACTICE, NASA-tools adjudication 2026-08-31]:
+the Rice 2003 / Armstrong conoid-ray + compatibility algebra —
+CAVEAT: Rice's printed eqs. 15/29 carry a psi-coefficient typo;
+consume the code's CompEqu or Armstrong, never the printed form;
+validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md L-1). "Marches nothing" (Lemma 4)
 remains true for the camera-included anchor; B-lite is C2 exercised
 in 3-D, not an exception to it.
 
@@ -4241,6 +4246,56 @@ round, labeled per the standing rule).
  deeper-jump family half remains STRUCTURALLY GATED (needs a
  GENO-side jump-depth knob; owner = the GENO repo under its own
  protocol, trigger = its next dedicated session).]
+
+[F2-B0 REGISTRATION BLOCK — CERTIFICATE VERSION-BINDING, THE TWIN
+PRE-REGISTRATION POINTER, AND THE ENGINE-CLUSTER VERDICTS] (2026-09-05,
+[F2/B0] entry act of plan v3 on the carrier of 2026-08-31, census R39; log
+validation/PROGRESS_2026-08-31_F2B0.md; R4 landing — classes declared).
+ CERTIFICATE VERSION-BINDING [PRACTICE, MEASURED on three instances]: a
+ certification verdict of this engine is a property of the TRIPLE (code
+ tree, active recorder, env fingerprint), not of the design alone. Measured
+ 2026-09-05 under the closure-aware staleness gate: (i) X-CDKAT baseline
+ cert_worst 2.106398e-01 (S21) -> 1.813425e-01 (S-CERT and again today) =
+ −13.9% under env/lowering change with the verdict STRUCTURE unchanged;
+ (ii) X-LOCD: the S20 rejection signature reproduces deterministically on
+ both recorders, but the BINARY verdicts of the cert-MARGINAL designs
+ (cert_worst 1.06-2.46) flip with the recorder (per-column: base 2.023
+ FAILS; per-cell: base 3.084e-01 PASSES) while the O4 branch (c) science
+ holds on both; (iii) X-AKNO: the fresh walk reproduces the S20 OUTCOME
+ CLASS (knots 0.3146/0.7026, certified prefix J to 4 digits, outcome II)
+ but crawls a different frontier (first offender 1.916 at cell 2010).
+ CONSEQUENCE OF RECORD: outcome classes are version-stable, binary
+ verdicts NEAR THE BOUND are not; every certification Verdict prints its
+ recorder and env fingerprint, and a quotable design certifies WITH MARGIN
+ cert_worst <= 1/K_RICH under the pinned recorder (TWIN protocol amendment
+ A-1; K_RICH = the registered two-level constant, no new magic number).
+ The negative-control march of the O3.2 bench is uncertifiable under the
+ current env on BOTH record paths and on the pass-era tree (env-induced =
+ surviving hypothesis by elimination): the carrier is declared FAILING of
+ record (fail= grammar), never silently kept.
+ TWIN PRE-REGISTRATION POINTER (VI.6 "NOTHING SHIPS OUTSIDE A VERDICT" now
+ has its consumer): validation/TWIN_PROTOCOL_preregistration_2026-08-31.md
+ is the binding pre-registration of the decisive comparison (truncated
+ plug, case A, identical constraints, ~1% Isp with the 0.5-1% thrust-stand
+ band, both outcomes publishable, rejectors R-TWIN-0..6, A-1 margin rule);
+ the representation of BOTH arms is its one open field (A-REPR, F2.REPR).
+ ENGINE-CLUSTER VERDICTS (Form-2 panel, judge = the orchestrator; ledger
+ rows carry the authority chain to VERDICT_engine_cluster_2026-08-31.md):
+ NAND of record for the fitted-marching production loop for a STRUCTURAL
+ reason [THEOREM-level fact for the marching class]: the assembled march's
+ state Jacobian is block-triangular in x (x-as-time causality) and every
+ certificate of this Part is defined on CONVERGED forward states, so a
+ full-space (SAND/LNKS) iterate is not a certifiable object until its
+ terminal re-march — SAND re-enters only at genuinely coupled solves
+ (C49/HOIST branch, RPO/space-time tier, the H20 free-plume boundary);
+ JAX-primary REAFFIRMED with the loop-speed falsifier ARMED and its true
+ history restated (fired S17/S18, remediated, review consumed no-flip at
+ S25 — the earlier "never fired" wording of the ledger was false and is
+ repaired); the global-exploration question keeps the M4 deflated-
+ continuation + sector-tournament line as DECLARED apparatus (never
+ executable evidence) with a user-ratified one-case pilot decided at
+ F2.REPR; the SDP certificate-solver candidate is RETIRED with named
+ revival triggers. Nothing here moves a rigor class of Parts I-V.]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

@@ -10,20 +10,20 @@ Head-to-head TWIN: per-phase design vs classical design on I4 (⟨Pc⟩, T0, γ)
 
 | step | D6 phase (anchor) | status | gates | ENTRY (D6) | EXIT / falsifier (D6) | FALLBACK (D6) | owner | nodes | ledger | findings crit/nc/paper | BLOCCATO | open claims (SCHEMA/CONJ) | atlas | path |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **F0** ORDER + INSTRUMENTATION | F0 (D6:37; closed by succession (F1 CLOSED, D6:91)) | CLOSED-by-succession | G5 | — | — | P0 + R4 + ratification minimum; P1/C4 remainder to scheduled rows with phase tags. | program | 0 | 0 | 0/4/0 | 0 | 0 | 0 | OUT:closed |
+| **F0** ORDER + INSTRUMENTATION | F0 (D6:37; closed by succession (F1 CLOSED, D6:91)) | CLOSED-by-succession | G5 | — | — | P0 + R4 + ratification minimum; P1/C4 remainder to scheduled rows with phase tags. | program | 0 | 0 | 0/0/0 | 0 | 0 | 0 | OUT:closed |
 | **F1** GOVERNOR + P-2 CAPTURE | F1 (D6:55; D6:55, :91) | CLOSED | — | derived implementation bands (dV_pert FD step, den-guard, PM landing window) with the gamma=const closed-form Lambda KAT + the [D1]-CONSTRA… | constrained-KKT closure with margin-ACTIVE outcome ADMITTED (red-team RT-1 wording of record: the S20 standoff is CONSISTENT WITH a DEF-sec… | P-2 publishes on S19 two-knob numbers. | program | 0 | 0 | 0/0/0 | 0 | 0 | 3 | OUT:closed |
 | **F1b** DEF ADJUDICATION (bell/TOC twin = current-sector twin) | F1b (D6:101; D6:101, :137; advisory E: NOT the decisive twin) | CLOSED | — | gates depend only on what THIS repo controls; "GENO flagdef KAT + DEF regression landed in GENO" is a NAMED EXTERNAL CONDITIONAL — if not l… | — | twin blocked-with-named-cause; Direction-A-only content published with the recorded branc… | program | 0 | 0 | 0/0/0 | 0 | 0 | 0 | OUT:closed |
-| **F2-B0** F2 BLOCCO 0 — entry act (engine cluster, hygiene, GENO health, TWIN protocol pre-registration, topology+modelling session) | F2 (D6:160; PROGRESS NEXT + D6:160-171 (C6 pre-entry, G0/T2 consumed) + BLOCCATO B16/B19) | NEXT (0/6) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 9 | 7 | 20/19/0 | 4 | 4 | 283 | critical |
-| **F2.REPR** REPRESENTATION LADDER adjudication at F2-entry (user-ratified session "topologia+modellistica", BLOCCATO B16/B19(b)): per-phase 4-field axial (current) / 2.5D five-field S-5F / azimuthal marching C51-route-B (native helix) / hybrids / 3D-per-phase; fitted vs captured C49; stack C58/C60; the 3-D COUNTERPART decided here at convergence with the census protocol, field-reading pass on Harroun Figg. 12-20 | F2 (D6:160; PROGRESS B16 + B19(b) (ratified F2-entry, scope extended); MAP stage 2 (C49, S-…) | NEXT (0/6) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 5 | 3 | 1/2/0 | 0 | 2 | 283 | critical |
-| **F2.ENGINE** F2a/F2b GENERAL ENGINE: F2a = DATA CONTRACT as the input surface (interface datum = per-phase profiles M_in, theta_in, s, h0 on Gamma_d; stage-A audits Crocco/completeness/H-I2 + T0-flatness monitor, G6 LOUD REJECT from here; contact/slip = smeared stratified default; U3' choking adjudication; SWIRL: F-swirl-1 contract field + F-swirl-2 monitor + DUTY-8 breakdown screen + D.14/D.16 angular-momentum rows; case-A generator of Annex B = specs-only Cantera chain) + F2b = stratified three-family march (C+/C-/streamline s,h0), thermo tables, certificates, bands, driver, extended (q;s,h0) margin with rejector | F2 (D6:160; D6:160-213 (F2a :172-206, F2b :206-213); D6 duty rows :407-412; Annex B :1140-1…) | NEXT (0/6) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 46 | 44 | 16/44/0 | 0 | 10 | 283 | critical |
-| **F2.M-RED** M-RED reduction-residual campaign + deriver chain (X-T3QS-5F -> C51-route-B -> M-RED rider; delta/L_H) | F2 (D6:160; PROGRESS B19(c) "M-RED resta prima campagna F2"; MAP E28/E29) | NEXT (0/6) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 3 | 0 | 2/0/0 | 1 | 5 | 283 | critical |
-| **F2.CFD-2** CFD-2 paired demo (Li-Xu template) + CFD-1 decision (post-M-RED) | F2 (D6:160; PROGRESS B19(a); MAP :77 R22-CFD USER-DECISION PENDING) | NEXT (0/6) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 1 | 0 | 0/3/0 | 1 | 0 | 283 | critical |
+| **F2-B0** F2 BLOCCO 0 — entry act (engine cluster, hygiene, GENO health, TWIN protocol pre-registration, topology+modelling session) | F2 (D6:160; PROGRESS NEXT + D6:160-171 (C6 pre-entry, G0/T2 consumed) + BLOCCATO B16/B19) | CONSUMED 2026-09-05 (F2 session 1/6; census R39) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 0 | 0 | 0/0/0 | 0 | 0 | 283 | critical |
+| **F2.REPR** REPRESENTATION LADDER adjudication at F2-entry (user-ratified session "topologia+modellistica", BLOCCATO B16/B19(b)): per-phase 4-field axial (current) / 2.5D five-field S-5F / azimuthal marching C51-route-B (native helix) / hybrids / 3D-per-phase; fitted vs captured C49; stack C58/C60; the 3-D COUNTERPART decided here at convergence with the census protocol, field-reading pass on Harroun Figg. 12-20 | F2 (D6:160; PROGRESS B16 + B19(b) (ratified F2-entry, scope extended); MAP stage 2 (C49, S-…) | NEXT (F2 session 2/6; gated by the S-REVIEW GO, BLOCCATO B-SREVIEW) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 8 | 6 | 0/2/0 | 1 | 2 | 283 | critical |
+| **F2.ENGINE** F2a/F2b GENERAL ENGINE: F2a = DATA CONTRACT as the input surface (interface datum = per-phase profiles M_in, theta_in, s, h0 on Gamma_d; stage-A audits Crocco/completeness/H-I2 + T0-flatness monitor, G6 LOUD REJECT from here; contact/slip = smeared stratified default; U3' choking adjudication; SWIRL: F-swirl-1 contract field + F-swirl-2 monitor + DUTY-8 breakdown screen + D.14/D.16 angular-momentum rows; case-A generator of Annex B = specs-only Cantera chain) + F2b = stratified three-family march (C+/C-/streamline s,h0), thermo tables, certificates, bands, driver, extended (q;s,h0) margin with rejector | F2 (D6:160; D6:160-213 (F2a :172-206, F2b :206-213); D6 duty rows :407-412; Annex B :1140-1…) | QUEUED (F2 budget 4-6 sessions) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 52 | 49 | 39/62/0 | 7 | 16 | 283 | critical |
+| **F2.M-RED** M-RED reduction-residual campaign + deriver chain (X-T3QS-5F -> C51-route-B -> M-RED rider; delta/L_H) | F2 (D6:160; PROGRESS B19(c) "M-RED resta prima campagna F2"; MAP E28/E29) | QUEUED (first F2 campaign, B19(c)) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 3 | 0 | 2/0/0 | 0 | 5 | 283 | critical |
+| **F2.CFD-2** CFD-2 paired demo (Li-Xu template) + CFD-1 decision (post-M-RED) | F2 (D6:160; PROGRESS B19(a); MAP :77 R22-CFD USER-DECISION PENDING) | QUEUED (F2 tail, B19(a)) | G0 G1 G6 | — | — | two-family transport (s only), h0 family a NAMED residual carried into F3/F4b gates. | program (PROGRESS counter "F2 session m/n") | 1 | 0 | 0/1/0 | 1 | 0 | 283 | critical |
 | **F3.RK1** Spike-level plug-march de-risk (RK1 front-load, AUTHORIZED parallel to F2) + RaoPlug S1/S2 entry condition | F3 (D6:214; D6:222-223, :214-218; D6 §6 items 3-4) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 0 | 0 | 0/0/0 | 1 | 0 | 14 | critical |
-| **F3.PLUG** Plug/aerospike sector in the engine: plume-boundary solve (H20), p_b closure (C61/N2), spike Table-1 oracle, plug/C- mirror margin, transition duty (iii) | F3 (D6:214; D6:214-232; advisory E; findings row plan:h20-c61-registry-homing-f4b-vs-d6-f3-…) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 2 | 2 | 4/1/0 | 0 | 1 | 14 | critical |
-| **F3.TWIN** THE DECISIVE TWIN on the truncated plug: per-phase design vs classical design on I4 (<Pc>,T0,gamma) at IDENTICAL constraints, kill-or-validate, stop ~1% Isp; 2-D truncated-plug shape falsifier BEFORE the first certified plug optimum ships | F3 (D6:214; atlas CH6:440/:490/:712; D6:219-222 (F3 EXIT); advisory B/E) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 1 | 0 | 2/0/0 | 0 | 0 | 14 | critical |
-| **F3.TOURNAMENT** FULL-ENVELOPE OPTIMIZER: every geometry class in the engine (bell/TOC, plug, shrouded plug, E-D/other A_gen sectors) + the FINITE SECTOR TOURNAMENT at the true constraint vector (premium_bound device, M4 deflated continuation, census-lemma + PAP-RIM at F2-exit) -> S*(c) as OUTPUT; no named D6 step of record (finding plan:full-envelope-tournament-no-named-d6-step) | F3 (D6:214; problem_book :337-363 (SCHEMA); M0 tournament device (Part IV); atlas CH8 §1.2/…) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 0 | 0 | 0/1/0 | 0 | 1 | 14 | non-critical |
-| **F4b** DECLARED-TOPOLOGY FITTED FRONTS = OBLIQUE SHOCKS of the RDE exhaust entering through the datum (front taxonomy (b): data-borne / boundary-entering per-phase oblique wave system, plug/shroud lip shocks) treated as classical FITTED fronts with declared topology: U3 bordered solve + G12 linearization + adjoint jump conditions; X1 capturing-control rejection; optional fitted-CONTACT extension; NO interior birth-fitting (excluded by the margin governor, taxonomy (c)); order-interchangeable with F3 given F2 exit | F4b (D6:233; D6:233-251 (F4b), :292-311 (front taxonomy), :228-232) | NOT-OPENED | — | F2 exit + Giles-Ulbrich SINUM 2010 x2 + Lozano 2019 PAGE-VERIFIED (until then the captured-shock-adjoint rejection is a named training-know… | certified optimum on >= 1 fitted-front instance, jump-condition dot-product test, X1 capturing-control rejection demonstrated; tier-1/DEF p… | single inherited-front instance (S8 fitted-sheet class). | program (PROGRESS counter "F4b session m/n") | 1 | 1 | 0/7/0 | 0 | 7 | 43 | non-critical |
-| **F5** RDE MACHINE = THE ARRIVAL POINT: an RDE datum in input (Annex B cases B = wave-structure model / C = partial experiment / D-G = mission, throttle, uncertainty, chamber coupling) -> CFD-to-CONTRACT PIPELINE for CAPTURED data (captured-shock detection, Gelb-Tadmor concentration lineage; RH-consistent sharp-state reconstruction, Paciorri-Bonfiglioli lineage; exact-RH projection with derived residual band + LOUD REJECT; synthetic smear-extract-compare KAT as oracle; U3 extraction-surface rule) -> F5a quasi-steady sweep T3-QS + certified cycle-averaged design Verdict + mu-instruments + G2 VALUE GATE; F5b G3 unsteadiness trigger as a NUMBER + corrector; G4 decoupling; re-budget MANDATORY at entry | F5 (D6:252; D6:252-274 (pipeline :256-268); Annex B :1133-1157; gate table :286-288; atlas…) | NOT-OPENED | G1 G2 G3 G4 G6 | — | — | F5a-only claim, corrector a declared residual. | program | 2 | 2 | 0/10/0 | 0 | 5 | 24 | non-critical |
+| **F3.PLUG** Plug/aerospike sector in the engine: plume-boundary solve (H20), p_b closure (C61/N2), spike Table-1 oracle, plug/C- mirror margin, transition duty (iii) | F3 (D6:214; D6:214-232; advisory E; findings row plan:h20-c61-registry-homing-f4b-vs-d6-f3-…) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 2 | 2 | 5/1/0 | 0 | 1 | 14 | critical |
+| **F3.TWIN** THE DECISIVE TWIN on the truncated plug: per-phase design vs classical design on I4 (<Pc>,T0,gamma) at IDENTICAL constraints, kill-or-validate, stop ~1% Isp; 2-D truncated-plug shape falsifier BEFORE the first certified plug optimum ships | F3 (D6:214; atlas CH6:440/:490/:712; D6:219-222 (F3 EXIT); advisory B/E) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 1 | 0 | 3/0/0 | 0 | 0 | 14 | critical |
+| **F3.TOURNAMENT** FULL-ENVELOPE OPTIMIZER: every geometry class in the engine (bell/TOC, plug, shrouded plug, E-D/other A_gen sectors) + the FINITE SECTOR TOURNAMENT at the true constraint vector (premium_bound device, M4 deflated continuation, census-lemma + PAP-RIM at F2-exit) -> S*(c) as OUTPUT; named by the D6 ADDENDUM of record (dated 2026-09-05, user-ratified at F2-B0 T1) | F3 (D6:214; problem_book :337-363 (SCHEMA); M0 tournament device (Part IV); atlas CH8 §1.2/…) | NOT-OPENED | G1 | RaoPlug S1/S2 fix in GENO landed OR single-oracle status (Rao 1961 spike Table-1) declared; plug/C- mirror Lambda-form margin PROVEN or dec… | certified plug optimum + spike Table-1 oracle (M_E=2.4, gamma=1.23) in derived bands; at least ONE var-gamma or stratified plug instance; T… | spike-only capture. | program (PROGRESS counter "F3 session m/n") | 0 | 0 | 0/1/0 | 0 | 1 | 14 | non-critical |
+| **F4b** DECLARED-TOPOLOGY FITTED FRONTS = OBLIQUE SHOCKS of the RDE exhaust entering through the datum (front taxonomy (b): data-borne / boundary-entering per-phase oblique wave system, plug/shroud lip shocks) treated as classical FITTED fronts with declared topology: U3 bordered solve + G12 linearization + adjoint jump conditions; X1 capturing-control rejection; optional fitted-CONTACT extension; NO interior birth-fitting (excluded by the margin governor, taxonomy (c)); order-interchangeable with F3 given F2 exit | F4b (D6:233; D6:233-251 (F4b), :292-311 (front taxonomy), :228-232) | NOT-OPENED | — | F2 exit + Giles-Ulbrich SINUM 2010 x2 + Lozano 2019 PAGE-VERIFIED (until then the captured-shock-adjoint rejection is a named training-know… | certified optimum on >= 1 fitted-front instance, jump-condition dot-product test, X1 capturing-control rejection demonstrated; tier-1/DEF p… | single inherited-front instance (S8 fitted-sheet class). | program (PROGRESS counter "F4b session m/n") | 1 | 1 | 1/7/0 | 0 | 5 | 43 | non-critical |
+| **F5** RDE MACHINE = THE ARRIVAL POINT: an RDE datum in input (Annex B cases B = wave-structure model / C = partial experiment / D-G = mission, throttle, uncertainty, chamber coupling) -> CFD-to-CONTRACT PIPELINE for CAPTURED data (captured-shock detection, Gelb-Tadmor concentration lineage; RH-consistent sharp-state reconstruction, Paciorri-Bonfiglioli lineage; exact-RH projection with derived residual band + LOUD REJECT; synthetic smear-extract-compare KAT as oracle; U3 extraction-surface rule) -> F5a quasi-steady sweep T3-QS + certified cycle-averaged design Verdict + mu-instruments + G2 VALUE GATE; F5b G3 unsteadiness trigger as a NUMBER + corrector; G4 decoupling; re-budget MANDATORY at entry | F5 (D6:252; D6:252-274 (pipeline :256-268); Annex B :1133-1157; gate table :286-288; atlas…) | NOT-OPENED | G1 G2 G3 G4 G6 | — | — | F5a-only claim, corrector a declared residual. | program | 2 | 2 | 1/16/0 | 1 | 5 | 24 | non-critical |
 | **F6** 3-D / HARDWARE BRIDGE (horizon, not budgeted): B-lite helical space-march demonstrator (G12-L1-3D brick, [S-BLITE]), the A5 wave-frame anchor (2-D unrolled-annulus reactive Euler, freezing, Newton-Krylov, bordered adjoint; G4 decoupling gate), 3-D MoC tool line (Ransom/Hoffman/Thompson to locate; NASA Rice-MoC3D/NPAC/SUPIN adjudication NOT landed), experimental anchor RK-E, HPC RK-F | F6 (D6:275; D6:275-278, :646-666 (A5), §6 items 11-14; claims S-BLITE; memory nasa-nozzle-t…) | NOT-OPENED | G4 | — | — | laptop-scale B-lite/O5-lite until HPC secured (RK-F). | program | 0 | 0 | 0/0/0 | 0 | 2 | 3 | non-critical |
 | **PAPER** Paper / claims / literature stream (P-1 theory half from F2, freeze F2 exit; methods freeze + F3 showcase; G5 human pass before ANY submission) | PAPER (D6 §3; D6 §3 :684-734, :345-349) | parallel track | G5 | from F2 (theory half) | G5 human pass before any submission | P-2 on S19 two-knob numbers (D6:90) | user (G5) + program | 1 | 0 | 0/0/44 | 2 | 0 | 0 | paper |
 
@@ -34,25 +34,25 @@ Head-to-head TWIN: per-phase design vs classical design on I4 (⟨Pc⟩, T0, γ)
 Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence BEFORE the F3 plug sector; the advisory schema D/E order "TWIN → CFD-2" is a deviation of the authored schema (section 5). F3.RK1 runs PARALLEL to F2 (D6:222-223). F4b is order-interchangeable with F3 given F2 exit (D6:228-232) and carries no critical object.
 
 ### F2-B0 — F2 BLOCCO 0 — entry act (engine cluster, hygiene, GENO health, TWIN protocol pre-registration, topology+modelling session)
-- critical findings (20): variational-driver:objective-omits-throat-panel, parametrization:natural-BC-lip-bias, pipeline:delta-carrier-F2-entry, variational-driver:cross-unit-and-slack-tolerances, variational-driver:negative-control-N2-missing, driver-nonsmooth:no-B-stationarity-certificate, driver-nonsmooth:ip-path-unadjudicated, parametrization:basis-oscillation-axis-unadjudicated, parametrization:shape-monitors-uncomputed, oracles:a1-gp01-quasi1d-not-built, oracles:o31-common-mode-hole, audit-scert:staleness-import-closure-blind, oracles:geno-tocnoz-wall-thrust-double-count, moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion, moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap, moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion, moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped, moc-audit:ledger-c1-thermo-audit-outcome-bundle, oracles:o34-gradient-leg-unconsumed, method:sroadmap-single-author-placements-unrefuted
-- critical BLOCCATO (1): B-GENO
-- nodes (9): C47, SDP-CAND-8, C60, C57, C58, C48, C32, C37, OBJ-DOM
-- ledger rows (7): C32, C37, C47, C48, C57, C58, C60
-- open theory objects consumed (4): S-S1U [SCHEMA], S-T0P-G12 [SCHEMA], X-T0P [SCHEMA], S-SDI [SCHEMA]
+- critical findings (0): —
+- critical BLOCCATO (0): —
+- nodes (0): —
+- ledger rows (0): —
+- open theory objects consumed (0): —
 
 ### F2.REPR — REPRESENTATION LADDER adjudication at F2-entry (user-ratified session "topologia+modellistica", BLOCCATO B16/B19(b)): per-phase 4-field axial (current) / 2.5D five-field S-5F / azimuthal marching C51-route-B (native helix) / hybrids / 3D-per-phase; fitted vs captured C49; stack C58/C60; the 3-D COUNTERPART decided here at convergence with the census protocol, field-reading pass on Harroun Figg. 12-20
-- critical findings (1): plan:representation-ladder-3d-counterpart-no-named-d6-step
+- critical findings (0): —
 - critical BLOCCATO (0): —
-- nodes (5): C49, S-5F, ROUTE-B, C51, C59
-- ledger rows (3): C49, C51, C59
+- nodes (8): C49, S-5F, ROUTE-B, C51, C59, C60, C57, C58
+- ledger rows (6): C49, C51, C57, C58, C59, C60
 - open theory objects consumed (2): S-5F [SCHEMA], S-N6SO [SCHEMA]
 
 ### F2.ENGINE — F2a/F2b GENERAL ENGINE: F2a = DATA CONTRACT as the input surface (interface datum = per-phase profiles M_in, theta_in, s, h0 on Gamma_d; stage-A audits Crocco/completeness/H-I2 + T0-flatness monitor, G6 LOUD REJECT from here; contact/slip = smeared stratified default; U3' choking adjudication; SWIRL: F-swirl-1 contract field + F-swirl-2 monitor + DUTY-8 breakdown screen + D.14/D.16 angular-momentum rows; case-A generator of Annex B = specs-only Cantera chain) + F2b = stratified three-family march (C+/C-/streamline s,h0), thermo tables, certificates, bands, driver, extended (q;s,h0) margin with rejector
-- critical findings (16): engine-core:F5-underived-factors, margin-governor:G1-three-jump-channels, engine-core:F3-table-clamp-silent, variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip, cell-cert:certify-no-conditioning-qualification, thermo-bands:bands-not-topology-conditioned, mesh-amr:observed-order-not-at-band-sites, thermo-bands:band-composition-no-declared-rule, thermo-bands:table-box-no-margin-certificate, constraints:multiplier-rejector-missing, driver-nonsmooth:jacobi-scaling-frozen, constraints:margin-constraint-no-hess, cell-cert:seed-validity-radius-underived, cell-cert:wall-foot-search-fragile, bound-ladder:constraint-aware-rungs-missing, oracles:root-identity-replay-common-mode
-- critical BLOCCATO (0): —
-- nodes (46): C50, C52, C53, CONTRACT-F1..F10-block, C12, C13, C14, C22, C45, C25, C26, C5, C6, C19, C20, C21, C18, C17, C28, C38, CLG, C11, C9, C10, C43, C41, C42, C56, C44, C31, C16, C33, C34, C35, C36, C39, C40, C27, C29, C30, C62, C1, C2, C7, C8, DELTA-CARRIER
-- ledger rows (44): C1, C2, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C16, C17, C18, C19, C20, C21, C22, C25, C26, C27, C28, C29, C30, C31, C33, C34, C35, C36, C38, C39, C40, C41, C42, C43, C44, C45, C46, C50, C52, C53, C56, C62
-- open theory objects consumed (10): C-D25U [SCHEMA], C-O33 [SCHEMA], T-T3-MAP [SCHEMA], S-LBML [SCHEMA], J-CT1 [CONJECTURE], S-XCONV [SCHEMA], S-D25U-U1 [SCHEMA], S-T0P [SCHEMA], T-T0P [SCHEMA], C-DCRX-CERT [SCHEMA]
+- critical findings (39): variational-driver:objective-omits-throat-panel, engine-core:F5-underived-factors, parametrization:natural-BC-lip-bias, margin-governor:G1-three-jump-channels, pipeline:delta-carrier-F2-entry, record-path:cert-verdict-recorder-dependence, engine-core:F3-table-clamp-silent, variational-driver:cross-unit-and-slack-tolerances, variational-driver:negative-control-N2-missing, variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip, problem-statement:flatness-monitor-unarmed, driver-nonsmooth:no-B-stationarity-certificate, cell-cert:certify-no-conditioning-qualification, thermo-bands:bands-not-topology-conditioned, mesh-amr:observed-order-not-at-band-sites, thermo-bands:band-composition-no-declared-rule, thermo-bands:table-box-no-margin-certificate, constraints:multiplier-rejector-missing, driver-nonsmooth:ip-path-unadjudicated, driver-nonsmooth:jacobi-scaling-frozen, constraints:margin-constraint-no-hess, cell-cert:seed-validity-radius-underived, parametrization:basis-oscillation-axis-unadjudicated, parametrization:shape-monitors-uncomputed, cell-cert:wall-foot-search-fragile, oracles:a1-gp01-quasi1d-not-built, oracles:o31-common-mode-hole, bound-ladder:constraint-aware-rungs-missing, oracles:geno-tocnoz-wall-thrust-double-count, moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion, moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap, moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion, moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped, moc-audit:ledger-c1-thermo-audit-outcome-bundle, moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net, oracles:root-identity-replay-common-mode, oracles:o34-gradient-leg-unconsumed, carriers:x-o32-negative-control-uncertifiable-on-current-tree, twin-protocol:preregistration-2026-08-31
+- critical BLOCCATO (1): B-SREVIEW
+- nodes (52): C50, C52, C53, C54, CONTRACT-F1..F10-block, C12, C13, C14, C22, C45, C25, C26, C5, C6, C19, C20, C21, C18, C17, C28, C38, C47, CLG, C11, C9, C10, C43, C41, C42, C56, C44, C31, C48, C16, C32, C33, C34, C35, C36, C37, C39, C40, C27, C29, C30, C62, C1, C2, C7, C8, OBJ-DOM, DELTA-CARRIER
+- ledger rows (49): C1, C2, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C16, C17, C18, C19, C20, C21, C22, C25, C26, C27, C28, C29, C30, C31, C32, C33, C34, C35, C36, C37, C38, C39, C40, C41, C42, C43, C44, C45, C46, C47, C48, C50, C52, C53, C54, C56, C62
+- open theory objects consumed (16): C-D25U [SCHEMA], C-O33 [SCHEMA], T-T3-MAP [SCHEMA], S-S1U [SCHEMA], S-LBML [SCHEMA], J-CT1 [CONJECTURE], S-XCONV [SCHEMA], S-D25U-U1 [SCHEMA], S-T0P [SCHEMA], C-XINJ [SCHEMA], S-T0P-G12 [SCHEMA], T-T0P [SCHEMA], X-T0P [SCHEMA], S-SDI [SCHEMA], C-XBVP-aprime [SCHEMA], C-DCRX-CERT [SCHEMA]
 
 ### F2.M-RED — M-RED reduction-residual campaign + deriver chain (X-T3QS-5F -> C51-route-B -> M-RED rider; delta/L_H)
 - critical findings (2): theory:r22f-optimum-shift-gradient-route, pipeline:m-red-campaign
@@ -76,14 +76,14 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - open theory objects consumed (0): —
 
 ### F3.PLUG — Plug/aerospike sector in the engine: plume-boundary solve (H20), p_b closure (C61/N2), spike Table-1 oracle, plug/C- mirror margin, transition duty (iii)
-- critical findings (4): litreview:residue-r6-r29-corner-class-and-terminal-face-cone, litreview:residue-r8-r23-base-pressure-pb2-blocking, plume:free-boundary-solve-mechanics-missing, plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug
+- critical findings (5): plume:vortex-sheet-stability-unchecked, litreview:residue-r6-r29-corner-class-and-terminal-face-cone, litreview:residue-r8-r23-base-pressure-pb2-blocking, plume:free-boundary-solve-mechanics-missing, plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug
 - critical BLOCCATO (0): —
 - nodes (2): H20, C61
 - ledger rows (2): C7, C61
 - open theory objects consumed (1): C-HT4 [SCHEMA]
 
 ### F3.TWIN — THE DECISIVE TWIN on the truncated plug: per-phase design vs classical design on I4 (<Pc>,T0,gamma) at IDENTICAL constraints, kill-or-validate, stop ~1% Isp; 2-D truncated-plug shape falsifier BEFORE the first certified plug optimum ships
-- critical findings (2): pipeline:Q3-certifiability-composition, litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer
+- critical findings (3): pipeline:Q3-certifiability-composition, litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer, twin-protocol:preregistration-2026-08-31
 - critical BLOCCATO (0): —
 - nodes (1): D-44
 - ledger rows (0): —
@@ -94,7 +94,7 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | kind | id | placed at | reason (anchor) |
 |---|---|---|---|
 | node | PIN-WAVE | OUT:standing-user-pin | memory periodic-wave-data-scope; corrector re-scope owned by F5b (row text) |
-| node | C54 | OUT:touch-gated | ledger C54: flips DECIDED at the next M0 D2.4 touch (one-line annotation) |
+| node | C54 | F2.ENGINE | rides C53's M0 D2.4 write window (ledger C53 owner: the F2 contract window writes the placement-band remark into M0 D2.4; C54's "next M0 D2.4 touch" is that scheduled touch) — refuter R2 2026-09-05, was OUT:touch-gated |
 | node | C55 | OUT:event-gated | ledger C55 sequencing clause: adjudication owed at first multi-point P_amb instantiation (Annex B case D) |
 | node | CONTRACT-F1..F10-block | F2.ENGINE | F2a owns the contract (D6:172-176, G6 operative from F2a) |
 | node | C49 | F2.REPR | fitted-front vs captured = representation axis; falls to F2 entry (MAP :73); B19(b) session |
@@ -105,15 +105,18 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | node | C59 | F2.REPR | F2-entry census window (MAP :78); temporal-form axis of the same representation decision |
 | node | C28 | F2.ENGINE | duties [P-CERTKS]+[P-BSTAT] in the GAP-1/GAP-2 window = F2 (findings driver-nonsmooth:no-B-stationarity-certificate owner "F2 (with the GAP-1 window)") |
 | node | CLG | F2.ENGINE | MAP :115 F2-CLG-SCALE |
-| node | SDP-CAND-8 | F2-B0 | MAP :116 F2-entry engine census |
+| node | SDP-CAND-8 | OUT:retired-with-named-reason | F2-B0 engine-cluster VERDICT 2026-09-05 (V-SDP-CAND-8): consumer EXTINCT search-proven (no SDP solve, import or duty in the living plan; moment-SOS rejected with cause D7 :105); S17 Clarabel/MOSEK decision annotated in the verdict; revival triggers named (SOS head-to-head re-queued, premium-bound revival at F3.TOURNAMENT, LMI/SDP certificate re-formulation) -> fresh mint at that window |
 | node | M-RED | F2.M-RED | MAP :129 F2-QUEUED |
+| node | C60 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C60): ADJUDICATED-PARTITION (NEVER->MIXED); remaining duty = representation-conditional re-entry at F2.REPR + SAND triggers (H20 at F3.PLUG) + block-triangularity falsifier |
+| node | C57 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C57): adjudicated at surface A (NEVER->MIXED); remaining duty = the pilot decision table at F2.REPR jointly with S-5F/C49 (ratification joint clause); representation-conditional re-entry |
+| node | C58 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C58): JAX-primary reaffirmed, row repaired; remaining duty = 9(e) delta-sweep census (a)-(g) at/after F2.REPR (REF-6 window coherence) |
 | node | C30 | F2.ENGINE | C30 lands FIRST and instruments C29 (owner F2-DUTY-C29-MASKGRAIN) — same F2 window |
 | node | R22F-FORCHETTA | F2.M-RED | MAP :170 "M-RED campaign + RES-CAP residues" |
 | node | T-DISC | OUT:landed | MAP stage 7: LANDED, open duty "—" |
-| node | OBJ-DOM | F2-B0 | trigger "first F2 verdict consuming dJ/dthB" (findings :211-212); consumed again at F3.TWIN |
+| node | OBJ-DOM | F2.ENGINE | trigger "first F2 verdict consuming dJ/dthB" (findings variational-driver:objective-omits-throat-panel, cited by id per refuter R2 anchor-drift repair); consumed again at F3.TWIN |
 | node | DELTA-CARRIER | F2.ENGINE | ship-gate ARMED for every (value,delta) row (MAP :173); consumed again at F3.TWIN |
 | node | OPTSHIFT | F2.M-RED | MAP :174 owner "F2, in order ... M-RED rider" |
-| node | D-44 | F3.TWIN | the TWIN is the first public adequacy claim; MAP :180 + findings :1468 |
+| node | D-44 | F3.TWIN | the TWIN is the first public adequacy claim; MAP :180 + findings litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer (by id, R2 repair) |
 | node | P34 | PAPER | MAP :181 P-1/G5-G6 claims window |
 | node | H20 | F3.PLUG | D6:214-227 precedence over the registry F4b homing (findings plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug) |
 | node | C61 | F3.PLUG | same override as H20 (advisory E) |
@@ -121,42 +124,46 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | ledger | C30 | F2.ENGINE | C30 lands FIRST and instruments C29 (owner F2-DUTY-C29-MASKGRAIN) — same F2 window |
 | ledger | C49 | F2.REPR | fitted-front vs captured = representation axis; falls to F2 entry (MAP :73); B19(b) session |
 | ledger | C51 | F2.REPR | rung-3a wave-frame solver implicit BVP vs azimuthal marching = representation choice adjudicated in the B19(b) session (PROGRESS B15(e) priority confirmed); MAP E29 |
-| ledger | C54 | OUT:touch-gated | ledger C54: flips DECIDED at the next M0 D2.4 touch (one-line annotation) |
+| ledger | C54 | F2.ENGINE | rides C53's M0 D2.4 write window (ledger C53 owner: the F2 contract window writes the placement-band remark into M0 D2.4; C54's "next M0 D2.4 touch" is that scheduled touch) — refuter R2 2026-09-05, was OUT:touch-gated |
 | ledger | C55 | OUT:event-gated | ledger C55 sequencing clause: adjudication owed at first multi-point P_amb instantiation (Annex B case D) |
+| ledger | C57 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C57): adjudicated at surface A (NEVER->MIXED); remaining duty = the pilot decision table at F2.REPR jointly with S-5F/C49 (ratification joint clause); representation-conditional re-entry |
+| ledger | C58 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C58): JAX-primary reaffirmed, row repaired; remaining duty = 9(e) delta-sweep census (a)-(g) at/after F2.REPR (REF-6 window coherence) |
 | ledger | C59 | F2.REPR | F2-entry census window (MAP :78); temporal-form axis of the same representation decision |
+| ledger | C60 | F2.REPR | F2-B0 VERDICT 2026-09-05 (V-C60): ADJUDICATED-PARTITION (NEVER->MIXED); remaining duty = representation-conditional re-entry at F2.REPR + SAND triggers (H20 at F3.PLUG) + block-triangularity falsifier |
 | ledger | C61 | F3.PLUG | same override as H20 (advisory E) |
-| finding | variational-driver:objective-omits-throat-panel | F2-B0 | OBJ-DOM override |
+| finding | variational-driver:objective-omits-throat-panel | F2.ENGINE | OBJ-DOM override |
 | finding | engine-core:F5-underived-factors | F2.ENGINE | NTF derivation duty F2-live (C18); the "F5" in the id is the audit finding number, not a phase |
 | finding | pipeline:Q3-certifiability-composition | F3.TWIN | trigger "before the first genuinely averaged shape problem (PB-2 class)" = the TWIN problem |
 | finding | engine-core:F3-table-clamp-silent | F2.ENGINE | id "F3-" = audit finding number, not a phase; owner F2 engine window |
-| finding | oracles:a1-gp01-quasi1d-not-built | F2-B0 | owner "F2 (D-20, priority)", trigger "F2 entry (first oracle block)" |
-| finding | oracles:geno-tocnoz-wall-thrust-double-count | F2-B0 | impact audit fires FIRST at F2 entry (I4 baseline = Rao/GENO thrust reference) |
+| finding | phase-diagrams:eps-tolerance-omits-quadrature-bar | F3.TOURNAMENT | its own trigger names "the sector tournament consuming premium_bound at face value" (refuter R2 2026-09-05; pre-F5 regex fix would give F5 — the trigger-named consumer is more specific) |
+| finding | oracles:a1-gp01-quasi1d-not-built | F2.ENGINE | owner "F2 (D-20, priority)", trigger "F2 entry (first oracle block)" |
+| finding | oracles:geno-tocnoz-wall-thrust-double-count | F2.ENGINE | impact audit fires FIRST at F2 entry (I4 baseline = Rao/GENO thrust reference) |
 | finding | twin-falsifier:c3-mesh-refinement-unadjudicated | F2.ENGINE | owner "F2 (the C7 refine/enriched-class leg)"; the "branch F1" in the trigger is a twin BRANCH label (F1-F7), not the plan phase |
+| finding | swirl-f2a:angular-momentum-audit-row-missing | F2.ENGINE | the D.14/D.16 angular-momentum rows are BUILT at F2a (the F2.ENGINE step title owns them); the CFD dataset is the ARMING event, not the build window (refuter R2 2026-09-05; was a CFD-keyword hijack to F2.CFD-2) |
 | finding | litreview:residue-r6-r29-corner-class-and-terminal-face-cone | F3.PLUG | R29 = PB-2 cone-form derivation touch (plug sector) |
 | finding | litreview:residue-r8-r23-base-pressure-pb2-blocking | F3.PLUG | p_b closure = C61/N2 (advisory E; D6 F3) |
 | finding | litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer | F3.TWIN | D-44 gate on the first public adequacy claim = TWIN; R22 experiment = F2.CFD-2 (second consumer) |
-| finding | moc-audit:ledger-c1-thermo-audit-outcome-bundle | F2-B0 | GENO health step (plugnoz CTest reproducibility, item g) |
+| finding | moc-audit:ledger-c1-thermo-audit-outcome-bundle | F2.ENGINE | GENO health step (plugnoz CTest reproducibility, item g) |
+| finding | contract:phase-gauge-jitter-alignment-unpinned | F2.ENGINE | owner literal "F2 contract window"; declared sequencing with ledger C50 (F2.ENGINE) — refuter R2 2026-09-05 (was a CFD-keyword hijack) |
+| finding | swirl5f:c8-cj-locus-naming-approximate | F2.REPR | owner names the C51 adjudication window — a placed F2.REPR object (refuter R2 2026-09-05; was OUT for want of a phase token) |
 | finding | theory:s5f-path-a-freevortex-stratified-gap | F2.REPR | S-5F decision dossier = the representation session |
 | finding | oracles:root-identity-replay-common-mode | F2.ENGINE | duty F2-C20-CERTQUAL-CAMPAIGN Tier-0 |
 | finding | theory:r22f-optimum-shift-gradient-route | F2.M-RED | owner "F2, in order: X-T3QS-5F / C51-route-B / M-RED rider" |
 | finding | plume:free-boundary-solve-mechanics-missing | F3.PLUG | H20 override (see NODE_OVERRIDES) |
-| finding | oracles:o34-gradient-leg-unconsumed | F2-B0 | trigger "F2 entry (oracle re-baseline)" |
+| finding | oracles:o34-gradient-leg-unconsumed | F2.ENGINE | RE-SCOPED with declared reason at F2-B0 2026-09-05 (order 5): structurally gated by the GENO thrust double-count fix + [OBJ-DOM-IMPL]; protocol pre-registered in the row; first F2.ENGINE oracle act |
 | finding | plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug | F3.PLUG | the override citation row itself |
-| finding | plan:full-envelope-tournament-no-named-d6-step | F3.TOURNAMENT | the step minted by this finding (anchors in the step row) |
-| finding | plan:representation-ladder-3d-counterpart-no-named-d6-step | F2.REPR | the step minted by this finding |
-| finding | plan:nasa-3d-moc-tools-adjudication-not-landed | F2.REPR | landing decision belongs to the representation session (duty a: G12-L1-3D cross-check; duty b: Kliegel-Levine band) |
-| finding | method:sroadmap-single-author-placements-unrefuted | F2-B0 | owner: F2-B0 FIRST act (refuter pass over tags + overrides) |
 | bloc | B-G5 | PAPER | G5 blocks SUBMISSIONS only (D6:289) |
 | bloc | B-RAOPLUG | F3.RK1 | D6:214-218 F3 ENTRY condition; de-risk RK1 authorized parallel to F2 (D6:222-223) |
 | bloc | B12 | PAPER | WANTED procurement rows consumed by lit/claim windows |
 | bloc | B-CFD1 | F2.CFD-2 | PROGRESS B19(a): CFD-1 decided POST-M-RED, inside the F2 CFD window |
-| bloc | B-GENO | F2-B0 | PROGRESS NEXT item (2): GENO health at F2 BLOCCO 0 |
+| bloc | B-GENO | F2.ENGINE | PROGRESS NEXT item (2): GENO health at F2 BLOCCO 0 |
+| bloc | B-S5F | F2.REPR | every S-5F object (node, claim, path-A finding) is F2.REPR; the row's "rung-3a" text is an M-RED-regex hijack (refuter R2 2026-09-05); owner = user at the F2-entry touchpoint INSIDE the B16 session |
 | claim | C-D25U | F2.ENGINE | THE shared analytic conditional (L4 ledger); completeness/bootstrap duty findings foundations-U:U34-C0-bootstrap-circularity (pre-F2) + L4 statement rows |
 | claim | C-MAJDA | F4b | THE shared front conditional across fitted shocks = F4b certificate class (D6:233-251) |
 | claim | C-HT4 | F3.PLUG | declared MODEL CLOSURE: sonic-capped ideal adaptation, PB-2 truncation/base-pressure = the plug sector (C61/N2 closure) |
 | claim | C-IGMIX | OUT:priced-by-theorem | finite-rate bracket priced by [T-EQBR] (D6 scope pin P1: finite-rate outside by declaration, T-EQBR = the necessity guard) |
 | claim | C-O33 | F2.ENGINE | numeric residual of the O3.3 corner row, quantified; re-measured in the richer adaptive class = C7 refine leg (findings twin-falsifier:c3-mesh-refinement-unadjudicated, F2) |
-| claim | S-S1U | F2-B0 | findings :1455 trigger (equivariance+uniqueness S1) fires at any external act; F2 theory window |
+| claim | S-S1U | F2.ENGINE | findings theory:s-t0p-proof-writeup-pending trigger (equivariance+uniqueness S1, cited by id per R2 anchor-drift repair) fires at any external act; F2 theory window |
 | claim | S-5F | F2.REPR | five-field build decision = the representation session (PROGRESS B-S5F, B19(b)) |
 | claim | S-N6SO | F2.REPR | non-free-vortex swirl closure = the S-5F path-A fork (findings theory:s5f-path-a-freevortex-stratified-gap) |
 | claim | J-OP11 | F3.TOURNAMENT | falsifier = "sector tournament with certified delta-bands contradicting the selected topology" |
@@ -164,18 +171,18 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | claim | S-BLITE | F6 | B-lite helical space-march demonstrator (D6:275-278, item 11) |
 | claim | C-P4RZ | F5 | analytic residual of S-P4F (O(St) license, cycle monodromy) = F5b corrector window (D6:271-273) |
 | claim | S-XCONV | F2.ENGINE | certified-box convexity schema = C28/C20 certification window ([P-CERTKS]); carrier X-IVXC in suite |
-| claim | C-XBVP | F4b | Cauchy->BVP transfer residuals across fitted fronts (findings theory-core:F4-CXBVP-ledger-dangling-pointer for the ledger mint; certificate class F4b) |
+| claim | C-XBVP | F4b | conditions [T-XWS]; residue (a) convexity carried by X-IVXC (F2 suite, instance-discharged), residue (b) weak-side trace technicalities = front-class machinery -> F4b certificate-class discharge home (reason re-anchored to the row text by refuter R2 2026-09-05, F2 co-consumer declared; findings theory-core:F4-CXBVP-ledger-dangling-pointer for the ledger mint) |
 | claim | S-D25U-U1 | F2.ENGINE | C-D25U completeness (findings foundations-U:U34-C0-bootstrap-circularity, pre-F2/F2 entry) |
 | claim | S-D25U-U34 | F4b | fitted-front bordered solve U3/U4 = F4b machinery (D6:233-238) |
 | claim | S-ACFR | F4b | a-contraction front route = fitted-front certificate class (F4b; carrier X-ACFR in suite) |
 | claim | S-GBE | F5 | ergodic transfer of the G-B ceiling = F5a bound-ladder consumer (findings registry-legacy:GBE-CONCAVITY-NEAR-FLOOR, pre-F5) |
-| claim | C-MAJDA-3DT | F6 | 3-D Lopatinskii (eta_y, eta_z) = the B-lite/3-D helical march conditional (G12-L1-3D brick, F6) |
-| claim | C-XINJ | F4b | second supersonic root on a certified front = fitted-front admissibility (DUTY-9 RR/MR row, F4b) |
-| claim | C-WSF | F4b | a-contraction weight/shift inequality on a certified front (F4b certificate class) |
-| claim | S-T0P-G12 | F2-B0 | stop-proof gap route; findings theory:s-t0p-proof-writeup-pending (F2 theory window) |
-| claim | X-T0P | F2-B0 | the owed X-T0P rejector battery (same finding) |
-| claim | S-SDI | F2-B0 | S-T0P family mint (same theory window) |
-| claim | C-XBVP-aprime | F4b | Cauchy-BVP transfer conditional across fitted fronts (revision-10 list, stop_proof §13); consumed by the F4b certificate class |
+| claim | C-MAJDA-3DT | F6 | discharge machinery: multi-D unsteady Lopatinskii (eta_y, eta_z) computable only at the B-lite/3-D helical line (G12-L1-3D brick, F6). DECLARED TENSION (refuter R2 2026-09-05): the row's literal owner is F2 via the [T-T0P] stratum-(B) ledger — placement STANDS because stratum (B) is the FRONTED extension, not owed at F2 exit (stratum (A), shock-free, is what the F2 engine consumes); if the record ever makes stratum-(B) closure an F2 exit condition, this override flips by its own clause |
+| claim | C-XINJ | F2.ENGINE | the row's own consumers are F2 objects: [T-T0P] ledger gap G7, stop-proof sec.4 endgame, G8 gate; discharge route (r-b) = the [X-T0P] battery (placed F2-B0) — refuter R2 2026-09-05 (was F4b via an unanchored DUTY-9 gloss) |
+| claim | C-WSF | F4b | a-contraction weight/shift inequality on a certified front (F4b certificate class; primary discharge route = [S-ACFR], itself F4b — R2-verified against the row text) |
+| claim | S-T0P-G12 | F2.ENGINE | stop-proof gap route; findings theory:s-t0p-proof-writeup-pending (F2 theory window) |
+| claim | X-T0P | F2.ENGINE | the owed X-T0P rejector battery (same finding) |
+| claim | S-SDI | F2.ENGINE | swirl5f panel F-2 mint (validation/swirl5f_panel_2026-08-19/ — NOT an S-T0P family object; reason corrected per refuter R2 2026-09-05); upgrade path = house until-dry pass in the F2 theory window; co-consumer F2.M-RED (licenses the O5-lite comparison (C)) |
+| claim | C-XBVP-aprime | F2.ENGINE | the row's own consumption statement: [T-T0P] family stratum (A) (SHOCK-FREE; the row names the -U variant) + the 2-D [T-XWS] sandwich step; executable falsifier layer = the [X-T0P] battery (F2-B0) — refuter R2 2026-09-05 (was F4b, contradicted by the row text; the strongest wrong-direction override of the pass) |
 | claim | C-R22F-DISC | F2.M-RED | per-dataset H-AM0 check = M-RED/forchetta campaign (MAP E28) |
 | claim | C-RED-SBV | F2.M-RED | SBV composite hypothesis of [T-RED] = M-RED band B-1/B-3 (MAP E28) |
 | claim | C-DCRX-CERT | F2.ENGINE | delta-carrier certificate-on-entry [DC-F2-1..5] (MAP :173) |
@@ -188,11 +195,11 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | kind | id | OUT:why |
 |---|---|---|
 | node | PIN-WAVE | OUT:standing-user-pin |
-| node | C54 | OUT:touch-gated |
 | node | C55 | OUT:event-gated |
 | node | C15 | OUT:decided-no-open-duty |
 | node | C24 | OUT:decided-no-open-duty |
 | node | C23 | OUT:decided-no-open-duty |
+| node | SDP-CAND-8 | OUT:retired-with-named-reason |
 | node | C3 | OUT:decided-no-open-duty |
 | node | C4 | OUT:decided-no-open-duty |
 | node | T-DISC | OUT:landed |
@@ -202,7 +209,6 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | ledger | C15 | OUT:decided-no-owner |
 | ledger | C23 | OUT:decided-no-owner |
 | ledger | C24 | OUT:decided-no-owner |
-| ledger | C54 | OUT:touch-gated |
 | ledger | C55 | OUT:event-gated |
 | finding | conditional:filelock-lru-cap | OUT:non-critical-touch-gated |
 | finding | conditional:P-TRFLOOR | OUT:non-critical-touch-gated |
@@ -214,23 +220,19 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | finding | benches:o32-adjoint-negative-control-missing | OUT:non-critical-touch-gated |
 | finding | benches:o32-topo-window-monitors-print-only | OUT:non-critical-touch-gated |
 | finding | benches:d1-kill-comparisons-unbanded | OUT:non-critical-touch-gated |
+| finding | registry-legacy:G12-2B-PHANTOM-CHECK | OUT:non-critical-touch-gated |
 | finding | registry-legacy:IVXC-SIGN-BRANCH-UNGUARDED | OUT:non-critical-touch-gated |
 | finding | registry-legacy:1E3-PREFACTOR-UNDERIVED | OUT:non-critical-touch-gated |
 | finding | registry-legacy:IVXC-DOCSTRING-STALE-METHOD | OUT:non-critical-touch-gated |
-| finding | cycle-avg-machinery:F2-gamma-ladder-staleness | OUT:non-critical-touch-gated |
-| finding | cycle-avg-machinery:F3-bars-not-all-derived | OUT:non-critical-touch-gated |
-| finding | cycle-avg-machinery:F4-matched-fixedpoint-sensitivity | OUT:non-critical-touch-gated |
+| finding | problem-statement:label-namespace-collisions | OUT:non-critical-touch-gated |
+| finding | problem-statement:geno-line-refs-unpinned | OUT:non-critical-touch-gated |
 | finding | cycle-avg-machinery:F5-qmapping-uncommitted-datestamp | OUT:non-critical-touch-gated |
 | finding | cycle-avg-machinery:F7-qformal-magic-tolerances | OUT:non-critical-touch-gated |
 | finding | cycle-avg-machinery:F8-inline-gamma12-constants | OUT:non-critical-touch-gated |
-| finding | phase-diagrams:oracle-primary-never-confronted | OUT:non-critical-touch-gated |
-| finding | phase-diagrams:gauge-hypothesis-no-rejector | OUT:non-critical-touch-gated |
-| finding | phase-diagrams:ka-self-inflating-tolerance | OUT:non-critical-touch-gated |
-| finding | phase-diagrams:eps-tolerance-omits-quadrature-bar | OUT:non-critical-touch-gated |
-| finding | phase-diagrams:interp-bar-covers-only-ceiling-channel | OUT:non-critical-touch-gated |
 | finding | test-suite:golden-tables-verdict-filter | OUT:non-critical-touch-gated |
 | finding | test-suite:t3-lattice-flag-readback | OUT:non-critical-touch-gated |
 | finding | test-suite:orphan-lint-prefix-and-scope | OUT:non-critical-touch-gated |
+| finding | ledger-coherence:d3-claims-field-misnomer | OUT:non-critical-touch-gated |
 | finding | parametrization:insertion-guard-wrong-object | OUT:non-critical-touch-gated |
 | finding | parametrization:warmstart-exactness-unarmed | OUT:non-critical-touch-gated |
 | finding | parametrization:knot-xi-drift-unmonitored | OUT:non-critical-touch-gated |
@@ -244,10 +246,7 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | finding | litreview:graft-a9-a10-krakos-o5-window-order | OUT:non-critical-touch-gated |
 | finding | litreview:graft-a14-a28-thrust-decomposition-and-normalizer | OUT:non-critical-touch-gated |
 | finding | swirl5f:flag1-pb8-drift-suppression-overstated | OUT:non-critical-touch-gated |
-| finding | swirl5f:flag3-tau-n-definition-unpinned | OUT:non-critical-touch-gated |
-| finding | swirl5f:c8-cj-locus-naming-approximate | OUT:non-critical-touch-gated |
 | finding | orchestration:spec-seeding-transplant-rule | OUT:non-critical-touch-gated |
-| finding | process:orchestrator-acts-file-carrier-sweep | OUT:non-critical-touch-gated |
 | bloc | B-VENUE | OUT:consumed |
 | bloc | B-G0 | OUT:consumed |
 | bloc | B10 | OUT:consumed |
@@ -267,17 +266,74 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 2. The decisive TWIN is an F3 object (plug sector), not F2.
 3. "P-1" in schema D row 6 = D6 paper-stream line "methods freeze (F2 exit) + showcase (F3)", not P-1-numeric (F5a).
 4. CFD-2 is inside F2 (B19(a)), before F3 — not after the TWIN.
-5. BLOCCATO count 17 (advisory) vs 19 rows measured here; atlas phase mentions 290 (advisory) vs 370 measured under the declared regex.
+5. BLOCCATO count 17 (advisory) vs 22 rows measured here; atlas phase mentions 290 (advisory) vs 370 measured under the declared regex.
 6. H20/C61 are homed at F4b by the registries and at F3 by D6 — carried as an override + an OPEN critical finding, not silently re-homed.
 
 ## 5-bis. STALE OWNERS — open objects whose owner names a CLOSED phase (derived; re-home duty = F2-B0 hygiene)
 
-| closed step | id | kind/path |
-|---|---|---|
-| F0 | registry-legacy:G12-2B-PHANTOM-CHECK | non-critical |
-| F0 | problem-statement:label-namespace-collisions | non-critical |
-| F0 | problem-statement:geno-line-refs-unpinned | non-critical |
-| F0 | ledger-coherence:d3-claims-field-misnomer | non-critical |
+none
+
+## 5-ter. CARRY-FORWARD (objects homed at a CONSUMED sub-step, carried to the next open step; declared rule CARRY_FORWARD)
+
+| kind | id | homed at (consumed) | carried to |
+|---|---|---|---|
+| node | C47 | F2-B0 | F2.ENGINE |
+| node | C48 | F2-B0 | F2.ENGINE |
+| node | C32 | F2-B0 | F2.ENGINE |
+| node | C37 | F2-B0 | F2.ENGINE |
+| node | OBJ-DOM | F2-B0 | F2.ENGINE |
+| ledger | C32 | F2-B0 | F2.ENGINE |
+| ledger | C37 | F2-B0 | F2.ENGINE |
+| ledger | C47 | F2-B0 | F2.ENGINE |
+| ledger | C48 | F2-B0 | F2.ENGINE |
+| finding | variational-driver:objective-omits-throat-panel | F2-B0 | F2.ENGINE |
+| finding | parametrization:natural-BC-lip-bias | F2-B0 | F2.ENGINE |
+| finding | pipeline:delta-carrier-F2-entry | F2-B0 | F2.ENGINE |
+| finding | record-path:cert-verdict-recorder-dependence | F2-B0 | F2.ENGINE |
+| finding | engine:vmap-hessian-adjoint-divergence | F2-B0 | F2.ENGINE |
+| finding | engine:cross-lowering-gradient-floor | F2-B0 | F2.ENGINE |
+| finding | foundations-U:U34-C0-bootstrap-circularity | F2-B0 | F2.ENGINE |
+| finding | variational-driver:cross-unit-and-slack-tolerances | F2-B0 | F2.ENGINE |
+| finding | variational-driver:negative-control-N2-missing | F2-B0 | F2.ENGINE |
+| finding | driver-nonsmooth:no-B-stationarity-certificate | F2-B0 | F2.ENGINE |
+| finding | constraints:mask-rung-freeze-granularity | F2-B0 | F2.ENGINE |
+| finding | constraints:mask-crop-lane-loss-unbounded | F2-B0 | F2.ENGINE |
+| finding | driver-nonsmooth:ip-path-unadjudicated | F2-B0 | F2.ENGINE |
+| finding | driver-nonsmooth:flip-segmentation-materiality | F2-B0 | F2.ENGINE |
+| finding | parametrization:basis-oscillation-axis-unadjudicated | F2-B0 | F2.ENGINE |
+| finding | parametrization:shape-monitors-uncomputed | F2-B0 | F2.ENGINE |
+| finding | parametrization:dense-hessian-truncation-unpriced | F2-B0 | F2.ENGINE |
+| finding | driver-nonsmooth:flip-event-log-omission | F2-B0 | F2.ENGINE |
+| finding | oracles:a1-gp01-quasi1d-not-built | F2-B0 | F2.ENGINE |
+| finding | oracles:o31-common-mode-hole | F2-B0 | F2.ENGINE |
+| finding | audit-scert:anti-remint-evasion-classes | F2-B0 | F2.ENGINE |
+| finding | audit-scert:ondemand-no-run-artifacts | F2-B0 | F2.ENGINE |
+| finding | oracles:geno-tocnoz-wall-thrust-double-count | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-04-ch16-mass-crossing-no-diagnostic-on-miss | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-06-icor-tolerance-uneconomical-vs-book | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-07-no-fold-crossing-monitor | F2-B0 | F2.ENGINE |
+| finding | moc-audit:moc-09-extension-fan-point-index-shift-unverified | F2-B0 | F2.ENGINE |
+| finding | moc-audit:ledger-c1-thermo-audit-outcome-bundle | F2-B0 | F2.ENGINE |
+| finding | moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net | F2-B0 | F2.ENGINE |
+| finding | process:orchestrator-acts-file-carrier-sweep | F2-B0 | F2.ENGINE |
+| finding | methodology:single-family-verification-common-cause | F2-B0 | F2.ENGINE |
+| bloc | B-ADR | F2-B0 | F2.ENGINE |
+| bloc | B9 | F2-B0 | F2.ENGINE |
+| bloc | B17 | F2-B0 | F2.ENGINE |
+| bloc | B-GENO | F2-B0 | F2.ENGINE |
+| bloc | B-NASARES | F2-B0 | F2.ENGINE |
+| bloc | B-UNO | F2-B0 | F2.ENGINE |
+| bloc | B-SREVIEW | F2-B0 | F2.ENGINE |
+| claim | S-S1U | F2-B0 | F2.ENGINE |
+| claim | C-XINJ | F2-B0 | F2.ENGINE |
+| claim | S-T0P-G12 | F2-B0 | F2.ENGINE |
+| claim | X-T0P | F2-B0 | F2.ENGINE |
+| claim | S-SDI | F2-B0 | F2.ENGINE |
+| claim | C-XBVP-aprime | F2-B0 | F2.ENGINE |
 
 ## 6. Appendix (machine): per-step object lists
 
@@ -285,7 +341,6 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - gates: G5
 - nodes: —
 - ledger: —
-- findings non-critical (4): registry-legacy:G12-2B-PHANTOM-CHECK, problem-statement:label-namespace-collisions, problem-statement:geno-line-refs-unpinned, ledger-coherence:d3-claims-field-misnomer
 
 ### F1
 - gates: —
@@ -300,30 +355,27 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 
 ### F2-B0
 - gates: G0, G1, G6
-- nodes: C47, SDP-CAND-8, C60, C57, C58, C48, C32, C37, OBJ-DOM
-- ledger: C32, C37, C47, C48, C57, C58, C60
-- findings critical (20): variational-driver:objective-omits-throat-panel, parametrization:natural-BC-lip-bias, pipeline:delta-carrier-F2-entry, variational-driver:cross-unit-and-slack-tolerances, variational-driver:negative-control-N2-missing, driver-nonsmooth:no-B-stationarity-certificate, driver-nonsmooth:ip-path-unadjudicated, parametrization:basis-oscillation-axis-unadjudicated, parametrization:shape-monitors-uncomputed, oracles:a1-gp01-quasi1d-not-built, oracles:o31-common-mode-hole, audit-scert:staleness-import-closure-blind, oracles:geno-tocnoz-wall-thrust-double-count, moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion, moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap, moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion, moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped, moc-audit:ledger-c1-thermo-audit-outcome-bundle, oracles:o34-gradient-leg-unconsumed, method:sroadmap-single-author-placements-unrefuted
-- findings non-critical (19): test-suite:numeric-lint-scope-hole, record-path:cert-verdict-recorder-dependence, engine:vmap-hessian-adjoint-divergence, engine:cross-lowering-gradient-floor, foundations-U:U34-C0-bootstrap-circularity, constraints:mask-rung-freeze-granularity, constraints:mask-crop-lane-loss-unbounded, driver-nonsmooth:flip-segmentation-materiality, parametrization:dense-hessian-truncation-unpriced, driver-nonsmooth:flip-event-log-omission, audit-scert:anti-remint-evasion-classes, audit-scert:future-pass-dates-accepted, audit-scert:ondemand-no-run-artifacts, moc-audit:moc-04-ch16-mass-crossing-no-diagnostic-on-miss, moc-audit:moc-06-icor-tolerance-uneconomical-vs-book, moc-audit:moc-07-no-fold-crossing-monitor, moc-audit:moc-09-extension-fan-point-index-shift-unverified, moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net, methodology:single-family-verification-common-cause
-- BLOCCATO: B-ADR [non-critical], B9 [non-critical], B17 [non-critical], B-GENO [critical]
-- open claims (SCHEMA/CONJECTURE): S-S1U [SCHEMA], S-T0P-G12 [SCHEMA], X-T0P [SCHEMA], S-SDI [SCHEMA]
+- nodes: —
+- ledger: —
 - atlas mentions (283): ATLAS_TREE.md :297,404,455,465,479,497,633,655,705; CH10_data_contract.md :5,11,32,129,153,167,389,407,410,410,421,425,426,427,434,468,469,489,507,593,605,619,628,647,737,760,823,829; CH1_formulation_ladder.md :5,136,137,354,362,362,363,373,373,396,398,562,574,737,737,816,817,834; CH2_averaged_optimality.md :256,354,479,686,688,688,776; CH3_reduction_physics.md :9,160,196,211,241,295,348,390,397,400,408,412,416,421,430,537,577,636,637,643,763,777,782,785,786,851,852,852,852; CH4_machine_choices.md :54,93,99,147,228,242,258,273,283,350,358,360,366,367,370,452,453,453,464,464,465,467,468,468,469,473,476,479,484,488,551,581,595,596,602,619,677,713,735,757,784,800,841,849,1017,1022,1023,1045,1052,1076,1100,1113,1121,1128,1136,1153,1172,1181,1197,1245,1267; CH5_literature_positioning.md :7,224; CH6_value_honesty_roadmap.md :14,29,29,211,267,317,317,319,325,328,336,353,355,357,401,404,435,435,450,450,453,455,468,471,626,667,732,733,736,736,736,737,754,760,777,887,988,1057; CH7_averaging_edifice.md :206,356,357,373,375,377,378,379,380,382; CH8_design_space.md :6,107,176,367,376,376,398,399,399,401,505,505,597,632,678,810,818,844,845,864,897,897,982; CH9_certification.md :43,128,209,244,251,251,252,252,253,253,253,254,254,255,255,256,256,257,257,258,258,261,309,313,349,366,406,406,428,433,457,458,458,473,475,479,479,588,622,631,689; CH_REF.md :17,46,108,109,172,173,174,175,177,178,181,182,183,185,201,215,306
 
 ### F2.REPR
 - gates: G0, G1, G6
-- nodes: C49, S-5F, ROUTE-B, C51, C59
-- ledger: C49, C51, C59
-- findings critical (1): plan:representation-ladder-3d-counterpart-no-named-d6-step
-- findings non-critical (2): theory:s5f-path-a-freevortex-stratified-gap, plan:nasa-3d-moc-tools-adjudication-not-landed
+- nodes: C49, S-5F, ROUTE-B, C51, C59, C60, C57, C58
+- ledger: C49, C51, C57, C58, C59, C60
+- findings non-critical (2): swirl5f:c8-cj-locus-naming-approximate, theory:s5f-path-a-freevortex-stratified-gap
+- BLOCCATO: B-S5F [non-critical]
 - open claims (SCHEMA/CONJECTURE): S-5F [SCHEMA], S-N6SO [SCHEMA]
 - atlas mentions (283): ATLAS_TREE.md :297,404,455,465,479,497,633,655,705; CH10_data_contract.md :5,11,32,129,153,167,389,407,410,410,421,425,426,427,434,468,469,489,507,593,605,619,628,647,737,760,823,829; CH1_formulation_ladder.md :5,136,137,354,362,362,363,373,373,396,398,562,574,737,737,816,817,834; CH2_averaged_optimality.md :256,354,479,686,688,688,776; CH3_reduction_physics.md :9,160,196,211,241,295,348,390,397,400,408,412,416,421,430,537,577,636,637,643,763,777,782,785,786,851,852,852,852; CH4_machine_choices.md :54,93,99,147,228,242,258,273,283,350,358,360,366,367,370,452,453,453,464,464,465,467,468,468,469,473,476,479,484,488,551,581,595,596,602,619,677,713,735,757,784,800,841,849,1017,1022,1023,1045,1052,1076,1100,1113,1121,1128,1136,1153,1172,1181,1197,1245,1267; CH5_literature_positioning.md :7,224; CH6_value_honesty_roadmap.md :14,29,29,211,267,317,317,319,325,328,336,353,355,357,401,404,435,435,450,450,453,455,468,471,626,667,732,733,736,736,736,737,754,760,777,887,988,1057; CH7_averaging_edifice.md :206,356,357,373,375,377,378,379,380,382; CH8_design_space.md :6,107,176,367,376,376,398,399,399,401,505,505,597,632,678,810,818,844,845,864,897,897,982; CH9_certification.md :43,128,209,244,251,251,252,252,253,253,253,254,254,255,255,256,256,257,257,258,258,261,309,313,349,366,406,406,428,433,457,458,458,473,475,479,479,588,622,631,689; CH_REF.md :17,46,108,109,172,173,174,175,177,178,181,182,183,185,201,215,306
 
 ### F2.ENGINE
 - gates: G0, G1, G6
-- nodes: C50, C52, C53, CONTRACT-F1..F10-block, C12, C13, C14, C22, C45, C25, C26, C5, C6, C19, C20, C21, C18, C17, C28, C38, CLG, C11, C9, C10, C43, C41, C42, C56, C44, C31, C16, C33, C34, C35, C36, C39, C40, C27, C29, C30, C62, C1, C2, C7, C8, DELTA-CARRIER
-- ledger: C1, C2, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C16, C17, C18, C19, C20, C21, C22, C25, C26, C27, C28, C29, C30, C31, C33, C34, C35, C36, C38, C39, C40, C41, C42, C43, C44, C45, C46, C50, C52, C53, C56, C62
-- findings critical (16): engine-core:F5-underived-factors, margin-governor:G1-three-jump-channels, engine-core:F3-table-clamp-silent, variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip, cell-cert:certify-no-conditioning-qualification, thermo-bands:bands-not-topology-conditioned, mesh-amr:observed-order-not-at-band-sites, thermo-bands:band-composition-no-declared-rule, thermo-bands:table-box-no-margin-certificate, constraints:multiplier-rejector-missing, driver-nonsmooth:jacobi-scaling-frozen, constraints:margin-constraint-no-hess, cell-cert:seed-validity-radius-underived, cell-cert:wall-foot-search-fragile, bound-ladder:constraint-aware-rungs-missing, oracles:root-identity-replay-common-mode
-- findings non-critical (44): structure:monolithic-driver-module, engine-core:F7-legge-bracket-fallback, engine-core:F8-cert-scale-unit-mixing, registry-legacy:U3-R1-FLOOR-CROSSMATRIX, problem-statement:stage-a-audits-premised-not-implemented, mesh-amr:axis-process-unverified, driver-nonsmooth:hessian-no-rejector, parametrization:insertion-only-dof-ratchet, constraints:lip-equality-not-eliminated, oracles:sonic-strip-probe-missing-d49, audit-scert:xcdkat-record-numbers-drift, provenance:f7-design-vector-irrecoverable, audit-scert:h4-doctored-rejector-vacuous, theory:r8-r10-never-live-unilateral, carriers:control-surface-invariance-rejector-missing, engine:flow-branch-selection-unpinned, thermotab:fundamental-derivative-audit-missing, scope-pins:frozen-model-form-bar-at-champions, contract:data-class-function-space-unpinned, contract:datum-internal-rh-entropy-audits-missing, contract:datum-uncertainty-contract-missing, twin-falsifier:c3-mesh-refinement-unadjudicated, twin-falsifier:c6-outcome-i-never-reached, speed-cond:n1-l5-full-record-untriggered, speed-cond:n2-traced-screen-never-armed, speed-cond:n4-stall-stop-reopen-blocked, speed-cond:n8-colored-fd-hessian-ungated, speed-cond:q4-abort-fraction-multiplier-unmeasured, swirl-f2a:f-swirl-1-contract-field-missing, swirl-f2a:f-swirl-2-monitor-not-upgraded, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates, litreview:graft-a7-a8-hoff87-ctp-oracle-and-seed, litreview:graft-a15-a16-gradient-verification-and-thermo-loop, litreview:graft-a20-a29-a30-a32-a34-cyclefamily-contract-fields, litreview:graft-a21-a22-a23-speed-vectorization-and-checkpointing, litreview:graft-a24-a25-constraint-scan-and-coalescence-detector, litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking, contract:global-budget-closure-audits-missing, contract:chi-character-map-unknown-band-missing, contract:quasi-steady-apriori-admission-number-missing, contract:wave-asymmetry-demotion-rule-unpinned, contract:wall-corner-trace-audit-missing, monitors:m8-window-convergence-source-trace, census:liu-2022-binding-insertions
-- open claims (SCHEMA/CONJECTURE): C-D25U [SCHEMA], C-O33 [SCHEMA], T-T3-MAP [SCHEMA], S-LBML [SCHEMA], J-CT1 [CONJECTURE], S-XCONV [SCHEMA], S-D25U-U1 [SCHEMA], S-T0P [SCHEMA], T-T0P [SCHEMA], C-DCRX-CERT [SCHEMA]
+- nodes: C50, C52, C53, C54, CONTRACT-F1..F10-block, C12, C13, C14, C22, C45, C25, C26, C5, C6, C19, C20, C21, C18, C17, C28, C38, C47, CLG, C11, C9, C10, C43, C41, C42, C56, C44, C31, C48, C16, C32, C33, C34, C35, C36, C37, C39, C40, C27, C29, C30, C62, C1, C2, C7, C8, OBJ-DOM, DELTA-CARRIER
+- ledger: C1, C2, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C16, C17, C18, C19, C20, C21, C22, C25, C26, C27, C28, C29, C30, C31, C32, C33, C34, C35, C36, C37, C38, C39, C40, C41, C42, C43, C44, C45, C46, C47, C48, C50, C52, C53, C54, C56, C62
+- findings critical (39): variational-driver:objective-omits-throat-panel, engine-core:F5-underived-factors, parametrization:natural-BC-lip-bias, margin-governor:G1-three-jump-channels, pipeline:delta-carrier-F2-entry, record-path:cert-verdict-recorder-dependence, engine-core:F3-table-clamp-silent, variational-driver:cross-unit-and-slack-tolerances, variational-driver:negative-control-N2-missing, variational-driver:dv-roundtrip-defeats-stall-floor-and-base-skip, problem-statement:flatness-monitor-unarmed, driver-nonsmooth:no-B-stationarity-certificate, cell-cert:certify-no-conditioning-qualification, thermo-bands:bands-not-topology-conditioned, mesh-amr:observed-order-not-at-band-sites, thermo-bands:band-composition-no-declared-rule, thermo-bands:table-box-no-margin-certificate, constraints:multiplier-rejector-missing, driver-nonsmooth:ip-path-unadjudicated, driver-nonsmooth:jacobi-scaling-frozen, constraints:margin-constraint-no-hess, cell-cert:seed-validity-radius-underived, parametrization:basis-oscillation-axis-unadjudicated, parametrization:shape-monitors-uncomputed, cell-cert:wall-foot-search-fragile, oracles:a1-gp01-quasi1d-not-built, oracles:o31-common-mode-hole, bound-ladder:constraint-aware-rungs-missing, oracles:geno-tocnoz-wall-thrust-double-count, moc-audit:moc-01-signed-rhs-convergence-silent-exhaustion, moc-audit:moc-02-inverse-wall-position-loop-no-iteration-cap, moc-audit:moc-03-throat-expansion-silent-me-overwrite-on-exhaustion, moc-audit:moc-05-inverse-wall-foot-extrapolation-unclamped, moc-audit:ledger-c1-thermo-audit-outcome-bundle, moc-audit:ledger-d3-foot-clamp-correction-dead-safety-net, oracles:root-identity-replay-common-mode, oracles:o34-gradient-leg-unconsumed, carriers:x-o32-negative-control-uncertifiable-on-current-tree, twin-protocol:preregistration-2026-08-31
+- findings non-critical (62): test-suite:numeric-lint-scope-hole, engine:vmap-hessian-adjoint-divergence, engine:cross-lowering-gradient-floor, structure:monolithic-driver-module, foundations-U:U34-C0-bootstrap-circularity, engine-core:F7-legge-bracket-fallback, engine-core:F8-cert-scale-unit-mixing, registry-legacy:U3-R1-FLOOR-CROSSMATRIX, problem-statement:stage-a-audits-premised-not-implemented, mesh-amr:axis-process-unverified, constraints:mask-rung-freeze-granularity, constraints:mask-crop-lane-loss-unbounded, driver-nonsmooth:hessian-no-rejector, driver-nonsmooth:flip-segmentation-materiality, parametrization:insertion-only-dof-ratchet, parametrization:dense-hessian-truncation-unpriced, driver-nonsmooth:flip-event-log-omission, constraints:lip-equality-not-eliminated, oracles:sonic-strip-probe-missing-d49, audit-scert:xcdkat-record-numbers-drift, provenance:f7-design-vector-irrecoverable, audit-scert:anti-remint-evasion-classes, audit-scert:ondemand-no-run-artifacts, theory:r8-r10-never-live-unilateral, carriers:control-surface-invariance-rejector-missing, engine:flow-branch-selection-unpinned, thermotab:fundamental-derivative-audit-missing, scope-pins:frozen-model-form-bar-at-champions, contract:data-class-function-space-unpinned, contract:datum-internal-rh-entropy-audits-missing, contract:datum-uncertainty-contract-missing, twin-falsifier:c3-mesh-refinement-unadjudicated, twin-falsifier:c6-outcome-i-never-reached, speed-cond:n1-l5-full-record-untriggered, speed-cond:n2-traced-screen-never-armed, speed-cond:n4-stall-stop-reopen-blocked, speed-cond:n8-colored-fd-hessian-ungated, speed-cond:q4-abort-fraction-multiplier-unmeasured, swirl-f2a:f-swirl-1-contract-field-missing, swirl-f2a:f-swirl-2-monitor-not-upgraded, swirl-f2a:angular-momentum-audit-row-missing, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates, litreview:graft-a7-a8-hoff87-ctp-oracle-and-seed, litreview:graft-a15-a16-gradient-verification-and-thermo-loop, litreview:graft-a20-a29-a30-a32-a34-cyclefamily-contract-fields, litreview:graft-a21-a22-a23-speed-vectorization-and-checkpointing, litreview:graft-a24-a25-constraint-scan-and-coalescence-detector, litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking, moc-audit:moc-04-ch16-mass-crossing-no-diagnostic-on-miss, moc-audit:moc-06-icor-tolerance-uneconomical-vs-book, moc-audit:moc-07-no-fold-crossing-monitor, moc-audit:moc-09-extension-fan-point-index-shift-unverified, contract:global-budget-closure-audits-missing, contract:phase-gauge-jitter-alignment-unpinned, contract:chi-character-map-unknown-band-missing, contract:quasi-steady-apriori-admission-number-missing, contract:wave-asymmetry-demotion-rule-unpinned, contract:wall-corner-trace-audit-missing, monitors:m8-window-convergence-source-trace, census:liu-2022-binding-insertions, process:orchestrator-acts-file-carrier-sweep, methodology:single-family-verification-common-cause
+- BLOCCATO: B-ADR [non-critical], B9 [non-critical], B17 [non-critical], B-GENO [non-critical], B-NASARES [non-critical], B-UNO [non-critical], B-SREVIEW [critical]
+- open claims (SCHEMA/CONJECTURE): C-D25U [SCHEMA], C-O33 [SCHEMA], T-T3-MAP [SCHEMA], S-S1U [SCHEMA], S-LBML [SCHEMA], J-CT1 [CONJECTURE], S-XCONV [SCHEMA], S-D25U-U1 [SCHEMA], S-T0P [SCHEMA], C-XINJ [SCHEMA], S-T0P-G12 [SCHEMA], T-T0P [SCHEMA], X-T0P [SCHEMA], S-SDI [SCHEMA], C-XBVP-aprime [SCHEMA], C-DCRX-CERT [SCHEMA]
 - atlas mentions (283): ATLAS_TREE.md :297,404,455,465,479,497,633,655,705; CH10_data_contract.md :5,11,32,129,153,167,389,407,410,410,421,425,426,427,434,468,469,489,507,593,605,619,628,647,737,760,823,829; CH1_formulation_ladder.md :5,136,137,354,362,362,363,373,373,396,398,562,574,737,737,816,817,834; CH2_averaged_optimality.md :256,354,479,686,688,688,776; CH3_reduction_physics.md :9,160,196,211,241,295,348,390,397,400,408,412,416,421,430,537,577,636,637,643,763,777,782,785,786,851,852,852,852; CH4_machine_choices.md :54,93,99,147,228,242,258,273,283,350,358,360,366,367,370,452,453,453,464,464,465,467,468,468,469,473,476,479,484,488,551,581,595,596,602,619,677,713,735,757,784,800,841,849,1017,1022,1023,1045,1052,1076,1100,1113,1121,1128,1136,1153,1172,1181,1197,1245,1267; CH5_literature_positioning.md :7,224; CH6_value_honesty_roadmap.md :14,29,29,211,267,317,317,319,325,328,336,353,355,357,401,404,435,435,450,450,453,455,468,471,626,667,732,733,736,736,736,737,754,760,777,887,988,1057; CH7_averaging_edifice.md :206,356,357,373,375,377,378,379,380,382; CH8_design_space.md :6,107,176,367,376,376,398,399,399,401,505,505,597,632,678,810,818,844,845,864,897,897,982; CH9_certification.md :43,128,209,244,251,251,252,252,253,253,253,254,254,255,255,256,256,257,257,258,258,261,309,313,349,366,406,406,428,433,457,458,458,473,475,479,479,588,622,631,689; CH_REF.md :17,46,108,109,172,173,174,175,177,178,181,182,183,185,201,215,306
 
 ### F2.M-RED
@@ -331,7 +383,6 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - nodes: M-RED, R22F-FORCHETTA, OPTSHIFT
 - ledger: —
 - findings critical (2): theory:r22f-optimum-shift-gradient-route, pipeline:m-red-campaign
-- BLOCCATO: B-S5F [non-critical]
 - open claims (SCHEMA/CONJECTURE): C-R22F-DISC [SCHEMA], C-RED-SBV [SCHEMA], T-DISC-3 [SCHEMA], T-DISC-4 [SCHEMA], T-RED-2G [SCHEMA]
 - atlas mentions (283): ATLAS_TREE.md :297,404,455,465,479,497,633,655,705; CH10_data_contract.md :5,11,32,129,153,167,389,407,410,410,421,425,426,427,434,468,469,489,507,593,605,619,628,647,737,760,823,829; CH1_formulation_ladder.md :5,136,137,354,362,362,363,373,373,396,398,562,574,737,737,816,817,834; CH2_averaged_optimality.md :256,354,479,686,688,688,776; CH3_reduction_physics.md :9,160,196,211,241,295,348,390,397,400,408,412,416,421,430,537,577,636,637,643,763,777,782,785,786,851,852,852,852; CH4_machine_choices.md :54,93,99,147,228,242,258,273,283,350,358,360,366,367,370,452,453,453,464,464,465,467,468,468,469,473,476,479,484,488,551,581,595,596,602,619,677,713,735,757,784,800,841,849,1017,1022,1023,1045,1052,1076,1100,1113,1121,1128,1136,1153,1172,1181,1197,1245,1267; CH5_literature_positioning.md :7,224; CH6_value_honesty_roadmap.md :14,29,29,211,267,317,317,319,325,328,336,353,355,357,401,404,435,435,450,450,453,455,468,471,626,667,732,733,736,736,736,737,754,760,777,887,988,1057; CH7_averaging_edifice.md :206,356,357,373,375,377,378,379,380,382; CH8_design_space.md :6,107,176,367,376,376,398,399,399,401,505,505,597,632,678,810,818,844,845,864,897,897,982; CH9_certification.md :43,128,209,244,251,251,252,252,253,253,253,254,254,255,255,256,256,257,257,258,258,261,309,313,349,366,406,406,428,433,457,458,458,473,475,479,479,588,622,631,689; CH_REF.md :17,46,108,109,172,173,174,175,177,178,181,182,183,185,201,215,306
 
@@ -339,7 +390,7 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - gates: G0, G1, G6
 - nodes: R22-CFD
 - ledger: —
-- findings non-critical (3): swirl-f2a:angular-momentum-audit-row-missing, contract:design-sweep-invariance-falsifier-missing, contract:phase-gauge-jitter-alignment-unpinned
+- findings non-critical (1): contract:design-sweep-invariance-falsifier-missing
 - BLOCCATO: B-CFD1 [critical]
 - atlas mentions (283): ATLAS_TREE.md :297,404,455,465,479,497,633,655,705; CH10_data_contract.md :5,11,32,129,153,167,389,407,410,410,421,425,426,427,434,468,469,489,507,593,605,619,628,647,737,760,823,829; CH1_formulation_ladder.md :5,136,137,354,362,362,363,373,373,396,398,562,574,737,737,816,817,834; CH2_averaged_optimality.md :256,354,479,686,688,688,776; CH3_reduction_physics.md :9,160,196,211,241,295,348,390,397,400,408,412,416,421,430,537,577,636,637,643,763,777,782,785,786,851,852,852,852; CH4_machine_choices.md :54,93,99,147,228,242,258,273,283,350,358,360,366,367,370,452,453,453,464,464,465,467,468,468,469,473,476,479,484,488,551,581,595,596,602,619,677,713,735,757,784,800,841,849,1017,1022,1023,1045,1052,1076,1100,1113,1121,1128,1136,1153,1172,1181,1197,1245,1267; CH5_literature_positioning.md :7,224; CH6_value_honesty_roadmap.md :14,29,29,211,267,317,317,319,325,328,336,353,355,357,401,404,435,435,450,450,453,455,468,471,626,667,732,733,736,736,736,737,754,760,777,887,988,1057; CH7_averaging_edifice.md :206,356,357,373,375,377,378,379,380,382; CH8_design_space.md :6,107,176,367,376,376,398,399,399,401,505,505,597,632,678,810,818,844,845,864,897,897,982; CH9_certification.md :43,128,209,244,251,251,252,252,253,253,253,254,254,255,255,256,256,257,257,258,258,261,309,313,349,366,406,406,428,433,457,458,458,473,475,479,479,588,622,631,689; CH_REF.md :17,46,108,109,172,173,174,175,177,178,181,182,183,185,201,215,306
 
@@ -354,7 +405,7 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - gates: G1
 - nodes: H20, C61
 - ledger: C7, C61
-- findings critical (4): litreview:residue-r6-r29-corner-class-and-terminal-face-cone, litreview:residue-r8-r23-base-pressure-pb2-blocking, plume:free-boundary-solve-mechanics-missing, plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug
+- findings critical (5): plume:vortex-sheet-stability-unchecked, litreview:residue-r6-r29-corner-class-and-terminal-face-cone, litreview:residue-r8-r23-base-pressure-pb2-blocking, plume:free-boundary-solve-mechanics-missing, plan:h20-c61-registry-homing-f4b-vs-d6-f3-plug
 - findings non-critical (1): parametrization:insertion-only-dof-ratchet
 - open claims (SCHEMA/CONJECTURE): C-HT4 [SCHEMA]
 - atlas mentions (14): ATLAS_TREE.md :655; CH6_value_honesty_roadmap.md :354,354,357,737,1007,1057; CH8_design_space.md :382,385,387,398,406,983; CH9_certification.md :128
@@ -363,14 +414,14 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - gates: G1
 - nodes: D-44
 - ledger: —
-- findings critical (2): pipeline:Q3-certifiability-composition, litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer
+- findings critical (3): pipeline:Q3-certifiability-composition, litreview:residue-r22-r27-disentanglement-experiment-and-adjoint-weight-transfer, twin-protocol:preregistration-2026-08-31
 - atlas mentions (14): ATLAS_TREE.md :655; CH6_value_honesty_roadmap.md :354,354,357,737,1007,1057; CH8_design_space.md :382,385,387,398,406,983; CH9_certification.md :128
 
 ### F3.TOURNAMENT
 - gates: G1
 - nodes: —
 - ledger: —
-- findings non-critical (1): plan:full-envelope-tournament-no-named-d6-step
+- findings non-critical (1): phase-diagrams:eps-tolerance-omits-quadrature-bar
 - open claims (SCHEMA/CONJECTURE): J-OP11 [CONJECTURE]
 - atlas mentions (14): ATLAS_TREE.md :655; CH6_value_honesty_roadmap.md :354,354,357,737,1007,1057; CH8_design_space.md :382,385,387,398,406,983; CH9_certification.md :128
 
@@ -378,15 +429,18 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 - gates: —
 - nodes: C12
 - ledger: C12
-- findings non-critical (7): registry-legacy:U3-R1-FLOOR-CROSSMATRIX, mesh-amr:start-line-accuracy-rejector-missing, theory:r8-r10-never-live-unilateral, plume:vortex-sheet-stability-unchecked, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates, litreview:graft-a24-a25-constraint-scan-and-coalescence-detector, litreview:residue-r16-f4b-contact-front-open-with-acceptance-test
-- open claims (SCHEMA/CONJECTURE): C-MAJDA [SCHEMA], C-XBVP [SCHEMA], S-D25U-U34 [SCHEMA], S-ACFR [SCHEMA], C-XINJ [SCHEMA], C-WSF [SCHEMA], C-XBVP-aprime [SCHEMA]
+- findings critical (1): plume:vortex-sheet-stability-unchecked
+- findings non-critical (7): registry-legacy:U3-R1-FLOOR-CROSSMATRIX, mesh-amr:start-line-accuracy-rejector-missing, theory:r8-r10-never-live-unilateral, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates, litreview:graft-a24-a25-constraint-scan-and-coalescence-detector, litreview:residue-r16-f4b-contact-front-open-with-acceptance-test, question:b1-quarantine-shmyglevskii-6-vs-G
+- open claims (SCHEMA/CONJECTURE): C-MAJDA [SCHEMA], C-XBVP [SCHEMA], S-D25U-U34 [SCHEMA], S-ACFR [SCHEMA], C-WSF [SCHEMA]
 - atlas mentions (43): ATLAS_TREE.md :655; CH10_data_contract.md :170,422,648; CH4_machine_choices.md :94,467; CH6_value_honesty_roadmap.md :118,351,352,354,357,360,441,464,465,736,736,737,760,947,977,978,1003,1057; CH7_averaging_edifice.md :380,383,410; CH8_design_space.md :193,357,361,399,408,429,500,548,689,708,875,982; CH_REF.md :184,184; LINEAGE_LEDGER.md :91,151
 
 ### F5
 - gates: G1, G2, G3, G4, G6
 - nodes: C12, DUTY-10
 - ledger: C12, C17
-- findings non-critical (10): registry-legacy:GBE-CONCAVITY-NEAR-FLOOR, problem-statement:flatness-monitor-unarmed, problem-statement:stage-a-audits-premised-not-implemented, problem-statement:pv-bars-no-evaluator, cycle-avg-machinery:F1-dual-route-tautology, cycle-avg-machinery:F6-silent-clamp-unchoked, mesh-amr:start-line-accuracy-rejector-missing, plume:vortex-sheet-stability-unchecked, litreview:graft-a21-a22-a23-speed-vectorization-and-checkpointing, litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking
+- findings critical (1): plume:vortex-sheet-stability-unchecked
+- findings non-critical (16): registry-legacy:GBE-CONCAVITY-NEAR-FLOOR, problem-statement:stage-a-audits-premised-not-implemented, problem-statement:pv-bars-no-evaluator, cycle-avg-machinery:F1-dual-route-tautology, cycle-avg-machinery:F2-gamma-ladder-staleness, cycle-avg-machinery:F3-bars-not-all-derived, cycle-avg-machinery:F4-matched-fixedpoint-sensitivity, cycle-avg-machinery:F6-silent-clamp-unchoked, phase-diagrams:oracle-primary-never-confronted, phase-diagrams:gauge-hypothesis-no-rejector, phase-diagrams:ka-self-inflating-tolerance, phase-diagrams:interp-bar-covers-only-ceiling-channel, mesh-amr:start-line-accuracy-rejector-missing, litreview:graft-a21-a22-a23-speed-vectorization-and-checkpointing, litreview:residue-r20-r21-r24-r25-r26-provenance-eap-doctrine-choking, swirl5f:flag3-tau-n-definition-unpinned
+- BLOCCATO: B-NASARES [non-critical]
 - open claims (SCHEMA/CONJECTURE): T-T3-MAP [SCHEMA], J-CT1 [CONJECTURE], C-P4RZ [SCHEMA], S-GBE [SCHEMA], C-HEXO [SCHEMA]
 - atlas mentions (24): ATLAS_TREE.md :319; CH1_formulation_ladder.md :362,737; CH2_averaged_optimality.md :150,278; CH3_reduction_physics.md :445,453,584,651,881,882,923,962; CH4_machine_choices.md :1076; CH6_value_honesty_roadmap.md :267,309,312,389,479,736,736,760,887; CH9_certification.md :128
 
@@ -406,8 +460,8 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 
 ## 7. Counts (measured by this tool)
 
-- phases 8 (+PAPER track) / gates 7 / graph nodes 79 / ledger rows 62 / OPEN findings 214 (critical 45, non-critical 125, paper 44) / BLOCCATO rows 19 / atlas mentions 370
+- phases 8 (+PAPER track) / gates 7 / graph nodes 79 / ledger rows 62 / OPEN findings 210 (critical 48, non-critical 118, paper 44) / BLOCCATO rows 22 / atlas mentions 370
 - claims registry 163 rows: 37 open-class (SCHEMA/CONJECTURE) placed-or-OUT; THEOREM/THEOREM*/PRACTICE = 126 closed statements (OUT by class, indexed by lint xv)
-- overrides 89 / OUT 73
+- overrides 96 / OUT 65
 
-<!-- roadmap-derive content-hash: 388ec2fa16dce7b4fac261fa5b7ccfca89bd9b358634282df7bfc772996f2695 -->
+<!-- roadmap-derive content-hash: 9e39df32252c637c31d353a9715274a6e12c07ce5f909c2d408b1eb2dcac9ab0 -->

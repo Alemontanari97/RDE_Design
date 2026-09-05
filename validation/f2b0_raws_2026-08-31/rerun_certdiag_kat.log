@@ -1,0 +1,30 @@
+== [X-CDKAT] certdiag KAT + S20 retro-validation (JAX 0.11.0) ==
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=138 (engine entry #2) [M5c bucket row]
+-- baseline record: N_NEWTON = 30, cert_worst = 1.813425e-01 (4343 cells, 18.6 s) --
+  [PASS] baseline design is HEALTHY (cert_worst <= 1; the KAT precondition)
+-- KAT-1: N_NEWTON = 3 on the healthy design --
+  [colexec] per-column executor built: Lpad=39 (engine entry #3) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=138 (engine entry #4) [M5c bucket row]
+  cert_worst: 1.813425e-01 -> 2.307537e+05 (x1.272e+06)
+  [PASS] KAT-1: lowered cap STRICTLY worsens cert_worst (the knob bites)
+  (informational: starved record uncertifiable = True)
+-- KAT-2: N_NEWTON = 300 (the S20 certdiag setting) --
+  [colexec] per-column executor built: Lpad=39 (engine entry #5) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=138 (engine entry #6) [M5c bucket row]
+  cert_worst: 1.81342476338219982e-01 vs 1.81342476338219982e-01
+  [PASS] KAT-2: raised cap BIT-IDENTICAL on converged cells
+-- KAT-3: cert_diag jit replay (C2-F2 rejector) --
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 98, 71, 75, 38)  [M-B churn row]
+  base-point replay worst step/bound = 2.315e-01
+  [PASS] KAT-3a: base-point replay certified (worst <= 1)
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 98, 71, 75, 38)  [M-B churn row]
+  perturbed replay, cap 0 (stale seeds verbatim): worst step/bound = 6.062e+08
+  [PASS] KAT-3b: starved perturbed replay FIRES (worst > 1) — the replay rejector can reject
+  perturbed replay, cap 30: worst step/bound = 2.315e-01
+  [PASS] KAT-3c: same replay certifies at the default cap (the firing is the CAP, not the perturbation)
+  [colexec] per-column executor built: Lpad=39 (engine entry #7) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=138 (engine entry #8) [M5c bucket row]
+  [PASS] N-CTRL: default-cap re-record bit-identical (deterministic instrument)
+RETRO-VALIDATION: the N_NEWTON knob BITES through the S20 binding chain (KAT-1) and is invariant only on converged cells (KAT-2) => the S20 8/8 GENUINE bit-identity under 30 -> 300 cannot be a non-biting-knob artifact: the 'trip-cap hypothesis DEAD' adjudication stands RETRO-VALIDATED.
+VERDICT: PASS

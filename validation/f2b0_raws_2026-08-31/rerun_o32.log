@@ -1,0 +1,330 @@
+fan start (Me target 2.613938, mdot 42475.5230)
+arc col 1 angle 0.5000 deg M_ax 1.408367 (Me 2.613938) Nv 1 j2 41
+arc col 2 angle 1.0000 deg M_ax 1.470867 (Me 2.613938) Nv 1 j2 42
+arc col 3 angle 1.5000 deg M_ax 1.532138 (Me 2.613938) Nv 1 j2 43
+arc col 4 angle 2.0000 deg M_ax 1.590708 (Me 2.613938) Nv 1 j2 44
+arc col 5 angle 2.5000 deg M_ax 1.647698 (Me 2.613938) Nv 1 j2 45
+arc col 6 angle 3.0000 deg M_ax 1.703453 (Me 2.613938) Nv 1 j2 46
+arc col 7 angle 3.5000 deg M_ax 1.758294 (Me 2.613938) Nv 1 j2 47
+arc col 8 angle 4.0000 deg M_ax 1.812445 (Me 2.613938) Nv 1 j2 48
+arc col 9 angle 4.5000 deg M_ax 1.866088 (Me 2.613938) Nv 1 j2 49
+arc col 10 angle 5.0000 deg M_ax 1.919369 (Me 2.613938) Nv 1 j2 50
+arc col 11 angle 5.5000 deg M_ax 1.972409 (Me 2.613938) Nv 1 j2 51
+arc col 12 angle 6.0000 deg M_ax 2.025312 (Me 2.613938) Nv 1 j2 52
+arc col 13 angle 6.5000 deg M_ax 2.078168 (Me 2.613938) Nv 1 j2 53
+arc col 14 angle 7.0000 deg M_ax 2.131058 (Me 2.613938) Nv 1 j2 54
+arc col 15 angle 7.5000 deg M_ax 2.184110 (Me 2.613938) Nv 2 j2 55
+arc col 16 angle 8.0000 deg M_ax 2.237449 (Me 2.613938) Nv 2 j2 56
+arc col 17 angle 8.5000 deg M_ax 2.291000 (Me 2.613938) Nv 2 j2 57
+arc col 18 angle 9.0000 deg M_ax 2.344844 (Me 2.613938) Nv 2 j2 58
+arc col 19 angle 9.5000 deg M_ax 2.399035 (Me 2.613938) Nv 2 j2 59
+arc col 20 angle 10.0000 deg M_ax 2.453628 (Me 2.613938) Nv 2 j2 60
+arc col 21 angle 10.5000 deg M_ax 2.508675 (Me 2.613938) Nv 2 j2 61
+arc col 22 angle 11.0000 deg M_ax 2.564229 (Me 2.613938) Nv 2 j2 62
+arc col 23 angle 11.5000 deg M_ax 2.620340 (Me 2.613938) Nv 2 j2 63
+arc col 24 angle 11.4429 deg M_ax 2.613902 (Me 2.613938) Nv 2 j2 63
+arc col 25 angle 11.4433 deg M_ax 2.613938 (Me 2.613938) Nv 2 j2 63
+straightening: 40 columns from i_K=46
+fan start (Me target 2.613938, mdot 42475.5230)
+arc col 1 angle 0.5000 deg M_ax 1.408367 (Me 2.613938) Nv 1 j2 41
+arc col 2 angle 1.0000 deg M_ax 1.470867 (Me 2.613938) Nv 1 j2 42
+arc col 3 angle 1.5000 deg M_ax 1.532138 (Me 2.613938) Nv 1 j2 43
+arc col 4 angle 2.0000 deg M_ax 1.590708 (Me 2.613938) Nv 1 j2 44
+arc col 5 angle 2.5000 deg M_ax 1.647698 (Me 2.613938) Nv 1 j2 45
+arc col 6 angle 3.0000 deg M_ax 1.703453 (Me 2.613938) Nv 1 j2 46
+arc col 7 angle 3.5000 deg M_ax 1.758294 (Me 2.613938) Nv 1 j2 47
+arc col 8 angle 4.0000 deg M_ax 1.812445 (Me 2.613938) Nv 1 j2 48
+arc col 9 angle 4.5000 deg M_ax 1.866088 (Me 2.613938) Nv 1 j2 49
+arc col 10 angle 5.0000 deg M_ax 1.919369 (Me 2.613938) Nv 1 j2 50
+arc col 11 angle 5.5000 deg M_ax 1.972409 (Me 2.613938) Nv 1 j2 51
+arc col 12 angle 6.0000 deg M_ax 2.025312 (Me 2.613938) Nv 1 j2 52
+arc col 13 angle 6.5000 deg M_ax 2.078168 (Me 2.613938) Nv 1 j2 53
+arc col 14 angle 7.0000 deg M_ax 2.131058 (Me 2.613938) Nv 1 j2 54
+arc col 15 angle 7.5000 deg M_ax 2.184110 (Me 2.613938) Nv 2 j2 55
+arc col 16 angle 8.0000 deg M_ax 2.237449 (Me 2.613938) Nv 2 j2 56
+arc col 17 angle 8.5000 deg M_ax 2.291000 (Me 2.613938) Nv 2 j2 57
+arc col 18 angle 9.0000 deg M_ax 2.344844 (Me 2.613938) Nv 2 j2 58
+arc col 19 angle 9.5000 deg M_ax 2.399035 (Me 2.613938) Nv 2 j2 59
+arc col 20 angle 10.0000 deg M_ax 2.453628 (Me 2.613938) Nv 2 j2 60
+arc col 21 angle 10.5000 deg M_ax 2.508675 (Me 2.613938) Nv 2 j2 61
+arc col 22 angle 11.0000 deg M_ax 2.564229 (Me 2.613938) Nv 2 j2 62
+arc col 23 angle 11.5000 deg M_ax 2.620340 (Me 2.613938) Nv 2 j2 63
+arc col 24 angle 11.4429 deg M_ax 2.613902 (Me 2.613938) Nv 2 j2 63
+arc col 25 angle 11.4433 deg M_ax 2.613938 (Me 2.613938) Nv 2 j2 63
+straightening: 40 columns from i_K=46
+fan start (Me target 2.613937, mdot 42475.5272)
+arc col 1 angle 0.2500 deg M_ax 1.374028 (Me 2.613937) Nv 1 j2 81
+arc col 2 angle 0.5000 deg M_ax 1.407007 (Me 2.613937) Nv 1 j2 82
+arc col 3 angle 0.7500 deg M_ax 1.440197 (Me 2.613937) Nv 1 j2 83
+arc col 4 angle 1.0000 deg M_ax 1.471817 (Me 2.613937) Nv 1 j2 84
+arc col 5 angle 1.2500 deg M_ax 1.502621 (Me 2.613937) Nv 1 j2 85
+arc col 6 angle 1.5000 deg M_ax 1.532706 (Me 2.613937) Nv 1 j2 86
+arc col 7 angle 1.7500 deg M_ax 1.562217 (Me 2.613937) Nv 1 j2 87
+arc col 8 angle 2.0000 deg M_ax 1.591244 (Me 2.613937) Nv 1 j2 88
+arc col 9 angle 2.2500 deg M_ax 1.619862 (Me 2.613937) Nv 1 j2 89
+arc col 10 angle 2.5000 deg M_ax 1.648129 (Me 2.613937) Nv 1 j2 90
+arc col 11 angle 2.7500 deg M_ax 1.676093 (Me 2.613937) Nv 1 j2 91
+arc col 12 angle 3.0000 deg M_ax 1.703796 (Me 2.613937) Nv 1 j2 92
+arc col 13 angle 3.2500 deg M_ax 1.731271 (Me 2.613937) Nv 1 j2 93
+arc col 14 angle 3.5000 deg M_ax 1.758551 (Me 2.613937) Nv 1 j2 94
+arc col 15 angle 3.7500 deg M_ax 1.785700 (Me 2.613937) Nv 2 j2 95
+arc col 16 angle 4.0000 deg M_ax 1.812701 (Me 2.613937) Nv 2 j2 96
+arc col 17 angle 4.2500 deg M_ax 1.839575 (Me 2.613937) Nv 2 j2 97
+arc col 18 angle 4.5000 deg M_ax 1.866342 (Me 2.613937) Nv 2 j2 98
+arc col 19 angle 4.7500 deg M_ax 1.893019 (Me 2.613937) Nv 2 j2 99
+arc col 20 angle 5.0000 deg M_ax 1.919622 (Me 2.613937) Nv 2 j2 100
+arc col 21 angle 5.2500 deg M_ax 1.946166 (Me 2.613937) Nv 2 j2 101
+arc col 22 angle 5.5000 deg M_ax 1.972664 (Me 2.613937) Nv 2 j2 102
+arc col 23 angle 5.7500 deg M_ax 1.999127 (Me 2.613937) Nv 2 j2 103
+arc col 24 angle 6.0000 deg M_ax 2.025569 (Me 2.613937) Nv 2 j2 104
+arc col 25 angle 6.2500 deg M_ax 2.052000 (Me 2.613937) Nv 2 j2 105
+arc col 26 angle 6.5000 deg M_ax 2.078430 (Me 2.613937) Nv 2 j2 106
+arc col 27 angle 6.7500 deg M_ax 2.104868 (Me 2.613937) Nv 2 j2 107
+arc col 28 angle 7.0000 deg M_ax 2.131325 (Me 2.613937) Nv 2 j2 108
+arc col 29 angle 7.2500 deg M_ax 2.157809 (Me 2.613937) Nv 2 j2 109
+arc col 30 angle 7.5000 deg M_ax 2.184360 (Me 2.613937) Nv 3 j2 110
+arc col 31 angle 7.7500 deg M_ax 2.210966 (Me 2.613937) Nv 3 j2 111
+arc col 32 angle 8.0000 deg M_ax 2.237620 (Me 2.613937) Nv 3 j2 112
+arc col 33 angle 8.2500 deg M_ax 2.264331 (Me 2.613937) Nv 3 j2 113
+arc col 34 angle 8.5000 deg M_ax 2.291109 (Me 2.613937) Nv 3 j2 114
+arc col 35 angle 8.7500 deg M_ax 2.317959 (Me 2.613937) Nv 3 j2 115
+arc col 36 angle 9.0000 deg M_ax 2.344890 (Me 2.613937) Nv 3 j2 116
+arc col 37 angle 9.2500 deg M_ax 2.371907 (Me 2.613937) Nv 3 j2 117
+arc col 38 angle 9.5000 deg M_ax 2.399019 (Me 2.613937) Nv 3 j2 118
+arc col 39 angle 9.7500 deg M_ax 2.426231 (Me 2.613937) Nv 3 j2 119
+arc col 40 angle 10.0000 deg M_ax 2.453550 (Me 2.613937) Nv 3 j2 120
+arc col 41 angle 10.2500 deg M_ax 2.480983 (Me 2.613937) Nv 3 j2 121
+arc col 42 angle 10.5000 deg M_ax 2.508537 (Me 2.613937) Nv 3 j2 122
+arc col 43 angle 10.7500 deg M_ax 2.536216 (Me 2.613937) Nv 3 j2 123
+arc col 44 angle 11.0000 deg M_ax 2.564029 (Me 2.613937) Nv 3 j2 124
+arc col 45 angle 11.2500 deg M_ax 2.591981 (Me 2.613937) Nv 3 j2 125
+arc col 46 angle 11.5000 deg M_ax 2.620107 (Me 2.613937) Nv 4 j2 126
+arc col 47 angle 11.4452 deg M_ax 2.613943 (Me 2.613937) Nv 4 j2 126
+straightening: 80 columns from i_K=88
+fan start (Me target 2.613937, mdot 42475.5274)
+arc col 1 angle 0.1667 deg M_ax 1.361473 (Me 2.613937) Nv 1 j2 121
+arc col 2 angle 0.3333 deg M_ax 1.384202 (Me 2.613937) Nv 1 j2 122
+arc col 3 angle 0.5000 deg M_ax 1.407412 (Me 2.613937) Nv 1 j2 123
+arc col 4 angle 0.6667 deg M_ax 1.429450 (Me 2.613937) Nv 1 j2 124
+arc col 5 angle 0.8333 deg M_ax 1.450949 (Me 2.613937) Nv 1 j2 125
+arc col 6 angle 1.0000 deg M_ax 1.471954 (Me 2.613937) Nv 1 j2 126
+arc col 7 angle 1.1667 deg M_ax 1.492564 (Me 2.613937) Nv 1 j2 127
+arc col 8 angle 1.3333 deg M_ax 1.512836 (Me 2.613937) Nv 1 j2 128
+arc col 9 angle 1.5000 deg M_ax 1.532816 (Me 2.613937) Nv 1 j2 129
+arc col 10 angle 1.6667 deg M_ax 1.552540 (Me 2.613937) Nv 1 j2 130
+arc col 11 angle 1.8333 deg M_ax 1.572036 (Me 2.613937) Nv 1 j2 131
+arc col 12 angle 2.0000 deg M_ax 1.591330 (Me 2.613937) Nv 1 j2 132
+arc col 13 angle 2.1667 deg M_ax 1.610442 (Me 2.613937) Nv 1 j2 133
+arc col 14 angle 2.3333 deg M_ax 1.629391 (Me 2.613937) Nv 2 j2 134
+arc col 15 angle 2.5000 deg M_ax 1.648212 (Me 2.613937) Nv 2 j2 135
+arc col 16 angle 2.6667 deg M_ax 1.666895 (Me 2.613937) Nv 2 j2 136
+arc col 17 angle 2.8333 deg M_ax 1.685457 (Me 2.613937) Nv 2 j2 137
+arc col 18 angle 3.0000 deg M_ax 1.703907 (Me 2.613937) Nv 2 j2 138
+arc col 19 angle 3.1667 deg M_ax 1.722256 (Me 2.613937) Nv 2 j2 139
+arc col 20 angle 3.3333 deg M_ax 1.740513 (Me 2.613937) Nv 2 j2 140
+arc col 21 angle 3.5000 deg M_ax 1.758688 (Me 2.613937) Nv 2 j2 141
+arc col 22 angle 3.6667 deg M_ax 1.776786 (Me 2.613937) Nv 2 j2 142
+arc col 23 angle 3.8333 deg M_ax 1.794817 (Me 2.613937) Nv 2 j2 143
+arc col 24 angle 4.0000 deg M_ax 1.812785 (Me 2.613937) Nv 2 j2 144
+arc col 25 angle 4.1667 deg M_ax 1.830698 (Me 2.613937) Nv 2 j2 145
+arc col 26 angle 4.3333 deg M_ax 1.848561 (Me 2.613937) Nv 2 j2 146
+arc col 27 angle 4.5000 deg M_ax 1.866379 (Me 2.613937) Nv 2 j2 147
+arc col 28 angle 4.6667 deg M_ax 1.884157 (Me 2.613937) Nv 2 j2 148
+arc col 29 angle 4.8333 deg M_ax 1.901908 (Me 2.613937) Nv 3 j2 149
+arc col 30 angle 5.0000 deg M_ax 1.919643 (Me 2.613937) Nv 3 j2 150
+arc col 31 angle 5.1667 deg M_ax 1.937347 (Me 2.613937) Nv 3 j2 151
+arc col 32 angle 5.3333 deg M_ax 1.955029 (Me 2.613937) Nv 3 j2 152
+arc col 33 angle 5.5000 deg M_ax 1.972692 (Me 2.613937) Nv 3 j2 153
+arc col 34 angle 5.6667 deg M_ax 1.990340 (Me 2.613937) Nv 3 j2 154
+arc col 35 angle 5.8333 deg M_ax 2.007976 (Me 2.613937) Nv 3 j2 155
+arc col 36 angle 6.0000 deg M_ax 2.025605 (Me 2.613937) Nv 3 j2 156
+arc col 37 angle 6.1667 deg M_ax 2.043228 (Me 2.613937) Nv 3 j2 157
+arc col 38 angle 6.3333 deg M_ax 2.060849 (Me 2.613937) Nv 3 j2 158
+arc col 39 angle 6.5000 deg M_ax 2.078472 (Me 2.613937) Nv 3 j2 159
+arc col 40 angle 6.6667 deg M_ax 2.096098 (Me 2.613937) Nv 3 j2 160
+arc col 41 angle 6.8333 deg M_ax 2.113732 (Me 2.613937) Nv 3 j2 161
+arc col 42 angle 7.0000 deg M_ax 2.131374 (Me 2.613937) Nv 3 j2 162
+arc col 43 angle 7.1667 deg M_ax 2.149029 (Me 2.613937) Nv 3 j2 163
+arc col 44 angle 7.3333 deg M_ax 2.166698 (Me 2.613937) Nv 3 j2 164
+arc col 45 angle 7.5000 deg M_ax 2.184407 (Me 2.613937) Nv 4 j2 165
+arc col 46 angle 7.6667 deg M_ax 2.202130 (Me 2.613937) Nv 4 j2 166
+arc col 47 angle 7.8333 deg M_ax 2.219876 (Me 2.613937) Nv 4 j2 167
+arc col 48 angle 8.0000 deg M_ax 2.237644 (Me 2.613937) Nv 4 j2 168
+arc col 49 angle 8.1667 deg M_ax 2.255439 (Me 2.613937) Nv 4 j2 169
+arc col 50 angle 8.3333 deg M_ax 2.273262 (Me 2.613937) Nv 4 j2 170
+arc col 51 angle 8.5000 deg M_ax 2.291115 (Me 2.613937) Nv 4 j2 171
+arc col 52 angle 8.6667 deg M_ax 2.309001 (Me 2.613937) Nv 4 j2 172
+arc col 53 angle 8.8333 deg M_ax 2.326921 (Me 2.613937) Nv 4 j2 173
+arc col 54 angle 9.0000 deg M_ax 2.344878 (Me 2.613937) Nv 4 j2 174
+arc col 55 angle 9.1667 deg M_ax 2.362874 (Me 2.613937) Nv 4 j2 175
+arc col 56 angle 9.3333 deg M_ax 2.380910 (Me 2.613937) Nv 4 j2 176
+arc col 57 angle 9.5000 deg M_ax 2.398990 (Me 2.613937) Nv 4 j2 177
+arc col 58 angle 9.6667 deg M_ax 2.417113 (Me 2.613937) Nv 4 j2 178
+arc col 59 angle 9.8333 deg M_ax 2.435284 (Me 2.613937) Nv 4 j2 179
+arc col 60 angle 10.0000 deg M_ax 2.453503 (Me 2.613937) Nv 4 j2 180
+arc col 61 angle 10.1667 deg M_ax 2.471798 (Me 2.613937) Nv 5 j2 181
+arc col 62 angle 10.3333 deg M_ax 2.490140 (Me 2.613937) Nv 5 j2 182
+arc col 63 angle 10.5000 deg M_ax 2.508535 (Me 2.613937) Nv 5 j2 183
+arc col 64 angle 10.6667 deg M_ax 2.526987 (Me 2.613937) Nv 5 j2 184
+arc col 65 angle 10.8333 deg M_ax 2.545497 (Me 2.613937) Nv 5 j2 185
+arc col 66 angle 11.0000 deg M_ax 2.564066 (Me 2.613937) Nv 5 j2 186
+arc col 67 angle 11.1667 deg M_ax 2.582697 (Me 2.613937) Nv 5 j2 187
+arc col 68 angle 11.3333 deg M_ax 2.601392 (Me 2.613937) Nv 5 j2 188
+arc col 69 angle 11.5000 deg M_ax 2.620153 (Me 2.613937) Nv 5 j2 189
+arc col 70 angle 11.4448 deg M_ax 2.613928 (Me 2.613937) Nv 5 j2 189
+straightening: 120 columns from i_K=131
+fan start (Me target 2.613937, mdot 42475.5275)
+arc col 1 angle 0.1250 deg M_ax 1.354801 (Me 2.613937) Nv 1 j2 161
+arc col 2 angle 0.2500 deg M_ax 1.372290 (Me 2.613937) Nv 1 j2 162
+arc col 3 angle 0.3750 deg M_ax 1.390325 (Me 2.613937) Nv 1 j2 163
+arc col 4 angle 0.5000 deg M_ax 1.407387 (Me 2.613937) Nv 1 j2 164
+arc col 5 angle 0.6250 deg M_ax 1.424041 (Me 2.613937) Nv 1 j2 165
+arc col 6 angle 0.7500 deg M_ax 1.440313 (Me 2.613937) Nv 1 j2 166
+arc col 7 angle 0.8750 deg M_ax 1.456285 (Me 2.613937) Nv 1 j2 167
+arc col 8 angle 1.0000 deg M_ax 1.471998 (Me 2.613937) Nv 1 j2 168
+arc col 9 angle 1.1250 deg M_ax 1.487488 (Me 2.613937) Nv 1 j2 169
+arc col 10 angle 1.2500 deg M_ax 1.502780 (Me 2.613937) Nv 1 j2 170
+arc col 11 angle 1.3750 deg M_ax 1.517895 (Me 2.613937) Nv 1 j2 171
+arc col 12 angle 1.5000 deg M_ax 1.532851 (Me 2.613937) Nv 1 j2 172
+arc col 13 angle 1.6250 deg M_ax 1.547664 (Me 2.613937) Nv 1 j2 173
+arc col 14 angle 1.7500 deg M_ax 1.562346 (Me 2.613937) Nv 2 j2 174
+arc col 15 angle 1.8750 deg M_ax 1.576919 (Me 2.613937) Nv 2 j2 175
+arc col 16 angle 2.0000 deg M_ax 1.591378 (Me 2.613937) Nv 2 j2 176
+arc col 17 angle 2.1250 deg M_ax 1.605736 (Me 2.613937) Nv 2 j2 177
+arc col 18 angle 2.2500 deg M_ax 1.619998 (Me 2.613937) Nv 2 j2 178
+arc col 19 angle 2.3750 deg M_ax 1.634172 (Me 2.613937) Nv 2 j2 179
+arc col 20 angle 2.5000 deg M_ax 1.648266 (Me 2.613937) Nv 2 j2 180
+arc col 21 angle 2.6250 deg M_ax 1.662284 (Me 2.613937) Nv 2 j2 181
+arc col 22 angle 2.7500 deg M_ax 1.676231 (Me 2.613937) Nv 2 j2 182
+arc col 23 angle 2.8750 deg M_ax 1.690113 (Me 2.613937) Nv 2 j2 183
+arc col 24 angle 3.0000 deg M_ax 1.703935 (Me 2.613937) Nv 2 j2 184
+arc col 25 angle 3.1250 deg M_ax 1.717700 (Me 2.613937) Nv 2 j2 185
+arc col 26 angle 3.2500 deg M_ax 1.731412 (Me 2.613937) Nv 2 j2 186
+arc col 27 angle 3.3750 deg M_ax 1.745075 (Me 2.613937) Nv 2 j2 187
+arc col 28 angle 3.5000 deg M_ax 1.758693 (Me 2.613937) Nv 2 j2 188
+arc col 29 angle 3.6250 deg M_ax 1.772277 (Me 2.613937) Nv 3 j2 189
+arc col 30 angle 3.7500 deg M_ax 1.785824 (Me 2.613937) Nv 3 j2 190
+arc col 31 angle 3.8750 deg M_ax 1.799333 (Me 2.613937) Nv 3 j2 191
+arc col 32 angle 4.0000 deg M_ax 1.812808 (Me 2.613937) Nv 3 j2 192
+arc col 33 angle 4.1250 deg M_ax 1.826252 (Me 2.613937) Nv 3 j2 193
+arc col 34 angle 4.2500 deg M_ax 1.839667 (Me 2.613937) Nv 3 j2 194
+arc col 35 angle 4.3750 deg M_ax 1.853055 (Me 2.613937) Nv 3 j2 195
+arc col 36 angle 4.5000 deg M_ax 1.866418 (Me 2.613937) Nv 3 j2 196
+arc col 37 angle 4.6250 deg M_ax 1.879760 (Me 2.613937) Nv 3 j2 197
+arc col 38 angle 4.7500 deg M_ax 1.893081 (Me 2.613937) Nv 3 j2 198
+arc col 39 angle 4.8750 deg M_ax 1.906383 (Me 2.613937) Nv 3 j2 199
+arc col 40 angle 5.0000 deg M_ax 1.919669 (Me 2.613937) Nv 3 j2 200
+arc col 41 angle 5.1250 deg M_ax 1.932941 (Me 2.613937) Nv 3 j2 201
+arc col 42 angle 5.2500 deg M_ax 1.946199 (Me 2.613937) Nv 3 j2 202
+arc col 43 angle 5.3750 deg M_ax 1.959445 (Me 2.613937) Nv 3 j2 203
+arc col 44 angle 5.5000 deg M_ax 1.972692 (Me 2.613937) Nv 4 j2 204
+arc col 45 angle 5.6250 deg M_ax 1.985932 (Me 2.613937) Nv 4 j2 205
+arc col 46 angle 5.7500 deg M_ax 1.999164 (Me 2.613937) Nv 4 j2 206
+arc col 47 angle 5.8750 deg M_ax 2.012390 (Me 2.613937) Nv 4 j2 207
+arc col 48 angle 6.0000 deg M_ax 2.025612 (Me 2.613937) Nv 4 j2 208
+arc col 49 angle 6.1250 deg M_ax 2.038831 (Me 2.613937) Nv 4 j2 209
+arc col 50 angle 6.2500 deg M_ax 2.052048 (Me 2.613937) Nv 4 j2 210
+arc col 51 angle 6.3750 deg M_ax 2.065266 (Me 2.613937) Nv 4 j2 211
+arc col 52 angle 6.5000 deg M_ax 2.078484 (Me 2.613937) Nv 4 j2 212
+arc col 53 angle 6.6250 deg M_ax 2.091704 (Me 2.613937) Nv 4 j2 213
+arc col 54 angle 6.7500 deg M_ax 2.104928 (Me 2.613937) Nv 4 j2 214
+arc col 55 angle 6.8750 deg M_ax 2.118157 (Me 2.613937) Nv 4 j2 215
+arc col 56 angle 7.0000 deg M_ax 2.131391 (Me 2.613937) Nv 4 j2 216
+arc col 57 angle 7.1250 deg M_ax 2.144631 (Me 2.613937) Nv 4 j2 217
+arc col 58 angle 7.2500 deg M_ax 2.157880 (Me 2.613937) Nv 4 j2 218
+arc col 59 angle 7.3750 deg M_ax 2.171141 (Me 2.613937) Nv 5 j2 219
+arc col 60 angle 7.5000 deg M_ax 2.184422 (Me 2.613937) Nv 5 j2 220
+arc col 61 angle 7.6250 deg M_ax 2.197710 (Me 2.613937) Nv 5 j2 221
+arc col 62 angle 7.7500 deg M_ax 2.211011 (Me 2.613937) Nv 5 j2 222
+arc col 63 angle 7.8750 deg M_ax 2.224324 (Me 2.613937) Nv 5 j2 223
+arc col 64 angle 8.0000 deg M_ax 2.237650 (Me 2.613937) Nv 5 j2 224
+arc col 65 angle 8.1250 deg M_ax 2.250992 (Me 2.613937) Nv 5 j2 225
+arc col 66 angle 8.2500 deg M_ax 2.264348 (Me 2.613937) Nv 5 j2 226
+arc col 67 angle 8.3750 deg M_ax 2.277722 (Me 2.613937) Nv 5 j2 227
+arc col 68 angle 8.5000 deg M_ax 2.291112 (Me 2.613937) Nv 5 j2 228
+arc col 69 angle 8.6250 deg M_ax 2.304521 (Me 2.613937) Nv 5 j2 229
+arc col 70 angle 8.7500 deg M_ax 2.317950 (Me 2.613937) Nv 5 j2 230
+arc col 71 angle 8.8750 deg M_ax 2.331398 (Me 2.613937) Nv 5 j2 231
+arc col 72 angle 9.0000 deg M_ax 2.344867 (Me 2.613937) Nv 5 j2 232
+arc col 73 angle 9.1250 deg M_ax 2.358358 (Me 2.613937) Nv 5 j2 233
+arc col 74 angle 9.2500 deg M_ax 2.371872 (Me 2.613937) Nv 5 j2 234
+arc col 75 angle 9.3750 deg M_ax 2.385414 (Me 2.613937) Nv 6 j2 235
+arc col 76 angle 9.5000 deg M_ax 2.398989 (Me 2.613937) Nv 6 j2 236
+arc col 77 angle 9.6250 deg M_ax 2.412587 (Me 2.613937) Nv 6 j2 237
+arc col 78 angle 9.7500 deg M_ax 2.426210 (Me 2.613937) Nv 6 j2 238
+arc col 79 angle 9.8750 deg M_ax 2.439860 (Me 2.613937) Nv 6 j2 239
+arc col 80 angle 10.0000 deg M_ax 2.453538 (Me 2.613937) Nv 6 j2 240
+arc col 81 angle 10.1250 deg M_ax 2.467243 (Me 2.613937) Nv 6 j2 241
+arc col 82 angle 10.2500 deg M_ax 2.480978 (Me 2.613937) Nv 6 j2 242
+arc col 83 angle 10.3750 deg M_ax 2.494743 (Me 2.613937) Nv 6 j2 243
+arc col 84 angle 10.5000 deg M_ax 2.508539 (Me 2.613937) Nv 6 j2 244
+arc col 85 angle 10.6250 deg M_ax 2.522366 (Me 2.613937) Nv 6 j2 245
+arc col 86 angle 10.7500 deg M_ax 2.536226 (Me 2.613937) Nv 6 j2 246
+arc col 87 angle 10.8750 deg M_ax 2.550119 (Me 2.613937) Nv 6 j2 247
+arc col 88 angle 11.0000 deg M_ax 2.564046 (Me 2.613937) Nv 6 j2 248
+arc col 89 angle 11.1250 deg M_ax 2.578008 (Me 2.613937) Nv 6 j2 249
+arc col 90 angle 11.2500 deg M_ax 2.592005 (Me 2.613937) Nv 6 j2 250
+arc col 91 angle 11.3750 deg M_ax 2.606039 (Me 2.613937) Nv 7 j2 251
+arc col 92 angle 11.5000 deg M_ax 2.620126 (Me 2.613937) Nv 7 j2 252
+arc col 93 angle 11.4451 deg M_ax 2.613932 (Me 2.613937) Nv 7 j2 252
+straightening: 160 columns from i_K=174
+== ORACLE O3.2 [X-O32]: mesh convergence of the primal/adjoint pair (JAX 0.11.0) ==
+  ladder r = 1..4 (h = 1/r); stage = all
+-- S1: estimator known-answer test + monotonicity --
+  [estimator kernel strictly increasing (levels 123)] PASS
+  [estimator kernel strictly increasing (levels 234)] PASS
+  known-answer recovery over p0 in {1, 1.5, 2, 3}: worst |p_hat - p0| = 1.67e-13
+  [estimator recovers the synthetic order] PASS
+  [estimator REJECTS a first-order sequence as h^2] PASS
+-- S2: IDEAL twin [X-A1IM] ladder --
+  registered window x in [0.4855, 6.8592] (excluded d = 0.4816 = 2 x coarsest station spacing); wall x in [0.0039, 7.3408]
+  gradient probe direction v (seed 319) = [ 0.572446 -0.734574  0.258096  0.257085]
+    r=1  NI=21   Ne=41   cells=2756     Q = 4.391374127360e+00  <g,v> = 1.979447799369e+00  Me = 2.613937720  |replay-record| = 1.42e-14 (floor 2.69e-10)  (30.0 s)
+    r=2  NI=41   Ne=81   cells=10541    Q = 4.393148851573e+00  <g,v> = 1.981332461315e+00  Me = 2.613942962  |replay-record| = 4.44e-15 (floor 1.03e-09)  (60.4 s)
+    r=3  NI=61   Ne=121  cells=23540    Q = 4.393370016040e+00  <g,v> = 1.982205071228e+00  Me = 2.613928017  |replay-record| = 1.15e-14 (floor 2.30e-09)  (109.1 s)
+    r=4  NI=81   Ne=161  cells=41694    Q = 4.393500505223e+00  <g,v> = 1.981571238546e+00  Me = 2.613932373  |replay-record| = 3.73e-14 (floor 4.07e-09)  (183.0 s)
+  [ideal: differentiated replay == certified record at the Newton floor, every level] PASS
+  O3.2 rows (ideal twin):
+  primal  Q = int w y dx             : p(coarse) = 2.6524  p(fine) = 0.5294  dp_noise = 2.83e-04  dp_model = 2.1229  dp_tot = 2.1232  -> NON-CONCLUSIVE
+                                       [readings] binding one-sided (p >= 2 - dp_tot): pass | two-sided |p-2| <= dp_tot: pass | conclusive at cap 1.0: NO, at cap 0.5: no
+  adjoint <grad_P Q, v>              : NOT USABLE (differences degenerate: -1.885e-03 / -8.726e-04)
+  [critical-list monitor] |dMe| along the ladder: [5.242e-06 1.495e-05 4.356e-06] (GENO-mirrored stop constant |M - Me| < 1e-5)
+-- S3: TOC twin [X-TOCV] ladder at W* (C^1 quintic closure, the brick's primary) --
+  [colexec] per-column executor built: Lpad=39 (engine entry #1) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=132 (engine entry #2) [M5c bucket row]
+  registered window x in [0.1331, 3.8707] (excluded d = 0.1293); LIP window x in [3.8707, 4.0000] (the neighborhood the registered norm EXCLUDES — pre-registration item (d)); wall x in [0.0038, 4.0000]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (20, 39, 41, 92, 70, 75, 32)  [M-B churn row]
+    r=1  NI=21   Nw=60   cells=3964     Q_u = 3.211023192526e+03  J = 2.776168784978e+07  <dJ/dW,v> = -2.653147585476e+06  Q_lip = 1.625097280260e+02  |replay-record| = 1.82e-12 (floor 2.83e-07)  (rec 3.3 s, tot 26.1 s)
+  [colexec] per-column executor built: Lpad=79 (engine entry #3) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=263 (engine entry #4) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (40, 79, 81, 183, 139, 148, 63)  [M-B churn row]
+    r=2  NI=41   Nw=120  cells=15227    Q_u = 3.211030659003e+03  J = 2.776068095041e+07  <dJ/dW,v> = -2.631122108150e+06  Q_lip = 1.240976574195e+02  |replay-record| = 4.55e-13 (floor 1.09e-06)  (rec 16.5 s, tot 36.0 s)
+  [colexec] per-column executor built: Lpad=119 (engine entry #5) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=394 (engine entry #6) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (60, 119, 121, 274, 208, 221, 94)  [M-B churn row]
+    r=3  NI=61   Nw=180  cells=33796    Q_u = 3.211032908857e+03  J = 2.776047926429e+07  <dJ/dW,v> = -2.628790969144e+06  Q_lip = 1.243039114883e+02  |replay-record| = 4.55e-13 (floor 2.41e-06)  (rec 28.1 s, tot 49.8 s)
+  [colexec] per-column executor built: Lpad=159 (engine entry #7) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=525 (engine entry #8) [M5c bucket row]
+  [engine] bucket-shape signature #1 for this engine (fan,nmaxF,WF,arc,nmaxA,WT,n_B) = (80, 159, 161, 365, 277, 293, 125)  [M-B churn row]
+    r=4  NI=81   Nw=240  cells=59662    Q_u = 3.211033434308e+03  J = 2.776042108731e+07  <dJ/dW,v> = -2.626852188087e+06  Q_lip = 1.247626982478e+02  |replay-record| = 4.55e-13 (floor 4.25e-06)  (rec 46.4 s, tot 73.2 s)
+  [TOC: differentiated replay == certified record at the Newton floor, every level] PASS
+  O3.2 rows (TOC twin):
+  primal  Q_u = int w u dx           : p(coarse) = 1.1748  p(fine) = 3.1129  dp_noise = 5.47e-02  dp_model = 1.9382  dp_tot = 1.9929  -> NON-CONCLUSIVE
+                                       [readings] binding one-sided (p >= 2 - dp_tot): pass | two-sided |p-2| <= dp_tot: pass | conclusive at cap 1.0: NO, at cap 0.5: no
+  primal  J (objective)              : p(coarse) = 1.8688  p(fine) = 2.5347  dp_noise = 4.48e-03  dp_model = 0.6659  dp_tot = 0.6704  -> NON-CONCLUSIVE
+                                       [readings] binding one-sided (p >= 2 - dp_tot): pass | two-sided |p-2| <= dp_tot: pass | conclusive at cap 1.0: NO, at cap 0.5: no
+  adjoint <dJ/dW, v>                 : NOT USABLE (differences degenerate: -2.203e+04 / -2.331e+03)
+-- S4: NEGATIVE CONTROL — foot-coefficient (first-order) march must be REJECTED --
+  [colexec] per-column executor built: Lpad=39 (engine entry #9) [M5c bucket row]
+  [colexec] per-column executor built: Lpad=132 (engine entry #10) [M5c bucket row]
+Traceback (most recent call last):
+  File "C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\o32_mesh_convergence.py", line 701, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\o32_mesh_convergence.py", line 654, in main
+    rf = toc_ladder(tab, state_c1, solv_f, rmax, "foot",
+                    window=rt["window"], with_grad=False)
+  File "C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\o32_mesh_convergence.py", line 502, in toc_ladder
+    assert float(outr["cert_worst"]) <= 1.0, \
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: foot level r=1 not certified (worst inf)
