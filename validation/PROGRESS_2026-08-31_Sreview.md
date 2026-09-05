@@ -361,3 +361,5 @@ PROVISIONAL READING (orchestrator, NOT a verdict; the judges have not sat): the 
 Checkpoint commit follows this entry (pathspec, never -A, never GENO/): session log, ASSESSMENT (IN AUTHORING), raws dir, carrier (§G/§H), tools (progress_counts, anchor_census, roadmap_derive BLOC override), regenerated roadmap, registries (prefix repairs, token normalization), decision map (MAP-AM-9), ADVISORY_INDEX rows, PROGRESS checkpoint.
 
 CHECKPOINT COMMIT OF RECORD = 86c3ffb (branch rde-nozzle-program; commit count 304; pathspec-only, never -A, never GENO/). The resumed session re-measures every count at its open (SR-12).
+
+RESUME NOTE (post-checkpoint, 2026-09-05): git autocrlf may rewrite validation/sreview_raws_2026-08-31/workflow_stageB_converge.js with CRLF on a fresh checkout; the harness REFUSES a scriptPath script containing CR bytes (measured today). Before the resume run: `python -c "p='validation/sreview_raws_2026-08-31/workflow_stageB_converge.js';b=open(p,'rb').read().replace(b'\r\n',b'\n');open(p,'wb').write(b)"` with p = that path, mode rb/wb, replacing CRLF by LF — the prompts (cache keys) are unaffected by the script line endings.
