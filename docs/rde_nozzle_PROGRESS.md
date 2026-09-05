@@ -15,7 +15,7 @@
 | campo | valore (misurato in finestra, SR-12) |
 |---|---|
 | Fase D6 | F2 GENERAL ENGINE **APERTA** — sessione **1/6 CONSUMATA** (F2-B0, entry act); F0/F1/F1b CLOSED di record (D6 :91, :137); F3/F4b/F5/F6 non aperte; D6 ADDENDUM datato 2026-09-05 (coda del file, user-ratified T1) nomina i passi F2.REPR e F3.TOURNAMENT |
-| HEAD | branch `rde-nozzle-program`; apertura F2-B0 = ea91259; chiusura = (stampato nel micro-commit di chiusura, SR-12); conteggio commit (idem) |
+| HEAD | branch `rde-nozzle-program`; apertura F2-B0 = ea91259; chiusura = 4798713 (+ micro-commit di stamp SR-12); conteggio commit 302 incluso lo stamp |
 | Ultimo gate | lint (vii)(xv)(xix)(xx)(xxii)(xxiii)(xxiv) verdi a chiusura; suite completa plain (log f2b0_raws/suite_full_2026-08-31.log): 23/24 PASS in 1221 s; l'unico rosso (xx) = pipe letterale in una cella dell'indice, riparato in-window e ri-eseguito PASS (113 file rows / 7 block rows / 113 disk .md); LOG-10b |
 | Ultima sessione | F2-B0 (carrier ADVISORY_F2B0_prompt_2026-08-31.md CONSUMED; log validation/PROGRESS_2026-08-31_F2B0.md; raws validation/f2b0_raws_2026-08-31/ = 21 file) |
 | Passo atomico | vedi NEXT (S-REVIEW, poi F2.REPR) |
