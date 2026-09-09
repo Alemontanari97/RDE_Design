@@ -2584,37 +2584,45 @@ def fig_s24_rotational():
         a1.plot((vals - lo) / (hi - lo), y, color=col, lw=1.4, ls=ls,
                 label=(name + ":  " + fmt + r" $\to$ " + fmt)
                 % (lo, hi))
-    a1.set_xlabel("each profile normalized to its own span")
+    a1.set_xlabel("ogni profilo normalizzato al proprio intervallo")
     a1.set_ylabel("y [m]")
-    a1.set_title("(a) the stratified initial line")
+    a1.set_title("(a) la linea iniziale stratificata")
     a1.legend(fontsize=7, loc="center left")
     a1.grid(**GRID)
 
     # (b) the transported entropy field
     mesh = d["mesh"]
-    sc = a2.scatter(mesh[:, 0], mesh[:, 1], c=mesh[:, 4] - d["s0"],
-                    s=2.2, cmap="plasma", rasterized=True)
+    ds = mesh[:, 4] - d["s0"]
+    smax = float(np.max(d["s_in"] - d["s0"]))
+    bad = ds > smax + 1e-9          # the transport bound, violated
+    sc = a2.scatter(mesh[:, 0], mesh[:, 1], c=ds, s=2.2,
+                    cmap="plasma", rasterized=True)
+    a2.scatter(mesh[bad, 0], mesh[bad, 1], s=13, facecolors="none",
+               edgecolors="tab:green", linewidths=0.5,
+               label="oltre il massimo d'ingresso (%d nodi)"
+                     % int(bad.sum()))
+    a2.legend(fontsize=6.5, loc="lower right")
     a2.plot(d["wall"][:, 0], d["wall"][:, 1], color="k", lw=1.0)
     a2.plot(d["edge"][:, 0], d["edge"][:, 1], color="0.3", lw=1.0,
             ls="--")
     plt.colorbar(sc, ax=a2, label=r"$s - s_0$ [J/kg K]")
     a2.set_xlabel("x [m]")
     a2.set_ylabel("y [m]")
-    a2.set_title("(b) entropy layers ride the streamlines")
+    a2.set_title("(b) strati trasportati, e dove non lo sono")
     a2.grid(**GRID)
 
     # (c) the ladder
     Ns, bulk, band = d["Ns"], d["bulk"], d["band"]
     a3.loglog(Ns, bulk, "o-", color="tab:blue", lw=1.4,
-              label="transport error (bulk)")
+              label="errore di trasporto (corpo)")
     a3.loglog(Ns, band, "s--", color="tab:orange", lw=1.2,
-              label="crammed-band artifact (reported)")
+              label="artefatto della banda ammassata")
     ref = bulk[0] * (Ns[0] / Ns) ** 2
     a3.loglog(Ns, ref, ":", color="0.5", lw=1.0,
-              label=r"2nd order ($N^{-2}$)")
-    a3.set_xlabel("start-line rows N")
-    a3.set_ylabel(r"max $|\Delta u|/u$ on the last column")
-    a3.set_title("(c) it converges; the artifact does not")
+              label=r"secondo ordine ($N^{-2}$)")
+    a3.set_xlabel("righe della linea iniziale N")
+    a3.set_ylabel(r"max $|\Delta u|/u$ sull'ultima colonna")
+    a3.set_title("(c) converge; l'artefatto no")
     from matplotlib.ticker import NullFormatter, FixedLocator
     a3.xaxis.set_major_locator(FixedLocator(list(map(float, Ns))))
     a3.xaxis.set_minor_formatter(NullFormatter())

@@ -1,596 +1,651 @@
-\chapter{The problems met, and how they were fixed}
+\chapter{I problemi incontrati, e come sono stati risolti}
 \label{ch:appendix}
 
-A document of record that showed only the working version would be
-hiding its best evidence. Every test in this program is built to be
-able to say \emph{no}: its pass band is derived from the scheme's
-own measured error rather than chosen by hand, and each suite plants
-deliberate corruptions --- \emph{rejectors} --- that must make it
-fail. A bug the suite caught is therefore not an embarrassment but a
-measurement: proof that the instrument has teeth, and a record of
-what the physics does when it is got wrong. The main chapters show
-each step as it now works; this appendix collects, step by step,
-what went wrong on the way, how it was diagnosed, and what was
-changed. Nothing here is anecdote --- every item was caught by a
-test and closed by a measured fix.
+Un documento di riferimento che mostrasse soltanto la versione
+funzionante nasconderebbe la propria prova migliore. Ogni test di
+questo programma è costruito per poter dire \emph{no}: la sua banda
+di superamento è derivata dall'errore misurato dello schema stesso
+anziché scelta a mano, e ogni suite impianta corruzioni deliberate
+--- i \emph{rigettatori} --- che devono farla fallire. Un difetto
+colto dalla suite non è quindi un imbarazzo ma una misura: la prova
+che lo strumento ha i denti, e un resoconto di che cosa fa la fisica
+quando la si sbaglia. I capitoli principali mostrano ciascun passo
+così come funziona oggi; questa appendice raccoglie, passo per passo,
+che cosa è andato storto lungo la strada, come è stato diagnosticato
+e che cosa è stato cambiato. Nulla qui è aneddoto --- ogni voce è
+stata colta da un test e chiusa da una correzione misurata.
 
-\section{Step 1: the unclosed control surface}
+\section{Passo 1: la superficie di controllo non chiusa}
 \label{app:sliver}
 
-Thrust is computed as a balance over a \emph{control surface}: an
-imaginary closed surface drawn around the flow, over which the
-momentum carried through and the pressure pushing on it are added
-up. One test of that bookkeeping is the \emph{gauge test} --- add
-the same constant to the pressure everywhere and nothing may
-change, because a constant integrates to zero over a surface that
-is genuinely closed. It failed on its very first run
-(Chapter~\ref{ch:score}).
+La spinta è calcolata come bilancio su una \emph{superficie di
+controllo}: una superficie chiusa immaginaria tracciata attorno al
+flusso, sulla quale si sommano la quantità di moto che la attraversa
+e la pressione che vi spinge. Una verifica di quella contabilità è il
+\emph{test di gauge} --- si somma ovunque la stessa costante alla
+pressione e nulla deve cambiare, perché una costante integra a zero
+su una superficie genuinamente chiusa. Fallì alla primissima
+esecuzione (Capitolo~\ref{ch:score}).
 
-Cause: the wall integral of route 2 started at the first wall
-\emph{point} of the mesh, leaving a microscopic sliver of wall
-between the throat lip and that point uncovered. The surface was
-not closed, so a constant no longer integrated to zero (the red
-circle in Figure~\ref{fig:tworoutes}). Fix: close the surface at
-the throat lip. The momentum residual $R_{\rm mom}$ --- the
-disagreement between the two independent thrust routes --- got
-\emph{tighter} once the sliver stopped hiding inside it: the bug
-had been absorbing part of the mechanical balance.
+Causa: l'integrale di parete della via 2 partiva dal primo
+\emph{punto} di parete della maglia, lasciando scoperta una scheggia
+microscopica di parete fra il labbro della gola e quel punto. La
+superficie non era chiusa, quindi una costante non integrava più a
+zero (il cerchio rosso nella Figura~\ref{fig:tworoutes}). Correzione:
+chiudere la superficie al labbro della gola. Il residuo di quantità
+di moto $R_{\rm mom}$ --- il disaccordo fra le due vie indipendenti
+di calcolo della spinta --- si è \emph{stretto} una volta che la
+scheggia ha smesso di nascondersi al suo interno: il difetto ne stava
+assorbendo una parte del bilancio meccanico.
 
-\section{Step 6: the rejector corrected by physics}
+\section{Passo 6: il rigettatore corretto dalla fisica}
 \label{app:f2rejector}
 
-A rejector is only useful if the corrupted case it poses is one the
-test could plausibly fail. The first negative control for the
-first-integral test of Section~\ref{sec:o33} --- the check that a
-particular combination $f_2$ of speed and angle is constant along
-the last characteristic of an optimal nozzle --- used an arbitrary
-vertical cut through the flowfield, expecting $f_2$ to vary along
-it. It barely did: much of the smooth tail of a nozzle is nearly
-$f_2$-flat, so a vertical cut is a \emph{weak} negative control.
-The sharp one is the \emph{wall}, a streamline along which $f_2$
-climbs by $64\%$; the rejector was rebuilt on it. Lesson: even
-rejectors must be chosen by physics, not by convenience.
+Un rigettatore è utile solo se il caso corrotto che pone è uno che il
+test potrebbe plausibilmente far fallire. Il primo controllo negativo
+per il test del primo integrale della Sezione~\ref{sec:o33} --- la
+verifica che una particolare combinazione $f_2$ di velocità e angolo
+sia costante lungo l'ultima caratteristica di un ugello ottimale ---
+usava un taglio verticale arbitrario attraverso il campo di moto,
+aspettandosi che $f_2$ vi variasse. Variava appena: gran parte della
+coda regolare di un ugello è quasi piatta in $f_2$, quindi un taglio
+verticale è un controllo negativo \emph{debole}. Quello netto è la
+\emph{parete}, una linea di corrente lungo la quale $f_2$ sale del
+$64\%$; il rigettatore è stato ricostruito su di essa. Lezione: anche
+i rigettatori vanno scelti in base alla fisica, non alla comodità.
 
-\section{Step 4: the table-kink ripple}
+\section{Passo 4: l'increspatura delle cuspidi di tabella}
 \label{app:ripple}
 
-The gradient stage of Chapter~\ref{ch:wallinput} first posed the
-obvious test: compare the derivative produced by automatic
-differentiation (AD) with a finite difference --- the objective
-recomputed after nudging one input --- at shrinking nudge sizes,
-expecting agreement to improve. It failed in a way no step size
-could fix. The finite difference diverged as the step fell below
-the width of one cell of the gas-property tables, while the AD
-value oscillated.
+Lo stadio di gradiente del Capitolo~\ref{ch:wallinput} pose dapprima
+il test ovvio: confrontare la derivata prodotta dalla
+differenziazione automatica (AD) con una differenza finita ---
+l'obiettivo ricalcolato dopo aver spostato un ingresso --- a
+spostamenti via via più piccoli, aspettandosi che l'accordo
+migliorasse. Fallì in un modo che nessuna dimensione di passo poteva
+sanare. La differenza finita divergeva man mano che il passo scendeva
+sotto la larghezza di una cella delle tabelle di proprietà del gas,
+mentre il valore AD oscillava.
 
-Diagnosis: the tables are interpolated piecewise-linearly, so the
-function the code actually implements has small kinks at every
-table cell boundary, and the \emph{exact} derivative of that
-function carries a genuine ripple at the table-cell scale ---
-measured at a standard deviation of $44$, i.e.\ $0.010\%$ of the
-gradient and $1.2\times10^{-8}$ of the thrust $J$
-(Figure~\ref{fig:ripple}). Neither number was wrong; the
-\emph{test} was. A pointwise AD-versus-finite-difference test on
-tabulated thermodynamics is ill-posed.
+Diagnosi: le tabelle sono interpolate linearmente a tratti, quindi la
+funzione che il codice implementa davvero ha piccole cuspidi a ogni
+confine di cella di tabella, e la derivata \emph{esatta} di quella
+funzione porta un'increspatura genuina alla scala delle celle di
+tabella --- misurata a una deviazione standard di $44$, cioè lo
+$0.010\%$ del gradiente e $1.2\times10^{-8}$ della spinta $J$
+(Figura~\ref{fig:ripple}). Nessuno dei due numeri era sbagliato; era
+sbagliato il \emph{test}. Un test puntuale AD-contro-differenze
+finite su termodinamica tabulata è mal posto.
 
-The honest certificate separates the smooth curvature of $J$
-(physics) from the ripple (interpolation) by fitting a straight
-line over a sweep of nudge amplitudes and testing the resulting
-envelope identity instead --- the certificate the suite now
-carries. A first analysis also mislabeled a smooth $2.25\%$
-curvature as ``ripple''; the linear-fit separation corrected that
-to the true $0.010\%$. Cubic table interpolation would remove the
-ripple at the source. The same trap awaits any differentiable
-solver built on tabulated properties, the CFD-adjoint track
-included.
+Il certificato onesto separa la curvatura regolare di $J$ (la fisica)
+dall'increspatura (l'interpolazione) adattando una retta su una
+spazzata di ampiezze di spostamento e verificando invece l'identità
+dell'inviluppo che ne risulta --- il certificato che la suite ora
+porta. Una prima analisi aveva anche etichettato erroneamente come
+``increspatura'' una curvatura regolare del $2.25\%$; la separazione
+per adattamento lineare l'ha corretta al vero $0.010\%$.
+Un'interpolazione cubica delle tabelle rimuoverebbe l'increspatura
+alla fonte. La stessa trappola attende qualunque solutore
+differenziabile costruito su proprietà tabulate, linea dell'aggiunto
+CFD compresa.
 
-\section{Step 7: three cycle-layer traps}
+\section{Passo 7: tre trappole dello strato di ciclo}
 \label{app:cycletraps}
 
-The cycle layer (Chapter~\ref{ch:cycle}) --- which represents an
-RDE by a family of steady chamber states, one per phase $\xi$ of
-the wave's passage --- met three traps, each now guarded by a
-rejector.
+Lo strato di ciclo (Capitolo~\ref{ch:cycle}) --- che rappresenta un
+RDE con una famiglia di stati di camera stazionari, uno per ogni fase
+$\xi$ del passaggio dell'onda --- ha incontrato tre trappole, ora
+ciascuna presidiata da un rigettatore.
 
 \begin{enumerate}[itemsep=2pt]
-\item \textbf{The enthalpy zero-point.} Enthalpy has no absolute
-  zero: every table fixes its own reference state, and only
-  differences are physical. Building each phase's chamber state
-  \emph{absolutely}, as $h_0 = h(T_0)$ read straight off the raw
-  table, mis-stated the state by $19\%$. Fix: build phase states
-  \emph{relative} to the tables' own reference
-  ($h_0 = h_0^{\rm tab} + h(T_0) - h(T_s^{\rm tab})$, and likewise
-  for entropy with its $R\ln(P_0/p_s)$ term). Guard: doubling the
-  chamber pressure must exactly double every pressure in the field,
-  $p(2P_0)/p(P_0) = 2$, now verified to $1.6\times10^{-15}$.
-\item \textbf{The pressure-blind peak design.} The first attempt to
-  ``design at the peak phase'' held the exit Mach number fixed ---
-  which is not designing at the peak at all, because it ignores
-  where that phase's own exit pressure would match the ambient.
-  Fix: the peak design solves $p_e(\varepsilon) = p_a$ for the peak
-  phase's own state (\code{eps\_star\_at\_pa}).
-\item \textbf{The silent table clamp.} A first mock-RDE run posed a
-  peak chamber temperature $T_0 = 4162$~K --- past the 3900~K edge
-  of the tables --- and the interpolation routine
-  \code{np.interp} \emph{clamps silently} at the edge instead of
-  complaining. The run completed, with quietly flattened
-  thermodynamics. Fix: the mock cycle was re-posed inside table
-  validity (peak 3850~K), and a table-range rejector now fails any
-  phase whose $T_0$ leaves the tables --- the first thing to check
-  when a measured cycle is fed in.
+\item \textbf{Lo zero dell'entalpia.} L'entalpia non ha uno zero
+  assoluto: ogni tabella fissa il proprio stato di riferimento, e solo
+  le differenze sono fisiche. Costruire lo stato di camera di ciascuna
+  fase in modo \emph{assoluto}, come $h_0 = h(T_0)$ letto direttamente
+  dalla tabella grezza, sbagliava lo stato del $19\%$. Correzione:
+  costruire gli stati di fase \emph{relativamente} al riferimento
+  proprio delle tabelle
+  ($h_0 = h_0^{\rm tab} + h(T_0) - h(T_s^{\rm tab})$, e allo stesso
+  modo per l'entropia con il suo termine $R\ln(P_0/p_s)$). Presidio:
+  raddoppiare la pressione di camera deve esattamente raddoppiare ogni
+  pressione nel campo, $p(2P_0)/p(P_0) = 2$, ora verificato a
+  $1.6\times10^{-15}$.
+\item \textbf{Il progetto di picco cieco alla pressione.} Il primo
+  tentativo di ``progettare alla fase di picco'' teneva fisso il
+  numero di Mach di uscita --- il che non è affatto progettare al
+  picco, perché ignora dove la pressione di uscita propria di quella
+  fase eguaglierebbe l'ambiente. Correzione: il progetto di picco
+  risolve $p_e(\varepsilon) = p_a$ per lo stato proprio della fase di
+  picco (\code{eps\_star\_at\_pa}).
+\item \textbf{Il troncamento silenzioso di tabella.} Una prima
+  esecuzione dell'RDE simulato poneva una temperatura di camera di
+  picco $T_0 = 4162$~K --- oltre il bordo di 3900~K delle tabelle ---
+  e la routine di interpolazione \code{np.interp} \emph{tronca in
+  silenzio} al bordo invece di protestare. L'esecuzione si completava,
+  con la termodinamica appiattita di nascosto. Correzione: il ciclo
+  simulato è stato riposto dentro la validità delle tabelle (picco
+  3850~K), e un rigettatore di intervallo di tabella fa ora fallire
+  qualunque fase la cui $T_0$ esca dalle tabelle --- la prima cosa da
+  controllare quando viene immesso un ciclo misurato.
 \end{enumerate}
 
-\section{Step 7 (assembly): the free-jet sign trap}
+\section{Passo 7 (assemblaggio): la trappola di segno del getto
+libero}
 \label{app:signtrap}
 
-On the free jet edge --- the boundary where the exhaust meets the
-atmosphere, on which the pressure is prescribed and the position is
-solved --- the first version of the cell wrote the speed condition
-by substituting moduli,
-$v = +\sqrt{q_{p_a}^2 - u^2}$ (Figure~\ref{fig:freejet}b). That
-form silently allows only outward turns, because the square root is
-never negative; a \emph{compressing} jet must turn inward. The
-unit-test rejector U-3 --- a compressing edge posed on exact data
---- caught the clamped spurious root. The cell was reformulated
-with the turning \emph{angle} $\theta_4$ as the unknown, so the
-sign of the turn lives inside the unknown itself and both
-directions are reachable --- the formulation certified 6/6 in
-Chapter~\ref{ch:plug}.
+Sul bordo di getto libero --- la frontiera dove lo scarico incontra
+l'atmosfera, sulla quale la pressione è assegnata e la posizione è
+risolta --- la prima versione della cella scriveva la condizione sulla
+velocità sostituendo i moduli,
+$v = +\sqrt{q_{p_a}^2 - u^2}$ (Figura~\ref{fig:freejet}b). Quella
+forma ammette in silenzio solo rotazioni verso l'esterno, perché la
+radice quadrata non è mai negativa; un getto in \emph{compressione}
+deve ruotare verso l'interno. Il rigettatore del test elementare U-3
+--- un bordo in compressione posto su dati esatti --- ha colto la
+radice spuria troncata. La cella è stata riformulata con l'\emph{angolo}
+di rotazione $\theta_4$ come incognita, così il segno della rotazione
+vive dentro l'incognita stessa ed entrambe le direzioni sono
+raggiungibili --- la formulazione certificata 6/6 nel
+Capitolo~\ref{ch:plug}.
 
-\section{The plug assembly: four structural lessons}
+\section{L'assemblaggio del plug: quattro lezioni strutturali}
 \label{app:pluglessons}
 
-The plug march of Chapter~\ref{ch:plug} reached its certified form
-through four measured structural failures. Each was caught by the
-closed-form oracle --- an exactly known answer the march must
-reproduce --- diagnosed to a mechanism, and closed by a design
-change. The design presented in Chapter~\ref{ch:plug} \emph{is} the
-sum of these fixes.
+La marcia del plug del Capitolo~\ref{ch:plug} ha raggiunto la propria
+forma certificata attraverso quattro fallimenti strutturali misurati.
+Ciascuno è stato colto dall'oracolo in forma chiusa --- una risposta
+esattamente nota che la marcia deve riprodurre --- diagnosticato fino
+a un meccanismo e chiuso da un cambiamento di progetto. Il progetto
+presentato nel Capitolo~\ref{ch:plug} \emph{è} la somma di queste
+correzioni.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_plug_lessons.pdf}
-\caption{The three measured lessons, drawn in the exactly known
-test world; all panels are axial coordinate $x$ [m] horizontally
-against radial coordinate $y$ [m] vertically, with the mesh the
-march actually built. (1)~The degenerate edge root: successive edge
-points pile up at one place instead of advancing
-(Section~\ref{app:edgeroot}). (2)~With a fixed number of mesh rows
-per column, the top of the mesh falls away from the widening jet
-(red); adding one row per column --- the same device the bell march
-uses --- keeps the mesh filling the jet (green). (3)~The
-characteristic arriving at the wall is a straight ray from the lip:
-the state is constant along it and varies strongly across it. With
-the foot of that ray forced onto the neighbouring column, the
-compatibility relation was closed by a single midpoint rule over a
-long chord whose end states are interpolated \emph{across} rays ---
-systematically biased. The fix is the multi-column foot search of
-Chapter~\ref{ch:plug}.}
+\caption{Le tre lezioni misurate, disegnate nel mondo di prova
+esattamente noto; tutti i pannelli hanno la coordinata assiale $x$
+[m] in orizzontale contro la coordinata radiale $y$ [m] in verticale,
+con la maglia che la marcia ha effettivamente costruito. (1)~La
+radice degenere del bordo: i punti di bordo successivi si accumulano
+in un solo luogo invece di avanzare (Sezione~\ref{app:edgeroot}).
+(2)~Con un numero fisso di righe di maglia per colonna, la sommità
+della maglia si stacca dal getto che si allarga (rosso); aggiungere
+una riga per colonna --- lo stesso espediente che usa la marcia della
+campana --- mantiene la maglia a riempire il getto (verde). (3)~La
+caratteristica che arriva alla parete è un raggio rettilineo dal
+labbro: lo stato è costante lungo di esso e varia fortemente
+attraverso di esso. Con il piede di quel raggio forzato sulla colonna
+adiacente, la relazione di compatibilità veniva chiusa da una singola
+regola del punto medio su una corda lunga i cui stati agli estremi
+sono interpolati \emph{attraverso} i raggi --- sistematicamente
+distorta. La correzione è la ricerca multi-colonna del piede del
+Capitolo~\ref{ch:plug}.}
 \label{fig:pluglessons}
 \end{figure}
 
-\subsection{Lesson 1: the degenerate edge root}
+\subsection{Lezione 1: la radice degenere del bordo}
 \label{app:edgeroot}
 
-In the first assembly the free-edge cell was fed from the
-\emph{previous} column, and on straight stretches of the edge the
-Newton solve returned the new point exactly on top of the old one
-(pt4 = pt3) --- a zero step, repeated at every column: the edge
-piled up and never advanced.
+Nel primo assemblaggio la cella di bordo libero era alimentata dalla
+colonna \emph{precedente}, e nei tratti rettilinei del bordo la
+risoluzione di Newton restituiva il nuovo punto esattamente sopra il
+vecchio (pt4 = pt3) --- un passo nullo, ripetuto a ogni colonna: il
+bordo si accumulava e non avanzava mai.
 
-The mechanism (Figure~\ref{fig:edgeroot}) is worth stating because
-it is generic. Newton does not march, it \emph{solves}: anything
-that zeroes the residuals is a valid root, including a useless one.
-At pt4 = pt3 the streamline condition is satisfied identically
-($0=0$), the pressure condition already holds (pt3 is on the free
-boundary by construction), and the third equation turns on what pt3
-\emph{is} in the mesh. It was created, one step earlier, as the
-exit of a characteristic segment launched from the previous
-column's top data --- the mesh literally records a characteristic
-terminating at pt3. A sender taken from that same data therefore
-lies on pt3's own characteristic (exactly so where flow and edge
-are straight, since there the discrete segments lie exactly on the
-straight characteristics; to second order where they curve --- which
-is why the bug hid until the edge ran straight), and re-drawing
-that line can only re-find its recorded exit.
+Il meccanismo (Figura~\ref{fig:edgeroot}) vale la pena enunciarlo
+perché è generico. Newton non marcia, \emph{risolve}: qualunque cosa
+azzeri i residui è una radice valida, compresa una inutile. In
+pt4 = pt3 la condizione di linea di corrente è soddisfatta
+identicamente ($0=0$), la condizione di pressione vale già (pt3 sta
+sulla frontiera libera per costruzione), e la terza equazione dipende
+da che cosa pt3 \emph{sia} nella maglia. Era stato creato, un passo
+prima, come uscita di un segmento caratteristico lanciato dai dati di
+sommità della colonna precedente --- la maglia registra letteralmente
+una caratteristica che termina in pt3. Un mittente preso da quegli
+stessi dati giace quindi sulla caratteristica propria di pt3
+(esattamente là dove flusso e bordo sono rettilinei, poiché lì i
+segmenti discreti giacciono esattamente sulle caratteristiche
+rettilinee; al secondo ordine dove si incurvano --- ed è per questo
+che il difetto si nascondeva finché il bordo non correva dritto), e
+ritracciare quella linea non può che ritrovare la sua uscita
+registrata.
 
-The fix: sweep each column from the bottom up and feed the edge
-from its \emph{own} column's top interior point --- a point on the
-\emph{next} characteristic of the family, whose line is not asked
-to hit pt3 at all but to cross the \emph{streamline} through pt3.
-That is a shallower line, which a steeper line from below catches
-strictly downstream.
+La correzione: spazzare ogni colonna dal basso verso l'alto e
+alimentare il bordo dal punto interno di sommità della \emph{propria}
+colonna --- un punto sulla caratteristica \emph{successiva} della
+famiglia, alla cui linea non si chiede affatto di colpire pt3 ma di
+attraversare la \emph{linea di corrente} passante per pt3. Quella è
+una linea meno inclinata, che una linea più ripida dal basso
+intercetta strettamente a valle.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{fig_edge_root_geometry.pdf}
-\caption{The geometry of the degenerate edge root; both panels are
-axial coordinate $x$ [m] against radial coordinate $y$ [m], drawn
-at the scale of two mesh cells. (a)~The broken feed: pt3 exists in
-the mesh only as the recorded exit of a characteristic segment from
-the previous column's top data, so a sender taken from there sits
-on pt3's own characteristic --- re-drawing that line can only
-re-find its recorded exit, giving pt4 = pt3 and a zero step.
-(b)~The fix: the current column's top interior point sits on the
-\emph{next} characteristic, and its line must cross the
-\emph{streamline} through pt3 --- a shallower target, caught
-strictly downstream, so the root is genuinely advanced. What to
-compare: the angle between the two lines in each panel.}
+\caption{La geometria della radice degenere del bordo; entrambi i
+pannelli hanno la coordinata assiale $x$ [m] contro la coordinata
+radiale $y$ [m], disegnati alla scala di due celle di maglia.
+(a)~L'alimentazione difettosa: pt3 esiste nella maglia solo come
+uscita registrata di un segmento caratteristico dai dati di sommità
+della colonna precedente, quindi un mittente preso da lì sta sulla
+caratteristica propria di pt3 --- ritracciare quella linea non può
+che ritrovarne l'uscita registrata, dando pt4 = pt3 e un passo nullo.
+(b)~La correzione: il punto interno di sommità della colonna corrente
+sta sulla caratteristica \emph{successiva}, e la sua linea deve
+attraversare la \emph{linea di corrente} passante per pt3 --- un
+bersaglio meno inclinato, intercettato strettamente a valle, così la
+radice avanza davvero. Che cosa confrontare: l'angolo fra le due linee
+in ciascun pannello.}
 \label{fig:edgeroot}
 \end{figure}
 
-\subsection{Lesson 2: rows must grow with the jet}
+\subsection{Lezione 2: le righe devono crescere con il getto}
 
-The first mesh carried a fixed number of rows per column. But the
-jet widens downstream: the nearly horizontal characteristics of one
-family dragged the fixed rows down while the free edge climbed away
-from them, until the top of the mesh fell out of the jet altogether
-and the two families tangled (Figure~\ref{fig:pluglessons},
-panel~2). The bell march survives the same geometry by adding one
-row per column; the plug march now does the mirrored same --- each
-column's free-edge point becomes a new top row, so every column
-brings one new characteristic and the mesh keeps filling the jet.
+La prima maglia portava un numero fisso di righe per colonna. Ma il
+getto si allarga verso valle: le caratteristiche quasi orizzontali di
+una famiglia trascinavano in basso le righe fisse mentre il bordo
+libero se ne allontanava salendo, finché la sommità della maglia
+usciva del tutto dal getto e le due famiglie si aggrovigliavano
+(Figura~\ref{fig:pluglessons}, pannello~2). La marcia della campana
+sopravvive alla stessa geometria aggiungendo una riga per colonna; la
+marcia del plug ora fa lo stesso in modo speculare --- il punto di
+bordo libero di ogni colonna diventa una nuova riga di sommità, così
+ogni colonna porta una nuova caratteristica e la maglia continua a
+riempire il getto.
 
-\subsection{Lesson 3: foot adjacency vs step accuracy}
+\subsection{Lezione 3: adiacenza del piede contro accuratezza del
+passo}
 \label{app:footbias}
 
-With the edge and the rows fixed, the wall cell still failed its
-pressure check downstream, and a probe \emph{named} the defect:
-wall angles exact to four decimals everywhere, but wall speeds
-biased and drifting once the segments grew long.
+Sistemati il bordo e le righe, la cella di parete continuava a
+fallire la propria verifica di pressione a valle, e una sonda ha
+\emph{nominato} il difetto: angoli di parete esatti a quattro decimali
+ovunque, ma velocità di parete distorte e in deriva non appena i
+segmenti si allungavano.
 
-The first scheme confined the wall cell's \emph{foot} --- the point
-on the previous column from which the arriving characteristic
-departed --- to the first segment of the adjacent column. To keep
-the foot there the columns had to be paced, with the axial spacing
-allowed to grow up to a clamp of $0.30$. A single midpoint closure
-over a chord that long, crossing the expansion fan, is
-systematically biased: the chord itself lies along a straight ray
-from the lip, along which the state is constant, but its end states
-are interpolated \emph{across} rays on the column, and the midpoint
-rule compounds that transverse error over the whole long segment.
-Intermediate rounds (aligned columns, row growth, pacing) raised
-the wall-pressure agreement from $22\%$ to $55\%$ of stations and
-made the failure reproducible at the same station at both
-resolutions --- the signature of a systematic closure defect rather
-than noise.
+Il primo schema confinava il \emph{piede} della cella di parete --- il
+punto sulla colonna precedente da cui la caratteristica in arrivo era
+partita --- al primo segmento della colonna adiacente. Per tenere lì
+il piede le colonne dovevano essere cadenzate, con la spaziatura
+assiale libera di crescere fino a un limite di $0.30$. Una singola
+chiusura al punto medio su una corda così lunga, che attraversa il
+ventaglio di espansione, è sistematicamente distorta: la corda stessa
+giace lungo un raggio rettilineo dal labbro, lungo il quale lo stato è
+costante, ma i suoi stati agli estremi sono interpolati
+\emph{attraverso} i raggi sulla colonna, e la regola del punto medio
+propaga quell'errore trasversale sull'intero segmento lungo. I giri
+intermedi (colonne allineate, crescita delle righe, cadenza) hanno
+portato l'accordo di pressione di parete dal $22\%$ al $55\%$ delle
+stazioni e hanno reso il fallimento riproducibile alla stessa
+stazione a entrambe le risoluzioni --- la firma di un difetto
+sistematico di chiusura anziché di rumore.
 
-The fix is the multi-column foot search now in the march
-(Chapter~\ref{ch:plug}): columns are placed at the fine prescribed
-stations, and the wall cell searches the whole previous column,
-stepping further back if needed, for the segment that brackets its
-arriving characteristic. Chords shrink from the $0.30$ clamp to the
-station spacing, and a midpoint closure's error falls with the
-square of the chord. That single change took the wall-pressure
-agreement from $55\%$ to $98\%$ of stations and brought the edge
-angle into band.
+La correzione è la ricerca multi-colonna del piede ora nella marcia
+(Capitolo~\ref{ch:plug}): le colonne sono collocate alle stazioni
+fini assegnate, e la cella di parete cerca sull'intera colonna
+precedente, arretrando se necessario, il segmento che racchiude la
+caratteristica in arrivo. Le corde si riducono dal limite di $0.30$
+alla spaziatura fra stazioni, e l'errore di una chiusura al punto
+medio cala con il quadrato della corda. Quel singolo cambiamento ha
+portato l'accordo di pressione di parete dal $55\%$ al $98\%$ delle
+stazioni e ha riportato in banda l'angolo di bordo.
 
-\subsection{Lesson 4: the ghost rows, and why one oracle is not
-enough}
+\subsection{Lezione 4: le righe fantasma, e perché un oracolo solo non
+basta}
 \label{app:ghostrows}
 
-With the foot search in place the suite still read 3/5: every cell
-Newton-certified, edge and wall pressure in band --- and mass
-conservation off by $+9\%$. The probe found a whole limb of mesh
-\emph{below the spike}, carrying the upstream uniform state
-(Figure~\ref{fig:plugbefore}).
+Con la ricerca del piede a posto la suite segnava ancora 3/5: ogni
+cella certificata da Newton, bordo e pressione di parete in banda ---
+e la conservazione della massa sbagliata del $+9\%$. La sonda ha
+trovato un intero arto di maglia \emph{sotto la spina}, portatore
+dello stato uniforme a monte (Figura~\ref{fig:plugbefore}).
 
-Mechanism: with fine stations, a near-wall row's characteristic
-terminates on the wall \emph{between} two stations. The march kept
-prolonging that row anyway, and for such a row the only crossing
-Newton can still find is the \emph{backward} one --- a perfectly
-valid root of the cell's equations, converged and certified, on the
-wrong branch. (The foot search was already detecting the
-terminations --- its foot row climbed one row per column --- but
-nothing acted on them.) The fix is the row \emph{consumption} of
-Chapter~\ref{ch:plug}: at a solid wall the incoming family
-terminates, so rows of the previous column below the new foot are
-retired and the column re-indexed --- the exact dual of the edge
-adding one row per column. Mass then closes to $0.026\%$.
+Meccanismo: con stazioni fini, la caratteristica di una riga vicina
+alla parete termina sulla parete \emph{fra} due stazioni. La marcia
+prolungava comunque quella riga, e per una riga simile l'unico
+incrocio che Newton riesce ancora a trovare è quello
+\emph{all'indietro} --- una radice perfettamente valida delle
+equazioni della cella, convergente e certificata, sul ramo sbagliato.
+(La ricerca del piede stava già rilevando le terminazioni --- la sua
+riga di piede saliva di una riga per colonna --- ma nulla agiva di
+conseguenza.) La correzione è il \emph{consumo} delle righe del
+Capitolo~\ref{ch:plug}: a una parete solida la famiglia entrante
+termina, quindi le righe della colonna precedente sotto il nuovo piede
+vengono ritirate e la colonna reindicizzata --- il duale esatto del
+bordo che aggiunge una riga per colonna. La massa chiude poi allo
+$0.026\%$.
 
-The methodological lesson is the reason this appendix exists. The
-defect was invisible to the pointwise oracles (P-1, P-2) and to
-Newton certification, because every individual cell really had been
-solved correctly; only the \emph{global} mass balance saw it.
-Suites need conservation checks precisely because wrong-branch
-roots certify locally.
+La lezione metodologica è la ragione per cui questa appendice esiste.
+Il difetto era invisibile agli oracoli puntuali (P-1, P-2) e alla
+certificazione di Newton, perché ogni singola cella era stata
+davvero risolta correttamente; solo il bilancio di massa
+\emph{globale} lo ha visto. Le suite hanno bisogno di verifiche di
+conservazione proprio perché le radici sul ramo sbagliato si
+certificano localmente.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_plug_before.pdf}
-\caption{The ghost-limb regression, reproduced live with the
-carrier's diagnostic switch (\code{consume=False}). (a)~Axial
-coordinate $x$ [m] against radial coordinate $y$ [m]: characteristics
-that should have terminated at the wall are prolonged past it and
-grow a limb of mesh below the spike (red points) --- every cell of
-it Newton-certified, all of it on the wrong branch. (b)~The same
-run measured on the wall: $x$ [m] against wall pressure [bar],
-against the closed-form answer. The two lie on top of each other
---- which is the point: the defect is invisible to the pointwise
-checks and was caught only by the mass balance, off by $+9\%$.
-Compare with the certified state, Figure~\ref{fig:plug}.}
+\caption{La regressione dell'arto fantasma, riprodotta dal vivo con
+l'interruttore diagnostico del carrier (\code{consume=False}).
+(a)~Coordinata assiale $x$ [m] contro coordinata radiale $y$ [m]: le
+caratteristiche che avrebbero dovuto terminare alla parete sono
+prolungate oltre di essa e fanno crescere un arto di maglia sotto la
+spina (punti rossi) --- ogni sua cella certificata da Newton, tutto
+quanto sul ramo sbagliato. (b)~La stessa esecuzione misurata sulla
+parete: $x$ [m] contro pressione di parete [bar], contro la risposta
+in forma chiusa. Le due si sovrappongono --- ed è questo il punto: il
+difetto è invisibile alle verifiche puntuali ed è stato colto solo dal
+bilancio di massa, sbagliato del $+9\%$. Si confronti con lo stato
+certificato, Figura~\ref{fig:plug}.}
 \label{fig:plugbefore}
 \end{figure}
 
-\section{Step 10: the posing lessons of the plug cycle}
+\section{Passo 10: le lezioni di posizione del ciclo del plug}
 \label{app:plugcycleposing}
 
-The truncated-plug study (Chapter~\ref{ch:plugcycle}) reached its
-certified form through three measured corrections --- two about how
-the problem must be \emph{posed}, and one where the theory itself
-rejected a wrongly transplanted test. All three are drawn in
-Figure~\ref{fig:plugposing}.
+Lo studio del plug troncato (Capitolo~\ref{ch:plugcycle}) ha raggiunto
+la propria forma certificata attraverso tre correzioni misurate ---
+due su come il problema debba essere \emph{posto}, e una in cui la
+teoria stessa ha rigettato un test trapiantato a sproposito. Tutte e
+tre sono disegnate nella Figura~\ref{fig:plugposing}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_plug_posing.pdf}
-\caption{The three posing lessons of step 10, drawn from the
-engine's own machinery and the numbers of record. (a)~Axial
-coordinate $x$ [m] against radial coordinate $y$ [m]: the valley
-spike. Posing the same lip fan at $M_{p_a}=2.35$ turns the flow
-past axial ($\theta_E=+15^{\circ}$) and the ``spike'' streamline
-climbs \emph{above} the lip instead of descending; the corrected
-posing ($M_{p_a}=1.95$, $\theta_E\approx0$) gives a genuinely
-descending spike. (b)~Cycle phase (the five phases, from wave
-passage to tail) against the wall pressure each phase produces at
-the start line [bar], with the shared ambient $p_a$ drawn as a
-line. At a chamber pressure ratio of $2.5$ every phase sits
-\emph{above} the ambient --- underexpanded, and free to adapt
-inside the domain. Rescaling the same ladder to the certified
-$PR=10$ mock cycle puts the low phases far \emph{below} $p_a$: a
-shocked start, which the shock-free march cannot represent. That
-gap is what bounds the usable cycle. (c)~The truncation length $l$
-[m] as a number line, marking where each candidate answer falls:
-the expectation transplanted from the bell (design at the mean
-phase, red cross) is refuted by the measured cycle optimum
-$l^{*}=2.103$ --- an interior compromise sitting near, but strictly
-short of, the peak design --- with the per-phase optima
-($\triangledown$) spread out in the order the plug theorem
-predicts.}
+\caption{Le tre lezioni di posizione del passo 10, tratte dalla
+macchina stessa del motore e dai numeri di riferimento.
+(a)~Coordinata assiale $x$ [m] contro coordinata radiale $y$ [m]: la
+spina a valle. Ponendo lo stesso ventaglio di labbro a
+$M_{p_a}=2.35$ il flusso viene ruotato oltre l'assiale
+($\theta_E=+15^{\circ}$) e la linea di corrente ``spina'' sale
+\emph{sopra} il labbro invece di scendere; la posizione corretta
+($M_{p_a}=1.95$, $\theta_E\approx0$) dà una spina genuinamente
+discendente. (b)~Fase di ciclo (le cinque fasi, dal passaggio
+dell'onda alla coda) contro la pressione di parete che ciascuna fase
+produce alla linea iniziale [bar], con l'ambiente condiviso $p_a$
+disegnato come linea. A un rapporto di pressione di camera di $2.5$
+ogni fase sta \emph{sopra} l'ambiente --- sotto-espansa, e libera di
+adattarsi dentro il dominio. Riscalare la stessa scaletta al ciclo
+simulato certificato a $PR=10$ porta le fasi basse molto \emph{sotto}
+$p_a$: un avvio con urti, che la marcia priva di urti non può
+rappresentare. È quel divario a limitare il ciclo utilizzabile.
+(c)~La lunghezza di troncamento $l$ [m] come retta numerica, che
+segna dove cade ciascuna risposta candidata: l'aspettativa
+trapiantata dalla campana (progetto alla fase media, croce rossa) è
+smentita dall'ottimo di ciclo misurato $l^{*}=2.103$ --- un
+compromesso interno che sta vicino al progetto di picco ma
+strettamente al di qua di esso --- con gli ottimi per fase
+($\triangledown$) distribuiti nell'ordine che il teorema del plug
+prevede.}
 \label{fig:plugposing}
 \end{figure}
 
-\subsection{The valley spike}
+\subsection{La spina a valle}
 
-The first world posed the ambient pressure too low (the mean-phase
-pressure at Mach $2.35$). The fan at the cowl lip then turned the
-flow by $+40^{\circ}$ --- past axial --- and the streamline meant
-to be the spike dived, reversed and climbed \emph{above the lip}: a
-valley, not a spike, with the wall approaching the free edge and
-every downstream check breaking on the geometry. The fix is the
-classic plug design condition: pose the ambient so that the fan
-turn roughly cancels the incoming flow angle, i.e.\
-$\theta_E \approx 0$ (the flow leaves axially, adapted to the
-ambient), which makes the streamline genuinely descending.
+Il primo mondo poneva la pressione ambiente troppo bassa (la
+pressione della fase media a Mach $2.35$). Il ventaglio al labbro del
+cowl ruotava allora il flusso di $+40^{\circ}$ --- oltre l'assiale ---
+e la linea di corrente destinata a essere la spina si tuffava,
+invertiva e saliva \emph{sopra il labbro}: una valle, non una spina,
+con la parete che si avvicinava al bordo libero e ogni verifica a
+valle che si rompeva sulla geometria. La correzione è la classica
+condizione di progetto del plug: porre l'ambiente in modo che la
+rotazione del ventaglio cancelli all'incirca l'angolo del flusso
+entrante, cioè $\theta_E \approx 0$ (il flusso esce assialmente,
+adattato all'ambiente), il che rende la linea di corrente
+genuinamente discendente.
 
-\subsection{The plug feels the ambient: the shock-free cycle bound}
+\subsection{Il plug sente l'ambiente: il limite di ciclo privo di
+urti}
 
-A bell nozzle never feels the ambient: its flow is computed to a
-fixed exit whatever the outside pressure, and $p_a$ enters only the
-score. A plug feels it directly, through the free edge where
-$p = p_a$ is imposed on the flow itself.
+Un ugello a campana non sente mai l'ambiente: il suo flusso è
+calcolato fino a un'uscita fissa qualunque sia la pressione esterna, e
+$p_a$ entra solo nel punteggio. Un plug lo sente direttamente,
+attraverso il bordo libero dove $p = p_a$ è imposta sul flusso
+stesso.
 
-Running the certified mock cycle, whose chamber pressure ratio
-between the strongest and weakest phase is $PR = 10$, against one
-shared ambient put the low phases $6\times$ overexpanded already
-\emph{at the start line} --- a regime with shocks, outside what an
-isentropic march can represent. The failure was measured, not
-hypothetical: the free-edge cells blew up and the garbage descended
-row by row to the wall. Newton certification caught it, and the
-scaling-law check read a spread of $14.6$ where it should have read
-machine zero.
+Eseguire il ciclo simulato certificato, il cui rapporto di pressione
+di camera fra la fase più forte e la più debole è $PR = 10$, contro un
+unico ambiente condiviso, metteva le fasi basse $6\times$
+sovra-espanse già \emph{alla linea iniziale} --- un regime con urti,
+fuori da ciò che una marcia isentropica può rappresentare. Il
+fallimento è stato misurato, non ipotizzato: le celle di bordo libero
+esplodevano e la spazzatura scendeva riga per riga fino alla parete.
+La certificazione di Newton l'ha colto, e la verifica della legge di
+scala segnava una dispersione di $14.6$ dove avrebbe dovuto segnare lo
+zero di macchina.
 
-A cycle for a plug study must therefore be posed \emph{shock-free}:
-every phase underexpanded at the start and adapting within the
-domain. With one shared ambient that bounds the usable pressure
-ratio --- here $PR = 2.5$. The theory's statements do not depend on
-$PR$, and the corpus already conditions on shock-free flow; but the
-bound is a real modeling limit worth stating, because cycles as
-violent as $PR = 10$ put their low phases into shocked plug
-operation that this engine cannot yet represent.
+Un ciclo per uno studio di plug va dunque posto \emph{privo di urti}:
+ogni fase sotto-espansa all'inizio e adattante dentro il dominio. Con
+un unico ambiente condiviso questo limita il rapporto di pressione
+utilizzabile --- qui $PR = 2.5$. Le affermazioni della teoria non
+dipendono da $PR$, e il corpus condiziona già al flusso privo di
+urti; ma il limite è un vero limite di modello che vale la pena
+dichiarare, perché cicli violenti come $PR = 10$ portano le loro fasi
+basse in un funzionamento del plug con urti che questo motore non sa
+ancora rappresentare.
 
-\subsection{The theory rejecting the wrong test, twice}
+\subsection{La teoria che rigetta il test sbagliato, due volte}
 
-Two of the first draft's checks failed --- and both failures were
-the theory working, not the code.
+Due delle verifiche della prima stesura sono fallite --- ed entrambi i
+fallimenti erano la teoria che funzionava, non il codice.
 
-First, the draft transplanted the bell's collapse result (``the
-cycle optimum is the design for the mean-pressure phase'') to the
-plug. It failed: the measured optimum sits at $l^{*} = 2.10$
-against a mean-phase design of $1.28$. That is the
-\emph{anti-collapse} --- the opposite side of the theory's
-dichotomy --- because the collapse result is proved only for a
-fixed, fully flowing wall, which a truncated plug with a free edge
-is not. The check was inverted into the anti-collapse oracle now in
-Chapter~\ref{ch:plugcycle}.
+Primo, la stesura trapiantava sul plug il risultato di collasso della
+campana (``l'ottimo di ciclo è il progetto per la fase a pressione
+media''). È fallito: l'ottimo misurato sta a $l^{*} = 2.10$ contro un
+progetto alla fase media di $1.28$. È l'\emph{anti-collasso} --- il
+lato opposto della dicotomia della teoria --- perché il risultato di
+collasso è dimostrato solo per una parete fissa e interamente
+percorsa, che un plug troncato con bordo libero non è. La verifica è
+stata invertita nell'oracolo di anti-collasso ora nel
+Capitolo~\ref{ch:plugcycle}.
 
-Second, the draft required the per-phase votes at $l^{*}$ --- each
-phase's wall pressure minus the ambient at the truncation plane ---
-to vary monotonically with phase and change sign once, as certified
-for the bell in Chapter~\ref{ch:cycle}. They do not: on a plug the
-adaptation waves make the wall pressure oscillate about $p_a$, so
-pointwise votes sample an oscillation and the wave-passage phase
-can vote negative at a length below its own optimum. The theory
-claims only the averaged balance and the compromise structure, and
-exactly those pass; the over-specified checks were replaced by
-theorem-faithful ones (a genuine spread of the per-phase optima;
-$l^{*}$ a strict interior compromise).
+Secondo, la stesura richiedeva che i voti per fase a $l^{*}$ --- la
+pressione di parete di ciascuna fase meno l'ambiente sul piano di
+troncamento --- variassero monotonamente con la fase e cambiassero
+segno una volta, come certificato per la campana nel
+Capitolo~\ref{ch:cycle}. Non lo fanno: su un plug le onde di
+adattamento fanno oscillare la pressione di parete attorno a $p_a$,
+quindi i voti puntuali campionano un'oscillazione e la fase di
+passaggio dell'onda può votare negativo a una lunghezza inferiore al
+proprio ottimo. La teoria afferma solo il bilancio mediato e la
+struttura di compromesso, ed esattamente quelli passano; le verifiche
+sovra-specificate sono state sostituite con altre fedeli al teorema
+(una dispersione genuina degli ottimi per fase; $l^{*}$ come
+compromesso strettamente interno).
 
-The lesson generalizes: an oracle may be transplanted from one
-problem class to another only together with the hypotheses that
-prove it.
-\section{Step 15: two instruments, one constraint}
+La lezione si generalizza: un oracolo può essere trapiantato da una
+classe di problemi a un'altra soltanto insieme alle ipotesi che lo
+dimostrano.
+
+\section{Passo 15: due strumenti, un vincolo}
 \label{app:twoinstruments}
 
-The inlet-angle sweep held its mass constraint by a root search: move
-the spike's start radius until the flow crossing the start line
-carries the reference mass flow. It then graded itself by measuring
-that same mass flow. For several sessions the grade came back at
-$7\times10^{-5}$ relative --- small, but an order above the band the
-refinement supported, so the check failed and the failure resisted
-the obvious fixes. Widening the band would have buried it; refining
-the quadrature did nothing.
+La spazzata sull'angolo di ingresso teneva il proprio vincolo di massa
+con una ricerca di radice: spostare il raggio iniziale della spina
+finché il flusso che attraversa la linea iniziale non porta la portata
+di riferimento. Si valutava poi misurando quella stessa portata. Per
+diverse sessioni la valutazione tornava a $7\times10^{-5}$ relativi
+--- piccolo, ma un ordine sopra la banda che il raffinamento
+sosteneva, quindi la verifica falliva e il fallimento resisteva alle
+correzioni ovvie. Allargare la banda l'avrebbe seppellito; raffinare
+la quadratura non serviva a nulla.
 
-The residue was not an error at all. The constraint was being
-\emph{set} with one rule and \emph{graded} with another. Sizing used
-the trapezoid of the product $\rho\, u\, 2\pi y$; the verdict used
-the march's own column functional, which multiplies midpoint means,
-$\rho_m u_m\, 2\pi y_m$. Both are second-order, both are correct, and
-they differ on every interval by a quarter of the product of the
-increments --- which on $61$ rows is exactly the $7\times10^{-5}$
-that would not go away.
+Il residuo non era affatto un errore. Il vincolo veniva
+\emph{imposto} con una regola e \emph{valutato} con un'altra. Il
+dimensionamento usava il trapezio del prodotto $\rho\, u\, 2\pi y$; il
+verdetto usava il funzionale di colonna proprio della marcia, che
+moltiplica medie ai punti medi, $\rho_m u_m\, 2\pi y_m$. Entrambi sono
+del secondo ordine, entrambi sono corretti, e differiscono su ogni
+intervallo di un quarto del prodotto degli incrementi --- che su $61$
+righe è esattamente il $7\times10^{-5}$ che non voleva sparire.
 
-Sizing with the functional that grades removes it at the source: the
-mass residue falls to between $10^{-15}$ and $3\times10^{-10}$, i.e.
-the constraint is satisfied to machine precision, and the derived
-band ($2.9\times10^{-4}$) is no longer being asked to cover a
-disagreement between two instruments.
+Dimensionare con il funzionale che valuta lo rimuove alla fonte: il
+residuo di massa scende fra $10^{-15}$ e $3\times10^{-10}$, cioè il
+vincolo è soddisfatto alla precisione di macchina, e alla banda
+derivata ($2.9\times10^{-4}$) non si chiede più di coprire un
+disaccordo fra due strumenti.
 
-A second failure dissolved with it. One outward-turning candidate had
-been failing Newton certification at a worst residual of $6.5$, and
-had been read as a marching limit of that configuration. It was not:
-with the annulus correctly sized, the same candidate certifies at
-$0.05$. A mis-set constraint had been quietly deforming the geometry
-that the march was then blamed for.
+Un secondo fallimento si è dissolto insieme a esso. Un candidato che
+ruotava verso l'esterno falliva la certificazione di Newton con un
+residuo peggiore di $6.5$, ed era stato letto come un limite di marcia
+di quella configurazione. Non lo era: con l'anello dimensionato
+correttamente, lo stesso candidato certifica a $0.05$. Un vincolo mal
+imposto stava deformando in silenzio la geometria di cui poi si
+incolpava la marcia.
 
-The lesson is the sharper form of the one in
-Chapter~\ref{ch:compare}: it is not enough for a constraint and its
-verdict to measure the same \emph{quantity}. They must be the same
-\emph{functional}. Two correct rules for one integral will disagree
-at their common order of accuracy, and that disagreement will present
-itself as a physical defect.
-\section{Step 16: three ways to mismeasure with two points}
+La lezione è la forma più affilata di quella del
+Capitolo~\ref{ch:compare}: non basta che un vincolo e il suo verdetto
+misurino la stessa \emph{grandezza}. Devono essere lo stesso
+\emph{funzionale}. Due regole corrette per uno stesso integrale
+disaccorderanno al loro ordine di accuratezza comune, e quel
+disaccordo si presenterà come un difetto fisico.
+
+\section{Passo 16: tre modi di misurare male con due punti}
 \label{app:twopoints}
 
-Building the free-form spike produced the same error three times in
-one session, in three disguises. It is worth stating once.
+Costruire la spina a forma libera ha prodotto lo stesso errore tre
+volte in una sola sessione, in tre travestimenti. Vale la pena
+enunciarlo una volta.
 
-\emph{First}, the check that the spline basis can represent the
-contour it starts from compared two knot counts and read their ratio
-as a convergence rate. The ratio was $1.5\times$, far too slow for
-cubic interpolation, and the check failed. But two competing errors
-are present --- one at the spline's free right end, one at the
-station where the contour actually bends --- and which of them
-dominates alternates as knots are added. Two adjacent counts sample
-whichever happens to be winning. Across a ladder of four counts the
-basis reduces its error by $28\times$ and is perfectly adequate.
+\emph{Primo}, la verifica che la base spline sappia rappresentare il
+contorno da cui parte confrontava due conteggi di nodi e leggeva il
+loro rapporto come un tasso di convergenza. Il rapporto era
+$1.5\times$, troppo lento per un'interpolazione cubica, e la verifica
+falliva. Ma sono presenti due errori in competizione --- uno
+all'estremo destro libero della spline, uno nella stazione dove il
+contorno effettivamente si piega --- e quale dei due domini si alterna
+al crescere dei nodi. Due conteggi adiacenti campionano quello che
+capita di vincere. Su una scala di quattro conteggi la base riduce il
+proprio errore di $28\times$ ed è perfettamente adeguata.
 
-\emph{Second}, the mass constraint was set with one quadrature rule
-and graded with another (Appendix~\ref{app:twoinstruments}). Two
-correct second-order rules for the same integral disagree at their
-common order, and that disagreement presented itself as a physical
-defect that no amount of refinement removed.
+\emph{Secondo}, il vincolo di massa era imposto con una regola di
+quadratura e valutato con un'altra
+(Appendice~\ref{app:twoinstruments}). Due regole corrette del secondo
+ordine per lo stesso integrale disaccordano al loro ordine comune, e
+quel disaccordo si presentava come un difetto fisico che nessuna
+quantità di raffinamento rimuoveva.
 
-\emph{Third}, the adjoint was graded against a central difference
-whose error band was estimated by halving the step once. That
-estimate assumes the error is truncation. Here it is not: the
-replayed march is only piecewise smooth in the design vector, so the
-difference carries noise that does not shrink with the step. Measured
-across five steps the discrepancy wanders instead of falling as
-$h^2$. The two-point band therefore described nothing, and a correct
-adjoint was reported as a failure.
+\emph{Terzo}, l'aggiunto era valutato contro una differenza centrata
+la cui banda d'errore era stimata dimezzando il passo una volta sola.
+Quella stima assume che l'errore sia di troncamento. Qui non lo è: la
+marcia riprodotta è solo regolare a tratti nel vettore di progetto,
+quindi la differenza porta un rumore che non si riduce con il passo.
+Misurata su cinque passi, la discrepanza vaga invece di calare come
+$h^2$. La banda a due punti non descriveva dunque nulla, e un aggiunto
+corretto veniva riportato come un fallimento.
 
-The common structure is this. \textbf{Two points can measure a
-difference, but never a rate, and never the reliability of the
-instrument that produced them.} Wherever this program grades something
-against a derived band, the band must come from a ladder --- three
-points at least --- and the ladder must be inspected rather than
-reduced to a single ratio. Where the underlying quantity is not
-smooth, the ladder measures scatter rather than truncation, and that
-scatter \emph{is} the honest band.
+La struttura comune è questa. \textbf{Due punti possono misurare una
+differenza, ma mai un tasso, e mai l'affidabilità dello strumento che
+li ha prodotti.} Ovunque questo programma valuti qualcosa contro una
+banda derivata, la banda deve venire da una scala --- almeno tre
+punti --- e la scala va ispezionata anziché ridotta a un singolo
+rapporto. Dove la grandezza sottostante non è regolare, la scala
+misura dispersione anziché troncamento, e quella dispersione \emph{è}
+la banda onesta.
 
-The corollary is worth keeping too: all three failures pointed at the
-wrong culprit. In the first the basis was blamed, in the second the
-flow, in the third the adjoint. In every case the instrument was at
-fault, and in every case the instrument was the thing not being
-measured.
-\section{The referee's own defects, and a binary that could not be rebuilt}
+Vale la pena tenere anche il corollario: tutti e tre i fallimenti
+indicavano il colpevole sbagliato. Nel primo si è incolpata la base,
+nel secondo il flusso, nel terzo l'aggiunto. In ogni caso la colpa era
+dello strumento, e in ogni caso lo strumento era la cosa che non
+veniva misurata.
+
+\section{I difetti dell'arbitro, e un binario che non si poteva
+ricompilare}
 \label{app:geno}
 
-Posing the classical construction in this document's world
-(Section~\ref{sec:vsrao}) required running the independent Fortran
-code at a mass and a length it had never been asked for, and that
-exposed three defects and one environment failure. They are recorded
-because two of the three were ours, and because the environment
-failure is the kind that invalidates a referee silently.
+Porre la costruzione classica nel mondo di questo documento
+(Sezione~\ref{sec:vsrao}) ha richiesto di eseguire il codice Fortran
+indipendente a una massa e a una lunghezza che non gli erano mai state
+chieste, e questo ha esposto tre difetti e un fallimento di ambiente.
+Sono registrati perché due dei tre erano nostri, e perché il
+fallimento di ambiente è del tipo che invalida un arbitro in
+silenzio.
 
-\emph{A NaN where a refusal belonged.} The code's design-curve
-integrator can exhaust its step budget without reaching a corner, an
-axis or its mass target; that is base behaviour and it used to degrade
-quietly. The mass accumulator this program added propagated straight
-through it and returned a mass of NaN. A caller then compared that NaN
-against a target and got a residual that is neither positive nor
-negative, which silently poisoned a bisection and finally surfaced as
-a NaN entropy in the thermodynamics. The fix tests the increments
-\emph{before} accumulating --- adding and then subtracting a NaN does
-not undo it --- and stops with a distinct reason the caller can
-reject.
+\emph{Un NaN dove serviva un rifiuto.} L'integratore della curva di
+progetto del codice può esaurire il proprio budget di passi senza
+raggiungere uno spigolo, un asse o il proprio bersaglio di massa;
+questo è comportamento di base e degradava in silenzio. L'accumulatore
+di massa che questo programma ha aggiunto ci passava attraverso e
+restituiva una massa NaN. Un chiamante confrontava poi quel NaN con un
+bersaglio ottenendo un residuo che non è né positivo né negativo, il
+che avvelenava in silenzio una bisezione e alla fine affiorava come
+un'entropia NaN nella termodinamica. La correzione verifica gli
+incrementi \emph{prima} di accumulare --- sommare e poi sottrarre un
+NaN non lo annulla --- e si ferma con una ragione distinta che il
+chiamante può rigettare.
 
-\emph{A solution to the wrong problem.} With the guard in place the
-length bisection ran, and returned a design that met the length exactly
-while missing the mass by $63.6\%$: it had found the root on a branch
-where the curve stops at its corner instead of at its mass target.
-Both roots exist; only one solves the two-constraint problem that was
-posed. The validity test now requires termination on mass whenever
-mass matching is on.
+\emph{Una soluzione al problema sbagliato.} Con il presidio a posto la
+bisezione sulla lunghezza girava, e restituiva un progetto che
+rispettava esattamente la lunghezza mancando la massa del $63.6\%$:
+aveva trovato la radice su un ramo in cui la curva si ferma al proprio
+spigolo anziché al proprio bersaglio di massa. Entrambe le radici
+esistono; solo una risolve il problema a due vincoli che era stato
+posto. Il test di validità richiede ora la terminazione sulla massa
+ogni volta che l'adattamento di massa è attivo.
 
-\emph{A budget mistaken for a limit.} The step cap of $500$ was
-binding on long curves. The design that expands to this document's
-ambient runs to $5.8$ m and needs several thousand steps; at $500$ it
-stopped mid-curve and reported whatever length it had reached, which
-is why the classical spike for our conditions appeared not to exist.
-Raising the cap cannot affect a curve that already terminates, and the
-reference case reproducing exactly is what proves it.
+\emph{Un budget scambiato per un limite.} Il tetto di $500$ passi era
+vincolante su curve lunghe. Il progetto che espande fino all'ambiente
+di questo documento arriva a $5.8$ m e richiede alcune migliaia di
+passi; a $500$ si fermava a metà curva e riportava la lunghezza
+raggiunta, ed è per questo che la spina classica per le nostre
+condizioni sembrava non esistere. Alzare il tetto non può influenzare
+una curva che già termina, e la riproduzione esatta del caso di
+riferimento è ciò che lo dimostra.
 
-\emph{The binary could not be rebuilt.} The working executable had
-been compiled with a compiler and a linear-algebra library that are no
-longer installed. Rebuilding from the same source with the current
-toolchain produces a binary that \textbf{fails the code's own
-reference case} --- the exit-angle scan collapses and the prescribed
-exit Mach becomes unreachable --- while the same source at $-O0$
-reproduces the reference exactly. The code is therefore
-optimization-fragile under the current compiler, in a way its previous
-one tolerated.
+\emph{Il binario non si poteva ricompilare.} L'eseguibile funzionante
+era stato compilato con un compilatore e una libreria di algebra
+lineare che non sono più installati. Ricompilare dagli stessi sorgenti
+con la toolchain attuale produce un binario che \textbf{fallisce il
+caso di riferimento del codice stesso} --- la spazzata sull'angolo di
+uscita collassa e il numero di Mach di uscita assegnato diventa
+irraggiungibile --- mentre gli stessi sorgenti a $-O0$ riproducono il
+riferimento esattamente. Il codice è dunque fragile
+all'ottimizzazione con il compilatore attuale, in un modo che il
+precedente tollerava.
 
-The attribution matters more than the fix. The failure appeared
-immediately after our edits, and the obvious inference was that we had
-broken it. What settled the question was removing our edits entirely
-and rebuilding: the failure reproduced identically. Only then was it
-legitimate to say the compiler was at fault --- and only then was it
-safe to keep the fix.
+L'attribuzione conta più della correzione. Il fallimento è comparso
+subito dopo le nostre modifiche, e l'inferenza ovvia era che l'avessimo
+rotto noi. Ciò che ha risolto la questione è stato rimuovere del tutto
+le nostre modifiche e ricompilare: il fallimento si è riprodotto
+identico. Solo allora è stato legittimo dire che la colpa era del
+compilatore --- e solo allora è stato sicuro tenere la correzione.
 
-\section{An instrument that guessed instead of refusing}
+\section{Uno strumento che indovinava invece di rifiutare}
 \label{app:silentclamp}
 
-The field meter of Chapter~\ref{ch:status} measures mass and momentum
-through a vertical cut, and its first version reported a mass excess
-of $6$--$7\%$ that decayed downstream. The shape of the error was
-persuasive: it looked like a near-field resolution defect, and the
-obvious suspect --- the first marched column's known coverage gap ---
-was tested first. Filling that gap changed nothing at all, at any
-setting.
+Il misuratore di campo del Capitolo~\ref{ch:status} misura massa e
+quantità di moto attraverso un taglio verticale, e la sua prima
+versione riportava un eccesso di massa del $6$--$7\%$ che decadeva
+verso valle. La forma dell'errore era persuasiva: sembrava un difetto
+di risoluzione nel campo vicino, e il sospetto ovvio --- il noto buco
+di copertura della prima colonna marciata --- è stato provato per
+primo. Riempire quel buco non ha cambiato nulla, a nessun
+impostazione.
 
-The cause was that the meter did not know where the jet was. A
-characteristics march emits free-boundary points only once the
-marching front reaches the boundary, so its boundary polyline begins
-at $x = 2.69$ and does not exist upstream of that. The routine that
-looks up the jet radius used a standard interpolation, which
-\emph{clamps} silently outside its data range and returned the
-polyline's first value as though it were the local radius. Every cut
-upstream then spanned a phantom outer band, and because area goes as
-$y^{2}$, an extra $0.07$ m of radius at $y \approx 2.3$ is several
-percent of the mass.
+La causa era che il misuratore non sapeva dove fosse il getto. Una
+marcia a caratteristiche emette punti di frontiera libera solo una
+volta che il fronte di marcia raggiunge la frontiera, quindi la sua
+poligonale di frontiera comincia a $x = 2.69$ e non esiste a monte di
+lì. La routine che consulta il raggio del getto usava
+un'interpolazione standard, che \emph{tronca} in silenzio fuori dal
+proprio intervallo di dati e restituiva il primo valore della
+poligonale come se fosse il raggio locale. Ogni taglio a monte
+copriva allora una fascia esterna fantasma, e poiché l'area va come
+$y^{2}$, $0.07$ m di raggio in più a $y \approx 2.3$ valgono qualche
+percento della massa.
 
-The diagnosis was a single number: at a station essentially on the
-start line, where the answer is known by construction to twelve
-digits, the meter read $+6.35\%$. An instrument that is wrong where
-the answer is known is wrong everywhere.
+La diagnosi è stata un singolo numero: in una stazione essenzialmente
+sulla linea iniziale, dove la risposta è nota per costruzione a
+dodici cifre, il misuratore segnava $+6.35\%$. Uno strumento che
+sbaglia dove la risposta è nota sbaglia ovunque.
 
-The repair is not a better guess but a refusal: the lookup now raises
-outside its span. Restricted to the window where the boundary actually
-exists, the mass residual is $0.6$--$1.0\%$ rather than $7\%$. An
-upper envelope of the mesh was tried as a way to extend the boundary
-and is recorded here as \emph{wrong}: a vertical cut through a
-characteristics mesh is sparsely populated, so a per-station maximum
-reads the near-wall nodes and under-reports the jet radius by up to
-$96\%$.
+La riparazione non è un'ipotesi migliore ma un rifiuto: la
+consultazione ora solleva un'eccezione fuori dal proprio intervallo.
+Ristretto alla finestra in cui la frontiera esiste davvero, il residuo
+di massa è dello $0.6$--$1.0\%$ anziché del $7\%$. Un inviluppo
+superiore della maglia è stato provato come modo di estendere la
+frontiera ed è registrato qui come \emph{sbagliato}: un taglio
+verticale attraverso una maglia di caratteristiche è popolato in modo
+rado, quindi un massimo per stazione legge i nodi vicini alla parete e
+sottostima il raggio del getto fino al $96\%$.
