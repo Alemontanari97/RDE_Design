@@ -262,7 +262,7 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     ambient 0.9949 PA, tip cut 0.01 y_E declared): dual-code twin 6/6
     with a gap of 1.5e-4 [X-OWTW]; O3.3 value half 4/4 — the ideal spike
     is stationary for our functional (N2 ~340x) [X-OWO3]; SQP-return
-    [X-OWSQ] (verdict in the S28 log). What this discharges: "certified
+    X-OWSQ-pending (verdict in the S28 log). What this discharges: "certified
     plug optimum + oracle in derived bands on OUR world" for the
     perfect-expansion member (EOS-general gas; gamma-const only in the
     Rao-world twin). STILL NOT for exit: the tournament-grade A/B at the

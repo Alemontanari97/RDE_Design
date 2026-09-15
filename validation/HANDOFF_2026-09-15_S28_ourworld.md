@@ -20,7 +20,7 @@ authoritative for the Rao-world chain and its traps). Narrative:
   7/7 and `rao1961_sqp_return` 6/6 re-run identical to the S26 records
   (logs `_rao1961_twin/rerun_*_2026-09-15.log`).
 - **F3 EXIT leg on OUR world, twin mode:** [X-OWTW] 6/6 (gap 1.5e-4),
-  [X-OWO3] 4/4 (N2 ~340x), [X-OWSQ] see the S28 log addendum. Baseline
+  [X-OWO3] 4/4 (N2 ~340x), X-OWSQ-pending see the S28 log addendum. Baseline
   = GENO `CASES/raoplug_ch4o2/run_val_repro` (rao_val member: theta_E
   −0.02 deg, L 5.926, closes on the axis), OUR gas verified against the
   field, ambient = the member's lip ambient 7.575953e5 Pa (0.9949 PA),
