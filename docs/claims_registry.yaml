@@ -2484,3 +2484,31 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "P3 failing with P2 passing (a second stationary point of the spline space); P2 failing (the driver cannot close where [X-RAOO3] says the gradient vanishes); J(W*) <= J(W_pert); R1 not walking away within its calibrated budget; any accepted base uncertified"
   gamma: "gamma-const-oracle"
+
+- id: X-OWTW
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-09-15; suite=none"
+  class: PRACTICE
+  scope: "F3 EXIT LEG, OUR WORLD — THE DUAL-CODE TWIN ON THE AXISYMMETRIC IDEAL-SPIKE BASELINE (S28 2026-09-15; VERDICT PASS 6/6, run of record validation/_ourworld/run_twin_ycut_2026-09-15.log, 880 s; first run 5/6 validation/_ourworld/run_twin_2026-09-15.log): the [X-RAOTW] instrument (start line cut from the reference field, free-jet edge above the kernel top ED, EDGE_FILL, wedge-below-ED comparison at the declared S8 cross-code thresholds) run on GENO's RaoPlug member in OUR world — CH4/O2 frozen gas of a1_config_compare (GENO's own thermo files; the gas is VERIFIED against the field: Rg 5.1e-7, s0 2.6e-6, h0 1.6e-4 max rel over 20000 nodes, ourworld_geno.gas_check), chamber 2.53e7 Pa / 3739.9 K, lip 2.2695, inlet 26.659 deg, M_i 2.0, validation mode Me_fixed 2.8020 (GENO CASES/raoplug_ch4o2/run_val_repro, the bit-identical reproduction of the S21 rao_val run): theta_E -0.0199 deg, L 5.92567, eps 5.15063 = y_E^2, the C- curve reaches the axis; ambient = the member's own lip ambient 7.575953e5 Pa from raoplug_performance.dat (0.9949 of the nominal PA, the analogue of Rao's Eq. (8) a-posteriori ambient). Cuts x0 1.50/1.00/0.50 (0.25/0.17/0.08 of x_D, the Rao-world fractions), K 161 stations (twice the Rao-world 81: the spike is 2.2x longer in lip radii), N 41/61 rows. RESULT: every march certifies (worst 0.41 at edge cells, never at the wall), 0 nonfinite below ED, wedge gap 1.5e-4 mean (Rao's world: 5.0e-4) = 49x the reconstruction floor 3e-6, coverage 99.6 percent within q 1e-3 and 97.7 percent within theta 1.5e-3 rad; upstream ladder 1.55e-4 / 1.49e-4 / 2.69e-4 (reported). DECLARED RE-POSING after the first run: the member closes on the axis (y_D 3.8e-4 m) and the plug march has no axis cell — its wall-foot solve at y ~ 1e-3 m certified in 4 of 6 marches and blew up (7.8e11 / 4.7e11, always the LAST station) in two; the marched wall is therefore cut where GENO's contour drops below OW_YCUT = 0.01 y_E = 0.0247 m (x_end 5.6102 of 5.9257), the excluded needle carrying (p - p_a) pi y^2 ~ 1e2 N of 1.16e8 N. The −0.37 percent mass deficit of the member against p_c A_t/c* is POSING (IVL-vs-target), not numerics: identical under NI 101/201/401 and under the C- step y_E/200 -> /400 -> /800 in a scratch GENO build (mass on the C- curve = the IVL mass to 1e-6 at every step; gate: the gamma123 oracle reproduced line for line at the committed step); in twin mode it cannot enter (both codes consume the same start line)"
+  statement: "In OUR world, on GENO's axisymmetric ideal-spike member, our certified plug march reproduces the reference kernel below its control surface at the declared S8 cross-code level (gap 1.5e-4, better than in Rao's world), from three cuts, with the tip cut at 0.01 y_E declared: the SQP may score a design in our world against this reference."
+  doc: "validation/PROGRESS_2026-09-15_S28_ourworld.md"
+  proof: "validation/ourworld_twin.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "P2 failing at every cut (our march does not reproduce the reference in our world); any march not certifying with the tip cut in place; nonfinite points below ED; the gas check exceeding the S8 level (a gas mismatch absorbed instead of exposed)"
+  gamma: "EOS-general"
+
+- id: X-OWO3
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-09-15; suite=none"
+  class: PRACTICE
+  scope: "F3 EXIT LEG, OUR WORLD — THE PLUG-SECTOR O3.3, VALUE HALF (S28 2026-09-15; VERDICT PASS 4/4, run of record validation/_ourworld/run_o33_2026-09-15.log, 674 s): the [X-RAOO3] v2 instrument ([X-OWTW] posing at x0 1.50, K 161; six interior endpoint-pinned Gaussian bumps with support excluded from the first 0.35 L_r after the cut; one reverse pass for the projected derivatives; FD-Richardson + ripple bands per direction; a bump-perturbed control wall) on GENO's ideal-spike member in OUR gas at the member's lip ambient, tip pinned at the 0.01 y_E cut: reference record certifies (0.51, n 17148); AD interior gradients +1.2e3 +1.3e3 +1.2e3 +1.3e2 -1.9e3 -5.3e3 N/m inside their bands (6e5..2.7e6, the frozen-replay FD floor at this length: the bands are of the Rao-world order 3e5..1e6), against +9.6e5 +3.0e5 -1.8e6 -7.0e4 +3.6e5 +4.2e4 on the perturbed wall (N2 > 10x: measured ~340x); J(GENO) - J(perturbed) = +4.4e4 N (P3). Scales declared: bump amplitude 2.5e-2 m and control 5.0e-2 m = the Rao-world 5e-3 / 1e-2 times the design-length ratio 5.04. NOT POSED, declared: the Rao-world N1 (tip gradient NONZERO) and P4 (Eq. (9) corner relation) — the member closes on the axis, so Rao's p_b = 0 base balance at a corner stop does not define this tip; the tip direction is REPORTED (AD -7.0e3, FD -4.5e3, band 8.3e3 N/m; the base balance 2 pi y_D p_a = 1.18e5 at the cut y_D 0.0247 is quoted for scale only: the cut point is not a corner stop, so no identity is expected there)"
+  statement: "In OUR world, GENO's axisymmetric ideal spike is stationary for our thrust functional under our certified march along admissible interior variations, is not stationary once perturbed, and is a thrust maximum against the perturbed wall: the plug sector's classical known answer holds for the very functional and gradient the SQP consumes in the world of the A/B (the value half of the F3-EXIT oracle)."
+  doc: "validation/PROGRESS_2026-09-15_S28_ourworld.md"
+  proof: "validation/ourworld_o33.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "P2 failing in every interior direction while N2 passes; J(perturbed) >= J(GENO); the reference record not certifying; a near-cut direction re-entering the bump support without its FD band exposing the instrument zone"
+  gamma: "EOS-general"

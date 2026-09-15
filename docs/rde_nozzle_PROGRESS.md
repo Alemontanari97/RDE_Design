@@ -44,10 +44,33 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## ORA-PARALLELO (2026-08-27, LINEA BRICK-2 PLUG, branch `brick2-plug`
-## = origin/rde-nozzle-program 6be51b9 + 22 commit locali; push read-only,
-## catena principale NON toccata: questo blocco e' ADDITIVO). ESEGUITO
-## nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## ORA-PARALLELO (2026-09-15, LINEA BRICK-2 PLUG, branch `brick2-plug`
+## = origin/rde-nozzle-program 6be51b9 + la linea ri-autorata; push
+## read-only, catena principale NON toccata: questo blocco e' ADDITIVO).
+## S27 (2026-09-09, F-SERVICE): la working copy cancellata il 09-04
+## (23 commit mai pushati) RICOSTRUITA dai transcript di sessione —
+## 21 commit ri-autorati con messaggi/date originali, ratchet
+## numeric-lint 100/100 file riprodotti, sei carrier ri-eseguiti
+## identici; artefatti derivati persi dichiarati (log
+## validation/PROGRESS_2026-09-09_S27_line_reconstruction.md); bundle
+## di record RDE/handoff/brick2-plug_2026-09-09.bundle. S28
+## (2026-09-15, log validation/PROGRESS_2026-09-15_S28_ourworld.md,
+## handoff HANDOFF_2026-09-15_S28_ourworld.md): (1) O3.3 e SQP-return
+## del plug RI-ESEGUITI sull'albero ricostruito: identici ai record S26
+## riga per riga; (2) baseline spike ideale assialsimmetrico NEL NOSTRO
+## MONDO misurata (GENO CASES/raoplug_ch4o2: la posa "massa+ambiente L
+## 5.825" del documento NON e' riproducibile col binario di record;
+## rao_val Me_fixed 2.802 riprodotto bit a bit: theta_E -0.02 deg, L
+## 5.926, chiude sull'asse; deficit di massa -0.37 % = POSA
+## dell'ingresso, non numerica — invariante sotto NI e sotto il passo
+## C- in un build di prova); (3) i tre strumenti del mondo di Rao
+## TRASPORTATI nel nostro in modo twin (linea di partenza GENO nella
+## nostra marcia, gas VERIFICATO sul campo, ambiente = p_a del labbro
+## del membro 0.9949 PA, taglio di punta 0.01 y_E dichiarato): twin
+## 6/6 gap 1.5e-4 [X-OWTW], O3.3 valore 4/4 [X-OWO3], SQP-return
+## [X-OWSQ] (verdetto nel log S28); (4) catena di rigenerazione degli
+## artefatti S22/S23 lanciata (NON bit-identica al record: la marcia e'
+## cambiata dopo S22, dichiarato). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
 ## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
 ## della linea (14 commit) su 6be51b9 con date originali + commit di
 ## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
@@ -90,14 +113,19 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## NEXT-PARALLELO (linea brick-2 plug, 2026-08-27): (1) baseline
-## assialsimmetrica dello spike ideale (membro theta_E=0 di GENO o
-## marcia dallo spigolo sonico) -> A/B Rao-vs-spline a piena espansione
-## L~5.825 (PSPL_L; voce 3 della coda S24); (2) F3 EXIT: ottimo plug
-## certificato + oracolo Tab. 1 in bande derivate SUL NOSTRO mondo +
-## un'istanza a gamma variabile/stratificata; (3) righe findings per
-## [X-RAOIS]/[X-RAOWD] (pending-declared SR-6); (4) documento italiano
-## brick-2 (W-5 chiuso, catena Rao) — decisione owner.
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-15): (1) chiudere la
+## catena di rigenerazione (S23 verdetto/design_fine, figure, PDF) e
+## decidere lo stato del log S22 (record storico non riproducibile vs
+## nuova baseline); (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
+## serve il membro GENO che espande esattamente a PA (oggi 0.9949 PA;
+## ventaglio GENO in NaN per theta_E >= 0 — protocollo GENO) oppure la
+## dichiarazione del residuo 0.5 % nell'A/B; poi Rao-vs-spline a
+## PSPL_L = 5.926 dal taglio GENO; (3) oracolo Tab. 1 in bande derivate
+## sul nostro mondo + un'istanza stratificata (F3 EXIT); (4) righe
+## findings per [X-RAOIS]/[X-RAOWD] (pending-declared SR-6); (5)
+## documento italiano brick-2: §vsrao da emendare al membro rao_val (L
+## 5.926, theta_E -0.020) — decisione owner; (6) bundle del branch in
+## RDE/handoff/ a OGNI chiusura (lezione S27).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
@@ -251,7 +279,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
 | R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED PIENO 2026-08-21 (parte C4 2026-08-20/21: FASE D dimostrata e atterrata a convergenza (centerpiece R22F 4 round x 3 lenti + escalation 4 minori TUTTI DRY + E-5; M0 riceve [T-DISC]/[T-RED]/[T-DCRX]/NTF/CLG/[R22F-FORCHETTA] con classi finali; G-c (ii) scaricata-citabile); Fase C completata a 62 righe (C59-C62 coniate: forma-temporale, NAND/SAND, p_b-closure, quadratura — 7 istanze classe no-row totali); COVERAGE GATE PASS dual-seed provato; PIPELINE DECISION MAP di record (62 nodi/45 archi, refuter 0/0); campagne letteratura (nozzle-RDE 0-BREAK, field atlas, base-pressure, throat) + emendamento protocollo censimento su sfida utente sostenuta; touchpoint chiusura: CFD-2 in F2/CFD-1 post-M-RED, BLOCCATO 16 ratificata F2-entry, M-RED resta F2, procurement top-3+3; catena aggiornata C4 -> S-PRES -> F2; log PROGRESS_2026-08-21_SfoundationsC4.md. Parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
-| R37 | LINEA BRICK-2 PLUG S21-S26 (parallela, branch brick2-plug, rebasata su 6be51b9 il 2026-08-27; 22 commit locali, push read-only) | CONSUMED-with-residue 2026-08-27 | residui: baseline spike ideale assialsimmetrico -> A/B Rao-vs-spline a piena espansione; F3 EXIT sul nostro mondo; righe findings [X-RAOIS]/[X-RAOWD]; documento italiano; residuo P1 di cucitura del twin sul campo 2-vincoli; accesso push/fork (owner) | validation/PROGRESS_2026-08-27_S26_rao_modo1.md + HANDOFF_2026-08-27_S26_rao_twin.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR (S21-S24) + X-RAOTB/CS/FN/IS/WD/TW/O3/SQ + X-O31R (S26); log di record in validation/_rao1961_twin/ |
+| R37 | LINEA BRICK-2 PLUG S21-S28 (parallela, branch brick2-plug su 6be51b9; working copy cancellata il 2026-09-04 e RICOSTRUITA dai transcript il 09-09 (S27, 21/23 commit ri-autorati, ratchet 100/100); push read-only, bundle in RDE/handoff/) | CONSUMED-with-residue 2026-09-15 | S28: baseline spike ideale nel nostro mondo MISURATA (rao_val L 5.926; posa L 5.825 del documento non riproducibile; deficit massa = posa) e strumenti trasportati in modo twin: [X-OWTW] 6/6, [X-OWO3] 4/4, [X-OWSQ] (log S28). residui: A/B a livello torneo sull'ambiente NOMINALE (membro GENO a PA esatta: protocollo GENO); oracolo Tab. 1 in bande sul nostro mondo + istanza stratificata; catena di rigenerazione S22/S23 (non bit-identica, dichiarata); righe findings [X-RAOIS]/[X-RAOWD]; documento italiano (§vsrao da emendare); residuo P1 di cucitura del twin sul campo 2-vincoli; accesso push/fork (owner) | validation/PROGRESS_2026-09-15_S28_ourworld.md + HANDOFF_2026-09-15_S28_ourworld.md (S28); PROGRESS_2026-09-09_S27_line_reconstruction.md (S27); PROGRESS_2026-08-27_S26_rao_modo1.md (S26); registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAOTB/CS/FN/IS/WD/TW/O3/SQ + X-O31R + X-OWTW/OWO3/OWSQ; log di record in validation/_rao1961_twin/ e validation/_ourworld/ |
 
 ## BLOCCATO / GATE APERTI
 
@@ -469,9 +497,16 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     CASES/raoplug_gamma123 + plugnoz_axi, sorgente del doc di teoria
     (cap. 7.2 "The lip fan in axisymmetric flow") — gated dal protocollo
     GENO (N-75); (c) documento italiano brick-2 (stash@{0}) da
-    aggiornare (W-5 chiuso, catena Rao) o tenere fuori; (d) retro-
-    propagazione R4 in M0/D-doc della lezione "ventaglio = relazione di
-    punto in assialsimmetrico" (oggi solo nel doc GENO).
+    aggiornare (W-5 chiuso, catena Rao, §vsrao al membro rao_val) o
+    tenere fuori; (d) retro-propagazione R4 in M0/D-doc della lezione
+    "ventaglio = relazione di punto in assialsimmetrico" (oggi solo nel
+    doc GENO); (e) S28 2026-09-15: GENO CASES/raoplug_ch4o2 (nuovo
+    case, untracked) da benedire; il ventaglio di fase 1 va in NaN per
+    theta_E >= 0 e la posa "massa+ambiente" cade in un buco della
+    scansione a 21 punti — il membro a PA ESATTA per l'A/B di torneo
+    richiede un intervento GENO sotto protocollo (N-75); il probe del
+    passo C- (env GENO_CMINUS_DIV) vive in un build di prova, mai
+    committato: adottarlo o no e' decisione owner.
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

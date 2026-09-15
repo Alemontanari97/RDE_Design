@@ -249,13 +249,29 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     [X-RMAR], O3.1 through the stratified march [X-O31R]. NOT YET for
     entry: the plug/C- mirror Lambda-form margin (unproven, undeclared);
     RaoPlug S1/S2 in GENO landed but uncommitted (GENO protocol N-75).
-    NOT YET for exit: certified plug optimum + Table-1 oracle in derived
-    bands on OUR world (the full-expansion Rao-vs-spline A/B waits on an
-    axisymmetric ideal-spike baseline), a var-gamma/stratified plug
-    instance, T-GB de-rating or the 2-D truncated-plug falsifier.
-    Formal declaration of the entry leg = owner ratification at the
-    next F2/F3 touchpoint (the line's state is carried by its own
-    log/handoff; PROGRESS row R37).
+    EXIT LEG ON OUR WORLD, MEASURED (S28 2026-09-15; log
+    validation/PROGRESS_2026-09-15_S28_ourworld.md): the axisymmetric
+    ideal-spike baseline is GENO's RaoPlug member in our CH4/O2 gas
+    (validation mode Me_fixed 2.802: theta_E -0.02 deg, L 5.926, closes
+    on the axis; the S21 "mass + ambient, L 5.825" posing is NOT
+    reproducible with the binary of record; the member's -0.37 percent
+    mass deficit is inlet POSING, not numerics — invariant under NI and
+    under the C- step in a scratch build), and the three Rao-world
+    instruments transported to it in TWIN MODE (GENO's start line in our
+    march, gas VERIFIED against the field, ambient = the member's lip
+    ambient 0.9949 PA, tip cut 0.01 y_E declared): dual-code twin 6/6
+    with a gap of 1.5e-4 [X-OWTW]; O3.3 value half 4/4 — the ideal spike
+    is stationary for our functional (N2 ~340x) [X-OWO3]; SQP-return
+    [X-OWSQ] (verdict in the S28 log). What this discharges: "certified
+    plug optimum + oracle in derived bands on OUR world" for the
+    perfect-expansion member (EOS-general gas; gamma-const only in the
+    Rao-world twin). STILL NOT for exit: the tournament-grade A/B at the
+    NOMINAL ambient (the member expands to 0.9949 PA and GENO's fan
+    fails for theta_E >= 0 — GENO protocol), the Table-1 oracle bands on
+    our world, a stratified plug instance, T-GB de-rating or the 2-D
+    truncated-plug falsifier. Formal declaration of the entry leg =
+    owner ratification at the next F2/F3 touchpoint (the line's state is
+    carried by its own log/handoff; PROGRESS row R37).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
