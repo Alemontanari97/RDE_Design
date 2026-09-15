@@ -1,0 +1,33 @@
+##### ourworld_twin (rao_val member, OUR gas, lip ambient) 2026-09-15 15:57:40 sprop2
+== [F3] OUR world, dual-code twin: GENO ideal-spike field -> our march ==
+   world: OUR gas (nasa; Rg 363.8226, T0 3739.9 K, p0 2.53e+07 Pa); GENO member theta_E -0.0199 deg, L 5.92567, eps 5.15063
+   ambient = the member's lip ambient p_a 757595 Pa (0.9949 of the nominal PA 761442); q_at_pa 2743.6 m/s
+   gas check, field vs tables (max rel over 20000 nodes): Rg 5.1e-07, h0 1.6e-04, s0 2.6e-06
+   reference: 1827179 field points, 9933 wall points, x -0.7986..5.9257, y_D 3.83e-04
+   kernel top ED: 525 pts, (0.000,2.270) -> (5.926,0.0004)
+
+   x0    rows  cert(glob)  where          wedge  nonfin  |dq|/q mean/max      |dth| mean/max deg   t[s]
+   --------------------------------------------------------------------------------------------------------
+   1.50   39   1.39e-01  ('edge', 99)    1751      0   1.94e-04/2.21e-02    1.34e-02/5.67e-01     119
+   1.50   59   7.75e+11  ('wall', 159)   2646      0   1.64e-04/1.27e-02    1.04e-02/4.45e-01     125
+   1.00   39   1.71e-01  ('edge', 47)    1530      0   2.09e-04/4.31e-02    1.65e-02/5.07e-01     123
+   1.00   59   4.56e-01  ('edge', 132)   2278      0   1.58e-04/1.65e-02    1.27e-02/3.28e-01     126
+   0.50   39   4.66e+11  ('wall', 159)   1177      0   4.88e-04/4.31e-02    2.82e-02/5.52e-01     119
+   0.50   59   3.51e-01  ('edge', 47)    1710      0   3.41e-04/2.92e-02    2.20e-02/3.73e-01     116
+  [FAIL] P1 x0=1.50 the march certifies (worst 7.75e+11 at ('wall', 159))
+  [PASS] P1 x0=1.00 the march certifies (worst 4.56e-01 at ('edge', 132))
+  [PASS] P1 x0=0.50 the march certifies (worst 3.51e-01 at ('edge', 47))
+
+   derived band (reference reconstruction, 1:2 / 1:4):
+     |dq|/q  mean 7.91e-07 / 3.23e-06   max 3.50e-05 / 2.26e-04
+     |dth|   mean 4.12e-04 / 2.02e-03   max 4.76e-02 / 3.65e-01 deg
+   the wedge gap (1.6e-04 mean) sits 51x above the reconstruction floor
+  [PASS] P2 no nonfinite point below ED
+  [PASS] P2 99.5% of the wedge within q 1e-03 (declared S8 threshold; need >= 95%)
+  [PASS] P2 97.4% of the wedge within theta 1.5e-03 rad (declared S8 threshold; need >= 95%)
+
+   P3 (reported): |dq|/q mean at x0 = 1.50: 1.64e-04, 1.00: 1.58e-04, 0.50: 3.41e-04
+
+== 5/6 PASS  (860.9 s) ==
+VERDICT: FAIL
+##### exit=1 2026-09-15 16:12:03

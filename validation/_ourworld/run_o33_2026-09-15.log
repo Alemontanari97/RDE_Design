@@ -1,0 +1,29 @@
+##### ourworld_o33 (x0 1.50, K 161, tip cut 0.01) 2026-09-15 16:27:50 sprop2
+== [F3] OUR world O3.3 for the plug: GENO's ideal spike vs OUR AD gradient ==
+   world: OUR gas (nasa; Rg 363.8226, T0 3739.9 K, p0 2.53e+07 Pa); GENO member theta_E -0.0199 deg, L 5.92567, eps 5.15063
+   ambient = the member's lip ambient p_a 757595 Pa (0.9949 of the nominal PA 761442); q_at_pa 2743.6 m/s
+   gas check, field vs tables (max rel over 20000 nodes): Rg 5.1e-07, h0 1.6e-04, s0 2.6e-06
+   reference: 1827179 field points, 9933 wall points, x -0.7986..5.9257, y_D 3.83e-04; tip cut at y = 0.010 y_E = 0.0247 m -> x_end 5.6102 (full contour ends at 5.9257)
+   start line: 59 rows at x0=1.50; mass 23516.9 kg/s; F_in 6.25071e+07 N; x_D=5.6102; K=161; T_H=2.518e-02 A_PERT=5.037e-02
+-- S1: record at GENO's wall; replay-differentiable J(a) --
+  cert 5.106e-01 (n=17148, worst at ('edge', 157)); J(ref) = 6.44510141e+07 N (push 1.94393e+06)
+  [PASS] P1 the reference record certifies (worst <= 1)
+  AD projected gradient: interior +1.16e+03 +1.32e+03 +1.18e+03 +1.33e+02 -1.85e+03 -5.32e+03 ; tip -7.0273e+03
+-- S2: FD bands per interior direction (t, t/2 Richardson + ripple) --
+    dir 0: AD +1.161e+03 FD -1.958e+03 band 2.678e+06  PASS
+    dir 1: AD +1.321e+03 FD -1.981e+03 band 2.153e+06  PASS
+    dir 2: AD +1.183e+03 FD +1.379e+03 band 1.701e+06  PASS
+    dir 3: AD +1.331e+02 FD -3.583e+03 band 1.272e+06  PASS
+    dir 4: AD -1.854e+03 FD -3.180e+03 band 9.162e+05  PASS
+    dir 5: AD -5.324e+03 FD -8.509e+03 band 6.413e+05  PASS
+  [PASS] P2 STATIONARITY: all 6 interior directions ~ 0 in band
+  tip direction (REPORTED, axis-closing member): AD -7.0273e+03  FD -4.4600e+03  band 8.272e+03; base balance 2 pi y_D p_a = +1.1769e+05 (y_D 2.47e-02)
+-- S3: negative control - a non-optimal wall (bump 3, 0.050) --
+  perturbed record cert 1.788e-01; J(pert) = 6.44067260e+07  (J_ref - J_pert = +4.4288e+04)
+  perturbed interior grad: +9.59e+05 +3.01e+05 -1.83e+06 -6.97e+04 +3.61e+05 +4.24e+04
+  [PASS] N2 negative control: perturbed wall NOT stationary (max |g| > 10x ref)
+  [PASS] P3 MAXIMUM: J(GENO) > J(perturbed wall)
+
+== 4/4 PASS  (674.4 s) ==
+VERDICT: PASS -- GENO's ideal spike is stationary for our functional under our march in OUR world (plug-sector O3.3, value half)
+##### exit=0 2026-09-15 16:39:08

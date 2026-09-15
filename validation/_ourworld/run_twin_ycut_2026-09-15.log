@@ -1,0 +1,33 @@
+##### ourworld_twin v2 (tip cut OW_YCUT=0.01) 2026-09-15 16:12:45 sprop2
+== [F3] OUR world, dual-code twin: GENO ideal-spike field -> our march ==
+   world: OUR gas (nasa; Rg 363.8226, T0 3739.9 K, p0 2.53e+07 Pa); GENO member theta_E -0.0199 deg, L 5.92567, eps 5.15063
+   ambient = the member's lip ambient p_a 757595 Pa (0.9949 of the nominal PA 761442); q_at_pa 2743.6 m/s
+   gas check, field vs tables (max rel over 20000 nodes): Rg 5.1e-07, h0 1.6e-04, s0 2.6e-06
+   reference: 1827179 field points, 9933 wall points, x -0.7986..5.9257, y_D 3.83e-04; tip cut at y = 0.010 y_E = 0.0247 m -> x_end 5.6102 (full contour ends at 5.9257)
+   kernel top ED: 525 pts, (0.000,2.270) -> (5.926,0.0004)
+
+   x0    rows  cert(glob)  where          wedge  nonfin  |dq|/q mean/max      |dth| mean/max deg   t[s]
+   --------------------------------------------------------------------------------------------------------
+   1.50   39   5.49e-02  ('edge', 103)   1879      0   1.81e-04/7.13e-03    1.32e-02/5.87e-01     124
+   1.50   59   4.06e-01  ('edge', 148)   2842      0   1.55e-04/4.66e-03    1.01e-02/4.60e-01     135
+   1.00   39   3.91e-01  ('edge', 110)   1642      0   1.79e-04/1.25e-02    1.60e-02/5.13e-01     126
+   1.00   59   2.52e-01  ('edge', 147)   2443      0   1.49e-04/6.93e-03    1.22e-02/3.40e-01     115
+   0.50   39   3.34e-01  ('wall', 63)    1237      0   3.88e-04/3.26e-02    2.73e-02/5.47e-01     121
+   0.50   59   2.95e-01  ('edge', 73)    1806      0   2.69e-04/2.09e-02    2.08e-02/3.74e-01     126
+  [PASS] P1 x0=1.50 the march certifies (worst 4.06e-01 at ('edge', 148))
+  [PASS] P1 x0=1.00 the march certifies (worst 2.52e-01 at ('edge', 147))
+  [PASS] P1 x0=0.50 the march certifies (worst 2.95e-01 at ('edge', 73))
+
+   derived band (reference reconstruction, 1:2 / 1:4):
+     |dq|/q  mean 8.13e-07 / 3.18e-06   max 3.20e-05 / 2.37e-04
+     |dth|   mean 4.02e-04 / 2.03e-03   max 4.17e-02 / 3.71e-01 deg
+   the wedge gap (1.5e-04 mean) sits 49x above the reconstruction floor
+  [PASS] P2 no nonfinite point below ED
+  [PASS] P2 99.6% of the wedge within q 1e-03 (declared S8 threshold; need >= 95%)
+  [PASS] P2 97.7% of the wedge within theta 1.5e-03 rad (declared S8 threshold; need >= 95%)
+
+   P3 (reported): |dq|/q mean at x0 = 1.50: 1.55e-04, 1.00: 1.49e-04, 0.50: 2.69e-04
+
+== 6/6 PASS  (879.5 s) ==
+VERDICT: PASS -- our march reproduces GENO's ideal-spike kernel below ED in OUR world at the declared S8 cross-code level
+##### exit=0 2026-09-15 16:27:28
