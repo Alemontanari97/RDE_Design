@@ -160,35 +160,83 @@ band, from a start at 2.9x)**, P4a PASS (+5.93e3 N), P4b PASS (18 N <=
 1.34e5). S4/R1: the sign-flipped driver walks to 5.52e-2 (9x the start),
 J_p − J = 5.63e5 N, PASS.
 
-**Attribution (from the log's own numbers; W* is not saved by the
-instrument, so nothing below is a re-measurement).** In VALUE the return
-is complete: J* − J_fit = +18 N on 6.4e7 (3e-7 relative, 7000x inside
-band_J) and the gradient closes to a fortieth of its measured floor.
-In LOCATION the residual 2.49e-3 costs nothing measurable in J: had it
-lain along the direction c_hat measures, W* would sit ½ c_hat d² =
-9.9e2 N BELOW the maximum, and it sits 18 N above J_fit instead (the
-log bounds the linear term by 8 · |g|inf · |d|inf = 3.1e2 N, so
-½ dᵀH d <= 2.9e2 N along the residual: at least 3.4x softer than c_hat,
-the true softness unmeasurable post hoc). c_hat is by construction the
+**Attribution, first pass (from the log's own numbers; W* is not saved
+by the v2 instrument).** In VALUE the return is complete: J* − J_fit =
++18 N on 6.4e7 (3e-7 relative, 7000x inside band_J) and the gradient
+closes to a fortieth of its measured floor. In LOCATION the residual
+2.49e-3 costs nothing measurable in J: had it lain along the direction
+c_hat measures, W* would sit ½ c_hat d² = 9.9e2 N BELOW the maximum,
+and it sits 18 N above J_fit instead (the log bounds the linear term by
+|g|_1 · |d|inf = 2.27e4 · 2.49e-3 = 57 N, so ½ dᵀH d <= 39 N along the
+residual: at least 25x softer than c_hat). c_hat is by construction the
 curvature along the ALTERNATING perturbation — the stiffest direction of
-an 8-knot spline — and band_W's location floor g/c_hat = 4.8e-5 is
-therefore the floor of the stiff direction only; along the soft
-direction the same gradient floor buys more displacement. In Rao's world
-the soft direction was invisible (floor terms e_rep 4.8e-5, |g| 6.3e3;
-return 0.45x band_W); in our world both floor terms are 2-10x larger and
-the return lands at 1.17x band_W. Reading of record: NOT a second
-maximum of the spline space (the value coincides with the fit), but a
-LOCATION FLOOR UNDER-DECLARED — one scalar curvature for an
-8-dimensional design space. The falsifier as declared fired; the row
-[X-OWSQ] records the FAIL.
+a 7-dof spline — and band_W's location floor g/c_hat = 4.8e-5 is
+therefore the floor of the stiff direction only.
 
-**NOT done (owner's call, listed in the handoff):** re-posing band_W on
-the softest curvature at W_fit (smallest Hessian eigenvalue by
-Hessian-vector products, or c along W* − W_fit once the instrument saves
-W*) would be a re-derivation of the band AFTER seeing the residual; it
-is proposed as the next posing of the instrument, not applied to this
-run. Likewise not done: more knots (lower e_rep), a K 321 run of record
-(lower |dJ|).
+**Attribution, MEASURED (20:13-20:20; `recovery_brick2_2026-09-06/
+scratch_s2_2026-09-15/hess_wfit_2026-09-15.{py,log,npz}`).** AD Hessian
+of the replayed J at W_fit on its frozen record (7 x 7, 118 s;
+asymmetry 4.5 % rel — the replay is piecewise smooth):
+- KNOWN-ANSWER: the curvature along the alternating perturbation from
+  the Hessian is 2.87e8 (wall metric) vs c_hat 3.18e8 measured by the
+  run from the finite 1.5 % step: 10 %, and the predicted J_fit − J_p =
+  5.33e3 N vs 5.92e3 N run. The Hessian is right where v2 looked.
+- SPECTRUM (wall-metric curvature, location floor g/c, band K(e_rep +
+  g/c)): 9.87e6 / 1.55e-3 / 8.15e-3; 1.95e7 / 7.9e-4 / 5.09e-3; 4.72e7 /
+  3.2e-4 / 3.24e-3; 8.79e7 / 1.7e-4 / 2.64e-3; 1.55e8 / 9.9e-5 /
+  2.34e-3; 2.04e8 / 7.5e-5 / 2.25e-3; 2.63e8 / 5.8e-5 / 2.18e-3. The
+  softest direction is **32x softer than c_hat** (v = [−0.08 −0.17 −0.29
+  −0.40 −0.52 −0.54 −0.40]: a smooth lowering/raising of the whole
+  spike, weighted downstream) and its location floor alone, 1.55e-3, is
+  32x the 4.8e-5 that v2 declared. The gradient floor itself sits at the
+  last free knot (g = −1.53e4 there, the other components 2e2..3e3).
+- FD-of-gradient along the softest direction: AD 2.98e6 vs FD 2.44e6 /
+  2.41e6 (h 1e-3, 1e-4), 18-19 % — the AD Hessian overestimates the
+  softest curvature by ~20 % on the piecewise-smooth replay; a K_RICH
+  = 4 band absorbs it, declared.
+Reading of record, now measured: NOT a second maximum (the value
+coincides with the fit) but a LOCATION FLOOR UNDER-DECLARED — v2 used
+one scalar curvature, measured along the stiffest direction of a
+7-dimensional design space. In Rao's world the same defect was
+invisible (floor terms e_rep 4.8e-5, |g| 6.3e3; return 0.45x band_W).
+
+**Instrument v3 (declared 20:25, code committed with this addendum):**
+the return is graded PER EIGEN-DIRECTION — band_k = K_RICH (e_rep +
+g_floor / c_k) against the residual's component along v_k in wall
+units (the scalar band with c_min would be 8.1e-3 > the start's 6.1e-3:
+a sup-norm test cannot discriminate once the soft direction is
+admitted, the per-direction one can — the start lies outside its band
+in the stiff directions); the sup-norm distance and the v2 band are
+printed, not graded; W_fit, W_p, W*, W_r and the spectrum are saved
+(`sqpret_v3_designs_<date>.npz`) so the residual can be read by
+direction. Rao's world is RE-RUN with v3 and must reproduce every v2
+number and pass (its row [X-RAOSQ] is re-stamped by that run; the code
+change makes the 08-27 stamp stale by the lint's own rule); our world
+is re-run with v3 as the run of record of the motion half. Both
+launched 20:23 (`sqp_v3_chain.sh`; logs `_rao1961_twin/
+run_sqpret_v3_2026-09-15.log`, `_ourworld/run_sqpret_v3_2026-09-15.log`).
+The v2 log stays the record of the fired falsifier ([X-OWSQ]).
+
+**Rao's world, v3 run of record (21:13, 3032 s): 6/6 PASS** — every v2
+number reproduced line by line (e_rep 4.782e-5, floor 6.27e3, start
+4.975e-3 = 20.8x band_W(v2), 12 records, J* − J_fit +0.317 N, |grad|
+86.06, return 1.069e-4 = 0.45x band_W(v2), R1 walks to 1.088e-2 with
+the same 14-record trace); v3 spectrum: c along the perturbation from
+the Hessian 3.61e8 vs c_hat 5.18e8 (−30 %: the finite 1.5 % step's
+nonlinearity plus the AD Hessian's custom-rule second derivatives —
+inside K_RICH, declared), softest c 1.44e7 (36x softer; v = a smooth
+raising of the whole spike again), bands 1.94e-3 (soft) .. 2.9e-4
+(stiff); the start lies outside its band in 4 of 7 directions (worst
+18.4x), the return's worst component is 0.07 of its band (direction
+6); curvature along the actual residual 3.9e7. [X-RAOSQ] re-stamped
+from this run (its proof file changed). Post-run hygiene, declared: the
+numeric-lint ratchet refused the three literals v3 had introduced
+(probe step 1e-3 x2, a 1e-300 guard); replaced by a UNIT probe step
+(stations() is linear in W) and a d_s > 0 branch — the committed code
+reproduces the run-of-record spectrum to 1e-13 relative (lambda
+identical, dw 9e-14, bands 1.2e-13; `scratch_s2_2026-09-15/
+spectrum_recheck_2026-09-15.log`), so the log stands as the run of
+record of the committed file.
 
 ### Addendum B (18:32 chain end; certification measured 20:04) — regeneration chain: S22 re-adjudicates, S23 CANNOT proceed (the regenerated design is uncertified at (121,101)); figures 3/5, no PDF
 
@@ -231,12 +279,22 @@ pass).
    (K 61) past x0 0.35, and the wall slope at the first stations is
    -0.20 (K 61) / -0.26, -0.20 (K 121) / -0.36, -0.26, -0.21 (K 241)
    against the streamline's uniform -0.50 — a shoulder at the foot,
-   flatter than the incoming flow. Reading of record: a start-up
-   fragility of the plug march (first column, edge cell) for THIS wall
-   at THIS (K,N), design-dependent (the incumbent passes) but not the
-   under-resolution of a sharp feature (241 certifies). Whether it is
-   the EDGE_FILL start-up wedge, the first wall-foot solve, or the
-   clamp is NOT attributed here (no re-run beyond the three marches).
+   flatter than the incoming flow. SWEEP around (121,101) (20:13-20:25,
+   `scratch_s2_2026-09-15/col0_attrib_2026-09-15.{py,log}`): the same
+   design certifies at (121,103) 0.34, (119,101) 0.34, (123,101) 0.37,
+   (161,101) 0.59, (181,151) 0.38, is marginal at (121,81) 1.39 and
+   fails at (121,101) 3.2e11 and (121,99) 1.2e12 — always the edge cell
+   of the FIRST marched column. The record's knot set does not escape
+   it either: the re-run's cycle-1 design (m 11, knots 0.4575 + 10
+   uniform, J 1.15965416e8) certifies at (61,51) 0.119 and fails at
+   (121,101) with 4.17 (edge cell 75). Reading of record: a (K,N)
+   PAIRING LOTTERY of the plug march's start-up (first column, free-jet
+   edge cell, EDGE_FILL wedge) for these walls — design-dependent (the
+   incumbent passes everywhere), not the under-resolution of a sharp
+   feature (241, 161, 181 certify); the march-contract item is booked,
+   the cause inside the edge cell (which root the free-jet Newton takes
+   when the first column's top lands near the fictitious cut-top fan) is
+   NOT dissected tonight.
 3. INSTRUMENT DEFECT, S22 A-8 (`gain_ladder`): the rungs read J from
    `march_record` without gating `cert_worst` (A-4 certifies the design
    at its OWN resolution only). The rerun's rung-2 gain +0.429 % is
@@ -251,24 +309,69 @@ pass).
    rungs 1-3 (R-3) and REPORTS it at rungs >= 4; [X-PAKN]'s A-8 gates
    nothing.
 
+**THE FINDING BEHIND THE LOTTERY (20:30-20:45, fold census;
+`scratch_s2_2026-09-15/fold_census_2026-09-15.{py,log}`).** A column of
+the plug march is a C+ characteristic from the wall foot to the free
+edge; if its points are not strictly increasing in y the characteristics
+of the family have CROSSED — a shock the isentropic march cannot
+represent, and which its certification (a Newton residual per cell)
+cannot see. Census at the working resolution (61,51): the fan
+streamline (incumbent) 0 of 62 columns folded; the re-run's adaptive
+design (m 12) **59 of 62** (first fold at column 4), the re-run's
+cycle-1 design (m 11 = the record's knot set) **60 of 62** (first at
+column 3). The lever is the wall angle at the first station: the
+streamline turns the flow by 0 there (−26.66 deg = the incoming flow),
+the m 12 design imposes −11.36 deg and the m 11 design −18.14 deg — a
+COMPRESSION CORNER of 15 and 8.5 deg at the foot, whose waves coalesce
+within two or three columns. That is where the "adaptive gain" comes
+from (a higher wall pressure on the descending spike right after the
+corner) and why S23 saw it evaporate under refinement (the coarse
+march smears a coalescing compression that the fine march folds). At
+rungs 2-3: the S22 designs cross in 120/122 columns at (121,101) and 240/242 at (241,201), worst crossing depth 0.15-0.32 m at mid-column (refined census `fold_census2_2026-09-15.log`, crossings dy < -1e-9 only, no duplicate-y rows anywhere); the incumbent crosses in 0/62, 11/122, 40/242 columns with worst depth 7e-4 m at row fraction ~0.9 near x 2.9, y 2.36 — the free-edge top, the EDGE_FILL fictitious cut-top fan zone, three orders shallower and a different object. Reading of record: the S22 designs (both the
+regenerated m 12 and the record's m 11 knot set) are OUTSIDE the
+shock-free class the march is certified for; A-4's admissibility
+(descends, clears the axis, Newton-certified) never asked; the
+(121,101) certification failure is this fold reaching the first
+column's edge cell, the sweep's "lottery" is which cells the fold
+happens to hit. The S23 re-adjudication running tonight will be
+graded by the same census on its fine optimum before any number of
+its verdict is quoted; the record's [X-PGRS] "gain zero within band"
+stood on designs of this class too (its fine optimum was warm-started
+from the m 11 design). What follows for the carriers: a FOLD DETECTOR
+belongs in A-4 (S22) and R-3 (S23) — an admissibility condition, i.e.
+a change of the design class, hence an owner decision; tonight it is
+measured and declared, not enforced.
+
 **Consequence for the regeneration (item 3 of the S27 list):** with
-today's code the S22->S23 chain does not reproduce the record and cannot
-even run to a verdict from the regenerated design (S23's working
+today's code the S22->S23 chain does not reproduce the record and could
+not run to a verdict from the regenerated design (S23's working
 instrument IS (121,101): `run_trsqp` raises on an uncertified first
-record, by design); the lost S23
-artifacts (`verdict.json`, `analysis.json` of record, `design_fine.json`,
-`run_of_record_S23_final.log`), the two figures and the PDF are NOT
-regenerable by re-execution. Owner decision (not taken here): (a) the
-S22/S23 records stay historical (non-reproducible with the current
-driver, declared), the two figures are rebuilt from the RECORD logs
-(the ladder numbers of `run_of_record_S23_rungs.log` + the registry
-scope of [X-PGRS]) and the document's ch. S22/S23 keeps its numbers with
-a reproducibility note; or (b) re-adjudicate S22/S23 with today's code,
-which first requires the A-8 instrument fix (rung marches gated on
-certification; an uncertified rung voids the ladder), an attribution of
-the (121,101) first-column failure (march contract, not this line's
-design space), and possibly a driver that certifies accepted designs at
-the fine rung too — a new run of record
-(~4 h S22 + ~4 h S23 + rungs 4-6), re-stamped rows [X-PAKN]/[X-PGRS],
-and the document chapter rewritten to the new numbers. Neither is
-chosen by the resumer.
+record, by design); the lost S23 artifacts of 08-11 are NOT regenerable
+as such — the chain is a RE-ADJUDICATION with today's code, which is
+what the owner's "incomplete" (20:00) asked to be finished. Two
+instrument amendments, both declared in the carriers' docstrings and
+committed with this addendum:
+- S22 `a1_plug_adaptive.py`: every rung of the A-8/A-9 ladders is
+  gated on certification of BOTH marches; an uncertified rung makes the
+  ladder VOID and the verdict FAIL by discipline (certs printed per
+  rung). Artifact dir configurable (`PAKN_ART`) so a re-run can live
+  beside the 18:28 artifacts.
+- S23 `a1_plug_gain_resolve.py`: R-2c reports whether the S22 design of
+  record certifies at the fine instrument; if not, the warm start FALLS
+  BACK to the newest S22 cycle checkpoint that certifies at (121,101)
+  and, failing all, to the fan streamline on the S22 knots — the
+  verdict is about the FINE optimum's gain, not about where the walk
+  began; the knot set travels with the design into `fineopt.npz`
+  (`warm_from` recorded). With tonight's certs (cycle 2 3.2e11, cycle 1
+  4.17) the fallback will be the streamline on the m 12 knots; the fine
+  driver then has to climb the ~+0.2 % itself (PGRS_ITERS 40).
+Launched 20:23 (`scratch_s2_2026-09-15/regen2_driver.sh`, master log
+`regen2_2026-09-15b.log`): S23 default -> fineopt (R-2c fallback) ->
+rungs 4-6 x inc/fine as SIX PARALLEL processes -> final -> design_fine
+-> figures -> build, and IN PARALLEL S22 v2 with the amended ladder into
+`_plug_adaptive_v2` (determinism check against the 18:28 design at its
+end). Expected: S22 v2 ~00:00 (A-8 VOID at rung 2, A-9 likewise if the
+uniform control's rungs fail to certify), S23 verdict ~01:30, PDF after.
+The S22 log of 08-10 and the S23 rows [X-PAKN]/[X-PGRS] are re-stamped
+from these runs when they close (numbers of record replaced, the 08-10/11
+logs kept as history with this note).

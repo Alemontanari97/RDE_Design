@@ -80,6 +80,25 @@ contour (dist 5.0e-3 -> 1.09e-2, J -3.1e4 N). SEG_R1 = 14 is therefore
 the rejector's calibrated budget (declared), and the run of record is
 the full carrier with it.
 
+v3 (2026-09-15, declared after the our-world run of record fired the
+P3 falsifier at 1.17x band_W with P2/P4 passing): v2's location floor
+g_floor/c_hat used ONE curvature, measured along the alternating
+perturbation -- by construction the STIFFEST direction of the spline
+space -- and read it as isotropic. Measured on our world (AD Hessian of
+the replayed J at W_fit on its frozen schedule; the perturbation
+direction reproduces c_hat to 10 percent): the softest eigen-direction
+(a smooth lowering of the whole spike, weighted downstream) is 32x
+softer, so the same gradient floor lets the driver stop 1.55e-3 away
+along it while band_W allowed 4.8e-5 -- a location floor UNDER-DECLARED,
+not a second maximum (J* = J_fit + 18 N). v3 tests the return PER
+EIGEN-DIRECTION: band_k = K_RICH (e_rep + g_floor / c_k), c_k the
+curvature in the wall metric along eigen-direction k, against the
+residual's component along k in wall units; the sup-norm distance and
+the v2 scalar band are printed for continuity, not graded. The designs
+(W_fit, W_p, W*, W_r) and the spectrum are saved to RAO_ART so the
+residual can be read by direction. Rao's world must reproduce every v2
+number and pass v3 (re-run of record required).
+
 ON-DEMAND CARRIER (env: jax + a GENO run directory via RAO_GENO_RUN).
 """
 import os
@@ -271,6 +290,89 @@ def wall_dist(W, w):
     return float(np.max(np.abs(np.asarray(yq) - yg)))
 
 
+# ---------------------------------------------------------------------
+# v3: the location floor per eigen-direction (see the docstring)
+# ---------------------------------------------------------------------
+ART = os.environ.get("RAO_ART", os.path.join(HERE, "_rao1961_twin"))
+
+
+def wall_gap(W1, W2, w):
+    """max over stations |y(W1) - y(W2)|: stations() is linear in W, so
+    along a fixed direction this is exactly proportional to the step."""
+    _, y1, _ = stations(np.asarray(W1, float), w)
+    _, y2, _ = stations(np.asarray(W2, float), w)
+    return float(np.max(np.abs(np.asarray(y1) - np.asarray(y2))))
+
+
+def spectrum_at(W_fit, w, S_fit, g_fit, e_rep):
+    """AD Hessian of the replayed J at W_fit on its frozen schedule ->
+    eigen-directions of -H, each one's curvature in the WALL metric
+    (lambda_k / dw_k^2, dw_k = wall displacement per unit step along
+    v_k), the location floor g_floor / c_k a gradient floor allows along
+    it, and the band K_RICH (e_rep + floor_k) it implies."""
+    f = lambda z: J_replay(z, w, S_fit)                 # noqa: E731
+    H = np.asarray(jax.hessian(f)(jnp.asarray(W_fit, dtype=float)), float)
+    A = -0.5 * (H + H.T)
+    lam, V = np.linalg.eigh(A)
+    g_floor = float(np.max(np.abs(g_fit)))
+    # stations() is linear in W: a unit step along v_k measures dw_k exactly
+    dw = np.array([wall_gap(np.asarray(W_fit) + V[:, k], W_fit, w)
+                   for k in range(len(lam))])
+    c = lam / dw ** 2
+    floor = g_floor / c
+    return dict(H=H, asym=float(np.max(np.abs(H - H.T)) / np.max(np.abs(H))),
+                lam=lam, V=V, dw=dw, c=c, floor=floor,
+                band=K_RICH * (e_rep + floor), g_floor=g_floor, e_rep=e_rep)
+
+
+def components(W, W_fit, sp):
+    """Components of W - W_fit along the eigen-directions, in WALL units."""
+    d = np.asarray(W, float) - np.asarray(W_fit, float)
+    return np.array([float(sp["V"][:, k] @ d) * sp["dw"][k]
+                     for k in range(len(sp["lam"]))])
+
+
+def print_spectrum(sp, W_p, W_fit):
+    print("  v3 spectrum at W_fit (AD Hessian on the frozen record, asymmetry"
+          " %.1e rel): lambda %s"
+          % (sp["asym"], np.array2string(sp["lam"], precision=3)))
+    a_p = components(W_p, W_fit, sp)
+    print("  %-3s %-11s %-11s %-11s %-11s %s"
+          % ("k", "c_wall", "floor g/c", "band_k", "|start_k|", "start/band"))
+    for k in range(len(sp["lam"])):
+        print("  %-3d %-11.3e %-11.3e %-11.3e %-11.3e %.2f"
+              % (k, sp["c"][k], sp["floor"][k], sp["band"][k], abs(a_p[k]),
+                 abs(a_p[k]) / sp["band"][k]))
+    n_out = int(np.sum(np.abs(a_p) > sp["band"]))
+    print("  c_min %.3e (softest, v = %s); the start is outside its band in"
+          " %d of %d directions"
+          % (sp["c"].min(), np.array2string(sp["V"][:, 0], precision=2), n_out,
+             len(sp["lam"])))
+    return n_out
+
+
+def return_v3(W_s, W_fit, sp):
+    a = components(W_s, W_fit, sp)
+    ratio = np.abs(a) / sp["band"]
+    return bool(np.all(ratio <= 1.0)), a, ratio
+
+
+def curv_along(d, sp, d_wall):
+    A = -0.5 * (sp["H"] + sp["H"].T)
+    return float(d @ A @ d) / d_wall ** 2
+
+
+def save_designs(w, sp, W_p, W_s, W_r, g_fit, g_s, J_fit, J_p, J_s, J_r):
+    os.makedirs(ART, exist_ok=True)
+    fn = os.path.join(ART, "sqpret_v3_designs_%s.npz" % time.strftime("%Y-%m-%d"))
+    np.savez(fn, xk=w.xk, W_fit=w.W_fit, W_p=W_p, W_s=W_s, W_r=W_r,
+             g_fit=g_fit, g_s=g_s, J=np.array([J_fit, J_p, J_s, J_r]),
+             H=sp["H"], lam=sp["lam"], V=sp["V"], dw=sp["dw"], c=sp["c"],
+             floor=sp["floor"], band=sp["band"], e_rep=sp["e_rep"],
+             X0=X0, K=K_ST)
+    print("  designs + spectrum saved: %s" % fn)
+
+
 def main():
     t0 = time.time()
     print("== [F3] SQP-return in Rao's world: perturbed start -> back to Rao? ==")
@@ -309,6 +411,13 @@ def main():
     print("  curvature c_hat %.3e -> location floor g/c %.3e; band_W = K(e_rep + g/c)"
           " = %.3e (start = %.1fx band_W); band_J %.3e"
           % (c_hat, band_loc, band_W, d_start / band_W, band_J))
+    t1 = time.time()
+    sp = spectrum_at(w.W_fit, w, S_fit, g_fit, e_rep)
+    c_pert = curv_along(W_p - w.W_fit, sp, d_start)
+    print("  (v3) c along the perturbation from the Hessian %.3e vs c_hat %.3e"
+          " (rel %+.2f); spectrum %.0f s" % (c_pert, c_hat, c_pert / c_hat - 1.0,
+                                             time.time() - t1))
+    print_spectrum(sp, W_p, w.W_fit)
 
     print("-- S3: TR-SQP (maximize) from the perturbed start --")
     W_s, J_s, g_s, n_rec, wc = run_trsqp(W_p, w, +1.0, tag="max ")
@@ -319,8 +428,18 @@ def main():
     check("P1 every accepted base certified (worst %.3e <= 1)" % wc, wc <= 1.0)
     check("P2 CONVERGENCE |grad J(W*)|inf %.3e <= gtol %.3e" % (np.max(np.abs(g_s)), gtol),
           np.max(np.abs(g_s)) <= gtol)
-    check("P3 RETURN max|y(W*) - y_GENO| %.3e <= band_W %.3e (start was %.1fx)"
-          % (d_s, band_W, d_start / band_W), d_s <= band_W)
+    ok3, a_s, r_s = return_v3(W_s, w.W_fit, sp)
+    print("  return by direction (wall units / band): %s"
+          % "  ".join("%d:%.2e/%.2f" % (k, abs(a_s[k]), r_s[k]) for k in range(len(a_s))))
+    print("  residual W* - W_fit: sup-norm %.3e, curvature along it %.3e (c_hat %.3e,"
+          " c_min %.3e)" % (d_s, curv_along(W_s - w.W_fit, sp, d_s) if d_s > 0
+                            else float("nan"), c_hat, sp["c"].min()))
+    print("  v2 scalar reference (not graded): max|y(W*) - y_GENO| %.3e vs band_W(v2)"
+          " %.3e (%.2fx)" % (d_s, band_W, d_s / band_W))
+    check("P3 RETURN (v3) every eigen-direction of W* - W_fit inside its band"
+          " (worst %.2f of band in direction %d; start was %.1fx in its worst)"
+          % (r_s.max(), int(np.argmax(r_s)),
+             float(np.max(np.abs(components(W_p, w.W_fit, sp)) / sp["band"]))), ok3)
     check("P4a VALUE J(W*) > J(W_pert) (+%.4e)" % (J_s - J_p), J_s > J_p)
     check("P4b VALUE |J(W*) - J(W_fit)| %.3e <= band_J %.3e" % (abs(J_s - J_fit), band_J),
           abs(J_s - J_fit) <= band_J)
@@ -332,6 +451,7 @@ def main():
           % (n_r, J_r, J_p - J_r, d_r, d_start))
     check("R1 REJECTOR: sign-flipped driver ends FARTHER from Rao (%.3e > %.3e)"
           % (d_r, d_start), d_r > d_start)
+    save_designs(w, sp, W_p, W_s, W_r, g_fit, g_s, J_fit, J_p, J_s, J_r)
 
     print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t0))
     print("VERDICT: %s" % ("PASS -- the SQP returns to Rao's optimum in his world"
