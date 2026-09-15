@@ -1,0 +1,72 @@
+##### ourworld_sqp_return v3 (x0 1.50, K 161, tip cut 0.01) 2026-09-15 20:23:16 sprop2
+== [F3] SQP-return in OUR world: perturbed start -> back to GENO's ideal spike? ==
+   world: OUR gas (nasa; Rg 363.8226, T0 3739.9 K, p0 2.53e+07 Pa); GENO member theta_E -0.0199 deg, L 5.92567, eps 5.15063
+   ambient = the member's lip ambient p_a 757595 Pa (0.9949 of the nominal PA 761442); q_at_pa 2743.6 m/s
+   gas check, field vs tables (max rel over 20000 nodes): Rg 5.1e-07, h0 1.6e-04, s0 2.6e-06
+   reference: 1827179 field points, 9933 wall points, x -0.7986..5.9257, y_D 3.83e-04; tip cut at y = 0.010 y_E = 0.0247 m -> x_end 5.6102 (full contour ends at 5.9257)
+   instrument: rao1961_sqp_return v3 (X0 1.50, K 161, M 8, PERT 0.015, FREEZE 0.35, SEG 12, SEG_R1 14)
+   gas Rg=363.8226 ts=3739.90 ps=2.53e+07; pa=7.576e+05; q_at_pa=2743.6; x_D=5.6102
+   start line 59 rows at x0=1.50 (F_in 6.25071e+07 N); wall frozen to Rao's on [1.50, 2.9386]; knots M=8 on [2.9386, 5.6102] (tip pinned at y_D=0.0247); clamped slope0=-0.2464
+-- S1: the reference in spline space and the derived bands --
+  e_rep (spline vs GENO wall) max 4.863e-04
+  W_fit record cert 2.311e-01; J_fit 6.44496391e+07 (K=161) vs 6.44831602e+07 (K=321): |dJ| 3.352e+04
+  grad floor |g(W_fit)|inf 1.530e+04 -> gtol 6.122e+04
+-- S2: the perturbed start (1.5 percent, alternating) --
+  start: dist to GENO 6.099e-03; cert 3.470e-01; J_p 6.44437239e+07 (J_fit - J_p = +5.9151e+03); |grad|inf 7.676e+05
+  curvature c_hat 3.181e+08 -> location floor g/c 4.811e-05; band_W = K(e_rep + g/c) = 2.138e-03 (start = 2.9x band_W); band_J 1.341e+05
+  (v3) c along the perturbation from the Hessian 2.867e+08 vs c_hat 3.181e+08 (rel -0.10); spectrum 114 s
+  v3 spectrum at W_fit (AD Hessian on the frozen record, asymmetry 4.5e-02 rel): lambda [2.982e+06 9.110e+06 1.706e+07 3.181e+07 5.404e+07 8.552e+07 1.248e+08]
+  k   c_wall      floor g/c   band_k      |start_k|   start/band
+  0   9.871e+06   1.550e-03   8.147e-03   1.290e-04   0.02
+  1   1.947e+07   7.861e-04   5.090e-03   2.084e-05   0.00
+  2   4.718e+07   3.244e-04   3.243e-03   6.707e-04   0.21
+  3   8.794e+07   1.740e-04   2.641e-03   3.169e-04   0.12
+  4   1.549e+08   9.878e-05   2.340e-03   1.857e-03   0.79
+  5   2.036e+08   7.515e-05   2.246e-03   1.282e-03   0.57
+  6   2.626e+08   5.827e-05   2.178e-03   6.097e-03   2.80
+  c_min 9.871e+06 (softest, v = [-0.08 -0.17 -0.29 -0.4  -0.52 -0.54 -0.4 ]); the start is outside its band in 1 of 7 directions
+-- S3: TR-SQP (maximize) from the perturbed start --
+    max [seg  0] J = 6.44437239e+07  |grad|inf = 7.676e+05  cert = 3.470e-01
+    max [seg  1] base REJECTED (record not certified (worst 1.494e+10)) -> revert, radius 3.750e-02
+    max [seg  2] J = 6.44437239e+07  |grad|inf = 7.676e+05  cert = 3.470e-01
+    max [seg  3] J = 6.44496473e+07  |grad|inf = 8.865e+03  cert = 3.636e-01
+    max [seg  4] J = 6.44496559e+07  |grad|inf = 2.553e+03  cert = 1.043e-01
+    max [seg  5] trial J = 6.43482254e+07 REJECTED -> revert, radius 6.328e-02
+    max [seg  6] J = 6.44496559e+07  |grad|inf = 2.553e+03  cert = 1.043e-01
+    max [seg  7] trial J = 6.43909025e+07 REJECTED -> revert, radius 4.746e-02
+    max [seg  8] J = 6.44496559e+07  |grad|inf = 2.553e+03  cert = 1.043e-01
+    max [seg  9] J = 6.44496570e+07  |grad|inf = 9.942e+02  cert = 7.435e-02
+    max [seg 10] J = 6.44496571e+07  |grad|inf = 3.683e+02  cert = 2.710e-01
+    max [seg 11] trial J = 6.43935769e+07 REJECTED -> revert, radius 8.009e-02
+  result: 12 records, worst accepted cert 3.636e-01; J* 6.44496571e+07 (J* - J_fit = +1.8047e+01, J* - J_p = +5.9332e+03); |grad|inf 3.683e+02; dist 2.494e-03
+  [PASS] P1 every accepted base certified (worst 3.636e-01 <= 1)
+  [PASS] P2 CONVERGENCE |grad J(W*)|inf 3.683e+02 <= gtol 6.122e+04
+  return by direction (wall units / band): 0:1.51e-03/0.18  1:9.79e-04/0.19  2:2.73e-04/0.08  3:7.88e-05/0.03  4:1.20e-05/0.01  5:4.22e-06/0.00  6:1.09e-05/0.00
+  residual W* - W_fit: sup-norm 2.494e-03, curvature along it 7.261e+06 (c_hat 3.181e+08, c_min 9.871e+06)
+  v2 scalar reference (not graded): max|y(W*) - y_GENO| 2.494e-03 vs band_W(v2) 2.138e-03 (1.17x)
+  [PASS] P3 RETURN (v3) every eigen-direction of W* - W_fit inside its band (worst 0.19 of band in direction 1; start was 2.8x in its worst)
+  [PASS] P4a VALUE J(W*) > J(W_pert) (+5.9332e+03)
+  [PASS] P4b VALUE |J(W*) - J(W_fit)| 1.805e+01 <= band_J 1.341e+05
+-- S4: R1 rejector - the sign-flipped objective from the same start --
+    min [seg  0] J = 6.44437239e+07  |grad|inf = 7.676e+05  cert = 3.470e-01
+    min [seg  1] J = 6.44302272e+07  |grad|inf = 1.432e+06  cert = 5.444e-01
+    min [seg  2] base REJECTED (record not certified (worst 4.156e+13)) -> revert, radius 5.625e-02
+    min [seg  3] J = 6.44302272e+07  |grad|inf = 1.432e+06  cert = 5.444e-01
+    min [seg  4] base REJECTED (record not certified (worst 1.412e+18)) -> revert, radius 4.219e-02
+    min [seg  5] J = 6.44302272e+07  |grad|inf = 1.432e+06  cert = 5.444e-01
+    min [seg  5] no motion at radius 4.219e-02 -> retry at 2.109e-02
+    min [seg  6] J = 6.43522062e+07  |grad|inf = 3.291e+06  cert = 5.194e-02
+    min [seg  7] J = 6.42577742e+07  |grad|inf = 4.758e+06  cert = 3.737e-02
+    min [seg  8] base REJECTED (record not certified (worst 5.174e+12)) -> revert, radius 3.560e-02
+    min [seg  9] J = 6.42577742e+07  |grad|inf = 4.758e+06  cert = 3.737e-02
+    min [seg 10] J = 6.38803185e+07  |grad|inf = 8.988e+06  cert = 1.728e-01
+    min [seg 11] base REJECTED (record not certified (worst 1.503e+16)) -> revert, radius 4.005e-02
+    min [seg 12] J = 6.38803185e+07  |grad|inf = 8.988e+06  cert = 1.728e-01
+    min [seg 13] base REJECTED (record not certified (worst 5.650e+16)) -> revert, radius 3.003e-02
+  minimizer: 14 records; J 6.38803185e+07 (J_p - J = +5.6341e+05); dist to GENO 5.522e-02 (start 6.099e-03)
+  [PASS] R1 REJECTOR: sign-flipped driver ends FARTHER from GENO (5.522e-02 > 6.099e-03)
+  designs + spectrum saved: /data10/falco/RDE/RDE_Design/validation/_ourworld/sqpret_v3_designs_2026-09-15.npz
+
+== 6/6 PASS  (10192.0 s) ==
+VERDICT: PASS -- the SQP returns to GENO's ideal spike in OUR world (plug-sector O3.3, motion half)
+##### exit=0 2026-09-15 23:13:12

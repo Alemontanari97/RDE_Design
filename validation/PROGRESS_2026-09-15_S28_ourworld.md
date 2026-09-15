@@ -191,9 +191,14 @@ asymmetry 4.5 % rel — the replay is piecewise smooth):
   32x the 4.8e-5 that v2 declared. The gradient floor itself sits at the
   last free knot (g = −1.53e4 there, the other components 2e2..3e3).
 - FD-of-gradient along the softest direction: AD 2.98e6 vs FD 2.44e6 /
-  2.41e6 (h 1e-3, 1e-4), 18-19 % — the AD Hessian overestimates the
-  softest curvature by ~20 % on the piecewise-smooth replay; a K_RICH
-  = 4 band absorbs it, declared.
+  2.41e6 / 2.42e6 (h 1e-3, 1e-4, 1e-5: stable, so not truncation) —
+  the AD Hessian overestimates the softest curvature by ~20 % (the
+  cells' custom derivative rules are exact to first order, their
+  second derivatives are not the exact ones); by the FD value the
+  softest direction is 40x softer than c_hat, not 32x. Along the
+  perturbation direction AD 8.3e7 vs FD 9.3e7 (−11 %). A K_RICH = 4
+  band absorbs both, declared; the saved spectrum allows re-grading
+  with FD curvatures.
 Reading of record, now measured: NOT a second maximum (the value
 coincides with the fit) but a LOCATION FLOOR UNDER-DECLARED — v2 used
 one scalar curvature, measured along the stiffest direction of a
@@ -237,6 +242,23 @@ reproduces the run-of-record spectrum to 1e-13 relative (lambda
 identical, dw 9e-14, bands 1.2e-13; `scratch_s2_2026-09-15/
 spectrum_recheck_2026-09-15.log`), so the log stands as the run of
 record of the committed file.
+
+**Our world, v3 run of record (23:13, 10192 s): 6/6 PASS** — the
+driver's walk is the v2 walk to the digit (J* = J_fit + 18.0 N,
+|grad| 368, sup-norm distance 2.494e-3 = 1.17x band_W(v2), R1 to
+5.52e-2); graded by direction the residual is 0.18 and 0.19 of the
+band in the two SOFTEST directions (1.51e-3 and 9.79e-4 in wall units)
+and 0.08, 0.03, 0.01, 0.00, 0.00 in the others — the curvature along
+the actual residual is 7.3e6 (below the softest eigen-curvature, as a
+sup-norm metric allows for a combination). So the v2 P3 failure was
+the scalar test reading the soft-direction floor as a miss, exactly as
+the Hessian predicted before W* was known. Limit, declared: at the 1.5
+percent perturbation the start lies outside its band in ONE direction
+(the stiffest, 2.8x), so the motion test discriminates start from
+return in that direction only; the return there is 1.1e-5 = 0.00 of
+the band. Row [X-OWS3] minted; [X-OWSQ] stays the record of the fired
+v2 falsifier. The motion half of the plug-sector O3.3 licence holds on
+our world at the v3 posing.
 
 ### Addendum B (18:32 chain end; certification measured 20:04) — regeneration chain: S22 re-adjudicates, S23 CANNOT proceed (the regenerated design is uncertified at (121,101)); figures 3/5, no PDF
 
@@ -323,21 +345,44 @@ column 3). The lever is the wall angle at the first station: the
 streamline turns the flow by 0 there (−26.66 deg = the incoming flow),
 the m 12 design imposes −11.36 deg and the m 11 design −18.14 deg — a
 COMPRESSION CORNER of 15 and 8.5 deg at the foot, whose waves coalesce
-within two or three columns. That is where the "adaptive gain" comes
-from (a higher wall pressure on the descending spike right after the
-corner) and why S23 saw it evaporate under refinement (the coarse
-march smears a coalescing compression that the fine march folds). At
-rungs 2-3: the S22 designs cross in 120/122 columns at (121,101) and 240/242 at (241,201), worst crossing depth 0.15-0.32 m at mid-column (refined census `fold_census2_2026-09-15.log`, crossings dy < -1e-9 only, no duplicate-y rows anywhere); the incumbent crosses in 0/62, 11/122, 40/242 columns with worst depth 7e-4 m at row fraction ~0.9 near x 2.9, y 2.36 — the free-edge top, the EDGE_FILL fictitious cut-top fan zone, three orders shallower and a different object. Reading of record: the S22 designs (both the
+within two or three columns. WHERE THE "ADAPTIVE GAIN" IS BOOKED
+(measured 21:31, `lever_check_2026-09-15.log`, (61,51)): NOT at the
+corner — the wall pressure doubles at the first station (1.97x the
+streamline's, p/PA 8.8 vs 4.5) and then drops BELOW it (0.78-0.98x at
+stations 3-6), so the first 0.4 m of wall LOSE thrust (−4.3e4 N for
+m 12, −1.1e5 N for m 11 against the streamline) and the whole gain
+comes from the wall DOWNSTREAM of x 0.75 m (+6.4e5 N and +4.7e5 N;
+totals +6.0e5 / +3.7e5 N = the +0.52 / +0.32 % of the ladders'
+first rung), i.e. from wall pressures that the march computes through
+the tangled part of its net (the inverted cells sit mid-field at
+x 1.7-2.1). The coarse "gain" is therefore a number taken from a
+multi-valued solution, not a local compression effect — which is also
+why S23 saw it evaporate under refinement. (My first reading, "a
+higher wall pressure right after the corner", was wrong and is
+retracted here.) At rungs 2-3: the S22 designs cross in 120/122 columns at (121,101) and 240/242 at (241,201), worst crossing depth 0.15-0.32 m at mid-column (refined census `fold_census2_2026-09-15.log`, crossings dy < -1e-9 only, no duplicate-y rows anywhere); the incumbent crosses in 0/62, 11/122, 40/242 columns with worst depth 7e-4 m at row fraction ~0.9 near x 2.9, y 2.36 — the free-edge top, the EDGE_FILL fictitious cut-top fan zone, three orders shallower and a different object. Reading of record: the S22 designs (both the
 regenerated m 12 and the record's m 11 knot set) are OUTSIDE the
 shock-free class the march is certified for; A-4's admissibility
-(descends, clears the axis, Newton-certified) never asked; the
-(121,101) certification failure is this fold reaching the first
-column's edge cell, the sweep's "lottery" is which cells the fold
-happens to hit. The S23 re-adjudication running tonight will be
+(descends, clears the axis, Newton-certified) never asked — the
+march's `certify` is the Newton step relative to its tolerance, no
+geometric check anywhere (`a1_plug_march.py`). An independent
+criterion agrees (`fold_area`/`lever_check` logs, 21:30): signed cell
+areas of the mesh quadrilaterals — the S22 designs carry 6-11 % of
+INVERTED cells (m 12: 208 of 3276 at (61,51), 965 of 12893 at
+(121,101); m 11: 332 / 1358), the incumbent 0 and 9 (the free-edge
+ripples) — so "folded" means a tangled band across the columns, not
+a whole-mesh collapse. NOT the same thing: the (121,101) certification
+failure sits in the FIRST column's edge cell, UPSTREAM of the first
+crossing (column 3-4): the corner alters the first C+ column's path
+to the free edge (adaptive: the column reaches the edge at x 1.89
+with theta 22 deg; incumbent x 2.72, 3.6 deg) and which (K,N) trips
+the edge cell's Newton there is the lottery — related to the corner,
+not the fold itself. The S23 re-adjudication running tonight will be
 graded by the same census on its fine optimum before any number of
-its verdict is quoted; the record's [X-PGRS] "gain zero within band"
-stood on designs of this class too (its fine optimum was warm-started
-from the m 11 design). What follows for the carriers: a FOLD DETECTOR
+its verdict is quoted. INFERENCE, not measurement (the record's design
+vector is lost): the record's [X-PGRS] "gain zero within band" stood on
+a design of this class too — same knot set, same driver, J within
+3e-5 of tonight's m 11, whose march folds; its fine optimum was
+warm-started from it. What follows for the carriers: a FOLD DETECTOR
 belongs in A-4 (S22) and R-3 (S23) — an admissibility condition, i.e.
 a change of the design class, hence an owner decision; tonight it is
 measured and declared, not enforced.

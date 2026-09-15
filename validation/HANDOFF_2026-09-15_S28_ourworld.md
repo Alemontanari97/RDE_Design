@@ -20,9 +20,14 @@ authoritative for the Rao-world chain and its traps). Narrative:
   7/7 and `rao1961_sqp_return` 6/6 re-run identical to the S26 records
   (logs `_rao1961_twin/rerun_*_2026-09-15.log`).
 - **F3 EXIT leg on OUR world, twin mode:** [X-OWTW] 6/6 (gap 1.5e-4),
-  [X-OWO3] 4/4 (N2 ~340x), SQP-return 5/6 FAIL [X-OWSQ] (P3 falsifier
+  [X-OWO3] 4/4 (N2 ~340x), SQP-return v2 5/6 FAIL [X-OWSQ] (P3 falsifier
   fired: return in VALUE +18 N, not in LOCATION, 1.17x band_W; location
-  floor under-declared, see the S28 log addendum A). Baseline
+  floor under-declared, measured by the Hessian at W_fit) -> instrument
+  v3 (per-eigen-direction bands) validated on Rao's world (6/6, v2
+  reproduced line by line) and **v3 on our world 6/6 PASS [X-OWS3]**
+  (return 0.19 of band at worst, in the softest directions; start
+  discriminated in one direction at 1.5 percent). S28 log addendum A.
+  Baseline
   = GENO `CASES/raoplug_ch4o2/run_val_repro` (rao_val member: theta_E
   −0.02 deg, L 5.926, closes on the axis), OUR gas verified against the
   field, ambient = the member's lip ambient 7.575953e5 Pa (0.9949 PA),
@@ -84,9 +89,10 @@ A-8 ladder never gates certification at rungs 2-3, so its rerun ladder
 is void at rung 2; S23 verdict/design_fine, 2 figures and the PDF are
 NOT regenerable by re-execution. (a) records historical + figures from
 the record logs, or (b) re-adjudicate with A-8 fixed + the (121,101)
-first-column failure attributed. (1-bis) DECIDE the SQP-return re-posing
-(addendum A): band_W on the softest curvature / save W* / more knots /
-K 321 — the P3 falsifier fired at 1.17x band_W with the value returned;
+first-column failure attributed. (1-bis) DONE 23:13: SQP-return re-posed as v3 (per-direction bands,
+designs saved) after the measured attribution; Rao 6/6 (v2 reproduced),
+our world 6/6 [X-OWS3]. Open: a larger perturbation would exercise more
+than one direction of the motion test (owner's call, not re-posed);
 (2) tournament-grade A/B at the nominal ambient: a GENO member at
 exact PA (GENO protocol) or the declared 0.5 % residual, then
 Rao-vs-spline at PSPL_L 5.926 from the GENO cut; (3) Table-1 oracle
@@ -117,6 +123,7 @@ cd /data10/falco/RDE/codes/GENO/CASES/raoplug_ch4o2/run_val_repro && ../../../bi
 
 Push access or fork; GENO blessing (RaoPlug N-65/N-66, `raoplug_ch4o2`,
 the fan at theta_E >= 0, the C- step knob); the Italian document; the
-status of the S22 record vs its regeneration (addendum B: not
-regenerable by re-execution); the SQP-return re-posing after the P3
-falsifier fired (addendum A).
+status of the S22 record vs its re-adjudication (addendum B: the S22
+designs fold the march — fold detector in A-4/R-3 = design-class
+change); the SQP-return perturbation size for a multi-direction motion
+test (addendum A; v3 done).
