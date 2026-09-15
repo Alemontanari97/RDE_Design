@@ -1,0 +1,248 @@
+== A1 S22: adaptive knots on the spike ([X-AKNO] -> [X-PSPL]) [F2/A1] ==
+  class-0: m = 10 uniform knots; working resolution K = 61, N = 51; budget 3 cycles / 2 insertions per cycle / 14400 s
+-- A-1: known-answer indicator/marking selftest --
+  single-interval residual: mass fraction 1.000, marks [5]
+  [PASS] A-1a >= 99% of mass in the residual interval and Doerfler marks exactly it
+  flat residual: Doerfler(0.5) marks 4 intervals
+  [PASS] A-1b flat residual marks MORE THAN ONE interval (no false concentration)
+  [PASS] A-1c zero residual yields an empty marked set
+
+-- A-2: record check against the S21 checkpoint --
+  no S21 checkpoint — cold start, A-2 skipped as N/A (declared)
+
+-- class-0 optimum (m = 10 uniform) --
+    [seg  0] J = 1.15588925e+08  |grad| = 1.060e+07  cert = 0.257
+    [seg  1] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  2] trial J = 1.15655421e+08 REJECTED (worse than 1.15680509e+08) -> revert, radius -> 5.625e-02
+    [seg  3] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  4] trial J = 1.15268993e+08 REJECTED (worse than 1.15680509e+08) -> revert, radius -> 4.219e-02
+    [seg  5] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  6] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.053
+    [seg  7] trial J = 1.15203320e+08 REJECTED (worse than 1.15715554e+08) -> revert, radius -> 4.746e-02
+    [seg  8] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.053
+    [seg  9] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.244
+    [seg 10] trial J = 1.15024562e+08 REJECTED (worse than 1.15730723e+08) -> revert, radius -> 5.339e-02
+    [seg 11] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.244
+    [seg 12] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 13] trial J = 1.15027605e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 6.007e-02
+    [seg 14] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 15] trial J = 1.15363281e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 4.505e-02
+    [seg 16] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 17] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.067
+    [seg 18] trial J = 1.15017911e+08 REJECTED (worse than 1.15738602e+08) -> revert, radius -> 5.068e-02
+    [seg 19] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.067
+    [seg 20] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 21] trial J = 1.15038186e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 5.702e-02
+    [seg 22] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 23] trial J = 1.15355875e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 4.276e-02
+    [seg 24] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 25] trial J = 1.14739739e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 3.207e-02
+    [seg 26] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 26] no motion at radius 3.207e-02 -> retry at 1.604e-02 (same record)
+    [seg 27] J = 1.15739891e+08  |grad| = 1.229e+05  cert = 0.129
+    [seg 28] trial J = 1.15667901e+08 REJECTED (worse than 1.15739891e+08) -> revert, radius -> 1.804e-02
+    [seg 29] J = 1.15739891e+08  |grad| = 1.229e+05  cert = 0.129
+  [class-0] optimum: J = 1.15739891e+08  cert = 0.129  (19 segments, 30 records)
+
+-- cycle 1: indicator at the incumbent optimum (m = 10) --
+  enriched-class warm-start wall deviation 6.661e-16 m (measured, declared); J(enriched warm) = 1.15739891e+08
+  [cycle 1] indicator mass per knot interval (total 7.8661e+06):
+      [ 0.350,  0.565) : 7.0986e+06  ( 90.2%)
+      [ 0.565,  0.780) : 1.6289e+05  (  2.1%)
+      [ 0.780,  0.995) : 3.3208e+05  (  4.2%)
+      [ 0.995,  1.210) : 1.0941e+05  (  1.4%)
+      [ 1.210,  1.425) : 5.5851e+04  (  0.7%)
+      [ 1.425,  1.640) : 2.3902e+04  (  0.3%)
+      [ 1.640,  1.855) : 7.5127e+03  (  0.1%)
+      [ 1.855,  2.070) : 1.7282e+04  (  0.2%)
+      [ 2.070,  2.285) : 9.7400e+03  (  0.1%)
+      [ 2.285,  2.500) : 4.8803e+04  (  0.6%)
+      Doerfler theta=0.3 marks [0]
+      Doerfler theta=0.5 marks [0]
+      Doerfler theta=0.7 marks [0]
+  [PASS] A-6 cycle 1: marking is a strict subset of intervals
+  insert 1 knot(s) at [0.4575] -> m = 11; warm-start wall deviation 4.441e-16 m
+    [seg  0] J = 1.15739891e+08  |grad| = 3.715e+07  cert = 0.040
+    [seg  1] J = 1.15960638e+08  |grad| = 1.904e+06  cert = 0.261
+    [seg  2] J = 1.15962378e+08  |grad| = 5.590e+05  cert = 0.037
+    [seg  2] no motion at radius 1.125e-01 -> retry at 5.625e-02 (same record)
+    [seg  2] no motion at radius 5.625e-02 -> retry at 2.813e-02 (same record)
+    [seg  3] J = 1.15963229e+08  |grad| = 5.696e+05  cert = 0.327
+    [seg  4] trial J = 1.15126864e+08 REJECTED (worse than 1.15963229e+08) -> revert, radius -> 3.164e-02
+    [seg  5] J = 1.15963229e+08  |grad| = 5.696e+05  cert = 0.327
+    [seg  6] J = 1.15963654e+08  |grad| = 2.721e+05  cert = 0.450
+    [seg  7] J = 1.15963877e+08  |grad| = 2.740e+05  cert = 0.077
+    [seg  8] J = 1.15964069e+08  |grad| = 3.557e+05  cert = 0.478
+    [seg  8] no motion at radius 1.068e-01 -> retry at 5.339e-02 (same record)
+    [seg  8] no motion at radius 5.339e-02 -> retry at 2.670e-02 (same record)
+    [seg  9] J = 1.15964221e+08  |grad| = 2.394e+05  cert = 0.367
+    [seg 10] trial J = 1.15953828e+08 REJECTED (worse than 1.15964221e+08) -> revert, radius -> 3.003e-02
+    [seg 11] J = 1.15964221e+08  |grad| = 2.394e+05  cert = 0.367
+    [seg 12] J = 1.15964693e+08  |grad| = 4.748e+05  cert = 0.070
+    [seg 13] trial J = 1.15049316e+08 REJECTED (worse than 1.15964693e+08) -> revert, radius -> 3.379e-02
+    [seg 14] J = 1.15964693e+08  |grad| = 4.748e+05  cert = 0.070
+    [seg 15] trial J = 1.15474170e+08 REJECTED (worse than 1.15964693e+08) -> revert, radius -> 2.534e-02
+    [seg 16] J = 1.15964693e+08  |grad| = 4.748e+05  cert = 0.070
+    [seg 17] trial J = 1.15699089e+08 REJECTED (worse than 1.15964693e+08) -> revert, radius -> 1.901e-02
+    [seg 18] J = 1.15964693e+08  |grad| = 4.748e+05  cert = 0.070
+    [seg 19] J = 1.15965030e+08  |grad| = 2.292e+05  cert = 0.082
+    [seg 20] J = 1.15965124e+08  |grad| = 2.008e+05  cert = 0.416
+    [seg 21] J = 1.15965155e+08  |grad| = 3.160e+05  cert = 0.117
+    [seg 22] J = 1.15965292e+08  |grad| = 2.189e+05  cert = 0.142
+    [seg 23] trial J = 1.13017559e+08 REJECTED (worse than 1.15965292e+08) -> revert, radius -> 7.216e-02
+    [seg 24] J = 1.15965292e+08  |grad| = 2.189e+05  cert = 0.142
+    [seg 25] trial J = 1.14227579e+08 REJECTED (worse than 1.15965292e+08) -> revert, radius -> 5.412e-02
+    [seg 26] J = 1.15965292e+08  |grad| = 2.189e+05  cert = 0.142
+    [seg 27] J = 1.15965416e+08  |grad| = 1.285e+05  cert = 0.119
+    [seg 28] trial J = 1.14928451e+08 REJECTED (worse than 1.15965416e+08) -> revert, radius -> 6.089e-02
+    [seg 29] J = 1.15965416e+08  |grad| = 1.285e+05  cert = 0.119
+  [cycle 1] optimum: J = 1.15965416e+08  cert = 0.119  (22 segments, 30 records)
+  [cycle 1] node  0: AD -6.510824e+03  FD -6.510939e+03  |d| = 1.147e-01 (band 3.354e+03)
+  [cycle 1] node 10: AD -6.584060e+04  FD -6.584063e+04  |d| = 3.392e-02 (band 2.134e+01)
+  [PASS] A-3 cycle 1: adjoint matches the FD ladder at the optimum
+  cycle 1: J 1.15739891e+08 -> 1.15965416e+08  (dJ/J = +1.949e-03, floor 1.0e-05)
+
+-- cycle 2: indicator at the incumbent optimum (m = 11) --
+  enriched-class warm-start wall deviation 6.661e-16 m (measured, declared); J(enriched warm) = 1.15965416e+08
+  [cycle 2] indicator mass per knot interval (total 7.5757e+06):
+      [ 0.350,  0.457) : 5.9734e+06  ( 78.8%)
+      [ 0.457,  0.565) : 6.0431e+05  (  8.0%)
+      [ 0.565,  0.780) : 6.5913e+05  (  8.7%)
+      [ 0.780,  0.995) : 1.6625e+05  (  2.2%)
+      [ 0.995,  1.210) : 6.8184e+04  (  0.9%)
+      [ 1.210,  1.425) : 3.1685e+04  (  0.4%)
+      [ 1.425,  1.640) : 3.7158e+03  (  0.0%)
+      [ 1.640,  1.855) : 6.2251e+03  (  0.1%)
+      [ 1.855,  2.070) : 2.5536e+02  (  0.0%)
+      [ 2.070,  2.285) : 9.5450e+03  (  0.1%)
+      [ 2.285,  2.500) : 5.3070e+04  (  0.7%)
+      Doerfler theta=0.3 marks [0]
+      Doerfler theta=0.5 marks [0]
+      Doerfler theta=0.7 marks [0]
+  [PASS] A-6 cycle 2: marking is a strict subset of intervals
+  insert 1 knot(s) at [0.4037] -> m = 12; warm-start wall deviation 6.661e-16 m
+    [seg  0] J = 1.15965416e+08  |grad| = 6.478e+07  cert = 0.269
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg 1] base REJECTED (record not certified (worst 3.799e+14)) -> revert, radius -> 1.875e-02
+    [seg  2] J = 1.15965416e+08  |grad| = 6.478e+07  cert = 0.269
+    [seg  3] J = 1.16198377e+08  |grad| = 2.161e+06  cert = 0.399
+    [seg  3] no motion at radius 2.813e-02 -> retry at 1.406e-02 (same record)
+    [seg  4] J = 1.16199473e+08  |grad| = 3.842e+05  cert = 0.304
+    [seg 5] base REJECTED (record not certified (worst 2.305e+18)) -> revert, radius -> 1.582e-02
+    [seg  6] J = 1.16199473e+08  |grad| = 3.842e+05  cert = 0.304
+    [seg 7] base REJECTED (record not certified (worst 6.251e+13)) -> revert, radius -> 1.187e-02
+    [seg  8] J = 1.16199473e+08  |grad| = 3.842e+05  cert = 0.304
+    [seg 9] base REJECTED (record not certified (worst 4.896e+13)) -> revert, radius -> 8.899e-03
+    [seg 10] J = 1.16199473e+08  |grad| = 3.842e+05  cert = 0.304
+    [seg 11] J = 1.16199497e+08  |grad| = 3.024e+05  cert = 0.069
+    [seg 12] J = 1.16199643e+08  |grad| = 3.214e+05  cert = 0.209
+    [seg 13] trial J = 1.16001731e+08 REJECTED (worse than 1.16199643e+08) -> revert, radius -> 1.502e-02
+    [seg 14] J = 1.16199643e+08  |grad| = 3.214e+05  cert = 0.209
+    [seg 15] J = 1.16199822e+08  |grad| = 5.212e+05  cert = 0.124
+    [seg 16] J = 1.16199899e+08  |grad| = 1.595e+05  cert = 0.293
+    [seg 17] J = 1.16199952e+08  |grad| = 2.869e+05  cert = 0.139
+    [seg 18] base REJECTED (record not certified (worst 4.595e+16)) -> revert, radius -> 3.801e-02
+    [seg 19] J = 1.16199952e+08  |grad| = 2.869e+05  cert = 0.139
+    [seg 20] J = 1.16199965e+08  |grad| = 2.216e+05  cert = 0.247
+    [seg 21] base REJECTED (record not certified (worst 1.934e+16)) -> revert, radius -> 4.276e-02
+    [seg 22] J = 1.16199965e+08  |grad| = 2.216e+05  cert = 0.247
+    [seg 23] base REJECTED (record not certified (worst 2.727e+16)) -> revert, radius -> 3.207e-02
+    [seg 24] J = 1.16199965e+08  |grad| = 2.216e+05  cert = 0.247
+    [seg 25] trial J = 1.14782981e+08 REJECTED (worse than 1.16199965e+08) -> revert, radius -> 2.405e-02
+    [seg 26] J = 1.16199965e+08  |grad| = 2.216e+05  cert = 0.247
+    [seg 27] trial J = 1.15382029e+08 REJECTED (worse than 1.16199965e+08) -> revert, radius -> 1.804e-02
+    [seg 28] J = 1.16199965e+08  |grad| = 2.216e+05  cert = 0.247
+    [seg 29] J = 1.16199981e+08  |grad| = 4.086e+05  cert = 0.258
+  [cycle 2] optimum: J = 1.16199981e+08  cert = 0.258  (20 segments, 30 records)
+  [cycle 2] node  0: AD +3.788495e+05  FD +3.788555e+05  |d| = 5.989e+00 (band 2.881e+02)
+  [cycle 2] node 11: AD -4.974555e+04  FD -4.974559e+04  |d| = 3.709e-02 (band 6.642e+01)
+  [PASS] A-3 cycle 2: adjoint matches the FD ladder at the optimum
+  cycle 2: J 1.15965416e+08 -> 1.16199981e+08  (dJ/J = +2.023e-03, floor 1.0e-05)
+
+-- cycle 3: indicator at the incumbent optimum (m = 12) --
+  enriched-class warm-start wall deviation 4.441e-16 m (measured, declared); J(enriched warm) = 1.16199981e+08
+  [cycle 3] indicator mass per knot interval (total 1.7821e+06):
+      [ 0.350,  0.404) : 4.8472e+05  ( 27.2%)
+      [ 0.404,  0.457) : 4.9250e+05  ( 27.6%)
+      [ 0.457,  0.565) : 3.1015e+05  ( 17.4%)
+      [ 0.565,  0.780) : 3.1543e+05  ( 17.7%)
+      [ 0.780,  0.995) : 6.2548e+04  (  3.5%)
+      [ 0.995,  1.210) : 2.6926e+04  (  1.5%)
+      [ 1.210,  1.425) : 1.3084e+04  (  0.7%)
+      [ 1.425,  1.640) : 8.4333e+03  (  0.5%)
+      [ 1.640,  1.855) : 4.9898e+02  (  0.0%)
+      [ 1.855,  2.070) : 9.2210e+03  (  0.5%)
+      [ 2.070,  2.285) : 7.2676e+03  (  0.4%)
+      [ 2.285,  2.500) : 5.1281e+04  (  2.9%)
+      Doerfler theta=0.3 marks [1, 0]
+      Doerfler theta=0.5 marks [1, 0]
+      Doerfler theta=0.7 marks [1, 0, 3]
+  [PASS] A-6 cycle 3: marking is a strict subset of intervals
+  interval 0: site 0.3769 closer than one station spacing (0.0352) to a knot — SKIPPED (declared)
+  interval 1: site 0.4306 closer than one station spacing (0.0352) to a knot — SKIPPED (declared)
+  marked set yields no admissible insertion — stop
+
+  best design: cycle 2, m = 12, J = 1.16199981e+08  (class-0 1.15739891e+08, total gain +0.3975 %)
+  [PASS] A-7 the enrichment does not lose to its own start
+
+-- A-4 / A-5: the final design re-audited --
+  cert = 0.258; y 1.5092 -> 0.8122 m; descending = True, clears = True
+  [PASS] A-4 final design Newton-certified and admissible
+  start-line mdot rel err 5.459e-11  (band 1.462e-04) — knots cannot reach the start line, re-measured not assumed
+  [PASS] A-5 mass constraint on the march's own quadrature
+
+-- A-8: the gain vs the fan streamline, band from a 3-point ladder --
+    rung (K= 61, N= 51): J_inc 1.15598109e+08  J_opt 1.16199981e+08  gain +0.52066 %  cert inc 3.75e-02 / opt 2.58e-01  (31 s)
+    rung (K=121, N=101): J_inc 1.15808715e+08  J_opt 1.16305500e+08  gain +0.42897 %  cert inc 5.00e-02 / opt 3.25e+11  UNCERTIFIED  (105 s)
+    rung (K=241, N=201): J_inc 1.15915988e+08  J_opt 1.16217666e+08  gain +0.26026 %  cert inc 1.59e+00 / opt 2.35e-01  UNCERTIFIED  (429 s)
+    LADDER VOID: an uncertified rung measures nothing (the band below is printed, not trusted)
+    d12 = 9.169e-04  d23 = 1.687e-03  -> NOT converging: quote median, band = K_RICH*scatter
+  gain quoted +0.42897 %   band 1.04161 %   (VOID: uncertified rung)
+  [FAIL] A-8 THE VERDICT: the adaptive free-form spike's gain over the fan streamline exceeds the band its own 3-point ladder supports (every rung certified)
+
+-- A-9: uniform control at the same dof count (m = 12) --
+    [seg  0] J = 1.15594535e+08  |grad| = 1.424e+07  cert = 0.037
+    [seg  1] J = 1.15708706e+08  |grad| = 2.307e+06  cert = 0.138
+    [seg  2] J = 1.15729573e+08  |grad| = 2.111e+06  cert = 0.059
+    [seg  2] no motion at radius 1.125e-01 -> retry at 5.625e-02 (same record)
+    [seg  3] trial J = 1.15685657e+08 REJECTED (worse than 1.15729573e+08) -> revert, radius -> 4.219e-02
+    [seg  4] J = 1.15729573e+08  |grad| = 2.111e+06  cert = 0.059
+    [seg  5] J = 1.15744962e+08  |grad| = 1.444e+06  cert = 0.553
+    [seg  6] trial J = 1.15109598e+08 REJECTED (worse than 1.15744962e+08) -> revert, radius -> 4.746e-02
+    [seg  7] J = 1.15744962e+08  |grad| = 1.444e+06  cert = 0.553
+    [seg  8] J = 1.15756793e+08  |grad| = 1.180e+06  cert = 0.025
+    [seg  9] trial J = 1.14791639e+08 REJECTED (worse than 1.15756793e+08) -> revert, radius -> 5.339e-02
+    [seg 10] J = 1.15756793e+08  |grad| = 1.180e+06  cert = 0.025
+    [seg 11] trial J = 1.15746055e+08 REJECTED (worse than 1.15756793e+08) -> revert, radius -> 4.005e-02
+    [seg 12] J = 1.15756793e+08  |grad| = 1.180e+06  cert = 0.025
+    [seg 13] trial J = 1.15474697e+08 REJECTED (worse than 1.15756793e+08) -> revert, radius -> 3.003e-02
+    [seg 14] J = 1.15756793e+08  |grad| = 1.180e+06  cert = 0.025
+    [seg 15] J = 1.15762334e+08  |grad| = 6.492e+05  cert = 0.036
+    [seg 16] trial J = 1.15530644e+08 REJECTED (worse than 1.15762334e+08) -> revert, radius -> 3.379e-02
+    [seg 17] J = 1.15762334e+08  |grad| = 6.492e+05  cert = 0.036
+    [seg 18] J = 1.15773982e+08  |grad| = 1.211e+06  cert = 0.038
+    [seg 19] trial J = 1.15554993e+08 REJECTED (worse than 1.15773982e+08) -> revert, radius -> 3.801e-02
+    [seg 20] J = 1.15773982e+08  |grad| = 1.211e+06  cert = 0.038
+    [seg 21] trial J = 1.15657834e+08 REJECTED (worse than 1.15773982e+08) -> revert, radius -> 2.851e-02
+    [seg 22] J = 1.15773982e+08  |grad| = 1.211e+06  cert = 0.038
+    [seg 23] J = 1.15779236e+08  |grad| = 1.282e+06  cert = 0.038
+    [seg 24] J = 1.15781281e+08  |grad| = 1.293e+06  cert = 0.443
+    [seg 24] no motion at radius 6.414e-02 -> retry at 3.207e-02 (same record)
+    [seg 25] trial J = 1.15172453e+08 REJECTED (worse than 1.15781281e+08) -> revert, radius -> 2.405e-02
+    [seg 26] J = 1.15781281e+08  |grad| = 1.293e+06  cert = 0.443
+    [seg 27] J = 1.15782797e+08  |grad| = 4.032e+05  cert = 0.231
+    [seg 28] J = 1.15783003e+08  |grad| = 8.320e+05  cert = 0.097
+    [seg 29] trial J = 1.13515663e+08 REJECTED (worse than 1.15783003e+08) -> revert, radius -> 4.059e-02
+  [uniform-12] optimum: J = 1.15783003e+08  cert = 0.097  (20 segments, 30 records)
+  uniform-12 ladder:
+    rung (K= 61, N= 51): J_inc 1.15594535e+08  J_opt 1.15783003e+08  gain +0.16304 %  cert inc 3.71e-02 / opt 9.73e-02  (33 s)
+    rung (K=121, N=101): J_inc 1.15806199e+08  J_opt 1.15910995e+08  gain +0.09049 %  cert inc 3.77e-02 / opt 2.48e-01  (121 s)
+    rung (K=241, N=201): J_inc 1.15914217e+08  J_opt 1.15962104e+08  gain +0.04131 %  cert inc 3.51e-01 / opt 1.67e+01  UNCERTIFIED  (456 s)
+    LADDER VOID: an uncertified rung measures nothing (the band below is printed, not trusted)
+    d12 = 7.255e-04  d23 = 4.918e-04  -> converging: quote g3, band = K_RICH*d23
+  uniform gain +0.04131 % (band 0.19672 %) vs adaptive +0.42897 % (band 1.04161 %)
+  [FAIL] A-9 THE CONTROL: adaptive does not lose to uniform at equal dofs beyond the ladder band (both ladders certified)
+
+  design of record written to /data10/falco/RDE/RDE_Design/validation/_plug_adaptive_v2/design_m10_k61_n51.json
+
+== 11/13 PASS  (12834.3 s) ==

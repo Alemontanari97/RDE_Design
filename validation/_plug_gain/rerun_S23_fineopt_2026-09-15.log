@@ -1,0 +1,21 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage fineopt) ==
+-- R-2: record checks against the S22 artifacts --
+  [PASS] R-2a J(S22 optimum) at (61,51) reproduces design.json (rel 0.0e+00)
+    rung 1 inc: 1.15598109e+08 vs log 1.15600201e+08 (rel 1.8e-05)
+    rung 1 opt: 1.16199981e+08 vs log 1.15961756e+08 (rel 2.1e-03)
+    rung 2 inc: 1.15808715e+08 vs log 1.15810339e+08 (rel 1.4e-05)
+    rung 2 opt: 1.16305500e+08 vs log 1.16026100e+08 (rel 2.4e-03)
+  [FAIL] R-2b fresh rung-1/2 J's reproduce the S22 log at printed precision
+
+-- fine optimization at (K,N) = (121,101), warm from the S22 optimum --
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 486, in main
+    stage_fineopt()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 278, in stage_fineopt
+    W_f, hist, n_rec = P.run_trsqp(W_a61.copy(), w, c_fine, ta,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_spline_opt.py", line 274, in run_trsqp
+    raise RuntimeError("record not certified (worst %.3e)"
+RuntimeError: record not certified (worst 3.249e+11)

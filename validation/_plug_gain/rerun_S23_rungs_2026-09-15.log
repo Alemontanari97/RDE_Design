@@ -1,0 +1,78 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 501, in <module>
+    main()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 493, in main
+    stage_rung4()
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_gain_resolve.py", line 350, in stage_rung4
+    d = np.load(os.path.join(ART, "fineopt.npz"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz'

@@ -74,9 +74,22 @@
 ## piu' morbida 32x) -> strumento v3 (bande per direzione propria)
 ## validato sul mondo di Rao (6/6, v2 riprodotta riga per riga) e
 ## nostro mondo v3 6/6 PASS [X-OWS3] (ritorno al peggio 0.19 della
-## banda, nelle direzioni morbide) — addendum A del log S28; (4) catena di rigenerazione degli
-## artefatti S22/S23 lanciata (NON bit-identica al record: la marcia e'
-## cambiata dopo S22, dichiarato). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## banda, nelle direzioni morbide) — addendum A del log S28; (4) la
+## "rigenerazione" degli artefatti S22/S23 e' una RI-AGGIUDICAZIONE:
+## la catena delle 14:52 si e' rotta a S23 fineopt (disegno S22
+## rigenerato NON certificato a (121,101), lotteria di (K,N) nella
+## cella di bordo della colonna 0; causa della divergenza dal record =
+## il DRIVER (retry a meta' raggio aggiunto in S23, dopo il record S22)
+## e RISULTATO FISICO: i disegni S22 (m 12 e il set di nodi m 11 del
+## record) impongono uno spigolo di compressione al piede (15/8.5 deg)
+## e la loro marcia e' piegata (6-11 % di celle invertite, incumbent
+## 0; il "guadagno" e' contabilizzato a valle di x 0.75 attraverso la
+## rete aggrovigliata) — la certificazione e' cieca alle pieghe
+## (addendum B del log S28); strumenti emendati e dichiarati: scala
+## A-8/A-9 gatata sulla certificazione (S22 v2 di record 11/13, A-8 e
+## A-9 VOID, disegno identico), fallback R-2c del warm start in S23;
+## ri-aggiudicazione S23 in corso alla chiusura (log S29
+## validation/PROGRESS_2026-09-16_S29_readjudication.md). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
 ## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
 ## della linea (14 commit) su 6be51b9 con date originali + commit di
 ## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
@@ -119,10 +132,13 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## NEXT-PARALLELO (linea brick-2 plug, 2026-09-15): (1) chiudere la
-## catena di rigenerazione (S23 verdetto/design_fine, figure, PDF) e
-## decidere lo stato del log S22 (record storico non riproducibile vs
-## nuova baseline); (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-16): (1) chiudere la
+## ri-aggiudicazione S23 (verdetto, design_fine, figure, PDF; log S29
+## sez. 4), CENSIRE LE PIEGHE dell'ottimo fine prima di citare il
+## verdetto, re-stamp [X-PGRS]; paragrafo "ri-aggiudicazione" in
+## ch_spline.tex (R4); (1-bis) decisione owner: rilevatore di pieghe
+## in A-4/R-3 (cambia la classe di disegno ammissibile) e, se si',
+## S22/S23 v3 nella classe senza urti; (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
 ## serve il membro GENO che espande esattamente a PA (oggi 0.9949 PA;
 ## ventaglio GENO in NaN per theta_E >= 0 — protocollo GENO) oppure la
 ## dichiarazione del residuo 0.5 % nell'A/B; poi Rao-vs-spline a
@@ -512,7 +528,13 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     scansione a 21 punti — il membro a PA ESATTA per l'A/B di torneo
     richiede un intervento GENO sotto protocollo (N-75); il probe del
     passo C- (env GENO_CMINUS_DIV) vive in un build di prova, mai
-    committato: adottarlo o no e' decisione owner.
+    committato: adottarlo o no e' decisione owner; (f) S28/S29
+    2026-09-15/16: RILEVATORE DI PIEGHE come condizione di
+    ammissibilita' in A-4 (S22) e R-3 (S23) — cambia la classe di
+    disegno (senza urti) e quindi il significato del claim
+    "free-form spike": decisione owner, misurato e dichiarato (S28
+    addendum B); dimensione della perturbazione del test di moto
+    v3 (a 1.5 % discrimina in una sola direzione nel nostro mondo).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

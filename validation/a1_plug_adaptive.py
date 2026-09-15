@@ -108,7 +108,12 @@ CHECKS
        marks everything carries no information);
   A-7  the enrichment does not lose to its own start: J(final) >=
        J(class-0 optimum) at the working resolution;
-  A-8  THE VERDICT (above);
+  A-8  THE VERDICT (above); amended 2026-09-15 (declared, after the
+       regeneration re-run): every rung of the ladder must be a
+       CERTIFIED march of both designs, else the ladder is VOID and
+       A-8 fails by discipline (the S22 record read J at rungs 2-3
+       without looking at cert_worst; the re-run's adaptive design
+       measured 3.2e11 at (121,101));
   A-9  THE CONTROL (above).
 
 Run:  .venv-a1/bin/python validation/a1_plug_adaptive.py
@@ -159,7 +164,7 @@ _ck_tag = os.path.join(HERE, "_plug_spline",
                        "spline_opt_m%d_k%d_n%d.npz" % (M0, K0, N0))
 _ck_old = os.path.join(HERE, "_plug_spline", "spline_opt.npz")
 CKPT_S21 = _ck_tag if os.path.exists(_ck_tag) else _ck_old
-ART_DIR = os.path.join(HERE, "_plug_adaptive")
+ART_DIR = os.environ.get("PAKN_ART", os.path.join(HERE, "_plug_adaptive"))
 # settings-tagged artifact names: a run at non-production
 # (m0, K, N) must never overwrite the production record
 # (the S21 checkpoint and the S22 design.json were both
@@ -292,21 +297,34 @@ def gain_ladder(W_inc, W_opt, xk, w, ta):
     both designs with the same instrument."""
     rungs = [(K0, N0), (2 * K0 - 1, 2 * N0 - 1), (4 * K0 - 3,
                                                   4 * N0 - 3)]
-    gains, Js = [], []
+    gains, Js, certs = [], [], []
     for (K, N) in rungs:
         t0 = time.time()
         c_r = dict(P.build_case(w, N=N), xk=np.asarray(xk))
-        _, s_i = P.march_record(W_inc, w, c_r, K=K)
+        o_i, s_i = P.march_record(W_inc, w, c_r, K=K)
         J_i = float(P.J_replay(jnp.asarray(W_inc), w, c_r, s_i, ta,
                                K=K))
-        _, s_f = P.march_record(W_opt, w, c_r, K=K)
+        o_f, s_f = P.march_record(W_opt, w, c_r, K=K)
         J_f = float(P.J_replay(jnp.asarray(W_opt), w, c_r, s_f, ta,
                                K=K))
         gains.append(J_f / J_i - 1.0)
         Js.append((J_i, J_f))
+        # 2026-09-15 amendment (declared): a rung is a MEASUREMENT only
+        # if both marches certify. The S22 record never checked this;
+        # the regeneration re-run measured the adaptive design at
+        # (121,101) with cert_worst 3.2e11 while its rung-2 gain was
+        # being quoted as if it meant something.
+        certs.append((float(o_i["cert_worst"]), float(o_f["cert_worst"])))
         print("    rung (K=%3d, N=%3d): J_inc %.8e  J_opt %.8e"
-              "  gain %+.5f %%  (%.0f s)"
-              % (K, N, J_i, J_f, 100 * gains[-1], time.time() - t0))
+              "  gain %+.5f %%  cert inc %.2e / opt %.2e%s  (%.0f s)"
+              % (K, N, J_i, J_f, 100 * gains[-1], certs[-1][0],
+                 certs[-1][1],
+                 "" if max(certs[-1]) <= 1.0 else "  UNCERTIFIED",
+                 time.time() - t0))
+    void = any(max(cc) > 1.0 for cc in certs)
+    if void:
+        print("    LADDER VOID: an uncertified rung measures nothing"
+              " (the band below is printed, not trusted)")
     g1, g2, g3 = gains
     d12, d23 = abs(g1 - g2), abs(g2 - g3)
     if d23 <= d12:
@@ -317,7 +335,7 @@ def gain_ladder(W_inc, W_opt, xk, w, ta):
         band = A1.K_RICH * (max(gains) - min(gains)) + A1.C_FLOOR * A1.EPS
         rule = "NOT converging: quote median, band = K_RICH*scatter"
     print("    d12 = %.3e  d23 = %.3e  -> %s" % (d12, d23, rule))
-    return quote, band, gains, Js
+    return quote, band, gains, Js, void
 
 
 # ======================================================================
@@ -517,14 +535,16 @@ def main():
     print("\n-- A-8: the gain vs the fan streamline, band from a"
           " 3-point ladder --")
     W_inc_fin = np.interp(xk_fin, c["sx"], c["sy"])
-    quote, band, gains, Js = gain_ladder(W_inc_fin, W_fin, xk_fin,
-                                         w, ta)
-    print("  gain quoted %+.5f %%   band %.5f %%"
-          % (100 * quote, 100 * band))
+    quote, band, gains, Js, void = gain_ladder(W_inc_fin, W_fin,
+                                               xk_fin, w, ta)
+    print("  gain quoted %+.5f %%   band %.5f %%%s"
+          % (100 * quote, 100 * band,
+             "   (VOID: uncertified rung)" if void else ""))
     ok_all &= check("A-8 THE VERDICT: the adaptive free-form spike's"
                     " gain over the fan streamline exceeds the band"
-                    " its own 3-point ladder supports",
-                    quote > band)
+                    " its own 3-point ladder supports (every rung"
+                    " certified)",
+                    quote > band and not void)
 
     # ---- A-9: the control --------------------------------------------
     res_ctl = None
@@ -538,13 +558,16 @@ def main():
             xk_u, W_u0, w, c, ta, "uniform-%d" % m_fin)
         print("  uniform-%d ladder:" % m_fin)
         W_uinc = np.interp(xk_u, c["sx"], c["sy"])
-        q_u, b_u, gains_u, _ = gain_ladder(W_uinc, W_u, xk_u, w, ta)
+        q_u, b_u, gains_u, _, void_u = gain_ladder(W_uinc, W_u, xk_u,
+                                                   w, ta)
         print("  uniform gain %+.5f %% (band %.5f %%) vs adaptive"
               " %+.5f %% (band %.5f %%)"
               % (100 * q_u, 100 * b_u, 100 * quote, 100 * band))
         ok_all &= check("A-9 THE CONTROL: adaptive does not lose to"
                         " uniform at equal dofs beyond the ladder"
-                        " band", quote >= q_u - max(band, b_u))
+                        " band (both ladders certified)",
+                        quote >= q_u - max(band, b_u)
+                        and not (void or void_u))
         res_ctl = dict(W=np.asarray(W_u).tolist(), xk=xk_u.tolist(),
                        J=J_u, gain=q_u, band=b_u,
                        gains=list(map(float, gains_u)))

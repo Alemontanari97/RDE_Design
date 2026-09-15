@@ -275,6 +275,50 @@ def stage_fineopt():
     print("\n-- fine optimization at (K,N) = (%d,%d), warm from the "
           "S22 optimum --" % (K2, N2))
     c_fine = dict(P.build_case(w), xk=xk)     # N = 101 module default
+    # 2026-09-15 amendment (declared, after the regeneration re-run):
+    # the warm start must itself be a CERTIFIED record of the fine
+    # instrument, or the driver has nothing to stand on (run_trsqp
+    # raises on an uncertified first base, by design). The re-run's
+    # S22 design of record (m 12) measured cert_worst 3.2e11 at
+    # (121,101) while certifying at (61,51) and (241,201). Rule: R-2c
+    # reports it; on failure the warm start FALLS BACK to the newest
+    # S22 cycle checkpoint that certifies at the fine instrument (its
+    # own knot set travels with it into fineopt.npz), and, if none
+    # does, to the fan streamline on the S22 knots. The S23 verdict is
+    # about the FINE optimum's gain, not about where the walk began.
+    warm_from = "S22 design of record"
+    out_w, _ = P.march_record(W_a61, w, c_fine, K=K2)
+    cert_w = float(out_w["cert_worst"])
+    check("R-2c the S22 design of record certifies at the fine "
+          "instrument (%d,%d): cert %.3e" % (K2, N2, cert_w),
+          cert_w <= 1.0)
+    if cert_w > 1.0:
+        import glob
+        cands = sorted(glob.glob(os.path.join(HERE, "_plug_adaptive",
+                                              "cycle_*.npz")))[::-1]
+        picked = None
+        for fn in cands:
+            d = np.load(fn)
+            xk_c, W_c = np.asarray(d["xk"], float), np.asarray(d["W"], float)
+            o_c, _ = P.march_record(W_c, w, dict(P.build_case(w), xk=xk_c),
+                                    K=K2)
+            cw = float(o_c["cert_worst"])
+            print("    fallback candidate %s (m %d, J %.8e): cert %.3e"
+                  % (os.path.basename(fn), len(xk_c), float(d["J"]), cw))
+            if cw <= 1.0:
+                picked = (fn, xk_c, W_c)
+                break
+        if picked is None:
+            xk_c = xk
+            W_c = np.interp(xk, c1["sx"], c1["sy"])
+            warm_from = "fan streamline on the S22 knots (no certified"\
+                        " checkpoint)"
+        else:
+            xk_c, W_c = picked[1], picked[2]
+            warm_from = "S22 checkpoint %s" % os.path.basename(picked[0])
+        print("  WARM START FALLBACK (declared): %s" % warm_from)
+        xk, W_a61 = xk_c, W_c
+        c_fine = dict(P.build_case(w), xk=xk)
     W_f, hist, n_rec = P.run_trsqp(W_a61.copy(), w, c_fine, ta,
                                    max_segments=ITERS)
     J_f121, cert_f = J_at(W_f, w, c_fine, K2)
@@ -331,7 +375,8 @@ def stage_fineopt():
     np.savez(os.path.join(ART, "fineopt.npz"),
              xk=xk, W_fine=np.asarray(W_f), W_inc=W_inc,
              W_a61=W_a61, Ji=Ji, Jf=Jf, J_f121=J_f121,
-             hist=np.array([(h[0], h[1]) for h in hist]))
+             hist=np.array([(h[0], h[1]) for h in hist]),
+             warm_from=np.array(warm_from))
     print("  saved %s  (%.0f s total)" % (os.path.join(
         ART, "fineopt.npz"), time.time() - t0))
 

@@ -1,0 +1,14 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage default) ==
+-- R-1: extrapolator selftest --
+  [PASS] R-1a exact geometric series recovered (err 8.9e-16)
+  [PASS] R-1a' alternating geometric recovered (err 0.0e+00)
+  [PASS] R-1b noisy geometric within its coarse band
+  [PASS] R-1c non-contracting sequence REFUSED (r = 2.00)
+-- stage analysis: the recorded S22 ladders, extrapolated per design --
+  J(streamline):   r = +0.506  limit 1.160260e+08
+  J(61-tuned opt): r = -0.263  limit 1.160127e+08
+  provisional gain limit (61-tuned) = -0.0115 %  <- the overfit measurement, NOT the verdict
+  paired-difference route: r = +0.846 -> would give -5.864e+05 (modes MIXED -> route inadmissible)
+  [PASS] analysis: the paired route is refused when the two designs converge in different modes
+
+== 5/5 PASS ==
