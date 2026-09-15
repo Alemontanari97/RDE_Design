@@ -1,0 +1,32 @@
+##### rerun rao1961_o33 v2 x0=0.30 2026-09-15 14:32:32 host sprop2
+== [F3] O3.3 for the plug: Rao's optimum vs OUR AD gradient ==
+   gas from the field: Rg=415.7255 ts=3500.00 ps=6.00818e+06; pa=2.133e+05 Pa; q_at_pa=2688.1 m/s; x_D=1.1766
+   start line: 53 rows at x0=0.30; mass 1697.68 kg/s; F_in 4.13461e+06 N
+-- S1: record at Rao's wall; replay-differentiable J(a) --
+  cert 2.617e-02 (n=5137, worst at ('int', 60, 67)); J(ref) = 4.51993508e+06 N (push 385327)
+  [PASS] P1 the reference record certifies (worst <= 1)
+  AD projected gradient: interior +1.17e+02 +2.71e+02 +8.12e+01 +1.51e+02 +3.56e+02 +4.03e+02 ; tip +1.6604e+05
+-- S2: FD bands per interior direction (t, t/2 Richardson + ripple) --
+    dir 0: AD +1.174e+02 FD -7.783e+00 band 2.658e+07  PASS
+    dir 1: AD +2.713e+02 FD +9.084e+01 band 4.471e+07  PASS
+    dir 2: AD +8.117e+01 FD -8.677e+01 band 4.579e+06  PASS
+    dir 3: AD +1.513e+02 FD -1.654e-01 band 3.548e+05  PASS
+    dir 4: AD +3.564e+02 FD +2.127e+02 band 3.077e+05  PASS
+    dir 5: AD +4.032e+02 FD +6.908e+02 band 3.008e+05  PASS
+  [PASS] P2 STATIONARITY: all 6 interior directions ~ 0 in band
+  tip direction: AD +1.6604e+05  FD +1.6507e+05  band 2.917e+03
+  Rao stationarity in y_D with p_b = 0 predicts dJ_wall/da_tip ~ 2 pi y_D p_a = +1.6529e+05  ->  measured/predicted = 1.0046 (reported)
+  [PASS] N1 negative control: tip-moving gradient NONZERO (> 10x band)
+  [PASS] P5 TIP IDENTITY: |g_tip - 2 pi y_D p_a| = 7.543e+02 <= band 2.917e+03
+-- S3: negative control 2 - a non-optimal wall (bump 3, 0.010) --
+  perturbed record cert 2.982e-02; J(pert) = 4.51783759e+06  (J_ref - J_pert = +2.0975e+03)
+  perturbed interior grad: +2.18e+05 +7.31e+04 -4.30e+05 -1.60e+04 +1.03e+05 +1.82e+04
+  [PASS] N2 negative control: perturbed wall NOT stationary (max |g| > 10x ref)
+  [PASS] P3 MAXIMUM: J(Rao) > J(perturbed wall)
+-- S4: Rao's corner relation Eq. (9), p_b = 0, at the marched end D --
+  at D: M 2.1940 theta -20.658 deg -> Eq.(9) residual -5.4202e-04; tip-lifted wall: M 2.3383 theta -18.879 -> +1.6273e-02
+  [PASS] P4 CORNER: |Eq.(9)| at D on the reference < 1/10 of the tip-lifted wall's
+
+== 7/7 PASS  (228.5 s) ==
+VERDICT: PASS -- Rao's plug optimum is stationary for our functional under our march (the plug-sector O3.3)
+##### exit=0 2026-09-15 14:36:26
