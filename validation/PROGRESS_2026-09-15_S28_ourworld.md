@@ -115,7 +115,8 @@ is REPORTED against 2 pi y_D p_a.
 
 ## 5. Verdicts (filled as the chain completes)
 
-(see the addenda below)
+(Addenda A and B at the end of this log: A = the SQP-return verdict,
+B = the regeneration chain's outcome.)
 
 ## Deviations DECLARED
 - Tip cut 0.01 y_E (above), posed after the first twin run's P1 finding.
@@ -133,3 +134,141 @@ is REPORTED against 2 pi y_D p_a.
 Push read-only (unchanged). GENO owner protocol for the fan at
 theta_E >= 0 (NaN) and the C- step knob (if ever wanted in the committed
 code). Document build waits on the regeneration chain.
+
+## Addenda to Sec. 5 (written after the runs closed, 2026-09-15 evening)
+
+### Addendum A (19:26) — SQP-return in OUR world: 5/6, VERDICT FAIL — the P3 falsifier of [X-RAOSQ] fired (P3 failing with P2 passing)
+
+Run of record `validation/_ourworld/run_sqpret_2026-09-15.log` (10051 s;
+x0 1.50, K 161, M 8, PERT 1.5 %, FREEZE 0.35, SEG 12, SEG_R1 14, tip cut
+0.01 y_E; the [X-RAOSQ] v2 instrument verbatim on the [X-OWTW] posing).
+
+**Numbers.** S1: e_rep 4.863e-4 (Rao's world 4.8e-5 — TEN times: the
+same 8 knots on a spike 2.2x longer in lip radii, and the member curves
+harder toward the axis); W_fit cert 0.231; J_fit 6.44496391e7 (K 161)
+vs 6.44831602e7 (K 321), |dJ| 3.35e4; gradient floor |g(W_fit)|inf
+1.53e4 -> gtol 6.12e4. S2: start 6.099e-3 from GENO = 2.9x band_W
+(Rao's world: 20.8x — the band is wider here, the same 1.5 % kick is not),
+J_p = J_fit − 5.9e3 N, |grad| 7.68e5; c_hat 3.18e8 -> g/c 4.81e-5;
+band_W = K_RICH (e_rep + g/c) = 2.138e-3; band_J 1.34e5. S3: 12 segments
+(3 trials rejected as worse, 1 base rejected uncertified 1.5e10 ->
+revert, radius 3.75e-2; worst accepted cert 0.364): J* 6.44496571e7 =
+J_fit + 18.0 N = J_p + 5.93e3 N; |grad|inf 368 = 0.6 % of gtol and 2.4 %
+of the floor itself; dist to GENO 2.494e-3. Checks: P1 PASS, **P2 PASS
+(368 <= 6.12e4)**, **P3 FAIL (2.494e-3 > band_W 2.138e-3: 1.17x the
+band, from a start at 2.9x)**, P4a PASS (+5.93e3 N), P4b PASS (18 N <=
+1.34e5). S4/R1: the sign-flipped driver walks to 5.52e-2 (9x the start),
+J_p − J = 5.63e5 N, PASS.
+
+**Attribution (from the log's own numbers; W* is not saved by the
+instrument, so nothing below is a re-measurement).** In VALUE the return
+is complete: J* − J_fit = +18 N on 6.4e7 (3e-7 relative, 7000x inside
+band_J) and the gradient closes to a fortieth of its measured floor.
+In LOCATION the residual 2.49e-3 costs nothing measurable in J: had it
+lain along the direction c_hat measures, W* would sit ½ c_hat d² =
+9.9e2 N BELOW the maximum, and it sits 18 N above J_fit instead (the
+log bounds the linear term by 8 · |g|inf · |d|inf = 3.1e2 N, so
+½ dᵀH d <= 2.9e2 N along the residual: at least 3.4x softer than c_hat,
+the true softness unmeasurable post hoc). c_hat is by construction the
+curvature along the ALTERNATING perturbation — the stiffest direction of
+an 8-knot spline — and band_W's location floor g/c_hat = 4.8e-5 is
+therefore the floor of the stiff direction only; along the soft
+direction the same gradient floor buys more displacement. In Rao's world
+the soft direction was invisible (floor terms e_rep 4.8e-5, |g| 6.3e3;
+return 0.45x band_W); in our world both floor terms are 2-10x larger and
+the return lands at 1.17x band_W. Reading of record: NOT a second
+maximum of the spline space (the value coincides with the fit), but a
+LOCATION FLOOR UNDER-DECLARED — one scalar curvature for an
+8-dimensional design space. The falsifier as declared fired; the row
+[X-OWSQ] records the FAIL.
+
+**NOT done (owner's call, listed in the handoff):** re-posing band_W on
+the softest curvature at W_fit (smallest Hessian eigenvalue by
+Hessian-vector products, or c along W* − W_fit once the instrument saves
+W*) would be a re-derivation of the band AFTER seeing the residual; it
+is proposed as the next posing of the instrument, not applied to this
+run. Likewise not done: more knots (lower e_rep), a K 321 run of record
+(lower |dJ|).
+
+### Addendum B (18:32 chain end; certification measured 20:04) — regeneration chain: S22 re-adjudicates, S23 CANNOT proceed (the regenerated design is uncertified at (121,101)); figures 3/5, no PDF
+
+Master log `RDE/handoff/recovery_brick2_2026-09-06/scratch_s2_2026-09-15/regen_2026-09-15.log`
+(`##### ALL DONE 18:32:45`). Stage outcomes: A1/A2 data npz EXIT 0
+(committed 1b6f11d); B S22 adaptive EXIT 1 = **12/13, A-8 FAIL as in the
+record** (log `validation/_plug_adaptive/rerun_S22_2026-09-15.log`,
+12946 s; `design_m10_k61_n51.json` written); C1 S23 default EXIT 0 (5/5,
+analysis refuses the paired route on mixed modes); **C2 S23 fineopt EXIT 1
+— `RuntimeError: record not certified (worst 3.249e+11)` at the FIRST
+record of `run_trsqp`, i.e. the warm start itself**; C3 rungs 4-6 x 2,
+C4 final, D design_fine: EXIT 1 by cascade (`fineopt.npz` absent); E
+figures EXIT 0 with 3/5 written (`fig_spike_designs`, `fig_s23_driver`,
+`fig_s24_rotational`; `fig_s23_ladder` needs `verdict.json`,
+`fig_worked_example` needs `design_fine.json`); F build.sh EXIT 1
+(`ch_spline:742: Unable to load fig_s23_ladder.pdf`). Nothing of the
+chain is committed (the three figures stay untracked: the build did not
+pass).
+
+**What differs from the record, and why (measured).**
+1. The S22 driver of record STOPPED at cycle 2 ("[seg 0] no motion ->
+   stop", one record, dJ/J -1.3e-16; best design = cycle 1, m 11, the
+   0.4575 knot only). Today's driver RETRIES at half radius on a
+   no-motion segment — logic added by the S23 commit 1374361 (2026-08-11),
+   AFTER the S22 record — so the rerun's cycle 2 walks 20 segments / 30
+   records (two bases rejected uncertified, 3.8e14 and 2.3e18) and
+   accepts m 12 (knots 0.4037 + 0.4575) at J 1.16199981e8, +0.20 % over
+   cycle 1 at (61,51), cert 0.258. The march changes after S22 (S24
+   rotational port, S25 W-5 clamp) explain the certificate values (0.257
+   vs 0.111 at class-0 seg 0), not the design: the design divergence is
+   the DRIVER.
+2. That design is NOT Newton-certified at (121,101) — and the failure
+   is RESOLUTION-SPECIFIC, not monotone: measured this evening
+   (`recovery_brick2_2026-09-06/scratch_s2_2026-09-15/cert_rungs_2026-09-15.log`,
+   `cert_where_2026-09-15.log`), adaptive design cert_worst 0.258 at
+   (61,51), **3.249e11 at (121,101)** (n 13082, worst cell tag
+   ('edge', 0) = the free-jet edge cell of the FIRST marched column),
+   0.235 at (241,201); the incumbent fan streamline 3.7e-2 / 0.334 /
+   0.418. Geometry: the 12th knot sits at x 0.4037, 1.5 station spacings
+   (K 61) past x0 0.35, and the wall slope at the first stations is
+   -0.20 (K 61) / -0.26, -0.20 (K 121) / -0.36, -0.26, -0.21 (K 241)
+   against the streamline's uniform -0.50 — a shoulder at the foot,
+   flatter than the incoming flow. Reading of record: a start-up
+   fragility of the plug march (first column, edge cell) for THIS wall
+   at THIS (K,N), design-dependent (the incumbent passes) but not the
+   under-resolution of a sharp feature (241 certifies). Whether it is
+   the EDGE_FILL start-up wedge, the first wall-foot solve, or the
+   clamp is NOT attributed here (no re-run beyond the three marches).
+3. INSTRUMENT DEFECT, S22 A-8 (`gain_ladder`): the rungs read J from
+   `march_record` without gating `cert_worst` (A-4 certifies the design
+   at its OWN resolution only). The rerun's rung-2 gain +0.429 % is
+   therefore the J of an uncertified march — not evidence — so the
+   3-point ladder (+0.521 / +0.429 / +0.261 %) has no valid middle rung
+   and its band (1.04 %) and the "gain collapses slower than the record"
+   reading (record +0.313 / +0.186 / +0.080 %) are void as a ladder;
+   what survives is two certified rungs, +0.521 % at (61,51) and
+   +0.261 % at (241,201), which say nothing about the limit on their
+   own. The record's rung 2 happened to certify (S23 fineopt seg 0: cert
+   0.477); its rung 3 was never checked. [X-PGRS] gates certification at
+   rungs 1-3 (R-3) and REPORTS it at rungs >= 4; [X-PAKN]'s A-8 gates
+   nothing.
+
+**Consequence for the regeneration (item 3 of the S27 list):** with
+today's code the S22->S23 chain does not reproduce the record and cannot
+even run to a verdict from the regenerated design (S23's working
+instrument IS (121,101): `run_trsqp` raises on an uncertified first
+record, by design); the lost S23
+artifacts (`verdict.json`, `analysis.json` of record, `design_fine.json`,
+`run_of_record_S23_final.log`), the two figures and the PDF are NOT
+regenerable by re-execution. Owner decision (not taken here): (a) the
+S22/S23 records stay historical (non-reproducible with the current
+driver, declared), the two figures are rebuilt from the RECORD logs
+(the ladder numbers of `run_of_record_S23_rungs.log` + the registry
+scope of [X-PGRS]) and the document's ch. S22/S23 keeps its numbers with
+a reproducibility note; or (b) re-adjudicate S22/S23 with today's code,
+which first requires the A-8 instrument fix (rung marches gated on
+certification; an uncertified rung voids the ladder), an attribution of
+the (121,101) first-column failure (march contract, not this line's
+design space), and possibly a driver that certifies accepted designs at
+the fine rung too — a new run of record
+(~4 h S22 + ~4 h S23 + rungs 4-6), re-stamped rows [X-PAKN]/[X-PGRS],
+and the document chapter rewritten to the new numbers. Neither is
+chosen by the resumer.

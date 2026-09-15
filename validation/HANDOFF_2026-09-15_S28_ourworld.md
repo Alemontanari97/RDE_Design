@@ -20,7 +20,9 @@ authoritative for the Rao-world chain and its traps). Narrative:
   7/7 and `rao1961_sqp_return` 6/6 re-run identical to the S26 records
   (logs `_rao1961_twin/rerun_*_2026-09-15.log`).
 - **F3 EXIT leg on OUR world, twin mode:** [X-OWTW] 6/6 (gap 1.5e-4),
-  [X-OWO3] 4/4 (N2 ~340x), X-OWSQ-pending see the S28 log addendum. Baseline
+  [X-OWO3] 4/4 (N2 ~340x), SQP-return 5/6 FAIL [X-OWSQ] (P3 falsifier
+  fired: return in VALUE +18 N, not in LOCATION, 1.17x band_W; location
+  floor under-declared, see the S28 log addendum A). Baseline
   = GENO `CASES/raoplug_ch4o2/run_val_repro` (rao_val member: theta_E
   −0.02 deg, L 5.926, closes on the axis), OUR gas verified against the
   field, ambient = the member's lip ambient 7.575953e5 Pa (0.9949 PA),
@@ -72,8 +74,20 @@ J(pert) = +4.4288e4 N.
 
 ## 4. Open queue
 
-(1) close the regeneration chain; decide the status of the S22 record
-log; (2) tournament-grade A/B at the nominal ambient: a GENO member at
+(1) DECIDE the regeneration outcome (S28 log addendum B): the chain
+ran to `ALL DONE` but S23 fineopt raised on its first record — the
+regenerated S22 design (m 12, knots 0.4037 + 0.4575; today's DRIVER
+retries where the record's stopped, S23 commit 1374361) is uncertified
+at (121,101) only (cert 3.249e11, first-column edge cell; 0.258 at
+(61,51), 0.235 at (241,201); incumbent certifies at all three); S22's
+A-8 ladder never gates certification at rungs 2-3, so its rerun ladder
+is void at rung 2; S23 verdict/design_fine, 2 figures and the PDF are
+NOT regenerable by re-execution. (a) records historical + figures from
+the record logs, or (b) re-adjudicate with A-8 fixed + the (121,101)
+first-column failure attributed. (1-bis) DECIDE the SQP-return re-posing
+(addendum A): band_W on the softest curvature / save W* / more knots /
+K 321 — the P3 falsifier fired at 1.17x band_W with the value returned;
+(2) tournament-grade A/B at the nominal ambient: a GENO member at
 exact PA (GENO protocol) or the declared 0.5 % residual, then
 Rao-vs-spline at PSPL_L 5.926 from the GENO cut; (3) Table-1 oracle
 bands on our world + a stratified plug instance (F3 EXIT); (4)
@@ -103,4 +117,6 @@ cd /data10/falco/RDE/codes/GENO/CASES/raoplug_ch4o2/run_val_repro && ../../../bi
 
 Push access or fork; GENO blessing (RaoPlug N-65/N-66, `raoplug_ch4o2`,
 the fan at theta_E >= 0, the C- step knob); the Italian document; the
-status of the S22 record vs its regeneration.
+status of the S22 record vs its regeneration (addendum B: not
+regenerable by re-execution); the SQP-return re-posing after the P3
+falsifier fired (addendum A).

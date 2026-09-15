@@ -262,10 +262,16 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     ambient 0.9949 PA, tip cut 0.01 y_E declared): dual-code twin 6/6
     with a gap of 1.5e-4 [X-OWTW]; O3.3 value half 4/4 — the ideal spike
     is stationary for our functional (N2 ~340x) [X-OWO3]; SQP-return
-    X-OWSQ-pending (verdict in the S28 log). What this discharges: "certified
-    plug optimum + oracle in derived bands on OUR world" for the
+    5/6 FAIL [X-OWSQ] — the pre-registered P3 falsifier fired: the
+    driver returns in VALUE (J* = J_fit + 18 N, gradient a fortieth of
+    its measured floor, sign-flipped twin walks away) but stops 1.17x
+    band_W away in LOCATION; measured cause = location floor declared
+    from the stiffest curvature alone (S28 log addendum A; re-posing =
+    owner). What this discharges: the VALUE half of "certified plug
+    optimum + oracle in derived bands on OUR world" for the
     perfect-expansion member (EOS-general gas; gamma-const only in the
-    Rao-world twin). STILL NOT for exit: the tournament-grade A/B at the
+    Rao-world twin); the MOTION half is NOT established on our world at
+    this posing. STILL NOT for exit: the motion half above, the tournament-grade A/B at the
     NOMINAL ambient (the member expands to 0.9949 PA and GENO's fan
     fails for theta_E >= 0 — GENO protocol), the Table-1 oracle bands on
     our world, a stratified plug instance, T-GB de-rating or the 2-D
