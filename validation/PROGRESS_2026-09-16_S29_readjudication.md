@@ -593,3 +593,26 @@ The full campaign (4 floor rungs x 4 segments x 12 iterations from
 the streamline, the resolution ladder (121,101)/(241,201), a second
 start) is a multi-hour leg on s2 — prepared, launched only on the
 owner's word.
+
+### 5.5 Closing of the afternoon (16:20): commits, conformity, the push target
+
+Commits of the day on `brick2-plug`: 7dc8da5 (2b: the re-adjudication
+closed) and 94b5505 (3: the fold margin in the shared modules + the
+[X-PMRG] carrier, derive of record). Both linted 4/4 before and after.
+FULL SUITE `tests/run_all.py` on s2 at 94b5505: **16/23**, the seven
+FAILs the S26 environmental set exactly — (xiii)/(xiv)/(xvi)/(xviii)
+`ModuleNotFoundError: sympy` (pinned s2 venv), (xix)/(xxii)/(xxiii)
+DEAD PATH literature PDFs absent on s2 (Kraiko-Osipov 1970,
+Shmyglevskii 1980, EAP) — no non-environmental group red; the suite's
+platform round-off churn (`data/q_mapping.*`, `data/phase_diagram.*`,
+last-ulp differences) restored with checkout, as the S26 trap says.
+Bundle re-made on 94b5505.
+
+PUSH: the remote accepted writes today (owner 15:35, "abbiamo i
+permessi"); `brick2-plug` was pushed as a NEW remote branch at 7dc8da5
+(15:38) before the owner's directive of 15:55 — "no other branches,
+we push on rde-nozzle-program" — which is now the rule of record:
+the line goes to `origin/rde-nozzle-program` by fast-forward
+(6be51b9 is an ancestor of 94b5505, 34 commits, no rewrite), after
+the full-suite conformity above and on the owner's word; the stray
+`origin/brick2-plug` stays until the owner says to delete it.
