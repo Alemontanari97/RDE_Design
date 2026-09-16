@@ -88,8 +88,35 @@
 ## (addendum B del log S28); strumenti emendati e dichiarati: scala
 ## A-8/A-9 gatata sulla certificazione (S22 v2 di record 11/13, A-8 e
 ## A-9 VOID, disegno identico), fallback R-2c del warm start in S23;
-## ri-aggiudicazione S23 in corso alla chiusura (log S29
-## validation/PROGRESS_2026-09-16_S29_readjudication.md). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## ri-aggiudicazione S23 CHIUSA il 2026-09-16 05:40 (log S29
+## validation/PROGRESS_2026-09-16_S29_readjudication.md sez. 4): warm
+## start caduto sulla streamline (R-2c), ottimo fine a (121,101)
+## +0.4135 % cert 0.484, scala a 6 rung +0.501/+0.414/+0.251/+0.108/
+## +0.017/-0.033 %, limite -0.096 % banda 0.181 % > BAR -> UNRESOLVED;
+## MA l'ottimo fine e' FUORI CLASSE (theta parete -12.0/-14.9/-19.9
+## deg vs -26.66 al piede; 59/62, 120/122, 240/242 colonne piegate;
+## margine di cella -0.82/-0.97): il numero e' preso da una marcia
+## piegata e NON e' un guadagno; [X-PGRS] re-stampata (pass 09-16,
+## "OUT OF CLASS"), [X-PAKN] annotata; doc brick-2: sezione
+## "Re-adjudication (2026-09-15/16)" in ch_spline.tex + didascalie
+## delle 3 figure rigenerate (etichette di make_figures rese
+## data-driven), PDF 99 pp; FASE C (margine di piega nel plug)
+## MISURATA su port di scratch (S29 sez. 5.1-5.3: campo = area con
+## segno della cella vera della rete normalizzata a pavimento della
+## spaziatura delle stazioni; D0 in-loop == numpy, D1 m_ref 0.080/
+## 0.057, floor ladder, rho derivato; D2 AD == FD a 5e-8; D3
+## rigettatore: disegni S22/S23 infattibili a ogni floor; D4 prima
+## camminata vincolata dalla streamline (61,51): J +0.0265 %,
+## vincolo ATTIVO, mu 2.7e5 — la previsione M0 "ottimo a margine
+## attivo" con numeri, UNA risoluzione, UNA partenza, nessuna
+## scala: non citabile finche' il carrier non la porta); [X-PSPL]
+## RI-ESEGUITA (link di staleness: il suo doc ch_spline.tex e' stato
+## emendato oggi): 7/8, C-6 FAIL come nel record (+0.1306 % vs banda
+## 0.1889 %), ottimo = class-0 di S22 alla precisione stampata, e
+## ANCHE QUESTO OTTIMO E' FUORI CLASSE (primo nodo +12.4 mm, spigolo
+## di soli 2 deg, 60/62 e 120/122 colonne piegate, margine -0.67/
+## -0.73): S21-S23 "classe non vincolata, superati" PER MISURA (S29
+## sez. 4.4). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
 ## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
 ## della linea (14 commit) su 6be51b9 con date originali + commit di
 ## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
@@ -132,13 +159,28 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## NEXT-PARALLELO (linea brick-2 plug, 2026-09-16): (1) chiudere la
-## ri-aggiudicazione S23 (verdetto, design_fine, figure, PDF; log S29
-## sez. 4), CENSIRE LE PIEGHE dell'ottimo fine prima di citare il
-## verdetto, re-stamp [X-PGRS]; paragrafo "ri-aggiudicazione" in
-## ch_spline.tex (R4); (1-bis) decisione owner: rilevatore di pieghe
-## in A-4/R-3 (cambia la classe di disegno ammissibile) e, se si',
-## S22/S23 v3 nella classe senza urti; (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-16): (1) FATTO 09-16
+## (ri-aggiudicazione S23 chiusa: censimento pieghe, verdetto "fuori
+## classe", re-stamp [X-PGRS], design_fine/verdict/analysis json,
+## figure + PDF, sezione in ch_spline.tex; resta la chiusura di
+## [X-PSPL] ri-eseguita); (1-bis) PROSSIMO PASSO ATOMICO = il port di
+## Fase C nei moduli condivisi, ADDITIVO e bit-identico senza
+## `margin` (gate: marcia di record J/cert identici), poi il carrier
+## validation/a1_plug_margin.py [F3/A1] con stadi derive (D0-D4 +
+## rigettatori) e campaign (posa S21, floor ladder, scala (121,101)/
+## (241,201), piu' partenze, censimento cuspidi attive; mu riportato
+## con wording B-stationarity), righe registry + ADVISORY +
+## numeric-lint (letterali derivati); DECISO con l'owner 2026-09-16 00:40:
+## NON un rilevatore di pieghe ad hoc ma il MARGINE DI PIEGA del
+## programma (M0 Parte VI: max J s.t. g = 0 e m(W) >= mu_0; REQ-NONSTALL
+## D6; eseguibile sulla campana in validation/margin_governor.py
+## [X-MGOV]) PORTATO NEL PLUG: campo di margine sulle celle di
+## a1_plug_march (area con segno / validita' forma-Lambda), KS con rho
+## e floor derivati come nel governor, NonlinearConstraint nel TR-SQP
+## di a1_plug_spline_opt, poi S21 -> S22 -> S23 RI-ESEGUITI vincolati
+## al margine (S21-S23 di record = classe non vincolata, superati);
+## mu misurato = la previsione M0 "ottimo a margine attivo" provata o
+## no sul plug; (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
 ## serve il membro GENO che espande esattamente a PA (oggi 0.9949 PA;
 ## ventaglio GENO in NaN per theta_E >= 0 — protocollo GENO) oppure la
 ## dichiarazione del residuo 0.5 % nell'A/B; poi Rao-vs-spline a
@@ -529,12 +571,13 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     richiede un intervento GENO sotto protocollo (N-75); il probe del
     passo C- (env GENO_CMINUS_DIV) vive in un build di prova, mai
     committato: adottarlo o no e' decisione owner; (f) S28/S29
-    2026-09-15/16: RILEVATORE DI PIEGHE come condizione di
-    ammissibilita' in A-4 (S22) e R-3 (S23) — cambia la classe di
-    disegno (senza urti) e quindi il significato del claim
-    "free-form spike": decisione owner, misurato e dichiarato (S28
-    addendum B); dimensione della perturbazione del test di moto
-    v3 (a 1.5 % discrimina in una sola direzione nel nostro mondo).
+    2026-09-15/16: la linea brick-2 non ha mai portato il MARGINE DI
+    PIEGA del programma (X-MGOV esiste solo per la campana): i suoi
+    ottimi S21-S23 sono usciti dalla classe senza urti (S28 addendum
+    B). DECISO 2026-09-16: porting di X-MGOV nel plug + S21-S23
+    vincolati al margine (NEXT-PARALLELO 1-bis); resta owner la
+    dimensione della perturbazione del test di moto v3 (a 1.5 %
+    discrimina in una sola direzione nel nostro mondo).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

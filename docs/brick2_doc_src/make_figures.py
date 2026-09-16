@@ -2213,8 +2213,13 @@ def fig_spike_designs():
     keep = sx <= PS.L
     a1.plot(sx[keep], sy[keep], color="tab:blue", lw=1.6,
             label=r"fan streamline, $\theta_E = 0$, cut at $L=2.5$ m")
+    # labels from the artifact (re-adjudication 2026-09-15: m 12, two
+    # inserted knots, tail drop re-measured), never hard-coded
+    m_a, m_u = len(W_a), len(W_u)
+    tail_mm = 1e3 * (y_str[-1] - y_ada[-1])
     a1.plot(xg, y_ada, color="tab:blue", lw=0.9, ls="--",
-            label="free-form optimum ($m=11$): tail drops 87 mm")
+            label="free-form optimum ($m=%d$): tail drops %.0f mm"
+                  % (m_a, tail_mm))
     a1.plot([0.0], [w["RMAX"]], marker="o", ms=4, color="k")
     a1.annotate("lip", (0.0, w["RMAX"]), textcoords="offset points",
                 xytext=(4, 4))
@@ -2235,19 +2240,23 @@ def fig_spike_designs():
     # (b) what the optimizer moved, in mm
     a2.axhline(0.0, color="0.4", lw=0.7)
     a2.plot(xg, 1e3 * (y_ada - y_str), color="tab:blue", lw=1.4,
-            label="adaptive optimum $-$ streamline ($m=11$)")
+            label="adaptive optimum $-$ streamline ($m=%d$)" % m_a)
     a2.plot(xg, 1e3 * (y_uni - y_str), color="tab:orange", lw=1.2,
-            ls="--", label="uniform optimum $-$ streamline ($m=11$)")
+            ls="--", label="uniform optimum $-$ streamline ($m=%d$)"
+            % m_u)
     for xkk in xk_a:
         a2.axvline(xkk, color="0.75", lw=0.4, zorder=0)
-    x_new = float(art["history"][1]["sites"][0])
-    a2.axvline(x_new, color="tab:blue", lw=0.8, ls=":")
-    a2.annotate("inserted knot\n$x = %.4f$" % x_new, (x_new, None
-                if False else 1e3 * (AD.respline(W_a, xk_a, c,
-                np.array([x_new]))[0]
-                - np.interp(x_new, c["sx"], c["sy"]))),
-                textcoords="offset points", xytext=(10, 8),
-                fontsize=7.5, color="tab:blue")
+    # every inserted knot of the artifact's history (one per cycle)
+    x_news = [float(x) for h in art["history"] for x in h.get("sites", [])]
+    for n, x_new in enumerate(x_news):
+        a2.axvline(x_new, color="tab:blue", lw=0.8, ls=":")
+        a2.annotate("inserted knot\n$x = %.4f$" % x_new,
+                    (x_new, 1e3 * (AD.respline(W_a, xk_a, c,
+                                               np.array([x_new]))[0]
+                                   - np.interp(x_new, c["sx"], c["sy"]))),
+                    textcoords="offset points",
+                    xytext=(14, -30 - 18 * n),
+                    fontsize=7.5, color="tab:blue")
     a2.set_xlabel("x [m]")
     a2.set_ylabel(r"$\Delta y$ [mm]")
     a2.set_title("(b) what shape freedom bought at $L = 2.5$ m")
@@ -2295,11 +2304,16 @@ def fig_s23_ladder():
     a1.annotate("tuning rung", (2, Jf[1] / 1e6),
                 textcoords="offset points", xytext=(8, -14),
                 fontsize=7.5, color="tab:orange")
+    # the fine design's limit relative to the streamline's, from the
+    # verdict: "onto the same limit" only when the gain limit is zero
+    # within its band (the 08-11 record); below it otherwise (the
+    # 2026-09-16 re-adjudication, where the fine design is out of class)
+    same = abs(g_lim) <= band
     a1.annotate("the de-tuning transient:\novershoot, then descent\n"
-                "onto the same limit", (4.6, 115.90),
-                fontsize=7.5, color="tab:orange", ha="center",
-                xytext=(4.6, 115.90), xycoords="data",
-                textcoords="data")
+                + ("onto the same limit" if same else
+                   "past the streamline's limit"),
+                (0.30, 0.60), xycoords="axes fraction",
+                fontsize=7.5, color="tab:orange", ha="center")
     a1.set_xticks(x, rungs, rotation=30, fontsize=7)
     a1.set_ylabel("thrust J [MN]")
     a1.set_xlabel("march resolution (K, N)")
@@ -2324,9 +2338,13 @@ def fig_s23_ladder():
     a2.set_xlabel("march resolution (K, N)")
     a2.set_ylabel(r"gain $-$ extrapolated limit  [%]")
     a2.set_title("(b) geometric convergence of the paired gain")
-    a2.annotate("limit $%+.3f\\%%$, band $%.3f\\%%$\n"
-                r"$\Rightarrow$ ZERO within band"
-                % (100 * g_lim, 100 * band),
+    unresolved = "UNRESOLVED" in str(v.get("verdict", ""))
+    box = ("limit $%+.3f\\%%$, band $%.3f\\%%$\n"
+           % (100 * g_lim, 100 * band)
+           + r"$\Rightarrow$ "
+           + ("ZERO within band" if same else "limit outside band")
+           + ("\n(UNRESOLVED: band > BAR)" if unresolved else ""))
+    a2.annotate(box,
                 (0.03, 0.06), xycoords="axes fraction", fontsize=8,
                 bbox=dict(boxstyle="round", fc="white", ec="0.6"))
     a2.legend(fontsize=7.2, loc="upper right")

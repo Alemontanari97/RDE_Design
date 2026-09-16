@@ -6,6 +6,18 @@ authoritative for the Rao-world chain and its traps). Narrative:
 `PROGRESS_2026-09-15_S28_ourworld.md`; the rebuild after the deletion:
 `PROGRESS_2026-09-09_S27_line_reconstruction.md`.
 
+## 0. Read first (2026-09-16 01:50 update)
+
+The night's state, the closing recipe and the rules learned live in
+`/data10/falco/RDE/handoff/BRICK2_PLUG_HANDOFF_2026-09-15.md` Sec. 000
+and in the S29 log `validation/PROGRESS_2026-09-16_S29_readjudication.md`
+(the S28 log is frozen by the claims lint's staleness link: its four
+rows are stamped 2026-09-15). Commits of the night: b3bc603, b8ec177,
+5105457, 64079bd (HEAD); bundle brick2-plug_2026-09-16.bundle. Phase A
+(SQP-return) closed with [X-OWS3]; phase B (S22/S23) is a
+re-adjudication, in flight; phase C = the fold margin ported into the
+plug (decided with the owner; derive stage passed on a scratch port).
+
 ## 1. State
 
 - Branch `brick2-plug` = `origin/rde-nozzle-program` 6be51b9 (unchanged

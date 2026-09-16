@@ -1,0 +1,89 @@
+== A1 brick 2 step 16: the free-form spike (spline + TR-SQP) [F2/A1] ==
+  basis: chamber 2.5300e+07 Pa / 3739.9 K, p_a 7.6144e+05 Pa, mdot 4.24755e+04 kg/s
+  inlet: theta_E = 0.0 deg (step 15 optimum), theta_i = -26.66 deg; start radius y_w0 = 1.51945 m (mass-set)
+  shape: 10 free nodes on (0.35, 2.50] m, 61 wall stations, 51 start rows
+
+-- C-1: representation of the incumbent, under node refinement --
+  m = 10 nodes: max |spline - streamline| = 4.575e-04 m (0.0590 % of the 0.776 m spike drop) at x = 0.632 m
+  m = 20 nodes: max |spline - streamline| = 1.329e-04 m (0.0171 % of the 0.776 m spike drop) at x = 0.526 m
+  m = 40 nodes: max |spline - streamline| = 2.537e-05 m (0.0033 % of the 0.776 m spike drop) at x = 0.597 m
+  m = 80 nodes: max |spline - streamline| = 5.281e-06 m (0.0007 % of the 0.776 m spike drop) at x = 0.561 m
+  across the ladder 10 -> 80 nodes: 86.6x reduction
+  reference streamline resolved to 5.52e-08 m (RK4 step refinement) -- not the limiting error
+  J(streamline, as represented) = 1.15588925e+08 N   C_F = 1.45427   cert = 0.257
+  [PASS] C-1 the basis is dense: the representation error of the incumbent falls across the refinement ladder
+
+-- C-3: is the mass constraint met on the march's own quadrature? --
+  start-line mdot 4.24755231e+04 vs reference 4.24755230e+04 -> rel 5.459e-11  (derived band 1.462e-04)
+  [PASS] C-3 the start line passes the reference mass flow inside the derived quadrature band
+
+-- C-2: AD adjoint vs central finite differences --
+  J = 1.1558892465e+08   |grad| = 1.059703e+07
+  node  0: AD +1.027872e+07  FD +1.027872e+07  |d| = 2.560e-02  (ladder spread 1.584e-01 -> band 1.518e+01)
+  node  5: AD -2.127679e+05  FD -2.127679e+05  |d| = 1.567e-03  (ladder spread 5.096e-01 -> band 2.154e+01)
+  node  9: AD -1.047261e+06  FD -1.047268e+06  |d| = 6.962e+00  (ladder spread 3.714e+01 -> band 1.691e+02)
+  [PASS] C-2 the AD adjoint matches central finite differences inside the band the differences' own scatter supports
+  <grad,v> = +2.02947747e+06   FD_v = +2.02947748e+06   |d| = 4.743e-03  (ladder spread 1.192e+00 -> band 2.530e+01)
+  [PASS] C-2b directional-derivative identity
+
+-- the driver: segmented trust-region SQP --
+    [seg  0] J = 1.15588925e+08  |grad| = 1.060e+07  cert = 0.257
+    [seg  1] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  2] trial J = 1.15655421e+08 REJECTED (worse than 1.15680509e+08) -> revert, radius -> 5.625e-02
+    [seg  3] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  4] trial J = 1.15268993e+08 REJECTED (worse than 1.15680509e+08) -> revert, radius -> 4.219e-02
+    [seg  5] J = 1.15680509e+08  |grad| = 1.651e+06  cert = 0.307
+    [seg  6] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.053
+    [seg  7] trial J = 1.15203320e+08 REJECTED (worse than 1.15715554e+08) -> revert, radius -> 4.746e-02
+    [seg  8] J = 1.15715554e+08  |grad| = 1.596e+06  cert = 0.053
+    [seg  9] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.244
+    [seg 10] trial J = 1.15024562e+08 REJECTED (worse than 1.15730723e+08) -> revert, radius -> 5.339e-02
+    [seg 11] J = 1.15730723e+08  |grad| = 5.253e+05  cert = 0.244
+    [seg 12] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 13] trial J = 1.15027605e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 6.007e-02
+    [seg 14] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 15] trial J = 1.15363281e+08 REJECTED (worse than 1.15735762e+08) -> revert, radius -> 4.505e-02
+    [seg 16] J = 1.15735762e+08  |grad| = 6.221e+05  cert = 0.086
+    [seg 17] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.067
+    [seg 18] trial J = 1.15017911e+08 REJECTED (worse than 1.15738602e+08) -> revert, radius -> 5.068e-02
+    [seg 19] J = 1.15738602e+08  |grad| = 2.120e+05  cert = 0.067
+    [seg 20] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 21] trial J = 1.15038186e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 5.702e-02
+    [seg 22] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 23] trial J = 1.15355875e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 4.276e-02
+    [seg 24] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 25] trial J = 1.14739739e+08 REJECTED (worse than 1.15739431e+08) -> revert, radius -> 3.207e-02
+    [seg 26] J = 1.15739431e+08  |grad| = 2.152e+05  cert = 0.038
+    [seg 26] no motion at radius 3.207e-02 -> retry at 1.604e-02 (same record)
+    [seg 27] J = 1.15739891e+08  |grad| = 1.229e+05  cert = 0.129
+    [seg 28] trial J = 1.15667901e+08 REJECTED (worse than 1.15739891e+08) -> revert, radius -> 1.804e-02
+    [seg 29] J = 1.15739891e+08  |grad| = 1.229e+05  cert = 0.129
+
+  start  J = 1.15588925e+08 N   C_F = 1.45427
+  final  J = 1.15739891e+08 N   C_F = 1.45617   cert = 0.129
+  refined (K,N -> 2K-1, 2N-1): gain +0.1306 % vs +0.0834 %
+  gain over the fan streamline at fixed length: +0.1306 %  (band DERIVED HERE 0.1889 %, inherited 0.0094 %)
+  [FAIL] C-6 the gain exceeds the band this carrier's own refinement supports
+  records taken: 30;  segments walked: 19
+
+  final spike: y 1.5025 -> 0.8297 m over [0.35, 2.50] m; descending = True, clears the axis = True
+  [PASS] C-4 the optimum is Newton-certified and admissible (spike descends, clears the axis)
+  [PASS] C-5 the optimizer does not lose to its own start
+
+-- R-1: the same driver on a SIGN-FLIPPED objective --
+    [seg  0] J = 1.15588925e+08  |grad| = 1.060e+07  cert = 0.257
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg  1] J = 1.14672868e+08  |grad| = 5.158e+07  cert = 0.193
+    [seg 2] base REJECTED (record not certified (worst 4.095e+16)) -> revert, radius -> 2.813e-02
+    [seg  3] J = 1.14672868e+08  |grad| = 5.158e+07  cert = 0.193
+    [seg 4] base REJECTED (record not certified (worst 6.961e+15)) -> revert, radius -> 2.109e-02
+    [seg  5] J = 1.14672868e+08  |grad| = 5.158e+07  cert = 0.193
+    [seg 6] base REJECTED (record not certified (worst 5.553e+17)) -> revert, radius -> 1.582e-02
+    [seg  7] J = 1.14672868e+08  |grad| = 5.158e+07  cert = 0.193
+    [seg  7] no motion at radius 1.582e-02 -> retry at 7.910e-03 (same record)
+    [seg  8] J = 1.14203042e+08  |grad| = 6.740e+07  cert = 0.129
+    [seg 9] base REJECTED (record not certified (worst 1.404e+17)) -> revert, radius -> 8.899e-03
+  minimiser J = 1.14203042e+08 N (maximiser 1.15739891e+08)
+  [PASS] R-1 rejector: minimising the thrust does NOT land on the maximiser
+
+== 7/8 PASS  (3319.6 s) ==

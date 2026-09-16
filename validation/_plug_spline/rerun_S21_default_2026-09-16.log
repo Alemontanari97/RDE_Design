@@ -1,0 +1,61 @@
+== A1 brick 2 step 16: the free-form spike (spline + TR-SQP) [F2/A1] ==
+  basis: chamber 2.5300e+07 Pa / 3739.9 K, p_a 7.6144e+05 Pa, mdot 4.24755e+04 kg/s
+  inlet: theta_E = 0.0 deg (step 15 optimum), theta_i = -26.66 deg; start radius y_w0 = 1.51947 m (mass-set)
+  shape: 6 free nodes on (0.35, 2.50] m, 81 wall stations, 61 start rows
+
+-- C-1: representation of the incumbent, under node refinement --
+  m =  6 nodes: max |spline - streamline| = 6.650e-04 m (0.0858 % of the 0.775 m spike drop) at x = 2.367 m
+  m = 12 nodes: max |spline - streamline| = 4.414e-04 m (0.0569 % of the 0.775 m spike drop) at x = 0.615 m
+  m = 24 nodes: max |spline - streamline| = 6.105e-05 m (0.0079 % of the 0.775 m spike drop) at x = 0.589 m
+  m = 48 nodes: max |spline - streamline| = 1.921e-05 m (0.0025 % of the 0.775 m spike drop) at x = 0.562 m
+  across the ladder 6 -> 48 nodes: 34.6x reduction
+  reference streamline resolved to 5.63e-08 m (RK4 step refinement) -- not the limiting error
+  J(streamline, as represented) = 1.15697414e+08 N   C_F = 1.45564   cert = 0.038
+  [PASS] C-1 the basis is dense: the representation error of the incumbent falls across the refinement ladder
+
+-- C-3: is the mass constraint met on the march's own quadrature? --
+  start-line mdot 4.24755230e+04 vs reference 4.24755230e+04 -> rel 3.471e-10  (derived band 2.856e-04)
+  [PASS] C-3 the start line passes the reference mass flow inside the derived quadrature band
+
+-- C-2: AD adjoint vs central finite differences --
+  J = 1.1569741428e+08   |grad| = 3.966196e+06
+  node  0: AD +3.673394e+06  FD +3.673395e+06  |d| = 6.884e-01  (ladder spread 1.613e+00 -> band 2.174e+01)
+  node  3: AD -3.293343e+05  FD -3.293715e+05  |d| = 3.718e+01  (ladder spread 1.571e+01 -> band 8.291e+01)
+  node  5: AD -1.103689e+06  FD -1.103691e+06  |d| = 2.296e+00  (ladder spread 3.569e+00 -> band 3.483e+01)
+  [PASS] C-2 the AD adjoint matches central finite differences inside the band the differences' own scatter supports
+  <grad,v> = +3.29736351e+05   FD_v = +3.29735875e+05   |d| = 4.757e-01  (ladder spread 1.311e+00 -> band 2.580e+01)
+  [PASS] C-2b directional-derivative identity
+
+-- the driver: segmented trust-region SQP --
+    [seg  0] J = 1.15697414e+08  |grad| = 3.966e+06  cert = 0.038
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg  1] J = 1.15753681e+08  |grad| = 1.509e+06  cert = 0.038
+    [seg  2] J = 1.15788720e+08  |grad| = 9.293e+05  cert = 0.045
+    [seg  3] J = 1.15790927e+08  |grad| = 1.511e+05  cert = 0.092
+    [seg  4] trial J = 1.14343220e+08 REJECTED (worse than 1.15790927e+08) -> revert, radius -> 6.328e-02
+    [seg  5] J = 1.15790927e+08  |grad| = 1.511e+05  cert = 0.092
+    [seg  6] trial J = 1.14981006e+08 REJECTED (worse than 1.15790927e+08) -> revert, radius -> 4.746e-02
+    [seg  7] J = 1.15790927e+08  |grad| = 1.511e+05  cert = 0.092
+    [seg  8] trial J = 1.15336031e+08 REJECTED (worse than 1.15790927e+08) -> revert, radius -> 3.560e-02
+    [seg  9] J = 1.15790927e+08  |grad| = 1.511e+05  cert = 0.092
+
+  start  J = 1.15697414e+08 N   C_F = 1.45564
+  final  J = 1.15790927e+08 N   C_F = 1.45681   cert = 0.092
+  refined (K,N -> 2K-1, 2N-1): gain +0.0808 % vs +0.0771 %
+  gain over the fan streamline at fixed length: +0.0808 %  (band DERIVED HERE 0.0151 %, inherited 0.0094 %)
+  [PASS] C-6 the gain exceeds the band this carrier's own refinement supports
+  records taken: 10;  segments walked: 7
+
+  final spike: y 1.5062 -> 0.8228 m over [0.35, 2.50] m; descending = True, clears the axis = True
+  [PASS] C-4 the optimum is Newton-certified and admissible (spike descends, clears the axis)
+  [PASS] C-5 the optimizer does not lose to its own start
+
+-- R-1: the same driver on a SIGN-FLIPPED objective --
+    [seg  0] J = 1.15697414e+08  |grad| = 3.966e+06  cert = 0.038
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg  1] J = 1.15669146e+08  |grad| = 7.019e+06  cert = 0.038
+    [seg  2] J = 1.14906219e+08  |grad| = 3.659e+07  cert = 0.048
+  minimiser J = 1.10887983e+08 N (maximiser 1.15790927e+08)
+  [PASS] R-1 rejector: minimising the thrust does NOT land on the maximiser
+
+== 8/8 PASS  (2166.2 s) ==

@@ -1,0 +1,77 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage fineopt) ==
+-- R-2: record checks against the S22 artifacts --
+  [PASS] R-2a J(S22 optimum) at (61,51) reproduces design.json (rel 0.0e+00)
+    rung 1 inc: 1.15598109e+08 vs log 1.15600201e+08 (rel 1.8e-05)
+    rung 1 opt: 1.16199981e+08 vs log 1.15961756e+08 (rel 2.1e-03)
+    rung 2 inc: 1.15808715e+08 vs log 1.15810339e+08 (rel 1.4e-05)
+    rung 2 opt: 1.16305500e+08 vs log 1.16026100e+08 (rel 2.4e-03)
+  [FAIL] R-2b fresh rung-1/2 J's reproduce the S22 log at printed precision
+
+-- fine optimization at (K,N) = (121,101), warm from the S22 optimum --
+  [FAIL] R-2c the S22 design of record certifies at the fine instrument (121,101): cert 3.249e+11
+    fallback candidate cycle_m10_k61_n51_02.npz (m 12, J 1.16199981e+08): cert 3.249e+11
+    fallback candidate cycle_m10_k61_n51_01.npz (m 11, J 1.15965416e+08): cert 4.172e+00
+  WARM START FALLBACK (declared): fan streamline on the S22 knots (no certified checkpoint)
+    [seg  0] J = 1.15808715e+08  |grad| = 6.371e+07  cert = 0.050
+    [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02 (same record)
+    [seg 1] base REJECTED (record not certified (worst 1.637e+00)) -> revert, radius -> 1.875e-02
+    [seg  2] J = 1.15808715e+08  |grad| = 6.371e+07  cert = 0.050
+    [seg  3] J = 1.16179243e+08  |grad| = 6.613e+06  cert = 0.093
+    [seg  4] J = 1.16200198e+08  |grad| = 5.520e+06  cert = 0.891
+    [seg  4] no motion at radius 4.219e-02 -> retry at 2.109e-02 (same record)
+    [seg  5] J = 1.16207909e+08  |grad| = 3.762e+06  cert = 0.129
+    [seg  6] J = 1.16212412e+08  |grad| = 3.193e+06  cert = 0.103
+    [seg  6] no motion at radius 4.746e-02 -> retry at 2.373e-02 (same record)
+    [seg  7] J = 1.16215373e+08  |grad| = 3.463e+06  cert = 0.038
+    [seg 8] base REJECTED (record not certified (worst 2.519e+00)) -> revert, radius -> 2.670e-02
+    [seg  9] J = 1.16215373e+08  |grad| = 3.463e+06  cert = 0.038
+    [seg 10] J = 1.16219419e+08  |grad| = 3.503e+06  cert = 0.123
+    [seg 11] J = 1.16226318e+08  |grad| = 7.637e+06  cert = 0.358
+    [seg 11] no motion at radius 6.007e-02 -> retry at 3.003e-02 (same record)
+    [seg 12] J = 1.16230116e+08  |grad| = 1.692e+06  cert = 0.050
+    [seg 13] base REJECTED (record not certified (worst 7.467e+17)) -> revert, radius -> 3.379e-02
+    [seg 14] J = 1.16230116e+08  |grad| = 1.692e+06  cert = 0.050
+    [seg 14] no motion at radius 3.379e-02 -> retry at 1.689e-02 (same record)
+    [seg 15] J = 1.16246552e+08  |grad| = 6.451e+06  cert = 0.172
+    [seg 16] J = 1.16255719e+08  |grad| = 2.689e+06  cert = 0.078
+    [seg 16] no motion at radius 3.801e-02 -> retry at 1.901e-02 (same record)
+    [seg 16] no motion at radius 1.901e-02 -> retry at 9.503e-03 (same record)
+    [seg 17] trial J = 1.16007220e+08 REJECTED (worse than 1.16255719e+08) -> revert, radius -> 7.127e-03
+    [seg 18] J = 1.16255719e+08  |grad| = 2.689e+06  cert = 0.078
+    [seg 18] no motion at radius 7.127e-03 -> retry at 3.564e-03 (same record)
+    [seg 19] base REJECTED (record not certified (worst 1.304e+00)) -> revert, radius -> 2.673e-03
+    [seg 20] J = 1.16255719e+08  |grad| = 2.689e+06  cert = 0.078
+    [seg 21] J = 1.16257928e+08  |grad| = 1.224e+06  cert = 0.148
+    [seg 22] J = 1.16270809e+08  |grad| = 4.968e+06  cert = 0.232
+    [seg 23] trial J = 1.16235291e+08 REJECTED (worse than 1.16270809e+08) -> revert, radius -> 4.510e-03
+    [seg 24] J = 1.16270809e+08  |grad| = 4.968e+06  cert = 0.232
+    [seg 25] J = 1.16278234e+08  |grad| = 1.289e+06  cert = 0.461
+    [seg 26] J = 1.16279997e+08  |grad| = 1.970e+06  cert = 0.050
+    [seg 27] J = 1.16281580e+08  |grad| = 9.799e+05  cert = 0.793
+    [seg 28] trial J = 1.16158108e+08 REJECTED (worse than 1.16281580e+08) -> revert, radius -> 1.142e-02
+    [seg 29] J = 1.16281580e+08  |grad| = 9.799e+05  cert = 0.793
+    [seg 30] base REJECTED (record not certified (worst 1.327e+00)) -> revert, radius -> 8.562e-03
+    [seg 31] J = 1.16281580e+08  |grad| = 9.799e+05  cert = 0.793
+    [seg 32] J = 1.16282889e+08  |grad| = 1.313e+06  cert = 0.038
+    [seg 33] base REJECTED (record not certified (worst 1.608e+00)) -> revert, radius -> 9.633e-03
+    [seg 34] J = 1.16282889e+08  |grad| = 1.313e+06  cert = 0.038
+    [seg 35] J = 1.16285669e+08  |grad| = 1.956e+06  cert = 0.037
+    [seg 36] trial J = 1.16065594e+08 REJECTED (worse than 1.16285669e+08) -> revert, radius -> 1.084e-02
+    [seg 37] J = 1.16285669e+08  |grad| = 1.956e+06  cert = 0.037
+    [seg 38] J = 1.16287610e+08  |grad| = 7.894e+05  cert = 0.484
+    [seg 39] base REJECTED (record not certified (worst 1.481e+00)) -> revert, radius -> 1.219e-02
+  fine optimum: J(121) = 1.16287610e+08 (warm start 1.15808715e+08, +0.4135%) cert 0.484, 29 segments
+  [PASS] R-3 fine optimum certified and does not lose to its warm start at its own resolution
+    node  0: AD +3.966724e+05 FD +3.966747e+05 |d| 2.26e+00 (band 1.55e+03)
+    node 11: AD -1.532733e+05 FD -1.532741e+05 |d| 7.63e-01 (band 8.68e+01)
+  [PASS] R-4 adjoint matches the FD ladder at the fine optimum
+
+-- fresh ladders, rungs 1-3, both designs --
+    rung ( 61, 51): J_inc 1.1559810883e+08  J_fine 1.1617683999e+08  gain +0.50064 %  (31 s)
+    rung (121,101): J_inc 1.1580871511e+08  J_fine 1.1628761027e+08  gain +0.41352 %  (113 s)
+    rung (241,201): J_inc 1.1591598801e+08  J_fine 1.1620652080e+08  gain +0.25064 %  (435 s)
+  extrapolations: inc r +0.509 limit 1.160274e+08 | fine r -0.732 limit 1.162408e+08
+  PROVISIONAL 3-rung gain limit = +0.1840 %
+  saved /data10/falco/RDE/RDE_Design/validation/_plug_gain/fineopt.npz  (19682 s total)
+
+== 3/5 PASS ==

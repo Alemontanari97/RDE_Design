@@ -1,0 +1,7 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage rung4) ==
+-- rung 5 (961,801) for design 'fine' --
+  J = 1.1601607080e+08  cert = 0.282  (3525 s)
+  march certification: OK (0.282 vs 1.0)
+
+== 0/0 PASS ==
+##### rung5 fine EXIT=0 02:50:10

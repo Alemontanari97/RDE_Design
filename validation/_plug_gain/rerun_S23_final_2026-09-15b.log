@@ -1,0 +1,19 @@
+== A1 S23: resolving the free-form spike's gain [X-PGRS] (stage final) ==
+-- stage final: the verdict (paired-ladder rule of record) --
+  6 rungs on disk
+  J_inc  ladder: ['1.15598109e+08', '1.15808715e+08', '1.15915988e+08', '1.15969318e+08', '1.15996055e+08', '1.16009419e+08']
+  J_fine ladder: ['1.16176840e+08', '1.16287610e+08', '1.16206521e+08', '1.16094544e+08', '1.16016071e+08', '1.15970977e+08']
+  paired gains [%]: ['+0.50064', '+0.41352', '+0.25064', '+0.10798', '+0.01726', '-0.03314']
+  gain diffs: ['-8.712e-04', '-1.629e-03', '-1.427e-03', '-9.073e-04', '-5.039e-04']
+  diff ratios: ['+1.8697', '+0.8758', '+0.6360', '+0.5554']
+  J_inc limit (last window): 1.16022773e+08 (r +0.500; prev window 1.16022935e+08)
+  R-5'a: last ratios 0.6360 -> 0.5554 (march order 0.5): settling
+  [PASS] R-5'a paired ladder single-mode and settling toward the march order
+  R-5'b: last gain predicted -0.04044 % actual -0.03314 % (miss 7.306e-05 vs step 5.039e-04)
+  [PASS] R-5'b the model predicts the last rung within its own step
+  gain limit: prev window -0.14124 %, last window -0.09609 % -> quote -0.09609 %, band 0.18058 % (BAR 0.0400 %)
+  VERDICT: the gain is ZERO within the band — the truncated streamline is optimal at this length to within |0.2767| % (NOT RESOLVED: band > BAR)
+  [FAIL] V the experiment is resolved (band <= BAR)
+  written /data10/falco/RDE/RDE_Design/validation/_plug_gain/verdict.json
+
+== 2/3 PASS ==

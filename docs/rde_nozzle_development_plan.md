@@ -280,6 +280,28 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     truncated-plug falsifier. Formal declaration of the entry leg =
     owner ratification at the next F2/F3 touchpoint (the line's state is
     carried by its own log/handoff; PROGRESS row R37).
+    CLASS FINDING (S28/S29 2026-09-15/16; log
+    validation/PROGRESS_2026-09-16_S29_readjudication.md): the brick-2
+    line's free-form optima S21-S23 were never held to the class the
+    march is certified for — re-adjudicated with the amended carriers
+    (S22 ladders gated on certification: VOID; S23 warm start gated,
+    fallback to the streamline), the unconstrained optimizer leaves
+    the shock-free class as soon as it can (a 12-15 deg compression
+    corner at the wall foot, the recorded net folded in 59/62 ..
+    240/242 columns, true-cell margin -0.8/-0.97 vs +0.52 for the
+    streamline; certification blind to it; and the S21 optimum itself,
+    re-run 2026-09-16, folds with a 2 deg corner: 60/62 columns,
+    margin -0.67) -> [X-PGRS] re-stamped OUT OF CLASS, [X-PAKN] VOID
+    by discipline, [X-PSPL] re-stamped OUT OF CLASS, the S21-S23
+    numbers of record HISTORY. The F3 duty "plug/C- mirror Lambda-form margin
+    PROVEN or declared PRACTICE conditional" is therefore LIVE, not
+    optional: the margin of M0 Part VI (max J s.t. g = 0, m(W) >=
+    mu_0; REQ-NONSTALL; [X-MGOV] on the bell) is being ported into
+    the plug as a signed-area net-cell margin (derive stage D0-D4
+    passed on a scratch port, first margin-constrained walk from the
+    streamline margin-ACTIVE with mu > 0 at one resolution — not of
+    record until the carrier a1_plug_margin.py carries it), and S21-S23
+    are to be re-run margin-constrained before any plug optimum ships.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
