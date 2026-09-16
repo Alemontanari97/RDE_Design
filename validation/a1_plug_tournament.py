@@ -140,7 +140,21 @@ def say(msg):
     print(msg, flush=True)
 
 
-def fold_census(out):
+def fold_census(out, sch=None, N=None, mg=None):
+    """Folded columns. With (sch, N, mg): the census on the BUCKET cells
+    of the margin (np_margin's own cells, signed area <= 0 counts) --
+    the same cells the class criterion grades. Without: the historical
+    y-monotonicity walk over every row of the mesh dict, which also
+    reads the consumed start-line rows kept below the wall in the first
+    columns (measured 2026-09-17 on the healthy (81,41) incumbent: rows
+    1-9 of column 2 at y 1.4702 -> 1.4675 under the wall, 6/82 columns
+    'folded' at min cell +0.087) -- kept only as the fallback."""
+    if sch is not None:
+        ms, dep, where = np_margin(out, sch, N, mg["orient"], mg["f_edge"],
+                                   mg["ell2"], with_depth=True)
+        cols = sorted(set(i for (i, j) in where))
+        badcols = sorted(set(i for (i, j), m in zip(where, ms) if m <= 0.0))
+        return len(badcols), len(cols), (badcols[0] if badcols else None)
     keys = out["mesh_keys"]
     pts = np.asarray(out["mesh_pts"])
     cols = {}
@@ -389,7 +403,7 @@ def derive():
     W_r[-1] = max(W_r[-1], ytip)
     o, s = P.march_record(W_r, w, c, margin=mg)
     J_r = float(P.J_replay(jnp.asarray(W_r), w, c, s, ta))
-    nf, nc, first = fold_census(o)
+    nf, nc, first = fold_census(o, s, N, mg)
     say("  Rao: J %.8e (vs incumbent %+.4e N = %+.2e of J; band_J %.3e), cert"
         " %.3f, min cell %+.4f KS %+.4f (%d cells), folded %d/%d (first %s),"
         " theta st.1 %+.2f deg (incumbent %+.2f, flow %+.2f) (%.0f s)"
@@ -417,7 +431,7 @@ def derive():
     sl_r = np.gradient(np.interp(xq_r, ow[:, 0], ow[:, 1]), xq_r)
     st_r = (jnp.asarray(xq_r), jnp.asarray(yq_r), jnp.asarray(sl_r))
     o_b, s_b = plug_march(st_r, c["start"], c["qpa"], w["tab"], 1.0, margin=mg)
-    nf_b, nc_b, first_b = fold_census(o_b)
+    nf_b, nc_b, first_b = fold_census(o_b, s_b, N, mg)
     say("  Rao AS WRITTEN (shift %+.2e m, %d stations to x %.4f): cert %.3f,"
         " min cell %+.4f KS %+.4f (%d cells), folded %d/%d (first %s) (%.0f s)"
         % (shift, len(xq_r), xq_r[-1], float(o_b["cert_worst"]),
@@ -445,7 +459,7 @@ def derive():
     W_c[0] += dx * np.tan(np.radians(CORNER_DEG))
     t0 = time.time()
     o, s = P.march_record(W_c, w, c, margin=mg)
-    nf_c, _, _ = fold_census(o)
+    nf_c, _, _ = fold_census(o, s, N, mg)
     mv, gm = P.margin_and_grad(W_c, w, c, s, mg)
     ksc = float(o["margin_ks"])
     infeas = [bool(ksc < f) for f in floors]
@@ -586,7 +600,7 @@ def campaign():
         o, s = P.march_record(W_s, w, c, margin=mg)
         J_s, g_s = P.J_and_grad(W_s, w, c, ta, s)
         mv, gm = P.margin_and_grad(W_s, w, c, s, mg)
-        nf, nc, first = fold_census(o)
+        nf, nc, first = fold_census(o, s, N, mg)
         mn, ks = float(o["margin_min"]), float(o["margin_ks"])
         res = mg.get("last_res")
         mu = None
