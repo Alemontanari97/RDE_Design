@@ -205,7 +205,18 @@
 ## il torneo di record e' X-PTRN (riga da coniare) sotto PSPL_FAN=axi (incumbent = il
 ## membro ideale assialsimmetrico del metodo, L 5.876 = la sua punta a
 ## 0.01 RMAX, Rao solo oracolo finale): CAMPAGNA (PTRN_N 81, SEGS 30,
-## ITERS 12, STARTS 2) SOLO sul "via"; DECISO con l'owner 2026-09-16 00:40:
+## ITERS 12, STARTS 2) SOLO sul "via"; 09-17 00:05 "VIA" DATO: gamba
+## notturna al rung (81,41), 3 partenze (A membro, B 1.5 %, C rampa
+## verso la streamline piana = il metodo diretto da lontano) in 3
+## processi paralleli su s2, SEGS 20 x ITERS 8; (7) NUOVO (utente 09-17
+## 01:05): basi per il SELETTORE DI CONFIGURAZIONE bell-vs-plug —
+## un funzionale con termine di base (p_b − p_a) A_b a massa/ambiente/
+## L_cap/classe condivisi sulla stessa macchina, chiusura p_b = slot N2
+## reso eseguibile (Veen 0.846/M^1.3 come incumbent CON la banda
+## [+19, −15] % della harvest, mai ricalibrata su dati inesistenti),
+## selettore per VALORE con la lezione Humphreys 1971 (argmax x2.45,
+## valore +0.26 %) come rigettatore; carrier X-CFGT + base_pressure.py
+## + delta M0 (R4) — piano in RDE/handoff/BRICK2_PLUG_HANDOFF_2026-09-16_notte.md §5; DECISO con l'owner 2026-09-16 00:40:
 ## NON un rilevatore di pieghe ad hoc ma il MARGINE DI PIEGA del
 ## programma (M0 Parte VI: max J s.t. g = 0 e m(W) >= mu_0; REQ-NONSTALL
 ## D6; eseguibile sulla campana in validation/margin_governor.py
