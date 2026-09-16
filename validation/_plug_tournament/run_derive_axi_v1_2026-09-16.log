@@ -1,0 +1,33 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage derive) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+   posing (OURS): gas nasa, p_a 761442 Pa (nominal), mdot target 4.247552e+04; theta_E 0.0 deg (the method's sweep), fan axi, x0 0.35, y_w0 1.51473 (mass closed on the terminal ray); L 5.8762 m = OUR member's tip-floor abscissa (shared); m 16 uniform knots on (x0, L], K 161, N 81; tip floor y >= 0.0247 m (0.01 y_E, the march's own)
+   oracle (read only after the search): GENO member theta_E -0.0199 deg, L 5.92567, lip p_a 757595 Pa (0.9949 of PA), mdot 4.232020e+04 (-0.37 % of the target) -- residuals DECLARED
+   incumbent = the method's axisymmetric member [X-AFAN] on the knots (tip y 0.02473, CLAMPED to the floor)
+-- C-1: representation on the knots (incumbent, and Rao's contour transplanted) --
+  incumbent: max |spline - streamline| 3.048e-03 m; Rao's contour: start radius at x0 1.51576 vs ours 1.51473 (shift -1.04e-03 m = the cross-code inlet posing, S28: mass -0.37 %); transplanted (shifted): max |spline - wall| 2.967e-03 m; incumbent vs Rao's SHAPE (shifted) 9.677e-03 m, vs his wall as written 8.639e-03 m
+-- D1: the fold margin on the incumbent: orientation, free-edge bucket (doubled resolution), m_ref, floors, rho --
+  raw median -0.4607 over 16728 whole-column cells -> orient -1; cert 5.068 at ('edge', 136) (127 s)
+  [FAIL] C-0 the incumbent's record is Newton-certified at (161,81) (worst 5.068) -- the general method's own construction must be marchable at the shared length
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  incumbent at (321,161): 66915 whole-column cells, 0 <= 0, deepest at row fraction 0.000 -> f_edge 0.000; cert 0.083 at ('edge', 50) (539 s)
+  [PASS] D1a the incumbent's non-positive cells (if any) lie in the free-edge band (depth < 1/2)
+  [PASS] R-D0 in-loop margin == numpy census (min 0.005108 vs 0.005108, cells 16728 vs 16728)
+  [PASS] R-D0b the incumbent is strictly healthy on the bucket (m_ref 0.0051)
+  [PASS] R-KS  vmin - ln N/rho = 0.00503 <= KS = 0.00511 <= vmin = 0.00511
+  m_ref 0.0051 (16728 cells, median 0.4607), floors ['0.0026', '0.0013', '0.0006', '0.0003'], rho 121841.0, gap 7.982e-05
+-- D2: the incumbent's thrust at K and 2K-1, its gradient, band_J --
+  J(inc) 1.15824970e+08 (K 161) vs 1.16107258e+08 (K 321): |dJ| 2.823e+05; |grad J|inf 5.672e+06, |grad J|_1 7.513e+06; band_W(rep) 1.219e-02 -> band_J 1.221e+06 (+1.05e-02 of J) (134 s)
+-- D3: Rao's contour on the method's own posing (oracle, graded by the same march, functional and margin) --
+  Rao: J 1.15823779e+08 (vs incumbent -1.1913e+03 N = -1.03e-05 of J; band_J 1.221e+06), cert 0.301, min cell -0.2964 KS -0.2964 (16728 cells), folded 29/162 (first 2), theta st.1 -33.13 deg (incumbent -33.12, flow -33.16) (152 s)
+  [FAIL] O-1 ORACLE Rao's contour is IN the class on our posing (min cell -0.2964 >= mu0_1 0.0026, 29 folded columns)
+  [PASS] O-2 ORACLE the incumbent (our fan streamline) equals Rao's contour within the representation band (9.677e-03 <= 1.219e-02) and in thrust (|dJ| 1.191e+03 <= band_J 1.221e+06)
+-- D4: the rejector (a 2 deg corner at the first knot) and the fold scale along +grad J -> tr0 --
+  [PASS] R-G1 REJECTOR the cornered incumbent (first knot +12.1 mm, theta st.1 -32.41 deg) is INFEASIBLE at every floor [True, True, True, True] (KS -0.2644, 43 folded), margin finite True, grad finite True (1067 s)
+    h 1.079e-03 m: J 1.1583106e+08 (+0.0053 %) KS +0.0043 min +0.0043 cert 2.044 theta st.1 -33.06
+    h 2.159e-03 m: J 1.1583670e+08 (+0.0101 %) KS +0.0036 min +0.0036 cert 0.499 theta st.1 -32.99
+    h 4.317e-03 m: J 1.1584670e+08 (+0.0188 %) KS +0.0024 min +0.0024 cert 0.380 theta st.1 -32.86
+  [PASS] R-FSC the margin along +grad J crosses mu0_1 inside the ladder (bracket [0.0021586563542187504, 0.004317312708437501] m)
+  h* 3.053e-03 m -> tr0 7.632e-04 m, radius floor tr0/K_RICH 1.908e-04 m
+  derived constants written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/derive.json
+
+== 7/9 PASS  (2761.9 s) ==

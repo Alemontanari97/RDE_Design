@@ -1,0 +1,37 @@
+== [F3] OUR WORLD, the tournament row [X-OWAB] (stage audit): Rao vs the free-form spike at full expansion, class-certified ==
+   world: OUR gas (nasa; Rg 363.8226, T0 3739.9 K, p0 2.53e+07 Pa); GENO member theta_E -0.0199 deg, L 5.92567, eps 5.15063
+   ambient = the member's lip ambient p_a 757595 Pa (0.9949 of the nominal PA 761442); q_at_pa 2743.6 m/s
+   gas check, field vs tables (max rel over 20000 nodes): Rg 5.1e-07, h0 1.6e-04, s0 2.6e-06
+   reference: 1827179 field points, 9933 wall points, x -0.7986..5.9257, y_D 3.83e-04; tip cut at y = 0.010 y_E = 0.0247 m -> x_end 5.6102 (full contour ends at 5.9257)
+   gas Rg=363.8226 ts=3739.90 ps=2.53e+07; pa=7.576e+05; q_at_pa=2743.6; x_D=5.6102
+   start line 59 rows at x0=1.50 (F_in 6.25071e+07 N); wall frozen to Rao's on [1.50, 2.9386]; knots M=8 on [2.9386, 5.6102] (tip pinned at y_D=0.0247); clamped slope0=-0.2464
+   posing: X0 1.50, K 161, N 59, M 8 knots on [2.9386, 5.6102], FREEZE 0.35 (near-cut zone frozen to Rao's), tip pinned y_D 0.0247
+  [PASS] A-0 the designs of record share this posing (knots, K, X0)
+-- D1: the margin of Rao's own contour: orientation, free-edge bucket (doubled resolution), m_ref, floors, rho --
+  raw median -0.4300 over 16661 whole-column cells -> orient -1; cert 0.231 (119 s)
+  Rao's contour at (321,117): 64319 whole-column cells, 0 <= 0, deepest at row fraction 0.000 from the top -> f_edge = K_RICH/2 x 0.000 = 0.000; cert 0.025 (456 s)
+  [PASS] D1a the non-positive cells of Rao's contour (if any) lie in the free-edge band, not the interior (depth < 1/2)
+  [PASS] R-D0 in-loop margin == numpy census on Rao's contour (min 0.098324 vs 0.098324, cells 16661 vs 16661)
+  [PASS] A-1 Rao's contour is strictly healthy on the bucket (m_ref 0.0983 > 0; median 0.4300)
+  [PASS] R-KS  vmin - ln N/rho = 0.09679 <= KS = 0.09832 <= vmin = 0.09832
+  m_ref 0.0983 (16661 bucket cells), floors ['0.0492', '0.0246', '0.0123', '0.0061'], rho 6327.4, gap 1.536e-03
+-- D2: the S28 designs of record graded by the margin: min cell, KS, folded columns, compression corner against Rao's wall --
+  W_fit (Rao)                 J 6.44496391e+07 cert 0.231 | min cell +0.0983 KS +0.0983 (16661 cells) | folded columns 0/162 (first None) | corner vs Rao +0.00 deg at x 3.18  (137 s)
+  W_p (1.5 % start)           J 6.44437239e+07 cert 0.347 | min cell -0.6747 KS -0.6747 (16662 cells) | folded columns 105/162 (first 58) | corner vs Rao +1.61 deg at x 3.08  (138 s)
+  W_s (returned optimum)      J 6.44496571e+07 cert 0.271 | min cell +0.1136 KS +0.1136 (16661 cells) | folded columns 0/162 (first None) | corner vs Rao -0.00 deg at x 2.96  (143 s)
+  W_r (rejector's minimizer)  J 6.38803185e+07 cert 0.173 | min cell -0.8025 KS -0.8025 (16600 cells) | folded columns 105/162 (first 58) | corner vs Rao +14.78 deg at x 3.08  (147 s)
+  [PASS] A-2 the returned optimum W_s is IN the class at the tightest floor (min cell +0.1136 >= mu0_1 0.0492) and unfolded (0 folded columns)
+-- D3: the tournament value: J(W_s) - J(W_fit) against band_J (v2 definition, recomputed here) --
+  J_fit 6.44496391e+07 (K 161) vs 6.44831602e+07 (K 321): |dJ| 3.352e+04; |grad J(W_fit)|_1 2.266e+04, widest v3 band 8.147e-03 -> band_J 1.343e+05 (295 s)
+  record: J_fit 6.44496391e+07, J_s 6.44496571e+07 (npz); here J_fit 6.44496391e+07, J_s 6.44496571e+07
+  [PASS] A-3 TOURNAMENT VALUE: the free-form optimizer's return finds |J(W_s) - J(Rao)| = 1.805e+01 N (+2.80e-07 of J) <= band_J 1.343e+05: no gain over Rao outside the band at shared constraints
+-- A-4 REJECTOR: Rao's contour with a 2 deg compression corner at the first free knot (the S21 optimum's corner) --
+  first knot +11.7 mm: corner vs Rao +2.77 deg at x 3.11; cert 0.375; min cell -0.6726 KS -0.6727; folded 105/162 (first 58); margin - mu0 -0.7218 finite True, |grad| 5.15e-01 finite True (1194 s)
+  [PASS] A-4 REJECTOR the cornered contour is INFEASIBLE at every floor [True, True, True, True] with finite margin and gradient
+-- D4 (reported, not gated): the gradient floor of Rao's contour with the near-cut zone FREE (FREEZE 0) against the frozen posing --
+   gas Rg=363.8226 ts=3739.90 ps=2.53e+07; pa=7.576e+05; q_at_pa=2743.6; x_D=5.6102
+   start line 59 rows at x0=1.50 (F_in 6.25071e+07 N); wall frozen to Rao's on [1.50, 1.5000]; knots M=8 on [1.5000, 5.6102] (tip pinned at y_D=0.0247); clamped slope0=-0.3891
+  FREEZE 0: knots on [1.50, 5.6102]; e_rep 1.011e-03 (frozen posing 4.863e-04); |grad J(W_fit)|inf 2.471e+05 vs 1.530e+04 frozen (x16.1); J_fit 6.44496089e+07 vs 6.44496391e+07; cert 1.287 (136 s)
+  audit written to /data10/falco/RDE/RDE_Design/validation/_ourworld/ab_audit.json
+
+== 8/8 PASS  (3036.4 s) ==

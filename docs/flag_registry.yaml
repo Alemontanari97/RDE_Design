@@ -462,6 +462,15 @@ entries:
   tested_pairs: "none"
   untested_cartesian: false
 
+- flag: "A1_PTRN_STAGE"
+  default: "\"derive\""
+  meaning: "stage selector for a1_plug_tournament.py's own __main__ ([X-PTRN] the plug tournament at full expansion by the general method, S29 2026-09-16): \"derive\" (posing on our world, the fan-streamline incumbent, its fold margin, band_J, fold scale -> tr0, Rao's contour read afterwards as the oracle, the cornered rejector; writes _plug_tournament/derive.json) | \"campaign\" (margin-constrained TR-SQP from the incumbent and from its generic 1.5 percent perturbation, tip bounded below; consumes derive.json); the budget/instance knobs of the same script (PTRN_M, PTRN_K, PTRN_N, PTRN_SEGS, PTRN_ITERS, PTRN_STARTS, PTRN_ART) carry no A1_ prefix and are outside this census by construction — instance parameters, never arbitration"
+  read_sites:
+    - "validation/a1_plug_tournament.py:107"
+  covering_gate: "none from engine_speed_bench.py; own script's manual stage control (derive stage of record pending 2026-09-16; campaign launched only on the owner's word)"
+  tested_pairs: "none"
+  untested_cartesian: false
+
 - flag: "A1_O32_STAGE"
   default: "\"all\""
   meaning: "stage selector for o32_mesh_convergence.py's __main__ (ORACLE O3.2: mesh convergence of the primal/adjoint pair): \"est\" | \"all\""

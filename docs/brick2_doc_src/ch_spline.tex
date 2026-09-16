@@ -991,6 +991,43 @@ expansion state rather than the merits of two design methods. The
 comparison that would settle it is at $5.825$ m with both mass and
 ambient matched, and it is listed in Chapter~\ref{ch:status}.
 
+\paragraph{Amendment (2026-09-16).} The numbers above ($5.825$ m,
+$\theta_E = 0.025^{\circ}$) belong to a posing of the classical code that
+could not be reproduced on the rebuilt line; the member of record is
+the axisymmetric ideal spike run in this world with $M_E$ fixed
+($\theta_E = -0.020^{\circ}$, $L = 5.926$ m closing on the axis,
+expanding to $0.9949$ of the nominal ambient --- a declared residual).
+More importantly, the comparison at a common length has now been made,
+and posing it exposed a defect of this chapter's own construction: the
+lip fan that supplied both the incumbent streamline and the Cauchy data
+on the cut was \emph{planar} (a simple wave, $q$ and $\theta$ functions of
+the ray angle alone) while the march is axisymmetric. Past its last
+ray that streamline is horizontal; at the shared full-expansion length
+it sits $0.84$ m above the classical contour, and no shape freedom
+downstream of the cut can repair data that are wrong on the cut. The
+repair is not a forward axisymmetric fan --- with a free wall that is
+not a construction, since in axisymmetric flow every $C^-$ ray reflects
+on the wall and any wall is a streamline of its own field --- but the
+inverse (Goursat) march: the corner relation at the lip point, exact
+there and used nowhere else, and the terminal $C^-$ ray, straight and
+uniform at the ambient, marched upstream ray by ray with the same
+certified interior cell (its compatibility relation is symmetric in
+the roles of the given and the unknown point), the wall being the
+streamline traced backward from the tip. With the source switched off
+this march reproduces the corner wave to second order ($7\times10^{-8}
+\to 1.8\times10^{-8}$ under doubling); with it on, and the classical
+contour read only afterwards, the traced wall lies at a mean $0.8$ mm
+(maximum $7.8$ mm, ladder band $4.8$ mm) from the classical member over
+its whole length, the mass through the terminal ray equals the target
+to the tip floor's own share ($10^{-4}$), and the free-form incumbent
+of the tournament is the classical contour to within the knots'
+representation band with a thrust difference of $10^{-5}$ of $J$.
+Finding Rao is, as it should be, a confirmation of correctness and
+not a result: the tournament question --- a certified, in-class gain
+over the ideal member at shared mass, ambient and length --- is posed
+on that incumbent (carriers \texttt{a1\_axi\_fan.py} and
+\texttt{a1\_plug\_tournament.py}, S29 log sec.~6).
+
 What has changed structurally is nonetheless permanent. The spike is
 no longer a contour the construction hands over, but one the program
 computes; every stretch of the wall now carries a number saying what

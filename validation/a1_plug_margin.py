@@ -202,14 +202,19 @@ def say(msg):
 # margin (R-D0), also the source of the row-depth measurement (D1)
 # ======================================================================
 def np_margin(out, sch, N_rows, orient, f_edge, ell2, jmin=JMIN,
-              with_depth=False):
+              with_depth=False, with_floor=False):
     """Per-cell margins over the bucket, from the recorded net and the
     recorded wall-foot schedule (jsrc0 per column). with_depth also
-    returns each cell's rows_from_top / column height and (col, row)."""
+    returns each cell's rows_from_top / column height and (col, row);
+    with_floor (additive, X-PTRN 2026-09-16) appends the per-cell flag
+    'the leg product sat below the floor ell2' -- the cell is UNRESOLVED
+    by the criterion's own definition (its margin is A / ell2, not
+    sin 2 alpha), which is what the free-jet slivers of a coarse net
+    are."""
     keys = out["mesh_keys"]
     pts = np.asarray(out["mesh_pts"])
     idx = {k: n for n, k in enumerate(keys)}
-    ms, depth, where = [], [], []
+    ms, depth, where, floored = [], [], [], []
     M = N_rows
     for kst, (b, jf) in enumerate(sch.d["wfoot"]):
         i = 2 + kst
@@ -233,7 +238,10 @@ def np_margin(out, sch, N_rows, orient, f_edge, ell2, jmin=JMIN,
             ms.append(orient * A / max(lp * lm, ell2))
             depth.append((top - jnew) / top)
             where.append((i, jnew))
+            floored.append(lp * lm < ell2)
         M = max(j for (j, ii) in keys if ii == i)
+    if with_depth and with_floor:
+        return np.array(ms), np.array(depth), where, np.array(floored)
     if with_depth:
         return np.array(ms), np.array(depth), where
     return np.array(ms)

@@ -1,0 +1,20 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage derive) ==
+   posing (OURS): gas nasa, p_a 761442 Pa (nominal), mdot target 4.247552e+04; theta_E 0.0 deg (the method's sweep), x0 0.35, y_w0 1.51945 (mass-set); L 5.6102 m = the member's tip-floor abscissa (shared); m 16 uniform knots on (x0, L], K 161, N 51; tip floor y >= 0.0247 m (0.01 y_E, the march's own)
+   oracle (read only after the search): GENO member theta_E -0.0199 deg, L 5.92567, lip p_a 757595 Pa (0.9949 of PA), mdot 4.232020e+04 (-0.37 % of the target) -- residuals DECLARED
+   incumbent = the fan streamline on the knots (tip y 0.86324)
+-- C-1: representation on the knots (incumbent, and Rao's contour transplanted) --
+  incumbent: max |spline - streamline| 4.786e-04 m; Rao's contour: start radius at x0 1.51576 vs ours 1.51945 (shift +3.69e-03 m = the cross-code inlet posing, S28: mass -0.37 %); transplanted (shifted): max |spline - wall| 8.990e-03 m; incumbent vs Rao's SHAPE (shifted) 8.348e-01 m, vs his wall as written 8.385e-01 m
+-- D1: the fold margin on the incumbent: orientation, free-edge bucket (doubled resolution), m_ref, floors, rho --
+  raw median -0.3857 over 14769 whole-column cells -> orient -1; cert 33.935 (113 s)
+  incumbent at (321,101): 59128 whole-column cells, 3 <= 0, deepest at row fraction 0.035 -> f_edge 0.071; cert 1.405 (454 s)
+  [PASS] D1a the incumbent's non-positive cells (if any) lie in the free-edge band (depth < 1/2)
+  [PASS] R-D0 in-loop margin == numpy census (min 0.074429 vs 0.074429, cells 13785 vs 13785)
+  [PASS] R-D0b the incumbent is strictly healthy on the bucket (m_ref 0.0744)
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_tournament.py", line 522, in <module>
+    good = campaign() if STAGE == "campaign" else derive()
+                                                  ^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_plug_tournament.py", line 279, in derive
+    mg = margin_dict(rho, floors[0], m_ref, orient, f_edge, ell2, tol=gap)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: margin_dict() got an unexpected keyword argument 'tol'

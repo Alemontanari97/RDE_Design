@@ -616,3 +616,231 @@ the line goes to `origin/rde-nozzle-program` by fast-forward
 (6be51b9 is an ancestor of 94b5505, 34 commits, no rewrite), after
 the full-suite conformity above and on the owner's word; the stray
 `origin/brick2-plug` stays until the owner says to delete it.
+
+## 6. The tournament posed generally, and the fan made axisymmetric (evening, resumed 18:50 NFS clock from `BRICK2_PLUG_HANDOFF_2026-09-16_sera.md`)
+
+### 6.1 Where the afternoon left it (measured, 17:20-19:00)
+
+The S28 twin posing (`ourworld_ab.py` [X-OWAB], stage audit, finished
+19:28, **8/8 PASS**, 3036 s, log `_ourworld/run_ab_audit_2026-09-16.log`)
+is a CORRECTNESS CONFIRMATION of the instrument, not a tournament row
+(owner 16:45: Rao enters the search there four times — frozen zone,
+pinned tip, reference, start): Rao's contour is in the class (m_ref
+0.0983, 16661 cells, 0 folded), the SQP return W_s is in the class
+(+0.1136, 0 folded) with |J(W_s) - J(Rao)| = 18.05 N = 2.8e-7 of J
+<= band_J 1.343e5 (A-3), the 1.5 percent start and the rejector's
+minimiser are folded (105/162, -0.67 / -0.80, +1.6 / +14.8 deg corner),
+the cornered contour (A-4, the S21 optimum's 2 deg kink) is infeasible
+at every floor with finite margin and gradient.
+
+The general tournament [X-PTRN] on the PLANAR incumbent, derive at
+N 81 (the pairing the probe `inc_cert_probe2` certified; log
+`_plug_tournament/run_derive_N81_2026-09-16.log`, 2784 s): **7/9** —
+O-1 and O-2 FAIL honestly, as the handoff predicted: the incumbent
+sits 0.835 m above Rao's contour at the shared length (the planar
+fan's streamline flattens past its last ray, falsifier [X-RAOIS]) and
+Rao's contour transplanted onto that posing is a folded march (96/162,
+min cell -0.68) because the Cauchy data on the cut at X0 are planar
+while his wall is axisymmetric. R-BIT of the additive `bounds=` in
+`run_trsqp` re-run: PASS 4/4 at printed precision
+(`mport/port_gate3_bounds_2026-09-16.log`). Flag registry row
+`A1_PTRN_STAGE` added; `PTRN_N` default 81.
+
+### 6.2 The owner's directive (19:05) and what it means in the equations
+
+"Una problematica era causata dal ventaglio di espansione che il nostro
+codice creava piano ma che per ottenere Rao doveva tener in conto
+dell'assialsimmetria. Possiamo farlo piano solo vicino alla lip e poi
+propagarlo tenendo in conto dell'assialsimmetria."
+
+Read against the code: `a1_inlet_angle_opt.fan_at` is a planar simple
+wave centred at the lip — (q, theta) functions of the ray angle alone —
+and BOTH the incumbent streamline and the Cauchy data on the cut at X0
+were sampled from it, while the march itself is axisymmetric (delta 1,
+source c^2 v / y). That is the whole 0.84 m. Two facts decide the
+form of the fix:
+
+(i) A FORWARD axisymmetric fan with a free wall is not a construction.
+In planar flow the centred wave is simple (no C+ carries information:
+every streamline is the ideal wall and the exit is uniform whatever
+the wall). In axisymmetric flow every C- ray from the lip reflects on
+the wall and the field depends on it; "the streamline of the free fan"
+is undefined, and Rao's mass closure on each ray adds nothing to
+tangency (any wall is a streamline of its own flow). The ideal spike —
+uniform (q_e, theta_E) exit at p_a — is the INVERSE (Goursat) problem:
+the corner relation at the lip point (exact at the singular point:
+q_k, theta_k on every ray leaving it) and the terminal C- ray
+(straight, uniform, lip -> axis at theta_E - mu_e); the field between
+is marched UPSTREAM ray by ray and the wall is the streamline traced
+backward from the tip. "Planar only next to the lip" is then automatic:
+each ray starts at the lip with its own corner state, its first cell is
+O(h) like every other, no arc radius and no extra parameter.
+
+(ii) It is the SAME certified cell. `A1.make_resid_interior` is
+written with midpoint coefficients along each chord and its C+ relation
+between the unknown point 4 and the given point 2 is symmetric in the
+roles of 2 and 4; the inverse interior cell (4 upstream, its C- from
+the ray's previous point, its C+ running downstream to the next ray's
+point at the same level) is that residual with pt2 = the downstream
+point — same Newton, same predictor, same certification metric.
+Nothing of the march is re-derived, and the planar limit becomes a
+gate.
+
+### 6.3 [X-AFAN] `validation/a1_axi_fan.py` — the construction and its derive of record (19:30-21:05)
+
+`fan_axi(w, thE)`: R rays at uniform planar ray angle between the
+leading (M_i, theta_i) and the terminal (p_a, theta_E = 0) ray;
+terminal ray = N_LEV nodes at uniform arc length from the lip to the
+TIP-FLOOR node y = YCUT y_E (the plug march's own declared floor; the
+axis point, source ~ v / y, is never a datum); for k = R-2 .. 0, point
+(k, j) from pt1 = (k, j-1), pt2 = (k+1, j), the ray computed to one
+level past the wall crossing of ray k+1 (the fictitious one-cell
+continuation the streamline interpolation needs — a point above the
+wall never depends on one: the C+ from a point above the wall rises
+while the wall descends); wall crossing on ray k by the midpoint rule
+(y - y_c) = tan((theta + theta_c)/2)(x - x_c) along the ray's polyline
+(one-chord extrapolation allowed when a ray stops one node short);
+upstream of the leading ray the wall continues straight at its flow
+angle to x = 0 — the start radius y_sp0 is an OUTPUT; `cut(x)` gives
+the data on a vertical line with the traced wall point FIRST (its own
+state — before that datum the foot angle at X0 was biased 3 deg by a
+constant extrapolation from the lowest ray above the wall, measured);
+`field(x, y)` interpolates between the ray crossings, uniform (q_e, 0)
+above the terminal ray. Switch `PSPL_FAN=axi` in
+`a1_plug_spline_opt.build_case` (unset = the planar path, bit-identical);
+`a1_plug_tournament.py` under axi sets the shared L = OUR member's
+tip-floor abscissa (PTRN_L overrides) and the tip floor 0.01 RMAX of
+this world. Cache keyed on (thE, R, N_LEV, delta).
+
+Derive of record, s2, 241 x 241, log `_axi_fan/run_derive_2026-09-16.log`,
+**8/8 PASS**, artifact `_axi_fan/derive.json`, `oracle_walls.npz`:
+- G-0 PLANAR LIMIT (delta 0, rungs 120 / 241): max rel |q - q_PM|
+  7.09e-8 -> 1.80e-8, max |theta - theta_PM| 7.20e-8 -> 1.78e-8 rad
+  (ratio 3.9 and 4.0: second order), traced wall vs `IA.spike`'s
+  streamline 2.46e-5 -> 6.12e-6 m (ratio 4.0). The inverse march IS
+  the corner wave when the source is off.
+- G-1 every inverse cell certified on the three rungs 60 / 120 / 241:
+  worst 0.022 / 0.022 / 0.028 (fictitious cells 0.020 / 0.015 / 0.022,
+  reported apart).
+- G-2 MASS: through the terminal ray lip -> tip 42471.284862 kg/s on
+  every rung = the closed form rho_e q_e pi (y_E^2 - y_tip^2) to the
+  last digit; world mdot 42475.523050: residual 9.98e-5 = the tip
+  floor's own share y_tip^2 / y_E^2 = 1.0e-4; through the LEADING ray
+  lip -> wall 42470.18 (1.26e-4, the inflow posing residual: the region
+  upstream of the leading ray is not marched). Mass closes on the
+  construction by construction, not by a brentq on the cut.
+- G-3 wall ladder 60 -> 120 -> 241: |w1 - w0| 3.787e-3, |w2 - w1|
+  1.190e-3 m (ratio 3.2) -> band_W = K_RICH x 1.190e-3 = 4.76e-3 m;
+  y_sp0 1.74359 / 1.74344 / 1.74339; tip x 5.8762 (axis crossing of
+  the terminal ray 5.9355).
+- G-4 ORACLE READ AFTERWARDS (GENO member `raoplug_ch4o2/run_val_repro`,
+  theta_E -0.0199 deg, L 5.92567, lip ambient 0.9949 PA, mass -0.37
+  percent — declared): wall distance over the member's 4775 points on
+  [0, 5.61]: max 7.77e-3, MEAN 8.1e-4 m (band_W 4.76e-3); tip-floor
+  abscissa 5.6102 (GENO, floor 0.0247 = 0.01 of ITS y_E 2.47) vs ours
+  5.8762 (floor 0.0227): the 0.27 m is the tail's flatness (theta
+  0.5-1 deg over the last 0.3 m: 2 mm of radius = 0.27 m of abscissa —
+  the tip-floor abscissa is an ill-conditioned coordinate, declared)
+  plus the 1e-4 of mass the floor streamline leaves out (ours sits
+  ~2 cm above his there, as pi y dy rho q = 1e-4 mdot requires). The
+  method's own construction IS Rao's contour to the millimetre, with
+  Rao read only afterwards.
+- G-5 THE PLUG MARCH ON THE CONSTRUCTION (cut at X0 0.35 with the axi
+  data, K 81 stations on the axi wall polyline itself, rows N 61 and
+  121): certifies (0.297 / 0.044), foot angle at X0 -33.158 deg = the
+  wall's; wall pressure march vs fan median 3.45e-3 -> 2.94e-3 rel,
+  MAX 1.06e-1 -> 9.5e-2 in the TAIL (x > 4.9 m). See 6.4.
+
+### 6.4 A finding on the production instrument: the plug march's tail wall pressure is ROW-limited
+
+Against GENO's field (nearest node of 1.83e6, `scratch_s2_2026-09-15`
+diagnostics, 121 x 121 fan, K 81, N 61): the FAN sits at +3.6e-3 rel
+in p over EVERY box (x 1..5.9, height above the wall 0..3 m) = the
+0.51 percent ambient the member expands to — uniform, expected. The
+MARCH sits on GENO in the bulk (h > 0.15 m: +4e-4 .. +3e-3) and at the
+wall for x < 3 (-3e-4), then drifts at the WALL in the tail: +8e-3 at
+x 3-4, +3.7e-2 at 4.5-5, +6.8e-2 at 5-5.5 (h < 0.02 m), decaying with
+height. It is the row count, not the columns: at x 5.2 the error is
++0.11 (N 61), +0.042 (N 121), +0.0096 (N 241) — ratios 2.6 / 4.4,
+converging; K 81 vs 161 changes nothing. The rows are inherited from
+the start line and the tail contracts the flow to y < 0.2 m, so the
+wall cell's chord interpolation (foot lerp'd between the previous wall
+point and the first interior point) is under-resolved there. Weight in
+J: pi (0.17^2 - 0.02^2) x 1e5 Pa ~ 9e3 N = 8e-5 of J at N 61, below
+every band of the line, but a declared instrument limit of every plug
+row of record: the tail band is set by N. G-5b is posed as the
+convergence of the two instruments under row doubling (PASS).
+
+### 6.5 The tournament on the method's own member: derive under `PSPL_FAN=axi` (21:20-22:41, log `_plug_tournament/run_derive_axi_2026-09-16.log`, 2715 s)
+
+Posing (OURS, general): gas nasa, p_a 761442 (nominal), mdot 4.2476e4,
+theta_E 0 (the method's sweep), fan axi, x0 0.35, y_w0 1.51473 (the
+member's own, mass closed on the terminal ray), L 5.8762 = OUR member's
+tip-floor abscissa, m 16 uniform knots on (x0, L], K 161, N 81 (the
+pairing the probe `inc_cert_probe_axi_2026-09-16.log` certifies — all
+eight pairings certify once the tip floor is the world's own 0.0227:
+the first pass had clamped the last knot to GENO's 0.0247 (0.01 of
+ITS y_E 2.47) and the 2 mm kink cost C-0, cert 5.07 at ('edge', 136);
+v1 log `run_derive_axi_v1_2026-09-16.log`, 7/9). Rao read afterwards:
+GENO member theta_E -0.0199, L 5.92567, 0.9949 PA, mass -0.37 percent
+(declared).
+
+- C-1 representation: incumbent 1.94e-3 m on the knots; Rao's contour
+  at x0 1.51576 vs ours 1.51473 (shift -1.04 mm = the cross-code inlet
+  posing), transplanted 2.97e-3 m; **incumbent vs Rao's shape 9.42e-3
+  m (8.38e-3 as written)** — against 0.835 m on the planar posing.
+- C-0 PASS (cert 0.393 at (161,81)). D1 — the free-jet band: the
+  doubled resolution (321,161) has NO non-positive cell and no thin
+  band (its top rows sit at 0.053, its minimum 0.0526 is a foot cell),
+  while the working resolution carries row-growth SLIVERS on the top
+  2-7 rows of the tail columns (0.0098 .. 0.036 under the ell^2 floor,
+  cell areas 1e-5 .. 1e-4 m^2 against a 5e-4 bulk; census
+  `scratch_s2_2026-09-15/axi_margin_where*.py`), so a bucket derived
+  from non-positive cells alone would have anchored the KS on
+  W-independent noise at x 11 m (v2, killed: f_edge 0.006, m_ref
+  0.0098). Rule of record (D1, additive): the band at the WORKING
+  resolution = the top row classes excluded until the bucket minimum
+  is not a boundary cell — top 7 rows, deepest band cell at row
+  fraction 0.103 -> f_edge = K_RICH/2 x 0.103 = 0.207 (the planar
+  posing's 0.190 came out of the same K_RICH/2 rule on non-positive
+  cells); the larger of the two rules is taken. Bucket 13273 cells,
+  median 0.480, **m_ref 0.0480** (a foot cell, column 4), floors
+  0.0240 / 0.0120 / 0.0060 / 0.0030, rho 12647, KS gap 7.5e-4; R-D0,
+  R-D0b, R-KS PASS.
+- D2: J(inc) 1.15825015e8 (K 161) vs 1.16107271e8 (K 321), |dJ| 2.82e5;
+  |grad J|inf 5.67e6, |grad J|_1 7.52e6; band_W(rep) 1.187e-2 ->
+  **band_J 1.218e6 = 1.05e-2 of J**. (Large: the K ladder difference
+  is the tail's row-limited pressure, sec. 6.4, times K_RICH; a
+  campaign gain must clear it or the N ladder must be walked.)
+- D3 ORACLE: Rao's contour on our posing J 1.15823817e8, **|J(Rao) -
+  J(inc)| = 1199 N = 1.04e-5 of J** <= band_J; **O-2 PASS: the
+  incumbent equals Rao's contour within the representation band
+  (9.42e-3 <= 1.187e-2 m) and in thrust.** The general method's own
+  construction is the classical optimum, with the classical optimum
+  read only afterwards — the correctness confirmation the owner asked
+  for (16:45), obtained without Rao inside the search. O-1 (Rao's
+  contour transplanted onto the 16 knots) FAILS: 29/162 folded columns
+  from column 2, min cell -0.090 — the transplant's 3 mm representation
+  error at the foot is a fold at the fold scale (h* 6.1 mm here, 1.6 mm
+  on the S21 posing), so the knot row reads the transplant, not Rao;
+  re-posed as O-1b (Rao's contour AS WRITTEN, shifted by the inlet
+  posing, marched directly as the stations, graded by the same margin)
+  in the carrier — its run of record is the next derive (S30 log).
+- D4: rejector R-G1 PASS (the 2 deg corner at the first knot: +12.1 mm,
+  theta st.1 -32.41 vs -33.16, INFEASIBLE at every floor, KS -0.046,
+  43 folded, finite margin and gradient); fold scale along +grad J:
+  h 1.08 / 2.16 / 4.32 mm leave the KS at 0.048 (the bucket minimum is
+  the foot cell, untouched by the tail-raising gradient), 8.63 mm
+  drops it to 0.0003 -> R-FSC PASS, **h* 6.11e-3 m -> tr0 1.53e-3 m**,
+  radius floor 3.8e-4 m. **8/9** (O-1 as above). derive.json written.
+- Campaign SMOKE (SEGS 2, ITERS 6, STARTS 1, scratch ART) chained after
+  the derive; the campaign stage gained start C = the PLANAR streamline
+  on the knots (generic, certified, in class, 0.84 m from the member):
+  the owner's question of 22:05 — "the inverse march goes against the
+  program's direct process" — is answered by posing: the design method
+  stays direct (march, adjoint, margin, TR-SQP), the inverse
+  construction supplies only the incumbent and the Cauchy data on the
+  cut (which depend on the fixed inlet segment alone), and start C asks
+  the direct machinery to find the member from far away with the
+  construction used only as the oracle. Campaign of record (PTRN_N 81,
+  SEGS 30, ITERS 12, STARTS 3) ONLY on the owner's "via".

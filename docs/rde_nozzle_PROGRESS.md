@@ -125,7 +125,30 @@
 ## AD == FD 5e-10 con controllo corrotto che fallisce, i 3 disegni
 ## piegati infattibili a ogni floor, scala di piega h* 1.58 mm ->
 ## tr0 0.396 mm derivato); campaign COSTRUITA e smoke-testata (4/4),
-## NON di record. ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## NON di record. SERA 09-16 (S29 sez. 6): (a) [X-OWAB] audit della
+## posa twin S28 8/8 = CONFERMA DI CORRETTEZZA dello strumento (Rao in
+## classe m_ref 0.098, ritorno SQP in classe a 18 N = 2.8e-7 di J da Rao,
+## rigettatore infattibile), NON righe del torneo (direttiva 16:45:
+## niente Rao dentro la ricerca); (b) torneo generale X-PTRN sull'
+## incumbent PIANO (riga X-PTRN da coniare al derive di record): 7/9, O-1/O-2 FAIL onesti (0.835 m da Rao: il
+## ventaglio piano si appiattisce oltre l'ultimo raggio, X-RAOIS);
+## (c) DIRETTIVA 19:05 "il ventaglio deve tener conto dell'assial-
+## simmetria, piano solo vicino alla lip" -> [X-AFAN]
+## validation/a1_axi_fan.py: ventaglio assialsimmetrico per MARCIA
+## INVERSA (Goursat: stati PM sul punto lip + raggio C- terminale
+## uniforme a p_a; la STESSA cella certificata, pt2 = punto a valle;
+## parete = streamline tracciata dalla punta; y_sp0 output; un
+## ventaglio in avanti a parete libera NON e' una costruzione in
+## assialsimmetrico); derive di record 8/8: limite piano al 2o ordine
+## (7e-8 -> 1.8e-8), massa sul raggio terminale = mdot alla quota
+## y_tip^2, banda parete 4.8 mm, ORACOLO GENO LETTO DOPO: distanza
+## media 0.8 mm / max 7.8 mm su 5.6 m; la plug_march sulla costruzione
+## certifica, p_w mediana 3.4e-3, CODA limitata dalle righe N (+11 %
+## a N 61, +1 % a 241, ~8e-5 J, dichiarato); (d) torneo sotto
+## PSPL_FAN=axi: O-2 PASS (incumbent = Rao entro banda 9.4 <= 12.2 mm,
+## |dJ| 1e-5 di J) al v1; derive di record + smoke campaign in corso
+## a chiusura (handoff BRICK2_PLUG_HANDOFF_2026-09-16_notte.md).
+## ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
 ## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
 ## della linea (14 commit) su 6be51b9 con date originali + commit di
 ## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
@@ -178,7 +201,11 @@
 ## ladder dal piu' stretto, 4 seg x 12 iter per rung, scala (121,101)/
 ## (241,201), PMRG_STARTS 2; ~8 h su s2) LANCIATA SOLO SUL "VIA"
 ## DELL'OWNER; poi la sua lettura (mu, cuspidi attive, classe alla
-## scala) in S29/M0 e le ri-esecuzioni S22/S23 vincolate; DECISO con l'owner 2026-09-16 00:40:
+## scala) in S29/M0 e le ri-esecuzioni S22/S23 vincolate; 09-16 SERA:
+## il torneo di record e' X-PTRN (riga da coniare) sotto PSPL_FAN=axi (incumbent = il
+## membro ideale assialsimmetrico del metodo, L 5.876 = la sua punta a
+## 0.01 RMAX, Rao solo oracolo finale): CAMPAGNA (PTRN_N 81, SEGS 30,
+## ITERS 12, STARTS 2) SOLO sul "via"; DECISO con l'owner 2026-09-16 00:40:
 ## NON un rilevatore di pieghe ad hoc ma il MARGINE DI PIEGA del
 ## programma (M0 Parte VI: max J s.t. g = 0 e m(W) >= mu_0; REQ-NONSTALL
 ## D6; eseguibile sulla campana in validation/margin_governor.py

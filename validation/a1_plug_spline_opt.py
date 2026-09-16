@@ -112,6 +112,9 @@ X0 = IA.X0
 # answer the same question.
 L = float(os.environ.get("PSPL_L", IA.L_REF))
 THE_OPT = 0.0                   # exhaust angle selected by step 15
+# the fan: "planar" (the corner simple wave, every prior path) or "axi"
+# (the inverse-march construction of a1_axi_fan [X-AFAN], 2026-09-16)
+FAN_MODE = os.environ.get("PSPL_FAN", "planar")
 M_NODES = int(os.environ.get("PSPL_M", 6))
 K_ST = int(os.environ.get("PSPL_K", 81))    # march wall stations
 N_ROW = int(os.environ.get("PSPL_N", 61))   # start-line rows
@@ -135,20 +138,36 @@ def build_case(w, thE=THE_OPT, N=None):
     the inlet angle), the mass-set start radius, and the Cauchy data
     on the start line. Returns the incumbent streamline too."""
     Nr = N_ROW if N is None else N
-    fan = IA.fan_at(w, thE)
-    # Size with the functional that grades (step 15's lesson,
-    # Appendix~\ref{app:twoinstruments}): start_mass measures the start
-    # line with the march's own column functional, which is also what
-    # C-3 below reports. Sizing with any other rule leaves a residue
-    # that is instrument difference rather than error.
-    y0 = brentq(lambda ys: IA.start_mass(w, fan, ys, Nr)
-                - w["mdot"], 0.45 * w["RMAX"], 0.985 * w["RMAX"],
-                xtol=1e-9)
-    # the incumbent streamline must reach BEYOND the requested length:
-    # W0 interpolates it at the knots, the last of which sits at x = L.
-    # IA.spike's default stops at X_END + 0.3 = 3.3, which silently
-    # truncates for any L past that -- the second half of "promote L".
-    sx, sy = IA.spike(fan, y0, x_end=max(IA.X_END, L) + 0.3)
+    if FAN_MODE == "axi":
+        # [X-AFAN] the axisymmetric fan by the inverse march: the wall
+        # is the ideal member traced from the tip, the start radius is
+        # its output (mass closes on the terminal ray), the cut below
+        # samples the marched field. Additive: PSPL_FAN unset = the
+        # planar path, bit-identical.
+        import a1_axi_fan as AF
+        fan = AF.fan_axi(w, thE, verbose=True)
+        y0 = fan["y_sp0"]
+        sx, sy = fan["wall"]
+        if L > sx[-1]:
+            print("   NOTE: requested L %.4f beyond the construction's tip"
+                  " %.4f: the incumbent is clamped at the tip radius"
+                  " there (declared)" % (L, sx[-1]))
+    else:
+        fan = IA.fan_at(w, thE)
+        # Size with the functional that grades (step 15's lesson,
+        # Appendix~\ref{app:twoinstruments}): start_mass measures the
+        # start line with the march's own column functional, which is
+        # also what C-3 below reports. Sizing with any other rule leaves
+        # a residue that is instrument difference rather than error.
+        y0 = brentq(lambda ys: IA.start_mass(w, fan, ys, Nr)
+                    - w["mdot"], 0.45 * w["RMAX"], 0.985 * w["RMAX"],
+                    xtol=1e-9)
+        # the incumbent streamline must reach BEYOND the requested
+        # length: W0 interpolates it at the knots, the last of which
+        # sits at x = L. IA.spike's default stops at X_END + 0.3 = 3.3,
+        # which silently truncates for any L past that -- the second
+        # half of "promote L".
+        sx, sy = IA.spike(fan, y0, x_end=max(IA.X_END, L) + 0.3)
     yw0 = float(np.interp(X0, sx, sy))
     slope0 = float(np.tan(fan["field"](X0, yw0)[1]))   # flow-tangent
     ye0 = fan["LIP"][1] + np.tan(fan["th_e"]) * X0
@@ -280,7 +299,7 @@ def J_and_grad(W, w, c, ta, sched):
 # ======================================================================
 def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
               maxiter_per_seg=8, verbose=1, margin=None, tr0=0.05,
-              tr_floor=None):
+              tr_floor=None, bounds=None):
     """Segmented trust-constr. One SEGMENT = one frozen schedule: the
     march is re-recorded at the segment base, the optimizer walks on
     that record, and acceptance triggers a fresh record. A base whose
@@ -448,8 +467,10 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         # base: shrink OUR radius and retry the segment on the SAME
         # record; only a no-motion at the radius floor is convergence.
         while True:
+            # bounds (additive, [X-PTRN]): None = scipy's own default,
+            # the same call as before for every existing caller
             res = minimize(fun, W, jac=True, method="trust-constr",
-                           constraints=cons,
+                           constraints=cons, bounds=bounds,
                            options=dict(maxiter=maxiter_per_seg,
                                         initial_tr_radius=tr,
                                         gtol=0.0, xtol=1e-14,

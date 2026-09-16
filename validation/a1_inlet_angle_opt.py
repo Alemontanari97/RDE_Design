@@ -115,8 +115,13 @@ def fan_at(w, thE):
             return float(qs[-1]), float(ths[-1])
         return (float(np.interp(ph, phis, qs)),
                 float(np.interp(ph, phis, ths)))
+    # pm: the corner relation's own tables (q, theta, Mach angle, planar
+    # ray angle), exposed for the axisymmetric fan [X-AFAN] which uses
+    # the corner point's states as lip data and nothing else of the
+    # planar wave (additive, 2026-09-16)
     return dict(field=field, dnu=dnu, th_i=th_i, th_e=float(ths[-1]),
-                LIP=LIP, ray1=th_i - np.arcsin(1.0 / MI))
+                LIP=LIP, ray1=th_i - np.arcsin(1.0 / MI),
+                pm=dict(qs=qs, ths=ths, mus=mus, phis=phis))
 
 
 def spike(fan, y0, x_end=X_END + 0.3, h=1.5e-3):
