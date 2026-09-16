@@ -189,10 +189,36 @@ def wall_stations(W, c, K=None):
 # ======================================================================
 # objective: thrust at the fixed length L
 # ======================================================================
-def march_record(W, w, c, K=None):
-    """Concrete march: returns (out, sched)."""
+def march_record(W, w, c, K=None, margin=None):
+    """Concrete march: returns (out, sched). margin (optional) = the
+    fold-margin dict of [X-PMRG] (a1_plug_march docstring)."""
     xq, yq, sq = wall_stations(np.asarray(W, dtype=float), c, K=K)
-    return plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"], 1.0)
+    return plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"], 1.0,
+                      margin=margin)
+
+
+def margin_replay(W, w, c, sched, margin, K=None):
+    """KS fold margin minus its floor mu0, replaying a recorded
+    schedule: differentiable in W (the same frozen-decision replay as
+    J_replay). [X-PMRG]"""
+    xq, yq, sq = wall_stations(W, c, K=K)
+    S = A1.Sched("play", sched.d)
+    out, _ = plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"],
+                        1.0, sched=S, margin=margin)
+    return out["margin_ks"] - margin["mu0"]
+
+
+def margin_and_grad(W, w, c, sched, margin):
+    f = lambda z: margin_replay(z, w, c, sched, margin)     # noqa: E731
+    v, g = jax.value_and_grad(f)(jnp.asarray(W, dtype=float))
+    return float(v), np.asarray(g, dtype=float)
+
+
+# REQ-NONSTALL finite fallback for a non-finite objective (the bell's
+# f_np contract, S21 C2): derived from the machine range, not tuned --
+# any finite value the minimizer reads as "far worse than every real
+# base" serves; the event is COUNTED, never silent.
+J_NONFINITE = float(np.sqrt(np.finfo(float).max))
 
 
 def J_replay(W, w, c, sched, ta, K=None):
@@ -253,7 +279,8 @@ def J_and_grad(W, w, c, ta, sched):
 # the driver: trust-region SQP with a record/certify gate per segment
 # ======================================================================
 def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
-              maxiter_per_seg=8, verbose=1):
+              maxiter_per_seg=8, verbose=1, margin=None, tr0=0.05,
+              tr_floor=None):
     """Segmented trust-constr. One SEGMENT = one frozen schedule: the
     march is re-recorded at the segment base, the optimizer walks on
     that record, and acceptance triggers a fresh record. A base whose
@@ -262,20 +289,28 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf
-    tr = 0.05
+    tr = tr0        # [X-PMRG] margin-constrained walks derive tr0
+    # RADIUS FLOOR: the unconstrained walk's policy constant (1 mm,
+    # "converged" when a trial at <= 1 mm + 1 percent fails) -- the
+    # SAME literals as before when tr_floor is None, so every existing
+    # caller is bit-identical; a margin-constrained walk passes a
+    # floor DERIVED from the fold scale (S29 smoke 4: with tr0 0.4 mm
+    # below a 1 mm floor the first rejection ended the walk).
+    floor = 1e-3 if tr_floor is None else float(tr_floor)
+    slack = 1.01e-3 if tr_floor is None else floor * (1 + 1 / 100)
     n_rec = 0
     hist = []
     for seg in range(max_segments):
         try:
-            out_rec, sched = march_record(W, w, c)
+            out_rec, sched = march_record(W, w, c, margin=margin)
             n_rec += 1
             cw = float(out_rec["cert_worst"])
             if cw > 1.0:
                 raise RuntimeError("record not certified (worst %.3e)"
                                    % cw)
         except Exception as err:
-            if W_cert is not None and tr > 1e-3:
-                tr = max(1e-3, 0.5 * tr)
+            if W_cert is not None and tr > floor:
+                tr = max(floor, 0.5 * tr)
                 if verbose:
                     print("    [seg %d] base REJECTED (%s) -> revert,"
                           " radius -> %.3e" % (seg, err, tr))
@@ -283,6 +318,23 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                 continue
             raise
         J0, g0 = J_and_grad(W, w, c, ta, sched)
+        # FEASIBILITY GATE ([X-PMRG], margin path only): trust-constr's
+        # iterates approach the constraint from the infeasible side (a
+        # barrier method with slacks: c(x) - s = 0 holds at convergence,
+        # not at every iterate), so a segment cut short by its budget
+        # can return a certified, IMPROVING base that sits past the
+        # floor (measured S29 smoke 2x6: KS - mu0 = -0.0152 after six
+        # iterations, +0.0009 after twelve in the walk of record). The
+        # class is "never let through": such a base is REJECTED through
+        # the same revert-and-shrink branch as a worse trial, and
+        # COUNTED. tol = the aggregation gap ln N / rho carried by the
+        # caller (0 = strict). False whenever margin is None.
+        infeasible = (margin is not None and W_cert is not None
+                      and float(out_rec["margin_ks"]) - margin["mu0"]
+                      < -float(margin.get("tol", 0.0)))
+        if infeasible:
+            ctr = margin.setdefault("counters", {})
+            ctr["infeasible_base"] = ctr.get("infeasible_base", 0) + 1
         # ACCEPTANCE TEST (standard trust-region logic, and the defect
         # the first run of this carrier exposed): a segment endpoint is
         # a TRIAL point, not an accepted one. trust-constr walks a
@@ -291,17 +343,20 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         # base that is genuinely worse. If the new base does not beat
         # the incumbent, revert to the best certified design and shrink
         # the radius; only an improving base is adopted.
-        if J_best > -np.inf and sign * J0 < sign * J_best:
-            if tr <= 1.01e-3:
+        if (J_best > -np.inf and sign * J0 < sign * J_best) or infeasible:
+            why = ("INFEASIBLE (KS - mu0 %+.4f)"
+                   % (float(out_rec["margin_ks"]) - margin["mu0"])
+                   if infeasible else "worse")
+            if tr <= slack:
                 if verbose:
-                    print("    [seg %2d] trial worse at the radius"
-                          " floor -> converged, stop" % seg)
+                    print("    [seg %2d] trial %s at the radius"
+                          " floor -> converged, stop" % (seg, why))
                 break
-            tr = max(1e-3, 0.5 * tr)
+            tr = max(floor, 0.5 * tr)
             if verbose:
-                print("    [seg %2d] trial J = %.8e REJECTED (worse"
+                print("    [seg %2d] trial J = %.8e REJECTED (%s"
                       " than %.8e) -> revert, radius -> %.3e"
-                      % (seg, J0, J_best, tr))
+                      % (seg, J0, why, J_best, tr))
             W = W_best.copy()
             continue
         W_cert = W.copy()
@@ -314,7 +369,72 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
 
         def fun(z):
             v, g = J_and_grad(z, w, c, ta, sched)
+            if margin is not None:
+                # REQ-NONSTALL on the OBJECTIVE (the bell's f_np/g_np
+                # contract, S21 C2): the interior-point method probes
+                # INFEASIBLE trial points by construction, and on a
+                # folded trial design the replayed J has a finite
+                # value but a NaN adjoint gradient (measured S29: a
+                # +1.3/+0.9/-1.9 cm kink on the first knots, J "+4
+                # percent", m = -1.19, every gradient component
+                # non-finite). A silent NaN crashed trust-constr's
+                # normal step; the finite fallback keeps it stepping,
+                # the event is COUNTED and fails the verdict downstream
+                # -- never a silent patch.
+                ctr = margin.setdefault("counters",
+                                        dict(m_exec=0, m_dedup=0,
+                                             m_nonfinite=0,
+                                             gm_nonfinite=0))
+                if not np.isfinite(v):
+                    ctr["obj_nonfinite"] = ctr.get("obj_nonfinite", 0) + 1
+                    return J_NONFINITE, np.zeros_like(np.asarray(g))
+                if not np.all(np.isfinite(g)):
+                    ctr["grad_nonfinite"] = ctr.get("grad_nonfinite", 0) + 1
+                    g = np.where(np.isfinite(g), g, 0.0)
             return -sign * v, -sign * g
+
+        # FOLD-MARGIN CONSTRAINT ([X-MGOV] pattern, plug port [X-PMRG]):
+        # m(W) - mu_0 >= 0 on the SAME frozen schedule; value+gradient
+        # memo (scipy asks for them separately at the same point); G1
+        # finite fallback + REQ-NONSTALL counters.
+        cons = []
+        if margin is not None:
+            from scipy.optimize import NonlinearConstraint
+            slot = dict(key=None, v=None, g=None)
+            ctr = margin.setdefault("counters",
+                                    dict(m_exec=0, m_dedup=0,
+                                         m_nonfinite=0, gm_nonfinite=0))
+
+            def _mvg(z):
+                k = np.asarray(z, float).tobytes()
+                if slot["key"] == k:
+                    ctr["m_dedup"] += 1
+                    return slot["v"], slot["g"].copy()
+                v, g = margin_and_grad(z, w, c, sched, margin)
+                ctr["m_exec"] += 1
+                slot.update(key=k, v=v, g=g.copy())
+                return v, g
+
+            def m_np(z):
+                v, _ = _mvg(z)
+                if not np.isfinite(v):
+                    ctr["m_nonfinite"] += 1
+                    return -2.0 * A1.K_RICH * margin["m_ref"]   # G1
+                return v
+
+            def gm_np(z):
+                _, g = _mvg(z)
+                if not np.all(np.isfinite(g)):
+                    ctr["gm_nonfinite"] += 1
+                    g = np.where(np.isfinite(g), g, 0.0)
+                return g[None, :]
+            cons = [NonlinearConstraint(m_np, 0.0, np.inf, jac=gm_np)]
+            m0v = float(out_rec["margin_ks"]) - margin["mu0"]
+            if verbose:
+                print("    [seg %2d] margin at base: KS - mu0 = %+.4f"
+                      " (min cell %+.4f, %d cells)"
+                      % (seg, m0v, float(out_rec["margin_min"]),
+                         int(out_rec["margin_n"])), flush=True)
 
         # NO-MOTION is not always convergence (S23 measured, on the
         # S22 optimum at (121,101)): when the initial radius exceeds
@@ -329,14 +449,26 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         # record; only a no-motion at the radius floor is convergence.
         while True:
             res = minimize(fun, W, jac=True, method="trust-constr",
+                           constraints=cons,
                            options=dict(maxiter=maxiter_per_seg,
                                         initial_tr_radius=tr,
                                         gtol=0.0, xtol=1e-14,
                                         verbose=0))
+            if margin is not None:
+                margin["last_res"] = res
+                if verbose:
+                    ctr = margin.get("counters", {})
+                    print("    [seg %2d] margin counters: %s;"
+                          " multipliers %s"
+                          % (seg, {k: v for k, v in ctr.items() if v},
+                             [np.asarray(x).ravel().round(3).tolist()
+                              for x in (res.v or [])]
+                             if getattr(res, "v", None) is not None
+                             else None), flush=True)
             step = float(np.linalg.norm(res.x - W))
-            if step >= 1e-12 or tr <= 1.01e-3:
+            if step >= 1e-12 or tr <= slack:
                 break
-            tr = max(1e-3, 0.5 * tr)
+            tr = max(floor, 0.5 * tr)
             if verbose:
                 print("    [seg %2d] no motion at radius %.3e ->"
                       " retry at %.3e (same record)"

@@ -453,6 +453,15 @@ entries:
   tested_pairs: "none"
   untested_cartesian: false
 
+- flag: "A1_PMRG_STAGE"
+  default: "\"derive\""
+  meaning: "stage selector for a1_plug_margin.py's own __main__ ([X-PMRG] the fold margin of the plug, S29 2026-09-16): \"derive\" (D0-D4 + rejectors, writes _plug_margin/derive.json) | \"campaign\" (margin-constrained TR-SQP on the floor ladder from the streamline; consumes derive.json); the budget/instance knobs of the same script (PMRG_SEGS, PMRG_ITERS, PMRG_STARTS, PMRG_RUNGS, PMRG_LADDER, PMRG_ART) carry no A1_ prefix and are outside this census by construction — instance parameters, never arbitration"
+  read_sites:
+    - "validation/a1_plug_margin.py:177"
+  covering_gate: "none from engine_speed_bench.py; own script's manual stage control (derive stage of record 11/11 on 2026-09-16; campaign smoke-tested, not of record)"
+  tested_pairs: "none"
+  untested_cartesian: false
+
 - flag: "A1_O32_STAGE"
   default: "\"all\""
   meaning: "stage selector for o32_mesh_convergence.py's __main__ (ORACLE O3.2: mesh convergence of the primal/adjoint pair): \"est\" | \"all\""

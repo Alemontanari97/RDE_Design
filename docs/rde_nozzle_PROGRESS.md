@@ -116,7 +116,16 @@
 ## ANCHE QUESTO OTTIMO E' FUORI CLASSE (primo nodo +12.4 mm, spigolo
 ## di soli 2 deg, 60/62 e 120/122 colonne piegate, margine -0.67/
 ## -0.73): S21-S23 "classe non vincolata, superati" PER MISURA (S29
-## sez. 4.4). ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
+## sez. 4.4). FASE C NEI MODULI CONDIVISI (S29 pomeriggio, sez. 5.4):
+## port additivo in a1_plug_march/a1_plug_spline_opt (gate: senza
+## `margin` bit-identico alla ri-esecuzione X-PSPL a precisione
+## stampata), carrier validation/a1_plug_margin.py [X-PMRG] coniato,
+## stadio derive DI RECORD 11/11 (orient -1, f_edge 0.190 misurato a
+## (121,101), m_ref 0.0801, floor 0.040/0.020/0.010/0.005, rho 6263,
+## AD == FD 5e-10 con controllo corrotto che fallisce, i 3 disegni
+## piegati infattibili a ogni floor, scala di piega h* 1.58 mm ->
+## tr0 0.396 mm derivato); campaign COSTRUITA e smoke-testata (4/4),
+## NON di record. ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
 ## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
 ## della linea (14 commit) su 6be51b9 con date originali + commit di
 ## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
@@ -163,14 +172,13 @@
 ## (ri-aggiudicazione S23 chiusa: censimento pieghe, verdetto "fuori
 ## classe", re-stamp [X-PGRS], design_fine/verdict/analysis json,
 ## figure + PDF, sezione in ch_spline.tex; resta la chiusura di
-## [X-PSPL] ri-eseguita); (1-bis) PROSSIMO PASSO ATOMICO = il port di
-## Fase C nei moduli condivisi, ADDITIVO e bit-identico senza
-## `margin` (gate: marcia di record J/cert identici), poi il carrier
-## validation/a1_plug_margin.py [F3/A1] con stadi derive (D0-D4 +
-## rigettatori) e campaign (posa S21, floor ladder, scala (121,101)/
-## (241,201), piu' partenze, censimento cuspidi attive; mu riportato
-## con wording B-stationarity), righe registry + ADVISORY +
-## numeric-lint (letterali derivati); DECISO con l'owner 2026-09-16 00:40:
+## [X-PSPL] ri-eseguita e re-stampata, FATTO); (1-bis) port + carrier
+## [X-PMRG] + derive FATTI 09-16 (sez. 5.4); PROSSIMO PASSO ATOMICO =
+## la CAMPAGNA di record (A1_PMRG_STAGE=campaign, posa S21, floor
+## ladder dal piu' stretto, 4 seg x 12 iter per rung, scala (121,101)/
+## (241,201), PMRG_STARTS 2; ~8 h su s2) LANCIATA SOLO SUL "VIA"
+## DELL'OWNER; poi la sua lettura (mu, cuspidi attive, classe alla
+## scala) in S29/M0 e le ri-esecuzioni S22/S23 vincolate; DECISO con l'owner 2026-09-16 00:40:
 ## NON un rilevatore di pieghe ad hoc ma il MARGINE DI PIEGA del
 ## programma (M0 Parte VI: max J s.t. g = 0 e m(W) >= mu_0; REQ-NONSTALL
 ## D6; eseguibile sulla campana in validation/margin_governor.py

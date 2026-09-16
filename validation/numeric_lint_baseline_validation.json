@@ -20,7 +20,7 @@
   "validation/a1_plug_cycle.py": 39,
   "validation/a1_plug_gain_resolve.py": 24,
   "validation/a1_plug_march.py": 50,
-  "validation/a1_plug_spline_opt.py": 25,
+  "validation/a1_plug_spline_opt.py": 21,
   "validation/a1_rot_march.py": 67,
   "validation/a1_source_flow_oracle.py": 32,
   "validation/a1_swirl_march.py": 45,

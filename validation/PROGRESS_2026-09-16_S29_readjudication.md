@@ -465,3 +465,131 @@ the floor ladder mu0_k (activity monotone in mu0), the resolution
 ladder (m_ref 0.057 at (121,101): the criterion tightens), more than
 one start, the active-cusp census, and the [D1]-constrained corner
 metric where applicable.
+
+### 5.4 Phase C in the SHARED modules (14:05-14:40): the port, its gate, the carrier [X-PMRG], the derive stage of record
+
+PORT (after commit 2b, no run importing the modules): the scratch
+changes of `mport/plug_march_m.py` / `plug_spline_opt_m.py` applied
+ADDITIVELY to `validation/a1_plug_march.py` (`plug_march(...,
+margin=None)`: in-loop `cell_margin` on the true net cell at the
+moment the point is solved, online logaddexp KS, `margin_ks/min/n`
+in `out`) and `validation/a1_plug_spline_opt.py` (`march_record(...,
+margin=)`, `margin_replay`, `margin_and_grad`, `run_trsqp(...,
+margin=None, tr0=0.05)`: NonlinearConstraint with value/gradient
+memo, G1 surrogate, REQ-NONSTALL on the objective with the finite
+fallback `J_NONFINITE = sqrt(float max)` DERIVED from the machine
+range — no new literal: both files keep their ratchet counts 50 /
+25). GATE (`mport/port_gate.py`, log `port_gate_2026-09-16.log`):
+with `margin=None` the record march, the C-2 objective/gradient
+(J 1.1558892465e8, |grad| 1.059703e7, cert 0.257) and the first
+unconstrained TR-SQP segment (seg 1 J 1.15680509e8 cert 0.307)
+reproduce the pre-port [X-PSPL] re-run of 12:19 at printed
+precision; the margin fields are inert (None/None/0). `constraints=[]`
+is scipy's default `()` after `standardize_constraints` (read at
+source): the same code path.
+
+CARRIER `validation/a1_plug_margin.py` [X-PMRG] (0 non-trivial
+literals — every constant derived or from derive.json; stages
+`derive` / `campaign`, env `A1_PMRG_STAGE`, `PMRG_SEGS/ITERS/STARTS/
+RUNGS/LADDER/ART`). DERIVE OF RECORD (`validation/_plug_margin/
+run_derive_2026-09-16.log`, 963 s, **11/11 PASS**; constants in
+`derive.json`, committed):
+- D0 orient -1 (median -0.526 over 3121 whole-column cells);
+- D1 bucket depth MEASURED at (121,101): 14 non-positive cells of
+  12468, deepest at row fraction 0.095 (column 12) -> f_edge =
+  K_RICH/2 x 0.095 = 0.190 (the scratch had 0.22 from an unfloored
+  0.11); R-D0 in-loop == numpy: min 0.080084 both, diff 0.0, 2533 =
+  2533 cells; m_ref 0.0801 (median 0.526), floors 0.0400 / 0.0200 /
+  0.0100 / 0.0050, rho 6263.1, gap 1.25e-3; R-KS PASS;
+- D2 R-GRAD: AD vs 3-step central FD (steps ell/4^k, k = 3..5 =
+  0.56 / 0.14 / 0.035 mm, derived below the fold scale) in two
+  random directions |diff| 5.2e-10 and 9.6e-8 inside bands 3.3e-7 /
+  3.7e-6; the corrupted control (largest component doubled) FAILS
+  the same check (3.0e-2) as required;
+- D3 R-G1 REJECTOR: S22 m 12 KS -0.7535, S22 cycle-1 m 11 -0.7136,
+  S23 fine m 12 -0.7719 — infeasible at all four floors, margins
+  finite (-0.79 / -0.75 / -0.81 with the surrogate), gradients
+  finite (|g| 4.4 / 2.2 / 4.7);
+- D4 R-FSC: along +grad J (0.97 on the first knot) the margin reads
+  +0.0795 at h 1.12 mm (J +0.0098 %, theta st.1 -26.62) and +0.0386
+  < mu0_1 at 2.24 mm (J +0.0185 %, -26.44): bracket [1.12, 2.24] mm,
+  h* = 1.58 mm, **tr0 = h*/K_RICH = 0.396 mm** (the scratch walk had
+  used 0.625 mm from an eyeballed 2.5 mm; the derived radius is
+  tighter and the class boundary closer than the unfloored census
+  suggested: the floor mu0_1 is crossed before the first inverted
+  cell appears).
+REGISTRY: row X-PMRG minted (carrier, ondemand pass 2026-09-16, doc =
+this log, proof = the carrier); statement scoped to the derive stage
++ the class discrimination; the campaign declared BUILT AND
+SMOKE-TESTED, NOT of record. Lint: numeric 105 files 0 ratchet
+violations (new file 0 literals, no birth row needed).
+
+CAMPAIGN SMOKE TESTS (artifacts in a scratch dir `pmrg_smoke/`, never
+of record), each a measurement that changed the code:
+- 1 x 2 and 1 x 4 iterations (`pmrg_smoke_2026-09-16.log`, 527 s;
+  `pmrg_smoke2_...`, 708 s): 4/4 PASS, the whole path exercised
+  (constraint + memo, counters, multipliers, census, C-1..C-4, json)
+  but NO MOTION — structural: `run_trsqp` returns the best CERTIFIED
+  base, and with one segment the segment endpoint is never recorded,
+  so the answer is the start. The monotonicity stop had read that as
+  "inactive at the tightest floor -> ladder vacuous": WRONG inference
+  from a walk that did not move -> guard added (the stop fires only
+  after a walk that moved; a no-motion rung is declared, not
+  adjudicated).
+- 2 x 6 iterations (`pmrg_smoke3_2026-09-16.log`): the walk moves —
+  seg 1 base J 1.15623000e8 (+0.0295 %), cert 0.068 — and its margin
+  reads **KS - mu0 = -0.0152 (min cell +0.0249 < mu0_1 0.0400)**: a
+  certified, improving base PAST THE FLOOR, accepted because the
+  driver's acceptance test knew only J and certification.
+  trust-constr is a barrier method with slacks (c(x) - s = 0 holds
+  at convergence, not at every iterate): a segment cut short by its
+  budget returns an iterate on the infeasible side (the scratch walk
+  of record, 12 iterations, returned +0.0009). "Never let through"
+  -> FEASIBILITY GATE in `run_trsqp` (margin path only, no new
+  literal — it reuses the revert-and-shrink branch of a worse
+  trial): a base with KS - mu0 < -tol (tol = the aggregation gap
+  ln N / rho, carried in the margin dict by the carrier) is REJECTED
+  and COUNTED (`infeasible_base`); the margin=None path is untouched
+  (the flag is False there). Verdict of that smoke (2367 s): **4/5,
+  C-4 FAIL** on the returned base — J +0.02948 % over the streamline,
+  cert 0.068, W - W0 = +4.0 / +1.5 / -0.3 / ... / -1.4 mm (the first
+  knot again, the class-breaking lever), wall angle -26.21 deg (a
+  0.45 deg corner), KS - mu0 -0.0152 -> ACTIVE, mu 7.4e4
+  (B-stationarity), active-cusp census 4 cells <= mu0 + gap in
+  columns 13-16 (x 0.78-0.89 m, row 31; one cluster; argmin (14,31)
+  m 0.0249): the constraint binds DOWNSTREAM of the corner, where the
+  C+ lines of the foot's weak compression coalesce first — the fold
+  scale's own geometry (sec. 5.2 (c)). The gate turns this base into
+  a rejected trial.
+- 2 x 6 with the gate (`pmrg_smoke4_2026-09-16.log`, 1348 s): 4/4,
+  the infeasible base REJECTED and counted (`infeasible_base` 1) —
+  and the walk ENDED on that rejection: "trial INFEASIBLE at the
+  radius floor -> converged, stop". Cause: the driver's radius floor
+  is a policy constant of the unconstrained walk (1 mm; `max(1e-3,
+  tr/2)` on rejection, "converged" when a trial at <= 1.01 mm fails)
+  and the derived tr0 (0.396 mm) sits BELOW it, so the first
+  rejection is already "at the floor" and the walk cannot retry with
+  a smaller radius. FIX, measured then made: `run_trsqp(...,
+  tr_floor=None)` — with None the code uses the SAME two literals as
+  before (bit-identical for every existing caller: R-BIT gate re-run
+  after the change, `mport/port_gate2_2026-09-16.log`, C-2 and seg 1
+  identical at printed precision); the carrier passes tr_floor =
+  tr0 / K_RICH (0.099 mm, derived), so a rejected trial halves the
+  radius down to the floor before the walk is declared converged.
+  Numeric-lint: the four duplicated floor literals collapsed into the
+  two definitions -> the file's count fell 25 -> 21 and the ratchet
+  baseline was lowered to 21 (the permitted direction; never raised).
+- 2 x 6 with gate + derived floor (`pmrg_smoke5_2026-09-16.log`,
+  1264 s): 4/4 — the same infeasible endpoint (J +0.0295 %, KS - mu0
+  -0.0152) is REJECTED through the worse-trial branch and the radius
+  HALVES to 2.97e-4 m (no longer "at the floor"); the 2-segment
+  budget ends there (a retry needs SEGS >= 3), so the returned base
+  is the start, declared NO MOTION, C-4 PASS. Every branch the
+  campaign will take at 4 x 12 has now been executed once on the
+  shared modules: constraint + memo, counters, multipliers, census,
+  the no-motion guard, the feasibility gate, the derived floor.
+
+The full campaign (4 floor rungs x 4 segments x 12 iterations from
+the streamline, the resolution ladder (121,101)/(241,201), a second
+start) is a multi-hour leg on s2 — prepared, launched only on the
+owner's word.

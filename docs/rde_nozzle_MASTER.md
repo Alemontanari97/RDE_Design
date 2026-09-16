@@ -4242,6 +4242,97 @@ round, labeled per the standing rule).
  GENO-side jump-depth knob; owner = the GENO repo under its own
  protocol, trigger = its next dedicated session).]
 
+[S29 REGISTRATION BLOCK — THE PLUG FOLD MARGIN: THE C-/PLUG INSTANCE
+OF m(Sigma) MEASURED ON THE NET, AND THE CLASS FINDING ON THE BRICK-2
+LINE] (2026-09-16, [F3/A1], session S29; log
+validation/PROGRESS_2026-09-16_S29_readjudication.md; carrier
+[X-PMRG] derive stage of record 11/11; the S21 block's "plug/C-
+mirror of (G) is UNPROVEN (F3 entry duty)" is answered here by a
+DIFFERENT instrument, declared, not by the mirror).
+ CLASS FINDING [MEASURED-SUPPORTED, three carriers re-run]: the
+ brick-2 free-form spike line certified its designs (Newton residual
+ per cell, descent, axis clearance) and never enforced membership in
+ the class the march is certified FOR. Re-adjudicated on the rebuilt
+ tree with the amended carriers, EVERY unconstrained optimum of the
+ line is a folded march: S22 adaptive (15 deg compression corner at
+ the wall foot, 59/62 -> 240/242 folded columns under refinement,
+ [X-PAKN] ladder VOID), S23 fine (12-15 deg, [X-PGRS] OUT OF CLASS,
+ its six-rung limit -0.096 +/- 0.181 percent a number from a
+ multi-valued solution), and the S21 optimum itself (+12 mm on the
+ first knot, a 2 deg corner, 60/62 and 120/122 folded, [X-PSPL]
+ re-stamped). The plug's convention: the wall lies BELOW the flow,
+ so at the foot a wall angle less negative than the incoming flow is
+ a COMPRESSION (the bell's opposite). Certification is blind to a
+ fold (a folded cell solves its compatibility relations as well as
+ any other) — the brick-2 admissibility gates were never class
+ membership. Consequence for the record: S21-S23 = "unconstrained
+ class, superseded" BY MEASUREMENT; the question "is the truncated
+ streamline optimal in the shock-free class at L = 2.5 m?" is OPEN
+ until the class is searched with its boundary enforced.
+ THE PLUG MARGIN FIELD [PRACTICE carrier, rejector-gated; the
+ definition = M0's "distance from same-family characteristic
+ coalescence" instantiated on the DISCRETE net, not the governor's
+ val]: for every interior point the TRUE net cell (jprev-1,i-1),
+ (jprev,i-1), (jnew,i), (jnew-1,i) from the recorded wall-foot
+ schedule (row consumption at the wall makes index-aligned
+ quadrilaterals wrong),
+   m = orient * signed area / max(mean C+ leg * mean C- leg, ell^2),
+ the local Jacobian of the net as the sine of the angle between the
+ families (KNOWN ANSWER: median 0.53-0.67 = median sin 2 alpha on
+ the incumbent), zero = coalescence, negative = a fold; the leg
+ product FLOORED at the station spacing squared so that a fold
+ counts when its inverted cells are RESOLVED (without the floor the
+ incumbent's 2 mm free-jet ripples — physical coalescence of weak
+ compressions at the far end of the C+ lines — weighed like a 30 cm
+ fold; the criterion tightens with the ladder). Aggregation, floors,
+ rho, G1 surrogate, multiplier wording: the [X-MGOV] derivations
+ re-used (KS bounds THEOREM-level; rho = K_RICH ln N / mu_0_min; mu_0_k
+ = m_ref/2^k; mu under B-STATIONARITY, O1 open). NUMBERS OF RECORD
+ (S21 posing, (61,51), m 10): m_ref 0.0801 (bucket 2533 cells, the
+ free-jet band of depth f_edge = K_RICH/2 x 0.095 = 0.190 excluded,
+ depth MEASURED at (121,101)); the folded designs read -0.71 .. -0.77
+ (S22 m 12 / m 11, S23 fine) — an O(1) discrimination; the S21
+ optimum -0.67; the in-loop margin equals an independent numpy census
+ to 0.0 and its AD gradient the FD ladder to 5e-10 with a corrupted
+ control failing. FOLD SCALE [MEASURED]: along the unconstrained
+ optimizer's own direction (0.97 on the first knot) the incumbent's
+ margin crosses mu_0_1 between 1.12 and 2.24 mm (h* 1.58 mm) and
+ the first resolved inverted cells appear at ~3 mm: the class
+ boundary lies one to two millimetres from the streamline in the
+ direction the unconstrained gradient points, four to eight times
+ closer than the S21 optimum's first move — which is WHY every
+ unconstrained walk of the line left the class at its first accepted
+ step. The derived trust radius tr0 = h*/K_RICH (0.40 mm; the
+ unconstrained 0.05 m is ~30x the fold scale: trial points then land
+ deep in the fold, their zeroed gradients poison the segment model
+ and the walk stalls — measured on the scratch port).
+ LEVER SEPARATION [OBSERVATION, one posing each, no ladder walked]:
+ the free-form spike's two levers separate by class — surrendering
+ radius at the TAIL (the m 6 posing, first free knot at x 0.708, tail
+ -97 mm) keeps the march shock-free (0 folded columns at (81,61) and
+ (161,121), margin +0.091 vs m_ref 0.092/0.095) and its gain is
+ resolution-stable (+0.0808 -> +0.0771 percent); raising the wall at
+ the FOOT (the m 10 posing's +12 mm at x 0.565) folds it and its gain
+ collapses under refinement (S23's ladder). PREDICTION the campaign
+ can falsify: the margin-constrained search finds the first lever
+ and refuses the second, and the length-constrained optimum is
+ MARGIN-ACTIVE (mu > 0) — M0's own expectation for the plug sector;
+ scratch-port precedent (not of record): a 3-segment constrained walk
+ from the streamline returned J +0.0265 percent at an ACTIVE margin
+ (KS - mu_0 = +0.0009, mu 2.7e5 N per unit margin, wall angle -26.24
+ deg = a 0.42 deg corner, the fold scale itself). Rigor classes: the
+ constrained-KKT structure THEOREM (standard, as in S20); the margin
+ field and its floor PRACTICE (carrier, rejector-gated); the class
+ finding MEASURED-SUPPORTED (three re-runs, censuses on the recorded
+ net); the lever separation OBSERVATION; margin-activity on the plug
+ CONJECTURE with the campaign as its named falsifier. DECLARED
+ ASYMMETRY carried from S20: the classical response to
+ inadmissibility is to change class (the fitted-front tier 1); ours
+ prices staying in tier 0. The plug/C- MIRROR of the Lambda-form (G)
+ remains UNPROVEN and is not needed by this instrument (the net cell
+ is family-agnostic by construction); the mirror stays an F3 entry
+ duty for the STATE criterion only.]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

@@ -1,0 +1,30 @@
+== A1 S29: the fold margin of the plug [X-PMRG] (stage derive) ==
+  posing: L 2.500 m, theta_E 0.0 deg, m 10 knots, (K,N) = (61,51), ell 3.5833e-02 m (leg floor ell^2 1.284e-03 m^2)
+-- D0: orientation, and the in-loop margin against a numpy census of the same record --
+  raw median -0.5256 over 3121 whole-column cells -> orient -1
+-- D1: the free-edge bucket depth (doubled resolution), m_ref, floors, rho --
+  incumbent at (121,101): 12468 whole-column cells, 14 <= 0, deepest at row fraction 0.095 from the top (col 12) -> f_edge = K_RICH/2 x 0.095 = 0.190 (98 s)
+  [PASS] D1a the incumbent's non-positive cells (if any) lie in the free-edge band, not the interior (depth < 1/2)
+  bucket (61,51): in-loop min +0.080084 / 2533 cells vs numpy min +0.080084 / 2533 cells (diff 0.0e+00); median 0.5264
+  [PASS] R-D0 in-loop margin == numpy census (min within 4 eps, same cell count)
+  [PASS] R-D0b the incumbent is strictly healthy on the bucket (min > 0)
+  m_ref 0.0801 (min over 2533 bucket cells), floors mu0_k = m_ref/2^k = ['0.0400', '0.0200', '0.0100', '0.0050'], rho = K_RICH ln N / mu0_4 = 6263.1, KS gap ln N / rho = 1.251e-03 (= mu0_min / K_RICH)
+  [PASS] R-KS  vmin - ln N/rho = 0.07883 <= KS = 0.08008 <= vmin = 0.08008
+-- D2: AD margin gradient vs a 3-step central-FD ladder (frozen schedule, incumbent), and a corrupted-gradient control --
+  margin - mu0_1 = +0.04004, |grad| 5.701e-01 (118 s incl. compile)
+  [PASS] R-GRAD dir 0: AD -2.28328e-02  FD ladder [-0.02283 -0.02283 -0.02283]  |diff| 5.23e-10 band 3.30e-07
+  [PASS] R-GRAD control: the corrupted gradient (component 0 doubled) FAILS the same check (|diff| 3.02e-02 > band 3.30e-07)
+  [PASS] R-GRAD dir 1: AD +1.00903e-01  FD ladder [0.1009 0.1009 0.1009]  |diff| 9.56e-08 band 3.65e-06
+-- D3: the folded designs of record must be INFEASIBLE at every floor with finite margin and gradient (REJECTOR) --
+  [PASS] R-G1 S22 adaptive m12: KS -0.7535 (min cell -0.7535, 2585 cells; wall theta st.1 -11.36 deg vs flow -26.66) infeasible at every floor [True, True, True, True]; margin -0.7936 finite True, grad finite True |g| 4.40e+00
+  [PASS] R-G1 S22 cycle-1 m11: KS -0.7136 (min cell -0.7136, 2568 cells; wall theta st.1 -18.14 deg vs flow -26.66) infeasible at every floor [True, True, True, True]; margin -0.7536 finite True, grad finite True |g| 2.21e+00
+  [PASS] R-G1 S23 fine m12: KS -0.7719 (min cell -0.7719, 2580 cells; wall theta st.1 -12.04 deg vs flow -26.66) infeasible at every floor [True, True, True, True]; margin -0.8119 finite True, grad finite True |g| 4.72e+00
+-- D4: the fold scale h* along +grad J (the optimizer's own direction), bracketed on a step ladder; tr0 = h*/K_RICH --
+  J(streamline) 1.15588925e+08  |grad J| 1.060e+07  direction [ 0.97  -0.204  0.069 -0.03  -0.01  -0.02  -0.022 -0.018 -0.03  -0.099]
+    h 1.120e-03 m: J 1.1560020e+08 (+0.0098 %)  KS +0.0795  min +0.0795  cert 0.037  theta st.1 -26.62
+    h 2.240e-03 m: J 1.1561030e+08 (+0.0185 %)  KS +0.0386  min +0.0386  cert 0.038  theta st.1 -26.44
+  [PASS] R-FSC the margin along +grad J crosses mu0_1 inside the ladder (bracket [0.0011197916666666667, 0.0022395833333333334] m)
+  h* = sqrt(1.120e-03 x 2.240e-03) = 1.584e-03 m -> tr0 = h*/K_RICH = 3.959e-04 m
+  derived constants written to /data10/falco/RDE/RDE_Design/validation/_plug_margin/derive.json
+
+== 11/11 PASS  (963.1 s) ==

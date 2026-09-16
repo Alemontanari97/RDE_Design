@@ -148,7 +148,7 @@ def predict_bu(pt1, pt2, ta):
 # ----------------------------------------------------------------------
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
-               edge_fill=0, rot_pred=None):
+               edge_fill=0, rot_pred=None, margin=None):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -183,6 +183,23 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     on the plug worlds: gap 0.99 m (rising) and 1.31 m (descending),
     26x and 39x the mean row spacing, against 0.5-1.0x for EVERY other
     column. Mass jumps once, in that column, and is flat thereafter.
+    FOLD MARGIN (S29 2026-09-16, additive; [X-PMRG]): margin = dict(
+    rho, mu0, m_ref, orient, f_edge, jmin, ell2) switches on the
+    in-loop fold margin of M0 Part VI — the signed area of the net's
+    TRUE cell (jprev-1, i-1), (jprev, i-1), (jnew, i), (jnew-1, i),
+    measured as each interior point is solved (all four corners are
+    in G at that moment), over the product of the mean C+ and C-
+    legs FLOORED at ell2 (the station spacing squared: a fold counts
+    when its inverted cells are resolved, the criterion tightens
+    under refinement), orient-signed so that healthy = +sin 2 alpha,
+    zero = same-family coalescence, negative = a fold; aggregated
+    ONLINE by KS with logaddexp (no mesh stack: the S23 compile
+    lesson) over the bucket rows_from_top > f_edge * (rows in the
+    column) (the thin row-growth cells at the free jet excluded,
+    f_edge derived by the carrier). Returned as margin_ks (traced in
+    play mode: differentiable through the replay), margin_min,
+    margin_n. Without margin every path below is bit-identical
+    (gated by the carrier's D0 check).
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
@@ -213,6 +230,33 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     s_int, s_fj, s_wb = with_ta(t_int), with_ta(t_fj), with_ta(t_wb)
     cert = dict(worst=0.0, n=0, where=None)
     _tag = [None]
+    # fold margin accumulators (see the docstring; None = off)
+    mg = margin
+    m_acc = [None]                 # logaddexp accumulator of -rho*m
+    m_min = [None]
+    m_n = [0]
+
+    def cell_margin(pA, pB, pC, pD):
+        """signed area of the quad A->B->C->D over the mean legs;
+        A=(jprev-1,i-1) B=(jprev,i-1) C=(jnew,i) D=(jnew-1,i)."""
+        xs = jnp.stack([pA[0], pB[0], pC[0], pD[0]])
+        ys = jnp.stack([pA[1], pB[1], pC[1], pD[1]])
+        area = 0.5 * jnp.sum(xs * jnp.roll(ys, -1)
+                             - jnp.roll(xs, -1) * ys)
+        lp = 0.5 * (jnp.hypot(pB[0] - pA[0], pB[1] - pA[1])
+                    + jnp.hypot(pC[0] - pD[0], pC[1] - pD[1]))
+        lm = 0.5 * (jnp.hypot(pD[0] - pA[0], pD[1] - pA[1])
+                    + jnp.hypot(pC[0] - pB[0], pC[1] - pB[1]))
+        # resolution-consistent: legs below the station spacing
+        # cannot carry a resolved fold (ell2 derived by the caller)
+        return area / jnp.maximum(lp * lm, mg["ell2"])
+
+    def margin_acc(mval):
+        m_n[0] += 1
+        v = mg["orient"] * mval
+        m_min[0] = v if m_min[0] is None else jnp.minimum(m_min[0], v)
+        e = -mg["rho"] * v
+        m_acc[0] = e if m_acc[0] is None else jnp.logaddexp(m_acc[0], e)
 
     def certify(stepfn, z, p):
         if S.mode != "rec":
@@ -577,6 +621,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     ptSB[4:6] - ptSA[4:6])
                 z = jnp.concatenate([z[:4], inv])
             G[(jnew, i)] = z
+            if mg is not None and jnew >= mg["jmin"] \
+                    and (jprev - 1, i - 1) in G:
+                rows_from_top = (M - jsrc0 + 2) - jnew
+                if rows_from_top > mg["f_edge"] * (M - jsrc0 + 2):
+                    margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
+                                           z, pt1))
         # ---- new top row: the free edge, fed from THIS column
         pt1 = G[(jnew, i)]
         pt3 = G[(M, i - 1)]          # previous edge (top of prev col)
@@ -619,6 +669,10 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         edge=jnp.stack(edge_pts), wall=jnp.stack(wall_pts),
         last_col=col, cert_worst=cert["worst"], cert_n=cert["n"],
         cert_where=cert["where"],
+        margin_ks=(None if mg is None or m_acc[0] is None
+                   else -m_acc[0] / mg["rho"]),
+        margin_min=(None if mg is None else m_min[0]),
+        margin_n=m_n[0],
         # numpy, deliberately: this is a concrete record-mode artifact
         # (never traced) and every consumer converts it to numpy
         # anyway. jnp.stack over the whole mesh is an XLA compile
