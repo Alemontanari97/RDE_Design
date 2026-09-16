@@ -119,6 +119,9 @@ STAGE = os.environ.get("A1_PTRN_STAGE", "derive")
 SEGS = int(os.environ.get("PTRN_SEGS", 4))
 ITERS = int(os.environ.get("PTRN_ITERS", 12))
 STARTS = int(os.environ.get("PTRN_STARTS", 2))
+# PTRN_ONLY = one start letter (A/B/C): the campaign runs that start alone
+# (one process per start on s2; the report file carries the letter)
+ONLY = os.environ.get("PTRN_ONLY", "")
 N_RUNGS = 4
 JMIN = 2
 CORNER_DEG = 2            # the S21 optimum's corner: the rejector's kink
@@ -558,7 +561,12 @@ def campaign():
                           float(np.max(np.abs(W_pl - W0)))))
         starts.append(("C ramp to the planar streamline (generic, far)",
                        W_c.copy()))
+    if ONLY:
+        starts = [st for st in starts if st[0].startswith(ONLY)]
+        say("   PTRN_ONLY=%s: %d start(s) selected" % (ONLY, len(starts)))
     report = dict(derive=D, walks=[])
+    fn = os.path.join(ART, "campaign_s%d_i%d_st%d%s.json"
+                      % (SEGS, ITERS, STARTS, ("_" + ONLY) if ONLY else ""))
     ok = True
     for tag, Ws in starts:
         say("-- start %s --" % tag)
@@ -639,10 +647,13 @@ def campaign():
             counters=dict(ctr), census=cen,
             inside_band_J=bool(abs(gain_rao) <= D["band_J"]),
             inside_band_W=bool(d_rao <= D["band_W_rep"])))
+        # checkpoint: the report so far, after every walk (an overnight
+        # leg that dies loses at most the walk in flight)
+        json.dump(dict(report, stage="campaign", segs=SEGS, iters=ITERS,
+                       starts=STARTS, partial=True), open(fn, "w"), indent=1)
     report.update(stage="campaign", segs=SEGS, iters=ITERS, starts=STARTS,
-                  seconds=time.time() - t00,
+                  seconds=time.time() - t00, partial=False,
                   provenance="[X-PTRN] S29 campaign; posing = the method's own")
-    fn = os.path.join(ART, "campaign_s%d_i%d_st%d.json" % (SEGS, ITERS, STARTS))
     json.dump(report, open(fn, "w"), indent=1)
     say("  report written to %s" % fn)
     return ok and NPASS[0] == NPASS[1]
