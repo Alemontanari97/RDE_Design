@@ -116,6 +116,9 @@ THE_OPT = 0.0                   # exhaust angle selected by step 15
 # (the inverse-march construction of a1_axi_fan [X-AFAN], 2026-09-16)
 FAN_MODE = os.environ.get("PSPL_FAN", "planar")
 M_NODES = int(os.environ.get("PSPL_M", 6))
+# A1_BASE_MODEL: the N2 base-pressure closure priced into J (a key of
+# base_pressure.MODELS). Unset = the functional of every row of record.
+BASE_MODEL = os.environ.get("A1_BASE_MODEL", "")
 K_ST = int(os.environ.get("PSPL_K", 81))    # march wall stations
 N_ROW = int(os.environ.get("PSPL_N", 61))   # start-line rows
 MAXSEG = int(os.environ.get("PSPL_ITERS", 10))
@@ -241,19 +244,37 @@ J_NONFINITE = float(np.sqrt(np.finfo(float).max))
 
 
 def J_replay(W, w, c, sched, ta, K=None):
-    """Thrust, replaying a recorded schedule. Differentiable in W."""
+    """Thrust, replaying a recorded schedule. Differentiable in W.
+
+    THE BASE, AND WHY IT IS OPTIONAL. The wall integral stops at the
+    last station and the face of radius y(L) that the contour leaves
+    behind is NOT in this functional: with the tip radius a free design
+    variable (the last knot, bounded below by the march's tip floor)
+    the search can raise the tip -- shortening the spike -- without
+    paying for the base it creates. Measured 2026-09-17 on the
+    overnight leg's return: the tip rose 0.02270 -> 0.02794 m, an
+    unpriced base term of -1.47e+03 N against -9.91e+02 N at the floor.
+    A1_BASE_MODEL names a member of the N2 slot (base_pressure.MODELS) and
+    prices it; unset -- every row of record so far -- leaves this
+    function exactly as it was. The slot is declared, banded and
+    falsifiable, never a fit: see validation/base_pressure.py."""
     xq, yq, sq = wall_stations(W, c, K=K)
     S = A1.Sched("play", sched.d)
     out, _ = plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"],
                         1.0, sched=S)
     wall = out["wall"]
     q = jnp.sqrt(wall[:, 2] ** 2 + wall[:, 3] ** 2)
-    pw = A1.state_q(q, ta)[1]
+    st = A1.state_q(q, ta)
+    pw = st[1]
     dy = wall[1:, 1] - wall[:-1, 1]
     wgt = 2.0 * jnp.pi * 0.5 * (wall[1:, 1] + wall[:-1, 1])
     pm = 0.5 * (pw[1:] + pw[:-1])
     push = jnp.sum((pm - PA) * wgt * (-dy))
-    return c["F_in"] + push
+    if not BASE_MODEL:
+        return c["F_in"] + push
+    import base_pressure as BP
+    p_b = BP.p_base(st[1][-1], st[5][-1], st[4][-1], PA, BASE_MODEL)
+    return c["F_in"] + push + BP.base_term(p_b, wall[-1, 1], PA)
 
 
 FD_LADDER = (1e-6, 1e-7, 1e-8)
