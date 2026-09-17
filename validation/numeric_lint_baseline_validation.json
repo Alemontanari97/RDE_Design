@@ -101,6 +101,7 @@
   "validation/u3_bordered_front_solve.py": 7,
   "validation/validity_monitor.py": 15,
   "validation/w5_wall_sweep.py": 3,
-  "validation/xbvp_entropy_transfer.py": 24
+  "validation/xbvp_entropy_transfer.py": 24,
+  "validation/base_pressure.py": 30
  }
 }

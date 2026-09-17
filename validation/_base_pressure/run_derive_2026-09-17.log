@@ -1,0 +1,33 @@
+== [F3] the base-pressure slot N2 on our own member [X-BPRS] (stage derive) ==
+   posing from the tournament's derive of record /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41_v2/derive.json: (81,41) m 16 L 5.8762
+   fan_axi(delta 1, 241 rays x 241 levels): 30063 cells, cert worst 0.028 at (239, 234) (fictitious cells below the wall 0.022); tip x 5.8762 (axis 5.9355), y_sp0 1.74339; 80 s
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+   the member marched: cert worst 0.434, F_in 1.050319e+08 N, p_a 761442.0 Pa (15 s)
+  [PASS] N-0 the member's march is Newton-certified (0.434)
+   the untruncated member: J 1.15287089e+08 N, tip y 0.02270 m, tip M 2.8523
+   rome         argmax at x 0.4864 (station 1/80), y_b 1.42615 m, M 1.952, p_b/p_e 1.0533, J 1.25547055e+08 (base term +1.9385e+07 N)
+   veen         argmax at x 5.8762 (station 80/80), y_b 0.02270 m, M 2.852, p_b/p_e 0.2166, J 1.15286099e+08 (base term -9.9055e+02 N)
+   panov_shvets argmax at x 5.8762 (station 80/80), y_b 0.02270 m, M 2.852, p_b/p_e 0.9007, J 1.15286862e+08 (base term -2.2752e+02 N)
+   conical      argmax at x 0.4864 (station 1/80), y_b 1.42615 m, M 1.952, p_b/p_e 0.8761, J 1.21468031e+08 (base term +1.5306e+07 N)
+   cylindrical  argmax at x 0.4864 (station 1/80), y_b 1.42615 m, M 1.952, p_b/p_e 0.8329, J 1.20473077e+08 (base term +1.4311e+07 N)
+   zero         argmax at x 5.8762 (station 80/80), y_b 0.02270 m, M 2.852, p_b/p_e 0.0000, J 1.15285857e+08 (base term -1.2321e+03 N)
+   rocketdyne   argmax at x 5.8762 (station 80/80), y_b 0.02270 m, M 2.852, p_b/p_e 0.0000, J 1.15285857e+08 (base term -1.2321e+03 N)
+  [PASS] N-1 the incumbent's analytic partials equal reverse AD (max rel 2.21e-16, 5.94e-16 <= 1e-12)
+  [PASS] N-2 at the member's own tip the base term is inside the tournament's band_J (|-9.9055e+02| <= 2.2971e+06 N)
+  [PASS] N-3 the control member 'ambient' gives an identically zero base term (0.000e+00 N)
+   REJECTOR (Humphreys 1971) CANNOT FIRE ON A FIXED MEMBER: swapping the incumbent for Panov-Shvets leaves the argmax at the same station (80 vs 80, y_b 0.02270 vs 0.02270 m) and moves J by 7.6303e+02 N = 6.62e-06 of J; theirs moved the base height x2.45 at +0.26 % because their contour was re-optimised under a cap
+  [PASS] N-4 with the closure swapped, the truncation verdict on our member is unchanged AND is 'do not truncate' (argmax at the last station for every in-class member)
+   OUT OF THE FITS' CLASS: rome puts its argmax at 1.2 % of the length (window 12-100 %), base +1.9385e+07 N = 1.68e-01 of J
+   OUT OF THE FITS' CLASS: conical puts its argmax at 1.2 % of the length (window 12-100 %), base +1.5306e+07 N = 1.33e-01 of J
+   OUT OF THE FITS' CLASS: cylindrical puts its argmax at 1.2 % of the length (window 12-100 %), base +1.4311e+07 N = 1.24e-01 of J
+  [PASS] N-4b every member whose argmax leaves the fits' declared class is REPORTED, not used (3 of 7: rome, conical, cylindrical)
+   the Sapienza member on our member: wall angle 33.03 -> 1.85 deg, exponent Phi -0.185 -> 0.998 (it crosses zero at phi 17.41 deg); p_b > p_w at 25 of 81 stations
+  [PASS] N-4c the Sapienza member is used ONLY where its exponent is positive: the stations where it inverts (p_b > p_w) are reported, not consumed (25 of 81)
+  [PASS] N-4d the thrust closure degenerates to SP-8120's p_b = 0 at the ideal length (p_b 0.000e+00 Pa vs p_a 7.614e+05)
+   WAKE REGIME at our point: PR 33.23, the member's own design PR 33.23 (it expands exactly to p_a, so the ratio is 1.00); Hagemann reads 'at the transition, closed side (truncation triggers it earlier)', the Purdue nozzleless data reads 'closed' -> they DISAGREE (declared, open)
+  [PASS] N-5 the incumbent gives 0 < p_b < p_e at every station (min p_b/p_e 0.2166, max 0.3547)
+  [PASS] N-6 the analytic truncation stationarity equals the ladder's own dJ/dx (max rel 1.86e-03 <= 1e-02, scale 1.628e+07 N/m)
+   Veen's corner relation (compatibility, NOT optimality) is met at station 38 (x 3.0107, y 0.46089 m): there the member's own turning angle matches the incumbent closure's p_b. Our J argmax is at station 80 (x 5.8762): the two statements differ by 2.8654 m on this member -- the gap the length cap closes.
+   derived record written to /data10/falco/RDE/RDE_Design/validation/_base_pressure/derive.json
+
+== 10/10 PASS  (95.8 s) ==

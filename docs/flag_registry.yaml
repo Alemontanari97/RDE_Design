@@ -462,6 +462,14 @@ entries:
   tested_pairs: "none"
   untested_cartesian: false
 
+- flag: "A1_BPRS_STAGE"
+  default: "\"derive\""
+  meaning: "stage selector for validation/base_pressure.py's own __main__ ([X-BPRS] the N2 base-pressure slot made executable, S30 2026-09-17): \"derive\" (the slot measured on our own member at the tournament's posing -- every closure's p_b along the truncation ladder, the analytic-vs-AD check, the members read outside their fitted class REPORTED, the Sapienza sign change, Rocketdyne's p_b -> 0 limit, our own truncation stationarity against the ladder's dJ/dx, and the wake-regime reading) | \"band\" (the truncation CURVE: at each shared length cap the core thrust, every admissible closure's base term with the band its model form carries, and the spread across closures against band_J -- the row the configuration selector consumes). The instance knobs of the same script (BPRS_ART, BPRS_TOURNAMENT_DERIVE) carry no A1_ prefix and are outside this census by construction."
+  read_sites:
+    - "validation/base_pressure.py:672"
+  covering_gate: "the stages' own rows (derive 10/10 and band 2/2 of record, 2026-09-17); no suite gate -- the carrier is ondemand (env=jax+geno)"
+  tested_pairs: "derive vs band on the same member and the same derive.json (S30 2026-09-17)"
+
 - flag: "A1_PTRN_STAGE"
   default: "\"derive\""
   meaning: "stage selector for a1_plug_tournament.py's own __main__ ([X-PTRN] the plug tournament at full expansion by the general method, S29 2026-09-16): \"derive\" (posing on our world, the fan-streamline incumbent, its fold margin, band_J, fold scale -> tr0, Rao's contour read afterwards as the oracle, the cornered rejector; writes _plug_tournament/derive.json) | \"campaign\" (margin-constrained TR-SQP from the incumbent and from its generic 1.5 percent perturbation, tip bounded below; consumes derive.json); the budget/instance knobs of the same script (PTRN_M, PTRN_K, PTRN_N, PTRN_SEGS, PTRN_ITERS, PTRN_STARTS, PTRN_ART) carry no A1_ prefix and are outside this census by construction — instance parameters, never arbitration"

@@ -1,0 +1,25 @@
+== [F3] the truncation curve and its bands [X-BPRS] (stage band) ==
+   fan_axi(delta 1, 241 rays x 241 levels): 30063 cells, cert worst 0.028 at (239, 234) (fictitious cells below the wall 0.022); tip x 5.8762 (axis 5.9355), y_sp0 1.74339; 81 s
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+   the member: J 1.15287089e+08 N at full length; the tournament's own band_J 2.297e+06 N (1.99e-02 of J); the closure band (-0.15, 0.19)
+   rung = retained length fraction; every row is J(L_cap) with its base term, +- the band the closure form carries
+   L_cap  12.5 % (x 1.100, y_b 1.0911 m, wall -24.7 deg): core 1.11785666e+08 N, loss vs full -3.5014e+06 N | base terms: veen -2.064e+05 N [-4.0e+05,+5.0e+05]; rome OUT(phi 24.7 deg); conical +4.588e+06 N [-1.1e+06,+1.4e+06]; cylindrical +4.767e+06 N [-1.1e+06,+1.4e+06]; rocketdyne -8.169e+05 N [-0.0e+00,+0.0e+00]
+       -> the closures span 7.0313e+06 N at this cap = 3.06 of band_J, and the truncation loss is 1.52 of band_J
+   L_cap  25.0 % (x 1.783, y_b 0.8178 m, wall -19.3 deg): core 1.13873473e+08 N, loss vs full -1.4136e+06 N | base terms: veen -5.653e+05 N [-1.6e+05,+2.0e+05]; rome OUT(phi 19.3 deg); conical +1.524e+06 N [-4.7e+05,+5.9e+05]; cylindrical +1.721e+06 N [-5.0e+05,+6.3e+05]; rocketdyne -7.801e+05 N [-0.0e+00,+0.0e+00]
+       -> the closures span 3.1324e+06 N at this cap = 1.36 of band_J, and the truncation loss is 0.62 of band_J
+   L_cap  37.5 % (x 2.465, y_b 0.6033 m, wall -15.8 deg): core 1.14696297e+08 N, loss vs full -5.9079e+05 N | base terms: veen -4.250e+05 N [-6.7e+04,+8.5e+04]; rome +7.622e+05 N [-2.4e+05,+3.1e+05]; conical +5.331e+05 N [-2.1e+05,+2.7e+05]; cylindrical +6.541e+05 N [-2.3e+05,+2.9e+05]; rocketdyne -5.280e+05 N [-0.0e+00,+0.0e+00]
+       -> the closures span 1.6005e+06 N at this cap = 0.70 of band_J, and the truncation loss is 0.26 of band_J
+   L_cap  50.0 % (x 3.147, y_b 0.4286 m, wall -13.1 deg): core 1.15047952e+08 N, loss vs full -2.3914e+05 N | base terms: veen -2.515e+05 N [-2.8e+04,+3.6e+04]; rome +2.163e+05 N [-9.8e+04,+1.2e+05]; conical +1.710e+05 N [-9.2e+04,+1.2e+05]; cylindrical +2.337e+05 N [-1.0e+05,+1.3e+05]; rocketdyne -3.007e+05 N [-0.0e+00,+0.0e+00]
+       -> the closures span 6.6238e+05 N at this cap = 0.29 of band_J, and the truncation loss is 0.10 of band_J
+   L_cap  62.5 % (x 3.829, y_b 0.2844 m, wall -10.9 deg): core 1.15198690e+08 N, loss vs full -8.8399e+04 N | base terms: veen -1.209e+05 N [-1.1e+04,+1.4e+04]; rome +4.047e+04 N [-3.5e+04,+4.4e+04]; conical +4.737e+04 N [-3.6e+04,+4.6e+04]; cylindrical +7.491e+04 N [-4.0e+04,+5.1e+04]; rocketdyne -1.422e+05 N [-0.0e+00,+0.0e+00]
+       -> the closures span 2.6805e+05 N at this cap = 0.12 of band_J, and the truncation loss is 0.04 of band_J
+   L_cap  75.0 % (x 4.512, y_b 0.1659 m, wall -8.9 deg): core 1.15260886e+08 N, loss vs full -2.6203e+04 N | base terms: veen -4.360e+04 N [-3.3e+03,+4.2e+03]; rome -4.965e+01 N [-9.9e+03,+1.2e+04]; conical +9.228e+03 N [-1.1e+04,+1.4e+04]; cylindrical +1.847e+04 N [-1.3e+04,+1.6e+04]; rocketdyne -5.062e+04 N [-0.0e+00,+0.0e+00]
+       -> the closures span 8.5115e+04 N at this cap = 0.04 of band_J, and the truncation loss is 0.01 of band_J
+   L_cap  87.5 % (x 5.194, y_b 0.0725 m, wall -6.8 deg): core 1.15281618e+08 N, loss vs full -5.4708e+03 N | base terms: veen -8.047e+03 N [-6.8e+02,+8.6e+02]; rome -3.037e+02 N [-1.8e+03,+2.3e+03]; conical +2.569e+03 N [-2.3e+03,+2.9e+03]; cylindrical +4.353e+03 N [-2.5e+03,+3.2e+03]; rocketdyne -9.408e+03 N [-0.0e+00,+0.0e+00]
+       -> the closures span 1.6979e+04 N at this cap = 0.01 of band_J, and the truncation loss is 0.00 of band_J
+   L_cap 100.0 % (x 5.876, y_b 0.0227 m, wall -1.9 deg): core 1.15287089e+08 N, loss vs full +0.0000e+00 N | base terms: veen -9.906e+02 N [-3.6e+01,+4.6e+01]; rome -5.897e+02 N [-9.6e+01,+1.2e+02]; conical -3.466e+02 N [-1.3e+02,+1.7e+02]; cylindrical -2.012e+02 N [-1.5e+02,+2.0e+02]; rocketdyne -1.232e+03 N [-0.0e+00,+0.0e+00]
+       -> the closures span 1.2268e+03 N at this cap = 0.00 of band_J, and the truncation loss is 0.00 of band_J
+  [PASS] B-1 at full length every closure's interval contains the untruncated J (spread 1.227e+03 <= band_J 2.297e+06)
+  [PASS] B-2 the core thrust decreases only where the wall pressure is below the ambient (1 decreasing steps, all of them sub-ambient: True)
+
+== 2/2 PASS  (97.4 s) ==
