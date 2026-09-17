@@ -363,7 +363,7 @@ entries:
 
 - id: humphreys_thompson_hoffman_1971
   identity: "Humphreys, Thompson & Hoffman 1971, maximum-thrust plug nozzles for fixed inlet geometry, AIAA J 9(8):1581-1587"
-  paths: ["GENO/literature/design-of-maximum-thrust-plug-nozzles-for-fixed-inlet-geometry.pdf"]
+  paths: ["GENO/literature/design-of-maximum-thrust-plug-nozzles-for-fixed-inlet-geometry.pdf", "GENO/literature/humphreys1971.pdf"]
   status: READ-INTEGRAL
   where_read:
     - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
@@ -419,11 +419,19 @@ entries:
 
 - id: johnson_thompson_hoffman_1974
   identity: "Johnson, Thompson & Hoffman 1974, variable-inlet rotational plug nozzles, Computers & Fluids 2:173-190"
-  paths: ["GENO/literature/1-s2.0-0045793074900127-main.pdf"]
+  paths: ["GENO/literature/1-s2.0-0045793074900127-main.pdf", "GENO/literature/johnson1974.pdf"]
   status: READ-INTEGRAL
   where_read:
     - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
   summary: "Lip transversality = classical dJ/dy_lip; p_a>0 limit = vacuum no-optimum instance; base-constant sensitivity split -> DUTY-10 (litmap sec.3.8)."
+
+- id: sule_mueller_1973
+  identity: "Sule & Mueller 1973, Annular Truncated Plug Nozzle Flowfield and Base Pressure Characteristics, J. Spacecraft 10(11):689-695, doi:10.2514/3.61949"
+  paths: ["GENO/literature/sule1973.pdf"]
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/READING_2026-09-17_plug_base_sources.md#2. Sule & Mueller 1973"
+  summary: "THE EXPERIMENTAL TRUNCATION PARAMETRIC the corpus lacked (filed 2026-09-18; read in full 2026-09-17). Base pressure MEASURED by static taps in the plug base on two internal-external-expansion rigs with conical 10 deg plugs (ATP1 M 1.90 eps 1.555, six truncations L/Lmax 0.2184-0.4802, base radii 0.188-0.125 in; ATP2 M 2.00 eps 1.688, five truncations 0.1449-0.3785, radii 0.312-0.227 in), over the open-to-closed wake range. PARAMETRICS: p_b DECREASES with plug length ratio and with area ratio (Fig. 4); p_b INCREASES with the conical plug half-angle over 8-12 deg, 0.09 -> 0.18 of P_01 (Fig. 9 -- alpha is the WHOLE plug half-angle, not the local wall angle at the truncation, i.e. not the phi of Onofri Eq. (5.7)); the closure pressure ratio decreases with plug length (Fig. 5); +100 percent shroud length -> +104 percent p_b (Fig. 8). THE STATEMENT THAT REORDERS THE N2 WORK: in the OPEN wake the base pressure is essentially the AMBIENT (pp. 690 and 695, and the Fig. 2 data on the P_b/P_at = 1 line for every length) -- so the REGIME decides whether a base term exists before any closure does. Closed-wake levels P_b/P_01 0.07-0.18 at P_at/P_01 0.16, i.e. P_b/P_at ~ 0.5-1.1, against the Veen incumbent's 0.20-0.43 on our own member: deeper than the whole measured range (cold air, shrouded, different NPR -- grades direction and order only). THEIR MODEL IS THE KORST CHAIN we proposed (rotational axisymmetric MoC + Hartree for the embedded shock + 85 percent overexpansion to start the internal shock at the corner + Korst restricted mixing over a conetail, coupled iteratively) and it carries TWO empirical inputs, not one: the jet spread parameter sigma (Channapragada 1963) AND the recompression location r3/rb 'found from experimental data'. ACCURACY CLASS TO BEAT: theory 15 percent above experiment (10 for the larger rig), the internal shock worth half the error (27 -> 12 percent at L/Lmax 0.4802, experiment 0.070), constant-pressure boundary located to 5.4 percent; declared validity limit L/Lmax ~ 0.50."
 
 - id: vander_veen_1974
   identity: "Vander Veen, Gentry & Hoffman 1974, shrouded plug nozzles, AIAA J 12(9):1193-1197"
@@ -1271,11 +1279,17 @@ entries:
   status: WANTED
   owner: "procurement queue W-07 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
 
-- id: wanted_chutkey_2014_annular_plug
-  identity: "Chutkey, Vasudevan & Balakrishnan 2014, 'Analysis of annular plug nozzle flowfield', JSR 51(2):478-490 — P-B[37]; truncated-plug base-pressure dataset, R8-ADJACENT (cold rig, not an RDE), candidate CFD-2-style reuse; Tier 1"
-  paths: []
-  status: WANTED
-  owner: "procurement queue W-08 (missed-cluster citation-neighborhood sweep, nozzle-RDE campaign 2026-08-20; SYNTHESIS_nozzle_rde_arrivals.md (f))"
+- id: channapragada_1963
+  identity: "Channapragada 1963, Compressible Jet Spread Parameter for Mixing Zone Analyses, AIAA J 1(9):2188-2190"
+  paths: ["GENO/literature/channapragada1963.pdf"]
+  status: UNREAD
+  owner: "N2/F4b window -- the jet spread parameter sigma, i.e. ONE of the two empirical inputs of the Korst-class chain this line is building (the other being the recompression location); named as the sigma source by sule_mueller_1973. Procured 2026-09-18; to be read when the mixing-layer algebra (W4) is written, and its banded range is what the chain's uncertainty reduces to."
+
+- id: chutkey_2014
+  identity: "Chutkey, Vasudevan & Balakrishnan 2014, Analysis of annular plug nozzle flowfield, JSR 51(2):478-490"
+  paths: ["GENO/literature/chutkey-et-al-2014-analysis-of-annular-plug-nozzle-flowfield.pdf"]
+  status: UNREAD
+  owner: "N2/F4b window -- the second experimental truncated-plug base-pressure dataset of the corpus (the first being sule_mueller_1973, filed the same day); procured 2026-09-18 on the owner's initiative after [X-BPRS] measured that the classical closure family cannot arbitrate. To be read against the wake chain's W3-W5 and the regime test, NOT as a band input before it is read."
 
 - id: wanted_fievisohn_2018_quasi2d_moc
   identity: "Fievisohn, Hoke & Schauer 2018, 'Quasi-2D simulations of nozzled RDEs with the method of characteristics', AIAA 2018-0881 — P-B[24]; closest published cousin of our reduced-MoC class, elevated bearing; Tier 2"
