@@ -1,0 +1,12 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage campaign) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  posing (81,41) m 16 L 5.8762; floor mu0_1 0.0435; rho 6127.1; gap 1.361e-03; tr0 1.526e-03 m (floor 3.816e-04); 1 segments x 2 iterations; starts 3; tip bounded y >= 0.0227
+   start C = ramp from the member to the planar streamline on the knots: tip y 0.8633, max |W_c - W0| 8.406e-01 m (planar itself 8.406e-01 m)
+   PTRN_ONLY=C: 1 start(s) selected
+-- start C ramp to the planar streamline (generic, far) --
+    [seg  0] RESTORATION: KS - mu0 -0.0433 (violation 4.3290e-02), J = 1.14843010e+08, cert = 0.457
+    [seg  0] margin at base: KS - mu0 = -0.0433 (min cell +0.0003, 4003 cells)
+  walk did not complete: KeyError('m_exec') -- a G1 rejector firing
+  report written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41_smokeC/campaign_s1_i2_st3_C.json
+
+== 0/0 PASS  (267.7 s) ==

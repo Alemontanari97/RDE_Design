@@ -304,10 +304,20 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     march is re-recorded at the segment base, the optimizer walks on
     that record, and acceptance triggers a fresh record. A base whose
     record is NOT Newton-certified is REJECTED and the radius shrinks
-    (the reject-and-shrink semantics of the bell driver)."""
+    (the reject-and-shrink semantics of the bell driver). With a
+    margin and a start OUT of class the walk opens with a PHASE 1
+    (restoration) run: the segment minimises the class violation
+    instead of -J and acceptance reads the violation alone, until the
+    first base with KS >= mu0 hands the walk to the objective phase;
+    a violation that cannot be reduced at the radius floor stops the
+    walk as NOT RESTORABLE (see the block comment in the loop). An
+    in-class start never enters it and is bit-identical."""
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf
+    # PHASE 1 (restoration) state: the least-violating certified
+    # iterate seen while no IN-CLASS base exists yet, and its violation
+    W_rest, V_best = None, None
     tr = tr0        # [X-PMRG] margin-constrained walks derive tr0
     # RADIUS FLOOR: the unconstrained walk's policy constant (1 mm,
     # "converged" when a trial at <= 1 mm + 1 percent fails) -- the
@@ -328,15 +338,74 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                 raise RuntimeError("record not certified (worst %.3e)"
                                    % cw)
         except Exception as err:
-            if W_cert is not None and tr > floor:
+            # revert target: the certified in-class base, or, in
+            # phase 1 below, the least-violating restoration iterate
+            W_back = W_cert if W_cert is not None else W_rest
+            if W_back is not None and tr > floor:
                 tr = max(floor, 0.5 * tr)
                 if verbose:
                     print("    [seg %d] base REJECTED (%s) -> revert,"
                           " radius -> %.3e" % (seg, err, tr))
-                W = W_cert.copy()
+                W = W_back.copy()
                 continue
             raise
         J0, g0 = J_and_grad(W, w, c, ta, sched)
+        # PHASE 1 -- RESTORATION ([X-PTRN], S30 2026-09-17). The
+        # feasibility gate below is armed only once a certified base
+        # exists, so a walk that STARTS out of class adopted its start
+        # as W_best and then rejected every trial against it -- trials
+        # that REDUCE the violation included -- until the radius hit
+        # the floor and the driver printed "converged" (measured
+        # 2026-09-17 on starts B and C of the (81,41) tournament leg:
+        # 5360 s, zero steps, C and its 0 folded columns failing only
+        # by the floor). A method that must run on a posed geometry it
+        # did not choose cannot do that. While NO in-class base has
+        # been seen the segment minimises the VIOLATION instead of -J
+        # (a textbook phase-1 step: same aggregated margin, no new
+        # field, no case constant, constraint list empty), acceptance
+        # reads the violation ALONE, and the walk enters the objective
+        # phase at the first base with KS >= mu0 -- strictly, the
+        # aggregation gap 'tol' only ever relaxes the rejection of an
+        # already accepted base, never the entry into the class. A
+        # walk that cannot reduce the violation at the radius floor
+        # stops as NOT RESTORABLE: a declared outcome, never
+        # "converged". Structurally inert for an in-class start
+        # (phase1 is False at segment 0 and W_cert is set from then
+        # on), which is the port's bit-identity gate.
+        phase1 = (margin is not None and W_cert is None
+                  and float(out_rec["margin_ks"]) < margin["mu0"])
+        if phase1:
+            v0 = margin["mu0"] - float(out_rec["margin_ks"])
+            # the SAME default as the objective's and the constraint's
+            # (an empty dict here made _mvg's "m_exec" += 1 raise, and
+            # the campaign reported the KeyError as a G1 rejector:
+            # measured on the phase-1 smoke of start C, 2026-09-17)
+            ctr = margin.setdefault("counters",
+                                    dict(m_exec=0, m_dedup=0,
+                                         m_nonfinite=0, gm_nonfinite=0))
+            ctr["restore_rec"] = ctr.get("restore_rec", 0) + 1
+            # "decreased" means by more than the march's own epsilon:
+            # a smaller move is not a measurement (A1.EPS, no literal)
+            if V_best is not None and v0 >= V_best - A1.EPS * max(V_best, 1.0):
+                if tr <= slack:
+                    if verbose:
+                        print("    [seg %2d] restoration stalled at the"
+                              " radius floor (violation %.4e) -> NOT"
+                              " RESTORABLE, stop" % (seg, v0), flush=True)
+                    ctr["restore_stall"] = ctr.get("restore_stall", 0) + 1
+                    break
+                tr = max(floor, 0.5 * tr)
+                if verbose:
+                    print("    [seg %2d] restoration trial violation"
+                          " %.4e REJECTED (>= %.4e) -> revert, radius"
+                          " -> %.3e" % (seg, v0, V_best, tr), flush=True)
+                W = W_rest.copy()
+                continue
+            V_best, W_rest = v0, W.copy()
+            if verbose:
+                print("    [seg %2d] RESTORATION: KS - mu0 %+.4f"
+                      " (violation %.4e), J = %.8e, cert = %.3f"
+                      % (seg, -v0, v0, J0, cw), flush=True)
         # FEASIBILITY GATE ([X-PMRG], margin path only): trust-constr's
         # iterates approach the constraint from the infeasible side (a
         # barrier method with slacks: c(x) - s = 0 holds at convergence,
@@ -378,13 +447,14 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                       % (seg, J0, why, J_best, tr))
             W = W_best.copy()
             continue
-        W_cert = W.copy()
-        if sign * J0 > sign * J_best:
-            W_best, J_best = W.copy(), J0
         hist.append((seg, J0, float(np.linalg.norm(g0)), cw))
-        if verbose:
-            print("    [seg %2d] J = %.8e  |grad| = %.3e  cert = %.3f"
-                  % (seg, J0, np.linalg.norm(g0), cw), flush=True)
+        if not phase1:
+            W_cert = W.copy()
+            if sign * J0 > sign * J_best:
+                W_best, J_best = W.copy(), J0
+            if verbose:
+                print("    [seg %2d] J = %.8e  |grad| = %.3e  cert = %.3f"
+                      % (seg, J0, np.linalg.norm(g0), cw), flush=True)
 
         def fun(z):
             v, g = J_and_grad(z, w, c, ta, sched)
@@ -447,6 +517,22 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                     ctr["gm_nonfinite"] += 1
                     g = np.where(np.isfinite(g), g, 0.0)
                 return g[None, :]
+            def fun_r(z):
+                # PHASE 1 objective: minimise the violation by
+                # MAXIMISING the very field the constraint aggregates
+                # (m_np/gm_np's memo, fallbacks and counters), so the
+                # restoration phase and the class criterion never
+                # disagree about what they are measuring.
+                v, g = _mvg(z)
+                if not np.isfinite(v):
+                    ctr["m_nonfinite"] += 1
+                    return (2.0 * A1.K_RICH * margin["m_ref"],
+                            np.zeros(np.asarray(z, float).shape))
+                if not np.all(np.isfinite(g)):
+                    ctr["gm_nonfinite"] += 1
+                    g = np.where(np.isfinite(g), g, 0.0)
+                return -float(v), -np.asarray(g, float)
+
             cons = [NonlinearConstraint(m_np, 0.0, np.inf, jac=gm_np)]
             m0v = float(out_rec["margin_ks"]) - margin["mu0"]
             if verbose:
@@ -469,9 +555,21 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         while True:
             # bounds (additive, [X-PTRN]): None = scipy's own default,
             # the same call as before for every existing caller
-            res = minimize(fun, W, jac=True, method="trust-constr",
-                           constraints=cons, bounds=bounds,
-                           options=dict(maxiter=maxiter_per_seg,
+            # PHASE-1 CADENCE (measured 2026-09-17, legs B and C): the
+            # frozen schedule is NOT a usable model for the margin at
+            # the fold-scale radius -- eight iterations on it took
+            # start C from a violation of 4.33e-02 to 7.34e-01 on the
+            # re-march, and the shrink that follows ends the walk. The
+            # objective phase survives that because a bad segment is
+            # caught by the record/certify gate and reverted; the
+            # restoration has no incumbent to revert to. So phase 1
+            # takes ONE iteration per record: the march is the model.
+            res = minimize(fun_r if phase1 else fun, W, jac=True,
+                           method="trust-constr",
+                           constraints=([] if phase1 else cons),
+                           bounds=bounds,
+                           options=dict(maxiter=(1 if phase1
+                                                 else maxiter_per_seg),
                                         initial_tr_radius=tr,
                                         gtol=0.0, xtol=1e-14,
                                         verbose=0))
@@ -508,7 +606,11 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         tr = float(min(0.25, 1.5 * tr))
     # the answer is the BEST CERTIFIED design seen, never the last
     # trial point (the two differ exactly when the walk overshoots).
-    return (W_best if W_best is not None else W), hist, n_rec
+    # A walk that never reached the class returns its LEAST-VIOLATING
+    # certified iterate, graded (and failed by C-3) by the caller --
+    # returning the start instead would hide the phase-1 work.
+    return (W_best if W_best is not None
+            else (W_rest if W_rest is not None else W)), hist, n_rec
 
 
 # ======================================================================

@@ -1,0 +1,29 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage campaign) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  posing (81,41) m 16 L 5.8762; floor mu0_1 0.0435; rho 6127.1; gap 1.361e-03; tr0 1.526e-03 m (floor 3.816e-04); 20 segments x 8 iterations; starts 3; tip bounded y >= 0.0227
+   start C = ramp from the member to the planar streamline on the knots: tip y 0.8633, max |W_c - W0| 8.406e-01 m (planar itself 8.406e-01 m)
+   PTRN_ONLY=C: 1 start(s) selected
+-- start C ramp to the planar streamline (generic, far) --
+    [seg  0] J = 1.14843010e+08  |grad| = 1.303e+07  cert = 0.457
+    [seg  0] margin at base: KS - mu0 = -0.0433 (min cell +0.0003, 4003 cells)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:385: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(self.x - self.x_prev, self.g - self.g_prev)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:737: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(delta_x, delta_g)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.103], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg  1] trial J = 1.14892086e+08 REJECTED (INFEASIBLE (KS - mu0 -0.7181) than 1.14843010e+08) -> revert, radius -> 1.145e-03
+    [seg  2] trial J = 1.14843010e+08 REJECTED (INFEASIBLE (KS - mu0 -0.0433) than 1.14843010e+08) -> revert, radius -> 5.724e-04
+    [seg  3] trial J = 1.14843010e+08 REJECTED (INFEASIBLE (KS - mu0 -0.0433) than 1.14843010e+08) -> revert, radius -> 3.816e-04
+    [seg  4] trial INFEASIBLE (KS - mu0 -0.0433) at the radius floor -> converged, stop
+  [C ramp to the planar streamline (generic, far)] 2602 s, 1 segments, 5 records: J* 1.14843010e+08 (vs incumbent -4.4408e+05 N = -3.85e-03; vs Rao -4.4240e+05 N = -3.84e-03; band_J 2.297e+06), cert 0.457, |grad J|inf 1.196e+07, KS - mu0 -0.04329 (min cell +0.0003) -> ACTIVE, mu -0.000e+00, folded 0/81, theta st.1 -33.11 deg (flow -33.16), tip y 0.86334 (floor 0.0227), dist to Rao's shape 8.397e-01 (as written 8.386e-01; band_W 1.220e-02), W - W0 [mm] [  0.     6.45  19.4   39.57  67.64 104.2  149.77 204.82 269.72 344.43
+ 425.05 509.51 596.58 684.5  769.87 840.65], counters {'m_exec': 8, 'm_dedup': 8, 'gm_nonfinite': 3, 'grad_nonfinite': 3, 'infeasible_base': 4}
+  [C ramp to the planar streamline (generic, far)] active-cusp census: 234 cells <= mu0 + gap in columns [63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82] (1 cluster(s)); argmin (65, 65) (m 0.0003)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-1 the returned base is certified (0.457)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-2 REQ-NONSTALL: J, grad, margin, grad finite at the returned base
+  [FAIL] [C ramp to the planar streamline (generic, far)] C-3 the returned base is IN the class (min cell +0.0003 >= mu0_1 0.0435, 0 folded)
+  [FAIL] [C ramp to the planar streamline (generic, far)] C-4 no loss to the incumbent (J* 1.14843010e+08 >= 1.15287089e+08)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-5 dual clause mu >= 0 at an active margin (-0.000e+00)
+  [C ramp to the planar streamline (generic, far)] ORACLE READING: gain over Rao -4.424e+05 N (-3.84e-03) INSIDE band_J 2.297e+06; distance to Rao's contour 8.397e-01 OUTSIDE band_W 1.220e-02
+  report written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41/campaign_s20_i8_st3_C.json
+
+== 3/5 PASS  (2930.2 s) ==

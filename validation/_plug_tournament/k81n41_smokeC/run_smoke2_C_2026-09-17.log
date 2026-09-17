@@ -1,0 +1,27 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage campaign) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  posing (81,41) m 16 L 5.8762; floor mu0_1 0.0435; rho 6127.1; gap 1.361e-03; tr0 1.526e-03 m (floor 3.816e-04); 2 segments x 2 iterations; starts 3; tip bounded y >= 0.0227
+   start C = ramp from the member to the planar streamline on the knots: tip y 0.8633, max |W_c - W0| 8.406e-01 m (planar itself 8.406e-01 m)
+   PTRN_ONLY=C: 1 start(s) selected
+-- start C ramp to the planar streamline (generic, far) --
+    [seg  0] RESTORATION: KS - mu0 -0.0433 (violation 4.3290e-02), J = 1.14843010e+08, cert = 0.457
+    [seg  0] margin at base: KS - mu0 = -0.0433 (min cell +0.0003, 4003 cells)
+    [seg  0] margin counters: {'m_exec': 2, 'restore_rec': 1}; multipliers [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.052]]
+    [seg  0] no motion at radius 1.526e-03 -> retry at 7.632e-04 (same record)
+    [seg  0] margin counters: {'m_exec': 4, 'restore_rec': 1}; multipliers [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.133]]
+    [seg  1] RESTORATION: KS - mu0 -0.0422 (violation 4.2244e-02), J = 1.14841270e+08, cert = 0.323
+    [seg  1] margin at base: KS - mu0 = -0.0422 (min cell +0.0014, 4003 cells)
+    [seg  1] margin counters: {'m_exec': 6, 'restore_rec': 2}; multipliers [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.038]]
+  [C ramp to the planar streamline (generic, far)] 1475 s, 2 segments, 2 records: J* 1.14841270e+08 (vs incumbent -4.4582e+05 N = -3.87e-03; vs Rao -4.4414e+05 N = -3.85e-03; band_J 2.297e+06), cert 0.323, |grad J|inf 1.198e+07, KS - mu0 -0.04224 (min cell +0.0014) -> ACTIVE, mu -0.000e+00, folded 0/81, theta st.1 -33.11 deg (flow -33.16), tip y 0.86372 (floor 0.0227), dist to Rao's shape 8.400e-01 (as written 8.390e-01; band_W 1.220e-02), W - W0 [mm] [-3.42e-03  6.46e+00  1.94e+01  3.96e+01  6.76e+01  1.04e+02  1.50e+02
+  2.05e+02  2.70e+02  3.45e+02  4.25e+02  5.10e+02  5.96e+02  6.84e+02
+  7.70e+02  8.41e+02], counters {'m_exec': 6, 'restore_rec': 2}
+  [C ramp to the planar streamline (generic, far)] active-cusp census: 232 cells <= mu0 + gap in columns [63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82] (1 cluster(s)); argmin (68, 66) (m 0.0014)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-1 the returned base is certified (0.323)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-2 REQ-NONSTALL: J, grad, margin, grad finite at the returned base
+  [FAIL] [C ramp to the planar streamline (generic, far)] C-3 the returned base is IN the class (min cell +0.0014 >= mu0_1 0.0435, 0 folded)
+  [FAIL] [C ramp to the planar streamline (generic, far)] C-4 no loss to the incumbent (J* 1.14841270e+08 >= 1.15287089e+08)
+  [PASS] [C ramp to the planar streamline (generic, far)] C-5 dual clause mu >= 0 at an active margin (-0.000e+00)
+  [C ramp to the planar streamline (generic, far)] ORACLE READING: gain over Rao -4.441e+05 N (-3.85e-03) INSIDE band_J 2.297e+06; distance to Rao's contour 8.400e-01 OUTSIDE band_W 1.220e-02
+  report written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41_smokeC/campaign_s2_i2_st3_C.json
+
+== 3/5 PASS  (1768.4 s) ==

@@ -1,0 +1,30 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage campaign) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  posing (81,41) m 16 L 5.8762; floor mu0_1 0.0435; rho 6127.1; gap 1.361e-03; tr0 1.526e-03 m (floor 3.816e-04); 20 segments x 8 iterations; starts 3; tip bounded y >= 0.0227
+   start C = ramp from the member to the planar streamline on the knots: tip y 0.8633, max |W_c - W0| 8.406e-01 m (planar itself 8.406e-01 m)
+   PTRN_ONLY=B: 1 start(s) selected
+-- start B 1.5 %% alternating perturbation --
+    [seg  0] J = 1.15237545e+08  |grad| = 1.157e+07  cert = 0.289
+    [seg  0] margin at base: KS - mu0 = -0.7735 (min cell -0.7300, 4189 cells)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:385: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(self.x - self.x_prev, self.g - self.g_prev)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:737: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(delta_x, delta_g)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.189], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.048]]
+    [seg  1] trial J = 1.08826002e+08 REJECTED (INFEASIBLE (KS - mu0 -0.9244) than 1.15237545e+08) -> revert, radius -> 1.145e-03
+    [seg  2] trial J = 1.15237545e+08 REJECTED (INFEASIBLE (KS - mu0 -0.7735) than 1.15237545e+08) -> revert, radius -> 5.724e-04
+    [seg  3] trial J = 1.15237545e+08 REJECTED (INFEASIBLE (KS - mu0 -0.7735) than 1.15237545e+08) -> revert, radius -> 3.816e-04
+    [seg  4] trial INFEASIBLE (KS - mu0 -0.7735) at the radius floor -> converged, stop
+  [B 1.5 %% alternating perturbation] 2758 s, 1 segments, 5 records: J* 1.15237545e+08 (vs incumbent -4.9544e+04 N = -4.30e-04; vs Rao -4.7865e+04 N = -4.15e-04; band_J 2.297e+06), cert 0.289, |grad J|inf 6.615e+06, KS - mu0 -0.77355 (min cell -0.7300) -> ACTIVE, mu -0.000e+00, folded 75/81, theta st.1 -30.40 deg (flow -33.16), tip y 0.02270 (floor 0.0227), dist to Rao's shape 1.989e-02 (as written 1.886e-02; band_W 1.220e-02), W - W0 [mm] [ 1.95e+01 -1.68e+01  1.45e+01 -1.25e+01  1.08e+01 -9.23e+00  7.82e+00
+ -6.55e+00  5.39e+00 -4.34e+00  3.39e+00 -2.53e+00  1.76e+00 -1.10e+00
+  5.77e-01 -9.37e-14], counters {'m_exec': 8, 'm_dedup': 8, 'gm_nonfinite': 3, 'grad_nonfinite': 3, 'infeasible_base': 4}
+  [B 1.5 %% alternating perturbation] active-cusp census: 1431 cells <= mu0 + gap in columns [5, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82] (2 cluster(s)); argmin (12, 10) (m -0.7300)
+  [PASS] [B 1.5 %% alternating perturbation] C-1 the returned base is certified (0.289)
+  [PASS] [B 1.5 %% alternating perturbation] C-2 REQ-NONSTALL: J, grad, margin, grad finite at the returned base
+  [FAIL] [B 1.5 %% alternating perturbation] C-3 the returned base is IN the class (min cell -0.7300 >= mu0_1 0.0435, 75 folded)
+  [FAIL] [B 1.5 %% alternating perturbation] C-4 no loss to the incumbent (J* 1.15237545e+08 >= 1.15287089e+08)
+  [PASS] [B 1.5 %% alternating perturbation] C-5 dual clause mu >= 0 at an active margin (-0.000e+00)
+  [B 1.5 %% alternating perturbation] ORACLE READING: gain over Rao -4.787e+04 N (-4.15e-04) INSIDE band_J 2.297e+06; distance to Rao's contour 1.989e-02 OUTSIDE band_W 1.220e-02
+  report written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41/campaign_s20_i8_st3_B.json
+
+== 3/5 PASS  (3112.2 s) ==
