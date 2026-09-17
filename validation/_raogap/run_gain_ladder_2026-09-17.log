@@ -1,0 +1,7 @@
+   fan_axi(delta 1, 241 rays x 241 levels): 30063 cells, cert worst 0.028 at (239, 234) (fictitious cells below the wall 0.022); tip x 5.8762 (axis 5.9355), y_sp0 1.74339; 82 s
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+== does the leg's gain survive refinement? ==
+   |W* - W0| max 6.864e-03 m (first knot +6.864e-03, tip +5.247e-03)
+   K  81: J(W0) 1.15287089e+08 (cert 0.434)  J(W*) 1.15342773e+08 (cert 0.086)  ->  dJ +5.5684e+04 N = +4.83e-04 of J   (36 s)
+   K 161: J(W0) 1.15858361e+08 (cert 6.301)  J(W*) 1.15890003e+08 (cert 0.507)  ->  dJ +3.1643e+04 N = +2.73e-04 of J   (115 s)
+   K 321: J(W0) 1.16152450e+08 (cert 0.340)  J(W*) 1.16166255e+08 (cert 0.460)  ->  dJ +1.3805e+04 N = +1.19e-04 of J   (428 s)

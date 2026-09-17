@@ -1,0 +1,13 @@
+   fan_axi(delta 1, 241 rays x 241 levels): 30063 cells, cert worst 0.028 at (239, 234) (fictitious cells below the wall 0.022); tip x 5.8762 (axis 5.9355), y_sp0 1.74339; 80 s
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+== the segment from our member to Rao's contour ==
+   |W_rao - W0|inf 7.1681e-03 m, |.|2 8.8195e-03 m; band_W(rep) 1.220e-02; band_J 2.297e+06 N (1.99e-02 of J)
+   lam 0.00: J 1.15287089e+08 (dJ +0.0000e+00 N = +0.00e+00 of J, 0.000 of band_J), cert 0.434, min cell +0.0871 (34 s)
+   lam 0.10: J 1.15286932e+08 (dJ -1.5659e+02 N = -1.36e-06 of J, 0.000 of band_J), cert 0.238, min cell +0.0871 (33 s)
+   lam 0.25: J 1.15286693e+08 (dJ -3.9645e+02 N = -3.44e-06 of J, 0.000 of band_J), cert 0.463, min cell +0.0871 (34 s)
+   lam 0.50: J 1.15286280e+08 (dJ -8.0905e+02 N = -7.02e-06 of J, 0.000 of band_J), cert 0.463, min cell +0.0784 (34 s)
+   lam 0.75: J 1.15285852e+08 (dJ -1.2368e+03 N = -1.07e-05 of J, 0.001 of band_J), cert 0.235, min cell +0.0473 (34 s)
+   lam 0.90: J 1.15285589e+08 (dJ -1.5003e+03 N = -1.30e-05 of J, 0.001 of band_J), cert 0.172, min cell +0.0312 (34 s)
+   lam 1.00: J 1.15285410e+08 (dJ -1.6787e+03 N = -1.46e-05 of J, 0.001 of band_J), cert 0.230, min cell +0.0223 (34 s)
+   |grad J|inf 9.1085e+06 N/m; its projection on the Rao direction -1.7600e+05 N/m; the segment's own slope (J(1)-J(0))/|d| -1.9034e+05 N/m
+   the whole traverse in units of the band: |dJ|max/band_J 0.0007

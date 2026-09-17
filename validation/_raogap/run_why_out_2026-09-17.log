@@ -1,0 +1,10 @@
+   fan_axi(delta 1, 241 rays x 241 levels): 30063 cells, cert worst 0.028 at (239, 234) (fictitious cells below the wall 0.022); tip x 5.8762 (axis 5.9355), y_sp0 1.74339; 84 s
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+== where the margin is lost ==
+   floor mu0_1 0.0435 = m_ref/2 (m_ref 0.0871 = OUR member's own worst cell); fold at 0
+   ours                 min cell +0.0871 at (4, 2); 12 worst in columns [3, 4, 29, 64, 67, 68, 69, 74, 75]
+                        wall angle: -33.028 -> -1.852 deg; |second difference| max 2.578e-01 deg, rms 7.891e-02 deg (the representation's own waviness)
+                        cells below the floor: 0 of 4181 (0.00 %)
+   rao-on-our-16-knots  min cell +0.0223 at (77, 83); 12 worst in columns [75, 76, 77]
+                        wall angle: -33.050 -> 0.045 deg; |second difference| max 3.319e-01 deg, rms 1.206e-01 deg (the representation's own waviness)
+                        cells below the floor: 9 of 4181 (0.22 %)

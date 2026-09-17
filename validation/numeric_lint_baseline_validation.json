@@ -103,6 +103,8 @@
   "validation/w5_wall_sweep.py": 3,
   "validation/xbvp_entropy_transfer.py": 24,
   "validation/base_pressure.py": 30,
-  "validation/_base_pressure/basegate.py": 2
+  "validation/_base_pressure/basegate.py": 2,
+  "validation/_raogap/gain_ladder.py": 6,
+  "validation/_raogap/rao_gap.py": 2
  }
 }
