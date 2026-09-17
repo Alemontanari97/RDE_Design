@@ -1,0 +1,12 @@
+== [F3] the base wake, brick 1: the mirrored boundary and the corner expansion ==
+   top edge -> (x 0.230504, y 0.465494, th -11.0278 deg), last Newton step 2.5e-17; bottom on the mirrored data -> (x 0.230504, y -0.465494, th 11.0278 deg), step 1.0e-15
+  [PASS] G-1 the bubble-side cell is the edge cell read on the other family: in the planar limit the two mirror to 6.11e-16 m, both solves converged (largest last Newton step 1.0e-15)
+  [PASS] G-2a an expansion to the wall's own pressure is no expansion (dnu 4.21e-16 rad, th_b - th_w 2.39e-14 deg)
+  [PASS] G-2b the fan lands ON the requested pressure (7.614420e+05 Pa vs 7.614420e+05, rel 2.3e-15)
+  [PASS] G-2c and on the SAME speed the outer free jet uses at that pressure (2742.13600458 vs 2742.13600458 m/s)
+   the corner at p_w 1.0004e+06 Pa -> p_a: turn 4.427 deg, q 2659.87 -> 2742.14 m/s, th -9.000 -> -13.427 deg
+   a deep cut (p_b = 0.25 p_w): the corner turns 20.586 deg, the boundary leaves at -29.586 deg
+   a mild cut (p_b = 0.80 p_w): the corner turns 3.635 deg, the boundary leaves at -12.635 deg
+  [PASS] G-3 a deeper base pressure turns the boundary further toward the axis (monotone in p_b)
+
+== 5/5 PASS  (5.3 s) ==

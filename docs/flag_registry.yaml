@@ -462,6 +462,14 @@ entries:
   tested_pairs: "none"
   untested_cartesian: false
 
+- flag: "A1_BWAK_STAGE"
+  default: "\"gates\""
+  meaning: "stage selector for validation/a1_base_wake.py's own __main__ (the base wake of a truncated plug, W1-W2 of record S30 2026-09-17, the mechanistic route to the N2 closure that [X-BPRS] showed the classical family cannot arbitrate): \"gates\" (W1 -- the bubble-side constant-pressure cell proved to BE the certified edge cell read on the other characteristic family, by mirroring in the planar limit, and the corner expansion integrated on our tabulated gas against its three known-answer checks) | \"geometry\" (W2 -- the bubble on our own member at the [X-BPRS] caps: the corner turn, the straight boundary the centred fan emits, the earliest wave of the incoming Mach line, and the undisturbed reattachment abscissa). The instance knob BWAK_ART carries no A1_ prefix and is outside this census by construction. NOT YET COVERED: W3, the certified march that quantifies the axisymmetric source inside the fan region, then the Korst mixing-layer algebra and the escape-criterion Newton on p_b."
+  read_sites:
+    - "validation/a1_base_wake.py:396"
+  covering_gate: "its own stages (W1 5/5 and W2 3/3 of record, 2026-09-17, _base_wake/run_brick1 and run_brick2); no suite gate -- ondemand, and the carrier is INCOMPLETE by declaration"
+  tested_pairs: "gates vs geometry on the same member (S30 2026-09-17)"
+
 - flag: "A1_BASE_MODEL"
   default: "\"\" (unset: the functional of every row of record)"
   meaning: "the N2 base-pressure closure PRICED INTO J by a1_plug_spline_opt.J_replay ([X-BPRS], S30 2026-09-17): the value names a member of base_pressure.MODELS (veen | rome | conical | cylindrical | panov_shvets | zero | ambient) and adds (p_b - p_a) pi y(L)^2 to the thrust, evaluated on the corner state of the last wall station and differentiated by the same reverse-AD path as the wall integral. UNSET leaves J exactly as every prior row computed it (gate of record: J and grad identical to the last digit on the incumbent and on the overnight leg's return). WHY IT EXISTS: the tip radius is a free design variable while the face it creates was not in the functional, so a walk could shorten the spike without paying for its base (measured 2026-09-17: the leg's return lifted the tip 0.02270 -> 0.02794 m, an unpriced -1.47e+03 N against -9.91e+02 N at the floor). The closure is a DECLARED SLOT with a band, never a fit: choice-ledger C61, problem_book:348."
