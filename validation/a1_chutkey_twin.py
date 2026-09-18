@@ -63,8 +63,14 @@ its plug is INTERNAL-EXTERNAL (sonic throat upstream on an arc R_c,
 the lip at M_i > 1, inverse construction), its direct annular start
 line is Migdal 1972's uniform tilted line at Mi_ann (default sonic) --
 the posing tried here -- and its cells are in the same slope form
-lm = tan(theta - asin(1/M)): the limit is shared. THE BRICK THAT CLOSES
-THIS: a direction-invariant cell (frame rotated by ~-80 deg for the
+lm = tan(theta - asin(1/M)): the limit is shared. REFINED THE SAME NIGHT:
+the tables are excluded (N_TAB x8: unchanged), the same construction
+certifies in PLANAR flow (delta 0: 0.07), row equilibration leaves the
+step untouched: the floor is the near-vertical characteristic COUPLED
+to the axisymmetric source S (x4 - x1), x4 being determined only as
+x1 + (y4 - y1)/lambda. WHAT CLOSES THIS: the source term written as
+S (y4 - y1)/lambda (same roots), gated bit-level on the record's worlds
+-- owner's call. The heavier alternative: a direction-invariant cell (frame rotated by ~-80 deg for the
 throat kernel, source term on the true radius; the characteristic
 directions of the sonic-lip fan span 146 deg < 180, so one frame
 avoids the vertical for both families), gated on the planar PM fan

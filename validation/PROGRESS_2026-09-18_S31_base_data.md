@@ -165,7 +165,23 @@ at the junction" would be this; but that member passes 5 % less mass
 than the choked throat (its throat strip is unmarched), so the offset
 is not a finding.
 
-**The brick that closes the twin:** a direction-invariant cell for the
+**Refined the same night (owner's challenge "is it really the slope
+form?"):** the gas tables are excluded (N_TAB 8192 → 65536: 7.5e2 →
+6.6e2), the SAME construction certifies in PLANAR flow (δ = 0: 0.07),
+and row-equilibrating the Jacobian leaves the step untouched (1.656e-9).
+So the floor is the coupling of the near-vertical characteristic with the
+AXISYMMETRIC SOURCE: the compatibility row carries S·(x₄ − x₁) with
+S = c²v/y ~ 3e7 while x₄ is determined only as x₁ + (y₄ − y₁)/λ, λ ~ 2.7e3
+— a 5e-14 jitter in x₄ is 1.5e-6 of residual, the measured floor. GENO
+(`Interior_m.f90`) guards only the exactly-vertical `tan = huge` case and
+stops at `tol_conv` 1e-8, so it would call this cell converged: it does
+not certify at round-off. **The fix is a reformulation, not a brick**:
+write the source term as S·(y₄ − y₁)/λ (identical on the characteristic
+because the position row enforces (y₄ − y₁) = λ(x₄ − x₁); same roots),
+gated on bit-level agreement over the record's worlds and on cert < 1
+on Chutkey's fan. Owner's call (it touches the shared certified cell).
+
+**The alternative, heavier:** a direction-invariant cell for the
 throat kernel — frame rotated by ~−80° (marching radially inward near
 the throat) with the axisymmetric source on the true radius; the
 sonic-lip fan's characteristic directions span 146° < 180°, so one
