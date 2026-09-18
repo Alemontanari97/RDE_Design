@@ -252,7 +252,13 @@
 ## limite strutturale delle celle in forma di pendenza sui raggi
 ## verticali del ventaglio da labbro sonico (M 1.47), condiviso da GENO;
 ## brick che chiude = cella in frame ruotato (~-80 deg) per il kernel di
-## gola. PROSSIMO: quel brick, oppure il test di regime come sensibilita'.
+## gola. NOTTE: la causa era il CONTORNO digitalizzato interpolato
+## (onde spurie); con spline lisciante al rumore (0.12 mm) la marcia
+## CERTIFICA (0.451) e legge p_lip/p_0 del paper a +0.7..+1.8 %, M_lip
+## a -0.3 %: X-CHTW CHIUSO sullo stato di parete (derive 8/9, ladder
+## 3/3; aperto T-4b massa -5.6 %). Figure in _chutkey_twin/figs/.
+## PROSSIMO: test di regime come sensibilita', Sule-Mueller (config.
+## iii, marcia a due pareti), Humphreys/Johnson (twin di ottimizzazione).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
