@@ -129,10 +129,17 @@ def _conical(p_e, M_e, gam, p_a, th=None):
     return p_e * (0.025 + 0.906 / (1.0 + 0.5 * (gam - 1.0) * M_e ** 2)) ** 0.35
 
 
+def _lamb_oberkampf(M_e, gam):
+    """The cylindrical-base form of Lamb & Oberkampf shared by the
+    cylindrical, Sapienza and Chutkey members: 0.05 + 0.967 / (1 +
+    (gam-1)/2 M^2); the members differ only in what they raise it to."""
+    return 0.05 + 0.967 / (1.0 + 0.5 * (gam - 1.0) * M_e ** 2)
+
+
 def _cylindrical(p_e, M_e, gam, p_a, th=None):
     """Onofri Eq. (5.5), "good agreement" cold. [MODEL-VAL, cold]"""
     f = (2.0 / (gam + 1.0)) ** (gam / (gam - 1.0))
-    return p_e * M_e * f * (0.05 + 0.967 / (1.0 + 0.5 * (gam - 1.0) * M_e ** 2))
+    return p_e * M_e * f * _lamb_oberkampf(M_e, gam)
 
 
 def _zero(p_e, M_e, gam, p_a, th=None):
@@ -176,10 +183,41 @@ def _rome(p_e, M_e, gam, p_a, th=None):
     phi = jnp.abs(jnp.degrees(th))
     Phi = ((-PHI_A * phi ** 4 - PHI_B * phi ** 2 + PHI_C)
            / (phi ** 4 + PHI_C))
-    return p_e * (0.05 + 0.967 / (1.0 + 0.5 * (gam - 1.0) * M_e ** 2)) ** Phi
+    return p_e * _lamb_oberkampf(M_e, gam) ** Phi
+
+
+# THE CHUTKEY MEMBER, Chutkey, Vasudevan & Balakrishnan 2014 Eq. (1) (JSR
+# 51(2):478-490, p. 489, read of record 2026-09-18, registry row
+# chutkey_2014): the Lamb-Oberkampf cylindrical form written on the BASE
+# LIP state, with the exponent re-fitted by THEM by least squares on the
+# closed-wake data of four annular truncated-plug rigs (Tomita 1998,
+# Fick & Schmucker 1996, [30], and their own ATPN 20/34/41/48 percent) --
+# the ten points CHUTKEY_2014 below, which is also why it is the only
+# member of the stack whose band is MEASURED on annular truncated plugs
+# in our own signature (p_lip, M_lip). It is THEIR fit, not ours. The
+# exponent, the points and every threshold the data stage uses live in
+# validation/chutkey2014_closed_wake.json, each with its class and
+# provenance: measured data are a record, not code.
+import json                                               # noqa: E402
+import os                                                 # noqa: E402
+
+_CHUTKEY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "chutkey2014_closed_wake.json")
+_CHUTKEY = json.load(open(_CHUTKEY_PATH))
+_CK = {k: v["value"] for k, v in _CHUTKEY["constants"].items()}
+CHUTKEY_E = _CK["exponent"]         # Chutkey 2014 Eq. (1), p. 489
+
+
+def _chutkey(p_e, M_e, gam, p_a, th=None):
+    """Chutkey 2014 Eq. (1): p_b = p_lip [0.05 + 0.967 / (1 + (gam-1)/2
+    M_lip^2)]^0.7027. [MODEL-VAL(cold, annular truncated plug, 10 pts)]
+    Same form as _rome with the exponent a constant instead of Phi(phi):
+    Phi = 0.7027 at phi 8.85 deg on the Sapienza coefficients."""
+    return p_e * _lamb_oberkampf(M_e, gam) ** CHUTKEY_E
 
 
 MODELS = {
+    "chutkey":     (_chutkey,     "MODEL-VAL(cold,annular,10pts)", "Chutkey 2014 Eq. (1), the data-graded member"),
     "rome":        (_rome,        "MODEL-VAL(cold)", "Onofri Eq. (5.7), the WG10 best; needs the wall angle"),
     "veen":        (_veen,        "MODEL-UNREL", "incumbent (legacy chain only, C61)"),
     "panov_shvets": (_panov_shvets, "MODEL-UNREL", "the Humphreys 1971 rejector pair"),
@@ -220,6 +258,65 @@ ENVELOPE_RETAINED = (0.12, 1.0)
 # (harvest sec. 14, doc p. 16 Fig. 5.4). EMPIRICAL band, multiplicative
 # on p_b, carried into J by band_base below.
 BAND_PB = (-0.15, +0.19)
+
+# ======================================================================
+# the measured points in the family's own signature (Chutkey 2014)
+# ======================================================================
+# Chutkey, Vasudevan & Balakrishnan 2014, Tables 7 and 8 (pp. 488-489):
+# CLOSED-WAKE base pressure MEASURED by static taps, with the base-lip
+# state (M_lip from their grid-converged RANS, p_lip/p_0 = the ratio of
+# the two measured columns) -- i.e. exactly (p_e, M_e) -> p_b, the
+# signature every member above takes, so the family can be graded
+# WITHOUT a march. Cold air. Rows as tuples: source, design PR,
+# retained length (percent, None = not given), plug exit angle beta
+# (deg, None = not given), M_lip, p_b/p_lip measured, p_b/p_0
+# measured, and the paper's OWN four model columns (p_b/p_0 by its
+# Eq. (1), by Fick & Schmucker's cylinder and cone relations, by
+# Onofri's relation; None = "required data not available") -- kept so
+# our members can be checked against the literature's own use of them.
+CHUTKEY_2014 = [tuple(r) for r in _CHUTKEY["points"]]
+CHUTKEY_GAMMA = _CK["gamma"]
+# the paper prints p_b/p_0 to four decimals from a p_lip/p_0 it does
+# not print: one unit in the last digit plus the rounding of the ratio
+CHUTKEY_PRINT_TOL = _CK["print_tol"]
+
+
+def grade(model):
+    """A member against the measured points: the relative error
+    (model/measured - 1) of p_b/p_lip at each point where the member
+    is posed (the Sapienza member needs beta; the ambient-referenced
+    Panov-Shvets is read through p_a = p_0/PR)."""
+    e = []
+    for (_, PR, _, beta, M, r_exp, r0, *_rest) in CHUTKEY_2014:
+        if model == "rome":
+            if beta is None:
+                continue
+            r = float(p_base(1.0, M, CHUTKEY_GAMMA, 0.0, model,
+                             th=jnp.radians(beta)))
+        elif model == "panov_shvets":
+            p_a_over_plip = (r_exp / r0) / PR       # (p_0/p_lip)/PR
+            r = float(p_base(1.0, M, CHUTKEY_GAMMA, p_a_over_plip, model))
+        else:
+            r = float(p_base(1.0, M, CHUTKEY_GAMMA, 0.0, model))
+        e.append(r / r_exp - 1.0)
+    return np.asarray(e)
+
+
+def band_measured(model):
+    """The band the MEASURED points put on a member, as the
+    multiplicative interval of the true p_b about the model's:
+    e = model/true - 1 on the data  =>  true/model in [1/(1+e_max),
+    1/(1+e_min)]. Returned in band_base's convention (lo, hi) with
+    lo <= 0 <= hi only when the member straddles the data; a member
+    biased to one side gets a one-sided band, which is the finding."""
+    e = grade(model)
+    return (1.0 / (1.0 + e.max()) - 1.0, 1.0 / (1.0 + e.min()) - 1.0)
+
+
+# the bands of record are MEASURED, per member, on the ten points; the
+# WG10 bracket BAND_PB is kept as the quoted one and is what a member
+# with no measured band falls back to (none today: every executable
+# member is posed on the data)
 
 
 # ======================================================================
@@ -270,6 +367,11 @@ def p_base(p_e, M_e, gam, p_a, model="veen", th=None):
     return MODELS[model][0](p_e, M_e, gam, p_a, th)
 
 
+BAND_MEASURED = {k: band_measured(k) for k in
+                 ("chutkey", "veen", "conical", "cylindrical", "rome",
+                  "panov_shvets")}
+
+
 def base_term(p_b, y_b, p_a):
     """The base's contribution to the axial thrust: the ONLY place the
     closure enters J. Vanishes with the base area, so a plug driven to
@@ -278,12 +380,17 @@ def base_term(p_b, y_b, p_a):
     return (p_b - p_a) * jnp.pi * y_b ** 2
 
 
-def band_base(p_e, M_e, gam, y_b, p_a, model="veen", band=BAND_PB,
+def band_base(p_e, M_e, gam, y_b, p_a, model="veen", band=None,
               th=None):
     """The band the base term carries into J, from the model-form
     bracket alone (no RDE effect, no resolution). Returned as
     (J_base, half-width low, half-width high) so a selector can sum it
-    with band_J and band_W instead of comparing bare numbers."""
+    with band_J and band_W instead of comparing bare numbers. band=None
+    takes the member's MEASURED band (Chutkey 2014 points, 2026-09-18),
+    falling back to the quoted WG10 bracket for a member without one;
+    before 2026-09-18 every member carried the WG10 bracket."""
+    if band is None:
+        band = BAND_MEASURED.get(model, BAND_PB)
     pb = p_base(p_e, M_e, gam, p_a, model, th)
     j0 = base_term(pb, y_b, p_a)
     lo = base_term(pb * (1.0 + band[0]), y_b, p_a)
@@ -359,9 +466,7 @@ def dveen(p_e, M_e):
 # plug literature (Veen's design mechanics, harvest sec. 11) and it is
 # DECLARED here, not derived: it is exactly what a viscous base
 # interaction can break, and the N2 slot is where that breakage lives.
-import os                                                 # noqa: E402
 import sys                                                # noqa: E402
-import json                                               # noqa: E402
 import time                                               # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -665,8 +770,11 @@ def band_stage():
     frac = (x - x[0]) / (x[-1] - x[0])
     band_J = float(D["band_J"])
     say("   the member: J %.8e N at full length; the tournament's own"
-        " band_J %.3e N (%.2e of J); the closure band %s"
-        % (J_full, band_J, band_J / J_full, str(BAND_PB)))
+        " band_J %.3e N (%.2e of J); the closure bands are the MEASURED"
+        " ones (Chutkey 2014 points): %s"
+        % (J_full, band_J, band_J / J_full,
+           ", ".join("%s (%+.2f,%+.2f)" % (k, v[0], v[1])
+                     for k, v in BAND_MEASURED.items())))
     say("   rung = retained length fraction; every row is J(L_cap) with"
         " its base term, +- the band the closure form carries")
     rungs = [i for i in range(len(x))
@@ -674,10 +782,14 @@ def band_stage():
     if rungs[-1] != len(x) - 1:
         rungs.append(len(x) - 1)
     ok = True
+    # B-3's ledger: at each cap, for each member, the interval of
+    # J_trunc = core + base against the IDEAL BOUND J_full (see below)
+    above = {}
     for i in rungs:
         A_b = np.pi * y[i] ** 2
         line, lo_hi = [], []
-        for nm in ("veen", "rome", "conical", "cylindrical", "rocketdyne"):
+        for nm in ("chutkey", "veen", "rome", "conical", "cylindrical",
+                   "rocketdyne"):
             if nm == "rocketdyne":
                 pb = float(p_base_recovered(J_full, F[i], A_b))
                 j0 = float(base_term(pb, y[i], float(P.PA)))
@@ -692,8 +804,14 @@ def band_stage():
                                             jnp.asarray(gam[i]), float(y[i]),
                                             float(P.PA), nm,
                                             th=jnp.asarray(th[i]))]
-            line.append("%s %+.3e N [-%.1e,+%.1e]" % (nm, j0, d_lo, d_hi))
+            # the interval as its two edges: a member whose measured band
+            # is one-sided (veen, rome) has its central value OUTSIDE it
+            line.append("%s %+.3e N (%+.1e..%+.1e)" % (nm, j0, j0 - d_lo,
+                                                        j0 + d_hi))
             lo_hi.append((F[i] + j0 - d_lo, F[i] + j0 + d_hi))
+            if i != rungs[-1]:
+                above.setdefault(nm, []).append(
+                    (frac[i], F[i] + j0 - J_full, F[i] + j0 - d_lo - J_full))
         spread = max(h for _, h in lo_hi) - min(l for l, _ in lo_hi)
         say("   L_cap %5.1f %% (x %.3f, y_b %.4f m, wall %.1f deg): core"
             " %.8e N, loss vs full %+.4e N | base terms: %s"
@@ -706,6 +824,43 @@ def band_stage():
             ok = check("B-1 at full length every closure's interval"
                        " contains the untruncated J (spread %.3e <= band_J"
                        " %.3e)" % (spread, band_J), spread <= band_J)
+    # ---- B-3: the ideal-thrust bound, a rejector no fit can argue with
+    # The untruncated member IS the isentropic expansion of the whole
+    # mass to p_a (B-2: its last stretch is sub-ambient by design), so
+    # J_full is the ideal thrust to the resolution of the march. A
+    # truncated member closes its base through a dissipative
+    # recirculation: NO physical closure may put J_trunc = core + base
+    # above J_full. Where a member's central value does, it is being
+    # read out of the class it was fitted in -- and the caps where that
+    # happens are a DERIVED window, sharper than the declared
+    # ENVELOPE_RETAINED. The threshold that grades the adopted member
+    # is not ours: 20 percent retained is the SHORTEST plug in the
+    # data that fitted it (Chutkey 2014 Table 2), where the member
+    # already over-reads its own points by +20..+43 percent (stage
+    # data). Below that length it is extrapolating, and the bound says
+    # by how much.
+    SHORTEST_FITTED = _CK["shortest_fitted"]
+    for nm, rows_ in above.items():
+        viol = [(f, dj) for f, dj, _ in rows_ if dj > 0.0]
+        hard = [(f, dl) for f, _, dl in rows_ if dl > 0.0]
+        say("   IDEAL BOUND, %-12s central value above J_full at %d of %d"
+            " caps%s; whole interval above at %d cap(s)%s"
+            % (nm, len(viol), len(rows_),
+               (" (" + ", ".join("%.1f %%: %+.2e N" % (100 * f, dj)
+                                 for f, dj in viol) + ")") if viol else "",
+               len(hard),
+               (" (" + ", ".join("%.1f %%" % (100 * f) for f, _ in hard)
+                + ")") if hard else ""))
+    viol_c = [f for f, dj, _ in above["chutkey"] if dj > 0.0]
+    hard_c = [f for f, _, dl in above["chutkey"] if dl > 0.0]
+    check("B-3 the adopted member (chutkey) breaks the ideal-thrust bound"
+          " only below the shortest plug it was fitted on (%d violating"
+          " cap(s) %s, all < %.0f %% retained) and never with its whole"
+          " measured interval (%d)"
+          % (len(viol_c), ["%.1f %%" % (100 * f) for f in viol_c],
+             100 * SHORTEST_FITTED, len(hard_c)),
+          all(f < SHORTEST_FITTED for f in viol_c) and not hard_c)
+
     # B-2 AS FIRST POSED WAS WRONG (2026-09-17): the core thrust is not
     # monotone in the cap, and it must not be -- on an ideal member the
     # wall pressure crosses BELOW the ambient near the tip (measured:
@@ -724,6 +879,135 @@ def band_stage():
     return NPASS[0] == NPASS[1]
 
 
+# ======================================================================
+# stage data: the family graded on the measured points, no march
+# ======================================================================
+def data_stage():
+    """Every member against Chutkey 2014's ten closed-wake points, in
+    the family's own signature. First the known-answer rows: the paper
+    prints what its four model columns give at each point, and our
+    members must reproduce those digits (otherwise what we grade is not
+    what the literature consumes). Then the grading, per member, and
+    the bands it MEASURES -- which replace the quoted WG10 bracket."""
+    t00 = time.time()
+    say("== [F3] the closure family on the measured points [X-BPRS]"
+        " (stage data: Chutkey 2014 Tables 7-8, %d points, gamma %.1f) =="
+        % (len(CHUTKEY_2014), CHUTKEY_GAMMA))
+    # ---- KA-1: our members ARE the literature's relations -----------
+    worst = {"eq1": 0.0, "cylindrical": 0.0, "conical": 0.0, "rome": 0.0}
+    n_ka = 0
+    for (nm, PR, L, beta, M, r_exp, r0, e1, cyl, cone, onof) in CHUTKEY_2014:
+        plip_p0 = r0 / r_exp
+        ours = {"eq1": float(_chutkey(1.0, M, CHUTKEY_GAMMA, 0.0)) * plip_p0,
+                "cylindrical": float(_cylindrical(1.0, M, CHUTKEY_GAMMA, 0.0)) * plip_p0,
+                "conical": float(_conical(1.0, M, CHUTKEY_GAMMA, 0.0)) * plip_p0}
+        theirs = {"eq1": e1, "cylindrical": cyl, "conical": cone}
+        if beta is not None and onof is not None:
+            ours["rome"] = float(_rome(1.0, M, CHUTKEY_GAMMA, 0.0,
+                                       jnp.radians(beta))) * plip_p0
+            theirs["rome"] = onof
+        line = []
+        for k in ours:
+            worst[k] = max(worst[k], abs(ours[k] - theirs[k]))
+            line.append("%s %.4f/%.4f" % (k, ours[k], theirs[k]))
+            n_ka += 1
+        say("   %-14s M_lip %.3f  p_b/p_lip meas %.4f  p_b/p_0 meas %.4f |"
+            " ours/theirs: %s" % (nm, M, r_exp, r0, "; ".join(line)))
+    check("KA-1 our conical, cylindrical, Sapienza and chutkey members"
+          " reproduce the paper's own four model columns at every point"
+          " (%d values, worst |diff| %.1e <= %.1e = one printed digit)"
+          % (n_ka, max(worst.values()), CHUTKEY_PRINT_TOL),
+          max(worst.values()) <= CHUTKEY_PRINT_TOL)
+    # ---- D-1: the grading ---------------------------------------------
+    say("   member        n   mean     min      max      rms   -> measured band on p_b (lo, hi)")
+    G = {}
+    for k in ("chutkey", "cylindrical", "conical", "rome", "veen",
+              "panov_shvets"):
+        e = grade(k)
+        G[k] = e
+        lo, hi = BAND_MEASURED[k]
+        say("   %-12s %2d  %+.3f   %+.3f   %+.3f   %.3f   -> (%+.2f, %+.2f)"
+            % (k, len(e), e.mean(), e.min(), e.max(),
+               float(np.sqrt((e ** 2).mean())), lo, hi))
+    ev = G["veen"]
+    check("D-1 the incumbent (Veen) is BELOW the measured p_b at every"
+          " point and outside the quoted WG10 bracket at every point"
+          " (errors %+.2f .. %+.2f, bracket lower edge %+.2f)"
+          % (ev.min(), ev.max(), BAND_PB[0]),
+          bool(np.all(ev < BAND_PB[0])))
+    er = G["rome"]
+    check("D-1b the WG10 'best' member (Sapienza) is ABOVE the measured"
+          " p_b at every posed point and outside the WG10 bracket"
+          " (errors %+.2f .. %+.2f, bracket upper edge %+.2f): the"
+          " bracket BAND_PB does not hold on this dataset"
+          % (er.min(), er.max(), BAND_PB[1]),
+          bool(np.all(er > BAND_PB[1])))
+    # ---- D-2: the member the data grade best, and its band -----------
+    rms = {k: float(np.sqrt((G[k] ** 2).mean())) for k in G}
+    best = min(rms, key=rms.get)
+    ec = G["chutkey"]
+    check("D-2 the chutkey member is the lowest-rms member on the data"
+          " (%s %.3f; mean %+.3f) and straddles them (min %+.2f < 0 <"
+          " max %+.2f): its measured band is the one band_base carries"
+          % (best, rms[best], ec.mean(), ec.min(), ec.max()),
+          best == "chutkey" and ec.min() < 0.0 < ec.max())
+    # ---- D-3: the near-constancy of p_b/p_lip -------------------------
+    r = np.array([row[5] for row in CHUTKEY_2014])
+    M = np.array([row[4] for row in CHUTKEY_2014])
+    say("   measured p_b/p_lip: mean %.3f, std %.3f, range %.3f-%.3f over"
+        " M_lip %.2f-%.2f -- the closed-wake base sits at HALF the lip"
+        " pressure, weakly in Mach" % (r.mean(), r.std(), r.min(), r.max(),
+                                       M.min(), M.max()))
+    check("D-3 p_b/p_lip is a weak function of the lip state on the data"
+          " (std/mean %.2f <= %.2f) -- the incumbent's M^-1.3 fall-off"
+          " (%.2f -> %.2f over the same Mach range) is not in the data"
+          % (r.std() / r.mean(), _CK["weak_mach_cv"],
+             VEEN_C / M.min() ** VEEN_E, VEEN_C / M.max() ** VEEN_E),
+          r.std() / r.mean() <= _CK["weak_mach_cv"])
+    # ---- D-4: the ambient-referenced member in a closed wake ---------
+    pb_pa = np.array([row[6] * row[1] for row in CHUTKEY_2014])
+    ep = G["panov_shvets"]
+    say("   measured closed-wake p_b/p_a spans %.2f-%.2f across the rigs"
+        " (PR 37-1375): the wake is CLOSED, so p_b does not read p_a --"
+        " Panov-Shvets, written on p_a, errs %+.2f .. %+.2f"
+        % (pb_pa.min(), pb_pa.max(), ep.min(), ep.max()))
+    check("D-4 the ambient-referenced member's error spread on the"
+          " closed-wake data (%.2f) exceeds every lip-referenced"
+          " member's (max %.2f): a closure on p_a is structurally wrong"
+          " in the closed regime"
+          % (ep.max() - ep.min(),
+             max(G[k].max() - G[k].min() for k in G if k != "panov_shvets")),
+          ep.max() - ep.min() > max(G[k].max() - G[k].min()
+                                    for k in G if k != "panov_shvets"))
+    # ---- D-5: Sule & Mueller's trend as a falsifier -----------------
+    # Fig. 4 (sule_mueller_1973): closed-wake p_b decreases with plug
+    # length. On the ATPN series (20 -> 34 -> 41 -> 48 percent, one rig,
+    # one design PR) the measured p_b/p_0 must fall and so must the
+    # member's, pair by pair.
+    atpn = [row for row in CHUTKEY_2014 if row[0].startswith("ATPN")]
+    meas = np.array([row[6] for row in atpn])
+    mod = np.array([float(_chutkey(1.0, row[4], CHUTKEY_GAMMA, 0.0))
+                    * row[6] / row[5] for row in atpn])
+    check("D-5 along the ATPN length series the member's p_b/p_0 falls"
+          " with the plug length as the measured one does (Sule & Mueller"
+          " Fig. 4 trend; measured %s, member %s)"
+          % (np.array2string(meas, precision=4),
+             np.array2string(mod, precision=4)),
+          bool(np.all(np.diff(meas) < 0) and np.all(np.diff(mod) < 0)))
+    rec = dict(points=len(CHUTKEY_2014), gamma=CHUTKEY_GAMMA,
+               errors={k: G[k].tolist() for k in G},
+               band_measured={k: list(v) for k, v in BAND_MEASURED.items()},
+               band_wg10=list(BAND_PB), rms=rms, best=best,
+               pb_over_plip=dict(mean=float(r.mean()), std=float(r.std())),
+               seconds=time.time() - t00)
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(ART, "data.json"), "w"), indent=1)
+    say("   graded record written to %s" % os.path.join(ART, "data.json"))
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                           time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 # the wall angle at which the Sapienza exponent changes sign (measured
 # on its own coefficients, 2026-09-17: PHI_A phi^4 + PHI_B phi^2 = PHI_C)
 PHI_ZERO = float(np.sqrt((-PHI_B + np.sqrt(PHI_B ** 2 + 4 * PHI_A * PHI_C))
@@ -732,4 +1016,5 @@ PHI_ZERO = float(np.sqrt((-PHI_B + np.sqrt(PHI_B ** 2 + 4 * PHI_A * PHI_C))
 STAGE = os.environ.get("A1_BPRS_STAGE", "derive")
 
 if __name__ == "__main__":
-    sys.exit(0 if (band_stage() if STAGE == "band" else derive()) else 1)
+    sys.exit(0 if {"band": band_stage, "data": data_stage}.get(STAGE, derive)()
+             else 1)

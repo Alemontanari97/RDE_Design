@@ -534,6 +534,15 @@ configuration (ii) with L_p < l(ξ_peak) and a base-pressure closure:
 T4's nesting fails, max∫ < ∫max strictly; compute the cycle-optimal
 truncated plug vs peak- and mean-designed baselines (Table-1 states).
 This is the first concrete problem NOT solved by any single-phase design.
+[PRACTICE, measured 2026-09-18, [X-BPRS] stage data/band: on the ten
+annular closed-wake points of Chutkey 2014 the base sits at p_b/p_lip =
+0.510 ± 0.075 over M_lip 2.6-5.4 — the legacy incumbent 0.846 p/M^1.3 is
+2-5x too deep at every point and the WG10 bracket holds for no classical
+member; the closure of record for PB-2 is a member GRADED on those points
+with its MEASURED band (chutkey, rms 25 %), and any closure is bounded by
+J_trunc ≤ J_full, the untruncated isentropic thrust — a rejector that
+ranks the members in the data's order without data. In the open wake
+p_b ≈ p_a (Sule & Mueller 1973), so the REGIME test precedes the closure.]
 
 PB-3 (shrouded duty split — conjecture C1). PB-1 for configuration (iii):
 optimal division of expansion duty between fixed shroud (collapse-prone,

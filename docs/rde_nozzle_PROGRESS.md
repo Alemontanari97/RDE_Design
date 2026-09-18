@@ -235,7 +235,19 @@
 ## findings per [X-RAOIS]/[X-RAOWD] (pending-declared SR-6); (5)
 ## documento italiano brick-2: §vsrao da emendare al membro rao_val (L
 ## 5.926, theta_E -0.020) — decisione owner; (6) bundle del branch in
-## RDE/handoff/ a OGNI chiusura (lezione S27).
+## RDE/handoff/ a OGNI chiusura (lezione S27). S31 (2026-09-18, log
+## validation/PROGRESS_2026-09-18_S31_base_data.md): la famiglia N2
+## GRADUATA SU PUNTI MISURATI (Chutkey 2014 Tabb. 7-8: dieci punti in
+## scia chiusa con stato al labbro + p_b misurata = la firma della
+## famiglia, nessuna marcia): known-answer sulle colonne del paper
+## all'ultima cifra; incumbent Veen 2-5x troppo profondo su OGNI punto,
+## bracket WG10 valido per nessun membro, p_b/p_lip = 0.510 +- 0.075;
+## membro 'chutkey' (Eq. (1), esponente LORO) con banda misurata;
+## limite ideale J_trunc <= J_full come rigettatore (B-3) che ordina
+## i membri come i dati; dati in validation/chutkey2014_closed_wake.json.
+## Adozione in J NON presa (A1_BASE_MODEL vuoto). PROSSIMO: twin di
+## marcia sull'ATPN di Chutkey (contorno Fig. 2b + p_w Fig. 9d,
+## digitalizzazione dell'owner), poi test di regime come sensibilita'.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

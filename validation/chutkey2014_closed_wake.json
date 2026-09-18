@@ -1,0 +1,40 @@
+{
+ "_doc": [
+  "Chutkey, Vasudevan & Balakrishnan 2014, Analysis of Annular Plug Nozzle",
+  "Flowfield, JSR 51(2):478-490, doi:10.2514/1.A32617 -- Tables 7 and 8",
+  "(pp. 488-489) transcribed verbatim (registry row chutkey_2014, reading",
+  "validation/READING_2026-09-17_plug_base_sources.md sec. 3). CLOSED-WAKE",
+  "base pressure MEASURED by static taps, with the base-lip state: M_lip",
+  "from their grid-converged RANS, p_lip/p_0 = pb_p0 / pb_plip. Consumed by",
+  "validation/base_pressure.py (member 'chutkey', BAND_MEASURED, stage",
+  "data). Every constant carries its class (validation/dof_audit.md",
+  "taxonomy) and provenance; none was fitted by this program."
+ ],
+ "constants": {
+  "exponent": {"value": 0.7027, "cls": "EMPIRICAL",
+               "note": "Eq. (1) p. 489: THEIR least-squares exponent on the Lamb-Oberkampf cylindrical form over the ten points below; errors on its own data +43..-39 percent"},
+  "gamma": {"value": 1.4, "cls": "SPEC",
+            "note": "cold air in every rig of the table"},
+  "print_tol": {"value": 0.00015, "cls": "NUMERIC",
+                "note": "the paper prints p_b/p_0 to four decimals from a p_lip/p_0 it does not print: one unit in the last digit plus the rounding of the ratio (known-answer gate KA-1)"},
+  "shortest_fitted": {"value": 0.20, "cls": "SPEC",
+                      "note": "Table 2: the shortest plug in the fitting set, 20 percent retained (ATPN 20, Tomita 20); below it the member extrapolates (gate B-3 threshold)"},
+  "weak_mach_cv": {"value": 0.20, "cls": "NUMERIC",
+                   "note": "gate D-3: coefficient of variation of the measured p_b/p_lip below which the base is declared a weak function of the lip Mach; measured 0.15"}
+ },
+ "columns": ["source", "design_PR", "retained_percent", "beta_deg", "M_lip",
+             "pb_plip_meas", "pb_p0_meas", "pb_p0_eq1", "pb_p0_fs_cylinder",
+             "pb_p0_fs_cone", "pb_p0_onofri"],
+ "points": [
+  ["Tomita 1998",   71.0,   20.0,  null,  2.609, 0.4824, 0.0238, 0.0286, 0.0312, 0.0361, null],
+  ["ATPN 20",       66.0,   20.0,  19.13, 2.715, 0.3928, 0.0165, 0.0236, 0.0266, 0.0302, 0.0440],
+  ["ATPN 34",       66.0,   34.0,  14.26, 2.986, 0.4712, 0.0131, 0.0145, 0.0174, 0.0193, 0.0236],
+  ["ATPN 41",       66.0,   41.0,  12.65, 3.093, 0.4898, 0.0116, 0.0120, 0.0148, 0.0162, 0.0176],
+  ["F&S 24-module", 250.7,   0.0,  null,  3.148, 0.4343, 0.0095, 0.0109, 0.0136, 0.0148, null],
+  ["ATPN 48",       66.0,   48.0,  11.44, 3.173, 0.4750, 0.0100, 0.0105, 0.0131, 0.0142, 0.0138],
+  ["ref [30]",      37.0,   null,  null,  3.494, 0.5847, 0.0077, 0.0061, 0.0081, 0.0085, null],
+  ["F&S 9.4%",      250.7,   9.4,  null,  3.616, 0.6147, 0.0068, 0.0049, 0.0067, 0.0071, null],
+  ["F&S 9%",        515.0,   9.0,  null,  3.743, 0.6375, 0.0059, 0.0040, 0.0056, 0.0058, null],
+  ["F&S 16%",       1375.0, 16.0,  null,  5.351, 0.5213, 0.0007, 0.0004, 0.0007, 0.0007, null]
+ ]
+}

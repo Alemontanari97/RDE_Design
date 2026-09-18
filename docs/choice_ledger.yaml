@@ -823,6 +823,7 @@ entries:
     - "Nasuti-Onofri transition-PR model (open->closed wake transition; the only validated classical piece, [MODEL-VAL] per WG10 pp. 10-11)"
     - "derived N2 closure (the problem book's declared owner of the slot; WG10 verdict on Eq. (5.1): 'N2 MUST REPLACE IT')"
     - "measured closure (V1.4-class CTAP: the single existing hot-fire RDE base-pressure measurement, Purdue nozzleless, transition Pa/Pc ~ 0.15)"
+    - "Chutkey 2014 Eq. (1) member (annular truncated-plug closed-wake correlation, THEIR least-squares exponent on ten measured points; graded by us 2026-09-18 [X-BPRS] stage data: mean -2 percent, rms 25, band [-40, +43] percent -- against the incumbent Veen at -63 percent mean, below EVERY measured point, and the WG10 bracket that holds for no member on that dataset; executable as base_pressure.MODELS['chutkey'] with its measured band, adoption into J of record NOT taken: A1_BASE_MODEL stays unset)"
   status: NEVER
   evidence: "validation/sfoundations_raws_2026-08-13/blocco3/BASE_PRESSURE_HARVEST_c4.md"
   owner: "N2/F4b window (base-pressure closure adjudication rides the F4b external-expansion window; shares the diff par.2.9 agenda entry with findings rows litreview:residue-r8-r23-base-pressure-pb2-blocking (:2092, trigger 'PB-2 base-pressure closure window') and plume:free-boundary-solve-mechanics-missing (:2519, H20 — which carries the neighboring SOLVE mechanics, not this closure-model choice))"

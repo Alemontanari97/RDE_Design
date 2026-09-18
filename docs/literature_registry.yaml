@@ -1282,13 +1282,19 @@ entries:
 - id: channapragada_1963
   identity: "Channapragada 1963, Compressible Jet Spread Parameter for Mixing Zone Analyses, AIAA J 1(9):2188-2190"
   paths: ["GENO/literature/channapragada1963.pdf"]
-  status: UNREAD
+  status: READ-PARTIAL
+  where_read:
+    - "validation/READING_2026-09-17_plug_base_sources.md#4. Channapragada 1963"
+  summary: "Read 2026-09-18 (S31) for what the Korst chain needs, equations figure-borne and NOT transcribed. Semi-empirical compressible jet spread parameter: Prandtl mixing length + Howarth transformation with the density ratio on the mean flow, sigma/sigma* as a function of the jet Crocco number and the stagnation-temperature ratio (Eqs. (8)-(9), p. 2189), sigma* = 12 (Tollmien), starting point Korst-Tripp sigma = 12 + 2.76 M; upper limit sigma/sigma* = 4 as the Crocco number -> 1; a hotter jet spreads faster. The band across the formulations on its Fig. 3 is the band the N2 Korst chain inherits for sigma."
   owner: "N2/F4b window -- the jet spread parameter sigma, i.e. ONE of the two empirical inputs of the Korst-class chain this line is building (the other being the recompression location); named as the sigma source by sule_mueller_1973. Procured 2026-09-18; to be read when the mixing-layer algebra (W4) is written, and its banded range is what the chain's uncertainty reduces to."
 
 - id: chutkey_2014
-  identity: "Chutkey, Vasudevan & Balakrishnan 2014, Analysis of annular plug nozzle flowfield, JSR 51(2):478-490"
+  identity: "Chutkey, Vasudevan & Balakrishnan 2014, Analysis of annular plug nozzle flowfield, JSR 51(2):478-490, doi:10.2514/1.A32617"
   paths: ["GENO/literature/chutkey-et-al-2014-analysis-of-annular-plug-nozzle-flowfield.pdf"]
-  status: UNREAD
+  status: READ-INTEGRAL
+  where_read:
+    - "validation/READING_2026-09-17_plug_base_sources.md#3. Chutkey, Vasudevan & Balakrishnan 2014"
+  summary: "READ IN FULL 2026-09-18 (S31). Truncated ANNULAR plug nozzles 20/34/41/48 percent (Angelino MoC plug, PR_des 66, exit radius 32 mm, full length 106.2 mm, primary nozzle given analytically, tilt 56.9 deg; Fig. 2b = the full-length contour), cold air, static taps on plug and base + RANS (HiFUN, SA-cc). THE DATASET THE N2 SLOT WAS MISSING: Tables 7-8 give, at ten annular closed-wake points (their four + Tomita 1998 + Fick & Schmucker's four + ref [30]), the base-lip Mach, p_b/p_lip MEASURED and p_b/p_0 MEASURED together with the paper's own four model columns -- i.e. the closure family's signature (p_lip, M_lip) -> p_b at measured points; transcribed verbatim into validation/base_pressure.CHUTKEY_2014 and consumed by stage data. Their Eq. (1): p_b = p_lip [0.05 + 0.967 (1 + (gamma-1)/2 M_lip^2)^-1]^0.7027 (Lamb-Oberkampf cylindrical form, exponent least-squares on the ten points; errors +43..-39 percent on its own data) = the member 'chutkey'. Measured p_b/p_lip = 0.510 +- 0.075 over M_lip 2.61-5.35 (half the lip pressure, weakly in Mach); closed-wake p_b/p_0 falls LINEARLY with retained length (-2.3e-4 per percent, Fig. 19). Regimes: type 1 / type 2 / closed; transition PR 42/57/60/60 for 20/34/41/48 percent on PR_des 66, asymptoting to ~0.9 PR_des for long plugs (Fig. 20; Nasuti-Onofri's criterion to -0.5..-11 percent, Table 6); annular OPEN-wake p_b varies about the ambient, and 'from the viewpoint of design' the ambient is a reasonable assumption there. RANS: plug-surface pressure grid-converged and matching experiment; BASE pressure off by up to 35 percent, biased above on annular plugs -- the accuracy class of a RANS confirmation on a plug base. Onofri's relation +37..+167 percent on the four ATPN (beta 19.13..11.44 deg)."
   owner: "N2/F4b window -- the second experimental truncated-plug base-pressure dataset of the corpus (the first being sule_mueller_1973, filed the same day); procured 2026-09-18 on the owner's initiative after [X-BPRS] measured that the classical closure family cannot arbitrate. To be read against the wake chain's W3-W5 and the regime test, NOT as a band input before it is read."
 
 - id: wanted_fievisohn_2018_quasi2d_moc
