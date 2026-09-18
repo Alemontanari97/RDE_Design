@@ -117,3 +117,60 @@ registry rows (lit: chutkey_2014, channapragada_1963; claims: X-BPRS
 re-stamped; flags: A1_BASE_MODEL, A1_BPRS_STAGE; choice: C61
 alternative), ADVISORY_INDEX, this log. Lints and suite: quoted in the
 commit message.
+
+## 7. The march twin on Chutkey's ATPN, started and OPEN [X-CHTW] (evening)
+
+The owner digitised Fig. 2b (`validation/chutkey2014_fig2b_contour.txt`);
+Table 2's four base radii are exact (x, y) points of that contour and
+grade the digitisation without us: 0.19/0.10/0.09/−0.04 mm raw, and
+0.06/0.00/−0.01/−0.12 mm once the abscissae are shifted by the ONE
+parameter the foot identity derives (the first digitised point is the
+plug-side throat point (−2.22, 30.55) mm read 0.39 mm late in x; the
+first chord then slopes −57.6° against the throat's −56.9°). The mass
+through the tilted sonic line equals the choked throat's to 3e-8, and at
+T_0 300 K it is 8.19 kg/s against the paper's 8.12 at PR 66: their
+stagnation temperature is ambient. T-0: the tilt 56.9° = ν(M_e) on our
+tables to 0.01°, i.e. Chutkey's plug is Angelino's posing = our lip fan
+with the inlet Mach 1.
+
+**What did not work, with the cause measured** (`a1_chutkey_twin.py`
+derive 4/9, `_chutkey_twin/run_derive_2026-09-18.log`):
+1. The sonic line as the start column: a double characteristic (μ = 90°),
+   Cauchy on it is ill-posed, the march certifies 1e18.
+2. The cut at X0 through the axisymmetric fan ([X-AFAN] `fan_axi`): the
+   fan of a SONIC lip spans ray angles −146.9…−17.1°, its C- family
+   passes through the vertical (M 1.47 on this gas), and every cell of
+   the record is in slope form dy = λ dx — the Newton converges to its
+   round-off floor (|dz| 1e-9, cond 8.5e9) yet reads uncertified,
+   6e2…2e3 in BOTH worlds for M_i ≤ 1.3, 0.02-0.05 for M_i ≥ 1.6; the
+   gas is excluded (cold world at M_i 2: 0.024); the geometric scale is
+   excluded (identical wall at R = 32 mm and R = 1). With the fan at
+   M_i 1.6 (certified 0.049) the plug march from the cut still does not
+   certify (7e10, mass −10.7 %): its near-cut cells carry C- within 10°
+   of vertical. **The wall rows (p_w/p_0 +8…+13 % above the paper, M −2 %)
+   are an indication, not a result (G1).**
+3. GENO, read for the same question (`InitialValues_m.f90`
+   `IVLINE_annular_solve`, `GenoPlug/src/geno.f90`, `Interior_m.f90`):
+   GenoPlug is an internal-external plug (sonic throat upstream on an
+   arc R_c, lip at M_i > 1, inverse construction); the direct annular
+   start line is Migdal 1972's uniform tilted line at Mi_ann (default
+   sonic) — the posing tried in 1 — marched with the same slope-form
+   cells (`lm = tan(A − asin(1/M))`). The limit is shared; no Sauer
+   exists for the annular throat there (Sauer is the bell's IVL only).
+
+**Indicative, declared, not adjudicated:** Angelino's contour lies
+0.75-0.96 mm (3 % of R_lip) ABOVE the M_i-1.6 axisymmetric member over
+20-50 % of the length, tip 3.1 mm longer — their "mild compression wave
+at the junction" would be this; but that member passes 5 % less mass
+than the choked throat (its throat strip is unmarched), so the offset
+is not a finding.
+
+**The brick that closes the twin:** a direction-invariant cell for the
+throat kernel — frame rotated by ~−80° (marching radially inward near
+the throat) with the axisymmetric source on the true radius; the
+sonic-lip fan's characteristic directions span 146° < 180°, so one
+frame avoids the vertical for both families — gated on the planar PM
+fan as [X-AFAN] G-0. Then T-4…T-7 become readable, the X0 ladder
+measures the throat strip, and Fig. 9d (to be digitised) reads the
+first 15 mm. Registry: `[X-CHTW]` OPEN, 4/9 of record; ondemand carrier,
+no suite gate.

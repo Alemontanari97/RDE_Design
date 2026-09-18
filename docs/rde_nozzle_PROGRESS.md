@@ -245,9 +245,14 @@
 ## membro 'chutkey' (Eq. (1), esponente LORO) con banda misurata;
 ## limite ideale J_trunc <= J_full come rigettatore (B-3) che ordina
 ## i membri come i dati; dati in validation/chutkey2014_closed_wake.json.
-## Adozione in J NON presa (A1_BASE_MODEL vuoto). PROSSIMO: twin di
-## marcia sull'ATPN di Chutkey (contorno Fig. 2b + p_w Fig. 9d,
-## digitalizzazione dell'owner), poi test di regime come sensibilita'.
+## Adozione in J NON presa (A1_BASE_MODEL vuoto). SERA: twin di marcia
+## sull'ATPN di Chutkey [X-CHTW] APERTO 4/9 (contorno Fig. 2b
+## digitalizzato dall'owner, Tab. 2 lo grada a 0.12 mm; massa sonica =
+## strozzata 3e-8; tilt = nu(M_e) a 0.01 deg) — la marcia NON certifica:
+## limite strutturale delle celle in forma di pendenza sui raggi
+## verticali del ventaglio da labbro sonico (M 1.47), condiviso da GENO;
+## brick che chiude = cella in frame ruotato (~-80 deg) per il kernel di
+## gola. PROSSIMO: quel brick, oppure il test di regime come sensibilita'.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
