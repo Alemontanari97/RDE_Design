@@ -1,0 +1,12 @@
+== [F3] Humphreys 1971, twin (A): Rao's member at their posing [X-HMPH] (stage rao) ==
+   world: gamma 1.23, R 301.3 J/kg/K, T_c 3333 K, p_c 3.4474e+06 Pa, p_a 1.0135e+05 Pa (PR 34.01); lip 8.33 in; mdot 67.168 kg/s
+   fan_axi (M_i 1.60, 121 x 121): cert worst 0.037, 17 s; M_e 2.8495, q_e 2277.5 m/s, p_e/p_a 1.000000; tip x 22.005 in, y_sp0 6.748 in
+  [PASS] R-0 the fan is Newton-certified on every cell the wall depends on (worst 0.037 <= 1)
+   mass through the terminal ray 62.502 kg/s = 137.79 lbm/s vs the paper's 148.08 (-6.95e-02)
+  [FAIL] R-1 Rao's cowl lip (8.33 in) is the mass-consistent lip of the ideal member at this posing: |dm/m| 6.95e-02 <= 1e-2 (the tip cut and the fan's own quadrature)
+   full ideal member: F = mdot q_e = 153.0 kN = 34390 lbf; wall push beyond D (x 11.52 in): 0.3 kN; base at D: y_D 1.633 in (Table 3: 1.375), p_D/p_a 1.713, M_D 2.551, Veen p_b/p_a 0.429 -> -0.3 kN
+   TRUNCATED MEMBER AT D: F = 152.4 kN = 34255 lbf vs Rao's 34,253 (+6.75e-05); without the base term 34326 lbf
+  [PASS] R-2 the ideal member truncated at Rao's D, base priced with their closure, reproduces Rao's thrust within 1 percent (the paper's shear model is 0.2 percent, not in ours): +6.75e-05
+  [FAIL] R-3 the member's base radius at x_D meets Rao's Table 3 within 5 percent of y_D (1.633 vs 1.375 in, +1.87e-01)
+
+== 2/4 PASS  (18.0 s) ==

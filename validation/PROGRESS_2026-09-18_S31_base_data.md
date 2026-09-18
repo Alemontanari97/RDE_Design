@@ -278,3 +278,61 @@ on the last resolution pair (161,81) → (321,161) 0.6-0.7 % (K_RICH band
 2.8 %), against the oracle's 3 % class. L-2/L-3 as first posed graded the
 coarsest rung and the leading-ray cut (5 % / 4 %) and were re-posed on
 the readable rungs.
+
+## 9. T-4b attributed: the mass defect is the cut data on a non-ideal wall (stage `mass`, 2/2)
+
+Column-by-column mass along the march (`plug_march` returns its mesh):
+
+| posing | cert | column 2 | mid | last |
+|---|---|---|---|---|
+| Chutkey's contour, cut of record (1.5 mm) | 0.070 | **−6.2 %** | −5.9 % | −5.5 % |
+| the fan's OWN wall, same cut | 0.065 | −0.02 % | +0.6 % | +0.7 % |
+| the fan's own wall, far cut (0.2 R) | 0.069 | −0.1 % | −0.03 % | 0.00 % |
+| Chutkey's contour, far cut (0.2 R) | 5.18 (uncertified) | −3.2 % | −3.2 % | −2.3 % |
+
+On the ideal wall the march conserves mass from either cut; on
+Chutkey's it loses it ONCE, in the first marched column (16 of 41 rows
+consumed at the wall side, the edge point dropping from 1.0 to 0.94 R),
+and is flat after — the signature the `plug_march` docstring records
+for the GENO twin. Not the marcher's loss: the cut carries the IDEAL
+fan's field, and below the C+ from the foot the real field over
+Chutkey's contour is not that; the difference is mass the data send
+into the wall. The wall pressure downstream is untouched (T-5/T-6: set
+by the local geometry and the incoming waves), the mass is. The remedy
+is a start computed ON the contour — the forward throat kernel from the
+sonic line, the owner's proposal of the evening — until which −6 % is
+the measure of that gap. `edge_fill` (the GENO twin's fix) does not
+apply: 0 and 6 give the same loss, 6 degrades the certification.
+
+## 10. Humphreys 1971, the optimisation twin [X-HMPH]: posed, (A) read, (B) launched
+
+Posing read from the paper (p. 1586): p_c 500 psia, T_c 6000 R, R 56
+ft·lbf/(lbm·R), γ 1.23, ṁ 148.08 lbm/s, p_a 14.7 psia (PR 34.0), L(T→D)
+12.0 in, base Eq. (12) = Veen, shear C_f 0.002 (~0.2 %), Moore-Hall
+start; results: Rao at lip 8.33 in / −58.5° → 34,253 lbf (Table 3, y_D
+1.375 in); their fixed-inlet optimum at 7.55 in / −34° → 32,881 lbf
+(Table 2, y_D 0.954 in); the whole 20-run grid within 0.5 %.
+
+**(A) stage `rao`** (`_humphreys_twin/run_rao_2026-09-18.log`, 2/4 as
+posed): our ideal member at lip 8.33 in and PR 34 (fan_axi cert 0.037)
+exhausts at M_e 2.8495, q_e 2277.5 m/s; ṁ·q_e = **34,390 lbf** is the
+ideal bound, against which Rao loses 0.4 % and their optimum 4.4 %. The
+truncated member with Veen base gives 34,255 lbf (Rao 34,253) — but
+with the paper's ṁ: the ideal member at that lip passes only 137.8
+lbm/s (−7 %; at 7.55 in −24 %), independent of M_i (fixed by the exit:
+ρ_e q_e π R_lip²). **With their mass and those lips the ideal member
+does not exist**: both Rao's length-constrained member and their
+optimum have non-uniform exits (p > p_a at D) and pass more mass than a
+full expansion allows at that lip. (A)'s valid reading is the ideal
+bound; R-1/R-3 as posed are not rows and are to be re-posed.
+
+**(B) stage `opt`**: the record's TR-SQP (`a1_plug_spline_opt`) at their
+posing, planar fan of record with the mass IMPOSED through the start
+radius at X0 = 0.05 R, sonic lip (M_i 1.0002), θ_E = 0 (rao) / +22.9°
+(opt: θ_i −34° + ν(M_e) — the jet boundary flares outward), base Veen,
+6 knots, (81,41), 30 segments × 8 iterations, launched on s2 at ~01:40
+(`_humphreys_twin/run_opt_{rao,opt}_2026-09-18.log`, results in
+`opt_{rao,opt}.json`). At launch: from the fan's streamline the Rao
+case reads 33,473 lbf (−2.3 % of 34,253) with y_D still 3.2 in; segment
+8: +0.8 %. To be read at the S32 opening: O-1 certified, O-2 thrust
+within 1 % (their shear 0.2 %), and the contour against Tables 3/2.

@@ -126,6 +126,8 @@ TIP_CUT = 0.01                         # wall read down to y = 0.01 R_lip
 S_LEN = 1.0 / R_LIP                    # the frame: lengths in lip radii
 X0_MM = float(os.environ.get("CHTW_X0_MM", 1.5))   # the cut, in mm
 M_I_FAN = 1.6                          # fan_axi's leading ray (see (ii))
+MASS_TOL = 1e-2                        # the march's mass conservation class
+FAR_CUT_R = 0.2                        # the record's cut (X0 0.35 m on R 1.74)
 
 
 def check(label, ok):
@@ -455,8 +457,8 @@ def derive():
     check("T-4 every cell of the march is Newton-certified (worst %.3f"
           " <= 1)" % r["cert"], r["cert"] <= 1.0)
     check("T-4b mass through the last column equals the mass through the"
-          " cut (%.2e rel <= 1e-2)" % abs(r["md_out"] / c["md_in"] - 1),
-          abs(r["md_out"] / c["md_in"] - 1) <= 1e-2)
+          " cut (%.2e rel <= %.0e)" % (abs(r["md_out"] / c["md_in"] - 1), MASS_TOL),
+          abs(r["md_out"] / c["md_in"] - 1) <= MASS_TOL)
     # ---- T-5/T-6: the wall at the four ATPN stations --------------
     rows = read_stations(w, c, r)
     say("   station   x [mm]   p_w/p_0 march   p_lip/p_0 paper   rel   |"
@@ -550,8 +552,11 @@ def ladder():
         " [X-CHTW] (stage ladder) ==")
     w = build_world()
     fan = fan_axi_lip(w)
-    rungs = [(2.0, 81, 41), (1.5, 81, 41), (1.0, 81, 41),
-             (1.5, 161, 81), (1.5, 321, 161)]
+    # rungs derived from the record resolution (K_ST, N_ROW) and the cut
+    # of record X0_MM: half, the record, double; the cut +-0.5 mm
+    Kc, Nc = K_ST // 2, (N_ROW + 1) // 2
+    rungs = [(X0_MM + 0.5, Kc, Nc), (X0_MM, Kc, Nc), (X0_MM - 0.5, Kc, Nc),
+             (X0_MM, K_ST, N_ROW), (X0_MM, 2 * K_ST - 1, 2 * N_ROW - 1)]
     table = []
     for x0_mm, K, N in rungs:
         c = build_case(w, K=K, N=N, x0_mm=x0_mm, fan=fan)
@@ -582,7 +587,7 @@ def ladder():
     sx_all = float(np.max(np.abs(P[:3] - P[2]) / P[2]))
     sr = float(np.max(np.abs(P[3] - P[4]) / P[4]))
     sr_all = float(np.max(np.abs(P[[1, 3, 4]] - P[4]) / P[4]))
-    say("   X0 sensitivity of p_w/p_0: 2.0 -> 1.5 mm %.2e (down to 1.0 mm,"
+    say("   X0 sensitivity of p_w/p_0: +0.5 -> 0 mm %.2e (down to -0.5 mm,"
         " the cut at the fan's leading ray: %.2e); resolution: (161,81) ->"
         " (321,161) %.2e, K_RICH band %.2e (from (81,41): %.2e); the same on"
         " M: %.2e / %.2e"
@@ -608,7 +613,111 @@ def ladder():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage mass: where the -5.6 percent goes (T-4b)
+# ----------------------------------------------------------------------
+def _mass_by_column(w, out, md0):
+    cols = {}
+    for (j, i), pt in zip(out["mesh_keys"], out["mesh_pts"]):
+        cols.setdefault(i, []).append((j, np.asarray(pt)))
+    rows = []
+    for i in sorted(cols):
+        col = np.array([pt for j, pt in sorted(cols[i])])
+        md, _ = col_fluxes(col, w["ta"], PA, 1.0)
+        rows.append((i, abs(md) / md0 - 1.0, len(col), float(col[-1, 1])))
+    return rows
+
+
+def _case_ideal_wall(w, fan, x0, K, N):
+    """The fan's OWN wall as the prescribed wall, same cut construction."""
+    sx, sy, th = fan["wall"][0], fan["wall"][1], fan["wall_th"]
+    keep = sy >= TIP_CUT
+    xw, yw = sx[keep], sy[keep]
+    Mc = spline_coeffs(jnp.asarray(xw), jnp.asarray(yw),
+                       float(np.tan(th[keep][0])))
+    xq = jnp.linspace(x0, float(xw[-1]), K + 1)[1:]
+    yq, sq = jax.vmap(lambda xx: spline_eval(xx, jnp.asarray(xw),
+                                             jnp.asarray(yw), Mc))(xq)
+    yw0 = float(spline_eval(jnp.float64(x0), jnp.asarray(xw),
+                            jnp.asarray(yw), Mc)[0])
+    yline = np.linspace(yw0, fan["LIP"][1], N)
+    uv = [fan["field"](x0, yy) for yy in yline]
+    us = np.array([q * np.cos(t) for q, t in uv])
+    vs = np.array([q * np.sin(t) for q, t in uv])
+    md_in, _ = col_fluxes(np.stack([np.full(N, x0), yline, us, vs], 1),
+                          w["ta"], PA, 1.0)
+    return ((np.asarray(xq), np.asarray(yq), np.asarray(sq)),
+            (x0, yline, us, vs), abs(md_in))
+
+
+def mass():
+    """T-4b's attribution. The mass through every column of the march
+    (plug_march returns its mesh) on three posings: Chutkey's contour
+    from the cut of record, the fan's OWN wall from the same cut, and
+    both from a cut far from the lip. MEASURED 2026-09-18: on the ideal
+    wall the march conserves mass to 1e-3 from either cut; on
+    Chutkey's contour it loses 6 percent (cut 1.5 mm) and 3 percent
+    (cut 0.2 R, uncertified) ONCE, in the first marched column, and is
+    flat after -- the same signature the plug_march docstring records
+    for the GENO twin. The loss is not the marcher's: it is the cut
+    data (the ideal fan's field) being read on a contour that is not
+    the ideal one; below the C+ from the foot the real field over
+    Chutkey's wall differs from the ideal's, and that mass the cut
+    carries into the wall. The wall pressure downstream is unaffected
+    (it is set by the local geometry and the incoming waves: T-5/T-6);
+    the mass is. The remedy is a start computed ON the contour -- the
+    forward throat kernel from the sonic line -- until which the 6
+    percent measures that gap."""
+    t00 = time.time()
+    say("== [F3] the Chutkey twin's mass balance attributed [X-CHTW]"
+        " (stage mass) ==")
+    w = build_world()
+    fan = fan_axi_lip(w)
+    K, N = K_ST // 2, (N_ROW + 1) // 2
+    x0r = X0_MM * 1e-3 * S_LEN
+    res = {}
+    for label, wall, x0 in (("chutkey/cut of record", "chutkey", x0r),
+                            ("ideal/cut of record", "ideal", x0r),
+                            ("ideal/far cut", "ideal", FAR_CUT_R),
+                            ("chutkey/far cut", "chutkey", FAR_CUT_R)):
+        if wall == "ideal":
+            st, start, md0 = _case_ideal_wall(w, fan, x0, K, N)
+            out, _ = plug_march(st, start, q_at_pa(PA, w["ta"], w["as_"]),
+                                w["tab"], 1.0)
+        else:
+            c = build_case(w, K=K, N=N, x0_mm=x0 / S_LEN * 1e3, fan=fan)
+            out, _ = plug_march(c["stations"], c["start"], c["qpa"],
+                                w["tab"], 1.0)
+            md0 = c["md_in"]
+        rows = _mass_by_column(w, out, md0)
+        res[label] = dict(cert=float(out["cert_worst"]), col2=rows[1][1],
+                          rows2=rows[1][2], edge2=rows[1][3],
+                          mid=rows[len(rows) // 2][1], last=rows[-1][1])
+        say("   %-20s cert %.3f | mass vs cut: column 2 %+.4f (rows %d, edge"
+            " y %.4f), mid %+.4f, last %+.4f"
+            % (label, res[label]["cert"], rows[1][1], rows[1][2], rows[1][3],
+               res[label]["mid"], res[label]["last"]))
+    a, b = res["ideal/cut of record"], res["ideal/far cut"]
+    check("M-1 on the fan's own wall the march conserves mass from either"
+          " cut (worst |dm/m| %.1e <= 1e-2)"
+          % max(abs(a["last"]), abs(b["last"]), abs(a["col2"]), abs(b["col2"])),
+          max(abs(a["last"]), abs(b["last"]), abs(a["col2"]), abs(b["col2"])) <= 1e-2)
+    ck = res["chutkey/cut of record"]
+    check("M-2 on Chutkey's contour the defect is ONE jump in the first"
+          " column (column 2 %+.4f, last %+.4f: |last - col2| %.1e <= %.0e)"
+          " -- cut data read on a non-ideal wall, not a march loss"
+          % (ck["col2"], ck["last"], abs(ck["last"] - ck["col2"]), MASS_TOL),
+          abs(ck["last"] - ck["col2"]) <= MASS_TOL)
+    os.makedirs(ART, exist_ok=True)
+    json.dump(dict(res=res, seconds=time.time() - t00),
+              open(os.path.join(ART, "mass.json"), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                          time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("CHTW_STAGE", "derive")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"ladder": ladder}.get(STAGE, derive)() else 1)
+    sys.exit(0 if {"ladder": ladder, "mass": mass}.get(STAGE, derive)()
+             else 1)

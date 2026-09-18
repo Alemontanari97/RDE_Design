@@ -1,0 +1,9 @@
+== [F3] the Chutkey twin's mass balance attributed [X-CHTW] (stage mass) ==
+   chutkey/cut of record cert 0.063 | mass vs cut: column 2 -0.0620 (rows 25, edge y 0.9400), mid -0.0591, last -0.0549
+   ideal/cut of record  cert 0.093 | mass vs cut: column 2 -0.0003 (rows 24, edge y 1.0001), mid +0.0054, last +0.0066
+   ideal/far cut        cert 0.845 | mass vs cut: column 2 -0.0010 (rows 38, edge y 0.9998), mid -0.0003, last -0.0000
+   chutkey/far cut      cert 0.066 | mass vs cut: column 2 -0.0319 (rows 38, edge y 0.9688), mid -0.0317, last -0.0231
+  [PASS] M-1 on the fan's own wall the march conserves mass from either cut (worst |dm/m| 6.6e-03 <= 1e-2)
+  [PASS] M-2 on Chutkey's contour the defect is ONE jump in the first column (column 2 -0.0620, last -0.0549: |last - col2| 7.2e-03 <= 1e-02) -- cut data read on a non-ideal wall, not a march loss
+
+== 2/2 PASS  (86.6 s) ==
