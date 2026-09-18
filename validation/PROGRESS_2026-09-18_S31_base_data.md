@@ -336,3 +336,38 @@ radius at X0 = 0.05 R, sonic lip (M_i 1.0002), θ_E = 0 (rao) / +22.9°
 case reads 33,473 lbf (−2.3 % of 34,253) with y_D still 3.2 in; segment
 8: +0.8 %. To be read at the S32 opening: O-1 certified, O-2 thrust
 within 1 % (their shear 0.2 %), and the contour against Tables 3/2.
+
+### 10.1 The legs closed (2032 s / 2052 s, 30 segments each, both certified)
+
+| case | our walk | paper | thrust | y_D ours | y_D paper |
+|---|---|---|---|---|---|
+| rao (8.33 in, θ_E 0) | 33,780 lbf, cert 0.510 | 34,253 | **−1.4 %** (O-2 FAIL at 1 %) | 2.11 in | 1.375 in |
+| opt (7.55 in, −34°) | 32,666 lbf, cert 0.522 | 32,881 | **−0.65 %** (O-2 PASS) | 3.47 in | 0.954 in |
+
+Figure `_humphreys_twin/figs/01_contours_vs_paper.png`. THE READING:
+the thrust rows pass or nearly pass because **J is a flat valley** —
+the paper's own 20-run grid lies within 0.5 %, and its base-model swap
+moves y_D ×2.45 at +0.26 % (S30's reading of the same exhibit) — while
+the contours are NOT reproduced: in the Rao case our walk follows Table
+3 to ~0.2 in up to x ≈ 8 in, then lifts its tip to y_D 2.11 in where
+Rao's bends down to 1.375 (the free-tip behaviour of S30, now with the
+base priced); in the opt case the walk ends fat, y_D 3.47 against 0.954,
+with the same thrust to 0.65 %. Two causes, both of posing, not of the
+walker alone: (i) the walks are unconverged (radius 1e-2 R with
+alternating rejections from segment 23 — the S30 stall); (ii) the inlet:
+our planar fan with the mass IMPOSED through the start radius (y_w0
+6.24 / 6.04 in at X0 = 0.38 in) is not their sonic throat at the lip
+(foot 7.61 / 6.72 in at x −0.6 in): the near-lip wall is a different
+object, and in the opt case (θ_E +22.9°, the jet flaring) the whole
+contour inherits it. The remedy is the same brick the day named three
+times: the throat kernel on the contour, from the sonic line.
+
+**A finding on the side, of record:** Rao's Table 3 contour lies ON our
+exact ideal member (dotted in the figure) over its whole length up to
+the last inch — Rao's length-constrained member at 8.33 in IS the ideal
+member truncated, to the digitisation of a printed table — while that
+member passes 137.8 lbm/s against their 148.08. Their mass is not the
+ideal member's mass at that lip: a 7 % discrepancy in THEIR posing
+(throat/discharge/gas convention), to be read before the twin is judged
+on thrust at the 1 % level. X-HMPH stays OPEN: 2/2 O-rows read, the
+contour rows unmet, the inlet posing declared as the cause.

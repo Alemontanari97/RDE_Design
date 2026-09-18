@@ -1,0 +1,41 @@
+== [F3] Humphreys 1971, twin (B) case rao: the TR-SQP at their posing [X-HMPH] (stage opt) ==
+   lip 8.33 in, L 11.518 in from the lip (1.3827 R), fan turn 56.95 deg -> theta_i -56.95 deg, theta_E 0.00 deg; mdot 148.08 lbm/s imposed through the cut at X0 0.05 R; base model veen; target 34253 lbf
+   start radius y_w0 6.242 in (mass-set), F_in 127.2 kN; knots [5.085 4.363 3.869 3.53  3.306 3.175]
+   the fan's streamline: cert 0.088, J 148.9 kN = 33473 lbf (-2.28e-02 vs target)
+    [seg  0] J = 3.32600091e+06  |grad| = 6.362e+05  cert = 0.088
+    [seg  1] trial J = 3.32469566e+06 REJECTED (worse than 3.32600091e+06) -> revert, radius -> 3.750e-02
+    [seg  2] J = 3.32600091e+06  |grad| = 6.362e+05  cert = 0.088
+    [seg  3] J = 3.35112347e+06  |grad| = 4.272e+05  cert = 0.300
+    [seg  4] trial J = 3.33630396e+06 REJECTED (worse than 3.35112347e+06) -> revert, radius -> 4.219e-02
+    [seg  5] J = 3.35112347e+06  |grad| = 4.272e+05  cert = 0.300
+    [seg  6] trial J = 3.34749437e+06 REJECTED (worse than 3.35112347e+06) -> revert, radius -> 3.164e-02
+    [seg  7] J = 3.35112347e+06  |grad| = 4.272e+05  cert = 0.300
+    [seg  8] J = 3.35246945e+06  |grad| = 5.160e+05  cert = 0.111
+    [seg  9] trial J = 3.32761097e+06 REJECTED (worse than 3.35246945e+06) -> revert, radius -> 3.560e-02
+    [seg 10] J = 3.35246945e+06  |grad| = 5.160e+05  cert = 0.111
+    [seg 11] trial J = 3.34419512e+06 REJECTED (worse than 3.35246945e+06) -> revert, radius -> 2.670e-02
+    [seg 12] J = 3.35246945e+06  |grad| = 5.160e+05  cert = 0.111
+    [seg 13] trial J = 3.35161702e+06 REJECTED (worse than 3.35246945e+06) -> revert, radius -> 2.002e-02
+    [seg 14] J = 3.35246945e+06  |grad| = 5.160e+05  cert = 0.111
+    [seg 14] no motion at radius 2.002e-02 -> retry at 1.001e-02 (same record)
+    [seg 15] J = 3.35563882e+06  |grad| = 1.653e+05  cert = 0.580
+    [seg 16] J = 3.35582446e+06  |grad| = 2.291e+05  cert = 0.167
+    [seg 17] base REJECTED (record not certified (worst 1.447e+00)) -> revert, radius -> 1.689e-02
+    [seg 18] J = 3.35582446e+06  |grad| = 2.291e+05  cert = 0.167
+    [seg 19] trial J = 3.35500059e+06 REJECTED (worse than 3.35582446e+06) -> revert, radius -> 1.267e-02
+    [seg 20] J = 3.35582446e+06  |grad| = 2.291e+05  cert = 0.167
+    [seg 21] base REJECTED (record not certified (worst 6.624e+10)) -> revert, radius -> 9.503e-03
+    [seg 22] J = 3.35582446e+06  |grad| = 2.291e+05  cert = 0.167
+    [seg 23] J = 3.35650769e+06  |grad| = 1.410e+05  cert = 0.510
+    [seg 24] trial J = 3.35442006e+06 REJECTED (worse than 3.35650769e+06) -> revert, radius -> 1.069e-02
+    [seg 25] J = 3.35650769e+06  |grad| = 1.410e+05  cert = 0.510
+    [seg 26] trial J = 3.35573494e+06 REJECTED (worse than 3.35650769e+06) -> revert, radius -> 8.018e-03
+    [seg 27] J = 3.35650769e+06  |grad| = 1.410e+05  cert = 0.510
+    [seg 28] base REJECTED (record not certified (worst 5.069e+00)) -> revert, radius -> 6.014e-03
+    [seg 29] J = 3.35650769e+06  |grad| = 1.410e+05  cert = 0.510
+   TR-SQP: 30 records, J 150.3 kN = 33780 lbf (-1.38e-02 vs the paper's 34253); cert 0.510; y_D 2.111 in
+  [PASS] O-1 the walk's best design is Newton-certified (0.510)
+  [FAIL] O-2 the thrust reproduces the paper's within 1 percent (their shear is 0.2 percent; -1.38e-02)
+
+== 1/2 PASS  (2032.5 s) ==
+LEG-DONE
