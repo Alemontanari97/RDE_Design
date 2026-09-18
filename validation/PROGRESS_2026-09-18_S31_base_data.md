@@ -371,3 +371,31 @@ ideal member's mass at that lip: a 7 % discrepancy in THEIR posing
 (throat/discharge/gas convention), to be read before the twin is judged
 on thrust at the 1 % level. X-HMPH stays OPEN: 2/2 O-rows read, the
 contour rows unmet, the inlet posing declared as the cause.
+
+### 10.2 From THEIR contour (three legs, 30 segments each, 22:55 → 23:45): the twin closes on value and stationarity
+
+`humphreys1971_tables.json` (Tables 2/3/4 transcribed) → `HMPH_START=table`:
+the walk starts from the paper's contour interpolated at the knots — the
+record's O3.3 pattern (value at their design, and whether the walk
+stays).
+
+| start | O-0: J at their contour | walk end | vs paper | y_D end (paper) |
+|---|---|---|---|---|
+| Table 2 (optimum), Veen | 32,765 (−0.35 %) | **32,864** | **−0.05 %** | 1.004 (0.954) |
+| Table 2 (optimum), ambient | 32,786 (−0.29 %) | **32,885** | **+0.01 %** | 1.059 (0.954) |
+| Table 3 (Rao), Veen | 33,751 (−1.47 %) | 33,794 | −1.34 % | 1.439 (1.375) |
+
+READ: at their optimum our functional reads the paper's thrust to 0.3 %
+(their shear is 0.2 %); the walk STAYS — +0.3 %, knots within 0.05-0.15
+in of Table 2 except the first (+0.34 in, near the lip: the planar-fan
+inlet), landing on 32,881 to 5e-4. Their fixed-inlet optimum is the
+optimum of our functional too; the fan-start walk's fat contour
+(32,666, §10.1) was an unconverged walk parked 0.6 % lower in the flat
+valley. The closure at this optimum is worth 21 lbf (0.06 %) and 0.055
+in of y_D: small because the base is small — Humphreys' ×2.45 exhibit
+is the Panov-Shvets swap, not Veen-vs-ambient. Rao's case: the walk
+stays (+0.13 %, y_D 1.44 vs 1.375) but carries the −1.3 % offset of the
+8.33-in posing with 148.08 lbm/s imposed where the ideal member passes
+137.8 — their mass convention, to be read. **X-HMPH: CLOSED on the
+optimum case (O-0, O-1, O-2), OPEN on the Rao case's mass offset.**
+Figure `_humphreys_twin/figs/01_contours_vs_paper.png` (both starts).

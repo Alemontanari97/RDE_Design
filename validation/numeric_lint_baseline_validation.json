@@ -103,7 +103,7 @@
   "validation/w5_wall_sweep.py": 3,
   "validation/xbvp_entropy_transfer.py": 24,
   "validation/a1_chutkey_twin.py": 51,
-  "validation/a1_humphreys_twin.py": 34,
+  "validation/a1_humphreys_twin.py": 32,
   "validation/base_pressure.py": 28,
   "validation/_base_pressure/basegate.py": 2,
   "validation/_raogap/gain_ladder.py": 6,

@@ -75,6 +75,7 @@ TH_I_OPT = -34.0                       # their optimum's injection angle [deg]
 F_OPT = 32881.0 * LBF
 L_TD = 12.0 * IN                       # length T -> D
 M_I_FAN = 1.6                          # fan_axi's leading ray (Chutkey twin)
+THRUST_TOL = 1e-2                      # the thrust rows' class (their shear is 0.2 percent)
 
 
 def check(label, ok):
@@ -143,7 +144,7 @@ def rao():
     check("R-1 Rao's cowl lip (8.33 in) is the mass-consistent lip of the"
           " ideal member at this posing: |dm/m| %.2e <= 1e-2 (the tip cut"
           " and the fan's own quadrature)" % abs(md_SI / MDOT - 1),
-          abs(md_SI / MDOT - 1) <= 1e-2)
+          abs(md_SI / MDOT - 1) <= THRUST_TOL)
     # ---- the truncated member's thrust --------------------------------
     sx, sy = fan["wall"]
     W = np.array(fan.get("W", None)) if "W" in fan else None
@@ -185,7 +186,7 @@ def rao():
     check("R-2 the ideal member truncated at Rao's D, base priced with"
           " their closure, reproduces Rao's thrust within 1 percent (the"
           " paper's shear model is 0.2 percent, not in ours): %+.2e"
-          % (F_D / F_RAO - 1), abs(F_D / F_RAO - 1) <= 1e-2)
+          % (F_D / F_RAO - 1), abs(F_D / F_RAO - 1) <= THRUST_TOL)
     check("R-3 the member's base radius at x_D meets Rao's Table 3 within"
           " 5 percent of y_D (%.3f vs %.3f in, %+.2e)"
           % (y_D / S / IN, Y_D_RAO / IN, y_D / S / Y_D_RAO - 1),
@@ -220,6 +221,12 @@ def rao():
 # reposed on this world after.
 CASE = os.environ.get("HMPH_CASE", "rao")
 X0_R = 0.05
+# HMPH_START = "fan" (the planar fan's streamline, the record's start) or
+# "table" (the paper's own contour, Table 3 / Table 2, interpolated at the
+# knots: the record's O3.3 pattern -- the value at THEIR design, and
+# whether the walk stays). Tables in humphreys1971_tables.json.
+START = os.environ.get("HMPH_START", "fan")
+TABLES = json.load(open(os.path.join(HERE, "humphreys1971_tables.json")))
 
 
 def opt():
@@ -234,7 +241,7 @@ def opt():
     os.environ.setdefault("PSPL_K", "81")
     os.environ.setdefault("PSPL_N", "41")
     os.environ.setdefault("PSPL_ITERS", "10")
-    os.environ["A1_BASE_MODEL"] = "veen"
+    os.environ.setdefault("A1_BASE_MODEL", "veen")
     os.environ.pop("PSPL_FAN", None)
     import a1_config_compare as CC
     import a1_inlet_angle_opt as IA
@@ -259,14 +266,25 @@ def opt():
            X0_R, F_ref / LBF))
     c = P.build_case(w, thE=thE)
     ta = w["ta"]
-    say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; knots %s"
-        % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3,
-           np.array2string(np.asarray(c["W0"]) / S / IN, precision=3)))
+    if START == "table":
+        key = ("table3_rao_lip8.33_inj-58.5" if CASE == "rao"
+               else "table2_optimum_lip7.55_inj-34")
+        tab = np.array(TABLES[key])
+        W0 = np.interp(np.asarray(c["xk"]) / S / IN, tab[:, 0], tab[:, 1]) * IN * S
+        c["W0"] = W0
+    say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; start = %s;"
+        " knots %s" % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3, START,
+                       np.array2string(np.asarray(c["W0"]) / S / IN, precision=3)))
     out0, sched0 = P.march_record(c["W0"], w, c)
     J0 = float(P.J_replay(jnp.asarray(c["W0"]), w, c, sched0, ta))
-    say("   the fan's streamline: cert %.3f, J %.1f kN = %.0f lbf (%+.2e vs"
-        " target)" % (float(out0["cert_worst"]), J0 / S / S / 1e3,
+    say("   the start (%s): cert %.3f, J %.1f kN = %.0f lbf (%+.2e vs"
+        " target)" % (START, float(out0["cert_worst"]), J0 / S / S / 1e3,
                       J0 / S / S / LBF, J0 / S / S / F_ref - 1))
+    if START == "table":
+        check("O-0 at the paper's own contour our functional reads the"
+              " paper's thrust within 1 percent (%+.2e; their shear 0.2"
+              " percent)" % (J0 / S / S / F_ref - 1),
+              abs(J0 / S / S / F_ref - 1) <= THRUST_TOL)
     W, hist, n_rec = P.run_trsqp(np.asarray(c["W0"], float), w, c, ta,
                                  sign=+1.0, max_segments=P.MAXSEG,
                                  maxiter_per_seg=8, verbose=1)
@@ -280,7 +298,7 @@ def opt():
           % float(out1["cert_worst"]), float(out1["cert_worst"]) <= 1.0)
     check("O-2 the thrust reproduces the paper's within 1 percent (their"
           " shear is 0.2 percent; %+.2e)" % (J1 / S / S / F_ref - 1),
-          abs(J1 / S / S / F_ref - 1) <= 1e-2)
+          abs(J1 / S / S / F_ref - 1) <= THRUST_TOL)
     wall = np.asarray(out1["wall"])
     rec = dict(case=CASE, L_R=L, thE_deg=float(np.degrees(thE)), J0=J0 / S / S,
                J1=J1 / S / S, J1_lbf=J1 / S / S / LBF, F_ref_lbf=F_ref / LBF,
@@ -290,7 +308,10 @@ def opt():
                wall_in=np.c_[wall[:, 0] / S / IN, wall[:, 1] / S / IN].tolist(),
                seconds=time.time() - t00)
     os.makedirs(ART, exist_ok=True)
-    json.dump(rec, open(os.path.join(ART, "opt_%s.json" % CASE), "w"), indent=1)
+    rec["start"] = START
+    rec["base_model"] = os.environ["A1_BASE_MODEL"]
+    tag = "%s_%s_%s" % (CASE, START, os.environ["A1_BASE_MODEL"])
+    json.dump(rec, open(os.path.join(ART, "opt_%s.json" % tag), "w"), indent=1)
     say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
     return NPASS[0] == NPASS[1]
 
