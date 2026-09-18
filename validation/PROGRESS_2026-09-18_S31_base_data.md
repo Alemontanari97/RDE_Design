@@ -181,6 +181,36 @@ because the position row enforces (y₄ − y₁) = λ(x₄ − x₁); same root
 gated on bit-level agreement over the record's worlds and on cert < 1
 on Chutkey's fan. Owner's call (it touches the shared certified cell).
 
+**Then, on the owner's "make it work" (late night), the remedies were
+TESTED, and none cures — the ledger, all on the worst cell of the M_i
+1.05/1.3 fans (cert as slope-form → variant):**
+- source term as the projected chord S[(x₄−x₁)+λ(y₄−y₁)]/(1+λ²): 360 → 127;
+- the whole cell in direction cosines (rows × cos α, no tan): 360 → 187;
+- Jacobian row equilibration: 360 → 360; gas tables ×8: unchanged;
+- level refinement (uniform): 121 → 241 levels 646 → 286 (∝ Δs^1.2);
+  61 levels 9e9; clustering at the lip (`fan_axi lev_power`, additive
+  knob kept): p = 2 1.5e3, p = 3 2.5e3 — the stalled cell moves to
+  where the step is widest;
+- the same construction PLANAR (δ = 0): 0.07 — certifies.
+Two independent formulations converge to the **same root to 5e-12**
+(healthy cells 1e-16) and the ideal wall is stable to 1e-3 mm across
+every discretisation (y(10 mm) 19.8416-19.8456 mm): the construction is
+converged, the certification metric — Newton step ≤ 100 eps |z| — is
+not met because the cell's Jacobian is ill-conditioned (κ ~ 1e6 after
+equilibration) in the axisymmetric case at low M near the lip, for a
+reason not yet isolated (the source term and the tan pole are excluded
+as the whole cause). GENO would call these cells converged (tol_conv
+1e-8). **DECISION FOR THE OWNER (G1 is the program's rule):** (a) a
+conditioning-aware certification bound, derived from the Newton
+contraction at the round-off floor — |step| ≤ factor·eps·κ(J)·|z| with κ
+reported per cell and the worst κ a row of record — which admits these
+cells at their measured 5e-12 determination and keeps truly stalled
+cells visible; or (b) G1 strict as it stands, and the sonic-lip line
+(Johnson, Humphreys: profiles built from the sonic line) waits for the
+mechanism to be isolated. Under (a) the twin proceeds tomorrow: fan at
+M_i ~ 1.05, cut at X0, plug march (its cert 7e10 is to be re-read under
+the same bound), T-4…T-7.
+
 **The alternative, heavier:** a direction-invariant cell for the
 throat kernel — frame rotated by ~−80° (marching radially inward near
 the throat) with the axisymmetric source on the true radius; the

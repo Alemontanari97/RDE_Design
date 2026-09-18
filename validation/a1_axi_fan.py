@@ -130,10 +130,20 @@ def _state(q, ta):
 # the inverse ray march
 # ----------------------------------------------------------------------
 def fan_axi(w, thE=0.0, n_rays=N_RAYS, n_lev=N_LEV, delta=1.0,
-            verbose=False):
+            verbose=False, lev_power=1.0):
     """The ideal-spike fan of OUR world by the inverse march. delta = 1
-    axisymmetric (the construction); delta = 0 the planar gate."""
-    key = (float(thE), int(n_rays), int(n_lev), float(delta))
+    axisymmetric (the construction); delta = 0 the planar gate.
+    lev_power (additive, 2026-09-18 [X-CHTW]): the terminal ray's levels
+    at s = s_tip t^lev_power, t uniform -- 1.0 = uniform arc length, the
+    posing of every row of record (bit-identical); > 1 clusters the
+    levels at the lip. A LADDER KNOB, NOT A REMEDY -- measured on the
+    sonic-lip fan (M_i 1.05, cold air): uniform 121 levels cert 6.5e2,
+    61 levels 9e9, 241 levels 2.9e2 (cert ~ step^1.2); clustering p = 2
+    1.5e3 and p = 3 2.5e3 at 121 (the stalled cell moves to where the
+    step is widest), 59-73 at 241. The wall is converged to 1e-3 mm
+    across all of them; the certification is not. See [X-CHTW]."""
+    key = (float(thE), int(n_rays), int(n_lev), float(delta),
+           float(lev_power))
     if key in _CACHE:
         return _CACHE[key]
     t0 = time.time()
@@ -158,7 +168,7 @@ def fan_axi(w, thE=0.0, n_rays=N_RAYS, n_lev=N_LEV, delta=1.0,
     # axis point as a datum) are never computed
     y_tip = YTIP * yl
     s_tip = (y_tip - yl) / np.sin(ang)
-    s = np.linspace(0.0, s_tip, n_lev)
+    s = s_tip * np.linspace(0.0, 1.0, n_lev) ** lev_power
     term = np.stack([xl + s * np.cos(ang), yl + s * np.sin(ang),
                      np.full(n_lev, q_e * np.cos(th_e)),
                      np.full(n_lev, q_e * np.sin(th_e))], axis=1)
