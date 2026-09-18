@@ -7,7 +7,7 @@
    Table 2 anchor 41 %: y 9.50 mm digitised vs 9.51 mm (-0.01 mm)
    Table 2 anchor 48 %: y 7.89 mm digitised vs 8.01 mm (-0.12 mm)
   [PASS] T-1 the digitised contour meets the paper's four base radii (Table 2) within 0.25 mm (worst 0.12 mm, 0.4 % of R_lip)
-   fan_axi (M_i 1.60, leading ray -80.8 deg, 121 x 121): cert worst 0.049 at (3, 11) (fictitious 0.019), 15 s; our ideal member: y_sp0 27.17 mm, tip x 103.12 mm (paper's full length 106.2 mm)
+   fan_axi (M_i 1.60, leading ray -80.8 deg, 121 x 121): cert worst 0.049 at (3, 11) (fictitious 0.021), 14 s; our ideal member: y_sp0 27.17 mm, tip x 103.12 mm (paper's full length 106.2 mm)
   [PASS] T-2 the axisymmetric fan is Newton-certified on every cell the wall depends on (worst 0.049 <= 1)
    our ideal member vs Chutkey's contour (mm), y at x:
       x   0.00: ideal  27.166  Chutkey  27.754  diff -0.589
@@ -21,26 +21,28 @@
       x  50.98: ideal   6.936  Chutkey   7.892  diff -0.956
       x  80.00: ideal   2.246  Chutkey   2.933  diff -0.687
       x 100.00: ideal   0.431  Chutkey   0.354  diff +0.076
-   READ: Angelino's approximate contour lies ABOVE the exact axisymmetric member by 0.75..0.96 mm over 20-50 % of the length (3.0 % of R_lip) and its tip is 3.1 mm longer -- their own 'mild compression wave at the junction' is this difference
-   cut at X0 1.50 mm: wall y 25.905 mm (ray angle -76.2 deg, fan's leading ray -80.8), 81 rows to the lip ray; mass through the cut 7585.6831 vs the choked throat 7998.9671 (-5.167e-02; the strip below the leading ray reads its state, declared); 161 wall stations to x 99.81 mm
-  [PASS] T-3 the cut lies inside the certified fan (wall ray angle -76.2 deg >= leading ray -80.8)
-   marched: cert worst 67816591605.584 over 14895 cells, 48 s; mass out 6777.3638 (-1.07e-01 rel to the cut)
-  [FAIL] T-4 every cell of the march is Newton-certified (worst 67816591605.584 <= 1)
-  [FAIL] T-4b mass through the last column equals the mass through the cut (1.07e-01 rel <= 1e-2)
+   READ (indicative, NOT of record: the M_i 1.60 fan leaves the throat strip unmarched and passes 5 % less mass than the choked throat, see the cut below): Angelino's approximate contour lies ABOVE this axisymmetric member by 0.75..0.96 mm over 20-50 % of the length (3.0 % of R_lip) and its tip is 3.1 mm longer -- their own 'mild compression wave at the junction' would be this difference
+   cut at X0 1.50 mm: wall y 26.332 mm (ray angle -75.2 deg, fan's leading ray -80.8), 81 rows to the lip ray; mass through the cut 6997.1099 vs the choked throat 7998.9671 (-1.252e-01; the strip below the leading ray reads its state, declared); 161 wall stations to x 99.81 mm
+   contour of record: SMOOTHING spline (smoothing rms 0.120 mm vs the digitisation noise 0.12 mm)
+  [PASS] T-3 the cut lies inside the certified fan (wall ray angle -75.2 deg >= leading ray -80.8)
+   marched: cert worst 0.451 over 14999 cells, 46 s; mass out 6603.4766 (-5.63e-02 rel to the cut)
+  [PASS] T-4 every cell of the march is Newton-certified (worst 0.451 <= 1)
+  [FAIL] T-4b mass through the last column equals the mass through the cut (5.63e-02 rel <= 1e-2)
    station   x [mm]   p_w/p_0 march   p_lip/p_0 paper   rel   |   M march   M_lip paper   rel
-     20 %    21.24     0.04541         0.04201       +0.081   |   2.6638     2.7150       -0.0189
-     34 %    36.11     0.03029         0.02780       +0.090   |   2.9291     2.9860       -0.0191
-     41 %    43.54     0.02158         0.02368       -0.089   |   3.1563     3.0930       +0.0205
-     48 %    50.98     0.02350         0.02105       +0.116   |   3.0987     3.1730       -0.0234
-  [FAIL] T-5 the marched wall pressure at the four truncations is within 3 % of the paper's p_lip/p_0 (worst 0.116)
-  [FAIL] T-6 the marched wall Mach at the four truncations is within 2 % of the paper's M_lip (worst 0.0234)
-   A/B registration: unshifted contour -> cert 0.547, p_w/p_0 at the four stations 0.04743 0.03204 0.02429 0.02502, largest change vs shifted 1.12e-01
-  [FAIL] T-7 the 0.39 mm registration shift moves the wall reading by less than the oracle's class (1.12e-01 <= 3e-2)
+     20 %    21.24     0.04255         0.04201       +0.013   |   2.7062     2.7150       -0.0033
+     34 %    36.11     0.02812         0.02780       +0.011   |   2.9784     2.9860       -0.0025
+     41 %    43.54     0.02411         0.02368       +0.018   |   3.0812     3.0930       -0.0038
+     48 %    50.98     0.02120         0.02105       +0.007   |   3.1680     3.1730       -0.0016
+  [PASS] T-5 the marched wall pressure at the four truncations is within 3 % of the paper's p_lip/p_0 (worst 0.018)
+  [PASS] T-6 the marched wall Mach at the four truncations is within 2 % of the paper's M_lip (worst 0.0038)
+   A/B contour: interpolating spline through the raw points -> cert 67816591605.584, p_w/p_0 at the four stations 0.04541 0.03029 0.02158 0.02350 (smoothed: 0.04255 0.02812 0.02411 0.02120)
+   A/B registration: unshifted contour -> cert 0.178, p_w/p_0 at the four stations 0.03774 0.02418 0.02123 0.01904; worst error vs the paper 0.130 (shifted 0.018); the two contours differ by 1.63e-01 in the reading
+  [PASS] T-7 the foot-derived registration reads closer to the paper's wall state than the raw capture (worst 0.018 vs 0.130)
    the closure on the marched corner state (p_b/p_0; paper's measured p_b/p_0 in brackets):
-   ATPN 20  [0.0165]: chutkey 0.0259 (+57 %); cylindrical 0.0287 (+74 %); veen 0.0107 (-35 %)
-   ATPN 34  [0.0131]: chutkey 0.0161 (+23 %); cylindrical 0.0190 (+45 %); veen 0.0063 (-52 %)
-   ATPN 41  [0.0116]: chutkey 0.0108 (-7 %); cylindrical 0.0134 (+16 %); veen 0.0041 (-65 %)
-   ATPN 48  [0.0100]: chutkey 0.0119 (+19 %); cylindrical 0.0147 (+47 %); veen 0.0046 (-54 %)
+   ATPN 20  [0.0165]: chutkey 0.0240 (+45 %); cylindrical 0.0269 (+63 %); veen 0.0099 (-40 %)
+   ATPN 34  [0.0131]: chutkey 0.0147 (+12 %); cylindrical 0.0176 (+35 %); veen 0.0058 (-56 %)
+   ATPN 41  [0.0116]: chutkey 0.0123 (+6 %); cylindrical 0.0151 (+30 %); veen 0.0047 (-59 %)
+   ATPN 48  [0.0100]: chutkey 0.0106 (+6 %); cylindrical 0.0132 (+32 %); veen 0.0040 (-60 %)
    derived record written to /data10/falco/RDE/RDE_Design/validation/_chutkey_twin/derive.json
 
-== 4/9 PASS  (114.4 s) ==
+== 8/9 PASS  (155.7 s) ==

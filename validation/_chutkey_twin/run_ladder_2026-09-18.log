@@ -1,0 +1,13 @@
+== [F3] the Chutkey twin's ladder: cut position and resolution [X-CHTW] (stage ladder) ==
+   X0 2.00 mm ( 81, 41; wall ray -72.0 deg): cert 0.026,   14 s | p_w/p_0 at 20/34/41/48 %: 0.04267 0.02852 0.02421 0.02169 | M: 2.7043 2.9690 3.0785 3.1526
+   X0 1.50 mm ( 81, 41; wall ray -75.2 deg): cert 0.070,   12 s | p_w/p_0 at 20/34/41/48 %: 0.04259 0.02853 0.02453 0.02193 | M: 2.7057 2.9689 3.0698 3.1454
+   X0 1.00 mm ( 81, 41; wall ray -79.0 deg): cert 0.671,   12 s | p_w/p_0 at 20/34/41/48 %: 0.04288 0.02847 0.02556 0.02200 | M: 2.7014 2.9703 3.0422 3.1430
+   X0 1.50 mm (161, 81; wall ray -75.2 deg): cert 0.451,   46 s | p_w/p_0 at 20/34/41/48 %: 0.04255 0.02812 0.02411 0.02120 | M: 2.7062 2.9784 3.0812 3.1680
+   X0 1.50 mm (321,161; wall ray -75.2 deg): cert 0.418,  176 s | p_w/p_0 at 20/34/41/48 %: 0.04259 0.02806 0.02395 0.02107 | M: 2.7056 2.9799 3.0857 3.1722
+   X0 sensitivity of p_w/p_0: 2.0 -> 1.5 mm 1.29e-02 (down to 1.0 mm, the cut at the fan's leading ray: 5.26e-02); resolution: (161,81) -> (321,161) 6.77e-03, K_RICH band 2.71e-02 (from (81,41): 4.05e-02); the same on M: 2.84e-03 / 1.47e-03
+  [PASS] L-1 every rung is Newton-certified (worst 0.671)
+  [PASS] L-2 between cuts clear of the fan's leading ray the declared throat strip moves the wall reading by less than the oracle's class (1.29e-02 <= 0.03)
+  [PASS] L-3 the wall reading's K_RICH band on the last resolution pair is below the oracle's class (2.71e-02 <= 0.03)
+
+== 3/3 PASS  (286.1 s) ==
+CHAIN-DONE

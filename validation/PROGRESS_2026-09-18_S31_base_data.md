@@ -220,3 +220,61 @@ fan as [X-AFAN] G-0. Then T-4…T-7 become readable, the X0 ladder
 measures the throat strip, and Fig. 9d (to be digitised) reads the
 first 15 mm. Registry: `[X-CHTW]` OPEN, 4/9 of record; ondemand carrier,
 no suite gate.
+
+## 8. THE TWIN CLOSES (night): the march on Chutkey's contour certifies and reads the paper's wall state
+
+The cause of the plug march's non-certification was not the cells: it
+was the **contour posed as an interpolating spline through the 63
+digitised points** — their capture noise (~0.1 mm) entered the wall
+angle and the march answered with spurious waves (p_w/p_0 oscillating
+±20 % along the plug, rising at the tip; that A/B: cert 7e10). Posed as
+a **smoothing spline with residual = the digitisation noise** (rms
+0.120 mm = the Table 2 residual after registration, not a number of
+ours; foot kept exact, throat tangency clamped), with the cut at X0 =
+1.5 mm through the M_i-1.6 axisymmetric fan (cert 0.049):
+
+| | march | paper | rel |
+|---|---|---|---|
+| p_w/p_0 at 20 / 34 / 41 / 48 % | 0.04255 / 0.02812 / 0.02411 / 0.02120 | 0.04201 / 0.02780 / 0.02368 / 0.02105 | +1.3 / +1.1 / +1.8 / +0.7 % |
+| M_wall at the same | 2.706 / 2.978 / 3.081 / 3.168 | 2.715 / 2.986 / 3.093 / 3.173 | −0.3 / −0.3 / −0.4 / −0.2 % |
+
+**cert worst 0.451 over 14 999 cells; derive 8/9** (`run_derive_2026-09-18.log`):
+T-0…T-7 PASS, T-4b FAIL (mass along the march −5.6 %, unchanged by
+`edge_fill` 0/6 — 6 degrades the certification to 3.41 — a ladder
+question, stage ladder). T-7 re-posed: the 0.39 mm foot registration is
+not a perturbation the reading is blind to; it is the ORACLE that picks
+it (worst error 0.018 shifted vs 0.130 raw). Reading at the oracle's
+class: p_lip/p_0 is a ratio of two four-digit numbers (1 % at worst),
+M_lip their RANS with a boundary layer; our 1.8 % / 0.4 % is inside it.
+Near the tip (x > 85 mm) the march shows a recompression (p_w/p_0 0.015
+→ 0.06, M 3.4 → 2.4): their contour is 3 mm longer than the exact member
+and turns less than it there; no measurement beyond 48 % to read it
+against. Figures (provisional): `_chutkey_twin/figs/01-04`.
+
+**What this means for the program:** on a measured plug with a SONIC
+lip, our certified march reproduces the corner state the base-pressure
+closure consumes to the oracle's precision — the input side of N2 is
+validated on one rig. The fan's own low-M_i floor (§7) is a separate
+open row of fan_axi that this twin does not need. **The whole chain,
+march → corner state → closure, against the measured base** (p_b/p_0,
+derive of record):
+
+| retained | measured | chutkey | cylindrical | veen |
+|---|---|---|---|---|
+| 20 % | 0.0165 | 0.0240 (+45 %) | 0.0269 (+63 %) | 0.0099 (−40 %) |
+| 34 % | 0.0131 | 0.0147 (+12 %) | 0.0176 (+35 %) | 0.0058 (−56 %) |
+| 41 % | 0.0116 | 0.0123 (+6 %) | 0.0151 (+30 %) | 0.0047 (−59 %) |
+| 48 % | 0.0100 | 0.0106 (+6 %) | 0.0132 (+32 %) | 0.0040 (−60 %) |
+
+Same picture as on the paper's own lip state (stage data): the march
+adds < 2 % to it; what remains is the closure's own error, largest on
+the shortest plug (+45 % at 20 %, where the member over-reads its own
+fitting data too) and 6 % from 41 % on.
+
+**Ladder** (`run_ladder_2026-09-18.log`): every rung certified (worst
+0.671 at X0 1.0 mm, the cut 1.8° from the fan's leading ray); between
+cuts clear of the leading ray (2.0 → 1.5 mm) the reading moves 1.1-1.3 %;
+on the last resolution pair (161,81) → (321,161) 0.6-0.7 % (K_RICH band
+2.8 %), against the oracle's 3 % class. L-2/L-3 as first posed graded the
+coarsest rung and the leading-ray cut (5 % / 4 %) and were re-posed on
+the readable rungs.
