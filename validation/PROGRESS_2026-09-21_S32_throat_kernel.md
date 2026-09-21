@@ -295,14 +295,111 @@ without it).
 Artefacts: `_humphreys_twin/run_opt_opt_fan_bt3_2026-09-21.log`,
 `opt_opt_fan_veen.json` (not committed, as the S31 artefacts).
 
+## 8. The frame march, and the strip from the throat on Chutkey (afternoon; owner: "continua")
+
+**The rotated-frame cells [X-FRMR], `validation/a1_frame_march.py`,
+stage frame 4/4 (86 s).** The record's three plug-march cells
+(interior bottom-up, bottom wall, free jet) with the ONE frame-bound
+term rewritten: the axisymmetric source delta c^2 v / y becomes
+delta c^2 v_r / r, v_r = u sin theta_t + v cos theta_t, r = Y_0 +
+x sin theta_t + y cos theta_t; threaded through `plug_march(cells=)`
+(the S24 swirl seam). The compatibility rows are divided by q_m^3
+(root unchanged; A1's damped Newton reads the residual NORM for its
+step acceptance, and with the geometric row at 1e-2 and the
+compatibility row at 1e6 the wall cell at station 79 of the rotated
+Chutkey case, r 0.015 R, accepted a half step and stalled at metric
+3.7 while the record's cell at the same physical point converged;
+scaled, 3e-14). The A/B on the S31 twin's case ((81,41), the
+fan_axi cut at 1.5 mm) with the SAME wall points in both frames:
+
+| gate | result |
+|---|---|
+| F-0 theta = 0: the wall array equals the record's | 2.9e-15 relative (certification class 8.6e-11), both certified |
+| F-1 the throat-frame march (theta_t -56.9 deg) certifies | 0.194 (3862 cells) |
+| F-2 wall p vs the record's on the arc, inside the (81,41)->(161,81) band | 81/81; **max |dp|/p_0 1.7e-5** (band 7e-2) |
+| F-3 the source is alive: the record's cells in the rotated frame (y' as the radius) | +0.95 of p_0 off, cert 6e16 |
+
+The discrete march is frame-covariant to 1.7e-5 of p_0 (the residual
+is the foot-bracket heuristic, which reads the previous wall's u in
+the frame). The X0 ladder of the twin extended toward the throat in
+both frames (81,41): 1.5 / 1.25 / 1.0 / 0.8 mm -- identical readings
+in the two frames at every rung; the record frame does NOT fail down
+to 0.8 mm (theta - mu at the wall -77..-83 deg, still downstream);
+p_w/p_0 at 20 percent 0.04259 / 0.04271 / 0.04288 / 0.04351, the last
+rung with the cut's wall point ON the fan's leading ray (declared
+limit of the M_i-1.6 fan). Noted on the side: the cut of record
+carries 0.875 of the CHOKED mass at (81,41) -- the twin's mass rows
+are relative to the cut, not to the throat.
+
+**The strip from the throat line on Chutkey: NEGATIVE, measured.**
+Stage strip: a uniform line at M_i on the throat line, tilted by
+nu(M_i) so the lip fan (the record's planar corner wave) ends axial,
+the cut at d half-heights, the wall clustered from 0.05 h, the march
+in the throat frame with the rotated cells. Every configuration fails
+at the wall cells within 0.7 mm of the foot and the mesh folds
+downstream:
+
+| M_i | d | wall | cert (where) | mass mid / last vs cut |
+|---|---|---|---|---|
+| 1.02 | 0.1 | digitised | 5e14 (wall 2) | -2.9 % / -0.4 % (ran through; p_w +14..+25 %) |
+| 1.05 | 0.1 | digitised | 1e15 (int 17,14) | +144 % / +294 % |
+| 1.10 | 0.1 | digitised | 3e23 (int 119,135) | garbage |
+| 1.20 | 0.1 | digitised | 3e15 (int 11,3) | +213 % / +368 % |
+| 1.05 | 0.1 | Angelino foot | 4e15 (wall 10) | +478 % / +950 % |
+| 1.10 | 0.1 | Angelino foot | 1e13 (wall 7) | +280 % / +614 % |
+| 1.05 | 0.5 | Angelino foot | 5e12 (wall 1) | +441 % / +969 % |
+
+Two obstacles, both measured: (i) **the digitised contour's foot is
+noise at the 0.1-mm scale**: the raw chords from the foot read -52,
+-56, -50, -47, -62, -40 deg (0.12 mm of noise on 0.5-mm chords) and
+the clamped smoothing spline turns 5.1 deg within 0.2 mm of the foot
+(the ideal wall turns 10 deg over ~2.4 mm); the record never marched
+that region (its cut is at 1.5 mm). Replacing the first 3 mm by the
+design rule itself -- the planar sonic-lip fan's streamline from the
+foot (`FRM_WALL=angelino`, ramped into the digitisation over 1 mm) --
+removes the artefact and does not cure the march. (ii) **The
+near-sonic wall cells**: at M 1.02-1.2 (mu 57-79 deg) with the
+corner fan 0.1-0.5 h away, the wall cell's foot search and the
+damped Newton fail within the first ten stations in the throat frame
+too -- the S31 section 3.3 conditioning limit, now measured in the
+frame where no characteristic passes the vertical. The record's
+construction marches because it starts at wall M 1.72.
+
+**And the kernel on Chutkey is excluded by the paper itself**:
+Chutkey p. 479 defines the primary nozzle as a SYMMETRIC convergent
+duct about the tilted axis whose walls end in circular arcs of radius
+0.867 mm at the throat, on a half-height of 1.32 mm: R/h = 0.66,
+eps = 1.24 -- outside Moore's series ("neither of the walls may have
+a small radius of curvature"), outside every throat series
+(Kliegel-Levine's small-radius expansion reaches R ~ 0.5 with poor
+accuracy, axisymmetric symmetric throats only). The throat is K = 0
+(symmetric) upstream and a corner + curvature jump downstream (the
+paper's CFD sees "a mild compression wave at the intersection of the
+primary nozzle and the plug contour"). The transonic field of this
+throat is a numerical problem, not a series.
+
+**Read for the posing (section 5 revised).** The kernel brick as
+posed applies to smooth throats with R/h >~ 3 (eps <= 0.6): Humphreys'
+(radius unknown, thesis) possibly, Chutkey's not. On Chutkey the
+declared strip is the record's 1.5-mm cut on the ideal fan; its
+ladder to 1.0 mm moves the 20-percent reading by +0.7 percent and
+the mass reference is the cut's 0.875 W*. What would close Chutkey's
+throat is a numerical transonic solution of the primary nozzle (not
+in the toolset) or the paper's own CFD sonic line (Fig. 7-8, not
+digitised). The frame march stands as an asset for any start line at
+M_w >~ 1.5 in a tilted throat.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),
   `validation/a1_throat_kernel.py` (new carrier, baseline row 65 in
   `numeric_lint_baseline_validation.json`, measured by the lint),
-  this log; registry row X-TKRN; ADVISORY_INDEX row; living PROGRESS
-  parallel-line block.
+  `validation/a1_frame_march.py` (new carrier, baseline row 31; NOT
+  `a1_rot_march.py`, which is the S24 rotational-inlet carrier X-RMAR
+  -- overwritten by mistake for twenty minutes and restored from HEAD
+  untouched), this log; registry rows X-TKRN, X-FRMR; ADVISORY_INDEX
+  row; living PROGRESS parallel-line block.
 - Not committed: `_humphreys_twin/*.log|json` of the leg (artefacts,
   as the S31 ones), the aborted v1 log.
 - Lints 3/3 after the two-step commit (log first, registry row second — the claims lint's pass= rule); full suite 14/23 before the commit = the seven S26 reds + (xv)/(xvii) on the uncommitted X-TKRN doc, expected to return to 16/23 once the log has history; data/q_mapping.*, data/phase_diagram.*, figs/phase_diagram_op11.png restored with git checkout.

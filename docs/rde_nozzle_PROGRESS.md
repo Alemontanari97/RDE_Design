@@ -275,7 +275,15 @@
 ## (Migdal) NON e' una partenza (Humphreys p. 1587: 2700 lbf). POSA del
 ## brick in §5 (frame di gola, labbro L-a/L-b deciso dalla massa di
 ## Chutkey, termini anulari = gap dichiarato: Moore-Hall / Dutton-Addy
-## 1982 richiesti all'owner). PROSSIMO: stage startline + Chutkey.
+## 1982 richiesti all'owner). POMERIGGIO: marcia in frame ruotato
+## [X-FRMR] (sorgente assialsimmetrica nel raggio vero, seam cells=,
+## righe di compatibilita' / q^3): covariante al record a 1.7e-5 di
+## p_0 sul caso Chutkey (4/4); la striscia dalla linea di gola su
+## Chutkey NON marcia (celle di parete quasi-soniche entro 0.7 mm,
+## piede digitalizzato = rumore a 0.1 mm; misurato su 7 configurazioni)
+## e il kernel e' ESCLUSO su Chutkey dal paper stesso (archi di gola
+## R 0.867 mm su h 1.32 mm, R/h 0.66). PROSSIMO: decisione owner (log
+## S32 §8): Humphreys (raggio di gola dalla tesi) o gola numerica.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
