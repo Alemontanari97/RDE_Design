@@ -299,8 +299,14 @@
 ## NOTTE: stage kernel (marcia dal kernel, L-b, R_c 3): la linea e'
 ## sana (M 1.11-1.55, massa 0.954 W*) ma il ventaglio piano sul taglio
 ## porta un salto sul raggio guida (M 1.08 vs 1.15) e la mesh si piega.
-## PROSSIMO BRICK: l'angolo del labbro nel campo non uniforme (marcia
-## di Goursat dal labbro); poi Humphreys (raggio di gola).
+## TARDA NOTTE: angolo del labbro nel campo del kernel FATTO (Goursat
+## dal labbro, 24 raggi, celle certificate 0.016, dati continui sul
+## taglio); la marcia tiene la massa 11 colonne e si piega a 1.7 mm su
+## una svolta in compressione della parete L-b posata (parabola del
+## kernel vs contorno di Angelino che rientra nel canale). LETTURA: il
+## plug esterno non e' una geometria da kernel in serie; il twin della
+## catena kernel+angolo+frame e' un plug interno-esterno (Humphreys
+## Fig. 1, servono i raggi di gola). Strumenti completi e verificati.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

@@ -53,17 +53,29 @@ the plug-wall throat radius posed 1.5 d, cowl straight, R_c 3, eps
 cowl at M 1.08). The kernel line itself is sound -- M 1.11 (cowl) to
 1.55 (plug), direction -7.4..0 deg, mass 0.954 of the choked 1-D --
 but the lip fan posed as the record's planar corner wave ON A CUT
-carries a JUMP across its leading ray: the fan rows start from the
-lip state (M 1.08) while the kernel field at the leading ray's
-crossing is M 1.15 -- a discontinuity in the start data that the march
-turns into a first-column mass error (+2 percent), then a fold (mass
-+480 percent by mid-plug, cert 2e19). The corner wave in a
-NON-UNIFORM incoming field is not a simple wave: the missing brick is
-the corner Goursat march (rays from the lip through the kernel field,
-each new ray a C- from the lip with the corner relation's state,
-points found by the C+ from the previous ray -- the bell's step (3)
-structure with a centred corner), which the record has neither for
-the bell (its throat corner is a circular arc) nor for the plug.
+carried a JUMP across its leading ray (lip state M 1.08 against the
+field's 1.15) and the march folded. THE CORNER FAN IN A NON-UNIFORM
+FIELD (corner_fan, night): the centred expansion marched as a Goursat
+problem through the kernel field -- the leading ray traced through
+the field, every next ray a C- from the lip with the corner
+relation's state, its points solved by the top-down rotated cell from
+the previous point on the ray (C-) and the same-index point on the
+previous ray (C+). MEASURED: 24 rays, worst cell certification 0.016,
+the cut data continuous across the leading ray (kernel M 1.109 ->
+fan 1.134). With it the march no longer fails at the cut: the first
+column loses 2.4 percent (the vertical-start wedge, the record's
+own), the mass then holds to column 11, and at x' 1.7 mm the wall
+cell consumes 18 rows at once and the mesh folds -- the POSED L-b
+wall (the throat parabola curving away up to 0.4 d, then a cubic
+transition bending 20 deg UP to the Angelino contour) is a
+compression turn, i.e. a shock, which no march of characteristics
+carries. READ: the external plug (Angelino) is not a series-kernel
+geometry -- its plug wall turns INTO the channel at the foot while
+every throat series needs walls curving away on both sides -- and the
+consistent L-b geometry is an internal-external plug. The tools are
+complete (kernel, corner fan, frame march); their twin is an
+internal-external plug: Humphreys' configuration once its throat
+radii are known, or a posed one whose plug wall keeps diverging.
 
 Usage:
     python validation/a1_frame_march.py                  # stage frame
@@ -156,6 +168,32 @@ def _q3(u, v):
     seed (chord midpoint, previous wall u) relative to the root."""
     q2 = u * u + v * v
     return q2 * jnp.sqrt(q2)
+
+
+def make_resid_interior_td_rot(delta, th, Y0):
+    """The record's TOP-DOWN interior cell (A1.make_resid_interior: the
+    C- runs from pt1 within the column, the C+ arrives from pt2 on the
+    previous column) with the source in the true radius and the
+    compatibility rows scaled (_q3): the cell of the corner fan, whose
+    columns are the C- rays from the lip."""
+    def resid(z, p, ta):
+        x4, y4, u4, v4 = z
+        x1, y1, u1, v1, x2, y2, u2, v2 = p
+        um, vm = 0.5 * (u1 + u4), 0.5 * (v1 + v4)
+        xm, ym = 0.5 * (x1 + x4), 0.5 * (y1 + y4)
+        lm, _, qm, rm0, sm = coef_rot(um, vm, xm, ym, ta, delta, th, Y0)
+        rm = rm0 - qm * lm
+        up, vp = 0.5 * (u2 + u4), 0.5 * (v2 + v4)
+        xp, yp = 0.5 * (x2 + x4), 0.5 * (y2 + y4)
+        _, lp, qp, rp0, sp = coef_rot(up, vp, xp, yp, ta, delta, th, Y0)
+        rp = rp0 - qp * lp
+        return jnp.array([
+            (y4 - y1) - lm * (x4 - x1),
+            (y4 - y2) - lp * (x4 - x2),
+            (qm * u4 + rm * v4 - (sm * (x4 - x1) + qm * u1 + rm * v1)) / _q3(um, vm),
+            (qp * u4 + rp * v4 - (sp * (x4 - x2) + qp * u2 + rp * v2)) / _q3(up, vp),
+        ])
+    return resid
 
 
 def make_resid_wallbot_rot(delta, th, Y0):
@@ -618,7 +656,106 @@ def _wall_in_frame(w, th, Xm, Ym, mode="angelino", x_blend_mm=None):
     ct, st = np.cos(th), np.sin(th)
     sw = (sd * ct - st) / (ct + sd * st)
     assert np.all(np.diff(xw) > 0.0)
+    if mode == "lb":
+        # THE L-b GEOMETRY, POSED: the plug wall continues the throat's
+        # parabola (radius rc_in_d separations, curving AWAY from the
+        # channel as the kernel's inner wall does) up to x_1, then a
+        # cubic Hermite transition to the Angelino wall at x_2, the
+        # Angelino wall beyond -- an internal-external plug in the
+        # kernel's own terms (measured 2026-09-21 night: with the real
+        # external plug the kernel's parabola and the flat Angelino foot
+        # differ by 9 deg of wall angle at the cut z 0.5, and the wall
+        # cell must compress the flow by that much at once)
+        hh = 0.5 * CT.H_T * CT.S_LEN
+        rc = float(os.environ.get("FRM_RCIN", CASES["kernel_defaults"]["rc_in_d"])) * CT.H_T * CT.S_LEN
+        x1, x2 = CASES["lb_transition_d"][0] * CT.H_T * CT.S_LEN, CASES["lb_transition_d"][1] * CT.H_T * CT.S_LEN
+        y1, s1 = -hh - 0.5 * x1**2 / rc, -x1 / rc
+        y2, s2 = float(np.interp(x2, xw, yw)), float(np.interp(x2, xw, sw))
+        yw2, sw2 = yw.copy(), sw.copy()
+        par = xw <= x1
+        yw2[par] = -hh - 0.5 * xw[par]**2 / rc
+        sw2[par] = -xw[par] / rc
+        tr = (xw > x1) & (xw < x2)
+        t = (xw[tr] - x1) / (x2 - x1); L = x2 - x1
+        h00, h10, h01, h11 = 2*t**3 - 3*t**2 + 1, t**3 - 2*t**2 + t, -2*t**3 + 3*t**2, t**3 - t**2
+        yw2[tr] = h00 * y1 + h10 * L * s1 + h01 * y2 + h11 * L * s2
+        d00, d10, d01, d11 = 6*t**2 - 6*t, 3*t**2 - 4*t + 1, -6*t**2 + 6*t, 3*t**2 - 2*t
+        sw2[tr] = (d00 * y1 + d10 * L * s1 + d01 * y2 + d11 * L * s2) / L
+        yw, sw = yw2, sw2
     return xw, yw, sw
+
+
+def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E):
+    """THE LIP CORNER IN A NON-UNIFORM FIELD: the centred expansion at
+    the lip marched as a Goursat problem through the incoming field
+    (field_uv(x', y') -> (u, v) in the throat frame). The leading ray
+    is the C- from the lip traced through the field (its states the
+    field's); every next ray is a C- from the lip carrying the corner
+    relation's state (theta - nu = const across a C- fan: theta_k =
+    th_L + nu(q_k) - nu(q_L)), its points solved by the top-down cell
+    from the previous point on the same ray (C-) and the same-index
+    point on the previous ray (C+) -- the bell's step-(3) structure
+    with a centred corner. Rays run from the lip to the cut x' = x_cut.
+    Returns the rays (list of (n, 4) arrays), the crossing of each ray
+    with the cut (y, u, v), the terminal direction and the worst cell
+    certification."""
+    ta = w["ta"]
+    xl, yl = lip
+    # the corner relation's states from q_L to q_E
+    full = _pm_fan(w, q_L)                              # nu from q_L
+    qs = np.linspace(q_L, q_E, n_rays)
+    ths = th_L + np.interp(qs, full["qs"], full["ths"])
+    # the leading ray traced through the field (RK4 in x')
+    def slope_field(x, y):
+        u, v = field_uv(x, y)
+        M = float(A1.state_q(jnp.float64(np.hypot(u, v)), ta)[5])
+        return np.tan(np.arctan2(v, u) - np.arcsin(1.0 / M))
+    hx = (x_cut - xl) / n_pts
+    ray0 = [[xl, yl, *field_uv(xl, yl)]]
+    x, y = xl, yl
+    for j in range(n_pts):
+        k1 = slope_field(x, y); k2 = slope_field(x + hx / 2, y + hx * k1 / 2)
+        k3 = slope_field(x + hx / 2, y + hx * k2 / 2); k4 = slope_field(x + hx, y + hx * k3)
+        y += hx / 6 * (k1 + 2 * k2 + 2 * k3 + k4); x += hx
+        ray0.append([x, y, *field_uv(x, y)])
+    rays = [np.array(ray0, float)]
+    t_int = A1.get_solver(("inttd_rot", 1.0, float(th), float(Y0)),
+                          lambda: make_resid_interior_td_rot(1.0, th, Y0))
+    cert = 0.0
+    for k in range(1, n_rays):
+        qk, thk = float(qs[k]), float(ths[k])
+        pts = [np.array([xl, yl, qk * np.cos(thk), qk * np.sin(thk)])]
+        prev = rays[-1]
+        for j in range(1, n_pts + 1):
+            pt1 = pts[-1]                                   # same ray, sends the C-
+            pt2 = prev[min(j, len(prev) - 1)]               # previous ray, sends the C+
+            p = jnp.concatenate([jnp.asarray(pt1), jnp.asarray(pt2)])
+            # seed: straight-line crossing of the two characteristics
+            M1 = float(A1.state_q(jnp.float64(np.hypot(pt1[2], pt1[3])), ta)[5])
+            M2 = float(A1.state_q(jnp.float64(np.hypot(pt2[2], pt2[3])), ta)[5])
+            lm = np.tan(np.arctan2(pt1[3], pt1[2]) - np.arcsin(1.0 / M1))
+            lp = np.tan(np.arctan2(pt2[3], pt2[2]) + np.arcsin(1.0 / M2))
+            x4 = (pt1[1] - pt2[1] - lm * pt1[0] + lp * pt2[0]) / (lp - lm)
+            y4 = pt1[1] + lm * (x4 - pt1[0])
+            z0 = jnp.array([x4, y4, 0.5 * (pt1[2] + pt2[2]), 0.5 * (pt1[3] + pt2[3])])
+            z = t_int[0](z0, p, ta)
+            step = float(t_int[2](z, p, ta))
+            sc = max(1.0, float(jnp.max(jnp.abs(z))))
+            cert = max(cert, step / (A1.NEWTON_TOL_FACTOR * A1.EPS * sc))
+            pts.append(np.asarray(z, float))
+            if pts[-1][0] >= x_cut:
+                break
+        rays.append(np.array(pts))
+    # the crossing of each ray with the cut
+    cross = []
+    for r in rays:
+        if r[-1, 0] < x_cut:
+            cross.append(None); continue
+        j = np.argmax(r[:, 0] >= x_cut)
+        a, b = r[j - 1], r[j]
+        t = (x_cut - a[0]) / (b[0] - a[0])
+        cross.append(a + t * (b - a))
+    return dict(rays=rays, cross=cross, qs=qs, ths=ths, th_E=float(ths[-1]), cert=cert)
 
 
 def kernel_case(w, z_cut, K, N, d_fan_h=None, rc_out_d=None):
@@ -635,7 +772,7 @@ def kernel_case(w, z_cut, K, N, d_fan_h=None, rc_out_d=None):
     d_fr = 2.0 * hh                                   # the separation, frame units
     Xm = 0.5 * CT.FOOT[0] * CT.S_LEN
     Ym = 0.5 * (CT.FOOT[1] + CT.R_LIP) * CT.S_LEN
-    xw, yw, sw = _wall_in_frame(w, th, Xm, Ym, "angelino")
+    xw, yw, sw = _wall_in_frame(w, th, Xm, Ym, os.environ.get("FRM_WALL", "lb"))
     # the foot curvature: d(slope)/dx' at x' = 0 over the first 0.3 h
     m = (xw >= 0.0) & (xw <= CASES["kernel_defaults"]["foot_window_h"] * hh)
     kappa = float(np.polyfit(xw[m], sw[m], 1)[0])    # 1/frame-length
@@ -670,27 +807,25 @@ def kernel_case(w, z_cut, K, N, d_fan_h=None, rc_out_d=None):
     yl = float(y_cowl(x_lip))
     u_l, v_l = kernel_uv(x_lip, yl)
     q_l, th_l = float(np.hypot(u_l, v_l)), float(np.arctan2(v_l, u_l))
-    fan = _pm_fan(w, q_l)
-    fan["ths"] = fan["ths"] + th_l
-    fan["phis"] = fan["phis"] + th_l
-    th_e = float(fan["ths"][-1])
-    # rows on the cut: kernel rows from the plug wall to the leading ray, fan rows, two above
+    q_E = CT.q_at_pa(CT.PA, ta, w["as_"])
+    n_rays, n_pts = int(os.environ.get("FRM_NRAYS", KD["n_rays"])), int(os.environ.get("FRM_NPTS", KD["n_pts"]))
+    CF = corner_fan(w, kernel_uv, (x_lip, yl), q_l, th_l, x_cut, th, Ym, n_rays, n_pts, q_E)
+    th_e = CF["th_E"]
+    # rows on the cut: kernel rows from the plug wall to the leading ray's
+    # crossing, the fan's rays' crossings, two above up to the jet boundary
     yw0, sw0 = float(np.interp(x_cut, xw, yw)), float(np.interp(x_cut, xw, sw))
-    y_lead = yl + (x_cut - x_lip) * np.tan(fan["phis"][0])
+    crs = [c_ for c_ in CF["cross"] if c_ is not None]
+    y_lead = float(crs[0][1])
     y_edge = yl + (x_cut - x_lip) * np.tan(th_e)
     nA = max(5, int(round(N * (y_lead - yw0) / (y_edge - yw0))))
-    nB = max(5, N - nA - 2)
     yA = np.linspace(yw0, y_lead, nA, endpoint=False)
     uA, vA = kernel_uv(np.full(nA, x_cut), yA)
     vA[0] = sw0 * uA[0]                               # the wall row on the wall
-    nus = np.linspace(float(fan["ths"][0]), float(fan["ths"][-1]), nB)
-    qB = np.interp(nus, fan["ths"], fan["qs"])
-    phB = np.interp(nus, fan["ths"], fan["phis"])
-    yB = yl + (x_cut - x_lip) * np.tan(phB)
-    uB, vB = qB * np.cos(nus), qB * np.sin(nus)
+    yB = np.array([c_[1] for c_ in crs]); uB = np.array([c_[2] for c_ in crs]); vB = np.array([c_[3] for c_ in crs])
+    nB = len(yB)
     y_term = yB[-1]
     yC = np.array([0.5 * (y_term + y_edge), y_edge])
-    uC, vC = np.full(2, fan["qs"][-1] * np.cos(th_e)), np.full(2, fan["qs"][-1] * np.sin(th_e))
+    uC, vC = np.full(2, q_E * np.cos(th_e)), np.full(2, q_E * np.sin(th_e))
     ys = np.concatenate([yA, yB, yC]); us = np.concatenate([uA, uB, uC]); vs = np.concatenate([vA, vB, vC])
     assert np.all(np.diff(ys) > 0.0), "rows not ordered"
     start = (np.full(len(ys), x_cut), ys, us, vs)
@@ -706,7 +841,8 @@ def kernel_case(w, z_cut, K, N, d_fan_h=None, rc_out_d=None):
         xs.append(xs[-1] + dsn); dsn = min(ds_max, dsn * grow)
     xq = np.array(xs[1:] + [xw[-1]])
     return dict(stations=(xq, np.interp(xq, xw, yw), np.interp(xq, xw, sw)), start=start,
-                qpa=float(fan["qs"][-1]), th=th, Xm=Xm, Ym=Ym, hh=hh, x0=x_cut, K=len(xq),
+                qpa=float(q_E), th=th, Xm=Xm, Ym=Ym, hh=hh, x0=x_cut, K=len(xq), fan_cert=CF["cert"],
+                rays=CF["rays"],
                 N=len(ys), nA=nA, nB=nB, md_in=abs(md_in), P=P, eps=eps, kappa=kappa,
                 rc_in_d=rc_in_m / CT.H_T, x_lip=x_lip, M_lip=float(A1.state_q(jnp.float64(q_l), ta)[5]),
                 th_lip=th_l, W_line=W_line, MA=np.asarray(A1.state_q(jnp.asarray(np.hypot(uA, vA)), ta)[5]),
@@ -731,11 +867,12 @@ def kernel():
              ("R %s d" % rc_out) if rc_out else "straight",
              P["R_c"], c["eps"], P["y_i"], P["b1"], "OK (R_c >= 1)" if P["R_c"] >= 1.0 else "MARGINAL"), flush=True)
     print("   cut at z %.2f = x' %.3f mm; lip at x' %.3f mm on the cowl, M_lip %.4f theta' %+.2f deg;"
-          " kernel rows %d (M %.3f..%.3f, theta' %+.2f..%+.2f deg), fan rows %d; kernel mass through"
-          " the cut %.5f of the choked 1-D; the start line's mass (wall to edge) %.5f"
+          " kernel rows %d (M %.3f..%.3f, theta' %+.2f..%+.2f deg), corner-fan rays %d (Goursat"
+          " through the kernel field, worst cell cert %.3f); kernel mass through the cut %.5f of"
+          " the choked 1-D; the start line's mass (wall to edge) %.5f"
           % (z_cut, c["x0"] * CT.MM, c["x_lip"] * CT.MM, c["M_lip"], np.degrees(c["th_lip"]), c["nA"],
-             c["MA"].min(), c["MA"].max(), c["thA"].min(), c["thA"].max(), c["nB"], c["W_line"],
-             c["md_in"] / W_star), flush=True)
+             c["MA"].min(), c["MA"].max(), c["thA"].min(), c["thA"].max(), c["nB"], c["fan_cert"],
+             c["W_line"], c["md_in"] / W_star), flush=True)
     t0 = time.time()
     out, _ = PM.plug_march(c["stations"], c["start"], c["qpa"], w["tab"], 1.0,
                            cells=make_cells_rot(1.0, c["th"], c["Ym"]))

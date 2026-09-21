@@ -641,6 +641,51 @@ cut carries continuous data and the march of section 8 (frame
 covariance 1.7e-5) does the rest. Kept as the negative of record
 (K-1/K-2 FAIL) with the FRM_ZCUT/FRM_RCIN/FRM_RCOUT knobs.
 
+## 12. The corner fan in the kernel's field -- DONE -- and the geometry that stops the pipeline (late night; owner: "vai")
+
+`a1_frame_march.corner_fan`: the lip's centred expansion marched as a
+Goursat problem through the kernel field. The leading ray is the C-
+from the lip traced through the field (RK4 on tan(theta - mu) with
+the local kernel state, its states the field's); every next ray is a
+C- from the lip with the corner relation's state (theta - nu constant
+across the fan: theta_k = theta_L + nu(q_k) - nu(q_L), q_k from q_L
+to q(p_a)); each point is solved by the record's TOP-DOWN interior
+cell in the rotated frame (`make_resid_interior_td_rot`: the C- from
+the previous point on the ray, the C+ from the same-index point on
+the previous ray -- the bell's step-(3) structure with a centred
+corner), seeded by the straight-line crossing. MEASURED on the
+kernel-fed case (lip M 1.079, 24 rays x 12 points to the cut 0.13 mm
+downstream): every cell certified, worst 0.016; the cut data are
+continuous across the leading ray (kernel row M 1.109, theta -0.10
+deg -> first fan row 1.134, +0.58 deg) and the fan reaches M 3.41 at
++56.0 deg on the terminal ray = the axial exhaust in the record's
+frame. The corner in a non-uniform field is done.
+
+The march then holds the mass to 2.4 percent over the first eleven
+columns (the −2.4 percent is the first column's wedge, the record's
+own vertical-start effect, edge_fill 0) and folds at x' 1.7 mm where
+the wall cell consumes 18 rows at once. CAUSE, geometric: the kernel's
+inner wall is a parabola curving AWAY from the channel (every throat
+series has both walls diverging downstream of the minimum section),
+while the Angelino plug turns INTO the channel from a flat foot -- a
+9 deg wall-angle gap at the cut when the kernel is read on the real
+wall (first attempt), and, when the wall is posed to follow the
+parabola up to 0.4 d and then transition to the Angelino contour
+(`FRM_WALL=lb`), a 20 deg concave turn over 3 mm: a compression, a
+shock, which no march of characteristics carries. The external plug
+is not a series-kernel geometry; the consistent L-b geometry is an
+INTERNAL-EXTERNAL plug (the plug wall keeps diverging past the lip,
+the cowl smooth through the throat): Humphreys' Fig. 1 exactly.
+
+STATE OF THE BRICK. Tools complete and each verified on its own
+gates: the annular kernel (X-ANKR, ≡ Dutton on four measured
+throats), the corner fan in a non-uniform field (certified, continuous
+data), the rotated-frame march (X-FRMR, covariant 1.7e-5). Their
+first physical twin is an internal-external plug: Humphreys 1971 once
+its throat radii are read (the thesis / Fig. 1), or a posed one. On
+Chutkey's external plug the record's construction (the fan cut at 1.5
+mm) stands, with its ladder to 1.0 mm as the declared band.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
