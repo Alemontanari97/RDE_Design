@@ -1,0 +1,42 @@
+"""Dutton & Addy 1982 eqs (10)-(11): expand in eps with the scalings (19)-(21)
+and extract the right-hand sides f_2, f_3 of eq. (24)."""
+import sympy as sp
+g, e, y, z, b1 = sp.symbols('gamma epsilon y z beta_1', positive=True)
+u1, u2, u3 = [sp.Function('u%d' % i)(z, y) for i in (1, 2, 3)]
+v1, v2, v3 = [sp.Function('v%d' % i)(z, y) for i in (1, 2, 3)]
+K = sp.sqrt((g + 1) / 2)
+# x = K eps^(1/2) z ; d/dx = (1/(K eps^(1/2))) d/dz
+ub = e * u1 + e**2 * u2 + e**3 * u3
+vb = K * (e**sp.Rational(3, 2) * v1 + e**sp.Rational(5, 2) * v2 + e**sp.Rational(7, 2) * v3)
+tanb = K * e**sp.Rational(3, 2) * b1
+x = K * sp.sqrt(e) * z
+dx = lambda f: sp.diff(f, z) / (K * sp.sqrt(e))
+dy = lambda f: sp.diff(f, y)
+gm = (g - 1) / (g + 1)
+# eq. (11)
+E = ((-2 * ub - ub**2 - gm * vb**2) * dx(ub) - 4 / (g + 1) * (1 + ub) * vb * dy(ub)
+     + (2 / (g + 1) - vb**2 - 2 * gm * ub - gm * ub**2) * dy(vb)
+     + (2 / (g + 1) - 2 * gm * ub - gm * ub**2 - gm * vb**2) * (vb + (1 + ub) * tanb) / (y + x * tanb))
+# irrotationality (10): ub_y - vb_x
+I = dy(ub) - dx(vb)
+# expand in eps: multiply by K eps^(-3/2) and series in eps
+Es = sp.series(sp.expand(E * K / e**sp.Rational(3, 2)), e, 0, 3).removeO()
+Es = sp.expand(Es)
+for n in range(3):
+    c = sp.simplify(Es.coeff(e, n))
+    print("=== order eps^%d (n = %d):" % (n, n + 1))
+    print(c)
+Is = sp.expand(sp.series(sp.expand(I / e), e, 0, 3).removeO())
+for n in range(3):
+    print("irrot order", n + 1, ":", sp.simplify(Is.coeff(e, n)))
+
+# ---- f_2, f_3: the order-n expression minus the linear operator on (u_n, v_n)
+def fn(n, expr, un, vn):
+    op = (-2*u1*sp.diff(un, z) - 2*un*sp.diff(u1, z) + sp.diff(vn, y) + vn/y)
+    return sp.simplify(-(sp.expand(expr - op)))
+E2 = sp.expand(Es.coeff(e, 1)); E3 = sp.expand(Es.coeff(e, 2))
+f2 = fn(2, E2, u2, v2); f3 = fn(3, E3, u3, v3)
+print("f2 =", f2)
+print("f3 =", f3)
+# sanity: f2, f3 contain no u2/v2 (resp. u3/v3) operator terms
+print("f2 has u2:", f2.has(u2), f2.has(v2), " f3 has u3:", f3.has(u3), f3.has(v3))

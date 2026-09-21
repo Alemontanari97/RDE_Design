@@ -464,13 +464,75 @@ planar at y_i -> inf) and on his measured contours. Gate order:
 Dutton's axisymmetric R_co 1.0 (Fig. 6-7) -> annular beta 0 (Fig. 8)
 -> inclined (Fig. 9-10) -> Chutkey's primary nozzle -> the plug.
 
+## 10. The annular kernel DERIVED (evening; owner: the report is not obtainable) [X-ANKR], `validation/a1_annular_kernel.py`, stage verify 4/4
+
+Dutton & Addy's series in our own hands: the framework of the paper
+(eqs. (10)-(11), scalings (16)-(21), wall conditions (25)-(30)) and
+the coefficients derived, not transcribed.
+
+**The forcing terms.** Eq. (11) expanded in eps with sympy (system
+python; `validation/_annular_kernel/derive_fn_sympy.py.txt`): at order n,
+u_n,y = v_n,z and -2 u_1 u_n,z - 2 u_1,z u_n + v_n,y + v_n/y = f_n,
+with f_1 = -beta_1/y (eq. (23) reproduced verbatim), f_2 and f_3 the
+lower-order products (coded in `_f2`, `_f3`; f_3 carries the terms
+of the (y + x tan beta) denominator, beta_1^2 z/(2y^2) and beta_1 z
+v_1/(2y^2), and of the a^2/a*^2 factor).
+
+**The solution.** First order: the z^2 wall condition forces the
+z-coefficient of u_1 to be a constant D, so u_1 = D z + a(y) with
+a' = D^2 y + C_1/y -- the annular constant C_1 brings the logarithms
+-- and D^2, C_1 follow from the two wall values of v_1's z-coefficient
+(D^2 = 2 on the axis: Sauer; 1 in the planar limit: Moore); v_1 = z a'
++ c(y), (y c)' = 2 y a D - beta_1. Every higher order is linear and
+TRIANGULAR: u_n = sum z^k A_k(y), v_n = sum z^k B_k(y), (y B_k)' =
+y [F_k + 2D(k+1) A_k + 2a(k+1) A_{k+1}], A_k' = (k+1) B_{k+1}, from the
+top degree down, each (A_k, B_k) pair of constants fixed by the two
+wall values of B_k: a chain of quadratures. The y-dependence lives on
+a Chebyshev-Lobatto grid (48 nodes) with spectral differentiation and
+integration: exact in z, spectral in y, no closed-form explosion.
+
+**The gates (all derived, all rejectors):**
+
+| gate | result |
+|---|---|
+| V-1 residual of the FULL eq. (11) (jax) on the truncated series, eps 0.04/0.02/0.01, generic annular inclined asymmetric throat (y_i 0.6, g_2 -0.6, h_2 1.4, g_1 0.1, h_1 -0.05, beta_1 0.3, eta 2) | observed orders 1.02/1.01, 2.05/2.02, **3.06/3.03** with 1/2/3 terms |
+| V-2 the wall conditions (12)-(13) on both parabolic walls | orders 1.06/1.03, 2.05/2.03, **3.05/3.02** |
+| irrotationality (10) | 5e-15 |
+| V-3 axis limit y_i = 1e-3, first order = the record's Sauer (delta 1) | D^2 = 2 - 2e-3 (= 2/(1 + y_i/y_o)), C_1 -2e-6, sonic-line shape 7.5e-5 |
+| V-4 planar limit y_i = 1000: the 2-term series vs Moore's third approximation [X-TKRN] (eps_M^2 = eps/2, x_M = 2 x_D), K_M 0/0.5/1 | gap 4e-6/8e-6/1.3e-5 at eps 0.05 = the annular O(1/y_i) term: **ratio 4.00** under y_i x 4 |
+| V-5 Chebyshev N 48 vs 96 | 2e-12 |
+
+Two readings from the gates: (i) Moore's third approximation is
+Dutton's SECOND term (eps_M^4 = eps^2/4); Dutton's third term is
+Moore's unpublished fifth -- the 3-term series against Moore differed
+by eps^3 u_3 before this was understood; (ii) the annular correction
+at first order is C_1 ln y with C_1 = O(y_i^2) cancelling against
+D^2 y^2/2: at y_i 1000 six digits cancel and the Chebyshev sums keep
+1e-10 (Dutton's footnote on his roundoff at y_i ~ 1000 is the same
+cancellation).
+
+**What this gives the line.** A throat kernel for ANY annular,
+inclined, asymmetric throat with parabolic walls, in the frame of the
+rotated cells (section 8): Chutkey's primary nozzle (arcs R 0.867 mm
+on d 2.647 mm: R_c = 0.33 in separations, eta 2 -> eps 0.43, y_i 11.5,
+beta_1 = tan(56.9 deg)/(K eps^1.5) = 5.0, beta_1/y_i 0.43), Dutton's
+four measured throats, Humphreys' annular throat when its radii are
+known. NEXT (proposal): stage `dutton` -- the axisymmetric R_co 1.0
+wall Mach (Fig. 6) and the annular/inclined contours (Fig. 8-10) as
+the measured oracle (digitisation by the owner, as for Chutkey's
+Fig. 2b); stage `chutkey` -- the sonic line and the throat-plane
+profile of the primary nozzle, the discharge coefficient, and the
+1/2/3-term convergence at R_c 0.33 (the paper's Fig. 2-3 pattern);
+then the start line for the frame march at the first all-supersonic
+transverse line, and the twin's mass.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),
   `validation/a1_throat_kernel.py` (new carrier, baseline row 65 in
   `numeric_lint_baseline_validation.json`, measured by the lint),
-  `validation/a1_frame_march.py` (new carrier, baseline row 31; NOT
+  `validation/a1_frame_march.py` (new carrier, baseline row 31), `validation/a1_annular_kernel.py` (new carrier, baseline row 36, with `_annular_kernel/derive_fn_sympy.py`); NOT
   `a1_rot_march.py`, which is the S24 rotational-inlet carrier X-RMAR
   -- overwritten by mistake for twenty minutes and restored from HEAD
   untouched), this log; registry rows X-TKRN, X-FRMR; ADVISORY_INDEX

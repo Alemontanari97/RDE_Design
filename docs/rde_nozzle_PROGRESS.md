@@ -284,6 +284,14 @@
 ## e il kernel e' ESCLUSO su Chutkey dal paper stesso (archi di gola
 ## R 0.867 mm su h 1.32 mm, R/h 0.66). PROSSIMO: decisione owner (log
 ## S32 §8): Humphreys (raggio di gola dalla tesi) o gola numerica.
+## SERA: Dutton 1982 in mano (owner), report dei coefficienti non
+## reperibile -> kernel anulare DERIVATO [X-ANKR] (a1_annular_kernel.py):
+## f_2/f_3 da (11) con sympy, prima ordine di Hall con la costante
+## anulare, ordini superiori = catena di quadrature in y (Chebyshev),
+## verify 4/4: residuo delle equazioni piene a ordine 1/2/3 esatto,
+## limite asse = Sauer, limite piano = Moore 3o ordine a meno del
+## termine O(1/y_i) (rapporto 4.00). PROSSIMO: stage dutton (Fig. 6-10
+## da digitalizzare) e stage chutkey (ugello primario, R_c 0.33, eta 2).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
