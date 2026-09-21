@@ -259,6 +259,23 @@
 ## 3/3; aperto T-4b massa -5.6 %). Figure in _chutkey_twin/figs/.
 ## PROSSIMO: test di regime come sensibilita', Sule-Mueller (config.
 ## iii, marcia a due pareti), Humphreys/Johnson (twin di ottimizzazione).
+## S32 (2026-09-21, log validation/PROGRESS_2026-09-21_S32_throat_kernel.md):
+## (a) perche' il camminatore non trova l'ottimo da lontano: quattro cause
+## lette sulle gambe S31 (valle piatta 0.5 %; driver che stalla -- 11
+## rifiuti/30, fine per budget con |grad|/J 0.14; ingresso congelato e
+## non loro; punta libera + Veen); (b) passo di restaurazione nel driver
+## (PSPL_BACKTRACK, additivo, bit-identico a 0): backtracking sul valore
+## RI-MARCIATO lungo il segmento rifiutato, poi ascesa proiettata; gamba
+## di test = opt dal ventaglio su s2 (chiusura nel log §6); (c) kernel di
+## gola APERTO [X-TKRN]: Moore 1965 R&M 3481 (gola 2D a pareti di
+## curvatura diversa) trascritto al 3o ordine e VERIFICATO sulle
+## equazioni del paper stesso (7/7, un refuso dello scan corretto);
+## lettura K = 1 (cowl dritto): linea sonica inclinata, 2-14 deg di
+## direzione attraverso la gola, M 1.00 lato labbro -- la linea uniforme
+## (Migdal) NON e' una partenza (Humphreys p. 1587: 2700 lbf). POSA del
+## brick in §5 (frame di gola, labbro L-a/L-b deciso dalla massa di
+## Chutkey, termini anulari = gap dichiarato: Moore-Hall / Dutton-Addy
+## 1982 richiesti all'owner). PROSSIMO: stage startline + Chutkey.
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

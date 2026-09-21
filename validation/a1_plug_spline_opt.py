@@ -122,6 +122,11 @@ BASE_MODEL = os.environ.get("A1_BASE_MODEL", "")
 K_ST = int(os.environ.get("PSPL_K", 81))    # march wall stations
 N_ROW = int(os.environ.get("PSPL_N", 61))   # start-line rows
 MAXSEG = int(os.environ.get("PSPL_ITERS", 10))
+# PSPL_BACKTRACK (S32, the "restoration step of our own" of the S30
+# queue, item 1): the number of halvings the driver may try, on the
+# RE-MARCHED value, before a rejected segment is thrown away. 0 = the
+# record's reject-and-shrink driver, bit-identical (see run_trsqp).
+BACKTRACK = int(os.environ.get("PSPL_BACKTRACK", 0))
 HERE = os.path.dirname(os.path.abspath(__file__))
 CKPT = os.path.join(HERE, "_plug_spline")
 
@@ -320,7 +325,7 @@ def J_and_grad(W, w, c, ta, sched):
 # ======================================================================
 def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
               maxiter_per_seg=8, verbose=1, margin=None, tr0=0.05,
-              tr_floor=None, bounds=None):
+              tr_floor=None, bounds=None, backtrack=None):
     """Segmented trust-constr. One SEGMENT = one frozen schedule: the
     march is re-recorded at the segment base, the optimizer walks on
     that record, and acceptance triggers a fresh record. A base whose
@@ -332,10 +337,38 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     first base with KS >= mu0 hands the walk to the objective phase;
     a violation that cannot be reduced at the radius floor stops the
     walk as NOT RESTORABLE (see the block comment in the loop). An
-    in-class start never enters it and is bit-identical."""
+    in-class start never enters it and is bit-identical.
+
+    BACKTRACKING (S32, [X-HMPH] reading: "the model verifies an optimum
+    but does not find it from afar"). The record's driver answers a
+    rejected segment by reverting to the incumbent and halving the
+    radius: measured on the Humphreys opt leg from the fan (S31, 30
+    segments), 11 rejections in the fixed cadence "one step, two
+    rejections" -- the frozen-schedule model says "better", the re-march
+    says "worse" -- and the walk ends by budget 0.6 percent below the
+    paper's optimum with |grad J|/J ~ 0.14. With backtrack = n > 0 a
+    rejected trial is not thrown away: the driver walks BACK along the
+    segment's displacement d = W_trial - W_best at the fractions 1/2,
+    1/4, ... 1/2^n, re-marching each point, and adopts the first one
+    that is certified, in class and better than the incumbent (a
+    textbook line search on the true objective, the march being the
+    model); if none is, it tries the same halvings on a PROJECTED
+    ASCENT step from the incumbent along its own recorded gradient
+    (length = the current radius, clipped to the bounds), which does not
+    depend on the frozen model at all; only when both fail does it
+    revert and shrink as before. An accepted backtracked point becomes
+    the next base with its record carried (no second march) and the
+    radius set to the length of the step that succeeded. Fractions
+    below the radius floor are not tried (a move under the floor is not
+    a measurement). backtrack = 0 (default, BACKTRACK from
+    PSPL_BACKTRACK) is the record's driver, bit-identical."""
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf
+    g_best = None
+    backtrack = BACKTRACK if backtrack is None else int(backtrack)
+    n_bt = [0, 0, 0]        # accepted along-segment, accepted ascent, probes
+    pending = None          # record carried from an accepted backtrack
     # PHASE 1 (restoration) state: the least-violating certified
     # iterate seen while no IN-CLASS base exists yet, and its violation
     W_rest, V_best = None, None
@@ -350,10 +383,75 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     slack = 1.01e-3 if tr_floor is None else floor * (1 + 1 / 100)
     n_rec = 0
     hist = []
+    def _probe(Wt):
+        """Re-march a trial point for the backtracking search: its
+        certified record, J, gradient and class flag, or None when the
+        record fails or is not certified (the same tests the loop's
+        base gate applies, so an accepted probe is a legal base)."""
+        n_bt[2] += 1
+        try:
+            o, sc = march_record(Wt, w, c, margin=margin)
+        except Exception:
+            return None
+        if float(o["cert_worst"]) > 1.0:
+            return None
+        Jt, gt = J_and_grad(Wt, w, c, ta, sc)
+        bad = (margin is not None
+               and float(o["margin_ks"]) - margin["mu0"]
+               < -float(margin.get("tol", 0.0)))
+        return Jt, gt, o, sc, bad
+
+    def _project(Wt):
+        if bounds is None:
+            return Wt
+        lb = getattr(bounds, "lb", None)
+        ub = getattr(bounds, "ub", None)
+        if lb is None:
+            lb = np.asarray([b[0] for b in bounds], float)
+            ub = np.asarray([b[1] for b in bounds], float)
+        return np.clip(Wt, lb, ub)
+
+    def _search(base, d, J_ref, seg, what):
+        """Halve along d from base until a certified, in-class point
+        beats J_ref (sign-aware); returns (Wt, probe, alpha) or None."""
+        for k in range(1, backtrack + 1):
+            a = 0.5 ** k
+            Wt = _project(base + a * d)
+            h = float(np.linalg.norm(Wt - base))
+            if h < floor:
+                if verbose:
+                    print("    [seg %2d] %s: step %.3e below the floor"
+                          " at 1/%d -> give up" % (seg, what, h, 2 ** k),
+                          flush=True)
+                return None
+            pr = _probe(Wt)
+            if pr is None:
+                if verbose:
+                    print("    [seg %2d] %s 1/%d: record not certified"
+                          % (seg, what, 2 ** k), flush=True)
+                continue
+            Jt, gt, o, sc, bad = pr
+            ok = (not bad) and sign * Jt > sign * J_ref
+            if verbose:
+                print("    [seg %2d] %s 1/%d (step %.3e): J = %.8e"
+                      " cert = %.3f%s -> %s"
+                      % (seg, what, 2 ** k, h, Jt, float(o["cert_worst"]),
+                         " INFEASIBLE" if bad else "",
+                         "ACCEPT" if ok else "worse"), flush=True)
+            if ok:
+                return Wt, pr, a
+        return None
+
     for seg in range(max_segments):
         try:
-            out_rec, sched = march_record(W, w, c, margin=margin)
-            n_rec += 1
+            if pending is not None:
+                out_rec, sched = pending[2], pending[3]
+                pending_Jg = (pending[0], pending[1])
+                pending = None
+            else:
+                pending_Jg = None
+                out_rec, sched = march_record(W, w, c, margin=margin)
+                n_rec += 1
             cw = float(out_rec["cert_worst"])
             if cw > 1.0:
                 raise RuntimeError("record not certified (worst %.3e)"
@@ -362,6 +460,23 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             # revert target: the certified in-class base, or, in
             # phase 1 below, the least-violating restoration iterate
             W_back = W_cert if W_cert is not None else W_rest
+            if backtrack > 0 and W_best is not None:
+                # an UNCERTIFIED base is a rejected trial too (3 of the
+                # 11 rejections of the S31 opt leg): walk back along
+                # the segment before throwing it away
+                if verbose:
+                    print("    [seg %2d] base not certified (%s)"
+                          % (seg, err), flush=True)
+                hit = _search(W_best, W - W_best, J_best, seg, "backtrack")
+                if hit is not None:
+                    n_bt[0] += 1
+                    W, pending, a = hit
+                    tr = max(floor, float(np.linalg.norm(W - W_best)))
+                    if verbose:
+                        print("    [seg %2d] restoration ACCEPTED ->"
+                              " base, radius -> %.3e" % (seg, tr),
+                              flush=True)
+                    continue
             if W_back is not None and tr > floor:
                 tr = max(floor, 0.5 * tr)
                 if verbose:
@@ -370,7 +485,10 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                 W = W_back.copy()
                 continue
             raise
-        J0, g0 = J_and_grad(W, w, c, ta, sched)
+        if pending_Jg is not None:
+            J0, g0 = pending_Jg
+        else:
+            J0, g0 = J_and_grad(W, w, c, ta, sched)
         # PHASE 1 -- RESTORATION ([X-PTRN], S30 2026-09-17). The
         # feasibility gate below is armed only once a certified base
         # exists, so a walk that STARTS out of class adopted its start
@@ -456,6 +574,38 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             why = ("INFEASIBLE (KS - mu0 %+.4f)"
                    % (float(out_rec["margin_ks"]) - margin["mu0"])
                    if infeasible else "worse")
+            if backtrack > 0 and W_best is not None:
+                # the model's own prediction at the trial, for the
+                # reading (rho = actual / predicted gain)
+                if verbose:
+                    Jm = -sign * float(res.fun)
+                    den = Jm - J_best
+                    print("    [seg %2d] trial J = %.8e %s than %.8e;"
+                          " model predicted %.8e (rho %s)"
+                          % (seg, J0, why, J_best, Jm,
+                             ("%.2f" % ((J0 - J_best) / den))
+                             if den != 0.0 else "n/a"), flush=True)
+                hit = _search(W_best, W - W_best, J_best, seg, "backtrack")
+                if hit is None and g_best is not None:
+                    gn = float(np.linalg.norm(g_best))
+                    if gn > 0.0:
+                        # the ascent step of length 2*tr: the search
+                        # starts at its half, i.e. at the radius
+                        hit = _search(W_best, 2.0 * tr * sign * g_best / gn,
+                                      J_best, seg, "ascent")
+                        if hit is not None:
+                            n_bt[1] += 1
+                elif hit is not None:
+                    n_bt[0] += 1
+                if hit is not None:
+                    W, pr, a = hit
+                    pending = pr
+                    tr = max(floor, float(np.linalg.norm(W - W_best)))
+                    if verbose:
+                        print("    [seg %2d] restoration ACCEPTED ->"
+                              " base, radius -> %.3e" % (seg, tr),
+                              flush=True)
+                    continue
             if tr <= slack:
                 if verbose:
                     print("    [seg %2d] trial %s at the radius"
@@ -473,6 +623,7 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             W_cert = W.copy()
             if sign * J0 > sign * J_best:
                 W_best, J_best = W.copy(), J0
+                g_best = np.asarray(g0, float).copy()
             if verbose:
                 print("    [seg %2d] J = %.8e  |grad| = %.3e  cert = %.3f"
                       % (seg, J0, np.linalg.norm(g0), cw), flush=True)
@@ -625,6 +776,10 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         # good base and two overshoots, re-recording forever). Grow
         # only on an accepted base, shrink only here.
         tr = float(min(0.25, 1.5 * tr))
+    if backtrack > 0 and verbose:
+        print("    backtracking: %d probes, %d accepted along the segment,"
+              " %d accepted on the ascent; %d records"
+              % (n_bt[2], n_bt[0], n_bt[1], n_rec), flush=True)
     # the answer is the BEST CERTIFIED design seen, never the last
     # trial point (the two differ exactly when the walk overshoots).
     # A walk that never reached the class returns its LEAST-VIOLATING
