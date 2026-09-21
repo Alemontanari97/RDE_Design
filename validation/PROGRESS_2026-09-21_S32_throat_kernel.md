@@ -526,6 +526,46 @@ profile of the primary nozzle, the discharge coefficient, and the
 then the start line for the frame march at the first all-supersonic
 transverse line, and the twin's mass.
 
+### 10.1 Stage chutkey (1/2) and stage domain (1/1): where the series converges
+
+Chutkey's primary nozzle in the kernel's parameters: d 2.647 mm, beta
+56.9 deg, both walls arcs R 0.867 mm -> R_c 0.3275 (separations),
+y_i = R_i/(d cos beta) = 21.1, beta_1 4.97 (beta_1/y_i 0.24), g_2 -1,
+h_2 +1, eta 2 -> eps 0.430. The 1/2/3-term series on the throat plane
+x = 0: M 1.016-1.153 / 0.961-1.206 / 0.935-1.265, direction +-0.5 /
++-1.3 / +-2.0 deg, W/W* 0.9959 / 0.9950 / 0.9924; the sonic line at
+the walls -0.21 / -0.18 / -0.19 d (0.5 mm upstream), at mid-throat
+-0.02 / +0.04 / +0.06 d. **C-1 FAILS, and that is the finding**: the
+third term moves the throat-plane Mach as much as the second (0.058
+vs 0.055, ratio 1.05) and eta 1/3 vs 2 move it by 0.12 -- at R_c 0.33
+the series is NOT converged, as Dutton's own domain says (R_c >= 0.5).
+What is bounded: the discharge coefficient W/W* = 0.985-0.995 across
+eta 1-3; the sonic line's shape (walls 0.5 mm upstream, mid-throat
+~0.15 mm downstream); the first all-supersonic transverse line
++0.16 mm from the throat plane with M 1.00-1.37 and +-3.5 deg of
+direction. C-2 PASS (W/W* 0.9924 in [0.95, 1]).
+
+Stage domain, the convergence map on Chutkey's annulus (y_i 21,
+beta 56.9) and on the axis, symmetric walls, eta 2, the throat-plane
+Mach: ratio |M_3 - M_2| / |M_2 - M_1| = 1.05 / 0.91 / 0.83 / 0.63 /
+0.35 / 0.16 at R_c 0.33 / 0.5 / 0.625 / 1 / 2 / 4 on the annulus
+(0.93 / 0.86 / 0.82 / 0.71 / 0.52 / 0.35 on the axis), eta-spread
+0.12 / 0.08 / 0.06 / 0.03 / 0.008 / 0.002 (0.21 / 0.14 / 0.10 / 0.05 /
+0.012 / 0.003); W/W* on the axis 0.980 / 0.984 / 0.987 / 0.991 /
+0.9965 / 0.9988 (R_c 2: 0.9965; the measured discharge coefficients of
+Back et al. for R_c ~ 2 are ~0.996). D-1 PASS: converged at R_c >= 1
+on both; marginal at 0.5-0.625 (Dutton's edge); not at 0.33.
+
+**Read for the direction.** The kernel is validated and its domain
+is measured: R_c >= 1 clean, >= 0.5 marginal. Dutton's four throats
+(R_co 1.0; R_ci 3.2 / R_co 1.6; R_ci 3.0 / R_co 1.5 inclined) are all
+inside -- the oracle with explicit geometry AND measured fields is
+exactly where the kernel works. Chutkey's throat (R_c 0.33) is outside
+by design of his rig; its throat field remains a numerical problem,
+but its discharge coefficient and sonic-line shape are bounded by the
+kernel at the 1 percent / 0.1 mm level. Humphreys' throat radius is
+the unknown that decides his case.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.

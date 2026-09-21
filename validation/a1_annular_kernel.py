@@ -78,6 +78,10 @@ import jax.numpy as jnp                                # noqa: E402
 
 NPASS = [0, 0]
 N_CHEB = int(os.environ.get("ANK_NCHEB", 48))
+HERE = os.path.dirname(os.path.abspath(__file__))
+import json                                            # noqa: E402
+CASES = {k: v["value"] for k, v in json.load(
+    open(os.path.join(HERE, "annular_kernel_cases.json"))).items() if k[0] != "_"}
 
 
 def check(label, ok):
@@ -413,7 +417,7 @@ def verify():
     #     -(gamma+1) alpha / 8 ... in Sauer's u' = alpha x + (gamma+1) alpha^2 r^2 / 4:
     #     sonic x = -(gamma+1) alpha r^2 / 4, v = 0 on x = -(gamma+1) alpha r^2 / 8.
     #     Here (no centerbody, g'' = 0, h'' = 2 eps): in units of d = r_t.
-    yi0 = 1e-3
+    yi0 = CASES["axis_y_i"]
     grid0, f0, c0 = solve_kernel(yi0, 0.0, 0.0, 0.0, 2.0, 0.0, gam, 0.0, order=1)
     eps0 = 0.05
     alpha = np.sqrt(2.0 / ((gam + 1.0) * (1.0 / (2.0 * eps0))))   # R_wall = 1/(2 eps) in d units
@@ -486,7 +490,184 @@ def verify():
     return NPASS[0] == NPASS[1]
 
 
+# ======================================================================
+# a physical throat -> the kernel's parameters
+# ======================================================================
+def throat_params(R_i_m, d_m, beta_deg, rc_in_m, rc_out_m, eta, gam,
+                  slope_in=0.0, slope_out=0.0):
+    """Dutton's parameters from a throat of inner radius R_i (the inner
+    wall's point on the minimum-area section), wall separation d,
+    inclination beta of the mean flow to the axis, radii of curvature
+    of the inner and outer walls at the throat (positive = the wall
+    curves AWAY from the channel, the duct diverging on both sides in
+    the throat's own frame; infinite = straight), and the wall slopes
+    at the throat in the throat frame (zero for a minimum-area
+    section normal to the flow). y_i = R_i / (d cos beta) (eqs.
+    (3)-(4) with the x-y origin on the axis)."""
+    beta = np.radians(beta_deg)
+    gpp = -(d_m / rc_in_m) if np.isfinite(rc_in_m) else 0.0
+    hpp = (d_m / rc_out_m) if np.isfinite(rc_out_m) else 0.0
+    eps = (hpp - gpp) / (2.0 + eta * (hpp - gpp))
+    K = np.sqrt(0.5 * (gam + 1.0))
+    s3 = K * eps * np.sqrt(eps)                  # K eps^(3/2), the slope scale
+    return dict(y_i=R_i_m / (d_m * np.cos(beta)), eps=eps,
+                g2=2.0 * gpp / (hpp - gpp), h2=2.0 * hpp / (hpp - gpp),
+                g1=slope_in / s3, h1=slope_out / s3,
+                b1=np.tan(beta) / s3, R_c=2.0 / (hpp - gpp), K=K)
+
+
+def sonic_line(grid, fields, eps, gam, ys, nterms=None, zspan=CASES["z_span"]):
+    """z_s(y): the root of q = 1 in z nearest the throat plane, within
+    the series' range |z| <= zspan (nan when there is none)."""
+    zz = np.linspace(-zspan, zspan, CASES["z_scan_points"])
+    out = []
+    for y in ys:
+        u, v = series_uv(grid, fields, eps, gam, zz, y, nterms)
+        q = np.sqrt(u**2 + v**2) - 1.0
+        k = np.where(q[:-1] * q[1:] <= 0.0)[0]
+        if len(k) == 0:
+            out.append(np.nan)
+            continue
+        kk = k[np.argmin(np.abs(zz[k]))]
+        out.append(zz[kk] - q[kk] * (zz[kk + 1] - zz[kk]) / (q[kk + 1] - q[kk]))
+    return np.array(out)
+
+
+def mass_ratio(grid, fields, eps, gam, z, nterms=None, n=CASES["n_y_mass"]):
+    """W / W* through the transverse line z = const: the y-weighted
+    (radius) average of rho u / (rho* a*), against the choked 1-D value."""
+    y = np.linspace(grid.y_i, grid.y_o, n)
+    u, v = series_uv(grid, fields, eps, gam, np.full(n, z), y, nterms)
+    q2 = u**2 + v**2
+    f = u * (0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * q2) ** (1.0 / (gam - 1.0))
+    return float(np.trapezoid(f * y, y) / np.trapezoid(y, y))
+
+
+# ======================================================================
+# stage chutkey: the primary nozzle of Chutkey 2014 (p. 479), explicit
+# ======================================================================
+def chutkey():
+    t0 = time.time()
+    print("== [F3/A1] the annular kernel on Chutkey's primary nozzle (stage chutkey) ==",
+          flush=True)
+    import a1_chutkey_twin as CT
+    d_m, beta, rc = CT.H_T, CT.TILT_DEG, CASES["chutkey_primary_arc_radius_m"]
+    R_i = CT.FOOT[1]                                     # the plug-side throat point
+    gam = CT.GAMMA
+    eta = float(os.environ.get("ANK_ETA", 2.0))
+    P = throat_params(R_i, d_m, beta, rc, rc, eta, gam)
+    print("   throat: d %.3f mm, beta %.1f deg, arcs R %.3f mm both walls -> R_c %.4f"
+          " (separations), eta %.1f, eps %.4f, y_i %.2f, beta_1 %.3f (beta_1/y_i %.3f),"
+          " g_2 %.1f h_2 %.1f" % (d_m * 1e3, beta, rc * 1e3, P["R_c"], eta, P["eps"],
+                                  P["y_i"], P["b1"], P["b1"] / P["y_i"], P["g2"], P["h2"]))
+    grid, fields, cst = solve_kernel(P["y_i"], P["g1"], P["g2"], P["h1"], P["h2"],
+                                     P["b1"], gam, eta)
+    eps, K = P["eps"], P["K"]
+    NY = CASES["n_y_profile"]
+    ys = np.linspace(grid.y_i, grid.y_o, NY)
+    print("   the sonic line x_s (in d) at the plug wall / mid / lip wall, the throat-plane"
+          " (x = 0) Mach and direction, and the mass, by number of terms:")
+    rows = {}
+    for nt in (1, 2, 3):
+        zs = sonic_line(grid, fields, eps, gam, ys, nt)
+        xs = zs * K * eps**0.5
+        u0, v0 = series_uv(grid, fields, eps, gam, np.zeros(NY), ys, nt)
+        M0 = np.sqrt(u0**2 + v0**2) / np.sqrt(0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * (u0**2 + v0**2))
+        th0 = np.degrees(np.arctan2(v0, u0))
+        W0 = mass_ratio(grid, fields, eps, gam, 0.0, nt)
+        rows[nt] = dict(xs=xs, M0=M0, th0=th0, W0=W0)
+        print("     %d term(s): x_s %+.4f / %+.4f / %+.4f d; M(x=0) %.4f..%.4f; theta(x=0)"
+              " %+.2f..%+.2f deg; W/W* through x = 0: %.5f"
+              % (nt, xs[0], xs[NY // 2], xs[-1], M0.min(), M0.max(), th0.min(), th0.max(), W0))
+    d12 = float(np.max(np.abs(rows[2]["M0"] - rows[1]["M0"])))
+    d23 = float(np.max(np.abs(rows[3]["M0"] - rows[2]["M0"])))
+    print("   throat-plane Mach convergence: max |M_2 - M_1| %.4f, |M_3 - M_2| %.4f (ratio %.2f)"
+          % (d12, d23, d12 / d23))
+    # the re-summation parameter: at a given order the answer must not
+    # depend on eta beyond the truncation error
+    M_eta = {}
+    for eta2 in CASES["eta_ladder"]:
+        P2 = throat_params(R_i, d_m, beta, rc, rc, eta2, gam)
+        g2_, f2_, _ = solve_kernel(P2["y_i"], P2["g1"], P2["g2"], P2["h1"], P2["h2"], P2["b1"], gam, eta2)
+        u0, v0 = series_uv(g2_, f2_, P2["eps"], gam, np.zeros(NY), ys, 3)
+        M_eta[eta2] = np.sqrt(u0**2 + v0**2) / np.sqrt(0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * (u0**2 + v0**2))
+        print("   eta %.0f (eps %.3f): 3-term M(x=0) %.4f..%.4f, W/W* %.5f"
+              % (eta2, P2["eps"], M_eta[eta2].min(), M_eta[eta2].max(),
+                 mass_ratio(g2_, f2_, P2["eps"], gam, 0.0, 3)))
+    d_eta = float(max(np.max(np.abs(M_eta[1.0] - M_eta[2.0])), np.max(np.abs(M_eta[3.0] - M_eta[2.0]))))
+    check("C-1 the series converges on the throat-plane Mach at R_c %.2f (eta %.0f): the third"
+          " term moves it less than the second (%.4f < %.4f), and eta 1/3 vs 2 move it by no more"
+          " than the third term (%.4f)" % (P["R_c"], eta, d23, d12, d_eta),
+          d23 < d12 and d_eta <= 2.0 * d23)
+    # the first all-supersonic transverse line and its state
+    zs3 = sonic_line(grid, fields, eps, gam, ys, 3)
+    zl = float(np.nanmax(zs3))
+    ul, vl = series_uv(grid, fields, eps, gam, np.full(NY, zl), ys, 3)
+    Ml = np.sqrt(ul**2 + vl**2) / np.sqrt(0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * (ul**2 + vl**2))
+    print("   first all-supersonic transverse line: x %+.4f d = %+.3f mm from the throat plane;"
+          " M %.4f..%.4f, theta %+.2f..%+.2f deg; W/W* %.5f"
+          % (zl * K * eps**0.5, zl * K * eps**0.5 * d_m * 1e3, Ml.min(), Ml.max(),
+             np.degrees(np.arctan2(vl, ul)).min(), np.degrees(np.arctan2(vl, ul)).max(),
+             mass_ratio(grid, fields, eps, gam, zl, 3)))
+    lo, hi = CASES["discharge_band"]
+    check("C-2 the mass through the throat plane is below the choked 1-D value and above"
+          " %.2f of it (W/W* %.5f)" % (lo, rows[3]["W0"]), lo <= rows[3]["W0"] <= hi)
+    os.makedirs(os.path.join(HERE, "_annular_kernel"), exist_ok=True)
+    np.savez(os.path.join(HERE, "_annular_kernel", "chutkey_eta%.1f.npz" % eta),
+             ys=ys, **{"xs%d" % k: rows[k]["xs"] for k in rows},
+             **{"M0_%d" % k: rows[k]["M0"] for k in rows}, params=np.array([P[k] for k in ("y_i", "eps", "g2", "h2", "b1")]))
+    print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t0))
+    return NPASS[0] == NPASS[1]
+
+
+# ======================================================================
+# stage domain: where the series converges -- the throat-plane Mach
+# convergence ratio and the eta-spread against R_c, on Chutkey's
+# annulus (y_i 21, beta 56.9 deg, symmetric walls) and on the axis
+# ======================================================================
+def domain():
+    t0 = time.time()
+    print("== [F3/A1] the annular kernel's convergence domain (stage domain) ==", flush=True)
+    import a1_chutkey_twin as CT
+    gam = CT.GAMMA
+    NY = CASES["n_y_profile"]
+    ys = np.linspace(0.0, 1.0, NY)
+    ok = True
+    for label, (R_i, beta) in (("Chutkey annulus (y_i 21, beta 56.9)", (CT.FOOT[1], CT.TILT_DEG)),
+                               ("axis (y_i %.0e, beta 0)" % CASES["axis_y_i"], (CASES["axis_y_i"] * CT.H_T, 0.0))):
+        print("   " + label)
+        for R_c in CASES["rc_ladder"]:
+            rc = R_c * CT.H_T
+            res = {}
+            for eta in CASES["eta_ladder"]:
+                P = throat_params(R_i, CT.H_T, beta, rc, rc, eta, gam)
+                grid, fields, _ = solve_kernel(P["y_i"], P["g1"], P["g2"], P["h1"], P["h2"], P["b1"], gam, eta)
+                yy = grid.y_i + ys
+                Ms = []
+                for nt in (1, 2, 3):
+                    u0, v0 = series_uv(grid, fields, P["eps"], gam, np.zeros(NY), yy, nt)
+                    Ms.append(np.sqrt(u0**2 + v0**2) / np.sqrt(0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * (u0**2 + v0**2)))
+                res[eta] = dict(eps=P["eps"], M=Ms, W=mass_ratio(grid, fields, P["eps"], gam, 0.0, 3))
+            d12 = float(np.max(np.abs(res[2.0]["M"][1] - res[2.0]["M"][0])))
+            d23 = float(np.max(np.abs(res[2.0]["M"][2] - res[2.0]["M"][1])))
+            d_eta = float(max(np.max(np.abs(res[1.0]["M"][2] - res[2.0]["M"][2])),
+                              np.max(np.abs(res[3.0]["M"][2] - res[2.0]["M"][2]))))
+            conv = d23 < d12 and d_eta <= 2.0 * d23
+            print("     R_c %.3f: eps(eta 2) %.3f; M(x=0) 3 terms %.4f..%.4f; |M2-M1| %.4f |M3-M2| %.4f"
+                  " (ratio %.2f); eta-spread %.4f; W/W* %.5f (eta 1/2/3: %.5f/%.5f/%.5f) -> %s"
+                  % (R_c, res[2.0]["eps"], res[2.0]["M"][2].min(), res[2.0]["M"][2].max(), d12, d23,
+                     d23 / d12, d_eta, res[2.0]["W"], res[1.0]["W"], res[2.0]["W"], res[3.0]["W"],
+                     "converges" if conv else "NOT converged"))
+            if R_c >= CASES["rc_converged_from"] and not conv:
+                ok = False
+    check("D-1 the series converges (third term < second, eta-spread <= 2 x third term) at"
+          " R_c >= %.1f on both the annulus and the axis" % CASES["rc_converged_from"], ok)
+    print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t0))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("ANK_STAGE", "verify")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"verify": verify}.get(STAGE, verify)() else 1)
+    sys.exit(0 if {"verify": verify, "chutkey": chutkey,
+                   "domain": domain}.get(STAGE, verify)() else 1)

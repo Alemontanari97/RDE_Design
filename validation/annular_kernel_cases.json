@@ -1,0 +1,13 @@
+{
+ "_note": "Constants of the annular throat kernel's application stages (a1_annular_kernel.py: chutkey, domain), kept as DATA with class and provenance per the validation numeric ratchet (R28); the verify stage's rungs are the carrier's birth literals.",
+ "chutkey_primary_arc_radius_m": {"value": 0.000867, "cls": "SPEC", "note": "Chutkey et al. 2014 p. 479: the primary nozzle's walls end in circular arcs of radius 0.867 mm at the throat (X1 in [-0.617, 0] mm), both walls (symmetric duct)"},
+ "z_span": {"value": 1.5, "cls": "NUMERIC", "note": "half-range of the stretched axial variable scanned for the sonic line: the series' own range (|z| ~ 1 = one throat-scale in x)"},
+ "z_scan_points": {"value": 3001, "cls": "NUMERIC", "note": "resolution of the sonic-line scan in z (5e-4 x 1.5 of z, i.e. 1e-3 of the sonic line's span)"},
+ "n_y_profile": {"value": 41, "cls": "NUMERIC", "note": "points across the throat for the profiles and the convergence norms (the Chebyshev grid has 48; 41 samples resolve it)"},
+ "n_y_mass": {"value": 401, "cls": "NUMERIC", "note": "trapezoid points across the throat for the mass integral (1e-6 class on smooth profiles)"},
+ "discharge_band": {"value": [0.95, 1.0], "cls": "EMPIRICAL", "note": "the transonic discharge coefficient of a smooth throat lies below the 1-D choked value and above 0.95 (Back et al. 1965, Kliegel-Levine 1969: 0.98-0.997 for R_c 0.6-2)"},
+ "rc_ladder": {"value": [0.33, 0.5, 0.625, 1.0, 2.0, 4.0], "cls": "NUMERIC", "note": "the convergence map's rungs: Chutkey's 0.33, Dutton's tested 0.5 and 0.625 (Fig. 2-3: R_co 0.625) and 1.0 (Fig. 6-7), and two smooth throats"},
+ "eta_ladder": {"value": [1.0, 2.0, 3.0], "cls": "NUMERIC", "note": "the re-summation parameter around Dutton's recommended eta = 2"},
+ "rc_converged_from": {"value": 1.0, "cls": "NUMERIC", "note": "the domain gate: the series must converge (third term below the second, eta-spread within twice the third term) from this R_c up; measured 2026-09-21: ratio 0.63/0.71 at 1.0, marginal 0.8-0.9 at 0.5-0.625"},
+ "axis_y_i": {"value": 0.001, "cls": "NUMERIC", "note": "the axis limit posed as a centerbody of radius 1e-3 separations (D^2 = 2/(1 + y_i/y_o) converges to Sauer's 2 at O(y_i))"}
+}
