@@ -1,0 +1,14 @@
+{
+ "_note": "Constants of a1_frame_march.py's stages (strip, kernel) and the S31 twin's readings used as the comparison column, kept as DATA with class and provenance per the validation numeric ratchet (R28).",
+ "record_readings_s31": {"value": {"0.20": [0.04255, 2.706], "0.34": [0.02812, 2.978], "0.41": [0.02411, 3.081], "0.48": [0.02120, 3.168]}, "cls": "SPEC", "note": "X-CHTW derive of record (S31 night, (161,81), the fan_axi cut at 1.5 mm on the smoothing-spline contour): p_w/p_0 and M at the 20/34/41/48 percent truncations, the record column of the stage prints"},
+ "wall_class": {"value": [0.03, 0.02], "cls": "EMPIRICAL", "note": "the Chutkey twin's oracle classes: 3 percent on p_w/p_0 (the paper's printing + RANS), 2 percent on M (X-CHTW T-5/T-6)"},
+ "angelino_blend_mm": {"value": [3.0, 1.0], "cls": "NUMERIC", "note": "the Angelino streamline replaces the digitised contour for the first 3 mm from the foot and is ramped into it over the next 1 mm (the digitised chords scatter +-8 deg over the first 3 mm)"},
+ "streamline_step": {"value": 1e-05, "cls": "NUMERIC", "note": "RK4 step (frame units, 1e-5 R_lip = 0.3 um) of the Angelino streamline"},
+ "dense_wall_points": {"value": 20001, "cls": "NUMERIC", "note": "dense sampling of the contour for the frame rotation (5 um)"},
+ "pm_fan_points": {"value": 1200, "cls": "NUMERIC", "note": "the corner wave's tabulation in speed, as CT.fan_sonic"},
+ "brentq_q_window": {"value": [1.0001, 3.4, 1e-11], "cls": "NUMERIC", "note": "the speed bracket (in a*) and tolerance of the Mach-to-speed root, as a1_inlet_angle_opt.fan_at"},
+ "station_clustering": {"value": [0.05, 1.06], "cls": "NUMERIC", "note": "wall stations from the cut: first spacing 0.05 half-heights growing by 6 percent per station up to the uniform spacing"},
+ "strip_defaults": {"value": {"MI": 1.02, "d": 0.1, "K": 240, "N": 61}, "cls": "NUMERIC", "note": "stage strip: uniform-line Mach, cut in half-heights, stations, rows (the S32 negative of record ran 145/41 and 255/61)"},
+ "kernel_defaults": {"value": {"z_cut": 0.5, "rc_in_d": 1.5, "d_fan_h": 0.1, "K": 160, "N": 41, "foot_window_h": 0.3}, "cls": "NUMERIC", "note": "stage kernel: the cut at z 0.5 of the kernel's stretched variable (its reach, S32 log 10.2), the plug-wall throat radius posed 1.5 separations (inside the domain, R_c 3 with a straight cowl), the lip 0.1 half-heights upstream of the cut, the foot-curvature read over 0.3 half-heights"},
+ "frame_defaults": {"value": {"K": 81, "N": 41, "n_dense": 4001}, "cls": "NUMERIC", "note": "stage frame: the S31 twin's coarse rung (81,41) and the dense wall sampling of rotate_case"}
+}

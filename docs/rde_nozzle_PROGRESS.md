@@ -296,8 +296,11 @@
 ## il kernel derivato E' la loro serie (0.006 rms su Fig. 8, 0.012 sulle
 ## inclinate registrate, 0.021 sulla parete Fig. 6 letta a y_o); dati
 ## a +0.02-0.03 a valle (shift viscoso, p. 1242), scatter 1-2.6 %.
-## PROSSIMO: linea di partenza dal kernel (|z| <= 0.5) per il frame
-## march; Humphreys (raggio di gola).
+## NOTTE: stage kernel (marcia dal kernel, L-b, R_c 3): la linea e'
+## sana (M 1.11-1.55, massa 0.954 W*) ma il ventaglio piano sul taglio
+## porta un salto sul raggio guida (M 1.08 vs 1.15) e la mesh si piega.
+## PROSSIMO BRICK: l'angolo del labbro nel campo non uniforme (marcia
+## di Goursat dal labbro); poi Humphreys (raggio di gola).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

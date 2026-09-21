@@ -46,9 +46,29 @@ in the throat frame. The record's construction (the cut at 1.5 mm on
 the ideal fan, wall M 1.72) is what marches; its X0 ladder extends to
 1.0 mm in both frames with identical readings (see the S32 log, 8).
 
+STAGE KERNEL (2026-09-21 evening, NEGATIVE as posed, the cause read):
+the plug marched from the ANNULAR KERNEL's line [X-ANKR] (L-b posing:
+the plug-wall throat radius posed 1.5 d, cowl straight, R_c 3, eps
+0.20; the cut at z 0.5 = 0.65 mm, the lip 0.13 mm upstream on the
+cowl at M 1.08). The kernel line itself is sound -- M 1.11 (cowl) to
+1.55 (plug), direction -7.4..0 deg, mass 0.954 of the choked 1-D --
+but the lip fan posed as the record's planar corner wave ON A CUT
+carries a JUMP across its leading ray: the fan rows start from the
+lip state (M 1.08) while the kernel field at the leading ray's
+crossing is M 1.15 -- a discontinuity in the start data that the march
+turns into a first-column mass error (+2 percent), then a fold (mass
++480 percent by mid-plug, cert 2e19). The corner wave in a
+NON-UNIFORM incoming field is not a simple wave: the missing brick is
+the corner Goursat march (rays from the lip through the kernel field,
+each new ray a C- from the lip with the corner relation's state,
+points found by the C+ from the previous ray -- the bell's step (3)
+structure with a centred corner), which the record has neither for
+the bell (its throat corner is a circular arc) nor for the plug.
+
 Usage:
     python validation/a1_frame_march.py                  # stage frame
     FRM_STAGE=strip FRM_MI=1.05 FRM_D=0.1 [FRM_WALL=angelino] ...
+    FRM_STAGE=kernel FRM_ZCUT=0.5 FRM_RCIN=1.5 [FRM_RCOUT=..]
 """
 import os
 import sys
@@ -66,6 +86,10 @@ import jax.numpy as jnp                                # noqa: E402
 NPASS = [0, 0]
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.environ.get("FRM_ART", os.path.join(HERE, "_frame_march"))
+import json                                            # noqa: E402
+CASES = {k: v["value"] for k, v in json.load(
+    open(os.path.join(HERE, "frame_march_cases.json"))).items() if k[0] != "_"}
+REC = {float(k): tuple(v) for k, v in CASES["record_readings_s31"].items()}
 
 
 def check(label, ok):
@@ -210,7 +234,7 @@ def to_record(x, y, u, v, th, X0, Y0):
     return X, Y, U, V
 
 
-def rotate_case(c, th, X0, Y0, n_dense=4001):
+def rotate_case(c, th, X0, Y0, n_dense=None):
     """The twin's case (start line on a vertical cut, wall stations
     with slopes, edge speed) posed in the rotated frame: the start
     line becomes a per-row x0 array (the driver's characteristic
@@ -221,6 +245,7 @@ def rotate_case(c, th, X0, Y0, n_dense=4001):
                                 th, X0, Y0)
     # the wall, densely, from the twin's spline (single-valuedness check)
     from a1_toc_variational_jax import spline_coeffs, spline_eval
+    n_dense = CASES["frame_defaults"]["n_dense"] if n_dense is None else n_dense
     cx, cy = c["cx"], c["cy"]
     Mc = spline_coeffs(jnp.asarray(cx), jnp.asarray(cy), float(CT.FOOT_SLOPE))
     xd = np.linspace(float(x0), float(cx[-1]), n_dense)
@@ -289,7 +314,7 @@ def frame():
           " Chutkey's case (stage frame) ==", flush=True)
     w = CT.build_world()
     fan = CT.fan_axi_lip(w)
-    K, N = int(os.environ.get("FRM_K", 81)), int(os.environ.get("FRM_N", 41))
+    K, N = int(os.environ.get("FRM_K", CASES["frame_defaults"]["K"])), int(os.environ.get("FRM_N", CASES["frame_defaults"]["N"]))
     c = CT.build_case(w, K=K, N=N, fan=fan)
     print("   case (%d, %d): cut X0 %.2f mm, y_w0 %.3f mm, %d rows"
           % (K, N, c["x0"] * CT.MM, c["yw0"] * CT.MM, N), flush=True)
@@ -398,7 +423,7 @@ def _pm_fan(w, q1):
     on the leading ray."""
     ta = w["ta"]
     M_of = lambda q: float(A1.state_q(jnp.float64(q), ta)[5])   # noqa
-    qs = np.linspace(q1, CT.q_at_pa(CT.PA, ta, w["as_"]), 1200)
+    qs = np.linspace(q1, CT.q_at_pa(CT.PA, ta, w["as_"]), CASES["pm_fan_points"])
     Ms = np.array([M_of(q) for q in qs])
     mus = np.arcsin(np.clip(1.0 / Ms, 0, 1))
     dth = np.sqrt(np.maximum(Ms ** 2 - 1.0, 0.0)) / qs
@@ -414,41 +439,11 @@ def strip_case(w, MI, d, K, N, dth_deg=0.0):
     hh = 0.5 * CT.H_T * CT.S_LEN
     Xm = 0.5 * CT.FOOT[0] * CT.S_LEN
     Ym = 0.5 * (CT.FOOT[1] + CT.R_LIP) * CT.S_LEN
-    # the contour (the twin's smoothing spline), rotated
-    from a1_toc_variational_jax import spline_coeffs, spline_eval
-    cx, cy = CT.load_contour(True)
-    cx, cy, _ = CT.smooth_contour(cx, cy)
-    Mc = spline_coeffs(jnp.asarray(cx), jnp.asarray(cy), float(CT.FOOT_SLOPE))
-    xd = np.linspace(float(cx[0]), float(cx[-1]), 20001)
-    yd, sd = jax.vmap(lambda xx: spline_eval(xx, jnp.asarray(cx), jnp.asarray(cy), Mc))(jnp.asarray(xd))
-    yd, sd = np.asarray(yd), np.asarray(sd)
-    if os.environ.get("FRM_WALL", "digitised") == "angelino":
-        # THE FOOT REGION FROM THE DESIGN RULE, NOT THE DIGITISATION
-        # (measured: the digitised contour's chords scatter +-8 deg
-        # over the first 3 mm -- 0.12 mm of noise on 0.5-mm chords --
-        # and the clamped smoothing spline turns 5 deg within 0.2 mm
-        # of the foot, ten times the ideal wall's rate). The paper's
-        # plug IS Angelino's construction: the streamline of the
-        # planar sonic-lip fan from the foot, used here up to x_blend
-        # and ramped into the digitised spline over the next
-        # millimetre (declared)
-        fs = CT.fan_sonic(w, 0.0)
-        x_bl = float(os.environ.get("FRM_XBLEND_MM", 3.0)) * 1e-3 * CT.S_LEN
-        ramp = 1.0e-3 * CT.S_LEN
-        xa, ya = PM.exact_streamline(lambda xx, yy, lip: fs["field"](xx, yy),
-                                     None, (float(cx[0]), float(cy[0])),
-                                     float(cx[0]) + x_bl + ramp, h=1e-5)
-        ya_d = np.interp(xd, xa, ya, right=np.nan)
-        wgt = np.clip((xd - (float(cx[0]) + x_bl)) / ramp, 0.0, 1.0)
-        yd = np.where(np.isnan(ya_d), yd, (1.0 - wgt) * ya_d + wgt * yd)
-        sd = np.gradient(yd, xd)
-    xw, yw, _, _ = to_frame(xd, yd, np.zeros_like(xd), np.zeros_like(xd), th, Xm, Ym)
-    ct, st = np.cos(th), np.sin(th)
-    sw = (sd * ct - st) / (ct + sd * st)
-    assert np.all(np.diff(xw) > 0.0)
+    xw, yw, sw = _wall_in_frame(w, th, Xm, Ym, os.environ.get("FRM_WALL", "digitised"),
+                                float(os.environ.get("FRM_XBLEND_MM", CASES["angelino_blend_mm"][0])))
     x0 = d * hh
     # stations: geometric clustering from ds0 at the cut
-    ds0, grow = 0.05 * hh, 1.06
+    ds0, grow = CASES["station_clustering"][0] * hh, CASES["station_clustering"][1]
     ds_max = (xw[-1] - x0) / K
     xs, dsn = [x0], ds0
     while xs[-1] + dsn < xw[-1]:
@@ -459,9 +454,10 @@ def strip_case(w, MI, d, K, N, dth_deg=0.0):
     sq = np.interp(xq, xw, sw)
     yw0, sw0 = float(np.interp(x0, xw, yw)), float(np.interp(x0, xw, sw))
     # the start data
+    bq = CASES["brentq_q_window"]
     q_i = float(__import__("scipy.optimize", fromlist=["brentq"]).brentq(
         lambda q: float(A1.state_q(jnp.float64(q), ta)[5]) - MI,
-        1.0001 * w["as_"], 3.4 * w["as_"], xtol=1e-11))
+        bq[0] * w["as_"], bq[1] * w["as_"], xtol=bq[2]))
     fan = _pm_fan(w, q_i)
     # the uniform line's direction: theta'_i = nu(M_i), so that the lip
     # fan (from M_i) still ends AXIAL in the record's frame -- Migdal's
@@ -522,9 +518,10 @@ def strip():
     print("== [F3/A1] Chutkey's plug marched ON THE CONTOUR from the throat,"
           " in the throat frame (stage strip) ==", flush=True)
     w = CT.build_world()
-    MI = float(os.environ.get("FRM_MI", 1.02))
-    d = float(os.environ.get("FRM_D", 0.1))
-    K, N = int(os.environ.get("FRM_K", 240)), int(os.environ.get("FRM_N", 61))
+    SD = CASES["strip_defaults"]
+    MI = float(os.environ.get("FRM_MI", SD["MI"]))
+    d = float(os.environ.get("FRM_D", SD["d"]))
+    K, N = int(os.environ.get("FRM_K", SD["K"])), int(os.environ.get("FRM_N", SD["N"]))
     dth = float(os.environ.get("FRM_DTH", 0.0))
     c = strip_case(w, MI, d, K, N, dth)
     W_star = CT.choked_mass(w)
@@ -564,7 +561,6 @@ def strip():
     worst_p, worst_M = 0.0, 0.0
     print("   wall state at the truncations (paper / this march / the record's"
           " fan-cut march of S31):")
-    REC = {0.20: (0.04255, 2.706), 0.34: (0.02812, 2.978), 0.41: (0.02411, 3.081), 0.48: (0.02120, 3.168)}
     for row in st:
         rp, rM = REC[round(row["frac"], 2)]
         print("     %2.0f %%: p_w/p_0 %.5f / %.5f (%+.2e) / %.5f;  M %.3f / %.3f"
@@ -574,9 +570,10 @@ def strip():
         worst_p = max(worst_p, abs(row["p_p0"] / row["p_p0_meas"] - 1.0))
         worst_M = max(worst_M, abs(row["M"] / row["M_meas"] - 1.0))
     check("S-3 the wall pressure at the four truncations within the oracle's"
-          " class 3 percent (worst %.2e)" % worst_p, worst_p <= 0.03)
-    check("S-4 the wall Mach at the four truncations within 2 percent (worst"
-          " %.2e)" % worst_M, worst_M <= 0.02)
+          " class %.0f percent (worst %.2e)" % (100 * CASES["wall_class"][0], worst_p),
+          worst_p <= CASES["wall_class"][0])
+    check("S-4 the wall Mach at the four truncations within %.0f percent (worst"
+          " %.2e)" % (100 * CASES["wall_class"][1], worst_M), worst_M <= CASES["wall_class"][1])
     os.makedirs(ART, exist_ok=True)
     tag = "MI%.3f_d%.2f_K%d_N%d_dth%.1f" % (MI, d, c["K"], c["N"], dth)
     np.savez(os.path.join(ART, "strip_%s.npz" % tag), wall=r["wall"], p=p, M=M,
@@ -586,7 +583,191 @@ def strip():
     return NPASS[0] == NPASS[1]
 
 
+# ======================================================================
+# stage kernel: the plug marched from the ANNULAR THROAT KERNEL's line
+# [X-ANKR] in the throat frame -- the L-b posing (cowl smooth through
+# the throat, the lip downstream on the kernel's cowl wall), the plug
+# wall's foot from Angelino's own construction, the throat's radii
+# inside the kernel's domain
+# ======================================================================
+def _wall_in_frame(w, th, Xm, Ym, mode="angelino", x_blend_mm=None):
+    """The plug wall, dense, in the throat frame: (xw, yw, sw) with sw
+    the slope dy'/dx'. mode = 'digitised' (the twin's smoothing spline)
+    or 'angelino' (the sonic-lip fan's streamline for the first
+    x_blend_mm, ramped into the digitised spline over 1 mm)."""
+    from a1_toc_variational_jax import spline_coeffs, spline_eval
+    cx, cy = CT.load_contour(True)
+    cx, cy, _ = CT.smooth_contour(cx, cy)
+    Mc = spline_coeffs(jnp.asarray(cx), jnp.asarray(cy), float(CT.FOOT_SLOPE))
+    xd = np.linspace(float(cx[0]), float(cx[-1]), CASES["dense_wall_points"])
+    yd, sd = jax.vmap(lambda xx: spline_eval(xx, jnp.asarray(cx), jnp.asarray(cy), Mc))(jnp.asarray(xd))
+    yd, sd = np.asarray(yd), np.asarray(sd)
+    if mode == "angelino":
+        fs = CT.fan_sonic(w, 0.0)
+        bl_mm, ramp_mm = CASES["angelino_blend_mm"]
+        x_bl = (bl_mm if x_blend_mm is None else x_blend_mm) * 1e-3 * CT.S_LEN
+        ramp = ramp_mm * 1e-3 * CT.S_LEN
+        xa, ya = PM.exact_streamline(lambda xx, yy, lip: fs["field"](xx, yy),
+                                     None, (float(cx[0]), float(cy[0])),
+                                     float(cx[0]) + x_bl + ramp, h=CASES["streamline_step"])
+        ya_d = np.interp(xd, xa, ya, right=np.nan)
+        wgt = np.clip((xd - (float(cx[0]) + x_bl)) / ramp, 0.0, 1.0)
+        yd = np.where(np.isnan(ya_d), yd, (1.0 - wgt) * ya_d + wgt * yd)
+        sd = np.gradient(yd, xd)
+    xw, yw, _, _ = to_frame(xd, yd, np.zeros_like(xd), np.zeros_like(xd), th, Xm, Ym)
+    ct, st = np.cos(th), np.sin(th)
+    sw = (sd * ct - st) / (ct + sd * st)
+    assert np.all(np.diff(xw) > 0.0)
+    return xw, yw, sw
+
+
+def kernel_case(w, z_cut, K, N, d_fan_h=None, rc_out_d=None):
+    """The kernel-fed case. The plug wall's curvature at the foot is
+    read from the wall itself (the slope's derivative at x' = 0); the
+    cowl's radius rc_out_d (in separations; None = straight). The cut
+    at z = z_cut of the kernel's stretched variable; the lip d_fan_h
+    half-heights upstream of the cut on the cowl wall, its fan the
+    record's planar corner wave from the kernel's own lip state."""
+    import a1_annular_kernel as AK
+    ta = w["ta"]
+    th = np.radians(-CT.TILT_DEG)
+    hh = 0.5 * CT.H_T * CT.S_LEN
+    d_fr = 2.0 * hh                                   # the separation, frame units
+    Xm = 0.5 * CT.FOOT[0] * CT.S_LEN
+    Ym = 0.5 * (CT.FOOT[1] + CT.R_LIP) * CT.S_LEN
+    xw, yw, sw = _wall_in_frame(w, th, Xm, Ym, "angelino")
+    # the foot curvature: d(slope)/dx' at x' = 0 over the first 0.3 h
+    m = (xw >= 0.0) & (xw <= CASES["kernel_defaults"]["foot_window_h"] * hh)
+    kappa = float(np.polyfit(xw[m], sw[m], 1)[0])    # 1/frame-length
+    # the Angelino wall leaves the foot with ~zero curvature (measured:
+    # 1/180 of a separation), so the throat's transonic length would
+    # vanish and the inclination term would dominate the kernel (M ~ 2
+    # on the line, the axial-flow branch): the plug wall's throat radius
+    # is POSED (FRM_RCIN, separations; default 1.5, inside the domain)
+    # and the kernel's parabola is used only within |x'| <~ 0.3 d
+    KD = CASES["kernel_defaults"]
+    rc_in_d = float(os.environ.get("FRM_RCIN", KD["rc_in_d"]))
+    d_fan_h = KD["d_fan_h"] if d_fan_h is None else d_fan_h
+    rc_in_m = rc_in_d * CT.H_T
+    rc_out_m = (rc_out_d * CT.H_T) if rc_out_d else np.inf
+    gam = CT.GAMMA
+    eta = 2.0
+    P = AK.throat_params(CT.FOOT[1], CT.H_T, CT.TILT_DEG, rc_in_m, rc_out_m, eta, gam)
+    grid, fields, cst = AK.solve_kernel(P["y_i"], P["g1"], P["g2"], P["h1"], P["h2"], P["b1"], gam, eta)
+    eps, Kk = P["eps"], P["K"]
+
+    def kernel_uv(xp, yp):
+        """frame (x', y') -> kernel (z, y) -> (u, v) in m/s, throat frame."""
+        z = (np.asarray(xp, float) / d_fr) / (Kk * eps**0.5)
+        yk = P["y_i"] + (np.asarray(yp, float) + hh) / d_fr
+        u, v = AK.series_uv(grid, fields, eps, gam, z, yk)
+        return u * w["as_"], v * w["as_"]
+
+    x_cut = z_cut * Kk * eps**0.5 * d_fr
+    x_lip = x_cut - d_fan_h * hh
+    # the cowl wall (parabolic, the kernel's) at the lip
+    y_cowl = lambda xp: hh + (0.5 * xp**2 / (rc_out_m * CT.S_LEN) if np.isfinite(rc_out_m) else 0.0)   # noqa
+    yl = float(y_cowl(x_lip))
+    u_l, v_l = kernel_uv(x_lip, yl)
+    q_l, th_l = float(np.hypot(u_l, v_l)), float(np.arctan2(v_l, u_l))
+    fan = _pm_fan(w, q_l)
+    fan["ths"] = fan["ths"] + th_l
+    fan["phis"] = fan["phis"] + th_l
+    th_e = float(fan["ths"][-1])
+    # rows on the cut: kernel rows from the plug wall to the leading ray, fan rows, two above
+    yw0, sw0 = float(np.interp(x_cut, xw, yw)), float(np.interp(x_cut, xw, sw))
+    y_lead = yl + (x_cut - x_lip) * np.tan(fan["phis"][0])
+    y_edge = yl + (x_cut - x_lip) * np.tan(th_e)
+    nA = max(5, int(round(N * (y_lead - yw0) / (y_edge - yw0))))
+    nB = max(5, N - nA - 2)
+    yA = np.linspace(yw0, y_lead, nA, endpoint=False)
+    uA, vA = kernel_uv(np.full(nA, x_cut), yA)
+    vA[0] = sw0 * uA[0]                               # the wall row on the wall
+    nus = np.linspace(float(fan["ths"][0]), float(fan["ths"][-1]), nB)
+    qB = np.interp(nus, fan["ths"], fan["qs"])
+    phB = np.interp(nus, fan["ths"], fan["phis"])
+    yB = yl + (x_cut - x_lip) * np.tan(phB)
+    uB, vB = qB * np.cos(nus), qB * np.sin(nus)
+    y_term = yB[-1]
+    yC = np.array([0.5 * (y_term + y_edge), y_edge])
+    uC, vC = np.full(2, fan["qs"][-1] * np.cos(th_e)), np.full(2, fan["qs"][-1] * np.sin(th_e))
+    ys = np.concatenate([yA, yB, yC]); us = np.concatenate([uA, uB, uC]); vs = np.concatenate([vA, vB, vC])
+    assert np.all(np.diff(ys) > 0.0), "rows not ordered"
+    start = (np.full(len(ys), x_cut), ys, us, vs)
+    X, Y, U, V = to_record(start[0], ys, us, vs, th, Xm, Ym)
+    md_in, F_in = PM.col_fluxes(np.stack([X, Y, U, V], 1), ta, CT.PA, 1.0)
+    # the kernel's own mass through the cut (the whole throat, plug wall to cowl) vs choked
+    W_line = AK.mass_ratio(grid, fields, eps, gam, z_cut)
+    # stations along the wall from the cut
+    ds0, grow = CASES["station_clustering"][0] * hh, CASES["station_clustering"][1]
+    ds_max = (xw[-1] - x_cut) / K
+    xs, dsn = [x_cut], ds0
+    while xs[-1] + dsn < xw[-1]:
+        xs.append(xs[-1] + dsn); dsn = min(ds_max, dsn * grow)
+    xq = np.array(xs[1:] + [xw[-1]])
+    return dict(stations=(xq, np.interp(xq, xw, yw), np.interp(xq, xw, sw)), start=start,
+                qpa=float(fan["qs"][-1]), th=th, Xm=Xm, Ym=Ym, hh=hh, x0=x_cut, K=len(xq),
+                N=len(ys), nA=nA, nB=nB, md_in=abs(md_in), P=P, eps=eps, kappa=kappa,
+                rc_in_d=rc_in_m / CT.H_T, x_lip=x_lip, M_lip=float(A1.state_q(jnp.float64(q_l), ta)[5]),
+                th_lip=th_l, W_line=W_line, MA=np.asarray(A1.state_q(jnp.asarray(np.hypot(uA, vA)), ta)[5]),
+                thA=np.degrees(np.arctan2(vA, uA)), y_lead=y_lead, y_edge=y_edge)
+
+
+def kernel():
+    t00 = time.time()
+    print("== [F3/A1] Chutkey's plug marched from the ANNULAR KERNEL's line in the throat"
+          " frame (stage kernel, L-b posing, Angelino foot) ==", flush=True)
+    w = CT.build_world()
+    KD = CASES["kernel_defaults"]
+    z_cut = float(os.environ.get("FRM_ZCUT", KD["z_cut"]))
+    K, N = int(os.environ.get("FRM_K", KD["K"])), int(os.environ.get("FRM_N", KD["N"]))
+    rc_out = os.environ.get("FRM_RCOUT")
+    c = kernel_case(w, z_cut, K, N, rc_out_d=(float(rc_out) if rc_out else None))
+    W_star = CT.choked_mass(w)
+    P = c["P"]
+    print("   throat: plug-wall radius POSED %.2f d (the Angelino foot's own: 1/%.0f d), cowl %s;"
+          " R_c %.2f, eps %.4f, y_i %.1f, beta_1 %.2f -> the kernel's domain %s"
+          % (c["rc_in_d"], 1.0 / (c["kappa"] * 2.0 * c["hh"]) if c["kappa"] > 0 else np.inf,
+             ("R %s d" % rc_out) if rc_out else "straight",
+             P["R_c"], c["eps"], P["y_i"], P["b1"], "OK (R_c >= 1)" if P["R_c"] >= 1.0 else "MARGINAL"), flush=True)
+    print("   cut at z %.2f = x' %.3f mm; lip at x' %.3f mm on the cowl, M_lip %.4f theta' %+.2f deg;"
+          " kernel rows %d (M %.3f..%.3f, theta' %+.2f..%+.2f deg), fan rows %d; kernel mass through"
+          " the cut %.5f of the choked 1-D; the start line's mass (wall to edge) %.5f"
+          % (z_cut, c["x0"] * CT.MM, c["x_lip"] * CT.MM, c["M_lip"], np.degrees(c["th_lip"]), c["nA"],
+             c["MA"].min(), c["MA"].max(), c["thA"].min(), c["thA"].max(), c["nB"], c["W_line"],
+             c["md_in"] / W_star), flush=True)
+    t0 = time.time()
+    out, _ = PM.plug_march(c["stations"], c["start"], c["qpa"], w["tab"], 1.0,
+                           cells=make_cells_rot(1.0, c["th"], c["Ym"]))
+    wall = np.asarray(out["wall"])
+    q = np.hypot(wall[:, 2], wall[:, 3])
+    T, p, rho, cs, gam, M = [np.asarray(v) for v in A1.state_q(jnp.asarray(q), w["ta"])]
+    cert = float(out["cert_worst"])
+    print("   march: cert %.3f (%d cells) at %s, %.1f s" % (cert, int(out["cert_n"]), out.get("cert_where"),
+                                                            time.time() - t0), flush=True)
+    check("K-1 the march from the kernel's line certifies (%.3f)" % cert, cert <= 1.0)
+    rows = mass_by_column_frame(w, out, c, c["md_in"])
+    m2, mmid, mlast = rows[1][1], rows[len(rows) // 2][1], rows[-1][1]
+    print("   mass vs the cut: column 2 %+.5f, mid %+.5f, last %+.5f" % (m2, mmid, mlast), flush=True)
+    check("K-2 the mass is conserved from the kernel's cut to the last column (|dm/m| %.1e"
+          " <= %.0e)" % (abs(mlast), CT.MASS_TOL), abs(mlast) <= CT.MASS_TOL)
+    X, Y, U, V = to_record(wall[:, 0], wall[:, 1], wall[:, 2], wall[:, 3], c["th"], c["Xm"], c["Ym"])
+    r = dict(wall=np.stack([X, Y, U, V], 1), p=p, M=M)
+    st = CT.read_stations(w, c, r)
+    print("   wall state at the truncations (paper / this march / the record's fan-cut march):")
+    for row in st:
+        rp, rM = REC[round(row["frac"], 2)]
+        print("     %2.0f %%: p_w/p_0 %.5f / %.5f (%+.2e vs paper, %+.2e vs record);  M %.3f / %.3f / %.3f"
+              % (100 * row["frac"], row["p_p0_meas"], row["p_p0"], row["p_p0"] / row["p_p0_meas"] - 1.0,
+                 row["p_p0"] / rp - 1.0, row["M_meas"], row["M"], rM))
+    os.makedirs(ART, exist_ok=True)
+    np.savez(os.path.join(ART, "kernel_z%.2f_K%d_N%d.npz" % (z_cut, c["K"], c["N"])), wall=r["wall"], p=p, M=M,
+             mass_rows=np.array([(i, m_, n_) for i, m_, n_ in rows]), md_in=c["md_in"], W_star=W_star, cert=cert)
+    print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("FRM_STAGE", "frame")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"frame": frame, "strip": strip}.get(STAGE, frame)() else 1)
+    sys.exit(0 if {"frame": frame, "strip": strip, "kernel": kernel}.get(STAGE, frame)() else 1)

@@ -611,6 +611,36 @@ march must therefore be taken at |z| <= 0.5 and its wall point read
 at y_o with the wall's own slope, or the wall's excursion x^2/(2R_c)
 kept below the series' reach. Gates F6-1/2, FIG8/9/10-1/2 all PASS.
 
+## 11. The kernel-fed march (night; owner: "vai"): the line is sound, the corner is the missing brick
+
+`a1_frame_march.py` stage kernel (L-b posing on Chutkey's plug with
+the Angelino foot; the plug-wall throat radius POSED 1.5 d -- the
+Angelino wall leaves the foot with 1/181 d of curvature, and with it
+the kernel's transonic length vanishes and the inclination term's
+axial-flow branch takes over (M ~ 2 on the line: measured) -- cowl
+straight, R_c 3, eps 0.20, y_i 21.1, beta_1 15.7; the cut at z 0.5 =
+0.65 mm from the throat plane, the lip 0.13 mm upstream on the cowl).
+THE LINE: M 1.11 at the cowl to 1.55 at the plug, direction -7.4 to
+0 deg, the kernel's mass through the section 0.954 of the choked 1-D
+(the start line's, wall to edge, 0.937) -- the transonic start the
+twin never had, converged (the domain map: R_c 3). THE MARCH: cert
+2e19, mass +2 percent in the first column, +9 percent by column 6,
++480 percent by mid-plug. CAUSE, read: the lip fan was posed as the
+record's planar corner wave on the cut, whose rows start from the
+lip state M 1.08 while the kernel field at the leading ray's crossing
+is M 1.15 -- a jump across the leading ray in the start data. In a
+NON-UNIFORM incoming field the corner wave is not a simple wave; the
+fan must be marched as a Goursat problem from the lip through the
+kernel field (each ray a C- from the lip with the corner relation's
+state, its points found by the C+ from the previous ray; the bell's
+step (3) structure with a centred corner). The record has no such
+piece -- the bell's throat corner is a circular arc, the plug's fans
+(planar, fan_axi) assume a uniform incoming flow -- so THIS is the
+next brick: "the lip corner in the kernel's field", after which the
+cut carries continuous data and the march of section 8 (frame
+covariance 1.7e-5) does the rest. Kept as the negative of record
+(K-1/K-2 FAIL) with the FRM_ZCUT/FRM_RCIN/FRM_RCOUT knobs.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
