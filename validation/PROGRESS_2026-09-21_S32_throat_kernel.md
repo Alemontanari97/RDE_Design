@@ -389,6 +389,81 @@ in the toolset) or the paper's own CFD sonic line (Fig. 7-8, not
 digitised). The frame march stands as an asset for any start line at
 M_w >~ 1.5 in a tilted throat.
 
+## 9. Dutton & Addy 1982 in hand (owner, 14:19), Lord 1959 fetched; the sources re-read for EXPLICIT geometry
+
+Filed at `RDE/codes/GENO/literature/dutton1982.pdf` (moved from the
+repo root) and `lord1959_rm3227.pdf` (AERADE handle 1826.2/3800).
+Moore & Hall is ARC **R&M 3480** (Dutton's ref. 3), NOT in the AERADE
+catalogue (only 3481 is); Dutton's report with the coefficients is
+UILU-ENG-80-4001 = DTIC ADA084787, unreachable from here.
+
+**Dutton & Addy, read-integral.** THE FRAME IS OURS: Fig. 1, the x-y
+system rotated by the inclination beta with y along the minimum-area
+cross section, lengths in the throat separation d, the gas-dynamic
+equation (11) with the axisymmetric term [v + (1+u) tan beta] /
+(y + x tan beta) -- exactly the rotated cells' v_r / r of section 8.
+Expansion parameter eps = (R_c + eta)^(-1), eta free (Kliegel-Levine's
+device), R_c = 2 / (h'' - g'') the mean dimensionless radius;
+z = ((gamma+1)/2)^(-1/2) eps^(-1/2) x; the series (20)-(21) to third
+order with the annular term (beta_1 + v_1)/y at FIRST order, eq. (23),
+tan beta / y assumed small (throats far from the axis: Chutkey y_i =
+R_i/d = 11.5, tan beta 1.53 -> 0.13). Boundary conditions (25)-(30)
+on both walls in Maclaurin form. THE COEFFICIENTS ARE NOT IN THE
+PAPER ("too long to be included", ref. 19, the TRANNOZ program):
+what is in hand is the complete framework and its reductions
+(Hall/Kliegel-Levine at y_i -> 0, Thompson & Flack planar at y_i ->
+inf). WHAT IT SETTLES FOR US: (i) the small-radius regime IS covered
+-- Fig. 2-3 and 7: the conventional axisymmetric nozzle with R_co =
+0.625 and 1.0, the series at eta = 2 "well-behaved" and matching the
+measured Mach contours; Chutkey's R/h = 0.66 (section 8) is inside
+this regime, i.e. the throat kernel on Chutkey is NOT excluded by the
+method, only by the coefficients we do not have; (ii) measured
+throat fields with EXPLICIT geometry -- four configurations (Fig.
+4-10): axisymmetric R_co = 1.0; annular R_ci 3.2 / R_co 1.6 / y_i
+0.6 / beta 0; the same centerbody shifted to beta = +0.095 and -0.095
+rad (R_ci 3.01, R_co 1.50, y_i 0.51), Mach contours 0.6-1.4 from 67-79
+splitter-plate taps at +-1.5 kPa (+-1.3 percent in M at 0.6): the
+twin for ANY throat kernel, ours included, before Chutkey or
+Humphreys; (iii) the minimum-area cross section and the
+minimum-distance section do not coincide for an inclined annular
+throat (Fig. 9-10) -- our "throat line" from the lip to the foot is
+the latter.
+
+**Lord 1959 (R&M 3227), read for structure**: annular nozzles with a
+coaxial CYLINDER (inner wall straight), the throat region as a series
+near the sonic point on the cylinder to second order (section 3) --
+the limit R_ci -> inf, beta = 0 of Dutton's family; a check for the
+annular terms once derived.
+
+**Humphreys 1971, the theory (pp. 1581-1583, re-read on the owner's
+remark)**: the variational problem for the AXISYMMETRIC plug with
+fixed inlet -- functional (6)-(11) with the multipliers lambda_1..4,
+Euler equations (13)-(14), compatibility along the characteristics
+(15), transversality along TD (17)-(19), along the exit
+characteristic DB (20), corner conditions at D (21)-(22), and Rao's
+conditions (25)-(27) recovered as the fixed-length special case with
+lambda_1 = eta rho V sin theta, lambda_2 = lambda_3 = V cos theta.
+The base enters as Phi = (eta_D - delta'_D)^2 p_b / 2 with p_b a
+constant during each iteration (recalculated between iterations).
+Our M0 carries the same necessary conditions in the record's own
+form; the cross-check of (20) and (27) against the plug adjoint is a
+reading item, not a brick.
+
+**READ FOR THE DIRECTION (owner: "reference con geometria
+esplicitata")**: the explicit-geometry references are Chutkey's
+primary nozzle (lines + arcs, p. 479, R/h 0.66) and Dutton's four
+throats (radii, y_i, beta, with measured fields). A kernel that serves
+them is Dutton's annular series in OUR frame -- the framework is
+complete in the paper; the third-order coefficients are either
+ADA084787 (owner's fetch) or a derivation of our own by the same
+successive approximation (the Moore transcription's sympy path,
+extended to the annular source term: the assumed forms are
+polynomial in z with y-dependence fixed by the 1/y term), gated on
+Dutton's own reductions (Hall at y_i -> 0, Moore/Thompson-Flack
+planar at y_i -> inf) and on his measured contours. Gate order:
+Dutton's axisymmetric R_co 1.0 (Fig. 6-7) -> annular beta 0 (Fig. 8)
+-> inclined (Fig. 9-10) -> Chutkey's primary nozzle -> the plug.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
