@@ -686,6 +686,23 @@ its throat radii are read (the thesis / Fig. 1), or a posed one. On
 Chutkey's external plug the record's construction (the fan cut at 1.5
 mm) stands, with its ladder to 1.0 mm as the declared band.
 
+## 13. Figures: how the code holds the literature profiles (owner's request)
+
+`validation/_literature_profiles/make_figs.py` (presentation only) ->
+`01_chutkey_contour_and_primary_nozzle.png` (the plug contour of
+Fig. 2b as digitised, registered, smoothed, with the Angelino foot
+blend; the primary nozzle of p. 479 redrawn from its segments in the
+record frame; the throat line, lip, foot, and the cut of record),
+`02_chutkey_primary_throat_kernel_indicative.png` (the kernel's
+iso-Mach field in the primary nozzle throat, 1 vs 3 terms, labelled
+NOT converged: R_c 0.33), `03_dutton_fig6_wall_mach.png` (our series
+at y_o vs theirs vs the measured wall Mach vs 1-D),
+`04_dutton_fig8_9_10_contours.png` (posed arcs and digitised walls,
+our iso-Mach 0.6-1.4 against their series' points and the measured
+points, the inclined frames registered on their series). Earlier
+figures of the line: `_humphreys_twin/figs/01_contours_vs_paper.png`,
+`_chutkey_twin/figs/01-04`.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
