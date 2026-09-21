@@ -566,6 +566,51 @@ but its discharge coefficient and sonic-line shape are bounded by the
 kernel at the 1 percent / 0.1 mm level. Humphreys' throat radius is
 the unknown that decides his case.
 
+### 10.2 Stage dutton 8/8: the kernel against Dutton & Addy's own series and their measured throats (the owner's digitisation, 16:00-16:30)
+
+Data: `validation/dutton1982_digitised/` (34 files from the owner's
+GENO/literature/DuttonF6, F8, F9, F10; the number format
+normalised; `fig8_series_m0.6.csv` was a duplicate of the 0.8 curve
+and is dropped). Parameters from the captions, in the kernel's own
+units (the wall separation d): Fig. 6 axisymmetric R_co 1.0, eta 2
+(R_c 2, eps 0.25); Fig. 8 annular R_ci 3.2 / R_co 1.6 / y_i 0.6 /
+beta 0 (R_c 2.13, eps 0.242; the digitised outer arc fits radius
+1.007 in figure units = 1/0.625 = 1.6 d, the centerbody 2.0 = 3.2 d:
+the captions' radii ARE in d); Fig. 9/10 R_ci 3.01 / R_co 1.50 /
+y_i 0.51 / beta +-0.095 rad (R_c 2.00, eps 0.25, beta_1 +-0.70).
+Figure units -> frame: d = 1/R_co(fig); Z* the frame origin on the
+axis: 0 for beta = 0 (the R axis through the outer centre of
+curvature, p. 1240), for the inclined cases posed from the outer foot
+(sin beta (1 + d y_o) = +-0.190) and REGISTERED on their series
+(one parameter, as Chutkey's X_SHIFT): +0.228 / -0.220.
+
+| figure | ours vs THEIR series | ours vs the MEASURED field (throat region Z >= -0.25) |
+|---|---|---|
+| 6, wall Mach vs Z (32 pts) | rms 0.021, 32/32 inside the digitisation band; **their "wall" Mach is the series read at y = y_o**, not on the arc (on the arc ours diverges beyond z ~ 0.5: 2.96 vs 2.19 at Z 0.45; at y_o 2.119 vs their 2.185) | 7 pts rms 0.050, their own series 0.065 on the same data (the inlet cone upstream of Z -0.3) |
+| 8, contours M 0.8-1.4 (51 pts) | **rms 0.006**, max 0.021, 51/51 in band | 24 pts: bias +0.022, de-biased rms 0.011 |
+| 9, M 0.6-1.4 (61 pts) | rms 0.012 after registration (0.044 posed), 61/61 | 27 pts: bias +0.017, de-biased rms 0.026 |
+| 10, M 0.6-1.2 (60 pts) | rms 0.013 (0.034 posed), 60/60 | 17 pts: bias +0.033, de-biased rms 0.014 |
+
+READ. (i) The derived kernel IS Dutton & Addy's third-order series:
+on the interior iso-Mach points of the beta = 0 annular case the two
+agree to 0.006 rms in Mach (the digitisation class is 0.06), on the
+inclined cases to 0.012 once the figure's origin is registered, on
+the wall of the axisymmetric case to 0.021 -- the annular term, the
+inclination term beta_1 and the eta re-summation all reproduced;
+the coefficients "too long to be included" are recovered. (ii) The
+measured fields: the data lie 0.02-0.03 in Mach downstream of the
+inviscid series on every configuration -- the bias the paper itself
+reports and attributes to wall friction shifting the sonic line
+downstream (p. 1242) -- and about that bias the scatter is 1.1-2.6
+percent rms, inside the measurement class (their +-1.3 percent at
+M 0.6, +-0.6 at 1.4, plus the digitisation). (iii) A subtlety of
+record: the series' wall values are its values at the throat radius
+y_o (the wall conditions hold there in Taylor form); read on the
+actual arc at |z| > 0.5 the series diverges. A start line for the
+march must therefore be taken at |z| <= 0.5 and its wall point read
+at y_o with the wall's own slope, or the wall's excursion x^2/(2R_c)
+kept below the series' reach. Gates F6-1/2, FIG8/9/10-1/2 all PASS.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.

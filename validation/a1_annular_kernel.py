@@ -95,14 +95,29 @@ def check(label, ok):
 # the field algebra: polynomial in z, Chebyshev in y on [y_i, y_o]
 # ======================================================================
 class Grid:
-    def __init__(self, y_i, y_o, N=N_CHEB):
+    """Chebyshev-Lobatto grid on [y_i - m_in, y_o + m_out]: the walls
+    y_i, y_o are INTERIOR points of the grid, so the series (analytic
+    in y: polynomials and logarithms) can be read on the curved walls
+    where they leave the throat section without extrapolating a
+    degree-N polynomial (measured: 4 percent beyond the interval the
+    Chebyshev sums explode). Margins default to 0.2 separations,
+    the inner one capped below the axis."""
+    def __init__(self, y_i, y_o, N=N_CHEB, margin=None):
         self.y_i, self.y_o, self.N = float(y_i), float(y_o), int(N)
+        margin = CASES["grid_margin"] if margin is None else float(margin)
+        m_in = min(margin, 0.5 * self.y_i)
+        self.y_lo, self.y_hi = self.y_i - m_in, self.y_o + margin
         self.t = np.cos(np.pi * np.arange(N) / (N - 1))          # Lobatto, 1 -> -1
-        self.half = 0.5 * (self.y_o - self.y_i)
-        self.mid = 0.5 * (self.y_o + self.y_i)
+        self.half = 0.5 * (self.y_hi - self.y_lo)
+        self.mid = 0.5 * (self.y_hi + self.y_lo)
         self.y = self.mid + self.half * self.t
         self.V = C.chebvander(self.t, N - 1)                     # values = V @ coef
         self.Vinv = np.linalg.inv(self.V)
+        self.t_i = (self.y_i - self.mid) / self.half
+        self.t_o = (self.y_o - self.mid) / self.half
+
+    def at(self, vals, y):
+        return C.chebval((np.asarray(y, float) - self.mid) / self.half, self.coef(vals))
 
     def coef(self, vals):
         return self.Vinv @ vals
@@ -118,7 +133,7 @@ class Grid:
         """int_{y_i}^{y} vals ds on the grid."""
         c = C.chebint(self.coef(vals)) * self.half
         out = C.chebval(self.t, c)
-        return out - C.chebval(-1.0, c)
+        return out - C.chebval(self.t_i, c)
 
 
 class ZY:
@@ -180,15 +195,17 @@ class ZY:
         return ZY(self.g, self.c / self.g.y[None, :])
 
     def at(self, z, y):
-        """evaluate at scalar/array z, y (y inside [y_i, y_o])."""
+        """evaluate at scalar/array z, y (y inside the grid's interval,
+        the walls and their margins)."""
         t = (np.asarray(y, float) - self.g.mid) / self.g.half
         rows = np.stack([C.chebval(t, self.g.coef(r)) for r in self.c])
         return sum(rows[k] * np.asarray(z, float) ** k for k in range(rows.shape[0]))
 
     def wall(self, side):
-        """the z-polynomial coefficients at the inner (0 = y_i, last
-        node) or outer (1 = y_o, first node) wall."""
-        return self.c[:, -1] if side == 0 else self.c[:, 0]
+        """the z-polynomial coefficients at the inner (0 = y_i) or
+        outer (1 = y_o) wall."""
+        yw = self.g.y_i if side == 0 else self.g.y_o
+        return np.array([self.g.at(r, yw) for r in self.c])
 
 
 # ======================================================================
@@ -238,9 +255,10 @@ def solve_kernel(y_i, g1, g2, h1, h2, b1, gam, eta, N=N_CHEB, order=3):
     # (y c)' = 2 y a D - beta_1 ; c(y_i) = g1, c(y_o) = h1 fix C2 and c's constant
     # c = [I(y) + 2 D C2 (y^2 - yi^2)/2 + K3] / y, I = int_{yi}^y (2 s a0 D - b1) ds
     I = grid.integ_from_yi(2.0 * y * a * D - b1)
+    I_o = float(grid.at(I, yo))
     # unknowns (C2, K3): c(yi) = K3 / yi = g1 ; c(yo) = [I(yo) + D C2 (yo^2 - yi^2) + K3] / yo = h1
     K3 = g1 * yi
-    C2 = (h1 * yo - I[0] - K3) / (D * (yo**2 - yi**2))
+    C2 = (h1 * yo - I_o - K3) / (D * (yo**2 - yi**2))
     a = a + C2
     c = (I + D * C2 * (y**2 - yi**2) + K3) / y
     u1 = ZY(grid, np.stack([a, D * np.ones_like(y)]))
@@ -290,7 +308,7 @@ def solve_kernel(y_i, g1, g2, h1, h2, b1, gam, eta, N=N_CHEB, order=3):
             # B_k = [I0 + alpha Ia + bk] / y ; B_k(yi) = Pi[k], B_k(yo) = Po[k]
             # at yi: I0 = Ia = 0 -> bk = Pi[k] yi ; at yo: (I0[0] + alpha Ia[0] + bk)/yo = Po[k]
             bk = Pi[k] * yi
-            alpha = (Po[k] * yo - I0[0] - bk) / Ia[0]
+            alpha = (Po[k] * yo - float(grid.at(I0, yo)) - bk) / float(grid.at(Ia, yo))
             A[k] = Apart + alpha
             B[k] = (I0 + alpha * Ia + bk) / y
         fields.append((ZY(grid, A), ZY(grid, B)))
@@ -666,8 +684,190 @@ def domain():
     return NPASS[0] == NPASS[1]
 
 
+# ======================================================================
+# stage dutton: the kernel against Dutton & Addy's own series and their
+# measured throat fields (Fig. 6, 8, 9, 10; digitised by the owner
+# 2026-09-21, validation/dutton1982_digitised/)
+# ======================================================================
+DIG = os.path.join(HERE, "dutton1982_digitised")
+
+
+def _load(name):
+    return np.loadtxt(os.path.join(DIG, name), ndmin=2)
+
+
+def dutton_case(fig):
+    """The kernel on a figure's throat, with the map (x, y) [d] ->
+    (Z, R) [figure units]."""
+    c = CASES["dutton_figures"][fig]
+    gam, eta, beta = CASES["dutton_gamma"], c["eta"], c["beta_rad"]
+    hpp = 1.0 / c["R_co"]
+    gpp = -1.0 / c["R_ci"] if c["R_ci"] else 0.0
+    eps = (hpp - gpp) / (2.0 + eta * (hpp - gpp))
+    K = np.sqrt(0.5 * (gam + 1.0))
+    s3 = K * eps * np.sqrt(eps)
+    y_i = c["y_i"] if c["y_i"] > 0.0 else CASES["axis_y_i"]
+    P = dict(y_i=y_i, eps=eps, g2=2.0 * gpp / (hpp - gpp), h2=2.0 * hpp / (hpp - gpp),
+             g1=0.0, h1=0.0, b1=np.tan(beta) / s3, R_c=2.0 / (hpp - gpp), K=K)
+    grid, fields, cst = solve_kernel(P["y_i"], P["g1"], P["g2"], P["h1"], P["h2"], P["b1"], gam, eta)
+    d = c["d_fig"]
+    Zs = c["Z_star"] if c["Z_star"] is not None else np.sin(beta) * (1.0 + d * (y_i + 1.0))
+    frm = {"Zs": Zs}                      # mutable: the placement diagnostic moves it
+    cb, sb = np.cos(beta), np.sin(beta)
+
+    def to_fig(x, y):
+        return frm["Zs"] + d * (x * cb - y * sb), d * (x * sb + y * cb)
+
+    def from_fig(Z, R):
+        x = ((Z - frm["Zs"]) * cb + R * sb) / d
+        y = (-(Z - frm["Zs"]) * sb + R * cb) / d
+        return x, y
+
+    def M_at(Z, R, nterms=None):
+        x, y = from_fig(np.asarray(Z, float), np.asarray(R, float))
+        z = x / (K * eps**0.5)
+        u, v = series_uv(grid, fields, eps, gam, z, y, nterms)
+        q2 = u**2 + v**2
+        return np.sqrt(q2 / (0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * q2))
+    return dict(P=P, grid=grid, fields=fields, gam=gam, eps=eps, d=d, Zs=Zs, frm=frm,
+                to_fig=to_fig, from_fig=from_fig, M_at=M_at, c=c)
+
+
+def dutton():
+    t0 = time.time()
+    print("== [F3/A1] the annular kernel against Dutton & Addy's series and measurements"
+          " (stage dutton) ==", flush=True)
+    zw = CASES["dutton_z_window"]
+    # ---- Fig. 6: the conventional axisymmetric nozzle, R_co 1.0, wall Mach vs Z
+    D = dutton_case("fig6")
+    print("   Fig. 6 (axisymmetric, R_co 1.0, eta 2): R_c %.2f, eps %.4f" % (D["P"]["R_c"], D["eps"]))
+    # THEIR wall Mach is the series read at y = y_o, the throat radius,
+    # not on the arc (their wall conditions hold at y_o, Taylor form,
+    # p. 1239): read on the arc our series diverges beyond z ~ 0.5 (M
+    # 2.96 vs 2.19 at Z 0.45, y_w 1.107), read at y_o it follows their
+    # curve (measured 2026-09-21: 0.721/0.731 ... 2.119/2.185)
+    def wall6(Z):
+        return np.full_like(np.asarray(Z, float), D["grid"].y_o)
+    ser = _load("fig6_series.csv")
+    exp = _load("fig6_exp_wall.csv")
+    m = (ser[:, 0] >= zw[0]) & (ser[:, 0] <= zw[1])
+    Ms = D["M_at"](ser[m, 0], wall6(ser[m, 0]))
+    dM_ser = Ms - ser[m, 1]
+    # digitisation noise -> Mach: the local slope dM/dZ of their curve x 0.01 Z
+    slope = np.gradient(ser[m, 1], ser[m, 0])
+    band6 = A1.K_RICH * CASES["digitisation_fig_units"] * np.abs(slope)
+    me = (exp[:, 0] >= zw[0]) & (exp[:, 0] <= zw[1])
+    Me = D["M_at"](exp[me, 0], wall6(exp[me, 0]))
+    dM_exp = Me - exp[me, 1]
+    print("     vs THEIR series (%d pts, Z %.2f..%.2f): mean %+.4f, rms %.4f, max %.4f"
+          " (K_RICH x 0.01 x dM/dZ band: %.3f..%.3f)"
+          % (m.sum(), ser[m, 0].min(), ser[m, 0].max(), dM_ser.mean(),
+             np.sqrt(np.mean(dM_ser**2)), np.max(np.abs(dM_ser)), band6.min(), band6.max()))
+    print("     vs the MEASURED wall Mach (%d pts): %s"
+          % (me.sum(), "  ".join("Z %+.2f: %.3f/%.3f" % (z, a, b) for z, a, b in zip(exp[me, 0], Me, exp[me, 1]))))
+    print("       mean %+.4f, rms %.4f (their accuracy +-1.3 pct at M 0.6, +-0.6 at 1.4)"
+          % (dM_exp.mean(), np.sqrt(np.mean(dM_exp**2))))
+    check("F6-1 our series reproduces THEIR series on the wall inside the digitisation band"
+          " at every point (%d/%d)" % (int((np.abs(dM_ser) <= band6).sum()), m.sum()),
+          bool(np.all(np.abs(dM_ser) <= band6)))
+    theirs_at_exp = np.interp(exp[me, 0], ser[:, 0], ser[:, 1])
+    rms_theirs = float(np.sqrt(np.mean((theirs_at_exp - exp[me, 1])**2)))
+    rms_ours = float(np.sqrt(np.mean(dM_exp**2)))
+    print("       their series vs the same data: rms %.4f (the inlet cone upstream of Z -0.3,"
+          " p. 1242)" % rms_theirs)
+    check("F6-2 the measured wall Mach is reproduced no worse than by their own series"
+          " (rms %.4f <= %.4f + band %.4f)" % (rms_ours, rms_theirs, float(np.mean(band6))),
+          rms_ours <= rms_theirs + float(np.mean(band6)))
+    # ---- Fig. 8, 9, 10: iso-Mach contours
+    for fig in ("fig8", "fig9", "fig10"):
+        D = dutton_case(fig)
+        c = D["c"]
+        print("   %s (R_ci %.2f R_co %.2f y_i %.2f beta %+.3f rad, eta 2): R_c %.2f, eps %.4f,"
+              " beta_1 %.3f; frame origin Z* %.3f, d %.4f"
+              % (fig.upper(), c["R_ci"], c["R_co"], c["y_i"], c["beta_rad"], D["P"]["R_c"],
+                 D["eps"], D["P"]["b1"], D["Zs"], D["d"]))
+        # the digitised walls against the posed arcs (registration check)
+        prof = _load("%s_profile.csv" % fig)
+        xo, yo_ = D["from_fig"](prof[:, 0], prof[:, 1])
+        up = yo_ > 0.5 * (D["grid"].y_i + D["grid"].y_o)
+        # posed walls in the frame: y = y_o + x^2/(2 R_co) (outer), y_i - x^2/(2 R_ci) (inner)
+        res_o = yo_[up] - (D["grid"].y_o + xo[up]**2 / (2.0 * c["R_co"]))
+        res_i = yo_[~up] - (D["grid"].y_i - xo[~up]**2 / (2.0 * c["R_ci"]))
+        win = np.abs(xo) < CASES["wall_registration_window"] / D["d"]
+        so, si = res_o[win[up]], res_i[win[~up]]
+        print("     digitised walls vs the posed parabolic arcs, |x| < 0.6 (frame units d):"
+              " outer mean %+.4f rms %.4f, inner mean %+.4f rms %.4f"
+              % (so.mean(), np.sqrt(np.mean(so**2)), si.mean(), np.sqrt(np.mean(si**2))))
+        dser, dexp, bands = [], [], []
+        for lev in CASES["dutton_levels"]:
+            try:
+                S = _load("%s_series_m%.1f.csv" % (fig, lev))
+                E = _load("%s_exp_m%.1f.csv" % (fig, lev))
+            except OSError:
+                continue
+            for arr, out in ((S, dser), (E, dexp)):
+                xk, yk = D["from_fig"](arr[:, 0], arr[:, 1])
+                zk = xk / (D["P"]["K"] * D["eps"]**0.5)
+                ok = (np.abs(zk) <= 1.0) & (arr[:, 0] >= zw[0]) & (arr[:, 0] <= zw[1])
+                Mv = D["M_at"](arr[ok, 0], arr[ok, 1])
+                out.extend(list(zip([lev] * int(ok.sum()), arr[ok, 0], arr[ok, 1], Mv)))
+        dser, dexp = np.array(dser), np.array(dexp)
+        if c["Z_star"] is None:
+            # the inclined cases: the frame's origin on the axis is not
+            # in the caption; REGISTRATION (one parameter, as Chutkey's
+            # X_SHIFT): the Z* that best fits THEIR series, declared,
+            # and the measured points are then read in the same frame
+            r_posed = np.sqrt(np.mean((dser[:, 3] - dser[:, 0])**2))
+            best = None
+            for dz in np.linspace(*CASES["zstar_search"][:2], int(CASES["zstar_search"][2])):
+                D["frm"]["Zs"] = D["Zs"] + dz
+                Mv = D["M_at"](dser[:, 1], dser[:, 2])
+                r = np.sqrt(np.mean((Mv - dser[:, 0])**2))
+                if best is None or r < best[1]:
+                    best = (dz, r)
+            D["frm"]["Zs"] = D["Zs"] + best[0]
+            print("     registration: Z* fitted on their series %+.3f (posed from the outer foot"
+                  " %+.3f; rms %.4f -> %.4f)" % (D["frm"]["Zs"], D["Zs"], r_posed, best[1]))
+            dser[:, 3] = D["M_at"](dser[:, 1], dser[:, 2])
+            dexp[:, 3] = D["M_at"](dexp[:, 1], dexp[:, 2])
+        es, ee = dser[:, 3] - dser[:, 0], dexp[:, 3] - dexp[:, 0]
+        # the Mach gradient at the points, for the digitisation band (0.01 figure units)
+        h = CASES["fd_step_fig_units"]
+        gZ = (D["M_at"](dser[:, 1] + h, dser[:, 2]) - D["M_at"](dser[:, 1] - h, dser[:, 2])) / (2 * h)
+        gR = (D["M_at"](dser[:, 1], dser[:, 2] + h) - D["M_at"](dser[:, 1], dser[:, 2] - h)) / (2 * h)
+        band = A1.K_RICH * CASES["digitisation_fig_units"] * np.hypot(gZ, gR)
+        print("     vs THEIR series (%d pts on %d levels): mean %+.4f rms %.4f max %.4f;"
+              " inside the digitisation band %d/%d" % (len(es), len(set(dser[:, 0])), es.mean(),
+                                                       np.sqrt(np.mean(es**2)), np.max(np.abs(es)),
+                                                       int((np.abs(es) <= band).sum()), len(es)))
+        for lev in sorted(set(dser[:, 0])):
+            k = dser[:, 0] == lev
+            ke = dexp[:, 0] == lev
+            print("       M %.1f: series mean %+.4f rms %.4f (%d) | measured mean %+.4f rms %.4f (%d)"
+                  % (lev, es[k].mean(), np.sqrt(np.mean(es[k]**2)), k.sum(),
+                     ee[ke].mean() if ke.any() else np.nan, np.sqrt(np.mean(ee[ke]**2)) if ke.any() else np.nan, ke.sum()))
+        inl = dexp[:, 1] >= CASES["dutton_inlet_z"]
+        bias = float(ee[inl].mean())
+        rms_thr = float(np.sqrt(np.mean(ee[inl]**2)))
+        rms_deb = float(np.sqrt(np.mean((ee[inl] - bias)**2)))
+        print("     vs the MEASURED contours (%d pts): mean %+.4f rms %.4f max %.4f; throat region"
+              " Z >= %.2f (%d pts): bias %+.4f (the data downstream of the inviscid theory,"
+              " p. 1242), rms %.4f, de-biased rms %.4f, max %.4f"
+              % (len(ee), ee.mean(), np.sqrt(np.mean(ee**2)), np.max(np.abs(ee)),
+                 CASES["dutton_inlet_z"], int(inl.sum()), bias, rms_thr, rms_deb, np.max(np.abs(ee[inl]))))
+        check("%s-1 our series reproduces THEIR series on the iso-Mach points: rms %.4f within"
+              " the digitisation band's rms %.4f" % (fig.upper(), np.sqrt(np.mean(es**2)), np.sqrt(np.mean(band**2))),
+              np.sqrt(np.mean(es**2)) <= np.sqrt(np.mean(band**2)))
+        check("%s-2 the measured iso-Mach points of the throat region: scatter about the"
+              " series-data bias within %.0f percent rms (%.4f; bias %+.4f)"
+              % (fig.upper(), 100 * CASES["measured_class"], rms_deb, bias),
+              rms_deb <= CASES["measured_class"])
+    print("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t0))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("ANK_STAGE", "verify")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"verify": verify, "chutkey": chutkey,
-                   "domain": domain}.get(STAGE, verify)() else 1)
+    sys.exit(0 if {"verify": verify, "chutkey": chutkey, "domain": domain,
+                   "dutton": dutton}.get(STAGE, verify)() else 1)

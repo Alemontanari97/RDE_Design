@@ -290,8 +290,14 @@
 ## anulare, ordini superiori = catena di quadrature in y (Chebyshev),
 ## verify 4/4: residuo delle equazioni piene a ordine 1/2/3 esatto,
 ## limite asse = Sauer, limite piano = Moore 3o ordine a meno del
-## termine O(1/y_i) (rapporto 4.00). PROSSIMO: stage dutton (Fig. 6-10
-## da digitalizzare) e stage chutkey (ugello primario, R_c 0.33, eta 2).
+## termine O(1/y_i) (rapporto 4.00). Stage chutkey: R_c 0.33 FUORI
+## convergenza (C_d 0.985-0.995 limitato); stage domain: converge da
+## R_c >= 1. Stage dutton 8/8 su Fig. 6/8/9/10 digitalizzate dall'owner:
+## il kernel derivato E' la loro serie (0.006 rms su Fig. 8, 0.012 sulle
+## inclinate registrate, 0.021 sulla parete Fig. 6 letta a y_o); dati
+## a +0.02-0.03 a valle (shift viscoso, p. 1242), scatter 1-2.6 %.
+## PROSSIMO: linea di partenza dal kernel (|z| <= 0.5) per il frame
+## march; Humphreys (raggio di gola).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
