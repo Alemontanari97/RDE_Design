@@ -242,12 +242,28 @@ def opt():
     os.environ.setdefault("PSPL_N", "41")
     os.environ.setdefault("PSPL_ITERS", "10")
     os.environ.setdefault("A1_BASE_MODEL", "veen")
-    os.environ.pop("PSPL_FAN", None)
+    # HMPH_FAN=axi (S32): the axisymmetric fan [X-AFAN] -- admissible for
+    # the Rao case only (theta_E = 0); the wall is then the ideal member
+    # (Rao's Table 3 to the digitisation, S31) and the mass is the
+    # member's own (137.8 lbm/s against their 148.08: the open mass
+    # convention), so the thrust rows carry the -7 percent and the
+    # SHAPE rows are the test
+    if os.environ.get("HMPH_FAN", "planar") == "axi" and CASE == "rao":
+        os.environ["PSPL_FAN"] = "axi"
+    else:
+        os.environ.pop("PSPL_FAN", None)
     import a1_config_compare as CC
     import a1_inlet_angle_opt as IA
     import a1_plug_spline_opt as P
     CC.PA = IA.PA = P.PA = PA
     IA.MI = 1.0002                        # the sonic lip of the paper
+    if os.environ.get("PSPL_FAN") == "axi":
+        # the axisymmetric fan certifies only with its leading ray at
+        # M_i >= 1.6 (X-CHTW, the vertical-characteristic floor); the
+        # strip below is declared, as in the Chutkey twin
+        IA.MI = M_I_FAN
+        import a1_axi_fan as AF
+        AF._CACHE.clear()
     IA.X0 = P.X0 = X0_R
     IA.X_END = max(IA.X_END, L)
     P.L = L
@@ -266,12 +282,26 @@ def opt():
            X0_R, F_ref / LBF))
     c = P.build_case(w, thE=thE)
     ta = w["ta"]
+    W_ref = None
+    key = ("table3_rao_lip8.33_inj-58.5" if CASE == "rao"
+           else "table2_optimum_lip7.55_inj-34")
+    tab = np.array(TABLES[key])
+    W_ref = np.interp(np.asarray(c["xk"]) / S / IN, tab[:, 0], tab[:, 1]) * IN * S
     if START == "table":
-        key = ("table3_rao_lip8.33_inj-58.5" if CASE == "rao"
-               else "table2_optimum_lip7.55_inj-34")
-        tab = np.array(TABLES[key])
-        W0 = np.interp(np.asarray(c["xk"]) / S / IN, tab[:, 0], tab[:, 1]) * IN * S
-        c["W0"] = W0
+        c["W0"] = W_ref.copy()
+    elif os.environ.get("PSPL_FAN") == "axi":
+        say("   start = the axisymmetric ideal member at the knots (fan_axi); vs Table 3:"
+            " max |dy| %.3f in" % (np.max(np.abs(np.asarray(c["W0"]) - W_ref)) / S / IN))
+    # RETURN-FROM-PERTURBATION (S32): HMPH_PERTURB = delta [in], seeded
+    # normal perturbation of the start's knots (the tip knot kept above
+    # its floor); the walk must come back to the reference landing
+    delta = float(os.environ.get("HMPH_PERTURB", 0.0))
+    if delta > 0.0:
+        rng = np.random.default_rng(int(os.environ.get("HMPH_SEED", 1)))
+        dW = rng.standard_normal(len(c["W0"])) * delta * IN * S
+        c["W0"] = np.asarray(c["W0"]) + dW
+        say("   perturbation delta %.2f in (seed %s): dW = %s in"
+            % (delta, os.environ.get("HMPH_SEED", 1), np.array2string(dW / S / IN, precision=3)))
     say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; start = %s;"
         " knots %s" % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3, START,
                        np.array2string(np.asarray(c["W0"]) / S / IN, precision=3)))
@@ -299,6 +329,20 @@ def opt():
     check("O-2 the thrust reproduces the paper's within 1 percent (their"
           " shear is 0.2 percent; %+.2e)" % (J1 / S / S / F_ref - 1),
           abs(J1 / S / S / F_ref - 1) <= THRUST_TOL)
+    if W_ref is not None:
+        dknot = np.abs(np.asarray(W) - W_ref) / S / IN
+        say("   knots vs the paper's table: %s in (max %.3f); y_D %.3f vs %.3f in"
+            % (np.array2string(dknot, precision=3), dknot.max(), float(W[-1]) / S / IN,
+               float(W_ref[-1]) / S / IN))
+        if delta > 0.0:
+            check("P-1 return from the perturbation: the knots come back to the table"
+                  " within delta/3 = %.3f in (max %.3f, the first knot excluded: the"
+                  " planar inlet's own +0.34 in)" % (delta / 3.0, dknot[1:].max()),
+                  dknot[1:].max() <= delta / 3.0)
+        if os.environ.get("PSPL_FAN") == "axi" and START == "fan":
+            ktol = TABLES["_knot_class_in"]
+            check("P-2 from the ideal member the walk STAYS on Rao's Table 3 within"
+                  " %.2f in on every knot (max %.3f)" % (ktol, dknot.max()), dknot.max() <= ktol)
     wall = np.asarray(out1["wall"])
     rec = dict(case=CASE, L_R=L, thE_deg=float(np.degrees(thE)), J0=J0 / S / S,
                J1=J1 / S / S, J1_lbf=J1 / S / S / LBF, F_ref_lbf=F_ref / LBF,

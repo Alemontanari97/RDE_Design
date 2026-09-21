@@ -703,6 +703,47 @@ points, the inclined frames registered on their series). Earlier
 figures of the line: `_humphreys_twin/figs/01_contours_vs_paper.png`,
 `_chutkey_twin/figs/01-04`.
 
+## 14. Two walker tests (2026-09-22 early morning; owner: "vai" on the SQP test list)
+
+`a1_humphreys_twin.py` gains HMPH_PERTURB (seeded normal perturbation
+of the start's knots, in inches) and HMPH_FAN=axi (the axisymmetric
+fan for the Rao case, theta_E = 0), with the gates P-1 (return from
+the perturbation within delta/3 on every knot but the first) and P-2
+(from the ideal member the walk stays on Table 3 within the measured
+stay class 0.15 in, `humphreys1971_tables.json:_knot_class_in`).
+
+**Return from perturbation (opt case, Table 2 + delta 0.30 in, seed 1,
+backtrack 3, 30 x 8; s2, 1545 s).** dW = [+0.10, +0.25, +0.10, -0.39,
++0.27, +0.13] in; start J 32,352 lbf (-1.6 percent). Landing 32,869
+lbf (-3.7e-4 of 32,881; the unperturbed table start landed at 32,864):
+**the value returns**. The knots against Table 2: [0.31, 0.18, 0.06,
+0.001, 0.03, 0.13] in -- the interior knots 3-5 return (from 0.10/0.39/
+0.27 to 0.06/0.001/0.03), the first is the planar inlet's own +0.3,
+**the tip does not move at all (0.134 -> 0.134: y_D 1.11 vs 0.975)**
+and the second returns by half (0.25 -> 0.18). P-1 FAILS at delta/3 =
+0.10, and the log shows why: from segment 7 on, every trial and every
+backtracked point is "record not certified" with cert 1.5-22 -- not a
+fold (1e10), the Newton's round-off floor of a few cells one decade
+above the strict metric 100 eps -- and the radius shrinks to 6e-3 with
+the walk parked at |grad| 1.2e5 (the smallest yet; 5.4e5 in S31). Two
+readings: (i) the tip knot's gradient is nil in this posing (the base
+term with Veen is 21 lbf; the flat valley IS the tip), so a
+perturbation of the tip is not restored -- the base closure (chutkey)
+or the adaptive tip knots are what would restore it, not the driver;
+(ii) near the optimum the walk is stopped by the CERTIFICATION FLOOR
+(G1 strict) of marginal cells, the S31 section 3.3 decision (a) -- a
+conditioning-aware metric -- now measured as the thing that ends walks
+in the flat valley. The walker itself did what a walker must: value
+back to 4e-4, the well-conditioned knots back to 1e-3..6e-2 in.
+
+**Rao from the ideal member (HMPH_FAN=axi).** Posed but NOT a walker
+result: the axisymmetric fan certifies (0.036 at M_i 1.6) and the
+6-knot spline through its wall with the fan's cut at X0 0.05 R starts
+uncertified (3e10) -- the posing (the coarse spline on the member's
+fast turn near the lip, the cut inside the declared strip) is
+inconsistent, and the S31 Table-3 start already answered the question
+("stays", +0.13 percent, y_D 1.44 vs 1.375). Dropped.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.

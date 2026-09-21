@@ -299,5 +299,7 @@
   "table2": 32881.0,
   "table3": 34253.0,
   "table4": 32965.0
- }
+ },
+ "_knot_class_in": 0.15,
+ "_knot_class_note": "the class within which a walk 'stays' on a table's contour: the S31 table-start landing on Table 2 put every knot but the first within 0.05-0.15 in (the first at +0.34 in = the planar inlet), so 0.15 in is the measured stay class; cls EMPIRICAL"
 }
