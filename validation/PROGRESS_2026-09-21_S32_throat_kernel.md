@@ -1000,12 +1000,121 @@ A1_BASE_MODEL, ...) are read at IMPORT time -- importing it before
 (6 knots became the driver's default, the base model vanished, and the
 census read cert 0.418 where the record reads 2.96e8).
 
+## 17. Their throat, from their own table and text (2026-09-22 evening; owner: "proceed, and make sure R_c is 1")
+
+The owner asked how to start from Humphreys' throat, whether Sauer could
+be applied locally, and what GENO does. The answers of record, then the
+measurement (`a1_humphreys_twin.py` STAGE throat, 4/6, 0.3 s).
+
+**Sauer, locally: no.** (i) Sauer IS the one-term truncation of the
+series we hold to three terms -- X-TKRN's gate T-5 measured Moore's
+first approximation at K = 0 to be Sauer planar (6e-11). (ii) Sauer
+presumes a symmetric throat with an axis or a midplane; their passage
+is annular and asymmetric, and at K = 1 (X-TKRN T-6) the sonic points
+sit at z = -4/3 on the curved wall and +2/3 on the straight one, the
+singular point ON the straight wall -- a symmetric Sauer would put the
+sonic line elsewhere. (iii) At their throat there is barely a small
+parameter at all (below). **GENO**: `InitialValues_m.f90` holds a true
+Sauer IVL (`IVLINE_solve`, wall to AXIS, the bell's) and, for the
+annulus, `IVLINE_annular_solve`, whose own comment says "Migdal 1972
+Fig. 2: IVL is the line A-B, normal to theta_i": ONE Mach, q0 constant,
+theta constant on a straight inclined segment. No transonic solution on
+the annulus -- the uniform inclined line Humphreys p. 1587 prices at
+2700 lbf (8 percent).
+
+**THE PAPER'S OWN THROAT (p. 1585-1586, read verbatim for this
+stage).** "The parametric study was conducted for a nozzle which has a
+mean radius of curvature at the throat of 0.705 in., a downstream
+radius of curvature of 0.5 in., and a length from point T to point D of
+12.0 in." (p. 1586); "the plug curvature in this region [downstream of
+A] is specified ... point T is located so that no discontinuity in the
+plug contour arises ... point T will always be downstream from point A"
+(p. 1585); "the start line will always be from point A to point E".
+
+- **(T-1) Table 2's nine crowded rows at the foot ARE the prescribed
+  arc**: eight consecutive intervals turn at a constant radius
+  **0.5000 in** (spread 8e-4, band 6e-3), from -36.25 to -48.25 deg --
+  the paper's "downstream radius of curvature of 0.5 in." to the
+  fourth digit. A known answer of the transcription.
+- **(T-2) The arc ends at T = (-0.48331, 6.64846) in, and T -> D =
+  12.0004 in** against the paper's 12.0: the second known answer. The
+  optimised contour of Table 2 begins at T, not at A.
+- **(T-3) A -> E: h = 1.0027 in at 56.00 deg from the axis = exactly
+  90 + (-34)**, normal to their injection. (If h were exactly 1.0 in
+  the lip would sit at (-0.0015, 7.5478) in; "7.55" cannot tell.)
+- **(T-4, FAIL, the correction) R_c = 0.705 / 1.0027 = 0.703, NOT 1.**
+  The first reading of the day took the downstream arc (0.5 in) for the
+  throat curvature and got R_c ~ 1; the paper's Moore-Hall input is the
+  MEAN radius at the throat, 0.705 in, and Dutton's R_c = R_mean /
+  separation whatever the split between the two walls (the split sets
+  only K). 0.703 is BELOW the kernel's declared convergence domain
+  (`rc_converged_from` 1.0): the gate rejects the posing as declared.
+- **(T-5, PASS) But measured AT that throat the series still
+  converges**: symmetric split (K 0), throat-plane Mach 1.071 / 1.049 /
+  0.971..1.208 by 1/2/3 terms, |M2-M1| 0.046, |M3-M2| 0.034, **ratio
+  0.73** -- the truncation band, declared; W/W* 0.9947; first
+  all-supersonic line at x +0.03 d with M 1.00..1.25 and theta
+  -1.5..+1.5 deg, W/W* 0.9915. The straight-cowl split (K 1) is
+  stretched at this R_c: M(x=0) 0.87..1.65 at three terms, ratio 0.76,
+  W/W* 0.9645, the first supersonic line at x +0.19 d with M up to 2.09
+  and theta to -14.7 deg. The split is the ONE datum the paper does not
+  print; "mean radius of curvature" reads as two finite radii, i.e.
+  nearer K 0, which is also the better-conditioned posing.
+- **(T-6, FAIL, THE FINDING ON THE MASS) Their 148.08 lbm/s is 1.029
+  times the choked 1-D mass of the line A -> E.** The surface of
+  revolution of A -> E is 44.95 in^2; at p_c 500 psia, T_c 6000 R,
+  R 56 ft-lbf/(lbm-R), gamma 1.23 the choked 1-D mass through it is
+  143.89 lbm/s, and no line of that area can pass more (rho u peaks at
+  M = 1). The kernel's own discharge is 0.9947 (K 0) / 0.9645 (K 1) of
+  it: **their stated mass exceeds what their stated geometry can pass by
+  3.4 to 6.7 percent.** This is the S31 "mass convention" item (Rao's
+  member passing 137.8 against their 148.08) with a number and a gate:
+  the paper's mass, lip, foot and gas are not mutually consistent under
+  1-D choking at the 3-percent level. "The mass flow rate ... were
+  SELECTED as 148.08 lbm/sec" (p. 1586): an input, not a discharge.
+
+**WHAT IT DOES TO ROUTE (ii).** The cut can hold their mass or their
+wall (section 16, K-9), and now: **a perfect kernel on their geometry
+would pass ~143 lbm/s, 3.4 percent short of their number, by their own
+inconsistency.** The geometry-faithful twin must therefore compare
+SPECIFIC thrust (J / mdot, or C_F), not J -- the only metric the mass
+inconsistency does not touch. And the kernel is posable: R_c 0.70 with
+the K 0 split, truncation ratio 0.73 declared, y_i 8.08 (thin annulus,
+the annular term small), the first supersonic line at +0.03 d from the
+throat plane. The alternative if 0.73 proves too wide for the gates is
+the one already named: solve the transonic region numerically with the
+three-term series as the upstream condition.
+
+**THE CHUTKEY COMPARISON (owner: "is this not like the Chutkey contour?
+how did we solve the twin there?").** Same setup -- external plug, cowl
+lip, a march from a cut with the strip to the throat declared -- and one
+shortcut that does not carry over. Chutkey's plug IS an Angelino
+contour (X-CHTW T-0: throat tilt 56.9 deg = nu(M_e) to 0.01 deg), so the
+ideal centred fan at the lip is consistent with the wall BY DESIGN: the
+fan's streamline through the foot is the wall, the twin compared WALL
+STATE (p_w to +0.7..+1.8 percent, M to -0.4 at the four truncations)
+and paid a declared -6.2 percent of first-column mass. Humphreys'
+optimum is not ideal (the ideal member at their lip passes -24 percent
+of their mass, S31) and the twin compares THRUST, which needs the mass:
+hence the mass-set radius, the 0.33-in offset, the fold. And the
+Chutkey kernel path failed for two reasons that Humphreys does not
+have: the digitised foot is noise at 0.1 mm on a 1.32-mm throat, and
+the Angelino foot is flat then turns INTO the channel (section 12);
+here the foot is an exact printed arc that curves AWAY from the passage
+-- a series-kernel geometry, as section 12 predicted ("Humphreys'
+Fig. 1 exactly").
+
+Artefacts: `_humphreys_twin/throat_opt.json`; constants in
+`humphreys1971_tables.json` (`_throat_mean_radius_in`,
+`_downstream_radius_in`, `_table_precision_in`, `_lip_precision_in`,
+`_length_TD_precision_in`, each cls SPEC with the page).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
 - Files (S32 midday/afternoon, sections 15-16):
-  `validation/a1_humphreys_twin.py` (stages grad and class, `_pose()`
-  factored out bit-identically, the docstring),
+  `validation/a1_humphreys_twin.py` (stages grad, class and throat,
+  `_pose()` factored out bit-identically, `read_table`, the docstring),
   `validation/humphreys1971_tables.json` (`_grid_class_lbf`, cls SPEC
   = their Table 1 span), this log; registry row X-HMPH re-printed.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),

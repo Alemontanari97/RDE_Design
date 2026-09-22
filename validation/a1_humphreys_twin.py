@@ -63,6 +63,15 @@ census is the margin carrier's own, the incumbent (the fan's own
 streamline) is the control, and the gates also SPLIT this row's two
 certification failures, which are not the same mechanism.
 
+STAGE throat (S32, 2026-09-22): THEIR throat from their own table and
+text -- the prescribed 0.5-in arc from A to T (known answers: the arc
+radius, T -> D = 12.0 in), the start line A -> E normal to the injection,
+the throat's Dutton R_c from the paper's OWN mean radius of curvature
+(0.705 in: R_c 0.703, corrected from the first S32 reading that had
+used the downstream arc), the series kernel's convergence measured AT
+that throat, and their stated mass against the choked 1-D mass of the
+line A -> E.
+
 Lengths are posed in LIP RADII (the record's YTIP convention, the
 Chutkey twin's frame); the paper's inches are converted at the edges.
 """
@@ -93,7 +102,8 @@ P0 = 500.0 * PSI                       # chamber pressure [Pa]
 T0 = 6000.0 / 1.8                      # chamber temperature [K]
 RG = 56.0 * 5.380320                   # ft-lbf/(lbm-R) -> J/(kg K)
 GAMMA = 1.23
-MDOT = 148.08 * 0.45359237             # [kg/s]
+LBM = 0.45359237                       # [kg]
+MDOT = 148.08 * LBM                    # [kg/s]
 PA = 14.7 * PSI                        # ambient [Pa]
 X_D = 11.51781 * IN                    # Table 3: Rao's D abscissa from the lip
 Y_D_RAO = 1.37506 * IN                 # Table 3: Rao's base radius
@@ -942,8 +952,180 @@ def klass():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage throat: THEIR throat, from their own table and text
+# ----------------------------------------------------------------------
+def throat():
+    """What the paper gives about its own throat, read as numbers of
+    record, and whether our series kernel can be posed on it.
+
+    p. 1586: "a mean radius of curvature at the throat of 0.705 in., a
+    downstream radius of curvature of 0.5 in., and a length from point
+    T to point D of 12.0 in."; p. 1585: the plug curvature downstream of
+    the start-line point A is PRESCRIBED so that no corner arises at T,
+    where the optimised contour begins, T always downstream of A; the
+    start line is always A -> E (the cowl lip). Table 2's nine crowded
+    rows at the foot are that prescribed arc, and they are checked here
+    against the text (known answers of the transcription) before the
+    throat's Dutton parameter R_c is read from the paper's OWN mean
+    radius -- not from the downstream arc, which is what the S32 first
+    reading did (R_c ~ 1 from rho 0.5 in: corrected here)."""
+    t00 = time.time()
+    say("== [F3] Humphreys 1971, twin: THEIR throat from their own table"
+        " and text [X-HMPH] (stage throat) ==")
+    import a1_annular_kernel as AK
+    tab = np.array(TABLES["table2_optimum_lip7.55_inj-34"])
+    x, y, th = tab[:, 0], tab[:, 1], np.radians(tab[:, 2])
+    prec = TABLES["_table_precision_in"]
+    rho_paper = TABLES["_downstream_radius_in"]
+    R_mean = TABLES["_throat_mean_radius_in"]
+    lip_prec = TABLES["_lip_precision_in"]
+
+    # ---- T-1: the crowded rows are a circular arc of the paper's radius
+    ds = np.hypot(np.diff(x), np.diff(y))
+    dth = np.abs(np.diff(th))
+    rho_k = ds / dth                              # radius, interval by interval
+    band_rho = A1.K_RICH * (2.0 * prec / ds[0])   # ds known to 2 prec
+    n_arc = 1
+    while (n_arc < len(rho_k)
+           and abs(rho_k[n_arc] / rho_k[0] - 1.0) <= band_rho):
+        n_arc += 1
+    rho = float(np.mean(rho_k[:n_arc]))
+    say("   the foot: %d consecutive intervals turn at constant radius"
+        " %.4f in (spread %.1e, band %.1e) from theta %+.2f to %+.2f deg"
+        % (n_arc, rho, float(rho_k[:n_arc].max() / rho_k[:n_arc].min() - 1.0),
+           band_rho, np.degrees(th[0]), np.degrees(th[n_arc])))
+    check("T-1 the arc at the foot IS the paper's prescribed downstream"
+          " radius: %.4f in against 0.5 in (band %.1e in)"
+          % (rho, A1.K_RICH * rho * 2.0 * prec / ds[0]),
+          abs(rho - rho_paper) <= A1.K_RICH * rho * 2.0 * prec / ds[0])
+
+    # ---- T-2: the arc ends at T, and T -> D is their 12.0 in ------------
+    xT, yT = float(x[n_arc]), float(y[n_arc])
+    LTD = float(x[-1] - xT)
+    say("   T = (%.5f, %.5f) in at %+.2f deg; T -> D = %.4f in (paper: %.1f)"
+        % (xT, yT, np.degrees(th[n_arc]), LTD, L_TD / IN))
+    check("T-2 the arc ends at T and the length T -> D reproduces the"
+          " paper's 12.0 in within its printed precision (%.4f, band %.2f)"
+          % (LTD, TABLES["_length_TD_precision_in"]),
+          abs(LTD - L_TD / IN) <= TABLES["_length_TD_precision_in"])
+
+    # ---- T-3: the start line A -> E is normal to the injection ---------
+    E = np.array([0.0, R_OPT / IN])
+    A = np.array([x[0], y[0]])
+    normal = np.degrees(np.radians(TH_I_OPT) + np.pi / 2)   # 90 + injection
+    h = float(np.hypot(*(E - A)))
+    ang_AE = float(np.degrees(np.arctan2(E[1] - A[1], E[0] - A[0])))
+    band_ang = A1.K_RICH * np.degrees(lip_prec / h)
+    say("   start line A -> E: h = %.4f in, inclination %.2f deg from the"
+        " axis (90 + injection = %.2f; band %.2f deg from the lip's"
+        " printed precision)" % (h, ang_AE, normal, band_ang))
+    check("T-3 A -> E is normal to their injection direction (%.2f vs"
+          " %.2f deg)" % (ang_AE, normal),
+          abs(ang_AE - (normal)) <= band_ang)
+    # the alternative reading: h exactly 1.0 in puts the lip at
+    E1 = A + 1.0 * np.array([np.cos(np.radians(normal)),
+                             np.sin(np.radians(normal))])
+    say("   (if h were exactly 1.0 in the lip would sit at (%.4f, %.4f) in:"
+        " 7.55 printed to two decimals cannot tell)" % (E1[0], E1[1]))
+
+    # ---- T-4: the throat's R_c from the paper's OWN mean radius ---------
+    R_c = R_mean / h
+    rc_from = AK.CASES["rc_converged_from"]
+    rc_from = rc_from["value"] if isinstance(rc_from, dict) else rc_from
+    say("   Dutton's R_c = (mean radius at the throat) / (separation) ="
+        " %.3f / %.4f = %.3f -- whatever the split between the walls;"
+        " the kernel's declared convergence domain starts at %.2f"
+        % (R_mean, h, R_c, rc_from))
+    check("T-4 the throat lies INSIDE the series kernel's declared"
+          " convergence domain (R_c %.3f >= %.2f)" % (R_c, rc_from),
+          R_c >= rc_from)
+
+    # ---- T-5: the kernel's own convergence AT this throat --------------
+    gam = GAMMA
+    eta = float(os.environ.get("ANK_ETA", 2.0))
+    d_m, R_i_m = h * IN, float(y[0]) * IN
+    NY = AK.CASES["n_y_profile"]
+    NY = NY["value"] if isinstance(NY, dict) else NY
+    res = {}
+    for label, rc_in, rc_out in (
+            ("symmetric split, K 0", R_mean * IN, R_mean * IN),
+            ("straight cowl, K 1", 0.5 * R_mean * IN, np.inf)):
+        P = AK.throat_params(R_i_m, d_m, -TH_I_OPT, rc_in, rc_out, eta, gam)
+        grid, fields, _ = AK.solve_kernel(P["y_i"], P["g1"], P["g2"],
+                                          P["h1"], P["h2"], P["b1"], gam, eta)
+        ys = np.linspace(grid.y_i, grid.y_o, NY)
+        M0, W0 = {}, {}
+        for nt in (1, 2, 3):
+            u0, v0 = AK.series_uv(grid, fields, P["eps"], gam,
+                                  np.zeros(NY), ys, nt)
+            q2 = u0 ** 2 + v0 ** 2
+            M0[nt] = np.sqrt(q2) / np.sqrt(0.5 * (gam + 1.0)
+                                           - 0.5 * (gam - 1.0) * q2)
+            W0[nt] = AK.mass_ratio(grid, fields, P["eps"], gam, 0.0, nt)
+        d12 = float(np.max(np.abs(M0[2] - M0[1])))
+        d23 = float(np.max(np.abs(M0[3] - M0[2])))
+        zs3 = AK.sonic_line(grid, fields, P["eps"], gam, ys, 3)
+        zl = float(np.nanmax(zs3))
+        ul, vl = AK.series_uv(grid, fields, P["eps"], gam,
+                              np.full(NY, zl), ys, 3)
+        ql = ul ** 2 + vl ** 2
+        Ml = np.sqrt(ql) / np.sqrt(0.5 * (gam + 1.0) - 0.5 * (gam - 1.0) * ql)
+        thl = np.degrees(np.arctan2(vl, ul))
+        Wl = AK.mass_ratio(grid, fields, P["eps"], gam, zl, 3)
+        say("   %-22s R_c %.3f eps %.3f y_i %.2f K %.2f: M(x=0) by terms"
+            " %.3f/%.3f/%.3f..%.3f, |M2-M1| %.4f |M3-M2| %.4f (ratio %.2f);"
+            " W/W* %.4f/%.4f/%.4f; first all-supersonic line at x %+.3f d:"
+            " M %.3f..%.3f, theta %+.1f..%+.1f deg, W/W* %.4f"
+            % (label, P["R_c"], P["eps"], P["y_i"], P["K"],
+               M0[1].mean(), M0[2].mean(), M0[3].min(), M0[3].max(),
+               d12, d23, d23 / d12 if d12 > 0 else float("nan"),
+               W0[1], W0[2], W0[3], zl * P["K"] * P["eps"] ** 0.5,
+               Ml.min(), Ml.max(), thl.min(), thl.max(), Wl))
+        res[label] = dict(d12=d12, d23=d23, W3=W0[3], Ml=(Ml.min(), Ml.max()),
+                          thl=(thl.min(), thl.max()), R_c=P["R_c"],
+                          zl=zl * P["K"] * P["eps"] ** 0.5)
+    r0 = res["symmetric split, K 0"]
+    check("T-5 at THEIR throat the series still converges on the throat-plane"
+          " Mach (third term %.4f below the second %.4f, ratio %.2f): the"
+          " truncation band is the ratio, declared" % (r0["d23"], r0["d12"],
+                                                       r0["d23"] / r0["d12"]),
+          r0["d23"] < r0["d12"])
+
+    # ---- T-6: their mass against the choked 1-D mass of A -> E ---------
+    ybar = 0.5 * (float(y[0]) + R_OPT / IN) * IN
+    area = 2.0 * np.pi * ybar * d_m
+    mstar = (area * P0 * np.sqrt(gam / (RG * T0))
+             * (2.0 / (gam + 1.0)) ** (0.5 * (gam + 1.0) / (gam - 1.0)))
+    Cd = MDOT / mstar
+    lo, hi = AK.CASES["discharge_band"]["value"] \
+        if isinstance(AK.CASES["discharge_band"], dict) \
+        else AK.CASES["discharge_band"]
+    say("   the surface of revolution of A -> E: %.2f in^2; choked 1-D mass"
+        " through it %.2f lbm/s; THEIR 148.08 lbm/s is C_d = %.4f of it"
+        " (the kernel's own W/W* through the throat plane: %.4f / %.4f for"
+        " the two splits; a smooth throat discharges %.2f..%.2f)"
+        % (area / IN ** 2, mstar / LBM, Cd, r0["W3"],
+           res["straight cowl, K 1"]["W3"], lo, hi))
+    check("T-6 their stated mass is a physical discharge of THIS throat"
+          " line (C_d %.4f inside the smooth-throat band %.2f..%.2f)"
+          % (Cd, lo, hi), lo <= Cd <= hi)
+
+    rec = dict(rho_arc_in=rho, n_arc=n_arc, T_in=[xT, yT], L_TD_in=LTD,
+               h_in=h, angle_AE_deg=ang_AE, R_c=R_c, rc_converged_from=rc_from,
+               kernel={k: {kk: (list(vv) if isinstance(vv, tuple) else vv)
+                           for kk, vv in v.items()} for k, v in res.items()},
+               area_in2=area / IN ** 2, mstar_lbm_s=mstar / LBM, Cd=Cd)
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(ART, "throat_%s.json" % CASE), "w"),
+              indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                           time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
     sys.exit(0 if {"rao": rao, "opt": opt, "grad": grad,
-                   "class": klass}.get(STAGE, rao)() else 1)
+                   "class": klass, "throat": throat}.get(STAGE, rao)() else 1)

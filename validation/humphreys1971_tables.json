@@ -302,6 +302,16 @@
  },
  "_knot_class_in": 0.15,
  "_knot_class_note": "the class within which a walk 'stays' on a table's contour: the S31 table-start landing on Table 2 put every knot but the first within 0.05-0.15 in (the first at +0.34 in = the planar inlet), so 0.15 in is the measured stay class; cls EMPIRICAL",
+ "_throat_mean_radius_in": 0.705,
+ "_throat_mean_radius_note": "p. 1586: \"a mean radius of curvature at the throat of 0.705 in.\" -- the input of their modified Moore-Hall transonic start line; the MEAN of the two walls in the Moore-Hall sense (harmonic: R_c of Dutton = R_mean / separation whatever the split between the walls, the split setting only the asymmetry K); cls SPEC",
+ "_downstream_radius_in": 0.5,
+ "_downstream_radius_note": "p. 1586: \"a downstream radius of curvature of 0.5 in.\" -- the prescribed plug arc from the start-line point A to the point T where the optimised contour begins (p. 1585: the curvature is specified so that no corner arises at T, and T is always downstream of A); cls SPEC",
+ "_table_precision_in": 1e-5,
+ "_table_precision_note": "the printed digits of Tables 2-3 (x, y to 1e-5 in, angles to 1e-5 deg); cls SPEC",
+ "_lip_precision_in": 0.005,
+ "_lip_precision_note": "the cowl lip radius is printed as 7.55 in (two decimals): half a unit in the last place; cls SPEC",
+ "_length_TD_precision_in": 0.05,
+ "_length_TD_precision_note": "p. 1586 prints the length T -> D as 12.0 in (one decimal): half a unit in the last place; cls SPEC",
  "_grid_class_lbf": [
   32699.0,
   32877.0
