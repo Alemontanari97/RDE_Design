@@ -1324,6 +1324,56 @@ is Humphreys' (an arc curving away, R_c 0.70, sections 17-18), and
 even there the three-term series is rejected by the march at its first
 column.
 
+## 20. WAVINESS is what folds the net (owner's reading from the figures, 2026-09-22 late night) [K-10]
+
+The owner, looking at figure 02: "it is possible that these out-of-class
+events are caused by the fact that the optimiser's profile comes out
+WAVY for some reason". Measured, and it is the mechanism. The
+characteristics see the wall's DIRECTION, not its radius; a turn in the
+wall angle is a curvature sign change, i.e. an expansion/compression
+alternation, and the compression halves are where the net crosses
+itself. Stage class gains K-10 (10/10, 174 s):
+
+| design | turns in the wall angle | angle range | FOLDED |
+|---|---|---|---|
+| **their own Table 2** (their printed angle column, downstream of its dip) | **0 -- monotone** | -48.3..-13.3 | -- |
+| the fan's streamline (the incumbent) | **0** | -25.1..+16.6 | **0.00 %** |
+| our landing from their table | 1 | -37.6..-10.4 | 6.39 % |
+| the perturbed landing | 3 | -38.8..-8.4 | 12.22 % |
+| their Table 2 THROUGH OUR CUT | 3 | -45.8..-14.7 | 28.78 % |
+| the walk from the fan (not censused) | 5 | -33.5..+7.7 | -- |
+
+READ. (i) Zero turns, zero folds; one turn, 6 percent; three turns, 12
+and 29. The ordering is the hypothesis. (ii) The incumbent's contour is
+FAR from theirs (26 deg rms in angle -- it is a different shape, rising
+at the end) and folds NOTHING: it is not distance from the optimum that
+folds a net, it is waviness. (iii) **Their own contour is monotone in
+angle**: the waviness is entirely OURS, introduced by representing a
+smooth contour with a six-knot spline in y pinned at a start radius
+that is not theirs (K-7/K-8: +0.33 in at the cut, the angle oscillating
++10.5/-11.9 deg about their monotone one). (iv) **And our landings are
+wavy too** -- one turn and three: the optimiser's own products carry the
+defect, not only the transcription of theirs.
+
+**WHAT IT CHANGES.** The out-of-class problem is not primarily the
+driver's missing constraint but the PARAMETRISATION: a spline in y with
+a pinned start can only approach their contour by wiggling in angle, and
+every wiggle folds cells. Humphreys did not parametrise in y -- p. 1585:
+"the wall angle theta is chosen as the independent variable and the
+error function E as the dependent variable". A design vector of wall
+ANGLES, integrated to the contour, is monotone by construction when the
+angles are ordered, and cannot wiggle.
+
+So the two cures attack the same defect from opposite sides: the class
+constraint (the driver's margin, built in S29 and never used by this
+row) REJECTS wavy designs during the walk; an angle parametrisation
+makes them UNREPRESENTABLE. The second is the deeper fix and is
+Humphreys' own; the first is needed anyway, because nothing guarantees
+that an angle-parametrised design cannot fold by other means. If only
+the class constraint is added and the parametrisation is left as it is,
+the walk may find itself unable to move near their optimum -- every
+admissible neighbour being wavy.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.

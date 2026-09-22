@@ -948,8 +948,48 @@ def klass():
           " differs from theirs" % dm, abs(dm) > 1.0)
     rec_reach.update(mass_shift_pct_if_their_wall=dm)
 
+    # ---- K-10: the owner's reading -- WAVINESS is what folds the net --
+    # The characteristics see the wall's DIRECTION, not its radius. A
+    # turn in the wall angle (a curvature sign change) is an
+    # expansion/compression alternation, and the compression halves are
+    # where the net crosses itself. Their own contour's printed angle
+    # column is MONOTONE downstream of its dip; ours need not be, and a
+    # six-knot spline in y pinned at a start radius that is not theirs
+    # cannot help wiggling. Measured across the pool against the folded
+    # fractions the same pool produced.
+    def turns_of(W):
+        _, _, ssl_ = P.wall_stations(np.asarray(W, float), c)
+        a_ = np.degrees(np.arctan(np.asarray(ssl_)))
+        return int((np.diff(np.sign(np.diff(a_))) != 0).sum()), a_
+
+    # downstream of their own angle dip (the prescribed throat arc):
+    # the rows after the steepest, where their contour is the optimum's
+    i_dip = int(np.argmin(tab2[:, 2]))
+    t_them = int((np.diff(np.sign(np.diff(tab2[i_dip:, 2]))) != 0).sum())
+    say("   THEIR OWN Table 2 (their printed angle column, downstream of"
+        " its dip): %d turns -- monotone" % t_them)
+    wav = []
+    for nm, r in got.items():
+        tn, a_ = turns_of(r["W"])
+        wav.append((nm, tn, r["frac"]))
+        say("   %-26s %d turn(s) in the wall angle (%+.1f..%+.1f deg),"
+            " folded %.2f %%" % (nm, tn, a_.min(), a_.max(), r["frac"]))
+    rec_wav = [dict(design=nm, turns=tn, folded_pct=fr) for nm, tn, fr in wav]
+    inc_t = [tn for nm, tn, _ in wav if nm.startswith("fan")][0]
+    clean = [fr for nm, tn, fr in wav if tn == 0]
+    wavy = [fr for nm, tn, fr in wav if tn > 0]
+    check("K-10 WAVINESS is what folds the net (the owner's reading): the"
+          " incumbent turns %d times and folds %.2f percent, while every"
+          " design with a turn folds (%s percent) -- and THEIR OWN contour"
+          " is monotone (%d turns), so the waviness is the posing's, not"
+          " the paper's"
+          % (inc_t, max(clean) if clean else -1.0,
+             "/".join("%.1f" % f for f in sorted(wavy)), t_them),
+          inc_t == 0 and clean and max(clean) == 0.0
+          and bool(wavy) and min(wavy) > 0.0 and t_them == 0)
+
     rec = dict(case=CASE, base_model=base, K=P.K_ST, N=P.N_ROW,
-               reach=rec_reach,
+               reach=rec_reach, waviness=rec_wav,
                designs={nm: dict(J_lbf=r["J"] / S / S / LBF,
                                  cert=float(r["out"]["cert_worst"]),
                                  where=str(r["out"]["cert_where"]),
@@ -1358,7 +1398,16 @@ def kernel():
           " deg)" % np.degrees(sl.min()), sl.min() > 0.0)
 
     # ---- the stations along THEIR wall, from the cut to D ------------
-    ds0, grow = FM.CASES["station_clustering"][0] * hh, FM.CASES["station_clustering"][1]
+    # HMPH_DS0/HMPH_GROW: the FIRST station spacing and its growth. The
+    # bell's march from Sauer advances by the characteristics' own
+    # intersection -- infinitesimal at M -> 1 -- and absorbs the start
+    # data's residual over many tiny columns; this march advances to
+    # PRESCRIBED stations, so the residual is absorbed in one step. The
+    # ladder is the test of that difference.
+    ds0 = float(os.environ.get("HMPH_DS0",
+                               FM.CASES["station_clustering"][0])) * hh
+    grow = float(os.environ.get("HMPH_GROW",
+                                FM.CASES["station_clustering"][1]))
     ds_max = (xw[-1] - x_cut) / K
     xs, dsn = [x_cut], ds0
     while xs[-1] + dsn < xw[-1]:
@@ -1378,6 +1427,8 @@ def kernel():
     out, sch = PM.plug_march(stations, start, float(q_E), w["tab"], 1.0,
                              cells=FM.make_cells_rot(1.0, thf, Ym), margin=mg)
     cert = float(out["cert_worst"])
+    say("   stations: first %.2e h, growth %.3f, %d of them to %.2f d"
+        % (ds0 / hh, grow, len(xq), (xq[-1] - x_cut) / d_fr))
     say("   march: %d stations, cert %.3e (%d cells) at %s, %.1f s"
         % (len(xq), cert, int(out["cert_n"]), out.get("cert_where"),
            time.time() - t0))
@@ -1477,9 +1528,10 @@ def kernel():
                p_w_over_p0=(pw / P0).tolist(), M_w=Mw.tolist())
     os.makedirs(ART, exist_ok=True)
     json.dump(rec, open(os.path.join(
-        ART, "kernel_%s_z%.2f_N%d_sl%s_e%d_r%d_%s_rc%.2f.json"
+        ART, "kernel_%s_z%.2f_N%d_sl%s_e%d_r%d_%s_rc%.2f_ds%s.json"
         % (CASE, z_cut, N, os.environ.get("HMPH_SLOPEA", "1"), n_edge,
-           n_rays, wall_mode, rc_scale)), "w"), indent=1)
+           n_rays, wall_mode, rc_scale,
+           os.environ.get("HMPH_DS0", "def"))), "w"), indent=1)
     say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
     return NPASS[0] == NPASS[1]
 
