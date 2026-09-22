@@ -302,6 +302,18 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     streamline margin-ACTIVE with mu > 0 at one resolution — not of
     record until the carrier a1_plug_margin.py carries it), and S21-S23
     are to be re-run margin-constrained before any plug optimum ships.
+    STATUS 2026-09-22 (S30-S33; logs validation/PROGRESS_2026-09-17_S30
+    .. 2026-09-22_S33, census row R37): the margin carrier [X-PMRG] is of
+    record (S29) but has not yet constrained a walk on the line's
+    literature twin (Humphreys, Thompson & Hoffman 1971, [X-HMPH]), whose
+    landings fold; the optimiser's certification criterion is the owner's
+    [DIR-REOB] (re-obtention, RE-1/2/3), not yet met by any row. BUDGET
+    RECORDER: the "F3 session m/4" counter above has NOT been instituted
+    -- the entry leg is measured but unratified (R20) and the line runs as
+    the authorized parallel de-risk; seven sessions carry the F3 tag
+    (S26, S28-S33, measured from git). Whether they count, and hence
+    whether the fallback fires by rule, is the owner's decision at the
+    ratification (PROGRESS BLOCCATO 20 (g)); no silent extension.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

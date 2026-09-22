@@ -402,6 +402,89 @@ Artefacts (not committed): `_humphreys_twin/run_kernel_eta8.0_{rerun,ef5,ef20}.l
 records, HMPH_TAG, the inputs of stage kab), `run_kab_2026-09-22.log`,
 `kab_opt.json`.
 
+## 10. The session audited against the repo's rules, and the repairs (owner: "leggi le regole della git ... se stiamo uscendo dal seminato", then "ripara tutto prima di committare")
+
+Rules read in full for the audit: CLAUDE.md R1-R7; the standing rules
+SR-1..SR-12 (`validation/ADVISORY_SORDINE_plan_2026-08-13.md` section 5);
+`docs/rde_nozzle_SCAFFOLD.md` section 6; the branch directive of
+2026-09-17 (RDE/handoff/NOZZLE_HANDOFF_2026-09-17.md section 1); D6's
+phase spine F0-F6 with the ISS-4 budget clause.
+
+**In rule** (checked): branch `rde-nozzle-program`; identity AlexFalco5;
+explicit pathspecs only, GENO never added; the conformity quoted in every
+commit message; the log committed before the registry row; no push; the
+per-session log indexed (SR-1); registry rows in the same window (SR-2);
+the new env knobs are PSPL_*/HMPH_* instance knobs, outside the A1_* flag
+census by construction (SR-5); every number of this log produced by a
+committed script (R5: the pose A/B moved from a scratch reader into stage
+kab for that reason); counts measured in-window (SR-12).
+
+**Out of rule, and repaired in this window before the commit:**
+- SR-7 / SR-10 (census in place, no delta blocks, history in the
+  archive): the line's census row R37 had stood at "S21-S28, 2026-09-15"
+  while S29-S33 appended per-session paragraphs to PROGRESS's
+  ORA-PARALLELO / NEXT-PARALLELO blocks (this session included). The two
+  blocks are moved VERBATIM to docs/rde_nozzle_PROGRESS_ARCHIVE.md under a
+  dated banner with a DELTA CENSIMENTO note; PROGRESS carries the line's
+  current state only; R37 and BLOCCATO 20 are edited in place.
+- R4 (theory in M0/D-docs in the same session, with rigor classes): the
+  line had landed its S29 margin port and the S33 tail lever, but not the
+  S26 fan lesson (BLOCCATO 20 (d) since 2026-08-27), the axisymmetric fan
+  of S29, S32 and this session's night. Landed as M0 Part VI "LINE
+  ADDENDUM S26-S33", eight items, each with its class and anchors.
+- D6 F3 (the ISS-4 budget recorder): the "F3 session m/4" counter the plan
+  names as the recorder had never been instituted. D6's F3 status of
+  record gains a dated STATUS 2026-09-22 line; PROGRESS carries the
+  measured fact (seven sessions tagged F3: S26, S28-S33, from `git log |
+  grep '[F3/A1][S..]'`) and the decision it opens (BLOCCATO 20 (g):
+  ratify the entry and decide whether they count -- if they do, the cap is
+  exhausted and the fallback, spike-only capture, fires by rule).
+- Parallel sessions (CLAUDE.md: a HANDOFF block in the log at closure):
+  section 11 below.
+
+**Declared, not repairable after the fact:**
+- the branch directive's FULL suite (16/23) before every commit: the
+  first two commits of this session (e37e3e2, 99035cc) ran the FAST suite
+  (14/19 = the environmental set), following the 09-22 handoff's weaker
+  wording; the S32 session (mose-10) then ran the full suite on that tree,
+  16/23 with no regression; every later commit ran the full suite. The
+  commits are not rewritten.
+- R2 (session opening): memory, the 09-22 handoff and parts of PROGRESS
+  were read; M0 and PROGRESS's main ORA/NEXT/BLOCCATO were read only in
+  part.
+
+**A G1 caveat that the night nearly crossed.** G1 is absolute ("no
+science from an uncertified machine") and since S29 the class (no folded
+cell) is part of the certification. The specific-thrust agreement with
+the paper per consistent mass (+0.02..+0.15 percent, section 9, item 4)
+rests on marches that fold 2.2-14.6 percent of their cells: it is a
+READING, and X-HMPH may not be printed as closed on it until the folds
+are shown to be the net's (a third rung) or removed (the margin in the
+driver). The owner's decision BLOCCATO 20 (h) is posed in these terms.
+
+## 11. HANDOFF (parallel-session closure block, CLAUDE.md)
+
+- HEAD: the S33 commits on `rde-nozzle-program` (log + code, registry,
+  and this repair), NOT pushed by the owner's directive of 2026-09-22 ("il
+  push verra' fatto solo quando saremo capaci di riprodurre gli ottimi e
+  lo strumento sara' completo"); bundle
+  RDE/handoff/rde-nozzle-program_2026-09-22_S33.bundle; handoff notes
+  RDE/handoff/NOZZLE_HANDOFF_2026-09-22.md + _sera.md.
+- Parallel session of the window: the S32 session (mose-10) reviewed this
+  one read-only and ran the full suite once on the shared tree (the
+  suite's regenerated data files were restored before every commit here);
+  no file of this session was written by it.
+- NEXT (atomic, after the owner's decisions of BLOCCATO 20 (g)/(h)): the
+  margin wired into the twin's opt() with its constants derived on
+  Humphreys' posing in angle coordinates; then RE-2/RE-3 and the value
+  half of RE-1 from their throat (series at eta 8, band declared); the
+  contour half of RE-1 needs the numerical transonic throat.
+- Untracked artefacts of this session (declared, not committed, not
+  deleted -- the stages class/angle/kab read some of them as inputs):
+  `validation/_humphreys_twin/` run logs and JSONs named in sections 4, 8
+  and 9, the figure `figs/04_our_landings_vs_their_optimum.png` (its
+  script in the session scratch, presentation only).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
@@ -422,4 +505,11 @@ records, HMPH_TAG, the inputs of stage kab), `run_kab_2026-09-22.log`,
   triangle), both additive (the default rerun reproduces S32 to the
   printed digit); `validation/a1_frame_march.py` `corner_fan(x_stop=)`,
   default unchanged.
-- Lints and suite: quoted in the commit messages.
+- Repair window (section 10): `docs/rde_nozzle_PROGRESS.md` (parallel
+  blocks reduced to the current state, R37 and BLOCCATO 20 in place),
+  `docs/rde_nozzle_PROGRESS_ARCHIVE.md` (the outgoing blocks verbatim,
+  banner + DELTA CENSIMENTO), `docs/rde_nozzle_MASTER.md` (LINE ADDENDUM
+  S26-S33), `docs/rde_nozzle_development_plan.md` (F3 STATUS 2026-09-22),
+  this log, the ADVISORY_INDEX row; registry X-HMPH (the G1 caveat).
+- Lints and suite: quoted in the commit messages (the full suite from the
+  third commit on; section 10 declares the first two).

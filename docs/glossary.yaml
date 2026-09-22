@@ -1575,3 +1575,8 @@ entries:
     meaning: "Wave naming of the S-PRES atlas execution plan (design v2 par.W as amended by v2.1): W-A repairs/pre-requisites, W-B.0 lineage sweep (C-1ter matrix), W-B.1 per-node writers, W-B.2 historians (separate round), W-C refutation (sub-rounds a/b), W-D lint + promotion. DISTINCT by declaration from the W-* WANTED-paper mint namespace (e.g. W-09 Fievisohn) of the literature registry."
     resolver: "validation/spres_raws_2026-08-22/reconstruction/ATLAS_RESEARCH_DESIGN_v2.md + validation/spres_raws_2026-08-22/reconstruction/ATLAS_DESIGN_v2.1_AMENDMENT.md"
     first_seen: "atlas design v2 (2026-08-23); registry corpus entry at the lineage-recognition mint (2026-08-23)"
+  - token: "W3-W5 (base-wake chain W1..W5)"
+    namespace: "term"
+    meaning: "The stages of the mechanistic base-wake chain of the truncated plug (validation/a1_base_wake.py, S30 2026-09-17): W1-W2 of record (W1 the bubble-side constant-pressure cell shown to be the certified edge cell on the other family; W2 the bubble on our member at the [X-BPRS] caps); W3-W5 NOT YET BUILT (W3 the certified march quantifying the axisymmetric source inside the fan region, W4 the Korst mixing-layer algebra, W5 the escape-criterion Newton on p_b). DISTINCT from the W-* WANTED-paper mint namespace of the literature registry and from the S-PRES atlas waves W-A..W-D."
+    resolver: "docs/flag_registry.yaml A1_BWAK_STAGE + validation/READING_2026-09-17_plug_base_sources.md (W4 = the mixing-layer algebra)"
+    first_seen: "literature registry owner note of chutkey_2014 (commit ef64a59, 2026-09-18); resolved in the S33 repair window (SR-4), 2026-09-22"

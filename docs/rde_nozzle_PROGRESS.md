@@ -44,137 +44,35 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## ORA-PARALLELO (2026-09-15, LINEA BRICK-2 PLUG, branch `brick2-plug`
-## = origin/rde-nozzle-program 6be51b9 + la linea ri-autorata; push
-## read-only, catena principale NON toccata: questo blocco e' ADDITIVO).
-## S27 (2026-09-09, F-SERVICE): la working copy cancellata il 09-04
-## (23 commit mai pushati) RICOSTRUITA dai transcript di sessione —
-## 21 commit ri-autorati con messaggi/date originali, ratchet
-## numeric-lint 100/100 file riprodotti, sei carrier ri-eseguiti
-## identici; artefatti derivati persi dichiarati (log
-## validation/PROGRESS_2026-09-09_S27_line_reconstruction.md); bundle
-## di record RDE/handoff/brick2-plug_2026-09-09.bundle. S28
-## (2026-09-15, log validation/PROGRESS_2026-09-15_S28_ourworld.md,
-## handoff HANDOFF_2026-09-15_S28_ourworld.md): (1) O3.3 e SQP-return
-## del plug RI-ESEGUITI sull'albero ricostruito: identici ai record S26
-## riga per riga; (2) baseline spike ideale assialsimmetrico NEL NOSTRO
-## MONDO misurata (GENO CASES/raoplug_ch4o2: la posa "massa+ambiente L
-## 5.825" del documento NON e' riproducibile col binario di record;
-## rao_val Me_fixed 2.802 riprodotto bit a bit: theta_E -0.02 deg, L
-## 5.926, chiude sull'asse; deficit di massa -0.37 % = POSA
-## dell'ingresso, non numerica — invariante sotto NI e sotto il passo
-## C- in un build di prova); (3) i tre strumenti del mondo di Rao
-## TRASPORTATI nel nostro in modo twin (linea di partenza GENO nella
-## nostra marcia, gas VERIFICATO sul campo, ambiente = p_a del labbro
-## del membro 0.9949 PA, taglio di punta 0.01 y_E dichiarato): twin
-## 6/6 gap 1.5e-4 [X-OWTW], O3.3 valore 4/4 [X-OWO3], SQP-return
-## v2 5/6 FAIL [X-OWSQ] (falsificatore P3 scattato: ritorno in VALORE
-## +18 N, non in POSIZIONE, 1.17x band_W; floor di posizione
-## sotto-dichiarato, MISURATO con l'Hessiana a W_fit: direzione
-## piu' morbida 32x) -> strumento v3 (bande per direzione propria)
-## validato sul mondo di Rao (6/6, v2 riprodotta riga per riga) e
-## nostro mondo v3 6/6 PASS [X-OWS3] (ritorno al peggio 0.19 della
-## banda, nelle direzioni morbide) — addendum A del log S28; (4) la
-## "rigenerazione" degli artefatti S22/S23 e' una RI-AGGIUDICAZIONE:
-## la catena delle 14:52 si e' rotta a S23 fineopt (disegno S22
-## rigenerato NON certificato a (121,101), lotteria di (K,N) nella
-## cella di bordo della colonna 0; causa della divergenza dal record =
-## il DRIVER (retry a meta' raggio aggiunto in S23, dopo il record S22)
-## e RISULTATO FISICO: i disegni S22 (m 12 e il set di nodi m 11 del
-## record) impongono uno spigolo di compressione al piede (15/8.5 deg)
-## e la loro marcia e' piegata (6-11 % di celle invertite, incumbent
-## 0; il "guadagno" e' contabilizzato a valle di x 0.75 attraverso la
-## rete aggrovigliata) — la certificazione e' cieca alle pieghe
-## (addendum B del log S28); strumenti emendati e dichiarati: scala
-## A-8/A-9 gatata sulla certificazione (S22 v2 di record 11/13, A-8 e
-## A-9 VOID, disegno identico), fallback R-2c del warm start in S23;
-## ri-aggiudicazione S23 CHIUSA il 2026-09-16 05:40 (log S29
-## validation/PROGRESS_2026-09-16_S29_readjudication.md sez. 4): warm
-## start caduto sulla streamline (R-2c), ottimo fine a (121,101)
-## +0.4135 % cert 0.484, scala a 6 rung +0.501/+0.414/+0.251/+0.108/
-## +0.017/-0.033 %, limite -0.096 % banda 0.181 % > BAR -> UNRESOLVED;
-## MA l'ottimo fine e' FUORI CLASSE (theta parete -12.0/-14.9/-19.9
-## deg vs -26.66 al piede; 59/62, 120/122, 240/242 colonne piegate;
-## margine di cella -0.82/-0.97): il numero e' preso da una marcia
-## piegata e NON e' un guadagno; [X-PGRS] re-stampata (pass 09-16,
-## "OUT OF CLASS"), [X-PAKN] annotata; doc brick-2: sezione
-## "Re-adjudication (2026-09-15/16)" in ch_spline.tex + didascalie
-## delle 3 figure rigenerate (etichette di make_figures rese
-## data-driven), PDF 99 pp; FASE C (margine di piega nel plug)
-## MISURATA su port di scratch (S29 sez. 5.1-5.3: campo = area con
-## segno della cella vera della rete normalizzata a pavimento della
-## spaziatura delle stazioni; D0 in-loop == numpy, D1 m_ref 0.080/
-## 0.057, floor ladder, rho derivato; D2 AD == FD a 5e-8; D3
-## rigettatore: disegni S22/S23 infattibili a ogni floor; D4 prima
-## camminata vincolata dalla streamline (61,51): J +0.0265 %,
-## vincolo ATTIVO, mu 2.7e5 — la previsione M0 "ottimo a margine
-## attivo" con numeri, UNA risoluzione, UNA partenza, nessuna
-## scala: non citabile finche' il carrier non la porta); [X-PSPL]
-## RI-ESEGUITA (link di staleness: il suo doc ch_spline.tex e' stato
-## emendato oggi): 7/8, C-6 FAIL come nel record (+0.1306 % vs banda
-## 0.1889 %), ottimo = class-0 di S22 alla precisione stampata, e
-## ANCHE QUESTO OTTIMO E' FUORI CLASSE (primo nodo +12.4 mm, spigolo
-## di soli 2 deg, 60/62 e 120/122 colonne piegate, margine -0.67/
-## -0.73): S21-S23 "classe non vincolata, superati" PER MISURA (S29
-## sez. 4.4). FASE C NEI MODULI CONDIVISI (S29 pomeriggio, sez. 5.4):
-## port additivo in a1_plug_march/a1_plug_spline_opt (gate: senza
-## `margin` bit-identico alla ri-esecuzione X-PSPL a precisione
-## stampata), carrier validation/a1_plug_margin.py [X-PMRG] coniato,
-## stadio derive DI RECORD 11/11 (orient -1, f_edge 0.190 misurato a
-## (121,101), m_ref 0.0801, floor 0.040/0.020/0.010/0.005, rho 6263,
-## AD == FD 5e-10 con controllo corrotto che fallisce, i 3 disegni
-## piegati infattibili a ogni floor, scala di piega h* 1.58 mm ->
-## tr0 0.396 mm derivato); campaign COSTRUITA e smoke-testata (4/4),
-## NON di record. SERA 09-16 (S29 sez. 6): (a) [X-OWAB] audit della
-## posa twin S28 8/8 = CONFERMA DI CORRETTEZZA dello strumento (Rao in
-## classe m_ref 0.098, ritorno SQP in classe a 18 N = 2.8e-7 di J da Rao,
-## rigettatore infattibile), NON righe del torneo (direttiva 16:45:
-## niente Rao dentro la ricerca); (b) torneo generale X-PTRN sull'
-## incumbent PIANO (riga X-PTRN da coniare al derive di record): 7/9, O-1/O-2 FAIL onesti (0.835 m da Rao: il
-## ventaglio piano si appiattisce oltre l'ultimo raggio, X-RAOIS);
-## (c) DIRETTIVA 19:05 "il ventaglio deve tener conto dell'assial-
-## simmetria, piano solo vicino alla lip" -> [X-AFAN]
-## validation/a1_axi_fan.py: ventaglio assialsimmetrico per MARCIA
-## INVERSA (Goursat: stati PM sul punto lip + raggio C- terminale
-## uniforme a p_a; la STESSA cella certificata, pt2 = punto a valle;
-## parete = streamline tracciata dalla punta; y_sp0 output; un
-## ventaglio in avanti a parete libera NON e' una costruzione in
-## assialsimmetrico); derive di record 8/8: limite piano al 2o ordine
-## (7e-8 -> 1.8e-8), massa sul raggio terminale = mdot alla quota
-## y_tip^2, banda parete 4.8 mm, ORACOLO GENO LETTO DOPO: distanza
-## media 0.8 mm / max 7.8 mm su 5.6 m; la plug_march sulla costruzione
-## certifica, p_w mediana 3.4e-3, CODA limitata dalle righe N (+11 %
-## a N 61, +1 % a 241, ~8e-5 J, dichiarato); (d) torneo sotto
-## PSPL_FAN=axi: O-2 PASS (incumbent = Rao entro banda 9.4 <= 12.2 mm,
-## |dJ| 1e-5 di J) al v1; derive di record + smoke campaign in corso
-## a chiusura (handoff BRICK2_PLUG_HANDOFF_2026-09-16_notte.md).
-## ESEGUITO nella finestra S26 (log validation/PROGRESS_2026-08-27_S26_rao_modo1.md,
-## handoff validation/HANDOFF_2026-08-27_S26_rao_twin.md): (1) rebase
-## della linea (14 commit) su 6be51b9 con date originali + commit di
-## conformita' ondemand; (2) F3 ENTRY, gamba "single-oracle status Rao
-## 1961" MISURATA: tabelle usabili [X-RAOTB] 18/18, ottimo ricostruito
-## dai suoi integrali primi [X-RAOCS] 6/6, identita' dell'obiettivo
-## [X-RAOFN] 3/3, twin dual-code sul campo GENO legacy p_b=0 [X-RAOTW]
-## PASS 6/6 (cuneo sotto ED al livello S8: 97.1%/95.8%); due
-## falsificatori SCATTATI e registrati ([X-RAOIS] spike ideale a
-## ventaglio piano; [X-RAOWD] linea di partenza piana su taglio largo:
-## in assialsimmetrico il ventaglio e' una relazione di punto, non un
-## campo); (3) O3.3 DEL SETTORE PLUG in ENTRAMBE le meta': valore
-## [X-RAOO3] 7/7 a due tagli (stazionarieta' + identita' di punta
-## dJ/dy_D = 2 pi y_D p_a a 0.5%) e moto [X-RAOSQ] 6/6 (TR-SQP da 20
-## bande torna a Rao: 1.07e-4 vs 2.4e-4, |grad| 7.8e5 -> 86, rigettatore
-## a segno invertito si allontana); (4) O3.1 sulla marcia stratificata
-## [X-O31R] 6/6; PSPL_L promossa; (5) igiene R7: 33 righe baseline
-## numeric-lint + 11 righe indice per i file della linea (mai entrati
-## nei due canali), lint (vii)/(xv)/(xvii)/(xx) PASS; suite completa
-## 14/23 = 9 rossi ambientali su s2 (sympy assente; PDF assenti),
-## identici su HEAD pulito; (6) riparazione no-downgrade: l'artefatto
-## upstream validation/s25_spdb_m0.json ripristinato (il rerun s2 del
-## 13/08 vive in s25_spdb_m0_s2_2026-08-13.json, attribuito). Unica
-## riga upstream del registry toccata: X-A1IM pass 08-12 -> 08-13
-## (restamp posteriore, dichiarato). Deviazione R4 dichiarata: la
-## lezione del ventaglio e' scritta nel doc di teoria GENO (cap. 7.2),
-## non ancora in M0/D-doc.
+## ORA-PARALLELO (LINEA BRICK-2 PLUG, stato al 2026-09-22 S33; la storia
+## S26-S33 e' VERBATIM in docs/rde_nozzle_PROGRESS_ARCHIVE.md, banner
+## 2026-09-22; riga di censimento R37). Branch `rde-nozzle-program`
+## (`brick2-plug` fermo a fa5263b come storia); commit LOCALI, NON
+## pushati per direttiva owner 2026-09-22 ("il push verra' fatto solo
+## quando saremo capaci di riprodurre gli ottimi e lo strumento sara'
+## completo"); bundle RDE/handoff/rde-nozzle-program_2026-09-22_S33.bundle.
+## STATO DI PIANO: la linea e' il de-risk "spike-level plug-march
+## AUTHORIZED parallel to F2" di D6 F3; la gamba d'ingresso F3
+## (single-oracle Rao 1961) e' MISURATA ma NON ratificata (R20).
+## CONTATORE F3 (D6 ISS-4: 3-4 sessioni, 3 h/sessione di run decisivi,
+## max 2 campagne decisive per istanza, fallback per regola = spike-only
+## capture): NON ISTITUITO; sessioni della linea taggate F3, misurate
+## con git: S26, S28-S33 = 7 -- se contano e' decisione owner alla
+## ratifica (BLOCCATO 20 g). STATO TECNICO (log per sessione in
+## validation/PROGRESS_*.md): margine di piega [X-PMRG] eseguibile dal
+## S29 ma MAI cablato nei walk del twin di Humphreys [X-HMPH];
+## criterio di certificazione dell'ottimizzatore [DIR-REOB] (S32):
+## nessuna riga certifica ancora lo strumento come cercatore. S33:
+## coordinate d'angolo nel driver (PSPL_PARAM; le camminate in angolo
+## escono di classe su una compressione di coda pagata dalla chiusura
+## di Veen) e linea di partenza su caratteristica C+ (HMPH_IVL=char,
+## stage kab): il salto di massa alla 1a colonna di S32 era il
+## passaggio taglio verticale -> colonna, non la serie; restano la
+## banda della serie sulla scarica (2.5 %) e le pieghe (2.2-14.6 %).
+## J/mdot sul loro contorno 228.5-228.9 lbf s/lbm = +3 % sulla loro
+## massa dichiarata (incoerente con la loro geometria, T-6),
+## +0.02..+0.15 % per massa 1-D strozzata di A->E: LETTURA, non
+## chiusura (G1: marce piegate).
 
 ## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
 ## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
@@ -191,169 +89,17 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## NEXT-PARALLELO (linea brick-2 plug, 2026-09-16): (1) FATTO 09-16
-## (ri-aggiudicazione S23 chiusa: censimento pieghe, verdetto "fuori
-## classe", re-stamp [X-PGRS], design_fine/verdict/analysis json,
-## figure + PDF, sezione in ch_spline.tex; resta la chiusura di
-## [X-PSPL] ri-eseguita e re-stampata, FATTO); (1-bis) port + carrier
-## [X-PMRG] + derive FATTI 09-16 (sez. 5.4); PROSSIMO PASSO ATOMICO =
-## la CAMPAGNA di record (A1_PMRG_STAGE=campaign, posa S21, floor
-## ladder dal piu' stretto, 4 seg x 12 iter per rung, scala (121,101)/
-## (241,201), PMRG_STARTS 2; ~8 h su s2) LANCIATA SOLO SUL "VIA"
-## DELL'OWNER; poi la sua lettura (mu, cuspidi attive, classe alla
-## scala) in S29/M0 e le ri-esecuzioni S22/S23 vincolate; 09-16 SERA:
-## il torneo di record e' X-PTRN (riga da coniare) sotto PSPL_FAN=axi (incumbent = il
-## membro ideale assialsimmetrico del metodo, L 5.876 = la sua punta a
-## 0.01 RMAX, Rao solo oracolo finale): CAMPAGNA (PTRN_N 81, SEGS 30,
-## ITERS 12, STARTS 2) SOLO sul "via"; 09-17 00:05 "VIA" DATO: gamba
-## notturna al rung (81,41), 3 partenze (A membro, B 1.5 %, C rampa
-## verso la streamline piana = il metodo diretto da lontano) in 3
-## processi paralleli su s2, SEGS 20 x ITERS 8; (7) NUOVO (utente 09-17
-## 01:05): basi per il SELETTORE DI CONFIGURAZIONE bell-vs-plug —
-## un funzionale con termine di base (p_b − p_a) A_b a massa/ambiente/
-## L_cap/classe condivisi sulla stessa macchina, chiusura p_b = slot N2
-## reso eseguibile (Veen 0.846/M^1.3 come incumbent CON la banda
-## [+19, −15] % della harvest, mai ricalibrata su dati inesistenti),
-## selettore per VALORE con la lezione Humphreys 1971 (argmax x2.45,
-## valore +0.26 %) come rigettatore; carrier X-CFGT + base_pressure.py
-## + delta M0 (R4) — piano in RDE/handoff/BRICK2_PLUG_HANDOFF_2026-09-16_notte.md §5; DECISO con l'owner 2026-09-16 00:40:
-## NON un rilevatore di pieghe ad hoc ma il MARGINE DI PIEGA del
-## programma (M0 Parte VI: max J s.t. g = 0 e m(W) >= mu_0; REQ-NONSTALL
-## D6; eseguibile sulla campana in validation/margin_governor.py
-## [X-MGOV]) PORTATO NEL PLUG: campo di margine sulle celle di
-## a1_plug_march (area con segno / validita' forma-Lambda), KS con rho
-## e floor derivati come nel governor, NonlinearConstraint nel TR-SQP
-## di a1_plug_spline_opt, poi S21 -> S22 -> S23 RI-ESEGUITI vincolati
-## al margine (S21-S23 di record = classe non vincolata, superati);
-## mu misurato = la previsione M0 "ottimo a margine attivo" provata o
-## no sul plug; (2) A/B a livello torneo sull'AMBIENTE NOMINALE:
-## serve il membro GENO che espande esattamente a PA (oggi 0.9949 PA;
-## ventaglio GENO in NaN per theta_E >= 0 — protocollo GENO) oppure la
-## dichiarazione del residuo 0.5 % nell'A/B; poi Rao-vs-spline a
-## PSPL_L = 5.926 dal taglio GENO; (3) oracolo Tab. 1 in bande derivate
-## sul nostro mondo + un'istanza stratificata (F3 EXIT); (4) righe
-## findings per [X-RAOIS]/[X-RAOWD] (pending-declared SR-6); (5)
-## documento italiano brick-2: §vsrao da emendare al membro rao_val (L
-## 5.926, theta_E -0.020) — decisione owner; (6) bundle del branch in
-## RDE/handoff/ a OGNI chiusura (lezione S27). S31 (2026-09-18, log
-## validation/PROGRESS_2026-09-18_S31_base_data.md): la famiglia N2
-## GRADUATA SU PUNTI MISURATI (Chutkey 2014 Tabb. 7-8: dieci punti in
-## scia chiusa con stato al labbro + p_b misurata = la firma della
-## famiglia, nessuna marcia): known-answer sulle colonne del paper
-## all'ultima cifra; incumbent Veen 2-5x troppo profondo su OGNI punto,
-## bracket WG10 valido per nessun membro, p_b/p_lip = 0.510 +- 0.075;
-## membro 'chutkey' (Eq. (1), esponente LORO) con banda misurata;
-## limite ideale J_trunc <= J_full come rigettatore (B-3) che ordina
-## i membri come i dati; dati in validation/chutkey2014_closed_wake.json.
-## Adozione in J NON presa (A1_BASE_MODEL vuoto). SERA: twin di marcia
-## sull'ATPN di Chutkey [X-CHTW] APERTO 4/9 (contorno Fig. 2b
-## digitalizzato dall'owner, Tab. 2 lo grada a 0.12 mm; massa sonica =
-## strozzata 3e-8; tilt = nu(M_e) a 0.01 deg) — la marcia NON certifica:
-## limite strutturale delle celle in forma di pendenza sui raggi
-## verticali del ventaglio da labbro sonico (M 1.47), condiviso da GENO;
-## brick che chiude = cella in frame ruotato (~-80 deg) per il kernel di
-## gola. NOTTE: la causa era il CONTORNO digitalizzato interpolato
-## (onde spurie); con spline lisciante al rumore (0.12 mm) la marcia
-## CERTIFICA (0.451) e legge p_lip/p_0 del paper a +0.7..+1.8 %, M_lip
-## a -0.3 %: X-CHTW CHIUSO sullo stato di parete (derive 8/9, ladder
-## 3/3; aperto T-4b massa -5.6 %). Figure in _chutkey_twin/figs/.
-## PROSSIMO: test di regime come sensibilita', Sule-Mueller (config.
-## iii, marcia a due pareti), Humphreys/Johnson (twin di ottimizzazione).
-## S32 (2026-09-21, log validation/PROGRESS_2026-09-21_S32_throat_kernel.md):
-## (a) perche' il camminatore non trova l'ottimo da lontano: quattro cause
-## lette sulle gambe S31 (valle piatta 0.5 %; driver che stalla -- 11
-## rifiuti/30, fine per budget con |grad|/J 0.14; ingresso congelato e
-## non loro; punta libera + Veen); (b) passo di restaurazione nel driver
-## (PSPL_BACKTRACK, additivo, bit-identico a 0): backtracking sul valore
-## RI-MARCIATO lungo il segmento rifiutato, poi ascesa proiettata; gamba
-## di test = opt dal ventaglio su s2 (chiusura nel log §6); (c) kernel di
-## gola APERTO [X-TKRN]: Moore 1965 R&M 3481 (gola 2D a pareti di
-## curvatura diversa) trascritto al 3o ordine e VERIFICATO sulle
-## equazioni del paper stesso (7/7, un refuso dello scan corretto);
-## lettura K = 1 (cowl dritto): linea sonica inclinata, 2-14 deg di
-## direzione attraverso la gola, M 1.00 lato labbro -- la linea uniforme
-## (Migdal) NON e' una partenza (Humphreys p. 1587: 2700 lbf). POSA del
-## brick in §5 (frame di gola, labbro L-a/L-b deciso dalla massa di
-## Chutkey, termini anulari = gap dichiarato: Moore-Hall / Dutton-Addy
-## 1982 richiesti all'owner). POMERIGGIO: marcia in frame ruotato
-## [X-FRMR] (sorgente assialsimmetrica nel raggio vero, seam cells=,
-## righe di compatibilita' / q^3): covariante al record a 1.7e-5 di
-## p_0 sul caso Chutkey (4/4); la striscia dalla linea di gola su
-## Chutkey NON marcia (celle di parete quasi-soniche entro 0.7 mm,
-## piede digitalizzato = rumore a 0.1 mm; misurato su 7 configurazioni)
-## e il kernel e' ESCLUSO su Chutkey dal paper stesso (archi di gola
-## R 0.867 mm su h 1.32 mm, R/h 0.66). PROSSIMO: decisione owner (log
-## S32 §8): Humphreys (raggio di gola dalla tesi) o gola numerica.
-## SERA: Dutton 1982 in mano (owner), report dei coefficienti non
-## reperibile -> kernel anulare DERIVATO [X-ANKR] (a1_annular_kernel.py):
-## f_2/f_3 da (11) con sympy, prima ordine di Hall con la costante
-## anulare, ordini superiori = catena di quadrature in y (Chebyshev),
-## verify 4/4: residuo delle equazioni piene a ordine 1/2/3 esatto,
-## limite asse = Sauer, limite piano = Moore 3o ordine a meno del
-## termine O(1/y_i) (rapporto 4.00). Stage chutkey: R_c 0.33 FUORI
-## convergenza (C_d 0.985-0.995 limitato); stage domain: converge da
-## R_c >= 1. Stage dutton 8/8 su Fig. 6/8/9/10 digitalizzate dall'owner:
-## il kernel derivato E' la loro serie (0.006 rms su Fig. 8, 0.012 sulle
-## inclinate registrate, 0.021 sulla parete Fig. 6 letta a y_o); dati
-## a +0.02-0.03 a valle (shift viscoso, p. 1242), scatter 1-2.6 %.
-## NOTTE: stage kernel (marcia dal kernel, L-b, R_c 3): la linea e'
-## sana (M 1.11-1.55, massa 0.954 W*) ma il ventaglio piano sul taglio
-## porta un salto sul raggio guida (M 1.08 vs 1.15) e la mesh si piega.
-## TARDA NOTTE: angolo del labbro nel campo del kernel FATTO (Goursat
-## dal labbro, 24 raggi, celle certificate 0.016, dati continui sul
-## taglio); la marcia tiene la massa 11 colonne e si piega a 1.7 mm su
-## una svolta in compressione della parete L-b posata (parabola del
-## kernel vs contorno di Angelino che rientra nel canale). LETTURA: il
-## plug esterno non e' una geometria da kernel in serie; il twin della
-## catena kernel+angolo+frame e' un plug interno-esterno (Humphreys
-## Fig. 1, servono i raggi di gola). Strumenti completi e verificati.
-## S32 (2026-09-22, stesso log §15-§20; handoff di record
-## RDE/handoff/NOZZLE_HANDOFF_2026-09-22.md): prezzi al LORO ottimo con
-## la banda su una MOSSA (forma stazionaria, ingresso vivo); le righe di
-## spinta del twin su marce PIEGATE (loro Tab. 2 28.8 %); la loro gola
-## (R_c 0.703, massa 1.029 dello strozzato); la marcia dalla loro gola
-## rifiuta la serie al 1o colonna (pavimento a R_c 0.70 APERTO);
-## direttiva [DIR-REOB] (certificare solo cio' che si RI-OTTIENE); K-10
-## ondulazione. S33 (2026-09-22 sera, log
-## validation/PROGRESS_2026-09-22_S33_angle_param.md): coordinate in
-## ANGOLO nel driver (PSPL_PARAM=angle|angle_free, incrementi d'angolo
-## ordinati da bounds, pendenza lineare integrata esattamente; default
-## bit-identico, misurato sullo stage class) + stage angle [X-HMPH]
-## 10/11: (i) CORREZIONE a S32 §20 -- dal LORO T anche la base in y
-## tiene il loro contorno senza giri (0.027 in), dal NOSTRO taglio
-## nessuna parete senza giri lo raggiunge (angolo di flusso -26.65 contro
-## il loro -43.47 deg, 0.73 in al 1o nodo): il difetto primario e'
-## l'INGRESSO; (ii) nella classe di permanenza la base in y ondula in
-## 11/12 estrazioni, quella ordinata mai; (iii) le camminate dal
-## ventaglio atterrano a 33,308 (ordinata, 0 giri) e 33,353 lbf (libera)
-## SU MARCE PIEGATE (31 % / 37 %): +40 deg di risalita nell'ultimo
-## intervallo comprimono la parete a 7.6 p_a e Veen restituisce p_b 3.3
-## p_a = +1,487 lbf di base contro -943 di spinta; il falsificatore di
-## K-10 e' scattato (meccanismo = compressione netta); fuori classe,
-## nessun guadagno. NOTTE (log S33 §8-9, domanda dell'owner "perche' la
-## IVL deve essere verticale?"): le colonne della marcia sono C+, quindi
-## la linea di partenza su caratteristica e' una C+ parete -> bordo
-## (HMPH_IVL=char: C+ nel kernel, linea C+ del corner_fan, triangolo del
-## getto libero risolto); il salto di massa alla prima colonna di S32
-## (-4.57 %, uguale ai due gradini = STRUTTURALE, il passaggio taglio
-## verticale -> colonna; il cuneo edge_fill ne spiega 0.57 punti) scende
-## a -0.12 % e la massa tiene a +0.5 % fino a D: l'attribuzione di S32
-## §18 alla serie e' RITIRATA per il salto. Ma la C+ attraversa tutto il
-## triangolo transonico (innesto a z ~1) dove la serie a tre termini non
-## vale: scarica con banda di serie del 2.5 % (0.968 vs 0.988/0.992),
-## solo eta 8 si posa, e l'A/B a valle (stage kab, due gradini) dice che
-## le due pose NON sono lo stesso problema (p di parete +1.25e-3 p_0,
-## fuori banda a ogni stazione, segno della massa portata in D 133.6 vs
-## 140.0 lbm/s); la C+ piega di piu' (9.4 vs 2.2 %). J/mdot +2.9..+3.1 %
-## sopra la LORO massa dichiarata in ogni posa, +0.0..+0.15 % sulla loro
-## spinta per massa 1-D strozzata di A->E. ORA: HEAD = i commit S33 (NON
-## pushati). NEXT (atomico): la soluzione transonica NUMERICA della loro
-## gola (Euler assialsimmetrico in marcia nel tempo, una volta per posa)
-## e la linea C+ letta da essa; poi il vincolo di classe sulla posa col
-## ventaglio (derive D0-D4 in coordinate d'angolo, camminata con
-## margin=); poi il dominio della chiusura di base (decisione owner 5).
-## BLOCCATO: push dei commit (parola dell'owner); i tre documenti
-## mancanti (Moore-Hall, tesi Ref. 8, ADA084787).
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-22 S33): prima le
+## decisioni owner di BLOCCATO 20 (g) ratifica dell'ingresso F3 e
+## contatore, (h) chiusura di X-HMPH in spinta specifica; poi, in ogni
+## caso: margin= cablato in opt() del twin + derive delle costanti
+## D0-D4 sulla posa di Humphreys (coordinate d'angolo) = la prima
+## camminata IN CLASSE della linea; poi RE-2/RE-3 e la meta' in VALORE
+## di RE-1 dalla loro gola (serie a eta 8, banda dichiarata); la meta'
+## in CONTORNO di RE-1 richiede la soluzione transonica numerica della
+## loro gola (brick a se', decisione owner). Handoff: RDE/handoff/
+## NOZZLE_HANDOFF_2026-09-22.md + NOZZLE_HANDOFF_2026-09-22_sera.md.
+
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con
@@ -507,7 +253,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
 | R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED PIENO 2026-08-21 (parte C4 2026-08-20/21: FASE D dimostrata e atterrata a convergenza (centerpiece R22F 4 round x 3 lenti + escalation 4 minori TUTTI DRY + E-5; M0 riceve [T-DISC]/[T-RED]/[T-DCRX]/NTF/CLG/[R22F-FORCHETTA] con classi finali; G-c (ii) scaricata-citabile); Fase C completata a 62 righe (C59-C62 coniate: forma-temporale, NAND/SAND, p_b-closure, quadratura — 7 istanze classe no-row totali); COVERAGE GATE PASS dual-seed provato; PIPELINE DECISION MAP di record (62 nodi/45 archi, refuter 0/0); campagne letteratura (nozzle-RDE 0-BREAK, field atlas, base-pressure, throat) + emendamento protocollo censimento su sfida utente sostenuta; touchpoint chiusura: CFD-2 in F2/CFD-1 post-M-RED, BLOCCATO 16 ratificata F2-entry, M-RED resta F2, procurement top-3+3; catena aggiornata C4 -> S-PRES -> F2; log PROGRESS_2026-08-21_SfoundationsC4.md. Parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
-| R37 | LINEA BRICK-2 PLUG S21-S28 (parallela, branch brick2-plug su 6be51b9; working copy cancellata il 2026-09-04 e RICOSTRUITA dai transcript il 09-09 (S27, 21/23 commit ri-autorati, ratchet 100/100); push read-only, bundle in RDE/handoff/) | CONSUMED-with-residue 2026-09-15 | S28: baseline spike ideale nel nostro mondo MISURATA (rao_val L 5.926; posa L 5.825 del documento non riproducibile; deficit massa = posa) e strumenti trasportati in modo twin: [X-OWTW] 6/6, [X-OWO3] 4/4, SQP-return v2 5/6 FAIL [X-OWSQ] (P3 scattato: valore si, posizione 1.17x banda) -> attribuito con l'Hessiana (floor di posizione sotto-dichiarato), strumento v3 per direzione propria: Rao 6/6 (v2 riprodotta), nostro mondo 6/6 [X-OWS3] (addendum A log S28). residui: perturbazione piu' grande per un test di moto multi-direzione (owner); disegni S22 fuori dalla classe senza urti (marcia piegata, addendum B) — rilevatore di pieghe in A-4/R-3 = owner; A/B a livello torneo sull'ambiente NOMINALE (membro GENO a PA esatta: protocollo GENO); oracolo Tab. 1 in bande sul nostro mondo + istanza stratificata; catena di rigenerazione S22/S23 (non bit-identica, dichiarata); righe findings [X-RAOIS]/[X-RAOWD]; documento italiano (§vsrao da emendare); residuo P1 di cucitura del twin sul campo 2-vincoli; accesso push/fork (owner) | validation/PROGRESS_2026-09-15_S28_ourworld.md + HANDOFF_2026-09-15_S28_ourworld.md (S28); PROGRESS_2026-09-09_S27_line_reconstruction.md (S27); PROGRESS_2026-08-27_S26_rao_modo1.md (S26); registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAOTB/CS/FN/IS/WD/TW/O3/SQ + X-O31R + X-OWTW/OWO3/OWSQ; log di record in validation/_rao1961_twin/ e validation/_ourworld/ |
+| R37 | LINEA BRICK-2 PLUG S21-S33 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; working copy ricostruita il 09-09 (S27); commit locali, push per direttiva owner 2026-09-22 solo a strumento completo; bundle in RDE/handoff/) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3: S26, S28-S33 = 7, misurato con git log) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (h) chiusura X-HMPH in spinta specifica (G1: marce piegate 2.2-14.6 %); tecnico: margin= nel twin + derive D0-D4 sulla posa di Humphreys, poi RE-2/RE-3 e RE-1 in valore (DIR-REOB); residui d'uscita F3 invariati dal S28: oracolo Tab. 1 in bande sul nostro mondo, istanza stratificata, A/B a PA nominale, T-GB de-rated o falsificatore del plug troncato, margine a specchio plug/C- dimostrato o PRACTICE | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-22(_sera).md |
 
 ## BLOCCATO / GATE APERTI
 
@@ -717,18 +463,20 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     ECNoise, ASME V&V 20-2009, Xing-Stern); il resto WANTED passivo.
 
  20. LINEA BRICK-2 PLUG (2026-08-27, decisioni owner, non bloccanti
-    per la catena principale): (a) accesso push o fork per
-    `brick2-plug` (AlexFalco5 read-only: 22 commit locali; l'upstream
-    continua a muoversi, prossimo rebase per la ricetta in memoria);
+    per la catena principale; aggiornata in place 2026-09-22, S33):
+    (a) DECISA: ramo di lavoro `rde-nozzle-program` (direttiva
+    2026-09-17); push solo "quando saremo capaci di riprodurre gli
+    ottimi e lo strumento sara' completo" (owner 2026-09-22) -- non e'
+    piu' una decisione aperta;
     (b) GENO: blessing e commit di RaoPlug N-65/N-66 + i fix che fanno
     girare il run legacy p_b=0 (riproduce la Tab. 1 di Rao a 2.44e-3),
     CASES/raoplug_gamma123 + plugnoz_axi, sorgente del doc di teoria
     (cap. 7.2 "The lip fan in axisymmetric flow") — gated dal protocollo
     GENO (N-75); (c) documento italiano brick-2 (stash@{0}) da
     aggiornare (W-5 chiuso, catena Rao, §vsrao al membro rao_val) o
-    tenere fuori; (d) retro-propagazione R4 in M0/D-doc della lezione
-    "ventaglio = relazione di punto in assialsimmetrico" (oggi solo nel
-    doc GENO); (e) S28 2026-09-15: GENO CASES/raoplug_ch4o2 (nuovo
+    tenere fuori; (d) ATTERRATA 2026-09-22 (riparazione R4 di S33, M0
+    Parte VI, addendum di linea S26-S33): la lezione "ventaglio =
+    relazione di punto in assialsimmetrico"; (e) S28 2026-09-15: GENO CASES/raoplug_ch4o2 (nuovo
     case, untracked) da benedire; il ventaglio di fase 1 va in NaN per
     theta_E >= 0 e la posa "massa+ambiente" cade in un buco della
     scansione a 21 punti — il membro a PA ESATTA per l'A/B di torneo
@@ -741,7 +489,15 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
     B). DECISO 2026-09-16: porting di X-MGOV nel plug + S21-S23
     vincolati al margine (NEXT-PARALLELO 1-bis); resta owner la
     dimensione della perturbazione del test di moto v3 (a 1.5 %
-    discrimina in una sola direzione nel nostro mondo).
+    discrimina in una sola direzione nel nostro mondo); (g) NUOVA
+    2026-09-22: ratifica dell'ingresso F3 (R20) e istituzione del
+    contatore D6 ISS-4 "F3 session m/4" -- se le 7 sessioni taggate F3
+    (S26, S28-S33) contano, il tetto e' superato e il fallback per
+    regola e' spike-only capture; (h) NUOVA 2026-09-22: chiudere o no
+    X-HMPH sulla geometria di Humphreys in SPINTA SPECIFICA (J/mdot
+    +0.02..+0.15 % per massa 1-D strozzata di A->E, +3 % sulla loro
+    massa dichiarata incoerente) -- sotto G1 resta una lettura finche'
+    le marce piegano (2.2-14.6 %: terzo gradino o margine).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

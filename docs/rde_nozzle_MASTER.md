@@ -4359,6 +4359,82 @@ state outside its fitted domain (p_b 3.3 p_a against the line's
 closed-wake data 0.5-1.1 p_a) is a functional defect, not a design
 gain [OBSERVATION].]
 
+[LINE ADDENDUM S26-S33, landed 2026-09-22 (S33 repair of the R4 debt the
+brick-2 plug line carried since S26, PROGRESS BLOCCATO 20 (d)); plug
+sector; the numbers of record live in the registry rows named and the
+session logs validation/PROGRESS_2026-08-27_S26 .. 2026-09-22_S33.
+(1) THE LIP FAN IS A POINT RELATION IN AXISYMMETRIC FLOW ([X-RAOIS],
+[X-RAOWD] S26; [X-AFAN] S29): the planar centred fan's closed form
+cannot build an ideal spike that closes on the axis (the 2-D mass
+weight), and a planar-fan start line on a cut of finite width inside
+the fan region is not a convergent approximation of the axisymmetric
+field (its error has a floor set by the cut width); only the
+Prandtl-Meyer relation AT the corner holds, the fan's field must be
+marched -- the ideal spike is built by an INVERSE march (Goursat: the
+Prandtl-Meyer states on the lip point and a uniform terminal C- ray at
+p_a, the wall traced as a streamline from the tip); a forward fan with a
+free wall is no construction [MEASURED-SUPPORTED: two falsifiers fired,
+X-AFAN against GENO's member read afterwards].
+(2) THE CERTIFICATION CRITERION OF THE OPTIMISER ([DIR-REOB], S32, the
+owner's directive): an optimum is CERTIFIED only when the tool
+RE-OBTAINS it from elsewhere, in contour and value -- RE-1 from a
+reference with the reference's own initial-value line, RE-2 from a
+gross perturbation of a design the tool found, RE-3 coincidence across
+starts; a walk that stays on the reference certifies the POINT's
+stationarity, not the tool. The motion half of the plug-sector O3.3
+licence ([X-RAOSQ], [X-OWS3]) is thereby a basin test [PRACTICE,
+binding on every optimiser row].
+(3) A FIRST-ORDER PRICE IS GRADED ON A MOVE ([X-HMPH] stage grad, S32):
+the march's discretisation error is common to designs of one family on
+one grid, so a price (a difference) is graded against K_RICH x the
+refinement's move of the DIFFERENCE, an order tighter than the band on
+the value (48.6 against 504 lbf at (161,81) on the Humphreys twin); the
+value may be unconverged where the differences are converged
+[PRACTICE, one posing].
+(4) THE FOLD MECHANISM IS NET COMPRESSION ([X-HMPH] stages class and
+angle, S32-S33): the certification is blind to folds (the S29 lesson,
+second instance: every landing of the Humphreys twin and the paper's
+own contour marched through the posing's cut fold 6-37 percent of their
+resolved cells, the incumbent none); a turn in the wall angle produces
+compression halves (K-10), and an ORDERED wall folds too when it turns
+toward the flow faster than the incident expansion is cancelled (31
+percent with no turn) [MEASURED-SUPPORTED, one posing].
+(5) THE START LINE MUST BELONG TO THE MARCH'S COLUMN FAMILY ([X-HMPH]
+stages kernel and kab, [X-FRMR], S33): the plug march builds its columns
+bottom-up along C+ characteristics (its rows are C-); a non-
+characteristic start line (a vertical cut) hands over to the first C+
+column through cells spanning the whole jet height and loses mass once,
+in that column -- structurally (4.57 percent on the Humphreys throat at
+both rungs of a ladder, the free-edge wedge 0.57 points of it); a start
+line of the column family (a C+ from the wall to the jet boundary)
+removes the step (0.12 percent, the mass held to 0.5 percent at D)
+[MEASURED-SUPPORTED, two rungs, one throat and a control].
+(6) THE SERIES KERNEL'S REACH BOUNDS THE CHARACTERISTIC START ([X-ANKR],
+[X-HMPH], S32-S33): a wall-to-edge characteristic crosses the whole
+transonic triangle and meets the lip's leading ray at z ~ 1 on a throat
+of R_c 0.70, outside the three-term series' reach (|z| <~ 0.5 on
+Dutton's measured throats): the discharge along it carries a series
+band (0.968 against 0.988 on the cut and 0.992 on the throat plane),
+and the two poses are not the same problem downstream beyond the
+ladder's band on the difference [MEASURED-SUPPORTED]; a consistent
+start needs a field satisfying the equations over the whole triangle --
+the numerical transonic solution, not a longer series [CONJECTURE;
+falsifier: the numerical throat's C+ start holding mass AND class].
+(7) THE INLET IS THE PRIMARY DEFECT OF THE FAN POSING ([X-HMPH] stage
+angle A-1c/A-2, S33): from the paper's own start point the y spline
+represents their optimum without a turn; from the posing's cut no
+non-turning wall reaches it (flow angle -26.65 against their wall's
+-43.47 deg) [MEASURED-SUPPORTED].
+(8) THE SOURCE'S MASS IS INCONSISTENT WITH ITS GEOMETRY ([X-HMPH] stage
+throat T-6, stages kernel and kab, S32-S33): Humphreys-Thompson-Hoffman
+1971's stated 148.08 lbm/s is 1.029 times the choked 1-D mass of their
+own start line A-E; on their geometry our specific thrust reads
+228.5-228.9 lbf s/lbm across two poses and two grids, +2.9..+3.1
+percent over their thrust per STATED mass and +0.02..+0.15 percent over
+their thrust per choked 1-D mass of A-E [OBSERVATION on the source; the
+agreement per consistent mass is a READING under G1 while the marches
+fold, not a certified closure].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 
