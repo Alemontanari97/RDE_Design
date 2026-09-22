@@ -316,5 +316,24 @@
   32699.0,
   32877.0
  ],
- "_grid_class_note": "Table 1 p. 1586: their own 20-run grid on the (injection angle, lip radius) plane spans 32,699..32,877 lbf around the optimum, 0.54 percent -- the flatness of THEIR functional at THEIR own resolution, quoted beside our march's band in stage grad; cls SPEC (their printed table)"
+ "_grid_class_note": "Table 1 p. 1586: their own 20-run grid on the (injection angle, lip radius) plane spans 32,699..32,877 lbf around the optimum, 0.54 percent -- the flatness of THEIR functional at THEIR own resolution, quoted beside our march's band in stage grad; cls SPEC (their printed table)",
+ "_table3_recovered_rows": [
+  [
+   4.04195,
+   3.89898,
+   -25.23198
+  ],
+  [
+   9.28531,
+   1.96623,
+   -16.29294
+  ]
+ ],
+ "_table3_recovered_rows_note": "Table 3 p. 1587: the two rows whose columns the PDF layout broke and the 2026-09-18 transcription left out (x, y, wall angle; x from the lip, inches/deg), recovered from the text layer of the same PDF on 2026-09-22 (S33): at x 4.04195 the angle sits on the line above its x/y pair, at x 9.28531 the x sits on the line below its y/angle pair. Kept OUT of table3_rao_lip8.33_inj-58.5 so that every S31 reading of record (the knots read by chords) stays bit-identical; table3_complete() in a1_humphreys_twin.py joins them. cls SPEC (their printed table)",
+ "_table3_typo": {
+  "x": 5.33714,
+  "printed_deg": -12.27169,
+  "corrected_deg": -22.27169
+ },
+ "_table3_typo_note": "Table 3 p. 1587 prints -12.27169 deg at x 5.33714 inside a column that rises monotonically from -60.69 at the foot through -25.23198 (x 4.04195) to -20.07902 (x 6.55991): a one-digit misprint for -22.27169, which restores the monotone column and sits against our ideal member where its neighbours do (stage rao R-5). Found by the S32 session (2026-09-22) and confirmed by S33; the transcription above is faithful to the print. Any reader that uses Table 3's angle column (the Hermite mode of read_table) must take the corrected value. cls EMPIRICAL (an inference from their own column, not a printed number)"
 }

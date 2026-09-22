@@ -1,0 +1,28 @@
+== [F3] Humphreys 1971, twin (A): Rao's member at their posing [X-HMPH] (stage rao) ==
+   world: gamma 1.23, R 301.3 J/kg/K, T_c 3333 K, p_c 3.4474e+06 Pa, p_a 1.0135e+05 Pa (PR 34.01); lip 8.33 in; mdot 67.168 kg/s
+   fan_axi (M_i 1.60, 121 x 121): cert worst 0.037, 12 s; M_e 2.8495, q_e 2277.5 m/s, p_e/p_a 1.000000; tip x 22.005 in, y_sp0 6.748 in
+  [PASS] R-0 the fan is Newton-certified on every cell the wall depends on (worst 0.037 <= 1)
+   mass through the terminal ray 62.502 kg/s = 137.79 lbm/s vs the paper's 148.08 (-6.95e-02)
+  [FAIL] R-1 Rao's cowl lip (8.33 in) is the mass-consistent lip of the ideal member at this posing: |dm/m| 6.95e-02 <= 1e-2 (the tip cut and the fan's own quadrature)
+   full ideal member: F = mdot q_e = 153.0 kN = 34390 lbf; wall push beyond D (x 11.52 in): 0.3 kN; base at D: y_D 1.633 in (Table 3: 1.375), p_D/p_a 1.713, M_D 2.551, Veen p_b/p_a 0.429 -> -0.3 kN
+   TRUNCATED MEMBER AT D: F = 152.4 kN = 34255 lbf vs Rao's 34,253 (+6.75e-05); without the base term 34326 lbf
+  [PASS] R-2 the ideal member truncated at Rao's D, base priced with their closure, reproduces Rao's thrust within 1 percent (the paper's shear model is 0.2 percent, not in ours): +6.75e-05
+  [FAIL] R-3 the member's base radius at x_D meets Rao's Table 3 within 5 percent of y_D (1.633 vs 1.375 in, +1.87e-01)
+   Table 3 at x  0.08454 in: y  6.57580, minus the member -0.0855 in (-1.30 % of y); angle minus the member's wall -2.53 deg
+   Table 3 at x  0.26305 in: y  6.38348, minus the member -0.0938 in (-1.47 % of y); angle minus the member's wall -0.17 deg
+   Table 3 at x  0.54982 in: y  6.10414, minus the member -0.0945 in (-1.55 % of y); angle minus the member's wall -0.15 deg
+   Table 3 at x  0.80980 in: y  5.87499, minus the member -0.0962 in (-1.64 % of y); angle minus the member's wall -0.27 deg
+   Table 3 at x  1.11665 in: y  5.62702, minus the member -0.0990 in (-1.76 % of y); angle minus the member's wall -0.36 deg
+   Table 3 at x  1.75877 in: y  5.16641, minus the member -0.1064 in (-2.06 % of y); angle minus the member's wall -0.49 deg
+   Table 3 at x  2.24216 in: y  4.85831, minus the member -0.1128 in (-2.32 % of y); angle minus the member's wall -0.56 deg
+   Table 3 at x  3.03421 in: y  4.40556, minus the member -0.1240 in (-2.81 % of y); angle minus the member's wall -0.80 deg
+   Table 3 at x  4.04195 in: y  3.89898, minus the member -0.1393 in (-3.57 % of y); angle minus the member's wall -0.74 deg
+   Table 3 at x  5.33714 in: y  3.33063, minus the member -0.1606 in (-4.82 % of y); angle minus the member's wall -0.83 deg  (as printed: +9.17 deg)
+   Table 3 at x  6.55991 in: y  2.85772, minus the member -0.1819 in (-6.37 % of y); angle minus the member's wall -0.90 deg
+   Table 3 at x  8.07079 in: y  2.33921, minus the member -0.2094 in (-8.95 % of y); angle minus the member's wall -0.95 deg
+   Table 3 at x  9.28531 in: y  1.96623, minus the member -0.2310 in (-11.75 % of y); angle minus the member's wall -0.90 deg
+   Table 3 at x 11.51781 in: y  1.37506, minus the member -0.2577 in (-18.74 % of y); angle minus the member's wall -0.19 deg
+  [PASS] R-4 Rao's Table 3 does NOT lie on our ideal member: it runs BELOW it at every row of the member's range, the gap growing monotonically from 0.0855 in (x 0.08) to 0.2577 in at D, 1.3 to 18.7 % of the local radius, their wall angle steeper by 0.15..2.53 deg -- Rao's length-constrained optimum is not the ideal member truncated (S31's side finding withdrawn)
+  [PASS] R-5 the printed angle -12.27169 at x 5.33714 is a one-digit misprint: the printed column is not monotone (broken), the corrected -22.27169 makes it so (monotone) and sits against the member where its neighbours do (-0.83 vs -0.74 / -0.90 deg; as printed +9.17)
+
+== 4/6 PASS  (12.6 s) ==

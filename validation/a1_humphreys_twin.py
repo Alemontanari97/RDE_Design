@@ -254,11 +254,56 @@ def rao():
           " 5 percent of y_D (%.3f vs %.3f in, %+.2e)"
           % (y_D / S / IN, Y_D_RAO / IN, y_D / S / Y_D_RAO - 1),
           abs(y_D / S / Y_D_RAO - 1) <= 0.05)
+
+    # ---- R-4 / R-5 (S33): Table 3 against the member, row by row -------
+    # S31 read, on a coarse figure, that "Rao's Table 3 lies ON our exact
+    # ideal member over its length"; R-3 above already contradicted it at
+    # D. The S32 session measured it row by row (2026-09-22) and S33
+    # confirms it here: the table complete (the two rows the layout broke
+    # recovered), the member's wall angle from its own polyline.
+    xm, ym = sx / S / IN, sy / S / IN
+    am = np.degrees(np.arctan(np.gradient(ym, xm)))
+    T3, T3p = table3_complete(), table3_complete(printed=True)
+    inr = (T3[:, 0] >= xm.min()) & (T3[:, 0] <= xm.max())
+    dy = T3[inr, 1] - np.interp(T3[inr, 0], xm, ym)
+    dth = T3[inr, 2] - np.interp(T3[inr, 0], xm, am)
+    dthp = T3p[inr, 2] - np.interp(T3p[inr, 0], xm, am)
+    for x_, y_, d_, t_, tp_ in zip(T3[inr, 0], T3[inr, 1], dy, dth, dthp):
+        say("   Table 3 at x %8.5f in: y %8.5f, minus the member %+.4f in"
+            " (%+.2f %% of y); angle minus the member's wall %+.2f deg%s"
+            % (x_, y_, d_, 100.0 * d_ / y_, t_,
+               "" if t_ == tp_ else "  (as printed: %+.2f deg)" % tp_))
+    check("R-4 Rao's Table 3 does NOT lie on our ideal member: it runs BELOW"
+          " it at every row of the member's range, the gap growing"
+          " monotonically from %.4f in (x %.2f) to %.4f in at D, %.1f to"
+          " %.1f %% of the local radius, their wall angle steeper by"
+          " %.2f..%.2f deg -- Rao's length-constrained optimum is not the"
+          " ideal member truncated (S31's side finding withdrawn)"
+          % (-dy[0], T3[inr, 0][0], -dy[-1], -100.0 * dy[0] / T3[inr, 1][0],
+             -100.0 * dy[-1] / T3[inr, 1][-1], -dth.max(), -dth.min()),
+          bool(np.all(dy < 0.0) and np.all(np.diff(dy) < 0.0)))
+    ty = TABLES["_table3_typo"]
+    k = int(np.argmin(np.abs(T3[inr, 0] - ty["x"])))
+    nb = dth[[k - 1, k + 1]]
+    check("R-5 the printed angle %.5f at x %.5f is a one-digit misprint: the"
+          " printed column is not monotone (%s), the corrected %.5f makes it"
+          " so (%s) and sits against the member where its neighbours do"
+          " (%+.2f vs %+.2f / %+.2f deg; as printed %+.2f)"
+          % (ty["printed_deg"], ty["x"],
+             "monotone" if np.all(np.diff(T3p[:, 2]) > 0.0) else "broken",
+             ty["corrected_deg"],
+             "monotone" if np.all(np.diff(T3[:, 2]) > 0.0) else "broken",
+             dth[k], nb[0], nb[1], dthp[k]),
+          bool(np.all(np.diff(T3[:, 2]) > 0.0)
+               and not np.all(np.diff(T3p[:, 2]) > 0.0)
+               and nb.min() <= dth[k] <= nb.max()))
     rec = dict(M_e=M_e, q_e=q_e, mdot_member=md_SI, F_full=F_full,
                push_beyond_D=push, y_D_in=y_D / S / IN, p_D_pa=p_D / PA,
                M_D=M_D, pb_pa=pb / PA, base=base, F_D=F_D, F_D_lbf=F_D / LBF,
                F_rao_lbf=34253.0, fan_cert=fc["worst"],
                wall_in=np.c_[sx / S / IN, sy / S / IN, p_w / PA, M_w].tolist(),
+               table3_vs_member=np.c_[T3[inr, 0], T3[inr, 1], dy, dth,
+                                      dthp].tolist(),
                seconds=time.time() - t00)
     os.makedirs(ART, exist_ok=True)
     json.dump(rec, open(os.path.join(ART, "rao.json"), "w"), indent=1)
@@ -311,6 +356,23 @@ def read_table(xq, tab, mode=None):
     if (mode or os.environ.get("HMPH_TABLE", "chord")) != "hermite":
         return np.interp(xq, x, y)
     return _hermite(xq, tab)[0]
+
+
+def table3_complete(printed=False):
+    """Rao's Table 3 (p. 1587) in full: the 17 transcribed rows plus the
+    two whose columns the PDF layout broke (_table3_recovered_rows), sorted
+    in x; unless printed=True, the one-digit misprint of the wall angle at
+    x 5.33714 is replaced by its correction (_table3_typo). The record's
+    stages keep reading the 17-row transcription (bit-identical); this is
+    the table for any reader of the angle column or of the whole contour
+    (stage rao R-4/R-5, S33)."""
+    t = np.array(TABLES["table3_rao_lip8.33_inj-58.5"], float)
+    t = np.vstack([t, np.array(TABLES["_table3_recovered_rows"], float)])
+    t = t[np.argsort(t[:, 0])]
+    if not printed:
+        ty = TABLES["_table3_typo"]
+        t[int(np.argmin(np.abs(t[:, 0] - ty["x"]))), 2] = ty["corrected_deg"]
+    return t
 
 
 def _hermite(xq, tab):

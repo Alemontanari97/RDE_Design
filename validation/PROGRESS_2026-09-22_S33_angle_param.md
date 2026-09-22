@@ -485,6 +485,45 @@ driver). The owner's decision BLOCCATO 20 (h) is posed in these terms.
   and 9, the figure `figs/04_our_landings_vs_their_optimum.png` (its
   script in the session scratch, presentation only).
 
+## 12. CORRECTION to S31's side finding on Rao's Table 3 (found by the S32 session, confirmed here; owner: "si")
+
+S31's log (section of the evening, "A finding on the side, of record")
+and the X-HMPH row read that "Rao's Table 3 contour lies ON our exact
+ideal member over its length -- Rao's length-constrained member IS the
+ideal member truncated". It was a reading by eye on a coarse figure, and
+the row's own R-3 contradicted it at D (y_D 1.633 against 1.375 in). The
+S32 session (mose-10) measured it row by row on 2026-09-22 and asked the
+owner to decide the correction; this session confirmed it independently
+and, on the owner's word, puts it on the record with a committed script:
+stage rao gains R-4 and R-5 (run of record 2026-09-22: 4/6, 12.6 s; R-1
+and R-3 fail as in S31, readings by construction).
+
+- **R-4 (PASS): Table 3 runs BELOW the member at every row** of the
+  member's range (14 rows, the two the layout broke recovered): -0.0855
+  in at x 0.085 growing monotonically to -0.2577 in at D (1.3 to 18.7
+  percent of the local radius); their printed wall angle is steeper than
+  the member's wall by 0.15-0.95 deg from the second row on (2.53 at the
+  first, x 0.085, where the member's polyline slope is one-sided). What
+  survives of S31's sentence is the family statement: the
+  length-constrained optimum runs close to, and systematically below, the
+  truncated ideal member -- not on it. The mass reading (the member passes
+  137.8 lbm/s against their 148.08) is untouched.
+- **R-5 (PASS): the paper misprints one angle.** At x 5.33714 Table 3
+  prints -12.27169 deg inside a column that rises monotonically from
+  -60.69 at the foot; the one-digit correction -22.27169 restores the
+  monotone column and sits against the member at -0.83 deg, between its
+  neighbours' -0.74 and -0.90 (as printed: +9.17). The transcription in
+  humphreys1971_tables.json is faithful to the print; the JSON gains
+  `_table3_typo` (cls EMPIRICAL, the inference declared) and
+  `_table3_recovered_rows` (the rows at x 4.04195 and 9.28531 the
+  2026-09-18 transcription had left out, recovered from the text layer;
+  kept outside the 17-row table so every S31 reading stays bit-identical),
+  and the twin gains `table3_complete()` for any reader of the whole
+  contour or of the angle column.
+
+Artefacts: `_humphreys_twin/run_rao_2026-09-22.log`, `rao.json`
+(re-written by the stage with the per-row comparison).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
@@ -511,5 +550,9 @@ driver). The owner's decision BLOCCATO 20 (h) is posed in these terms.
   banner + DELTA CENSIMENTO), `docs/rde_nozzle_MASTER.md` (LINE ADDENDUM
   S26-S33), `docs/rde_nozzle_development_plan.md` (F3 STATUS 2026-09-22),
   this log, the ADVISORY_INDEX row; registry X-HMPH (the G1 caveat).
+- Correction window (section 12): `validation/a1_humphreys_twin.py`
+  (stage rao R-4/R-5, `table3_complete`), `validation/humphreys1971_tables.json`
+  (`_table3_recovered_rows`, `_table3_typo`), this log; registry X-HMPH
+  (the S31 sentence replaced, R-4/R-5 in the falsifier).
 - Lints and suite: quoted in the commit messages (the full suite from the
   third commit on; section 10 declares the first two).
