@@ -685,7 +685,8 @@ def _wall_in_frame(w, th, Xm, Ym, mode="angelino", x_blend_mm=None):
     return xw, yw, sw
 
 
-def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E):
+def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E,
+               x_stop=None):
     """THE LIP CORNER IN A NON-UNIFORM FIELD: the centred expansion at
     the lip marched as a Goursat problem through the incoming field
     (field_uv(x', y') -> (u, v) in the throat frame). The leading ray
@@ -698,7 +699,12 @@ def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E):
     with a centred corner. Rays run from the lip to the cut x' = x_cut.
     Returns the rays (list of (n, 4) arrays), the crossing of each ray
     with the cut (y, u, v), the terminal direction and the worst cell
-    certification."""
+    certification. The grid's index lines are C+ characteristics (the
+    cell joins point j of ray k-1 to point j of ray k along a C+);
+    x_stop (S33, default x_cut: unchanged) is where the rays after the
+    leading one stop -- np.inf runs every ray to index n_pts, so that
+    every C+ line up to the leading ray's last point is complete (the
+    start line posed on a characteristic)."""
     ta = w["ta"]
     xl, yl = lip
     # the corner relation's states from q_L to q_E
@@ -743,7 +749,7 @@ def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E):
             sc = max(1.0, float(jnp.max(jnp.abs(z))))
             cert = max(cert, step / (A1.NEWTON_TOL_FACTOR * A1.EPS * sc))
             pts.append(np.asarray(z, float))
-            if pts[-1][0] >= x_cut:
+            if pts[-1][0] >= (x_cut if x_stop is None else x_stop):
                 break
         rays.append(np.array(pts))
     # the crossing of each ray with the cut

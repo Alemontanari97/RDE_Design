@@ -330,13 +330,30 @@
 ## intervallo comprimono la parete a 7.6 p_a e Veen restituisce p_b 3.3
 ## p_a = +1,487 lbf di base contro -943 di spinta; il falsificatore di
 ## K-10 e' scattato (meccanismo = compressione netta); fuori classe,
-## nessun guadagno. ORA: HEAD = i due commit S33 (40 avanti, NON pushati).
-## NEXT (atomico): il vincolo di classe sulla posa di Humphreys (derive
-## delle costanti del margine D0-D4 in coordinate d'angolo, poi la
-## camminata dal ventaglio con margin=); poi il dominio della chiusura
-## di base (decisione owner 5). BLOCCATO: push dei commit (parola
-## dell'owner); i tre documenti mancanti (Moore-Hall, tesi Ref. 8,
-## ADA084787).
+## nessun guadagno. NOTTE (log S33 §8-9, domanda dell'owner "perche' la
+## IVL deve essere verticale?"): le colonne della marcia sono C+, quindi
+## la linea di partenza su caratteristica e' una C+ parete -> bordo
+## (HMPH_IVL=char: C+ nel kernel, linea C+ del corner_fan, triangolo del
+## getto libero risolto); il salto di massa alla prima colonna di S32
+## (-4.57 %, uguale ai due gradini = STRUTTURALE, il passaggio taglio
+## verticale -> colonna; il cuneo edge_fill ne spiega 0.57 punti) scende
+## a -0.12 % e la massa tiene a +0.5 % fino a D: l'attribuzione di S32
+## §18 alla serie e' RITIRATA per il salto. Ma la C+ attraversa tutto il
+## triangolo transonico (innesto a z ~1) dove la serie a tre termini non
+## vale: scarica con banda di serie del 2.5 % (0.968 vs 0.988/0.992),
+## solo eta 8 si posa, e l'A/B a valle (stage kab, due gradini) dice che
+## le due pose NON sono lo stesso problema (p di parete +1.25e-3 p_0,
+## fuori banda a ogni stazione, segno della massa portata in D 133.6 vs
+## 140.0 lbm/s); la C+ piega di piu' (9.4 vs 2.2 %). J/mdot +2.9..+3.1 %
+## sopra la LORO massa dichiarata in ogni posa, +0.0..+0.15 % sulla loro
+## spinta per massa 1-D strozzata di A->E. ORA: HEAD = i commit S33 (NON
+## pushati). NEXT (atomico): la soluzione transonica NUMERICA della loro
+## gola (Euler assialsimmetrico in marcia nel tempo, una volta per posa)
+## e la linea C+ letta da essa; poi il vincolo di classe sulla posa col
+## ventaglio (derive D0-D4 in coordinate d'angolo, camminata con
+## margin=); poi il dominio della chiusura di base (decisione owner 5).
+## BLOCCATO: push dei commit (parola dell'owner); i tre documenti
+## mancanti (Moore-Hall, tesi Ref. 8, ADA084787).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

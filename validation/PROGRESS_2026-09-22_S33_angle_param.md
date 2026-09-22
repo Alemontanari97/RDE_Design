@@ -243,6 +243,165 @@ READ.
 5. Their inlet for RE-1 (the numerical transonic line; the floor at
    R_c 0.70 of S32 section 18 stays open).
 
+## 8. Why the start line is vertical, and the start line ON A CHARACTERISTIC (2026-09-22 night; owner: "why must our IVL be a vertical line?", then "si" to the characteristic)
+
+**Why it is vertical: history, not physics.** The record's start line
+is a cut x' = const through the planar corner fan (whose field is exact
+everywhere); through a cut upstream of every wall node the mass depends
+on the fan and y_w0 alone, so it decouples from the shape (the driver's
+C-3), and `build_case` passes a scalar x0. Measured costs: near a sonic
+lip the fan's first rays lean past the vertical (to M 1.17 on this
+posing, 1.83 on Chutkey's), so the cut is pushed to X0 0.05 R with a
+declared strip; and the first marched column must bridge from the
+vertical to the characteristic geometry. `plug_march` already accepts a
+per-row abscissa -- "which lets the caller pose the start data ALONG A
+CHARACTERISTIC ... Posing the start on a characteristic removes the
+transition entirely" -- and no caller had ever used it.
+
+**The march's column family is the C+.** `plug_march` builds each
+column bottom-up: a new interior point is the crossing of the C+ from
+the point below it in the same column and the C- from the previous
+column (`foot_lm` is the C- slope; the wall "receives the C- family").
+So a start line on a characteristic must be a C+ from the plug wall to
+the jet boundary (the owner's question was answered with "a
+right-running characteristic" after Humphreys, whose march runs C-
+columns; ours runs C+ columns -- corrected here).
+
+**Test 0, edge_fill (HMPH_EDGEFILL, additive; 0 = the S32 runs, the
+rerun reproducing them to the printed digit).** At eta 8, z 0.12, the
+march capped at 2 d: the first-column step goes -4.57 -> -4.01 -> -4.00
+percent with 0 / 5 / 20 rows seeded in the edge wedge: the wedge is
+0.57 points of the step, not the bulk.
+
+**The characteristic start (HMPH_IVL=char, stage kernel, additive;
+`corner_fan(x_stop=)` in a1_frame_march, default unchanged).** Through
+the SAME wall point as the cut: (i) the C+ from that wall point traced
+through the kernel's field to the leading ray (RK4, the fan's own
+step), the fan rebuilt with the leading ray's last point exactly at
+that crossing and every ray run to the same index, and the kernel part
+re-traced BACKWARD from that fan point to the wall, 41 rows (the wall
+row reset to the wall's slope, as on the cut); (ii) the corner fan's own
+C+ line n_pts (its Goursat cells join point j of ray k-1 to point j of
+ray k along a C+), 25 rows; (iii) the FREE-JET TRIANGLE between the
+terminal ray and the jet boundary, solved with the march's own rotated
+interior and free-jet cells for every C+ line up to n_pts (12 rows,
+certified 0.035) -- the S32 uniform wedge would have carried 14.7
+percent of the mass on this line (0.4 on the cut). Gate H-1 (char):
+supersonic on every row and the triangle certified.
+
+| run (march capped at 2 d) | first-column step | last column | folded |
+|---|---|---|---|
+| their throat, eta 8, vertical cut (S32) | -4.57 % | -4.68 % | 6.56 % |
+| their throat, eta 8, C+ start | **-0.12 %** | -0.09 % | 1.53 % |
+| R_c 4 control, vertical cut (S32) | -1.20 % | -0.96 % | 16.2 % |
+| R_c 4 control, C+ start | **-0.04 %** | +0.20 % | 18.8 % |
+
+**The eta ladder with the C+ start:** only eta 8 poses. At eta 2 / 4 / 6
+the C+ from the cut's wall point meets the leading ray at z 0.71 / 0.80
+/ 0.90 (x' 0.46 / 0.39 / 0.37 in, M 1.71 / 1.45 / 1.36) and the fan's
+first ray, built through the series' field, lands BELOW the leading ray
+there (rows not ordered at the junction); at eta 8 the junction is at z
+1.00 (x' 0.36 in, M 1.32) and the construction holds. z 0.25 at eta 8
+fails the same way (junction at z 1.12).
+
+## 9. The A/B of the two poses on their wall (marched to D, eta 8, z 0.12, two rungs)
+
+| | vertical cut, K 169 / N 61 | cut, K 322 / N 95 | C+ start, K 169 / N 78 | C+, K 322 / N 118 |
+|---|---|---|---|---|
+| start mass | 142.13 lbm/s (0.988 of 1-D) | 142.14 | 139.28 (0.968) | 139.27 |
+| first-column step | -4.57 % | -4.57 % | -0.12 % | -0.11 % |
+| mass at D vs the start | -5.99 % | -6.00 % | +0.53 % | +0.53 % |
+| folded resolved cells | 3.12 % | 2.21 % | 14.60 % | 9.40 % |
+| J / mdot vs their 222.05 | +2.92 % | +2.94 % | +3.07 % | +3.07 % |
+
+(A second C+ start with the wall point at z 0.06: step -0.12 %, D
++0.54 %, J/mdot +2.99 %.)
+
+READ.
+
+1. **The S32 first-column step is the hand-over, and it is
+   structural.** It is the same -4.57 percent at both rungs (the cells
+   that bridge from a vertical cut to the first C+ column reach from the
+   cut to ~1.2 in downstream at the top whatever the resolution), 0.57
+   points of it is the edge wedge, and a start line of the column
+   family removes it (-0.12 percent; the R_c 4 control -1.20 -> -0.04).
+   **The S32 section 18 attribution to "the series at a sharp throat"
+   is withdrawn for the step** (the eta dependence of the cut's step,
+   7.4 -> 4.6 percent, is the data's consistency entering the same
+   oversized cells).
+2. **But the C+ start is not a clean pose either (the peer review's
+   caution, confirmed by measurement).** A C+ from the plug wall to the
+   jet boundary must cross the whole transonic triangle A-E-W_L: at
+   R_c 0.70 it meets the leading ray at z ~1, where the three-term
+   series is outside its reach (Dutton's twin, S32 10.2: the series on a
+   true wall diverges beyond z ~0.5). The series' own discharge is
+   0.992 on the throat plane, 0.988 on the cut at z 0.12 and 0.968 along
+   the C+: **a truncation band of ~2.5 percent on the discharge**, beside
+   the eta spread on the cut (W/W* 0.9763..0.9876 for eta 2..8, 1.1
+   percent). The mass defect moved from the march (4.5 percent,
+   structural) to the start data (2.5 percent, series).
+3. **The A/B downstream says the two poses are NOT the same problem
+   (stage kab, 1/3: AB-2 FAILS, the finding; AB-3 PASSES).** Beyond 2 d
+   along their wall (144 stations at the finer rung) the C+ pose's wall
+   pressure exceeds the cut's by 1.25e-3 p_0 on average, 1.97e-3 at
+   worst (1.34 percent of p_w there), at EVERY station, and the
+   difference moves by less than its band under refinement (band K_RICH
+   x the rung move: 9.8e-5 at the worst station, 2.6e-4 at most): a
+   real difference, of the sign of the mass each march actually carries
+   at D -- the cut's 133.6 lbm/s (6 percent lost), the C+'s 140.0
+   (conserved). And the C+ march folds more (9.4 against 2.2 percent at
+   the finer rung, first fold ~0.7 in from the start): the start data
+   taken from the series at z ~1 are not a consistent field. Neither
+   pose is in class; neither discharge is certified. DECLARED (the peer
+   review's reading): the folded fractions FALL under refinement in both
+   poses (3.12 -> 2.21, 14.60 -> 9.40 percent), unlike the design's
+   folds of stage class (28.78 -> 28.86, grid-stable): part of these
+   folds is the net's, and a third rung is owed before either pose is
+   called out of class on the folds alone. The C+ start fixed one
+   functional (the mass) and worsened the other (the folds); without the
+   margin in the driver there is no instrument to choose between the
+   poses.
+4. **Specific thrust on their contour (for the record, not a verdict):
+   +2.9 to +3.1 percent above theirs in every pose**, their shear (0.2
+   percent) not in ours. Against their stated 148.08 lbm/s -- which
+   their own geometry cannot pass (T-6: 1.029 of the choked 1-D of
+   A -> E). Read against their thrust over the choked 1-D mass of their
+   line (32,881 / 143.89 = 228.5 lbf s/lbm; stage kab) our J/mdot is
+   +0.01 / +0.02 percent (cut, two rungs) and +0.15 percent (C+); over a
+   smooth-throat discharge 0.99 of it, about -0.8 percent. The
+   comparison is bounded by THEIR mass inconsistency, not by our march.
+   Three independent channels say the same thing at the same size: their
+   stated mass is 1.029 of the choked 1-D mass of their own line (T-6);
+   the discharge our marches carry through it is 0.968-0.988 of it; our
+   specific thrust is +2.9..+3.1 percent over their stated one. The
+   reading that closes the geometry-faithful twin is therefore not "H-6
+   within 1 percent of 222.05" -- a pose that got there would get there
+   by compensation -- but: on their geometry our machine reads
+   228.5-228.9 lbf s/lbm, stable across two poses and two grids, and
+   their 222.05 rests on a mass their throat does not pass; per unit of
+   the mass it CAN pass, the two agree within 0.2 percent (the 2.5-percent
+   series band and the folds declared beside it). Recorded; the owner's
+   call whether the row closes on it.
+5. **What it makes of the queue.** The binding constraint of the
+   geometry-faithful twin is now explicit and measured: the start line
+   must be a characteristic of the march (else the hand-over loses 4.6
+   percent) AND lie in a field that satisfies the equations over the
+   whole transonic triangle (else the start data carry the series'
+   2.5-percent band and fold the march). The three-term series gives
+   the second only near the throat plane; the numerical transonic
+   solution of their throat (queue item 4 of the S32 handoff: an
+   axisymmetric Euler time-march on the throat region, once per posing,
+   outside the SQP loop) gives both: the C+ start line read from it with
+   this session's machinery (`_char_start` with the field replaced).
+
+Artefacts (not committed): `_humphreys_twin/run_kernel_eta8.0_{rerun,ef5,ef20}.log`,
+`run_kernel_char_eta{2,4,6,8}.0.log`, `run_kernel_char_parabola_rc5.69.log`,
+`run_kernel_char_eta8.0_toD_z{0.06,0.12,0.25}.log`,
+`run_kernel_cut_eta8.0_toD_z0.12.log`, `run_kernel_{cut,char}_eta8.0_toD_K319N81.log`,
+`kernel_{cut,char}_toD_eta8_K{160N41,319N81}.json` (the four tagged
+records, HMPH_TAG, the inputs of stage kab), `run_kab_2026-09-22.log`,
+`kab_opt.json`.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
@@ -258,4 +417,9 @@ READ.
   of tonight, `opt_opt_fan_veen_angle{,_free}.json`,
   `angle_opt_veen_angle.json`, the re-written `class_opt_veen.json`
   (byte-identical to the 18:02 record).
+- Night (sections 8-9): `validation/a1_humphreys_twin.py` stage kernel
+  gains HMPH_EDGEFILL and HMPH_IVL=char (`_char_start`, the free-jet
+  triangle), both additive (the default rerun reproduces S32 to the
+  printed digit); `validation/a1_frame_march.py` `corner_fan(x_stop=)`,
+  default unchanged.
 - Lints and suite: quoted in the commit messages.
