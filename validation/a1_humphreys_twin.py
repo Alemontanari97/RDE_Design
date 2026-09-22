@@ -72,6 +72,21 @@ used the downstream arc), the series kernel's convergence measured AT
 that throat, and their stated mass against the choked 1-D mass of the
 line A -> E.
 
+STAGE kernel (S32, 2026-09-22 night): the march from THEIR throat on
+THEIR geometry -- the annular kernel's line, the lip corner fan through
+its field, the rotated-frame cells, the wall = their prescribed arc then
+Table 2 -- read as SPECIFIC thrust. Gates H-0..H-6. RESULT OF RECORD: the
+pipeline runs (fan and march certified, start line space-like, y_D
+theirs, a physical discharge 0.97-0.98 of the choked 1-D against their
+1.029) but the three-term series at R_c 0.703 is REJECTED by the march at
+its first column (-5.7..-7.4 percent of the mass, then a drift), and the
+A/B (HMPH_WALL=parabola, HMPH_RCSCALE) attributes it to the series'
+truncation: the same pipeline on the kernel's own wall at R_c 4.0 steps
+-1.2 percent and holds. Not the wedge (HMPH_NEDGE), not the fan
+(HMPH_NRAYS), not the wall mismatch, not the cut (HMPH_ZCUT), not the
+rows (HMPH_N). The transonic region of this throat must be solved
+numerically; the series is its upstream condition, not its start line.
+
 Lengths are posed in LIP RADII (the record's YTIP convention, the
 Chutkey twin's frame); the paper's inches are converted at the edges.
 """
@@ -1124,8 +1139,354 @@ def throat():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage kernel: the march from THEIR throat, on THEIR geometry
+# ----------------------------------------------------------------------
+def kernel():
+    """The geometry-faithful twin: the annular throat kernel [X-ANKR]
+    posed on Humphreys' own throat, its line handed to the march through
+    the lip corner fan in a non-uniform field and the rotated-frame cells
+    [X-FRMR], the plug wall being THEIR prescribed 0.5-in arc from A to T
+    and THEIR Table 2 (read with their printed angles) from T to D. The
+    cut holds their WALL; the mass is whatever their throat passes (stage
+    throat: their stated mass exceeds it), so the reading of record is
+    SPECIFIC thrust J / mdot against theirs (owner, 2026-09-22), with C_F
+    on the surface of A -> E beside it.
+
+    The throat's split between the walls -- the one datum the paper does
+    not print -- is posed from what it does print: the plug wall's radius
+    at A is the downstream arc's 0.5 in (the arc begins ON the start
+    line), and the cowl's radius follows from their mean radius 0.705 in
+    in the Moore-Hall (harmonic) sense, 1/rc_cowl = 2/R_mean - 1/rc_plug.
+    R_c = R_mean / h = 0.703 either way; the split sets K. Declared."""
+    t00 = time.time()
+    say("== [F3] Humphreys 1971, twin: the march from THEIR throat on THEIR"
+        " geometry [X-HMPH] (stage kernel) ==")
+    os.environ.setdefault("A1_BASE_MODEL", "veen")
+    import a1_annular_kernel as AK
+    import a1_frame_march as FM            # the rotated cells, the corner fan
+    import a1_plug_march as PM
+    import a1_plug_margin as PMG
+    from a1_freejet_unit import q_at_pa
+    w = build_world(R_OPT)
+    S, ta = w["S"], w["ta"]
+    KD = FM.CASES["kernel_defaults"]
+    z_cut = float(os.environ.get("HMPH_ZCUT", 0.25))
+    K = int(os.environ.get("HMPH_K", KD["K"]))
+    N = int(os.environ.get("HMPH_N", KD["N"]))
+    n_rays = int(os.environ.get("HMPH_NRAYS", KD["n_rays"]))
+    n_pts = int(os.environ.get("HMPH_NPTS", KD["n_pts"]))
+    gam, eta = GAMMA, float(os.environ.get("ANK_ETA", 2.0))
+
+    # ---- their throat (stage throat's reading, recomputed) -----------
+    tab = np.array(TABLES["table2_optimum_lip7.55_inj-34"])
+    x, y, th = tab[:, 0], tab[:, 1], np.radians(tab[:, 2])
+    prec = TABLES["_table_precision_in"]
+    ds = np.hypot(np.diff(x), np.diff(y))
+    rho_k = ds / np.abs(np.diff(th))
+    band_rho = A1.K_RICH * (2.0 * prec / ds[0])
+    n_arc = 1
+    while (n_arc < len(rho_k)
+           and abs(rho_k[n_arc] / rho_k[0] - 1.0) <= band_rho):
+        n_arc += 1
+    rho = float(np.mean(rho_k[:n_arc]))
+    A, E = np.array([x[0], y[0]]), np.array([0.0, R_OPT / IN])
+    h = float(np.hypot(*(E - A)))
+    R_mean = TABLES["_throat_mean_radius_in"]
+    # HMPH_RCSCALE scales BOTH radii (R_c with them, the split unchanged):
+    # the attribution A/B against a throat where the series converges
+    rc_scale = float(os.environ.get("HMPH_RCSCALE", 1.0))
+    rc_plug = rho * rc_scale
+    rc_cowl = rc_scale / (2.0 / R_mean - 1.0 / rho)
+    # HMPH_WALL=parabola: the march follows the KERNEL'S OWN inner wall
+    # (no field/wall mismatch at all) -- the attribution's control;
+    # HMPH_LMAX_D: the march length in separations from the cut (default
+    # to D)
+    wall_mode = os.environ.get("HMPH_WALL", "theirs")
+    lmax_d = os.environ.get("HMPH_LMAX_D")
+
+    # ---- the plug wall, dense, in inches: the arc A -> T, then Table 2
+    thA, thT = float(th[0]), float(th[n_arc])
+    C = A + rho * np.array([np.sin(thA), -np.cos(thA)])   # centre, wall turning clockwise
+    # the arc sampled at the same density as the rest of the wall
+    n_arc_pts = max(2, int(FM.CASES["dense_wall_points"]
+                           * (float(x[n_arc]) - float(x[0]))
+                           / (float(x[-1]) - float(x[0]))))
+    tt = np.linspace(thA, thT, n_arc_pts)
+    arc_xy = C[None, :] + rho * np.stack([-np.sin(tt), np.cos(tt)], 1)
+    xT = float(x[n_arc])
+    xd = np.linspace(xT, float(x[-1]), FM.CASES["dense_wall_points"])[1:]
+    os.environ["HMPH_TABLE"] = "hermite"           # their contour as they drew it
+    yd = read_table(xd, tab)
+    Xw = np.concatenate([arc_xy[:, 0], xd]) * IN * S
+    Yw = np.concatenate([arc_xy[:, 1], yd]) * IN * S
+    say("   their wall: the arc rho %.4f in from A (%+.2f deg) to T (%+.2f deg),"
+        " then Table 2 (Hermite on their printed angles) to D; %d dense points"
+        % (rho, np.degrees(thA), np.degrees(thT), len(Xw)))
+
+    # ---- the throat frame: x' along the injection, origin mid A -> E ---
+    thf = np.radians(TH_I_OPT)
+    Xm, Ym = 0.5 * (A + E) * IN * S
+    hh = 0.5 * h * IN * S
+    d_fr = 2.0 * hh
+    xw, yw, _, _ = FM.to_frame(Xw, Yw, np.zeros_like(Xw), np.zeros_like(Xw),
+                               thf, Xm, Ym)
+    if np.any(np.diff(xw) <= 0.0):
+        raise ValueError("the wall is not single-valued in the throat frame")
+    sw = np.gradient(yw, xw)
+    if wall_mode == "parabola":
+        slope_par = (float(np.tan(thA - thf))
+                     if os.environ.get("HMPH_SLOPEA", "1") == "1" else 0.0)
+        xw = np.linspace(0.0, float(xw[-1]), FM.CASES["dense_wall_points"])
+        yw = -hh + slope_par * xw - 0.5 * xw ** 2 / (rc_plug * IN * S)
+        sw = slope_par - xw / (rc_plug * IN * S)
+        say("   WALL = the kernel's own parabola (rc %.3f in, slope %+.2f deg"
+            " at the throat plane): the attribution control"
+            % (rc_plug, np.degrees(np.arctan(slope_par))))
+    if lmax_d is not None:
+        keep = xw <= float(lmax_d) * d_fr
+        xw, yw, sw = xw[keep], yw[keep], sw[keep]
+        say("   march length capped at %.2f d from the throat plane" % float(lmax_d))
+    xA, yA_, _, _ = FM.to_frame(A[0] * IN * S, A[1] * IN * S, 0.0, 0.0, thf, Xm, Ym)
+    xE, yE_, _, _ = FM.to_frame(E[0] * IN * S, E[1] * IN * S, 0.0, 0.0, thf, Xm, Ym)
+    say("   frame: rotated %+.2f deg, A -> (%.5f, %.5f) h, E -> (%.5f, %.5f) h"
+        % (np.degrees(thf), xA / hh, yA_ / hh, xE / hh, yE_ / hh))
+
+    # ---- the kernel on their throat --------------------------------
+    # their plug wall at A is NOT tangent to the injection: -36.25 against
+    # -34 deg, i.e. -2.25 deg in the throat frame, the arc already
+    # diverging on the start line. throat_params carries a wall slope at
+    # the throat; HMPH_SLOPEA=0 poses the kernel's wall tangent instead.
+    slope_A = (float(np.tan(thA - thf))
+               if os.environ.get("HMPH_SLOPEA", "1") == "1" else 0.0)
+    P = AK.throat_params(float(y[0]) * IN, h * IN, -TH_I_OPT, rc_plug * IN,
+                         rc_cowl * IN, eta, gam, slope_in=slope_A)
+    grid, fields, _ = AK.solve_kernel(P["y_i"], P["g1"], P["g2"], P["h1"],
+                                      P["h2"], P["b1"], gam, eta)
+    eps, Kk = P["eps"], P["K"]
+    say("   kernel: plug rc %.3f in (the arc) with wall slope %+.2f deg at A,"
+        " cowl rc %.3f in (from their mean %.3f, harmonic), R_c %.3f, g2 %.3f"
+        " h2 %.3f, eps %.3f, y_i %.2f; W/W* through the throat plane %.4f"
+        " (3 terms)"
+        % (rc_plug, np.degrees(np.arctan(slope_A)), rc_cowl, R_mean, P["R_c"],
+           P["g2"], P["h2"], eps, P["y_i"],
+           AK.mass_ratio(grid, fields, eps, gam, 0.0, 3)))
+    xT_fr = float(FM.to_frame(float(x[n_arc]) * IN * S, float(y[n_arc]) * IN * S,
+                              0.0, 0.0, thf, Xm, Ym)[0])
+    say("   T (the arc's end) sits at x' %.4f in in the frame" % (xT_fr / S / IN))
+
+    def kernel_uv(xp, yp):
+        z = (np.asarray(xp, float) / d_fr) / (Kk * eps ** 0.5)
+        yk = P["y_i"] + (np.asarray(yp, float) + hh) / d_fr
+        u, v = AK.series_uv(grid, fields, eps, gam, z, yk)
+        return u * w["as_"], v * w["as_"]
+
+    x_cut = z_cut * Kk * eps ** 0.5 * d_fr
+    say("   the truncated series' own mass: W/W* %.4f on the throat plane,"
+        " %.4f on the cut (3 terms) -- the drift is the series' residual"
+        % (AK.mass_ratio(grid, fields, eps, gam, 0.0, 3),
+           AK.mass_ratio(grid, fields, eps, gam, z_cut, 3)))
+    # the kernel's own parabola vs their arc at the cut: the wall the field
+    # was solved on against the wall the march will follow
+    y_par = -hh + slope_A * x_cut - 0.5 * x_cut ** 2 / (rc_plug * IN * S)
+    s_par = slope_A - x_cut / (rc_plug * IN * S)
+    yw0, sw0 = float(np.interp(x_cut, xw, yw)), float(np.interp(x_cut, xw, sw))
+    say("   cut at z %.2f = x' %.4f in (%.3f d): the kernel's plug parabola"
+        " y %.5f h, slope %+.2f deg; their arc there y %.5f h, slope %+.2f deg"
+        " (gap %.2f deg)"
+        % (z_cut, x_cut / S / IN, x_cut / d_fr, y_par / hh,
+           np.degrees(np.arctan(s_par)), yw0 / hh, np.degrees(np.arctan(sw0)),
+           np.degrees(np.arctan(sw0) - np.arctan(s_par))))
+
+    # ---- the lip corner at E, through the kernel's field -------------
+    q_E = q_at_pa(PA, ta, w["as_"])
+    u_l, v_l = kernel_uv(xE, yE_)
+    q_l, th_l = float(np.hypot(u_l, v_l)), float(np.arctan2(v_l, u_l))
+    M_l = float(A1.state_q(jnp.float64(q_l), ta)[5])
+    CF = FM.corner_fan(w, kernel_uv, (float(xE), float(yE_)), q_l, th_l,
+                       x_cut, thf, Ym, n_rays, n_pts, q_E)
+    th_e = CF["th_E"]
+    say("   lip E: kernel state M %.4f, theta' %+.2f deg; corner fan %d rays"
+        " to the cut (worst cell cert %.3f), terminal direction %+.2f deg"
+        % (M_l, np.degrees(th_l), n_rays, CF["cert"], np.degrees(th_e)))
+    check("H-0 the corner fan through the kernel's field certifies on every"
+          " cell (%.3f)" % CF["cert"], CF["cert"] <= 1.0)
+
+    # ---- the start line on the cut ----------------------------------
+    crs = [c_ for c_ in CF["cross"] if c_ is not None]
+    y_lead = float(crs[0][1])
+    y_edge = float(yE_) + (x_cut - float(xE)) * np.tan(th_e)
+    nA = max(5, int(round(N * (y_lead - yw0) / (y_edge - yw0))))
+    yA = np.linspace(yw0, y_lead, nA, endpoint=False)
+    uA, vA = kernel_uv(np.full(nA, x_cut), yA)
+    vA[0] = sw0 * uA[0]                              # the wall row on the wall
+    yB = np.array([c_[1] for c_ in crs])
+    uB = np.array([c_[2] for c_ in crs])
+    vB = np.array([c_[3] for c_ in crs])
+    # the uniform region between the fan's terminal ray and the jet
+    # boundary (the streamline from the lip at theta_E): HMPH_NEDGE rows
+    n_edge = int(os.environ.get("HMPH_NEDGE", 2))
+    yC = np.linspace(yB[-1], y_edge, n_edge + 1)[1:]
+    uC, vC = (np.full(n_edge, q_E * np.cos(th_e)),
+              np.full(n_edge, q_E * np.sin(th_e)))
+    ys = np.concatenate([yA, yB, yC])
+    us, vs = np.concatenate([uA, uB, uC]), np.concatenate([vA, vB, vC])
+    assert np.all(np.diff(ys) > 0.0), "rows not ordered"
+    start = (float(x_cut), ys, us, vs)
+    X0r, Y0r, U0r, V0r = FM.to_record(np.full(len(ys), x_cut), ys, us, vs,
+                                      thf, Xm, Ym)
+    md_in, F_in = PM.col_fluxes(np.stack([X0r, Y0r, U0r, V0r], 1), ta, PA, 1.0)
+    md_in = abs(float(md_in))
+    MA = np.asarray(A1.state_q(jnp.asarray(np.hypot(uA, vA)), ta)[5])
+    shares = []
+    for lo_, hi_ in ((0, nA + 1), (nA, nA + len(yB)), (nA + len(yB) - 1, len(ys))):
+        Xs, Ys, Us, Vs = FM.to_record(np.full(hi_ - lo_, x_cut), ys[lo_:hi_],
+                                      us[lo_:hi_], vs[lo_:hi_], thf, Xm, Ym)
+        m_, _ = PM.col_fluxes(np.stack([Xs, Ys, Us, Vs], 1), ta, PA, 1.0)
+        shares.append(abs(float(m_)) / md_in)
+    say("   mass on the cut by region: kernel rows %.3f, fan rows %.3f, uniform"
+        " wedge (%d rows) %.3f of the whole" % (shares[0], shares[1], n_edge,
+                                                shares[2]))
+    sl, _ = FM.spacelike(np.full(len(ys), x_cut), ys, us, vs, ta)
+    say("   start line: %d kernel rows (M %.3f..%.3f, theta' %+.2f..%+.2f"
+        " deg), %d fan rows, %d edge rows; space-like margin min %+.2f deg;"
+        " mass through the cut %.2f lbm/s (their 148.08)"
+        % (nA, MA.min(), MA.max(), np.degrees(np.arctan2(vA, uA)).min(),
+           np.degrees(np.arctan2(vA, uA)).max(), len(yB), n_edge,
+           np.degrees(sl.min()), md_in / S / S / LBM))
+    check("H-1 the start line is space-like on every row (min margin %+.2f"
+          " deg)" % np.degrees(sl.min()), sl.min() > 0.0)
+
+    # ---- the stations along THEIR wall, from the cut to D ------------
+    ds0, grow = FM.CASES["station_clustering"][0] * hh, FM.CASES["station_clustering"][1]
+    ds_max = (xw[-1] - x_cut) / K
+    xs, dsn = [x_cut], ds0
+    while xs[-1] + dsn < xw[-1]:
+        xs.append(xs[-1] + dsn)
+        dsn = min(ds_max, dsn * grow)
+    xq = np.array(xs[1:] + [float(xw[-1])])
+    stations = (xq, np.interp(xq, xw, yw), np.interp(xq, xw, sw))
+
+    # ---- the march, in the throat frame -----------------------------
+    t0 = time.time()
+    # the census floor is THIS march's station spacing (the stations
+    # cluster from 0.05 h at the cut up to a uniform spacing: the median
+    # is the uniform one), not the driver's module constants
+    ell2 = float(np.median(np.diff(xq))) ** 2
+    mg = PMG.margin_dict(rho=1.0, mu0=0.0, m_ref=1.0, orient=1.0,
+                         f_edge=0.0, ell2=ell2)
+    out, sch = PM.plug_march(stations, start, float(q_E), w["tab"], 1.0,
+                             cells=FM.make_cells_rot(1.0, thf, Ym), margin=mg)
+    cert = float(out["cert_worst"])
+    say("   march: %d stations, cert %.3e (%d cells) at %s, %.1f s"
+        % (len(xq), cert, int(out["cert_n"]), out.get("cert_where"),
+           time.time() - t0))
+    check("H-2 the march from their throat is Newton-certified (%.3e)" % cert,
+          cert <= 1.0)
+
+    # mass by column, in the record frame
+    cols = {}
+    for (j, i), pt in zip(out["mesh_keys"], out["mesh_pts"]):
+        cols.setdefault(i, []).append((j, np.asarray(pt)))
+    rows = []
+    for i in sorted(cols):
+        col = np.array([pt for j, pt in sorted(cols[i])])
+        Xc, Yc, Uc, Vc = FM.to_record(col[:, 0], col[:, 1], col[:, 2], col[:, 3],
+                                      thf, Xm, Ym)
+        md, _ = PM.col_fluxes(np.stack([Xc, Yc, Uc, Vc], 1), ta, PA, 1.0)
+        rows.append((i, abs(float(md)) / md_in - 1.0, len(col)))
+    # a geometric ladder of columns (2^k - 1), the middle and the last
+    picks = sorted(set([2 ** k - 1 for k in range(1, 8)]
+                       + [len(rows) // 2, len(rows) - 1]))
+    say("   mass vs the cut by column: " + ", ".join(
+        "%d: %+.4f" % (rows[i][0], rows[i][1]) for i in picks if i < len(rows)))
+    check("H-3 the mass is conserved from the cut to the last column (|dm/m|"
+          " %.1e <= %.0e, the march's class)" % (abs(rows[-1][1]), FM.CT.MASS_TOL),
+          abs(rows[-1][1]) <= FM.CT.MASS_TOL)
+
+    # the class: the fold census of stage class on this march
+    ms, dep, wh, fl = PMG.np_margin(out, sch, len(ys), 1.0, 0.0, ell2,
+                                    with_depth=True, with_floor=True)
+    orient = float(np.sign(np.median(ms)))
+    ms, fl = np.asarray(ms) * orient, np.asarray(fl, bool)
+    neg = (~fl) & (ms <= 0.0)
+    say("   class: %d resolved cells, %d folded (%.2f %%)"
+        % (int((~fl).sum()), int(neg.sum()), 100.0 * neg.sum() / max(1, (~fl).sum())))
+    if neg.any():
+        cols_f = np.array([i for (i, j) in wh])[neg]
+        dep = np.asarray(dep)
+        k0 = int(cols_f.min()) - PMG.JMIN
+        say("   folded cells in columns %d..%d (of %d), depth from the top"
+            " %.2f..%.2f; the first at station %d = x' %.3f in from the cut"
+            % (cols_f.min(), cols_f.max(), len(rows), dep[neg].min(),
+               dep[neg].max(), k0, (xq[min(k0, len(xq) - 1)] - x_cut) / S / IN))
+    check("H-4 the march is IN CLASS by the incumbent's standard: no folded"
+          " resolved cell (%d)" % int(neg.sum()), int(neg.sum()) == 0)
+
+    # ---- the thrust: F_in + the wall push + the base ------------------
+    wall = np.asarray(out["wall"])
+    Xw_, Yw_, Uw_, Vw_ = FM.to_record(wall[:, 0], wall[:, 1], wall[:, 2],
+                                      wall[:, 3], thf, Xm, Ym)
+    q = np.hypot(Uw_, Vw_)
+    stt = [np.asarray(v) for v in A1.state_q(jnp.asarray(q), ta)]
+    pw, gw, Mw = stt[1], stt[4], stt[5]
+    dy = Yw_[1:] - Yw_[:-1]
+    wgt = 2.0 * np.pi * 0.5 * (Yw_[1:] + Yw_[:-1])
+    push = float(np.sum((0.5 * (pw[1:] + pw[:-1]) - PA) * wgt * (-dy)))
+    p_b = float(BP.p_base(pw[-1], Mw[-1], gw[-1], PA, os.environ["A1_BASE_MODEL"]))
+    base = float(BP.base_term(p_b, Yw_[-1], PA))
+    J = float(F_in) + push + base
+    # the readings: J/mdot, C_F on the surface of A -> E, against theirs
+    mdot_lbm = md_in / S / S / LBM
+    J_lbf = J / S / S / LBF
+    area_AE = 2.0 * np.pi * 0.5 * (float(y[0]) + R_OPT / IN) * h      # in^2
+    mstar = (area_AE * IN ** 2 * P0 * np.sqrt(gam / (RG * T0))
+             * (2.0 / (gam + 1.0)) ** (0.5 * (gam + 1.0) / (gam - 1.0))) / LBM
+    Jm_ours, Jm_them = J_lbf / mdot_lbm, F_OPT / LBF / (MDOT / LBM)
+    CF_ours = J_lbf / (P0 / PSI * area_AE)
+    CF_them = F_OPT / LBF / (P0 / PSI * area_AE)
+    say("   thrust: F_in %.0f + push %.0f + base %.0f = J %.1f lbf on %.2f lbm/s"
+        " (their 32,881 on 148.08); base radius y_D %.3f in (their 0.954)"
+        % (float(F_in) / S / S / LBF, push / S / S / LBF, base / S / S / LBF,
+           J_lbf, mdot_lbm, Yw_[-1] / S / IN))
+    say("   J/mdot: ours %.2f, theirs %.2f lbf s/lbm (%+.2e); C_F on A -> E:"
+        " ours %.4f, theirs %.4f (%+.2e); our discharge %.4f of the choked"
+        " 1-D of A -> E (theirs %.4f)"
+        % (Jm_ours, Jm_them, Jm_ours / Jm_them - 1.0, CF_ours, CF_them,
+           CF_ours / CF_them - 1.0, mdot_lbm / mstar, MDOT / LBM / mstar))
+    lo, hi = AK.CASES["discharge_band"]
+    check("H-5 the mass their throat passes through our cut is a physical"
+          " discharge (%.4f of the choked 1-D, band %.2f..%.2f)"
+          % (mdot_lbm / mstar, lo, hi), lo <= mdot_lbm / mstar <= hi)
+    check("H-6 the SPECIFIC thrust reproduces theirs within the thrust class"
+          " (%+.2e vs %.0e; their shear 0.2 percent not in ours)"
+          % (Jm_ours / Jm_them - 1.0, THRUST_TOL),
+          abs(Jm_ours / Jm_them - 1.0) <= THRUST_TOL)
+
+    rec = dict(z_cut=z_cut, x_cut_in=x_cut / S / IN, K=len(xq), N=len(ys),
+               rc_plug_in=rc_plug, rc_cowl_in=rc_cowl, R_c=P["R_c"], Kasym=P["K"],
+               eps=eps, M_lip=M_l, th_E_deg=float(np.degrees(th_e)),
+               fan_cert=CF["cert"], cert=cert, where=str(out.get("cert_where")),
+               mass_last=rows[-1][1], folded=int(neg.sum()),
+               resolved=int((~fl).sum()), J_lbf=J_lbf, mdot_lbm=mdot_lbm,
+               F_in_lbf=float(F_in) / S / S / LBF, push_lbf=push / S / S / LBF,
+               base_lbf=base / S / S / LBF, y_D_in=float(Yw_[-1] / S / IN),
+               J_over_m=Jm_ours, J_over_m_them=Jm_them, CF=CF_ours, CF_them=CF_them,
+               discharge=mdot_lbm / mstar,
+               wall_in=np.stack([Xw_ / S / IN, Yw_ / S / IN], 1).tolist(),
+               p_w_over_p0=(pw / P0).tolist(), M_w=Mw.tolist())
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(
+        ART, "kernel_%s_z%.2f_N%d_sl%s_e%d_r%d_%s_rc%.2f.json"
+        % (CASE, z_cut, N, os.environ.get("HMPH_SLOPEA", "1"), n_edge,
+           n_rays, wall_mode, rc_scale)), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
     sys.exit(0 if {"rao": rao, "opt": opt, "grad": grad,
-                   "class": klass, "throat": throat}.get(STAGE, rao)() else 1)
+                   "class": klass, "throat": throat,
+                   "kernel": kernel}.get(STAGE, rao)() else 1)

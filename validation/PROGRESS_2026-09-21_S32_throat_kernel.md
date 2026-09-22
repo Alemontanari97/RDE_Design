@@ -1109,12 +1109,94 @@ Artefacts: `_humphreys_twin/throat_opt.json`; constants in
 `_downstream_radius_in`, `_table_precision_in`, `_lip_precision_in`,
 `_length_TD_precision_in`, each cls SPEC with the page).
 
+## 18. The march from their throat, and the series' verdict (2026-09-22 night; owner: "C_F against C_F, go", then "can you solve the transonic up to where the SQP march starts?")
+
+**The pipeline on their geometry** (`a1_humphreys_twin.py` STAGE kernel):
+the annular kernel [X-ANKR] posed on their throat (plug rc 0.5 in = the
+arc, cowl rc 1.195 in from their mean 0.705 in in the harmonic sense,
+R_c 0.703, the plug wall's -2.25 deg at A carried as the kernel's inner
+slope), its field handed to the lip corner fan as a Goursat problem
+[X-FRMR corner_fan] from E on the throat line, the start line on a
+vertical cut of the throat frame (kernel rows to the leading ray, the
+fan's ray crossings, the uniform wedge to the jet boundary), the march
+with the rotated-frame cells along THEIR wall -- the prescribed arc A ->
+T, then Table 2 read with their printed angles -- to D. Gates H-0 (fan
+certified), H-1 (start line space-like), H-2 (march certified), H-3
+(mass conserved to the last column), H-4 (in class), H-5 (a physical
+discharge), H-6 (J / mdot within the thrust class).
+
+**What runs, and this is new.** On Chutkey's external plug this
+pipeline folded at 1.7 mm (section 12); on Humphreys' geometry it runs
+to D: the fan certifies (0.014-0.016), the start line is space-like on
+every row (+5.8..+13 deg), the march is Newton-certified (0.04-0.08 on
+17,000 cells), y_D comes out 0.954 in -- theirs, since the wall is
+theirs -- and **the mass through the cut is 139.5-141.6 lbm/s = 0.969-
+0.984 of the choked 1-D of A -> E**, a physical discharge, against their
+stated 148.08 = 1.029: the third independent route (after the 1-D bound
+and Rao's member) to the same reading of their mass.
+
+**What does not, and its attribution.** The march loses mass at its
+FIRST column and keeps losing it, and 3-5 percent of its resolved cells
+fold (census floor = this march's own station spacing; a first version
+had used the driver's constants). Eleven runs isolate the cause:
+
+| knob | first-column step | last column |
+|---|---|---|
+| z_cut 0.12 / 0.25 / 0.40 (their wall) | -7.4 / -6.0 / -3.6 % | -12.9 / -11.9 / -11.3 % |
+| z_cut 0.08 / 0.06 | -6.3 / -5.7 % | -9.8 / -8.1 % |
+| N 41 -> 81 | -6.0 -> -6.1 % | -11.9 -> -12.1 % |
+| the wall's slope at A on / off | -6.0 / -6.7 % | |
+| wedge rows 0 / 2 / 10 | -6.9 / -7.4 / -7.4 % | |
+| fan rays 25 / 49 | -7.4 / -7.4 % | |
+| **wall = the kernel's own parabola, R_c 0.703** | **-7.2 %** | (the parabola plunges beyond 0.5 d) |
+| **wall = the kernel's own parabola, R_c 4.0** | **-1.2 %** | **-1.0 % (flat, certified 0.84)** |
+
+Not the wedge, not the fan, not the rows, not the wall mismatch (the
+kernel's own parabola loses the same 7.2 percent as their arc), not the
+cut (moving it toward the throat plane shrinks the step but never below
+5.7 percent while the flow is supersonic). **The same pipeline on a
+throat where the series converges (R_c 4.0, third/second 0.16) steps
+1.2 percent -- the vertical-start wedge class of the Chutkey kernel run
+(2.4 percent) -- and then holds the mass.** The step is the three-term
+series' own residual in the equations at R_c 0.70: the march, which
+satisfies them cell by cell, rejects 7 percent of the start line's mass
+at once. The eta spread that section 17 read as the truncation band
+(0.84-1.6 percent at z 0.06-0.12) UNDERSTATES that residual by a factor
+of five: the march is the judge, not the re-summation.
+
+**J / mdot, for the record and not as a verdict**: +2.0..+3.1 percent
+above theirs across every configuration (C_F on A -> E -1.5..-6.3
+percent, the mass), read on marches that lose 8-13 percent of their
+mass; not citable.
+
+**THE ANSWER TO THE OWNER'S QUESTION.** Yes, the transonic region can
+be solved up to where the SQP march starts -- and at this throat it
+MUST be, because the series cannot: (i) Humphreys fix the geometry
+upstream of the characteristic BT, prescribe the arc A -> T and let T
+slide on it (p. 1585), so the start line is computed ONCE per (lip,
+injection angle) and frozen -- OUTSIDE the SQP loop, neither
+differentiable nor fast; (ii) the solver is a small axisymmetric Euler
+march in time to steady state on the throat region (analytic walls,
+subsonic inflow at their p_c, T_c, gamma, supersonic outflow, slip
+walls), in JAX like the rest; (iii) its oracle is our OWN series where
+the series converges -- at R_c 4 the series' sonic line, throat-plane
+Mach and W/W* are known to the 3-term band, and this section has just
+measured that the march accepts that line to 1.2 percent -- the T-5/T-6
+pattern of X-TKRN; (iv) its gates at R_c 0.703 are this stage's H-3/H-4
+(the march holds the mass and stays in class from the numerical line)
+and the discharge against their geometry. The corner fan and the
+rotated-frame march, both certified here, are its consumers unchanged.
+
+Artefacts (not committed): `_humphreys_twin/run_kernel_*.log`,
+`kernel_opt_*.json` (one per configuration, the knobs in the name).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
 - Files (S32 midday/afternoon, sections 15-16):
-  `validation/a1_humphreys_twin.py` (stages grad, class and throat,
-  `_pose()` factored out bit-identically, `read_table`, the docstring),
+  `validation/a1_humphreys_twin.py` (stages grad, class, throat and
+  kernel, `_pose()` factored out bit-identically, `read_table`, the
+  docstring),
   `validation/humphreys1971_tables.json` (`_grid_class_lbf`, cls SPEC
   = their Table 1 span), this log; registry row X-HMPH re-printed.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),
