@@ -4333,6 +4333,32 @@ DIFFERENT instrument, declared, not by the mirror).
  is family-agnostic by construction); the mirror stays an F3 entry
  duty for the STATE criterion only.]
 
+[S33 ADDENDUM 2026-09-22, plug sector, Humphreys 1971 twin [X-HMPH]
+stage angle; log validation/PROGRESS_2026-09-22_S33_angle_param.md.
+THE TAIL LEVER WITH THE BASE PRICED. The lever separation above was
+read on the S21 posing, where J carries no base term: there,
+surrendering radius at the tail stays shock-free. On Humphreys'
+posing, with the Vander Veen closure priced in J (p_b read on the wall
+state at D), the free-form walk in ORDERED wall-angle coordinates
+(increments >= 0: no turn representable) raises the wall at the tail
+instead -- +40 deg in the last knot interval -- compresses the wall
+flow to 7.6 p_a at D and books +1,487 lbf of BASE against -943 of wall
+push (+543 over the paper's contour on the same grid), with 31
+percent of the resolved cells folded, all in that interval; the free
+coordinates land on the same lever. Readings, with classes: (1) a
+monotone wall FOLDS when it turns toward the flow faster than the
+incident expansion is cancelled -- the fold mechanism is net
+compression, of which a turn in the wall angle is one instance
+[MEASURED-SUPPORTED, one posing, the census of record]; (2) a
+base closure read off the wall state at D rewards compressing that
+state, so with the base priced the length-constrained optimum is
+expected MARGIN-ACTIVE AT THE TAIL -- the margin-activity CONJECTURE
+above acquires a named lever [CONJECTURE, falsifier = the
+margin-constrained walk on this posing]; (3) a closure evaluated on a
+state outside its fitted domain (p_b 3.3 p_a against the line's
+closed-wake data 0.5-1.1 p_a) is a functional defect, not a design
+gain [OBSERVATION].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

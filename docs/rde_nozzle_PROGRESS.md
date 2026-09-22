@@ -307,6 +307,36 @@
 ## plug esterno non e' una geometria da kernel in serie; il twin della
 ## catena kernel+angolo+frame e' un plug interno-esterno (Humphreys
 ## Fig. 1, servono i raggi di gola). Strumenti completi e verificati.
+## S32 (2026-09-22, stesso log §15-§20; handoff di record
+## RDE/handoff/NOZZLE_HANDOFF_2026-09-22.md): prezzi al LORO ottimo con
+## la banda su una MOSSA (forma stazionaria, ingresso vivo); le righe di
+## spinta del twin su marce PIEGATE (loro Tab. 2 28.8 %); la loro gola
+## (R_c 0.703, massa 1.029 dello strozzato); la marcia dalla loro gola
+## rifiuta la serie al 1o colonna (pavimento a R_c 0.70 APERTO);
+## direttiva [DIR-REOB] (certificare solo cio' che si RI-OTTIENE); K-10
+## ondulazione. S33 (2026-09-22 sera, log
+## validation/PROGRESS_2026-09-22_S33_angle_param.md): coordinate in
+## ANGOLO nel driver (PSPL_PARAM=angle|angle_free, incrementi d'angolo
+## ordinati da bounds, pendenza lineare integrata esattamente; default
+## bit-identico, misurato sullo stage class) + stage angle [X-HMPH]
+## 10/11: (i) CORREZIONE a S32 §20 -- dal LORO T anche la base in y
+## tiene il loro contorno senza giri (0.027 in), dal NOSTRO taglio
+## nessuna parete senza giri lo raggiunge (angolo di flusso -26.65 contro
+## il loro -43.47 deg, 0.73 in al 1o nodo): il difetto primario e'
+## l'INGRESSO; (ii) nella classe di permanenza la base in y ondula in
+## 11/12 estrazioni, quella ordinata mai; (iii) le camminate dal
+## ventaglio atterrano a 33,308 (ordinata, 0 giri) e 33,353 lbf (libera)
+## SU MARCE PIEGATE (31 % / 37 %): +40 deg di risalita nell'ultimo
+## intervallo comprimono la parete a 7.6 p_a e Veen restituisce p_b 3.3
+## p_a = +1,487 lbf di base contro -943 di spinta; il falsificatore di
+## K-10 e' scattato (meccanismo = compressione netta); fuori classe,
+## nessun guadagno. ORA: HEAD = i due commit S33 (40 avanti, NON pushati).
+## NEXT (atomico): il vincolo di classe sulla posa di Humphreys (derive
+## delle costanti del margine D0-D4 in coordinate d'angolo, poi la
+## camminata dal ventaglio con margin=); poi il dominio della chiusura
+## di base (decisione owner 5). BLOCCATO: push dei commit (parola
+## dell'owner); i tre documenti mancanti (Moore-Hall, tesi Ref. 8,
+## ADA084787).
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
 25 paper in literature_review/ letti integralmente e confrontati con

@@ -127,6 +127,18 @@ MAXSEG = int(os.environ.get("PSPL_ITERS", 10))
 # RE-MARCHED value, before a rejected segment is thrown away. 0 = the
 # record's reject-and-shrink driver, bit-identical (see run_trsqp).
 BACKTRACK = int(os.environ.get("PSPL_BACKTRACK", 0))
+# PSPL_PARAM (S33, [X-HMPH] K-10: WAVINESS folds the net, and a spline
+# in y pinned at the cut can only follow a steep contour by wiggling in
+# angle): the COORDINATES of the design vector. "y" (unset, every row of
+# record) = the spline radii at the frozen knots, bit-identical. "angle"
+# = the wall ANGLE as the independent variable (Humphreys 1971 p. 1585),
+# see angle_wall: W = the increments of the wall angle knot to knot, the
+# first from the flow angle at the cut, the slope linear between knots
+# and integrated exactly to the contour; with W >= 0 (design_bounds) the
+# angle is ORDERED, so a wall that turns is not representable.
+# "angle_free" = the same coordinates without the bounds: the A/B that
+# tells whether the order carries the result.
+PARAM = os.environ.get("PSPL_PARAM", "y")
 HERE = os.path.dirname(os.path.abspath(__file__))
 CKPT = os.path.join(HERE, "_plug_spline")
 
@@ -191,17 +203,84 @@ def build_case(w, thE=THE_OPT, N=None):
     # frozen knot abscissae (uniform class, last node AT x = L)
     xi = np.arange(1, M_NODES + 1) / M_NODES
     xk = X0 + (L - X0) * xi
+    W0 = np.interp(xk, sx, sy)
+    if PARAM != "y":
+        W0 = angle_W0(sx, sy, xk, slope0)
     return dict(fan=fan, y0=y0, yw0=yw0, slope0=slope0,
                 start=(X0, yline, us, vs), stl=stl,
                 md_in=float(abs(md_in)), F_in=float(F_in),
                 sx=sx, sy=sy, xk=xk,
                 qpa=q_at_pa(PA, w["ta"], w["as_"]),
-                W0=np.interp(xk, sx, sy))
+                W0=W0)
+
+
+# ======================================================================
+# the wall ANGLE as the independent variable (PSPL_PARAM=angle, S33)
+# ======================================================================
+def angle_W0(sx, sy, xk, slope0):
+    """The streamline (sx, sy) in angle coordinates: its own direction
+    at the knots, as increments from the flow angle at the cut. What the
+    basis loses against the streamline is measured, not assumed (the
+    stage angle of the Humphreys twin; C-1's ladder)."""
+    th = np.arctan(np.interp(xk, sx, np.gradient(sy, sx)))
+    return np.diff(np.concatenate([[np.arctan(slope0)], th]))
+
+
+def angle_wall(W, c, xq):
+    """Design vector (angle coordinates) -> (y, slope) at abscissae xq.
+
+    theta_k = theta_0 + W_1 + ... + W_k at the knots, theta_0 = the
+    flow angle at the cut (the record's clamped slope: a wall is a
+    streamline); the SLOPE tan(theta) is linear between knots, so the
+    angle is monotone on every interval (arctan of a linear function)
+    and the contour is its EXACT integral, piecewise quadratic, C^1
+    (the curvature jumps at the knots; the characteristics see the
+    direction, which is continuous). An ordered vector (W >= 0) gives a
+    wall angle that never turns: the representation cannot wiggle.
+    Traced in W; xq is concrete (the stations or the knots). The anchor
+    is the cut (X0, y_w0, slope0); c["x0"] moves it (a contour read from
+    another start point, e.g. a paper's own T)."""
+    xs = np.concatenate([[c.get("x0", X0)], np.asarray(c["xk"], float)])
+    h = np.diff(xs)
+    th = jnp.arctan(c["slope0"]) + jnp.cumsum(jnp.asarray(W))
+    s = jnp.concatenate([jnp.array([c["slope0"]]), jnp.tan(th)])
+    yk = c["yw0"] + jnp.concatenate(
+        [jnp.zeros(1), jnp.cumsum(0.5 * h * (s[1:] + s[:-1]))])
+    xq = np.asarray(xq, float)
+    i = np.clip(np.searchsorted(xs, xq, side="right") - 1, 0, len(h) - 1)
+    t = xq - xs[i]
+    b = (s[i + 1] - s[i]) / h[i]
+    return yk[i] + s[i] * t + 0.5 * b * t * t, s[i] + b * t
+
+
+def design_bounds(c):
+    """The bounds the design vector carries by construction: the order
+    of the wall angle (W >= 0) under PSPL_PARAM=angle, None otherwise
+    (the record's walks are bound-free)."""
+    if PARAM != "angle":
+        return None
+    from scipy.optimize import Bounds
+    n = len(c["xk"])
+    return Bounds(np.zeros(n), np.full(n, np.inf), keep_feasible=True)
+
+
+def knot_radii(W, c):
+    """The wall radius at the knots: W itself in y coordinates (the
+    spline interpolates them), the integrated contour in angle ones --
+    the space in which designs of either coordinates are compared."""
+    if PARAM == "y":
+        return np.asarray(W, float)
+    return np.asarray(angle_wall(W, c, np.asarray(c["xk"], float))[0])
 
 
 def wall_stations(W, c, K=None):
     """Design vector -> (x, y, slope) at the march's wall stations.
     Traced: W may be a JAX array."""
+    if PARAM != "y":
+        # the stations of the y path, as concrete abscissae
+        xq = np.linspace(X0, L, (K_ST if K is None else K) + 1)[1:]
+        yq, sq = angle_wall(W, c, xq)
+        return jnp.asarray(xq), yq, sq
     xs = jnp.concatenate([jnp.array([X0]), jnp.asarray(c["xk"])])
     ys = jnp.concatenate([jnp.array([c["yw0"]]), jnp.asarray(W)])
     Mc = spline_coeffs(xs, ys, c["slope0"])

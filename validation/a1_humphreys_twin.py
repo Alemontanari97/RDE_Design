@@ -143,6 +143,15 @@ def say(msg):
     print(msg, flush=True)
 
 
+def n_turns(ang):
+    """Turns of a sampled wall angle: the sign changes of its increments,
+    exact zeros (a straight piece) skipped -- stage class K-10's count on
+    every design without a straight piece."""
+    s = np.sign(np.diff(np.asarray(ang, float)))
+    s = s[s != 0.0]
+    return int((np.diff(s) != 0.0).sum())
+
+
 def build_world(R_lip):
     """gconst tables at their (gamma, R, T_c, p_c); lengths in lip radii."""
     tab = A1.prep_tab(A1.build_tab_gconst(g=GAMMA, Rg=RG, ts=T0, ps=P0))
@@ -283,7 +292,7 @@ START = os.environ.get("HMPH_START", "fan")
 TABLES = json.load(open(os.path.join(HERE, "humphreys1971_tables.json")))
 
 
-def read_table(xq, tab):
+def read_table(xq, tab, mode=None):
     """THEIR contour at our abscissae, read from their OWN table.
 
     Their Tables 2 and 3 are SPARSE downstream -- twenty rows, nine of
@@ -296,12 +305,22 @@ def read_table(xq, tab):
     machine. HMPH_TABLE=hermite reads it as the cubic Hermite through
     their (x, y) with THEIR printed angle as the slope -- their own data,
     read as they drew it. Default `chord` keeps every row of record
-    bit-identical."""
+    bit-identical; `mode` overrides the environment (stage angle reads
+    their contour as drawn whatever the leg's setting)."""
     x, y = tab[:, 0], tab[:, 1]
-    if os.environ.get("HMPH_TABLE", "chord") != "hermite":
+    if (mode or os.environ.get("HMPH_TABLE", "chord")) != "hermite":
         return np.interp(xq, x, y)
+    return _hermite(xq, tab)[0]
+
+
+def _hermite(xq, tab):
+    """The cubic Hermite through their (x, y) rows with their printed
+    angle as the slope: (y, dy/dx) at xq -- read_table's `hermite`, and
+    the contour's DIRECTION as drawn (stage angle)."""
+    x, y = tab[:, 0], tab[:, 1]
     m = np.tan(np.radians(tab[:, 2]))
     out = np.empty_like(np.asarray(xq, float))
+    der = np.empty_like(out)
     for n, xx in enumerate(np.asarray(xq, float)):
         i = min(max(int(np.searchsorted(x, xx)) - 1, 0), len(x) - 2)
         h = x[i + 1] - x[i]
@@ -310,7 +329,10 @@ def read_table(xq, tab):
                   + (t ** 3 - 2.0 * t ** 2 + t) * h * m[i]
                   + (-2.0 * t ** 3 + 3.0 * t ** 2) * y[i + 1]
                   + (t ** 3 - t ** 2) * h * m[i + 1])
-    return out
+        der[n] = ((6.0 * t ** 2 - 6.0 * t) * (y[i] - y[i + 1]) / h
+                  + (3.0 * t ** 2 - 4.0 * t + 1.0) * m[i]
+                  + (3.0 * t ** 2 - 2.0 * t) * m[i + 1])
+    return out, der
 
 
 def _pose(stage, title):
@@ -383,6 +405,15 @@ def opt():
     st = _pose("opt", "the TR-SQP at their posing")
     w, S, L, F_ref = st["w"], st["S"], st["L"], st["F_ref"]
     P, c, ta, W_ref, thE = st["P"], st["c"], st["ta"], st["W_ref"], st["thE"]
+    if P.PARAM != "y" and (START == "table"
+                           or float(os.environ.get("HMPH_PERTURB", 0.0)) > 0.0):
+        # the table start and the knot perturbation are tests in y
+        # coordinates (their table read at the knots, a displacement of
+        # the knots in inches); in angle coordinates the walk opens from
+        # the fan's streamline (S33, stage angle)
+        say("   PSPL_PARAM=%s: the start is the fan's streamline only"
+            % P.PARAM)
+        return False
     if START == "table":
         c["W0"] = W_ref.copy()
     elif os.environ.get("PSPL_FAN") == "axi":
@@ -405,7 +436,8 @@ def opt():
         ptag = "_perturb%.2f_seed%s" % (delta, os.environ.get("HMPH_SEED", 1))
     say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; start = %s;"
         " knots %s" % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3, START,
-                       np.array2string(np.asarray(c["W0"]) / S / IN, precision=3)))
+                       np.array2string(P.knot_radii(c["W0"], c) / S / IN,
+                                       precision=3)))
     out0, sched0 = P.march_record(c["W0"], w, c)
     J0 = float(P.J_replay(jnp.asarray(c["W0"]), w, c, sched0, ta))
     say("   the start (%s): cert %.3f, J %.1f kN = %.0f lbf (%+.2e vs"
@@ -418,22 +450,30 @@ def opt():
               abs(J0 / S / S / F_ref - 1) <= THRUST_TOL)
     W, hist, n_rec = P.run_trsqp(np.asarray(c["W0"], float), w, c, ta,
                                  sign=+1.0, max_segments=P.MAXSEG,
-                                 maxiter_per_seg=8, verbose=1)
+                                 maxiter_per_seg=8, verbose=1,
+                                 bounds=P.design_bounds(c))
     out1, sched1 = P.march_record(W, w, c)
     J1 = float(P.J_replay(jnp.asarray(W), w, c, sched1, ta))
+    yk1 = P.knot_radii(W, c)
     say("   TR-SQP: %d records, J %.1f kN = %.0f lbf (%+.2e vs the paper's"
         " %.0f); cert %.3f; y_D %.3f in"
         % (n_rec, J1 / S / S / 1e3, J1 / S / S / LBF, J1 / S / S / F_ref - 1,
-           F_ref / LBF, float(out1["cert_worst"]), float(W[-1]) / S / IN))
+           F_ref / LBF, float(out1["cert_worst"]), float(yk1[-1]) / S / IN))
+    if P.PARAM != "y":
+        a1 = np.degrees(np.arctan(np.asarray(P.wall_stations(W, c)[2])))
+        say("   the landing's wall angle %+.2f..%+.2f deg, %d turn(s);"
+            " increments %s deg"
+            % (a1.min(), a1.max(), n_turns(a1),
+               np.array2string(np.degrees(np.asarray(W)), precision=3)))
     check("O-1 the walk's best design is Newton-certified (%.3f)"
           % float(out1["cert_worst"]), float(out1["cert_worst"]) <= 1.0)
     check("O-2 the thrust reproduces the paper's within 1 percent (their"
           " shear is 0.2 percent; %+.2e)" % (J1 / S / S / F_ref - 1),
           abs(J1 / S / S / F_ref - 1) <= THRUST_TOL)
     if W_ref is not None:
-        dknot = np.abs(np.asarray(W) - W_ref) / S / IN
+        dknot = np.abs(yk1 - W_ref) / S / IN
         say("   knots vs the paper's table: %s in (max %.3f); y_D %.3f vs %.3f in"
-            % (np.array2string(dknot, precision=3), dknot.max(), float(W[-1]) / S / IN,
+            % (np.array2string(dknot, precision=3), dknot.max(), float(yk1[-1]) / S / IN,
                float(W_ref[-1]) / S / IN))
         if delta > 0.0:
             check("P-1 return from the perturbation: the knots come back to the table"
@@ -455,6 +495,13 @@ def opt():
     os.makedirs(ART, exist_ok=True)
     rec["start"] = START
     rec["base_model"] = os.environ["A1_BASE_MODEL"]
+    if P.PARAM != "y":
+        # angle coordinates: the design itself and the knot radii, never
+        # a "W_in" a y-coordinate reader would march as a spline
+        rec.pop("W_in")
+        rec.update(param=P.PARAM, W_rad=np.asarray(W).tolist(),
+                   yk_in=(yk1 / S / IN).tolist())
+        ptag += "_" + P.PARAM
     tag = "%s_%s_%s%s" % (CASE, START, os.environ["A1_BASE_MODEL"], ptag)
     json.dump(rec, open(os.path.join(ART, "opt_%s.json" % tag), "w"), indent=1)
     say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
@@ -647,6 +694,49 @@ def grad():
 # ----------------------------------------------------------------------
 # stage class: is the march of each design IN CLASS (unfolded)?
 # ----------------------------------------------------------------------
+def _census(P, PMG, w, W, case, K=None):
+    """The fold census of one design, [X-PMRG]'s own field (stage class):
+    (out, sched, per-cell margin and index, resolved, folded, fraction).
+    PMG is imported by the caller AFTER _pose (the import-order trap)."""
+    e2 = PMG.station_spacing(K or P.K_ST) ** 2
+    m = PMG.margin_dict(rho=1.0, mu0=0.0, m_ref=1.0, orient=1.0,
+                        f_edge=0.0, ell2=e2)
+    out, sch = P.march_record(np.asarray(W, float), w, case, K=K,
+                              margin=m)
+    N = len(case["start"][1])
+    ms, dep, wh, fl = PMG.np_margin(out, sch, N, 1.0, 0.0, e2,
+                                    with_depth=True, with_floor=True)
+    orient = float(np.sign(np.median(ms)))
+    ms, fl = np.asarray(ms) * orient, np.asarray(fl, bool)
+    res = ~fl
+    neg = res & (ms <= 0.0)
+    frac = 100.0 * neg.sum() / max(1, res.sum())
+    return dict(out=out, sched=sch, ms=ms, res=res, neg=neg, wh=wh,
+                W=np.asarray(W, float), frac=float(frac),
+                n_res=int(res.sum()), n_neg=int(neg.sum()))
+
+
+def _j_parts(P, w, case, W, sched, ta):
+    """J_replay's three terms on the same replay -- the momentum through
+    the cut (F_in), the wall push, the base term of A1_BASE_MODEL -- with
+    the push per wall segment and the wall state at D (stage angle A-7)."""
+    xq, yq, sq = P.wall_stations(W, case)
+    out, _ = P.plug_march((xq, yq, sq), case["start"], case["qpa"],
+                          w["tab"], 1.0, sched=A1.Sched("play", sched.d))
+    wall = np.asarray(out["wall"])
+    q = np.sqrt(wall[:, 2] ** 2 + wall[:, 3] ** 2)
+    st = [np.asarray(v) for v in A1.state_q(jnp.asarray(q), ta)]
+    pw = st[1]
+    dy = wall[1:, 1] - wall[:-1, 1]
+    wgt = 2.0 * np.pi * 0.5 * (wall[1:, 1] + wall[:-1, 1])
+    seg = (0.5 * (pw[1:] + pw[:-1]) - P.PA) * wgt * (-dy)
+    pb = float(BP.p_base(st[1][-1], st[5][-1], st[4][-1], P.PA, P.BASE_MODEL))
+    return dict(F_in=float(case["F_in"]), push=float(seg.sum()),
+                base=float(BP.base_term(pb, wall[-1, 1], P.PA)), seg=seg,
+                y_D=float(wall[-1, 1]), p_D=float(pw[-1]),
+                M_D=float(st[5][-1]), p_b=pb)
+
+
 def klass():
     """ATTRIBUTE the certification failures of this twin -- and read the
     class of the designs the thrust rows rest on.
@@ -686,23 +776,7 @@ def klass():
                          f_edge=0.0, ell2=ell2)
 
     def census(W, case, K=None):
-        """(out, folded, resolved, fraction, per-cell margin and index)."""
-        e2 = PMG.station_spacing(K or P.K_ST) ** 2
-        m = PMG.margin_dict(rho=1.0, mu0=0.0, m_ref=1.0, orient=1.0,
-                            f_edge=0.0, ell2=e2)
-        out, sch = P.march_record(np.asarray(W, float), w, case, K=K,
-                                  margin=m)
-        N = len(case["start"][1])
-        ms, dep, wh, fl = PMG.np_margin(out, sch, N, 1.0, 0.0, e2,
-                                        with_depth=True, with_floor=True)
-        orient = float(np.sign(np.median(ms)))
-        ms, fl = np.asarray(ms) * orient, np.asarray(fl, bool)
-        res = ~fl
-        neg = res & (ms <= 0.0)
-        frac = 100.0 * neg.sum() / max(1, res.sum())
-        return dict(out=out, sched=sch, ms=ms, res=res, neg=neg, wh=wh,
-                    W=np.asarray(W, float), frac=float(frac),
-                    n_res=int(res.sum()), n_neg=int(neg.sum()))
+        return _census(P, PMG, w, W, case, K)
 
     # the designs of this row, in the order of the argument
     pool = [("fan streamline (incumbent)", np.asarray(c["W0"], float)),
@@ -1536,9 +1610,313 @@ def kernel():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage angle: the wall ANGLE as the independent variable (S33)
+# ----------------------------------------------------------------------
+def angle():
+    """Item 1 of the S32 queue ([X-HMPH] K-10, the owner's reading:
+    WAVINESS folds the net, and a spline in y pinned at a start that is
+    not theirs can only follow their contour by wiggling). The driver's
+    PSPL_PARAM=angle takes as design vector the INCREMENTS of the wall
+    angle at the frozen knots, the slope linear between knots and
+    integrated exactly to the contour, ordered by bounds (W >= 0):
+    Humphreys' own independent variable (p. 1585), in which a turning
+    wall is not representable. Before any walk:
+
+      A-1 the two bases on THEIR contour from THEIR start T (the end of
+          the prescribed arc, stage throat T-2), geometry only: their
+          rows read as drawn (the Hermite through x, y and the printed
+          angle) are the truth, the knot ladder m, 2m, 4m;
+      A-2 the posing's inlet against their contour: the ordered class at
+          OUR cut is bounded below by the straight wall at the cut's own
+          flow angle -- how far above their contour that bound sits;
+      A-3 the incumbent (the fan's streamline) in angle coordinates: the
+          representation ladder (the driver's C-1 criterion), its march
+          certified, in class, with no turn;
+      A-4 the reverse-AD gradient against the FD ladder in the new
+          coordinates (the driver's C-2 bands);
+      A-5 ORDER => NO TURN on the march's own stations, for random
+          ordered designs, with its rejector (one increment reversed must
+          turn) and the contrast: y designs inside the stay class;
+      A-6 the census of the angle-coordinate landings, once the legs
+          have run (HMPH_STAGE=opt PSPL_PARAM=angle | angle_free)."""
+    import jax
+    t00 = time.time()
+    st = _pose("angle", "the wall angle as the independent variable")
+    w, S, F_ref = st["w"], st["S"], st["F_ref"]
+    P, c, ta, W_ref, thE = st["P"], st["c"], st["ta"], st["W_ref"], st["thE"]
+    param = P.PARAM
+    if param == "y":
+        say("   run with PSPL_PARAM=angle (or angle_free)")
+        return False
+    import a1_plug_margin as PMG          # imports the driver: after _pose
+    rec = dict(case=CASE, param=param, K=P.K_ST, N=P.N_ROW, M=P.M_NODES)
+    deg = lambda s: np.degrees(np.arctan(np.asarray(s)))      # noqa: E731
+    M = P.M_NODES
+
+    # ---- A-1: the two bases on THEIR contour, from THEIR T -------------
+    tab2 = np.array(TABLES["table2_optimum_lip7.55_inj-34"])
+    rows = tab2[int(np.argmin(tab2[:, 2])):]       # T..D (stage throat T-2)
+    xT, yT, thT = rows[0]
+    xd = np.linspace(xT, rows[-1, 0], P.K_ST + 1)  # station-dense sampling
+    yh, sh = _hermite(xd, rows)
+    t_them = n_turns(deg(sh))
+    say("   their contour T..D as drawn (%d rows, the Hermite through x, y"
+        " and their angle): %+.2f..%+.2f deg, %d turn(s)"
+        % (len(rows), deg(sh).min(), deg(sh).max(), t_them))
+    sl_T = float(np.tan(np.radians(thT)))
+    rep = []
+    for m in (M, 2 * M, 4 * M):
+        xk = xT + (rows[-1, 0] - xT) * np.arange(1, m + 1) / m
+        cA = dict(x0=xT, yw0=yT, slope0=sl_T, xk=xk)
+        WA = np.diff(np.arctan(np.concatenate([[sl_T], _hermite(xk, rows)[1]])))
+        yA, sA = [np.asarray(v) for v in P.angle_wall(WA, cA, xd)]
+        xs = jnp.asarray(np.concatenate([[xT], xk]))
+        ys = jnp.asarray(np.concatenate([[yT], _hermite(xk, rows)[0]]))
+        Mc = P.spline_coeffs(xs, ys, sl_T)
+        yY, sY = [np.asarray(v) for v in jax.vmap(
+            lambda x: P.spline_eval(x, xs, ys, Mc))(jnp.asarray(xd))]
+        r = dict(m=m, ang_dy=float(np.abs(yA - yh).max()),
+                 ang_dth=float(np.abs(deg(sA) - deg(sh)).max()),
+                 ang_turns=n_turns(deg(sA)),
+                 y_dy=float(np.abs(yY - yh).max()),
+                 y_dth=float(np.abs(deg(sY) - deg(sh)).max()),
+                 y_turns=n_turns(deg(sY)))
+        rep.append(r)
+        say("   m %2d | ANGLE basis: max dy %.4f in, max dtheta %.3f deg,"
+            " %d turn(s) | Y basis: max dy %.4f in, max dtheta %.3f deg,"
+            " %d turn(s)" % (m, r["ang_dy"], r["ang_dth"], r["ang_turns"],
+                             r["y_dy"], r["y_dth"], r["y_turns"]))
+    rec["their_T"] = dict(turns_theirs=t_them, ladder=rep)
+    check("A-1a their contour, read as drawn from T, is monotone in angle"
+          " (%d turns) -- the premise of an ordered representation" % t_them,
+          t_them == 0)
+    check("A-1b the ORDERED ANGLE basis holds it from their own T with no"
+          " turn at any rung and a representation error that falls across"
+          " the ladder (%.4f -> %.4f in, the driver's C-1 factor 4)"
+          % (rep[0]["ang_dy"], rep[-1]["ang_dy"]),
+          all(r["ang_turns"] == 0 for r in rep)
+          and rep[0]["ang_dy"] >= 4.0 * rep[-1]["ang_dy"])
+    check("A-1c the Y basis from THEIR T at the record's m %d holds it"
+          " without a turn too (%d) -- if so the waviness of K-8 is the"
+          " pinned start's (the posing), not the basis's"
+          % (M, rep[0]["y_turns"]), rep[0]["y_turns"] == 0)
+
+    # ---- A-2: the posing's inlet against their contour -----------------
+    # every ordered design leaves the cut at the flow angle and can only
+    # turn toward the flow: the straight wall at theta_0 is the LOWEST
+    # wall of the class, so where it sits above their contour no ordered
+    # design can reach it
+    xk_in = np.asarray(c["xk"]) / S / IN
+    y_cone = (c["yw0"] + c["slope0"] * (np.asarray(c["xk"]) - P.X0)) / S / IN
+    y_them = _hermite(xk_in, tab2)[0]
+    gap = y_cone - y_them
+    kcl = TABLES["_knot_class_in"]
+    th_cut = float(deg(_hermite(np.array([P.X0 / S / IN]), tab2)[1])[0])
+    say("   the inlet: at the cut (x %.3f in) the flow angle is %+.2f deg,"
+        " their wall's %+.2f; the lowest ordered wall sits %s in above"
+        " their contour at the knots"
+        % (P.X0 / S / IN, float(deg(c["slope0"])), th_cut,
+           np.array2string(gap, precision=3)))
+    rec["inlet"] = dict(theta_cut_ours_deg=float(deg(c["slope0"])),
+                        theta_cut_theirs_deg=th_cut, gap_in=gap.tolist())
+    check("A-2 their contour is OUTSIDE the ordered class of this posing:"
+          " the class's lowest wall passes %.3f in above it at the first"
+          " knot, beyond the stay class %.2f in -- reaching it takes a"
+          " TURN (the steepening their prescribed arc does upstream of our"
+          " cut), so RE-1 on Table 2 needs their inlet, not a basis"
+          % (gap[0], kcl), gap[0] > kcl)
+
+    # ---- A-3: the incumbent in angle coordinates ------------------------
+    ladder = (M, 2 * M, 4 * M, 8 * M)
+    dev = {}
+    for m in ladder:
+        xk = P.X0 + (P.L - P.X0) * np.arange(1, m + 1) / m
+        cm = dict(c, xk=xk)
+        Wm = P.angle_W0(c["sx"], c["sy"], xk, c["slope0"])
+        xq, yq, _ = P.wall_stations(Wm, cm)
+        dev[m] = float(np.abs(np.asarray(yq)
+                              - np.interp(np.asarray(xq), c["sx"],
+                                          c["sy"])).max())
+        say("   incumbent, m %2d: max |angle wall - streamline| %.4f in"
+            % (m, dev[m] / S / IN))
+    W0 = np.asarray(c["W0"], float)
+    inc = _census(P, PMG, w, W0, c)
+    J_inc = float(P.J_replay(jnp.asarray(W0), w, c, inc["sched"], ta))
+    a_inc = deg(P.wall_stations(W0, c)[2])
+    say("   incumbent (m %d): J %.1f lbf, cert %.4f, resolved %d, FOLDED %d,"
+        " %d turn(s), angle %+.2f..%+.2f deg"
+        % (M, J_inc / S / S / LBF, float(inc["out"]["cert_worst"]),
+           inc["n_res"], inc["n_neg"], n_turns(a_inc), a_inc.min(),
+           a_inc.max()))
+    rec["incumbent"] = dict(dev_in={str(m): dev[m] / S / IN for m in ladder},
+                            J_lbf=J_inc / S / S / LBF,
+                            cert=float(inc["out"]["cert_worst"]),
+                            resolved=inc["n_res"], folded=inc["n_neg"],
+                            turns=n_turns(a_inc))
+    check("A-3 the angle basis is dense on the incumbent (%.4f -> %.4f in"
+          " across m %d..%d, factor >= 4) and the incumbent in angle"
+          " coordinates marches certified (%.3f), in class (%d folded)"
+          " and without a turn"
+          % (dev[M] / S / IN, dev[ladder[-1]] / S / IN, M, ladder[-1],
+             float(inc["out"]["cert_worst"]), inc["n_neg"]),
+          dev[M] >= 4.0 * dev[ladder[-1]]
+          and float(inc["out"]["cert_worst"]) <= 1.0
+          and inc["n_neg"] == 0 and n_turns(a_inc) == 0)
+
+    # ---- A-4: AD against the FD ladder, in angle coordinates -----------
+    J0, g0 = P.J_and_grad(W0, w, c, ta, inc["sched"])
+    fj = lambda z: P.J_replay(z, w, c, inc["sched"], ta)      # noqa: E731
+    W0j = jnp.asarray(W0)
+    ok4, rows4 = True, []
+    for k in (0, len(g0) // 2, len(g0) - 1):
+        v = jnp.zeros(len(g0)).at[k].set(1.0)
+        scale = max(1.0, abs(float(W0[k])))
+        fd, spread = P.fd_ladder(fj, W0j, v, scale)
+        band = (A1.K_RICH * spread + A1.C_FLOOR * A1.EPS * abs(J0)
+                / (P.FD_LADDER[-1] * scale))
+        ok4 = ok4 and abs(fd - g0[k]) <= band
+        rows4.append(dict(k=k, ad=float(g0[k]), fd=fd, band=band))
+        say("   dJ/dW_%d: AD %+.6e  FD %+.6e  |d| %.3e  band %.3e"
+            % (k, g0[k], fd, abs(fd - g0[k]), band))
+    v = jnp.asarray(np.ones(len(g0)) / np.sqrt(len(g0)))
+    fd_v, spread_v = P.fd_ladder(fj, W0j, v, 1.0)
+    band_v = (A1.K_RICH * spread_v
+              + A1.C_FLOOR * A1.EPS * abs(J0) / P.FD_LADDER[-1])
+    dd = abs(float(np.dot(g0, np.asarray(v))) - fd_v)
+    say("   <grad, v> %+.8e  FD_v %+.8e  |d| %.3e  band %.3e"
+        % (float(np.dot(g0, np.asarray(v))), fd_v, dd, band_v))
+    rec["adjoint"] = dict(components=rows4, directional=dd, band=band_v)
+    check("A-4 the reverse-AD gradient in angle coordinates matches the"
+          " central-FD ladder component-wise and in the directional"
+          " identity, inside the ladder's own bands", ok4 and dd <= band_v)
+
+    # ---- A-5: ORDER => NO TURN, the rejector, the y contrast -----------
+    rng = np.random.default_rng(int(os.environ.get("HMPH_SEED", 1)))
+    n_draw = 2 * M
+    t_ord = [n_turns(deg(P.wall_stations(
+        W0 * rng.uniform(0.0, 2.0, len(W0)), c)[2])) for _ in range(n_draw)]
+    Wx = W0.copy()
+    Wx[len(W0) // 2] = -W0[len(W0) // 2]
+    t_rej = n_turns(deg(P.wall_stations(Wx, c)[2]))
+    try:
+        P.PARAM = "y"
+        cy = P.build_case(w, thE=thE)
+        kc = kcl * IN * S
+        t_y = [n_turns(deg(P.wall_stations(
+            np.asarray(cy["W0"]) + rng.uniform(-kc, kc, len(W0)), cy)[2]))
+            for _ in range(n_draw)]
+    finally:
+        P.PARAM = param
+    say("   %d random ORDERED designs: turns %s; one increment reversed:"
+        " %d turn(s); %d y designs inside the stay class (+-%.2f in):"
+        " turns %s" % (n_draw, t_ord, t_rej, n_draw, kcl, t_y))
+    rec["order"] = dict(ordered=t_ord, reversed=t_rej, y_in_class=t_y)
+    check("A-5 ORDER => NO TURN on the march's stations (%d/%d ordered"
+          " draws turn-free) and the counter sees a reversal (%d turns);"
+          " the y basis turns inside the class the walks call 'staying'"
+          " in %d of %d draws" % (sum(t == 0 for t in t_ord), n_draw, t_rej,
+                                  sum(t > 0 for t in t_y), n_draw),
+          all(t == 0 for t in t_ord) and t_rej > 0
+          and any(t > 0 for t in t_y))
+
+    # ---- A-6: the census of the angle-coordinate landings --------------
+    # ---- A-7: where their thrust comes from ---------------------------
+    # J = F_in (the momentum through the cut, fixed by the imposed mass)
+    # + the wall push + the base term, each read on the design's own
+    # replay; the folds located by column as in stage class K-6. Their
+    # Table 2 (y coordinates, the same grid) is the reference.
+    base = os.environ["A1_BASE_MODEL"]
+    land = {}
+    x_last = float(np.asarray(c["xk"])[-2]) / S / IN    # the last interval
+
+    def anatomy(nm, Wd, case):
+        r = _census(P, PMG, w, Wd, case)
+        J = float(P.J_replay(jnp.asarray(Wd), w, case, r["sched"], ta))
+        pt = _j_parts(P, w, case, Wd, r["sched"], ta)
+        sx = np.asarray(P.wall_stations(Wd, case)[0]) / S / IN
+        al = deg(P.wall_stations(Wd, case)[2])
+        cols = np.array([i for (i, j) in r["wh"]]) - PMG.JMIN
+        fc = cols[r["neg"]]
+        kmin = int(fc.min()) if fc.size else None
+        d = dict(J_lbf=J / S / S / LBF, cert=float(r["out"]["cert_worst"]),
+                 resolved=r["n_res"], folded=r["n_neg"], folded_pct=r["frac"],
+                 turns=n_turns(al), angle_deg=[float(al.min()), float(al.max())],
+                 F_in_lbf=pt["F_in"] / S / S / LBF,
+                 push_lbf=pt["push"] / S / S / LBF,
+                 base_lbf=pt["base"] / S / S / LBF,
+                 sum_err=abs(pt["F_in"] + pt["push"] + pt["base"] - J) / abs(J),
+                 y_D_in=pt["y_D"] / S / IN, p_D_pa=pt["p_D"] / P.PA,
+                 M_D=pt["M_D"], p_b_pa=pt["p_b"] / P.PA,
+                 x_first_fold_in=(float(sx[min(kmin, len(sx) - 1)])
+                                  if kmin is not None else None),
+                 push_downstream_lbf=(float(pt["seg"][kmin:].sum()) / S / S
+                                      / LBF if kmin is not None else 0.0))
+        say("   %-18s J %8.1f = F_in %.1f + push %7.1f + base %7.1f lbf"
+            " | cert %.3f, FOLDED %4d of %4d (%.2f %%), first fold x %s in,"
+            " %d turn(s) | y_D %.3f in, p_D/p_a %.3f, M_D %.3f, p_b/p_a %.3f"
+            % (nm, d["J_lbf"], d["F_in_lbf"], d["push_lbf"], d["base_lbf"],
+               d["cert"], d["folded"], d["resolved"], d["folded_pct"],
+               "%.2f" % d["x_first_fold_in"] if kmin is not None else "-",
+               d["turns"], d["y_D_in"], d["p_D_pa"], d["M_D"], d["p_b_pa"]))
+        return d
+
+    for prm in ("angle", "angle_free"):
+        g = sorted(glob.glob(os.path.join(
+            ART, "opt_%s_fan_%s_%s.json" % (CASE, base, prm))))
+        if g:
+            Wl = np.array(json.load(open(g[0]))["W_rad"])
+            land[prm] = anatomy("landing " + prm, Wl, c)
+            land[prm]["last_increment_deg"] = float(np.degrees(Wl[-1]))
+    rec["landings"] = land
+    if "angle" in land:
+        la = land["angle"]
+        check("A-6 the ORDERED landing is in class: no folded resolved cell"
+              " (%d of %d) and no turn (%d)"
+              % (la["folded"], la["resolved"], la["turns"]),
+              la["folded"] == 0 and la["turns"] == 0)
+        try:
+            P.PARAM = "y"
+            cy = P.build_case(w, thE=thE)
+            tb = anatomy("their Table 2 (y)", np.asarray(W_ref, float), cy)
+        finally:
+            P.PARAM = param
+        rec["their_table_y"] = tb
+        # the three terms re-add to the replayed J: a sum of K_ST wall
+        # segments in another order, so the band is K_ST round-offs
+        band_s = A1.C_FLOOR * A1.EPS * P.K_ST
+        check("A-7a the anatomy is the functional: F_in + push + base"
+              " re-adds to the replayed J (worst %.1e, band %.1e)"
+              % (max(la["sum_err"], tb["sum_err"]), band_s),
+              max(la["sum_err"], tb["sum_err"]) <= band_s)
+        dJ = la["J_lbf"] - tb["J_lbf"]
+        dB = la["base_lbf"] - tb["base_lbf"]
+        check("A-7b the ordered landing's excess over their contour (%+.1f"
+              " lbf on the same grid) is the BASE term (%+.1f lbf; the wall"
+              " push %+.1f): the walk sells push for base"
+              % (dJ, dB, la["push_lbf"] - tb["push_lbf"]),
+              dJ > 0.0 and dB > dJ)
+        check("A-7c and it folds only where it buys it: the first folded"
+              " column (x %.2f in) lies in the last knot interval (x >= %.2f"
+              " in), where the wall turns %+.1f deg and the wall pressure"
+              " climbs to %.2f p_a at D -- the base closure is fed a"
+              " compressed, FOLDED state (p_b %.2f p_a)"
+              % (la["x_first_fold_in"], x_last, la["last_increment_deg"],
+                 la["p_D_pa"], la["p_b_pa"]),
+              la["x_first_fold_in"] is not None
+              and la["x_first_fold_in"] >= x_last)
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(
+        ART, "angle_%s_%s_%s.json" % (CASE, base, param)), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                          time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
     sys.exit(0 if {"rao": rao, "opt": opt, "grad": grad,
                    "class": klass, "throat": throat,
-                   "kernel": kernel}.get(STAGE, rao)() else 1)
+                   "kernel": kernel, "angle": angle}.get(STAGE, rao)()
+             else 1)
