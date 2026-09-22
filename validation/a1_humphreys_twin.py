@@ -54,6 +54,15 @@ to designs of the same family on the same grid, and the value's band
 measuring the grid. Run of record on the ladder's two rungs
 (PSPL_K/PSPL_N): see the S32 log section 15.
 
+STAGE class (S32, 2026-09-22): is the march of each design IN CLASS?
+The Newton certification is blind to a folded net (S29, [X-PMRG] /
+[X-PGRS]), and the legs of this row ran the driver WITHOUT the margin,
+so the class of every design the thrust rows rest on is an open
+question -- including the paper's own contour as WE march it. The
+census is the margin carrier's own, the incumbent (the fan's own
+streamline) is the control, and the gates also SPLIT this row's two
+certification failures, which are not the same mechanism.
+
 Lengths are posed in LIP RADII (the record's YTIP convention, the
 Chutkey twin's frame); the paper's inches are converted at the edges.
 """
@@ -580,8 +589,171 @@ def grad():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage class: is the march of each design IN CLASS (unfolded)?
+# ----------------------------------------------------------------------
+def klass():
+    """ATTRIBUTE the certification failures of this twin -- and read the
+    class of the designs the thrust rows rest on.
+
+    S29 measured, on the S22/S23 spike designs, that the Newton
+    certification is BLIND to a folded net: a march whose cells invert
+    still certifies, and the thrust it reports is accounted downstream
+    through the tangled net ([X-PMRG], the fold margin; [X-PGRS]
+    re-stamped OUT OF CLASS on that reading). The Humphreys legs of S31
+    and S32 ran the driver WITHOUT the margin -- no class constraint --
+    so the question is open for every design of this row, including the
+    paper's own contour as WE march it.
+
+    The census is the margin carrier's own (`a1_plug_margin.np_margin`,
+    the signed area of the net's true cell over its mean legs, floored
+    at the station spacing squared, orient-signed by the median): a
+    RESOLVED cell (leg product above the floor -- the floored ones are
+    the free-jet slivers the criterion does not resolve) with a
+    non-positive margin is a fold. The incumbent of this posing -- the
+    fan's own streamline, the start the record's walks open from -- is
+    the control: if the criterion called IT folded, the criterion would
+    be mis-posed.
+
+    The gates also SPLIT the two certification failures of this row,
+    which are not the same mechanism: the 1.5-22 band that parks the
+    walks near the optimum (S32 section 14) against the 2.96e8 on the
+    paper's contour at the finer rung (section 15)."""
+    t00 = time.time()
+    st = _pose("class", "the class of the designs (folded net or not)")
+    w, S, F_ref = st["w"], st["S"], st["F_ref"]
+    P, c, ta, W_ref, thE = st["P"], st["c"], st["ta"], st["W_ref"], st["thE"]
+    base = os.environ["A1_BASE_MODEL"]
+    import a1_plug_margin as PMG          # imports the driver: after _pose
+
+    ell2 = PMG.station_spacing(P.K_ST) ** 2
+    mg = PMG.margin_dict(rho=1.0, mu0=0.0, m_ref=1.0, orient=1.0,
+                         f_edge=0.0, ell2=ell2)
+
+    def census(W, case, K=None):
+        """(out, folded, resolved, fraction, per-cell margin and index)."""
+        e2 = PMG.station_spacing(K or P.K_ST) ** 2
+        m = PMG.margin_dict(rho=1.0, mu0=0.0, m_ref=1.0, orient=1.0,
+                            f_edge=0.0, ell2=e2)
+        out, sch = P.march_record(np.asarray(W, float), w, case, K=K,
+                                  margin=m)
+        N = len(case["start"][1])
+        ms, dep, wh, fl = PMG.np_margin(out, sch, N, 1.0, 0.0, e2,
+                                        with_depth=True, with_floor=True)
+        orient = float(np.sign(np.median(ms)))
+        ms, fl = np.asarray(ms) * orient, np.asarray(fl, bool)
+        res = ~fl
+        neg = res & (ms <= 0.0)
+        frac = 100.0 * neg.sum() / max(1, res.sum())
+        return dict(out=out, sched=sch, ms=ms, res=res, neg=neg, wh=wh,
+                    frac=float(frac), n_res=int(res.sum()),
+                    n_neg=int(neg.sum()))
+
+    # the designs of this row, in the order of the argument
+    pool = [("fan streamline (incumbent)", np.asarray(c["W0"], float)),
+            ("their Table 2", np.asarray(W_ref, float))]
+    for nm, pat in (("our landing", "opt_%s_table_%s.json" % (CASE, base)),
+                    ("perturbed landing",
+                     "opt_%s_table_%s_perturb*.json" % (CASE, base))):
+        g = sorted(glob.glob(os.path.join(ART, pat)))
+        if g:
+            pool.append((nm, np.array(json.load(open(g[0]))["W_in"])
+                         * IN * S))
+    got = {}
+    for nm, W in pool:
+        r = census(W, c)
+        J = float(P.J_replay(jnp.asarray(np.asarray(W, float)), w, c,
+                             r["sched"], ta))
+        r["J"] = J
+        got[nm] = r
+        say("   %-26s J %9.1f lbf (%+.2e), cert %.4e at %-16s |"
+            " resolved %5d, FOLDED %4d (%.2f %%)"
+            % (nm, J / S / S / LBF, J / S / S / F_ref - 1,
+               float(r["out"]["cert_worst"]), str(r["out"]["cert_where"]),
+               r["n_res"], r["n_neg"], r["frac"]))
+
+    inc = got["fan streamline (incumbent)"]
+    check("K-1 the criterion discriminates: the incumbent of this posing"
+          " (the fan's own streamline, the start of the record's walks)"
+          " has NO folded resolved cell (%d of %d)"
+          % (inc["n_neg"], inc["n_res"]), inc["n_neg"] == 0)
+    tab = got["their Table 2"]
+    check("K-2 the paper's own contour, marched with OUR frozen planar"
+          " inlet, is OUT OF CLASS by the incumbent's own standard:"
+          " %d folded resolved cells (%.2f %%)"
+          % (tab["n_neg"], tab["frac"]), tab["n_neg"] > 0)
+
+    # ---- the two certification failures are not the same mechanism ----
+    def neighbourhood(r):
+        """The margin at the census cell adjacent to the worst-certified
+        cell (np_margin's column i = the march's station kst + 2)."""
+        tag = r["out"]["cert_where"]
+        kst = int(tag[1])
+        sel = [n for n, (i, j) in enumerate(r["wh"]) if i == kst + 2]
+        if not sel:
+            return None, None, 0
+        rows = [r["wh"][n][1] for n in sel]
+        # the wall-adjacent census row is the carrier's own jmin
+        n0 = sel[int(np.argmin(np.abs(np.array(rows) - PMG.JMIN)))]
+        return (float(r["ms"][n0]), bool(r["res"][n0]),
+                int(sum(1 for n in sel if r["neg"][n])))
+
+    if "perturbed landing" in got:
+        pr = got["perturbed landing"]
+        m0, res0, ncol = neighbourhood(pr)
+        say("   the walk-parking band: cert %.3f at %s -- the adjacent"
+            " resolved cell carries margin %+.4f (%d folded in its column)"
+            % (float(pr["out"]["cert_worst"]),
+               str(pr["out"]["cert_where"]), m0, ncol))
+        check("K-3 the certification floor that PARKS the walks (cert in"
+              " the 1.5-22 band, S32 section 14) is NOT a fold: the cell"
+              " next to it is resolved and healthy (margin %+.4f) -- the"
+              " near-wall conditioning of S31 section 3.3, which the"
+              " rotated-frame cell addresses" % m0,
+              (m0 is not None) and res0 and m0 > 0.0)
+
+    # ---- the refined rung: the 2.96e8, and whether the fold is the
+    # ---- design's or the net's
+    K2, N2 = 2 * P.K_ST - 1, 2 * P.N_ROW - 1
+    c2 = P.build_case(w, thE=thE, N=N2)
+    t2 = census(W_ref, c2, K=K2)
+    say("   their Table 2 refined to (%d,%d): cert %.4e at %s, resolved"
+        " %d, FOLDED %d (%.2f %%)"
+        % (K2, N2, float(t2["out"]["cert_worst"]),
+           str(t2["out"]["cert_where"]), t2["n_res"], t2["n_neg"],
+           t2["frac"]))
+    m2, res2, ncol2 = neighbourhood(t2)
+    check("K-4 the 2.96e8 of the finer rung IS a fold, not conditioning:"
+          " the worst-certified cell's own column carries %d folded cells"
+          % ncol2, ncol2 > 0)
+    band_pp = A1.K_RICH * 100.0 * max(1.0 / max(1, tab["n_res"]),
+                                      1.0 / max(1, t2["n_res"]))
+    check("K-5 the fold is the DESIGN's, not the net's: the folded"
+          " fraction is the same at both rungs within the census's own"
+          " granularity (%.2f vs %.2f %%, band %.2f pp)"
+          % (tab["frac"], t2["frac"], band_pp),
+          abs(tab["frac"] - t2["frac"]) <= band_pp)
+
+    rec = dict(case=CASE, base_model=base, K=P.K_ST, N=P.N_ROW,
+               designs={nm: dict(J_lbf=r["J"] / S / S / LBF,
+                                 cert=float(r["out"]["cert_worst"]),
+                                 where=str(r["out"]["cert_where"]),
+                                 resolved=r["n_res"], folded=r["n_neg"],
+                                 folded_pct=r["frac"])
+                        for nm, r in got.items()},
+               refined=dict(K=K2, N=N2, cert=float(t2["out"]["cert_worst"]),
+                            resolved=t2["n_res"], folded=t2["n_neg"],
+                            folded_pct=t2["frac"]))
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(
+        ART, "class_%s_%s.json" % (CASE, base)), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                           time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"rao": rao, "opt": opt,
-                   "grad": grad}.get(STAGE, rao)() else 1)
+    sys.exit(0 if {"rao": rao, "opt": opt, "grad": grad,
+                   "class": klass}.get(STAGE, rao)() else 1)

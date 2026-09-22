@@ -849,11 +849,86 @@ G-3 was graded against the value's band -- superseded),
 `run_grad_opt_2026-09-22_K161.log` (5/5, rung two, 1311.8 s),
 `grad_opt_veen_K81N41.json` and `grad_opt_veen.json` (rung two).
 
+## 16. The attribution, and what it found underneath (2026-09-22 afternoon; owner: "for 3 go with option (b), for 4 the order you suggested")
+
+Section 15 left ONE declared open item -- attribute the 2.96e8 on the
+paper's contour at the finer rung, conditioning or fold -- as the first
+item of the rotated-frame brick. The attribution is `a1_humphreys_twin.py`
+STAGE class (5/5, 170 s), and it found the answer plus something the row
+did not know about itself.
+
+**THE CENSUS.** The margin carrier's own ([X-PMRG]): the signed area of
+the net's TRUE cell over its mean legs, floored at the station spacing
+squared, orient-signed by the median; a RESOLVED cell (leg product above
+the floor -- the floored ones are the free-jet slivers the criterion does
+not resolve) with a non-positive margin is a fold. The control is the
+incumbent of this posing, the fan's own streamline, the start the
+record's walks open from.
+
+| design | J | cert | resolved cells | FOLDED |
+|---|---|---|---|---|
+| fan streamline (incumbent) | 29,946.2 lbf | 0.034 | 852 | **0 (0.00 %)** |
+| their Table 2 | 32,765.1 | 0.546 | 2352 | **677 (28.78 %)** |
+| our landing | 32,864.0 | 0.098 | 1361 | 87 (6.39 %) |
+| perturbed landing | 32,868.9 | 3.495 | 1489 | 182 (12.22 %) |
+| their Table 2 at (161,81) | 33,006.7 | 2.96e8 | 9410 | 2716 (28.86 %) |
+
+READ.
+
+1. **The two certification failures of this row are NOT the same
+   mechanism.** (K-3) The 1.5-22 band that parks the walks near the
+   optimum (section 14) is NOT a fold: at the perturbed landing's worst
+   cell, ('wall', 25) at cert 3.495, the adjacent resolved census cell
+   carries margin +0.5651 -- a healthy neighbourhood, the near-wall
+   conditioning of S31 section 3.3. **The owner's option (b), the cell
+   in a rotated frame, is aimed at the right mechanism.** (K-4) The
+   2.96e8 at the finer rung IS a fold: its own column carries 19 folded
+   cells. The rotated frame is not its cure and was never going to be.
+2. **(K-5) The fold is the DESIGN's, not the net's**: the folded
+   fraction of their contour is 28.78 percent at (81,41) and 28.86 at
+   (161,81), the same within the census's own granularity (band
+   0.17 pp). Refining does not dissolve it; it resolves it.
+3. **(K-1/K-2) AND THIS IS THE FINDING: the thrust rows of this twin
+   rest on FOLDED marches.** The incumbent is clean (0 of 852 resolved
+   cells), so the criterion discriminates; the paper's own contour,
+   marched with OUR frozen planar inlet, folds over 28.8 percent of its
+   resolved cells, our landings over 6.4 and 12.2. By this line's own
+   S29 precedent -- [X-PGRS] re-stamped OUT OF CLASS because the fine
+   optimum's march was folded, "the number is taken from a folded march
+   and is NOT a gain" -- the readings of S31 and S32 on their contour
+   ("our functional reads their thrust to 0.3 percent", "the walk
+   STAYS", the landing at -5e-4, and the section-15 prices and bands
+   taken at those designs) are OUT OF CLASS and must be re-taken.
+4. **Why it happened, and it is nobody's slip**: the driver has carried
+   the class constraint since S29 (`run_trsqp(margin=...)`, the phase-1
+   restoration that minimises the violation before the objective), and
+   `a1_humphreys_twin.opt()` calls it WITHOUT the margin. The twin was
+   posed in S31 before the margin was routine on this line.
+
+**WHAT IT DOES TO THE QUEUE.** The inlet (the owner's 4(i)) rises from
+"the one live direction" to "the suspect for the fold as well": the
+incumbent whose inlet is consistent with the fan by construction is
+clean, and every design that carries their contour through OUR cut --
++0.34 in at the first knot, a wall angle the fan did not produce --
+folds. The rotated-frame cell (3, option (b)) keeps its place for the
+band that parks the walks, but it is now measured as the SECOND cause,
+not the first.
+
+Artefacts: `_humphreys_twin/class_opt_veen.json`; the scratch probes
+that found it (`RDE/_scratch_s32/attrib_cert*.py`) are superseded by
+the stage. Trap paid on the way, for the record: `a1_plug_margin`
+imports the driver at module level, whose constants (PSPL_M,
+A1_BASE_MODEL, ...) are read at IMPORT time -- importing it before
+`_pose()` has posed the environment silently marches a different design
+(6 knots became the driver's default, the base model vanished, and the
+census read cert 0.418 where the record reads 2.96e8).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
-- Files (S32 midday, section 15): `validation/a1_humphreys_twin.py`
-  (stage grad, `_pose()` factored out bit-identically, the docstring),
+- Files (S32 midday/afternoon, sections 15-16):
+  `validation/a1_humphreys_twin.py` (stages grad and class, `_pose()`
+  factored out bit-identically, the docstring),
   `validation/humphreys1971_tables.json` (`_grid_class_lbf`, cls SPEC
   = their Table 1 span), this log; registry row X-HMPH re-printed.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),
