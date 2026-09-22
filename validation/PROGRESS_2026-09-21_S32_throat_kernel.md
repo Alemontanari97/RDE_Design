@@ -1164,6 +1164,43 @@ at once. The eta spread that section 17 read as the truncation band
 (0.84-1.6 percent at z 0.06-0.12) UNDERSTATES that residual by a factor
 of five: the march is the judge, not the re-summation.
 
+**THE ETA LADDER (2026-09-22 late night) CORRECTS THE ATTRIBUTION
+ABOVE.** Section 18 as first written called the first-column step "the
+three-term series' own residual in the equations at R_c 0.70", implying
+the O(eps^3) truncation. The re-summation parameter eta is the lever on
+exactly that (eps = 1/(R_c + eta)), so the ladder is the test:
+
+| eta | eps | series W/W* at the cut | first-column step | folded | drift col 2 -> last |
+|---|---|---|---|---|---|
+| 2 | 0.370 | 0.9763 | **-7.38 %** | 23.6 % | -0.62 % |
+| 4 | 0.213 | 0.9841 | -5.94 % | 18.0 % | -0.32 % |
+| 6 | 0.149 | 0.9868 | -5.08 % | 10.3 % | -0.19 % |
+| 8 | 0.115 | 0.9876 | **-4.57 %** | **6.6 %** | **-0.11 %** |
+
+(z 0.12, their wall, the march capped at 2 d so J is not comparable
+across these rows and is not read.) TWO READINGS, one of them against
+the earlier claim.
+
+1. **The truncation is a real part of it, and eta buys a lot**: the
+   step falls monotonically 7.4 -> 4.6 percent, the folded fraction
+   COLLAPSES 23.6 -> 6.6 percent, and the drift after the first column
+   almost vanishes (0.62 -> 0.11 percent): at eta 8 the march takes its
+   step and then HOLDS. The start line is far more self-consistent.
+2. **But it is NOT the O(eps^3) residual, and eps is not the governing
+   parameter.** eps^3 falls by 34 from eta 2 to eta 8; the step falls
+   by 1.6. And the decisive comparison is at EQUAL eps: R_c 4.0 with
+   eta 2 (eps 0.167) steps **1.2 percent**, while R_c 0.703 with eta 8
+   (eps 0.115, SMALLER) steps **4.6 percent**. Smaller expansion
+   parameter, four times the step. What R_c changes besides eps is the
+   flow: at R_c 0.703 the line spans M 1.04-1.55, at R_c 4.0 M
+   1.12-1.28 -- a transverse gradient five times steeper. The step is
+   not "the truncation" simply; it is the series at a sharp throat, of
+   which the truncation is a lever and not the whole.
+   The attribution of record is therefore narrowed: the R_c-4 control
+   still separates "the series" from "the hand-over" (the pipeline is
+   sound where the throat is smooth), but the floor at R_c 0.70 is NOT
+   explained by the expansion parameter and is OPEN.
+
 **J / mdot, for the record and not as a verdict**: +2.0..+3.1 percent
 above theirs across every configuration (C_F on A -> E -1.5..-6.3
 percent, the mass), read on marches that lose 8-13 percent of their
