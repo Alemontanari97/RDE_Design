@@ -914,6 +914,83 @@ folds. The rotated-frame cell (3, option (b)) keeps its place for the
 band that parks the walks, but it is now measured as the SECOND cause,
 not the first.
 
+**WHERE THE FOLD COMES FROM (K-6/K-7/K-8, added the same afternoon
+after the owner read figure 02: "their Table 2 profile waves, it does
+not follow the paper's points, and it starts at a higher radius than
+Humphreys' point").** The owner's eye was on the cause.
+
+- **(K-7) The start radius is not theirs.** y_w0 is set by the imposed
+  mass at the cut, 5.960 in against their 5.627 in there: we begin
+  **+0.33 in ABOVE their wall**, the deviation peaks at +0.375 in at
+  x 0.92, and the first knot is only at x 2.22 in -- nothing holds the
+  wall to their contour over the first two inches. Their contour is
+  steepest at x -0.48 in, UPSTREAM of our cut, and climbs monotonically
+  from there; ours is steepest at x 1.47 in, INSIDE the marched field:
+  the throat turn is re-done in the middle of the flow. The first
+  folded column is at x 1.88 in, just downstream of it.
+- **(K-8) And the wall ANGLE is what the characteristics see.** Six
+  knots pinned at a start radius that is not theirs reproduce y to
+  0.375 in, but the wall's DIRECTION oscillates about their printed
+  angle: +10.47 deg at x 0.51, -11.85 deg at x 1.74, rms 4.14 deg,
+  crossing their angle five times and turning three times where their
+  own angle column is monotone. At M 2-3 the Mach angle is 20-30 deg,
+  so a ten-degree wall error is not a detail of the drawing: it is an
+  alternation of expansion and compression, and the compression halves
+  are where the net crosses itself.
+- **(K-6) And it reaches what the row argues about.** J is the momentum
+  through the cut (fixed by the imposed mass) plus the wall push, and
+  only the push is marched: 3496 lbf of the 32,765. The first fold sits
+  at 12 percent of the wall, and **1745 lbf of push -- 50 percent --
+  lies downstream of it**, against the 178 lbf span of the paper's own
+  20-run grid, which is the scale at which this twin's verdicts are
+  read. Our own landing is milder: first fold at x 5.84 in, 349 lbf
+  (10 percent) downstream.
+
+**(K-9) AND WHY THE CUT IS NOT ON THEIR WALL -- the owner's question,
+"what is Table 2, and why do we not start from their foot?".** Table 2
+is the contour of THEIR optimum: twenty (x, y, wall angle) rows from
+the plug's throat point A -- the foot, (-0.56069, 6.71874) in at
+-36.25 deg, where the plug meets their start line AE -- to the
+truncation D at (11.51707, 0.95441) at -13.26 deg. We do not start
+there because a march of characteristics cannot start on a sonic line
+(ill-posed as Cauchy data, measured 2026-09-18: cert 1e18) and barely
+survives the near-vertical characteristics just past it (S31 section
+3.3, kappa ~ 1e6): nobody starts there -- they start from a transonic
+kernel ("modified Moore-Hall"), the bell starts from Sauer, GENO from
+Migdal. Our substitute is an idealised PLANAR corner fan at a sonic
+lip, read on a vertical cut at X0 = 0.05 R, and that fan is not their
+throat: **with the wall placed AT their contour at the cut (5.746 in
+against our 6.037) our fan would pass +19.2 percent mass and carry
++25 percent inlet momentum.** The cut can hold THEIR MASS or THEIR
+WALL, not both. The record holds the mass -- thrust is proportional to
+it and a thrust compared at another mass is not a comparison -- and
+pays with the 0.33-in geometric offset that K-7 and K-8 then price.
+The posing that holds both is a start line from a real transonic
+throat with their geometry: the kernel brick (the owner's route (ii)).
+
+**A SECOND, SMALLER DEFECT IN THE OBJECTIVE ITSELF.** Their Table 2 is
+TWENTY rows, nine of them crowded into the first 0.08 in at the foot
+and gaps of up to 2.66 in downstream -- and it prints THREE columns:
+x, y and the wall angle. The S31 posing read y by straight chords
+(`np.interp`), which on a convex contour rides ABOVE it: measured
++0.005 to +0.030 in on the six knots (worst at x 4.07). `read_table`
+(HMPH_TABLE, default `chord`, every row of record bit-identical) reads
+it instead as the cubic Hermite through their (x, y) with THEIR printed
+angle as the slope -- their own data, read as they drew it. The switch
+is for the in-class re-take, not for this log's numbers.
+
+**Figures** (`_humphreys_twin/make_figs.py`, presentation only, every
+physical number re-read from the carriers' marches):
+`figs/02_objective_and_arrivals.png` -- their contour drawn from their
+own three columns, our wall from their knots drawn separately (they are
+NOT the same curve), the six knots, the mass-set cut, a zoom of the
+first three inches with the first folded column marked, the wall-angle
+panel where their monotone angle and our oscillating one are put side
+by side, and the thrust ladder with the band on a move against their
+own grid span; `figs/03_folded_cells.png` -- the characteristic net of
+the same machine on the incumbent (clean) and on their contour (the
+folded cells filled), with a zoom on the net crossing itself.
+
 Artefacts: `_humphreys_twin/class_opt_veen.json`; the scratch probes
 that found it (`RDE/_scratch_s32/attrib_cert*.py`) are superseded by
 the stage. Trap paid on the way, for the record: `a1_plug_margin`

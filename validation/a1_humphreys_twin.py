@@ -258,6 +258,36 @@ START = os.environ.get("HMPH_START", "fan")
 TABLES = json.load(open(os.path.join(HERE, "humphreys1971_tables.json")))
 
 
+def read_table(xq, tab):
+    """THEIR contour at our abscissae, read from their OWN table.
+
+    Their Tables 2 and 3 are SPARSE downstream -- twenty rows, nine of
+    them crowded in the first 0.08 in at the foot, then gaps of up to
+    2.66 in -- and they print THREE columns: x, y and the wall ANGLE.
+    Reading y by straight chords (`np.interp`, the S31 posing) therefore
+    puts every knot between two of their points ABOVE their contour,
+    which is convex there: measured +0.005 to +0.030 in on the six knots
+    of the opt case, a systematic bias in the OBJECTIVE, not in the
+    machine. HMPH_TABLE=hermite reads it as the cubic Hermite through
+    their (x, y) with THEIR printed angle as the slope -- their own data,
+    read as they drew it. Default `chord` keeps every row of record
+    bit-identical."""
+    x, y = tab[:, 0], tab[:, 1]
+    if os.environ.get("HMPH_TABLE", "chord") != "hermite":
+        return np.interp(xq, x, y)
+    m = np.tan(np.radians(tab[:, 2]))
+    out = np.empty_like(np.asarray(xq, float))
+    for n, xx in enumerate(np.asarray(xq, float)):
+        i = min(max(int(np.searchsorted(x, xx)) - 1, 0), len(x) - 2)
+        h = x[i + 1] - x[i]
+        t = (xx - x[i]) / h
+        out[n] = ((2.0 * t ** 3 - 3.0 * t ** 2 + 1.0) * y[i]
+                  + (t ** 3 - 2.0 * t ** 2 + t) * h * m[i]
+                  + (-2.0 * t ** 3 + 3.0 * t ** 2) * y[i + 1]
+                  + (t ** 3 - t ** 2) * h * m[i + 1])
+    return out
+
+
 def _pose(stage, title):
     """The paper's posing on our machine, shared by the stages that walk
     (opt) and the stage that only differentiates (grad): their lip, their
@@ -318,7 +348,7 @@ def _pose(stage, title):
     key = ("table3_rao_lip8.33_inj-58.5" if CASE == "rao"
            else "table2_optimum_lip7.55_inj-34")
     tab = np.array(TABLES[key])
-    W_ref = np.interp(np.asarray(c["xk"]) / S / IN, tab[:, 0], tab[:, 1]) * IN * S
+    W_ref = read_table(np.asarray(c["xk"]) / S / IN, tab) * IN * S
     return dict(w=w, S=S, L=L, F_ref=F_ref, P=P, IA=IA, c=c, ta=ta,
                 W_ref=W_ref, thE=thE)
 
@@ -646,8 +676,8 @@ def klass():
         neg = res & (ms <= 0.0)
         frac = 100.0 * neg.sum() / max(1, res.sum())
         return dict(out=out, sched=sch, ms=ms, res=res, neg=neg, wh=wh,
-                    frac=float(frac), n_res=int(res.sum()),
-                    n_neg=int(neg.sum()))
+                    W=np.asarray(W, float), frac=float(frac),
+                    n_res=int(res.sum()), n_neg=int(neg.sum()))
 
     # the designs of this row, in the order of the argument
     pool = [("fan streamline (incumbent)", np.asarray(c["W0"], float)),
@@ -734,7 +764,167 @@ def klass():
           % (tab["frac"], t2["frac"], band_pp),
           abs(tab["frac"] - t2["frac"]) <= band_pp)
 
+    # ---- K-6: does the fold REACH what the row argues about? ---------
+    # J = F_in (the momentum through the cut, fixed by the imposed mass)
+    # + the wall push, and only the push is marched. A fold at column i
+    # can reach the wall no further upstream than i, so the push
+    # DOWNSTREAM of the first fold is the part of J the tangled net can
+    # touch; the scale to read it against is the one this row argues at,
+    # the span of the paper's own 20-run grid.
+    def reach(r, W):
+        cols = np.array([i for (i, j) in r["wh"]])
+        if not r["neg"].any():
+            return 0, 0.0, 0.0, float("nan")
+        kmin = int(cols[r["neg"]].min()) - PMG.JMIN     # column i = kst + 2
+        wall = np.asarray(r["out"]["wall"])
+        q = np.sqrt(wall[:, 2] ** 2 + wall[:, 3] ** 2)
+        pw = np.asarray(A1.state_q(jnp.asarray(q), ta)[1])
+        dy = wall[1:, 1] - wall[:-1, 1]
+        wgt = 2.0 * np.pi * 0.5 * (wall[1:, 1] + wall[:-1, 1])
+        seg = (0.5 * (pw[1:] + pw[:-1]) - P.PA) * wgt * (-dy)
+        down = float(seg[kmin:].sum()) if kmin < len(seg) else 0.0
+        sx = np.asarray(P.wall_stations(np.asarray(W, float), c)[0])
+        return (kmin, down / S / S / LBF, float(seg.sum()) / S / S / LBF,
+                float(sx[min(kmin, len(sx) - 1)]) / S / IN)
+
+    span = TABLES["_grid_class_lbf"][1] - TABLES["_grid_class_lbf"][0]
+    kmin, down, tot, xf = reach(tab, W_ref)
+    say("   their Table 2: the first fold is at column %d (x %.2f in,"
+        " %.0f %% along the wall); the wall push is %.0f lbf of J and"
+        " %.0f lbf of it (%.0f %%) lies DOWNSTREAM of that fold"
+        % (kmin, xf, 100.0 * kmin / (P.K_ST - 1), tot, down,
+           100.0 * down / tot))
+    kmin2, down2, tot2, xf2 = reach(got["our landing"],
+                                    got["our landing"]["W"]) \
+        if "our landing" in got else (0, 0.0, 0.0, float("nan"))
+    if "our landing" in got:
+        say("   our landing: first fold at column %d (x %.2f in), %.0f lbf"
+            " of %.0f downstream (%.0f %%)"
+            % (kmin2, xf2, down2, tot2, 100.0 * down2 / tot2))
+    rec_reach = {}
+    check("K-6 the fold REACHES what this row argues about: the wall push"
+          " downstream of their contour's first fold (%.0f lbf) exceeds"
+          " the span of the paper's own 20-run grid (%.0f lbf) -- the"
+          " scale at which this twin's verdicts are read -- so the fold"
+          " is not a detail of the net far from the answer"
+          % (down, span), down > span)
+    # ---- K-7: WHERE the fold comes from -- the inlet the posing froze -
+    # The start radius is set by the imposed mass, not by their contour,
+    # so the wall begins ABOVE their wall and must come back down to the
+    # first knot (which their table sets). It does that with an S-turn,
+    # and the second half of an S-turn is a COMPRESSION: characteristics
+    # converge, and a march of characteristics carries no shock.
+    tab2 = np.array(TABLES["table2_optimum_lip7.55_inj-34"])
+    sx, sy, ssl = P.wall_stations(np.asarray(W_ref, float), c)
+    sx, sy = np.asarray(sx) / S / IN, np.asarray(sy) / S / IN
+    ang = np.degrees(np.arctan(np.asarray(ssl)))
+    theirs_y = np.interp(sx, tab2[:, 0], tab2[:, 1])
+    d0 = float(sy[0] - theirs_y[0])
+    dmax = float(np.abs(sy - theirs_y).max())
+    # A plug wall that flattens downstream is not, by itself, a
+    # compression: it is the shape of every plug, and the paper's own
+    # angle column climbs monotonically from -46.8 deg to -13.3. What
+    # is NOT theirs is WHERE the steepening turn happens. Their contour
+    # reaches its steepest angle at x = -0.035 in -- UPSTREAM of our cut
+    # -- and climbs from there; our wall, forced to start above their
+    # wall, re-does that turn INSIDE the marched field, and the net
+    # folds just downstream of it.
+    x_dip_us = float(sx[int(np.argmin(ang))])
+    x_dip_them = float(tab2[int(np.argmin(tab2[:, 2])), 0])
+    say("   the inlet the posing froze: we start %+.3f in above their"
+        " wall (y_w0 %.3f vs their %.3f at the cut), the deviation peaks"
+        " at %+.3f in and the first knot is only at x %.2f in; THEIR"
+        " contour is steepest at x %+.3f in (upstream of the cut, x0"
+        " %.3f) and climbs from there, OUR wall is steepest at x %+.3f"
+        " in -- the turn re-done inside the field, %+.1f -> %+.1f deg"
+        % (d0, float(sy[0]), float(theirs_y[0]), dmax,
+           float(np.asarray(c["xk"])[0] / S / IN), x_dip_them,
+           float(P.X0) / S / IN, x_dip_us, float(ang.min()),
+           float(ang[-1])))
+    check("K-7 the fold is BORN IN THAT TURN: their contour is steepest"
+          " UPSTREAM of our cut (x %+.3f vs x0 %.3f in) while ours is"
+          " steepest at x %.2f in, inside the field, and the first folded"
+          " column (x %.2f in) lies downstream of OUR turn -- the cause"
+          " is the posing's own start radius, not the paper's contour"
+          % (x_dip_them, float(P.X0) / S / IN, x_dip_us, xf),
+          x_dip_them < float(P.X0) / S / IN < x_dip_us <= xf)
+    rec_reach.update(start_above_in=d0, dev_max_in=dmax,
+                     x_steepest_ours_in=x_dip_us,
+                     x_steepest_theirs_in=x_dip_them)
+
+    # ---- K-8: the wall ANGLE is what the characteristics see ---------
+    # y within a hundredth of an inch is not the criterion: the net is
+    # built from the wall's DIRECTION. Their third column prints it, and
+    # downstream of their own dip it climbs monotonically; ours, from a
+    # six-knot spline pinned at a start radius that is not theirs,
+    # oscillates about it.
+    dang = ang - np.interp(sx, tab2[:, 0], tab2[:, 2])
+    nsign = int((np.diff(np.sign(dang)) != 0).sum())
+    nturn = int((np.diff(np.sign(np.diff(ang))) != 0).sum())
+    say("   the wall ANGLE, which is what the characteristics see: ours"
+        " departs from their printed angle by %+.2f deg (x %.2f) to"
+        " %+.2f deg (x %.2f), rms %.2f deg, crossing it %d times; their"
+        " angle downstream of their dip is MONOTONE, ours turns %d times"
+        % (dang.max(), float(sx[int(dang.argmax())]), dang.min(),
+           float(sx[int(dang.argmin())]),
+           float(np.sqrt((dang ** 2).mean())), nsign, nturn))
+    check("K-8 the design vector cannot HOLD their contour: six knots"
+          " pinned at a start radius that is not theirs reproduce y to"
+          " %.3f in but make the wall ANGLE oscillate about their printed"
+          " angle (%d crossings, %.1f deg peak to peak) where theirs is"
+          " monotone -- at M 2-3 the Mach angle is 20-30 deg, so a"
+          " ten-degree wall error is not a detail of the drawing"
+          % (dmax, nsign, float(dang.max() - dang.min())),
+          nsign > 1 and nturn > 0)
+
+    rec_reach.update(their_first_fold_col=kmin, their_x_in=xf,
+                     their_push_lbf=tot, their_push_downstream_lbf=down,
+                     grid_span_lbf=span)
+
+    # ---- K-9: WHY the start radius is not their wall ------------------
+    # The posing had to choose. Our start data are an idealised planar
+    # corner fan at a sonic lip; theirs are a real annular transonic
+    # throat (their "modified Moore-Hall"). The two do not pass the same
+    # mass through the same annulus, so the cut can carry THEIR MASS or
+    # sit on THEIR WALL, not both. The record chose the mass -- thrust
+    # is proportional to it, and a thrust compared at another mass is
+    # not a comparison -- and paid with the geometry.
+    from a1_plug_march import col_fluxes
+    ye0 = c["fan"]["LIP"][1] + np.tan(c["fan"]["th_e"]) * P.X0
+
+    def mass_at(yw):
+        yl = np.linspace(yw, ye0, P.N_ROW)
+        uv = [c["fan"]["field"](P.X0, y) for y in yl]
+        stl = np.stack([np.full(P.N_ROW, P.X0), yl,
+                        np.array([q * np.cos(t) for q, t in uv]),
+                        np.array([q * np.sin(t) for q, t in uv])], axis=1)
+        md, Fi = col_fluxes(stl, w["ta"], P.PA, 1.0)
+        return abs(float(md)), float(Fi)
+
+    # both radii read AT THE CUT: the wall's first station is a little
+    # downstream of X0, and comparing across stations would price the
+    # contour's own slope instead of the posing
+    y_cut_them = float(np.interp(float(P.X0) / S / IN, tab2[:, 0],
+                                 tab2[:, 1]))
+    m_rec, F_rec = mass_at(float(c["yw0"]))
+    m_th, F_th = mass_at(y_cut_them * IN * S)
+    dm = 100.0 * (m_th / m_rec - 1.0)
+    say("   why the cut is not on their wall: at the cut (x %.3f in) our"
+        " mass-set wall is %.3f in and theirs is %.3f in; with the wall"
+        " AT their contour our planar fan would pass %+.1f %% mass and"
+        " carry %+.1f %% inlet momentum -- the cut can hold THEIR MASS or"
+        " THEIR WALL, not both, and the record holds the mass"
+        % (float(P.X0) / S / IN, float(c["yw0"]) / S / IN, y_cut_them,
+           dm, 100.0 * (F_th / F_rec - 1.0)))
+    check("K-9 the two posings are NOT interchangeable: putting the wall"
+          " on their contour at the cut moves the mass by %.1f percent,"
+          " far beyond the 1 percent at which this row's thrust gates"
+          " (O-2) are read -- the start line, not the contour, is what"
+          " differs from theirs" % dm, abs(dm) > 1.0)
+    rec_reach.update(mass_shift_pct_if_their_wall=dm)
+
     rec = dict(case=CASE, base_model=base, K=P.K_ST, N=P.N_ROW,
+               reach=rec_reach,
                designs={nm: dict(J_lbf=r["J"] / S / S / LBF,
                                  cert=float(r["out"]["cert_worst"]),
                                  where=str(r["out"]["cert_where"]),
