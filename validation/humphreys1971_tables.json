@@ -301,5 +301,10 @@
   "table4": 32965.0
  },
  "_knot_class_in": 0.15,
- "_knot_class_note": "the class within which a walk 'stays' on a table's contour: the S31 table-start landing on Table 2 put every knot but the first within 0.05-0.15 in (the first at +0.34 in = the planar inlet), so 0.15 in is the measured stay class; cls EMPIRICAL"
+ "_knot_class_note": "the class within which a walk 'stays' on a table's contour: the S31 table-start landing on Table 2 put every knot but the first within 0.05-0.15 in (the first at +0.34 in = the planar inlet), so 0.15 in is the measured stay class; cls EMPIRICAL",
+ "_grid_class_lbf": [
+  32699.0,
+  32877.0
+ ],
+ "_grid_class_note": "Table 1 p. 1586: their own 20-run grid on the (injection angle, lip radius) plane spans 32,699..32,877 lbf around the optimum, 0.54 percent -- the flatness of THEIR functional at THEIR own resolution, quoted beside our march's band in stage grad; cls SPEC (their printed table)"
 }

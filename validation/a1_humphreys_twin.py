@@ -33,7 +33,26 @@ posing -- their lip, their injection angle (the planar corner fan at
 the lip posed with theta_E = theta_i + nu(M_e), which is +22.9 deg:
 the jet boundary flares outward, the plug is short), their length,
 their base model -- against 32,881 lbf and Table 2. Launched on s2 in
-the background; hours.
+the background; hours. HMPH_PERTURB/HMPH_SEED perturb the start's
+knots (gate P-1, the return); HMPH_FAN=axi poses the Rao case from the
+ideal member (gate P-2).
+
+STAGE grad (S32, 2026-09-22): the gradient AT the optimum, no walk --
+the walk being the instrument under test, it cannot grade itself. Three
+designs are differentiated on the same posing (their table, our
+table-start landing, the perturbed landing) and the readings are
+single-point: G-1 the reverse-AD gradient against central differences
+on the FD ladder, G-2/G-3 what a move of the measured stay class
+(0.15 in) of each knot buys, G-4 the tip residue the perturbed walk
+left, G-5 the same prices under (K,N) -> (2K-1,2N-1). Every price is
+graded against the band the march supports ON A MOVE -- the amount by
+which the refinement moves the DIFFERENCE between two designs -- and
+NOT against the band on the value: the discretisation error is common
+to designs of the same family on the same grid, and the value's band
+(2.9e-2 of J at (81,41)) is five times the span of the paper's own
+20-run grid, so a first-order price graded against it would be
+measuring the grid. Run of record on the ladder's two rungs
+(PSPL_K/PSPL_N): see the S32 log section 15.
 
 Lengths are posed in LIP RADII (the record's YTIP convention, the
 Chutkey twin's frame); the paper's inches are converted at the edges.
@@ -41,6 +60,7 @@ Chutkey twin's frame); the paper's inches are converted at the edges.
 import os
 import sys
 import json
+import glob
 import time
 
 import numpy as np
@@ -229,8 +249,12 @@ START = os.environ.get("HMPH_START", "fan")
 TABLES = json.load(open(os.path.join(HERE, "humphreys1971_tables.json")))
 
 
-def opt():
-    t00 = time.time()
+def _pose(stage, title):
+    """The paper's posing on our machine, shared by the stages that walk
+    (opt) and the stage that only differentiates (grad): their lip, their
+    injection angle, their length, their base model, the knots and THEIR
+    contour interpolated at those knots. Bit-identical to the record's
+    stage opt, whose lines these are."""
     R_lip = R_RAO if CASE == "rao" else R_OPT
     F_ref = F_RAO if CASE == "rao" else F_OPT
     w = build_world(R_lip)
@@ -269,8 +293,8 @@ def opt():
     P.L = L
     P.CKPT = os.path.join(ART, "_ckpt_" + CASE)
     os.makedirs(P.CKPT, exist_ok=True)
-    say("== [F3] Humphreys 1971, twin (B) case %s: the TR-SQP at their"
-        " posing [X-HMPH] (stage opt) ==" % CASE)
+    say("== [F3] Humphreys 1971, twin (B) case %s: %s"
+        " [X-HMPH] (stage %s) ==" % (CASE, title, stage))
     # the exhaust angle from the injection angle: theta_E = theta_i + dnu
     fan0 = IA.fan_at(w, 0.0)
     thE = 0.0 if CASE == "rao" else np.radians(TH_I_OPT) + fan0["dnu"]
@@ -282,11 +306,19 @@ def opt():
            X0_R, F_ref / LBF))
     c = P.build_case(w, thE=thE)
     ta = w["ta"]
-    W_ref = None
     key = ("table3_rao_lip8.33_inj-58.5" if CASE == "rao"
            else "table2_optimum_lip7.55_inj-34")
     tab = np.array(TABLES[key])
     W_ref = np.interp(np.asarray(c["xk"]) / S / IN, tab[:, 0], tab[:, 1]) * IN * S
+    return dict(w=w, S=S, L=L, F_ref=F_ref, P=P, IA=IA, c=c, ta=ta,
+                W_ref=W_ref, thE=thE)
+
+
+def opt():
+    t00 = time.time()
+    st = _pose("opt", "the TR-SQP at their posing")
+    w, S, L, F_ref = st["w"], st["S"], st["L"], st["F_ref"]
+    P, c, ta, W_ref, thE = st["P"], st["c"], st["ta"], st["W_ref"], st["thE"]
     if START == "table":
         c["W0"] = W_ref.copy()
     elif os.environ.get("PSPL_FAN") == "axi":
@@ -296,12 +328,17 @@ def opt():
     # normal perturbation of the start's knots (the tip knot kept above
     # its floor); the walk must come back to the reference landing
     delta = float(os.environ.get("HMPH_PERTURB", 0.0))
+    ptag = ""
     if delta > 0.0:
         rng = np.random.default_rng(int(os.environ.get("HMPH_SEED", 1)))
         dW = rng.standard_normal(len(c["W0"])) * delta * IN * S
         c["W0"] = np.asarray(c["W0"]) + dW
         say("   perturbation delta %.2f in (seed %s): dW = %s in"
             % (delta, os.environ.get("HMPH_SEED", 1), np.array2string(dW / S / IN, precision=3)))
+        # the tag carries it: a perturbed leg must not overwrite the
+        # record's landing (it did once, S32 -- the file was restored
+        # from the commit and the leg re-filed under this name)
+        ptag = "_perturb%.2f_seed%s" % (delta, os.environ.get("HMPH_SEED", 1))
     say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; start = %s;"
         " knots %s" % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3, START,
                        np.array2string(np.asarray(c["W0"]) / S / IN, precision=3)))
@@ -354,13 +391,197 @@ def opt():
     os.makedirs(ART, exist_ok=True)
     rec["start"] = START
     rec["base_model"] = os.environ["A1_BASE_MODEL"]
-    tag = "%s_%s_%s" % (CASE, START, os.environ["A1_BASE_MODEL"])
+    tag = "%s_%s_%s%s" % (CASE, START, os.environ["A1_BASE_MODEL"], ptag)
     json.dump(rec, open(os.path.join(ART, "opt_%s.json" % tag), "w"), indent=1)
     say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
+# ----------------------------------------------------------------------
+# stage grad: the gradient AT the optimum (no walk)
+# ----------------------------------------------------------------------
+def grad():
+    """Grade the gradient where the walks END, and read the stationarity
+    of THEIR contour for OUR functional (S32 section 14's two open
+    readings). A walk cannot answer either, the walk being the
+    instrument under test: (i) is the reverse-AD gradient the driver
+    follows still the derivative of the RE-MARCHED value near the
+    optimum, where the marginal cells sit on the certification floor,
+    and (ii) is the paper's own contour stationary for us -- read
+    against what our own march can resolve, not against a wish.
+
+    Both are single-point measurements. The gradient is graded by the
+    driver's own C-2 standard (central differences on a LADDER of steps,
+    the band being the differences' own scatter, because the replayed
+    march is only piecewise smooth in the design). The stationarity is
+    priced: what a move of the measured STAY CLASS (0.15 in, the tables
+    JSON) of each knot buys at first order, against the band the same
+    design's (K, N) -> (2K-1, 2N-1) refinement supports -- the C-6 rule,
+    the band measured by the instrument that read the number."""
+    t00 = time.time()
+    st = _pose("grad", "the gradient at their optimum")
+    w, S, F_ref = st["w"], st["S"], st["F_ref"]
+    P, c, ta, W_ref, thE = st["P"], st["c"], st["ta"], st["W_ref"], st["thE"]
+    base = os.environ["A1_BASE_MODEL"]
+    cls_in = TABLES["_knot_class_in"]
+
+    def per_in(g):
+        """dJ/dy at the knots, from the scaled world to lbf per inch."""
+        return np.asarray(g) / S * IN / LBF
+
+    # the points to grade: THEIR contour, and the landings our own walks
+    # reached from it (the record's, and a perturbed one if it is filed)
+    pts = [("their table", np.asarray(W_ref, float))]
+    fn = os.path.join(ART, "opt_%s_table_%s.json" % (CASE, base))
+    if os.path.exists(fn):
+        pts.append(("our landing",
+                    np.array(json.load(open(fn))["W_in"]) * IN * S))
+    pert = sorted(glob.glob(os.path.join(
+        ART, "opt_%s_table_%s_perturb*.json" % (CASE, base))))
+    if pert:
+        pts.append(("perturbed landing",
+                    np.array(json.load(open(pert[0]))["W_in"]) * IN * S))
+    rec = dict(case=CASE, base_model=base, stay_class_in=cls_in, points={})
+    got = {}
+    for name, W in pts:
+        W = np.asarray(W, float)
+        out, sch = P.march_record(W, w, c)
+        J, g = P.J_and_grad(W, w, c, ta, sch)
+        got[name] = (W, J, g, sch, out)
+        say("   %-18s J %.1f lbf (%+.2e vs the paper's %.0f), cert %.3f,"
+            " |grad| %.3e" % (name, J / S / S / LBF, J / S / S / F_ref - 1,
+                              F_ref / LBF, float(out["cert_worst"]),
+                              float(np.linalg.norm(g))))
+        say("                      dJ/dy per knot [lbf/in]: %s"
+            % np.array2string(per_in(g), precision=1))
+        rec["points"][name] = dict(
+            W_in=(W / S / IN).tolist(), J_lbf=J / S / S / LBF,
+            cert=float(out["cert_worst"]),
+            dJdy_lbf_per_in=per_in(g).tolist())
+
+    W, J, g, sch, out = got["their table"]
+
+    # ---- the band THIS reading's own refinement supports -------------
+    K2, N2 = 2 * P.K_ST - 1, 2 * P.N_ROW - 1
+    c2 = P.build_case(w, thE=thE, N=N2)
+    fine = {}
+    for name, (Wn, _Jn, _gn, _sn, _on) in got.items():
+        _, s2n = P.march_record(Wn, w, c2, K=K2)
+        fine[name] = (float(P.J_replay(jnp.asarray(Wn), w, c2, s2n, ta,
+                                       K=K2)), s2n)
+    J2, s2 = fine["their table"]
+    band_J = A1.K_RICH * abs(J - J2) + A1.C_FLOOR * A1.EPS * abs(J)
+    band_lbf = band_J / S / S / LBF
+    grid = TABLES["_grid_class_lbf"]
+    say("   the march's own band on J at their contour: (%d,%d) %.1f lbf vs"
+        " (%d,%d) %.1f lbf -> %.1f lbf (%.2e of J); the paper's own grid"
+        " (Table 1) spans %.0f lbf"
+        % (P.K_ST, P.N_ROW, J / S / S / LBF, K2, N2, J2 / S / S / LBF,
+           band_lbf, band_J / abs(J), grid[1] - grid[0]))
+    rec["band_lbf"] = band_lbf
+    rec["grid_span_lbf"] = grid[1] - grid[0]
+
+    # ---- the band on a DIFFERENCE, which is what a move buys ---------
+    # An optimiser never reads the value: it reads the difference
+    # between two designs, and the march's discretisation error is
+    # COMMON to designs of the same family on the same grid. Graded
+    # against the value's band (here 2.9e-2 of J -- five times the span
+    # of the paper's OWN 20-run grid) no first-order price could ever
+    # be live, and the gate would be measuring the grid, not the
+    # optimum. The band on a move is the amount by which the
+    # refinement moves the DIFFERENCE between the graded designs.
+    band_dJ = A1.C_FLOOR * A1.EPS * abs(J)
+    for name, (Jf, _sf) in sorted(fine.items()):
+        if name == "their table":
+            continue
+        dc, df = got[name][1] - J, Jf - J2
+        band_dJ = max(band_dJ, A1.K_RICH * abs(dc - df)
+                      + A1.C_FLOOR * A1.EPS * abs(J))
+        say("   %-18s minus their table: %+.1f lbf at (%d,%d), %+.1f lbf"
+            " at (%d,%d) -- the refinement moves the DIFFERENCE %.1f lbf"
+            % (name, dc / S / S / LBF, P.K_ST, P.N_ROW, df / S / S / LBF,
+               K2, N2, abs(dc - df) / S / S / LBF))
+    band_dlbf = band_dJ / S / S / LBF
+    say("   the march's band on a MOVE: %.1f lbf (%.2e of J) against the"
+        " value's %.1f lbf; the paper's own grid spans %.0f lbf"
+        % (band_dlbf, band_dJ / abs(J), band_lbf, grid[1] - grid[0]))
+    rec["band_diff_lbf"] = band_dlbf
+
+    # ---- G-1: the adjoint against central differences, AT the optimum -
+    fj = lambda z: P.J_replay(z, w, c, sch, ta)          # noqa: E731
+    Wj = jnp.asarray(W, dtype=float)
+    ok1 = True
+    for k in range(len(g)):
+        v = jnp.zeros(len(g)).at[k].set(1.0)
+        scale = max(1.0, abs(float(W[k])))
+        fd, spread = P.fd_ladder(fj, Wj, v, scale)
+        band = (A1.K_RICH * spread
+                + A1.C_FLOOR * A1.EPS * abs(J) / (P.FD_LADDER[-1] * scale))
+        ok1 = ok1 and (abs(fd - g[k]) <= band)
+        say("      knot %d: AD %+.6e  FD %+.6e  |d| %.3e  (ladder spread"
+            " %.3e -> band %.3e)" % (k, g[k], fd, abs(fd - g[k]), spread,
+                                     band))
+    check("G-1 at their optimum the AD gradient matches central finite"
+          " differences inside the band the differences' own scatter"
+          " supports", ok1)
+
+    # ---- G-2/G-3: what a class-sized move of each knot buys -----------
+    price = np.abs(np.asarray(g)) / S * (cls_in * IN) / LBF
+    say("   price of a stay-class move (%.2f in) per knot [lbf]: %s"
+        % (cls_in, np.array2string(price, precision=1)))
+    rec["price_lbf"] = price.tolist()
+    check("G-2 at their contour, the inlet knot excluded (the planar cut's"
+          " own dof, frozen by the posing), no knot buys more than the"
+          " band the march supports on a MOVE over a stay-class"
+          " displacement (max %.1f lbf vs %.1f)"
+          % (price[1:].max(), band_dlbf), price[1:].max() <= band_dlbf)
+    check("G-3 the inlet knot DOES buy more (%.1f lbf vs the band on a"
+          " move %.1f): the one live direction at their optimum is the"
+          " frozen inlet, not the shape"
+          % (price[0], band_dlbf), price[0] > band_dlbf)
+
+    # ---- G-5: is the LANDSCAPE resolved where the VALUE is not? -------
+    # The walk follows the gradient, so what must survive the refinement
+    # is the gradient, not J. Same contour, same base, the refined grid.
+    f2 = lambda z: P.J_replay(z, w, c2, s2, ta, K=K2)    # noqa: E731
+    g2 = np.asarray(P.jax.grad(f2)(jnp.asarray(W, dtype=float)), float)
+    price2 = np.abs(g2) / S * (cls_in * IN) / LBF
+    say("   dJ/dy per knot at (%d,%d) [lbf/in]: %s   (price %s)"
+        % (K2, N2, np.array2string(per_in(g2), precision=1),
+           np.array2string(price2, precision=1)))
+    rec["dJdy_fine_lbf_per_in"] = per_in(g2).tolist()
+    rec["price_fine_lbf"] = price2.tolist()
+    check("G-5 the LANDSCAPE is resolved where the value is not: under"
+          " (K,N) -> (2K-1,2N-1) the price of a stay-class move changes"
+          " by less than the band on a move on every knot (max %.1f lbf"
+          " vs %.1f)" % (np.abs(price2 - price).max(), band_dlbf),
+          np.abs(price2 - price).max() <= band_dlbf)
+
+    # ---- G-4: the tip the perturbed walk did not bring back -----------
+    if "perturbed landing" in got:
+        Wp, Jp, gp = got["perturbed landing"][:3]
+        dtip = abs(float(Wp[-1]) - float(W_ref[-1])) / S / IN
+        ptip = abs(float(gp[-1])) / S * (dtip * IN) / LBF
+        say("   the perturbed walk's tip residue %.3f in is worth %.1f lbf"
+            " on ITS OWN gradient (%.1f lbf/in)"
+            % (dtip, ptip, per_in(gp)[-1]))
+        rec["tip_residue_in"], rec["tip_price_lbf"] = dtip, ptip
+        check("G-4 the tip residue the perturbed walk left (%.3f in) is"
+              " worth %.1f lbf at first order -- below the band on a"
+              " move (%.1f): the walk does not restore it because nothing"
+              " pays for it, which is the P-1 failure read at the"
+              " gradient" % (dtip, ptip, band_dlbf), ptip <= band_dlbf)
+
+    os.makedirs(ART, exist_ok=True)
+    json.dump(rec, open(os.path.join(
+        ART, "grad_%s_%s.json" % (CASE, base)), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1],
+                                          time.time() - t00))
     return NPASS[0] == NPASS[1]
 
 
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
-    sys.exit(0 if {"rao": rao, "opt": opt}.get(STAGE, rao)() else 1)
+    sys.exit(0 if {"rao": rao, "opt": opt,
+                   "grad": grad}.get(STAGE, rao)() else 1)

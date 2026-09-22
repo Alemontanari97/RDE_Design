@@ -744,9 +744,118 @@ fast turn near the lip, the cut inside the declared strip) is
 inconsistent, and the S31 Table-3 start already answered the question
 ("stays", +0.13 percent, y_D 1.44 vs 1.375). Dropped.
 
+## 15. The gradient AT the optimum, and the band on a MOVE (2026-09-22 midday; the two open readings of section 14)
+
+Section 14 left two questions a walk cannot answer, the walk being the
+instrument under test: (i) near the optimum, where every trial sits on
+the certification floor, is the reverse-AD gradient the driver follows
+still the derivative of the RE-MARCHED value, and (ii) is the paper's
+own contour stationary for OUR functional -- read against what our
+march can resolve, not against a wish. `a1_humphreys_twin.py` gains
+STAGE grad (no walk; `_pose()` factored out of `opt()`, bit-identical
+to the record's lines) which differentiates three designs on the same
+posing -- their Table 2, our table-start landing, the perturbed
+landing -- and grades five gates.
+
+**THE BAND A PRICE IS GRADED AGAINST.** A first-order price is a
+DIFFERENCE between two designs, never a value, and the march's
+discretisation error is COMMON to designs of the same family on the
+same grid. Graded against the band on the VALUE (K_RICH x the
+refinement's own move, the C-6 rule as it stands) nothing could ever
+be live: at their contour the value moves 241.6 lbf under
+(81,41) -> (161,81), a band of 966.6 lbf = 2.9e-2 of J, FIVE TIMES the
+span of the paper's own 20-run grid (178 lbf) -- the gate would be
+measuring the grid. The band on a MOVE is the amount by which the
+refinement moves the DIFFERENCE, and it is an order tighter:
+
+| | (81,41), band from (161,81) | (161,81), band from (321,161) |
+|---|---|---|
+| J at their table | 32,765.1 lbf (-3.5e-3) | 33,006.7 lbf (+3.8e-3) |
+| cert at their table | 0.546 | **2.96e8 (uncertified)** |
+| band on the VALUE | 966.6 lbf (2.9e-2 of J) | 504.3 lbf (1.5e-2) |
+| our landing - their table | +99.0 -> +67.9 lbf (moves 31.0) | +67.9 -> +55.7 (moves 12.2) |
+| perturbed - their table | +103.8 -> +79.0 lbf (moves 24.8) | +79.0 -> +69.0 (moves 10.0) |
+| **band on a MOVE** | **124.2 lbf (3.8e-3 of J)** | **48.6 lbf (1.5e-3)** |
+| price of a stay-class move, inlet knot | 97.3 lbf | **82.1 lbf** |
+| price, the five shape knots | 4.7-14.5 lbf | 5.6-13.7 lbf |
+| G-1 / G-2 / G-3 / G-4 / G-5 | PASS/PASS/**FAIL**/PASS/PASS (4/5) | PASS/PASS/**PASS**/PASS/PASS (**5/5**) |
+
+READ.
+
+1. **G-1: the gradient is sound where the walk stops.** At their
+   optimum AD and central differences agree to 1e-3..7e-1 against the
+   ladder's own scatter (bands 0.8-16): what ends the walks is not the
+   gradient. Measured at both rungs.
+2. **The value is NOT grid-converged; the differences are.** J at their
+   contour reads 32,765 / 33,007 / 33,133 lbf on the three grids --
+   increments 241.6 then 126.1, ratio 1.92, first order -- so the
+   Richardson limit is about 33,270 lbf, +1.2 percent above their
+   32,881 (0.2 of which is their shear, not in our J). The S31 reading
+   "our functional reads their thrust to 0.3 percent" was, in part, the
+   grid error: what survives refinement is the DIFFERENCE between
+   designs, which is what the walk uses. Both bands on a move fall
+   BELOW the paper's own grid span: our machine discriminates designs
+   finer than their 20-run grid did.
+3. **G-5: the landscape is resolved where the value is not.** Under
+   (K,N) -> (2K-1,2N-1) the price of a stay-class move changes by at
+   most 15.2 lbf (first rung) and 5.5 lbf (second); the inlet knot's
+   price converges 97.3 -> 82.1 -> 76.6 lbf. The walk walks on a
+   landscape the grid resolves, on a value it does not.
+4. **G-2/G-3: THEIR CONTOUR IS STATIONARY FOR US IN SHAPE; THE ONE
+   LIVE DIRECTION IS THE FROZEN INLET.** The five shape knots buy
+   5.6-13.7 lbf over their whole measured stay class (0.15 in), an
+   order below the band on a move. The inlet knot buys 82.1 lbf
+   against 48.6: at the first rung it was 97.3 against 124.2 and G-3
+   FAILED -- the gate flips with the rung, and it is the rung that
+   changed, not the physics (the price converges, the band shrinks
+   4x). This is the first-order form of "the model verifies an optimum
+   but does not find it from afar" (section 1): in shape there is
+   nothing left to find; at the inlet there is, and the inlet is the
+   posing's own frozen dof (planar fan, y_w0 set by the mass at
+   X0 0.05 R -- their foot is 6.72 in at x -0.6 in, ours 6.04 in at
+   X0 0.38 in).
+5. **G-4: the tip is not restored because nothing pays for it.** The
+   0.134-in tip residue the perturbed walk left is worth 2.5 / 1.5 lbf
+   on its own gradient, an order below the band: the P-1 failure of
+   section 14 read at the gradient. The tip is priced by the base
+   closure, not by the driver.
+
+**OPEN, and the first item of the next brick.** At (161,81) the record
+on THEIR contour does not certify -- cert 2.96e8 -- while both of our
+landings do (0.192, 1.593). Per G1 the second rung's numbers are
+therefore a reading, not science, until that 3e8 is ATTRIBUTED:
+near-lip conditioning (the S31 section 3.3 mechanism, kappa ~ 1e6 at a
+sonic lip, which the strict metric 100 eps cannot satisfy however good
+the root) or a genuine fold (the geometric margin [X-PMRG] decides it
+in one march). The gate that decided G-3 is itself gated by the
+certification floor.
+
+**OWNER'S DECISIONS ON THIS READING (2026-09-22).** (3) The
+certification floor of S31 section 3.3: **option (b)** -- the cell in a
+rotated frame, removing the ill-conditioning at its geometric source
+(near-vertical characteristics) instead of widening the metric. In S31
+this was a brick; [X-FRMR] has since made it frame-covariant to 1.7e-5
+of p_0, so the rotation is available per cell. (4) The inlet: route
+(i) first -- free y_w0 and the slope at the cut as design variables
+with the mass as an explicit constraint of the TR-SQP, inside the
+current machine -- then route (ii), the kernel start line, posed on
+the INTERNAL-EXTERNAL geometry of section 12 (Humphreys' Fig. 1), not
+on Chutkey's external plug.
+
+Artefacts (not committed, as the line's others):
+`_humphreys_twin/run_grad_opt_2026-09-22.log` (the first, 3/4, whose
+G-3 was graded against the value's band -- superseded),
+`run_grad_opt_2026-09-22_band.log` (4/5, rung one),
+`run_grad_opt_2026-09-22_K161.log` (5/5, rung two, 1311.8 s),
+`grad_opt_veen_K81N41.json` and `grad_opt_veen.json` (rung two).
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
+- Files (S32 midday, section 15): `validation/a1_humphreys_twin.py`
+  (stage grad, `_pose()` factored out bit-identically, the docstring),
+  `validation/humphreys1971_tables.json` (`_grid_class_lbf`, cls SPEC
+  = their Table 1 span), this log; registry row X-HMPH re-printed.
 - Files: `validation/a1_plug_spline_opt.py` (driver, additive knob),
   `validation/a1_throat_kernel.py` (new carrier, baseline row 65 in
   `numeric_lint_baseline_validation.json`, measured by the lint),
