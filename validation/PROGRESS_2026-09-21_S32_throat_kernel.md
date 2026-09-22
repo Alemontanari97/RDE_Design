@@ -1190,6 +1190,103 @@ rotated-frame march, both certified here, are its consumers unchanged.
 Artefacts (not committed): `_humphreys_twin/run_kernel_*.log`,
 `kernel_opt_*.json` (one per configuration, the knobs in the name).
 
+## 19. The certification criterion (owner's directive, 2026-09-22 night) [DIR-REOB]
+
+The owner, after the day's readings: "the objective of the program is
+not to certify other people's optima but to provide a tool capable of
+finding an optimum given a line of initial values"; and then, verbatim
+in intent: **"we certify the optimum only if we manage to RE-OBTAIN it,
+not if, starting from the same profile, it stays stationary -- because
+in real problems we do not know what the optimum is."** Recorded as the
+binding criterion of the line, [DIR-REOB] in the registry.
+
+**THE CRITERION.** An optimum is CERTIFIED only when the tool re-obtains
+it from elsewhere, in CONTOUR and in value. A walk started ON the
+reference profile that stays there certifies the stationarity of that
+point -- a property of the point, not of the tool's capacity to find
+it. In production the optimum is unknown, so the only certificate that
+counts is the one that does not use it as a start.
+
+**THE THREE TESTS.**
+- **RE-1, re-obtention from a reference** (where the optimum is known):
+  the SAME initial-value line and the SAME functional as the reference,
+  a GENERIC start -- the fan's streamline, a cone, random knots -- and
+  the landing on the reference contour within the stay class (0.15 in
+  per knot, measured) AND on the value within the band on a move.
+  Several starts, not one.
+- **RE-2, self-re-obtention** (production, the optimum unknown): a
+  design D* the tool found, perturbed GROSSLY -- inches, or a restart
+  from the fan -- not within the instrument's bands, and the tool's
+  return to D* in contour. The falsifier of "the tool finds the
+  optimum, not a stationary point that depends on the start".
+- **RE-3, coincidence across starts**: from N different starts the
+  landings coincide in contour within the class; where they do not, the
+  spread in value against the band on a move tells the tool
+  (start-dependent: a defect) from the problem (a flat valley: to be
+  declared).
+RE-2 and RE-3 are the only certificate available in a real problem;
+RE-1 on the twins that carry THEIR OWN initial-value line is the
+calibration of that certificate -- it says whether "the landings
+coincide" implies "this is the optimum".
+
+**WHERE THE FUNCTIONAL DOES NOT DISCRIMINATE CONTOURS** the criterion
+cannot ask for the contour: the certifiable statement is re-obtention
+of the VALUE within the band, and the ambiguity of contour is declared
+as a property of the problem -- or the functional is enriched (the
+base, off-design) until it discriminates. Whether Humphreys' valley IS
+flat is itself not yet known: the prices of section 15 were read on
+marches that section 16 found folded.
+
+**THE RECORD RE-LABELLED under the criterion** (the rows carry the
+clause from tonight):
+- X-HMPH: the table-start landing ("the walk STAYS", -5e-4) is a
+  stays test; the +0.30-in return is a basin test, and its tip did not
+  return; the one re-obtention attempted, from the fan's streamline,
+  PASSED in value (-0.19 percent) and FAILED in contour (y_D 2.72
+  against 0.954 in). Not a finder certificate. All three on marches
+  since found out of class.
+- X-OWS3 (our world, the SQP-return v3, 6/6): the perturbation is 1.5
+  percent off GENO's contour, inside the instrument's own bands -- a
+  basin test. It holds the motion half of O3.3 (the optimum is a local
+  attractor of the certified walk); it is not re-obtention from afar.
+- No row of the line certifies the optimiser as a FINDER tonight.
+
+**PREREQUISITES, IN ORDER**: the class constraint active in the driver
+(built in S29, never used by the Humphreys legs); a resolution at which
+the band on a move discriminates (48.6 lbf at (161,81) against the
+paper's 178); for RE-1, the reference's OWN initial-value line -- which
+for Humphreys the paper does not tabulate (their start line is Ref. 8's
+"modified Moore-Hall"; the S31 posing replaced it with a planar fan on
+a vertical cut with the wall radius set by the mass: a different line,
+sections 16-18).
+
+**WHAT CHUTKEY GAVE ON THE SONIC-LINE PROBLEM (the owner's question).**
+Chutkey et al. 2014 do not march: their flowfield is RANS (HiFUN, Roe,
+SA, y+ < 1, two grids) on the WHOLE geometry, primary nozzle included
+-- the sonic line is computed, never posed -- and their plug surface
+pressure is grid-converged and matches their taps (Fig. 9d, five taps
+on the 20-percent plug). What our twin took from them: (i) the plug is
+an Angelino contour (throat tilt = nu(M_e) to 0.01 deg), so the ideal
+centred fan at the lip IS its construction, and the wall state
+downstream of ~1.5 mm is reproduced to 1-2 percent from that fan cut
+at M_i 1.6 with the throat strip DECLARED (X-CHTW; the price, -6.2
+percent of first-column mass); (ii) the sonic line itself cannot be a
+start (a double characteristic, cert 1e18) and a sonic lip's fan has
+rays past the vertical in the record's frame (theta - mu < -90 deg
+until M 1.83), which the throat frame cures (X-FRMR); (iii) their
+primary nozzle ends in arcs of R 0.867 mm on a 1.32-mm half-height,
+R_c 0.33 in Dutton's units -- OUTSIDE every series kernel (X-ANKR:
+the third term moves the throat-plane Mach as much as the second),
+so at that throat the transonic field is CFD's or nobody's; (iv) their
+own note that a mild compression wave sits at the primary-nozzle/plug
+junction (p. 483) is the physical counterpart of section 12's finding
+that the Angelino foot turns INTO the channel. Chutkey therefore
+frames the sonic-line problem exactly and answers it by not marching
+through it; the geometry that lets a march start from a series kernel
+is Humphreys' (an arc curving away, R_c 0.70, sections 17-18), and
+even there the three-term series is rejected by the march at its first
+column.
+
 ## 7. Conformity
 
 - Branch `rde-nozzle-program`; identity AlexFalco5; no push.
