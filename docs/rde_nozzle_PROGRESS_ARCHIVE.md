@@ -3027,3 +3027,29 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## X-TPOS/X-IVLT/X-RAOHM; BLOCCATO 20 (a) push autorizzato, (h) superata
 ## dalla classe in R, (i) nuova (Panov-Shvets). Riga R37 uscente, verbatim:
 ## | R37 | LINEA BRICK-2 PLUG S21-S33 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; working copy ricostruita il 09-09 (S27); commit locali, push per direttiva owner 2026-09-22 solo a strumento completo; bundle in RDE/handoff/) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3: S26, S28-S33 = 7, misurato con git log) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (h) chiusura X-HMPH in spinta specifica (G1: marce piegate 2.2-14.6 %); tecnico: margin= nel twin + derive D0-D4 sulla posa di Humphreys, poi RE-2/RE-3 e RE-1 in valore (DIR-REOB); residui d'uscita F3 invariati dal S28: oracolo Tab. 1 in bande sul nostro mondo, istanza stratificata, A/B a PA nominale, T-GB de-rated o falsificatore del plug troncato, margine a specchio plug/C- dimostrato o PRACTICE | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-22(_sera).md |
+
+## ===== ARCHIVIO 2026-09-24 sera (chiusura S36 shrouded plug; append-only SR-10): il
+## blocco NEXT-PARALLELO uscente di docs/rde_nozzle_PROGRESS.md, VERBATIM =====
+
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-24): la direzione SHROUDED
+## PLUG per completare la suite (owner 2026-09-24): prima verificare che
+## la marcia porti una seconda parete (lo shroud); casi candidati Vander
+## Veen 1974 Tab. 3 (C_F di 8 coppie shroud/plug, contorni da rigenerare)
+## e l'ugello perfetto di Migdal 1972 (1-D esatto M_e 3.1107, C_F,vac
+## 1.5796; GENO CASES/migdalnoz). Aperti sulla linea plug: la decisione
+## owner su Panov-Shvets (membro del repo sull'ambiente vs lettura di
+## Humphreys sullo stato in D, BLOCCATO 20 i); la conferma a (160,41) con
+## una camminata (oggi rilettura); T come variabile di progetto con le
+## altre manopole d'ingresso (angolo d'iniezione, raggio del labbro)
+## quando l'ingresso diventa variabile per l'RDE. Handoff:
+## RDE/handoff/NOZZLE_HANDOFF_2026-09-23.md + _gola.md (sezioni 8-9).
+
+## ===== DELTA CENSIMENTO 2026-09-24 sera (chiusura S36; append-only SR-10; la
+## tabella consolidata in PROGRESS e' stata editata IN PLACE) =====
+## R37: da "S21-S35" a "S21-S36": S36 (albero principale, niente worktree) porta la
+## seconda parete nella marcia del plug; artefatti + log S36 e righe X-TWMU/X-MGDL;
+## sessioni taggate F3 con S36 = 9; il "tecnico" passa da "shrouded plug (Veen,
+## Migdal)" a "TR-SQP a due pareti, RE-1 Migdal, Veen Tab. 3 dalla nostra posa".
+## Riga R37 uscente, verbatim:
+## | R37 | LINEA BRICK-2 PLUG S21-S35 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9]*\]' | sort -u`
+## al 2026-09-24: S26, S28-S33 = 7 (72 commit); con S34-S35 = 8 sessioni.) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (i) Panov-Shvets sull'ambiente o sullo stato in D; tecnico: shrouded plug (Veen 1974, Migdal 1972) per completare la suite; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md |

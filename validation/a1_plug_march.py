@@ -104,6 +104,55 @@ def make_resid_wallbot(delta):
     return resid
 
 
+# ----------------------------------------------------------------------
+# the top-wall (SHROUD) cell: a DIRECT wall cell (2026-09-24, the shrouded
+# plug; additive -- without `shroud=` the march below is bit-identical)
+# ----------------------------------------------------------------------
+def make_resid_walltop(delta):
+    """The column's C+ from pt1 (BELOW, same column) meets the prescribed
+    shroud: unknowns z = (x4, u4); the shroud's local shape is the cubic
+    Hermite through the two bracketing stations (xA, yA, sA)-(xB, yB, sB)
+    (the segment is a recorded decision), so y4 = H(x4) and v4 = H'(x4) u4.
+    The bell's wall is INVERSE (station given, foot searched) because a
+    top-down column ends ON the wall station; here the column is a C+
+    line and the wall point is wherever it arrives (GENO's DirectWall).
+    Rows: C+ position, C+ compatibility -- the inwall rows with the foot
+    fixed at pt1."""
+    def resid(z, p, ta):
+        x4, u4 = z
+        x1, y1, u1, v1, xA, yA, sA, xB, yB, sB = p
+        h = xB - xA
+        t = (x4 - xA) / h
+        y4 = ((2.0 * t ** 3 - 3.0 * t ** 2 + 1.0) * yA
+              + (t ** 3 - 2.0 * t ** 2 + t) * h * sA
+              + (-2.0 * t ** 3 + 3.0 * t ** 2) * yB
+              + (t ** 3 - t ** 2) * h * sB)
+        s4 = ((6.0 * t ** 2 - 6.0 * t) * (yA - yB) / h
+              + (3.0 * t ** 2 - 4.0 * t + 1.0) * sA
+              + (3.0 * t ** 2 - 2.0 * t) * sB)
+        v4 = s4 * u4
+        up, vp, yp = 0.5 * (u1 + u4), 0.5 * (v1 + v4), 0.5 * (y1 + y4)
+        _, lp, qp, rp0, sp = A1._coef(up, vp, yp, ta, delta)
+        rp = rp0 - qp * lp
+        return jnp.array([
+            (y4 - y1) - lp * (x4 - x1),
+            qp * u4 + rp * v4 - (sp * (x4 - x1) + qp * u1 + rp * v1),
+        ])
+    return resid
+
+
+def hermite_seg(x, xA, yA, sA, xB, yB, sB):
+    """(y, dy/dx) of the cubic Hermite segment -- the shroud's local shape
+    the top cell solves against (numpy or jnp, elementwise)."""
+    h = xB - xA
+    t = (x - xA) / h
+    y = ((2.0 * t ** 3 - 3.0 * t ** 2 + 1.0) * yA + (t ** 3 - 2.0 * t ** 2 + t) * h * sA
+         + (-2.0 * t ** 3 + 3.0 * t ** 2) * yB + (t ** 3 - t ** 2) * h * sB)
+    dy = ((6.0 * t ** 2 - 6.0 * t) * (yA - yB) / h + (3.0 * t ** 2 - 4.0 * t + 1.0) * sA
+          + (3.0 * t ** 2 - 2.0 * t) * sB)
+    return y, dy
+
+
 def make_resid_interior_bu(delta):
     """Bottom-up interior cell (the mirror of Brick 1's): pt1 sits
     BELOW in the SAME column and sends the C+ characteristic; pt2 sits
@@ -149,7 +198,8 @@ def predict_bu(pt1, pt2, ta):
 # ----------------------------------------------------------------------
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
-               edge_fill=0, rot_pred=None, margin=None, x_traced=False):
+               edge_fill=0, rot_pred=None, margin=None, x_traced=False,
+               shroud=None, wedge_every=1):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -208,6 +258,28 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     (sx[kst], sy[kst], ssl[kst]) in both modes (traced in play), the
     schedule keeping only the discrete decisions; the recorded "xcols"
     are the record's own abscissae (a diagnostic, not read back).
+    SHROUD (2026-09-24, additive; the shrouded / internal-external plug):
+    shroud = (xs, ys, ss) stations of a TOP wall from the start line to
+    its lip F = (xs[-1], ys[-1]). The top of every column is then the
+    DIRECT top-wall cell (make_resid_walltop) instead of the free jet:
+    the column's C+ meets the shroud on the Hermite segment the recorded
+    scan brackets; the shroud, like the edge, ADDS one row per column
+    (the reflected C-). When the column's C+ would land beyond F, the
+    lip is placed by the bell's INVERSE wall cell (A1.make_resid_inwall,
+    verbatim) with its foot on the C- leg from the previous shroud point
+    to this column's top interior; after F no top cell runs -- the top
+    row IS F's C- (the exit characteristic), rows are only consumed at
+    the plug, and the march ends when that row reaches the plug or at
+    the last station. No free jet, no pa: the region above F's C- is not
+    computed. Returns out["shroud"] (the shroud points, F last) and
+    out["lip_col"]; out["edge"] is None. Not combined with `cells`
+    (rotated frame) or 6-wide nodes. wedge_every (int, default 1) launches
+    a wedge column from every m-th start row (the plug's start row always
+    included): with one per row the N-1 reflections off the shroud crowd
+    into the wedge's short x-range and travel downstream as a C- band 25x
+    denser than the rest of the net, degrading the plug-wall cell's
+    certificate where the band lands (measured, (280,61) on Migdal); the
+    rows a thinned wedge skips take their C- partner from the start line.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
@@ -236,6 +308,17 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         return (lambda z0, p: t[0](z0, p, ta),
                 lambda z, p: t[2](z, p, ta))
     s_int, s_fj, s_wb = with_ta(t_int), with_ta(t_fj), with_ta(t_wb)
+    if shroud is not None:
+        if cells is not None or NV == 6:
+            raise NotImplementedError("shroud: record-frame 4-wide nodes only")
+        sxs, sys_, sss = (np.asarray(v, float) for v in shroud)
+        if np.any(np.diff(sxs) <= 0.0):
+            raise ValueError("shroud stations must increase in x")
+        s_wt = with_ta(A1.get_solver(("wt", delta), lambda: make_resid_walltop(delta)))
+        s_lip = with_ta(A1.get_solver(("wtlip", delta), lambda: A1.make_resid_inwall(delta)))
+        lip_done = [False]
+        shroud_pts = []
+        lip_col = [None]
     cert = dict(worst=0.0, n=0, where=None)
     # region R (S34): the Newton certificate read where the thrust is
     # made -- per-cell ratios kept, the worst over R taken at the end
@@ -412,64 +495,95 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     tstat = []                     # (t, column, row) diagnostic
     M = N                                     # top row of the PREVIOUS column
     kst = -1
+    # THE START-UP WEDGE OF A SHROUDED START (2026-09-24): every column is
+    # a C+ line launched from a PLUG station, so the shroud between the
+    # start line and the first column's arrival receives no column at all
+    # (measured on the exact channel: the first column's C+ landed beyond
+    # the lip, one shroud point, the lip placed from the start line). With
+    # a free jet on top that wedge is filled with data rows (edge_fill);
+    # with a WALL on top it must be marched: WEDGE COLUMNS = the C+ lines
+    # launched from the start-line points, top row first (they order left
+    # to right by x), each keeping its rows' indices (no wall, nothing
+    # consumed) and ending on the shroud (or at the lip). Their column
+    # indices precede the plug columns'; the plug wall's foot search then
+    # finds its bracket on them like on any column.
+    if shroud is not None:
+        m_w = max(1, int(wedge_every))
+        wedge = sorted(set(list(range(N - 1, 0, -m_w)) + [1]), reverse=True)
+    else:
+        wedge = []
+    i = 1
+    ci = -1                                   # column counter, both kinds
     while True:
-        kst += 1
-        i = 2 + kst
-        if S.mode == "rec":
-            x_next = float(sx[kst])
-            S.d.setdefault("xcols", []).append(x_next)
-            done = kst == len(sx) - 1
+        i += 1
+        ci += 1
+        if wedge:
+            j0 = wedge.pop(0)
+            G[(j0, i)] = G[(j0, 1)]
+            jnew = j0
+            jsrc0 = j0 + 1
+            done = False
+            ktag = "w%d" % j0
         else:
-            x_next = S.d["xcols"][kst]
-            done = kst == len(S.d["xcols"]) - 1
-        if x_traced:
-            x4w, y4w, sl = sx[kst], sy[kst], ssl[kst]
-        else:
-            x4w = jnp.float64(x_next)
-            y4w = jnp.interp(x4w, sx, sy)
-            sl = jnp.interp(x4w, sx, ssl)
-        if S.mode == "rec":
-            u4e = float(G[(1, i - 1)][2])
-            b, jf = wall_foot_search(i, float(x4w), float(y4w),
-                                     float(sl), u4e, M)
-            S.d.setdefault("wfoot", []).append((b, jf))
-        else:
-            b, jf = S.d["wfoot"][kst]
-        ptA = G[(jf, i - b)]
-        ptB = G[(jf + 1, i - b)]
-        p = jnp.concatenate([ptA, ptB, jnp.array([x4w, y4w, sl])]
-                            + ([sw_inv] if NV == 6 else []))
-        if S.mode == "rec":
-            z0 = jnp.array([0.5 * (float(ptA[1]) + float(ptB[1])),
-                            float(ptA[2])])
-        else:
-            z0 = jnp.zeros(2)
-        z = cell(s_wb, p, z0, tag=("wall", kst))
-        wpt = jnp.array([x4w, y4w, z[1], sl * z[1]])
-        if NV == 6:
-            wpt = jnp.concatenate([wpt, sw_inv])
-        G[(1, i)] = wpt
-        wall_pts.append(wpt)
-        # ---- ROW CONSUMPTION at the wall: the previous column's rows
-        # 2..jf lie BELOW the new wall point's foot — their C-
-        # characteristics have already terminated on the wall between
-        # stations. Prolonging them (the first fine-station build did)
-        # creates ghost rows below the spike: Newton's only remaining
-        # crossing for such a row is the BACKWARD one, a valid root of
-        # the equations on the wrong branch (measured: a whole M1-state
-        # mesh limb below the wall, mass +9%). At a solid wall the
-        # incoming family must be consumed exactly as the edge adds
-        # one: rows are re-indexed from the foot up.
-        jsrc0 = (jf + 1 if b == 1 else 2) if consume else 2
+            kst += 1
+            ktag = kst
+            if S.mode == "rec":
+                x_next = float(sx[kst])
+                S.d.setdefault("xcols", []).append(x_next)
+                done = kst == len(sx) - 1
+            else:
+                x_next = S.d["xcols"][kst]
+                done = kst == len(S.d["xcols"]) - 1
+            if x_traced:
+                x4w, y4w, sl = sx[kst], sy[kst], ssl[kst]
+            else:
+                x4w = jnp.float64(x_next)
+                y4w = jnp.interp(x4w, sx, sy)
+                sl = jnp.interp(x4w, sx, ssl)
+            if S.mode == "rec":
+                u4e = float(G[(1, i - 1)][2])
+                b, jf = wall_foot_search(i, float(x4w), float(y4w),
+                                         float(sl), u4e, M)
+                S.d.setdefault("wfoot", []).append((b, jf))
+            else:
+                b, jf = S.d["wfoot"][kst]
+            ptA = G[(jf, i - b)]
+            ptB = G[(jf + 1, i - b)]
+            p = jnp.concatenate([ptA, ptB, jnp.array([x4w, y4w, sl])]
+                                + ([sw_inv] if NV == 6 else []))
+            if S.mode == "rec":
+                z0 = jnp.array([0.5 * (float(ptA[1]) + float(ptB[1])),
+                                float(ptA[2])])
+            else:
+                z0 = jnp.zeros(2)
+            z = cell(s_wb, p, z0, tag=("wall", kst))
+            wpt = jnp.array([x4w, y4w, z[1], sl * z[1]])
+            if NV == 6:
+                wpt = jnp.concatenate([wpt, sw_inv])
+            G[(1, i)] = wpt
+            wall_pts.append(wpt)
+            # ---- ROW CONSUMPTION at the wall: the previous column's rows
+            # 2..jf lie BELOW the new wall point's foot — their C-
+            # characteristics have already terminated on the wall between
+            # stations. Prolonging them (the first fine-station build did)
+            # creates ghost rows below the spike: Newton's only remaining
+            # crossing for such a row is the BACKWARD one, a valid root of
+            # the equations on the wrong branch (measured: a whole M1-state
+            # mesh limb below the wall, mass +9%). At a solid wall the
+            # incoming family must be consumed exactly as the edge adds
+            # one: rows are re-indexed from the foot up.
+            jsrc0 = (jf + 1 if b == 1 else 2) if consume else 2
+            jnew = 1
         # ---- interiors, bottom-up, partnered with previous rows
         #      jsrc0..M (the top one uses the previous EDGE point)
-        jnew = 1
         for jprev in range(jsrc0, M + 1):
             jnew += 1
             if track_R:
                 cline[(jnew, i)] = cline.get((jprev, i - 1))
             pt1 = G[(jnew - 1, i)]
-            pt2 = G[(jprev, i - 1)]
+            # a thinned wedge: the rows the previous wedge column does not
+            # carry take their C- partner from the start line itself
+            pt2 = G[(jprev, i - 1)] if (jprev, i - 1) in G else G[(jprev, 1)]
             if S.mode == "rec":
                 z0 = (rot_pred(pt1, pt2, ta) if NV == 6
                       else predict_bu(pt1, pt2, ta))
@@ -597,7 +711,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             z = cell(s_int, p,
                      z0 if z0 is not None else jnp.zeros(
                          5 if NV == 6 else 4),
-                     tag=("int", kst, jnew))
+                     tag=("int", ktag, jnew))
             if NV == 6:
                 # the cell's t lerps the streamline invariants on the
                 # SEARCHED chord (the foot the cell itself refined),
@@ -671,49 +785,117 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     else:
                         margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
                                                z, pt1))
-        # ---- new top row: the free edge, fed from THIS column
-        pt1 = G[(jnew, i)]
-        pt3 = G[(M, i - 1)]          # previous edge (top of prev col)
-        if S.mode == "rec":
-            th_g = float(jnp.arctan2(pt3[3], pt3[2]))
-            dx_g = max(float(pt1[0]) - float(pt3[0]), 1e-3)
-            z0 = jnp.array([float(pt3[0]) + dx_g,
-                            float(pt3[1]) + dx_g * np.tan(th_g), th_g])
+        if shroud is not None and lip_done[0]:
+            # ---- after the lip: no top cell; the top row is F's C-
+            M = jnew
+            if M < 2:
+                # the exit characteristic reached the plug: the march
+                # is complete (the last column is the wall point alone)
+                if S.mode == "rec" and not wedge and ktag == kst:
+                    S.d.setdefault("K_cols", []).append(int(i))
+                break
+        elif shroud is not None:
+            # ---- new top row: the SHROUD, met by THIS column's C+
+            pt1 = G[(jnew, i)]
+            if S.mode == "rec":
+                x1_, y1_, u1_, v1_ = (float(v) for v in pt1[:4])
+                M1 = float(A1.state_q(jnp.float64(np.hypot(u1_, v1_)), ta)[5])
+                tcp = np.tan(np.arctan2(v1_, u1_)
+                             + np.arcsin(min(1.0, 1.0 / M1)))
+                seg = -1
+                fprev = None
+                for k_ in range(len(sxs)):
+                    if sxs[k_] <= x1_:
+                        fprev = None
+                        continue
+                    f_ = (sys_[k_] - y1_) - tcp * (sxs[k_] - x1_)
+                    if fprev is not None and fprev > 0.0 >= f_:
+                        seg = k_ - 1
+                        break
+                    if fprev is None and f_ <= 0.0 and k_ > 0:
+                        seg = k_ - 1        # the crossing is inside the first segment past x1
+                        break
+                    fprev = f_
+                S.d.setdefault("sseg", []).append(int(seg))
+            else:
+                seg = S.d["sseg"][ci]
+            if seg >= 0:
+                xA, yA, sA = sxs[seg], sys_[seg], sss[seg]
+                xB, yB, sB = sxs[seg + 1], sys_[seg + 1], sss[seg + 1]
+                if S.mode == "rec":
+                    fA = (yA - y1_) - tcp * (xA - x1_)
+                    fB = (yB - y1_) - tcp * (xB - x1_)
+                    xg = xA + (xB - xA) * (fA / (fA - fB) if fA != fB else 0.5)
+                    z0 = jnp.array([float(np.clip(xg, xA, xB)), u1_])
+                else:
+                    z0 = jnp.zeros(2)
+                p = jnp.concatenate([pt1[:4], jnp.array([xA, yA, sA, xB, yB, sB])])
+                z = cell(s_wt, p, z0, tag=("shroud", ktag))
+                y4, s4 = hermite_seg(z[0], xA, yA, sA, xB, yB, sB)
+                spt = jnp.array([z[0], y4, z[1], s4 * z[1]])
+            else:
+                # the LIP F: the bell's inverse wall cell, its foot on the
+                # C- leg from the previous shroud point to this column's
+                # top interior
+                ptP = G[(M, i - 1)]
+                p = jnp.concatenate([ptP[:4], pt1[:4],
+                                     jnp.array([sxs[-1], sys_[-1], sss[-1]])])
+                if S.mode == "rec":
+                    z0 = jnp.array([0.5 * (float(ptP[0]) + float(pt1[0])), float(pt1[2])])
+                else:
+                    z0 = jnp.zeros(2)
+                z = cell(s_lip, p, z0, tag=("lip", ktag))
+                spt = jnp.array([sxs[-1], sys_[-1], z[1], sss[-1] * z[1]])
+                lip_done[0] = True
+                lip_col[0] = int(i)
+            M = jnew + 1
+            G[(M, i)] = spt
+            shroud_pts.append(spt)
         else:
-            z0 = jnp.zeros(3)
-        p = jnp.concatenate([pt1, pt3, jnp.array([qpa])])
-        z = cell(s_fj, p, z0, tag=("edge", kst))
-        q_e = qe_of(z[1])
-        ept = jnp.array([z[0], z[1], q_e * jnp.cos(z[2]),
-                         q_e * jnp.sin(z[2])])
-        if NV == 6:
-            ept = jnp.concatenate([ept, se_inv])
-        if edge_fill and kst == 0:
-            # fill the start-up wedge: the flow between the topmost
-            # interior and the edge is smooth and unsampled, so seed it
-            # as DATA (the pattern already used for the throat and lip
-            # corners) rather than leave a hole the row-growth rule
-            # cannot close at one row per column.
-            base = G[(jnew, i)]
-            for t in np.linspace(0.0, 1.0, edge_fill + 2)[1:-1]:
-                jnew += 1
-                G[(jnew, i)] = base + t * (ept - base)
-        M = jnew + 1
-        G[(M, i)] = ept
+            # ---- new top row: the free edge, fed from THIS column
+            pt1 = G[(jnew, i)]
+            pt3 = G[(M, i - 1)]          # previous edge (top of prev col)
+            if S.mode == "rec":
+                th_g = float(jnp.arctan2(pt3[3], pt3[2]))
+                dx_g = max(float(pt1[0]) - float(pt3[0]), 1e-3)
+                z0 = jnp.array([float(pt3[0]) + dx_g,
+                                float(pt3[1]) + dx_g * np.tan(th_g), th_g])
+            else:
+                z0 = jnp.zeros(3)
+            p = jnp.concatenate([pt1, pt3, jnp.array([qpa])])
+            z = cell(s_fj, p, z0, tag=("edge", kst))
+            q_e = qe_of(z[1])
+            ept = jnp.array([z[0], z[1], q_e * jnp.cos(z[2]),
+                             q_e * jnp.sin(z[2])])
+            if NV == 6:
+                ept = jnp.concatenate([ept, se_inv])
+            if edge_fill and kst == 0:
+                # fill the start-up wedge: the flow between the topmost
+                # interior and the edge is smooth and unsampled, so seed it
+                # as DATA (the pattern already used for the throat and lip
+                # corners) rather than leave a hole the row-growth rule
+                # cannot close at one row per column.
+                base = G[(jnew, i)]
+                for t in np.linspace(0.0, 1.0, edge_fill + 2)[1:-1]:
+                    jnew += 1
+                    G[(jnew, i)] = base + t * (ept - base)
+            M = jnew + 1
+            G[(M, i)] = ept
+            edge_pts.append(ept)
         if track_R:
             for jj in range(2, M + 1):
                 if (jj, i) not in cline:
                     cline[(jj, i)] = new_line[0]
                     new_line[0] += 1
-        edge_pts.append(ept)
-        if S.mode == "rec":
+        if S.mode == "rec" and ktag == kst:
             S.d.setdefault("K_cols", []).append(int(i))
         if done:
             break
 
+    ilast = i
     cert_R = None
     if track_R:
-        alive_ = {cline.get((j, 2 + kst)) for j in range(2, M + 1)}
+        alive_ = {cline.get((j, ilast)) for j in range(2, M + 1)}
         worst_R, where_R = 0.0, None
         for r_, tg in (cert_cells or []):
             if tg is None:
@@ -721,14 +903,15 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             if tg[0] == "wall":
                 inr = True
             elif tg[0] == "int":
-                inr = cline.get((tg[2], 2 + tg[1])) not in alive_
+                inr = (isinstance(tg[1], int)
+                       and cline.get((tg[2], 2 + tg[1])) not in alive_)
             else:
                 inr = False
             if inr and r_ > worst_R:
                 worst_R, where_R = r_, tg
         cert_R = (worst_R, where_R)
     if track_R and m_quads:
-        alive = {cline.get((j, 2 + kst)) for j in range(2, M + 1)}
+        alive = {cline.get((j, ilast)) for j in range(2, M + 1)}
         keep = [(a[0] == 1 or cline.get(a) not in alive) and ic >= 3
                 for a, ic in m_qkeys]
         m_quads = [q for q, k_ in zip(m_quads, keep) if k_]
@@ -759,11 +942,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         m_min[0] = jnp.min(v)
         m_acc[0] = jax.scipy.special.logsumexp(-mg["rho"] * v)
 
-    ilast = 2 + kst
     col = jnp.stack([G[(j, ilast)] for j in range(1, M + 1)
                      if (j, ilast) in G])
     out = dict(
-        edge=jnp.stack(edge_pts), wall=jnp.stack(wall_pts),
+        edge=(jnp.stack(edge_pts) if edge_pts else None), wall=jnp.stack(wall_pts),
+        shroud=(jnp.stack(shroud_pts) if shroud is not None and shroud_pts else None),
+        lip_col=(lip_col[0] if shroud is not None else None),
         last_col=col, cert_worst=(cert["worst"] if cert_R is None or S.mode != "rec" else cert_R[0]),
         cert_worst_net=cert["worst"], cert_where_R=(None if cert_R is None else cert_R[1]),
         cert_n=cert["n"],
