@@ -337,6 +337,18 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     the variable-gamma instance (our world's NASA tables), and the
     conditional two-wall stretch (march S36 [X-TWMU]/[X-MGDL], optimiser
     open).
+    S38 (F3 session 2/4, log validation/PROGRESS_2026-09-24_S38_F3_nominal
+    .md): the VALUE half of the plug optimum CERTIFIED at the NOMINAL
+    ambient by the bound -- [X-OWNM]: the ideal spike built by our own
+    inverse march ([X-AFAN], no GENO) attains [T-GB]'s ceiling mdot V_id
+    (Richardson limit of the deficit +2.2e-5 on the certified K ladder,
+    band 3.5e-4), in class in region R, so no design of the class beats it
+    beyond the band (the M1 corollary measured); the var-gamma instance
+    DECLARED (every our-world plug row marches the CH4/O2 NASA tables).
+    The FINDER half is the tournament's campaign from its far start C,
+    which the region-R class (S34) admits where S30's bucket floor did not
+    -- the second and last decisive campaign ISS-4 allows the instance, on
+    the owner's word. Record gap found: X-PTRN never had its registry row.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

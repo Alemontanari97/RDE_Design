@@ -1,0 +1,29 @@
+{
+  "_doc": "Constants of ourworld_nominal.py [X-OWNM] (S38 2026-09-24, F3 session 2/4): the ideal spike of our world, built by [X-AFAN]'s inverse march at the NOMINAL ambient (no GENO), graded against the [T-GB] ceiling mdot V_id on a certified K ladder with paired rejectors. Every number is a posing choice; the world (CH4/O2 NASA tables, mdot, lip radius, PA, M_i) is a1_config_compare's of record.",
+  "posing": {
+    "value": {
+      "x0": 1.5,
+      "K_ladder": [
+        41,
+        81,
+        161
+      ],
+      "N": 81,
+      "fan": [
+        241,
+        241
+      ],
+      "perturb": 0.015
+    },
+    "cls": "NUMERIC",
+    "note": "x0 1.50 m = the [X-OWS3] cut (0.25 of x_D); the [X-RAOSQ] v3 design representation (8 knots, near-cut 35 percent frozen, tip pinned at the member's floor node) used only to MARCH designs, never to search; K ladder 41/81/161 at N 81 rows: MEASURED 2026-09-24 -- every rung certifies at N 81 (0.026 / 0.149 / 0.037), K 161 at N 61 leaves a free-jet edge cell uncertified (1.8) and K 321 at N 81 too (14.7), so the ladder stops at 161; the field = fan_axi at [X-AFAN]'s record (241 rays x 241 levels); the perturbed design = [X-RAOSQ]'s 1.5-percent alternating perturbation of the member (in class in region R: the paired rejector)"
+  },
+  "turn_reading": {
+    "value": {
+      "grid": 4001,
+      "bracket_deg": 60
+    },
+    "cls": "NUMERIC",
+    "note": "the uniform-turn wall of the flatness reading: its angle turns linearly in x from the frozen zone's end angle to the end angle that lands it at the pinned tip, integrated on a 4001-point grid; the end angle is bracketed within +-60 deg of the start angle"
+  }
+}
