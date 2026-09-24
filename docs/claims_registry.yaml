@@ -209,6 +209,19 @@ entries:
 
 # ------------------------------------------------------------------- theorems
 
+- id: C-GBCS
+  kind: conditional
+  class: SCHEMA
+  scope: "declared MODEL CLOSURE (flow class, not an analytic gap -- justification per SCAFFOLD §3 rule 4, S37 2026-09-24): the G-B control-surface closure of Prop. 7"
+  statement: "Every streamline crossing the exhaust control surface issues from the interface (no ambient fluid drawn in through the lateral boundary and expelled through the exhaust), and the exhaust surface carries the axial margin u_x >= c ([S-GBE] E3: no backflow; any base recirculation closes upstream of it). Under it the per-streamtube argument of Prop. 7 is complete."
+  doc: "docs/rde_nozzle_MASTER.md#DE-RATING OF RECORD"
+  proof: "docs/rde_nozzle_GB_ergodic.md#LEMMA GBE-L1"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a certified 2-D truncated plug with base recirculation inside the class (the recirculation closed upstream of an axially-sonic exhaust surface) whose thrust exceeds the capped ceiling beyond bars falsifies Prop. 7 within the closure; a geometry that expels entrained ambient fluid through the exhaust is OUTSIDE the class (declared scope) [shape-level falsifier NAMED, OPEN]"
+  gamma: "EOS-general"
+
 - id: T-TH0
   kind: theorem
   class: THEOREM
@@ -341,15 +354,15 @@ entries:
 
 - id: T-GB
   kind: theorem
-  class: THEOREM
-  scope: "geometry-free ceiling, ANY topology, choked frozen feed; SONIC CAP mandatory on subcritical phases; primary route EOS-general (Cantera h(s,P)), closed forms demoted to oracles"
-  statement: "J[S] <= J_ideal = Int F_id dmu with F_id the complete isentropic expansion CAPPED AT THE SONIC STATE below critical NPR; measured purge delta of record: real gamma(T) ceiling 4.4-7.9% below the gamma_s oracle."
+  class: THEOREM*
+  scope: "geometry-free ceiling, ANY topology IN THE CLASS OF [C-GBCS] (every exhaust streamline issues from the interface; axially-sonic exhaust surface), choked frozen feed; SONIC CAP mandatory on subcritical phases; primary route EOS-general (Cantera h(s,P)), closed forms demoted to oracles; DE-RATED THEOREM -> THEOREM* 2026-09-24 (S37, D6 F3 exit leg; findings row theory-core:F3-TGB-class-inflation-rejector-scope)"
+  statement: "J[S] <= J_ideal = Int F_id dmu with F_id the complete isentropic expansion CAPPED AT THE SONIC STATE below critical NPR; measured purge delta of record: real gamma(T) ceiling 4.4-7.9% below the gamma_s oracle. THEOREM* within [C-GBCS] (the per-streamtube proof needs every exhaust streamline to issue from the interface; with it the proof is the steady case of GBE-L1 [S-GBE] + streamtube conservation)."
   doc: "docs/rde_nozzle_MASTER.md#PROPOSITION 7"
-  proof: "docs/rde_nozzle_MASTER.md#PROPOSITION 7"
-  inherits: []
+  proof: "docs/rde_nozzle_MASTER.md#DE-RATING OF RECORD"
+  inherits: ["C-GBCS"]
   carrier: ["X-GRP08", "X-GRP11", "X-GRP12"]
   suffices_symbolic: "no"
-  falsifier: "any admissible exit scan beating the capped formula beyond table-noise bars (executable rejector in groups (viii)/(xi))"
+  falsifier: "any admissible exit scan beating the capped formula beyond table-noise bars (executable rejector in groups (viii)/(xi): the per-streamtube bound over the 1-D exit family); the full-quantifier shape falsifier -- a certified 2-D truncated plug with base recirculation, inside [C-GBCS], against the capped ceiling -- NAMED and OPEN (S37 2026-09-24)"
   gamma: "EOS-general"
 
 - id: T-EQBR
@@ -2726,6 +2739,20 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "stage geno: MG-1 (both grids certify), MG-2/MG-3 (the exit characteristic and the last column at the 1-D Mach and theta 0 inside K_RICH x move + the reference class), MG-4 (the two-wall closure at the 1-D vacuum thrust coefficient inside K_RICH x move), MG-5 (mass), MG-6 (wall p/p0 vs GENO inside our band), R-2 (the shroud sign error must miss), R-3 (a 3-percent lift must leave the MG-2 band). A closure off the 1-D value beyond the band, or a rejector that does not fire, falsifies the two-wall march or its thrust functional."
   gamma: "gamma-const-oracle"
+- id: X-RAOPO
+  kind: carrier
+  ondemand: "env=jax; pass=2026-09-24; suite=none"
+  class: PRACTICE
+  scope: "F3 EXIT LEG 'spike Table-1 oracle (M_E 2.4, gamma 1.23) in derived bands' (S37 2026-09-24, [F3/A1], F3 session 1/4; validation/rao1961_posing.py + rao1961_posing_cases.json; NO GENO field anywhere in the chain): stage derive -- Rao's Table 1 contour produced by OUR inverse Goursat march ([X-AFAN]'s construction) with HIS control surface ED (his first integrals Eqs. 6-7, x from Eq. 5, cut at his published terminus) as the terminal ray and the lip's corner relation exact at E; rays uniform in planar ray angle from the leading ray at M 1.05; marched in the frame of the leading ray's flow angle with the q^3-scaled top-down cell of [X-FRMR] (MEASURED: in the record frame the fan's C- rays pass the vertical, cert 4e8; the unscaled cell's damped Newton stalls); the wall traced backward from D; ladder (61,61)/(121,121)/(241,241); the band = his table's OWN class at T (his printed T against the T his Eq. (12) puts on the sonic line for his eps) + K_RICH x the ladder; stage walk -- the [X-RAOSQ] v3 instrument verbatim (constants asserted equal at run time) with the start line at x0 0.30 cut through OUR inverse field and HIS Table 1 as the reference wall, from the 1.5-percent perturbed start and from the generic chord start, sign-flipped rejector"
+  statement: "Stage derive 9/9: every inverse cell certified (0.035 / 0.022 / 0.025); the leading ray carries ED's mass to 1.5e-5 and F_lead + push = F_ED to 1.1e-5; the wall converges (2.7e-4 -> 8.0e-5 R_E); AT HIS 15 ROWS downstream of the leading ray our wall reads his Table 1 at max 9.4e-4 R_E, mean +3.6e-4 -- inside his table's own class at T (1.15e-3: his printed T (-0.109, 0.9165) against Eq. (12)'s (-0.10785, 0.91547)) + band_W, the mean inside his printing; eps 3.80944 vs his 3.81, C_F 1.58038 vs his 1.58 (Table 3 1.5804); rejectors: the planar march cannot build the wall, the optimum for theta_E +0.25 deg lands 5.2e-3 from his table (3.5x the band). Stage walk 10/11 (the [X-RAOSQ] v3 instrument from a start cut at x0 0.30 through OUR inverse field, his Table 1 as the reference wall): his contour certifies from our start (0.065); from the 1.5-percent perturbed start the TR-SQP lands inside every eigen-direction's band (worst 0.20, value +15 N) and from a generic chord start likewise (worst 0.48, -21 N), the two landings coincide (0.38 of band); the sign-flipped rejector took no certified step within the record's 14 segments (every trial an uncertified record, cert 1e15-1e18) -- ATTRIBUTED by the stage rejector: with the budget 30 its first certified step comes at segment 19 (radius ~2.5e-3) and it ends 7.6e-3 from his contour against the start's 5.1e-3, walking away (declared knob RAOPO_SEG_R1). For scale: GENO's RaoPlug run of record reproduces Table 1 at mean 2.44e-3 [X-RAOTW]. Declared: three forward posings of his sonic start measured and abandoned (not axisymmetric solutions / uncertified at 61 rays)."
+  doc: "validation/PROGRESS_2026-09-24_S37_F3_entry.md"
+  proof: "validation/rao1961_posing.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "stage derive: ID-1 (certified ladder), ID-2 (mass), ID-3 (wall convergence), ID-4 (his Table 1 within his table's own class at T + band_W), ID-4b (mean within his printing), ID-5 (eps), ID-6 (C_F and the momentum closure), R-1 (planar), R-2 (neighbouring optimum leaves the band); stage walk: RE-0 (his contour certifies from our start), per start P1-P4 of [X-RAOSQ] v3 (certified bases, convergence, return per eigen-direction, value), R-3 (sign-flipped driver walks away), RE-3 (the two landings coincide). Our wall off his table beyond his own class, or a landing off his contour with the gradient closed, falsifies the leg."
+  gamma: "gamma-const-oracle"
+
 - id: X-AFAN
   kind: carrier
   ondemand: "env=jax+geno; pass=2026-09-16; suite=none"

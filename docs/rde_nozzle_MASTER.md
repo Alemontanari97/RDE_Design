@@ -2354,6 +2354,8 @@ detonation cycles (Kraiko-Egoryan) — cite next to the closure.
 ------------------------------------------------------------------------------
 [T-GB] PROPOSITION 7 (G-B — geometry-free upper bound) and COROLLARY (global
 optimality over ALL topologies). THEOREM-grade / mechanism M1.
+[Class of record since 2026-09-24: THEOREM* inheriting [C-GBCS] -- DE-RATING
+OF RECORD below the proof.]
 Claim: for ANY solid set S in ANY topology, under choked frozen feed:
     J[S] <= J_ideal = Int F_id(s(xi); Pa) dmu(xi),
 F_id = thrust of complete isentropic per-streamtube expansion of phase
@@ -2373,6 +2375,35 @@ dF/dA_e = (P_e - Pa) sign argument on the supersonic branch. Integrate
 over streamtubes and phases (measurability of xi -> F_id from R3).
 QED (integral-flux relaxation: Efremov-Kraiko 2004, a weaker published
 bound; axial-only energy variant = the EAP_i baseline, see Remark).
+[DE-RATING OF RECORD, dated 2026-09-24 (S37, [F3/A1]; the D6 F3 exit leg
+"T-GB de-rated to THEOREM* with named hypothesis"; findings row
+theory-core:F3-TGB-class-inflation-rejector-scope). The proof above is a
+per-STREAMTUBE argument: each exit streamtube is traced back to the
+interface, carries that tube's (mdot, h0, s) and is bounded by its own
+complete, sonic-capped expansion. "ANY topology" needs one thing the
+sketch never states: that every streamline crossing the exhaust control
+surface ISSUES FROM THE INTERFACE -- no ambient fluid drawn in through the
+lateral boundary and expelled through the exhaust (an ejector-type
+topology would carry exit thrust flux the interface never supplied: the
+pointwise lemma GBE-L1 [S-GBE] bounds such a point by V_env of AMBIENT
+(h0, s), which is positive on the sonic branch) -- and that the exhaust
+surface carries the axial margin u_x >= c of [S-GBE] E3 (no backflow; a
+base recirculation closes upstream of it). That is a flow-class MODEL
+CLOSURE, not an analytic gap: it restricts which topologies the bound
+speaks of and weakens no stability or regularity step, so it is neither
+C-D25U nor C-MAJDA (SCAFFOLD §3 rule 4) and is minted as [C-GBCS], the
+G-B control-surface closure. Class: THEOREM* inheriting [C-GBCS]; with it
+the proof is complete (the steady case of GBE-L1 at every exhaust point,
+h0 conserved and s non-decreasing along each interface-issued streamtube,
+integration over the exhaust surface). The COROLLARY below inherits the
+closure: "all topologies" reads "all topologies in the class of
+[C-GBCS]". FALSIFIERS: the executable scan of record (groups (viii)/(xi))
+is the rejector of the per-streamtube bound over the 1-D exit family; the
+full-quantifier, shape-level falsifier -- a certified 2-D truncated plug
+with base recirculation, inside the class, against the capped ceiling --
+is NAMED and OPEN (owed with the truncated-plug instance). D6 F3 takes the
+de-rating branch of its exit leg; the falsifier stays owed to the
+findings row as its residue.]
 SHARPENING OF RECORD (2026-07-16, OP-0 ladder, src/thrust/bounds.py):
 the dF/dA_e sign argument covers only the supersonic branch, so the
 "complete expansion to Pa" form of F_id is the streamtube supremum only
@@ -4530,6 +4561,31 @@ equal to the 1-D vacuum thrust coefficient on OUR mesh: 1.61917 vs
 case), mass to 5e-5, the exit characteristic uniform within the
 reference's resolution; a shroud sign error misses by 0.3 [MEASURED-
 SUPPORTED, cross-code on GENO type 9].]
+[LINE ADDENDUM S37, landed 2026-09-24 (D6 phase F3 OPENED by owner
+ratification, session 1/4; numbers of record in [X-RAOPO] and
+validation/PROGRESS_2026-09-24_S37_F3_entry.md).
+(1) AN OPTIMUM CHARACTERISED BY ITS CONTROL SURFACE IS REBUILT BY THE
+INVERSE MARCH, NOT BY A FORWARD START ([X-RAOPO] stage derive): Rao's
+optimum is ED (his first integrals) plus the lip's corner relation; the
+field between them is a Goursat problem between two characteristics, and
+the record's certified cell run upstream from HIS ED produces HIS Table 1
+within his table's own class (the printed throat point is 1e-3 off his own
+Eq. (12)), his eps and his C_F at their printed digits -- while every
+forward posing of his sonic start failed measurably (a uniform inclined
+sonic line is no axisymmetric solution) [MEASURED-SUPPORTED].
+(2) A CENTRED FAN FROM A NEAR-SONIC LIP IS MARCHED IN THE THROAT FRAME
+WITH SCALED COMPATIBILITY ROWS: its C- rays turn through the vertical,
+where the slope form is singular (cert 4e8 in the record frame); in the
+leading ray's frame both families stay off the vertical and, with the rows
+divided by q^3, every cell certifies (0.02-0.04 on 61-241 rays) -- the
+S32 lesson of the throat kernel, now on the inverse fan [PRACTICE].
+(3) THE GEOMETRY-FREE CEILING IS A THEOREM* ON A FLOW-CLASS CLOSURE
+([T-GB], [C-GBCS]): the per-streamtube proof holds when every exhaust
+streamline issues from the interface and the exhaust surface is axially
+sonic; an ejector-type topology is outside the class (GBE-L1 bounds an
+entrained ambient point by a positive sonic-branch envelope). The shape
+falsifier (a truncated plug with base recirculation, inside the class)
+is owed [THEOREM*, closure declared].]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

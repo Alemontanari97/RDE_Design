@@ -238,3 +238,10 @@ RDE/handoff/F3_HANDOFF_2026-09-24.md, section 5); the committed figures were not
   figs/phase_diagram_op11.png restored with git checkout before the commit.
 - Two commits, as the line's practice: (1) code + data + this log + index + PROGRESS/archive
   + D6; (2) registry + findings + M0 + P-1 + SCAFFOLD + this log's measurement line.
+- Measured after the first commit (9b90f74), on the tree of the second (2026-09-24 ~18:10):
+  numeric lint PASS (126 files, 0 ratchet violations); claims lint PASS (0 violations);
+  advisory index PASS (129 rows, 0 violations); findings lint: 0 violations on the findings
+  rows (the 78 are the dead literature paths of record); FULL suite 16/23 = the seven
+  environmental reds (xiii, xiv, xvi, xviii, xix, xxii, xxiii), 86 s; (xvii) PASS (1 executed,
+  52 accounted, 53 total); data/phase_diagram.*, data/q_mapping.* and
+  figs/phase_diagram_op11.png restored with git checkout before the commit.

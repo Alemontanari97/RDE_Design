@@ -211,8 +211,8 @@ EOS-general per the P-2 audit of record.]
 
 ### §6.1 The geometry-free, topology-free ceiling
 
-For ANY solid set S in ANY topology sector, under choked frozen feed
-[T-GB]:
+For ANY solid set S in ANY topology sector whose exhaust streamlines
+issue from the interface ([C-GBCS]), under choked frozen feed [T-GB]:
 
     J[S] <= J_ideal = Int F_id(s(xi); Pa) dmu(xi),
 
@@ -226,9 +226,12 @@ is measured. The weaker published relaxation (integral inlet fluxes
 with redistribution allowed) is Efremov-Kraiko 2004: B_EK >= J_ideal
 >= J — cited as the precedent rung above ours.
 
-[Class: THEOREM [T-GB] (proof M0 Prop. 7, appendix A4) | Falsifier:
-any admissible exit scan beating the capped formula beyond table-noise
-bars (executable rejector) | Carrier: run_all group (viii) ladder |
+[Class: THEOREM* [T-GB] inheriting [C-GBCS] (every exhaust streamline
+issues from the interface; de-rated 2026-09-24, proof M0 Prop. 7 and its
+DE-RATING OF RECORD, appendix A4) | Falsifier: any admissible exit scan
+beating the capped formula beyond table-noise bars (executable rejector,
+the per-streamtube bound); shape-level falsifier (2-D truncated plug with
+base recirculation) named, open | Carrier: run_all group (viii) ladder |
 Gamma status: EOS-GENERAL — V_id = sqrt(2[h0 - h(s, Pa)]) in h(s, P)
 form (claim C14, rule (e) primary form).]
 
@@ -303,7 +306,7 @@ overestimates by 4.4-7.9% (purge), and the composition closure spans
 a further +6.3-7.0% (bracket). Both are carried per-row in the data
 of record.
 
-[Class: THEOREM (executable ladder, [T-GB]); THEOREM* within the
+[Class: THEOREM* (executable ladder, [T-GB] within [C-GBCS]); THEOREM* within the
 closure pair for the bracket ([T-EQBR] inherits [C-IGMIX]) |
 Falsifier: dual-route disagreement > NQ*eps_mach; known-answer
 failures; finite-rate computation leaving the [frozen, equilibrium]

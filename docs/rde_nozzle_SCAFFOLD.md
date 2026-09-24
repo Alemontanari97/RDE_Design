@@ -209,7 +209,9 @@ inherits. NOTHING in the corpus should be citable without an ID.)
    record carries TWO analytic conditionals (C-D25U, C-MAJDA — L4
    ledger docs/rde_nozzle_conditionals.md) plus the declared
    model/numeric closures (C-HT4, C-IGMIX, C-O33, minted per §3 rule 4,
-   justification gate-logged S9 row 4) and the S14 additions (C-P4RZ).
+   justification gate-logged S9 row 4) and the S14 additions (C-P4RZ);
+   S37 2026-09-24 adds the model closure C-GBCS (the G-B control-surface
+   closure: [T-GB] de-rated to THEOREM* on it).
    Read "nothing else" as "no other ANALYTIC conditional".]
  - The scaffold is model-agnostic: it encodes the working discipline
    (gate, R4, sufficiency, pristine) as checkable structure rather

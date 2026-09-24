@@ -398,14 +398,14 @@ entries:
   owner: "F0-hygiene remainder (audit-P2 C8 class; gamma-variable directive at the EOS level): amend the T-T3 statement + registry scope to name the thermally-perfect ideal-gas EOS hypothesis; Noble-Abel known-answer rejector named in the audit row"
   trigger: "next M0/registry T-T3 touch, or any non-ideal-EOS / real-gas tabulated backend entering the program (T-T3 is globality mechanism M2)"
 - id: theory-core:F3-TGB-class-inflation-rejector-scope
-  status: CONFIRMED
+  status: DOWNGRADED
   severity: medium
-  magnitude: "three defects on the headline-certificate bound: non-legend class 'THEOREM-grade' on T-GB; registry class THEOREM over a self-declared proof SKETCH (no lemma covering non-interface-originated exit flux in 'ANY topology'); registered falsifier sweeps only the 1-D exit family so it structurally cannot fire on the full quantifier - and the pre-cap subcritical counterexample proves this claim class has been false in-scope once already"
+  magnitude: "S37 2026-09-24 DISCHARGED defects 1-2: T-GB de-rated THEOREM -> THEOREM* inheriting the named model closure [C-GBCS] (every exhaust streamline issues from the interface; axially-sonic exhaust surface, [S-GBE] E3), the M0 header's non-legend 'THEOREM-grade' now carries the class of record and the DE-RATING OF RECORD note (the per-streamtube proof is complete under the closure: steady GBE-L1 + streamtube conservation); defect 3 restated honestly in the registry falsifier (the executable scan = the per-streamtube rejector over the 1-D exit family). RESIDUE of record: the shape-level falsifier on the full quantifier -- a certified 2-D truncated plug with base recirculation, inside [C-GBCS], against the capped ceiling -- NAMED and OPEN. (Original: three defects on the headline-certificate bound: non-legend class 'THEOREM-grade' on T-GB; registry class THEOREM over a self-declared proof SKETCH (no lemma covering non-interface-originated exit flux in 'ANY topology'); registered falsifier sweeps only the 1-D exit family so it structurally cannot fire on the full quantifier - and the pre-cap subcritical counterexample proves this claim class has been false in-scope once already)"
   source: "validation/AUDIT_agnostic_2026-08-07.md#theory-core:F3-TGB-class-inflation-rejector-scope"
   code: []
   mechanism: rejector-weakness
-  owner: "F0-hygiene remainder + P-1 claim gate: de-rate to THEOREM* with a named hypothesis ID, or write the far-field control-surface lemma; add one shape-level falsifier (certified 2-D truncated-plug with base recirculation vs the capped ceiling)"
-  trigger: "first P-1 draft citing T-GB / the delta = B - J[S*] certificate, or next registry T-GB touch"
+  owner: "the truncated-plug instance (D6 N2/P-3; the F3 line): execute the shape-level falsifier (certified 2-D truncated plug with base recirculation vs the capped ceiling) inside [C-GBCS]"
+  trigger: "the first certified truncated-plug march with a base closure, or a P-1 claim of topology-free globality beyond [C-GBCS]"
 - id: theory-core:F4-CXBVP-ledger-dangling-pointer
   status: CONFIRMED
   severity: medium
