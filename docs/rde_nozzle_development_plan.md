@@ -314,6 +314,29 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     (S26, S28-S33, measured from git). Whether they count, and hence
     whether the fallback fires by rule, is the owner's decision at the
     ratification (PROGRESS BLOCCATO 20 (g)); no silent extension.
+    F3 OPENED 2026-09-24 (S37, owner ratification: "riallinearci con il
+    piano e completare le richieste di F3"; log
+    validation/PROGRESS_2026-09-24_S37_F3_entry.md; census row R38). ENTRY
+    DECLARED: the single-oracle status (Rao 1961 Table 1: [X-RAOTB],
+    [X-RAOCS], [X-RAOFN], [X-RAOTW], plug O3.3 [X-RAOO3]/[X-RAOSQ]); the
+    plug/C- mirror margin declared PRACTICE conditional on the plug's
+    net-cell fold margin [X-PMRG] (the class measured in Humphreys' region
+    R, S34). BUDGET: the counter "F3 session m/4" instituted, S37 = 1/4;
+    the nine F3-tagged sessions before it were the authorized parallel
+    de-risk and do not count (owner decision). ORDER: F3 before F2 by owner
+    decision (F3's exit closes on the present engine with the
+    variable-gamma instance; F2 is new construction, surveyed in the S37
+    log). EXIT LEDGER at S37: spike Table-1 oracle in derived bands CLOSED
+    ([X-RAOPO]: our inverse march from Rao's optimality conditions yields
+    his Table 1 within his table's own class, eps and C_F at his printed
+    digits, with the TR-SQP re-obtention from a start cut through our
+    field); T-GB DE-RATED to THEOREM* on the named model closure [C-GBCS]
+    (every exhaust streamline issues from the interface; the shape-level
+    truncated-plug falsifier named, open); OWED: the certified plug optimum
+    at the nominal ambient from our own throat posing, the declaration of
+    the variable-gamma instance (our world's NASA tables), and the
+    conditional two-wall stretch (march S36 [X-TWMU]/[X-MGDL], optimiser
+    open).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

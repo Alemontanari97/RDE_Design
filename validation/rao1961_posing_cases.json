@@ -1,0 +1,67 @@
+{
+  "_doc": "Constants of rao1961_posing.py [X-RAOPO] (S37 2026-09-24): Rao 1961's Table 1 contour from HIS optimality conditions by OUR inverse march, and the TR-SQP re-obtention from a start cut through that field. Every number is a posing choice, a world constant identified elsewhere, or a value Rao prints; none was fitted here. Rao's inputs (gamma 1.23, M_E 2.4, theta_E -8.25 deg, p_a/p_c 0.0355), his Table 1 and his published terminus are imported from rao1961_world / rao1961_control_surface, the literals of record.",
+  "world": {
+    "value": {
+      "Rg": 415.7255,
+      "T0": 3500.0,
+      "p0": 6008180.0,
+      "R_E": 1.0
+    },
+    "cls": "REFERENCE",
+    "note": "the gas of the Rao-world twin [X-RAOTW], identified from GENO's field (Rg, p0, T0): units only -- every graded number is dimensionless (x/R_E, r/R_E, eps, C_F); R_E = 1 m"
+  },
+  "inverse": {
+    "value": {
+      "M_i": 1.05,
+      "ladder": [
+        [
+          61,
+          61
+        ],
+        [
+          121,
+          121
+        ],
+        [
+          241,
+          241
+        ]
+      ],
+      "ed_points": 40001,
+      "lev_power": 1.0,
+      "M_grid": 20001
+    },
+    "cls": "NUMERIC",
+    "note": "the inverse (Goursat) march of [X-AFAN] with HIS control surface as the terminal C-: rays from E at the corner relation theta(M) = theta_E - (nu(M_E) - nu(M)), uniform in the planar ray angle from the leading ray at M_i (the sonic line cannot be a ray: C+ and C- coincide at M 1; 1.05 as [X-AFAN]'s sonic-lip test) to ED itself; ED = his first integrals Eqs. (6)-(7), x from his Eq. (5), cut at his published terminus R_D/R_E 0.137 (rao1961_our_functional.build_surface, ed_points samples), resampled at uniform arc length (lev_power 1); the ladder (rays, levels) x 0.25/0.5/1 as [X-AFAN]; M_grid tabulates the corner relation"
+  },
+  "bands": {
+    "value": {
+      "print_rel": 0.005,
+      "table_coord": 0.0005
+    },
+    "cls": "REFERENCE",
+    "note": "Rao's printing: eps and C_F to 3 significant figures (5e-3 relative, as [X-RAOFN]); Table 1 coordinates to 3 decimals (half a unit 5e-4 R_E)"
+  },
+  "walk": {
+    "value": {
+      "x0": 0.3,
+      "N": 61,
+      "K": 81,
+      "M_knots": 8,
+      "freeze": 0.35,
+      "perturb": 0.015,
+      "iters": 12,
+      "seg_r1": 14,
+      "tr0": 0.05
+    },
+    "cls": "NUMERIC",
+    "note": "the [X-RAOSQ] v3 posing verbatim (x0 0.30 R_E, 61 rows, 81 stations, 8 knots with the tip pinned at his D, the near-cut 35 percent frozen to his contour, 1.5 percent alternating perturbation, 12 segments, rejector budget 14, trust radius 0.05) with ONE change: the start line is the cut at x0 through OUR inverse field instead of GENO's"
+  },
+  "controls": {
+    "value": {
+      "d_theta_E_deg": 0.25
+    },
+    "cls": "NUMERIC",
+    "note": "the rejector's neighbouring optimum: his construction with theta_E moved by a quarter degree (his theta prints to 0.01 deg; a quarter degree is a different design by any reading)"
+  }
+}

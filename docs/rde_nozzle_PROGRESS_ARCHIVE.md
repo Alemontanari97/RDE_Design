@@ -3053,3 +3053,78 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## Riga R37 uscente, verbatim:
 ## | R37 | LINEA BRICK-2 PLUG S21-S35 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9]*\]' | sort -u`
 ## al 2026-09-24: S26, S28-S33 = 7 (72 commit); con S34-S35 = 8 sessioni.) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (i) Panov-Shvets sull'ambiente o sullo stato in D; tecnico: shrouded plug (Veen 1974, Migdal 1972) per completare la suite; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md |
+
+## ===== ARCHIVIO 2026-09-24 notte (S37, apertura di F3; append-only SR-10): i
+## blocchi ORA-PARALLELO, NEXT (atomico) e NEXT-PARALLELO uscenti di
+## docs/rde_nozzle_PROGRESS.md, VERBATIM =====
+
+## ORA-PARALLELO (LINEA BRICK-2 PLUG, stato al 2026-09-24 S34-S35; la storia
+## S26-S35 e' VERBATIM in docs/rde_nozzle_PROGRESS_ARCHIVE.md, banner
+## 2026-09-22 e 2026-09-24; riga di censimento R37). Branch
+## `rde-nozzle-program`, push AUTORIZZATO dall'owner 2026-09-24 ("purche'
+## il commit sia in linea con il lavoro della git, puoi pushare
+## direttamente") per il commit di chiusura S34-S35 (il worktree
+## tri-experiment si rimuove dopo il merge). STATO DI PIANO: de-risk
+## "spike-level plug-march AUTHORIZED parallel to F2" di D6 F3; ingresso
+## F3 MISURATO non ratificato (R20); CONTATORE F3 (D6 ISS-4) NON
+## ISTITUITO; sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9]*\]' | sort -u`
+## al 2026-09-24: S26, S28-S33 = 7 (72 commit); con S34-S35 = 8 sessioni. STATO TECNICO (log
+## validation/PROGRESS_2026-09-23_S34_S35_throat_posing.md): la classe si
+## misura nella regione R di Humphreys (le pieghe del reticolo sopra DB
+## stanno nel getto); dalla LORO gola (kernel anulare, partenza 'come
+## loro', arco A-T) il TR-SQP invariato RI-OTTIENE la Tabella 2 da
+## partenze generiche [X-TPOS] (RE-1 contorno <= 0.074 in, valore ~1
+## lbf; RE-3 0.0025 in); il loro T e' il miglior atterraggio in classe;
+## Panov-Shvets letto sullo stato in D riproduce Tab.4 - Tab.2 = +79 lbf
+## (paper +84) e la Tabella 4 e' quasi stazionaria; con il LORO schema di aggiornamento (p_b ricalcolata a ogni passo) tre partenze (due generiche, una dalla tabella) atterrano sullo STESSO disegno entro 0.041 in dalla Tabella 4 (J 32,555.5 lbf, p_b 1.306 p_a): RE-1 e RE-3 anche sul secondo ottimo. Rao 1961
+## nel suo mondo con il codice di oggi: O3.3 7/7, ritorno SQP 6/6; il Rao
+## di Humphreys (Tab. 3) posto in GENO (riproduce la tabella a 1.3e-4
+## y_E) e' stazionario 7/7 a x0 0.10 m [X-RAOHM]; ritorno SQP 6/6 a x0 0.10 m con il raggio iniziale scalato alla loro lunghezza (RAO_TR0; con il raggio di record il rejector non si muoveva, 14/14 prove non certificate). La Fig. 4
+## non certifica (piega in R, mal condizionata). Regressioni del
+## percorso di record 16/16 identiche al ramo.
+
+## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
+## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
+## committato): Block 0 = trigger sweep da comando misurato (riga
+## :1455 two-stage -> eseguire duty S1 o presentare SCHEMA
+## dichiarato; D-44 su claim di adeguatezza; P34 istanziazione
+## leggera; novita' query-bounded) + decisioni utente
+## formato/durata -> estrazione cite-only dal record (pipeline map
+## = spina dorsale; forchetta = slide onesta; atlas + campagne =
+## sezione efflusso/pratica; Gap A/Gap B = value case; genealogia
+## Rao->Hoffman->Kraiko->noi) -> deck -> doppia review (rigor
+## refuter: ogni slide-claim <= classe dell'ancora + comms review)
+## -> loop utente. POI F2 blocco 0 (contatore 0/6; re-chain +
+## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
+## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
+## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-24 sera): S36 ha portato la
+## SECONDA PARETE nella marcia del plug (shroud=, cella diretta di parete
+## superiore, bordo F, colonne di cuneo) e l'ha certificata sul canale
+## esatto di flusso sorgente [X-TWMU] e sull'ugello anulare perfetto di
+## Migdal da GENO tipo 9 [X-MGDL] (chiusura di spinta 9e-5 / 1e-5 sul
+## valore 1-D a eps 6 / 4). Prossimo atomico: il TR-SQP a due pareti (lo
+## shroud come variabile di progetto, il suo push +dy in J_replay, il
+## pattern della posa di gola con un case che porta entrambe le pareti),
+## RE-1 sulla coppia di contorni di Migdal da partenze generiche (oracolo
+## = il valore 1-D esatto), poi Veen 1974 Tab. 3 dalla NOSTRA posa della
+## sua partenza a -15 deg e dei due ventagli di spigolo (GENO tipo 7 non
+## e' un referee). Aperti: Panov-Shvets (BLOCCATO 20 i); T come variabile
+## d'ingresso per l'RDE; il bell da partenze generiche lontane. Handoff:
+## RDE/handoff/SHROUD_HANDOFF_2026-09-24.md.
+
+## ===== DELTA CENSIMENTO 2026-09-24 notte (S37; append-only SR-10; la tabella
+## consolidata in PROGRESS e' stata editata IN PLACE) =====
+## R20: l'ingresso F3 da "da DICHIARARE alla ratifica" a DICHIARATO (ratifica
+## dell'owner 2026-09-24). R37: da OPEN a CONSUMED come de-risk autorizzato,
+## le sue sessioni fuori dal contatore F3. R38 NUOVA: la fase F3 aperta,
+## contatore 1/4. BLOCCATO 20 (g): da NUOVA a DECISA. Righe uscenti, verbatim:
+## | R20 | item F2/F3/F5a gia' di record | CARRIED (F3 entry leg "single-oracle Rao 1961" MEASURED 2026-08-27 sulla linea brick-2: [X-RAOTB]/[X-RAOCS]/[X-RAOFN]/[X-RAOTW] + O3.3 plug [X-RAOO3]/[X-RAOSQ]; da DICHIARARE alla ratifica) | near-axis, duties F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK], plug/C- mirror (margine Lambda-form: ancora da provare), X-T3CTRL | D6 F2/F3; PROGRESS_2026-08-27_S26_rao_modo1.md |
+## | R37 | LINEA BRICK-2 PLUG S21-S36 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9]*\]' | sort -u`
+## al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni.) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (i) Panov-Shvets sull'ambiente o sullo stato in D; tecnico: TR-SQP a due pareti (shroud variabile di progetto, push +dy in J_replay), RE-1 sulla coppia di Migdal da partenze generiche, Veen 1974 Tab. 3 dalla NOSTRA posa; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md, PROGRESS_2026-09-24_S36_shrouded_plug.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + X-TWMU/MGDL + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md, SHROUD_HANDOFF_2026-09-24.md |
+## BLOCCATO 20 (g) uscente:
+## (g) NUOVA
+##     2026-09-22: ratifica dell'ingresso F3 (R20) e istituzione del
+##     contatore D6 ISS-4 "F3 session m/4" -- se le 7 sessioni taggate F3
+##     (S26, S28-S33) contano, il tetto e' superato e il fallback per
+##     regola e' spike-only capture;
