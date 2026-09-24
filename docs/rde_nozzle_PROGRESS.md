@@ -44,45 +44,23 @@
 ## bulk. Suite: esito quotato nel log. Log:
 ## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
 
-## ORA-F3 (FASE F3 "GEOMETRY CLASSES" di D6, APERTA il 2026-09-24 per
-## ratifica dell'owner -- "ok penso che dovremmo riallinearci con il piano e
-## completare le richieste di F3", poi "ok procediamo con la tua proposta";
-## riga di censimento R38; la linea brick-2 S21-S36, il de-risk autorizzato
-## che l'ha preceduta, e' R37 e la sua storia e' VERBATIM nell'archivio,
-## banner 2026-09-22 / 2026-09-24). DECISO (BLOCCATO 20 g): ingresso F3
-## DICHIARATO -- stato single-oracle Rao 1961 [X-RAOTB/RAOCS/RAOFN/RAOTW] +
-## O3.3 plug [X-RAOO3/RAOSQ]; margine specchio C- dichiarato PRACTICE
-## condizionale sul margine di piega del plug [X-PMRG] (classe misurata
-## nella regione R); le nove sessioni taggate F3 della linea (S26,
-## S28-S36) NON consumano il budget (de-risk autorizzato); CONTATORE D6
-## ISS-4 ISTITUITO "F3 session m/4": S37 = 1/4 (3 h di run decisivi per
-## sessione, max 2 campagne decisive per istanza, fallback per regola
-## "spike-only capture"); ORDINE: F3 prima di F2 (le uscite F3 si chiudono
-## sul motore attuale, F2 e' costruzione nuova: ricognizione nel log S37).
-## STATO DELLE USCITE F3 (log S37 + validation/PROGRESS_2026-09-24_S38_F3_nominal.md;
-## contatore 2/4 dopo S38): (a) ottimo plug certificato: meta' VALORE
-## CERTIFICATA S38 [X-OWNM] -- lo spike ideale del nostro mondo, costruito
-## dalla nostra marcia inversa all'ambiente NOMINALE, raggiunge il tetto di
-## T-GB mdot V_id (limite di Richardson +2.2e-5, banda 3.5e-4, in classe in
-## R, massa entro i residui dichiarati): nessun disegno della classe lo
-## supera oltre la banda; meta' FINDER (l'ottimizzatore che lo ritrova da una
-## partenza generica lontana all'ambiente nominale) = la campagna del torneo
-## X-PTRN (riga di registro non ancora coniata) dalla partenza C, IN CLASSE in R (lettura S38), che attende la
-## parola dell'owner (BLOCCATO 20 j); (b) oracolo Tabella 1 in bande derivate: CHIUSO S37
-## [X-RAOPO] -- la nostra marcia inversa dalle sue condizioni di ottimo
-## produce la sua Tabella 1 entro la classe della sua tabella (max 9.4e-4
-## R_E, media 3.6e-4; eps 3.80944, C_F 1.58038 contro 3.81 / 1.58) e
-## il TR-SQP dalla NOSTRA partenza (taglio nel nostro campo) torna al suo
-## contorno da due partenze (perturbata e corda generica) entro le bande per
-## direzione; il rejector a segno invertito si allontana solo con il budget
-## portato a 30 segmenti (con i 14 di record non fa passi certificati:
-## attribuito, dichiarato); (c) istanza a gamma variabile: DICHIARATA CHIUSA
-## S38 -- ogni riga di plug del nostro mondo marcia le tabelle NASA CH4/O2
-## (gamma(T) variabile): [X-OWTW/OWO3/OWS3] e [X-OWNM]; (d) T-GB
-## DE-CLASSATO a THEOREM* sulla chiusura [C-GBCS] (S37); il falsificatore
-## di forma del plug troncato resta nominato, aperto; (e) stretch a due
-## pareti: marcia S36 [X-TWMU/MGDL], ottimizzatore da fare. Branch
-## `rde-nozzle-program`, push autorizzato dall'owner dopo commit conformi.
+## F3 CHIUSA il 2026-09-24 (S39, decisione dell'owner "chiudiamo F3"; log
+## validation/PROGRESS_2026-09-24_S39_F3_exit.md; riga di censimento R38
+## CONSUMED; la storia della fase -- ingresso S37, certificato di valore S38 --
+## e' VERBATIM nell'archivio, banner 2026-09-24 notte). USCITE: ottimo plug
+## certificato in VALORE all'ambiente nominale [X-OWNM] con le ri-ottenzioni
+## di record; oracolo Tabella 1 [X-RAOPO]; istanza a gamma variabile
+## (dichiarata); T-GB THEOREM* su [C-GBCS]; stretch a due pareti NON preso
+## (condizionale). Budget: 3 sessioni su 4, 1 campagna su 2 sull'istanza del
+## plug, fallback non scattato. Ogni affermazione F3 e' SOLO SPINTA,
+## sopravvivenza termica non modellata (vuoto industriale nominato). RESIDUI
+## con proprietario: R-F3-1 il finder all'ambiente nominale (torneo X-PTRN
+## dalla partenza C, in classe in R); R-F3-2 lo stretch a due pareti (DUTY-11
+## al suo ingresso); R-F3-3 il falsificatore di forma di T-GB (dopo BLOCCATO 20
+## i); R-F3-4 la riga di registro X-PTRN mai scritta; R-F3-5 DUTY-1(b) a F5.
+## OMISSIONE DICHIARATA: la ratifica d'ingresso S37 non aveva disposto le
+## righe F3 ENTRY dell'addendum S-GAUNTLET (DUTY-14/11/1(b)); disposte ora
+## (DUTY-14 assegnato a F5a, R12).
 
 ## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
 ## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
@@ -95,26 +73,15 @@
 ## sezione efflusso/pratica; Gap A/Gap B = value case; genealogia
 ## Rao->Hoffman->Kraiko->noi) -> deck -> doppia review (rigor
 ## refuter: ogni slide-claim <= classe dell'ancora + comms review)
-## -> loop utente. POI (ordine dell'owner 2026-09-24) F3 fino alla sua
-## uscita (ORA-F3, R38), quindi F2 blocco 0 (contatore 0/6; re-chain +
+## -> loop utente. POI F2 blocco 0 (F3 CHIUSA 2026-09-24, R38; contatore 0/6; re-chain +
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## NEXT-F3 (contatore 2/4 usato da S37-S38): (1) PAROLA DELL'OWNER
-## (BLOCCATO 20 j): la campagna finder del torneo X-PTRN dalla partenza C
-## (0.84 m dal membro, in classe in R) all'ambiente nominale, vincolo di
-## classe in R (pratica S34-S35), backtracking S32 -- multi-ora, la SECONDA e
-## ultima campagna decisiva che ISS-4 concede a questa istanza; prima,
-## coniare la riga di registro X-PTRN che manca (S30 la dice coniata, il
-## registro non l'ha mai avuta) con il suo derive rilanciato; (2) lo stretch a
-## due pareti: il TR-SQP con lo shroud variabile (push +dy in J_replay), RE-1
-## su Migdal da partenze generiche, Veen 1974 Tab. 3 dalla NOSTRA posa; (3) il
-## falsificatore di forma di T-GB (plug troncato con ricircolo di base)
-## quando l'owner decide BLOCCATO 20 (i). Aperti: Panov-Shvets (BLOCCATO 20
-## i); T come variabile d'ingresso per l'RDE; il bell da partenze generiche
-## lontane. Igiene F2 trovata (testo F2, non toccato): riga X-RMAR ferma a W-5
-## aperto, "Stechmann 2018" (e' 2019), page-verify Paxson-Miki fatto.
-## Handoff: RDE/handoff/F3_HANDOFF_2026-09-24.md (sezioni S37 e S38).
+## RESIDUI F3 (dopo la chiusura; nessun contatore): R-F3-1..5 nel log S39 e
+## nel registro dei finding (f3-exit:*). Aperti dell'owner: Panov-Shvets
+## (BLOCCATO 20 i, sblocca R-F3-3). Igiene F2 trovata in S37 (testo F2, non
+## toccato): riga X-RMAR ferma a W-5 aperto, "Stechmann 2018" (e' 2019),
+## page-verify Paxson-Miki fatto. Handoff: RDE/handoff/F3_HANDOFF_2026-09-24.md.
 
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
@@ -244,7 +211,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R9c | X-SCANM replay probes | SCHED | F2 | â€” |
 | R10 | rejector field-level C1 | GATED | owner F2, trigger = carrier F2b (scioglie la conditional freeze P-2; 3 istanze della classe) | â€” |
 | R11 | Lemma-B across-shocks | SCHED | F5a entry al piu' tardi | â€” |
-| R12 | a-B2 | SCHED | F3 entry | â€” |
+| R12 | a-B2 | ASSIGNED 2026-09-24 (alla chiusura F3, S39: omesso alla ratifica d'ingresso S37, dichiarato) | owner F5a entry adjudication (attivita' del vincolo governata dalla coda della misura di fase: in F3 l'ottimo e' uno stato stazionario) | â€” |
 | R13 | GENO: md5 freeze s3 + N-74(+esteso) + knob jump-depth | GATED | repo GENO, SUO protocollo; trigger = prossima sessione GENO/s3 | RAW_geno_audit_instrumentation (patch 2026-08-13) |
 | R14 | ownership advisory | CLOSED | â€” | BLOCCATO 7 (decisione utente) |
 | R15 | G5 (passaggio umano Kraiko/PMM) | LOCK | utente (blocca SUBMISSION, non lavoro) | G5_pmm_toc_sweep (OF-RECORD) |
@@ -271,7 +238,7 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
 | R37 | LINEA BRICK-2 PLUG S21-S36 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | CONSUMED 2026-09-24 come de-risk autorizzato parallelo a F2 (D6 F3): i suoi artefatti entrano in F3, aperta lo stesso giorno (R38); le sue sessioni NON contano nel contatore F3 (decisione owner; sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9S-]*\]' | sort -u`
 al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni.) | owner: BLOCCATO 20 (g) DECISA 2026-09-24, (i) Panov-Shvets sull'ambiente o sullo stato in D (aperta); tecnico, passato a F3 (R38): TR-SQP a due pareti (shroud variabile di progetto, push +dy in J_replay), RE-1 sulla coppia di Migdal da partenze generiche, Veen 1974 Tab. 3 dalla NOSTRA posa; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md, PROGRESS_2026-09-24_S36_shrouded_plug.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + X-TWMU/MGDL + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md, SHROUD_HANDOFF_2026-09-24.md |
-| R38 | FASE F3 GEOMETRY CLASSES (D6; APERTA 2026-09-24 per ratifica dell'owner, ordine F3 prima di F2; ingresso dichiarato: single-oracle Rao 1961 + margine C- PRACTICE condizionale su [X-PMRG]) | OPEN -- contatore D6 ISS-4 "F3 session m/4" ISTITUITO: S37 = 1/4, S38 = 2/4 (S37 la prima sessione dopo la ratifica; decisive runs S38 ~40 min) | uscite aperte: (a) meta' finder dell'ottimo plug (campagna del torneo dalla partenza C, parola dell'owner, BLOCCATO 20 j); (e) stretch a due pareti (ottimizzatore); CHIUSE: (a) meta' valore S38 [X-OWNM] (tetto di T-GB raggiunto all'ambiente nominale), (b) oracolo Tabella 1 S37 [X-RAOPO], (c) istanza a gamma variabile S38 (dichiarata), (d) T-GB THEOREM* su [C-GBCS] S37 (falsificatore di forma nominato, aperto) | log validation/PROGRESS_2026-09-24_S37_F3_entry.md, PROGRESS_2026-09-24_S38_F3_nominal.md; registry X-RAOPO, C-GBCS, T-GB, X-OWNM; handoff RDE/handoff/F3_HANDOFF_2026-09-24.md |
+| R38 | FASE F3 GEOMETRY CLASSES (D6; APERTA 2026-09-24 per ratifica dell'owner, ordine F3 prima di F2; ingresso dichiarato: single-oracle Rao 1961 + margine C- PRACTICE condizionale su [X-PMRG]) | CONSUMED 2026-09-24 (S39, "chiudiamo F3") -- contatore finale 3/4 (S37, S38, S39 chiusura senza run decisivi); campagne sull'istanza del plug 1/2; fallback non scattato | residui con proprietario R-F3-1..5 (finder dalla partenza C; stretch a due pareti con DUTY-11; falsificatore di forma di T-GB; riga X-PTRN; DUTY-1(b) a F5); USCITE CHIUSE: (a) meta' valore S38 [X-OWNM] (tetto di T-GB raggiunto all'ambiente nominale), (b) oracolo Tabella 1 S37 [X-RAOPO], (c) istanza a gamma variabile S38 (dichiarata), (d) T-GB THEOREM* su [C-GBCS] S37 (falsificatore di forma nominato, aperto) | log validation/PROGRESS_2026-09-24_S37_F3_entry.md, PROGRESS_2026-09-24_S38_F3_nominal.md, PROGRESS_2026-09-24_S39_F3_exit.md; registry X-RAOPO, C-GBCS, T-GB, X-OWNM; handoff RDE/handoff/F3_HANDOFF_2026-09-24.md |
 
 ## BLOCCATO / GATE APERTI
 
@@ -521,11 +488,9 @@ al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni
     Panov-Shvets (Eq. 38 di Humphreys) sull'ambiente (membro di
     base_pressure) o sullo stato in D (loro nomenclatura, riproduce la
     Tabella 4) -- oggi la lettura di Humphreys vive solo nella posa
-    (TPOSE_PS_REF=corner), il membro del repo e' invariato. (j) NUOVA 2026-09-24 notte (S38): la
-    campagna finder del torneo X-PTRN dalla partenza C all'ambiente
-    nominale (C e' in classe nella regione R: lettura S38), multi-ora, la
-    seconda e ultima campagna decisiva che D6 ISS-4 concede all'istanza;
-    il carrier la vuole lanciata sulla parola dell'owner.
+    (TPOSE_PS_REF=corner), il membro del repo e' invariato. (j) CHIUSA 2026-09-24 (S39): F3 chiusa
+    senza lanciare la campagna finder dalla partenza C, che resta il
+    residuo R-F3-1 (seconda campagna dell'istanza non spesa).
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:

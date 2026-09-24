@@ -4605,6 +4605,22 @@ excluded by the class (it folds in region R), not by the value. The
 finder's question (does the optimiser reach the member from afar?) is
 therefore a question about the class and the driver, not about J
 [PRACTICE].]
+[LINE ADDENDUM S39, landed 2026-09-24 (D6 phase F3 CLOSED on the owner's
+call; log validation/PROGRESS_2026-09-24_S39_F3_exit.md).
+(1) THE F3 CERTIFICATES ARE THRUST-ONLY: every claim of the phase (the
+plug march and its class, the re-obtentions, the Table-1 oracle, the
+value certificate at the nominal ambient, the two-wall march) is made for
+adiabatic inviscid flow with the thermal survivability of the wall
+UNMODELED -- a named industrial gap (DUTY-1's declaration branch), not a
+silent assumption; the ranking of designs against peak heat-flux drivers
+is checked at F5 entry [DECLARED SCOPE].
+(2) A PHASE'S ENTRY READS ITS DUTY ROWS, NOT ONLY ITS PARAGRAPH: the F3
+entry of S37 disposed of the phase paragraph's ENTRY line and missed the
+three F3 ENTRY rows of the ratified S-GAUNTLET duty table (DUTY-14, -11,
+-1(b)); caught at the exit through the census, disposed there (DUTY-14 to
+the F5a entry adjudication; DUTY-11 not fired; DUTY-1(b) by declaration),
+recorded as a discharged process finding. A phase gate's checklist is the
+paragraph PLUS every duty row carrying the phase's name [PRACTICE].]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

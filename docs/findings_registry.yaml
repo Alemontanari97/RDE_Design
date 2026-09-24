@@ -2548,3 +2548,46 @@ entries:
   owner: "S-PRES session 2 wave W-B.0 (LINEAGE_SWEEP_MATRIX: ~15 components x read corpus 49 READ-INTEGRAL + 33 READ-PARTIAL, mandatory cells, refuter on empty AND full cells; amendment v2.1 §1a) + template §3-bis ANTENATI DIRETTI + lint 7 (novelty claim without ancestors row = violation); STANDING method upgrade beyond S-PRES (self-improvement-at-convergence): every future corpus ingestion runs the isomorphism sweep, never thematic matching alone"
   trigger: "any novelty or lineage claim in atlas/deck/papers (lint 7 fires); any new literature ingestion window closing without a component-isomorphism pass"
   note: "Minted 2026-08-23 by R3-DELEGA of S-PRES-1 executed in the session-2 window. Dedup by measured grep in the mint window (SR-12): grep -niE 'lineage' docs/findings_registry.yaml pre-mint hits only unrelated rows (:1261 SNOPT lineage, :1335 Lyche-Morken removal lineage, :1441 Route-A attribution lineage, :2059 litreview Sternin/Shmyglevskii lineage residues) — no row carries the method-level recognition gap; grep -n 'lineage-recognition' = 0 hits."
+
+- id: f3-exit:entry-duties-missed-at-ratification
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the F3 entry ratification of S37 (2026-09-24) disposed of the F3 paragraph's ENTRY line only and left the three RATIFIED F3 ENTRY duty rows of the D6 S-GAUNTLET addendum (DUTY-14 a-B2 assignment, DUTY-11 conditional two-wall nullspace, DUTY-1(b) thermal ranking-stability) undisposed, under a ledger rule that silent drops void the gauntlet verdict; found at the F3 closure (S39) through the census row R12 'a-B2 SCHED F3 entry'"
+  source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#The F3 ENTRY duty rows the S37 ratification missed"
+  code: []
+  mechanism: process
+  evidence: "disposed at the F3 exit (S39 log section 2; D6 duty table dated note; PROGRESS R12 ASSIGNED): DUTY-14 assigned to the F5a entry adjudication, DUTY-11 not fired (no two-wall optimisation exercised), DUTY-1(b) by DUTY-1's declaration branch (every F3 claim thrust-only, thermal survivability unmodeled; the check fires at F5 entry)"
+  note: "Minted 2026-09-24 at the F3 closure. Dedup by measured grep in the mint window (SR-12): grep -ciE 'f3-exit|finder|two-wall|X-PTRN' docs/findings_registry.yaml = 1 before this mint (an unrelated row on the joint refine() of the IVL rows / arc angle / exit stations: no duplicate)."
+
+- id: f3-exit:finder-at-nominal-not-run
+  status: CONFIRMED
+  severity: medium
+  magnitude: "F3 closed with the plug optimum certified in VALUE at the nominal ambient ([X-OWNM]: the ideal spike attains the T-GB ceiling) and the optimiser's re-obtention certified on literature optima from their own starts, but WITHOUT the finder test in our world at the nominal ambient from a far start: the tournament's start C (0.84 m from the member) is in class in region R (S38 reading) and the campaign was posable, not run (the second and last decisive campaign D6 ISS-4 allows the plug instance)"
+  source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-1 the finder at the nominal ambient"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "the next plug-optimiser campaign (any phase): the tournament a1_plug_tournament.py from start C with the class constraint in region R and the S32 backtracking driver, after X-PTRN's registry row is coined with its derive re-run"
+  trigger: "any claim that the optimiser finds the plug optimum from a far start in our world, or F5 entry"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-1)."
+
+- id: f3-exit:two-wall-stretch-not-taken
+  status: CONFIRMED
+  severity: low
+  magnitude: "the D6 F3 conditional stretch 'two-wall Veen' was not taken: the two-wall MARCH is built and certified (X-TWMU exact channel 6/6, X-MGDL Migdal from GENO 8/8), no two-wall optimisation ran (the shroud as a design variable, RE-1 on Migdal's pair, Veen 1974 Table 3 from our posing); DUTY-11 (two-wall translation near-nullspace, identifiability) travels with it"
+  source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-2 the two-wall stretch"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "the first session that puts a shrouded plug in the design space: the TR-SQP with the shroud spline in the design vector and its +dy push in J_replay; DUTY-11 at its entry"
+  trigger: "a two-wall design claim, or a shrouded configuration entering the phase-diagram tournament"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-2)."
+
+- id: f3-exit:x-ptrn-registry-row-missing
+  status: CONFIRMED
+  severity: low
+  magnitude: "the plug tournament carrier validation/a1_plug_tournament.py [X-PTRN] never had a claims-registry row: the S30 log says 'the [X-PTRN] row is coined here', git log -S 'id: X-PTRN' on docs/claims_registry.yaml finds nothing; its runs of record (S30 derives 10/10 at two rungs, the overnight campaign) are therefore outside the staleness link and the orphan lint (no docs/*.md brackets it)"
+  source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-4 [X-PTRN]'s registry row"
+  code: []
+  mechanism: process
+  owner: "the session that runs a1_plug_tournament.py next (the row needs a pass-of-record date after the carrier's last commit: re-run its derive, then coin the row)"
+  trigger: "next X-PTRN run, or any docs/*.md bracketing [X-PTRN]"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-4), found in S38."

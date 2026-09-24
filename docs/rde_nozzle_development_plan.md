@@ -349,6 +349,19 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     which the region-R class (S34) admits where S30's bucket floor did not
     -- the second and last decisive campaign ISS-4 allows the instance, on
     the owner's word. Record gap found: X-PTRN never had its registry row.
+    F3 CLOSED 2026-09-24 (S39, the owner's call "chiudiamo F3"; log
+    validation/PROGRESS_2026-09-24_S39_F3_exit.md). EXIT of record: the
+    certified plug optimum MET in value ([X-OWNM]) with the re-obtentions
+    of record, the Table-1 oracle MET ([X-RAOPO]), the var-gamma instance
+    MET (declared), T-GB MET by the de-rating branch ([C-GBCS]); the
+    two-wall stretch NOT TAKEN (conditional). Budget: 3 of 4 sessions,
+    1 of 2 campaigns on the plug instance; the fallback did not fire.
+    Every F3 claim is scoped THRUST-ONLY, THERMAL SURVIVABILITY UNMODELED
+    (named industrial gap, DUTY-1's declaration branch). Residuals with
+    owners: R-F3-1 the finder at the nominal ambient (the tournament from
+    start C), R-F3-2 the two-wall stretch (DUTY-11 at its entry), R-F3-3
+    the T-GB shape falsifier (after BLOCCATO 20 i), R-F3-4 X-PTRN's
+    registry row, R-F3-5 DUTY-1(b) at F5 entry.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
@@ -536,6 +549,16 @@ ledger's ratification appendix — silent drops void the verdict):
                translation-nullspace duty (CONDITIONAL on the
                two-wall stretch); DUTY-1(b) ranking-stability check
                (thermal q-drivers vs optimizer DOFs).
+               [DISPOSED AT THE F3 EXIT, 2026-09-24 (S39) -- the S37
+               entry ratification omitted these rows, declared in the
+               S39 log: DUTY-14 ASSIGNED to the F5a entry adjudication
+               (tail-governed constraint activity needs the phase
+               measure; F3's optimum is one steady state); DUTY-11 NOT
+               FIRED (no two-wall optimisation exercised; travels with
+               the stretch); DUTY-1(b) NOT EXECUTABLE in the adiabatic
+               inviscid plug line -> DUTY-1's declaration branch: every
+               F3 claim thrust-only, thermal survivability unmodeled;
+               the check fires at F5 entry (second firing).]
  F4b         : DUTY-9 RR/MR reflection-type admissibility row.
  F5 ENTRY    : DUTY-5(a) U1 jitter-statistics clause + bias band +
                synthetic jitter KAT; DUTY-1(b) ranking-stability
