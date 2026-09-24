@@ -2700,6 +2700,32 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "stage raogeno RG-1/RG-2 (the start field against their table at the Rao-world level of record); the Rao carriers' own falsifiers at the declared x0 (twin P1, O3.3 P1-P5/N1-N2, SQP return P1-P4b/R1)"
   gamma: "gamma-const-oracle"
+- id: X-TWMU
+  kind: carrier
+  ondemand: "env=jax; pass=2026-09-24; suite=none"
+  class: PRACTICE
+  scope: "THE TOP-WALL (SHROUD) CELL OF THE PLUG MARCH AND ITS START-UP WEDGE (S36 2026-09-24, [F3/A1]; validation/a1_plug_march.py shroud= / wedge_every=, make_resid_walltop, hermite_seg; the unit carrier validation/a1_shroud_twin.py stage source): the column's C+ meets the shroud on the Hermite segment of two bracketing stations (a recorded decision), unknowns (x4, u4); the lip F by A1.make_resid_inwall verbatim with its foot on the C- leg from the previous shroud point to the column's top interior; after F no top cell, the top row is F's C- (the exit characteristic), no free jet and no p_a; the wedge between the start line and the first plug column MARCHED by columns launched from the start-line points (top row first, rows keeping their indices), thinnable (wedge_every; the skipped rows partner with the start line). Exact oracle: the spherical source flow between the 12-deg and 22-deg rays (a1_source_flow_oracle.Radial, diverging, NASA tables), the lip at 60 percent of the length; grids (41,31)/(81,61); constants in shroud_twin_cases.json"
+  statement: "Stage source 6/6: TW-1 certified (2.5e-2 / 3.6e-2); TW-2 shroud wall pressure vs the closed form 1.34e-5 max (fine; coarse 3.5e-5), inside its per-station Richardson band at 100 percent of the stations; TW-3 the field on and below F's C- (4492 points) |dq|/q 1.7e-6, |dtheta| 2.8e-6 rad (coarse 6.8e-6 / 1.1e-5); TW-4 the lip 1.2e-6 / 2e-15; TW-5 the free-jet march of the same channel bit-identical to the record (the plug march's record path unchanged: oracle 6/6 with the same digits); R-1 the shroud curved by 2 percent at the lip errs 0.19. MEASURED before the record: without the wedge columns the first column's C+ landed beyond the lip and the shroud had one point (2/5)."
+  doc: "validation/PROGRESS_2026-09-24_S36_shrouded_plug.md"
+  proof: "validation/a1_shroud_twin.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "stage source: TW-1 (both grids certify), TW-2 (>= 90 percent of the shroud stations inside K_RICH x the coarse-fine move), TW-3/TW-4 (fine errors below the coarse ones and inside K_RICH x the move), TW-5 (the free-jet path bit-identical), R-1 (a curved shroud must leave the TW-2 band by 10x). A shroud point off the closed form beyond its band, a lip state off the exact one, or a record-path wall array that changed falsify the cell."
+  gamma: "EOS-general"
+- id: X-MGDL
+  kind: carrier
+  ondemand: "env=jax+geno; pass=2026-09-24; suite=none"
+  class: PRACTICE
+  scope: "MIGDAL 1972'S PERFECT ANNULAR NOZZLE AS THE TWO-WALL TWIN (S36 2026-09-24, [F3/A1]; validation/a1_shroud_twin.py stage geno; reference = GENO nozzle_type 9 runs at NI 1001, A_e/A_i 6 (GENO's case) and 4 (the paper's), RDE/handoff/shroud_2026-09-24/geno_migdal/, inputs = CASES/migdalnoz with absolute thermo paths): GENO's uniform start line (x 0, y 0.85-1.0, M 1.5, theta 0: exact data) and GENO's two walls (profile_cp plug, profile_cm shroud) as our stations, distributed by the measure dx + L/(2 theta_tot)|dtheta|; the design's uniform axial exit at the 1-D Mach of the area ratio is an EXACT known answer on our mesh; the gas table spans 1050-3900 K so the twin is posed at T0 3800 K and reads dimensionless numbers (M, p/p0, C_F); grids (140,31)/(280,61), bands K_RICH x move, the exit-uniformity checks adding the reference's own resolution class (M 0.013, theta 3.5e-3: the reading's change between GENO NI 50 and NI 1001 walls); GENO's field read as a point cloud for the wall pressures (the wall nodes are field points to 1e-11)"
+  statement: "Stage geno 8/8 at BOTH area ratios: MG-4 thrust closure F_in + push(plug) + push(shroud), the shroud with the +dy sign, over p0 A* = 1.61917 against the 1-D vacuum thrust coefficient 1.61908 (eps 6, |d| 9.0e-5, band 7.9e-4) and 1.57960 against 1.57959 (eps 4, |d| 2.9e-6, band 3.1e-4); MG-5 mass through the exit polyline 3.9e-4 / 5.0e-5; MG-2/MG-3 F's C- and the last column uniform at the 1-D Mach within 6e-3 / 1.7e-2 (eps 6) and 6e-3 / 9e-3 (eps 4) with theta <= 5e-3, inside K_RICH x move + the reference class; MG-6 wall p/p0 against GENO's field 1.4 / 0.7 percent (eps 6) and 0.6 / 0.8 percent (eps 4) max; MG-1 certified (fine 0.74 / 0.045); R-2 the shroud term with the plug's sign misses by 0.31 / 0.27; R-3 the shroud lifted 3 percent leaves the MG-2 band (8.6e-2 / 1.0e-1). Declared: a full wedge at (280,61) uncertified the plug wall (4.28) and a thinned wedge (m 4) starved the arc region (plug p 11 percent) -- the curvature-adaptive stations with m 1 are the record."
+  doc: "validation/PROGRESS_2026-09-24_S36_shrouded_plug.md"
+  proof: "validation/a1_shroud_twin.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "stage geno: MG-1 (both grids certify), MG-2/MG-3 (the exit characteristic and the last column at the 1-D Mach and theta 0 inside K_RICH x move + the reference class), MG-4 (the two-wall closure at the 1-D vacuum thrust coefficient inside K_RICH x move), MG-5 (mass), MG-6 (wall p/p0 vs GENO inside our band), R-2 (the shroud sign error must miss), R-3 (a 3-percent lift must leave the MG-2 band). A closure off the 1-D value beyond the band, or a rejector that does not fire, falsifies the two-wall march or its thrust functional."
+  gamma: "gamma-const-oracle"
 - id: X-AFAN
   kind: carrier
   ondemand: "env=jax+geno; pass=2026-09-16; suite=none"

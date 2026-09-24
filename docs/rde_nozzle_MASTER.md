@@ -4506,6 +4506,31 @@ smoothing of the digitised near-throat shape by more than their size
 (lower contour -171 / -44 lbf against the paper's -280) -- only the sign
 agrees [READING under G1].]
 
+[LINE ADDENDUM S36, landed 2026-09-24 (brick-2 plug line, the SHROUDED
+plug; numbers of record in [X-TWMU], [X-MGDL] and
+validation/PROGRESS_2026-09-24_S36_shrouded_plug.md).
+(1) A TOP WALL IN A BOTTOM-UP COLUMN MARCH IS A DIRECT CELL, AND ITS
+START-UP WEDGE MUST BE MARCHED ([X-TWMU]): the column is the C+ line, so
+the shroud point is wherever it arrives (unknowns x4, u4 on the wall's
+Hermite segment), the lip is the bell's inverse cell, and after the lip
+the top row is the exit characteristic itself; the wedge between the
+start line and the first plug column's arrival, filled with data rows
+under a free jet, receives no column under a wall and is marched by
+columns launched from the start-line points (without them the shroud
+had one point; with one per row their reflections crowd into a C- band
+that uncertifies the plug wall downstream -- resolved by stations
+distributed on the walls' turning, not by thinning) [PRACTICE, exact on
+the source-flow channel to 1e-5 / 1e-6].
+(2) THE ANNULAR PERFECT NOZZLE IS AN EXACT KNOWN ANSWER FOR THE TWO-WALL
+FUNCTIONAL ([X-MGDL]): Migdal's design (uniform axial exit at the 1-D
+Mach of the area ratio) makes F_in + push(plug) + push(shroud) -- the
+shroud with the +dy sign, a rising top wall pushing the fluid forward --
+equal to the 1-D vacuum thrust coefficient on OUR mesh: 1.61917 vs
+1.61908 (A_e/A_i 6) and 1.57960 vs 1.57959 (A_e/A_i 4, the paper's
+case), mass to 5e-5, the exit characteristic uniform within the
+reference's resolution; a shroud sign error misses by 0.3 [MEASURED-
+SUPPORTED, cross-code on GENO type 9].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

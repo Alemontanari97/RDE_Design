@@ -178,3 +178,9 @@ the stage JSON).
 - Two commits, as the line's practice: (1) code + data + this log + index + PROGRESS/ARCHIVE;
   (2) M0 addendum + registry + this log's conformity line. The registry commit's rows cite the
   log the first commit landed; M0's and PROGRESS's citations of the new ids resolve with the ids.
+- Measured after the first commit (96efee0), on the tree of the second (2026-09-24 ~14:55):
+  numeric lint PASS (125 files, 0 ratchet violations); claims lint PASS (0 violations; the
+  PyYAML cross-check parses); advisory index PASS (128 rows, 0 violations); FULL suite 16/23
+  = the seven environmental reds (xiii, xiv, xvi, xviii, xix, xxii, xxiii), 87 s; (xvii)
+  PASS (1 executed, 51 accounted, 52 total); data/phase_diagram.*, data/q_mapping.* and
+  figs/phase_diagram_op11.png restored with git checkout before the commit.
