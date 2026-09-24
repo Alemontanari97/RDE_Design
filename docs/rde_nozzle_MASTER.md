@@ -4586,6 +4586,25 @@ sonic; an ejector-type topology is outside the class (GBE-L1 bounds an
 entrained ambient point by a positive sonic-branch envelope). The shape
 falsifier (a truncated plug with base recirculation, inside the class)
 is owed [THEOREM*, closure declared].]
+[LINE ADDENDUM S38, landed 2026-09-24 (D6 phase F3, session 2/4; numbers of
+record in [X-OWNM] and validation/PROGRESS_2026-09-24_S38_F3_nominal.md).
+(1) THE M1 COROLLARY IS MEASURED ON OUR OWN CONSTRUCTION AT THE NOMINAL
+AMBIENT ([X-OWNM]): the ideal spike built by the inverse march (no GENO) in
+our variable-gamma gas attains Prop. 7's ceiling mdot V_id -- the deficit
+falls at first order with the station count to a Richardson limit of
++2.2e-5, inside the band 3.5e-4 -- so, within [C-GBCS], the untruncated
+member is the value optimum of the class at the nominal ambient: the value
+half of the plug optimum is certified by the bound, not by a search
+[MEASURED-SUPPORTED, THEOREM* bound].
+(2) THE VALUE CANNOT LOCATE THE SHAPE; PAIRED DIFFERENCES AND THE CLASS
+DO ([X-OWNM] readings): around the member the thrust valley is flat -- a
+wall 1.1 cm away loses 2e-6 of J, a chord 6.5 cm away 2.7e-4 -- far below
+the unpaired ladder band of the tournament's instrument (2.4e-3 at K 81),
+while paired on the same rungs the differences resolve; the chord is
+excluded by the class (it folds in region R), not by the value. The
+finder's question (does the optimiser reach the member from afar?) is
+therefore a question about the class and the driver, not about J
+[PRACTICE].]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

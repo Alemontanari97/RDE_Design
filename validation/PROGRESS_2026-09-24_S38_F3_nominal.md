@@ -147,3 +147,8 @@ RDE/handoff/f3_2026-09-24/ownm_fig.py, presentation only).
   data/q_mapping.* and figs/phase_diagram_op11.png restored with git checkout before the commit.
 - Two commits, as the line's practice: (1) carrier + data + this log + index + PROGRESS/archive
   + D6; (2) registry + M0 + this log's measurement line.
+- Measured after the first commit (41fd18f), on the tree of the second (2026-09-24 ~22:10):
+  numeric lint PASS (127 files, 0 ratchet violations); claims lint PASS (0 violations);
+  advisory index PASS (130 rows, 0 violations); FULL suite 16/23 = the seven environmental reds
+  (xiii, xiv, xvi, xviii, xix, xxii, xxiii), 84 s; (xvii) PASS; data/phase_diagram.*,
+  data/q_mapping.* and figs/phase_diagram_op11.png restored with git checkout before the commit.

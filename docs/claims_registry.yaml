@@ -2753,6 +2753,20 @@ entries:
   falsifier: "stage derive: ID-1 (certified ladder), ID-2 (mass), ID-3 (wall convergence), ID-4 (his Table 1 within his table's own class at T + band_W), ID-4b (mean within his printing), ID-5 (eps), ID-6 (C_F and the momentum closure), R-1 (planar), R-2 (neighbouring optimum leaves the band); stage walk: RE-0 (his contour certifies from our start), per start P1-P4 of [X-RAOSQ] v3 (certified bases, convergence, return per eigen-direction, value), R-3 (sign-flipped driver walks away), RE-3 (the two landings coincide). Our wall off his table beyond his own class, or a landing off his contour with the gradient closed, falsifies the leg."
   gamma: "gamma-const-oracle"
 
+- id: X-OWNM
+  kind: carrier
+  ondemand: "env=jax; pass=2026-09-24; suite=none"
+  class: PRACTICE
+  scope: "F3 EXIT LEG 'certified plug optimum', VALUE HALF AT THE NOMINAL AMBIENT (S38 2026-09-24, [F3/A1], F3 session 2/4; validation/ourworld_nominal.py + ourworld_nominal_cases.json; no GENO in the chain): the ideal spike of our world built by [X-AFAN]'s inverse march at the NOMINAL PA 7.614420e5 Pa (CH4/O2 frozen NASA tables, a variable-gamma gas; inflow Mach 2.0 at the lip; fan_axi 241 x 241), designs marched by the plug march from the vertical cut at x0 1.50 m through its field (81 rows; the [X-RAOSQ] v3 representation used only to march, never to search); J_total = F_in + the wall's push (gauge PA) + the uniform exit part above the terminal ray at x0 = the thrust downstream of the cut, graded against M0 Prop. 7's ceiling mdot V_id (THEOREM* within [C-GBCS]) on the certified K ladder 41/81/161 (K 321 uncertified at N 81, left out); class = no fold in Humphreys' region R (the S34 census); the value band = K_RICH x the Richardson order uncertainty; the paired rejector against the 1.5-percent perturbed member (in class in R), the class rejector the chord"
+  statement: "7/7: the member certifies (0.026 / 0.149 / 0.037) and has no fold in region R (min margin +0.032 / +0.057 / +0.101) on every rung; start line + uniform part carry the world's mdot to -1.2e-4, inside the construction's declared residuals; the deficit to the ceiling mdot V_id (V_id = q_at_pa 2742.136 m/s) is -2.347e-3 / -1.246e-3 / -6.549e-4, falling at the observed order 0.913 to a Richardson limit of +2.2e-5, inside K_RICH x the order uncertainty 3.45e-4 -- the ideal spike ATTAINS the geometry-free ceiling at the nominal ambient (the M1 corollary measured), so no design of the class beats it beyond that band; PAIRED on the same rungs the member beats the in-class 1.5-percent perturbation by 2.8e-5 .. 3.6e-5 of J (resolved: above K_RICH x the change between rungs), and the chord folds in R. Readings: the valley is flat (a uniform-turn wall 1.1 cm away 2.1e-6 below, the 6.5 cm chord 2.7e-4): the bound certifies the optimum's VALUE, not its SHAPE -- the shape is the finder's (the tournament from its far start C, in class in region R: a reading of the same session)."
+  doc: "validation/PROGRESS_2026-09-24_S38_F3_nominal.md"
+  proof: "validation/ourworld_nominal.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "D-1 (construction certified), D-2 (member certified on every rung), D-3 (no fold in region R), D-4 (mass within the declared residuals), D-5 (the Richardson limit of the deficit within K_RICH x the order uncertainty of zero), R-1 (a paired, resolved win over the in-class perturbation), R-2 (the chord folds in R). A limit deficit beyond its band, or an in-class design beating the member beyond the paired band, falsifies the attainment (the march, the construction or [T-GB])."
+  gamma: "EOS-general"
+
 - id: X-AFAN
   kind: carrier
   ondemand: "env=jax+geno; pass=2026-09-16; suite=none"
