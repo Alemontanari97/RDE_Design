@@ -686,7 +686,7 @@ def _wall_in_frame(w, th, Xm, Ym, mode="angelino", x_blend_mm=None):
 
 
 def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E,
-               x_stop=None):
+               x_stop=None, ray0=None):
     """THE LIP CORNER IN A NON-UNIFORM FIELD: the centred expansion at
     the lip marched as a Goursat problem through the incoming field
     (field_uv(x', y') -> (u, v) in the throat frame). The leading ray
@@ -704,7 +704,12 @@ def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E,
     x_stop (S33, default x_cut: unchanged) is where the rays after the
     leading one stop -- np.inf runs every ray to index n_pts, so that
     every C+ line up to the leading ray's last point is complete (the
-    start line posed on a characteristic)."""
+    start line posed on a characteristic).
+    ray0 (S33, default None: unchanged) GIVES the leading ray instead of
+    tracing it through field_uv: an (n, 4) array of points from the lip
+    with their states -- the C- line of an initial-value triangle whose
+    top point lies on the leading ray [a1_ivl_triangle] -- and every
+    next ray is then run to its index n - 1."""
     ta = w["ta"]
     xl, yl = lip
     # the corner relation's states from q_L to q_E
@@ -716,14 +721,18 @@ def corner_fan(w, field_uv, lip, q_L, th_L, x_cut, th, Y0, n_rays, n_pts, q_E,
         u, v = field_uv(x, y)
         M = float(A1.state_q(jnp.float64(np.hypot(u, v)), ta)[5])
         return np.tan(np.arctan2(v, u) - np.arcsin(1.0 / M))
-    hx = (x_cut - xl) / n_pts
-    ray0 = [[xl, yl, *field_uv(xl, yl)]]
-    x, y = xl, yl
-    for j in range(n_pts):
-        k1 = slope_field(x, y); k2 = slope_field(x + hx / 2, y + hx * k1 / 2)
-        k3 = slope_field(x + hx / 2, y + hx * k2 / 2); k4 = slope_field(x + hx, y + hx * k3)
-        y += hx / 6 * (k1 + 2 * k2 + 2 * k3 + k4); x += hx
-        ray0.append([x, y, *field_uv(x, y)])
+    if ray0 is None:
+        hx = (x_cut - xl) / n_pts
+        ray0 = [[xl, yl, *field_uv(xl, yl)]]
+        x, y = xl, yl
+        for j in range(n_pts):
+            k1 = slope_field(x, y); k2 = slope_field(x + hx / 2, y + hx * k1 / 2)
+            k3 = slope_field(x + hx / 2, y + hx * k2 / 2); k4 = slope_field(x + hx, y + hx * k3)
+            y += hx / 6 * (k1 + 2 * k2 + 2 * k3 + k4); x += hx
+            ray0.append([x, y, *field_uv(x, y)])
+    else:
+        n_pts = len(ray0) - 1
+        x_stop = np.inf
     rays = [np.array(ray0, float)]
     t_int = A1.get_solver(("inttd_rot", 1.0, float(th), float(Y0)),
                           lambda: make_resid_interior_td_rot(1.0, th, Y0))

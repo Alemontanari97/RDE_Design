@@ -335,5 +335,31 @@
   "printed_deg": -12.27169,
   "corrected_deg": -22.27169
  },
- "_table3_typo_note": "Table 3 p. 1587 prints -12.27169 deg at x 5.33714 inside a column that rises monotonically from -60.69 at the foot through -25.23198 (x 4.04195) to -20.07902 (x 6.55991): a one-digit misprint for -22.27169, which restores the monotone column and sits against our ideal member where its neighbours do (stage rao R-5). Found by the S32 session (2026-09-22) and confirmed by S33; the transcription above is faithful to the print. Any reader that uses Table 3's angle column (the Hermite mode of read_table) must take the corrected value. cls EMPIRICAL (an inference from their own column, not a printed number)"
+ "_table3_typo_note": "Table 3 p. 1587 prints -12.27169 deg at x 5.33714 inside a column that rises monotonically from -60.69 at the foot through -25.23198 (x 4.04195) to -20.07902 (x 6.55991): a one-digit misprint for -22.27169, which restores the monotone column and sits against our ideal member where its neighbours do (stage rao R-5). Found by the S32 session (2026-09-22) and confirmed by S33; the transcription above is faithful to the print. Any reader that uses Table 3's angle column (the Hermite mode of read_table) must take the corrected value. cls EMPIRICAL (an inference from their own column, not a printed number)",
+ "_table4_recovered_rows": [
+  [
+   8.49709,
+   2.66542,
+   -9.02277
+  ],
+  [
+   11.58406,
+   2.34099,
+   -3.08106
+  ]
+ ],
+ "_table4_recovered_rows_note": "Table 4 (p. 1587) prints 20 rows; the transcription of 2026-09-18 kept 18 -- the last two lost their angle column in the PDF layout ('- 9.02277', '- 3.08106', a space after the sign). Recovered 2026-09-23 from pdftotext of the paper (x, y and angle columns read in order); they agree with the text p. 1587: y_D 2.34 in, wall slope at D -3.08 deg. The record's readers keep the 18-row key; the throat posing (TPOSE_TABLE=table4) appends these rows. cls SPEC",
+ "_fig4": {
+  "dy_at_D_in": 0.5,
+  "thrust_upper_lbf": 32556.0,
+  "thrust_lower_lbf": 32601.0,
+  "digitised_files": {
+   "optimum": "humphreys1971_digitised/fig4_optimum.csv",
+   "upper": "humphreys1971_digitised/fig4_upper.csv",
+   "lower": "humphreys1971_digitised/fig4_lower.csv"
+  }
+ },
+ "_fig4_note": "p. 1586: 'Two other contours of the same length ... One contour is 0.5 in. above the optimum at point D and the other is 0.5 in. below the optimum at the same point ... the upper contour producing a thrust of 32,556 lbf, and the lower contour producing 32,601 lbf' (optimum 32,881). The curves are only plotted (Fig. 4, p. 1585); digitised by the owner 2026-09-23 (files above, x y in inches, base line at D included as digitised). cls SPEC (the printed numbers)",
+ "_rao_geno_band_rel": 0.00244,
+ "_rao_geno_band_rel_note": "the reproduction level of record of a Rao-world start field against its paper: GENO's legacy RaoPlug run reproduces Rao 1961 Table 1 at mean 2.44e-3 (registry X-RAOTW); a GENO run posed on Humphreys' Rao nozzle is admitted as THEIR start field if its wall reproduces their Table 3 at least as well (mean |dy| / y_E). cls EMPIRICAL (a measured precedent)"
 }

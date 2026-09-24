@@ -90,6 +90,9 @@ from a1_freejet_unit import q_at_pa                    # noqa: E402
 
 G = 1.23
 PA_PC = 0.0355        # Rao 1961 Eq. (8): the a-posteriori ambient
+# RAO_PA_PC (2026-09-24): another reference's ambient ratio (Humphreys' Rao nozzle:
+# 14.7/500); unset = Rao 1961's, the record
+PA_PC = float(os.environ.get("RAO_PA_PC", PA_PC))
 EDGE_FILL = 6         # rows spanning the cut-top expansion kernel->jet
 Q_TOL = 1.0e-3        # declared cross-code threshold on q (S8 twin level)
 TH_TOL = 1.5e-3       # declared threshold on theta [rad] (S8 twin level)

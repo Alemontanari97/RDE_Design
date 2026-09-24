@@ -59,6 +59,7 @@ import a1_thrust_functional as TF            # noqa: E402
 from a1_freejet_unit import (make_resid_freejet, q_at_pa)  # noqa: E402
 
 import jax                                    # noqa: E402
+import jax.scipy.special                       # noqa: E402,F401
 import jax.numpy as jnp                       # noqa: E402
 
 EPS = A1.EPS
@@ -148,7 +149,7 @@ def predict_bu(pt1, pt2, ta):
 # ----------------------------------------------------------------------
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
-               edge_fill=0, rot_pred=None, margin=None):
+               edge_fill=0, rot_pred=None, margin=None, x_traced=False):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -200,6 +201,13 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     play mode: differentiable through the replay), margin_min,
     margin_n. Without margin every path below is bit-identical
     (gated by the carrier's D0 check).
+    x_traced (throat posing, 2026-09-23; default False: unchanged): the
+    station abscissae are DESIGN outputs, not frozen data -- a wall
+    posed at fixed record-frame abscissae is marched in a rotated frame,
+    where its stations' x' move with the design. Station kst is then
+    (sx[kst], sy[kst], ssl[kst]) in both modes (traced in play), the
+    schedule keeping only the discrete decisions; the recorded "xcols"
+    are the record's own abscissae (a diagnostic, not read back).
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
@@ -229,6 +237,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 lambda z, p: t[2](z, p, ta))
     s_int, s_fj, s_wb = with_ta(t_int), with_ta(t_fj), with_ta(t_wb)
     cert = dict(worst=0.0, n=0, where=None)
+    # region R (S34): the Newton certificate read where the thrust is
+    # made -- per-cell ratios kept, the worst over R taken at the end
+    cert_cells = [] if (margin is not None and margin.get("region") == "R") else None
     _tag = [None]
     # fold margin accumulators (see the docstring; None = off)
     mg = margin
@@ -251,6 +262,17 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         # cannot carry a resolved fold (ell2 derived by the caller)
         return area / jnp.maximum(lp * lm, mg["ell2"])
 
+    # VECTORISED margin (S34, additive): margin["vec"] = True collects
+    # the four corners of every bucket cell during the march and
+    # evaluates the SAME field and the SAME KS aggregate once, on
+    # stacked arrays, after it (logsumexp instead of the online
+    # logaddexp chain: equal to rounding). Measured on the Humphreys
+    # posing (81,41), 3930 cells: the in-loop form costs 173 s per
+    # value-and-gradient against 13 s for the objective -- a chain of
+    # ~4000 eager logaddexp/hypot ops and their adjoints. The stack is
+    # eager (no jit), so the S23 compile trap does not apply.
+    m_quads = []
+
     def margin_acc(mval):
         m_n[0] += 1
         v = mg["orient"] * mval
@@ -267,6 +289,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         if r > cert["worst"]:
             cert["worst"], cert["where"] = r, _tag[0]
         cert["n"] += 1
+        if cert_cells is not None:
+            cert_cells.append((r, _tag[0]))
 
     def cell(solver, p, z0, tag=None):
         _tag[0] = tag
@@ -300,6 +324,17 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         if NV == 6:
             row += [float(ss0[j - 1]), float(h00[j - 1])]
         G[(j, 1)] = jnp.array(row)
+    # REGION R (S34, additive; margin["region"] == "R"): Humphreys'
+    # region R -- the domain the contour influences, below the exit C-
+    # DB -- read TOPOLOGICALLY on the net: every point carries the id of
+    # its C- line (rows are C- lines, re-indexed at the wall), a line
+    # ends when the wall consumes it, and the lines still ALIVE in the
+    # last column pass above the tip D, i.e. above DB. A cell whose lower
+    # C- leg (or wall corner) is on a consumed line is in R.
+    track_R = mg is not None and mg.get("region") == "R"
+    cline = {(j, 1): j for j in range(2, N + 1)} if track_R else None
+    new_line = [N + 1]
+    m_qkeys = []
     if NV == 6:
         # wall and edge are STREAMLINES: their invariants are the
         # bottom/top start-row constants for the whole march.
@@ -364,7 +399,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 f_prev = f
         return 1, 1                       # fallback: first segment
 
-    x_end_march = float(sx[-1])
+    x_end_march = None if x_traced else float(sx[-1])
     edge_pts, wall_pts = [], []
     sf_ct = [0]                    # streamline-foot decision counter
     clamp_n = [0]                  # feet landing outside their chord
@@ -387,9 +422,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         else:
             x_next = S.d["xcols"][kst]
             done = kst == len(S.d["xcols"]) - 1
-        x4w = jnp.float64(x_next)
-        y4w = jnp.interp(x4w, sx, sy)
-        sl = jnp.interp(x4w, sx, ssl)
+        if x_traced:
+            x4w, y4w, sl = sx[kst], sy[kst], ssl[kst]
+        else:
+            x4w = jnp.float64(x_next)
+            y4w = jnp.interp(x4w, sx, sy)
+            sl = jnp.interp(x4w, sx, ssl)
         if S.mode == "rec":
             u4e = float(G[(1, i - 1)][2])
             b, jf = wall_foot_search(i, float(x4w), float(y4w),
@@ -428,6 +466,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         jnew = 1
         for jprev in range(jsrc0, M + 1):
             jnew += 1
+            if track_R:
+                cline[(jnew, i)] = cline.get((jprev, i - 1))
             pt1 = G[(jnew - 1, i)]
             pt2 = G[(jprev, i - 1)]
             if S.mode == "rec":
@@ -625,8 +665,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     and (jprev - 1, i - 1) in G:
                 rows_from_top = (M - jsrc0 + 2) - jnew
                 if rows_from_top > mg["f_edge"] * (M - jsrc0 + 2):
-                    margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
-                                           z, pt1))
+                    if mg.get("vec"):
+                        m_quads.append((G[(jprev - 1, i - 1)], pt2, z, pt1))
+                        m_qkeys.append(((jprev - 1, i - 1), i))
+                    else:
+                        margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
+                                               z, pt1))
         # ---- new top row: the free edge, fed from THIS column
         pt1 = G[(jnew, i)]
         pt3 = G[(M, i - 1)]          # previous edge (top of prev col)
@@ -656,18 +700,73 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 G[(jnew, i)] = base + t * (ept - base)
         M = jnew + 1
         G[(M, i)] = ept
+        if track_R:
+            for jj in range(2, M + 1):
+                if (jj, i) not in cline:
+                    cline[(jj, i)] = new_line[0]
+                    new_line[0] += 1
         edge_pts.append(ept)
         if S.mode == "rec":
             S.d.setdefault("K_cols", []).append(int(i))
         if done:
             break
 
+    cert_R = None
+    if track_R:
+        alive_ = {cline.get((j, 2 + kst)) for j in range(2, M + 1)}
+        worst_R, where_R = 0.0, None
+        for r_, tg in (cert_cells or []):
+            if tg is None:
+                continue
+            if tg[0] == "wall":
+                inr = True
+            elif tg[0] == "int":
+                inr = cline.get((tg[2], 2 + tg[1])) not in alive_
+            else:
+                inr = False
+            if inr and r_ > worst_R:
+                worst_R, where_R = r_, tg
+        cert_R = (worst_R, where_R)
+    if track_R and m_quads:
+        alive = {cline.get((j, 2 + kst)) for j in range(2, M + 1)}
+        keep = [(a[0] == 1 or cline.get(a) not in alive) and ic >= 3
+                for a, ic in m_qkeys]
+        m_quads = [q for q, k_ in zip(m_quads, keep) if k_]
+    if mg is not None and mg.get("vec") and m_quads:
+        # corners A, B, C, D of every bucket cell, (n, 2) each: every
+        # net point is stacked ONCE (a point is a corner of up to four
+        # cells) and gathered by index -- one stack, four gathers
+        uid, pts_u, ix = {}, [], np.empty((len(m_quads), 4), dtype=int)
+        for n_, q in enumerate(m_quads):
+            for k in range(4):
+                key = id(q[k])
+                if key not in uid:
+                    uid[key] = len(pts_u)
+                    pts_u.append(q[k])
+                ix[n_, k] = uid[key]
+        PU = jnp.stack(pts_u)[:, :2]
+        cA, cB, cC, cD = [PU[ix[:, k]] for k in range(4)]
+        xs = jnp.stack([cA[:, 0], cB[:, 0], cC[:, 0], cD[:, 0]], axis=1)
+        ys = jnp.stack([cA[:, 1], cB[:, 1], cC[:, 1], cD[:, 1]], axis=1)
+        area = 0.5 * jnp.sum(xs * jnp.roll(ys, -1, axis=1)
+                             - jnp.roll(xs, -1, axis=1) * ys, axis=1)
+        lp = 0.5 * (jnp.hypot(cB[:, 0] - cA[:, 0], cB[:, 1] - cA[:, 1])
+                    + jnp.hypot(cC[:, 0] - cD[:, 0], cC[:, 1] - cD[:, 1]))
+        lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
+                    + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
+        v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
+        m_n[0] = int(v.shape[0])
+        m_min[0] = jnp.min(v)
+        m_acc[0] = jax.scipy.special.logsumexp(-mg["rho"] * v)
+
     ilast = 2 + kst
     col = jnp.stack([G[(j, ilast)] for j in range(1, M + 1)
                      if (j, ilast) in G])
     out = dict(
         edge=jnp.stack(edge_pts), wall=jnp.stack(wall_pts),
-        last_col=col, cert_worst=cert["worst"], cert_n=cert["n"],
+        last_col=col, cert_worst=(cert["worst"] if cert_R is None or S.mode != "rec" else cert_R[0]),
+        cert_worst_net=cert["worst"], cert_where_R=(None if cert_R is None else cert_R[1]),
+        cert_n=cert["n"],
         cert_where=cert["where"],
         margin_ks=(None if mg is None or m_acc[0] is None
                    else -m_acc[0] / mg["rho"]),

@@ -130,6 +130,10 @@ PERT = float(os.environ.get("RAO_PERT", 0.015))
 MAXSEG = int(os.environ.get("RAO_SEG", 12))
 FREEZE = float(os.environ.get("RAO_FREEZE", 0.35))   # v2: near-cut zone kept as Rao's
 SEG_R1 = int(os.environ.get("RAO_SEG_R1", 14))       # rejector budget, calibrated (see docstring)
+# RAO_TR0 (2026-09-24): the driver's initial trust radius (design units); another reference
+# in Rao's world (Humphreys' Rao nozzle, 0.29 m long) scales it by the length ratio, else the
+# rejector's first trials leave the class at once; unset = the record's 0.05
+TR0 = float(os.environ.get("RAO_TR0", 0.05))
 NPASS = [0, 0]
 
 
@@ -226,7 +230,7 @@ def run_trsqp(W0, w, sign=+1.0, max_segments=MAXSEG, maxiter_per_seg=8,
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best, g_best, cw_best = None, -sign * np.inf, None, None
-    tr = 0.05
+    tr = TR0
     n_rec = 0
     worst_cert = 0.0
     for seg in range(max_segments):

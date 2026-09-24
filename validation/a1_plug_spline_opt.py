@@ -80,6 +80,7 @@ CHECKS
 Run:  .venv-a1/bin/python validation/a1_plug_spline_opt.py
       PSPL_M=6 PSPL_ITERS=12 .venv-a1/bin/python validation/...
 """
+import json
 import os
 import sys
 import time
@@ -119,6 +120,14 @@ M_NODES = int(os.environ.get("PSPL_M", 6))
 # A1_BASE_MODEL: the N2 base-pressure closure priced into J (a key of
 # base_pressure.MODELS). Unset = the functional of every row of record.
 BASE_MODEL = os.environ.get("A1_BASE_MODEL", "")
+# PB_FROZEN (S34, Humphreys 1971 p. 1583: "the base pressure ... must be
+# treated in the variational problem as a constant which is not known a
+# priori ... recalculated in each iteration so that it is compatible
+# with the flow"): when set (a pressure, the posing's units) the base
+# term prices THIS p_b instead of the closure's -- the walk no longer
+# differentiates THROUGH the closure (dp_b/dW = 0), and the caller
+# re-evaluates the closure between walks. None = every row of record.
+PB_FROZEN = None
 K_ST = int(os.environ.get("PSPL_K", 81))    # march wall stations
 N_ROW = int(os.environ.get("PSPL_N", 61))   # start-line rows
 MAXSEG = int(os.environ.get("PSPL_ITERS", 10))
@@ -297,7 +306,12 @@ def wall_stations(W, c, K=None):
 # ======================================================================
 def march_record(W, w, c, K=None, margin=None):
     """Concrete march: returns (out, sched). margin (optional) = the
-    fold-margin dict of [X-PMRG] (a1_plug_march docstring)."""
+    fold-margin dict of [X-PMRG] (a1_plug_march docstring). A case
+    carrying "throat" (a1_throat_posing, 2026-09-23) is marched by that
+    posing -- their throat, the start 'come loro', the rotated frame;
+    every other case is bit-identical."""
+    if "throat" in c:
+        return c["throat"].march_record(W, margin=margin)
     xq, yq, sq = wall_stations(np.asarray(W, dtype=float), c, K=K)
     return plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"], 1.0,
                       margin=margin)
@@ -307,6 +321,8 @@ def margin_replay(W, w, c, sched, margin, K=None):
     """KS fold margin minus its floor mu0, replaying a recorded
     schedule: differentiable in W (the same frozen-decision replay as
     J_replay). [X-PMRG]"""
+    if "throat" in c:
+        return c["throat"].margin_replay(W, sched, margin)
     xq, yq, sq = wall_stations(W, c, K=K)
     S = A1.Sched("play", sched.d)
     out, _ = plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"],
@@ -342,6 +358,8 @@ def J_replay(W, w, c, sched, ta, K=None):
     prices it; unset -- every row of record so far -- leaves this
     function exactly as it was. The slot is declared, banded and
     falsifiable, never a fit: see validation/base_pressure.py."""
+    if "throat" in c:
+        return c["throat"].J_replay(W, sched)
     xq, yq, sq = wall_stations(W, c, K=K)
     S = A1.Sched("play", sched.d)
     out, _ = plug_march((xq, yq, sq), c["start"], c["qpa"], w["tab"],
@@ -357,7 +375,8 @@ def J_replay(W, w, c, sched, ta, K=None):
     if not BASE_MODEL:
         return c["F_in"] + push
     import base_pressure as BP
-    p_b = BP.p_base(st[1][-1], st[5][-1], st[4][-1], PA, BASE_MODEL)
+    p_b = (BP.p_base(st[1][-1], st[5][-1], st[4][-1], PA, BASE_MODEL)
+           if PB_FROZEN is None else PB_FROZEN)
     return c["F_in"] + push + BP.base_term(p_b, wall[-1, 1], PA)
 
 
@@ -703,6 +722,14 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             if sign * J0 > sign * J_best:
                 W_best, J_best = W.copy(), J0
                 g_best = np.asarray(g0, float).copy()
+                # PSPL_WLOG (S34, additive): one JSON line per accepted
+                # base, so a long walk can be read before it ends
+                if os.environ.get("PSPL_WLOG"):
+                    with open(os.environ["PSPL_WLOG"], "a") as fh:
+                        fh.write(json.dumps(dict(
+                            seg=seg, J=float(J0), cert=cw, W=W.tolist(),
+                            pb_frozen=(None if PB_FROZEN is None
+                                       else float(PB_FROZEN)))) + "\n")
             if verbose:
                 print("    [seg %2d] J = %.8e  |grad| = %.3e  cert = %.3f"
                       % (seg, J0, np.linalg.norm(g0), cw), flush=True)

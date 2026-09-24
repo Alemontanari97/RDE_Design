@@ -2975,3 +2975,55 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## riparazione R4 di S33; (g) ratifica ingresso F3 + contatore e (h)
 ## chiusura X-HMPH in spinta specifica: nuove decisioni owner.
 ## ORA-PARALLELO e NEXT-PARALLELO ridotti allo stato corrente della linea.
+
+## ===== ARCHIVIO 2026-09-24 (chiusura S34-S35; append-only SR-10): i blocchi
+## ORA-PARALLELO e NEXT-PARALLELO uscenti di docs/rde_nozzle_PROGRESS.md, VERBATIM =====
+
+## ORA-PARALLELO (LINEA BRICK-2 PLUG, stato al 2026-09-22 S33; la storia
+## S26-S33 e' VERBATIM in docs/rde_nozzle_PROGRESS_ARCHIVE.md, banner
+## 2026-09-22; riga di censimento R37). Branch `rde-nozzle-program`
+## (`brick2-plug` fermo a fa5263b come storia); commit LOCALI, NON
+## pushati per direttiva owner 2026-09-22 ("il push verra' fatto solo
+## quando saremo capaci di riprodurre gli ottimi e lo strumento sara'
+## completo"); bundle RDE/handoff/rde-nozzle-program_2026-09-22_S33.bundle.
+## STATO DI PIANO: la linea e' il de-risk "spike-level plug-march
+## AUTHORIZED parallel to F2" di D6 F3; la gamba d'ingresso F3
+## (single-oracle Rao 1961) e' MISURATA ma NON ratificata (R20).
+## CONTATORE F3 (D6 ISS-4: 3-4 sessioni, 3 h/sessione di run decisivi,
+## max 2 campagne decisive per istanza, fallback per regola = spike-only
+## capture): NON ISTITUITO; sessioni della linea taggate F3, misurate
+## con git: S26, S28-S33 = 7 -- se contano e' decisione owner alla
+## ratifica (BLOCCATO 20 g). STATO TECNICO (log per sessione in
+## validation/PROGRESS_*.md): margine di piega [X-PMRG] eseguibile dal
+## S29 ma MAI cablato nei walk del twin di Humphreys [X-HMPH];
+## criterio di certificazione dell'ottimizzatore [DIR-REOB] (S32):
+## nessuna riga certifica ancora lo strumento come cercatore. S33:
+## coordinate d'angolo nel driver (PSPL_PARAM; le camminate in angolo
+## escono di classe su una compressione di coda pagata dalla chiusura
+## di Veen) e linea di partenza su caratteristica C+ (HMPH_IVL=char,
+## stage kab): il salto di massa alla 1a colonna di S32 era il
+## passaggio taglio verticale -> colonna, non la serie; restano la
+## banda della serie sulla scarica (2.5 %) e le pieghe (2.2-14.6 %).
+## J/mdot sul loro contorno 228.5-228.9 lbf s/lbm = +3 % sulla loro
+## massa dichiarata (incoerente con la loro geometria, T-6),
+## +0.02..+0.15 % per massa 1-D strozzata di A->E: LETTURA, non
+## chiusura (G1: marce piegate).
+
+## NEXT-PARALLELO (linea brick-2 plug, 2026-09-22 S33): prima le
+## decisioni owner di BLOCCATO 20 (g) ratifica dell'ingresso F3 e
+## contatore, (h) chiusura di X-HMPH in spinta specifica; poi, in ogni
+## caso: margin= cablato in opt() del twin + derive delle costanti
+## D0-D4 sulla posa di Humphreys (coordinate d'angolo) = la prima
+## camminata IN CLASSE della linea; poi RE-2/RE-3 e la meta' in VALORE
+## di RE-1 dalla loro gola (serie a eta 8, banda dichiarata); la meta'
+## in CONTORNO di RE-1 richiede la soluzione transonica numerica della
+## loro gola (brick a se', decisione owner). Handoff: RDE/handoff/
+## NOZZLE_HANDOFF_2026-09-22.md + NOZZLE_HANDOFF_2026-09-22_sera.md.
+
+## ===== DELTA CENSIMENTO 2026-09-24 (chiusura S34-S35; append-only SR-10; la
+## tabella consolidata in PROGRESS e' stata editata IN PLACE) =====
+## R37: da "S21-S33 ... push solo a strumento completo" a "S21-S35 ... S34-S35
+## atterrati il 2026-09-24 con push autorizzato"; artefatti + log S34-S35 e righe
+## X-TPOS/X-IVLT/X-RAOHM; BLOCCATO 20 (a) push autorizzato, (h) superata
+## dalla classe in R, (i) nuova (Panov-Shvets). Riga R37 uscente, verbatim:
+## | R37 | LINEA BRICK-2 PLUG S21-S33 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; working copy ricostruita il 09-09 (S27); commit locali, push per direttiva owner 2026-09-22 solo a strumento completo; bundle in RDE/handoff/) | OPEN -- de-risk parallelo a F2 (D6 F3); ingresso F3 MISURATO non ratificato (R20); contatore F3 NON istituito (sessioni taggate F3: S26, S28-S33 = 7, misurato con git log) | owner: BLOCCATO 20 (g) ratifica ingresso F3 + contatore, (h) chiusura X-HMPH in spinta specifica (G1: marce piegate 2.2-14.6 %); tecnico: margin= nel twin + derive D0-D4 sulla posa di Humphreys, poi RE-2/RE-3 e RE-1 in valore (DIR-REOB); residui d'uscita F3 invariati dal S28: oracolo Tab. 1 in bande sul nostro mondo, istanza stratificata, A/B a PA nominale, T-GB de-rated o falsificatore del plug troncato, margine a specchio plug/C- dimostrato o PRACTICE | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-22(_sera).md |

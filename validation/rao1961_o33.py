@@ -101,6 +101,13 @@ N_ROW = int(os.environ.get("RAO_N", 61))
 K_ST = int(os.environ.get("RAO_K", 81))
 T_H = 5.0e-3            # bump amplitude scale [m], as the bell's O3.3
 A_PERT = 0.01           # the non-optimal control wall (bump 3)
+# (2026-09-24) another reference in Rao's world (Humphreys' Rao nozzle, 0.29 m long, Veen
+# base): RAO_TH / RAO_APERT scale the bumps with the length; RAO_PB = the reference's base
+# pressure over p0 in the tip identity and the corner relation Eq. (9) (their constant p_b);
+# unset = Rao 1961's p_b = 0 and the record's scales
+T_H = float(os.environ.get("RAO_TH", T_H))
+A_PERT = float(os.environ.get("RAO_APERT", A_PERT))
+PB_P0 = float(os.environ.get("RAO_PB", 0.0))
 NPASS = [0, 0]
 
 
@@ -209,7 +216,7 @@ def main():
     fdl2 = (float(Jfun(0.5 * T_H * e)) - float(Jfun(-0.5 * T_H * e))) / T_H
     bandl = K_RICH * abs(fdl - fdl2)
     yD = float(yw[-1])
-    pred = 2.0 * np.pi * yD * pa * blip_D
+    pred = 2.0 * np.pi * yD * (pa - PB_P0 * ps_g) * blip_D
     print("  tip direction: AD %+.4e  FD %+.4e  band %.3e" % (gvec[6], fdl, bandl))
     print("  Rao stationarity in y_D with p_b = 0 predicts dJ_wall/da_tip"
           " ~ 2 pi y_D p_a = %+.4e  ->  measured/predicted = %.4f (reported)"
@@ -243,7 +250,7 @@ def main():
         q = float(np.hypot(w[2], w[3]))
         M = float(A1.state_q(jnp.float64(q), ta)[5])
         th = float(np.arctan2(w[3], w[2]))
-        return float(rao_corner(M, th, G, 0.0)), M, np.degrees(th)
+        return float(rao_corner(M, th, G, PB_P0)), M, np.degrees(th)
     c0, M0, th0 = corner_at_end(out0)
     a_t = jnp.zeros(7).at[6].set(0.05)      # v2: dtheta_D ~ 1.7 deg control
     out_t, _ = plug_march(tuple(np.asarray(v) for v in shaped(a_t)), start,

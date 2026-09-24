@@ -481,11 +481,21 @@ def opt():
     elif os.environ.get("PSPL_FAN") == "axi":
         say("   start = the axisymmetric ideal member at the knots (fan_axi); vs Table 3:"
             " max |dy| %.3f in" % (np.max(np.abs(np.asarray(c["W0"]) - W_ref)) / S / IN))
+    # S34: HMPH_W0_JSONL = a per-base log of another walk (PSPL_WLOG):
+    # the start is its LAST accepted base (posing units) -- a different
+    # IN-CLASS start for the coincidence test RE-3
+    ptag = ""
+    if os.environ.get("HMPH_W0_JSONL"):
+        ln = [json.loads(x) for x in open(os.environ["HMPH_W0_JSONL"]) if x.strip()]
+        c["W0"] = np.asarray(ln[-1]["W"], float)
+        say("   start = the last accepted base (seg %d) of %s"
+            % (ln[-1]["seg"], os.path.basename(os.environ["HMPH_W0_JSONL"])))
+        ptag = "_from_" + os.path.basename(os.environ["HMPH_W0_JSONL"]).split(".")[0]
     # RETURN-FROM-PERTURBATION (S32): HMPH_PERTURB = delta [in], seeded
     # normal perturbation of the start's knots (the tip knot kept above
     # its floor); the walk must come back to the reference landing
     delta = float(os.environ.get("HMPH_PERTURB", 0.0))
-    ptag = ""
+    dW = None
     if delta > 0.0:
         rng = np.random.default_rng(int(os.environ.get("HMPH_SEED", 1)))
         dW = rng.standard_normal(len(c["W0"])) * delta * IN * S
@@ -495,7 +505,7 @@ def opt():
         # the tag carries it: a perturbed leg must not overwrite the
         # record's landing (it did once, S32 -- the file was restored
         # from the commit and the leg re-filed under this name)
-        ptag = "_perturb%.2f_seed%s" % (delta, os.environ.get("HMPH_SEED", 1))
+        ptag += "_perturb%.2f_seed%s" % (delta, os.environ.get("HMPH_SEED", 1))
     say("   start radius y_w0 %.3f in (mass-set), F_in %.1f kN; start = %s;"
         " knots %s" % (c["yw0"] / S / IN, c["F_in"] / S / S / 1e3, START,
                        np.array2string(P.knot_radii(c["W0"], c) / S / IN,
@@ -510,11 +520,75 @@ def opt():
               " paper's thrust within 1 percent (%+.2e; their shear 0.2"
               " percent)" % (J0 / S / S / F_ref - 1),
               abs(J0 / S / S / F_ref - 1) <= THRUST_TOL)
-    W, hist, n_rec = P.run_trsqp(np.asarray(c["W0"], float), w, c, ta,
-                                 sign=+1.0, max_segments=P.MAXSEG,
-                                 maxiter_per_seg=8, verbose=1,
-                                 bounds=P.design_bounds(c))
-    out1, sched1 = P.march_record(W, w, c)
+    # S34 (owner 2026-09-23 "vai"): HMPH_MARGIN=1 walks WITH the class
+    # constraint [X-PMRG], its constants from stage mderive on THIS
+    # posing (HMPH_RUNG = the floor rung, 1 = the tightest); HMPH_BASE=
+    # frozen prices the base as Humphreys do (p. 1583): p_b held constant
+    # during a walk and recomputed from the landing's corner state
+    # between walks until compatible (HMPH_OUTER walks at most). Both
+    # unset = the record's walk, bit-identical.
+    mg, kw = None, {}
+    if os.environ.get("HMPH_MARGIN") == "1":
+        import a1_plug_margin as PMG                     # AFTER _pose
+        REG = os.environ.get("HMPH_MREGION") == "R"
+        D = json.load(open(os.path.join(ART, "margin_%s_%s%s.json"
+                                        % (CASE, os.environ["A1_BASE_MODEL"], "_R" if REG else ""))))
+        rung = int(os.environ.get("HMPH_RUNG", 1))
+        # vec: the vectorised margin of a1_plug_march (S34) -- the same
+        # field and KS, equal to rounding (gate: value rel 2e-16,
+        # gradient rel 2e-13, same schedule), 6.5x cheaper per call
+        mg = dict(PMG.margin_dict(D["rho"], D["floors"][rung - 1], D["m_ref"],
+                                  D["orient"], D["f_edge"], D["ell2"]), tol=D["gap"],
+                  vec=True)
+        if REG:
+            mg["region"] = "R"
+        kw = dict(margin=mg, tr0=D["tr0"], tr_floor=D["tr0"] / PMG.K_RICH)
+        if dW is not None and os.environ.get("HMPH_PERTURB_INCLASS") == "1":
+            # RE-2 needs an IN-CLASS perturbed start (a deep fold is not
+            # restorable at the fold-scale radius: legs E/F of S34):
+            # halve the seeded perturbation until the start is in class,
+            # never below the walk's own initial radius tr0 (a smaller
+            # move is not a perturbation the walk can see)
+            W_un = np.asarray(c["W0"], float) - dW
+            while True:
+                o_m, _ = P.march_record(W_un + dW, w, c, margin=mg)
+                if float(o_m["margin_ks"]) >= mg["mu0"] or np.linalg.norm(dW) / 2 < D["tr0"]:
+                    break
+                dW = dW / 2
+            c["W0"] = W_un + dW
+            say("   IN-CLASS perturbation: |dW| %.4f in, dW = %s in (KS - mu0 %+.4f)"
+                % (np.linalg.norm(dW) / S / IN, np.array2string(dW / S / IN, precision=4),
+                   float(o_m["margin_ks"]) - mg["mu0"]))
+            ptag += "_inclass"
+        o_m, _ = P.march_record(np.asarray(c["W0"], float), w, c, margin=mg)
+        say("   CLASS CONSTRAINT on: rung %d mu0 %.4f, rho %.1f, tr0 %.3e R;"
+            " the start's KS - mu0 %+.4f" % (rung, mg["mu0"], mg["rho"], D["tr0"],
+                                            float(o_m["margin_ks"]) - mg["mu0"]))
+        ptag += "_margin%d%s" % (rung, "R" if REG else "")
+    frozen = os.environ.get("HMPH_BASE") == "frozen"
+    n_outer = int(os.environ.get("HMPH_OUTER", 4)) if frozen else 1
+    W = np.asarray(c["W0"], float)
+    pb_hist = []
+    for it in range(n_outer):
+        if frozen:
+            o_f, s_f = P.march_record(W, w, c)
+            pb = _j_parts(P, w, c, W, s_f, ta)["p_b"]
+            pb_hist.append(pb / P.PA)
+            say("   [outer %d] p_b frozen at %.4f p_a (the closure on the"
+                " current design's corner state)" % (it, pb / P.PA))
+            if it > 0 and abs(pb_hist[-1] / pb_hist[-2] - 1.0) <= THRUST_TOL:
+                say("   [outer %d] p_b compatible with the flow (change %.2e <="
+                    " %.0e): stop" % (it, pb_hist[-1] / pb_hist[-2] - 1.0, THRUST_TOL))
+                break
+            P.PB_FROZEN = pb
+        W, hist, n_rec = P.run_trsqp(W.copy(), w, c, ta,
+                                     sign=+1.0, max_segments=P.MAXSEG,
+                                     maxiter_per_seg=8, verbose=1,
+                                     bounds=P.design_bounds(c), **kw)
+    if frozen:
+        P.PB_FROZEN = None                  # every reading below prices the closure
+        ptag += "_pbfrozen"
+    out1, sched1 = P.march_record(W, w, c, margin=mg)
     J1 = float(P.J_replay(jnp.asarray(W), w, c, sched1, ta))
     yk1 = P.knot_radii(W, c)
     say("   TR-SQP: %d records, J %.1f kN = %.0f lbf (%+.2e vs the paper's"
@@ -527,6 +601,11 @@ def opt():
             " increments %s deg"
             % (a1.min(), a1.max(), n_turns(a1),
                np.array2string(np.degrees(np.asarray(W)), precision=3)))
+    if mg is not None:
+        say("   landing: KS - mu0 %+.4f (min cell %+.4f)"
+            % (float(out1["margin_ks"]) - mg["mu0"], float(out1["margin_min"])))
+        check("O-1m the landing is IN CLASS (KS >= mu0 - gap)",
+              float(out1["margin_ks"]) - mg["mu0"] >= -mg["tol"])
     check("O-1 the walk's best design is Newton-certified (%.3f)"
           % float(out1["cert_worst"]), float(out1["cert_worst"]) <= 1.0)
     check("O-2 the thrust reproduces the paper's within 1 percent (their"
@@ -556,6 +635,11 @@ def opt():
                seconds=time.time() - t00)
     os.makedirs(ART, exist_ok=True)
     rec["start"] = START
+    if mg is not None:
+        rec["margin"] = dict(rung=int(os.environ.get("HMPH_RUNG", 1)), mu0=mg["mu0"],
+                             ks=float(out1["margin_ks"]), vmin=float(out1["margin_min"]))
+    if frozen:
+        rec["pb_frozen_hist_pa"] = pb_hist
     rec["base_model"] = os.environ["A1_BASE_MODEL"]
     if P.PARAM != "y":
         # angle coordinates: the design itself and the knot radii, never
@@ -1690,6 +1774,56 @@ def kernel():
                          Ym, ta, S)
         x_start, start, md_in, F_in = cs["x_start"], cs["start"], cs["md_in"], cs["F_in"]
         ys, n_edge = cs["start"][1], cs["n_edge"]
+    elif ivl == "tri":
+        # S33 EXPERIMENT (worktree tri-experiment, not on the shared
+        # branch): the start line of "cut", but its DOMAIN OF DEPENDENCE
+        # marched with characteristic cells (the bell's step (3)) and the
+        # hand-over column computed, not read from the series -- the
+        # kernel is used ON the start line only [a1_ivl_triangle]
+        import a1_ivl_triangle as IVT
+        crs = [c_ for c_ in CF["cross"] if c_ is not None]
+        y_lead0 = float(crs[0][1])
+        y_edge0 = float(yE_) + (x_cut - float(xE)) * np.tan(th_e)
+        nA = max(5, int(round(N * (y_lead0 - yw0) / (y_edge0 - yw0))))
+        ts = IVT.tri_start(w, kernel_uv, (float(xE), float(yE_)), q_l, th_l,
+                           float(x_cut), yw0, sw0, nA + 1, n_pts, n_rays, q_E,
+                           th_e, thf, Ym)
+        col = ts["col"]
+        xs_, ys, us, vs = col[:, 0], col[:, 1], col[:, 2], col[:, 3]
+        if not np.all(np.diff(ys) > 0.0):
+            bad = np.where(np.diff(ys) <= 0.0)[0]
+            raise ValueError("tri column rows not ordered at %s (triangle 0..%d,"
+                             " fan %d..%d, top %d..)" % (bad.tolist(), ts["n_tri"] - 1,
+                                                         ts["n_tri"], ts["n_tri"] + ts["n_fan"] - 1,
+                                                         ts["n_tri"] + ts["n_fan"]))
+        start = (xs_, ys, us, vs)
+        n_edge = ts["n_top"]
+        X0r, Y0r, U0r, V0r = FM.to_record(xs_, ys, us, vs, thf, Xm, Ym)
+        md_in, F_in = PM.col_fluxes(np.stack([X0r, Y0r, U0r, V0r], 1), ta, PA, 1.0)
+        md_in = abs(float(md_in))
+        # the START LINE's own mass (wall -> leading ray) and the cut's
+        # fan part, for the triangle's conservation reading
+        Lr = FM.to_record(ts["L"][:, 0], ts["L"][:, 1], ts["L"][:, 2], ts["L"][:, 3],
+                          thf, Xm, Ym)
+        md_L, _ = PM.col_fluxes(np.stack(Lr, 1), ta, PA, 1.0)
+        sl, MsL = FM.spacelike(ts["L"][:, 0], ts["L"][:, 1], ts["L"][:, 2],
+                               ts["L"][:, 3], ta)
+        Mc = np.asarray(A1.state_q(jnp.asarray(np.hypot(us, vs)), ta)[5])
+        say("   TRI start: start line %d points (M %.3f..%.3f, space-like min"
+            " %+.2f deg) carries %.2f lbm/s wall -> leading ray; triangle %d"
+            " cells (cert %.3f), fan with the triangle's leading ray (%d rays x"
+            " %d, cert %.3f), free-jet triangle (cert %.3f); hand-over column"
+            " %d rows (triangle %d, fan %d, top %d), M %.3f..%.3f, from x' %.4f"
+            " to %.4f in; mass through it %.2f lbm/s"
+            % (len(ts["L"]), MsL.min(), MsL.max(), np.degrees(sl.min()),
+               abs(float(md_L)) / S / S / LBM, len(ts["L"]) * (len(ts["L"]) - 1) // 2,
+               ts["cert_tri"], n_rays, ts["js"] + 1, ts["cert_fan"], ts["cert_fj"],
+               len(ys), ts["n_tri"], ts["n_fan"], ts["n_top"], Mc.min(), Mc.max(),
+               xs_.min() / S / IN, xs_.max() / S / IN, md_in / S / S / LBM))
+        check("H-1 (tri) the start line is space-like and the triangle, the fan and"
+              " the free-jet triangle are certified (%.2f deg; %.3f / %.3f / %.3f)"
+              % (np.degrees(sl.min()), ts["cert_tri"], ts["cert_fan"], ts["cert_fj"]),
+              sl.min() > 0.0 and max(ts["cert_tri"], ts["cert_fan"], ts["cert_fj"]) <= 1.0)
     else:
         crs = [c_ for c_ in CF["cross"] if c_ is not None]
         y_lead = float(crs[0][1])
@@ -1819,6 +1953,39 @@ def kernel():
                dep[neg].max(), k0, (xq[min(k0, len(xq) - 1)] - x_start) / S / IN))
     check("H-4 the march is IN CLASS by the incumbent's standard: no folded"
           " resolved cell (%d)" % int(neg.sum()), int(neg.sum()) == 0)
+    if os.environ.get("HMPH_DUMP"):
+        # S33 experiment only: the net, the census cells as quads (same
+        # loop and filter as PMG.np_margin with f_edge 0), the wall, T
+        keys = out["mesh_keys"]
+        pts_ = np.asarray(out["mesh_pts"])
+        idx_ = {k: n for n, k in enumerate(keys)}
+        quads, qcol = [], []
+        top_by_col = {}
+        for (jj, ii) in keys:
+            top_by_col[ii] = max(top_by_col.get(ii, 0), jj)
+        M_ = len(ys)
+        for kst, (b, jf) in enumerate(sch.d["wfoot"]):
+            i = 2 + kst
+            jsrc0 = (jf + 1) if b == 1 else 2
+            top = M_ - jsrc0 + 2
+            for jnew in range(PMG.JMIN, top + 1):
+                jprev = jnew + jsrc0 - 2
+                q4 = [(jprev - 1, i - 1), (jprev, i - 1), (jnew, i), (jnew - 1, i)]
+                if not all(k in idx_ for k in q4):
+                    continue
+                if not (top - jnew > 0.0 * top):
+                    continue
+                quads.append(np.array([pts_[idx_[k], :2] for k in q4]))
+                qcol.append(i)
+            M_ = top_by_col[i]
+        assert len(quads) == len(ms), (len(quads), len(ms))
+        np.savez(os.environ["HMPH_DUMP"], keys=np.array(keys), pts=pts_,
+                 quads=np.array(quads), qcol=np.array(qcol), ms=np.asarray(ms), fl=np.asarray(fl),
+                 neg=np.asarray(neg), xw=xw, yw=yw, xE=float(xE), yE=float(yE_),
+                 hh=hh, x_start=x_start, rows=np.array(rows), xT=xT_fr,
+                 start=np.stack([np.broadcast_to(np.asarray(start[0], float), np.shape(start[1])),
+                                 start[1], start[2], start[3]], 1),
+                 S=S, IN=IN)
 
     # ---- the thrust: F_in + the wall push + the base ------------------
     wall = np.asarray(out["wall"])
@@ -1879,7 +2046,8 @@ def kernel():
            n_rays, wall_mode, rc_scale,
            os.environ.get("HMPH_DS0", "def"),
            ("_ef%d" % n_fill if n_fill else "")
-           + ("_char_eta%g" % eta if ivl == "char" else ""))), "w"), indent=1)
+           + ("_char_eta%g" % eta if ivl == "char" else "")
+           + ("_tri_eta%g" % eta if ivl == "tri" else ""))), "w"), indent=1)
     # HMPH_TAG (S33): the same record under a caller-chosen name (the A/B
     # stage kab reads its four marches by tag; the name above omits K and
     # the march length, so capped and full marches would collide)
@@ -2299,11 +2467,254 @@ def angle():
     return NPASS[0] == NPASS[1]
 
 
+# ----------------------------------------------------------------------
+# stage mderive (S34): the fold margin's constants ON THIS POSING
+# ----------------------------------------------------------------------
+def mderive():
+    """[X-PMRG] D0-D4 derived on Humphreys' posing (S33 queue: "margin
+    constants derived on Humphreys' posing, import a1_plug_margin AFTER
+    _pose"; owner 2026-09-23 "vai"). The S29 carrier derives its
+    constants on the S21 posing (its derive() builds its own world);
+    the walks of THIS twin need them on THIS posing, so the derivation
+    is repeated here step for step with the carrier's own field
+    (np_margin, margin_dict) and the carrier's rules: orientation by the
+    median (D0), the free-edge bucket from the incumbent at the doubled
+    resolution (D1), m_ref = the incumbent's min over the bucket and the
+    floors m_ref/2^k, rho = K_RICH ln N / mu0_min (R-KS), AD vs FD on a
+    ladder below the fold scale with a corrupted control (R-GRAD), the
+    folded landings of THIS row INFEASIBLE at every floor (R-G1: the
+    fan-start and table-start landings of S31/S32, 39 and 6.4 percent
+    folded), and the fold scale along +grad J -> tr0 (R-FSC). Nothing
+    typed: every constant is a measurement on the incumbent (the fan's
+    own streamline, 0 folded cells in stage class)."""
+    t00 = time.time()
+    st = _pose("mderive", "the fold margin's constants on this posing")
+    w, P, c, ta = st["w"], st["P"], st["c"], st["ta"]
+    os.environ.setdefault("PMRG_ART", os.path.join(ART, "_margin"))
+    import a1_plug_margin as PMG                     # AFTER _pose
+    # HMPH_MREGION=R (S34): the margin over Humphreys' region R only
+    # (a1_plug_march region="R", topological), vectorised; the numpy
+    # census of R-D0 covers the whole bucket, so R-D0 is replaced by the
+    # region gate of the S34 log (topological vs integrated DB)
+    REG = os.environ.get("HMPH_MREGION") == "R"
+
+    def MD(*a_):
+        d_ = PMG.margin_dict(*a_)
+        if REG:
+            d_.update(region="R", vec=True)
+        return d_
+    K, N = P.K_ST, P.N_ROW
+    W0 = np.asarray(c["W0"], float)
+    ell = PMG.station_spacing(K)
+    ell2 = ell * ell
+    say("   posing (K,N) = (%d,%d), %d knots, ell %.4e R" % (K, N, len(W0), ell))
+    rec = dict(case=CASE, K=K, N=N, m=len(W0), L=P.L, X0=P.X0, ell=ell,
+               ell2=ell2, jmin=PMG.JMIN, base_model=os.environ["A1_BASE_MODEL"])
+    # D0
+    mg = MD(1.0, 0.0, 1.0, 1.0, 0.0, ell2)
+    out, sch = P.march_record(W0, w, c, margin=mg)
+    ms = PMG.np_margin(out, sch, N, 1.0, 0.0, ell2)
+    orient = float(np.sign(np.median(ms)))
+    say("   D0: raw median %+.4f over %d cells -> orient %+.0f"
+        % (np.median(ms), len(ms), orient))
+    # D1 at the doubled resolution
+    K2, N2 = 2 * K - 1, 2 * N - 1
+    c2 = dict(P.build_case(w, thE=st["thE"], N=N2))
+    c2["xk"] = c["xk"]
+    W02 = np.interp(c["xk"], c2["sx"], c2["sy"])
+    e22 = PMG.station_spacing(K2) ** 2
+    out2, sch2 = P.march_record(W02, w, c2, K=K2,
+                                margin=MD(1.0, 0.0, 1.0, orient, 0.0, e22))
+    ms2, dep2, wh2 = PMG.np_margin(out2, sch2, N2, orient, 0.0, e22,
+                                   with_depth=True)
+    bad = ms2 <= 0.0
+    d_meas = float(dep2[bad].max()) if bad.any() else 0.0
+    f_edge = 0.5 * PMG.K_RICH * d_meas
+    say("   D1: incumbent at (%d,%d): %d cells, %d <= 0, deepest at row"
+        " fraction %.3f -> f_edge %.3f" % (K2, N2, len(ms2), int(bad.sum()),
+                                           d_meas, f_edge))
+    check("D1a the incumbent's non-positive cells (if any) lie in the"
+          " free-edge band (depth %.3f < 1/2)" % d_meas, d_meas < 0.5)
+    mg = MD(1.0, 0.0, 1.0, orient, f_edge, ell2)
+    out, sch = P.march_record(W0, w, c, margin=mg)
+    ms = PMG.np_margin(out, sch, N, orient, f_edge, ell2)
+    vmin_np, n_np = float(ms.min()), len(ms)
+    vmin_il, n_il = float(out["margin_min"]), int(out["margin_n"])
+    if REG:
+        say("   R-D0 replaced (region R): in-loop %d cells in R, min %+.6f; the whole"
+            " bucket %d cells, min %+.6f" % (n_il, vmin_il, n_np, vmin_np))
+        vmin_np, n_np = vmin_il, n_il
+    else:
+        check("R-D0 in-loop margin == numpy census (min %+.6f vs %+.6f, cells"
+              " %d vs %d)" % (vmin_il, vmin_np, n_il, n_np),
+              abs(vmin_il - vmin_np) <= PMG.K_RICH * PMG.EPS * max(1.0, abs(vmin_np))
+              and n_il == n_np)
+    check("R-D0b the incumbent is strictly healthy on the bucket (min %+.4f > 0)"
+          % vmin_np, vmin_np > 0.0)
+    m_ref = vmin_np
+    floors = [m_ref / 2 ** k for k in range(1, PMG.RUNGS + 1)]
+    rho = PMG.K_RICH * np.log(n_np) / floors[-1]
+    gap = np.log(n_np) / rho
+    mg = MD(rho, floors[0], m_ref, orient, f_edge, ell2)
+    out, sch = P.march_record(W0, w, c, margin=mg)
+    ks, vmin = float(out["margin_ks"]), float(out["margin_min"])
+    check("R-KS vmin - ln N/rho = %.5f <= KS = %.5f <= vmin = %.5f"
+          % (vmin - gap, ks, vmin),
+          vmin - gap - PMG.K_RICH * PMG.EPS <= ks <= vmin + PMG.K_RICH * PMG.EPS)
+    say("   m_ref %.4f over %d cells, floors %s, rho %.1f, gap %.3e"
+        % (m_ref, n_np, ["%.4f" % f for f in floors], rho, gap))
+    # D2: AD vs FD
+    mv, gm = P.margin_and_grad(W0, w, c, sch, mg)
+    rng = np.random.default_rng(0)
+    hs = [ell / PMG.K_RICH ** k for k in range(PMG.N_FD, 2 * PMG.N_FD)]
+    fj = lambda z: float(P.margin_replay(jnp.asarray(z), w, c, sch, mg))  # noqa
+    for k in range(PMG.N_DIR):
+        v = rng.standard_normal(len(W0))
+        v /= np.linalg.norm(v)
+        vals = np.array([(fj(W0 + h * v) - fj(W0 - h * v)) / (2 * h) for h in hs])
+        band = PMG.K_RICH * (vals.max() - vals.min()) + PMG.K_RICH * PMG.EPS * abs(mv) / hs[-1]
+        ad = float(gm @ v)
+        check("R-GRAD dir %d: AD %+.5e FD %s |diff| %.2e band %.2e"
+              % (k, ad, np.array2string(vals, precision=5), abs(vals[-1] - ad), band),
+              abs(vals[-1] - ad) <= band)
+        if k == 0:
+            gb = gm.copy()
+            jb = int(np.argmax(np.abs(gb)))
+            gb[jb] *= 2.0
+            check("R-GRAD control: the corrupted gradient FAILS (|diff| %.2e > band %.2e)"
+                  % (abs(vals[-1] - float(gb @ v)), band),
+                  abs(vals[-1] - float(gb @ v)) > band)
+    # D3: this row's folded landings
+    rej = (("opt_%s_fan_veen.json" % CASE,) if REG else
+           ("opt_%s_fan_veen.json" % CASE, "opt_%s_table_veen.json" % CASE,
+            "opt_%s_table_veen_perturb0.30_seed1.json" % CASE))
+    if REG:
+        # the folded design IN R of this row: their Table 2 through our cut
+        o, s_ = P.march_record(np.asarray(st["W_ref"], float), w, c, margin=mg)
+        ksd = float(o["margin_ks"])
+        check("R-G1 their Table 2 through our cut (folded IN R): KS %+.4f infeasible"
+              " at every floor" % ksd, all(ksd < fl for fl in floors))
+    for f in rej:
+        fn = os.path.join(ART, f)
+        if not os.path.exists(fn):
+            say("   declared skip: %s not on disk" % f)
+            continue
+        Wd = np.asarray(json.load(open(fn))["W_in"], float) * S_IN(st)
+        o, s_ = P.march_record(Wd, w, c, margin=mg)
+        ksd = float(o["margin_ks"])
+        mvd, gmd = P.margin_and_grad(Wd, w, c, s_, mg)
+        infeas = [bool(ksd < fl) for fl in floors]
+        check("R-G1 %s: KS %+.4f (min %+.4f) infeasible at every floor %s;"
+              " finite margin %s, finite grad %s"
+              % (f, ksd, float(o["margin_min"]), infeas, np.isfinite(mvd),
+                 bool(np.all(np.isfinite(gmd)))),
+              all(infeas) and np.isfinite(mvd) and bool(np.all(np.isfinite(gmd))))
+    # D4: fold scale along +grad J
+    J0, gJ = P.J_and_grad(W0, w, c, ta, sch)
+    u = gJ / np.linalg.norm(gJ)
+    h_ok, h_bad, rows = None, None, []
+    n_half = PMG.N_FD + 2
+    for k in range(-n_half, n_half + 1):
+        h = ell * 2.0 ** k
+        o, s_ = P.march_record(W0 + h * u, w, c, margin=mg)
+        ksh = float(o["margin_ks"])
+        Jh = float(P.J_replay(jnp.asarray(W0 + h * u), w, c, s_, ta))
+        rows.append(dict(h=h, J=Jh, ks=ksh, cert=float(o["cert_worst"])))
+        say("     h %.3e R: J %+.4f %%  KS %+.4f  cert %.3f"
+            % (h, 100 * (Jh / J0 - 1), ksh, float(o["cert_worst"])))
+        if ksh >= floors[0]:
+            h_ok = h
+        elif h_bad is None:
+            h_bad = h
+        if h_bad is not None and h_ok is not None and h_bad > h_ok:
+            break
+    brk = h_ok is not None and h_bad is not None and h_bad > h_ok
+    check("R-FSC the margin along +grad J crosses mu0_1 inside the ladder"
+          " [%s, %s]" % (h_ok, h_bad), brk)
+    h_star = float(np.sqrt(h_ok * h_bad)) if brk else float("nan")
+    tr0 = h_star / PMG.K_RICH
+    say("   h* %.3e R -> tr0 %.3e R, radius floor tr0/K_RICH %.3e R"
+        % (h_star, tr0, tr0 / PMG.K_RICH))
+    rec.update(orient=orient, f_edge_meas=d_meas, f_edge=f_edge, m_ref=m_ref,
+               N_cells=n_np, floors=floors, rho=rho, gap=gap, J0=float(J0),
+               gradJ_dir=u.tolist(), fold_ladder=rows, h_ok=h_ok, h_bad=h_bad,
+               h_star=h_star, tr0=tr0, seconds=time.time() - t00,
+               provenance="[X-PMRG] D0-D4 on the Humphreys posing (S34)")
+    os.makedirs(ART, exist_ok=True)
+    rec["region"] = "R" if REG else "net"
+    json.dump(rec, open(os.path.join(ART, "margin_%s_%s%s.json"
+                                     % (CASE, os.environ["A1_BASE_MODEL"], "_R" if REG else "")), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
+def raogeno():
+    """Humphreys' Rao nozzle as a GENO RaoPlug run [X-HMPH] (2026-09-24): the
+    start field of the plug march in Rao's world for THEIR Table 3, posed by
+    Rao's own method (lip transversality at their p_a, D at their x_D, the
+    Veen base of their Eq. (12) as a fixed point; input of record
+    humphreys1971_rao_geno/input.ini, run directory in HMPH_GENO_RUN or
+    RAO_GENO_RUN). Its wall (inf.sol, SI) against table3_complete():
+      RG-1 the wall reproduces Table 3 at least as well as the Rao-world start
+           of record reproduces its paper (mean |dy| / y_E <= the X-RAOTW
+           level, _rao_geno_band_rel);
+      RG-2 the end D sits on their D inside the same band (x and y);
+    the wall angle is reported per row; a row whose printed angle repeats the
+    decimals of its own y (within the table precision: -28.40556 deg at y
+    4.40556 in) is flagged, not graded."""
+    t00 = time.time()
+    say("== [F3] Humphreys 1971 Rao nozzle: the GENO RaoPlug start field against"
+        " their Table 3 [X-HMPH] (stage raogeno) ==")
+    run = os.environ.get("HMPH_GENO_RUN", os.environ.get("RAO_GENO_RUN", ""))
+    if not run or not os.path.isdir(run):
+        say("   HMPH_GENO_RUN / RAO_GENO_RUN is not a GENO run directory -- nothing to do")
+        return False
+    w = np.loadtxt(os.path.join(run, "inf.sol"), comments="#", usecols=(0, 1, 4))
+    w = w[np.argsort(w[:, 0])]
+    xw, yw, thw = w[:, 0] / IN, w[:, 1] / IN, np.degrees(w[:, 2])
+    t3 = table3_complete()
+    yE = R_RAO / IN
+    band = TABLES["_rao_geno_band_rel"]
+    prec = TABLES["_table_precision_in"]
+    y_run = np.interp(t3[:, 0], xw, yw)
+    th_run = np.interp(t3[:, 0], xw, thw)
+    dy = t3[:, 1] - y_run
+    dth = t3[:, 2] - th_run
+    flag = np.abs(np.mod(np.abs(t3[:, 2]), 1.0) - np.mod(t3[:, 1], 1.0)) <= prec
+    say("   run %s: wall %d points, x %.5f .. %.5f in; y_E %.2f in" % (run, len(xw), xw[0], xw[-1], yE))
+    for r, d, a, f in zip(t3, dy, dth, flag):
+        say("     x %9.5f  y %8.5f  dy %+.5f in  angle %+10.5f  dth %+.4f deg%s"
+            % (r[0], r[1], d, r[2], a, "   <- printed angle repeats its y: flagged" if f else ""))
+    mean_rel = float(np.mean(np.abs(dy))) / yE
+    say("   |dy|: mean %.5f in (%.2e y_E), max %.5f in, rms %.5f in; wall angle (unflagged rows):"
+        " max %.4f, rms %.4f deg" % (np.mean(np.abs(dy)), mean_rel, np.max(np.abs(dy)),
+                                     np.sqrt(np.mean(dy ** 2)), np.max(np.abs(dth[~flag])),
+                                     np.sqrt(np.mean(dth[~flag] ** 2))))
+    check("RG-1 the GENO wall reproduces their Table 3 at the Rao-world level of record"
+          " (mean |dy|/y_E %.2e <= %.2e)" % (mean_rel, band), mean_rel <= band)
+    exD, eyD = abs(xw[-1] - t3[-1, 0]) / yE, abs(yw[-1] - t3[-1, 1]) / yE
+    say("   D: run (%.5f, %.5f) in, theirs (%.5f, %.5f) in" % (xw[-1], yw[-1], t3[-1, 0], t3[-1, 1]))
+    check("RG-2 D on their D inside the band (|dx|/y_E %.1e, |dy|/y_E %.1e <= %.2e)"
+          % (exD, eyD, band), max(exD, eyD) <= band)
+    json.dump(dict(run=run, x_in=t3[:, 0].tolist(), dy_in=dy.tolist(), dth_deg=dth.tolist(),
+                   flagged=flag.tolist(), mean_rel=mean_rel, max_dy_in=float(np.max(np.abs(dy))),
+                   D_run_in=[float(xw[-1]), float(yw[-1])], seconds=time.time() - t00),
+              open(os.path.join(ART, "raogeno.json"), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return NPASS[0] == NPASS[1]
+
+
+def S_IN(st):
+    """inches -> the posing's length unit (lip radii)."""
+    return st["S"] * IN
+
+
 STAGE = os.environ.get("HMPH_STAGE", "rao")
 
 if __name__ == "__main__":
     sys.exit(0 if {"rao": rao, "opt": opt, "grad": grad,
                    "class": klass, "throat": throat,
                    "kernel": kernel, "angle": angle,
-                   "kab": kab}.get(STAGE, rao)()
+                   "kab": kab, "mderive": mderive,
+                   "raogeno": raogeno}.get(STAGE, rao)()
              else 1)
