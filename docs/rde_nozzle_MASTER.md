@@ -4435,6 +4435,77 @@ their thrust per choked 1-D mass of A-E [OBSERVATION on the source; the
 agreement per consistent mass is a READING under G1 while the marches
 fold, not a certified closure].]
 
+[LINE ADDENDUM S34-S35, landed 2026-09-24 (brick-2 plug line, R4 of
+the sessions 2026-09-23/24; the numbers of record live in the registry
+rows named and in validation/PROGRESS_2026-09-23_S34_S35_throat_posing.md).
+(1) THE CLASS IS MEASURED WHERE THE THRUST IS MADE ([X-HMPH] stage
+mderive with HMPH_MREGION=R; [X-TPOS] read_design): the thrust -- the
+wall pressure up to D and the state at D for the base -- depends only on
+Humphreys' region R (below the exit characteristic DB, downstream of the
+C+ from T, their p. 1582-1584); folds of the net above DB are shocks in
+the jet that reach neither. The class constraint and the certification
+census are posed on the topological R of the march (a cell whose C- ends
+on the wall before D); on the whole net they made the walks crawl and
+labelled the reference itself out of class [PRACTICE; one posing,
+measured on every design of the throat posing].
+(2) AN EMPIRICAL CLOSURE IS FROZEN INSIDE A WALK AND ITERATED TO A FIXED
+POINT, AT THE REFERENCE'S FREQUENCY ([X-HMPH] PB_FROZEN; [X-TPOS]
+TPOSE_PB_EVERY): the base pressure is a constant of the variational
+problem recomputed between iterations (their p. 1582-1583); derived
+inside the walk it is a spurious lever (S33's tail compression). When
+the closure depends strongly on the corner state (Panov-Shvets on the
+stream at D), freezing it for a whole walk of ten segments oscillates
+(2.5 -> 0.9 -> 1.5 p_a) and lands elsewhere; recomputing it at every
+accepted step, as they do, is part of their convention [PRACTICE].
+(3) THE REFERENCE'S INITIAL CONDITION IS THE POSING (the owner's rule of
+2026-09-23: the optimiser's initial condition is ours, since in
+production the RDE outflow replaces it; [X-TPOS], [X-IVLT]): from THEIR
+throat -- the annular kernel on their A-E, the start 'come loro' (the
+domain of dependence of the start line), their prescribed arc A-T -- the
+unchanged TR-SQP re-obtains Humphreys' Table 2 from generic starts: every
+knot within 0.074 in (class of permanence 0.15), the value within 1 lbf
+of their contour in the same posing (J/mdot 228.56 against 228.51 per
+consistent mass), two generic starts coincident within 0.0025 in; from
+our planar-fan cut no walk can (the start pins the wall at -26.65 deg
+where their arc has turned it to -43.47) [MEASURED-SUPPORTED: RE-1 in
+contour and value, RE-3; (40,21) walks with a (160,41) re-read].
+(4) T IS NOT THEIR VARIABLE, AND THEIR T SITS AT THE CLASS EDGE ([X-TPOS]
+stage tslide and the TPOSE_THT_DEG walks): Humphreys' T is "fixed, but
+not predetermined" (p. 1584), the C^1 junction of the relaxed wall with
+the prescribed arc, and the A-T portion "will not necessarily be an
+optimum" (p. 1585-1586). Slid along the arc (7 / 9.5 / 12 / 15 / 18 deg
+of plug-side turning) the landings read -68 / -24 / 0 / +1.1 / -33 lbf
+and the two with more expansion than theirs FOLD in R: their T is the
+best landing that stays in class [MEASURED, (40,21), a reading at
+2.5-3 deg resolution].
+(5) PANOV-SHVETS IS WRITTEN ON THE STREAM THAT REACHES THE BASE ([X-TPOS]
+TPOSE_TABLE=table4, TPOSE_PS_REF=corner): their Eq. (38) is on
+p_inf, M_inf with "inf = freestream conditions" (p. 1581): for a base, the
+state at D, not the ambient on which the repo's member
+base_pressure.panov_shvets is written. On that reading the march
+reproduces their two optima's difference (Table 4 - Table 2 = +79 lbf
+against the paper's +84) and each optimum is near-stationary under its
+own closure and far from it under the other; on the ambient reading the
+sign flips (-51) [MEASURED-SUPPORTED; the repo member unchanged, the
+choice is the owner's].
+(6) HUMPHREYS' RAO NOZZLE IS RAO'S METHOD WITH THEIR BASE ([X-RAOHM]):
+a GENO RaoPlug run posed by Rao's own lip transversality at their p_a,
+their D and their Veen base as a fixed point reproduces their Table 3 at
+mean 1.3e-4 y_E (the Rao-world start of record reproduces its paper at
+2.4e-3); their "approximately -58.5 deg" is not the design's sonic-line
+direction (-55.84 deg). Marched from that field with their ambient and
+their constant p_b, the contour is stationary for our functional (the
+plug-sector O3.3 7/7) once the cut lies where the dual-code twin
+verifies the march (x0 0.10 m; at 0.0746 m the march reaches D 1.3
+percent low in Mach and the tip and corner checks fail) [MEASURED-
+SUPPORTED].
+(7) FIG. 4 IS NOT A CERTIFYING CASE ([X-TPOS] stage fig4): their two
+comparison contours, digitised, turn back after T faster than the
+optimum and fold inside R; their thrust differences move with the
+smoothing of the digitised near-throat shape by more than their size
+(lower contour -171 / -44 lbf against the paper's -280) -- only the sign
+agrees [READING under G1].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

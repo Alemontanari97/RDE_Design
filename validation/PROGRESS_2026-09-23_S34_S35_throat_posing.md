@@ -294,3 +294,9 @@ and the owner's check page `validation/_humphreys_twin/figs/15_reobtention_summa
 - Two commits, as the line's practice: (1) code + data + this log + index + PROGRESS/ARCHIVE;
   (2) M0 addendum + registry + this log's conformity line. The registry commit's rows cite the
   log the first commit landed; M0's citations of the new ids land with the ids.
+- Measured after the first commit (64d8a71), on the tree of the second: numeric lint PASS
+  (124 files, 0 ratchet violations); claims lint PASS (0 violations; PyYAML cross-check
+  parses); advisory index PASS (127 rows, 0 violations); FULL suite 16/23 = the seven
+  environmental reds (xiii, xiv, xvi, xviii, xix, xxii, xxiii), 87 s; data/phase_diagram.*,
+  data/q_mapping.* and figs/phase_diagram_op11.png restored with git checkout before the
+  commit.
