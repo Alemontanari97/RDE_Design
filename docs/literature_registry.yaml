@@ -491,11 +491,22 @@ entries:
 
 - id: thesis_valeriani_2019
   identity: "Valeriani 2019/20, MSc thesis, Sapienza (rel. Nasuti)"
-  paths: ["GENO/literature/thesis_valeriani.pdf"]
+  paths: ["GENO/literature/Thesis_Valeriani.pdf"]
   status: READ-PARTIAL(triaged)
   where_read:
     - "validation/ADVISORY_generality_litmap_2026-08-12.md#3. The containment map"
   summary: "GENO v3.x lineage doc; Rao plug outside perfect-gas with honest caveat; PSO/fminsearch = direct-method instances (declared depth)."
+  # path re-pointed 2026-09-24 (S40): the file on disk is now named
+  # Thesis_Valeriani.pdf (arrived 2026-09-23 with Thesis_Fiore.pdf); the
+  # lower-case path of record no longer exists (measured ls).
+
+- id: thesis_fiore_2019
+  identity: "Fiore, A.Y. 2018/19, MSc thesis, Sapienza (rel. Nasuti, co-rel. Bianchi): Analysis of friction, heat loads and spike truncation impact on the performance of an annular plug nozzle designed for a launcher upper stage"
+  paths: ["GENO/literature/Thesis_Fiore.pdf"]
+  status: READ-PARTIAL(triaged)
+  where_read:
+    - "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#5. The truncation residual"
+  summary: "LM10-MIRA CH4/O2 upper-stage annular plug; RANS of the internal and external expansion with friction and wall heat flux (ch. 4-5, variable-gamma runs 4.7); ch. 6 truncation: base-flow regimes (6.1), empirical base-pressure models (6.2) compared with RANS, which the abstract says UNDERESTIMATES the base pressure even with a compressibility correction; vacuum wake closed (declared depth: abstract and contents only)."
 
 # ---------------------------------------------------------------
 # ROOT D — literature_review/ papers not duplicated elsewhere

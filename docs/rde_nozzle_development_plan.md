@@ -362,6 +362,23 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     start C), R-F3-2 the two-wall stretch (DUTY-11 at its entry), R-F3-3
     the T-GB shape falsifier (after BLOCCATO 20 i), R-F3-4 X-PTRN's
     registry row, R-F3-5 DUTY-1(b) at F5 entry.
+    S40 (2026-09-25; residuals after the closure on the owner's word, no
+    session counter; log validation/PROGRESS_2026-09-24_S40_F3_residuals.md):
+    R-F3-1 RUN, NEGATIVE -- from far starts (class in region R) the finder
+    stalls at a fold cliff 1.5-2.5e-3 of J below the member and does not
+    approach it in shape; the second and last decisive campaign of the plug
+    instance is spent. R-F3-2 TAKEN -- the two-wall optimiser X-TWOP
+    re-obtains Migdal's pair from a generic start (RE-1 3/3) on the kernel
+    posing (the initial arcs as data), with the fold class on the whole net
+    and a Newton metric taken at the walk's own start; DUTY-11 disposed: the
+    free-kernel near-nullspace is the family of perfect nozzles between the
+    pinned ends, the kernel as data removes it, the walls decouple, 21 of 22
+    directions identifiable. The two-wall DESIGN posing (the kernel and the
+    ends decided by the optimiser under an ambient objective and constraints,
+    the free jet after the lip) is OPEN. R-F3-4 coined (X-PTRN). R-F3-3 stays
+    open with a new reference (Fiore's thesis, the base models). Found on the
+    way: the pointwise AD Hessian of a replayed march is not its curvature
+    (the secant instrument replaces it; the S37 verdict holds).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

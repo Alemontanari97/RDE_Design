@@ -1,0 +1,23 @@
+== [F3] the two-wall design on Migdal's nozzle: gates and DUTY-11 [X-TWOP] ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 8 + 8 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+   reference (GENO's walls at the knots): representation error plug 2.54e-03, shroud 2.02e-03; cert 4.994e-02 at ('shroud', 'w30'); C_F 1.579580 vs 1-D 1.579594 (-1.43e-05); 21.7 s
+  [PASS] G-1 the reference marches certified (0.050); its C_F 1.579580 against the 1-D 1.579594 is reported (the spline representation moves the walls by 2.5e-03 / 2.0e-03)
+  [PASS] G-2 REPLAY = RECORD at the reference (1.579579940767 vs 1.579579940767, rel 0.0e+00)
+   reverse AD: |grad C_F|inf 2.074e-01 (plug 8.743e-02, shroud 2.074e-01); 40.7 s
+   dir 0: AD +1.297966e-01, FD +1.209697e-01, +1.268784e-01 (ladder change 5.91e-03)
+   dir 1: AD +1.402186e-02, FD +1.365749e-02, +1.397193e-02 (ladder change 3.14e-04)
+   dir 2: AD -6.404725e-02, FD -5.960746e-02, -6.597573e-02 (ladder change 6.37e-03)
+   dir 3: AD +1.310854e-01, FD +1.233804e-01, +1.294604e-01 (ladder change 6.08e-03)
+  [PASS] G-3 the adjoint of both walls against the FD ladder: worst |AD - FD| / (K_RICH x the ladder's change) = 0.12
+   perturbed control (1 percent): C_F 1.747686, cert 7.477e+15, |grad|inf nan
+  [FAIL] G-4 STATIONARITY: the reference's gradient 2.074e-01 is far below the perturbed design's nan (ratio nan > 10)
+   DUTY-11: AD Hessian (14 x 14, 78 s): asymmetry 1.32e+02 -> curvature floor K_RICH x asym 5.30e+02; eigenvalues of -H [-10.943   1.498   2.481   6.373   9.54   15.012  21.153  22.786  25.496
+  33.184  44.701  52.337 218.16  438.985]
+   direction 0 (lambda -1.094e+01): plug weight 0.95, shroud weight 0.05, mean signs same (channel translation-like)
+   direction 1 (lambda +1.498e+00): plug weight 0.99, shroud weight 0.01, mean signs same (channel translation-like)
+   direction 2 (lambda +2.481e+00): plug weight 0.01, shroud weight 0.99, mean signs opposite
+   direction 3 (lambda +6.373e+00): plug weight 0.99, shroud weight 0.01, mean signs same (channel translation-like)
+  [PASS] G-5 DUTY-11 measured: 14 near-null direction(s) at the floor 5.30e+02; condition 4.01e+01; softest direction plug/shroud weight 0.95/0.05
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/derive_2026-09-24.json
+
+== 4/5 PASS  (495.9 s) ==

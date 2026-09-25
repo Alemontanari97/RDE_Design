@@ -280,6 +280,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     denser than the rest of the net, degrading the plug-wall cell's
     certificate where the band lands (measured, (280,61) on Migdal); the
     rows a thinned wedge skips take their C- partner from the start line.
+    A DESIGNED shroud (S40, [X-TWOP]) passes traced heights and slopes in
+    the replay (play mode) only; the record needs concrete stations for
+    its bracketing scan.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
@@ -311,8 +314,18 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     if shroud is not None:
         if cells is not None or NV == 6:
             raise NotImplementedError("shroud: record-frame 4-wide nodes only")
-        sxs, sys_, sss = (np.asarray(v, float) for v in shroud)
-        if np.any(np.diff(sxs) <= 0.0):
+        try:
+            sxs, sys_, sss = (np.asarray(v, float) for v in shroud)
+        except jax.errors.TracerArrayConversionError:
+            # a DESIGNED shroud (S40 2026-09-24, [X-TWOP]; additive: a
+            # concrete shroud takes the numpy path above, bit-identical):
+            # its heights and slopes are traced in the replay, which reads
+            # the stations only at the recorded segment indices -- the
+            # bracketing scan (floats) runs in the record alone
+            if S.mode == "rec":
+                raise ValueError("a traced shroud is replayed, never recorded")
+            sxs, sys_, sss = (jnp.asarray(v) for v in shroud)
+        if isinstance(sxs, np.ndarray) and np.any(np.diff(sxs) <= 0.0):
             raise ValueError("shroud stations must increase in x")
         s_wt = with_ta(A1.get_solver(("wt", delta), lambda: make_resid_walltop(delta)))
         s_lip = with_ta(A1.get_solver(("wtlip", delta), lambda: A1.make_resid_inwall(delta)))
@@ -938,6 +951,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
                     + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
         v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
+        if mg.get("cells") and S.mode == "rec":
+            # per-cell census (S40, additive, record mode only): the
+            # margin of every bucket cell with its (A-corner key, column)
+            mg["cells_out"] = (np.asarray(v), list(m_qkeys),
+                               np.stack([np.asarray(cA), np.asarray(cB),
+                                         np.asarray(cC), np.asarray(cD)]))
         m_n[0] = int(v.shape[0])
         m_min[0] = jnp.min(v)
         m_acc[0] = jax.scipy.special.logsumexp(-mg["rho"] * v)

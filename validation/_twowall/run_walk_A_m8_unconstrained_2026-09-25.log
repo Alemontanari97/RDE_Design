@@ -1,0 +1,25 @@
+   derive in flight: tr0 7.492829e-03 m from its G-4 line (TWOP_TR0, declared; checked at grade)
+== [F3] the two-wall walk, start A [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 8 + 8 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.1 s
+   start A (ramp 0.00): C_F 1.579579941, cert 4.994e-02, gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; tr0 7.493e-03 m, floor 1.873e-03 m; 12 segments x 8 iterations, backtrack 4
+    [seg  0] J = 1.57957994e+00  |grad| = 2.361e-01  cert = 0.050
+    [seg  1] base not certified (record not certified (worst 1.173e+01))
+    [seg  1] backtrack: step 1.598e-03 below the floor at 1/2 -> give up
+    [seg 1] base REJECTED (record not certified (worst 1.173e+01)) -> revert, radius -> 5.620e-03
+    [seg  2] J = 1.57957994e+00  |grad| = 2.361e-01  cert = 0.050
+    [seg  3] J = 1.57980820e+00  |grad| = 3.110e-01  cert = 0.069
+    [seg  4] J = 1.58065987e+00  |grad| = 1.922e-01  cert = 0.072
+    [seg  5] J = 1.58083003e+00  |grad| = 2.510e-01  cert = 0.441
+    [seg  6] J = 1.58092946e+00  |grad| = 2.092e-01  cert = 0.126
+    [seg  6] no motion at radius 2.845e-02 -> retry at 1.422e-02 (same record)
+    [seg  7] J = 1.58102002e+00  |grad| = 2.322e-01  cert = 0.238
+    [seg  8] J = 1.58110044e+00  |grad| = 2.797e-01  cert = 0.037
+    [seg  8] no motion at radius 3.201e-02 -> retry at 1.600e-02 (same record)
+    [seg  9] J = 1.58119385e+00  |grad| = 2.394e-01  cert = 0.075
+    [seg 10] base not certified (record not certified (worst 1.000e+00))
+    [seg 10] backtrack: step 4.166e-04 below the floor at 1/2 -> give up
+    [seg 10] base REJECTED (record not certified (worst 1.000e+00)) -> revert, radius -> 1.800e-02
+    [seg 11] J = 1.58119385e+00  |grad| = 2.394e-01  cert = 0.075
+    backtracking: 0 probes, 0 accepted along the segment, 0 accepted on the ascent; 12 records
+   return: C_F 1.581193853 (start 1.579579941, reference 1.579579941, 1-D 1.579594), cert 7.530e-02, |grad|inf 2.376e-01; gap to the reference plug 5.515e-03 / shroud 1.119e-02 m (start 0.000e+00 / 0.000e+00); 12 records, 3202 s
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_A_2026-09-25.json

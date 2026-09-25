@@ -1,0 +1,47 @@
+   derive in flight: tr0 7.492829e-03 m from its G-4 line (TWOP_TR0, declared; checked at grade)
+== [F3] the two-wall walk, start G [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 8 + 8 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.1 s
+   ramp 1.00 toward the chord: cert 5.290e-02, C_F 1.571502, gap to the reference plug 7.903e-02 / shroud 6.230e-02 m
+   start G (ramp 1.00): C_F 1.571502033, cert 5.290e-02, gap to the reference plug 7.903e-02 / shroud 6.230e-02 m; tr0 7.493e-03 m, floor 1.873e-03 m; 12 segments x 8 iterations, backtrack 4
+    [seg  0] J = 1.57150203e+00  |grad| = 1.822e+00  cert = 0.053
+    [seg  1] trial J = 1.56485588e+00 worse than 1.57150203e+00; model predicted 1.69946682e+00 (rho -0.05)
+    [seg  1] backtrack 1/2 (step 3.746e-03): J = 1.57411044e+00 cert = 0.037 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 3.746e-03
+    [seg  2] J = 1.57411044e+00  |grad| = 6.978e-01  cert = 0.037
+    [seg  3] trial J = 1.57090610e+00 worse than 1.57411044e+00; model predicted 1.58263480e+00 (rho -0.38)
+    [seg  3] backtrack 1/2 (step 1.873e-03): J = 1.57285897e+00 cert = 0.037 -> worse
+    [seg  3] backtrack: step 9.366e-04 below the floor at 1/4 -> give up
+    [seg  3] ascent 1/2 (step 5.620e-03): J = 1.56656310e+00 cert = 0.037 -> worse
+    [seg  3] ascent 1/4 (step 2.810e-03): J = 1.57195137e+00 cert = 0.038 -> worse
+    [seg  3] ascent: step 1.405e-03 below the floor at 1/8 -> give up
+    [seg  3] trial J = 1.57090610e+00 REJECTED (worse than 1.57411044e+00) -> revert, radius -> 2.810e-03
+    [seg  4] J = 1.57411044e+00  |grad| = 6.978e-01  cert = 0.037
+    [seg  5] trial J = 1.57195137e+00 worse than 1.57411044e+00; model predicted 1.57650682e+00 (rho -0.90)
+    [seg  5] backtrack: step 1.405e-03 below the floor at 1/2 -> give up
+    [seg  5] ascent 1/2 (step 4.215e-03): J = 1.57012417e+00 cert = 0.037 -> worse
+    [seg  5] ascent 1/4 (step 2.107e-03): J = 1.57271685e+00 cert = 0.057 -> worse
+    [seg  5] ascent: step 1.054e-03 below the floor at 1/8 -> give up
+    [seg  5] trial J = 1.57195137e+00 REJECTED (worse than 1.57411044e+00) -> revert, radius -> 2.107e-03
+    [seg  6] J = 1.57411044e+00  |grad| = 6.978e-01  cert = 0.037
+    [seg  7] trial J = 1.56941752e+00 worse than 1.57411044e+00; model predicted 1.59601677e+00 (rho -0.21)
+    [seg  7] backtrack: step 1.734e-03 below the floor at 1/2 -> give up
+    [seg  7] ascent 1/2 (step 3.161e-03): J = 1.57153520e+00 cert = 0.059 -> worse
+    [seg  7] ascent: step 1.581e-03 below the floor at 1/4 -> give up
+    [seg  7] trial J = 1.56941752e+00 REJECTED (worse than 1.57411044e+00) -> revert, radius -> 1.873e-03
+    [seg  8] J = 1.57411044e+00  |grad| = 6.978e-01  cert = 0.037
+    [seg  9] trial J = 1.55952813e+00 worse than 1.57411044e+00; model predicted 1.66484640e+00 (rho -0.16)
+    [seg  9] backtrack 1/2 (step 2.774e-03): J = 1.57010360e+00 cert = 0.069 -> worse
+    [seg  9] backtrack: step 1.387e-03 below the floor at 1/4 -> give up
+    [seg  9] ascent 1/2 (step 2.810e-03): J = 1.57195137e+00 cert = 0.038 -> worse
+    [seg  9] ascent: step 1.405e-03 below the floor at 1/4 -> give up
+    [seg  9] trial J = 1.55952813e+00 REJECTED (worse than 1.57411044e+00) -> revert, radius -> 1.873e-03
+    [seg 10] J = 1.57411044e+00  |grad| = 6.978e-01  cert = 0.037
+    [seg 11] trial J = 1.55952813e+00 worse than 1.57411044e+00; model predicted 1.66484640e+00 (rho -0.16)
+    [seg 11] backtrack 1/2 (step 2.774e-03): J = 1.57010360e+00 cert = 0.069 -> worse
+    [seg 11] backtrack: step 1.387e-03 below the floor at 1/4 -> give up
+    [seg 11] ascent 1/2 (step 2.810e-03): J = 1.57195137e+00 cert = 0.038 -> worse
+    [seg 11] ascent: step 1.405e-03 below the floor at 1/4 -> give up
+    [seg 11] trial J = 1.55952813e+00 REJECTED (worse than 1.57411044e+00) -> revert, radius -> 1.873e-03
+    backtracking: 11 probes, 1 accepted along the segment, 0 accepted on the ascent; 11 records
+   return: C_F 1.574110436 (start 1.571502033, reference 1.579579941, 1-D 1.579594), cert 3.696e-02, |grad|inf 5.169e-01; gap to the reference plug 7.889e-02 / shroud 6.215e-02 m (start 7.903e-02 / 6.230e-02); 11 records, 2503 s
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_G_2026-09-25.json

@@ -1,0 +1,22 @@
+== [F3] the two-wall fold class [X-TWOP] (stage class) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 40 + 40 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+   reference (40 + 40 knots): C_F 1.579875588, cert 7.883e-02; 8327 cells, min +0.0113, negative 0
+  [PASS] C-1 the reference is in the fold class over the whole net (min cell +0.0113 > 0, 0 negative)
+  [PASS] C-2 KS brackets the minimum: 0.011161 <= KS 0.011339 <= 0.011339 (rho 50954.0, gap 1.77e-04)
+  [PASS] C-R REJECTOR the unconstrained walk's landing (8 knots, C_F 1.581194 above the 1-D 1.579594) read on these knots is INFEASIBLE at every floor (KS -0.6054, min cell -0.6054, C_F here 1.581213)
+    h 3.311e-04 m: C_F 1.579941151 (+6.56e-05), KS -0.8108, min -0.8108, cert 3.741e-02
+    h 6.623e-04 m: C_F 1.580140246 (+2.65e-04), KS -0.9696, min -0.9696, cert 1.952e-01
+    h 1.325e-03 m: C_F 1.575591681 (-4.28e-03), KS -0.9834, min -0.9834, cert 1.892e-01
+    h 2.649e-03 m: C_F 3.895984246 (+2.32e+00), KS -0.9708, min -0.9708, cert 4.112e+14
+    h 5.298e-03 m: C_F 3.241622909 (+1.66e+00), KS -0.9677, min -0.9677, cert 6.386e+15
+    h 1.060e-02 m: C_F 3.557852629 (+1.98e+00), KS -0.9916, min -0.9916, cert 3.621e+15
+    h 2.119e-02 m: C_F 3.644223525 (+2.06e+00), KS -0.9321, min -0.9321, cert 5.309e+15
+    h 4.239e-02 m: C_F 3.059124908 (+1.48e+00), KS -0.9792, min -0.9792, cert 6.474e+15
+    h 8.477e-02 m: C_F 4.084282515 (+2.50e+00), KS -0.9872, min -0.9872, cert 1.808e+15
+    h 1.695e-01 m: C_F 4.310838451 (+2.73e+00), KS -0.9932, min -0.9932, cert 6.060e+15
+    h 3.391e-01 m: C_F 3.312718918 (+1.73e+00), KS -0.8725, min -0.8725, cert 1.196e+15
+  [FAIL] C-S the class (certified, KS >= mu0_1) breaks along +grad J inside the ladder (bracket [None, 0.00033113940649553573] m)
+   floors [0.0057 0.0028 0.0014 0.0007]; rho 50954.0; gap 1.77e-04; h* nan m -> tr0 nan m, floor nan m
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/class_2026-09-25.json
+
+== 3/4 PASS  (403.4 s) ==

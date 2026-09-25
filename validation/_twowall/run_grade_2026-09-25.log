@@ -1,0 +1,33 @@
+== [F3] the two-wall re-obtention: RE-1 on the kernel posing [X-TWOP] (stage grade) ==
+   derive of record: /data10/falco/RDE/RDE_Design/validation/_twowall/derive_2026-09-25.json (6/6 PASS; delta 1.260e-08)
+   walk A: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_A_2026-09-25.json -- C_F 1.579883029 (start 1.579880616), cert 4.682e-02, KS +0.0113 (in class), gap to the reference plug 2.236e-04 / shroud 2.388e-04 m (start 0.000e+00 / 0.000e+00), 10 records, 5037 s
+   walk H: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_HN_2026-09-25.json -- C_F 1.579883030 (start 1.579581108), cert 9.650e-02, KS +0.0113 (in class), gap to the reference plug 2.301e-04 / shroud 2.391e-04 m (start 5.941e-03 / 4.639e-03), 12 records, 7007 s
+  [PASS] RE-0 both landings certified and in class (4.682e-02 / 9.650e-02; True / True)
+  [PASS] RE-1 VALUE (paired): |C_F(H) - C_F(A)| 5.109e-10 <= K_RICH x delta 5.039e-08 (the start was 3.019e-04 below)
+   direction  0 (curvature +7.960e-01): |a| 3.237e-05 (start 1.096e-02)  not identifiable: reported
+   direction  1 (curvature +1.588e+00): |a| 2.411e-07 (start 9.177e-03)  band K_RICH x 1.26e-04 -> 0.00
+   direction  2 (curvature +3.177e+00): |a| 1.712e-06 (start 6.158e-03)  band K_RICH x 8.91e-05 -> 0.00
+   direction  3 (curvature +6.457e+00): |a| 8.527e-08 (start 4.487e-03)  band K_RICH x 6.25e-05 -> 0.00
+   direction  4 (curvature +7.155e+00): |a| 4.169e-07 (start 1.248e-03)  band K_RICH x 5.93e-05 -> 0.00
+   direction  5 (curvature +1.273e+01): |a| 9.360e-08 (start 2.887e-04)  band K_RICH x 4.45e-05 -> 0.00
+   direction  6 (curvature +1.452e+01): |a| 4.776e-08 (start 5.126e-04)  band K_RICH x 4.17e-05 -> 0.00
+   direction  7 (curvature +1.983e+01): |a| 1.361e-08 (start 1.917e-04)  band K_RICH x 3.56e-05 -> 0.00
+   direction  8 (curvature +2.553e+01): |a| 2.592e-07 (start 2.291e-05)  band K_RICH x 3.14e-05 -> 0.00
+   direction  9 (curvature +2.809e+01): |a| 8.067e-07 (start 2.258e-04)  band K_RICH x 3.00e-05 -> 0.01
+   direction 10 (curvature +3.661e+01): |a| 1.203e-06 (start 2.378e-04)  band K_RICH x 2.62e-05 -> 0.01
+   direction 11 (curvature +3.885e+01): |a| 6.647e-08 (start 2.642e-04)  band K_RICH x 2.55e-05 -> 0.00
+   direction 12 (curvature +4.373e+01): |a| 5.736e-07 (start 1.740e-04)  band K_RICH x 2.40e-05 -> 0.01
+   direction 13 (curvature +5.114e+01): |a| 1.453e-07 (start 2.009e-04)  band K_RICH x 2.22e-05 -> 0.00
+   direction 14 (curvature +5.276e+01): |a| 2.258e-07 (start 2.729e-04)  band K_RICH x 2.19e-05 -> 0.00
+   direction 15 (curvature +6.072e+01): |a| 2.526e-07 (start 1.247e-04)  band K_RICH x 2.04e-05 -> 0.00
+   direction 16 (curvature +6.245e+01): |a| 9.838e-08 (start 1.973e-04)  band K_RICH x 2.01e-05 -> 0.00
+   direction 17 (curvature +7.000e+01): |a| 2.594e-07 (start 2.362e-04)  band K_RICH x 1.90e-05 -> 0.00
+   direction 18 (curvature +8.319e+01): |a| 1.720e-07 (start 3.211e-04)  band K_RICH x 1.74e-05 -> 0.00
+   direction 19 (curvature +8.462e+01): |a| 5.849e-08 (start 1.869e-04)  band K_RICH x 1.73e-05 -> 0.00
+   direction 20 (curvature +1.053e+02): |a| 1.318e-07 (start 2.272e-04)  band K_RICH x 1.55e-05 -> 0.00
+   direction 21 (curvature +1.460e+02): |a| 5.858e-08 (start 3.951e-04)  band K_RICH x 1.31e-05 -> 0.00
+  [PASS] RE-1 SHAPE: the generic start's landing coincides with the reference's along every identifiable direction (21 of 22)
+   READING the two landings apart by plug 1.343e-05 / shroud 3.163e-07 m in the walls (H started 5.941e-03 / 4.639e-03 from the reference)
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/grade_2026-09-25.json
+
+== 3/3 PASS  (1.0 s) ==

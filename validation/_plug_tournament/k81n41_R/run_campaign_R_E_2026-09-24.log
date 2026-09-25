@@ -1,0 +1,144 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage campaign) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  posing (81,41) m 16 L 5.8762; floor mu0_1 0.0435; rho 4448.9; gap 1.361e-03; tr0 6.106e-03 m (floor 1.526e-03); 24 segments x 8 iterations; starts 4; tip bounded y >= 0.0227
+   start C = ramp from the member to the planar streamline on the knots: tip y 0.8633, max |W_c - W0| 8.406e-01 m (planar itself 8.406e-01 m)
+   PTRN_ONLY=E: 1 start(s) selected
+-- start E square-root ramp to the planar streamline (generic, far) --
+    [seg  0] J = 1.14943436e+08  |grad| = 1.335e+07  cert = 0.190
+    [seg  0] margin at base: KS - mu0 = +0.0006 (min cell +0.0442, 858 cells)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.107], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg  1] J = 1.14952590e+08  |grad| = 1.263e+07  cert = 0.025
+    [seg  1] margin at base: KS - mu0 = +0.0165 (min cell +0.0601, 861 cells)
+    [seg  1] margin counters: {'m_exec': 16, 'm_dedup': 16, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[10815011.855], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -946851.204]]
+    [seg  2] J = 1.15069472e+08  |grad| = 8.382e+06  cert = 0.027
+    [seg  2] margin at base: KS - mu0 = +0.0186 (min cell +0.0622, 870 cells)
+    [seg  2] margin counters: {'m_exec': 24, 'm_dedup': 24, 'gm_nonfinite': 4, 'grad_nonfinite': 4}; multipliers [[-0.109], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg  3] trial J = 1.14827689e+08 INFEASIBLE (KS - mu0 -0.7911) than 1.15069472e+08; model predicted 1.23732807e+08 (rho -0.03)
+    [seg  3] backtrack 1/2 (step 3.054e-02): J = 1.15141461e+08 cert = 0.039 INFEASIBLE -> worse
+    [seg  3] backtrack 1/4: record not certified
+    [seg  3] backtrack 1/8: record not certified
+    [seg  3] backtrack 1/16 (step 3.818e-03): J = 1.15097179e+08 cert = 0.187 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 3.818e-03
+    [seg  4] J = 1.15097179e+08  |grad| = 7.048e+06  cert = 0.187
+    [seg  4] margin at base: KS - mu0 = +0.0195 (min cell +0.0631, 871 cells)
+    [seg  4] margin counters: {'m_exec': 32, 'm_dedup': 32, 'gm_nonfinite': 7, 'grad_nonfinite': 7, 'infeasible_base': 1}; multipliers [[-0.209], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.05]]
+    [seg  5] trial J = 1.14945330e+08 worse than 1.15097179e+08; model predicted 1.16132395e+08 (rho -0.15)
+    [seg  5] backtrack 1/2 (step 8.741e-03): J = 1.15030722e+08 cert = 0.209 -> worse
+    [seg  5] backtrack 1/4 (step 4.370e-03): J = 1.15066373e+08 cert = 0.100 -> worse
+    [seg  5] backtrack 1/8 (step 2.185e-03): J = 1.15082393e+08 cert = 0.088 -> worse
+    [seg  5] backtrack: step 1.093e-03 below the floor at 1/16 -> give up
+    [seg  5] ascent 1/2: record not certified
+    [seg  5] ascent 1/4: record not certified
+    [seg  5] ascent: step 1.432e-03 below the floor at 1/8 -> give up
+    [seg  5] trial J = 1.14945330e+08 REJECTED (worse than 1.15097179e+08) -> revert, radius -> 2.863e-03
+    [seg  6] J = 1.15097179e+08  |grad| = 7.048e+06  cert = 0.187
+    [seg  6] margin at base: KS - mu0 = +0.0195 (min cell +0.0631, 871 cells)
+    [seg  6] margin counters: {'m_exec': 40, 'm_dedup': 40, 'gm_nonfinite': 7, 'grad_nonfinite': 7, 'infeasible_base': 1}; multipliers [[10664603.785], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1124118.705]]
+    [seg  7] trial J = 1.14988776e+08 worse than 1.15097179e+08; model predicted 1.21385355e+08 (rho -0.02)
+    [seg  7] backtrack 1/2 (step 6.254e-03): J = 1.15048718e+08 cert = 0.133 -> worse
+    [seg  7] backtrack 1/4 (step 3.127e-03): J = 1.15074397e+08 cert = 0.069 -> worse
+    [seg  7] backtrack 1/8 (step 1.563e-03): J = 1.15086153e+08 cert = 0.097 -> worse
+    [seg  7] backtrack: step 7.817e-04 below the floor at 1/16 -> give up
+    [seg  7] ascent 1/2: record not certified
+    [seg  7] ascent 1/4 (step 2.148e-03): J = 1.15111487e+08 cert = 0.164 -> ACCEPT
+    [seg  7] restoration ACCEPTED -> base, radius -> 2.148e-03
+    [seg  8] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg  8] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg  8] margin counters: {'m_exec': 48, 'm_dedup': 48, 'gm_nonfinite': 8, 'grad_nonfinite': 8, 'infeasible_base': 1}; multipliers [[9640000.842], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1180736.027]]
+    [seg  9] trial J = 1.14919762e+08 worse than 1.15111487e+08; model predicted 1.22625662e+08 (rho -0.03)
+    [seg  9] backtrack 1/2 (step 1.103e-02): J = 1.15031055e+08 cert = 0.277 -> worse
+    [seg  9] backtrack 1/4 (step 5.515e-03): J = 1.15075235e+08 cert = 0.033 -> worse
+    [seg  9] backtrack 1/8 (step 2.758e-03): J = 1.15094370e+08 cert = 0.042 -> worse
+    [seg  9] backtrack: step 1.379e-03 below the floor at 1/16 -> give up
+    [seg  9] ascent 1/2: record not certified
+    [seg  9] ascent 1/4: record not certified
+    [seg  9] ascent: step 8.054e-04 below the floor at 1/8 -> give up
+    [seg  9] trial J = 1.14919762e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.611e-03
+    [seg 10] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 10] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 10] margin counters: {'m_exec': 56, 'm_dedup': 56, 'gm_nonfinite': 8, 'grad_nonfinite': 8, 'infeasible_base': 1}; multipliers [[804846.359], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -697339.559]]
+    [seg 11] base not certified (record not certified (worst 1.519e+10))
+    [seg 11] backtrack: step 1.052e-03 below the floor at 1/2 -> give up
+    [seg 11] base REJECTED (record not certified (worst 1.519e+10)) -> revert, radius -> 1.526e-03
+    [seg 12] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 12] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 12] margin counters: {'m_exec': 64, 'm_dedup': 64, 'gm_nonfinite': 13, 'grad_nonfinite': 13, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 13] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 13] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 13] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 13] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 13] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 13] ascent 1/2: record not certified
+    [seg 13] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 13] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    [seg 14] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 14] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 14] margin counters: {'m_exec': 72, 'm_dedup': 72, 'gm_nonfinite': 18, 'grad_nonfinite': 18, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 15] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 15] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 15] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 15] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 15] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 15] ascent 1/2: record not certified
+    [seg 15] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 15] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    [seg 16] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 16] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 16] margin counters: {'m_exec': 80, 'm_dedup': 80, 'gm_nonfinite': 23, 'grad_nonfinite': 23, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 17] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 17] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 17] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 17] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 17] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 17] ascent 1/2: record not certified
+    [seg 17] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 17] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    [seg 18] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 18] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 18] margin counters: {'m_exec': 88, 'm_dedup': 88, 'gm_nonfinite': 28, 'grad_nonfinite': 28, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 19] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 19] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 19] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 19] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 19] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 19] ascent 1/2: record not certified
+    [seg 19] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 19] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    [seg 20] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 20] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 20] margin counters: {'m_exec': 96, 'm_dedup': 96, 'gm_nonfinite': 33, 'grad_nonfinite': 33, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 21] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 21] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 21] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 21] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 21] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 21] ascent 1/2: record not certified
+    [seg 21] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 21] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    [seg 22] J = 1.15111487e+08  |grad| = 6.293e+06  cert = 0.164
+    [seg 22] margin at base: KS - mu0 = +0.0098 (min cell +0.0533, 872 cells)
+    [seg 22] margin counters: {'m_exec': 104, 'm_dedup': 104, 'gm_nonfinite': 38, 'grad_nonfinite': 38, 'infeasible_base': 1}; multipliers [[-0.897], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.049]]
+    [seg 23] trial J = 1.14987869e+08 worse than 1.15111487e+08; model predicted 1.20132129e+08 (rho -0.02)
+    [seg 23] backtrack 1/2 (step 7.850e-03): J = 1.15057553e+08 cert = 0.263 -> worse
+    [seg 23] backtrack 1/4 (step 3.925e-03): J = 1.15086536e+08 cert = 0.097 -> worse
+    [seg 23] backtrack 1/8 (step 1.963e-03): J = 1.15099521e+08 cert = 0.027 -> worse
+    [seg 23] backtrack: step 9.813e-04 below the floor at 1/16 -> give up
+    [seg 23] ascent 1/2: record not certified
+    [seg 23] ascent: step 1.145e-03 below the floor at 1/4 -> give up
+    [seg 23] trial J = 1.14987869e+08 REJECTED (worse than 1.15111487e+08) -> revert, radius -> 1.526e-03
+    backtracking: 43 probes, 1 accepted along the segment, 1 accepted on the ascent; 22 records
+  [E square-root ramp to the planar streamline (generic, far)] 4217 s, 13 segments, 22 records: J* 1.15111487e+08 (vs incumbent -1.7560e+05 N = -1.52e-03; vs Rao -1.7392e+05 N = -1.51e-03; band_J 2.297e+06), cert 0.164, |grad J|inf 5.302e+06, KS - mu0 +0.00976 (min cell +0.0533) -> inactive, mu -0.000e+00, folded 0/872, theta st.1 -31.23 deg (flow -33.16), tip y 0.87283 (floor 0.0227), dist to Rao's shape 8.491e-01 (as written 8.481e-01; band_W 1.220e-02), W - W0 [mm] [ 20.55  24.12  50.17  89.01 131.08 180.4  236.78 299.8  369.42 443.77
+ 519.54 594.47 667.36 735.3  797.39 850.13], counters {'m_exec': 104, 'm_dedup': 104, 'gm_nonfinite': 38, 'grad_nonfinite': 38, 'infeasible_base': 1}
+  [E square-root ramp to the planar streamline (generic, far)] active-cusp census: 304 cells <= mu0 + gap in columns [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 64, 65, 74, 75, 76, 77, 78, 79, 80, 81, 82] (3 cluster(s)); argmin (12, 26) (m -0.6695)
+  [PASS] [E square-root ramp to the planar streamline (generic, far)] C-1 the returned base is certified (0.164)
+  [PASS] [E square-root ramp to the planar streamline (generic, far)] C-2 REQ-NONSTALL: J, grad, margin, grad finite at the returned base
+  [PASS] [E square-root ramp to the planar streamline (generic, far)] C-3 the returned base is IN the class (min cell +0.0533 >= mu0_1 0.0435, 0 folded)
+  [FAIL] [E square-root ramp to the planar streamline (generic, far)] C-4 no loss to the incumbent (J* 1.15111487e+08 >= 1.15287089e+08)
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  [E square-root ramp to the planar streamline (generic, far)] FINDER: distance to the incumbent 8.501e-01 m (start 8.406e-01; band_W 1.220e-02); paired J gap to the incumbent -1.7560e+05 N at (81,41), -2.2087e+05 N at (161,81) (start -3.4365e+05 N); paired band K_RICH x the rung change 1.811e+05 N; certs 0.038 / 1.320
+  [FAIL] [E square-root ramp to the planar streamline (generic, far)] F-1 FINDER, shape: the landing is on the incumbent within band_W (8.501e-01 <= 1.220e-02; the start was 8.406e-01 away)
+  [PASS] [E square-root ramp to the planar streamline (generic, far)] F-2 FINDER, value (paired): the landing's gap to the incumbent |-1.756e+05| N is inside K_RICH x its change between rungs 1.811e+05 N (the start's gap was -3.437e+05 N)
+  [E square-root ramp to the planar streamline (generic, far)] ORACLE READING: gain over Rao -1.739e+05 N (-1.51e-03) INSIDE band_J 2.297e+06; distance to Rao's contour 8.491e-01 OUTSIDE band_W 1.220e-02
+  report written to /data10/falco/RDE/RDE_Design/validation/_plug_tournament/k81n41_R/campaign_s24_i8_st4_E.json
+
+== 4/6 PASS  (4369.4 s) ==

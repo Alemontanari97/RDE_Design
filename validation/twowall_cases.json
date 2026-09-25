@@ -1,0 +1,75 @@
+{
+  "_doc": "Constants of a1_twowall.py [X-TWOP] (S40 2026-09-24, F3 residual R-F3-2): the two-wall design -- plug and shroud both design variables -- on Migdal's perfect annular nozzle (GENO nozzle_type 9, A_e/A_i 4, the paper's case), the posing of [X-MGDL]. Every number is a posing choice; the gas and the inlet are shroud_twin_cases.json's.",
+  "posing": {
+    "value": {
+      "geno_run": "/data10/falco/RDE/handoff/shroud_2026-09-24/geno_migdal/eps4_ni1001",
+      "K": 140,
+      "N": 31,
+      "m_plug": 12,
+      "m_shroud": 12,
+      "kernel": true,
+      "arc_scan_x": 0.3
+    },
+    "cls": "NUMERIC",
+    "note": "the [X-MGDL] coarse grid (140 plug stations, 31 rows; the shroud's station count scaled by its length, as the twin); the wall stations FROZEN in x at the twin's curvature-adaptive positions on GENO's walls; each wall a clamped-left (slope 0 at the uniform start) natural-right cubic spline through m knots placed by the same curvature measure, the LAST knot pinned (the plug tip, the shroud lip: the exit area is the design's datum); design vector = the m - 1 free knot heights of each wall; m = 40 knots per wall since S40 2026-09-25: the 8-knot spline lags GENO's initial expansion arcs by up to 3.6 deg near their end (x ~0.07, a curvature jump of Migdal's walls) and the discrete reference then carries a C- coalescence after the lip (1006 folded cells; 794 / 404 / 189 / 171 at m = 12 / 16 / 24 / 32); at m = 40 the reference has no folded cell and the same worst margin as GENO's exact walls (+0.0113) -- measured, RDE/handoff/f3_2026-09-25/twop_rep_census*.log; KERNEL POSING since S40 2026-09-25 (kernel true): GENO's initial circular arcs, up to their curvature jump (the largest |d kappa/dx| below arc_scan_x = 0.3 m: shroud x 0.0646, plug x 0.0729), are DATA; each wall downstream is a spline clamped to the arc-end point and slope through m = 12 knots by the curvature measure of the downstream wall, the last pinned (measured: representation error 2.7e-4 / 1.9e-4 m, angle 0.48 / 0.36 deg, the reference fold-free with worst margin +0.0113 = GENO's exact walls; at 8 knots it folds, 87 cells)"
+  },
+  "gates": {
+    "value": {
+      "fd_steps": [
+        0.001,
+        0.0001
+      ],
+      "fd_ladder": [
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "n_dirs": 4,
+      "seed": 7,
+      "hess_steps": [
+        0.001,
+        0.0001
+      ]
+    },
+    "cls": "NUMERIC",
+    "note": "G-3: the adjoint against central differences of the FROZEN-schedule replay on fd_ladder (band K_RICH x the ladder's spread + the rounding floor of its smallest step; the record driver's 1e-6..1e-8 sits below this replay's measured noise floor, S40 probe), along n_dirs seeded unit directions; fd_steps = the RECORD differences reported as a reading of the functional's own smoothness (each +-h design re-takes its discrete decisions) and the J jump of those decisions at the same design, which sets the resolution delta between designs; hess_steps = the scales of the SECANT Hessian of DUTY-11 (central differences of the exact reverse gradient on the frozen schedule): 1 mm, the order of the representation error of the spline walls (2.5e-3 / 2.0e-3 m) and of the design bands, and a tenfold smaller check scale -- the pointwise AD Hessian is unfit on this posing (measured S40)"
+  },
+  "class": {
+    "value": {
+      "rungs": 4,
+      "rejector_knots": 8,
+      "rejector_walk": "walk_A_m8_unconstrained_2026-09-25.json",
+      "rejector_k": -5
+    },
+    "cls": "NUMERIC",
+    "note": "the fold class of the two-wall net (stage class): floors m_ref / 2^k for k = 1..rungs (the tournament's rule of record); the rejector is the UNCONSTRAINED walk's landing of the 8-knot posing (S40: it folds in the internal channel and gained C_F above the 1-D ideal), read on this posing's knots; since the kernel posing the graded rejector is the unconstrained ascent's first move from the reference, ell 2^rejector_k along +grad J (the 8-knot landing is a reading)"
+  },
+  "walk": {
+    "value": {
+      "ramps": [
+        1.0,
+        0.75,
+        0.5,
+        0.25
+      ],
+      "ladder_k": [
+        -8,
+        -7,
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "cls": "NUMERIC",
+    "note": "stage walk: the generic start G is the largest ramp W_ref + lam (chord - W_ref) that is certified and in class; the walk's radius is the class scale along +grad J at its OWN start, on the ladder ell 2^k (ell = the plug station spacing) for these k"
+  }
+}

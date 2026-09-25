@@ -2560,34 +2560,75 @@ entries:
   note: "Minted 2026-09-24 at the F3 closure. Dedup by measured grep in the mint window (SR-12): grep -ciE 'f3-exit|finder|two-wall|X-PTRN' docs/findings_registry.yaml = 1 before this mint (an unrelated row on the joint refine() of the IVL rows / arc angle / exit stations: no duplicate)."
 
 - id: f3-exit:finder-at-nominal-not-run
-  status: CONFIRMED
+  status: DISCHARGED
   severity: medium
   magnitude: "F3 closed with the plug optimum certified in VALUE at the nominal ambient ([X-OWNM]: the ideal spike attains the T-GB ceiling) and the optimiser's re-obtention certified on literature optima from their own starts, but WITHOUT the finder test in our world at the nominal ambient from a far start: the tournament's start C (0.84 m from the member) is in class in region R (S38 reading) and the campaign was posable, not run (the second and last decisive campaign D6 ISS-4 allows the plug instance)"
   source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-1 the finder at the nominal ambient"
   code: []
   mechanism: named-conditional-untriggered
-  owner: "the next plug-optimiser campaign (any phase): the tournament a1_plug_tournament.py from start C with the class constraint in region R and the S32 backtracking driver, after X-PTRN's registry row is coined with its derive re-run"
-  trigger: "any claim that the optimiser finds the plug optimum from a far start in our world, or F5 entry"
-  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-1)."
+  evidence: "RUN in S40 (2026-09-24/25, validation/PROGRESS_2026-09-24_S40_F3_residuals.md section 1): the tournament's finder campaign from the far starts C and E, class in region R, 24 x 8 with backtracking, 71 min per start -- NEGATIVE, see f3-residual:finder-stalls-at-fold-cliff; the second and last decisive campaign D6 ISS-4 allows the plug instance is spent"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-1). DISCHARGED 2026-09-25 (S40): the test ran; its outcome is a new row."
 
 - id: f3-exit:two-wall-stretch-not-taken
-  status: CONFIRMED
+  status: DISCHARGED
   severity: low
   magnitude: "the D6 F3 conditional stretch 'two-wall Veen' was not taken: the two-wall MARCH is built and certified (X-TWMU exact channel 6/6, X-MGDL Migdal from GENO 8/8), no two-wall optimisation ran (the shroud as a design variable, RE-1 on Migdal's pair, Veen 1974 Table 3 from our posing); DUTY-11 (two-wall translation near-nullspace, identifiability) travels with it"
   source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-2 the two-wall stretch"
   code: []
   mechanism: named-conditional-untriggered
-  owner: "the first session that puts a shrouded plug in the design space: the TR-SQP with the shroud spline in the design vector and its +dy push in J_replay; DUTY-11 at its entry"
-  trigger: "a two-wall design claim, or a shrouded configuration entering the phase-diagram tournament"
-  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-2)."
+  evidence: "TAKEN in S40 (2026-09-25, validation/PROGRESS_2026-09-24_S40_F3_residuals.md section 2, carrier validation/a1_twowall.py [X-TWOP]): both walls as design variables of the certified march (traced shroud in the replay), the fold class on the whole two-wall net, DUTY-11 measured on the secant Hessian (the free-kernel near-nullspace = the family of perfect nozzles; with the kernel as data the walls decouple, no translation mode, 21 of 22 directions identifiable), and RE-1 on Migdal's pair PASS 3/3 from a generic Hermite start with the Newton metric (landings 5.1e-10 apart in C_F, 13 um / 0.3 um in the walls). Veen 1974 Table 3 not attempted; the design posing (free kernel, free ends) is twowall:design-posing-open"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-2). DISCHARGED 2026-09-25 (S40)."
 
 - id: f3-exit:x-ptrn-registry-row-missing
-  status: CONFIRMED
+  status: DISCHARGED
   severity: low
   magnitude: "the plug tournament carrier validation/a1_plug_tournament.py [X-PTRN] never had a claims-registry row: the S30 log says 'the [X-PTRN] row is coined here', git log -S 'id: X-PTRN' on docs/claims_registry.yaml finds nothing; its runs of record (S30 derives 10/10 at two rungs, the overnight campaign) are therefore outside the staleness link and the orphan lint (no docs/*.md brackets it)"
   source: "validation/PROGRESS_2026-09-24_S39_F3_exit.md#R-F3-4 [X-PTRN]'s registry row"
   code: []
   mechanism: process
-  owner: "the session that runs a1_plug_tournament.py next (the row needs a pass-of-record date after the carrier's last commit: re-run its derive, then coin the row)"
-  trigger: "next X-PTRN run, or any docs/*.md bracketing [X-PTRN]"
-  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-4), found in S38."
+  evidence: "coined in S40 (2026-09-25, validation/PROGRESS_2026-09-24_S40_F3_residuals.md section 4): docs/claims_registry.yaml id X-PTRN, kind carrier, pass of record = the region-R derive re-run on the committed carrier"
+  note: "Minted 2026-09-24 at the F3 closure (residual R-F3-4), found in S38. DISCHARGED 2026-09-25 (S40)."
+
+- id: f3-residual:finder-stalls-at-fold-cliff
+  status: CONFIRMED
+  severity: medium
+  magnitude: "at the NOMINAL ambient in our world, class in Humphreys' region R, the certified TR-SQP with backtracking does NOT find the plug optimum from a far start: from C and E (0.84 m from the member) the walks recover 34 / 49 percent of the thrust gap and stop 2.5e-3 / 1.5e-3 of J below the member, 0.836 / 0.850 m from it in shape (band_W 0.0122 m), not coinciding with each other; the stall is a FOLD CLIFF -- the landing sits in class with ~0.015 of slack above the floor and every trial (TR step, backtracked halves, projected ascent) lands at KS - mu0 about -0.83 inside R, closer than the radius floor 1.526e-3 m the derive sets. The paired value reading F-2 of E passed on a band whose doubled rung (the member at (161,81)) is not certified (cert 1.320): not a certificate"
+  source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#1. R-F3-1: the finder at the nominal ambient"
+  code: []
+  mechanism: "fold-cliff stall of a class-constrained walk"
+  owner: "the next plug-optimiser design session (any phase): a step rule that follows the class boundary (projection onto the margin's level set, or a radius floor below the cliff scale with its own derivation), a continuation from a near start, or a finer rung; the finder claim is not made until a far-start landing meets F-1 and a certified F-2"
+  trigger: "any claim that the optimiser finds the plug optimum from a far start in our world, or F5 entry"
+  note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'fold cliff|finder-stalls' docs/findings_registry.yaml = 0 before this mint."
+
+- id: twowall:design-posing-open
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the two-wall optimiser is certified on the Migdal CONFIRMATION posing only: the initial arcs are data (GENO's kernel), the lip and the plug tip are pinned at Migdal's, the objective is the vacuum C_F. A DESIGN posing needs (i) the kernel as design variables (circular arcs or a family able to carry a curvature jump; with the kernel free and thrust alone the optimum is the family of perfect nozzles between the ends -- a tie-break or constraint is part of the posing), (ii) an objective at the operating ambient (in vacuum a larger exit area always wins), (iii) the constraints that fix the ends (length cap, envelope radius; the lip's internal/external split is an off-design choice), (iv) the external expansion after the lip (the two-wall march stops at F's C-, no free jet), (v) for a truncated tip the base closure (R-F3-3). Raised by the owner 2026-09-25: 'non possiamo far decidere questo tratto all'ottimizzatore?', 'in che modo decidiamo la plug end e lo shroud end'"
+  source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#2. R-F3-2: the two-wall design on Migdal's pair"
+  code: []
+  mechanism: unposed-selection-principle
+  owner: "the next two-wall design session: arc-kernel variables first (the Newton-metric walk carries mixed units), then the ambient objective and the end constraints, then the free jet after the lip"
+  trigger: "any two-wall DESIGN claim beyond the Migdal confirmation, or a shrouded configuration entering a tournament"
+  note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'design-posing|free kernel|plug end' docs/findings_registry.yaml = 0 before this mint."
+
+- id: twowall:wedge-thinning-spurious-thrust
+  status: CONFIRMED
+  severity: low
+  magnitude: "the start-up wedge of the shrouded march is 'thinnable' (a1_plug_march wedge_every; [X-TWMU] scope) but a thinned wedge is not consistent: on GENO's exact Migdal walls (no folded cell in any variant) C_F rises above the 1-D ideal 1.579594 to 1.5806 / 1.5813 / 1.5866 with 16 / 11 / 6 wedge columns at N 31 (1.579889 with one per row) and to 1.5801 / 1.5814 at N 61 with 21 / 11 columns: the rows a thinned wedge skips take the start line as their C- partner. [X-MGDL]'s record uses one column per row (S36 had already seen a thinned wedge starve the arc region's pressure)"
+  source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#2. R-F3-2: the two-wall design on Migdal's pair"
+  code: []
+  mechanism: "inconsistent start-up option"
+  owner: "any use of wedge_every > 1: re-derive the skipped rows' partners (or remove the option) before a thinned wedge carries a number"
+  trigger: "a record run with wedge_every > 1"
+  note: "Minted 2026-09-25 (S40), measured by RDE/handoff/f3_2026-09-25/twop_startline_probe.py. Dedup (SR-12): grep -ciE 'wedge' docs/findings_registry.yaml = 0 before this mint."
+
+- id: numerics:ad-hessian-forward-over-custom-vjp
+  status: CONFIRMED
+  severity: medium
+  magnitude: "the pointwise AD Hessian of a replayed march (jax.hessian: forward mode over the cell solver's custom_vjp reverse) is not the functional's curvature: on the S37 walk world every eigenvalue is 16-27 percent LOW against the secant Hessian (central differences of the exact reverse gradient on the frozen record at 1 mm and 0.1 mm, asymmetric 4.7e-4, verified by second differences of J to 0.2 percent); on the two-wall posing it is 30 percent asymmetric and one diagonal reads -404 against about -1200 at finite scale (and -92184 with an exactly implicit forward tangent: near-singular cells dominate pointwise second derivatives there); a one-cell test is exact, the mechanism is not isolated beyond that. Verdicts: [X-RAOPO] re-graded on the secant spectrum holds (returns 0.22 / 0.57, coincidence 0.46 of band; were 0.20 / 0.48 / 0.38); [X-RAOSQ] v3 and [X-OWS3] not re-measured, inside by margin (returns 0.07 / 0.19 of band)"
+  source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#3. A defect of record found on the way"
+  code: ["validation/rao1961_sqp_return.py:311-329"]
+  mechanism: numerics
+  owner: "the next session that runs rao1961_sqp_return.spectrum_at or any jax.hessian of a replayed march: replace it by the secant instrument of validation/a1_twowall.py (G-5 / G-5a) and re-run the spectra of [X-RAOSQ] v3, [X-OWS3], [X-RAOPO]"
+  trigger: "any band or identifiability claim resting on a pointwise AD Hessian of the march"
+  note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'jax.hessian|forward over|ad-hessian' docs/findings_registry.yaml = 0 before this mint (related, distinct: engine:cross-lowering-gradient-floor, the gradient's re-lowering floor that FD Hessians amplify; driver-nonsmooth:hessian-no-rejector, the driver's quasi-Newton matrix)."

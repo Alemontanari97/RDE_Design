@@ -3273,3 +3273,17 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ##     nominale (C e' in classe nella regione R: lettura S38), multi-ora, la
 ##     seconda e ultima campagna decisiva che D6 ISS-4 concede all'istanza;
 ##     il carrier la vuole lanciata sulla parola dell'owner.
+
+## ===== DELTA CENSIMENTO 2026-09-25 (S40, residui F3 dopo la chiusura; append-only
+## SR-10; il blocco RESIDUI F3 e la voce BLOCCATO 20 (i) di PROGRESS sono stati
+## editati IN PLACE; nessuna riga di censimento cambia: R38 resta CONSUMED)
+## =====
+## Blocco uscente, verbatim:
+## RESIDUI F3 (dopo la chiusura; nessun contatore): R-F3-1..5 nel log S39 e
+## nel registro dei finding (f3-exit:*). Aperti dell'owner: Panov-Shvets
+## (BLOCCATO 20 i, sblocca R-F3-3). Igiene F2 trovata in S37 (testo F2, non
+## toccato): riga X-RMAR ferma a W-5 aperto, "Stechmann 2018" (e' 2019),
+## page-verify Paxson-Miki fatto. Handoff: RDE/handoff/F3_HANDOFF_2026-09-24.md.
+## Voce BLOCCATO 20 (i), coda uscente, verbatim:
+    Tabella 4) -- oggi la lettura di Humphreys vive solo nella posa
+    (TPOSE_PS_REF=corner), il membro del repo e' invariato.

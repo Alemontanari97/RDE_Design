@@ -77,11 +77,26 @@
 ## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
 ## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
 ## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## RESIDUI F3 (dopo la chiusura; nessun contatore): R-F3-1..5 nel log S39 e
-## nel registro dei finding (f3-exit:*). Aperti dell'owner: Panov-Shvets
-## (BLOCCATO 20 i, sblocca R-F3-3). Igiene F2 trovata in S37 (testo F2, non
-## toccato): riga X-RMAR ferma a W-5 aperto, "Stechmann 2018" (e' 2019),
-## page-verify Paxson-Miki fatto. Handoff: RDE/handoff/F3_HANDOFF_2026-09-24.md.
+## RESIDUI F3 (dopo la chiusura; nessun contatore). S40 (2026-09-24/25, log
+## validation/PROGRESS_2026-09-24_S40_F3_residuals.md, parola dell'owner):
+## R-F3-1 ESEGUITO, NEGATIVO -- il finder da lontano (partenze C, E, classe
+## in R) si ferma su una scogliera di piega 1.5-2.5e-3 di J sotto il membro,
+## 0.84 m in forma; seconda e ultima campagna dell'istanza plug SPESA
+## (f3-residual:finder-stalls-at-fold-cliff). R-F3-2 PRESO: X-TWOP
+## ottimizzatore a due pareti -- posa kernel (archi iniziali di GENO come
+## dato), classe di piega su tutta la rete, metrica di Newton alla partenza --
+## RE-1 su Migdal 3/3 da una partenza generica (atterraggi a 5e-10 in C_F);
+## la posa di PROGETTO (arco deciso dall'ottimizzatore, estremi plug/shroud
+## decisi da ambiente e vincoli, getto libero dopo il labbro) e' APERTA
+## (twowall:design-posing-open, domande dell'owner 2026-09-25). R-F3-4
+## CONIATA (X-PTRN). R-F3-3 aperto: nuova reference, tesi di Fiore (cap. 6
+## troncamento; thesis_fiore_2019), la scelta del modello e' dell'owner.
+## R-F3-5 DUTY-1(b) a F5. Difetto trovato: l'Hessiano AD puntuale non e' la
+## curvatura (numerics:ad-hessian-forward-over-custom-vjp; [X-RAOPO] regge).
+## Aperti dell'owner: Panov-Shvets (BLOCCATO 20 i, sblocca R-F3-3). Igiene F2
+## trovata in S37 (testo F2, non toccato): riga X-RMAR ferma a W-5 aperto,
+## "Stechmann 2018" (e' 2019), page-verify Paxson-Miki fatto. Handoff:
+## RDE/handoff/F3_HANDOFF_2026-09-24.md (sezione 8).
 
 ## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
 ## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
@@ -488,7 +503,11 @@ al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni
     Panov-Shvets (Eq. 38 di Humphreys) sull'ambiente (membro di
     base_pressure) o sullo stato in D (loro nomenclatura, riproduce la
     Tabella 4) -- oggi la lettura di Humphreys vive solo nella posa
-    (TPOSE_PS_REF=corner), il membro del repo e' invariato. (j) CHIUSA 2026-09-24 (S39): F3 chiusa
+    (TPOSE_PS_REF=corner), il membro del repo e' invariato. Input nuovo
+    2026-09-25 (S40): la tesi di Fiore (GENO/literature/Thesis_Fiore.pdf,
+    cap. 6: regimi di scia, modelli di pressione di base contro RANS; riga
+    di letteratura thesis_fiore_2019); la scelta non e' banale (i membri
+    non concordano, S30 6.4). (j) CHIUSA 2026-09-24 (S39): F3 chiusa
     senza lanciare la campagna finder dalla partenza C, che resta il
     residuo R-F3-1 (seconda campagna dell'istanza non spesa).
 

@@ -61,6 +61,21 @@ band_J, class membership (margin, fold census) and mu of every
 returned base, wall distance to Rao vs band_W. Consumes derive.json.
 Multi-hour: launched on the owner's word.
 
+CLASS IN REGION R (S40 2026-09-24, residual R-F3-1; additive, default
+bucket = every earlier run bit-identical). PTRN_CLASS=R grades the fold
+margin over Humphreys' region R (the S34 criterion: the cells whose C-
+ends on the wall before the exit characteristic, vectorised margin) in
+place of S29's bucket: m_ref, the floors, rho and the gap are derived on
+the member's R cells; the R criterion's rejector is R-G1R (the 1.5-percent
+perturbed member folds INSIDE R and must be infeasible at every floor),
+the 2 deg foot corner of R-G1 folds outside R and is reported, not graded
+(measured). With PTRN_STARTS >= 4 the campaign adds start E, the
+square-root ramp from the member toward the planar streamline (a second
+far start in class, for coincidence); every non-A start in R mode carries
+the FINDER readings: F-1 the landing's wall distance to the member
+against band_W, F-2 its PAIRED J gap to the member at (K,N) against
+K_RICH x the gap's change at (2K-1,2N-1).
+
 ON-DEMAND CARRIER (env: jax + the GENO run directory for the oracle).
 A1_PTRN_STAGE in {derive, campaign}; PTRN_M (knots, default 16), PTRN_K
 (stations, default 161), PTRN_N (rows, default 81: the (161,51) pairing
@@ -122,6 +137,14 @@ STARTS = int(os.environ.get("PTRN_STARTS", 2))
 # PTRN_ONLY = one start letter (A/B/C): the campaign runs that start alone
 # (one process per start on s2; the report file carries the letter)
 ONLY = os.environ.get("PTRN_ONLY", "")
+# PTRN_CLASS (S40 2026-09-24, additive): "bucket" (default = the record:
+# the margin over the free-edge bucket, floors from the incumbent's worst
+# bucket cell) or "R" (the S34 criterion: the margin over Humphreys'
+# region R -- the cells whose C- ends on the wall before D, what the thrust
+# depends on -- vectorised, floors from the incumbent's worst cell IN R;
+# the free-edge band is not needed there, f_edge 0). MEASURED S38: the far
+# start C that the S30 bucket floor killed is in class in R.
+CLASS = os.environ.get("PTRN_CLASS", "bucket")
 N_RUNGS = 4
 JMIN = 2
 CORNER_DEG = 2            # the S21 optimum's corner: the rejector's kink
@@ -149,6 +172,10 @@ def fold_census(out, sch=None, N=None, mg=None):
     columns (measured 2026-09-17 on the healthy (81,41) incumbent: rows
     1-9 of column 2 at y 1.4702 -> 1.4675 under the wall, 6/82 columns
     'folded' at min cell +0.087) -- kept only as the fallback."""
+    if mg is not None and mg.get("region") == "R":
+        # region R (S40): a fold = a non-positive cell IN R; the march
+        # marched with this margin returns the minimum over R and the count
+        return int(float(out["margin_min"]) <= 0.0), int(out["margin_n"]), None
     if sch is not None:
         ms, dep, where = np_margin(out, sch, N, mg["orient"], mg["f_edge"],
                                    mg["ell2"], with_depth=True)
@@ -379,6 +406,28 @@ def derive():
     rec.update(orient=orient, f_edge_meas=d_meas, f_edge=f_edge, m_ref=m_ref,
                N_cells=Nc, floors=floors, rho=rho, gap=gap, ell=ell, ell2=ell2,
                median=float(np.median(ms)))
+    if CLASS == "R":
+        # the class re-derived IN REGION R (S40): the same field, the cells
+        # the thrust depends on, the incumbent's worst cell there as m_ref
+        mgR0 = dict(margin_dict(1.0, 0.0, 1.0, orient, 0.0, ell2), vec=True, region="R")
+        oR0, _ = P.march_record(W0, w, c, margin=mgR0)
+        m_ref, Nc = float(oR0["margin_min"]), int(oR0["margin_n"])
+        check("R-D0R the incumbent is strictly healthy in region R (m_ref %.4f over %d"
+              " cells; bucket m_ref %.4f)" % (m_ref, Nc, rec["m_ref"]), m_ref > 0.0)
+        floors = [m_ref / 2 ** k for k in range(1, N_RUNGS + 1)]
+        rho = K_RICH * np.log(Nc) / floors[-1]
+        gap = np.log(Nc) / rho
+        mg = dict(margin_dict(rho, floors[0], m_ref, orient, 0.0, ell2), vec=True, region="R")
+        mg["tol"] = gap
+        out, sch = P.march_record(W0, w, c, margin=mg)
+        ks = float(out["margin_ks"])
+        check("R-KS-R  vmin - ln N/rho = %.5f <= KS = %.5f <= vmin = %.5f (region R)"
+              % (m_ref - gap, ks, m_ref),
+              m_ref - gap - K_RICH * EPS <= ks <= m_ref + K_RICH * EPS)
+        say("  CLASS IN REGION R: m_ref %.4f (%d cells), floors %s, rho %.1f, gap %.3e"
+            % (m_ref, Nc, ["%.4f" % f for f in floors], rho, gap))
+        rec.update(klass="R", m_ref_bucket=rec["m_ref"], m_ref=m_ref, N_cells=Nc,
+                   floors=floors, rho=rho, gap=gap, f_edge_class=0.0)
 
     # ---- D2: J of the incumbent at K and 2K-1, the gradient floor, band_J
     say("-- D2: the incumbent's thrust at K and 2K-1, its gradient, band_J --")
@@ -463,7 +512,28 @@ def derive():
     mv, gm = P.margin_and_grad(W_c, w, c, s, mg)
     ksc = float(o["margin_ks"])
     infeas = [bool(ksc < f) for f in floors]
-    check("R-G1 REJECTOR the cornered incumbent (first knot %+.1f mm, theta st.1"
+    if CLASS == "R":
+        # region R (S40, MEASURED on the first R derive): the 2 deg foot
+        # corner's compression coalesces OUTSIDE region R (KS in R +0.0856,
+        # feasible; on the bucket S30 read -0.0458) -- its fold lives above
+        # the exit characteristic, where the thrust does not depend on it,
+        # so it cannot reject the R criterion. The R criterion's rejector is
+        # a design that folds INSIDE R: the 1.5-percent alternating
+        # perturbation of the incumbent (start B), measured -0.73 in R.
+        sgn_r = np.array([(-1.0) ** k for k in range(len(W0))])
+        W_b = W0 * (1.0 + PERT * sgn_r)
+        W_b[-1] = max(W_b[-1], ytip)
+        o_rb, s_rb = P.march_record(W_b, w, c, margin=mg)
+        ksb = float(o_rb["margin_ks"])
+        infeas_b = [bool(ksb < f) for f in floors]
+        check("R-G1R REJECTOR (region R) the 1.5-percent perturbed incumbent -- it folds INSIDE"
+              " R -- is INFEASIBLE at every floor %s (KS %+.4f, min cell %+.4f)"
+              % (infeas_b, ksb, float(o_rb["margin_min"])), all(infeas_b))
+        say("  R-G1 (the foot corner) is REPORTED in region R, not graded: its fold is"
+            " outside R (declared S40)")
+        rec.update(rejector_R=dict(ks=ksb, min=float(o_rb["margin_min"]), infeasible=infeas_b))
+    grade_g1 = check if CLASS != "R" else (lambda label, ok: say("  [READING, region R] " + label) or True)
+    grade_g1("R-G1 REJECTOR the cornered incumbent (first knot %+.1f mm, theta st.1"
           " %+.2f deg) is INFEASIBLE at every floor %s (KS %+.4f, %d folded),"
           " margin finite %s, grad finite %s (%.0f s)"
           % (1e3 * (W_c[0] - W0[0]), wall_angle_deg(W_c, c), infeas, ksc, nf_c,
@@ -530,9 +600,12 @@ def campaign():
     W0 = np.asarray(D["W0"], float)
     W_rao = np.asarray(D["W_rao"], float)
     floors, rho, gap, tr0 = D["floors"], D["rho"], D["gap"], D["tr0"]
-    mg0 = margin_dict(rho, floors[0], D["m_ref"], D["orient"], D["f_edge"],
-                      D["ell2"])
+    klass = D.get("klass", "bucket")
+    mg0 = margin_dict(rho, floors[0], D["m_ref"], D["orient"],
+                      D["f_edge_class"] if klass == "R" else D["f_edge"], D["ell2"])
     mg0["tol"] = gap
+    if klass == "R":
+        mg0.update(vec=True, region="R")
     lo = np.full(len(W0), -np.inf)
     lo[-1] = D["ytip"]
     bounds = Bounds(lo, np.full(len(W0), np.inf))
@@ -573,6 +646,15 @@ def campaign():
             " the knots: tip y %.4f, max |W_c - W0| %.3e m (planar itself"
             " %.3e m)" % (W_c[-1], float(np.max(np.abs(W_c - W0))),
                           float(np.max(np.abs(W_pl - W0)))))
+        if STARTS >= 4:
+            # start E (S40): the square-root ramp to the same planar
+            # streamline -- a second far start of a DIFFERENT shape (the
+            # quadratic ramp does not certify, measured S40), for the
+            # coincidence of landings (RE-3)
+            W_e = W0 + np.sqrt(ramp) * (W_pl - W0)
+            W_e[-1] = max(W_e[-1], D["ytip"])
+            starts.append(("E square-root ramp to the planar streamline (generic, far)",
+                           W_e.copy()))
         starts.append(("C ramp to the planar streamline (generic, far)",
                        W_c.copy()))
     if ONLY:
@@ -646,6 +728,39 @@ def campaign():
         if active and mu is not None:
             ok &= check("[%s] C-5 dual clause mu >= 0 at an active margin (%.3e)"
                         % (tag, mu), mu >= 0.0)
+        if klass == "R" and not tag.startswith("A"):
+            # the FINDER readings (S40): the landing against the incumbent
+            # (the method's member, the certified value optimum [X-OWNM]),
+            # in shape and in PAIRED value at two rungs
+            K2, N2 = 2 * K - 1, 2 * N - 1
+            c2 = dict(P.build_case(w, N=N2))
+            c2["xk"] = c["xk"]
+            o2s, s2s = P.march_record(W_s, w, c2, K=K2)
+            o20, s20 = P.march_record(W0, w, c2, K=K2)
+            J2s = float(P.J_replay(jnp.asarray(W_s), w, c2, s2s, ta, K=K2))
+            J20 = float(P.J_replay(jnp.asarray(W0), w, c2, s20, ta, K=K2))
+            os_, ss_ = P.march_record(Ws, w, c)
+            J_start = float(P.J_and_grad(Ws, w, c, ta, ss_)[0])
+            d1, d2 = float(J_s) - J0, J2s - J20
+            pband = K_RICH * abs(d2 - d1)
+            d_inc = wall_gap(W_s, W0, c)
+            d_inc0 = wall_gap(Ws, W0, c)
+            say("  [%s] FINDER: distance to the incumbent %.3e m (start %.3e; band_W %.3e);"
+                " paired J gap to the incumbent %+.4e N at (%d,%d), %+.4e N at (%d,%d)"
+                " (start %+.4e N); paired band K_RICH x the rung change %.3e N; certs"
+                " %.3f / %.3f" % (tag, d_inc, d_inc0, D["band_W_rep"], d1, K, N, d2, K2, N2,
+                                  J_start - J0, pband, float(o2s["cert_worst"]),
+                                  float(o20["cert_worst"])))
+            ok &= check("[%s] F-1 FINDER, shape: the landing is on the incumbent within"
+                        " band_W (%.3e <= %.3e; the start was %.3e away)"
+                        % (tag, d_inc, D["band_W_rep"], d_inc0), d_inc <= D["band_W_rep"])
+            ok &= check("[%s] F-2 FINDER, value (paired): the landing's gap to the incumbent"
+                        " |%.3e| N is inside K_RICH x its change between rungs %.3e N (the"
+                        " start's gap was %+.3e N)" % (tag, d1, pband, J_start - J0),
+                        abs(d1) <= pband)
+            report.setdefault("finder", {})[tag[0]] = dict(
+                dist_inc=d_inc, dist_inc_start=d_inc0, gap1=d1, gap2=d2, pband=pband,
+                gap_start=J_start - J0, J2=J2s, J20=J20)
         say("  [%s] ORACLE READING: gain over Rao %+.3e N (%+.2e) %s band_J"
             " %.3e; distance to Rao's contour %.3e %s band_W %.3e"
             % (tag, gain_rao, gain_rao / J0,

@@ -1,0 +1,46 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+    start ladder h 4.139e-05 m: C_F +8.349e-07, KS +0.0113, cert 9.260e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +1.443e-06, KS +0.0113, cert 4.682e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +1.978e-06, KS +0.0113, cert 5.201e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +3.383e-07, KS -0.3651, cert 9.255e-02 -> OUT
+   start A (ramp 0.00): C_F 1.579880616, cert 1.053e-01, KS +0.0113; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; class scale h* 2.342e-04 m -> tr0 5.854e-05 m, floor 1.463e-05 m; 12 segments x 8 iterations, backtrack 4
+    [seg  0] J = 1.57988062e+00  |grad| = 2.294e-02  cert = 0.105
+    [seg  0] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8}; multipliers [[-0.331]]
+    [seg  1] J = 1.57988290e+00  |grad| = 1.064e-03  cert = 0.098
+    [seg  1] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  1] margin counters: {'m_exec': 16, 'm_dedup': 16}; multipliers [[-0.43]]
+    [seg  2] J = 1.57988299e+00  |grad| = 4.154e-04  cert = 0.097
+    [seg  2] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  2] margin counters: {'m_exec': 24, 'm_dedup': 24}; multipliers [[-0.468]]
+    [seg  3] base not certified (record not certified (worst 1.976e+00))
+    [seg  3] backtrack 1/2 (step 5.975e-05): J = 1.57988300e+00 cert = 0.098 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 5.975e-05
+    [seg  4] J = 1.57988300e+00  |grad| = 3.251e-04  cert = 0.098
+    [seg  4] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  4] margin counters: {'m_exec': 32, 'm_dedup': 32}; multipliers [[-0.319]]
+    [seg  5] J = 1.57988302e+00  |grad| = 2.854e-04  cert = 0.079
+    [seg  5] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  5] margin counters: {'m_exec': 40, 'm_dedup': 40}; multipliers [[-0.442]]
+    [seg  6] J = 1.57988303e+00  |grad| = 1.054e-04  cert = 0.680
+    [seg  6] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  6] margin counters: {'m_exec': 48, 'm_dedup': 48}; multipliers [[-0.461]]
+    [seg  7] base not certified (record not certified (worst 1.366e+00))
+    [seg  7] backtrack 1/2 (step 1.857e-05): J = 1.57988303e+00 cert = 0.701 -> ACCEPT
+    [seg  7] restoration ACCEPTED -> base, radius -> 1.857e-05
+    [seg  8] J = 1.57988303e+00  |grad| = 8.738e-05  cert = 0.701
+    [seg  8] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  8] margin counters: {'m_exec': 56, 'm_dedup': 56}; multipliers [[-0.227]]
+    [seg  9] J = 1.57988303e+00  |grad| = 7.099e-05  cert = 0.098
+    [seg  9] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  9] margin counters: {'m_exec': 64, 'm_dedup': 64}; multipliers [[-0.243]]
+    [seg 10] J = 1.57988303e+00  |grad| = 7.860e-05  cert = 0.047
+    [seg 10] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg 10] margin counters: {'m_exec': 72, 'm_dedup': 72}; multipliers [[-0.272]]
+    [seg 11] base not certified (record not certified (worst 1.020e+00))
+    [seg 11] backtrack: step 2.984e-06 below the floor at 1/2 -> give up
+    [seg 11] base REJECTED (record not certified (worst 1.020e+00)) -> revert, radius -> 3.134e-05
+    backtracking: 2 probes, 2 accepted along the segment, 0 accepted on the ascent; 10 records
+   return: C_F 1.579883029 (start 1.579880616, reference 1.579880616, 1-D 1.579594), cert 4.682e-02, KS +0.0113 (in class), |grad|inf 4.916e-05; gap to the reference plug 2.236e-04 / shroud 2.388e-04 m (start 0.000e+00 / 0.000e+00); 10 records, 5037 s
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_A_2026-09-25.json

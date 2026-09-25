@@ -1,0 +1,59 @@
+== [F3] the two-wall walk, start H, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   ramp 1.00 toward the generic start: cert 4.682e-02, KS -0.6378 (floor 0.0057), C_F 1.578686, gap to the reference plug 1.188e-02 / shroud 9.279e-03 m
+   ramp 0.75 toward the generic start: cert 4.682e-02, KS +0.0039 (floor 0.0057), C_F 1.579207, gap to the reference plug 8.912e-03 / shroud 6.959e-03 m
+   ramp 0.50 toward the generic start: cert 4.682e-02, KS +0.0113 (floor 0.0057), C_F 1.579581, gap to the reference plug 5.941e-03 / shroud 4.639e-03 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 1393 s): asymmetry 5.82e-02 -> floor 2.33e-01; eigenvalues of -H [  0.815   1.625   3.174   6.418   7.091  12.592  14.344  19.589  25.156
+  27.713  35.987  38.186  42.482  49.542  51.672  57.072  62.171  66.533
+  81.936  90.171 103.303 158.426] (0 floored)
+    start ladder h 4.139e-05 m: C_F +1.497e-06, KS +0.0113, cert 9.123e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +2.992e-06, KS +0.0113, cert 4.682e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +5.968e-06, KS +0.0113, cert 1.854e-01 -> in class
+    start ladder h 3.311e-04 m: C_F +1.188e-05, KS +0.0113, cert 4.682e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +2.352e-05, KS +0.0113, cert 1.909e-01 -> in class
+    start ladder h 1.325e-03 m: C_F +4.616e-05, KS +0.0113, cert 2.004e-01 -> in class
+    start ladder h 2.649e-03 m: C_F +8.875e-05, KS +0.0113, cert 2.258e-01 -> in class
+    start ladder h 5.298e-03 m: C_F +1.632e-04, KS +0.0113, cert 1.722e-01 -> in class
+    start ladder h 1.060e-02 m: C_F +2.628e-04, KS +0.0113, cert 4.682e-02 -> in class
+    start ladder h 2.119e-02 m: C_F +2.770e-04, KS -0.0135, cert 8.571e-01 -> OUT
+   start H (ramp 0.50): C_F 1.579581108, cert 4.682e-02, KS +0.0113; gap to the reference plug 5.941e-03 / shroud 4.639e-03 m; class scale h* 1.499e-02 m -> tr0 3.746e-03 m, floor 9.366e-04 m; 12 segments x 8 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 6.808e-01 m -> tr0 5.503e-03 (z), floor 1.376e-03 (z)
+    [seg  0] J = 1.57958111e+00  |grad| = 2.466e-02  cert = 0.047
+    [seg  0] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8325 cells)
+    [seg  0] margin counters: {'m_exec': 7, 'm_dedup': 7}; multipliers [[-0.2]]
+    [seg  1] J = 1.57987928e+00  |grad| = 2.578e-03  cert = 0.103
+    [seg  1] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  1] margin counters: {'m_exec': 14, 'm_dedup': 14}; multipliers [[-0.209]]
+    [seg  2] J = 1.57988303e+00  |grad| = 5.946e-05  cert = 0.691
+    [seg  2] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  2] margin counters: {'m_exec': 21, 'm_dedup': 21}; multipliers [[-0.245]]
+    [seg  3] J = 1.57988303e+00  |grad| = 2.262e-06  cert = 0.067
+    [seg  3] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  3] margin counters: {'m_exec': 28, 'm_dedup': 28}; multipliers [[-0.327]]
+    [seg  4] J = 1.57988303e+00  |grad| = 1.281e-06  cert = 0.693
+    [seg  4] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  4] margin counters: {'m_exec': 35, 'm_dedup': 35}; multipliers [[-0.367]]
+    [seg  5] J = 1.57988303e+00  |grad| = 3.915e-06  cert = 0.097
+    [seg  5] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  5] margin counters: {'m_exec': 42, 'm_dedup': 42}; multipliers [[-0.399]]
+    [seg  6] base not certified (record not certified (worst 1.389e+00))
+    [seg  6] backtrack: step 4.528e-07 below the floor at 1/2 -> give up
+    [seg 6] base REJECTED (record not certified (worst 1.389e+00)) -> revert, radius -> 3.134e-02
+    [seg  7] J = 1.57988303e+00  |grad| = 3.915e-06  cert = 0.097
+    [seg  7] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  7] margin counters: {'m_exec': 49, 'm_dedup': 49}; multipliers [[-0.374]]
+    [seg  8] base not certified (record not certified (worst 1.389e+00))
+    [seg  8] backtrack: step 4.528e-07 below the floor at 1/2 -> give up
+    [seg 8] base REJECTED (record not certified (worst 1.389e+00)) -> revert, radius -> 2.351e-02
+    [seg  9] J = 1.57988303e+00  |grad| = 3.915e-06  cert = 0.097
+    [seg  9] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  9] margin counters: {'m_exec': 56, 'm_dedup': 56}; multipliers [[-0.357]]
+    [seg 10] base not certified (record not certified (worst 1.389e+00))
+    [seg 10] backtrack: step 4.528e-07 below the floor at 1/2 -> give up
+    [seg 10] base REJECTED (record not certified (worst 1.389e+00)) -> revert, radius -> 1.763e-02
+    [seg 11] J = 1.57988303e+00  |grad| = 3.915e-06  cert = 0.097
+    [seg 11] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg 11] margin counters: {'m_exec': 63, 'm_dedup': 63}; multipliers [[-0.311]]
+    backtracking: 0 probes, 0 accepted along the segment, 0 accepted on the ascent; 12 records
+   return: C_F 1.579883030 (start 1.579581108, reference 1.579880616, 1-D 1.579594), cert 9.650e-02, KS +0.0113 (in class), |grad|inf 2.159e-05; gap to the reference plug 2.301e-04 / shroud 2.391e-04 m (start 5.941e-03 / 4.639e-03); 12 records, 7007 s
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/walk_HN_2026-09-25.json

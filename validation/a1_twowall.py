@@ -1,0 +1,891 @@
+#!/usr/bin/env python3
+"""[X-TWOP] THE TWO-WALL DESIGN: plug AND shroud as design variables of the
+certified march, on Migdal's perfect annular nozzle. [F3/A1], S40
+2026-09-24 (the F3 residual R-F3-2, the D6 "two-wall Veen" stretch, on the
+owner's word). This file is the stretch's ENTRY: the machinery gates and
+the DUTY-11 near-nullspace analysis the ratified duty table puts there.
+
+WHAT IS NEW. S36 ([X-TWMU], [X-MGDL]) made the plug march carry a second
+wall and certified it on an exact channel and on Migdal's nozzle from
+GENO, with the shroud PRESCRIBED. Here both walls are designs: each wall a
+cubic spline (clamped at the uniform start with slope 0, natural at its
+end) through m knots placed by the twin's curvature measure, the LAST knot
+pinned (the plug tip, the shroud lip: the exit area is the datum), the
+wall stations frozen in x. The functional is the twin's vacuum thrust
+coefficient C_F = (F_in + push(plug) + push(shroud)) / (p0 A*), written in
+jax so that the frozen-schedule replay is differentiable in both walls;
+the start line's own wall points close the two polylines (the push of the
+first segments is not dropped).
+
+WHY DUTY-11 COMES FIRST. The D6 duty table (S-GAUNTLET, ratified) makes
+"DUTY-11 two-wall translation-nullspace" the stretch's ENTRY duty: channel
+translation modes can make the two-wall reduced Hessian near-singular, i.e.
+the optimum not identifiable in shape. Migdal's pair attains the 1-D
+vacuum C_F of its area ratio ([X-MGDL]); whether it is the UNIQUE maximiser
+of the two-wall problem at pinned ends is what the Hessian says.
+
+STAGE derive (gates):
+  G-1 the reference (GENO's walls read at the knots) marches certified and
+      its C_F sits on the 1-D value within the [X-MGDL] band plus the
+      representation's own move;
+  G-2 REPLAY = RECORD at the reference (the same J to rounding);
+  G-3 the reverse-AD gradient (both walls) against central differences of
+      the FROZEN-schedule replay on this posing's ladder (the practice of
+      record, a1_plug_spline_opt C-2); the RECORD differences are a reading,
+      with the discrete decisions they re-take and the J jump of those
+      decisions at the same design -- the functional's resolution delta;
+  G-4 the certification scale along +grad J (the tournament's rule of
+      record with the Newton certificate as criterion) -> the walk's trust
+      radius;
+  G-5 DUTY-11: the SECANT Hessian of the frozen replay (central
+      differences of the exact gradient at 1 mm, checked at 0.1 mm; the
+      pointwise AD Hessian is unfit on this posing, measured), G-5a its
+      eigenvalues against second differences of J, then the spectrum, the
+      near-null count at the floor its asymmetry and scale change set, and
+      the identifiability declaration: the shape band sqrt(2 delta / lambda)
+      of each eigen-direction and the walls' share in it.
+FALSIFIER: a replay that is not the record, an adjoint off its FD ladder, a
+certification scale the ladder cannot bracket, or a secant spectrum that is
+not J's own falsifies the machinery; the spectrum and the stationarity
+reading (the Newton step in the identifiable subspace) are measurements.
+
+ENVIRONMENT. TWOP_ART (default _twowall/). Constants in
+twowall_cases.json (+ shroud_twin_cases.json for the gas and the inlet).
+"""
+import json
+import os
+import sys
+import time
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import jax                                              # noqa: E402
+import jax.numpy as jnp                                 # noqa: E402
+
+import a1_ideal_march_jax as A1                         # noqa: E402
+import a1_shroud_twin as ST                             # noqa: E402
+from a1_plug_march import plug_march, col_fluxes        # noqa: E402
+from a1_toc_variational_jax import spline_coeffs, spline_eval   # noqa: E402
+
+CASES = {k: v["value"] for k, v in json.load(
+    open(os.path.join(HERE, "twowall_cases.json"))).items() if k != "_doc"}
+POSE, GATES = CASES["posing"], CASES["gates"]
+ART = os.environ.get("TWOP_ART", os.path.join(HERE, "_twowall"))
+K_RICH = A1.K_RICH
+NPASS = [0, 0]
+
+
+def _same(a, b):
+    """Two recorded decision lists are the same decisions."""
+    if a is None or b is None:
+        return a is b
+    try:
+        return len(a) == len(b) and all(np.array_equal(np.asarray(x), np.asarray(y))
+                                        for x, y in zip(a, b))
+    except TypeError:
+        return a == b
+
+
+def fd_ladder(f, W0, v, steps):
+    """a1_plug_spline_opt.fd_ladder with this posing's steps: the median
+    of the central differences and their spread. The record driver's
+    ladder (1e-6, 1e-7, 1e-8) sits below this replay's noise floor --
+    measured S40 (RDE/handoff/f3_2026-09-24/twop_fd_probe.log): the
+    frozen-schedule differences close on the adjoint at 1e-4 .. 1e-6 m
+    and carry the Newton tolerance of ~4000 cells below that, where a
+    band would pass anything."""
+    vals = []
+    for h in steps:
+        vals.append((float(f(jnp.asarray(W0 + h * v))) - float(f(jnp.asarray(W0 - h * v)))) / (2.0 * h))
+    vals = np.array(vals)
+    return float(np.median(vals)), float(vals.max() - vals.min())
+
+
+def say(msg):
+    print(msg, flush=True)
+
+
+def check(label, ok):
+    NPASS[0] += bool(ok)
+    NPASS[1] += 1
+    print("  [%s] %s" % ("PASS" if ok else "FAIL", label), flush=True)
+    return bool(ok)
+
+
+class TwoWall:
+    """Migdal's inlet and ends, both walls designed."""
+
+    def __init__(self, K=None, N=None, verbose=True):
+        t0 = time.time()
+        self.K = int(POSE["K"]) if K is None else int(K)
+        self.N = int(POSE["N"]) if N is None else int(N)
+        Rg = ST.R_UNIV / ST.MOLAR_MASS
+        self.tab = A1.prep_tab(A1.build_tab_gconst(g=ST.GAMMA, Rg=Rg, ts=ST.T0, ps=ST.P0))
+        self.ta = A1.tab_arrays(self.tab)
+        plug, shroud = ST.geno_walls(POSE["geno_run"])
+        self.plug, self.shroud = ST.dedup(plug), ST.dedup(shroud)
+        x0 = float(self.plug[0, 0])
+        self.y_l, self.y_u = float(self.plug[0, 1]), float(self.shroud[0, 1])
+        self.q_i = ST.q_of_mach(ST.M_INLET, self.ta, self.tab["_as"])
+        yline = np.linspace(self.y_l, self.y_u, self.N)
+        self.start = (x0, yline, np.full(self.N, self.q_i), np.zeros(self.N))
+        col0 = np.stack([np.full(self.N, x0), yline, np.full(self.N, self.q_i), np.zeros(self.N)], 1)
+        self.F_in = float(col_fluxes(col0, self.ta, 0.0, 1.0)[1])
+        eps_i = (self.shroud[-1, 1] ** 2 - self.plug[-1, 1] ** 2) / (self.y_u ** 2 - self.y_l ** 2)
+        self.Me, self.CF_1d, _, AAi = ST.one_d(eps_i, ST.M_INLET, ST.GAMMA)
+        self.A_star = np.pi * (self.y_u ** 2 - self.y_l ** 2) / AAi
+        self.eps_i = eps_i
+        # frozen wall stations (the twin's), the start points closing them
+        sx, _, _ = ST.stations_from(self.plug, self.K)
+        Ks = max(8, int(self.K * (self.shroud[-1, 0] - self.shroud[0, 0])
+                        / (self.plug[-1, 0] - self.plug[0, 0])))
+        xs, _, _ = ST.stations_from(self.shroud, Ks)
+        self.sx, self.xs = np.asarray(sx, float), np.r_[x0, np.asarray(xs, float)]
+        # THE KERNEL (S40 2026-09-25, POSE["kernel"]): Migdal's walls are a
+        # circular-arc kernel (dtheta/dx ~5 rad/m) that ends in a CURVATURE
+        # JUMP (shroud x 0.0646, plug x 0.0729, measured) and then the
+        # straightening contours. A cubic spline cannot carry the jump: it
+        # rings there (up to 3.6 deg at 8 knots, still 1 deg at 32) and the
+        # discrete net then carries a C- coalescence after the lip (1006
+        # folded cells at 8 knots); and every perfect nozzle between the
+        # pinned ends attains the same 1-D thrust whatever its kernel, so a
+        # free kernel makes the optimum a FAMILY (DUTY-11's near-nullspace).
+        # With the kernel as data (GENO's arcs up to the jump) and each wall
+        # downstream a spline clamped to the arc-end slope, the reference
+        # has no folded cell at 12 knots and the optimum is the straightening
+        # contour of THIS kernel -- an instrument posing, declared.
+        self.kernel = bool(POSE.get("kernel", False))
+        if self.kernel:
+            def arc_end(w):
+                x_, y_ = w[:, 0], w[:, 1]
+                kap = np.gradient(np.arctan(np.gradient(y_, x_)), x_)
+                dk = np.gradient(kap, x_)
+                return float(x_[int(np.argmax(np.abs(np.where(x_ < POSE["arc_scan_x"], dk, 0.0))))])
+            gp_, gs_ = np.gradient(self.plug[:, 1], self.plug[:, 0]), np.gradient(self.shroud[:, 1], self.shroud[:, 0])
+            self.xa_p, self.xa_s = arc_end(self.plug), arc_end(self.shroud)
+            self.ya_p = float(np.interp(self.xa_p, self.plug[:, 0], self.plug[:, 1]))
+            self.sa_p = float(np.interp(self.xa_p, self.plug[:, 0], gp_))
+            self.ya_s = float(np.interp(self.xa_s, self.shroud[:, 0], self.shroud[:, 1]))
+            self.sa_s = float(np.interp(self.xa_s, self.shroud[:, 0], gs_))
+            self.gy_p = np.interp(self.sx, self.plug[:, 0], self.plug[:, 1])
+            self.gs_p = np.interp(self.sx, self.plug[:, 0], gp_)
+            self.gy_s = np.interp(self.xs, self.shroud[:, 0], self.shroud[:, 1])
+            self.gs_s = np.interp(self.xs, self.shroud[:, 0], gs_)
+            self.gs_s[0] = 0.0
+            self.kp = np.asarray(ST.stations_from(self.plug[self.plug[:, 0] > self.xa_p],
+                                                  int(POSE["m_plug"]))[0], float)
+            self.ks = np.asarray(ST.stations_from(self.shroud[self.shroud[:, 0] > self.xa_s],
+                                                  int(POSE["m_shroud"]))[0], float)
+        else:
+            # knots by the same curvature measure; the last knot pinned
+            self.kp = np.asarray(ST.stations_from(self.plug, int(POSE["m_plug"]))[0], float)
+            self.ks = np.asarray(ST.stations_from(self.shroud, int(POSE["m_shroud"]))[0], float)
+        self.tip = float(np.interp(self.kp[-1], self.plug[:, 0], self.plug[:, 1]))
+        self.lip = float(np.interp(self.ks[-1], self.shroud[:, 0], self.shroud[:, 1]))
+        self.x0 = x0
+        self.np_, self.ns_ = len(self.kp) - 1, len(self.ks) - 1
+        self.W_ref = np.r_[np.interp(self.kp[:-1], self.plug[:, 0], self.plug[:, 1]),
+                           np.interp(self.ks[:-1], self.shroud[:, 0], self.shroud[:, 1])]
+        # the wedge: the twin's thinning rule (m = 1 on this posing)
+        dy_row = (self.y_u - self.y_l) / (self.N - 1)
+        dx_st = float(self.sx[0] - x0)
+        dy_launch = ST.GN["wedge_rows_per_station"] * dx_st * np.tan(np.arcsin(1.0 / ST.M_INLET))
+        self.m_w = max(1, int(round(dy_launch / dy_row)))
+        if verbose:
+            say("   posing: Migdal A_e/A_i %.4f (1-D M_e %.6f, C_F,vac %.6f); inlet M %.2f between"
+                " y %.3f and %.3f; K %d plug + %d shroud stations (frozen), N %d; knots %d + %d"
+                " (plug tip y %.6f and shroud lip y %.6f pinned); wedge every %d; %.1f s"
+                % (eps_i, self.Me, self.CF_1d, ST.M_INLET, self.y_l, self.y_u, len(self.sx),
+                   len(self.xs), self.N, len(self.kp), len(self.ks), self.tip, self.lip, self.m_w,
+                   time.time() - t0))
+
+    def walls(self, W):
+        """Stations (plug, shroud) of a design, traced."""
+        if self.kernel:
+            return self._walls_kernel(W)
+        W = jnp.asarray(W)
+        yp = jnp.concatenate([jnp.array([self.y_l]), W[:self.np_], jnp.array([self.tip])])
+        xp = jnp.concatenate([jnp.array([self.x0]), jnp.asarray(self.kp)])
+        ys = jnp.concatenate([jnp.array([self.y_u]), W[self.np_:], jnp.array([self.lip])])
+        xs_k = jnp.concatenate([jnp.array([self.x0]), jnp.asarray(self.ks)])
+        Mp = spline_coeffs(xp, yp, 0.0)
+        Ms = spline_coeffs(xs_k, ys, 0.0)
+        py, pslope = jax.vmap(lambda x: spline_eval(x, xp, yp, Mp))(jnp.asarray(self.sx))
+        sy, sslope = jax.vmap(lambda x: spline_eval(x, xs_k, ys, Ms))(jnp.asarray(self.xs))
+        return (jnp.asarray(self.sx), py, pslope), (jnp.asarray(self.xs), sy, sslope)
+
+    def _walls_kernel(self, W):
+        """The kernel posing: GENO's arcs at the stations inside them, a
+        clamped spline (arc-end point and slope) through the knots after."""
+        W = jnp.asarray(W)
+        xp = jnp.concatenate([jnp.array([self.xa_p]), jnp.asarray(self.kp)])
+        yp = jnp.concatenate([jnp.array([self.ya_p]), W[:self.np_], jnp.array([self.tip])])
+        xs_k = jnp.concatenate([jnp.array([self.xa_s]), jnp.asarray(self.ks)])
+        ys = jnp.concatenate([jnp.array([self.ya_s]), W[self.np_:], jnp.array([self.lip])])
+        Mp = spline_coeffs(xp, yp, self.sa_p)
+        Ms = spline_coeffs(xs_k, ys, self.sa_s)
+        py, psl = jax.vmap(lambda x: spline_eval(x, xp, yp, Mp))(jnp.asarray(self.sx))
+        sy, ssl = jax.vmap(lambda x: spline_eval(x, xs_k, ys, Ms))(jnp.asarray(self.xs))
+        inp, ins = jnp.asarray(self.sx <= self.xa_p), jnp.asarray(self.xs <= self.xa_s)
+        py = jnp.where(inp, jnp.asarray(self.gy_p), py)
+        psl = jnp.where(inp, jnp.asarray(self.gs_p), psl)
+        sy = jnp.where(ins, jnp.asarray(self.gy_s), sy)
+        ssl = jnp.where(ins, jnp.asarray(self.gs_s), ssl)
+        return (jnp.asarray(self.sx), py, psl), (jnp.asarray(self.xs), sy, ssl)
+
+    def march_record(self, W, margin=None):
+        (a, b, c), (d, e, f) = self.walls(np.asarray(W, float))
+        return plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
+                          self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
+                          wedge_every=self.m_w, margin=margin)
+
+    def _push(self, pts, y0):
+        """Vacuum push of a wall polyline closed by its start point (y0 at x0)."""
+        p0 = jnp.array([self.x0, y0, self.q_i, 0.0])
+        c = jnp.concatenate([p0[None, :], pts[:, :4]], axis=0)
+        q = jnp.sqrt(c[:, 2] ** 2 + c[:, 3] ** 2)
+        p = A1.state_q(q, self.ta)[1]
+        dy = c[1:, 1] - c[:-1, 1]
+        wgt = 2.0 * jnp.pi * 0.5 * (c[1:, 1] + c[:-1, 1])
+        return jnp.sum(0.5 * (p[1:] + p[:-1]) * wgt * dy)
+
+    def J_of(self, out):
+        """Vacuum C_F: F_in + push(plug) (dy < 0 pushes forward) + push(shroud)."""
+        Jn = self.F_in - self._push(out["wall"], self.y_l) + self._push(out["shroud"], self.y_u)
+        return Jn / (ST.P0 * self.A_star)
+
+    def J_replay(self, W, sched):
+        S_ = A1.Sched("play", sched.d)
+        (a, b, c), (d, e, f) = self.walls(W)
+        out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
+                            shroud=(d, e, f), wedge_every=self.m_w)
+        return self.J_of(out)
+
+    def margin_dict(self, mu0=0.0, rho=1.0, m_ref=1.0, cells=False):
+        """The fold margin of [X-PMRG] over the WHOLE two-wall net (wedge,
+        internal channel, after the lip; f_edge 0, wall cells included),
+        vectorised, orient -1 (healthy = positive: measured on GENO's exact
+        walls, min +0.0113, no negative cell), cells floored at the plug
+        station spacing squared."""
+        ell = float(self.sx[-1] - self.x0) / len(self.sx)
+        d = dict(rho=float(rho), mu0=float(mu0), m_ref=float(m_ref), orient=-1.0, f_edge=0.0,
+                 jmin=2, ell2=ell ** 2, vec=True)
+        if cells:
+            d["cells"] = True
+        return d
+
+    def margin_replay(self, W, sched, margin):
+        """KS fold margin minus its floor on the frozen schedule
+        (differentiable in both walls), the record driver's hook."""
+        S_ = A1.Sched("play", sched.d)
+        (a, b, c), (d, e, f) = self.walls(W)
+        out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
+                            shroud=(d, e, f), wedge_every=self.m_w, margin=margin)
+        return out["margin_ks"] - margin["mu0"]
+
+    def on_knots(self, W_other, other):
+        """A design of another representation (TwoWall `other`) read on this
+        one's knots: its walls evaluated at this posing's knot abscissae."""
+        (_, bp, _), (_, bs, _) = other.walls(np.asarray(W_other, float))
+        yp = np.interp(self.kp[:-1], other.sx, np.asarray(bp))
+        ys = np.interp(self.ks[:-1], other.xs, np.asarray(bs))
+        return np.r_[yp, ys]
+
+
+def derive():
+    t00 = time.time()
+    os.makedirs(ART, exist_ok=True)
+    say("== [F3] the two-wall design on Migdal's nozzle: gates and DUTY-11 [X-TWOP] ==")
+    tw = TwoWall()
+    W0 = tw.W_ref.copy()
+    e_p = float(np.max(np.abs(np.asarray(tw.walls(W0)[0][1]) - np.interp(tw.sx, tw.plug[:, 0], tw.plug[:, 1]))))
+    e_s = float(np.max(np.abs(np.asarray(tw.walls(W0)[1][1]) - np.interp(tw.xs, tw.shroud[:, 0], tw.shroud[:, 1]))))
+    t0 = time.time()
+    out, S = tw.march_record(W0)
+    J_rec = float(tw.J_of(out))
+    say("   reference (GENO's walls at the knots): representation error plug %.2e, shroud %.2e;"
+        " cert %.3e at %s; C_F %.6f vs 1-D %.6f (%+.2e); %.1f s"
+        % (e_p, e_s, float(out["cert_worst"]), out["cert_where"], J_rec, tw.CF_1d,
+           J_rec - tw.CF_1d, time.time() - t0))
+    check("G-1 the reference marches certified (%.3f); its C_F %.6f against the 1-D %.6f is"
+          " reported (the spline representation moves the walls by %.1e / %.1e)"
+          % (float(out["cert_worst"]), J_rec, tw.CF_1d, e_p, e_s), float(out["cert_worst"]) <= 1.0)
+    t0 = time.time()
+    J_rep = float(tw.J_replay(jnp.asarray(W0), S))
+    check("G-2 REPLAY = RECORD at the reference (%.12f vs %.12f, rel %.1e)"
+          % (J_rep, J_rec, abs(J_rep / J_rec - 1.0)), abs(J_rep / J_rec - 1.0) <= K_RICH * A1.EPS * len(tw.sx))
+    f = lambda z: tw.J_replay(z, S)                     # noqa: E731
+    J0, g0 = jax.value_and_grad(f)(jnp.asarray(W0))
+    g0 = np.asarray(g0)
+    say("   reverse AD: |grad C_F|inf %.3e (plug %.3e, shroud %.3e); %.1f s"
+        % (np.max(np.abs(g0)), np.max(np.abs(g0[:tw.np_])), np.max(np.abs(g0[tw.np_:])), time.time() - t0))
+    # G-3, THE PRACTICE OF RECORD (a1_plug_spline_opt C-2): the adjoint is
+    # graded against central differences of the FROZEN-schedule replay on
+    # the fd_ladder, band K_RICH x the ladder's spread + the rounding floor
+    # of its smallest step. The RECORD differences (each +-h design
+    # re-records its discrete decisions) are a READING of the functional's
+    # own smoothness, reported with the decisions that changed -- the first
+    # posing of this gate graded the adjoint against them and measured the
+    # decisions instead (the plug wall's foot search changes at h 1e-4).
+    rng = np.random.default_rng(int(GATES["seed"]))
+    ok3 = True
+    rows = []
+    dec_keys = [k_ for k_ in S.d if k_ != "z"]
+    for k in range(int(GATES["n_dirs"])):
+        d = rng.standard_normal(len(W0))
+        d /= np.linalg.norm(d)
+        fd, spread = fd_ladder(f, W0, d, GATES["fd_ladder"])
+        band = K_RICH * spread + A1.C_FLOOR * A1.EPS * abs(J_rec) / GATES["fd_ladder"][-1]
+        ad = float(g0 @ d)
+        ok3 = ok3 and abs(ad - fd) <= band
+        rfd, changed, ev = [], [], []
+        for h in GATES["fd_steps"]:
+            op, Sp = tw.march_record(W0 + h * d)
+            om, Sm = tw.march_record(W0 - h * d)
+            Jp, Jm = float(tw.J_of(op)), float(tw.J_of(om))
+            rfd.append((Jp - Jm) / (2.0 * h))
+            changed.append(sorted({k_ for k_ in dec_keys for Sx in (Sp, Sm)
+                                   if not _same(S.d.get(k_), Sx.d.get(k_))}))
+            # the decisions' own effect AT THE SAME DESIGN: record minus the
+            # reference's frozen replay there (zero when nothing is re-taken)
+            ev.append(max(abs(Jp - float(f(jnp.asarray(W0 + h * d)))),
+                          abs(Jm - float(f(jnp.asarray(W0 - h * d))))))
+        rows.append(dict(ad=ad, fd=fd, spread=spread, band=band, record_fd=rfd, changed=changed,
+                         event=ev))
+        say("   dir %d: AD %+.9e, frozen-schedule FD %+.9e (ladder spread %.1e, band %.1e, |d| %.1e);"
+            " READING record FD %s, decisions re-taken %s"
+            % (k, ad, fd, spread, band, abs(ad - fd), ", ".join("%+.6e" % v for v in rfd),
+               "; ".join("h %.0e: %s (J jump %.1e)" % (h, ",".join(c_) or "none", e_)
+                         for h, c_, e_ in zip(GATES["fd_steps"], changed, ev))))
+    check("G-3 the adjoint of both walls against the frozen-schedule FD ladder, inside K_RICH x its"
+          " spread + the rounding floor, on %d seeded directions" % int(GATES["n_dirs"]), ok3)
+    delta_ev = max(max(r["event"]) for r in rows)
+    delta = max(delta_ev, A1.C_FLOOR * A1.EPS * abs(J_rec))
+    say("   the functional's resolution between designs: the decisions' J jump %.2e (max over the"
+        " probes; floor C_FLOOR x EPS x |J| %.1e) -> delta %.2e (%.1e of C_F)"
+        % (delta_ev, A1.C_FLOOR * A1.EPS * abs(J_rec), delta, delta / abs(J_rec)))
+    # G-4 THE CERTIFICATION SCALE along +grad J -> the walk's trust radius.
+    # The tournament's rule of record (its D4 R-FSC: the class margin's
+    # crossing along +grad J, h* the geometric mean of the bracket, tr0 =
+    # h*/K_RICH, floor tr0/K_RICH) with the criterion this posing has: the
+    # march's Newton certificate (no class margin on two walls yet,
+    # declared). MEASURED first: the 1-percent alternating control of the
+    # first posing is UNCERTIFIED (cert 7.5e15) -- a stationarity control
+    # that cannot be marched says nothing, so stationarity is read from the
+    # Hessian below (G-5), not from a control.
+    u = g0 / np.linalg.norm(g0)
+    ell = float(tw.sx[-1] - tw.x0) / len(tw.sx)
+    h_ok, h_bad, lad = None, None, []
+    for k in range(-5, 6):
+        h = ell * 2.0 ** k
+        oh, Sh = tw.march_record(W0 + h * u)
+        ch = float(oh["cert_worst"])
+        Jh = float(tw.J_of(oh)) if np.isfinite(ch) and ch <= 1.0 else float("nan")
+        lad.append(dict(h=h, cert=ch, CF=Jh))
+        say("    h %.3e m: cert %.3e, C_F %s" % (h, ch, "%.9f (%+.2e)" % (Jh, Jh - J_rec)
+                                                if np.isfinite(Jh) else "-- (uncertified)"))
+        if np.isfinite(ch) and ch <= 1.0:
+            h_ok = h
+        elif h_bad is None:
+            h_bad = h
+        if h_ok is not None and h_bad is not None and h_bad > h_ok:
+            break
+    bracketed = h_ok is not None and h_bad is not None and h_bad > h_ok
+    check("G-4 the certification breaks along +grad J inside the ladder (bracket [%s, %s] m, ell %.3e)"
+          % (h_ok, h_bad, ell), bracketed)
+    h_star = float(np.sqrt(h_ok * h_bad)) if bracketed else float("nan")
+    tr0 = h_star / K_RICH
+    say("   h* %.3e m -> tr0 %.3e m, radius floor tr0/K_RICH %.3e m" % (h_star, tr0, tr0 / K_RICH))
+    # G-5 DUTY-11: the curvature of the frozen replay at the reference.
+    # MEASURED FIRST (S40): the pointwise AD Hessian is UNFIT here --
+    # jax.hessian (forward over the custom_vjp reverse) is 30 percent
+    # asymmetric on this posing and its first-shroud-knot diagonal reads
+    # -404 against -1195 / -1214 from the exact gradient's central
+    # differences at 1e-5 / 1e-6, and -92184 when the cells' forward tangent
+    # is made exactly implicit (scratch experiment): a few near-singular
+    # cells (the wedge crowding) dominate any POINTWISE second derivative.
+    # The identifiability question is a FINITE-SCALE one (can the functional
+    # separate designs t apart?), so the instrument is the SECANT Hessian:
+    # central differences of the exact reverse gradient on the frozen
+    # schedule at the scales hess_steps, symmetrised; its scale dependence
+    # (the change between the two scales) and its asymmetry are its error,
+    # and its eigenvalues are verified by second differences of J itself.
+    gfun = jax.grad(f)
+    t0 = time.time()
+    Hs = {}
+    for hs in GATES["hess_steps"]:
+        Hh = np.zeros((len(W0), len(W0)))
+        for j in range(len(W0)):
+            e = np.zeros(len(W0))
+            e[j] = hs
+            Hh[:, j] = (np.asarray(gfun(jnp.asarray(W0 + e))) - np.asarray(gfun(jnp.asarray(W0 - e)))) / (2.0 * hs)
+        Hs[hs] = Hh
+        say("   secant Hessian at h %.0e m: asymmetry %.2e (max |H| %.2e); %.0f s"
+            % (hs, float(np.max(np.abs(Hh - Hh.T))), float(np.max(np.abs(Hh))), time.time() - t0))
+    h1, h2 = GATES["hess_steps"][0], GATES["hess_steps"][1]
+    H = 0.5 * (Hs[h1] + Hs[h1].T)
+    asym = float(np.max(np.abs(Hs[h1] - Hs[h1].T)))
+    dscale = float(np.max(np.abs(H - 0.5 * (Hs[h2] + Hs[h2].T))))
+    A = -H
+    lam, V = np.linalg.eigh(A)
+    floor_h = K_RICH * max(asym, dscale)
+    say("   DUTY-11: secant Hessian at h %.0e (%d x %d): asymmetry %.2e, change to h %.0e %.2e ->"
+        " curvature floor K_RICH x max %.2e; eigenvalues of -H %s"
+        % (h1, len(W0), len(W0), asym, h2, dscale, floor_h, np.array2string(lam, precision=4)))
+    H_ad = np.asarray(jax.hessian(f)(jnp.asarray(W0)))
+    say("   READING the pointwise AD Hessian (jax.hessian): asymmetry %.2e, max |H_ad - H_secant| %.2e"
+        " (declared unfit, above)" % (float(np.max(np.abs(H_ad - H_ad.T))), float(np.max(np.abs(H_ad - H)))))
+    rq_ok, rq_rows = True, []
+    qrec = np.zeros(len(lam))
+    for k in range(len(lam)):
+        v = V[:, k]
+        q2 = -(float(f(jnp.asarray(W0 + h1 * v))) - 2.0 * J_rec + float(f(jnp.asarray(W0 - h1 * v)))) / h1 ** 2
+        err = abs(q2 - lam[k])
+        # the RECORD's own curvature along the same direction: the functional
+        # the driver accepts steps on re-takes its decisions (measured in G-3:
+        # the decisions' J jump scales as h^2, a curvature of their own)
+        op_, _ = tw.march_record(W0 + h1 * v)
+        om_, _ = tw.march_record(W0 - h1 * v)
+        certs = max(float(op_["cert_worst"]), float(om_["cert_worst"]))
+        qrec[k] = (-(float(tw.J_of(op_)) - 2.0 * J_rec + float(tw.J_of(om_))) / h1 ** 2
+                   if certs <= 1.0 else float("nan"))
+        rq_rows.append(dict(k=k, lam=float(lam[k]), q2=q2, q_record=float(qrec[k]), cert=certs))
+        rq_ok = rq_ok and err <= floor_h + K_RICH * A1.C_FLOOR * A1.EPS * abs(J_rec) / h1 ** 2
+        say("   direction %2d: lambda %+.4e, second difference of the frozen replay %+.4e (|d| %.1e);"
+            " READING the record's %+.4e" % (k, lam[k], q2, err, qrec[k]))
+    check("G-5a the secant spectrum is J's own: every eigenvalue against the second difference of"
+          " the frozen replay along its direction at the same scale, inside the curvature floor"
+          " + the rounding floor", rq_ok)
+    hv_rows = rq_rows
+    split = []
+    for k in range(len(lam)):
+        v = V[:, k]
+        wp, ws = float(np.sum(v[:tw.np_] ** 2)), float(np.sum(v[tw.np_:] ** 2))
+        same = float(np.sign(np.sum(v[:tw.np_])) * np.sign(np.sum(v[tw.np_:])))
+        split.append((wp, ws, same))
+    # identifiability on the SMALLER of the two curvatures (the frozen
+    # model's and the record's, conservative); an uncertified record side
+    # leaves the frozen one
+    lam_id = np.where(np.isfinite(qrec), np.minimum(lam, qrec), lam)
+    ident = lam_id > floor_h
+    n_null = int(np.sum(np.abs(lam_id) <= floor_h))
+    n_neg = int(np.sum(lam_id < -floor_h))
+    t_band = np.where(ident, np.sqrt(2.0 * delta / np.where(ident, lam_id, 1.0)), np.inf)
+    for k in range(len(lam)):
+        say("   direction %2d: lambda %+.4e (identifiability on %+.4e)  shape band %s  plug %.2f /"
+            " shroud %.2f  (%s)" % (k, lam[k], lam_id[k], ("%.2e m" % t_band[k]) if np.isfinite(t_band[k]) else "  none  ",
+               split[k][0], split[k][1],
+               "walls move together" if split[k][2] > 0 else "walls move apart"))
+    proj = V.T @ g0
+    s_N = V[:, ident] @ (proj[ident] / lam_id[ident])
+    dJ_N = float(0.5 * np.sum(proj[ident] ** 2 / lam_id[ident]))
+    g_null = float(np.linalg.norm(proj[~ident]))
+    say("   READING (stationarity by the model): the Newton step in the identifiable subspace"
+        " |s|inf %.2e m (|s|2 %.2e), predicted gain %.2e of C_F (%.1f x delta); the gradient's"
+        " share outside it %.2e of |grad| %.2e" % (np.max(np.abs(s_N)) if s_N.size else 0.0,
+                                                    np.linalg.norm(s_N), dJ_N, dJ_N / delta,
+                                                    g_null, np.linalg.norm(g0)))
+    cond = float(lam[-1] / max(abs(lam[0]), np.finfo(float).tiny))
+    check("G-5 DUTY-11 measured: %d identifiable, %d near-null, %d ascent direction(s) at the floor"
+          " %.2e (condition %.2e); the softest direction's shape band %s" %
+          (int(np.sum(ident)), n_null, n_neg, floor_h, cond,
+           ("%.2e m" % np.min(t_band[ident])) if np.any(ident) else "none"), True)
+    rec = dict(npass=list(NPASS), CF_ref=J_rec, CF_1d=tw.CF_1d, eps_i=tw.eps_i, e_rep=[e_p, e_s],
+               cert=float(out["cert_worst"]), grad_ref=g0.tolist(), fd=rows,
+               delta_ev=delta_ev, delta=delta, cert_ladder=lad, ell=ell, h_ok=h_ok, h_bad=h_bad,
+               h_star=h_star, tr0=tr0, H=H.tolist(), lam=lam.tolist(), V=V.tolist(), asym=asym,
+               floor=floor_h, dscale=dscale, H_ad=H_ad.tolist(), rayleigh=hv_rows, lam_id=lam_id.tolist(), n_null=n_null, n_neg=n_neg, ident=ident.tolist(),
+               t_band=[float(x) for x in t_band], s_newton=s_N.tolist(), dJ_newton=dJ_N,
+               split=split, W_ref=W0.tolist(), kp=tw.kp.tolist(), ks=tw.ks.tolist(),
+               n_plug=tw.np_)
+    fn = os.path.join(ART, "derive_%s.json" % time.strftime("%Y-%m-%d"))
+    json.dump(rec, open(fn, "w"), indent=1, default=float)
+    say("   record: %s" % fn)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return 0 if NPASS[0] == NPASS[1] else 1
+
+
+def classderive():
+    """STAGE class -- the fold class of the two-wall posing (S40, after the
+    measurement that the unconstrained walks exploit folds): m_ref = the
+    reference's own worst cell over the whole net, floors m_ref / 2^k
+    (k = 1 .. rungs), rho = K_RICH ln(N) / the last floor, KS gap ln(N) /
+    rho (the tournament's rules of record); C-1 the reference is in class;
+    C-2 the KS brackets the minimum; REJECTOR C-R the unconstrained walk's
+    landing of the 8-knot posing (it folds, and gained C_F above the 1-D
+    ideal) read on this posing's knots is INFEASIBLE at every floor; C-S
+    the class scale along +grad J (the first floor's crossing) -> the walk's
+    trust radius tr0 = h*/K_RICH, floor tr0/K_RICH."""
+    import glob
+    t00 = time.time()
+    os.makedirs(ART, exist_ok=True)
+    say("== [F3] the two-wall fold class [X-TWOP] (stage class) ==")
+    tw = TwoWall()
+    W0 = tw.W_ref.copy()
+    rungs = int(CASES["class"]["rungs"])
+    mg = tw.margin_dict(cells=True)
+    out, S = tw.march_record(W0, margin=mg)
+    v = mg["cells_out"][0]
+    m_ref, Nc = float(out["margin_min"]), int(out["margin_n"])
+    J0 = float(tw.J_of(out))
+    say("   reference (%d + %d knots): C_F %.9f, cert %.3e; %d cells, min %+.4f, negative %d"
+        % (len(tw.kp), len(tw.ks), J0, float(out["cert_worst"]), Nc, m_ref, int(np.sum(v <= 0))))
+    check("C-1 the reference is in the fold class over the whole net (min cell %+.4f > 0, %d negative)"
+          % (m_ref, int(np.sum(v <= 0))), m_ref > 0.0)
+    floors = [m_ref / 2 ** k for k in range(1, rungs + 1)]
+    rho = K_RICH * np.log(Nc) / floors[-1]
+    gap = np.log(Nc) / rho
+    mg = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)
+    o, S = tw.march_record(W0, margin=mg)
+    ks = float(o["margin_ks"])
+    check("C-2 KS brackets the minimum: %.6f <= KS %.6f <= %.6f (rho %.1f, gap %.2e)"
+          % (m_ref - gap, ks, m_ref, rho, gap),
+          m_ref - gap - K_RICH * A1.EPS * max(1.0, abs(m_ref)) <= ks
+          <= m_ref + K_RICH * A1.EPS * max(1.0, abs(m_ref)))
+    # the rejector: the unconstrained 8-knot landing on these knots
+    fw = sorted(glob.glob(os.path.join(ART, CASES["class"]["rejector_walk"])))
+    rej = None
+    if fw:
+        m_keep = (POSE["m_plug"], POSE["m_shroud"])
+        POSE["m_plug"], POSE["m_shroud"] = CASES["class"]["rejector_knots"], CASES["class"]["rejector_knots"]
+        t8 = TwoWall(verbose=False)
+        POSE["m_plug"], POSE["m_shroud"] = m_keep
+        W8 = np.asarray(json.load(open(fw[-1]))["W"], float)
+        Wr = tw.on_knots(W8, t8)
+        orr, _ = tw.march_record(Wr, margin=mg)
+        ksr = float(orr["margin_ks"])
+        rej = dict(ks=ksr, min=float(orr["margin_min"]), CF=float(tw.J_of(orr)), cert=float(orr["cert_worst"]))
+        say("   READING the unconstrained 8-knot landing (C_F %.6f above the 1-D %.6f) read on these knots:"
+            " KS %+.4f, min cell %+.4f, C_F here %.6f, %s at the first floor"
+            % (json.load(open(fw[-1]))["CF"], tw.CF_1d, ksr, rej["min"], rej["CF"],
+               "INFEASIBLE" if ksr < floors[0] else "feasible"))
+    # the rejector: the UNCONSTRAINED ascent's own first move from the
+    # reference, a step ell 2^rejector_k along +grad J, must be infeasible
+    J_g, g0 = jax.value_and_grad(lambda z: tw.J_replay(z, S))(jnp.asarray(W0))
+    g0 = np.asarray(g0)
+    u = g0 / np.linalg.norm(g0)
+    ell = float(tw.sx[-1] - tw.x0) / len(tw.sx)
+    h_r = ell * 2.0 ** CASES["class"]["rejector_k"]
+    orj, _ = tw.march_record(W0 + h_r * u, margin=mg)
+    kr = float(orj["margin_ks"])
+    check("C-R REJECTOR the unconstrained ascent's first move from the reference (%.2e m along +grad J,"
+          " C_F %+.2e) is INFEASIBLE at every floor (KS %+.4f, min cell %+.4f)"
+          % (h_r, float(tw.J_of(orj)) - J0, kr, float(orj["margin_min"])), all(kr < f_ for f_ in floors))
+    # READING the class scale along +grad J at the reference (the walk
+    # derives its radius at its own start: here the gradient is noise)
+    h_ok, h_bad, lad = None, None, []
+    for k in CASES["walk"]["ladder_k"]:
+        h = ell * 2.0 ** k
+        oh, _ = tw.march_record(W0 + h * u, margin=mg)
+        ch, kh = float(oh["cert_worst"]), float(oh["margin_ks"])
+        lad.append(dict(h=h, cert=ch, ks=kh, CF=float(tw.J_of(oh))))
+        say("    h %.3e m: C_F %.9f (%+.2e), KS %+.4f, min %+.4f, cert %.3e"
+            % (h, float(tw.J_of(oh)), float(tw.J_of(oh)) - J0, kh, float(oh["margin_min"]), ch))
+        ok_h = np.isfinite(ch) and ch <= 1.0 and kh >= floors[0]
+        if ok_h:
+            h_ok = h
+        elif h_bad is None:
+            h_bad = h
+        if h_ok is not None and h_bad is not None and h_bad > h_ok:
+            break
+    bracketed = h_ok is not None and h_bad is not None and h_bad > h_ok
+    say("   READING the class along +grad J at the reference: bracket [%s, %s] m" % (h_ok, h_bad))
+    h_star = float(np.sqrt(h_ok * h_bad)) if bracketed else float("nan")
+    tr0 = h_star / K_RICH
+    say("   floors %s; rho %.1f; gap %.2e; h* %.3e m -> tr0 %.3e m, floor %.3e m"
+        % (np.array2string(np.array(floors), precision=4), rho, gap, h_star, tr0, tr0 / K_RICH))
+    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
+               N_cells=Nc, floors=floors, rho=rho, gap=gap, rejector=rej, ladder=lad, h_ok=h_ok,
+               h_bad=h_bad, h_star=h_star, tr0=tr0, W_ref=W0.tolist(), grad_ref=g0.tolist(),
+               seconds=time.time() - t00)
+    fn = os.path.join(ART, "class_%s.json" % time.strftime("%Y-%m-%d"))
+    json.dump(rec, open(fn, "w"), indent=1, default=float)
+    say("   record: %s" % fn)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return 0 if NPASS[0] == NPASS[1] else 1
+
+
+def wall_gap(tw, W1, W2):
+    """max |dy| over the frozen stations, plug and shroud separately (the
+    stations are linear in W)."""
+    (_, a1, _), (_, b1, _) = tw.walls(np.asarray(W1, float))
+    (_, a2, _), (_, b2, _) = tw.walls(np.asarray(W2, float))
+    return (float(np.max(np.abs(np.asarray(a1) - np.asarray(a2)))),
+            float(np.max(np.abs(np.asarray(b1) - np.asarray(b2)))))
+
+
+def chord(tw):
+    """The generic start: both walls straight from the uniform inlet to the
+    pinned ends, read at the knots (it knows nothing of Migdal's curves)."""
+    if tw.kernel:
+        yp = tw.ya_p + (tw.tip - tw.ya_p) * (tw.kp[:-1] - tw.xa_p) / (tw.kp[-1] - tw.xa_p)
+        ys = tw.ya_s + (tw.lip - tw.ya_s) * (tw.ks[:-1] - tw.xa_s) / (tw.ks[-1] - tw.xa_s)
+        return np.r_[yp, ys]
+    yp = tw.y_l + (tw.tip - tw.y_l) * (tw.kp[:-1] - tw.x0) / (tw.kp[-1] - tw.x0)
+    ys = tw.y_u + (tw.lip - tw.y_u) * (tw.ks[:-1] - tw.x0) / (tw.ks[-1] - tw.x0)
+    return np.r_[yp, ys]
+
+
+def hermite_start(tw):
+    """A generic straightening start of the kernel posing: each wall the
+    cubic Hermite from its arc end (point, slope) to its pinned end with an
+    axial exit (slope 0), read at the knots -- posing data only, nothing of
+    Migdal's contour. Measured S40: in full it folds (a generic contour
+    1 cm off Migdal's carries coalescing compressions), halfway from the
+    reference it is in class."""
+    def herm(x, xa, ya, sa, xb, yb, sb):
+        h = xb - xa
+        t = (x - xa) / h
+        return ((2 * t ** 3 - 3 * t ** 2 + 1) * ya + (t ** 3 - 2 * t ** 2 + t) * h * sa
+                + (-2 * t ** 3 + 3 * t ** 2) * yb + (t ** 3 - t ** 2) * h * sb)
+    return np.r_[herm(tw.kp[:-1], tw.xa_p, tw.ya_p, tw.sa_p, tw.kp[-1], tw.tip, 0.0),
+                 herm(tw.ks[:-1], tw.xa_s, tw.ya_s, tw.sa_s, tw.ks[-1], tw.lip, 0.0)]
+
+
+class Metric:
+    """The two-wall posing seen in NEWTON variables z: W = W_s + T z with
+    T = V diag(lam_eff^-1/2) from the secant Hessian AT THE WALK'S OWN
+    START (-H = V diag(lam) V^T, lam floored at K_RICH x its asymmetry),
+    so that the curvature of J at the start is the identity in z. The
+    record driver sees the same three hooks; W is linear in z, so the
+    march, the class margin and their adjoints are the posing's own. The
+    metric shapes the path only: a KKT point of the walk is one in W."""
+
+    def __init__(self, tw, Ws, T):
+        self.tw, self.Ws, self.T = tw, np.asarray(Ws, float), np.asarray(T, float)
+
+    def W(self, Z):
+        return jnp.asarray(self.Ws) + jnp.asarray(self.T) @ jnp.asarray(Z)
+
+    def march_record(self, Z, margin=None):
+        return self.tw.march_record(self.Ws + self.T @ np.asarray(Z, float), margin=margin)
+
+    def J_replay(self, Z, sched):
+        return self.tw.J_replay(self.W(Z), sched)
+
+    def margin_replay(self, Z, sched, margin):
+        return self.tw.margin_replay(self.W(Z), sched, margin)
+
+
+def secant_hessian(gfun, W0, h):
+    """Central differences of the exact reverse gradient at scale h (the
+    G-5 instrument), unsymmetrised."""
+    n = len(W0)
+    H = np.zeros((n, n))
+    for j in range(n):
+        e = np.zeros(n)
+        e[j] = h
+        H[:, j] = (np.asarray(gfun(jnp.asarray(W0 + e))) - np.asarray(gfun(jnp.asarray(W0 - e)))) / (2.0 * h)
+    return H
+
+
+def walk():
+    """STAGE walk -- RE-1 on the two-wall posing: the record driver
+    (a1_plug_spline_opt.run_trsqp, backtracking) WITH the fold class of the
+    stage-class record (KS >= mu0_1 - gap on the frozen schedule; the S40
+    measurement: without it the walk from the reference gains C_F above the
+    1-D ideal by folding the internal channel) from TWOP_START = A (the
+    reference) or G (the chord from the kernel's arc ends to the pinned
+    ends, or the largest certified IN-CLASS ramp from the reference toward
+    it, declared). RADIUS derived at the walk's OWN start: the class scale
+    along its +grad J (the first break of certified-and-in-class on the
+    ladder ell 2^k), tr0 = h*/K_RICH, floor tr0/K_RICH -- the tournament's
+    rule taken at the start, because at the reference (a flat optimum) the
+    gradient is dominated by knot-scale zig-zags that fold within 0.3 mm
+    (measured). Budget TWOP_SEGS x TWOP_ITERS; backtrack PSPL_BACKTRACK."""
+    import glob
+    import a1_plug_spline_opt as P
+    t00 = time.time()
+    start = os.environ.get("TWOP_START", "A")
+    segs = int(os.environ.get("TWOP_SEGS", 12))
+    iters = int(os.environ.get("TWOP_ITERS", 8))
+    bt = int(os.environ.get("PSPL_BACKTRACK", 4))
+    say("== [F3] the two-wall walk, start %s, class-constrained [X-TWOP] (stage walk) ==" % start)
+    tw = TwoWall()
+    fc = sorted(glob.glob(os.path.join(ART, "class_20*.json")))
+    Cr = json.load(open(os.environ.get("TWOP_CLASS", fc[-1])))
+    if Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel:
+        raise ValueError("the class record %s is not this posing's" % fc[-1])
+    floors, rho, gap, m_ref = Cr["floors"], Cr["rho"], Cr["gap"], Cr["m_ref"]
+    mg0 = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)
+    mg0["tol"] = gap
+    W_ref = tw.W_ref.copy()
+    o_ref, _ = tw.march_record(W_ref)
+    CF_ref = float(tw.J_of(o_ref))
+
+    def in_class(W):
+        o_, s_ = tw.march_record(W, margin=tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref))
+        c_, k_ = float(o_["cert_worst"]), float(o_["margin_ks"])
+        return (np.isfinite(c_) and c_ <= 1.0 and k_ >= floors[0] - gap), o_, s_, c_, k_
+
+    if start == "A":
+        Ws, lam_r = W_ref.copy(), 0.0
+    else:
+        Wc = hermite_start(tw) if start == "H" else chord(tw)
+        Ws, lam_r = None, None
+        for lam_ in CASES["walk"]["ramps"]:
+            Wt = W_ref + lam_ * (Wc - W_ref)
+            ok_, ot, _, ct, kt = in_class(Wt)
+            say("   ramp %.2f toward the generic start: cert %.3e, KS %+.4f (floor %.4f), C_F %.6f, gap to the"
+                " reference plug %.3e / shroud %.3e m" % (lam_, ct, kt, floors[0], float(tw.J_of(ot)),
+                                                         *wall_gap(tw, Wt, W_ref)))
+            if ok_:
+                Ws, lam_r = Wt, lam_
+                break
+        if Ws is None:
+            say("   no certified in-class generic start on the ramp: nothing to walk")
+            return 1
+    ok0, o0, S0, c0, k0 = in_class(Ws)
+    gp0, gs0 = wall_gap(tw, Ws, W_ref)
+    # the radius at the start: the class scale along +grad J
+    J_s, g_s = jax.value_and_grad(lambda z: tw.J_replay(z, S0))(jnp.asarray(Ws))
+    g_s = np.asarray(g_s)
+    metric = os.environ.get("TWOP_METRIC", "")
+    if metric == "start":
+        t_m = time.time()
+        Hs = secant_hessian(jax.grad(lambda z: tw.J_replay(z, S0)), Ws, GATES["hess_steps"][0])
+        asym_m = float(np.max(np.abs(Hs - Hs.T)))
+        lam_m, V_m = np.linalg.eigh(-0.5 * (Hs + Hs.T))
+        floor_m = K_RICH * asym_m
+        lam_eff = np.maximum(lam_m, floor_m)
+        T = V_m @ np.diag(lam_eff ** -0.5)
+        say("   NEWTON METRIC at the start (secant Hessian at h %.0e, %.0f s): asymmetry %.2e -> floor"
+            " %.2e; eigenvalues of -H %s (%d floored)" % (GATES["hess_steps"][0], time.time() - t_m,
+                                                          asym_m, floor_m, np.array2string(lam_m, precision=3),
+                                                          int(np.sum(lam_m < floor_m))))
+        dN = T @ (T.T @ g_s)
+        u = dN / np.linalg.norm(dN)
+    else:
+        u = g_s / np.linalg.norm(g_s)
+    ell = float(tw.sx[-1] - tw.x0) / len(tw.sx)
+    h_ok, h_bad = None, None
+    for k in CASES["walk"]["ladder_k"]:
+        h = ell * 2.0 ** k
+        okh, oh, _, ch, kh = in_class(Ws + h * u)
+        say("    start ladder h %.3e m: C_F %+.3e, KS %+.4f, cert %.3e -> %s"
+            % (h, float(tw.J_of(oh)) - float(tw.J_of(o0)), kh, ch, "in class" if okh else "OUT"))
+        if okh:
+            h_ok = h
+        elif h_bad is None:
+            h_bad = h
+        if h_ok is not None and h_bad is not None and h_bad > h_ok:
+            break
+    if h_ok is None or h_bad is None or h_bad <= h_ok:
+        say("   the class scale is not bracketed at the start: no radius, nothing to walk")
+        return 1
+    tr0 = float(np.sqrt(h_ok * h_bad)) / K_RICH
+    say("   start %s (ramp %.2f): C_F %.9f, cert %.3e, KS %+.4f; gap to the reference plug %.3e / shroud"
+        " %.3e m; class scale h* %.3e m -> tr0 %.3e m, floor %.3e m; %d segments x %d iterations,"
+        " backtrack %d" % (start, lam_r, float(tw.J_of(o0)), c0, k0, gp0, gs0, tr0 * K_RICH, tr0,
+                           tr0 / K_RICH, segs, iters, bt))
+    if metric == "start":
+        # the radius in z: the W-scale h* along the Newton direction over
+        # the W-length of a unit z-step along it
+        zlen = float(np.linalg.norm(T @ (T.T @ g_s)) / np.linalg.norm(T.T @ g_s))
+        tr0_z = tr0 / zlen
+        say("   Newton walk in z: a unit z-step along the Newton direction moves the walls %.3e m ->"
+            " tr0 %.3e (z), floor %.3e (z)" % (zlen, tr0_z, tr0_z / K_RICH))
+        pre = Metric(tw, Ws, T)
+        Zf, hist, n_rec = P.run_trsqp(np.zeros(len(Ws)), {}, dict(throat=pre), tw.ta, sign=+1.0,
+                                      max_segments=segs, maxiter_per_seg=iters, margin=mg0,
+                                      tr0=tr0_z, tr_floor=tr0_z / K_RICH, bounds=None, backtrack=bt)
+        Wf = Ws + T @ np.asarray(Zf, float)
+    else:
+        c = dict(throat=tw)
+        Wf, hist, n_rec = P.run_trsqp(Ws, {}, c, tw.ta, sign=+1.0, max_segments=segs,
+                                      maxiter_per_seg=iters, margin=mg0, tr0=tr0,
+                                      tr_floor=tr0 / K_RICH, bounds=None, backtrack=bt)
+    Wf = np.asarray(Wf, float)
+    okf, of, Sf, cf, kf = in_class(Wf)
+    Jf = float(tw.J_of(of))
+    gf = np.asarray(jax.grad(lambda z: tw.J_replay(z, Sf))(jnp.asarray(Wf)))
+    gp, gs = wall_gap(tw, Wf, W_ref)
+    say("   return: C_F %.9f (start %.9f, reference %.9f, 1-D %.6f), cert %.3e, KS %+.4f (%s),"
+        " |grad|inf %.3e; gap to the reference plug %.3e / shroud %.3e m (start %.3e / %.3e);"
+        " %d records, %.0f s" % (Jf, float(tw.J_of(o0)), CF_ref, tw.CF_1d, cf, kf,
+                                 "in class" if okf else "OUT of class", float(np.max(np.abs(gf))),
+                                 gp, gs, gp0, gs0, n_rec, time.time() - t00))
+    rec = dict(start=start, ramp=lam_r, W_start=Ws.tolist(), W=Wf.tolist(), CF=Jf,
+               CF_start=float(tw.J_of(o0)), CF_ref=CF_ref, cert=cf, ks=kf, in_class=bool(okf),
+               grad=gf.tolist(), gap_ref=[gp, gs], gap_ref_start=[gp0, gs0], records=n_rec,
+               segments=len(hist), seconds=time.time() - t00, tr0=tr0, backtrack=bt, segs=segs,
+               iters=iters, counters=dict(mg0.get("counters", {})), metric=metric)
+    fn = os.path.join(ART, "walk_%s%s_%s.json" % (start, "N" if metric == "start" else "",
+                                                   time.strftime("%Y-%m-%d")))
+    json.dump(rec, open(fn, "w"), indent=1, default=float)
+    say("   record: %s" % fn)
+    return 0
+
+
+def grade():
+    """STAGE grade -- RE-1 on the kernel posing, class-constrained walks of
+    record: A from the reference, H from the generic Hermite start (the
+    largest in-class ramp). RE-0 both landings certified and IN CLASS;
+    RE-1 VALUE (paired, same grid): |C_F(H) - C_F(A)| <= K_RICH x delta;
+    RE-1 SHAPE: along every IDENTIFIABLE eigen-direction of the kernel
+    posing's secant spectrum (the derive of record, G-5)
+    |v_k . (W_H - W_A)| <= K_RICH x its shape band; the directions the
+    spectrum cannot identify are reported, never graded. Reading: each
+    landing's wall gap to the reference (Migdal's straightening at the
+    knots)."""
+    import glob
+    t00 = time.time()
+    fns = sorted(glob.glob(os.path.join(ART, "derive_20*.json")))
+    D = json.load(open(os.environ.get("TWOP_DERIVE", fns[-1])))
+    say("== [F3] the two-wall re-obtention: RE-1 on the kernel posing [X-TWOP] (stage grade) ==")
+    say("   derive of record: %s (%d/%d PASS; delta %.3e)" % (fns[-1], D["npass"][0], D["npass"][1],
+                                                           D["delta"]))
+    wk = {}
+    vs = os.environ.get("TWOP_GRADE_VS", "HN")
+    for st, tag in (("A", "A"), ("H", vs)):
+        fw = sorted(glob.glob(os.path.join(ART, "walk_%s_20*.json" % tag)))
+        wk[st] = json.load(open(fw[-1]))
+        say("   walk %s: %s -- C_F %.9f (start %.9f), cert %.3e, KS %+.4f (%s), gap to the reference plug"
+            " %.3e / shroud %.3e m (start %.3e / %.3e), %d records, %.0f s"
+            % (st, fw[-1], wk[st]["CF"], wk[st]["CF_start"], wk[st]["cert"], wk[st]["ks"],
+               "in class" if wk[st]["in_class"] else "OUT", *wk[st]["gap_ref"], *wk[st]["gap_ref_start"],
+               wk[st]["records"], wk[st]["seconds"]))
+    check("RE-0 both landings certified and in class (%.3e / %.3e; %s / %s)"
+          % (wk["A"]["cert"], wk["H"]["cert"], wk["A"]["in_class"], wk["H"]["in_class"]),
+          max(wk["A"]["cert"], wk["H"]["cert"]) <= 1.0 and wk["A"]["in_class"] and wk["H"]["in_class"])
+    dJ = wk["H"]["CF"] - wk["A"]["CF"]
+    check("RE-1 VALUE (paired): |C_F(H) - C_F(A)| %.3e <= K_RICH x delta %.3e (the start was %.3e below)"
+          % (abs(dJ), K_RICH * D["delta"], wk["A"]["CF"] - wk["H"]["CF_start"]),
+          abs(dJ) <= K_RICH * D["delta"])
+    V = np.array(D["V"])
+    lam = np.array(D["lam_id"])
+    ident = np.array(D["ident"], bool)
+    tb = np.array(D["t_band"], float)
+    dW = np.array(wk["H"]["W"]) - np.array(wk["A"]["W"])
+    dW0 = np.array(wk["H"]["W_start"]) - np.array(wk["A"]["W"])
+    a = V.T @ dW
+    a0 = V.T @ dW0
+    ok = True
+    for k in range(len(lam)):
+        r = abs(a[k]) / (K_RICH * tb[k]) if ident[k] else float("nan")
+        if ident[k]:
+            ok = ok and r <= 1.0
+        say("   direction %2d (curvature %+.3e): |a| %.3e (start %.3e)  %s"
+            % (k, lam[k], abs(a[k]), abs(a0[k]),
+               ("band K_RICH x %.2e -> %.2f" % (tb[k], r)) if ident[k] else "not identifiable: reported"))
+    check("RE-1 SHAPE: the generic start's landing coincides with the reference's along every"
+          " identifiable direction (%d of %d)" % (int(np.sum(ident)), len(lam)), ok)
+    tw = TwoWall(verbose=False)
+    gp, gs = wall_gap(tw, wk["H"]["W"], wk["A"]["W"])
+    say("   READING the two landings apart by plug %.3e / shroud %.3e m in the walls (H started %.3e / %.3e"
+        " from the reference)" % (gp, gs, *wk["H"]["gap_ref_start"]))
+    rec = dict(npass=list(NPASS), dCF=dJ, a=a.tolist(), a_start=a0.tolist(), gap_HA=[gp, gs],
+               walks={k: dict(CF=v["CF"], cert=v["cert"], ks=v["ks"], gap_ref=v["gap_ref"]) for k, v in wk.items()})
+    fn = os.path.join(ART, "grade_%s.json" % time.strftime("%Y-%m-%d"))
+    json.dump(rec, open(fn, "w"), indent=1, default=float)
+    say("   record: %s" % fn)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return 0 if NPASS[0] == NPASS[1] else 1
+
+
+if __name__ == "__main__":
+    sys.exit({"derive": derive, "class": classderive, "walk": walk,
+              "grade": grade}[os.environ.get("TWOP_STAGE", "derive")]())

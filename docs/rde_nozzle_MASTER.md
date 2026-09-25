@@ -4622,6 +4622,26 @@ the F5a entry adjudication; DUTY-11 not fired; DUTY-1(b) by declaration),
 recorded as a discharged process finding. A phase gate's checklist is the
 paragraph PLUS every duty row carrying the phase's name [PRACTICE].]
 
+[LINE ADDENDUM S40, landed 2026-09-25 (F3 residuals after the closure, on the
+owner's word; log validation/PROGRESS_2026-09-24_S40_F3_residuals.md).
+(1) THE FINDER AT THE NOMINAL AMBIENT IS NEGATIVE: from far starts in class
+(region R) the certified TR-SQP climbs part of the thrust gap and stops at a
+FOLD CLIFF -- the base in class with slack, every trial deep in a fold within
+the radius floor; the plug optimum stays certified in value only, no finder
+claim [MEASURED].
+(2) TWO WALLS: with a free kernel the thrust optimum between pinned ends is
+the FAMILY of perfect nozzles (every initial expansion reaches the 1-D
+thrust); a spline cannot carry the curvature jump at the end of Migdal's arcs
+and its ringing makes compressions that coalesce (an embedded shock the march
+cannot hold), which an unconstrained walk harvests above the 1-D ideal. The
+optimiser works with the kernel as data, the fold class on the whole net and a
+Newton metric taken at its own start (RE-1 on Migdal 3/3); deciding the kernel
+and the ends is a design posing still to pose [PRACTICE].
+(3) A POINTWISE AD HESSIAN OF A REPLAYED MARCH IS NOT ITS CURVATURE (16-27
+percent low on the S37 walk world, 30 percent asymmetric on two walls); the
+instrument is the secant Hessian of the exact gradient at the scale of the
+question, verified by second differences of J [PRACTICE].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 
