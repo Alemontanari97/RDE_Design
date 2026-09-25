@@ -1,0 +1,43 @@
+== [F3] the plug tournament at full expansion, general method [X-PTRN] (stage derive) ==
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+   posing (OURS): gas nasa, p_a 761442 Pa (nominal), mdot target 4.247552e+04; theta_E 0.0 deg (the method's sweep), fan axi, x0 0.35, y_w0 1.51473 (mass closed on the terminal ray); L 5.8762 m = OUR member's tip-floor abscissa (shared); m 16 uniform knots on (x0, L], K 81, N 41; tip floor y >= 0.0227 m (0.01 y_E, the march's own)
+   oracle (read only after the search): GENO member theta_E -0.0199 deg, L 5.92567, lip p_a 757595 Pa (0.9949 of PA), mdot 4.232020e+04 (-0.37 % of the target) -- residuals DECLARED
+   incumbent = the method's axisymmetric member [X-AFAN] on the knots (tip y 0.02270)
+-- C-1: representation on the knots (incumbent, and Rao's contour transplanted) --
+  incumbent: max |spline - streamline| 1.800e-03 m; Rao's contour: start radius at x0 1.51576 vs ours 1.51473 (shift -1.04e-03 m = the cross-code inlet posing, S28: mass -0.37 %); transplanted (shifted): max |spline - wall| 3.050e-03 m; incumbent vs Rao's SHAPE (shifted) 9.478e-03 m, vs his wall as written 8.440e-03 m
+-- D1: the fold margin on the incumbent: orientation, free-edge bucket (doubled resolution), m_ref, floors, rho --
+  raw median -0.4504 over 4181 whole-column cells -> orient -1; cert 0.439 at ('wall', 3) (30 s)
+  [PASS] C-0 the incumbent's record is Newton-certified at (81,41) (worst 0.439) -- the general method's own construction must be marchable at the shared length
+   NOTE: requested L 5.8762 beyond the construction's tip 5.8762: the incumbent is clamped at the tip radius there (declared)
+  incumbent at (81,41): sliver band = top 0 rows (bucket minimum 0.0871 at rows_from_top 31 beyond it; deepest band cell at row fraction 0.000 -> f_edge 0.000)
+  incumbent at (161,81): 16728 whole-column cells, 0 <= 0, band from row fraction 0.000 (deepest non-positive cell x K_RICH/2 at the doubled resolution) -> f_edge 0.000; cert 1.320 at ('edge', 136) (111 s)
+  [PASS] D1a the incumbent's non-positive cells (if any) lie in the free-edge band (depth < 1/2)
+  [PASS] R-D0 in-loop margin == numpy census (min 0.087096 vs 0.087096, cells 4181 vs 4181)
+  [PASS] R-D0b the incumbent is strictly healthy on the bucket (m_ref 0.0871)
+  [PASS] R-KS  vmin - ln N/rho = 0.08574 <= KS = 0.08710 <= vmin = 0.08710
+  m_ref 0.0871 (4181 cells, median 0.4504), floors ['0.0435', '0.0218', '0.0109', '0.0054'], rho 6127.1, gap 1.361e-03
+  [PASS] R-D0R the incumbent is strictly healthy in region R (m_ref 0.0871 over 426 cells; bucket m_ref 0.0871)
+  [PASS] R-KS-R  vmin - ln N/rho = 0.08574 <= KS = 0.08710 <= vmin = 0.08710 (region R)
+  CLASS IN REGION R: m_ref 0.0871 (426 cells), floors ['0.0435', '0.0218', '0.0109', '0.0054'], rho 4448.9, gap 1.361e-03
+-- D2: the incumbent's thrust at K and 2K-1, its gradient, band_J --
+  J(inc) 1.15287089e+08 (K 81) vs 1.15825015e+08 (K 161): |dJ| 5.379e+05; |grad J|inf 9.109e+06, |grad J|_1 1.192e+07; band_W(rep) 1.220e-02 -> band_J 2.297e+06 (+1.99e-02 of J) (35 s)
+-- D3: Rao's contour on the method's own posing (oracle, graded by the same march, functional and margin) --
+  Rao: J 1.15285410e+08 (vs incumbent -1.6787e+03 N = -1.46e-05 of J; band_J 2.297e+06), cert 0.226, min cell +0.0871 KS +0.0871 (426 cells), folded 0/426 (first None), theta st.1 -33.05 deg (incumbent -33.03, flow -33.16) (16 s)
+  [PASS] O-1 (reported) Rao's contour ON THE KNOTS is in the class (min cell +0.0871 vs mu0_1 0.0435, 0 folded columns) -- the knot representation (3.1e-03 m) is of the order of the fold scale, so this row reads the transplant, not Rao: the graded row is O-1b
+  Rao AS WRITTEN (shift -1.04e-03 m, 81 stations to x 5.6102): cert 0.121, min cell +0.0626 KS +0.0626 (447 cells), folded 0/447 (first None) (14 s)
+  [PASS] O-1b ORACLE Rao's contour as written is IN the class on our posing (min cell +0.0626 >= mu0_1 0.0435, 0 folded columns)
+  [PASS] O-2 ORACLE the incumbent (our fan streamline) equals Rao's contour within the representation band (9.478e-03 <= 1.220e-02) and in thrust (|dJ| 1.679e+03 <= band_J 2.297e+06)
+-- D4: the rejector (a 2 deg corner at the first knot) and the fold scale along +grad J -> tr0 --
+  [PASS] R-G1R REJECTOR (region R) the 1.5-percent perturbed incumbent -- it folds INSIDE R -- is INFEASIBLE at every floor [True, True, True, True] (KS -0.7300, min cell -0.7300)
+  R-G1 (the foot corner) is REPORTED in region R, not graded: its fold is outside R (declared S40)
+  [READING, region R] R-G1 REJECTOR the cornered incumbent (first knot +12.1 mm, theta st.1 -31.76 deg) is INFEASIBLE at every floor [False, False, False, False] (KS +0.0856, 0 folded), margin finite True, grad finite True (45 s)
+    h 2.159e-03 m: J 1.1530642e+08 (+0.0168 %) KS +0.0869 min +0.0869 cert 0.422 theta st.1 -32.80
+    h 4.317e-03 m: J 1.1532412e+08 (+0.0321 %) KS +0.0867 min +0.0867 cert 0.189 theta st.1 -32.56
+    h 8.635e-03 m: J 1.1535448e+08 (+0.0585 %) KS +0.0862 min +0.0862 cert 0.220 theta st.1 -32.10
+    h 1.727e-02 m: J 1.1539518e+08 (+0.0938 %) KS +0.0849 min +0.0849 cert 0.043 theta st.1 -31.14
+    h 3.454e-02 m: J 1.1539384e+08 (+0.0926 %) KS -0.6923 min -0.6923 cert 0.065 theta st.1 -29.18
+  [PASS] R-FSC the margin along +grad J crosses mu0_1 inside the ladder (bracket [0.017269250833750003, 0.034538501667500006] m)
+  h* 2.442e-02 m -> tr0 6.106e-03 m, radius floor tr0/K_RICH 1.526e-03 m
+  derived constants written to /tmp/claude-1700/-data10-falco-MOSE/35eda3b7-e05b-4a58-9a33-686857f85c9d/scratchpad/ptrn_rerun/derive.json
+
+== 12/12 PASS  (420.8 s) ==

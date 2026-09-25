@@ -196,6 +196,10 @@ campaign (S30: no resolved gain, the foot knot's discretisation) and the finder'
 at the nominal ambient (section 1). The pass-of-record date is the re-run of the region-R derive
 on the committed carrier (2026-09-25, section 7), so the staleness link binds to a run of the code
 as committed. Findings row f3-exit:x-ptrn-registry-row-missing DISCHARGED.
+Pass of record, measured: the region-R derive re-run on the committed carrier (6af2076) is 12/12
+and its derive.json equals the record field by field (57 fields; only the wall-clock differs), log
+`_plug_tournament/k81n41_R/run_derive_R_rerun_committed_2026-09-25.log`. Second commit: the rows
+X-PTRN and X-TWOP; claims lint PASS, both rows fresh in the on-demand staleness check.
 
 ## 5. The truncation residual (R-F3-3) stays open; the new reference
 The owner's word: the base-pressure model is not a trivial choice, the classical members disagree
