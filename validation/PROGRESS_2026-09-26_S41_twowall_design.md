@@ -198,6 +198,11 @@ THE READING (coarse rung, 140 x 31; the fine-rung confirmation is the pending it
    at both landings (-0.104 at cap 0.8, -0.018 at 0.6; KS - mu0 +0.0024 / +0.0003): the capped
    optimum sits ON the fold-class boundary. A shorter nozzle wants to turn faster, and the
    shock-free constraint is what stops it -- the same wall the S21-S23 plug optima left.
+   [CORRECTED the same night, section 3quater: the binding cells are TINY healthy cells at the
+   plug's inlet arc, whose margin is their area over the reference's ell^2 -- a SIZE floor that
+   the cap tightens by compressing the stations; the smallest SHAPE margin of both landings is
+   0.44-0.45 (Migdal's own 0.42). The "shock-free boundary" reading of this item is RETRACTED
+   (finding twowall:class-floor-size-artefact); the C_F numbers stand as optima under that floor.]
 3. What the cap buys over the cut Migdal: +0.09 percent at 80 percent length, +0.37 percent at 60
    percent, of which the walk's polish is +1.8e-4 / +2.3e-4 and the rest is the T start itself,
    i.e. the pinned EXIT AREA (A_e/A_i 4.0 against the cut's 3.95 / 3.72) reached by a final expansion.
@@ -281,7 +286,11 @@ THE READING:
    exit, the phase average collapses to the mean-pressure design (T3's argument: F linear in P0);
    the ambient enters every phase alike through p_a A_e. The phases disagree only through the free
    jet after the lip, the base, separation, gamma(T) and the line profiles.
-[pending: the free walk, cap 0.8, 2 x ambient, ends and both heights free]
+The free walk (cap 0.8, 2 x ambient, ends from u0 = 0 and both heights free, started from the cut
+Migdal at mid-cap, C_F 1.370147) was STOPPED in its restoration: the cut Migdal at 42 percent length
+reads KS +0.0020 under the floor 0.0057, and sixteen soft-KS steps only enlarged healthy tiny inlet
+cells (KS +0.0020 -> +0.0032, C_F 1.37016) -- the size floor of 3quater, not a fold
+(`_twowall_cap0.8_amb2_free/run_walk_TN_stopped_size_floor_2026-09-26.log`).
 
 Figures 27 `_twowall_cap/figs/27_cap_at_ambient.png`, 28 `28_cap_at_ambient_x2.png` (generator
 `RDE/handoff/f3_2026-09-25/twop_amb_fig.py amb|amb2`): walls, the shroud's last 35 cm, wall pressure
@@ -289,6 +298,45 @@ over p_a, C_F at the ambient against length with the cut Migdal's curve, table.
 
 THE PLAN REVIEW (the owner's request the same night) is section 6 of
 `validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md`.
+
+## 3quater. The class's positive floor is a SIZE floor (found the same night)
+Why the free walk crept: the cut Migdal is a piece of a fold-free net, yet its class margin falls with
+the length (KS 0.0081 / 0.0056 / 0.0020 at 80 / 60 / 42 percent). The cell margin is orient x signed
+area / max(lp lm, ell2) (a1_plug_march.margin_of_corners), ell2 the reference's plug station spacing
+squared: a cell smaller than ell2 scores its AREA, whatever its shape. Probe
+`RDE/handoff/f3_2026-09-25/twop_class_size_probe.py` (logs beside it; worst cells by the class margin
+v, their shape margin area/(lp lm) = the sine of the angle between the characteristic legs, lp lm / ell2):
+
+| design | min v | its lp lm / ell2 | its shape | where | min SHAPE margin (where) |
+|--------|-------|------------------|-----------|-------|--------------------------|
+| Migdal, coarse | 0.0113 | 0.018 | 0.62 | plug inlet arc, x 0.058 | 0.42 (plug tip) |
+| cap 0.8 vacuum landing | 0.0081 | 0.013 | 0.64 | x 0.051 | 0.44 (plug end) |
+| cap 0.6 vacuum landing | 0.0060 | 0.008 | 0.76 | x 0.011 | 0.45 (plug end) |
+| cut Migdal at mid-cap | 0.0020 | 0.003 | 0.70 | x 0.030 | 0.50 (plug end) |
+| Migdal, fine (280,61) | 0.0130 | 0.022 | 0.60 | x 0.062 | 0.42 (plug tip) |
+| step-1 fine A landing | 0.0129 | 0.021 | 0.60 | x 0.062 | 0.42 (plug tip) |
+| step-1 fine R landing | 0.0093 | 0.015 | 0.62 | x 0.071 | 0.42 (plug tip) |
+
+In every design, Migdal's own included, the class floor mu0 = m_ref/2 is set by tiny cells at the
+plug's inlet arc (x < 0.07 m, y 0.84-0.85: the start-up region where the net is finest) whose shape
+is healthy; the nearest thing to a fold anywhere is a shape margin of 0.42-0.50, at the plug's end.
+Consequences:
+1. The cap posing compresses the stations with the wall, so the inlet cells shrink and the floor
+   becomes a LENGTH penalty. The S41 capped landings (vacuum: multipliers -0.10 / -0.02; 2 x ambient
+   at cap 0.6: 13 rejections at KS - mu0 -0.0018) were held by this floor, not by a shock: the
+   reading "the capped optimum sits on the shock-free boundary" (3bis item 2, M0 addendum item 3) is
+   RETRACTED. Their C_F values stand, as optima UNDER this floor; the arcs "unchanged" may be the
+   floor too (the binding cells sit on the plug's arc).
+2. The step-1 fine far start (twowall:far-start-stalls-at-fold-cliff) is floor-bound the same way at
+   its landing (KS - mu0 +0.0028, multiplier -0.033, binding cells at x 0.071); a GENUINE fold lies
+   ~1.3 mm further along the Newton direction (its start ladder: KS -0.43 on a regular-sized cell).
+   Whether the far start reaches Migdal under a size-free floor is open.
+3. The genuine fold detection is unaffected: negative margins mean inverted cells (the compressed
+   Migdal's 1159 / 2670, the start ladders' -0.21 .. -0.62 at ~1.3 mm).
+The fix, not taken tonight (it changes the class of record of S40-S41): a size-free positive floor --
+the shape margin with a degeneracy guard, or ell2 scaled with the design's own station spacing --
+re-derived under the tier-invariant transition duty (C-1 / C-2 / C-R and a KAT), then the S41 capped
+and ambient walks and the step-1 far start re-run. Finding `twowall:class-floor-size-artefact`.
 
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
@@ -494,3 +542,7 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   amendment; index rows extended; PROGRESS block in place + archive; D6 note; M0 addendum item (4);
   handoff section 11. The free walk (`_twowall_cap0.8_amb2_free/`) was still restoring at the
   commit: its result goes in a follow-up commit.
+- Follow-up commit (night): the size-floor finding (section 3quater), the retraction of the
+  "shock-free boundary" reading everywhere it was written (3bis item 2, M0 addendum item 3, X-TWOP,
+  twowall:design-posing-open, D6 note, PROGRESS block + archive, handoff), the far-start row re-read,
+  the advisory's 6.4 corrected (the cap is not active over-expanded), the free walk's stopped log.

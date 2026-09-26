@@ -393,7 +393,9 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     ONE length cap for both walls, exit heights pinned -- taken and
     concluded at the coarse rung: the capped optimum is Migdal truncated
     plus a tail expansion to the pinned area, arcs unchanged, both ends at
-    the cap, the fold class ACTIVE at the landing, +0.091 / +0.369 percent
+    the cap, the class's positive floor active at the landing (a SIZE
+    floor on tiny inlet cells, not a shock: twowall:class-floor-size-artefact,
+    found the same night), +0.091 / +0.369 percent
     over Migdal CUT at 80 / 60 percent length (fine-rung confirmation
     pending); the driver's restoration phase found to take no step
     (driver:restoration-phase-no-motion). The owner's next directive, the

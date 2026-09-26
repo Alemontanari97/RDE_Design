@@ -4656,12 +4656,16 @@ heights, arc ends and end slopes has no meaningful global curvature floor;
 each eigenvalue is judged against K_RICH x its own verified error (the second
 difference of J along it), and its band quoted as the wall displacement it
 makes [PRACTICE].
-(3) UNDER A LENGTH CAP THE TWO-WALL OPTIMUM SITS ON THE FOLD-CLASS BOUNDARY,
-AND A COMPRESSED PERFECT NOZZLE IS NOT A START: with one cap for both walls
-and the exit heights pinned, the walk from Migdal truncated at the cap (plus
-a tail expansion to the pinned heights) lands with the class multipliers
-active, the arcs unchanged and both ends at the cap -- the shock-free
-constraint is what a shorter nozzle runs into; Migdal compressed to the cap
+(3) A COMPRESSED PERFECT NOZZLE IS NOT A START, AND A CLASS FLOOR IS NOT A
+SHOCK: with one cap for both walls and the exit heights pinned, the walk from
+Migdal truncated at the cap (plus a tail expansion to the pinned heights)
+lands with the class multipliers active, the arcs unchanged and both ends at
+the cap -- but the binding cells are tiny healthy cells at the plug's inlet
+arc whose margin is their area over the reference's ell^2: the class's
+positive floor is a SIZE floor that the cap tightens, not the shock-free
+boundary (corrected the same night; the smallest shape margin of the landings
+is 0.44-0.45, Migdal's own 0.42; finding twowall:class-floor-size-artefact);
+a class floor must be size-free before it is read as a shock; Migdal compressed to the cap
 carries coalescing compressions (1159 / 2670 folded cells at 80 / 60 percent
 length) that no restoration repairs, the driver's own phase taking no step
 [MEASURED, coarse rung; fine-rung confirmation pending].

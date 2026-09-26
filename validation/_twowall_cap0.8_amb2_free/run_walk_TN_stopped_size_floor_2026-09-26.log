@@ -1,0 +1,19 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.657014 free and shroud lip y free from 1.157666); wedge every 1; p_a/P0 4.61622e-02; 0.6 s
+   ramp 1.00 toward the generic start: cert 3.356e-02, KS +0.0020 (floor 0.0057), C_F 1.370147, gap to the reference plug 1.015e-01 / shroud 6.622e-02 m
+   restoration  1: rho_r 1610.6, step 2.65e-03 m along +grad soft KS: soft -0.0040 -> -0.0036, class KS +0.0020 -> +0.0026, min cell +0.0026, cert 0.302, C_F 1.370198, 3 records
+   restoration  2: rho_r 1610.6, step 1.32e-03 m along +grad soft KS: soft -0.0036 -> -0.0034, class KS +0.0026 -> +0.0028, min cell +0.0028, cert 0.174, C_F 1.370200, 7 records
+   restoration  3: rho_r 1610.6, step 1.66e-04 m along +grad soft KS: soft -0.0034 -> -0.0034, class KS +0.0028 -> +0.0029, min cell +0.0029, cert 0.236, C_F 1.370200, 13 records
+   restoration  4: rho_r 1610.6, step 4.14e-05 m along +grad soft KS: soft -0.0034 -> -0.0034, class KS +0.0029 -> +0.0029, min cell +0.0029, cert 0.596, C_F 1.370200, 18 records
+   restoration  5: rho_r 1610.6, step 1.66e-04 m along +grad soft KS: soft -0.0034 -> -0.0034, class KS +0.0029 -> +0.0029, min cell +0.0029, cert 0.177, C_F 1.370200, 19 records
+   restoration  6: rho_r 1610.6, step 6.62e-04 m along +grad soft KS: soft -0.0034 -> -0.0033, class KS +0.0029 -> +0.0030, min cell +0.0031, cert 0.191, C_F 1.370194, 20 records
+   restoration  7: rho_r 1610.6, step 4.14e-05 m along +grad soft KS: soft -0.0033 -> -0.0033, class KS +0.0030 -> +0.0030, min cell +0.0031, cert 0.747, C_F 1.370194, 27 records
+   restoration  8: rho_r 1610.6, step 8.28e-05 m along +grad soft KS: soft -0.0033 -> -0.0033, class KS +0.0030 -> +0.0031, min cell +0.0031, cert 0.805, C_F 1.370193, 29 records
+   restoration  9: rho_r 1610.6, step 3.31e-04 m along +grad soft KS: soft -0.0033 -> -0.0032, class KS +0.0031 -> +0.0031, min cell +0.0031, cert 0.249, C_F 1.370190, 30 records
+   restoration 10: rho_r 1610.6, step 1.32e-03 m along +grad soft KS: soft -0.0032 -> -0.0030, class KS +0.0031 -> +0.0032, min cell +0.0032, cert 0.283, C_F 1.370166, 31 records
+   restoration 11: rho_r 1610.6, step 8.28e-05 m along +grad soft KS: soft -0.0030 -> -0.0030, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.171, C_F 1.370164, 38 records
+   restoration 12: rho_r 1610.6, step 8.28e-05 m along +grad soft KS: soft -0.0030 -> -0.0030, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.109, C_F 1.370164, 41 records
+   restoration 13: rho_r 1610.6, step 3.31e-04 m along +grad soft KS: soft -0.0030 -> -0.0030, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.121, C_F 1.370160, 42 records
+   restoration 14: rho_r 1610.6, step 6.62e-04 m along +grad soft KS: soft -0.0030 -> -0.0029, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.052, C_F 1.370161, 44 records
+   restoration 15: rho_r 1610.6, step 3.31e-04 m along +grad soft KS: soft -0.0029 -> -0.0029, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.068, C_F 1.370161, 48 records
+   restoration 16: rho_r 1610.6, step 8.28e-05 m along +grad soft KS: soft -0.0029 -> -0.0029, class KS +0.0032 -> +0.0032, min cell +0.0032, cert 0.051, C_F 1.370160, 53 records

@@ -301,10 +301,12 @@ critical path. St of the chosen target belongs in Stage 0.
 inviscid thrust: F3 is "THRUST-ONLY, THERMAL SURVIVABILITY UNMODELED"; DUTY-1(a)
 (q_peak surrogate or declared gap) sits at F5a; DUTY-4 (displacement band) at
 F2b; the T2 system carries the length as a shared constraint with a multiplier
-(cycle_averaged:217-232), never as an outcome. With inviscid thrust the cap is
-always active (S41: both ends at the cap, in vacuum and at ambient). Either the
-length is a declared external requirement, or J gains a friction, wall
-heat-load or mass term. The heat load is where the program already has assets:
+(cycle_averaged:217-232), never as an outcome. With inviscid thrust a cap is
+active in vacuum and at the adapted ambient (the cut Migdal's thrust grows with
+the length); over-expanded it is not (at twice the adapted ambient the cut
+Migdal peaks at 44 percent length), but that length is set by the ambient
+alone, never by what the nozzle costs. Either the length is a declared
+external requirement, or J gains a friction, wall heat-load or mass term. The heat load is where the program already has assets:
 the THOR q_w work (ALTP comparison, the Braun 2018 model) and the march's own
 per-phase edge state are enough for a reference-enthalpy q_w surrogate along
 the designed walls.

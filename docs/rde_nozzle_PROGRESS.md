@@ -100,7 +100,9 @@
 ## CONCLUSO al gradino grosso (26 settembre sera): un solo tetto di lunghezza
 ## per plug e shroud, altezze d'uscita bloccate -- l'ottimo con tetto e' il
 ## Migdal troncato piu' un'espansione di coda all'area bloccata, archi
-## invariati, entrambi gli estremi al tetto, classe di piega ATTIVA;
+## invariati, entrambi gli estremi al tetto, pavimento di classe attivo
+## (di TAGLIA su celle minuscole all'ingresso, non un urto: finding
+## twowall:class-floor-size-artefact, trovato la notte stessa);
 ## +0,091 % / +0,369 % sul Migdal TAGLIATO all'80 % / 60 % della lunghezza
 ## (conferma fine pendente); il Migdal compresso piega e nessuna
 ## restaurazione lo ripara (driver:restoration-phase-no-motion). Passo 2 bis

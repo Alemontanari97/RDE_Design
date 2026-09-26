@@ -3306,3 +3306,7 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## in loco. Testo uscente, verbatim:
 ## (conferma fine pendente); il Migdal compresso piega e nessuna
 ## restaurazione lo ripara (driver:restoration-phase-no-motion). Precisazioni
+
+## 2026-09-26 notte (S41, finding del pavimento di taglia): una riga del blocco residui
+## S41 sostituita in loco. Testo uscente, verbatim:
+## invariati, entrambi gli estremi al tetto, classe di piega ATTIVA;
