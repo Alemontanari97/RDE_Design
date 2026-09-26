@@ -8,10 +8,12 @@
       "m_plug": 12,
       "m_shroud": 12,
       "kernel": true,
-      "arc_scan_x": 0.3
+      "arc_scan_x": 0.3,
+      "fast": true,
+      "pad": 1024
     },
     "cls": "NUMERIC",
-    "note": "the [X-MGDL] coarse grid (140 plug stations, 31 rows; the shroud's station count scaled by its length, as the twin); the wall stations FROZEN in x at the twin's curvature-adaptive positions on GENO's walls; each wall a clamped-left (slope 0 at the uniform start) natural-right cubic spline through m knots placed by the same curvature measure, the LAST knot pinned (the plug tip, the shroud lip: the exit area is the design's datum); design vector = the m - 1 free knot heights of each wall; m = 40 knots per wall since S40 2026-09-25: the 8-knot spline lags GENO's initial expansion arcs by up to 3.6 deg near their end (x ~0.07, a curvature jump of Migdal's walls) and the discrete reference then carries a C- coalescence after the lip (1006 folded cells; 794 / 404 / 189 / 171 at m = 12 / 16 / 24 / 32); at m = 40 the reference has no folded cell and the same worst margin as GENO's exact walls (+0.0113) -- measured, RDE/handoff/f3_2026-09-25/twop_rep_census*.log; KERNEL POSING since S40 2026-09-25 (kernel true): GENO's initial circular arcs, up to their curvature jump (the largest |d kappa/dx| below arc_scan_x = 0.3 m: shroud x 0.0646, plug x 0.0729), are DATA; each wall downstream is a spline clamped to the arc-end point and slope through m = 12 knots by the curvature measure of the downstream wall, the last pinned (measured: representation error 2.7e-4 / 1.9e-4 m, angle 0.48 / 0.36 deg, the reference fold-free with worst margin +0.0113 = GENO's exact walls; at 8 knots it folds, 87 cells)"
+    "note": "the [X-MGDL] coarse grid (140 plug stations, 31 rows; the shroud's station count scaled by its length, as the twin); the wall stations FROZEN in x at the twin's curvature-adaptive positions on GENO's walls; each wall a clamped-left (slope 0 at the uniform start) natural-right cubic spline through m knots placed by the same curvature measure, the LAST knot pinned (the plug tip, the shroud lip: the exit area is the design's datum); design vector = the m - 1 free knot heights of each wall; m = 40 knots per wall since S40 2026-09-25: the 8-knot spline lags GENO's initial expansion arcs by up to 3.6 deg near their end (x ~0.07, a curvature jump of Migdal's walls) and the discrete reference then carries a C- coalescence after the lip (1006 folded cells; 794 / 404 / 189 / 171 at m = 12 / 16 / 24 / 32); at m = 40 the reference has no folded cell and the same worst margin as GENO's exact walls (+0.0113) -- measured, RDE/handoff/f3_2026-09-25/twop_rep_census*.log; KERNEL POSING since S40 2026-09-25 (kernel true): GENO's initial circular arcs, up to their curvature jump (the largest |d kappa/dx| below arc_scan_x = 0.3 m: shroud x 0.0646, plug x 0.0729), are DATA; each wall downstream is a spline clamped to the arc-end point and slope through m = 12 knots by the curvature measure of the downstream wall, the last pinned (measured: representation error 2.7e-4 / 1.9e-4 m, angle 0.48 / 0.36 deg, the reference fold-free with worst margin +0.0113 = GENO's exact walls; at 8 knots it folds, 87 cells); RECORD LANE (S41 2026-09-26): fast = plug_march fast=True (one fused dispatch per cell, numpy seed Mach) and pad = 1024 (the margin's fixed-block stack) -- measured BITWISE identical to the legacy lane on the reference (every cell, decision, J, KS, min; gate C-F of stage class), 29 -> 9 s at (140,31) and 1400-1800 -> 35 s at (280,61) where the legacy stack's XLA compile dominated; TWOP_FAST / TWOP_PAD override"
   },
   "gates": {
     "value": {
@@ -38,11 +40,10 @@
     "value": {
       "rungs": 4,
       "rejector_knots": 8,
-      "rejector_walk": "walk_A_m8_unconstrained_2026-09-25.json",
-      "rejector_k": -5
+      "rejector_walk": "walk_A_m8_unconstrained_2026-09-25.json"
     },
     "cls": "NUMERIC",
-    "note": "the fold class of the two-wall net (stage class): floors m_ref / 2^k for k = 1..rungs (the tournament's rule of record); the rejector is the UNCONSTRAINED walk's landing of the 8-knot posing (S40: it folds in the internal channel and gained C_F above the 1-D ideal), read on this posing's knots; since the kernel posing the graded rejector is the unconstrained ascent's first move from the reference, ell 2^rejector_k along +grad J (the 8-knot landing is a reading)"
+    "note": "the fold class of the two-wall net (stage class): floors m_ref / 2^k for k = 1..rungs (the tournament's rule of record); the rejector is the UNCONSTRAINED walk's landing of the 8-knot posing (S40: it folds in the internal channel and gained C_F above the 1-D ideal), read on this posing's knots; since the kernel posing the graded rejector is the unconstrained ascent's first move OUT of the class along +grad J (the ladder's first infeasible step; S41: a fixed ell 2^-5 fell below the break at the fine rung) (the 8-knot landing is a reading)"
   },
   "walk": {
     "value": {

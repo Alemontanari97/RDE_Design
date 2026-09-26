@@ -125,13 +125,75 @@ not yet posed: the regime by Fiore's criterion (with S approximated in an invisc
 p_b = p_a in the open branch, ONE closed-wake closure for every profile (a correlation or the
 Chapman-Korst balance, documented), and a ranking that flips between closures declared unresolved.
 
-## 5. Budget
+## 5. The instrument's speed, before the fine-rung tests (the owner's question, 2026-09-26)
+Measured on the arc posing's reference (probes and logs in `RDE/handoff/f3_2026-09-25/twop_speed_bench*.log`,
+`twop_fast_bench.log`, `twop_jitsolve_bench_*.log`; a cProfile of the (140,31) record march):
+- WHERE THE RECORD MARCH'S TIME WENT: 62 percent in the interior seed predictor -- two eager
+  `state_q` calls per cell for an approximate Mach number --, 30 percent in the custom_vjp Python
+  wrapper and a second dispatch per cell (the certificate). FAST LANE (`plug_march(fast=True)`,
+  additive, default False): one fused dispatch per cell (solve_cert, the verbatim step metric, M5a)
+  and the seeds' Mach by numpy on host copies of the tables. BITWISE identical to the legacy lane on
+  the reference -- 8999 cells, every z, every decision, J, the KS, the minimum -- at 9 s against 29 s.
+- WHERE THE FINE MARCH'S TIME WENT: the vectorised margin's `jnp.stack` of ~34k points compiles a new
+  XLA module for every point count (the "Very slow compile" of the (280,61) probes: 1400-1800 s per
+  march, 104-112 s when the module happened to be cached). FIXED-BLOCK STACK (`margin["pad"]`,
+  additive, default 0): blocks of 1024 points, the cell arrays padded and masked by +inf (exp(-inf) =
+  0 exactly). Bitwise identical KS and minimum; the (280,61) march with the fast lane: 35 s. Both
+  switches are now the two-wall posing's defaults (twowall_cases.json fast/pad), graded bitwise
+  against the legacy lane by the class stage's new gate C-F at every run (arc posing, 2026-09-26:
+  4/4, C-F PASS, 9.1 s against 29.3 s). The limit of the identity, measured on the class stage's
+  ladder: OFF the reference the fused certificate differs by one ulp (0.1062271882999730 6 vs 2: the
+  fused module's own rounding of the step metric, a diagnostic ratio), and on the FOLDED step
+  (h 3.3e-4, KS -0.042) the KS differs by 2.4e-11 relative -- the seed's last bits through an
+  ill-conditioned cell; on in-class designs every value of record is identical.
+- NULL RESULTS: a single XLA thread (`--xla_cpu_multi_thread_eigen=false`) changes nothing on the
+  march and slows the compiles; wrapping the cell solver's custom_vjp in `jax.jit` leaves the replay
+  gradient unchanged (30 / 36 s against 29 / 36 s; gradients bitwise identical) -- the reverse pass
+  is op-by-op eager dispatch over the whole net, not the wrapper.
+- WHAT REMAINS: the replay gradients (the walk's unit of work: ~30 s for J and ~36 s for the KS at
+  (140,31), machine load permitting) are the cost now; their structural lever is a wavefront
+  (anti-diagonal) batching of the cells -- ~400 batched dispatches instead of ~16k -- which is a
+  rewrite of the march's control flow, declared and not done.
+- THE FINE RUNG'S COST, measured (twop_speed_bench_default.log, machine load ~50): the replay
+  gradient of J 158 s and of the KS 154 s at (280,61) against 38 / 52 s at (140,31) -- 4x for 4x
+  the cells, no compile cliff; a single XLA thread gives 132 / 143 s there (less contention) and is
+  slower at the coarse rung: not adopted. Budget of a fine-rung Newton walk: the metric 52 gradients
+  ~2.3 h; a segment = one record (33 s) + iterations x 5.2 min + backtracking records; 10 segments x
+  6 iterations ~5.5 h; ~8 h per walk, the two starts in parallel. The runs of S41 at the coarse rung
+  are unchanged by the speed work (their records predate it and the lane is graded equivalent).
+- THE FINE RUNG'S CLASS (`_twowall_arc_fine/run_class_2026-09-26.log`, 4/4, 528 s): C-F within the
+  certificate's band (35303 cells, max |dz| 2.3e-11 = 0.47 of the Newton tolerance, decisions
+  identical, J identical, KS 1.8e-16; 33 s against 111 s -- the legacy lane pays its slow stack
+  compile once per process); the reference in class, worst cell +0.0130 (33368 cells), floors
+  0.0065 / 0.0033 / 0.0016 / 0.0008, rho 51153, gap 2.0e-4; the class breaks along +grad J in the
+  same bracket as the coarse rung [1.7e-4, 3.3e-4] m and the first move out of it is infeasible at
+  every floor (KS -0.362). Two gate corrections came out of the first fine run (kept as text, the
+  log was superseded): C-F was posed BITWISE and fails at the fine rung by 2.3e-11 in one cell (the
+  seed's last bits through a near-singular cell) -- re-posed on the certificate's band; C-R was
+  posed at the fixed step ell 2^-5, which halves with ell and fell below the break at the fine rung
+  -- re-posed as the ladder's first infeasible step. The coarse class re-run under the corrected
+  gates: 3/3, C-F bitwise (`_twowall_arc/run_class_2026-09-26.log`).
+- LAUNCHED 2026-09-26 14:15, the two-rung test proper: the Newton walks A (Migdal's arcs) and R
+  (the gentler arcs' in-class ramp) at (280,61), metric at the fine rung, 10 segments x 6
+  iterations, checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`). [pending]
+- THE CLASS STAGE AT BOTH RUNGS with the corrected gates (`_twowall_arc/run_class_2026-09-26.log`
+  4/4, 150 s; `_twowall_arc_fine/run_class_2026-09-26.log` 4/4, 528 s): C-F at (280,61) -- 35303
+  cells, max |dz| 2.3e-11 = 0.47 of the Newton tolerance, decisions identical, J identical, KS
+  1.8e-16 relative; the fine reference in class (min cell +0.0130, 0 folded), floors 0.0065 ..
+  0.0008, rho 51153; the class breaks along +grad J in the SAME bracket 0.17-0.33 mm as at the coarse
+  rung (a fixed step ell 2^-5 would have fallen below it there: C-R is now the first infeasible ladder
+  step, infeasible at every floor, KS -0.362). The fine-rung walks A (Migdal's arcs) and R (the
+  gentler arcs' in-class ramp) launched 14:15 with the Newton metric at their own start, 10 x 6,
+  checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`).
+
+## 6. Budget
 No F3 counter (the phase is closed; this is the design posing's step 1 on the owner's word). Runs:
+speed benchmarks and the class stages at both rungs ~45 min;
 class 4 min; derives 106 + 90 min (arc, kernel, the corrected criterion); walks A 92 + 19 min and
 R 150 min after three lost walks (~3 h of machine time lost to the mapping cap); refinement probes
 50 + 60 min. Nothing of the plug instance's campaign budget is touched.
 
-## 6. Conformity
+## 7. Conformity
 - Branch `rde-nozzle-program`, main tree; identity AlexFalco5; explicit pathspecs; GENO never
   added; push on the owner's standing word.
 - R1: `[F3/A1][S41]`. R3: this log; PROGRESS residual block (the S40 line extended with step 1's
@@ -141,9 +203,11 @@ R 150 min after three lost walks (~3 h of machine time lost to the mapping cap);
   twowall:arc-design-coarse-instrument-unfit minted, twowall:design-posing-open updated (step 1
   taken, its lesson), numerics row unchanged. SR-1: the index row.
 - Code: `a1_plug_spline_opt.run_trsqp` gains the additive `on_segment` callback (default None,
-  bit-identical); `a1_twowall.py` gains the arc posing (TWOP_KERNEL=arc), the per-direction
-  identifiability, the Newton metric's checkpoint/resume with cache clearing, the arc readout in the
-  grade. Records: `_twowall_arc/` (class, derive, walks, grade), `_twowall/derive_2026-09-26.json`
+  bit-identical); `a1_plug_march.py` gains `fast=` (the fused record lane) and `margin["pad"]` (the
+  fixed-block stack), both additive with the legacy lane as default; `a1_twowall.py` gains the arc
+  posing (TWOP_KERNEL=arc), the per-direction identifiability, the Newton metric's checkpoint/resume
+  with cache clearing, the arc readout in the grade, the K/N overrides for the fine rung, the gates
+  C-F (lane equivalence within the certificate's band) and C-R at the ladder's first infeasible step. Records: `_twowall_arc/` (class, derive, walks, grade), `_twowall/derive_2026-09-26.json`
   + log (the kernel derive re-run), the probes in RDE/handoff/f3_2026-09-25/.
 - Measured on the tree of the commit (2026-09-26 ~05:50): numeric lint PASS (128 files, 0 ratchet
   violations); claims lint PASS (0 violations; X-TWOP fresh, pass 2026-09-26 >= last commit of its

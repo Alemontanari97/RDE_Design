@@ -176,15 +176,28 @@ def make_resid_interior_bu(delta):
     return resid
 
 
-def predict_bu(pt1, pt2, ta):
+def mach_np(q, ta_np):
+    """state_q's Mach number by numpy on host copies of the tables (the
+    seed predictors' need; S41 fast lane)."""
+    Tg, hg, sg, cpg, Rg, h0, s0 = ta_np
+    T = np.interp(h0 - 0.5 * q * q, hg, Tg)
+    cp = np.interp(T, Tg, cpg)
+    gam = cp / (cp - Rg)
+    return q / np.sqrt(gam * Rg * T)
+
+
+def predict_bu(pt1, pt2, ta, ta_np=None):
     """Seed for the bottom-up interior cell: straight-line crossing of
     the foot-state characteristics, averaged state."""
     x1, y1, u1, v1 = (float(v) for v in pt1)
     x2, y2, u2, v2 = (float(v) for v in pt2)
-    st1 = A1.state_q(jnp.float64(np.hypot(u1, v1)), ta)
-    st2 = A1.state_q(jnp.float64(np.hypot(u2, v2)), ta)
-    mu1 = np.arcsin(min(1.0, 1.0 / max(float(st1[5]), 1.0001)))
-    mu2 = np.arcsin(min(1.0, 1.0 / max(float(st2[5]), 1.0001)))
+    if ta_np is not None:
+        M1_, M2_ = mach_np(np.hypot(u1, v1), ta_np), mach_np(np.hypot(u2, v2), ta_np)
+    else:
+        M1_ = float(A1.state_q(jnp.float64(np.hypot(u1, v1)), ta)[5])
+        M2_ = float(A1.state_q(jnp.float64(np.hypot(u2, v2)), ta)[5])
+    mu1 = np.arcsin(min(1.0, 1.0 / max(M1_, 1.0001)))
+    mu2 = np.arcsin(min(1.0, 1.0 / max(M2_, 1.0001)))
     th1, th2 = np.arctan2(v1, u1), np.arctan2(v2, u2)
     sp = np.tan(th1 + mu1)
     sm = np.tan(th2 - mu2)
@@ -199,7 +212,7 @@ def predict_bu(pt1, pt2, ta):
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
                edge_fill=0, rot_pred=None, margin=None, x_traced=False,
-               shroud=None, wedge_every=1):
+               shroud=None, wedge_every=1, fast=False):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -283,8 +296,21 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     A DESIGNED shroud (S40, [X-TWOP]) passes traced heights and slopes in
     the replay (play mode) only; the record needs concrete stations for
     its bracketing scan.
+    fast (S41 2026-09-26, additive; default False = every path below
+    unchanged): the RECORD lane's overheads removed -- one fused dispatch
+    per cell (solve_cert: the Newton solve and its certificate, the
+    VERBATIM step_norm expression, M5a) instead of the custom_vjp wrapper
+    plus a second dispatch, and the seed predictors' Mach numbers by numpy
+    on host copies of the tables instead of eager state_q calls (a profile
+    of the (140,31) record march: 62 percent in predict_bu's two state_q
+    calls, 30 percent in the custom_vjp wrapper). The seeds may differ in
+    their last bits from the eager path (np.interp vs jnp.interp): the
+    converged cells are graded bitwise by the carrier that opts in.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
+    if fast and cells is not None:
+        raise NotImplementedError("fast: the record-frame 4-wide cells only")
+    ta_np = tuple(np.asarray(a, float) for a in ta) if fast else None
     S = A1.Sched("rec") if sched is None else A1.Sched("play", sched.d)
     sx, sy, ssl = stations
     if len(start) == 6:
@@ -309,7 +335,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
 
     def with_ta(t):
         return (lambda z0, p: t[0](z0, p, ta),
-                lambda z, p: t[2](z, p, ta))
+                lambda z, p: t[2](z, p, ta),
+                (lambda z0, p: t[3](z0, p, ta)) if len(t) > 3 else None)
     s_int, s_fj, s_wb = with_ta(t_int), with_ta(t_fj), with_ta(t_wb)
     if shroud is not None:
         if cells is not None or NV == 6:
@@ -376,10 +403,11 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         e = -mg["rho"] * v
         m_acc[0] = e if m_acc[0] is None else jnp.logaddexp(m_acc[0], e)
 
-    def certify(stepfn, z, p):
+    def certify(stepfn, z, p, step=None):
         if S.mode != "rec":
             return
-        step = float(stepfn(z, jnp.asarray(p)))
+        if step is None:
+            step = float(stepfn(z, jnp.asarray(p)))
         sc = max(1.0, float(jnp.max(jnp.abs(z))))
         r = step / (A1.NEWTON_TOL_FACTOR * EPS * sc)
         if r > cert["worst"]:
@@ -391,6 +419,13 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     def cell(solver, p, z0, tag=None):
         _tag[0] = tag
         p = jnp.asarray(p)
+        if fast and S.mode == "rec" and solver[2] is not None:
+            # the fused record entry: the same Newton, the same step
+            # metric, one dispatch; the schedule records z as Sched.cell does
+            z, step = solver[2](jnp.asarray(z0), p)
+            S.d["z"].append(np.asarray(z))
+            certify(solver[1], z, p, step=float(step))
+            return z
         z = S.cell(solver[0], p, z0)
         certify(solver[1], z, p)
         return z
@@ -599,7 +634,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             pt2 = G[(jprev, i - 1)] if (jprev, i - 1) in G else G[(jprev, 1)]
             if S.mode == "rec":
                 z0 = (rot_pred(pt1, pt2, ta) if NV == 6
-                      else predict_bu(pt1, pt2, ta))
+                      else predict_bu(pt1, pt2, ta, ta_np))
             else:
                 z0 = None
             if NV == 6:
@@ -812,7 +847,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             pt1 = G[(jnew, i)]
             if S.mode == "rec":
                 x1_, y1_, u1_, v1_ = (float(v) for v in pt1[:4])
-                M1 = float(A1.state_q(jnp.float64(np.hypot(u1_, v1_)), ta)[5])
+                M1 = (float(mach_np(np.hypot(u1_, v1_), ta_np)) if ta_np is not None
+                      else float(A1.state_q(jnp.float64(np.hypot(u1_, v1_)), ta)[5]))
                 tcp = np.tan(np.arctan2(v1_, u1_)
                              + np.arcsin(min(1.0, 1.0 / M1)))
                 seg = -1
@@ -940,8 +976,35 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     uid[key] = len(pts_u)
                     pts_u.append(q[k])
                 ix[n_, k] = uid[key]
-        PU = jnp.stack(pts_u)[:, :2]
-        cA, cB, cC, cD = [PU[ix[:, k]] for k in range(4)]
+        PAD = int(mg.get("pad", 0) or 0)
+        n_c = ix.shape[0]
+        mask = None
+        if PAD > 0:
+            # FIXED-BLOCK STACK (S41 2026-09-26, opt-in by margin["pad"];
+            # default 0 = the path above, bit-identical). jnp.stack of N
+            # operands compiles ONE XLA module per N: minutes at 3e4 points
+            # (the "Very slow compile" of the (280,61) marches, measured
+            # 1400-1800 s against 112 s once cached) and a new module for
+            # every distinct cell count, which is how a long walk reached
+            # the kernel's memory-mapping cap. Blocks of PAD points (the
+            # last block padded by repeating its last point) compile once;
+            # the cell arrays are padded to a multiple of PAD with a repeat
+            # of the last cell and MASKED out of the min and the KS by +inf
+            # (exp(-inf) = 0 exactly: the aggregates are those of the real
+            # cells).
+            blocks = []
+            for i0 in range(0, len(pts_u), PAD):
+                blk = pts_u[i0:i0 + PAD]
+                blk = blk + [blk[-1]] * (PAD - len(blk))
+                blocks.append(jnp.stack(blk)[:, :2])
+            PU = jnp.concatenate(blocks, axis=0)
+            n_cp = -(-n_c // PAD) * PAD
+            ixp = np.concatenate([ix, np.repeat(ix[-1:], n_cp - n_c, axis=0)], axis=0)
+            mask = jnp.asarray(np.arange(n_cp) < n_c)
+            cA, cB, cC, cD = [PU[ixp[:, k]] for k in range(4)]
+        else:
+            PU = jnp.stack(pts_u)[:, :2]
+            cA, cB, cC, cD = [PU[ix[:, k]] for k in range(4)]
         xs = jnp.stack([cA[:, 0], cB[:, 0], cC[:, 0], cD[:, 0]], axis=1)
         ys = jnp.stack([cA[:, 1], cB[:, 1], cC[:, 1], cD[:, 1]], axis=1)
         area = 0.5 * jnp.sum(xs * jnp.roll(ys, -1, axis=1)
@@ -951,13 +1014,15 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
                     + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
         v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
+        if mask is not None:
+            v = jnp.where(mask, v, jnp.inf)
         if mg.get("cells") and S.mode == "rec":
             # per-cell census (S40, additive, record mode only): the
             # margin of every bucket cell with its (A-corner key, column)
-            mg["cells_out"] = (np.asarray(v), list(m_qkeys),
+            mg["cells_out"] = (np.asarray(v)[:n_c], list(m_qkeys),
                                np.stack([np.asarray(cA), np.asarray(cB),
-                                         np.asarray(cC), np.asarray(cD)]))
-        m_n[0] = int(v.shape[0])
+                                         np.asarray(cC), np.asarray(cD)])[:, :n_c])
+        m_n[0] = n_c
         m_min[0] = jnp.min(v)
         m_acc[0] = jax.scipy.special.logsumexp(-mg["rho"] * v)
 

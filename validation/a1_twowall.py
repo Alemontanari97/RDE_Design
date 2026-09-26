@@ -120,8 +120,8 @@ class TwoWall:
 
     def __init__(self, K=None, N=None, verbose=True):
         t0 = time.time()
-        self.K = int(POSE["K"]) if K is None else int(K)
-        self.N = int(POSE["N"]) if N is None else int(N)
+        self.K = int(os.environ.get("TWOP_K", POSE["K"])) if K is None else int(K)
+        self.N = int(os.environ.get("TWOP_N", POSE["N"])) if N is None else int(N)
         Rg = ST.R_UNIV / ST.MOLAR_MASS
         self.tab = A1.prep_tab(A1.build_tab_gconst(g=ST.GAMMA, Rg=Rg, ts=ST.T0, ps=ST.P0))
         self.ta = A1.tab_arrays(self.tab)
@@ -167,6 +167,10 @@ class TwoWall:
         # its knots move with it (fixed fractions of [x_a, end]). Default:
         # the posing of the JSON (the Migdal confirmation).
         self.kmode = os.environ.get("TWOP_KERNEL", "data" if self.kernel else "free")
+        # the record lane's speed switches (S41): TWOP_FAST=1 -> plug_march
+        # fast=True; TWOP_PAD=<block> -> the fixed-block margin stack
+        self.fast = bool(int(os.environ.get("TWOP_FAST", str(int(POSE.get("fast", False))))))
+        self.pad = int(os.environ.get("TWOP_PAD", str(POSE.get("pad", 0))))
         if self.kmode == "arc":
             self.kernel = True
         if self.kernel:
@@ -296,9 +300,11 @@ class TwoWall:
 
     def march_record(self, W, margin=None):
         (a, b, c), (d, e, f) = self.walls(np.asarray(W, float))
+        if margin is not None and self.pad and "pad" not in margin:
+            margin["pad"] = self.pad
         return plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
                           self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
-                          wedge_every=self.m_w, margin=margin)
+                          wedge_every=self.m_w, margin=margin, fast=self.fast)
 
     def _push(self, pts, y0):
         """Vacuum push of a wall polyline closed by its start point (y0 at x0)."""
@@ -607,8 +613,39 @@ def classderive():
     v = mg["cells_out"][0]
     m_ref, Nc = float(out["margin_min"]), int(out["margin_n"])
     J0 = float(tw.J_of(out))
-    say("   reference (%d + %d knots): C_F %.9f, cert %.3e; %d cells, min %+.4f, negative %d"
-        % (len(tw.kp), len(tw.ks), J0, float(out["cert_worst"]), Nc, m_ref, int(np.sum(v <= 0))))
+    if tw.fast or tw.pad:
+        # C-F (S41): the record lane's speed switches (plug_march fast=,
+        # margin pad=) against the legacy lane at the reference, BITWISE --
+        # every cell, every decision, J, the KS and the minimum
+        fast_, pad_ = tw.fast, tw.pad
+        tw.fast, tw.pad = False, 0
+        mgL = tw.margin_dict()
+        t0 = time.time()
+        oL, SL = tw.march_record(W0, margin=mgL)
+        tL = time.time() - t0
+        tw.fast, tw.pad = fast_, pad_
+        t0 = time.time()
+        oF, SF = tw.march_record(W0, margin=tw.margin_dict())
+        tF = time.time() - t0
+        # the two lanes solve the same cells to the same Newton tolerance; a
+        # seed that differs in its last bits can stop Newton on the other
+        # side of that tolerance (measured: bitwise at (140,31), max |dz|
+        # 2.3e-11 at (280,61)), so the gate is the CERTIFICATE'S OWN BAND:
+        # every cell within K_RICH x NEWTON_TOL_FACTOR x EPS x scale, the
+        # decisions identical, J / KS / min within K_RICH x EPS x n_cells
+        rz = max(float(np.max(np.abs(a - b))) / (A1.NEWTON_TOL_FACTOR * A1.EPS * max(1.0, float(np.max(np.abs(a)))))
+                 for a, b in zip(SL.d["z"], SF.d["z"]))
+        dz = max(float(np.max(np.abs(a - b))) for a, b in zip(SL.d["z"], SF.d["z"]))
+        same_dec = (len(SL.d["z"]) == len(SF.d["z"]) and all(SL.d[k] == SF.d[k] for k in SL.d if k != "z"))
+        rel = [abs(float(tw.J_of(oF)) / float(tw.J_of(oL)) - 1.0),
+               abs(float(oF["margin_ks"]) - float(oL["margin_ks"])) / max(abs(float(oL["margin_ks"])), A1.EPS),
+               abs(float(oF["margin_min"]) - float(oL["margin_min"])) / max(abs(float(oL["margin_min"])), A1.EPS)]
+        tol_rel = K_RICH * A1.EPS * len(SF.d["z"])
+        check("C-F the fast record lane (fast %s, pad %d) reproduces the legacy lane at the reference within the"
+              " certificate's own band: %d cells, max |dz| %.1e = %.2f of the Newton tolerance (<= K_RICH),"
+              " decisions identical %s, J / KS / min relative %.1e / %.1e / %.1e (<= %.1e); %.1f s against %.1f s"
+              % (fast_, pad_, len(SF.d["z"]), dz, rz, same_dec, rel[0], rel[1], rel[2], tol_rel, tF, tL),
+              same_dec and rz <= K_RICH and max(rel) <= tol_rel)
     check("C-1 the reference is in the fold class over the whole net (min cell %+.4f > 0, %d negative)"
           % (m_ref, int(np.sum(v <= 0))), m_ref > 0.0)
     floors = [m_ref / 2 ** k for k in range(1, rungs + 1)]
@@ -638,18 +675,10 @@ def classderive():
             " KS %+.4f, min cell %+.4f, C_F here %.6f, %s at the first floor"
             % (json.load(open(fw[-1]))["CF"], tw.CF_1d, ksr, rej["min"], rej["CF"],
                "INFEASIBLE" if ksr < floors[0] else "feasible"))
-    # the rejector: the UNCONSTRAINED ascent's own first move from the
-    # reference, a step ell 2^rejector_k along +grad J, must be infeasible
     J_g, g0 = jax.value_and_grad(lambda z: tw.J_replay(z, S))(jnp.asarray(W0))
     g0 = np.asarray(g0)
     u = g0 / np.linalg.norm(g0)
     ell = float(tw.sx[-1] - tw.x0) / len(tw.sx)
-    h_r = ell * 2.0 ** CASES["class"]["rejector_k"]
-    orj, _ = tw.march_record(W0 + h_r * u, margin=mg)
-    kr = float(orj["margin_ks"])
-    check("C-R REJECTOR the unconstrained ascent's first move from the reference (%.2e m along +grad J,"
-          " C_F %+.2e) is INFEASIBLE at every floor (KS %+.4f, min cell %+.4f)"
-          % (h_r, float(tw.J_of(orj)) - J0, kr, float(orj["margin_min"])), all(kr < f_ for f_ in floors))
     # READING the class scale along +grad J at the reference (the walk
     # derives its radius at its own start: here the gradient is noise)
     h_ok, h_bad, lad = None, None, []
@@ -669,11 +698,25 @@ def classderive():
             break
     bracketed = h_ok is not None and h_bad is not None and h_bad > h_ok
     say("   READING the class along +grad J at the reference: bracket [%s, %s] m" % (h_ok, h_bad))
+    # the rejector: the UNCONSTRAINED ascent's first move OUT of the class
+    # along +grad J (the ladder's h_bad -- at the reference the gradient is
+    # knot-scale zig-zag and the break sits at the same 0.17-0.33 mm on
+    # both rungs, measured) must be infeasible at EVERY floor, not only
+    # the first (S41: the S40 fixed step ell 2^-5 fell below the break at
+    # the fine rung, where ell halves)
+    if bracketed:
+        orj, _ = tw.march_record(W0 + h_bad * u, margin=mg)
+        kr = float(orj["margin_ks"])
+        check("C-R REJECTOR the unconstrained ascent's first move out of the class (%.2e m along +grad J,"
+              " C_F %+.2e) is INFEASIBLE at every floor (KS %+.4f, min cell %+.4f)"
+              % (h_bad, float(tw.J_of(orj)) - J0, kr, float(orj["margin_min"])), all(kr < f_ for f_ in floors))
+    else:
+        check("C-R REJECTOR: the class never breaks along +grad J inside the ladder -- no rejector", False)
     h_star = float(np.sqrt(h_ok * h_bad)) if bracketed else float("nan")
     tr0 = h_star / K_RICH
     say("   floors %s; rho %.1f; gap %.2e; h* %.3e m -> tr0 %.3e m, floor %.3e m"
         % (np.array2string(np.array(floors), precision=4), rho, gap, h_star, tr0, tr0 / K_RICH))
-    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
+    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, K=tw.K, N=tw.N, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
                N_cells=Nc, floors=floors, rho=rho, gap=gap, rejector=rej, ladder=lad, h_ok=h_ok,
                h_bad=h_bad, h_star=h_star, tr0=tr0, W_ref=W0.tolist(), grad_ref=g0.tolist(),
                seconds=time.time() - t00)
@@ -807,7 +850,8 @@ def walk():
     fc = sorted(glob.glob(os.path.join(ART, "class_20*.json")))
     Cr = json.load(open(os.environ.get("TWOP_CLASS", fc[-1])))
     if (Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel
-            or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode):
+            or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode
+            or (Cr.get("K", tw.K), Cr.get("N", tw.N)) != (tw.K, tw.N)):
         raise ValueError("the class record %s is not this posing's" % fc[-1])
     floors, rho, gap, m_ref = Cr["floors"], Cr["rho"], Cr["gap"], Cr["m_ref"]
     mg0 = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)

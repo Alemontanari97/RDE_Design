@@ -1,0 +1,15 @@
+== [F3] the two-wall fold class [X-TWOP] (stage class) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+  [PASS] C-F the fast record lane (fast True, pad 1024) reproduces the legacy lane at the reference within the certificate's own band: 8999 cells, max |dz| 0.0e+00 = 0.00 of the Newton tolerance (<= K_RICH), decisions identical True, J / KS / min relative 0.0e+00 / 0.0e+00 / 0.0e+00 (<= 8.0e-12); 8.4 s against 29.6 s
+  [PASS] C-1 the reference is in the fold class over the whole net (min cell +0.0113 > 0, 0 negative)
+  [PASS] C-2 KS brackets the minimum: 0.011168 <= KS 0.011345 <= 0.011345 (rho 50925.7, gap 1.77e-04)
+    h 4.139e-05 m: C_F 1.579881796 (+1.39e-06), KS +0.0113, min +0.0113, cert 2.553e-02
+    h 8.278e-05 m: C_F 1.579883076 (+2.67e-06), KS +0.0113, min +0.0113, cert 1.062e-01
+    h 1.656e-04 m: C_F 1.579885309 (+4.90e-06), KS +0.0112, min +0.0113, cert 3.743e-02
+    h 3.311e-04 m: C_F 1.579888494 (+8.09e-06), KS -0.0417, min -0.0417, cert 1.091e-01
+   READING the class along +grad J at the reference: bracket [0.00016556970324776787, 0.00033113940649553573] m
+  [PASS] C-R REJECTOR the unconstrained ascent's first move out of the class (3.31e-04 m along +grad J, C_F +8.09e-06) is INFEASIBLE at every floor (KS -0.0417, min cell -0.0417)
+   floors [0.0057 0.0028 0.0014 0.0007]; rho 50925.7; gap 1.77e-04; h* 2.342e-04 m -> tr0 5.854e-05 m, floor 1.463e-05 m
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall_arc/class_2026-09-26.json
+
+== 4/4 PASS  (149.6 s) ==
