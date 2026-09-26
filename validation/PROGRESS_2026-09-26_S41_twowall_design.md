@@ -173,9 +173,35 @@ Measured on the arc posing's reference (probes and logs in `RDE/handoff/f3_2026-
   posed at the fixed step ell 2^-5, which halves with ell and fell below the break at the fine rung
   -- re-posed as the ladder's first infeasible step. The coarse class re-run under the corrected
   gates: 3/3, C-F bitwise (`_twowall_arc/run_class_2026-09-26.log`).
-- LAUNCHED 2026-09-26 14:15, the two-rung test proper: the Newton walks A (Migdal's arcs) and R
-  (the gentler arcs' in-class ramp) at (280,61), metric at the fine rung, 10 segments x 6
-  iterations, checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`). [pending]
+- THE GRADIENTS, both things the owner asked for (2026-09-26 afternoon, "fai entrambe le cose"):
+  (i) THE METRIC IN PARALLEL: the 2n gradients of the secant Hessian are independent, so
+  `secant_hessian_parallel` spreads the columns over TWOP_WORKERS processes (stage hesscol of this
+  file, the same environment, each recording the same deterministic schedule at W0); gate H-P of
+  stage class: two columns in-process against the workers' -- max |dH| 0.0 (bitwise), 8 workers
+  366 s for the 26 columns at (140,31) against ~30 min in series (each worker 3-4 columns in
+  226-342 s: the per-column cost is 80 s, so the wall time scales with the workers up to n).
+  (ii) THE WAVEFRONT REPLAY (`validation/a1_wavefront_replay.py`, the record writing its dataflow
+  graph through plug_march(graph=...), additive): the frozen schedule re-executed by anti-diagonal
+  LEVELS -- 8999 cells in 368 levels, 566 batches at (140,31) -- every level's cells of one kind in
+  one jitted step (gather, parameters, the vmapped implicit solve on the recorded seeds, the
+  post-processing, the scatter), batches padded to multiples of 16 lanes so that the steps compile
+  once per (kind, size). Gate stage wavefront at (140,31), 3/3: J equal to 1.1e-16 relative, its
+  gradient to 2.2e-12, the class margin bitwise and its gradient to 7.6e-14 (tolerance K_RICH x EPS
+  x n_cells = 8e-12; the batched solve is the same Newton per lane, its arithmetic not bitwise);
+  steady-state cost of J with its gradient 2.5 s against 44.7 s (17.7x), of the margin with its
+  gradient 2.3 s against 48.9 s (21.4x); the first call of a process compiles for ~135 s. The
+  measured road here: without padding 566 distinct batch sizes recompiled at every schedule (170 s
+  per replay); with padding but 8 dispatches per batch 17 s; fused into one jitted step per batch
+  2.5 s. AT THE FINE RUNG (280,61), 3/3: J BITWISE equal, its gradient to 5.7e-12, the margin
+  1.8e-16 and its gradient 8.4e-14 (tolerance 3.1e-11); steady state 3.8 s against 132 s for J
+  with its gradient (35x) and 3.6 s against 199 s for the margin (55x); the first call 253 s. The
+  wavefront replay and the parallel metric are now the two-wall posing's defaults
+  (twowall_cases.json wavefront, lane 16; TWOP_WAVEFRONT / TWOP_WORKERS override). Budget of a
+  fine-rung walk on them: the metric ~5 min on 8 workers, a segment ~2 min -- the sequential
+  walks launched at 14:15 (8 h) were stopped at 15:05 and relaunched on the fast replay.
+- RELAUNCHED 2026-09-26 15:05 on the wavefront replay with the parallel metric (8 workers): the
+  Newton walks A (Migdal's arcs) and R (the gentler arcs' in-class ramp) at (280,61), 10 segments
+  x 6 iterations, checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`). [pending]
 - THE CLASS STAGE AT BOTH RUNGS with the corrected gates (`_twowall_arc/run_class_2026-09-26.log`
   4/4, 150 s; `_twowall_arc_fine/run_class_2026-09-26.log` 4/4, 528 s): C-F at (280,61) -- 35303
   cells, max |dz| 2.3e-11 = 0.47 of the Newton tolerance, decisions identical, J identical, KS

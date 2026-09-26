@@ -141,6 +141,26 @@ def make_resid_walltop(delta):
     return resid
 
 
+def margin_of_corners(cA, cB, cC, cD, mask, mg):
+    """The fold margin of every cell from its four corners (n, 2) each --
+    the signed area over the mean legs floored at ell2, orient-signed;
+    padded cells masked to +inf. The ONE formula of the vectorised margin
+    (S34), shared by the march's record/replay and the wavefront replay
+    (S41) so that both aggregate the same numbers in the same order."""
+    xs = jnp.stack([cA[:, 0], cB[:, 0], cC[:, 0], cD[:, 0]], axis=1)
+    ys = jnp.stack([cA[:, 1], cB[:, 1], cC[:, 1], cD[:, 1]], axis=1)
+    area = 0.5 * jnp.sum(xs * jnp.roll(ys, -1, axis=1)
+                         - jnp.roll(xs, -1, axis=1) * ys, axis=1)
+    lp = 0.5 * (jnp.hypot(cB[:, 0] - cA[:, 0], cB[:, 1] - cA[:, 1])
+                + jnp.hypot(cC[:, 0] - cD[:, 0], cC[:, 1] - cD[:, 1]))
+    lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
+                + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
+    v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
+    if mask is not None:
+        v = jnp.where(mask, v, jnp.inf)
+    return v
+
+
 def hermite_seg(x, xA, yA, sA, xB, yB, sB):
     """(y, dy/dx) of the cubic Hermite segment -- the shroud's local shape
     the top cell solves against (numpy or jnp, elementwise)."""
@@ -212,7 +232,7 @@ def predict_bu(pt1, pt2, ta, ta_np=None):
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
                edge_fill=0, rot_pred=None, margin=None, x_traced=False,
-               shroud=None, wedge_every=1, fast=False):
+               shroud=None, wedge_every=1, fast=False, graph=None):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -306,6 +326,13 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     calls, 30 percent in the custom_vjp wrapper). The seeds may differ in
     their last bits from the eager path (np.interp vs jnp.interp): the
     converged cells are graded bitwise by the carrier that opts in.
+    graph (S41, additive; record mode, 4-wide shroud posing): a dict the
+    record fills with the march's DATAFLOW -- every cell's kind, output
+    key, input keys, static indices and schedule index, the wedge aliases,
+    the ordered wall and shroud outputs and the margin quads' corner keys
+    -- for a1_wavefront_replay, which re-executes the frozen schedule by
+    anti-diagonal batches (the independent cells of a level in one
+    vmapped solve) instead of cell by cell.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     if fast and cells is not None:
@@ -321,6 +348,10 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         ss0 = h00 = None
         NV = 4
     N = len(ys0)
+    if graph is not None:
+        if S.mode != "rec" or NV == 6 or cells is not None or shroud is None or x_traced:
+            raise NotImplementedError("graph: the record of the 4-wide shroud posing only")
+        graph.update(cells=[], alias={}, wall_out=[], shroud_out=[], quads=[], N=N)
 
     if cells is None:
         t_int = A1.get_solver(("intbu", delta),
@@ -568,6 +599,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         if wedge:
             j0 = wedge.pop(0)
             G[(j0, i)] = G[(j0, 1)]
+            if graph is not None:
+                graph["alias"][(j0, i)] = (j0, 1)
             jnew = j0
             jsrc0 = j0 + 1
             done = False
@@ -610,6 +643,10 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 wpt = jnp.concatenate([wpt, sw_inv])
             G[(1, i)] = wpt
             wall_pts.append(wpt)
+            if graph is not None:
+                graph["cells"].append(dict(kind="wall", out=(1, i), inp=[(jf, i - b), (jf + 1, i - b)],
+                                           kst=kst, x_next=x_next, zi=len(S.d["z"]) - 1))
+                graph["wall_out"].append((1, i))
             # ---- ROW CONSUMPTION at the wall: the previous column's rows
             # 2..jf lie BELOW the new wall point's foot — their C-
             # characteristics have already terminated on the wall between
@@ -631,7 +668,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             pt1 = G[(jnew - 1, i)]
             # a thinned wedge: the rows the previous wedge column does not
             # carry take their C- partner from the start line itself
-            pt2 = G[(jprev, i - 1)] if (jprev, i - 1) in G else G[(jprev, 1)]
+            k2 = (jprev, i - 1) if (jprev, i - 1) in G else (jprev, 1)
+            pt2 = G[k2]
             if S.mode == "rec":
                 z0 = (rot_pred(pt1, pt2, ta) if NV == 6
                       else predict_bu(pt1, pt2, ta, ta_np))
@@ -760,6 +798,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                      z0 if z0 is not None else jnp.zeros(
                          5 if NV == 6 else 4),
                      tag=("int", ktag, jnew))
+            if graph is not None:
+                graph["cells"].append(dict(kind="int", out=(jnew, i), inp=[(jnew - 1, i), k2],
+                                           zi=len(S.d["z"]) - 1))
             if NV == 6:
                 # the cell's t lerps the streamline invariants on the
                 # SEARCHED chord (the foot the cell itself refined),
@@ -830,6 +871,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     if mg.get("vec"):
                         m_quads.append((G[(jprev - 1, i - 1)], pt2, z, pt1))
                         m_qkeys.append(((jprev - 1, i - 1), i))
+                        if graph is not None:
+                            graph["quads"].append(((jprev - 1, i - 1), k2, (jnew, i), (jnew - 1, i)))
                     else:
                         margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
                                                z, pt1))
@@ -882,6 +925,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 z = cell(s_wt, p, z0, tag=("shroud", ktag))
                 y4, s4 = hermite_seg(z[0], xA, yA, sA, xB, yB, sB)
                 spt = jnp.array([z[0], y4, z[1], s4 * z[1]])
+                if graph is not None:
+                    graph["cells"].append(dict(kind="shroud", out=(jnew + 1, i), inp=[(jnew, i)], seg=int(seg),
+                                               zi=len(S.d["z"]) - 1))
             else:
                 # the LIP F: the bell's inverse wall cell, its foot on the
                 # C- leg from the previous shroud point to this column's
@@ -897,9 +943,14 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 spt = jnp.array([sxs[-1], sys_[-1], z[1], sss[-1] * z[1]])
                 lip_done[0] = True
                 lip_col[0] = int(i)
+                if graph is not None:
+                    graph["cells"].append(dict(kind="lip", out=(jnew + 1, i), inp=[(M, i - 1), (jnew, i)],
+                                               zi=len(S.d["z"]) - 1))
             M = jnew + 1
             G[(M, i)] = spt
             shroud_pts.append(spt)
+            if graph is not None:
+                graph["shroud_out"].append((M, i))
         else:
             # ---- new top row: the free edge, fed from THIS column
             pt1 = G[(jnew, i)]
@@ -1005,17 +1056,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         else:
             PU = jnp.stack(pts_u)[:, :2]
             cA, cB, cC, cD = [PU[ix[:, k]] for k in range(4)]
-        xs = jnp.stack([cA[:, 0], cB[:, 0], cC[:, 0], cD[:, 0]], axis=1)
-        ys = jnp.stack([cA[:, 1], cB[:, 1], cC[:, 1], cD[:, 1]], axis=1)
-        area = 0.5 * jnp.sum(xs * jnp.roll(ys, -1, axis=1)
-                             - jnp.roll(xs, -1, axis=1) * ys, axis=1)
-        lp = 0.5 * (jnp.hypot(cB[:, 0] - cA[:, 0], cB[:, 1] - cA[:, 1])
-                    + jnp.hypot(cC[:, 0] - cD[:, 0], cC[:, 1] - cD[:, 1]))
-        lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
-                    + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
-        v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
-        if mask is not None:
-            v = jnp.where(mask, v, jnp.inf)
+        v = margin_of_corners(cA, cB, cC, cD, mask, mg)
         if mg.get("cells") and S.mode == "rec":
             # per-cell census (S40, additive, record mode only): the
             # margin of every bucket cell with its (A-corner key, column)

@@ -68,6 +68,7 @@ import jax.numpy as jnp                                 # noqa: E402
 import a1_ideal_march_jax as A1                         # noqa: E402
 import a1_shroud_twin as ST                             # noqa: E402
 from a1_plug_march import plug_march, col_fluxes        # noqa: E402
+import a1_wavefront_replay as WF                        # noqa: E402
 from a1_toc_variational_jax import spline_coeffs, spline_eval   # noqa: E402
 
 CASES = {k: v["value"] for k, v in json.load(
@@ -171,6 +172,10 @@ class TwoWall:
         # fast=True; TWOP_PAD=<block> -> the fixed-block margin stack
         self.fast = bool(int(os.environ.get("TWOP_FAST", str(int(POSE.get("fast", False))))))
         self.pad = int(os.environ.get("TWOP_PAD", str(POSE.get("pad", 0))))
+        # TWOP_WAVEFRONT=1 (S41): the replays (J, margin, their gradients)
+        # by a1_wavefront_replay on the record's dataflow graph; the record
+        # itself unchanged (it also writes the graph)
+        self.wavefront = bool(int(os.environ.get("TWOP_WAVEFRONT", str(int(POSE.get("wavefront", False))))))
         if self.kmode == "arc":
             self.kernel = True
         if self.kernel:
@@ -302,9 +307,13 @@ class TwoWall:
         (a, b, c), (d, e, f) = self.walls(np.asarray(W, float))
         if margin is not None and self.pad and "pad" not in margin:
             margin["pad"] = self.pad
-        return plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
-                          self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
-                          wedge_every=self.m_w, margin=margin, fast=self.fast)
+        graph = {} if self.wavefront else None
+        out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
+                            self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
+                            wedge_every=self.m_w, margin=margin, fast=self.fast, graph=graph)
+        if graph is not None:
+            S.plan = WF.plan(graph)
+        return out, S
 
     def _push(self, pts, y0):
         """Vacuum push of a wall polyline closed by its start point (y0 at x0)."""
@@ -321,9 +330,13 @@ class TwoWall:
         Jn = self.F_in - self._push(out["wall"], self.y_l) + self._push(out["shroud"], self.y_u)
         return Jn / (ST.P0 * self.A_star)
 
-    def J_replay(self, W, sched):
-        S_ = A1.Sched("play", sched.d)
+    def J_replay(self, W, sched, wavefront=None):
         (a, b, c), (d, e, f) = self.walls(W)
+        if (self.wavefront if wavefront is None else wavefront) and getattr(sched, "plan", None) is not None:
+            out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), self.start, self.tab, 1.0,
+                            int(CASES["wavefront"]["lane"]))
+            return self.J_of(out)
+        S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
                             shroud=(d, e, f), wedge_every=self.m_w)
         return self.J_of(out)
@@ -341,11 +354,17 @@ class TwoWall:
             d["cells"] = True
         return d
 
-    def margin_replay(self, W, sched, margin):
+    def margin_replay(self, W, sched, margin, wavefront=None):
         """KS fold margin minus its floor on the frozen schedule
         (differentiable in both walls), the record driver's hook."""
-        S_ = A1.Sched("play", sched.d)
         (a, b, c), (d, e, f) = self.walls(W)
+        if (self.wavefront if wavefront is None else wavefront) and getattr(sched, "plan", None) is not None:
+            if self.pad and "pad" not in margin:
+                margin["pad"] = self.pad
+            out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), self.start, self.tab, 1.0,
+                            int(CASES["wavefront"]["lane"]), margin=margin)
+            return out["margin_ks"] - margin["mu0"]
+        S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
                             shroud=(d, e, f), wedge_every=self.m_w, margin=margin)
         return out["margin_ks"] - margin["mu0"]
@@ -480,12 +499,10 @@ def derive():
     gfun = jax.grad(f)
     t0 = time.time()
     Hs = {}
+    nw_ = int(os.environ.get("TWOP_WORKERS", "1"))
     for hs in GATES["hess_steps"]:
-        Hh = np.zeros((len(W0), len(W0)))
-        for j in range(len(W0)):
-            e = np.zeros(len(W0))
-            e[j] = hs
-            Hh[:, j] = (np.asarray(gfun(jnp.asarray(W0 + e))) - np.asarray(gfun(jnp.asarray(W0 - e)))) / (2.0 * hs)
+        Hh = (secant_hessian_parallel(W0, hs, nw_, "derive_h%g" % hs) if nw_ > 1
+              else secant_hessian(gfun, W0, hs))
         Hs[hs] = Hh
         say("   secant Hessian at h %.0e m: asymmetry %.2e (max |H| %.2e); %.0f s"
             % (hs, float(np.max(np.abs(Hh - Hh.T))), float(np.max(np.abs(Hh))), time.time() - t0))
@@ -648,6 +665,23 @@ def classderive():
               same_dec and rz <= K_RICH and max(rel) <= tol_rel)
     check("C-1 the reference is in the fold class over the whole net (min cell %+.4f > 0, %d negative)"
           % (m_ref, int(np.sum(v <= 0))), m_ref > 0.0)
+    if int(os.environ.get("TWOP_WORKERS", "1")) > 1:
+        # H-P (S41): a Hessian column by the worker processes against the
+        # same column in this process -- the parallel metric is the serial
+        # one (the schedule at W0 is deterministic; the gradients are the
+        # same computation in another process)
+        h1_ = GATES["hess_steps"][0]
+        t0 = time.time()
+        Hp = secant_hessian_parallel(W0, h1_, int(os.environ["TWOP_WORKERS"]), "gate")
+        tP = time.time() - t0
+        _, S1 = tw.march_record(W0)
+        t0 = time.time()
+        Hc = secant_hessian(jax.grad(lambda z: tw.J_replay(z, S1)), W0, h1_, cols=[0, len(W0) - 1])
+        tS = time.time() - t0
+        dcol = max(float(np.max(np.abs(Hp[:, c] - Hc[:, c]))) for c in (0, len(W0) - 1))
+        check("H-P the parallel secant Hessian (%d workers, %.0f s for %d columns) equals the in-process"
+              " columns 0 and %d (max |dH| %.1e; %.0f s for the two)"
+              % (int(os.environ["TWOP_WORKERS"]), tP, len(W0), len(W0) - 1, dcol, tS), dcol == 0.0)
     floors = [m_ref / 2 ** k for k in range(1, rungs + 1)]
     rho = K_RICH * np.log(Nc) / floors[-1]
     gap = np.log(Nc) / rho
@@ -789,16 +823,77 @@ class Metric:
         return self.tw.margin_replay(self.W(Z), sched, margin)
 
 
-def secant_hessian(gfun, W0, h):
+def secant_hessian(gfun, W0, h, cols=None):
     """Central differences of the exact reverse gradient at scale h (the
-    G-5 instrument), unsymmetrised."""
+    G-5 instrument), unsymmetrised; cols = the columns to compute (all)."""
     n = len(W0)
     H = np.zeros((n, n))
-    for j in range(n):
+    for j in (range(n) if cols is None else cols):
         e = np.zeros(n)
         e[j] = h
         H[:, j] = (np.asarray(gfun(jnp.asarray(W0 + e))) - np.asarray(gfun(jnp.asarray(W0 - e)))) / (2.0 * h)
     return H
+
+
+def secant_hessian_parallel(W0, h, workers, tag):
+    """The 2n gradients of the secant Hessian are independent: TWOP_WORKERS
+    > 1 spreads the columns over that many worker PROCESSES (stage hesscol,
+    this file, the same environment: posing, rung, lanes), each recording
+    the schedule at W0 itself (deterministic: the same schedule) and
+    writing its columns; the parent assembles H. Serial (workers <= 1) is
+    the in-process loop, unchanged. Column values do not depend on the
+    process (verified by the gate H-P of stage class)."""
+    import subprocess
+    n = len(W0)
+    d = os.path.join(ART, "_hess_%s" % tag)
+    os.makedirs(d, exist_ok=True)
+    np.save(os.path.join(d, "W0.npy"), np.asarray(W0, float))
+    chunks = [list(range(n))[k::workers] for k in range(workers)]
+    procs = []
+    for k, cols in enumerate(chunks):
+        if not cols:
+            continue
+        env = dict(os.environ, TWOP_STAGE="hesscol", TWOP_HESS_DIR=d, TWOP_HESS_H=repr(float(h)),
+                   TWOP_HESS_COLS=",".join(str(c) for c in cols), TWOP_HESS_ID=str(k),
+                   XLA_FLAGS=os.environ.get("XLA_FLAGS", "") + " --xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=4",
+                   MALLOC_ARENA_MAX="2")
+        procs.append(subprocess.Popen([sys.executable, "-B", "-W", "ignore", os.path.abspath(__file__)], env=env,
+                                      stdout=open(os.path.join(d, "worker_%d.log" % k), "w"), stderr=subprocess.STDOUT))
+    for pr in procs:
+        pr.wait()
+    H = np.zeros((n, n))
+    done = np.zeros(n, bool)
+    for k, cols in enumerate(chunks):
+        if not cols:
+            continue
+        fn = os.path.join(d, "cols_%d.npz" % k)
+        if not os.path.exists(fn):
+            raise RuntimeError("Hessian worker %d wrote nothing (see %s)" % (k, os.path.join(d, "worker_%d.log" % k)))
+        Z = np.load(fn)
+        for c, col in zip(Z["cols"], Z["H"].T):
+            H[:, int(c)] = col
+            done[int(c)] = True
+    if not done.all():
+        raise RuntimeError("Hessian columns missing: %s" % np.where(~done)[0])
+    return H
+
+
+def hesscol():
+    """STAGE hesscol (a worker of secant_hessian_parallel): the columns
+    TWOP_HESS_COLS of the secant Hessian at W0 (TWOP_HESS_DIR/W0.npy), scale
+    TWOP_HESS_H, on the schedule recorded at W0 in this process."""
+    d = os.environ["TWOP_HESS_DIR"]
+    W0 = np.load(os.path.join(d, "W0.npy"))
+    h = float(os.environ["TWOP_HESS_H"])
+    cols = [int(c) for c in os.environ["TWOP_HESS_COLS"].split(",")]
+    tw = TwoWall(verbose=False)
+    _, S = tw.march_record(W0)
+    gfun = jax.grad(lambda z: tw.J_replay(z, S))
+    t0 = time.time()
+    H = secant_hessian(gfun, W0, h, cols=cols)
+    np.savez(os.path.join(d, "cols_%s.npz" % os.environ["TWOP_HESS_ID"]), cols=np.array(cols), H=H[:, cols])
+    print("worker %s: columns %s in %.0f s" % (os.environ["TWOP_HESS_ID"], cols, time.time() - t0), flush=True)
+    return 0
 
 
 def arc_start(tw):
@@ -901,7 +996,9 @@ def walk():
         u = dN / np.linalg.norm(dN)
     elif metric == "start":
         t_m = time.time()
-        Hs = secant_hessian(jax.grad(lambda z: tw.J_replay(z, S0)), Ws, GATES["hess_steps"][0])
+        nw_ = int(os.environ.get("TWOP_WORKERS", "1"))
+        Hs = (secant_hessian_parallel(Ws, GATES["hess_steps"][0], nw_, "metric_%s" % start) if nw_ > 1
+              else secant_hessian(jax.grad(lambda z: tw.J_replay(z, S0)), Ws, GATES["hess_steps"][0]))
         asym_m = float(np.max(np.abs(Hs - Hs.T)))
         lam_m, V_m = np.linalg.eigh(-0.5 * (Hs + Hs.T))
         floor_m = K_RICH * asym_m
@@ -1092,6 +1189,59 @@ def grade():
     return 0 if NPASS[0] == NPASS[1] else 1
 
 
+def wavefront():
+    """STAGE wavefront (S41): the anti-diagonal replay against the
+    sequential replay at the reference of the current posing and rung --
+    WF-1 J, WF-2 its gradient, WF-3 the class margin and its gradient,
+    each within K_RICH x EPS x n_cells of the sequential value (bitwise
+    reported), and the timings."""
+    t00 = time.time()
+    os.makedirs(ART, exist_ok=True)
+    say("== [F3] the wavefront replay against the sequential replay [X-TWOP] (stage wavefront) ==")
+    tw = TwoWall()
+    tw.wavefront = True
+    W0 = tw.W_ref.copy()
+    mg = tw.margin_dict()
+    t0 = time.time()
+    out, S = tw.march_record(W0, margin=mg)
+    say("   record with the graph: %.1f s; %d cells in %d levels (%d batches); %d quads"
+        % (time.time() - t0, S.plan["n_cells"], S.plan["n_levels"], len(S.plan["batches"]), S.plan["quads"].shape[0]))
+    tol = K_RICH * A1.EPS * S.plan["n_cells"]
+    rows = {}
+    for name, wf in (("sequential", False), ("wavefront", True), ("wavefront-2", True)):
+        t0 = time.time()
+        J, g = jax.value_and_grad(lambda z: tw.J_replay(z, S, wavefront=wf))(jnp.asarray(W0))
+        g.block_until_ready()
+        tJ = time.time() - t0
+        t0 = time.time()
+        m, gm = jax.value_and_grad(lambda z: tw.margin_replay(z, S, mg, wavefront=wf))(jnp.asarray(W0))
+        gm.block_until_ready()
+        tm = time.time() - t0
+        rows[name] = (float(J), np.asarray(g), float(m), np.asarray(gm), tJ, tm)
+        say("   %-10s J %.15g (%.1f s with its gradient), KS - mu0 %.15g (%.1f s with its gradient)"
+            % (name, float(J), tJ, float(m), tm))
+    a, b = rows["sequential"], rows["wavefront-2"]      # the steady state (the first call compiles)
+    dJ = abs(b[0] / a[0] - 1.0)
+    dg = float(np.max(np.abs(b[1] - a[1]))) / max(float(np.max(np.abs(a[1]))), A1.EPS)
+    dm = abs(b[2] - a[2]) / max(abs(a[2]), A1.EPS)
+    dgm = float(np.max(np.abs(b[3] - a[3]))) / max(float(np.max(np.abs(a[3]))), A1.EPS)
+    check("WF-1 J: wavefront = sequential to %.1e relative (<= %.1e; bitwise %s)" % (dJ, tol, b[0] == a[0]), dJ <= tol)
+    check("WF-2 grad J: max relative difference %.1e (<= %.1e; bitwise %s)"
+          % (dg, tol, bool(np.array_equal(a[1], b[1]))), dg <= tol)
+    check("WF-3 the class margin %.1e and its gradient %.1e (<= %.1e; bitwise %s / %s)"
+          % (dm, dgm, tol, b[2] == a[2], bool(np.array_equal(a[3], b[3]))), max(dm, dgm) <= tol)
+    say("   speed-up (steady state, the second wavefront call): J + grad %.1fx, margin + grad %.1fx; the"
+        " first call (compiling the padded batches) %.1f / %.1f s"
+        % (a[4] / b[4], a[5] / b[5], rows["wavefront"][4], rows["wavefront"][5]))
+    json.dump(dict(npass=list(NPASS), K=tw.K, N=tw.N, kmode=tw.kmode, n_cells=S.plan["n_cells"],
+                   n_levels=S.plan["n_levels"], dJ=dJ, dg=dg, dm=dm, dgm=dgm, tol=tol,
+                   t_seq=[a[4], a[5]], t_wf=[b[4], b[5]]),
+              open(os.path.join(ART, "wavefront_K%d_N%d_%s.json" % (tw.K, tw.N, time.strftime("%Y-%m-%d"))), "w"), indent=1)
+    say("\n== %d/%d PASS  (%.1f s) ==" % (NPASS[0], NPASS[1], time.time() - t00))
+    return 0 if NPASS[0] == NPASS[1] else 1
+
+
 if __name__ == "__main__":
     sys.exit({"derive": derive, "class": classderive, "walk": walk,
-              "grade": grade}[os.environ.get("TWOP_STAGE", "derive")]())
+              "grade": grade, "hesscol": hesscol,
+              "wavefront": wavefront}[os.environ.get("TWOP_STAGE", "derive")]())

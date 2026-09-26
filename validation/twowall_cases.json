@@ -10,10 +10,11 @@
       "kernel": true,
       "arc_scan_x": 0.3,
       "fast": true,
-      "pad": 1024
+      "pad": 1024,
+      "wavefront": true
     },
     "cls": "NUMERIC",
-    "note": "the [X-MGDL] coarse grid (140 plug stations, 31 rows; the shroud's station count scaled by its length, as the twin); the wall stations FROZEN in x at the twin's curvature-adaptive positions on GENO's walls; each wall a clamped-left (slope 0 at the uniform start) natural-right cubic spline through m knots placed by the same curvature measure, the LAST knot pinned (the plug tip, the shroud lip: the exit area is the design's datum); design vector = the m - 1 free knot heights of each wall; m = 40 knots per wall since S40 2026-09-25: the 8-knot spline lags GENO's initial expansion arcs by up to 3.6 deg near their end (x ~0.07, a curvature jump of Migdal's walls) and the discrete reference then carries a C- coalescence after the lip (1006 folded cells; 794 / 404 / 189 / 171 at m = 12 / 16 / 24 / 32); at m = 40 the reference has no folded cell and the same worst margin as GENO's exact walls (+0.0113) -- measured, RDE/handoff/f3_2026-09-25/twop_rep_census*.log; KERNEL POSING since S40 2026-09-25 (kernel true): GENO's initial circular arcs, up to their curvature jump (the largest |d kappa/dx| below arc_scan_x = 0.3 m: shroud x 0.0646, plug x 0.0729), are DATA; each wall downstream is a spline clamped to the arc-end point and slope through m = 12 knots by the curvature measure of the downstream wall, the last pinned (measured: representation error 2.7e-4 / 1.9e-4 m, angle 0.48 / 0.36 deg, the reference fold-free with worst margin +0.0113 = GENO's exact walls; at 8 knots it folds, 87 cells); RECORD LANE (S41 2026-09-26): fast = plug_march fast=True (one fused dispatch per cell, numpy seed Mach) and pad = 1024 (the margin's fixed-block stack) -- measured BITWISE identical to the legacy lane on the reference (every cell, decision, J, KS, min; gate C-F of stage class), 29 -> 9 s at (140,31) and 1400-1800 -> 35 s at (280,61) where the legacy stack's XLA compile dominated; TWOP_FAST / TWOP_PAD override"
+    "note": "the [X-MGDL] coarse grid (140 plug stations, 31 rows; the shroud's station count scaled by its length, as the twin); the wall stations FROZEN in x at the twin's curvature-adaptive positions on GENO's walls; each wall a clamped-left (slope 0 at the uniform start) natural-right cubic spline through m knots placed by the same curvature measure, the LAST knot pinned (the plug tip, the shroud lip: the exit area is the design's datum); design vector = the m - 1 free knot heights of each wall; m = 40 knots per wall since S40 2026-09-25: the 8-knot spline lags GENO's initial expansion arcs by up to 3.6 deg near their end (x ~0.07, a curvature jump of Migdal's walls) and the discrete reference then carries a C- coalescence after the lip (1006 folded cells; 794 / 404 / 189 / 171 at m = 12 / 16 / 24 / 32); at m = 40 the reference has no folded cell and the same worst margin as GENO's exact walls (+0.0113) -- measured, RDE/handoff/f3_2026-09-25/twop_rep_census*.log; KERNEL POSING since S40 2026-09-25 (kernel true): GENO's initial circular arcs, up to their curvature jump (the largest |d kappa/dx| below arc_scan_x = 0.3 m: shroud x 0.0646, plug x 0.0729), are DATA; each wall downstream is a spline clamped to the arc-end point and slope through m = 12 knots by the curvature measure of the downstream wall, the last pinned (measured: representation error 2.7e-4 / 1.9e-4 m, angle 0.48 / 0.36 deg, the reference fold-free with worst margin +0.0113 = GENO's exact walls; at 8 knots it folds, 87 cells); RECORD LANE (S41 2026-09-26): fast = plug_march fast=True (one fused dispatch per cell, numpy seed Mach) and pad = 1024 (the margin's fixed-block stack) -- measured BITWISE identical to the legacy lane on the reference (every cell, decision, J, KS, min; gate C-F of stage class), 29 -> 9 s at (140,31) and 1400-1800 -> 35 s at (280,61) where the legacy stack's XLA compile dominated; TWOP_FAST / TWOP_PAD override; wavefront = true since S41 2026-09-26: the replays by a1_wavefront_replay (gate stage wavefront: 3/3 at both rungs)"
   },
   "gates": {
     "value": {
@@ -79,5 +80,12 @@
     },
     "cls": "NUMERIC",
     "note": "the ARC posing (TWOP_KERNEL=arc, S40 step 1 of the design posing): each wall's initial stretch a circular arc tangent to the axial inlet whose end abscissa and end slope are design variables; the generic start R takes each arc's radius x start_R_scale at the reference's end angle (a gentler, longer kernel) and the cubic Hermite downstream to the pinned end with an axial exit"
+  },
+  "wavefront": {
+    "value": {
+      "lane": 16
+    },
+    "cls": "NUMERIC",
+    "note": "a1_wavefront_replay: the batches of one level and kind are padded to a multiple of lane lanes so the jitted steps compile once per padded size (S41: 566 batches of ~150 distinct sizes recompiled at every schedule otherwise); 16 = a few compiled sizes per kind at both rungs, the padded lanes' duplicate solves negligible"
   }
 }
