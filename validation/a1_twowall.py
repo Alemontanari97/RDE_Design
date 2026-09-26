@@ -187,6 +187,13 @@ class TwoWall:
         # by a1_wavefront_replay on the record's dataflow graph; the record
         # itself unchanged (it also writes the graph)
         self.wavefront = bool(int(os.environ.get("TWOP_WAVEFRONT", str(int(POSE.get("wavefront", False))))))
+        # TWOP_SHAPE=1 (S41 step 2 ter): the cell margin in SHAPE mode (the
+        # sine of the angle between the characteristics at every size) --
+        # the area mode's ell2 floor made the class floor a size floor
+        self.shape = bool(int(os.environ.get("TWOP_SHAPE", str(int(CASES["margin"]["shape"])))))
+        # TWOP_NOPLUME=1 (S41 step 2 ter): the cells beyond the last wall's end
+        # (the plume) are not in the class -- see margin_of_corners
+        self.noplume = bool(int(os.environ.get("TWOP_NOPLUME", str(int(CASES["margin"]["noplume"])))))
         if self.kmode == "arc":
             self.kernel = True
         if self.kernel:
@@ -411,6 +418,10 @@ class TwoWall:
         (a, b, c), (d, e, f) = self.walls(np.asarray(W, float))
         if margin is not None and self.pad and "pad" not in margin:
             margin["pad"] = self.pad
+        if margin is not None and self.noplume:
+            # set on the caller's dict (like "pad"): the census (cells_out)
+            # and the counters the march writes into it must stay visible
+            margin["x_max"] = float(max(float(a[-1]), float(d[-1])))
         graph = {} if self.wavefront else None
         out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
                             self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
@@ -461,6 +472,9 @@ class TwoWall:
         ell = float(self.sx[-1] - self.x0) / len(self.sx)
         d = dict(rho=float(rho), mu0=float(mu0), m_ref=float(m_ref), orient=-1.0, f_edge=0.0,
                  jmin=2, ell2=ell ** 2, vec=True)
+        if self.shape:
+            d["shape"] = True
+            d["eps2"] = float(CASES["margin"]["eps2_over_ell2"]) * ell ** 2
         if cells:
             d["cells"] = True
         return d
@@ -469,6 +483,9 @@ class TwoWall:
         """KS fold margin minus its floor on the frozen schedule
         (differentiable in both walls), the record driver's hook."""
         (a, b, c), (d, e, f) = self.walls(W)
+        if self.noplume:
+            margin = dict(margin)
+            margin["x_max"] = jnp.maximum(a[-1], d[-1])          # traced with the ends
         if (self.wavefront if wavefront is None else wavefront) and getattr(sched, "plan", None) is not None:
             if self.pad and "pad" not in margin:
                 margin["pad"] = self.pad
@@ -774,8 +791,59 @@ def classderive():
               " decisions identical %s, J / KS / min relative %.1e / %.1e / %.1e (<= %.1e); %.1f s against %.1f s"
               % (fast_, pad_, len(SF.d["z"]), dz, rz, same_dec, rel[0], rel[1], rel[2], tol_rel, tF, tL),
               same_dec and rz <= K_RICH and max(rel) <= tol_rel)
+    if tw.noplume:
+        say("   plume cells beyond the last wall's end (x %.4f): %d of %d, out of the class"
+            % (float(max(tw.walls(W0)[0][0][-1], tw.walls(W0)[1][0][-1])), int(np.sum(~np.isfinite(np.asarray(v)))), len(v)))
     check("C-1 the reference is in the fold class over the whole net (min cell %+.4f > 0, %d negative)"
           % (m_ref, int(np.sum(v <= 0))), m_ref > 0.0)
+    if tw.shape:
+        # C-S (S41 step 2 ter, the transition duty of the tier-invariant
+        # clause: the margin re-derived for the shape mode + KAT against a
+        # closed form + the guard verified): (a) a parallelogram with legs
+        # a, b and angle phi scores exactly sin phi at every size above the
+        # guard; (b) the reference's own cells scaled by 0.1 keep their
+        # margins to round-off (size-free); (c) the guard eps2 never binds on
+        # the reference (headroom >= 100); a READING of both modes' worst cell
+        from a1_plug_march import margin_of_corners as _moc
+        CS = CASES["class_shape_gates"]
+        mgs = tw.margin_dict()
+        ell_ = float(np.sqrt(mgs["ell2"]))
+        errs = []
+        for a_, b_, al_, ph_ in CS["parallelograms"]:
+            A_ = np.zeros((1, 2)); B_ = A_ + a_ * ell_ * np.array([[np.cos(al_), np.sin(al_)]])
+            D_ = A_ + b_ * ell_ * np.array([[np.cos(al_ + ph_), np.sin(al_ + ph_)]]); C_ = B_ + (D_ - A_)
+            vv = float(_moc(jnp.asarray(A_), jnp.asarray(B_), jnp.asarray(C_), jnp.asarray(D_), None, mgs)[0])
+            errs.append(abs(abs(vv) - np.sin(ph_)))
+        check("C-S(a) KAT: parallelograms with legs down to %.0e ell score |sin phi| exactly in shape mode (max error %.1e <= %.1e)"
+              % (min(min(q[:2]) for q in CS["parallelograms"]), max(errs), K_RICH * A1.EPS), max(errs) <= K_RICH * A1.EPS)
+        cc = np.asarray(mg["cells_out"][2])
+        corners_ = [np.asarray(x_) for x_ in ((cc[i][:len(v)] for i in range(cc.shape[0])) if cc.shape[0] == len(("A", "B", "C", "D"))
+                                              else (cc[:len(v), i] for i in range(cc.shape[1])))]
+        cA_, cB_, cC_, cD_ = corners_
+        cen = np.mean(corners_, axis=0)
+        lam_ = float(CS["scale"])
+        v1 = np.asarray(_moc(*(jnp.asarray(x_) for x_ in corners_), None, mgs))
+        v2 = np.asarray(_moc(*(jnp.asarray(cen + lam_ * (x_ - cen)) for x_ in corners_), None, mgs))
+        dev = float(np.max(np.abs(v2 - v1)))
+        lp_ = np.mean([np.hypot(*(cB_ - cA_).T), np.hypot(*(cC_ - cD_).T)], axis=0)
+        lm_ = np.mean([np.hypot(*(cD_ - cA_).T), np.hypot(*(cC_ - cB_).T)], axis=0)
+        head = float(np.min(lp_ * lm_) / mgs["eps2"])
+        # the band is the shoelace formula's own cancellation at absolute
+        # coordinates: EPS x the sum of the corner |x y| products (one per
+        # corner), over the scaled legs' product of the smallest cell
+        # (derived, not chosen)
+        band_b = K_RICH * A1.EPS * len(corners_) * float(np.max(np.abs(cen[:, 0]) * np.abs(cen[:, 1]) + ell_ / ell_)) / (lam_ ** 2 * float(np.min(lp_ * lm_)))
+        check("C-S(b) the reference's %d cells scaled by %.1f about their centroids keep their shape margins (max |dv| %.1e <="
+              " the shoelace cancellation band %.1e)" % (len(v), lam_, dev, band_b), dev <= band_b)
+        check("C-S(c) the degeneracy guard never binds on the reference: min legs' product / eps2 = %.1e (>= %.0e)"
+              % (head, CS["guard_headroom_min"]), head >= float(CS["guard_headroom_min"]))
+        mga = dict(mgs); mga.pop("shape"); mga.pop("eps2")
+        va = np.asarray(_moc(*(jnp.asarray(x_) for x_ in (cA_, cB_, cC_, cD_)), None, mga))
+        ia_, is_ = int(np.argmin(va)), int(np.argmin(v1))
+        say("   READING the two modes' worst cell on the reference: AREA mode %+.4f at x %.3f y %.3f (legs' product %.1e ell2,"
+            " shape there %+.3f); SHAPE mode %+.4f at x %.3f y %.3f (legs' product %.2f ell2)"
+            % (va[ia_], cen[ia_, 0], cen[ia_, 1], lp_[ia_] * lm_[ia_] / mgs["ell2"], v1[ia_], v1[is_], cen[is_, 0], cen[is_, 1],
+               lp_[is_] * lm_[is_] / mgs["ell2"]))
     if int(os.environ.get("TWOP_WORKERS", "1")) > 1:
         # H-P (S41): a Hessian column by the worker processes against the
         # same column in this process -- the parallel metric is the serial
@@ -861,7 +929,7 @@ def classderive():
     tr0 = h_star / K_RICH
     say("   floors %s; rho %.1f; gap %.2e; h* %.3e m -> tr0 %.3e m, floor %.3e m"
         % (np.array2string(np.array(floors), precision=4), rho, gap, h_star, tr0, tr0 / K_RICH))
-    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, K=tw.K, N=tw.N, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
+    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, K=tw.K, N=tw.N, shape=tw.shape, noplume=tw.noplume, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
                N_cells=Nc, floors=floors, rho=rho, gap=gap, rejector=rej, ladder=lad, h_ok=h_ok,
                h_bad=h_bad, h_star=h_star, tr0=tr0, W_ref=W0.tolist(), grad_ref=g0.tolist(),
                seconds=time.time() - t00)
@@ -1107,7 +1175,8 @@ def walk():
     Cr = json.load(open(os.environ.get("TWOP_CLASS") or fc[-1]))
     if (Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel
             or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode
-            or (Cr.get("K", tw.K), Cr.get("N", tw.N)) != (tw.K, tw.N)):
+            or (Cr.get("K", tw.K), Cr.get("N", tw.N)) != (tw.K, tw.N)
+            or bool(Cr.get("shape", False)) != tw.shape or bool(Cr.get("noplume", False)) != tw.noplume):
         raise ValueError("the class record %s is not this posing's" % fc[-1])
     floors, rho, gap, m_ref = Cr["floors"], Cr["rho"], Cr["gap"], Cr["m_ref"]
     mg0 = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)
@@ -1123,6 +1192,15 @@ def walk():
 
     if start == "A":
         Ws, lam_r = W_ref.copy(), 0.0
+    elif start == "F":
+        # TWOP_START=F: from a RECORD's landing (TWOP_START_FROM = its json), a
+        # fresh Newton metric there -- the segment chain of a walk whose
+        # metric at its own start was floored (S41 step 2 ter: the free walk at
+        # twice the adapted ambient crept at 1e-6 per segment with two negative
+        # eigenvalues floored at K_RICH x an asymmetry of 4.4)
+        Ws = np.asarray(json.load(open(os.environ["TWOP_START_FROM"]))["W"], float)
+        lam_r = float("nan")
+        say("   start F: the landing of %s" % os.environ["TWOP_START_FROM"])
     else:
         Wc = (trunc_start(tw) if start == "T" else cone_start(tw) if start == "C" else arc_start(tw) if start == "R"
               else (hermite_start(tw) if start == "H" else chord(tw)))

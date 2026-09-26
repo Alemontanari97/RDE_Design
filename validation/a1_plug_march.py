@@ -155,9 +155,28 @@ def margin_of_corners(cA, cB, cC, cD, mask, mg):
                 + jnp.hypot(cC[:, 0] - cD[:, 0], cC[:, 1] - cD[:, 1]))
     lm = 0.5 * (jnp.hypot(cD[:, 0] - cA[:, 0], cD[:, 1] - cA[:, 1])
                 + jnp.hypot(cC[:, 0] - cB[:, 0], cC[:, 1] - cB[:, 1]))
-    v = mg["orient"] * area / jnp.maximum(lp * lm, mg["ell2"])
+    # SHAPE mode (S41 step 2 ter, margin["shape"]): the legs' product is
+    # floored at eps2, a degeneracy guard only (1e-6 ell2 by the two-wall
+    # carrier), so the margin is the sine of the angle between the two
+    # characteristics at EVERY cell size. The ell2 floor of the area mode
+    # made the class's positive floor a SIZE floor on the finest healthy
+    # cells (measured 2026-09-26, twowall:class-floor-size-artefact); the
+    # area mode is unchanged (bitwise) for every record that does not ask
+    v = mg["orient"] * area / jnp.maximum(lp * lm, mg["eps2"] if mg.get("shape") else mg["ell2"])
     if mask is not None:
         v = jnp.where(mask, v, jnp.inf)
+    if mg.get("x_max") is not None:
+        # PLUME cells (S41 step 2 ter, margin["x_max"] = the last wall's end,
+        # set by the two-wall carrier): the net marched beyond both walls is
+        # the plume, whose cells touch no wall and cannot feed back upstream
+        # in supersonic flow; there the free-edge rows carry row-growth
+        # SLIVERS (simple quads of legs 0.4 mm x 7.6 mm traversed backwards)
+        # that appear and vanish with the design -- 10 at Migdal cut at 70
+        # percent, 18 within 40 um of the free walk's landing, measured
+        # 2026-09-26 -- a discontinuity of the class, not a fold. Masked to
+        # +inf like the padding; the mode of record (no x_max) is unchanged.
+        xc = 0.25 * (cA[:, 0] + cB[:, 0] + cC[:, 0] + cD[:, 0])
+        v = jnp.where(xc > mg["x_max"], jnp.inf, v)
     return v
 
 
@@ -414,7 +433,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     + jnp.hypot(pC[0] - pB[0], pC[1] - pB[1]))
         # resolution-consistent: legs below the station spacing
         # cannot carry a resolved fold (ell2 derived by the caller)
-        return area / jnp.maximum(lp * lm, mg["ell2"])
+        return area / jnp.maximum(lp * lm, mg["eps2"] if mg.get("shape") else mg["ell2"])
 
     # VECTORISED margin (S34, additive): margin["vec"] = True collects
     # the four corners of every bucket cell during the march and

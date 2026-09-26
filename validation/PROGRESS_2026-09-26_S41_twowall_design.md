@@ -338,6 +338,93 @@ the shape margin with a degeneracy guard, or ell2 scaled with the design's own s
 re-derived under the tier-invariant transition duty (C-1 / C-2 / C-R and a KAT), then the S41 capped
 and ambient walks and the step-1 far start re-run. Finding `twowall:class-floor-size-artefact`.
 
+## 3quinquies. The class corrected (the owner, 2026-09-26 night: "per quanto la taglia risolviamo il problema")
+TWO DEFECTS, ONE CLASS. (i) The SIZE floor of 3quater. (ii) Found while re-running under the shape
+margin: the free walk (twice the adapted ambient, ends and heights free) crept at 1e-6 per segment
+against a wall 40 um away -- eighteen cells flipping from absent to "inverted" (v -0.63) at x 1.22-
+1.24 m, far beyond both walls' ends (0.63 m). Probe `RDE/handoff/f3_2026-09-25/twop_afterlip_probe.py`:
+those cells, and the ten of the 70 percent cut of 3quater (x 1.35-1.38 m, walls ending at 1.04 m),
+are SIMPLE quads traversed backwards -- legs 0.4 mm by 7.6 mm, diagonals crossing, no edge crossing --
+the row-growth slivers of the free-edge rows that the single-wall carrier excludes by f_edge (the
+two-wall margin took f_edge 0, S40), sitting in the net marched beyond both walls: the PLUME. They
+appear and vanish with the design: a discontinuity of the class, not a fold (RK-G in D6's own risk
+register: march-topology non-differentiability).
+THE CORRECTED CLASS (`TWOP_SHAPE=1 TWOP_NOPLUME=1`; `twowall_cases.json` margin block; the mode of
+record without the switches bitwise, gated): the cell margin is the SHAPE margin, signed area over
+the legs' product floored only at a degeneracy guard eps2 = 1e-6 ell2 (the sine of the angle between
+the two characteristics at every size), and the cells beyond the last wall's end are out of the class
+(they touch no wall and cannot feed back upstream in supersonic flow; margin["x_max"] set by the
+carrier, traced with the ends in the replays). Both switches live in the ONE margin formula
+(a1_plug_march.margin_of_corners) so the record, the sequential replay and the wavefront replay
+aggregate the same numbers. Transition duty (tier-invariant clause iii), stage class, gates added:
+C-S(a) KAT against the closed form -- parallelograms with legs down to 3e-3 ell score |sin phi| to
+1.1e-16; C-S(b) the reference's cells scaled by 0.1 about their centroids keep their margins to
+6.9e-10, inside the shoelace formula's own cancellation band 5.1e-7 (derived: EPS x the |x y| products
+over the scaled legs' product of the smallest cell); C-S(c) the guard's headroom on the reference
+1.8e4. Class records `_twowall_arc_shape/class_2026-09-26.json` (coarse, 8/8) and
+`_twowall_arc_shape_fine/class_2026-09-26.json` (fine): m_ref 0.4208 / 0.4196 (the plug's last cells,
+where Migdal's characteristics meet at 25 degrees), floors 0.2104 / 0.2098 ..., rho 1373 / 1589; the
+plume is 1762 of Migdal's 8331 cells at the coarse rung; the rejector break along +grad J moves from
+3.3e-4 m (a plume flip) to 6.6e-4 m (a fold, KS -0.61) -> tr0 1.17e-4 m. The 8-knot unconstrained
+landing reads KS -0.90: rejected as before. The intermediate shape-only records (before the plume
+cut) are kept as `*_shapeonly_*` beside the records of record.
+After the plume cut the 70 percent cut of Migdal has 0 inverted cells (min 0.457) and the free walk's
+landing +- 0.4 mm reads KS 0.5198 -> 0.5196: smooth.
+THE WALKS RE-RUN under the corrected class (T start, Newton metric, 16 x 6, coarse rung, ends at the
+cap unless said; records `_twowall_*_shape/walk_TN_2026-09-27.json`, ~17-21 min each; the "size floor"
+column = the same walk under the class of 3bis/3ter):
+
+| case | Migdal cut at L | under the size floor | CORRECTED class | gain over the cut | note |
+|------|-----------------|----------------------|-----------------|-------------------|------|
+| vacuum, cap 0.8, exit pinned | 1.578393 | 1.579836 | **1.580026** | +1.6e-3 (+0.103 %) | +1.5e-4 over the FULL Migdal 1.579880: inside the coarse bias 2.9e-4 -- indistinguishable from the full length at this rung |
+| vacuum, cap 0.6, exit pinned | 1.569476 | 1.575268 | **1.575936** | +6.5e-3 (+0.412 %) | 99.75 % of the full length |
+| adapted ambient, cap 0.8, lip free | 1.471096 | 1.471297 | **1.471819** | +7.2e-4 (+0.049 %) | lip +1.0 mm, p_lip/p_a 1.09 -> 1.34 (a recompression at the lip: the length-constrained optimum exits above ambient, Rao's corner) |
+| adapted ambient, cap 0.6, lip free | 1.468618 | 1.468693 | **1.469346** | +7.3e-4 (+0.050 %) | lip +0.5 mm |
+| 2 x ambient, cap 0.8, lip free | 1.363798 | 1.364396 | **1.364872** | +1.07e-3 (+0.079 %) | lip -2.3 mm, A_e/A_i 3.953 -> 3.933 |
+| 2 x ambient, cap 0.6, lip free | 1.367760 | 1.367947 | **1.369544** | +1.78e-3 (+0.130 %) | lip -6.8 mm, A_e/A_i 3.716 -> 3.658 |
+| 2 x ambient, cap 0.8, ENDS FREE from mid-cap (u0 0) + both heights free | best cut 1.370230 (at 44 %) | 1.370898 (shape only) | **1.371714** | +1.48e-3 (+0.108 %) over the BEST cut | ends stay at 42 % (x 0.629 / 0.626); tip +4.5 mm, lip -2.4 mm, A_e/A_i 3.27 -> 3.23; p/p_a at the exit 1.08 / 0.95 -> 1.31 / 1.31 |
+
+THE READING under the corrected class:
+1. What the size floor had hidden: the knots now move 2-9 mm (they moved 0.3-1 mm before) and the arcs
+   move too (plug x_a 0.0729 -> 0.0737 / 0.0711 / 0.0754 / 0.0701, t_a within 1e-3; the shroud's within
+   1e-3): the class no longer pins the inlet. The landings are NOT stationary (|grad| 0.1-0.3; the arc
+   gradient -0.27 at cap 0.6, 2 x): the 16-segment budget and the driver's radius stop them, not the
+   class (KS 0.46-0.53 against the floor 0.21, multipliers ~ -0.002). More budget would move them
+   further; the SIGNS of the readings below do not depend on it.
+2. In vacuum at 80 percent length the capped design reaches the full Migdal's thrust (+1.5e-4, inside
+   the instrument's bias): at this rung Migdal's last 20 percent of length is worth nothing; at 60
+   percent the cost is 0.25 percent. The gain over the CUT Migdal is +0.10 / +0.41 percent.
+3. At ambient the exit becomes a design: adapted, the lip rises and the exit RECOMPRESSES (p 1.3 p_a at
+   both walls); over-expanded, the lip drops (2-7 mm). The gains over the cut Migdal are 0.05-0.13
+   percent, three to ten times what the size-floored class allowed (3ter's "the cut Migdal within the
+   bias" is superseded for the optimum; it still holds for the START).
+4. The length as an outcome (2 x ambient): the free design keeps its ends at 42 percent of Migdal's
+   length -- the cut Migdal's own maximum sits at 44 percent -- with a smaller exit (A_e/A_i 3.23)
+   compressed to 1.31 p_a, and beats the best truncated ideal by 0.11 percent and the 80 percent
+   design by 0.50 percent. The ends' gradient at the landing is +0.045 per metre (the optimum a little
+   longer than 42 percent); the Newton metric floors that direction (two negative eigenvalues in the
+   knots' block, asymmetry 2-4 at these starts) and the walk does not take it: a driver limit,
+   recorded, not a physics one.
+5. Both walls still end together in every capped run: the cap is active in vacuum and at the adapted
+   ambient; over-expanded the free run keeps them together too (0.629 / 0.626), with the plug's part
+   beyond the lip's last characteristic still unrepresentable without the free jet.
+Figures 26 / 27 / 28 `_shape` in `_twowall_cap/figs/` (`TWOP_FIGTAG=_shape` on the same generators).
+The findings: `twowall:class-floor-size-artefact` DISCHARGED, `twowall:plume-sliver-cells-flip` minted
+and DISCHARGED in the same window (the plume cut), `twowall:cap-ends-sigmoid-saturate` re-read (the
+u0 = 0 walk moved its ends 1 mm on a gradient of +0.045 per metre: the metric, not the sigmoid).
+The fine far start (ramp 0.75, 11.6 / 8.8 mm off Migdal -- the size floor had rejected this ramp and
+sent S41 to 0.5) under the corrected class (`_twowall_arc_shape_fine/walk_RN_2026-09-27.json`, 10 x 6,
+31 min): 1.579275 -> 1.579436, +1.6e-4 of the 3.8e-4 gap to Migdal's arcs in ten segments, still
+climbing (+2e-6 per segment at the end, |grad| 0.096, KS 0.43 against the floor 0.21: not class-bound)
+and not yet toward Migdal in shape (plug gap 11.6 mm unchanged, shroud 8.8 -> 8.7 mm). Under the shape
+margin alone the same start stalled at 1.579327 in nine records with ten rejected probes (the plume
+slivers, `walk_RN_shapeonly_2026-09-26.json`). The "fold cliff" of section 3 is therefore two
+artefacts of the class, not a cliff; what remains is a BUDGET question (a segment chain from this
+landing, TWOP_START=F) -- the far-start finding is re-read, not closed.
+Class records of record: `_twowall_arc_shape/class_2026-09-27.json` (the re-derivation with the
+committed code; its 2026-09-26 twin, identical in every number, removed) and
+`_twowall_arc_shape_fine/class_2026-09-27.json`.
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
@@ -546,3 +633,10 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   "shock-free boundary" reading everywhere it was written (3bis item 2, M0 addendum item 3, X-TWOP,
   twowall:design-posing-open, D6 note, PROGRESS block + archive, handoff), the far-start row re-read,
   the advisory's 6.4 corrected (the cap is not active over-expanded), the free walk's stopped log.
+- Class-correction commit (2026-09-27 early): `a1_plug_march.margin_of_corners` gains the shape mode
+  (eps2 guard) and the plume cut (x_max), both opt-in, the mode of record bitwise (C-F, and the step-2
+  start reproduced bitwise after the edit); `a1_twowall.py` gains TWOP_SHAPE / TWOP_NOPLUME, the C-S
+  gates, the class-record fields shape/noplume and their check, TWOP_START=F (a walk from a record's
+  landing); `twowall_cases.json` the margin block. Class records `_twowall_arc_shape/class_2026-09-26
+  .json` (8/8), `_twowall_arc_shape_fine/class_2026-09-27.json`; the shape-only intermediates kept as
+  `*_shapeonly_*`. Registry: X-TWOP statement + pass 2026-09-27; findings as listed in 3quinquies.

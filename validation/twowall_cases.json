@@ -97,5 +97,42 @@
     },
     "cls": "NUMERIC",
     "note": "restoration by ascent of a SOFT KS margin for a capped walk that starts out of class (S41 step 2): at most max_iter line searches along +grad of the soft KS (rho_r = ln n_cells / max(violation, mu0_1), capped at the class rho), each from the station spacing ell down by halves to ell x 2^-h_floor_k, accepting the first certified step that raises the soft KS; the class test stays the sharp one"
+  },
+  "margin": {
+    "value": {
+      "shape": false,
+      "eps2_over_ell2": 1e-06,
+      "noplume": false
+    },
+    "cls": "NUMERIC",
+    "note": "the cell margin's mode (S41 step 2 ter): shape = false keeps the area mode of record (legs' product floored at the reference's ell2: a fold counts when resolved, but the class's positive floor is then a SIZE floor on the finest healthy cells, twowall:class-floor-size-artefact); shape = true (TWOP_SHAPE=1) floors the legs' product at eps2_over_ell2 x ell2, a degeneracy guard only, so the margin is the sine of the angle between the characteristics at every size; the guard's headroom on the reference is gated (C-S); noplume = true (TWOP_NOPLUME=1) takes the cells beyond the last wall's end (the plume) out of the class: they touch no wall, cannot feed back upstream, and their free-edge rows carry row-growth slivers that flip with the design (S41 step 2 ter)"
+  },
+  "class_shape_gates": {
+    "value": {
+      "parallelograms": [
+        [
+          0.01,
+          0.01,
+          0.3,
+          0.9
+        ],
+        [
+          0.5,
+          2.0,
+          -0.2,
+          1.1
+        ],
+        [
+          0.003,
+          0.003,
+          0.0,
+          0.05
+        ]
+      ],
+      "scale": 0.1,
+      "guard_headroom_min": 100.0
+    },
+    "cls": "NUMERIC",
+    "note": "the C-S gates of the shape-mode class (S41 step 2 ter): parallelograms = [leg a / ell, leg b / ell, first leg's angle, angle between the legs] for the closed-form KAT |v| = sin(angle), the smallest legs 3e-3 ell above the guard eps2 = 1e-6 ell2; scale = the factor by which the reference's cells are shrunk about their centroids for the size-invariance check (0.1 keeps every cell above the guard); guard_headroom_min = the least admissible min(legs' product)/eps2 on the reference"
   }
 }

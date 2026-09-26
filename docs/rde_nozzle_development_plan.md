@@ -395,7 +395,12 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     plus a tail expansion to the pinned area, arcs unchanged, both ends at
     the cap, the class's positive floor active at the landing (a SIZE
     floor on tiny inlet cells, not a shock: twowall:class-floor-size-artefact,
-    found the same night), +0.091 / +0.369 percent
+    found the same night and, with the plume slivers
+    twowall:plume-sliver-cells-flip, CORRECTED on 2026-09-27: shape
+    margin + plume cut, both discharged, the walks re-run -- 80 percent =
+    the full Migdal within the coarse bias, gains over the cut Migdal
+    0.10 / 0.41 percent in vacuum and 0.05-0.13 percent at ambient, the
+    free over-expanded design at 42 percent of the length), +0.091 / +0.369 percent
     over Migdal CUT at 80 / 60 percent length (fine-rung confirmation
     pending); the driver's restoration phase found to take no step
     (driver:restoration-phase-no-motion). The owner's next directive, the

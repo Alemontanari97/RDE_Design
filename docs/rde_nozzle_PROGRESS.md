@@ -100,9 +100,13 @@
 ## CONCLUSO al gradino grosso (26 settembre sera): un solo tetto di lunghezza
 ## per plug e shroud, altezze d'uscita bloccate -- l'ottimo con tetto e' il
 ## Migdal troncato piu' un'espansione di coda all'area bloccata, archi
-## invariati, entrambi gli estremi al tetto, pavimento di classe attivo
-## (di TAGLIA su celle minuscole all'ingresso, non un urto: finding
-## twowall:class-floor-size-artefact, trovato la notte stessa);
+## invariati, entrambi gli estremi al tetto; la classe aveva DUE difetti
+## (pavimento di TAGLIA su celle minuscole all'ingresso; schegge del
+## pennacchio che scattano col disegno), CORRETTI la notte del 26-27
+## (margine di forma + taglio del pennacchio, cancelli C-S, entrambi i
+## finding scaricati) e i cammini rifatti: 80 % = Migdal intero entro il
+## bias, guadagni sul tagliato 0,10/0,41 % in vuoto e 0,05-0,13 % in
+## ambiente, disegno libero in sovraespansione al 42 % della lunghezza;
 ## +0,091 % / +0,369 % sul Migdal TAGLIATO all'80 % / 60 % della lunghezza
 ## (conferma fine pendente); il Migdal compresso piega e nessuna
 ## restaurazione lo ripara (driver:restoration-phase-no-motion). Passo 2 bis

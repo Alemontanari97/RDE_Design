@@ -1,0 +1,21 @@
+== [F3] the two-wall fold class [X-TWOP] (stage class) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 pinned and shroud lip y 1.202472 pinned); wedge every 1; p_a/P0 0.00000e+00; 0.5 s
+  [PASS] C-F the fast record lane (fast True, pad 1024) reproduces the legacy lane at the reference within the certificate's own band: 8999 cells, max |dz| 0.0e+00 = 0.00 of the Newton tolerance (<= K_RICH), decisions identical True, J / KS / min relative 0.0e+00 / 0.0e+00 / 0.0e+00 (<= 8.0e-12); 9.5 s against 32.4 s
+  [PASS] C-1 the reference is in the fold class over the whole net (min cell +0.4208 > 0, 0 negative)
+  [PASS] C-S(a) KAT: parallelograms with legs down to 3e-03 ell score |sin phi| exactly in shape mode (max error 1.1e-16 <= 8.9e-16)
+  [PASS] C-S(b) the reference's 8331 cells scaled by 0.1 about their centroids keep their shape margins (max |dv| 6.9e-10 <= the shoelace cancellation band 5.1e-07)
+  [PASS] C-S(c) the degeneracy guard never binds on the reference: min legs' product / eps2 = 1.8e+04 (>= 1e2)
+   READING the two modes' worst cell on the reference: AREA mode +0.0113 at x 0.058 y 0.842 (legs' product 1.8e-02 ell2, shape there +0.622); SHAPE mode +0.4208 at x 1.480 y 0.581 (legs' product 0.76 ell2)
+  [PASS] H-P the parallel secant Hessian (4 workers, 54 s for 26 columns) equals the in-process columns 0 and 25 (max |dH| 0.0e+00; 17 s for the two)
+  [PASS] C-2 KS brackets the minimum: 0.414221 <= KS 0.420742 <= 0.420796 (rho 1373.1, gap 6.57e-03)
+   READING the unconstrained 8-knot landing (C_F 1.581194 above the 1-D 1.579594) read on these knots: KS -0.9037, min cell -0.9037, C_F here 0.793087, INFEASIBLE at the first floor
+    h 4.139e-05 m: C_F 1.579881796 (+1.39e-06), KS +0.4207, min +0.4208, cert 1.836e-01
+    h 8.278e-05 m: C_F 1.579883076 (+2.67e-06), KS +0.4207, min +0.4208, cert 2.629e-02
+    h 1.656e-04 m: C_F 1.579885309 (+4.90e-06), KS +0.4208, min +0.4208, cert 1.044e-01
+    h 3.311e-04 m: C_F 1.579888494 (+8.09e-06), KS -0.6092, min -0.6085, cert 7.569e-02
+   READING the class along +grad J at the reference: bracket [0.00016556970324776787, 0.00033113940649553573] m
+  [PASS] C-R REJECTOR the unconstrained ascent's first move out of the class (3.31e-04 m along +grad J, C_F +8.09e-06) is INFEASIBLE at every floor (KS -0.6092, min cell -0.6085)
+   floors [0.2104 0.1052 0.0526 0.0263]; rho 1373.1; gap 6.57e-03; h* 2.342e-04 m -> tr0 5.854e-05 m, floor 1.463e-05 m
+   record: _twowall_arc_shape/class_2026-09-26.json
+
+== 8/8 PASS  (211.3 s) ==

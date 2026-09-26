@@ -1,0 +1,96 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.587726 pinned and shroud lip y free from 1.201016); wedge every 1; p_a/P0 4.61622e-02; 0.5 s
+   ramp 1.00 toward the generic start: cert 4.360e-02, KS +0.4458 (floor 0.2104), C_F 1.363815, gap to the reference plug 2.692e-02 / shroud 9.918e-03 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 56 s): asymmetry 6.33e-01 -> floor 2.53e+00; eigenvalues of -H [-1.039e+01  6.438e-08  1.106e-07  6.174e-02  8.145e-02  4.199e-01
+  1.083e+00  3.987e+00  4.287e+00  6.064e+00  1.000e+01  1.161e+01
+  1.453e+01  1.740e+01  2.639e+01  2.688e+01  3.240e+01  3.817e+01
+  4.493e+01  4.980e+01  5.959e+01  6.601e+01  6.890e+01  8.297e+01
+  8.747e+01  1.049e+02  1.082e+02  1.271e+02  1.727e+02] (7 floored)
+    start ladder h 4.139e-05 m: C_F +8.096e-06, KS +0.4458, cert 4.917e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +1.619e-05, KS +0.4458, cert 4.088e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +3.239e-05, KS +0.4458, cert 5.447e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +6.480e-05, KS +0.4458, cert 5.352e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +1.296e-04, KS +0.4457, cert 3.859e-02 -> in class
+    start ladder h 1.325e-03 m: C_F +2.595e-04, KS +0.4457, cert 5.987e-02 -> in class
+    start ladder h 2.649e-03 m: C_F +5.192e-04, KS -0.6195, cert 1.371e-01 -> OUT
+   start T (ramp 1.00): C_F 1.363814862, cert 4.360e-02, KS +0.4458; gap to the reference plug 2.692e-02 / shroud 9.918e-03 m; class scale h* 1.873e-03 m -> tr0 4.683e-04 m, floor 1.171e-04 m; 16 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 5.196e-01 m -> tr0 9.013e-04 (z), floor 2.253e-04 (z)
+   memory mappings at the walk's start: 7664 (cap 65530)
+    [seg  0] J = 1.36381486e+00  |grad| = 1.016e-01  cert = 0.044
+    [seg  0] margin at base: KS - mu0 = +0.2354 (min cell +0.4458, 8639 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.04]]
+   checkpoint at segment 1: C_F 1.363814862; mappings 7840 -> 7840 (cleared above 55000)
+    [seg  1] J = 1.36386593e+00  |grad| = 1.020e-01  cert = 0.043
+    [seg  1] margin at base: KS - mu0 = +0.2389 (min cell +0.4494, 8643 cells)
+    [seg  1] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[-0.064]]
+   checkpoint at segment 2: C_F 1.363865933; mappings 11529 -> 11529 (cleared above 55000)
+    [seg  2] J = 1.36393204e+00  |grad| = 1.023e-01  cert = 0.092
+    [seg  2] margin at base: KS - mu0 = +0.2437 (min cell +0.4544, 8645 cells)
+    [seg  2] margin counters: {'m_exec': 18, 'm_dedup': 18}; multipliers [[-0.052]]
+   checkpoint at segment 3: C_F 1.363932039; mappings 15290 -> 15290 (cleared above 55000)
+    [seg  3] J = 1.36415442e+00  |grad| = 1.038e-01  cert = 0.197
+    [seg  3] margin at base: KS - mu0 = +0.2449 (min cell +0.4555, 8645 cells)
+    [seg  3] margin counters: {'m_exec': 24, 'm_dedup': 24}; multipliers [[-0.069]]
+   checkpoint at segment 4: C_F 1.364154424; mappings 15290 -> 15290 (cleared above 55000)
+    [seg  4] J = 1.36422349e+00  |grad| = 1.027e-01  cert = 0.040
+    [seg  4] margin at base: KS - mu0 = +0.2456 (min cell +0.4566, 8645 cells)
+    [seg  4] margin counters: {'m_exec': 30, 'm_dedup': 30}; multipliers [[-0.073]]
+   checkpoint at segment 5: C_F 1.364223489; mappings 15291 -> 15291 (cleared above 55000)
+    [seg  5] J = 1.36426329e+00  |grad| = 1.029e-01  cert = 0.038
+    [seg  5] margin at base: KS - mu0 = +0.2459 (min cell +0.4568, 8645 cells)
+    [seg  5] margin counters: {'m_exec': 36, 'm_dedup': 36}; multipliers [[-0.073]]
+   checkpoint at segment 6: C_F 1.364263292; mappings 15291 -> 15291 (cleared above 55000)
+    [seg  6] J = 1.36426870e+00  |grad| = 1.029e-01  cert = 0.082
+    [seg  6] margin at base: KS - mu0 = +0.2460 (min cell +0.4568, 8645 cells)
+    [seg  6] margin counters: {'m_exec': 42, 'm_dedup': 42}; multipliers [[-0.073]]
+   checkpoint at segment 7: C_F 1.364268700; mappings 15290 -> 15290 (cleared above 55000)
+    [seg  7] J = 1.36426884e+00  |grad| = 1.029e-01  cert = 0.038
+    [seg  7] margin at base: KS - mu0 = +0.2460 (min cell +0.4568, 8645 cells)
+    [seg  7] margin counters: {'m_exec': 48, 'm_dedup': 48}; multipliers [[-0.074]]
+   checkpoint at segment 8: C_F 1.364268837; mappings 15290 -> 15290 (cleared above 55000)
+    [seg  8] J = 1.36427378e+00  |grad| = 1.029e-01  cert = 0.053
+    [seg  8] margin at base: KS - mu0 = +0.2460 (min cell +0.4569, 8645 cells)
+    [seg  8] margin counters: {'m_exec': 54, 'm_dedup': 54}; multipliers [[-0.074]]
+   checkpoint at segment 9: C_F 1.364273785; mappings 15292 -> 15292 (cleared above 55000)
+    [seg  9] J = 1.36428006e+00  |grad| = 1.028e-01  cert = 0.048
+    [seg  9] margin at base: KS - mu0 = +0.2461 (min cell +0.4570, 8645 cells)
+    [seg  9] margin counters: {'m_exec': 60, 'm_dedup': 60}; multipliers [[-0.074]]
+   checkpoint at segment 10: C_F 1.364280055; mappings 15291 -> 15291 (cleared above 55000)
+    [seg 10] J = 1.36429237e+00  |grad| = 1.027e-01  cert = 0.046
+    [seg 10] margin at base: KS - mu0 = +0.2462 (min cell +0.4570, 8645 cells)
+    [seg 10] margin counters: {'m_exec': 66, 'm_dedup': 66}; multipliers [[-0.074]]
+   checkpoint at segment 11: C_F 1.364292373; mappings 15290 -> 15290 (cleared above 55000)
+    [seg 11] J = 1.36429497e+00  |grad| = 1.027e-01  cert = 0.174
+    [seg 11] margin at base: KS - mu0 = +0.2462 (min cell +0.4571, 8645 cells)
+    [seg 11] margin counters: {'m_exec': 72, 'm_dedup': 72}; multipliers [[-0.075]]
+   checkpoint at segment 12: C_F 1.364294965; mappings 15292 -> 15292 (cleared above 55000)
+    [seg 12] J = 1.36432750e+00  |grad| = 1.025e-01  cert = 0.043
+    [seg 12] margin at base: KS - mu0 = +0.2462 (min cell +0.4571, 8645 cells)
+    [seg 12] margin counters: {'m_exec': 78, 'm_dedup': 78}; multipliers [[-0.073]]
+   checkpoint at segment 13: C_F 1.364327499; mappings 15290 -> 15290 (cleared above 55000)
+    [seg 13] J = 1.36432807e+00  |grad| = 1.025e-01  cert = 0.043
+    [seg 13] margin at base: KS - mu0 = +0.2463 (min cell +0.4571, 8645 cells)
+    [seg 13] margin counters: {'m_exec': 84, 'm_dedup': 84}; multipliers [[-0.073]]
+    [seg 13] no motion at radius 1.754e-01 -> retry at 8.770e-02 (same record)
+    [seg 13] margin counters: {'m_exec': 90, 'm_dedup': 90}; multipliers [[-0.073]]
+   checkpoint at segment 14: C_F 1.364328066; mappings 15290 -> 15290 (cleared above 55000)
+    [seg 14] J = 1.36432849e+00  |grad| = 1.025e-01  cert = 0.171
+    [seg 14] margin at base: KS - mu0 = +0.2463 (min cell +0.4571, 8645 cells)
+    [seg 14] margin counters: {'m_exec': 96, 'm_dedup': 96}; multipliers [[-0.073]]
+    [seg 14] no motion at radius 1.316e-01 -> retry at 6.578e-02 (same record)
+    [seg 14] margin counters: {'m_exec': 102, 'm_dedup': 102}; multipliers [[-0.073]]
+    [seg 14] no motion at radius 6.578e-02 -> retry at 3.289e-02 (same record)
+    [seg 14] margin counters: {'m_exec': 108, 'm_dedup': 108}; multipliers [[-0.073]]
+    [seg 14] no motion at radius 3.289e-02 -> retry at 1.644e-02 (same record)
+    [seg 14] margin counters: {'m_exec': 114, 'm_dedup': 114}; multipliers [[-0.073]]
+   checkpoint at segment 15: C_F 1.364328487; mappings 15292 -> 15292 (cleared above 55000)
+    [seg 15] J = 1.36432857e+00  |grad| = 1.025e-01  cert = 0.084
+    [seg 15] margin at base: KS - mu0 = +0.2463 (min cell +0.4571, 8645 cells)
+    [seg 15] margin counters: {'m_exec': 120, 'm_dedup': 120}; multipliers [[-0.073]]
+    [seg 15] no motion at radius 2.467e-02 -> retry at 1.233e-02 (same record)
+    [seg 15] margin counters: {'m_exec': 126, 'm_dedup': 126}; multipliers [[-0.032]]
+    backtracking: 0 probes, 0 accepted along the segment, 0 accepted on the ascent; 16 records
+   return: C_F 1.364328566 (start 1.363814862, reference 1.359591666, 1-D 1.579594), cert 8.394e-02, KS +0.4567 (in class), |grad|inf 2.445e-01; gap to the reference plug 2.650e-02 / shroud 1.004e-02 m (start 2.692e-02 / 9.918e-03); 16 records, 1058 s
+   ENDS under the cap L 1.1868 m: plug tip 1.1868 -> 1.1868, shroud lip 1.1868 -> 1.1868 (Migdal 1.4835 / 1.3270)
+   EXIT (p_a/P0 4.61622e-02, exit free: lip): heights tip 0.5877 -> 0.5877, lip 1.2010 -> 1.1995; A_e/A_i 3.9532 -> 3.9399; wall pressure at the tip / lip over p_a 0.627 / 0.544 -> 0.704 / 0.603
+   record: _twowall_cap0.8_amb2_shape/walk_TN_2026-09-26.json

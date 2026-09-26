@@ -4665,7 +4665,11 @@ arc whose margin is their area over the reference's ell^2: the class's
 positive floor is a SIZE floor that the cap tightens, not the shock-free
 boundary (corrected the same night; the smallest shape margin of the landings
 is 0.44-0.45, Migdal's own 0.42; finding twowall:class-floor-size-artefact);
-a class floor must be size-free before it is read as a shock; Migdal compressed to the cap
+a class floor must be size-free before it is read as a shock [the class was
+corrected on 2026-09-27: shape margin + the plume's cells out of the class,
+the plume's free-edge slivers being the second artefact; under it the capped
+walks move their knots and arcs again and the far start climbs without a
+cliff]; Migdal compressed to the cap
 carries coalescing compressions (1159 / 2670 folded cells at 80 / 60 percent
 length) that no restoration repairs, the driver's own phase taking no step
 [MEASURED, coarse rung; fine-rung confirmation pending].

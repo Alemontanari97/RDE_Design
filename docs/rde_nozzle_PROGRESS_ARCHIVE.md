@@ -3310,3 +3310,9 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## 2026-09-26 notte (S41, finding del pavimento di taglia): una riga del blocco residui
 ## S41 sostituita in loco. Testo uscente, verbatim:
 ## invariati, entrambi gli estremi al tetto, classe di piega ATTIVA;
+
+## 2026-09-27 (S41 notte, classe corretta): tre righe del blocco residui S41
+## sostituite in loco. Testo uscente, verbatim:
+## invariati, entrambi gli estremi al tetto, pavimento di classe attivo
+## (di TAGLIA su celle minuscole all'ingresso, non un urto: finding
+## twowall:class-floor-size-artefact, trovato la notte stessa);

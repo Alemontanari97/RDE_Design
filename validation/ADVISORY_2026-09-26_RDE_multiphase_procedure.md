@@ -234,6 +234,20 @@ active, a longer nozzle is always better within the class) or are pinned at L.
 First executable step, no decision needed: the Stage-0 census on the THOR CAv2
 fields (one day; it decides (iii)).
 
+## 4bis. The owner's answers (2026-09-26 night)
+
+On the phase vote (6.2): "in futuro gli input di RDE avranno diverse gamma, T e P
+quindi vedremo" -- the frozen-gamma collapse of a full-flowing posing is
+accepted as the present instrument's fact, not as the RDE's; the vote is
+expected to appear with the real inputs (gamma, T0, P0 per phase) and is left
+to the data. On the size floor: "risolviamo il problema" -- taken the same
+night (S41 log 3quinquies: the SHAPE mode of the cell margin, class re-derived,
+walks re-run). On the nozzles: "chiaramente necessitano un trattamento del
+getto libero e una trattazione delle possibili separazioni" -- the free jet
+after the lip (Stage 3 / the two-wall step 3; D6 90-day item 4) and a
+separation treatment (DUTY-14's tail-governed constraint, F5a entry) are
+the next two engine duties on this line, in that order.
+
 ## 5. Rough budget
 
 Stage 0 census: 1 day; the extraction operator to the VI.1 contract: 1-2 weeks.
