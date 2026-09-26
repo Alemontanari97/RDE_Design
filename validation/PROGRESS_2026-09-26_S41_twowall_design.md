@@ -243,7 +243,10 @@ it climbs 40 percent of the gap and stalls at the fold-class boundary, exactly a
 finder did at the nominal ambient. The finder property from far starts is negative on two walls
 too; the re-obtention certificate stands from near starts only (the Hermite start of S40, 6 mm off
 on the kernel posing, did land). Findings: twowall:arc-design-coarse-instrument-unfit DISCHARGED
-(the fine rung was run), twowall:far-start-stalls-at-fold-cliff minted.
+(the fine rung was run), twowall:far-start-stalls-at-fold-cliff minted. Figures (confirmation, generators in
+`RDE/handoff/f3_2026-09-25/`): `_twowall_arc_fine/figs/24_arc_step_fine.png` (twop_fine_fig.py: the fine walks'
+trajectories, the landings against Migdal's walls, coarse vs fine departure), `25_profiles_and_circles.png`
+(twop_profiles_fig.py: the five profiles found and the initial circles with their radii and end angles).
 - THE CLASS STAGE AT BOTH RUNGS with the corrected gates (`_twowall_arc/run_class_2026-09-26.log`
   4/4, 150 s; `_twowall_arc_fine/run_class_2026-09-26.log` 4/4, 528 s): C-F at (280,61) -- 35303
   cells, max |dz| 2.3e-11 = 0.47 of the Newton tolerance, decisions identical, J identical, KS
