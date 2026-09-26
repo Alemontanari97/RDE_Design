@@ -95,9 +95,18 @@
 ## (140,31) lasciano gli archi di Migdal su guadagni che a (280,61) cadono
 ## (A, rapporto 0,35) o si rovesciano con 238 celle piegate (R): Migdal NON
 ## battuto, la domanda sugli archi richiede il gradino fine
-## (twowall:arc-design-coarse-instrument-unfit). Precisazioni dell'owner:
-## un solo tetto di lunghezza per plug e shroud; convenzione di pressione
-## di base identica per tutti i profili (criterio di regime Fiore 6.1). R-F3-4
+## (twowall:arc-design-coarse-instrument-unfit); al gradino FINE gli archi di
+## Migdal si ri-ottengono da se' stessi (passo 1 CONCLUSO). Passo 2 PRESO e
+## CONCLUSO al gradino grosso (26 settembre sera): un solo tetto di lunghezza
+## per plug e shroud, altezze d'uscita bloccate -- l'ottimo con tetto e' il
+## Migdal troncato piu' un'espansione di coda all'area bloccata, archi
+## invariati, entrambi gli estremi al tetto, classe di piega ATTIVA;
+## +0,091 % / +0,369 % sul Migdal TAGLIATO all'80 % / 60 % della lunghezza
+## (conferma fine pendente); il Migdal compresso piega e nessuna
+## restaurazione lo ripara (driver:restoration-phase-no-motion). Precisazioni
+## dell'owner: convenzione di pressione di base identica per tutti i profili
+## (criterio di regime Fiore 6.1). PROSSIMO: la procedura RDE multi-fase
+## (validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md). R-F3-4
 ## CONIATA (X-PTRN). R-F3-3 aperto: nuova reference, tesi di Fiore (cap. 6
 ## troncamento; thesis_fiore_2019), la scelta del modello e' dell'owner.
 ## R-F3-5 DUTY-1(b) a F5. Difetto trovato: l'Hessiano AD puntuale non e' la

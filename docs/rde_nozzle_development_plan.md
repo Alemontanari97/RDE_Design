@@ -388,7 +388,18 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     instrument-unfit). The owner's precisions for steps 2-4 recorded: one
     length cap for both walls; a base-pressure convention identical for
     every profile (Fiore 2019 sec. 6.1 regime criterion, a documented
-    physical closure admissible).
+    physical closure admissible). Later the same day: step 1 CONCLUDED at
+    the fine rung (Migdal's arcs re-obtained from themselves); step 2 --
+    ONE length cap for both walls, exit heights pinned -- taken and
+    concluded at the coarse rung: the capped optimum is Migdal truncated
+    plus a tail expansion to the pinned area, arcs unchanged, both ends at
+    the cap, the fold class ACTIVE at the landing, +0.091 / +0.369 percent
+    over Migdal CUT at 80 / 60 percent length (fine-rung confirmation
+    pending); the driver's restoration phase found to take no step
+    (driver:restoration-phase-no-motion). The owner's next directive, the
+    RDE multi-phase procedure, is proposed in validation/ADVISORY_2026-09-
+    26_RDE_multiphase_procedure.md (Stage 0 = the spacelikeness census on
+    THOR's exit fields, the U3' adjudication of F2a).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

@@ -1,0 +1,57 @@
+== [F3] the two-wall walk, start C, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   ramp 1.00 toward the generic start: cert 3.841e-02, KS +0.0061 (floor 0.0057), C_F 1.568009, gap to the reference plug 8.153e-02 / shroud 6.457e-02 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 76 s): asymmetry 7.80e+04 -> floor 3.12e+05; eigenvalues of -H [-9.138e+04 -1.695e+02 -3.454e+01 -1.704e+01 -1.686e+00 -3.996e-01
+  1.079e-03  2.608e-03  1.764e+00  2.398e+00  5.088e+00  6.653e+00
+  9.982e+00  1.375e+01  2.027e+01  2.264e+01  2.458e+01  3.301e+01
+  4.189e+01  4.367e+01  4.582e+01  5.118e+01  6.656e+01  8.523e+01
+  9.517e+01  1.327e+02  1.912e+02  1.841e+04] (28 floored)
+    start ladder h 4.139e-05 m: C_F +3.095e-05, KS +0.0061, cert 3.731e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +6.192e-05, KS +0.0061, cert 3.730e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +1.231e-04, KS +0.0061, cert 3.844e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +2.418e-04, KS +0.0061, cert 3.843e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +4.722e-04, KS +0.0061, cert 3.851e-02 -> in class
+    start ladder h 1.325e-03 m: C_F +8.955e-04, KS -0.5491, cert 3.691e-02 -> OUT
+   start C (ramp 1.00): C_F 1.568008657, cert 3.841e-02, KS +0.0061; gap to the reference plug 8.153e-02 / shroud 6.457e-02 m; class scale h* 9.366e-04 m -> tr0 2.342e-04 m, floor 5.854e-05 m; 20 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.790e-03 m -> tr0 1.308e-01 (z), floor 3.270e-02 (z)
+   memory mappings at the walk's start: 8454 (cap 65530)
+    [seg  0] J = 1.56800866e+00  |grad| = 1.338e-03  cert = 0.038
+    [seg  0] margin at base: KS - mu0 = +0.0005 (min cell +0.0061, 9391 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.004]]
+   checkpoint at segment 1: C_F 1.568008657; mappings 8631 -> 8631 (cleared above 55000)
+    [seg  1] J = 1.56829437e+00  |grad| = 1.284e-03  cert = 0.037
+    [seg  1] margin at base: KS - mu0 = +0.0005 (min cell +0.0061, 9380 cells)
+    [seg  1] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[-0.003]]
+   checkpoint at segment 2: C_F 1.568294369; mappings 12869 -> 12869 (cleared above 55000)
+    [seg  2] trial J = 1.56858616e+00 INFEASIBLE (KS - mu0 -0.0896) than 1.56829437e+00; model predicted 1.56859114e+00 (rho 0.98)
+    [seg  2] backtrack 1/2 (step 1.250e-01): J = 1.56844254e+00 cert = 0.038 -> ACCEPT
+    [seg  2] restoration ACCEPTED -> base, radius -> 1.250e-01
+   checkpoint at segment 3: C_F 1.568294369; mappings 21331 -> 21331 (cleared above 55000)
+    [seg  3] J = 1.56844254e+00  |grad| = 1.207e-03  cert = 0.038
+    [seg  3] margin at base: KS - mu0 = +0.0005 (min cell +0.0062, 9370 cells)
+    [seg  3] margin counters: {'m_exec': 18, 'm_dedup': 18, 'infeasible_base': 1}; multipliers [[-0.005]]
+   checkpoint at segment 4: C_F 1.568442541; mappings 21338 -> 21338 (cleared above 55000)
+    [seg  4] J = 1.56863178e+00  |grad| = 1.151e-03  cert = 0.037
+    [seg  4] margin at base: KS - mu0 = +0.0005 (min cell +0.0062, 9363 cells)
+    [seg  4] margin counters: {'m_exec': 26, 'm_dedup': 26, 'infeasible_base': 1}; multipliers [[-0.002]]
+   checkpoint at segment 5: C_F 1.568631781; mappings 25575 -> 25575 (cleared above 55000)
+    [seg  5] J = 1.56877638e+00  |grad| = 1.189e-03  cert = 0.038
+    [seg  5] margin at base: KS - mu0 = +0.0005 (min cell +0.0062, 9354 cells)
+    [seg  5] margin counters: {'m_exec': 33, 'm_dedup': 33, 'infeasible_base': 1}; multipliers [[-0.002]]
+   checkpoint at segment 6: C_F 1.568776381; mappings 29811 -> 29811 (cleared above 55000)
+    [seg  6] trial J = 1.56923440e+00 INFEASIBLE (KS - mu0 -0.0778) than 1.56877638e+00; model predicted 1.56924536e+00 (rho 0.98)
+    [seg  6] backtrack 1/2 (step 2.218e-01): J = 1.56900827e+00 cert = 0.037 -> ACCEPT
+    [seg  6] restoration ACCEPTED -> base, radius -> 2.218e-01
+   checkpoint at segment 7: C_F 1.568776381; mappings 38276 -> 38276 (cleared above 55000)
+    [seg  7] J = 1.56900827e+00  |grad| = 1.081e-03  cert = 0.037
+    [seg  7] margin at base: KS - mu0 = +0.0005 (min cell +0.0062, 9346 cells)
+    [seg  7] margin counters: {'m_exec': 39, 'm_dedup': 39, 'infeasible_base': 2}; multipliers [[-0.001]]
+   checkpoint at segment 8: C_F 1.569008265; mappings 38282 -> 38282 (cleared above 55000)
+    [seg  8] trial J = 1.56922291e+00 INFEASIBLE (KS - mu0 -0.0739) than 1.56900827e+00; model predicted 1.56922103e+00 (rho 1.01)
+    [seg  8] backtrack 1/2 (step 1.095e-01): J = 1.56911622e+00 cert = 0.037 -> ACCEPT
+    [seg  8] restoration ACCEPTED -> base, radius -> 1.095e-01
+   checkpoint at segment 9: C_F 1.569008265; mappings 42512 -> 42512 (cleared above 55000)
+    [seg  9] J = 1.56911622e+00  |grad| = 1.078e-03  cert = 0.037
+    [seg  9] margin at base: KS - mu0 = +0.0005 (min cell +0.0062, 9338 cells)
+    [seg  9] margin counters: {'m_exec': 46, 'm_dedup': 46, 'infeasible_base': 3}; multipliers [[-0.003]]
+   checkpoint at segment 10: C_F 1.569116218; mappings 42518 -> 42518 (cleared above 55000)

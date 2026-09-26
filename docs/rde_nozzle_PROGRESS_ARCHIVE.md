@@ -3295,3 +3295,9 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## la posa di PROGETTO (arco deciso dall'ottimizzatore, estremi plug/shroud
 ## decisi da ambiente e vincoli, getto libero dopo il labbro) e' APERTA
 ## (twowall:design-posing-open, domande dell'owner 2026-09-25). R-F3-4
+
+## 2026-09-26 sera (S41 passo 2): tre righe del blocco residui S41 sostituite
+## in loco. Testo uscente, verbatim:
+## (twowall:arc-design-coarse-instrument-unfit). Precisazioni dell'owner:
+## un solo tetto di lunghezza per plug e shroud; convenzione di pressione
+## di base identica per tutti i profili (criterio di regime Fiore 6.1). R-F3-4

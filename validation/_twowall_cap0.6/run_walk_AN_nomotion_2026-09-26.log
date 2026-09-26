@@ -1,0 +1,37 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 65 s): asymmetry 2.58e+02 -> floor 1.03e+03; eigenvalues of -H [-1.819e+02 -8.466e+01 -3.094e-03  1.922e-03  4.351e-03  5.060e-02
+  1.616e+00  2.356e+00  5.844e+00  6.472e+00  9.011e+00  1.708e+01
+  1.957e+01  2.138e+01  3.442e+01  4.042e+01  4.884e+01  5.918e+01
+  7.387e+01  8.472e+01  9.620e+01  1.156e+02  1.259e+02  1.471e+02
+  1.557e+02  1.810e+02  2.039e+02  3.118e+02] (28 floored)
+    start ladder h 4.139e-05 m: C_F +1.109e-05, KS -0.6298, cert 5.921e-01 -> OUT
+    start ladder h 8.278e-05 m: C_F +2.216e-05, KS -0.6297, cert 5.834e-01 -> OUT
+    start ladder h 1.656e-04 m: C_F +4.424e-05, KS -0.6295, cert 5.932e-01 -> OUT
+    start ladder h 3.311e-04 m: C_F +8.817e-05, KS -0.6289, cert 2.951e-01 -> OUT
+    start ladder h 6.623e-04 m: C_F +1.751e-04, KS -0.6290, cert 5.859e-01 -> OUT
+    start ladder h 1.325e-03 m: C_F +3.472e-04, KS -0.6309, cert 1.611e+10 -> OUT
+    start ladder h 2.649e-03 m: C_F +6.716e-04, KS -0.6365, cert 7.529e-02 -> OUT
+    start ladder h 5.298e-03 m: C_F +1.256e-03, KS -0.7155, cert 2.862e-01 -> OUT
+    start ladder h 1.060e-02 m: C_F +2.175e-03, KS -0.7372, cert 5.579e-01 -> OUT
+    start ladder h 2.119e-02 m: C_F +2.993e-03, KS -0.7554, cert 5.940e-01 -> OUT
+    start ladder h 4.239e-02 m: C_F +1.542e-04, KS -0.8449, cert 1.247e+00 -> OUT
+    start ladder h 8.477e-02 m: C_F -2.786e-02, KS -0.9763, cert 6.339e-01 -> OUT
+    start ladder h 1.695e-01 m: C_F +5.509e-01, KS -1.0000, cert 2.056e+16 -> OUT
+    start ladder h 3.391e-01 m: C_F +1.393e-01, KS -0.9984, cert 4.850e+15 -> OUT
+   start OUT of class (KS -0.6300 < floor 0.0057): radius from the class record, tr0 5.854e-05 m; the walk opens in restoration
+   start A (ramp 0.00): C_F 1.555011578, cert 5.841e-01, KS -0.6300; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; class scale h* 2.342e-04 m -> tr0 5.854e-05 m, floor 1.463e-05 m; 12 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 3.113e-02 m -> tr0 1.880e-03 (z), floor 4.701e-04 (z)
+   memory mappings at the walk's start: 8079 (cap 65530)
+    [seg  0] RESTORATION: KS - mu0 -0.6356 (violation 6.3564e-01), J = 1.55501158e+00, cert = 0.584
+    [seg  0] margin at base: KS - mu0 = -0.6356 (min cell -0.6300, 9072 cells)
+    [seg  0] margin counters: {'m_exec': 1, 'restore_rec': 1}; multipliers []
+    [seg  0] no motion at radius 1.880e-03 -> retry at 9.401e-04 (same record)
+    [seg  0] margin counters: {'m_exec': 1, 'm_dedup': 1, 'restore_rec': 1}; multipliers []
+    [seg  0] no motion at radius 9.401e-04 -> retry at 4.701e-04 (same record)
+    [seg  0] margin counters: {'m_exec': 1, 'm_dedup': 2, 'restore_rec': 1}; multipliers []
+    [seg  0] no motion -> stop
+    backtracking: 0 probes, 0 accepted along the segment, 0 accepted on the ascent; 1 records
+   return: C_F 1.555011578 (start 1.555011578, reference 1.555011578, 1-D 1.579594), cert 5.841e-01, KS -0.6300 (OUT of class), |grad|inf 1.012e-01; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m (start 0.000e+00 / 0.000e+00); 1 records, 264 s
+   ENDS under the cap L 0.8901 m: plug tip 0.8513 -> 0.8513, shroud lip 0.8510 -> 0.8510 (Migdal 1.4835 / 1.3270)
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall_cap0.6/walk_AN_2026-09-26.json

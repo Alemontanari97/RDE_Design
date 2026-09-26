@@ -109,6 +109,122 @@ Richardson-paired on the ladder), which costs ~25 min per march at (280,61) agai
 walk budget must be re-planned (the Newton metric's 52 gradient evaluations alone are ~24 h at
 that rung). Findings row twowall:arc-design-coarse-instrument-unfit.
 
+## 3bis. Step 2 opened: ONE length cap for both walls (the owner's 2026-09-26 afternoon: "i profili
+## delle circonferenze non cambiano molto rispetto a Migdal ... proviamo ad introdurre un constraint sulla lunghezza")
+THE CAP POSING (`TWOP_CAP` = the cap as a fraction of Migdal's plug length; the arc posing underneath):
+one cap L for both walls; the plug tip and the shroud lip ABSCISSAE are design variables
+x_end = x_a + (L - x_a) sigmoid(u) (never beyond L, each wall free to end where it wants under it);
+the exit HEIGHTS stay pinned (the exit area is the datum, so the vacuum C_F stays a meaningful
+objective: in vacuum a larger exit would always win); every station and knot a fixed fraction of its
+wall's length, so the station abscissae are TRACED (plug_march x_traced=True; the wavefront replay
+gained a wall step on traced stations). Design vector 28 = 22 heights + 4 arc parameters + 2 ends.
+The start: a COMPRESSED MIGDAL -- Migdal's arcs, Migdal's heights at the same fractions, both ends at
+95 percent of the way from the arc's end to L. Measured first (probe `RDE/handoff/f3_2026-09-25/
+twop_cap_probe.py`): the compressed Migdal marches certified (0.21 at cap 0.8, 0.58 at cap 0.6) but
+FOLDS -- 1159 / 2670 negative cells (a compressed perfect nozzle carries compressions that
+coalesce) -- with C_F 1.57493 / 1.55501 against the full length's 1.57988; the thrust gradient in
+the end variables is positive (longer is better in vacuum, as it must be). So a capped walk starts
+OUT of class and opens in the driver's RESTORATION phase (S30); the class floors are the uncapped
+reference's at the same rung (`_twowall_arc/class_2026-09-26.json`, declared: the fold class is a
+property of the net's cells, not of the nozzle's length; ell2 likewise the reference's spacing).
+MEASURED, then corrected -- the restoration, three attempts (all logs kept in `_twowall_cap0.8/`,
+`_twowall_cap0.6/`): (i) the driver's own restoration phase with the reference's class-scale radius
+5.9e-5 m: "no motion" at once at both caps (`run_walk_AN_nomotion_*`); (ii) the same with the station
+spacing 1.06e-2 m as the radius: no motion again (`run_walk_AN_ell_nomotion_*`); (iii) a restoration
+BEFORE the driver, written in `walk()`: ascent of a SOFT KS margin (rho_r = ln n / max(violation, mu0),
+so that the aggregate spans the whole violation and its gradient lifts every folded cell together --
+the class rho makes the KS the min cell, whose ascent moves one cell at a time: with it, "no step at
+ell/2"), line search from ell down by halves, continuation in rho as the violation shrinks: from the
+compressed Migdal it MOVES but does not arrive -- 32 iterations, 100 records, 40 min, soft KS -0.98 ->
+-0.83 while the class KS (the min cell) stays at -0.62 (`run_walk_AN_softks_stalled_*`). A compressed
+perfect nozzle is not a folded design with a few bad cells: its re-turning walls coalesce compressions
+over the last 40 percent of the length (census `twop_cap_starts_probe.py`: at cap 0.8 the 1159
+negative cells sit at x fractions 0.4-1.0 of the length and beyond the lip, at cap 0.6 they spread from
+0.3 on). Finding row `driver:restoration-phase-no-motion` (the driver's phase 1 never moved, three
+times today; the soft ascent works for a MARGINAL violation, see below).
+
+THE START, THEN, IS THE POSING'S OWN QUESTION, and two generic starts were measured (same probe):
+- C, the CONE: each wall an arc made C1 with the chord from the arc's end to the pinned exit point
+  (the arc's end slope = the chord's, a smaller turning: 0.24 / 0.18 rad against Migdal's 0.39 /
+  0.34), then the chord. Fold-free at both caps (min cell +0.0061 / +0.0068 against the floor 0.0057),
+  C_F 1.568009 / 1.562623. The walks from it (`run_walk_CN_*`, Newton metric) climb at 2e-4 per
+  segment glued to the class boundary (the cone's net is marginal everywhere along the straight
+  wall): 1.5691 after 9 segments at cap 0.8, 1.5631 and giving up at cap 0.6 -- stopped, a
+  measured NEGATIVE (the cone is in class but too far, the far-start stall of section 3 again).
+- T, the TRUNCATED MIGDAL: Migdal's own contour up to the cap's end (NOT compressed), plus a tail
+  deflection Delta t^2 (t the fraction of [x_a, end], zero slope at the arc's end so the clamp holds)
+  bringing each wall to its pinned exit height -- an EXPANSION on both walls (the pinned tip is
+  below and the pinned lip above Migdal's contour at the cut), which cannot fold. In class at both
+  caps (KS +0.0081 / +0.0057), C_F 1.579355 / 1.573248 with the ends at 0.953 L (the sigmoid's u0 = 3).
+  Its reading is the physics of the whole step: under a cap the optimiser keeps Migdal's arcs and
+  Migdal's contour where it exists and spends the missing length on a final expansion to the exit
+  area. `TWOP_START=C` and `=T` in `a1_twowall.py` (cone_start, trunc_start).
+
+THE BASELINE the owner asked for ("confrontiamo con il Migdal troncato a quella lunghezza"):
+Migdal's walls CUT at x = L, both, the plug's cut face at vacuum like the posing's pinned base; the
+thrust exact from ONE record (the walls beyond the cut do not touch the supersonic flow upstream: the
+cut nozzle's thrust is the record's wall-pressure partial sum up to the cut, plus the interpolated
+point AT the cut so that the curve is continuous in L). `twop_trunc_migdal.py` ->
+`_twowall_cap/truncated_migdal_2026-09-26.json`: C_F 1.578393 at f 0.8 (A_e/A_i 3.952, 99.906 percent
+of the full length's 1.579880), 1.569476 at f 0.6 (A_e/A_i 3.715, 99.341 percent), 1.543487 at f 0.4.
+
+THE CAPPED WALKS (T start, Newton metric, 8 workers, 16 x 6, coarse rung; the ends first free below L
+with u0 = 3, then AT L with `TWOP_U0=10`, artifacts `_twowall_cap{0.8,0.6}/` and `_twowall_cap{0.8,
+0.6}_atL/`; ~17-19 min each):
+
+| cap | L - x0 [m] | Migdal cut at L | T start (ends at L) | OPTIMUM (ends at L) | gain over the cut | of the full length |
+|-----|-----------|-----------------|---------------------|---------------------|-------------------|--------------------|
+| 0.8 | 1.187 | 1.578393 | 1.579661 | **1.579836** | +1.44e-3 (+0.091 %) | 99.997 % |
+| 0.6 | 0.890 | 1.569476 | 1.575035 (*) | **1.575268** | +5.79e-3 (+0.369 %) | 99.708 % |
+
+(*) the T start at cap 0.6 with the ends at L sits at KS +0.0056 < mu0 0.0057 (in the walk's class by
+the gap, NOT by the driver's test KS >= mu0: the driver opened its restoration and took no step,
+`run_walk_TN_nomotion_*`); the walk's restoration is now triggered by the driver's own test, and the
+soft-KS ascent repaired the 7e-5 violation in ONE step (1.3e-3 m along +grad soft KS: KS +0.0056 ->
++0.0059, C_F 1.574988 -> 1.575035, 4 records).
+With the ends FREE below L (u0 = 3): 1.579551 / 1.573361, the ends did not move (gradient in u 1e-8
+to 1e-3, three orders below the knots'; the sigmoid's derivative at u = 3 is 0.045): a POSING
+ARTEFACT worth 2.9e-4 / 1.9e-3 -- since the vacuum thrust is monotone in the length (the cut Migdal's
+curve), the cap is ACTIVE and the ends belong AT L; the at-L runs are the numbers of record.
+
+THE READING (coarse rung, 140 x 31; the fine-rung confirmation is the pending item, as for step 1):
+1. Where the lip goes: at the cap, and the plug tip too -- both ends at L, the cap active. Under the
+   cap the optimiser does not make an internal-external nozzle (a plug protruding beyond the lip)
+   nor a shorter shroud: a longer wall is always worth more within the class.
+2. How the arcs change: they do NOT (cap 0.8: plug x_a 0.0729 -> 0.0727, t_a 0.3913 -> 0.3914,
+   shroud 0.0646 -> 0.0647, 0.3415; cap 0.6: plug x_a 0.0729 -> 0.0711 (most of it in the
+   restoration step), the rest unchanged). The arc gradients are not zero (0.0125 / -0.053 in x_a):
+   the walk is class-bound in those directions too -- the multipliers of the fold class are ACTIVE
+   at both landings (-0.104 at cap 0.8, -0.018 at 0.6; KS - mu0 +0.0024 / +0.0003): the capped
+   optimum sits ON the fold-class boundary. A shorter nozzle wants to turn faster, and the
+   shock-free constraint is what stops it -- the same wall the S21-S23 plug optima left.
+3. What the cap buys over the cut Migdal: +0.09 percent at 80 percent length, +0.37 percent at 60
+   percent, of which the walk's polish is +1.8e-4 / +2.3e-4 and the rest is the T start itself,
+   i.e. the pinned EXIT AREA (A_e/A_i 4.0 against the cut's 3.95 / 3.72) reached by a final expansion.
+   The comparison is at equal LENGTH, as asked, not at equal exit area: the cut Migdal is the
+   practice's truncated-ideal contour, the capped optimum keeps the datum area. The gains are 10-40
+   times the coarse-rung artefacts of step 1 (gains of 1e-5 to 3e-5 that fell under refinement),
+   which is why the coarse reading is reported; the fine rung decides the size, not the sign.
+4. The two walls stay a shrouded plug of Migdal's family: no new kernel, no new topology. What the
+   length constraint changes is the END of both walls (a stronger final expansion) and the
+   activity of the fold class. At 80 percent length the capped nozzle keeps 99.997 percent of the
+   full-length thrust: Migdal's last 20 percent of length is worth 3e-5 in C_F on this grid.
+
+Figure 26 `_twowall_cap/figs/26_cap_vs_truncated_migdal.png` (generator `RDE/handoff/f3_2026-09-25/
+twop_cap_fig.py`): (a) the walls -- Migdal full, cut at L, the capped optima with the ends at L and
+free; (b) zoom on the arcs; (c) C_F against length: the cut Migdal's curve and every start and
+landing of the day (cone, T, ends free, ends at L); (d) the table.
+
+Records: `_twowall_cap0.8_atL/walk_TN_2026-09-26.json`, `_twowall_cap0.6_atL/walk_TN_2026-09-26.json`
+(the numbers of record), `_twowall_cap0.8/walk_TN_2026-09-26.json`, `_twowall_cap0.6/walk_TN_2026-09-
+26.json` (ends free), logs of every attempt beside them. Probe logs in `RDE/handoff/f3_2026-09-25/`:
+`twop_cap_starts_probe_{0.8,0.6}.log`.
+
+WHAT COMES NEXT (the owner, 2026-09-26 evening): the procedure for the RDE nozzle -- all phases at
+once, each voting by duration, temperature and initial-line state, in the wave frame, with the
+centrifugal term. Written as a proposal, anchored to what the corpus already proves (T0, O1, VI.1,
+T-NSW, the seams of the march): `validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md`.
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
@@ -267,6 +383,9 @@ speed benchmarks and the class stages at both rungs ~45 min;
 class 4 min; derives 106 + 90 min (arc, kernel, the corrected criterion); walks A 92 + 19 min and
 R 150 min after three lost walks (~3 h of machine time lost to the mapping cap); refinement probes
 50 + 60 min. Nothing of the plug instance's campaign budget is touched.
+Step 2 (evening): restoration attempts ~1 h of processes (three, all negative from the compressed
+Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal walks 4 x 14-19 min
+(ends free, ends at L); the cut-Migdal curve 1 min; figure 26. About 2.5 h of machine time in all.
 
 ## 7. Conformity
 - Branch `rde-nozzle-program`, main tree; identity AlexFalco5; explicit pathspecs; GENO never
@@ -291,3 +410,13 @@ R 150 min after three lost walks (~3 h of machine time lost to the mapping cap);
   environmental reds, 117 s; data/phase_diagram.*, data/q_mapping.* and figs/phase_diagram_op11.png
   restored with git checkout before the commit. One commit: the registry rows edited here cite the
   S40 log as their doc (unchanged), so the ordering rule does not apply.
+- Step 2 commit (evening): `a1_twowall.py` gains the cap posing's restoration in `walk()` (soft-KS
+  ascent with continuation, triggered by the driver's own feasibility test), the starts C (cone) and
+  T (truncated Migdal), `TWOP_U0` (the ends' start; 10 = at the cap); `twowall_cases.json` gains the
+  `restore` block; `a1_plug_march.py` the graph's x_traced guard; `a1_wavefront_replay.py` the wall
+  step on traced stations. Registry: findings `driver:restoration-phase-no-motion` minted,
+  `twowall:design-posing-open` updated (step 2 concluded at the coarse rung); X-TWOP's statement
+  gains the cap reading (pass 2026-09-26 unchanged: the derive of record is the same). New doc:
+  `ADVISORY_2026-09-26_RDE_multiphase_procedure.md` (the proposal for the RDE procedure; SR-1 index
+  row). Records `_twowall_cap*/`, figure 26 untracked as all figures. Lints and suite re-run before
+  the commit (numbers in the commit message).

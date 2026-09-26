@@ -1,0 +1,11 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   restoration  1: no step down to 5.30e-03 m improves the KS -> stop
+   restoration ended OUT OF CLASS: 1 iterations, 1 records, KS -0.6300 (floor 0.0057)
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 44 s): asymmetry 2.58e+02 -> floor 1.03e+03; eigenvalues of -H [-1.819e+02 -8.466e+01 -3.094e-03  1.922e-03  4.351e-03  5.060e-02
+  1.616e+00  2.356e+00  5.844e+00  6.472e+00  9.011e+00  1.708e+01
+  1.957e+01  2.138e+01  3.442e+01  4.042e+01  4.884e+01  5.918e+01
+  7.387e+01  8.472e+01  9.620e+01  1.156e+02  1.259e+02  1.471e+02
+  1.557e+02  1.810e+02  2.039e+02  3.118e+02] (28 floored)
+    start ladder h 4.139e-05 m: C_F +1.109e-05, KS -0.6298, cert 5.921e-01 -> OUT
+    start ladder h 8.278e-05 m: C_F +2.216e-05, KS -0.6297, cert 5.834e-01 -> OUT

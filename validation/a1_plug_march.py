@@ -349,9 +349,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         NV = 4
     N = len(ys0)
     if graph is not None:
-        if S.mode != "rec" or NV == 6 or cells is not None or shroud is None or x_traced:
+        if S.mode != "rec" or NV == 6 or cells is not None or shroud is None:
             raise NotImplementedError("graph: the record of the 4-wide shroud posing only")
-        graph.update(cells=[], alias={}, wall_out=[], shroud_out=[], quads=[], N=N)
+        graph.update(cells=[], alias={}, wall_out=[], shroud_out=[], quads=[], N=N, x_traced=bool(x_traced))
 
     if cells is None:
         t_int = A1.get_solver(("intbu", delta),

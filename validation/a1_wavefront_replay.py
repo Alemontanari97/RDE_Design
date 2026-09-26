@@ -75,10 +75,12 @@ def plan(graph):
                      zi=np.array([cells[ci]["zi"] for ci in idx]))
             if kind == "wall":
                 b["x_next"] = np.array([cells[ci]["x_next"] for ci in idx], dtype=float)
+                b["kst"] = np.array([cells[ci]["kst"] for ci in idx])
             if kind == "shroud":
                 b["seg"] = np.array([cells[ci]["seg"] for ci in idx])
             batches.append(b)
     return dict(n_slots=n, N=N, batches=batches, n_levels=int(clev.max()), n_cells=len(cells),
+                x_traced=bool(graph.get("x_traced", False)),
                 wall=np.array([slot[k] for k in graph["wall_out"]]),
                 shroud=np.array([slot[k] for k in graph["shroud_out"]]),
                 quads=(np.array([[sl(k) for k in q] for q in graph["quads"]]) if graph["quads"]
@@ -115,6 +117,15 @@ def _steps(solvers, ta):
         return P.at[outi].set(out)
 
     @jax.jit
+    def s_wall_t(P, inp, outi, z0, kst, sx, sy, ssl):
+        # traced stations (x_traced): the station's own x, y, slope
+        x4w, y4w, sl_ = sx[kst], sy[kst], ssl[kst]
+        p = jnp.concatenate([P[inp[:, 0]], P[inp[:, 1]], jnp.stack([x4w, y4w, sl_], axis=1)], axis=1)
+        z = vs["wall"](jax.lax.stop_gradient(z0), p)
+        out = jnp.stack([x4w, y4w, z[:, 1], sl_ * z[:, 1]], axis=1)
+        return P.at[outi].set(out)
+
+    @jax.jit
     def s_shroud(P, inp, outi, z0, seg, sxs, sys_, sss):
         xA, yA, sA = sxs[seg], sys_[seg], sss[seg]
         xB, yB, sB = sxs[seg + 1], sys_[seg + 1], sss[seg + 1]
@@ -134,7 +145,7 @@ def _steps(solvers, ta):
                          z[:, 1], sss[-1] * z[:, 1]], axis=1)
         return P.at[outi].set(out)
 
-    _STEPS[key] = dict(int=s_int, wall=s_wall, shroud=s_shroud, lip=s_lip)
+    _STEPS[key] = dict(int=s_int, wall=s_wall, wall_t=s_wall_t, shroud=s_shroud, lip=s_lip)
     return _STEPS[key]
 
 
@@ -174,6 +185,8 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None):
         z0 = jnp.asarray(np.stack([zrec[i] for i in b["zi"]])[pad])
         if kind == "int":
             P = steps["int"](P, inp, outi, z0)
+        elif kind == "wall" and pl["x_traced"]:
+            P = steps["wall_t"](P, inp, outi, z0, jnp.asarray(b["kst"][pad]), sx, sy, ssl)
         elif kind == "wall":
             P = steps["wall"](P, inp, outi, z0, jnp.asarray(b["x_next"][pad]), sx, sy, ssl)
         elif kind == "shroud":

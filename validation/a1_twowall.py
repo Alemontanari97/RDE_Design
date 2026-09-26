@@ -168,6 +168,17 @@ class TwoWall:
         # its knots move with it (fixed fractions of [x_a, end]). Default:
         # the posing of the JSON (the Migdal confirmation).
         self.kmode = os.environ.get("TWOP_KERNEL", "data" if self.kernel else "free")
+        # THE LENGTH CAP (step 2 of the design posing, the owner's 2026-09-26
+        # "un constraint sulla lunghezza", one cap for both walls, each end
+        # free under it): TWOP_CAP = the cap as a fraction of Migdal's plug
+        # length; the plug tip and the shroud lip abscissae become design
+        # variables x_end = x_a + (L - x_a) sigmoid(u) (never beyond L), the
+        # exit HEIGHTS stay pinned (the exit area is the datum), every
+        # station and knot a fixed fraction of its wall's length (traced
+        # abscissae: plug_march x_traced). Requires the arc mode.
+        self.cap = float(os.environ.get("TWOP_CAP", str(POSE.get("cap", 0.0))))
+        if self.cap > 0.0:
+            self.kmode = "arc"
         # the record lane's speed switches (S41): TWOP_FAST=1 -> plug_march
         # fast=True; TWOP_PAD=<block> -> the fixed-block margin stack
         self.fast = bool(int(os.environ.get("TWOP_FAST", str(int(POSE.get("fast", False))))))
@@ -216,6 +227,17 @@ class TwoWall:
             # the reference arcs: GENO's arc ends and end slopes (Migdal's
             # arcs are circles of radius ~0.2 m, measured)
             self.W_ref = np.r_[self.W_ref, self.xa_p, abs(self.sa_p), self.xa_s, abs(self.sa_s)]
+        if self.cap > 0.0:
+            self.L = x0 + self.cap * (self.kp[-1] - x0)
+            # stations as fractions of [x0, end] (Migdal's curvature-adaptive
+            # placement, compressed with the wall)
+            self.fp_st = (self.sx - x0) / (self.kp[-1] - x0)
+            self.fs_st = (self.xs - x0) / (self.ks[-1] - x0)
+            self.x_tip_ref, self.x_lip_ref = float(self.kp[-1]), float(self.ks[-1])
+            # the start: Migdal's arcs and heights at the same FRACTIONS of a
+            # wall compressed to u_start of the way from the arc's end to L
+            u0 = float(os.environ.get("TWOP_U0", POSE["cap_u_start"]))   # TWOP_U0 = 10: the ends AT the cap
+            self.W_ref = np.r_[self.W_ref, u0, u0]
         # the wedge: the twin's thinning rule (m = 1 on this posing)
         dy_row = (self.y_u - self.y_l) / (self.N - 1)
         dx_st = float(self.sx[0] - x0)
@@ -231,6 +253,8 @@ class TwoWall:
 
     def walls(self, W):
         """Stations (plug, shroud) of a design, traced."""
+        if self.cap > 0.0:
+            return self._walls_cap(W)
         if self.kmode == "arc":
             return self._walls_arc(W)
         if self.kernel:
@@ -284,6 +308,40 @@ class TwoWall:
             out.append((jnp.asarray(xst), jnp.where(on_arc, y_arc, ys_), jnp.where(on_arc, s_arc, ss_)))
         return out[0], out[1]
 
+    def ends_of(self, W):
+        """The cap posing's ends (x_tip, x_lip) of a design (traced)."""
+        W = jnp.asarray(W)
+        xa_p, xa_s, u_p, u_s = W[-6], W[-4], W[-2], W[-1]
+        sig = lambda u: 1.0 / (1.0 + jnp.exp(-u))             # noqa: E731
+        return xa_p + (self.L - xa_p) * sig(u_p), xa_s + (self.L - xa_s) * sig(u_s)
+
+    def _walls_cap(self, W):
+        """The cap posing: the arc posing on walls whose ends move under L
+        -- traced station abscissae (fractions of [x0, end]), knots at
+        fixed fractions of [x_a, end]."""
+        W = jnp.asarray(W)
+        hp, hs = W[:self.np_], W[self.np_:self.np_ + self.ns_]
+        xa_p, ta_p, xa_s, ta_s = W[-6], W[-5], W[-4], W[-3]
+        x_tip, x_lip = self.ends_of(W)
+        out = []
+        for h, xa, ta, y0, sgn, frac, fst, xe, ye in (
+                (hp, xa_p, ta_p, self.y_l, -1.0, self.fp, self.fp_st, x_tip, self.tip),
+                (hs, xa_s, ta_s, self.y_u, 1.0, self.fs, self.fs_st, x_lip, self.lip)):
+            xst = self.x0 + jnp.asarray(fst) * (xe - self.x0)
+            xa, R, ya, sa = self.arc_of(xa, ta, y0, sgn)
+            xk = jnp.concatenate([xa[None], xa + (xe - xa) * jnp.asarray(frac)])
+            yk = jnp.concatenate([ya[None], h, jnp.array([ye])])
+            M = spline_coeffs(xk, yk, sa)
+            ys_, ss_ = jax.vmap(lambda x: spline_eval(x, xk, yk, M))(xst)
+            xc = jnp.minimum(xst, xa)
+            u = (xc - self.x0) / R
+            root = jnp.sqrt(1.0 - u * u)
+            y_arc = y0 + sgn * R * (1.0 - root)
+            s_arc = sgn * u / root
+            on_arc = xst <= xa
+            out.append((xst, jnp.where(on_arc, y_arc, ys_), jnp.where(on_arc, s_arc, ss_)))
+        return out[0], out[1]
+
     def _walls_kernel(self, W):
         """The kernel posing: GENO's arcs at the stations inside them, a
         clamped spline (arc-end point and slope) through the knots after."""
@@ -310,7 +368,8 @@ class TwoWall:
         graph = {} if self.wavefront else None
         out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
                             self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
-                            wedge_every=self.m_w, margin=margin, fast=self.fast, graph=graph)
+                            wedge_every=self.m_w, margin=margin, fast=self.fast, graph=graph,
+                            x_traced=self.cap > 0.0)
         if graph is not None:
             S.plan = WF.plan(graph)
         return out, S
@@ -338,7 +397,7 @@ class TwoWall:
             return self.J_of(out)
         S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
-                            shroud=(d, e, f), wedge_every=self.m_w)
+                            shroud=(d, e, f), wedge_every=self.m_w, x_traced=self.cap > 0.0)
         return self.J_of(out)
 
     def margin_dict(self, mu0=0.0, rho=1.0, m_ref=1.0, cells=False):
@@ -366,7 +425,7 @@ class TwoWall:
             return out["margin_ks"] - margin["mu0"]
         S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
-                            shroud=(d, e, f), wedge_every=self.m_w, margin=margin)
+                            shroud=(d, e, f), wedge_every=self.m_w, margin=margin, x_traced=self.cap > 0.0)
         return out["margin_ks"] - margin["mu0"]
 
     def on_knots(self, W_other, other):
@@ -919,6 +978,54 @@ def arc_start(tw):
     return np.r_[W[0], W[1], arcs[0], arcs[1], arcs[2], arcs[3]]
 
 
+def cone_start(tw):
+    """The generic start of the CAP posing (S41 step 2): each wall an arc from
+    the inlet made C1 with the CHORD from the arc's end to the pinned exit
+    point (the arc's end slope = the chord's slope: a smaller turning than
+    the reference's), then the chord itself read at the knots; the ends at
+    the cap's own (u0). Nothing of Migdal's contour after the arc. Measured
+    2026-09-26 (twop_cap_starts_probe): fold-free at caps 0.8 and 0.6
+    (min cell +0.0061 / +0.0068), where the compressed Migdal carries 1159 /
+    2670 folded cells (its re-turning walls coalesce compressions over the
+    last 40 % of the length) and the Hermite start 42 / 1175."""
+    W0 = np.asarray(tw.W_ref, float)
+    x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
+    W = W0.copy()
+    for i0, n, xa, ta, y0, sgn, frac, xe, ye, sl in (
+            (0, tw.np_, W0[-6], W0[-5], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, slice(-6, -4)),
+            (tw.np_, tw.ns_, W0[-4], W0[-3], tw.y_u, 1.0, tw.fs, x_lip, tw.lip, slice(-4, -2))):
+        _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(ta), y0, sgn))
+        t_c = abs((ye - ya) / (xe - xa))
+        _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(t_c), y0, sgn))
+        W[i0:i0 + n] = ya + (ye - ya) * np.asarray(frac[:-1])
+        W[sl] = [xa, t_c]
+    return W
+
+
+def trunc_start(tw):
+    """The TRUNCATED-Migdal start of the CAP posing (S41 step 2): each wall
+    Migdal's own contour up to the cap's end (not compressed: the compressed
+    Migdal steepens every turning and folds), plus a smooth tail deflection
+    Delta t^2 (t the fraction of [x_a, end]; zero slope at the arc's end so
+    the clamp holds) that brings the wall to its pinned exit height; the
+    arcs Migdal's, the ends at the cap's own (u0). The deflection is an
+    EXPANSION on both walls at caps 0.6-0.8 (the pinned tip is below, the
+    pinned lip above, Migdal's contour at the cut), which cannot fold. The
+    reading of the truncated Migdal (twop_trunc_migdal): C_F 1.578121 at
+    f 0.8, 1.568879 at 0.6, the honest baseline of a length-capped design."""
+    W0 = np.asarray(tw.W_ref, float)
+    x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
+    W = W0.copy()
+    for i0, n, xa, ta, y0, sgn, frac, xe, ye, gx, gy in (
+            (0, tw.np_, W0[-6], W0[-5], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, tw.plug[:, 0], tw.plug[:, 1]),
+            (tw.np_, tw.ns_, W0[-4], W0[-3], tw.y_u, 1.0, tw.fs, x_lip, tw.lip, tw.shroud[:, 0], tw.shroud[:, 1])):
+        xk = xa + (xe - xa) * np.asarray(frac[:-1])
+        t = (xk - xa) / (xe - xa)
+        delta = ye - float(np.interp(xe, gx, gy))
+        W[i0:i0 + n] = np.interp(xk, gx, gy) + delta * t ** 2
+    return W
+
+
 def walk():
     """STAGE walk -- RE-1 on the two-wall posing: the record driver
     (a1_plug_spline_opt.run_trsqp, backtracking) WITH the fold class of the
@@ -943,7 +1050,7 @@ def walk():
     say("== [F3] the two-wall walk, start %s, class-constrained [X-TWOP] (stage walk) ==" % start)
     tw = TwoWall()
     fc = sorted(glob.glob(os.path.join(ART, "class_20*.json")))
-    Cr = json.load(open(os.environ.get("TWOP_CLASS", fc[-1])))
+    Cr = json.load(open(os.environ.get("TWOP_CLASS") or fc[-1]))
     if (Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel
             or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode
             or (Cr.get("K", tw.K), Cr.get("N", tw.N)) != (tw.K, tw.N)):
@@ -963,7 +1070,8 @@ def walk():
     if start == "A":
         Ws, lam_r = W_ref.copy(), 0.0
     else:
-        Wc = arc_start(tw) if start == "R" else (hermite_start(tw) if start == "H" else chord(tw))
+        Wc = (trunc_start(tw) if start == "T" else cone_start(tw) if start == "C" else arc_start(tw) if start == "R"
+              else (hermite_start(tw) if start == "H" else chord(tw)))
         Ws, lam_r = None, None
         for lam_ in CASES["walk"]["ramps"]:
             Wt = W_ref + lam_ * (Wc - W_ref)
@@ -978,6 +1086,71 @@ def walk():
             say("   no certified in-class generic start on the ramp: nothing to walk")
             return 1
     ok0, o0, S0, c0, k0 = in_class(Ws)
+    # the DRIVER's feasibility test is KS >= mu0 with no gap (a start with
+    # KS in (mu0 - gap, mu0) opens its restoration phase, which takes no step:
+    # measured cap 0.6 with the ends at L, KS - mu0 -7e-5, "no motion" at
+    # every radius); the restoration below is triggered by the driver's test
+    need_restore = lambda ok_, k_: (not ok_) or (k_ < floors[0])             # noqa: E731
+    if need_restore(ok0, k0) and tw.cap > 0.0:
+        # RESTORATION BY ASCENT OF THE MARGIN (S41 step 2; measured first: the
+        # driver's phase 1 -- one trust-constr iteration per record on the KS
+        # -- took NO step from the compressed Migdal at either cap, with the
+        # reference's radius and with the station spacing): a plain line
+        # search along the KS margin's own gradient, the step from ell down
+        # by halves until the violation drops, repeated until the design is
+        # in class (KS >= mu0 - gap) or the step falls below the class floor
+        # scale; every accepted point is a certified record (declared). The
+        # Newton metric and the class scale are then read at the RESTORED
+        # start (the Hessian of a folded design means nothing)
+        ell_r = float(tw.sx[-1] - tw.x0) / len(tw.sx)
+        R = CASES["restore"]
+        h_min = ell_r * 2.0 ** (-int(R["h_floor_k"]))
+        n_c = int(o0["margin_n"])
+        n_it, n_rec_r, h_last = 0, 0, ell_r
+
+        def soft(W_, S_, k_):
+            # the ascent aggregate: a SOFT KS whose rho makes the aggregate span
+            # the whole violation (rho_r = ln n / max(violation, floor)), so that
+            # its gradient lifts every folded cell together instead of the
+            # single worst cell (the class rho makes the KS the min cell: its
+            # ascent moves one cell at a time -- measured, no step at ell/2);
+            # capped at the class rho as the violation shrinks (continuation)
+            v_ = max(floors[0] - k_, floors[0])
+            rho_r = min(float(np.log(n_c)) / v_, rho)
+            mg_r = tw.margin_dict(mu0=floors[0], rho=rho_r, m_ref=m_ref)
+            f_ = lambda z: tw.margin_replay(z, S_, mg_r)             # noqa: E731
+            return rho_r, f_, jax.value_and_grad(f_)(jnp.asarray(W_))
+        while need_restore(ok0, k0) and n_it < int(R["max_iter"]):
+            n_it += 1
+            rho_r, f_soft, (ks_soft, gm) = soft(Ws, S0, k0)
+            gm = np.asarray(gm)
+            if not np.all(np.isfinite(gm)) or np.linalg.norm(gm) == 0.0:
+                say("   restoration: the margin gradient is not usable (finite %s, norm %.1e)"
+                    % (bool(np.all(np.isfinite(gm))), float(np.linalg.norm(gm))))
+                break
+            d = gm / np.linalg.norm(gm)
+            # the line search opens at 4 x the last accepted step (never above ell)
+            h, moved, tried = min(ell_r, 4.0 * h_last), False, []
+            while h >= h_min:
+                okh, oh, Sh, ch, kh = in_class(Ws + h * d)
+                n_rec_r += 1
+                ks_h = float(tw.margin_replay(jnp.asarray(Ws + h * d), Sh,
+                                              tw.margin_dict(mu0=floors[0], rho=rho_r, m_ref=m_ref)))
+                tried.append((h, ks_h, kh, ch))
+                if np.isfinite(ch) and ch <= 1.0 and ks_h > float(ks_soft):
+                    say("   restoration %2d: rho_r %.1f, step %.2e m along +grad soft KS: soft %+.4f -> %+.4f,"
+                        " class KS %+.4f -> %+.4f, min cell %+.4f, cert %.3f, C_F %.6f, %d records"
+                        % (n_it, rho_r, h, float(ks_soft), ks_h, k0, kh, float(oh["margin_min"]), ch,
+                           float(tw.J_of(oh)), n_rec_r))
+                    Ws, ok0, o0, S0, c0, k0, moved, h_last = Ws + h * d, okh, oh, Sh, ch, kh, True, h
+                    break
+                h *= 0.5
+            if not moved:
+                say("   restoration %2d: no step down to %.2e m raises the soft KS -> stop; trials (h, soft, class, cert): %s"
+                    % (n_it, h_min, "; ".join("%.1e %+.4f %+.4f %.2f" % t for t in tried)))
+                break
+        say("   restoration ended %s: %d iterations, %d records, KS %+.4f (floor %.4f)"
+            % ("OUT OF CLASS" if need_restore(ok0, k0) else "IN CLASS", n_it, n_rec_r, k0, floors[0]))
     gp0, gs0 = wall_gap(tw, Ws, W_ref)
     # the radius at the start: the class scale along +grad J
     J_s, g_s = jax.value_and_grad(lambda z: tw.J_replay(z, S0))(jnp.asarray(Ws))
@@ -1025,10 +1198,24 @@ def walk():
             h_bad = h
         if h_ok is not None and h_bad is not None and h_bad > h_ok:
             break
-    if h_ok is None or h_bad is None or h_bad <= h_ok:
+    if (h_ok is None or h_bad is None or h_bad <= h_ok) and not ok0 and tw.cap > 0.0:
+        # a CAP posing starts OUT of class (a compressed Migdal folds: measured
+        # S41, 1159 / 2670 negative cells at caps 0.8 / 0.6): the class scale
+        # cannot be read there; the radius is the class record's tr0 (the
+        # uncapped reference's scale at this rung, declared) and the driver
+        # opens with its restoration phase (S30) before the objective
+        # the restoration's radius is the station spacing ell (the reference's
+        # class scale 6e-5 m gave "no motion" at once, measured: a violation
+        # of 0.62 is not repaired at the scale of the reference's fold cliff);
+        # the driver shrinks it on rejection
+        tr0 = ell
+        say("   start OUT of class (KS %+.4f < floor %.4f): the restoration radius = the station spacing"
+            " %.3e m (declared); the walk opens in restoration" % (k0, floors[0], tr0))
+    elif h_ok is None or h_bad is None or h_bad <= h_ok:
         say("   the class scale is not bracketed at the start: no radius, nothing to walk")
         return 1
-    tr0 = float(np.sqrt(h_ok * h_bad)) / K_RICH
+    else:
+        tr0 = float(np.sqrt(h_ok * h_bad)) / K_RICH
     say("   start %s (ramp %.2f): C_F %.9f, cert %.3e, KS %+.4f; gap to the reference plug %.3e / shroud"
         " %.3e m; class scale h* %.3e m -> tr0 %.3e m, floor %.3e m; %d segments x %d iterations,"
         " backtrack %d" % (start, lam_r, float(tw.J_of(o0)), c0, k0, gp0, gs0, tr0 * K_RICH, tr0,
@@ -1098,8 +1285,14 @@ def walk():
         " %d records, %.0f s" % (Jf, float(tw.J_of(o0)), CF_ref, tw.CF_1d, cf, kf,
                                  "in class" if okf else "OUT of class", float(np.max(np.abs(gf))),
                                  gp, gs, gp0, gs0, n_rec, time.time() - t00))
+    if tw.cap > 0.0:
+        xt0, xl0 = (float(v) for v in tw.ends_of(Ws))
+        xtf, xlf = (float(v) for v in tw.ends_of(Wf))
+        say("   ENDS under the cap L %.4f m: plug tip %.4f -> %.4f, shroud lip %.4f -> %.4f (Migdal %.4f / %.4f)"
+            % (tw.L, xt0, xtf, xl0, xlf, tw.x_tip_ref, tw.x_lip_ref))
     rec = dict(start=start, ramp=lam_r, W_start=Ws.tolist(), W=Wf.tolist(), CF=Jf,
-               CF_start=float(tw.J_of(o0)), CF_ref=CF_ref, cert=cf, ks=kf, in_class=bool(okf),
+               CF_start=float(tw.J_of(o0)), CF_ref=CF_ref, cert=cf, ks=kf, in_class=bool(okf), cap=tw.cap,
+               L=(tw.L if tw.cap > 0.0 else None),
                grad=gf.tolist(), gap_ref=[gp, gs], gap_ref_start=[gp0, gs0], records=n_rec,
                segments=len(hist), seconds=time.time() - t00, tr0=tr0, backtrack=bt, segs=segs,
                iters=iters, counters=dict(mg0.get("counters", {})), metric=metric)
