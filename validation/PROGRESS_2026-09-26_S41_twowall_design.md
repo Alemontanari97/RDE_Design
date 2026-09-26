@@ -199,7 +199,16 @@ Measured on the arc posing's reference (probes and logs in `RDE/handoff/f3_2026-
   (twowall_cases.json wavefront, lane 16; TWOP_WAVEFRONT / TWOP_WORKERS override). Budget of a
   fine-rung walk on them: the metric ~5 min on 8 workers, a segment ~2 min -- the sequential
   walks launched at 14:15 (8 h) were stopped at 15:05 and relaunched on the fast replay.
-- RELAUNCHED 2026-09-26 15:05 on the wavefront replay with the parallel metric (8 workers): the
+  MEASURED ON THOSE, then corrected (15:35): the first wavefront steps were jitted with the REAL
+  batch size as a static argument (for the output slice), so they compiled once per distinct batch
+  size -- ~150 per kind -- not once per padded size: 39.5k memory mappings at the walk's start, a
+  2-4 min compile at every new schedule, and both walks died at the cap during segment 1 (57 / 11
+  allocation failures; logs `run_walk_{A,R}N_staticn_2026-09-26.log`). The padded lanes now scatter
+  into a scratch row and the steps take padded shapes only: the coarse gate re-run 3/3 with the
+  first call at 26 s (was 135 s) and the steady state 1.7 s (24.6x / 28.4x). The per-segment cache
+  clearing is now conditional (above map_clear = 55000 mappings) so the compiled steps survive the
+  segments. The walks and the fine derive relaunched at 15:41.
+- RELAUNCHED 2026-09-26 15:41 on the corrected wavefront replay with the parallel metric (8 workers): the
   Newton walks A (Migdal's arcs) and R (the gentler arcs' in-class ramp) at (280,61), 10 segments
   x 6 iterations, checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`). [pending]
 - THE CLASS STAGE AT BOTH RUNGS with the corrected gates (`_twowall_arc/run_class_2026-09-26.log`

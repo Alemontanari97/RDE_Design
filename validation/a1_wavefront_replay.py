@@ -99,40 +99,40 @@ def _steps(solvers, ta):
         return _STEPS[key]
     vs = {k: jax.vmap(lambda z0, p, f=f: f(z0, p, ta)) for k, f in solvers.items()}
 
-    @functools.partial(jax.jit, static_argnames=("n_",))
-    def s_int(P, inp, outi, z0, n_):
+    @jax.jit
+    def s_int(P, inp, outi, z0):
         p = jnp.concatenate([P[inp[:, 0]], P[inp[:, 1]]], axis=1)
         out = vs["int"](jax.lax.stop_gradient(z0), p)
-        return P.at[outi].set(out[:n_])
+        return P.at[outi].set(out)
 
-    @functools.partial(jax.jit, static_argnames=("n_",))
-    def s_wall(P, inp, outi, z0, n_, x4w, sx, sy, ssl):
+    @jax.jit
+    def s_wall(P, inp, outi, z0, x4w, sx, sy, ssl):
         y4w = jnp.interp(x4w, sx, sy)
         sl_ = jnp.interp(x4w, sx, ssl)
         p = jnp.concatenate([P[inp[:, 0]], P[inp[:, 1]], jnp.stack([x4w, y4w, sl_], axis=1)], axis=1)
         z = vs["wall"](jax.lax.stop_gradient(z0), p)
         out = jnp.stack([x4w, y4w, z[:, 1], sl_ * z[:, 1]], axis=1)
-        return P.at[outi].set(out[:n_])
+        return P.at[outi].set(out)
 
-    @functools.partial(jax.jit, static_argnames=("n_",))
-    def s_shroud(P, inp, outi, z0, n_, seg, sxs, sys_, sss):
+    @jax.jit
+    def s_shroud(P, inp, outi, z0, seg, sxs, sys_, sss):
         xA, yA, sA = sxs[seg], sys_[seg], sss[seg]
         xB, yB, sB = sxs[seg + 1], sys_[seg + 1], sss[seg + 1]
         p = jnp.concatenate([P[inp[:, 0]], jnp.stack([xA, yA, sA, xB, yB, sB], axis=1)], axis=1)
         z = vs["shroud"](jax.lax.stop_gradient(z0), p)
         y4, s4 = PM.hermite_seg(z[:, 0], xA, yA, sA, xB, yB, sB)
         out = jnp.stack([z[:, 0], y4, z[:, 1], s4 * z[:, 1]], axis=1)
-        return P.at[outi].set(out[:n_])
+        return P.at[outi].set(out)
 
-    @functools.partial(jax.jit, static_argnames=("n_",))
-    def s_lip(P, inp, outi, z0, n_, sxs, sys_, sss):
+    @jax.jit
+    def s_lip(P, inp, outi, z0, sxs, sys_, sss):
         npad = inp.shape[0]
         tail = jnp.broadcast_to(jnp.stack([sxs[-1], sys_[-1], sss[-1]]), (npad, 3))
         p = jnp.concatenate([P[inp[:, 0]], P[inp[:, 1]], tail], axis=1)
         z = vs["lip"](jax.lax.stop_gradient(z0), p)
         out = jnp.stack([jnp.broadcast_to(sxs[-1], (npad,)), jnp.broadcast_to(sys_[-1], (npad,)),
                          z[:, 1], sss[-1] * z[:, 1]], axis=1)
-        return P.at[outi].set(out[:n_])
+        return P.at[outi].set(out)
 
     _STEPS[key] = dict(int=s_int, wall=s_wall, shroud=s_shroud, lip=s_lip)
     return _STEPS[key]
@@ -151,7 +151,7 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None):
     if x0a.size == 1:
         x0a = np.full(N, float(x0a[0]))
     P0 = jnp.asarray(np.stack([x0a, np.asarray(ys0, float), np.asarray(us0, float), np.asarray(vs0, float)], axis=1))
-    P = jnp.zeros((pl["n_slots"], 4)).at[:N].set(P0)
+    P = jnp.zeros((pl["n_slots"] + 1, 4)).at[:N].set(P0)       # + the scratch row
     solvers = dict(
         int=A1.get_solver(("intbu", delta), lambda: PM.make_resid_interior_bu(delta))[0],
         wall=A1.get_solver(("wb", delta), lambda: PM.make_resid_wallbot(delta))[0],
@@ -165,16 +165,21 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None):
         npad = _pad(n_, lane)
         pad = np.r_[np.arange(n_), np.full(npad - n_, n_ - 1)]     # lanes, the last repeated
         inp = jnp.asarray(b["inp"][pad])
-        outi = jnp.asarray(b["out"])
+        # the padded lanes scatter into the scratch row (the last slot):
+        # every step is jitted with PADDED shapes only, so it compiles
+        # once per (kind, padded size) -- a static real size recompiled
+        # once per distinct batch size and grew the process to the
+        # mapping cap (measured on the first fine-rung walks)
+        outi = jnp.asarray(np.r_[b["out"], np.full(npad - n_, pl["n_slots"])])
         z0 = jnp.asarray(np.stack([zrec[i] for i in b["zi"]])[pad])
         if kind == "int":
-            P = steps["int"](P, inp, outi, z0, n_)
+            P = steps["int"](P, inp, outi, z0)
         elif kind == "wall":
-            P = steps["wall"](P, inp, outi, z0, n_, jnp.asarray(b["x_next"][pad]), sx, sy, ssl)
+            P = steps["wall"](P, inp, outi, z0, jnp.asarray(b["x_next"][pad]), sx, sy, ssl)
         elif kind == "shroud":
-            P = steps["shroud"](P, inp, outi, z0, n_, jnp.asarray(b["seg"][pad]), sxs, sys_, sss)
+            P = steps["shroud"](P, inp, outi, z0, jnp.asarray(b["seg"][pad]), sxs, sys_, sss)
         else:
-            P = steps["lip"](P, inp, outi, z0, n_, sxs, sys_, sss)
+            P = steps["lip"](P, inp, outi, z0, sxs, sys_, sss)
     res = dict(wall=P[pl["wall"]], shroud=P[pl["shroud"]], margin_ks=None, margin_min=None,
                margin_n=int(pl["quads"].shape[0]))
     if margin is not None and pl["quads"].shape[0]:

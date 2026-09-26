@@ -83,9 +83,10 @@
   },
   "wavefront": {
     "value": {
-      "lane": 16
+      "lane": 16,
+      "map_clear": 55000
     },
     "cls": "NUMERIC",
-    "note": "a1_wavefront_replay: the batches of one level and kind are padded to a multiple of lane lanes so the jitted steps compile once per padded size (S41: 566 batches of ~150 distinct sizes recompiled at every schedule otherwise); 16 = a few compiled sizes per kind at both rungs, the padded lanes' duplicate solves negligible"
+    "note": "a1_wavefront_replay: the batches of one level and kind are padded to a multiple of lane lanes so the jitted steps compile once per padded size (S41: 566 batches of ~150 distinct sizes recompiled at every schedule otherwise); 16 = a few compiled sizes per kind at both rungs, the padded lanes' duplicate solves negligible; map_clear = the memory-mapping count above which a walk clears jax's compilation caches at a segment boundary (the kernel's cap is 65530; the wavefront's compiled steps hold ~38k that recur, so clearing at every segment re-paid a 2-4 min compile)"
   }
 }

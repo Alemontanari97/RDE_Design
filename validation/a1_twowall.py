@@ -1067,9 +1067,15 @@ def walk():
                            CF=float(tw.J_of(oc)), segments=seg0 + seg, tr=float(tr), tr0_z=tr0_z,
                            T=T.tolist()), open(ck, "w"), indent=1)
             m_before = n_maps()
-            jax.clear_caches()
-            say("   checkpoint at segment %d: C_F %.9f; mappings %d -> %d after clearing the caches"
-                % (seg0 + seg, float(tw.J_of(oc)), m_before, n_maps()))
+            # the caches are cleared only near the cap (S41: with the
+            # wavefront replay the compiled steps ARE the speed -- ~38k
+            # mappings that recur at every segment -- and clearing them
+            # cost a 2-4 min recompile per segment, measured on the first
+            # fine-rung walks)
+            if m_before > int(CASES["wavefront"]["map_clear"]):
+                jax.clear_caches()
+            say("   checkpoint at segment %d: C_F %.9f; mappings %d -> %d (cleared above %d)"
+                % (seg0 + seg, float(tw.J_of(oc)), m_before, n_maps(), int(CASES["wavefront"]["map_clear"])))
 
         Zf, hist, n_rec = P.run_trsqp(Z0, {}, dict(throat=pre), tw.ta, sign=+1.0,
                                       max_segments=segs - seg0, maxiter_per_seg=iters, margin=mg0,
