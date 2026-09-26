@@ -1,0 +1,33 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.6 s
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 1585 s): asymmetry 2.23e-01 -> floor 8.91e-01; eigenvalues of -H [3.186e-02 1.908e-01 7.943e-01 1.580e+00 3.128e+00 5.466e+00 6.443e+00
+ 7.437e+00 1.287e+01 1.431e+01 1.991e+01 2.308e+01 2.699e+01 2.815e+01
+ 3.664e+01 3.915e+01 4.377e+01 5.118e+01 5.292e+01 6.078e+01 6.247e+01
+ 7.018e+01 8.320e+01 8.503e+01 1.055e+02 1.461e+02] (3 floored)
+    start ladder h 4.139e-05 m: C_F +9.338e-07, KS +0.0113, cert 1.919e-01 -> in class
+    start ladder h 8.278e-05 m: C_F +1.859e-06, KS +0.0113, cert 1.022e-01 -> in class
+    start ladder h 1.656e-04 m: C_F +3.681e-06, KS +0.0112, cert 8.137e-01 -> in class
+    start ladder h 3.311e-04 m: C_F +7.207e-06, KS +0.0111, cert 5.261e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +1.379e-05, KS +0.0107, cert 1.120e-01 -> in class
+    start ladder h 1.325e-03 m: C_F +2.491e-05, KS +0.0100, cert 7.721e-01 -> in class
+    start ladder h 2.649e-03 m: C_F +3.840e-05, KS +0.0124, cert 5.981e-02 -> in class
+    start ladder h 5.298e-03 m: C_F +2.788e-05, KS +0.0108, cert 8.020e-02 -> in class
+    start ladder h 1.060e-02 m: C_F -4.732e-05, KS -0.5060, cert 5.000e-02 -> OUT
+   start A (ramp 0.00): C_F 1.579880408, cert 5.562e-02, KS +0.0113; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; class scale h* 7.493e-03 m -> tr0 1.873e-03 m, floor 4.683e-04 m; 12 segments x 8 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 4.257e-01 m -> tr0 4.400e-03 (z), floor 1.100e-03 (z)
+    [seg  0] J = 1.57988041e+00  |grad| = 9.653e-03  cert = 0.056
+    [seg  0] margin at base: KS - mu0 = +0.0057 (min cell +0.0113, 8331 cells)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8}; multipliers [[-0.105]]
+    [seg  1] trial J = 1.57984551e+00 worse than 1.57988041e+00; model predicted 1.57986501e+00 (rho 2.27)
+    [seg  1] backtrack 1/2 (step 7.637e-03): J = 1.57985481e+00 cert = 0.287 -> worse
+    [seg  1] backtrack 1/4 (step 3.818e-03): J = 1.57985679e+00 cert = 0.044 -> worse
+    [seg  1] backtrack 1/8 (step 1.909e-03): J = 1.57986511e+00 cert = 0.080 -> worse
+    [seg  1] backtrack: step 9.546e-04 below the floor at 1/16 -> give up
+    [seg  1] ascent 1/2: record not certified
+    [seg  1] ascent 1/4 (step 3.300e-03): J = 1.57990647e+00 cert = 0.609 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 3.300e-03
+    [seg  2] J = 1.57990647e+00  |grad| = 5.997e-03  cert = 0.609
+    [seg  2] margin at base: KS - mu0 = +0.0043 (min cell +0.0099, 8331 cells)
+    [seg  2] margin counters: {'m_exec': 16, 'm_dedup': 16}; multipliers [[-0.081]]
+    backtracking: 5 probes, 0 accepted along the segment, 1 accepted on the ascent; 2 records
+   checkpoint after 3 segments: C_F 1.579906467, 2 records

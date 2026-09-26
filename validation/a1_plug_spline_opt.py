@@ -423,7 +423,7 @@ def J_and_grad(W, w, c, ta, sched):
 # ======================================================================
 def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
               maxiter_per_seg=8, verbose=1, margin=None, tr0=0.05,
-              tr_floor=None, bounds=None, backtrack=None):
+              tr_floor=None, bounds=None, backtrack=None, on_segment=None):
     """Segmented trust-constr. One SEGMENT = one frozen schedule: the
     march is re-recorded at the segment base, the optimizer walks on
     that record, and acceptance triggers a fresh record. A base whose
@@ -459,7 +459,12 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     radius set to the length of the step that succeeded. Fractions
     below the radius floor are not tried (a move under the floor is not
     a measurement). backtrack = 0 (default, BACKTRACK from
-    PSPL_BACKTRACK) is the record's driver, bit-identical."""
+    PSPL_BACKTRACK) is the record's driver, bit-identical.
+    on_segment (S41, additive; default None = bit-identical): a callable
+    (seg, W_best, tr) invoked at the top of every segment with the
+    certified incumbent and the current radius -- the two-wall walks use
+    it to checkpoint and to clear jax's compilation caches (a long walk
+    dies at the kernel's memory-mapping cap otherwise, measured)."""
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf
@@ -541,6 +546,8 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         return None
 
     for seg in range(max_segments):
+        if on_segment is not None:
+            on_segment(seg, W_best, tr)
         try:
             if pending is not None:
                 out_rec, sched = pending[2], pending[3]

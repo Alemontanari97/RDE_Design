@@ -158,6 +158,17 @@ class TwoWall:
         # has no folded cell at 12 knots and the optimum is the straightening
         # contour of THIS kernel -- an instrument posing, declared.
         self.kernel = bool(POSE.get("kernel", False))
+        # THE ARC KERNEL (S40 step 1 of the design posing, the owner's
+        # "non possiamo far decidere questo tratto all'ottimizzatore?"):
+        # TWOP_KERNEL=arc makes each wall's initial stretch a circular arc
+        # tangent to the axial inlet whose END (abscissa x_a and slope
+        # magnitude t_a = |tan theta_a|, hence the radius) are design
+        # variables; the downstream spline is clamped to the arc's end and
+        # its knots move with it (fixed fractions of [x_a, end]). Default:
+        # the posing of the JSON (the Migdal confirmation).
+        self.kmode = os.environ.get("TWOP_KERNEL", "data" if self.kernel else "free")
+        if self.kmode == "arc":
+            self.kernel = True
         if self.kernel:
             def arc_end(w):
                 x_, y_ = w[:, 0], w[:, 1]
@@ -189,6 +200,13 @@ class TwoWall:
         self.np_, self.ns_ = len(self.kp) - 1, len(self.ks) - 1
         self.W_ref = np.r_[np.interp(self.kp[:-1], self.plug[:, 0], self.plug[:, 1]),
                            np.interp(self.ks[:-1], self.shroud[:, 0], self.shroud[:, 1])]
+        if self.kmode == "arc":
+            # the knots as fractions of [x_a, end] (the reference's placement)
+            self.fp = (self.kp - self.xa_p) / (self.kp[-1] - self.xa_p)
+            self.fs = (self.ks - self.xa_s) / (self.ks[-1] - self.xa_s)
+            # the reference arcs: GENO's arc ends and end slopes (Migdal's
+            # arcs are circles of radius ~0.2 m, measured)
+            self.W_ref = np.r_[self.W_ref, self.xa_p, abs(self.sa_p), self.xa_s, abs(self.sa_s)]
         # the wedge: the twin's thinning rule (m = 1 on this posing)
         dy_row = (self.y_u - self.y_l) / (self.N - 1)
         dx_st = float(self.sx[0] - x0)
@@ -204,6 +222,8 @@ class TwoWall:
 
     def walls(self, W):
         """Stations (plug, shroud) of a design, traced."""
+        if self.kmode == "arc":
+            return self._walls_arc(W)
         if self.kernel:
             return self._walls_kernel(W)
         W = jnp.asarray(W)
@@ -216,6 +236,44 @@ class TwoWall:
         py, pslope = jax.vmap(lambda x: spline_eval(x, xp, yp, Mp))(jnp.asarray(self.sx))
         sy, sslope = jax.vmap(lambda x: spline_eval(x, xs_k, ys, Ms))(jnp.asarray(self.xs))
         return (jnp.asarray(self.sx), py, pslope), (jnp.asarray(self.xs), sy, sslope)
+
+    def arc_of(self, xa, ta, y0, sgn):
+        """A circular arc from (x0, y0) tangent to the axis, ending at x_a
+        with slope sgn t_a: its radius, end point and end slope (traced)."""
+        tiny = jnp.finfo(jnp.float64).tiny
+        xa = jnp.maximum(xa, self.x0 + tiny)
+        ta = jnp.maximum(ta, tiny)
+        sin_a = ta / jnp.sqrt(1.0 + ta * ta)
+        cos_a = 1.0 / jnp.sqrt(1.0 + ta * ta)
+        R = (xa - self.x0) / sin_a
+        return xa, R, y0 + sgn * R * (1.0 - cos_a), sgn * ta
+
+    def _walls_arc(self, W):
+        """The arc posing: each wall a circular arc tangent to the axial
+        inlet (its end x_a, t_a design variables) then a spline clamped to
+        the arc's end through knots at fixed fractions of [x_a, end]; the
+        arc formula is evaluated at x clipped to x_a so the branch that is
+        not taken stays finite (and its adjoint zero)."""
+        W = jnp.asarray(W)
+        hp, hs = W[:self.np_], W[self.np_:self.np_ + self.ns_]
+        xa_p, ta_p, xa_s, ta_s = W[-4], W[-3], W[-2], W[-1]
+        out = []
+        for xst, h, xa, ta, y0, sgn, frac, xe, ye in (
+                (self.sx, hp, xa_p, ta_p, self.y_l, -1.0, self.fp, self.kp[-1], self.tip),
+                (self.xs, hs, xa_s, ta_s, self.y_u, 1.0, self.fs, self.ks[-1], self.lip)):
+            xa, R, ya, sa = self.arc_of(xa, ta, y0, sgn)
+            xk = jnp.concatenate([xa[None], xa + (xe - xa) * jnp.asarray(frac)])
+            yk = jnp.concatenate([ya[None], h, jnp.array([ye])])
+            M = spline_coeffs(xk, yk, sa)
+            ys_, ss_ = jax.vmap(lambda x: spline_eval(x, xk, yk, M))(jnp.asarray(xst))
+            xc = jnp.minimum(jnp.asarray(xst), xa)
+            u = (xc - self.x0) / R
+            root = jnp.sqrt(1.0 - u * u)
+            y_arc = y0 + sgn * R * (1.0 - root)
+            s_arc = sgn * u / root
+            on_arc = jnp.asarray(xst) <= xa
+            out.append((jnp.asarray(xst), jnp.where(on_arc, y_arc, ys_), jnp.where(on_arc, s_arc, ss_)))
+        return out[0], out[1]
 
     def _walls_kernel(self, W):
         """The kernel posing: GENO's arcs at the stations inside them, a
@@ -470,15 +528,33 @@ def derive():
     # model's and the record's, conservative); an uncertified record side
     # leaves the frozen one
     lam_id = np.where(np.isfinite(qrec), np.minimum(lam, qrec), lam)
-    ident = lam_id > floor_h
-    n_null = int(np.sum(np.abs(lam_id) <= floor_h))
-    n_neg = int(np.sum(lam_id < -floor_h))
+    # IDENTIFIABILITY PER DIRECTION (S41 2026-09-26; the global floor
+    # K_RICH x the Hessian's asymmetry was measured far too crude on the
+    # arc posing: a direction of curvature 0.032, verified by J's own second
+    # difference to 8.5e-4, read as "near-null" against a floor of 1.2):
+    # each eigenvalue's floor is K_RICH x its OWN verified error (G-5a) plus
+    # the rounding floor of the second difference; the global floor stays a
+    # reading. The shape band is quoted in the design's units AND as the
+    # wall displacement it makes (the design mixes knot heights, arc ends
+    # and end slopes).
+    err_k = np.array([abs(r["q2"] - r["lam"]) for r in rq_rows])
+    floor_k = K_RICH * err_k + K_RICH * A1.C_FLOOR * A1.EPS * abs(J_rec) / h1 ** 2
+    ident = lam_id > floor_k
+    n_null = int(np.sum(np.abs(lam_id) <= floor_k))
+    n_neg = int(np.sum(lam_id < -floor_k))
     t_band = np.where(ident, np.sqrt(2.0 * delta / np.where(ident, lam_id, 1.0)), np.inf)
+    w_band = np.full(len(lam), np.inf)
     for k in range(len(lam)):
-        say("   direction %2d: lambda %+.4e (identifiability on %+.4e)  shape band %s  plug %.2f /"
-            " shroud %.2f  (%s)" % (k, lam[k], lam_id[k], ("%.2e m" % t_band[k]) if np.isfinite(t_band[k]) else "  none  ",
-               split[k][0], split[k][1],
-               "walls move together" if split[k][2] > 0 else "walls move apart"))
+        if ident[k]:
+            w_band[k] = max(wall_gap(tw, W0 + t_band[k] * V[:, k], W0))
+        say("   direction %2d: lambda %+.4e (identifiability on %+.4e, floor %.1e)  band %s  plug %.2f /"
+            " shroud %.2f  (%s)" % (k, lam[k], lam_id[k], floor_k[k],
+                                    ("%.2e (design units) = %.2e m of wall" % (t_band[k], w_band[k]))
+                                    if np.isfinite(t_band[k]) else "  none  ",
+                                    split[k][0], split[k][1],
+                                    "walls move together" if split[k][2] > 0 else "walls move apart"))
+    say("   READING the global floor K_RICH x asymmetry %.2e would call %d direction(s) near-null"
+        % (floor_h, int(np.sum(np.abs(lam_id) <= floor_h))))
     proj = V.T @ g0
     s_N = V[:, ident] @ (proj[ident] / lam_id[ident])
     dJ_N = float(0.5 * np.sum(proj[ident] ** 2 / lam_id[ident]))
@@ -489,16 +565,16 @@ def derive():
                                                     np.linalg.norm(s_N), dJ_N, dJ_N / delta,
                                                     g_null, np.linalg.norm(g0)))
     cond = float(lam[-1] / max(abs(lam[0]), np.finfo(float).tiny))
-    check("G-5 DUTY-11 measured: %d identifiable, %d near-null, %d ascent direction(s) at the floor"
-          " %.2e (condition %.2e); the softest direction's shape band %s" %
-          (int(np.sum(ident)), n_null, n_neg, floor_h, cond,
-           ("%.2e m" % np.min(t_band[ident])) if np.any(ident) else "none"), True)
+    check("G-5 DUTY-11 measured: %d identifiable, %d near-null, %d ascent direction(s) at their own"
+          " verified floors (condition %.2e); the widest shape band %s of wall" %
+          (int(np.sum(ident)), n_null, n_neg, cond,
+           ("%.2e m" % np.max(w_band[ident])) if np.any(ident) else "none"), True)
     rec = dict(npass=list(NPASS), CF_ref=J_rec, CF_1d=tw.CF_1d, eps_i=tw.eps_i, e_rep=[e_p, e_s],
                cert=float(out["cert_worst"]), grad_ref=g0.tolist(), fd=rows,
                delta_ev=delta_ev, delta=delta, cert_ladder=lad, ell=ell, h_ok=h_ok, h_bad=h_bad,
                h_star=h_star, tr0=tr0, H=H.tolist(), lam=lam.tolist(), V=V.tolist(), asym=asym,
                floor=floor_h, dscale=dscale, H_ad=H_ad.tolist(), rayleigh=hv_rows, lam_id=lam_id.tolist(), n_null=n_null, n_neg=n_neg, ident=ident.tolist(),
-               t_band=[float(x) for x in t_band], s_newton=s_N.tolist(), dJ_newton=dJ_N,
+               t_band=[float(x) for x in t_band], w_band=[float(x) for x in w_band], floor_k=floor_k.tolist(), s_newton=s_N.tolist(), dJ_newton=dJ_N,
                split=split, W_ref=W0.tolist(), kp=tw.kp.tolist(), ks=tw.ks.tolist(),
                n_plug=tw.np_)
     fn = os.path.join(ART, "derive_%s.json" % time.strftime("%Y-%m-%d"))
@@ -597,7 +673,7 @@ def classderive():
     tr0 = h_star / K_RICH
     say("   floors %s; rho %.1f; gap %.2e; h* %.3e m -> tr0 %.3e m, floor %.3e m"
         % (np.array2string(np.array(floors), precision=4), rho, gap, h_star, tr0, tr0 / K_RICH))
-    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
+    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
                N_cells=Nc, floors=floors, rho=rho, gap=gap, rejector=rej, ladder=lad, h_ok=h_ok,
                h_bad=h_bad, h_star=h_star, tr0=tr0, W_ref=W0.tolist(), grad_ref=g0.tolist(),
                seconds=time.time() - t00)
@@ -682,6 +758,29 @@ def secant_hessian(gfun, W0, h):
     return H
 
 
+def arc_start(tw):
+    """A generic start of the ARC posing: each wall's arc with its radius
+    scaled by arc.start_R_scale at the reference's end angle (a different
+    kernel), the downstream wall the cubic Hermite from that arc's end
+    (point, slope) to the pinned end with an axial exit, read at the knots
+    placed on the new [x_a, end] -- nothing of Migdal's contour after the
+    arc."""
+    sc = float(CASES["arc"]["start_R_scale"])
+    W = []
+    arcs = []
+    for xa0, ta, y0, sgn, frac, xe, ye in ((tw.xa_p, abs(tw.sa_p), tw.y_l, -1.0, tw.fp, tw.kp[-1], tw.tip),
+                                           (tw.xa_s, abs(tw.sa_s), tw.y_u, 1.0, tw.fs, tw.ks[-1], tw.lip)):
+        xa = tw.x0 + sc * (xa0 - tw.x0)
+        _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(ta), y0, sgn))
+        xk = xa + (xe - xa) * frac[:-1]
+        h = xe - xa
+        t = (xk - xa) / h
+        W.append((2 * t ** 3 - 3 * t ** 2 + 1) * ya + (t ** 3 - 2 * t ** 2 + t) * h * sa
+                 + (-2 * t ** 3 + 3 * t ** 2) * ye)
+        arcs += [xa, ta]
+    return np.r_[W[0], W[1], arcs[0], arcs[1], arcs[2], arcs[3]]
+
+
 def walk():
     """STAGE walk -- RE-1 on the two-wall posing: the record driver
     (a1_plug_spline_opt.run_trsqp, backtracking) WITH the fold class of the
@@ -707,7 +806,8 @@ def walk():
     tw = TwoWall()
     fc = sorted(glob.glob(os.path.join(ART, "class_20*.json")))
     Cr = json.load(open(os.environ.get("TWOP_CLASS", fc[-1])))
-    if Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel:
+    if (Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel
+            or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode):
         raise ValueError("the class record %s is not this posing's" % fc[-1])
     floors, rho, gap, m_ref = Cr["floors"], Cr["rho"], Cr["gap"], Cr["m_ref"]
     mg0 = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)
@@ -724,7 +824,7 @@ def walk():
     if start == "A":
         Ws, lam_r = W_ref.copy(), 0.0
     else:
-        Wc = hermite_start(tw) if start == "H" else chord(tw)
+        Wc = arc_start(tw) if start == "R" else (hermite_start(tw) if start == "H" else chord(tw))
         Ws, lam_r = None, None
         for lam_ in CASES["walk"]["ramps"]:
             Wt = W_ref + lam_ * (Wc - W_ref)
@@ -744,7 +844,18 @@ def walk():
     J_s, g_s = jax.value_and_grad(lambda z: tw.J_replay(z, S0))(jnp.asarray(Ws))
     g_s = np.asarray(g_s)
     metric = os.environ.get("TWOP_METRIC", "")
-    if metric == "start":
+    ck = os.path.join(ART, "walk_%sN_checkpoint.json" % start)
+    C0 = None
+    if os.environ.get("TWOP_RESUME") and os.path.exists(ck):
+        C0 = json.load(open(ck))
+        if C0["W_start"] != Ws.tolist():
+            C0 = None
+    if metric == "start" and C0 is not None and "T" in C0:
+        T = np.array(C0["T"])
+        say("   NEWTON METRIC read from the checkpoint (the secant Hessian at this start, computed once)")
+        dN = T @ (T.T @ g_s)
+        u = dN / np.linalg.norm(dN)
+    elif metric == "start":
         t_m = time.time()
         Hs = secant_hessian(jax.grad(lambda z: tw.J_replay(z, S0)), Ws, GATES["hess_steps"][0])
         asym_m = float(np.max(np.abs(Hs - Hs.T)))
@@ -788,11 +899,43 @@ def walk():
         tr0_z = tr0 / zlen
         say("   Newton walk in z: a unit z-step along the Newton direction moves the walls %.3e m ->"
             " tr0 %.3e (z), floor %.3e (z)" % (zlen, tr0_z, tr0_z / K_RICH))
+        # CHECKPOINTED (S41): the driver calls back at the top of every
+        # segment with its certified incumbent; the walk writes it to disk
+        # (with the Newton metric T and the radius) and CLEARS jax's
+        # compilation caches -- a walk accumulates compiled executables
+        # (every march has its own cell count, every count a new set of
+        # shapes) and died at the kernel's memory-mapping cap 65530
+        # (measured 2026-09-26: 32742 mappings after two segments; 31912 ->
+        # 1667 after clearing). TWOP_RESUME=1 restarts from the checkpoint's
+        # incumbent with its radius and its metric (no second Hessian).
+        Z0, seg0, tr_z = np.zeros(len(Ws)), 0, tr0_z
+        if C0 is not None:
+            Z0, seg0, tr_z = np.array(C0["Z"]), int(C0["segments"]), float(C0.get("tr", tr0_z))
+            say("   RESUMED from the checkpoint: %d segments done, C_F %.9f, radius %.3e (z)"
+                % (seg0, C0["CF"], tr_z))
+        n_maps = lambda: sum(1 for _ in open("/proc/self/maps"))     # noqa: E731
+        say("   memory mappings at the walk's start: %d (cap 65530)" % n_maps())
         pre = Metric(tw, Ws, T)
-        Zf, hist, n_rec = P.run_trsqp(np.zeros(len(Ws)), {}, dict(throat=pre), tw.ta, sign=+1.0,
-                                      max_segments=segs, maxiter_per_seg=iters, margin=mg0,
-                                      tr0=tr0_z, tr_floor=tr0_z / K_RICH, bounds=None, backtrack=bt)
-        Wf = Ws + T @ np.asarray(Zf, float)
+
+        def on_segment(seg, W_best, tr):
+            if W_best is None:
+                return
+            Zb = np.asarray(W_best, float)
+            oc, _ = tw.march_record(Ws + T @ Zb)
+            json.dump(dict(W_start=Ws.tolist(), Z=Zb.tolist(), W=(Ws + T @ Zb).tolist(),
+                           CF=float(tw.J_of(oc)), segments=seg0 + seg, tr=float(tr), tr0_z=tr0_z,
+                           T=T.tolist()), open(ck, "w"), indent=1)
+            m_before = n_maps()
+            jax.clear_caches()
+            say("   checkpoint at segment %d: C_F %.9f; mappings %d -> %d after clearing the caches"
+                % (seg0 + seg, float(tw.J_of(oc)), m_before, n_maps()))
+
+        Zf, hist, n_rec = P.run_trsqp(Z0, {}, dict(throat=pre), tw.ta, sign=+1.0,
+                                      max_segments=segs - seg0, maxiter_per_seg=iters, margin=mg0,
+                                      tr0=tr_z, tr_floor=tr0_z / K_RICH, bounds=None, backtrack=bt,
+                                      on_segment=on_segment)
+        Z = np.asarray(Zf, float)
+        Wf = Ws + T @ Z
     else:
         c = dict(throat=tw)
         Wf, hist, n_rec = P.run_trsqp(Ws, {}, c, tw.ta, sign=+1.0, max_segments=segs,
@@ -840,8 +983,10 @@ def grade():
                                                            D["delta"]))
     wk = {}
     vs = os.environ.get("TWOP_GRADE_VS", "HN")
-    for st, tag in (("A", "A"), ("H", vs)):
+    for st, tag in (("A", os.environ.get("TWOP_GRADE_A", "A")), ("H", vs)):
         fw = sorted(glob.glob(os.path.join(ART, "walk_%s_20*.json" % tag)))
+        if not fw and tag == "A":
+            fw = sorted(glob.glob(os.path.join(ART, "walk_AN_20*.json")))   # the Newton walk from A
         wk[st] = json.load(open(fw[-1]))
         say("   walk %s: %s -- C_F %.9f (start %.9f), cert %.3e, KS %+.4f (%s), gap to the reference plug"
             " %.3e / shroud %.3e m (start %.3e / %.3e), %d records, %.0f s"
@@ -877,7 +1022,24 @@ def grade():
     gp, gs = wall_gap(tw, wk["H"]["W"], wk["A"]["W"])
     say("   READING the two landings apart by plug %.3e / shroud %.3e m in the walls (H started %.3e / %.3e"
         " from the reference)" % (gp, gs, *wk["H"]["gap_ref_start"]))
-    rec = dict(npass=list(NPASS), dCF=dJ, a=a.tolist(), a_start=a0.tolist(), gap_HA=[gp, gs],
+    arcs = None
+    if tw.kmode == "arc":
+        # the arcs the two walks chose, in physical units, and the reference's
+        def arc_read(W):
+            xa_p, ta_p, xa_s, ta_s = (float(v) for v in np.asarray(W)[-4:])
+            out = []
+            for xa, ta in ((xa_p, ta_p), (xa_s, ta_s)):
+                out += [xa, (xa - tw.x0) * np.sqrt(1.0 + ta * ta) / ta, np.degrees(np.arctan(ta))]
+            return out
+        arcs = {k: arc_read(v["W"]) for k, v in wk.items()}
+        arcs["ref"] = arc_read(tw.W_ref)
+        say("   ARCS (x_end m, radius m, end angle deg -- plug | shroud):")
+        for k, ar in arcs.items():
+            say("      %-4s plug %.4f  R %.4f  %.2f deg | shroud %.4f  R %.4f  %.2f deg"
+                % (k, ar[0], ar[1], ar[2], ar[3], ar[4], ar[5]))
+        say("   the two walks' arcs differ by: plug end %.2e m, R %.2e m, angle %.3f deg | shroud end %.2e m,"
+            " R %.2e m, angle %.3f deg" % tuple(abs(arcs["H"][i] - arcs["A"][i]) for i in range(6)))
+    rec = dict(npass=list(NPASS), dCF=dJ, a=a.tolist(), a_start=a0.tolist(), gap_HA=[gp, gs], arcs=arcs,
                walks={k: dict(CF=v["CF"], cert=v["cert"], ks=v["ks"], gap_ref=v["gap_ref"]) for k, v in wk.items()})
     fn = os.path.join(ART, "grade_%s.json" % time.strftime("%Y-%m-%d"))
     json.dump(rec, open(fn, "w"), indent=1, default=float)

@@ -4642,6 +4642,21 @@ percent low on the S37 walk world, 30 percent asymmetric on two walls); the
 instrument is the secant Hessian of the exact gradient at the scale of the
 question, verified by second differences of J [PRACTICE].]
 
+[LINE ADDENDUM S41, landed 2026-09-26 (the two-wall design posing, step 1; log
+validation/PROGRESS_2026-09-26_S41_twowall_design.md).
+(1) A COARSE-GRID GAIN OVER A PERFECT NOZZLE IS THE INSTRUMENT'S UNTIL IT
+SURVIVES A PAIRED REFINEMENT: with circular arcs as design variables the
+(140,31) walks beat Migdal's arcs by 5e-5 .. 2e-4 of C_F, and re-marched
+paired at (280,61) the first gain falls to a third and the second turns
+negative with folded cells -- the differences the question turns on sit
+inside the coarse grid's own error (+2.9e-4 over the 1-D ideal) and the fold
+class must be judged where folds resolve [MEASURED].
+(2) IDENTIFIABILITY IS PER DIRECTION: a design vector that mixes knot
+heights, arc ends and end slopes has no meaningful global curvature floor;
+each eigenvalue is judged against K_RICH x its own verified error (the second
+difference of J along it), and its band quoted as the wall displacement it
+makes [PRACTICE].]
+
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS
 

@@ -1,0 +1,26 @@
+== [F3] the two-wall walk, start R, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   ramp 1.00 toward the generic start: cert 5.568e-02, KS -0.0998 (floor 0.0057), C_F 1.579094, gap to the reference plug 1.544e-02 / shroud 1.175e-02 m
+   ramp 0.75 toward the generic start: cert 3.969e-02, KS -0.2220 (floor 0.0057), C_F 1.579392, gap to the reference plug 1.162e-02 / shroud 8.835e-03 m
+   ramp 0.50 toward the generic start: cert 4.895e-02, KS +0.0105 (floor 0.0057), C_F 1.579662, gap to the reference plug 7.767e-03 / shroud 5.908e-03 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 1861 s): asymmetry 3.78e-01 -> floor 1.51e+00; eigenvalues of -H [-3.587e+01  1.256e-02  2.060e-01  8.214e-01  1.629e+00  3.245e+00
+  5.963e+00  6.646e+00  7.226e+00  8.675e+00  1.274e+01  1.543e+01
+  1.953e+01  2.237e+01  2.834e+01  3.113e+01  3.677e+01  4.351e+01
+  4.969e+01  5.018e+01  6.175e+01  7.039e+01  8.704e+01  8.879e+01
+  1.111e+02  1.592e+02] (4 floored)
+    start ladder h 4.139e-05 m: C_F +4.639e-06, KS +0.0105, cert 8.303e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +9.338e-06, KS +0.0105, cert 5.755e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +1.891e-05, KS +0.0105, cert 4.113e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +3.876e-05, KS +0.0104, cert 6.664e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +8.117e-05, KS +0.0102, cert 3.784e-02 -> in class
+    start ladder h 1.325e-03 m: C_F +1.761e-04, KS +0.0099, cert 4.788e-02 -> in class
+    start ladder h 2.649e-03 m: C_F +4.006e-04, KS -0.6104, cert 6.175e-02 -> OUT
+   start R (ramp 0.50): C_F 1.579662420, cert 4.895e-02, KS +0.0105; gap to the reference plug 7.767e-03 / shroud 5.908e-03 m; class scale h* 1.873e-03 m -> tr0 4.683e-04 m, floor 1.171e-04 m; 12 segments x 8 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 7.662e-01 m -> tr0 6.112e-04 (z), floor 1.528e-04 (z)
+    [seg  0] J = 1.57966242e+00  |grad| = 8.533e-02  cert = 0.049
+    [seg  0] margin at base: KS - mu0 = +0.0049 (min cell +0.0105, 8279 cells)
+    [seg  0] margin counters: {'m_exec': 8, 'm_dedup': 8}; multipliers [[-0.096]]
+    [seg  1] J = 1.57972265e+00  |grad| = 4.727e-02  cert = 0.038
+    [seg  1] margin at base: KS - mu0 = +0.0062 (min cell +0.0118, 8280 cells)
+E0925 16:05:19.142216    1512 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+[S41 trimmed: the line above repeated 6073 times; the process ended there]

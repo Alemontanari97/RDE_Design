@@ -1,0 +1,73 @@
+== [F3] the two-wall design on Migdal's nozzle: gates and DUTY-11 [X-TWOP] ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.7 s
+   reference (GENO's walls at the knots): representation error plug 2.74e-04, shroud 1.86e-04; cert 1.053e-01 at ('wall', 55); C_F 1.579881 vs 1-D 1.579594 (+2.86e-04); 28.0 s
+  [PASS] G-1 the reference marches certified (0.105); its C_F 1.579881 against the 1-D 1.579594 is reported (the spline representation moves the walls by 2.7e-04 / 1.9e-04)
+  [PASS] G-2 REPLAY = RECORD at the reference (1.579880616442 vs 1.579880616442, rel 0.0e+00)
+   reverse AD: |grad C_F|inf 1.605e-02 (plug 2.295e-03, shroud 1.605e-02); 40.0 s
+   dir 0: AD +4.270023270e-04, frozen-schedule FD +4.140994336e-04 (ladder spread 1.4e-05, band 5.4e-05, |d| 1.3e-05); READING record FD +3.987405e-04, +4.140994e-04, decisions re-taken h 1e-03: sseg (J jump 1.3e-08); h 1e-04: none (J jump 4.4e-16)
+   dir 1: AD +7.374480977e-03, frozen-schedule FD +7.370007493e-03 (ladder spread 1.3e-05, band 5.0e-05, |d| 4.5e-06); READING record FD +7.388372e-03, +7.362891e-03, decisions re-taken h 1e-03: sseg,wfoot (J jump 2.2e-09); h 1e-04: none (J jump 4.4e-16)
+   dir 2: AD -1.232406280e-03, frozen-schedule FD -1.230020585e-03 (ladder spread 6.8e-06, band 2.7e-05, |d| 2.4e-06); READING record FD -1.243255e-03, -1.226533e-03, decisions re-taken h 1e-03: sseg,wfoot (J jump 7.5e-11); h 1e-04: none (J jump 2.9e-15)
+   dir 3: AD -2.399404466e-03, frozen-schedule FD -2.386054987e-03 (ladder spread 1.5e-05, band 5.9e-05, |d| 1.3e-05); READING record FD -2.334009e-03, -2.383615e-03, decisions re-taken h 1e-03: sseg (J jump 9.7e-09); h 1e-04: none (J jump 2.2e-16)
+  [PASS] G-3 the adjoint of both walls against the frozen-schedule FD ladder, inside K_RICH x its spread + the rounding floor, on 4 seeded directions
+   the functional's resolution between designs: the decisions' J jump 1.26e-08 (max over the probes; floor C_FLOOR x EPS x |J| 2.8e-15) -> delta 1.26e-08 (8.0e-09 of C_F)
+    h 3.311e-04 m: cert 9.255e-02, C_F 1.579880955 (+3.38e-07)
+    h 6.623e-04 m: cert 1.997e+01, C_F -- (uncertified)
+  [PASS] G-4 the certification breaks along +grad J inside the ladder (bracket [0.00033113940649553573, 0.0006622788129910715] m, ell 1.060e-02)
+   h* 4.683e-04 m -> tr0 1.171e-04 m, radius floor tr0/K_RICH 2.927e-05 m
+   secant Hessian at h 1e-03 m: asymmetry 3.98e-02 (max |H| 9.01e+01); 1547 s
+   secant Hessian at h 1e-04 m: asymmetry 3.69e-01 (max |H| 9.01e+01); 2953 s
+   DUTY-11: secant Hessian at h 1e-03 (22 x 22): asymmetry 3.98e-02, change to h 1e-04 2.80e-01 -> curvature floor K_RICH x max 1.12e+00; eigenvalues of -H [  0.796    1.5884   3.1776   6.4571   7.1552  12.7302  14.5224  19.832
+  25.5398  28.0962  36.6076  38.8607  43.7414  51.1564  52.7722  60.716
+  62.4551  70.0618  83.195   84.657  105.3861 146.0399]
+   READING the pointwise AD Hessian (jax.hessian): asymmetry 2.65e+00, max |H_ad - H_secant| 3.44e+01 (declared unfit, above)
+   direction  0: lambda +7.9598e-01, second difference of the frozen replay +7.9577e-01 (|d| 2.1e-04); READING the record's +nan
+   direction  1: lambda +1.5884e+00, second difference of the frozen replay +1.5948e+00 (|d| 6.5e-03); READING the record's +1.5935e+00
+   direction  2: lambda +3.1776e+00, second difference of the frozen replay +3.1770e+00 (|d| 6.2e-04); READING the record's +3.1770e+00
+   direction  3: lambda +6.4571e+00, second difference of the frozen replay +6.4598e+00 (|d| 2.7e-03); READING the record's +6.4570e+00
+   direction  4: lambda +7.1552e+00, second difference of the frozen replay +7.1545e+00 (|d| 6.6e-04); READING the record's +nan
+   direction  5: lambda +1.2730e+01, second difference of the frozen replay +1.2734e+01 (|d| 4.1e-03); READING the record's +1.2734e+01
+   direction  6: lambda +1.4522e+01, second difference of the frozen replay +1.4521e+01 (|d| 1.2e-03); READING the record's +1.4519e+01
+   direction  7: lambda +1.9832e+01, second difference of the frozen replay +1.9826e+01 (|d| 6.3e-03); READING the record's +1.9826e+01
+   direction  8: lambda +2.5540e+01, second difference of the frozen replay +2.5532e+01 (|d| 8.0e-03); READING the record's +2.5531e+01
+   direction  9: lambda +2.8096e+01, second difference of the frozen replay +2.8090e+01 (|d| 6.6e-03); READING the record's +2.8090e+01
+   direction 10: lambda +3.6608e+01, second difference of the frozen replay +3.6601e+01 (|d| 6.6e-03); READING the record's +nan
+   direction 11: lambda +3.8861e+01, second difference of the frozen replay +3.8847e+01 (|d| 1.3e-02); READING the record's +3.8847e+01
+   direction 12: lambda +4.3741e+01, second difference of the frozen replay +4.3731e+01 (|d| 1.0e-02); READING the record's +4.3731e+01
+   direction 13: lambda +5.1156e+01, second difference of the frozen replay +5.1136e+01 (|d| 2.0e-02); READING the record's +5.1136e+01
+   direction 14: lambda +5.2772e+01, second difference of the frozen replay +5.2758e+01 (|d| 1.4e-02); READING the record's +5.2761e+01
+   direction 15: lambda +6.0716e+01, second difference of the frozen replay +6.0699e+01 (|d| 1.7e-02); READING the record's +6.0743e+01
+   direction 16: lambda +6.2455e+01, second difference of the frozen replay +6.2446e+01 (|d| 8.7e-03); READING the record's +6.2446e+01
+   direction 17: lambda +7.0062e+01, second difference of the frozen replay +7.0055e+01 (|d| 7.0e-03); READING the record's +6.9997e+01
+   direction 18: lambda +8.3195e+01, second difference of the frozen replay +8.3217e+01 (|d| 2.2e-02); READING the record's +8.3218e+01
+   direction 19: lambda +8.4657e+01, second difference of the frozen replay +8.4623e+01 (|d| 3.4e-02); READING the record's +8.4621e+01
+   direction 20: lambda +1.0539e+02, second difference of the frozen replay +1.0535e+02 (|d| 4.1e-02); READING the record's +1.0534e+02
+   direction 21: lambda +1.4604e+02, second difference of the frozen replay +1.4604e+02 (|d| 3.3e-03); READING the record's +1.4600e+02
+  [PASS] G-5a the secant spectrum is J's own: every eigenvalue against the second difference of the frozen replay along its direction at the same scale, inside the curvature floor + the rounding floor
+   direction  0: lambda +7.9598e-01 (identifiability on +7.9598e-01, floor 8.5e-04)  band 1.78e-04 (design units) = 7.29e-05 m of wall  plug 1.00 / shroud 0.00  (walls move apart)
+   direction  1: lambda +1.5884e+00 (identifiability on +1.5884e+00, floor 2.6e-02)  band 1.26e-04 (design units) = 5.06e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction  2: lambda +3.1776e+00 (identifiability on +3.1770e+00, floor 2.5e-03)  band 8.91e-05 (design units) = 3.84e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction  3: lambda +6.4571e+00 (identifiability on +6.4570e+00, floor 1.1e-02)  band 6.25e-05 (design units) = 2.68e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction  4: lambda +7.1552e+00 (identifiability on +7.1552e+00, floor 2.6e-03)  band 5.93e-05 (design units) = 2.61e-05 m of wall  plug 1.00 / shroud 0.00  (walls move apart)
+   direction  5: lambda +1.2730e+01 (identifiability on +1.2730e+01, floor 1.6e-02)  band 4.45e-05 (design units) = 1.99e-05 m of wall  plug 1.00 / shroud 0.00  (walls move apart)
+   direction  6: lambda +1.4522e+01 (identifiability on +1.4519e+01, floor 4.9e-03)  band 4.17e-05 (design units) = 1.84e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction  7: lambda +1.9832e+01 (identifiability on +1.9826e+01, floor 2.5e-02)  band 3.56e-05 (design units) = 1.64e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction  8: lambda +2.5540e+01 (identifiability on +2.5531e+01, floor 3.2e-02)  band 3.14e-05 (design units) = 1.43e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction  9: lambda +2.8096e+01 (identifiability on +2.8090e+01, floor 2.6e-02)  band 3.00e-05 (design units) = 1.40e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction 10: lambda +3.6608e+01 (identifiability on +3.6608e+01, floor 2.6e-02)  band 2.62e-05 (design units) = 1.35e-05 m of wall  plug 1.00 / shroud 0.00  (walls move apart)
+   direction 11: lambda +3.8861e+01 (identifiability on +3.8847e+01, floor 5.4e-02)  band 2.55e-05 (design units) = 1.21e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction 12: lambda +4.3741e+01 (identifiability on +4.3731e+01, floor 4.0e-02)  band 2.40e-05 (design units) = 1.29e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction 13: lambda +5.1156e+01 (identifiability on +5.1136e+01, floor 8.0e-02)  band 2.22e-05 (design units) = 1.22e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction 14: lambda +5.2772e+01 (identifiability on +5.2761e+01, floor 5.5e-02)  band 2.19e-05 (design units) = 1.20e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction 15: lambda +6.0716e+01 (identifiability on +6.0716e+01, floor 6.6e-02)  band 2.04e-05 (design units) = 1.22e-05 m of wall  plug 0.00 / shroud 1.00  (walls move apart)
+   direction 16: lambda +6.2455e+01 (identifiability on +6.2446e+01, floor 3.5e-02)  band 2.01e-05 (design units) = 1.17e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction 17: lambda +7.0062e+01 (identifiability on +6.9997e+01, floor 2.8e-02)  band 1.90e-05 (design units) = 1.14e-05 m of wall  plug 0.00 / shroud 1.00  (walls move together)
+   direction 18: lambda +8.3195e+01 (identifiability on +8.3195e+01, floor 9.0e-02)  band 1.74e-05 (design units) = 1.20e-05 m of wall  plug 1.00 / shroud 0.00  (walls move together)
+   direction 19: lambda +8.4657e+01 (identifiability on +8.4621e+01, floor 1.4e-01)  band 1.73e-05 (design units) = 1.10e-05 m of wall  plug 0.00 / shroud 1.00  (walls move apart)
+   direction 20: lambda +1.0539e+02 (identifiability on +1.0534e+02, floor 1.6e-01)  band 1.55e-05 (design units) = 1.04e-05 m of wall  plug 0.00 / shroud 1.00  (walls move apart)
+   direction 21: lambda +1.4604e+02 (identifiability on +1.4600e+02, floor 1.3e-02)  band 1.31e-05 (design units) = 9.49e-06 m of wall  plug 0.00 / shroud 1.00  (walls move apart)
+   READING the global floor K_RICH x asymmetry 1.12e+00 would call 1 direction(s) near-null
+   READING (stationarity by the model): the Newton step in the identifiable subspace |s|inf 2.30e-04 m (|s|2 5.93e-04), predicted gain 2.41e-06 of C_F (191.3 x delta); the gradient's share outside it 0.00e+00 of |grad| 2.29e-02
+  [PASS] G-5 DUTY-11 measured: 22 identifiable, 0 near-null, 0 ascent direction(s) at their own verified floors (condition 1.83e+02); the widest shape band 7.29e-05 m of wall
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall/derive_2026-09-26.json
+
+== 6/6 PASS  (5383.1 s) ==

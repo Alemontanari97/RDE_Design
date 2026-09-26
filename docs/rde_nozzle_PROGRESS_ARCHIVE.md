@@ -3287,3 +3287,11 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## Voce BLOCCATO 20 (i), coda uscente, verbatim:
     Tabella 4) -- oggi la lettura di Humphreys vive solo nella posa
     (TPOSE_PS_REF=corner), il membro del repo e' invariato.
+
+## ===== DELTA CENSIMENTO 2026-09-26 (S41, passo 1 della posa di progetto a due
+## pareti; append-only SR-10; il blocco RESIDUI F3 di PROGRESS e' stato esteso
+## IN PLACE; nessuna riga di censimento cambia) =====
+## Testo uscente (le tre righe sostituite), verbatim:
+## la posa di PROGETTO (arco deciso dall'ottimizzatore, estremi plug/shroud
+## decisi da ambiente e vincoli, getto libero dopo il labbro) e' APERTA
+## (twowall:design-posing-open, domande dell'owner 2026-09-25). R-F3-4

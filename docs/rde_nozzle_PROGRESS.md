@@ -88,7 +88,16 @@
 ## RE-1 su Migdal 3/3 da una partenza generica (atterraggi a 5e-10 in C_F);
 ## la posa di PROGETTO (arco deciso dall'ottimizzatore, estremi plug/shroud
 ## decisi da ambiente e vincoli, getto libero dopo il labbro) e' APERTA
-## (twowall:design-posing-open, domande dell'owner 2026-09-25). R-F3-4
+## (twowall:design-posing-open, domande dell'owner 2026-09-25). S41
+## (2026-09-26, log validation/PROGRESS_2026-09-26_S41_twowall_design.md):
+## passo 1 PRESO -- archi di circonferenza come variabili, estremi bloccati:
+## 26/26 direzioni identificabili (criterio per direzione), ma i cammini su
+## (140,31) lasciano gli archi di Migdal su guadagni che a (280,61) cadono
+## (A, rapporto 0,35) o si rovesciano con 238 celle piegate (R): Migdal NON
+## battuto, la domanda sugli archi richiede il gradino fine
+## (twowall:arc-design-coarse-instrument-unfit). Precisazioni dell'owner:
+## un solo tetto di lunghezza per plug e shroud; convenzione di pressione
+## di base identica per tutti i profili (criterio di regime Fiore 6.1). R-F3-4
 ## CONIATA (X-PTRN). R-F3-3 aperto: nuova reference, tesi di Fiore (cap. 6
 ## troncamento; thesis_fiore_2019), la scelta del modello e' dell'owner.
 ## R-F3-5 DUTY-1(b) a F5. Difetto trovato: l'Hessiano AD puntuale non e' la

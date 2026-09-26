@@ -71,5 +71,12 @@
     },
     "cls": "NUMERIC",
     "note": "stage walk: the generic start G is the largest ramp W_ref + lam (chord - W_ref) that is certified and in class; the walk's radius is the class scale along +grad J at its OWN start, on the ladder ell 2^k (ell = the plug station spacing) for these k"
+  },
+  "arc": {
+    "value": {
+      "start_R_scale": 1.5
+    },
+    "cls": "NUMERIC",
+    "note": "the ARC posing (TWOP_KERNEL=arc, S40 step 1 of the design posing): each wall's initial stretch a circular arc tangent to the axial inlet whose end abscissa and end slope are design variables; the generic start R takes each arc's radius x start_R_scale at the reference's end angle (a gentler, longer kernel) and the cubic Hermite downstream to the pinned end with an axial exit"
   }
 }

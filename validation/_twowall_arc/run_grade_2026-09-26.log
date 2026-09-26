@@ -1,0 +1,42 @@
+== [F3] the two-wall re-obtention: RE-1 on the kernel posing [X-TWOP] (stage grade) ==
+   derive of record: /data10/falco/RDE/RDE_Design/validation/_twowall_arc/derive_2026-09-26.json (6/6 PASS; delta 1.301e-07)
+   walk A: /data10/falco/RDE/RDE_Design/validation/_twowall_arc/walk_AN_2026-09-26.json -- C_F 1.579930741 (start 1.579880408), cert 4.899e-01, KS +0.0118 (in class), gap to the reference plug 8.662e-04 / shroud 2.303e-04 m (start 0.000e+00 / 0.000e+00), 5 records, 5496 s
+   walk H: /data10/falco/RDE/RDE_Design/validation/_twowall_arc/walk_RN_2026-09-26.json -- C_F 1.580100554 (start 1.579662420), cert 6.422e-02, KS +0.0144 (in class), gap to the reference plug 5.925e-03 / shroud 6.342e-03 m (start 7.767e-03 / 5.908e-03), 11 records, 9000 s
+  [PASS] RE-0 both landings certified and in class (4.899e-01 / 6.422e-02; True / True)
+  [FAIL] RE-1 VALUE (paired): |C_F(H) - C_F(A)| 1.698e-04 <= K_RICH x delta 5.206e-07 (the start was 2.683e-04 below)
+   direction  0 (curvature +2.114e-02): |a| 1.288e-03 (start 6.006e-04)  band K_RICH x 3.51e-03 -> 0.09
+   direction  1 (curvature +1.894e-01): |a| 1.667e-03 (start 1.716e-03)  band K_RICH x 1.17e-03 -> 0.36
+   direction  2 (curvature +7.943e-01): |a| 6.735e-03 (start 7.291e-03)  band K_RICH x 5.72e-04 -> 2.94
+   direction  3 (curvature +1.580e+00): |a| 1.082e-02 (start 7.498e-03)  band K_RICH x 4.06e-04 -> 6.66
+   direction  4 (curvature +3.117e+00): |a| 2.307e-03 (start 1.820e-03)  band K_RICH x 2.89e-04 -> 2.00
+   direction  5 (curvature +5.337e+00): |a| 7.287e-03 (start 1.373e-02)  band K_RICH x 2.21e-04 -> 8.25
+   direction  6 (curvature +6.429e+00): |a| 1.236e-03 (start 3.128e-04)  band K_RICH x 2.01e-04 -> 1.54
+   direction  7 (curvature +7.396e+00): |a| 3.472e-03 (start 5.674e-03)  band K_RICH x 1.88e-04 -> 4.63
+   direction  8 (curvature +1.286e+01): |a| 7.726e-04 (start 1.476e-03)  band K_RICH x 1.42e-04 -> 1.36
+   direction  9 (curvature +1.419e+01): |a| 4.984e-03 (start 4.092e-03)  band K_RICH x 1.35e-04 -> 9.20
+   direction 10 (curvature +1.990e+01): |a| 7.398e-04 (start 9.472e-04)  band K_RICH x 1.14e-04 -> 1.62
+   direction 11 (curvature +1.462e+01): |a| 1.337e-02 (start 1.403e-02)  band K_RICH x 1.33e-04 -> 25.04
+   direction 12 (curvature +2.206e+01): |a| 1.122e-02 (start 9.758e-03)  band K_RICH x 1.09e-04 -> 25.82
+   direction 13 (curvature +2.815e+01): |a| 5.337e-04 (start 3.891e-04)  band K_RICH x 9.62e-05 -> 1.39
+   direction 14 (curvature +3.664e+01): |a| 2.386e-04 (start 2.142e-04)  band K_RICH x 8.43e-05 -> 0.71
+   direction 15 (curvature +3.907e+01): |a| 6.696e-04 (start 1.688e-03)  band K_RICH x 8.16e-05 -> 2.05
+   direction 16 (curvature +4.376e+01): |a| 4.512e-04 (start 4.781e-04)  band K_RICH x 7.71e-05 -> 1.46
+   direction 17 (curvature +5.115e+01): |a| 4.292e-05 (start 2.523e-05)  band K_RICH x 7.13e-05 -> 0.15
+   direction 18 (curvature +5.290e+01): |a| 3.363e-03 (start 1.871e-04)  band K_RICH x 7.01e-05 -> 11.98
+   direction 19 (curvature +6.077e+01): |a| 1.425e-03 (start 5.529e-04)  band K_RICH x 6.54e-05 -> 5.44
+   direction 20 (curvature +6.246e+01): |a| 1.119e-04 (start 1.685e-04)  band K_RICH x 6.46e-05 -> 0.43
+   direction 21 (curvature +7.016e+01): |a| 9.274e-04 (start 3.513e-04)  band K_RICH x 6.09e-05 -> 3.81
+   direction 22 (curvature +8.320e+01): |a| 2.340e-04 (start 3.749e-04)  band K_RICH x 5.59e-05 -> 1.05
+   direction 23 (curvature +8.500e+01): |a| 9.887e-04 (start 1.072e-03)  band K_RICH x 5.53e-05 -> 4.47
+   direction 24 (curvature +1.055e+02): |a| 2.043e-04 (start 5.618e-04)  band K_RICH x 4.97e-05 -> 1.03
+   direction 25 (curvature +1.460e+02): |a| 2.226e-04 (start 1.876e-04)  band K_RICH x 4.22e-05 -> 1.32
+  [FAIL] RE-1 SHAPE: the generic start's landing coincides with the reference's along every identifiable direction (26 of 26)
+   READING the two landings apart by plug 5.072e-03 / shroud 6.322e-03 m in the walls (H started 7.767e-03 / 5.908e-03 from the reference)
+   ARCS (x_end m, radius m, end angle deg -- plug | shroud):
+      A    plug 0.0761  R 0.2088  21.36 deg | shroud 0.0633  R 0.1960  18.85 deg
+      H    plug 0.0847  R 0.2313  21.47 deg | shroud 0.0812  R 0.2511  18.86 deg
+      ref  plug 0.0729  R 0.2000  21.37 deg | shroud 0.0646  R 0.2000  18.85 deg
+   the two walks' arcs differ by: plug end 8.59e-03 m, R 2.25e-02 m, angle 0.110 deg | shroud end 1.79e-02 m, R 5.51e-02 m, angle 0.018 deg
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall_arc/grade_2026-09-26.json
+
+== 1/3 PASS  (1.1 s) ==

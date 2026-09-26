@@ -379,6 +379,16 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     open with a new reference (Fiore's thesis, the base models). Found on the
     way: the pointwise AD Hessian of a replayed march is not its curvature
     (the secant instrument replaces it; the S37 verdict holds).
+    S41 (2026-09-26; log validation/PROGRESS_2026-09-26_S41_twowall_design.md):
+    the DESIGN posing's step 1 -- the initial circular arcs as design
+    variables, ends pinned -- taken and inconclusive on the (140,31)
+    instrument: the walks leave Migdal's arcs on gains that fall (x0.35) or
+    fold (238 cells) when re-marched paired at (280,61); Migdal not beaten;
+    the arc question needs the fine rung (twowall:arc-design-coarse-
+    instrument-unfit). The owner's precisions for steps 2-4 recorded: one
+    length cap for both walls; a base-pressure convention identical for
+    every profile (Fiore 2019 sec. 6.1 regime criterion, a documented
+    physical closure admissible).
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);
