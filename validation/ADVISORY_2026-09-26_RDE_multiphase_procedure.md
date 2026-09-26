@@ -122,6 +122,12 @@ chamber data we own are MOSE_GPU/MOSE_open fields of THOR).
 
 ### Stage 0 — the data question first (U3' choking adjudication, F2a)
 
+[AMENDED 2026-09-26 night by the plan review, section 6.1: THOR as simulated
+exhausts at a time-averaged chamber pressure of 1.16-1.22 bar into 1 bar, so
+the census below has a foreseeable answer over most of the cycle. The first
+decision is the TARGET engine (6.1); the census then runs on the target's own
+fields — for THOR, on a THOR-with-throat run.]
+
 The rule of record: the initial line sits on a station downstream of the
 throat where u_x > c in EVERY phase (m_n(ξ) > 0 μ-a.e.). THOR as simulated has
 no nozzle: its exit plane is at chamber pressure and the fill phases are
@@ -234,3 +240,108 @@ Stage 0 census: 1 day; the extraction operator to the VI.1 contract: 1-2 weeks.
 Stage 1 engine with its six gates: 2-3 weeks (the margin re-derivation is the
 long pole). Stage 2 on the S41 carrier: 1 week to G2-1..G2-4 on I3 data. Stages
 3-4 follow the CFD mesh line (manifold/nozzle) and its runs.
+
+## 6. Plan review (2026-09-26 night, on the owner's request "dai un'occhiata al piano e vedi cosa ci manca")
+
+Read against D6 (docs/rde_nozzle_development_plan.md: the F0-F6 spine, the
+tier-invariant clause, the S-GAUNTLET duty rows, gates G0-G6, the 90-day items,
+the risk register, Annex B), the problem book, PROGRESS and the S40-S41
+results. Ordered by consequence.
+
+6.1 THE TARGET ENGINE IS NOT PINNED. The plan's design world is a CH4/O2
+frozen gas at p_c 2.53e7 Pa, T_c 3740 K, p_a 7.61e5 Pa
+(validation/PROGRESS_2026-09-15_S28_ourworld.md:48; case A of Annex B, Cantera
++ S-H blowdown, a choked throat all cycle = hypothesis (ii) of Proposition O1,
+problem_book:94-109). The program's CFD world is THOR: stoichiometric H2-air,
+0.45 kg/s, one wave, period ~235 us, peaks 15-16.5 bar, troughs 1-2 bar,
+time-averaged chamber pressure 1.16-1.22 bar, exhaust into 1 bar (Grunenwald
+et al., AIAA 2026-1825, as recorded in the MOSE line). No document bridges
+the two. Read as a stagnation-to-ambient ratio, 1.2 expands only to M ~0.5
+(gamma 1.3-1.4); the static mean understates the stagnation state near the
+wave, but over the long tail of the cycle (troughs 1-2 bar) there is little or
+nothing to expand: THOR as built has no full-flowing supersonic nozzle to
+design. A nozzle for THOR means a THROAT that chokes the exhaust, which raises
+the chamber pressure and changes the cycle (fill height, wave count, the air
+injector's choking) -- the coupling the plan carries only as the analytic case
+G of Annex B (PB-4). Owner decision: (a) THOR with an exit throat, run with
+MOSE_GPU, the coupling measured and the CycleFamily extracted downstream of the
+new throat; or (b) the synthetic world of case A, with THOR as the referee of
+methods only.
+
+6.2 ON THE TWO-WALL POSING THE PHASES DO NOT VOTE YET. T3's own argument: with
+frozen gamma and a fixed inlet Mach the flow field scales with P0, so a
+full-flowing nozzle whose walls end at the exit has F(xi) = P0(xi) A* C_F,vac
+- p_a A_e, linear in P0, and J_mu = A* <P0> C_F,vac - p_a A_e: the averaged
+problem IS the single-state problem at the mean pressure, for any measure mu.
+The S41 capped walk at ambient is therefore already the "cycle-averaged"
+design of this posing. The vote becomes non-trivial only through (i) the free
+jet after the lip -- a plug extending beyond the shroud, whose jet boundary
+depends on p_a/P0(xi); (ii) a phase-dependent base pressure p_b(xi) (Fiore
+2019 sec. 6.1 regimes, the N2 closure); (iii) separation in the tail phases
+(DUTY-14, assigned to F5a, no carrier); (iv) gamma(T0(xi)) and composition
+(the "temperature" vote: in a frozen-gamma gas T0 does not enter C_F at all);
+(v) phase-dependent line profiles and swirl (I2: the "initial-line" vote).
+(i) is the owner's step 3 and D6 90-day item 4 ("plug off-design jet-boundary
+march", NOT STARTED at its last status refresh; the single-wall plug march has
+a free edge since F3, the shroud lip does not): it is the step that turns the
+two-wall line into an RDE design problem.
+
+6.3 THE UNSTEADINESS NUMBER DECIDES THE ENGINE, AND IT IS NOT DERIVED. The
+problem book's own estimate is St = O(0.1-1) for rocket RDEs, "MARGINAL", rung
+2 "NOT self-licensing" without the O(St) corrector (problem_book:453-477). For
+THOR, a period of ~235 us against a nozzle transit of 50-150 us gives St
+~0.2-0.6. The corrector (P4, the J_1 cell problem, F5b) and the G3 trigger
+"as a NUMBER" (D6 section 5, S14 duty: the only gate that cannot reject) do not
+exist. For the owner's wave-frame directive this means: the per-phase 2-D march
+carries an O(St) sweep error; before any hardware number, either the corrector
+or the 3-D wave-frame march (B-lite, item 11, F6 horizon) moves onto the
+critical path. St of the chosen target belongs in Stage 0.
+
+6.4 NOTHING IN THE PLAN CHOOSES THE LENGTH. Every objective of record is
+inviscid thrust: F3 is "THRUST-ONLY, THERMAL SURVIVABILITY UNMODELED"; DUTY-1(a)
+(q_peak surrogate or declared gap) sits at F5a; DUTY-4 (displacement band) at
+F2b; the T2 system carries the length as a shared constraint with a multiplier
+(cycle_averaged:217-232), never as an outcome. With inviscid thrust the cap is
+always active (S41: both ends at the cap, in vacuum and at ambient). Either the
+length is a declared external requirement, or J gains a friction, wall
+heat-load or mass term. The heat load is where the program already has assets:
+the THOR q_w work (ALTP comparison, the Braun 2018 model) and the march's own
+per-phase edge state are enough for a reference-enthalpy q_w surrogate along
+the designed walls.
+
+6.5 THE ENGINE SCOPE LACKS THE WAVE-FRAME INVARIANTS. F2's text transports
+(s, h0) (D6:171-173). A per-phase march in the wave frame needs Gamma = r w as a
+streamline invariant, the centrifugal source, and the rothalpy I = h0 - Omega
+Gamma as the conserved energy (N6_swirl:171-175; swirl5f FINAL E3: the
+five-field schema splits it); [S-5F] is SCHEMA and the fold margin must be
+re-derived for that class (tier-invariant clause iii). The owner's "centrifugal
+term" is these rows; F2's scope text should name them.
+
+6.6 CFD HAS AN ADJOINT ROLE, NOT A REFEREE ROLE. The plan's CFD is the SU2
+adjoint route (decided 2026-07-25; "Nothing here is executed yet",
+CFD_plan:3-4). Two roles are missing and both fit the program's own solvers:
+(i) a steady Euler check of a designed two-wall nozzle in MOSE_open (uniform
+M 1.5 inlet): C_F, the wall pressure and the shock-free class checked by an
+independent solver, cheap; (ii) THOR with the throat and the nozzle in
+MOSE_GPU: the coupling of 6.1, the time-averaged thrust as the referee of
+J_mu, the rung-2 error of 6.3 measured.
+
+6.7 THE INSTRUMENT'S RESOLUTION IS BELOW SOME OF THE QUESTIONS. The coarse
+rung's bias (+2.9e-4 over the 1-D ceiling at full length, measured again at
+the adapted ambient: 1.471292 against the ceiling 1.471005) exceeds the whole
+effect of an 80 percent cap at that ambient. The certainty model promises
+discretization bars per verdict (C2, DWR, section 0); the two-wall carrier has
+none. Every design difference below ~3e-4 needs the fine rung or a Richardson
+bar.
+
+6.8 THE PLAN'S NEXT IS STALE. PROGRESS NEXT still reads S-PRES, then F2 block 0
+(F2 counter 0/6); the two-wall design and the RDE procedure run outside the
+phase spine, on the owner's word, with no counter. A re-baseline is due -- for
+instance an "F5a-lite" on the present engine (I3 family, two-wall posing with
+the free jet of 6.2) before F2, as F3 was put before F2 -- owner decision.
+
+Also still open in the plan and relevant here, unchanged: CycleFamily v0 as a
+module (item 5, not started), the mu-instruments bundle (item 15), the
+experimental anchor (item 13, RK-E; THOR's rig has pressure and heat-flux data,
+no thrust in the record).
+

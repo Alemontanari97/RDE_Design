@@ -238,6 +238,46 @@ class TwoWall:
             # wall compressed to u_start of the way from the arc's end to L
             u0 = float(os.environ.get("TWOP_U0", POSE["cap_u_start"]))   # TWOP_U0 = 10: the ends AT the cap
             self.W_ref = np.r_[self.W_ref, u0, u0]
+        # the design vector's tail by POSITIVE indices (S41 step 2 bis: the
+        # free exit heights are appended after the ends)
+        self.ia = self.np_ + self.ns_
+        # THE AMBIENT (S41 step 2 bis, the owner 2026-09-26 night: "se invece
+        # ci mettiamo in ambiente invece che nel vuoto?"): TWOP_PA = p_a/P0,
+        # or "adapted" = the 1-D exit pressure of Migdal's pair (the full
+        # Migdal then exactly adapted). The ambient acts on the whole outside
+        # of the engine and, by the base convention p_b = p_a (open wake,
+        # declared: Sule & Mueller 1973; Fiore 2019 sec. 6.1), on the plug's
+        # cut face, so C_F,amb = C_F,vac - p_a/P0 x (exit annulus)/A* with the
+        # annulus the march's own last wall points (J_of). With p_a > 0 the
+        # exit area is no longer a datum: TWOP_FREE_EXIT = "lip" makes the
+        # shroud lip height a design variable with the plug tip height
+        # PINNED at the cut Migdal's (the base area then the same for every
+        # profile at this cap, so any error of the base convention is common
+        # to all of them: the owner's fair-comparison rule), "both" frees
+        # the tip height too.
+        pa_ = os.environ.get("TWOP_PA", str(POSE.get("pa_over_P0", 0.0)))
+        head_, _, fac_ = pa_.partition("x")      # "adapted" or "adaptedx<factor>" (e.g. adaptedx2)
+        if head_ == "adapted":
+            q_e = ST.q_of_mach(self.Me, self.ta, self.tab["_as"])
+            self.pa = float(A1.state_q(jnp.asarray(q_e), self.ta)[1]) / ST.P0
+            if fac_:
+                self.pa *= float(fac_)
+        else:
+            self.pa = float(pa_)
+        self.free_exit = os.environ.get("TWOP_FREE_EXIT", "") if self.cap > 0.0 else ""
+        self.ie_p, self.ie_s = None, None
+        if self.free_exit:
+            if self.free_exit not in ("lip", "both"):
+                raise ValueError("TWOP_FREE_EXIT is lip or both, not %r" % self.free_exit)
+            x_t0, x_l0 = (float(v) for v in self.ends_of(self.W_ref))
+            y_t0 = float(np.interp(x_t0, self.plug[:, 0], self.plug[:, 1]))
+            y_l0 = float(np.interp(x_l0, self.shroud[:, 0], self.shroud[:, 1]))
+            self.tip = y_t0
+            self.ie_s = len(self.W_ref)
+            self.W_ref = np.r_[self.W_ref, y_l0]
+            if self.free_exit == "both":
+                self.ie_p = len(self.W_ref)
+                self.W_ref = np.r_[self.W_ref, y_t0]
         # the wedge: the twin's thinning rule (m = 1 on this posing)
         dy_row = (self.y_u - self.y_l) / (self.N - 1)
         dx_st = float(self.sx[0] - x0)
@@ -246,10 +286,12 @@ class TwoWall:
         if verbose:
             say("   posing: Migdal A_e/A_i %.4f (1-D M_e %.6f, C_F,vac %.6f); inlet M %.2f between"
                 " y %.3f and %.3f; K %d plug + %d shroud stations (frozen), N %d; knots %d + %d"
-                " (plug tip y %.6f and shroud lip y %.6f pinned); wedge every %d; %.1f s"
+                " (plug tip y %.6f %s and shroud lip y %s); wedge every %d; p_a/P0 %.5e; %.1f s"
                 % (eps_i, self.Me, self.CF_1d, ST.M_INLET, self.y_l, self.y_u, len(self.sx),
-                   len(self.xs), self.N, len(self.kp), len(self.ks), self.tip, self.lip, self.m_w,
-                   time.time() - t0))
+                   len(self.xs), self.N, len(self.kp), len(self.ks), self.tip,
+                   "free" if getattr(self, "ie_p", None) is not None else "pinned",
+                   ("free from %.6f" % self.W_ref[self.ie_s]) if getattr(self, "ie_s", None) is not None
+                   else ("%.6f pinned" % self.lip), self.m_w, getattr(self, "pa", 0.0), time.time() - t0))
 
     def walls(self, W):
         """Stations (plug, shroud) of a design, traced."""
@@ -311,7 +353,8 @@ class TwoWall:
     def ends_of(self, W):
         """The cap posing's ends (x_tip, x_lip) of a design (traced)."""
         W = jnp.asarray(W)
-        xa_p, xa_s, u_p, u_s = W[-6], W[-4], W[-2], W[-1]
+        i = self.ia
+        xa_p, xa_s, u_p, u_s = W[i], W[i + 2], W[i + 4], W[i + 5]
         sig = lambda u: 1.0 / (1.0 + jnp.exp(-u))             # noqa: E731
         return xa_p + (self.L - xa_p) * sig(u_p), xa_s + (self.L - xa_s) * sig(u_s)
 
@@ -321,16 +364,19 @@ class TwoWall:
         fixed fractions of [x_a, end]."""
         W = jnp.asarray(W)
         hp, hs = W[:self.np_], W[self.np_:self.np_ + self.ns_]
-        xa_p, ta_p, xa_s, ta_s = W[-6], W[-5], W[-4], W[-3]
+        i = self.ia
+        xa_p, ta_p, xa_s, ta_s = W[i], W[i + 1], W[i + 2], W[i + 3]
         x_tip, x_lip = self.ends_of(W)
+        ye_p = self.tip if self.ie_p is None else W[self.ie_p]
+        ye_s = self.lip if self.ie_s is None else W[self.ie_s]
         out = []
         for h, xa, ta, y0, sgn, frac, fst, xe, ye in (
-                (hp, xa_p, ta_p, self.y_l, -1.0, self.fp, self.fp_st, x_tip, self.tip),
-                (hs, xa_s, ta_s, self.y_u, 1.0, self.fs, self.fs_st, x_lip, self.lip)):
+                (hp, xa_p, ta_p, self.y_l, -1.0, self.fp, self.fp_st, x_tip, ye_p),
+                (hs, xa_s, ta_s, self.y_u, 1.0, self.fs, self.fs_st, x_lip, ye_s)):
             xst = self.x0 + jnp.asarray(fst) * (xe - self.x0)
             xa, R, ya, sa = self.arc_of(xa, ta, y0, sgn)
             xk = jnp.concatenate([xa[None], xa + (xe - xa) * jnp.asarray(frac)])
-            yk = jnp.concatenate([ya[None], h, jnp.array([ye])])
+            yk = jnp.concatenate([ya[None], h, jnp.reshape(jnp.asarray(ye, dtype=h.dtype), (1,))])
             M = spline_coeffs(xk, yk, sa)
             ys_, ss_ = jax.vmap(lambda x: spline_eval(x, xk, yk, M))(xst)
             xc = jnp.minimum(xst, xa)
@@ -387,7 +433,13 @@ class TwoWall:
     def J_of(self, out):
         """Vacuum C_F: F_in + push(plug) (dy < 0 pushes forward) + push(shroud)."""
         Jn = self.F_in - self._push(out["wall"], self.y_l) + self._push(out["shroud"], self.y_u)
-        return Jn / (ST.P0 * self.A_star)
+        CF = Jn / (ST.P0 * self.A_star)
+        if getattr(self, "pa", 0.0) > 0.0:
+            # the ambient on the outside and on the base (p_b = p_a): minus
+            # p_a times the exit annulus closed by the march's own walls
+            yp_e, ys_e = out["wall"][-1, 1], out["shroud"][-1, 1]
+            CF = CF - self.pa * jnp.pi * (ys_e ** 2 - yp_e ** 2) / self.A_star
+        return CF
 
     def J_replay(self, W, sched, wavefront=None):
         (a, b, c), (d, e, f) = self.walls(W)
@@ -992,8 +1044,8 @@ def cone_start(tw):
     x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
     W = W0.copy()
     for i0, n, xa, ta, y0, sgn, frac, xe, ye, sl in (
-            (0, tw.np_, W0[-6], W0[-5], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, slice(-6, -4)),
-            (tw.np_, tw.ns_, W0[-4], W0[-3], tw.y_u, 1.0, tw.fs, x_lip, tw.lip, slice(-4, -2))):
+            (0, tw.np_, W0[tw.ia], W0[tw.ia + 1], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, slice(tw.ia, tw.ia + 2)),
+            (tw.np_, tw.ns_, W0[tw.ia + 2], W0[tw.ia + 3], tw.y_u, 1.0, tw.fs, x_lip, tw.lip, slice(tw.ia + 2, tw.ia + 4))):
         _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(ta), y0, sgn))
         t_c = abs((ye - ya) / (xe - xa))
         _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(t_c), y0, sgn))
@@ -1017,8 +1069,10 @@ def trunc_start(tw):
     x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
     W = W0.copy()
     for i0, n, xa, ta, y0, sgn, frac, xe, ye, gx, gy in (
-            (0, tw.np_, W0[-6], W0[-5], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, tw.plug[:, 0], tw.plug[:, 1]),
-            (tw.np_, tw.ns_, W0[-4], W0[-3], tw.y_u, 1.0, tw.fs, x_lip, tw.lip, tw.shroud[:, 0], tw.shroud[:, 1])):
+            (0, tw.np_, W0[tw.ia], W0[tw.ia + 1], tw.y_l, -1.0, tw.fp, x_tip,
+             tw.tip if tw.ie_p is None else W0[tw.ie_p], tw.plug[:, 0], tw.plug[:, 1]),
+            (tw.np_, tw.ns_, W0[tw.ia + 2], W0[tw.ia + 3], tw.y_u, 1.0, tw.fs, x_lip,
+             tw.lip if tw.ie_s is None else W0[tw.ie_s], tw.shroud[:, 0], tw.shroud[:, 1])):
         xk = xa + (xe - xa) * np.asarray(frac[:-1])
         t = (xk - xa) / (xe - xa)
         delta = ye - float(np.interp(xe, gx, gy))
@@ -1073,13 +1127,22 @@ def walk():
         Wc = (trunc_start(tw) if start == "T" else cone_start(tw) if start == "C" else arc_start(tw) if start == "R"
               else (hermite_start(tw) if start == "H" else chord(tw)))
         Ws, lam_r = None, None
-        for lam_ in CASES["walk"]["ramps"]:
+        # the CAP posing's generic starts (T, C) are their own designs, not a
+        # ramp toward the reference (the reference is the compressed Migdal,
+        # which folds): the full start is taken and, if out of class, repaired
+        # by the restoration below (S41 step 2 bis: the cut Migdal at mid-cap,
+        # KS +0.0020 under the floor 0.0057, and every blend toward the
+        # compressed Migdal folded -- measured, "nothing to walk")
+        ramps_ = CASES["walk"]["ramps"]
+        if tw.cap > 0.0 and start in ("T", "C"):
+            ramps_ = ramps_[:1]
+        for lam_ in ramps_:
             Wt = W_ref + lam_ * (Wc - W_ref)
             ok_, ot, _, ct, kt = in_class(Wt)
             say("   ramp %.2f toward the generic start: cert %.3e, KS %+.4f (floor %.4f), C_F %.6f, gap to the"
                 " reference plug %.3e / shroud %.3e m" % (lam_, ct, kt, floors[0], float(tw.J_of(ot)),
                                                          *wall_gap(tw, Wt, W_ref)))
-            if ok_:
+            if ok_ or (tw.cap > 0.0 and start in ("T", "C") and np.isfinite(ct) and ct <= 1.0):
                 Ws, lam_r = Wt, lam_
                 break
         if Ws is None:
@@ -1290,9 +1353,24 @@ def walk():
         xtf, xlf = (float(v) for v in tw.ends_of(Wf))
         say("   ENDS under the cap L %.4f m: plug tip %.4f -> %.4f, shroud lip %.4f -> %.4f (Migdal %.4f / %.4f)"
             % (tw.L, xt0, xtf, xl0, xlf, tw.x_tip_ref, tw.x_lip_ref))
+        ex = {}
+        for tag, W_, o_ in (("start", Ws, o0), ("end", Wf, of)):
+            w_, s_ = np.asarray(o_["wall"]), np.asarray(o_["shroud"])
+            pw = float(A1.state_q(jnp.asarray(np.hypot(w_[-1, 2], w_[-1, 3])), tw.ta)[1]) / ST.P0
+            ps = float(A1.state_q(jnp.asarray(np.hypot(s_[-1, 2], s_[-1, 3])), tw.ta)[1]) / ST.P0
+            ex[tag] = dict(y_tip=float(w_[-1, 1]), y_lip=float(s_[-1, 1]), p_tip=pw, p_lip=ps,
+                           area_ratio=float((s_[-1, 1] ** 2 - w_[-1, 1] ** 2) / (tw.y_u ** 2 - tw.y_l ** 2)))
+        say("   EXIT (p_a/P0 %.5e, %s): heights tip %.4f -> %.4f, lip %.4f -> %.4f; A_e/A_i %.4f -> %.4f;"
+            " wall pressure at the tip / lip over p_a %s -> %s"
+            % (tw.pa, "exit free: " + tw.free_exit if tw.free_exit else "exit heights pinned",
+               ex["start"]["y_tip"], ex["end"]["y_tip"], ex["start"]["y_lip"], ex["end"]["y_lip"],
+               ex["start"]["area_ratio"], ex["end"]["area_ratio"],
+               ("%.3f / %.3f" % (ex["start"]["p_tip"] / tw.pa, ex["start"]["p_lip"] / tw.pa)) if tw.pa > 0.0 else "--",
+               ("%.3f / %.3f" % (ex["end"]["p_tip"] / tw.pa, ex["end"]["p_lip"] / tw.pa)) if tw.pa > 0.0 else "--"))
     rec = dict(start=start, ramp=lam_r, W_start=Ws.tolist(), W=Wf.tolist(), CF=Jf,
                CF_start=float(tw.J_of(o0)), CF_ref=CF_ref, cert=cf, ks=kf, in_class=bool(okf), cap=tw.cap,
-               L=(tw.L if tw.cap > 0.0 else None),
+               L=(tw.L if tw.cap > 0.0 else None), pa_over_P0=tw.pa, free_exit=tw.free_exit,
+               exit=(ex if tw.cap > 0.0 else None),
                grad=gf.tolist(), gap_ref=[gp, gs], gap_ref_start=[gp0, gs0], records=n_rec,
                segments=len(hist), seconds=time.time() - t00, tr0=tr0, backtrack=bt, segs=segs,
                iters=iters, counters=dict(mg0.get("counters", {})), metric=metric)

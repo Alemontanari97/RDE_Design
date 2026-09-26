@@ -4664,7 +4664,18 @@ active, the arcs unchanged and both ends at the cap -- the shock-free
 constraint is what a shorter nozzle runs into; Migdal compressed to the cap
 carries coalescing compressions (1159 / 2670 folded cells at 80 / 60 percent
 length) that no restoration repairs, the driver's own phase taking no step
-[MEASURED, coarse rung; fine-rung confirmation pending].]
+[MEASURED, coarse rung; fine-rung confirmation pending].
+(4) AT AMBIENT THE CAP'S VACUUM GAIN VANISHES AND THE LENGTH BECOMES AN
+OUTCOME: with the base at p_a and the exit area free, at the adapted ambient
+the capped two-wall optimum is the cut perfect nozzle within the instrument's
+bias (the vacuum gain was the pinned exit area, which the ambient does not
+pay for); over-expanded, the cut perfect nozzle peaks below the cap (44
+percent of the length at twice the adapted ambient) and a posing that pins
+the ends at the cap cannot find it [MEASURED, coarse rung]. With walls ending
+at the exit the phase average of such a posing collapses to the mean-pressure
+design (T3's argument, F linear in P0): the RDE phases disagree only through
+the free jet, the base, separation, gamma(T) and the line profiles
+[PRACTICE].]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

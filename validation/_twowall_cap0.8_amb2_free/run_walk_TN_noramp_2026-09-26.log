@@ -1,0 +1,7 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.657014 free and shroud lip y free from 1.157666); wedge every 1; p_a/P0 4.61622e-02; 0.6 s
+   ramp 1.00 toward the generic start: cert 3.356e-02, KS +0.0020 (floor 0.0057), C_F 1.370147, gap to the reference plug 1.015e-01 / shroud 6.622e-02 m
+   ramp 0.75 toward the generic start: cert 4.751e-01, KS -0.9112 (floor 0.0057), C_F 1.344670, gap to the reference plug 7.612e-02 / shroud 4.966e-02 m
+   ramp 0.50 toward the generic start: cert 4.680e+13, KS -0.9991 (floor 0.0057), C_F 1.227097, gap to the reference plug 5.074e-02 / shroud 3.311e-02 m
+   ramp 0.25 toward the generic start: cert 3.682e+15, KS -0.9999 (floor 0.0057), C_F 1.060206, gap to the reference plug 2.537e-02 / shroud 1.655e-02 m
+   no certified in-class generic start on the ramp: nothing to walk

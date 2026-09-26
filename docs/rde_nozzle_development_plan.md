@@ -399,7 +399,17 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     (driver:restoration-phase-no-motion). The owner's next directive, the
     RDE multi-phase procedure, is proposed in validation/ADVISORY_2026-09-
     26_RDE_multiphase_procedure.md (Stage 0 = the spacelikeness census on
-    THOR's exit fields, the U3' adjudication of F2a).
+    THOR's exit fields, the U3' adjudication of F2a). The same night, step
+    2 bis AT AMBIENT (open-wake base p_b = p_a, the lip height free): at the
+    adapted ambient the capped optimum is Migdal cut at the cap within the
+    coarse instrument's bias; at twice that ambient a shorter nozzle wins
+    (the cut Migdal peaks at 44 percent length), so the length becomes an
+    outcome (twowall:cap-ends-sigmoid-saturate). A review of this plan
+    against the owner's RDE directive is section 6 of that advisory
+    (target engine unpinned vs THOR; no phase vote on a full-flowing
+    posing; St not derived; no length criterion; wave-frame invariants
+    outside F2's text; no CFD referee role; instrument bars; stale NEXT) --
+    proposals, not ratified.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

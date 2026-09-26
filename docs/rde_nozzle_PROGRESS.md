@@ -103,7 +103,12 @@
 ## invariati, entrambi gli estremi al tetto, classe di piega ATTIVA;
 ## +0,091 % / +0,369 % sul Migdal TAGLIATO all'80 % / 60 % della lunghezza
 ## (conferma fine pendente); il Migdal compresso piega e nessuna
-## restaurazione lo ripara (driver:restoration-phase-no-motion). Precisazioni
+## restaurazione lo ripara (driver:restoration-phase-no-motion). Passo 2 bis
+## (notte): in AMBIENTE (base p_b = p_a, labbro libero) all'ambiente adattato
+## l'ottimo con tetto E' il Migdal tagliato entro il bias dello strumento; al
+## doppio dell'ambiente vince un ugello piu' corto (Migdal tagliato al 44 %):
+## la lunghezza diventa un esito (twowall:cap-ends-sigmoid-saturate). Revisione
+## del piano: sezione 6 dell'advisory della procedura RDE. Precisazioni
 ## dell'owner: convenzione di pressione di base identica per tutti i profili
 ## (criterio di regime Fiore 6.1). PROSSIMO: la procedura RDE multi-fase
 ## (validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md). R-F3-4

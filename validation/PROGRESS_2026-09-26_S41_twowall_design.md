@@ -225,6 +225,71 @@ once, each voting by duration, temperature and initial-line state, in the wave f
 centrifugal term. Written as a proposal, anchored to what the corpus already proves (T0, O1, VI.1,
 T-NSW, the seams of the march): `validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md`.
 
+## 3ter. Step 2 bis: the cap AT AMBIENT (the owner, 2026-09-26 night: "se invece ci mettiamo in ambiente
+## invece che nel vuoto?")
+THE POSING (a1_twowall.py, additive; the vacuum path gated bitwise): TWOP_PA = p_a/P0, "adapted" = the
+1-D exit pressure of Migdal's pair (2.3081e-2: the full Migdal then exactly adapted), "adaptedx2" =
+twice it (Migdal over-expanded by 2). The ambient acts on the outside of the engine and, by the
+open-wake convention p_b = p_a (declared: Sule & Mueller 1973; Fiore 2019 sec. 6.1, where strong
+over-expansion is the open-wake regime), on the plug's cut face, so C_F,amb = C_F,vac - p_a/P0 x
+pi (y_lip^2 - y_tip^2) / A*, the heights read from the march's own last wall points (J_of). The exit
+area is no longer a datum: TWOP_FREE_EXIT = lip makes the lip height a design variable with the plug
+tip height PINNED at the cut Migdal's (the base area then the same for every profile at a cap, so an
+error of the base convention is common to all of them: the owner's fair-comparison rule); "both"
+frees the tip height too. With a free exit the T start is Migdal CUT at the cap, exactly, in the
+spline posing (no tail deflection). Design vector 29 (lip) / 30 (both); the tail of the vector is now
+addressed by positive indices. The cap posing's generic starts (T, C) are taken whole, never ramped
+toward the reference (the compressed Migdal folds), and repaired by the walk's restoration when out
+of class (measured: the cut Migdal at mid-cap sits at KS +0.0020 under the floor 0.0057, and every
+blend toward the compressed Migdal folded -- "nothing to walk", log `_twowall_cap0.8_amb2_free/
+run_walk_TN_noramp_2026-09-26.log`).
+GATES (probe `RDE/handoff/f3_2026-09-25/twop_ambient_gate.py`): A1 p_a = 0, exit pinned: the step-2
+record's start reproduced BITWISE (J 1.579660988049); A2 adapted, lip free: replay = record to 2.2e-16;
+the adjoint against central differences of the frozen replay along the lip height 9e-5 .. 1.4e-4,
+a plug knot 5.3e-4 (h 1e-5), the shroud arc end 2.3e-3 (h 1e-5, falling with h).
+THE CEILING: at the adapted ambient the 1-D ideal (expansion to p_a from the same inlet) is C_F
+1.471005; the instrument's full Migdal gives 1.471292, +2.86e-4 -- the coarse rung's bias, measured
+again (step 1: +2.9e-4 in vacuum).
+THE CUT MIGDAL AT AMBIENT (`twop_trunc_migdal.py`, the same JSON gains CF_amb and CF_amb_x2):
+adapted: 99.987 / 99.818 percent of the full length's ambient thrust at 80 / 60 percent length (in
+vacuum 99.906 / 99.341) -- cutting removes exit area the ambient no longer pays for; the curve's
+maximum is the full length. Twice the adapted ambient: full 1.362703, and the curve PEAKS at 44
+percent length (1.370230, +0.55 percent): an over-expanded perfect nozzle gains by truncation.
+THE WALKS (T start, Newton metric, 16 x 6, coarse rung, ends AT the cap, lip free, tip pinned;
+records `_twowall_cap{0.8,0.6}_{amb,amb2}/walk_TN_2026-09-26.json`, ~20-25 min each):
+
+| ambient | cap | Migdal cut | optimum | gain | lip y [m] | p_lip / p_a | vacuum optimum judged here |
+|---------|-----|-----------|---------|------|-----------|-------------|----------------------------|
+| adapted | 0.8 | 1.471096 | 1.471297 | +2.0e-4 (+0.014 %) | 1.2010 -> 1.2013 | 1.09 -> 1.14 | 1.471247 |
+| adapted | 0.6 | 1.468618 | 1.468693 | +7.5e-5 (+0.005 %) | 1.1869 -> 1.1867 | 1.40 -> 1.46 | 1.466679 |
+| 2 x     | 0.8 | 1.363798 | 1.364396 | +6.0e-4 (+0.044 %) | 1.2010 -> 1.1989 | 0.54 -> 0.57 | 1.362659 |
+| 2 x     | 0.6 | 1.367760 | 1.367947 | +1.9e-4 (+0.014 %) | 1.1869 -> 1.1863 | 0.70 -> 0.73 | 1.358090 |
+
+THE READING:
+1. At the adapted ambient the capped optimum IS the cut Migdal within the instrument's resolution
+   (+2e-4 / +7.5e-5, below the coarse bias): the lip stays where the cut puts it, the arcs
+   unchanged. The vacuum gains of step 2 (+0.09 / +0.37 percent) were the pinned exit AREA; at the
+   adapted ambient that area is worth nothing, and the vacuum capped optimum judged at this ambient
+   LOSES to it (-5e-5 at 80 percent, -2.0e-3 = -0.14 percent at 60 percent).
+2. Over-expanded (2 x), the optimiser lowers the lip (2.1 mm at 80 percent; A_e/A_i 3.953 -> 3.935)
+   and gains +0.044 / +0.014 percent -- but a SHORTER nozzle does better: the cut Migdal at 44 percent
+   length is +0.43 percent above the 80 percent capped design. At this ambient the cap is not active:
+   the length is an outcome, and a posing with both ends pinned at the cap and the tip height pinned
+   cannot find it. The sigmoid ends cannot either when saturated (u0 = 3: derivative 0.045; u0 = 10:
+   pinned); the free walk starts at u0 = 0 (derivative 0.25).
+3. For the RDE (ADVISORY_2026-09-26_RDE_multiphase_procedure.md section 6.2): with walls ending at the
+   exit, the phase average collapses to the mean-pressure design (T3's argument: F linear in P0);
+   the ambient enters every phase alike through p_a A_e. The phases disagree only through the free
+   jet after the lip, the base, separation, gamma(T) and the line profiles.
+[pending: the free walk, cap 0.8, 2 x ambient, ends and both heights free]
+
+Figures 27 `_twowall_cap/figs/27_cap_at_ambient.png`, 28 `28_cap_at_ambient_x2.png` (generator
+`RDE/handoff/f3_2026-09-25/twop_amb_fig.py amb|amb2`): walls, the shroud's last 35 cm, wall pressure
+over p_a, C_F at the ambient against length with the cut Migdal's curve, table.
+
+THE PLAN REVIEW (the owner's request the same night) is section 6 of
+`validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md`.
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
@@ -420,3 +485,12 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   `ADVISORY_2026-09-26_RDE_multiphase_procedure.md` (the proposal for the RDE procedure; SR-1 index
   row). Records `_twowall_cap*/`, figure 26 untracked as all figures. Lints and suite re-run before
   the commit (numbers in the commit message).
+- Step 2 bis commit (night): `a1_twowall.py` gains the ambient objective (TWOP_PA, adapted[x factor],
+  J_of minus p_a times the exit annulus), the free exit heights (TWOP_FREE_EXIT lip / both), positive
+  tail indices, the exit readout (heights, wall pressure over p_a) in the walk's record, the cap
+  starts taken whole and repaired by the restoration; the vacuum path gated bitwise. Registry:
+  findings `twowall:cap-ends-sigmoid-saturate` minted, `twowall:design-posing-open` updated; X-TWOP
+  gains the ambient reading. The advisory gains section 6 (the plan review) and the Stage-0
+  amendment; index rows extended; PROGRESS block in place + archive; D6 note; M0 addendum item (4);
+  handoff section 11. The free walk (`_twowall_cap0.8_amb2_free/`) was still restoring at the
+  commit: its result goes in a follow-up commit.
