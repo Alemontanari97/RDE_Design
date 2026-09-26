@@ -1,0 +1,58 @@
+== [F3] the two-wall design on Migdal's nozzle: gates and DUTY-11 [X-TWOP] ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 280 plug + 251 shroud stations (frozen), N 61; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   reference (GENO's walls at the knots): representation error plug 2.78e-04, shroud 1.85e-04; cert 3.954e-02 at ('wall', 108); C_F 1.579655 vs 1-D 1.579594 (+6.09e-05); 43.5 s
+  [PASS] G-1 the reference marches certified (0.040); its C_F 1.579655 against the 1-D 1.579594 is reported (the spline representation moves the walls by 2.8e-04 / 1.9e-04)
+  [PASS] G-2 REPLAY = RECORD at the reference (1.579655122421 vs 1.579655122421, rel 2.2e-16)
+   reverse AD: |grad C_F|inf 1.062e-02 (plug 4.536e-03, shroud 1.062e-02); 189.5 s
+   dir 0: AD +5.664432874e-04, frozen-schedule FD +5.660977243e-04 (ladder spread 5.2e-06, band 2.1e-05, |d| 3.5e-07); READING record FD +5.820670e-04, +5.620976e-04, decisions re-taken h 1e-03: sseg,wfoot (J jump 2.3e-08); h 1e-04: sseg (J jump 0.0e+00)
+   dir 1: AD -4.096606994e-03, frozen-schedule FD -4.102712292e-03 (ladder spread 1.4e-05, band 5.6e-05, |d| 6.1e-06); READING record FD -4.081503e-03, -4.091038e-03, decisions re-taken h 1e-03: sseg,wfoot (J jump 2.7e-07); h 1e-04: sseg,wfoot (J jump 4.4e-09)
+   dir 2: AD -3.217614240e-04, frozen-schedule FD -3.216330535e-04 (ladder spread 3.4e-06, band 1.3e-05, |d| 1.3e-07); READING record FD -4.117965e-04, -3.219869e-04, decisions re-taken h 1e-03: sseg,wfoot (J jump 4.1e-08); h 1e-04: sseg (J jump 2.2e-16)
+   dir 3: AD -4.271571247e-03, frozen-schedule FD -4.272951958e-03 (ladder spread 1.0e-06, band 4.1e-06, |d| 1.4e-06); READING record FD -4.297478e-03, -4.272952e-03, decisions re-taken h 1e-03: sseg,wfoot (J jump 3.1e-08); h 1e-04: sseg (J jump 6.7e-16)
+  [PASS] G-3 the adjoint of both walls against the frozen-schedule FD ladder, inside K_RICH x its spread + the rounding floor, on 4 seeded directions
+   the functional's resolution between designs: the decisions' J jump 2.66e-07 (max over the probes; floor C_FLOOR x EPS x |J| 2.8e-15) -> delta 2.66e-07 (1.7e-07 of C_F)
+    h 1.656e-04 m: cert 4.106e-02, C_F 1.579655870 (+7.47e-07)
+    h 3.311e-04 m: cert 4.255e-02, C_F 1.579652742 (-2.38e-06)
+    h 6.623e-04 m: cert 4.998e-02, C_F 1.579634949 (-2.02e-05)
+    h 1.325e-03 m: cert 3.764e-02, C_F 1.579553511 (-1.02e-04)
+    h 2.649e-03 m: cert 4.864e-02, C_F 1.579209248 (-4.46e-04)
+    h 5.298e-03 m: cert 3.852e-02, C_F 1.577800126 (-1.85e-03)
+    h 1.060e-02 m: cert 4.135e-02, C_F 1.572055624 (-7.60e-03)
+    h 2.119e-02 m: cert 1.399e-01, C_F 1.547582133 (-3.21e-02)
+    h 4.239e-02 m: cert 8.534e+16, C_F -- (uncertified)
+  [PASS] G-4 the certification breaks along +grad J inside the ladder (bracket [0.021192922015714287, 0.042385844031428574] m, ell 5.298e-03)
+   h* 2.997e-02 m -> tr0 7.493e-03 m, radius floor tr0/K_RICH 1.873e-03 m
+   secant Hessian at h 1e-03 m: asymmetry 3.23e-01 (max |H| 9.84e+01); 119 s
+   secant Hessian at h 1e-04 m: asymmetry 3.66e-01 (max |H| 9.82e+01); 235 s
+   DUTY-11: secant Hessian at h 1e-03 (26 x 26): asymmetry 3.23e-01, change to h 1e-04 1.23e+01 -> curvature floor K_RICH x max 4.91e+01; eigenvalues of -H [-6.4942e+00  4.7985e-02  1.7581e-01  7.9788e-01  1.6187e+00  3.2117e+00
+  6.5116e+00  7.2172e+00  1.2820e+01  1.4665e+01  1.9914e+01  2.4979e+01
+  2.8222e+01  2.8654e+01  3.6825e+01  4.1447e+01  4.4048e+01  5.1656e+01
+  5.8358e+01  6.3276e+01  7.5509e+01  8.4958e+01  8.8861e+01  1.0330e+02
+  1.2495e+02  1.6598e+02]
+E0926 15:33:44.850252   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850412   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850441   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850464   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850487   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850525   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850551   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850580   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850606   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850632   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850660   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850715   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850775   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850810   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850846   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850873   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850902   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850945   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850970   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.850978   69021 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:33:44.850994   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851016   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851037   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851061   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851082   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851089   69021 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:33:44.851103   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:33:44.851124   69021 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory

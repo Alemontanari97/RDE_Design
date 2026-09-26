@@ -1,0 +1,79 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 280 plug + 251 shroud stations (frozen), N 61; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 110 s): asymmetry 3.23e-01 -> floor 1.29e+00; eigenvalues of -H [-6.494e+00  4.799e-02  1.758e-01  7.979e-01  1.619e+00  3.212e+00
+  6.512e+00  7.217e+00  1.282e+01  1.467e+01  1.991e+01  2.498e+01
+  2.822e+01  2.865e+01  3.683e+01  4.145e+01  4.405e+01  5.166e+01
+  5.836e+01  6.328e+01  7.551e+01  8.496e+01  8.886e+01  1.033e+02
+  1.249e+02  1.660e+02] (4 floored)
+    start ladder h 2.070e-05 m: C_F +1.040e-07, KS +0.0130, cert 4.537e-02 -> in class
+    start ladder h 4.139e-05 m: C_F +2.038e-07, KS +0.0130, cert 4.016e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +3.942e-07, KS +0.0130, cert 3.771e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +7.249e-07, KS +0.0129, cert 4.317e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +1.183e-06, KS +0.0128, cert 3.788e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +1.343e-06, KS +0.0125, cert 3.748e-02 -> in class
+    start ladder h 1.325e-03 m: C_F -1.298e-06, KS -0.1853, cert 3.750e-02 -> OUT
+   start A (ramp 0.00): C_F 1.579655122, cert 3.954e-02, KS +0.0130; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; class scale h* 9.366e-04 m -> tr0 2.342e-04 m, floor 5.854e-05 m; 10 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 3.070e-01 m -> tr0 7.628e-04 (z), floor 1.907e-04 (z)
+   memory mappings at the walk's start: 8920 (cap 65530)
+    [seg  0] J = 1.57965512e+00  |grad| = 1.570e-03  cert = 0.040
+    [seg  0] margin at base: KS - mu0 = +0.0065 (min cell +0.0130, 33368 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.129]]
+   checkpoint at segment 1: C_F 1.579655122; mappings 9107 -> 9107 (cleared above 55000)
+    [seg  1] trial J = 1.57964996e+00 worse than 1.57965512e+00; model predicted 1.57965002e+00 (rho 1.01)
+    [seg  1] backtrack 1/2 (step 1.998e-03): J = 1.57965225e+00 cert = 0.046 -> worse
+    [seg  1] backtrack 1/4 (step 9.988e-04): J = 1.57965313e+00 cert = 0.038 -> worse
+    [seg  1] backtrack 1/8 (step 4.994e-04): J = 1.57965463e+00 cert = 0.051 -> worse
+    [seg  1] backtrack 1/16 (step 2.497e-04): J = 1.57965500e+00 cert = 0.046 -> worse
+    [seg  1] ascent 1/2 (step 1.144e-03): J = 1.57965634e+00 cert = 0.049 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 1.144e-03
+   checkpoint at segment 2: C_F 1.579655122; mappings 23730 -> 23730 (cleared above 55000)
+    [seg  2] J = 1.57965634e+00  |grad| = 7.562e-04  cert = 0.049
+    [seg  2] margin at base: KS - mu0 = +0.0062 (min cell +0.0128, 33366 cells)
+    [seg  2] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[-0.103]]
+   checkpoint at segment 3: C_F 1.579656343; mappings 23737 -> 23737 (cleared above 55000)
+    [seg  3] trial J = 1.57965246e+00 worse than 1.57965634e+00; model predicted 1.57965480e+00 (rho 2.52)
+    [seg  3] backtrack 1/2 (step 1.274e-03): J = 1.57965355e+00 cert = 0.038 -> worse
+    [seg  3] backtrack 1/4 (step 6.369e-04): J = 1.57965575e+00 cert = 0.038 -> worse
+    [seg  3] backtrack 1/8 (step 3.184e-04): J = 1.57965624e+00 cert = 0.050 -> worse
+    [seg  3] backtrack: step 1.592e-04 below the floor at 1/16 -> give up
+    [seg  3] ascent 1/2 (step 1.716e-03): J = 1.57965570e+00 cert = 0.061 -> worse
+    [seg  3] ascent 1/4 (step 8.582e-04): J = 1.57965650e+00 cert = 0.038 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 8.582e-04
+   checkpoint at segment 4: C_F 1.579656343; mappings 43139 -> 43139 (cleared above 55000)
+    [seg  4] J = 1.57965650e+00  |grad| = 1.540e-03  cert = 0.038
+    [seg  4] margin at base: KS - mu0 = +0.0069 (min cell +0.0134, 33586 cells)
+    [seg  4] margin counters: {'m_exec': 18, 'm_dedup': 18}; multipliers [[-0.133]]
+   checkpoint at segment 5: C_F 1.579656502; mappings 43159 -> 43159 (cleared above 55000)
+    [seg  5] trial J = 1.57965200e+00 worse than 1.57965650e+00; model predicted 1.57965298e+00 (rho 1.28)
+    [seg  5] backtrack 1/2 (step 1.670e-03): J = 1.57965279e+00 cert = 0.045 -> worse
+    [seg  5] backtrack 1/4 (step 8.348e-04): J = 1.57965517e+00 cert = 0.039 -> worse
+    [seg  5] backtrack 1/8 (step 4.174e-04): J = 1.57965597e+00 cert = 0.065 -> worse
+    [seg  5] backtrack 1/16 (step 2.087e-04): J = 1.57965627e+00 cert = 0.062 -> worse
+    [seg  5] ascent 1/2 (step 1.287e-03): J = 1.57965521e+00 cert = 0.061 -> worse
+    [seg  5] ascent 1/4 (step 6.436e-04): J = 1.57965671e+00 cert = 0.039 -> ACCEPT
+    [seg  5] restoration ACCEPTED -> base, radius -> 6.436e-04
+   checkpoint at segment 6: C_F 1.579656502; mappings 62357 -> 1921 (cleared above 55000)
+    [seg  6] J = 1.57965671e+00  |grad| = 1.256e-03  cert = 0.039
+    [seg  6] margin at base: KS - mu0 = +0.0057 (min cell +0.0122, 33584 cells)
+    [seg  6] margin counters: {'m_exec': 24, 'm_dedup': 24}; multipliers [[-0.097]]
+   checkpoint at segment 7: C_F 1.579656706; mappings 9072 -> 9072 (cleared above 55000)
+    [seg  7] trial J = 1.57965195e+00 worse than 1.57965671e+00; model predicted 1.57965183e+00 (rho 0.98)
+    [seg  7] backtrack 1/2 (step 1.536e-03): J = 1.57965376e+00 cert = 0.040 -> worse
+    [seg  7] backtrack 1/4 (step 7.681e-04): J = 1.57965635e+00 cert = 0.071 -> worse
+    [seg  7] backtrack 1/8 (step 3.840e-04): J = 1.57965681e+00 cert = 0.049 -> ACCEPT
+    [seg  7] restoration ACCEPTED -> base, radius -> 3.840e-04
+   checkpoint at segment 8: C_F 1.579656706; mappings 28470 -> 28470 (cleared above 55000)
+    [seg  8] J = 1.57965681e+00  |grad| = 6.538e-04  cert = 0.049
+    [seg  8] margin at base: KS - mu0 = +0.0064 (min cell +0.0129, 33585 cells)
+    [seg  8] margin counters: {'m_exec': 30, 'm_dedup': 30}; multipliers [[-0.097]]
+   checkpoint at segment 9: C_F 1.579656811; mappings 28476 -> 28476 (cleared above 55000)
+    [seg  9] trial J = 1.57964993e+00 worse than 1.57965681e+00; model predicted 1.57964820e+00 (rho 0.80)
+    [seg  9] backtrack 1/2 (step 2.429e-03): J = 1.57965273e+00 cert = 0.048 -> worse
+    [seg  9] backtrack 1/4 (step 1.215e-03): J = 1.57965328e+00 cert = 0.053 -> worse
+    [seg  9] backtrack 1/8 (step 6.074e-04): J = 1.57965579e+00 cert = 0.045 -> worse
+    [seg  9] backtrack 1/16 (step 3.037e-04): J = 1.57965648e+00 cert = 0.049 -> worse
+    [seg  9] ascent 1/2 (step 5.761e-04): J = 1.57965690e+00 cert = 0.040 -> ACCEPT
+    [seg  9] restoration ACCEPTED -> base, radius -> 5.761e-04
+    backtracking: 24 probes, 1 accepted along the segment, 4 accepted on the ascent; 6 records
+   return: C_F 1.579656811 (start 1.579655122, reference 1.579655122, 1-D 1.579594), cert 4.888e-02, KS +0.0129 (in class), |grad|inf 1.601e-03; gap to the reference plug 9.393e-05 / shroud 8.910e-05 m (start 0.000e+00 / 0.000e+00); 6 records, 2639 s
+   record: /data10/falco/RDE/RDE_Design/validation/_twowall_arc_fine/walk_AN_2026-09-26.json

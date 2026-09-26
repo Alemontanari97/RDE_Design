@@ -1,0 +1,39 @@
+== [F3] the two-wall walk, start R, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 280 plug + 251 shroud stations (frozen), N 61; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.4 s
+   ramp 1.00 toward the generic start: cert 3.742e-02, KS -0.1015 (floor 0.0065), C_F 1.578986, gap to the reference plug 1.545e-02 / shroud 1.175e-02 m
+   ramp 0.75 toward the generic start: cert 3.819e-02, KS +0.0037 (floor 0.0065), C_F 1.579275, gap to the reference plug 1.162e-02 / shroud 8.836e-03 m
+   ramp 0.50 toward the generic start: cert 3.909e-02, KS +0.0121 (floor 0.0065), C_F 1.579467, gap to the reference plug 7.767e-03 / shroud 5.908e-03 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 335 s): asymmetry 1.52e-01 -> floor 6.07e-01; eigenvalues of -H [-7.813e+00  1.328e-01  2.364e-01  8.229e-01  1.733e+00  3.255e+00
+  6.331e+00  7.245e+00  1.158e+01  1.283e+01  1.426e+01  1.720e+01
+  2.003e+01  2.404e+01  2.834e+01  3.687e+01  3.799e+01  4.383e+01
+  5.071e+01  5.737e+01  6.258e+01  8.044e+01  8.854e+01  1.027e+02
+  1.262e+02  1.750e+02] (3 floored)
+    start ladder h 2.070e-05 m: C_F +7.154e-07, KS +0.0121, cert 3.758e-02 -> in class
+    start ladder h 4.139e-05 m: C_F +1.434e-06, KS +0.0121, cert 4.115e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +2.880e-06, KS +0.0120, cert 5.000e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +5.805e-06, KS +0.0119, cert 3.945e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +1.178e-05, KS +0.0117, cert 5.008e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +2.418e-05, KS +0.0112, cert 3.754e-02 -> in class
+    start ladder h 1.325e-03 m: C_F +5.022e-05, KS +0.0103, cert 3.763e-02 -> in class
+    start ladder h 2.649e-03 m: C_F +1.068e-04, KS -0.4340, cert 3.797e-02 -> OUT
+   start R (ramp 0.50): C_F 1.579467130, cert 3.909e-02, KS +0.0121; gap to the reference plug 7.767e-03 / shroud 5.908e-03 m; class scale h* 1.873e-03 m -> tr0 4.683e-04 m, floor 1.171e-04 m; 10 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.158e+00 m -> tr0 4.043e-04 (z), floor 1.011e-04 (z)
+   memory mappings at the walk's start: 39797 (cap 65530)
+    [seg  0] J = 1.57946713e+00  |grad| = 3.995e-02  cert = 0.039
+    [seg  0] margin at base: KS - mu0 = +0.0056 (min cell +0.0121, 33381 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.083]]
+   checkpoint at segment 1: C_F 1.579467130; mappings 39973 -> 1810 after clearing the caches
+    [seg  1] trial J = 1.57945030e+00 worse than 1.57946713e+00; model predicted 1.57945028e+00 (rho 1.00)
+E0926 15:34:07.786819   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.786978   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787008   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787039   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787076   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787103   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787137   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787170   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787203   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787231   61000 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:34:07.787309   61000 contiguous_section_memory_manager.cc:105] allocateMappedMemory failed with error: Cannot allocate memory
+E0926 15:34:07.787321   61000 contiguous_section_memory_manager.cc:148] Failed to satisfy suballocation request for 1115
+LLVM ERROR: Unable to allocate section memory!

@@ -208,9 +208,42 @@ Measured on the arc posing's reference (probes and logs in `RDE/handoff/f3_2026-
   first call at 26 s (was 135 s) and the steady state 1.7 s (24.6x / 28.4x). The per-segment cache
   clearing is now conditional (above map_clear = 55000 mappings) so the compiled steps survive the
   segments. The walks and the fine derive relaunched at 15:41.
-- RELAUNCHED 2026-09-26 15:41 on the corrected wavefront replay with the parallel metric (8 workers): the
-  Newton walks A (Migdal's arcs) and R (the gentler arcs' in-class ramp) at (280,61), 10 segments
-  x 6 iterations, checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`). [pending]
+- THE FINE-RUNG WALKS (relaunched 15:41 on the corrected wavefront replay, the metric on 8 workers
+  in ~2 min; 10 segments x 6 iterations, checkpointed; `_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`,
+  44 and 47 min):
+
+| walk (280,61) | start | C_F landing | vs Migdal's arcs (1.579655122) | walls off Migdal | |grad|inf | class |
+|---|---|---|---|---|---|---|
+| A | Migdal's arcs | 1.579656811 | +1.7e-6 | 0.09 / 0.09 mm | 1.6e-3 (start 1.6e-3) | in, KS +0.0129 |
+| R | gentler arcs, ramp 0.5 (7.8 / 5.9 mm off, -1.9e-4) | 1.579544034 | -1.1e-4 | 7.9 / 5.8 mm | 5.3e-2 | in, KS +0.0093, radius at its floor |
+
+  From Migdal's arcs the fine-rung walk moves 0.09 mm and gains 1.7e-6 of C_F (13 x delta; the
+  coarse rung gave +5.0e-5 at 0.9 mm: the departure shrinks 30 x with one doubling, discretisation
+  as diagnosed); from the gentler arcs the walk recovers 40 percent of its gap in the first
+  segments and then STALLS at the class boundary (every trial INFEASIBLE or worse, the radius at its
+  floor 1.0e-4 in z), 1.1e-4 below Migdal's arcs and 8 / 6 mm away: the same fold-cliff stall as the
+  single-wall finder (f3-residual:finder-stalls-at-fold-cliff), now on two walls.
+- THE FINE DERIVE (`_twowall_arc_fine/run_derive_2026-09-26.log`, 6/6, 52 min on the fast replay):
+  the functional's resolution delta 2.66e-7 at (280,61) (the decisions' J jump); the secant
+  spectrum 25 identifiable directions and ONE not: the softest, a shroud mode, reads -6.49 by the
+  secant Hessian at 1 mm but +5.08 by J's own second difference along it (the record's +5.22) --
+  a kink of the frozen replay in that direction, not an ascent direction (its own floor 46 covers
+  it; the global floor would have called 17 near-null). Widest shape band 3.4e-4 m of wall; the
+  Newton step from Migdal's arcs in the identifiable subspace 1.3 cm for a predicted +4.4e-6.
+- THE GRADE AT THE FINE RUNG (`run_grade_2026-09-26.log`, 1/3): RE-0 both landings certified and
+  in class; RE-1 VALUE FAIL (1.13e-4 apart against K_RICH x delta 1.07e-6); RE-1 SHAPE FAIL. The
+  arcs: A lands on Migdal's -- R 0.2001 / 0.2005 m, end angles 21.33 / 18.87 deg against 0.2000 /
+  0.2000 and 21.37 / 18.85 --; R stops at R 0.254 / 0.250 m.
+VERDICT OF STEP 1 AT THE FINE RUNG: with circular arcs as design variables and the ends pinned,
+Migdal's arcs are RE-OBTAINED FROM THEMSELVES (the walk moves 0.09 mm and 1.7e-6 of C_F, 1.6 x the
+resolution band: stationary at this instrument) and NOT BEATEN; the owner's expectation that the
+thrust picks the arc holds in this sense -- Migdal's arcs are the local thrust optimum of the
+circular-arc family at pinned ends. From 8 mm away the class-constrained walk does NOT come back:
+it climbs 40 percent of the gap and stalls at the fold-class boundary, exactly as the single-wall
+finder did at the nominal ambient. The finder property from far starts is negative on two walls
+too; the re-obtention certificate stands from near starts only (the Hermite start of S40, 6 mm off
+on the kernel posing, did land). Findings: twowall:arc-design-coarse-instrument-unfit DISCHARGED
+(the fine rung was run), twowall:far-start-stalls-at-fold-cliff minted.
 - THE CLASS STAGE AT BOTH RUNGS with the corrected gates (`_twowall_arc/run_class_2026-09-26.log`
   4/4, 150 s; `_twowall_arc_fine/run_class_2026-09-26.log` 4/4, 528 s): C-F at (280,61) -- 35303
   cells, max |dz| 2.3e-11 = 0.47 of the Newton tolerance, decisions identical, J identical, KS
@@ -222,6 +255,10 @@ Measured on the arc posing's reference (probes and logs in `RDE/handoff/f3_2026-
   checkpointed (`_twowall_arc_fine/run_walk_{A,R}N_2026-09-26.log`).
 
 ## 6. Budget
+Fine-rung runs on the fast replay: class 9 min (the legacy-lane gate included), walks 44 + 47 min
+(the metric ~2 min on 8 workers), derive 52 min. Machine time lost to the three coarse-rung walk
+deaths and the two fine-rung false starts (sequential replay 8 h projection, the static-size
+compile): ~4 h of processes, no results lost that were not re-obtained.
 No F3 counter (the phase is closed; this is the design posing's step 1 on the owner's word). Runs:
 speed benchmarks and the class stages at both rungs ~45 min;
 class 4 min; derives 106 + 90 min (arc, kernel, the corrected criterion); walks A 92 + 19 min and
@@ -244,7 +281,7 @@ R 150 min after three lost walks (~3 h of machine time lost to the mapping cap);
   with cache clearing, the arc readout in the grade, the K/N overrides for the fine rung, the gates
   C-F (lane equivalence within the certificate's band) and C-R at the ladder's first infeasible step. Records: `_twowall_arc/` (class, derive, walks, grade), `_twowall/derive_2026-09-26.json`
   + log (the kernel derive re-run), the probes in RDE/handoff/f3_2026-09-25/.
-- Measured on the tree of the commit (2026-09-26 ~05:50): numeric lint PASS (128 files, 0 ratchet
+- Measured on the tree of the first commit (2026-09-26 ~05:50; the later commits of the day re-measured, see their messages): numeric lint PASS (128 files, 0 ratchet
   violations); claims lint PASS (0 violations; X-TWOP fresh, pass 2026-09-26 >= last commit of its
   doc); advisory index PASS (133 rows); findings lint 0 violations on its rows (259 entries, 213
   open; the H4 channel and families e+f red at HEAD as before); FULL suite 16/23 = the seven

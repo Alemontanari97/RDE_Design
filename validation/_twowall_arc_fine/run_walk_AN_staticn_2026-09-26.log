@@ -1,0 +1,79 @@
+== [F3] the two-wall walk, start A, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 280 plug + 251 shroud stations (frozen), N 61; knots 12 + 12 (plug tip y 0.579603 and shroud lip y 1.202472 pinned); wedge every 1; 0.3 s
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 338 s): asymmetry 3.23e-01 -> floor 1.29e+00; eigenvalues of -H [-6.494e+00  4.799e-02  1.758e-01  7.979e-01  1.619e+00  3.212e+00
+  6.512e+00  7.217e+00  1.282e+01  1.467e+01  1.991e+01  2.498e+01
+  2.822e+01  2.865e+01  3.683e+01  4.145e+01  4.405e+01  5.166e+01
+  5.836e+01  6.328e+01  7.551e+01  8.496e+01  8.886e+01  1.033e+02
+  1.249e+02  1.660e+02] (4 floored)
+    start ladder h 2.070e-05 m: C_F +1.040e-07, KS +0.0130, cert 4.537e-02 -> in class
+    start ladder h 4.139e-05 m: C_F +2.038e-07, KS +0.0130, cert 4.016e-02 -> in class
+    start ladder h 8.278e-05 m: C_F +3.942e-07, KS +0.0130, cert 3.771e-02 -> in class
+    start ladder h 1.656e-04 m: C_F +7.249e-07, KS +0.0129, cert 4.317e-02 -> in class
+    start ladder h 3.311e-04 m: C_F +1.183e-06, KS +0.0128, cert 3.788e-02 -> in class
+    start ladder h 6.623e-04 m: C_F +1.343e-06, KS +0.0125, cert 3.748e-02 -> in class
+    start ladder h 1.325e-03 m: C_F -1.298e-06, KS -0.1853, cert 3.750e-02 -> OUT
+   start A (ramp 0.00): C_F 1.579655122, cert 3.954e-02, KS +0.0130; gap to the reference plug 0.000e+00 / shroud 0.000e+00 m; class scale h* 9.366e-04 m -> tr0 2.342e-04 m, floor 5.854e-05 m; 10 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 3.070e-01 m -> tr0 7.628e-04 (z), floor 1.907e-04 (z)
+   memory mappings at the walk's start: 39526 (cap 65530)
+    [seg  0] J = 1.57965512e+00  |grad| = 1.570e-03  cert = 0.040
+    [seg  0] margin at base: KS - mu0 = +0.0065 (min cell +0.0130, 33368 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.129]]
+   checkpoint at segment 1: C_F 1.579655122; mappings 39727 -> 1744 after clearing the caches
+    [seg  1] trial J = 1.57964996e+00 worse than 1.57965512e+00; model predicted 1.57965002e+00 (rho 1.01)
+E0926 15:27:31.100500   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100631   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100668   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100739   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100777   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100813   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100848   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100883   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.100914   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101008   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101044   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101080   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101116   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101145   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101180   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101216   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101250   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101286   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101322   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101368   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101399   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101437   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101475   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101515   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101543   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101564   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101582   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101608   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101639   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101671   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101696   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101720   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101730   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101745   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101753   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101762   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101777   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101783   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101796   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101803   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101817   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101834   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101852   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101860   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101869   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101885   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101892   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101904   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101910   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101922   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101938   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101955   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101962   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.101973   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101989   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0926 15:27:31.101996   60998 contiguous_section_memory_manager.cc:71] releaseMappedMemory failed with error: Cannot allocate memory
+E0926 15:27:31.102006   60998 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory

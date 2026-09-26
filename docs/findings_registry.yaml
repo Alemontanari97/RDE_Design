@@ -2607,20 +2607,30 @@ entries:
   source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#2. R-F3-2: the two-wall design on Migdal's pair"
   code: []
   mechanism: unposed-selection-principle
-  owner: "the next two-wall design session: step 1 (circular arcs as design variables, TWOP_KERNEL=arc) was TAKEN in S41 and is inconclusive on the (140,31) instrument (twowall:arc-design-coarse-instrument-unfit) -- next is the two-rung posing (class and paired value at (280,61)) with a re-planned walk budget, then the ambient objective with ONE length cap for both walls (the owner's precision 2026-09-25: each wall free to end where it wants under it), then the free jet after the lip, then the truncation with a base-pressure CONVENTION applied identically to every profile (Fiore 2019 sec. 6.1 regime criterion; a documented physical closure such as Chapman-Korst admissible)"
+  owner: "the next two-wall design session: step 1 (circular arcs as design variables, TWOP_KERNEL=arc) was TAKEN in S41 and CONCLUDED at the fine rung -- Migdal's arcs are re-obtained from themselves and not beaten, the far start stalls at the fold cliff (twowall:far-start-stalls-at-fold-cliff) -- next is the ambient objective with ONE length cap for both walls (the owner's precision 2026-09-25: each wall free to end where it wants under it), then the free jet after the lip, then the truncation with a base-pressure CONVENTION applied identically to every profile (Fiore 2019 sec. 6.1 regime criterion; a documented physical closure such as Chapman-Korst admissible)"
   trigger: "any two-wall DESIGN claim beyond the Migdal confirmation, or a shrouded configuration entering a tournament"
   note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'design-posing|free kernel|plug end' docs/findings_registry.yaml = 0 before this mint. Updated 2026-09-26 (S41): step 1 taken, its lesson and the owner's precisions on the length cap and the base-pressure convention recorded."
 
 - id: twowall:arc-design-coarse-instrument-unfit
-  status: CONFIRMED
+  status: DISCHARGED
   severity: medium
   magnitude: "with the initial circular arcs as design variables (ends pinned, vacuum C_F, the fold class on the (140,31) net) the class-constrained Newton walks land AWAY from Migdal's arcs -- from Migdal's arcs +5.0e-5 of C_F (R 0.209 / 0.196 m), from gentler arcs +2.2e-4 (R 0.231 / 0.251 m, still climbing at budget) -- and the departures are the instrument's: re-marched PAIRED at (280,61) the first gain falls to +1.8e-5 (ratio 0.35) and the second turns into -1.6e-4 with 238 FOLDED cells (the coarse fold class missed a coalescence the finer net resolves). The coarse grid overshoots the 1-D ideal by 2.9e-4, the fine by 6.1e-5: the arc question's differences (1e-5..1e-4) sit inside the coarse instrument's own error"
   source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3. The walks, and the cause of the lost walks isolated"
   code: []
   mechanism: instrument-gap
-  owner: "the next two-wall design session: a two-rung posing -- the class and the paired value read at (280,61) (or Richardson-paired on the ladder), the walk budget re-planned for ~25 min per march at that rung (the Newton metric's 52 gradients alone ~24 h)"
-  trigger: "any arc or shape claim of the two-wall design beyond the paired band of the fine rung; any two-wall walk graded on the coarse class alone"
-  note: "Minted 2026-09-26 (S41). Dedup (SR-12): grep -ciE 'coarse-instrument|arc-design' docs/findings_registry.yaml = 0 before this mint. Related: f3-residual:finder-stalls-at-fold-cliff (the single-wall finder's stall), the S30 foot-knot gain that vanished under refinement (X-PTRN)."
+  evidence: "the fine rung was RUN the same day (S41 log sections 3 and 5): on the fast replay (a1_wavefront_replay, 35-55x) the (280,61) walks cost 45 min; from Migdal's arcs the walk moves 0.09 mm and gains 1.7e-6 (the coarse rung's 0.9 mm and +5.0e-5 were the grid's); Migdal's arcs are the local optimum of the circular-arc family at pinned ends at this instrument. The far start's stall is its own row, twowall:far-start-stalls-at-fold-cliff"
+  note: "Minted 2026-09-26 (S41). Dedup (SR-12): grep -ciE 'coarse-instrument|arc-design' docs/findings_registry.yaml = 0 before this mint. Related: f3-residual:finder-stalls-at-fold-cliff (the single-wall finder's stall), the S30 foot-knot gain that vanished under refinement (X-PTRN). DISCHARGED 2026-09-26 (S41, the fine rung run)."
+
+- id: twowall:far-start-stalls-at-fold-cliff
+  status: CONFIRMED
+  severity: medium
+  magnitude: "on the two-wall arc posing at the fine rung (280,61), the class-constrained Newton walk from the gentler arcs (R 0.25 m, 7.8 / 5.9 mm off Migdal's walls, 1.9e-4 of C_F below) recovers 40 percent of its gap in segments 3-7 and then STALLS: every trial infeasible (folds) or worse, the radius at its floor, four segments without an accepted step, landing 1.1e-4 below Migdal's arcs and 7.9 / 5.8 mm away (RE-1 FAIL, 1/3); it moved only the shroud's tail, never the initial stretch where the gap lives. The same fold-cliff stall as the single-wall finder at the nominal ambient (f3-residual:finder-stalls-at-fold-cliff); from Migdal's arcs the walk is stationary (+1.7e-6, 0.09 mm), and from the S40 Hermite start 6 mm off (kernel posing) it did land: the re-obtention from FAR starts is what fails"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3. The walks, and the cause of the lost walks isolated"
+  code: []
+  mechanism: "fold-cliff stall of a class-constrained walk"
+  owner: "the next two-wall design session, with the single-wall row: a step rule that follows the class boundary (projection onto the margin's level set, a restoration phase that accepts feasible non-improving moves, or a continuation in the class floor), now affordable at 45 min per fine-rung walk"
+  trigger: "any two-wall re-obtention claim from a start farther than the near starts of record (6 mm), or a design claim resting on a far-start walk"
+  note: "Minted 2026-09-26 (S41). Dedup (SR-12): grep -ciE 'far-start|fold-cliff' docs/findings_registry.yaml = 1 before this mint (the single-wall row; this is the two-wall instance, distinct posing)."
 
 - id: twowall:wedge-thinning-spurious-thrust
   status: CONFIRMED
