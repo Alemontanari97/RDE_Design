@@ -1,0 +1,13 @@
+== [F3] the wavefront replay against the sequential replay [X-TWOP] (stage wavefront) ==
+   posing: Migdal A_e/A_i 4.0000 (1-D M_e 3.110645, C_F,vac 1.579594); inlet M 1.50 between y 0.850 and 1.000; K 140 plug + 126 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.579603 pinned and shroud lip y 1.202472 pinned); wedge every 1; p_a/P0 0.00000e+00; 0.3 s
+   record with the graph: 11.7 s; 8999 cells in 368 levels (566 batches); 8331 quads
+   sequential J 1.57988061644151 (43.2 s with its gradient), KS - mu0 -8.59117057063586 (41.3 s with its gradient)
+   wavefront  J 1.57988061644151 (27.1 s with its gradient), KS - mu0 -8.59117057063586 (1.9 s with its gradient)
+   wavefront-2 J 1.57988061644151 (1.7 s with its gradient), KS - mu0 -8.59117057063586 (2.0 s with its gradient)
+  [PASS] WF-1 J: wavefront = sequential to 2.2e-16 relative (<= 8.0e-12; bitwise False)
+  [PASS] WF-2 grad J: max relative difference 5.0e-13 (<= 8.0e-12; bitwise False)
+  [PASS] WF-3 the class margin 2.1e-16 and its gradient 3.1e-14 (<= 8.0e-12; bitwise False / False)
+   speed-up (steady state, the second wavefront call): J + grad 24.7x, margin + grad 21.1x; the first call (compiling the padded batches) 27.1 / 1.9 s
+  [PASS] WF-4 the row padding (rows_block 1024) is inert: J True, its gradient True, the margin True (bitwise)
+
+== 4/4 PASS  (148.6 s) ==

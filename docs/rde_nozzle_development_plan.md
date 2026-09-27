@@ -416,7 +416,21 @@ F3  GEOMETRY CLASSES (3-4 sessions; plug/aerospike primary). ENTRY:
     (target engine unpinned vs THOR; no phase vote on a full-flowing
     posing; St not derived; no length criterion; wave-frame invariants
     outside F2's text; no CFD referee role; instrument bars; stale NEXT) --
-    proposals, not ratified.
+    proposals, not ratified. The night of 2026-09-27 the RDE procedure was
+    SET UP on a Q2D outflow (the owner's order: the runs on the RDE outflow
+    + the meridional problem, the free jet, the separation;
+    validation/a1_rde_tournament.py [X-RDET], the lip jet [X-LJET]): the
+    Stechmann nozzle (GENO's Migdal for the time-mean state) against the
+    phases voting on the same walls, with the swirl as a free vortex,
+    Summerfield / Schmucker separation (closure and class) and the free jet
+    after the lip. The time-mean state overstates the nozzle by 4.8 percent
+    of C_F (11.5 percent of its gain) and a design walked on it folds in
+    every other phase; the phase vote needs the class in every phase. Found
+    on the way: the gas tables clamped below 1050 K (the first pass
+    withdrawn; engine-core:F3-table-clamp-silent, second live instance),
+    the wavefront replay's table capture and its per-size compiles (the
+    12-phase walks at the kernel's mapping cap), a cumulative separation
+    weight that detached early.
 F4b DECLARED-TOPOLOGY FITTED FRONTS (2-3 sessions; F4a dissolved
     into F1b). Data-borne / boundary-entering fitted fronts (U3
     bordered solve + G12 linearization + adjoint jump conditions);

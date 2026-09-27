@@ -85,10 +85,11 @@
   "wavefront": {
     "value": {
       "lane": 16,
-      "map_clear": 55000
+      "map_clear": 55000,
+      "rows_block": 1024
     },
     "cls": "NUMERIC",
-    "note": "a1_wavefront_replay: the batches of one level and kind are padded to a multiple of lane lanes so the jitted steps compile once per padded size (S41: 566 batches of ~150 distinct sizes recompiled at every schedule otherwise); 16 = a few compiled sizes per kind at both rungs, the padded lanes' duplicate solves negligible; map_clear = the memory-mapping count above which a walk clears jax's compilation caches at a segment boundary (the kernel's cap is 65530; the wavefront's compiled steps hold ~38k that recur, so clearing at every segment re-paid a 2-4 min compile)"
+    "note": "a1_wavefront_replay: the batches of one level and kind are padded to a multiple of lane lanes so the jitted steps compile once per padded size (S41: 566 batches of ~150 distinct sizes recompiled at every schedule otherwise); 16 = a few compiled sizes per kind at both rungs, the padded lanes' duplicate solves negligible; map_clear = the memory-mapping count above which a walk clears jax's compilation caches at a segment boundary (the kernel's cap is 65530; the wavefront's compiled steps hold ~38k that recur, so clearing at every segment re-paid a 2-4 min compile); rows_block = the point array's row count rounded up to a multiple of it (S41 2026-09-27: the steps take the whole array, so its row count was part of every compiled shape -- one executable set per net size, per phase and per design on a phase family: the 12-phase walks reached the mapping cap; the extra rows are never read, bitwise)"
   },
   "restore": {
     "value": {
@@ -134,5 +135,33 @@
     },
     "cls": "NUMERIC",
     "note": "the C-S gates of the shape-mode class (S41 step 2 ter): parallelograms = [leg a / ell, leg b / ell, first leg's angle, angle between the legs] for the closed-form KAT |v| = sin(angle), the smallest legs 3e-3 ell above the guard eps2 = 1e-6 ell2; scale = the factor by which the reference's cells are shrunk about their centroids for the size-invariance check (0.1 keeps every cell above the guard); guard_headroom_min = the least admissible min(legs' product)/eps2 on the reference"
+  },
+  "separation": {
+    "value": {
+      "summerfield_k": 0.35,
+      "summerfield_band": [
+        0.35,
+        0.4
+      ],
+      "schmucker_a": 1.88,
+      "schmucker_b": 0.64,
+      "width": 0.02
+    },
+    "cls": "MODEL-CONST",
+    "note": "the separation closure of the thrust at ambient (TWOP_SEP, S41 2026-09-27; D-GSEP criterion class R2, declared empirical): Summerfield p_sep = k p_a with k 0.35 (band 0.35-0.40, the same constant of record as src/thrust/st_core.py's bell separation; Summerfield 1954, Sutton), Schmucker p_sep / p_a = (a M_w - 1)^-b with a 1.88, b 0.64 (Schmucker 1973, as the corpus's pipeline audit names it); width = the sigmoid width of the attachment weight in units of (p_w / p_sep - 1): the weight of a wall point is sigmoid(the running minimum of the margin up to it / width) -- a free-shock separation never reattaches -- so a wall whose margin never fell below 0.1 is attached to 1 - 7e-3 and the weight is 1/2 at the first point below p_sep (the first form, a cumulative product of the sigmoids, accumulated the near-separation factors and detached 2.3 stations early, measured 2026-09-27)"
+  },
+  "jet": {
+    "value": {
+      "fan_rays_over_N": 0.5,
+      "n_gl": 16,
+      "qpa_bracket": [
+        1.02,
+        3.2
+      ],
+      "qpa_shrink": 0.9,
+      "qpa_xtol": 1e-12
+    },
+    "cls": "NUMERIC",
+    "note": "the free jet after the lip in the two-wall carrier (TWOP_JET, S41 2026-09-27): the lip fan's ray count as a fraction of the start rows N (the lip-jet oracle a1_lipjet.py ran N/2: rungs (21, 10) and (41, 20)) and the Gauss-Legendre order of the Prandtl-Meyer quadrature (the oracle's); qpa_bracket = the ambient speed's search in units of a* (a1_freejet_unit's), its upper end shrunk by qpa_shrink until the pressure is finite (beyond the limiting speed the isentrope has none), xtol in units of a*"
   }
 }

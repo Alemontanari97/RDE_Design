@@ -1,0 +1,7 @@
+== [F3/A1] the RDE tournament: the free jet in the two-wall carrier [X-RDET] (stage jetgates) ==
+  [PASS] JT-1 both ends at the cap: the jet leaves every wall point bitwise (True), J 1.446124389089 = 1.446124389089; the lip margin +0.0586 (under-expanded) joins the class (KS 0.5026 -> 0.2937); certificates 0.047 / 0.566
+  [PASS] JT-2a the plug beyond the lip (tip x 1.279, lip x 0.669): the lip's first characteristic lands past the tip (the no-jet top row ends at x 1.9028, y 0.7198): the jet leaves every plug point bitwise (True) and J 1.439698070323 = 1.439698070323; certified 0.466 (jet, 126 edge points) / 0.023
+  [PASS] JT-2b the jet region's residuals in the p_a gauge (the free edge contributing zero) are second-order discretisation: momentum 1.52e-03 -> 3.78e-04 of F_in (ratio 4.02), mass 1.64e-03 -> 4.02e-04 (ratio 4.07) from (140,31) to (279,61), in [2.83, 5.66]; the fine rung bitwise too (True), certified 0.324
+  [PASS] JT-3 the jet replay = the record (1.439698070323 vs 1.439698070323); adjoint -2.473706e-04 vs central FD -2.453415e-04 along knot 6 (rel 8.3e-03)
+  [PASS] JT-4 the lip over-expanded at 0.60 bar: the lip margin -0.9118 puts the class below its floor (KS -0.6767 < 0.2351), the march computed (certified 0.498, J finite -0.155646)
+   5/5 PASS in 293 s

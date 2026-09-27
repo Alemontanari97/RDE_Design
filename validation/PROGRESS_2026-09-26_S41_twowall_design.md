@@ -425,6 +425,165 @@ Class records of record: `_twowall_arc_shape/class_2026-09-27.json` (the re-deri
 committed code; its 2026-09-26 twin, identical in every number, removed) and
 `_twowall_arc_shape_fine/class_2026-09-27.json`.
 
+## 3sexies. The RDE procedure on a Q2D outflow: the tournament, the free jet, the separation (the owner, 2026-09-27 night)
+THE OWNER'S WORDS, in order: "nel frattempo puoi girare un caso ... Q2D di un RDE con gola e poi prendiamo il suo outflow
+e lo espandiamo in ugello facendo un torneo"; "beh espandi direttamente il flusso chocked termicamente"; "il confronto
+sarà tra gli ugelli creati con lo stato mediato alla stechmann contro i nostri creati con le fasi che votano"; before
+bed: "In ordine le cose da fare sono: setup delle run con l'outflow del RDE (+ possibile aggiunta del problema
+meridiano), getto libero, trattazione della separazione". The meridional problem = the swirl the meridional march
+leaves out (8.8 percent of the exit's kinetic energy), added as a free vortex (item C below).
+
+A. THE SOURCE AND THE TWO DESIGN STATES (`validation/a1_rde_tournament.py` [X-RDET], constants
+`rde_tournament_cases.json`, artifacts `_rde_tournament/`). The Q2D THOR_CAv3 limit cycle (leg D, t 15.5 ms): the last
+chamber cell column (x 104.80 mm), 1799 azimuthal cells, EVERY one supersonic (M_x 1.442 .. 1.841: thermally choked,
+no throat needed), extracted by `RDE/handoff/f3_2026-09-25/q2d_exit_extract.py` into
+`_rde_tournament/q2d_thor_cav3_exit_t15.5ms.npz`; mass flow through the inlet annulus (outer radius 68 mm, gap
+14.15 mm) 0.4536 kg/s; P0 0.41 .. 3.33 bar, T0 1504 .. 2658 K, v -922 .. +510 m/s (theta-mean +172 m/s). One snapshot
+holds a whole period (T0: a single rotating wave, time at a point = angle at an instant), so equal azimuthal sectors
+are equal durations. The STECHMANN state (Stechmann, Heister & Harroun: gamma and M frozen, the nozzle designed at
+the time-mean chamber state) = the theta-arithmetic mean of the exit's meridional stagnation state: gamma 1.27744,
+R 342.65, T0 2000.6 K, P0 1.4166 bar, M_x 1.5561 (`gas_stechmann.json`); the mass-weighted mean, reported as the
+sensitivity, is very different in pressure (P0 1.899 bar, T0 2147 K, M_x 1.604). The PHASES: K = 12 and 24 equal
+sectors (`family_K12.json`, `family_K24.json`), each with its own gamma, R, T0, P0, M_x and v; K 12 spans P0
+0.46 .. 3.09 bar, M 1.459 .. 1.785; the sectors' mean mass flow = the exit's inside K_RICH eps n.
+The STECHMANN NOZZLE: GENO's Migdal perfect pair (nozzle_type 9) for the time-mean state adapted at p_a 0.05 bar
+(an altitude ambient: the exit's mean static pressure is 0.34 bar), `RDE/handoff/f3_2026-09-25/geno_rde/stech_run`
+(A_e/A_i 3.3674, 1-D M_e 2.7738, C_F,vac 1.593085; GENO's NASA-7 entropy inversion needed the a7 shift of the
+constant-cp polynomial, declared). The tournament's posing = the S41 cap posing on that pair: cap 0.8 of its
+length, ends at the cap (u0 10), the lip height free, the corrected class (shape + plume cut, class record
+`_rde_tournament/stech/class_2026-09-27.json`), Summerfield closure; the start S0 = the pair cut at the cap + the
+tail deflection (T start).
+
+B. THE TABLE CLAMP (found in the first tournament pass, every number of that pass withdrawn). The constant-gamma
+tables were built by `a1_ideal_march_jax.build_tab_gconst` on its absolute range [1050, 3900] K; the RDE exhaust
+expands below 1000 K (the Stechmann exit is at 968 K), so the table CLAMPED: the wall pressure stuck at 7280 Pa where
+the isentrope gives 5000 Pa. `a1_twowall.tab_gconst` builds the same formula on a declared range (T_tab [300, 3900]
+K); gate T-0: the extended table at the Stechmann exit p 5000.000 Pa vs the closed-form isentrope, rel 9.1e-8 inside
+the grid's interpolation band 4.7e-7, and the builder's table REJECTED there (7280.1 Pa). The first pass's records
+are archived in `_rde_tournament/*/clampedtab/` (S1 1.449944, the class record, the V1 attempt); none is used.
+
+C. THE CARRIER'S NEW OPTIONS (`a1_twowall.py`; the default path BITWISE: T-1 the S41 record 1.579660988049).
+TWOP_GAS (the posing's gas and state from a file: T-2 the defaults bitwise); TWOP_MU = the PHASES VOTE (a family of
+inflow states on the same walls, each with its own table and uniform start at its Mach; J = sum_k w_k C_F,k in units
+of the posing's P0 A*; T-4 one phase = the posing bitwise; T-6 the replay's adjoint vs central differences rel
+4.5e-3); TWOP_MU_CLASS = where the fold class is read (ref = the time-mean state only; all = every phase, a KS
+soft-min over the phases); TWOP_SWIRL = every phase's FREE VORTEX (Gamma = y_mid v, the table at the total
+stagnation state, the five swirl cells of `a1_swirl_march.swirl_cells_2w`: SW-1 the two-wall radial-equilibrium duct
+preserved to 1.7e-14, SW-2 Gamma = 0 bitwise, SW-3 alive: -2.82e-3 on the cut Stechmann pair's 12-phase C_F, SW-4 the swirl replay = the record, adjoint vs FD rel 2.1e-4); TWOP_JET (item E); TWOP_SEP / TWOP_SEP_CLASS (item F); TWOP_U0_S (the shroud's own end), TWOP_START=F.
+Gates of record: `_rde_tournament/gates_2026-09-27.log` 9/9 (T-0 .. T-7; T-7 = the table box: every phase's coldest state
+above T_tab[0] -- 745.6 .. 1109.4 K, where the builder's 1050 K edge would clamp 10 of the 12 phases), `swirlgates_2026-09-27.log` 4/4,
+`jetgates_2026-09-27.log` 5/5, `sepgates_2026-09-27.log` 3/3; the lip-jet oracle [X-LJET] 9/9; the wavefront replay
+WF-1..4 (`a1_twowall.py` stage wavefront: WF-4 the row padding of item G bitwise).
+
+D. THE TOURNAMENT (stage eval, `_rde_tournament/eval_2026-09-27.json`; p_a 0.05 bar, Summerfield; C_F in units of the
+Stechmann P0 A*; the mixture specific impulse on the Q2D mass flow). The Stechmann designs first:
+
+| judge | S0 = the cut Stechmann pair | S1 = walked on the time-mean state | S1 - S0 |
+|-------|-----------------------------|------------------------------------|---------|
+| time-mean state | 1.446124 (896.50 N, 201.54 s) | 1.446724 | +6.0e-4 |
+| 12 phases | 1.376235 (853.17 N, 191.80 s) | 1.376099 | -1.4e-4 |
+| 24 phases | 1.374853 | 1.374727 | -1.3e-4 |
+| 12 phases + swirl | 1.373383 | 1.373061 | -3.2e-4 |
+| 24 phases + swirl | 1.371726 | 1.371512 | -2.1e-4 |
+
+READING (Stechmann designs). (1) The time-mean state OVERSTATES the nozzle: the 12-phase judge gives the cut pair
+C_F 1.3762 against 1.4461 (-4.8 percent) and the nozzle's gain over the bare exit 0.1367 against 0.1545 (-11.5
+percent); K 24 moves the 12-phase numbers by -1.4e-3 (the binning's own error), the swirl by -2.9e-3 more. (2) The
+pair itself is not shock-free in every phase: the two post-wave sectors (M 1.78, P0 2.8-3.1 bar) fold 74-87 mm
+downstream, mid-channel (70 / 86 inverted cells; `RDE/handoff/f3_2026-09-25/twop_phase_fold_probe.py`); every
+other phase keeps +0.50. (3) A walk on the time-mean state (S1, 16 x 6, 1221 s: +0.041 percent there, lip raised,
+p_lip 1.06 -> 1.32 p_a) is WORSE under every phase judge: its lip recompression puts a compression focus just past
+the exit AT the time-mean state (its class reads +0.51) that moves 0-3 mm inside the nozzle in EVERY other phase --
+all 12 fold, 1-4 cells each, bow-tie crossings near the lip (`twop_lip_cells_probe.py`) -- and phase 10's march
+loses certification (62x); at the design ambient phases 7 and 8 detach (Summerfield margins -0.005 / -0.139; the
+pair's own phase 8 sits at +0.025). The shape margin cannot warn of such a fold: it reads the sine of the angle
+between the families until the characteristics cross (finding twowall:shape-margin-blind-to-convergence). (4) The
+phase view of the exit: the lips range 0.36-1.97 p_a on the pair (the low-pressure phases carry a lip shock in the
+jet), the coldest states 746-1109 K. (5) The phases voting: with the class read at the time-mean state only (V1m)
+the walk took no step in its first segment (its checkpoint = the start value): its start ladder found a phase's
+march uncertified 1.4 mm along the gradient (23.6x on the walk's own ladder; the same point re-marched on the corrected
+closure: 1.07, in phase 2, `twop_v1m_ladder_probe.py`), so its trust region starts below the class scale of the
+single-state walk (tr0 2.5e-4 m against 1.0e-3 m); the operative posing is V1, every phase shock-free
+AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), and V1s = V1 with the swirl (state in H).
+
+E. THE FREE JET (`a1_plug_march.plug_march(lip_jet=...)`, `validation/a1_lipjet.py` [X-LJET] + `lipjet_cases.json`):
+at the lip F a centred Prandtl-Meyer fan from the lip speed to the ambient speed (Gauss-Legendre on the tabulated
+gas, `pm_turn`), then the free-edge cell at p_a after the lip -- the plug may run on under the jet; an OVER-expanded
+lip (needs a lip shock) freezes the jet at the lip's speed and enters the class as the lip margin p(q_F)/p_a - 1 < 0.
+The planar simple-wave oracle with the fan born mid-march: 9/9 (quadrature 4.4e-16; every station in band; the
+no-jet march past F's C- uncertified). On the tournament posing (jetgates 5/5): JT-1 both ends at the cap -- the jet
+changes no wall point (bitwise) and joins the lip margin +0.0586 (under-expanded) to the class; JT-2a the plug run on
+beyond a lip at mid-way: the LIP'S FIRST CHARACTERISTIC LANDS PAST THE PLUG TIP (the no-jet top row ends at x 1.90
+against the tip 1.279), so the jet leaves every plug point and J bitwise -- the plug is in the internal flow's domain
+of dependence; JT-2b the jet region's momentum and mass residuals are second-order discretisation (1.52e-3 -> 3.78e-4
+and 1.64e-3 -> 4.02e-4 from (140,31) to (279,61), ratios 4.02 / 4.07); JT-3 replay = record, adjoint vs FD 8.3e-3;
+JT-4 an over-expanded lip (0.6 bar) out of class, the march finite. Probes `twop_jet_closure_probe.py` and a shorter
+shroud (lip at 16 percent of the length): even there the first characteristic lands past the tip. READING: under the
+cap the jet cannot reach the plug; the capped designs' thrust is jet-independent and the jet enters only through the
+lip margin -- and that entry would forbid the ordinary over-expanded lips of the low-pressure phases (a lip shock in
+the jet, not on a wall), so the tournament's class does not carry it; separation is the wall-side constraint (F).
+Two gate defects found and fixed on the way: the harness rebuilt the carrier without clearing TWOP_JET (JT-2's
+"without the jet" march ran WITH it: both certificates 0.466), and JT-2's first premise ("without the jet the march
+past F's C- is uncertified") holds only when the plug reaches past F's C-, which no capped posing does.
+
+F. THE SEPARATION (D-GSEP, criterion class R2 declared empirical; `twowall_cases.json` separation block). The CLOSURE
+(TWOP_SEP = summerfield | schmucker): free-shock separation -- the wall's gauge push weighted by an attachment weight
+that follows the RUNNING MINIMUM of the margin p_w/p_sep - 1 (sigmoid width 0.02; 1/2 exactly at the first point below
+p_sep; a separated wall never reattaches). Its first form, a cumulative product of the sigmoids, ACCUMULATED the
+near-separation factors: it detached the cut Stechmann plug at 0.30 bar 2.3 stations early (x 0.646 against the
+criterion's 0.667) and discounted the attached wall upstream -- found by SC-2, replaced. T-5a inert at 0.05 bar
+(bitwise); T-5b at 0.30 bar both walls detach (plug x 0.667, shroud x 0.565) and the closure J 0.851696 lies between
+the hard cuts at margins -/+3 widths (0.833023, 0.869776; the criterion's own 0.851174; attached 0.718047). The CLASS
+option (TWOP_SEP_CLASS): every wall point's margin joins the KS as mu0 + margin, so an in-class design keeps both
+walls attached: SC-1 inert at 0.05 bar (smallest margin +2.02, KS unchanged inside its union bound), SC-2 at 0.30 bar
+out of class and the first negative-margin point = the closure's detachment on both walls, SC-3 replay = record to
+1.8e-13 (8.1e-12 band over 9086 entries), adjoint vs FD 6.2e-8. The OFF-DESIGN sweep (stage offdesign, `_rde_tournament/offdesign_2026-09-27.json`; one record per design and
+judge, the march being independent of p_a without the jet), the cut pair S0 (C_F; phases with a detached wall):
+
+| p_a (bar) | 0.02 | 0.05 | 0.075 | 0.10 | 0.15 | 0.20 | 0.30 |
+|-----------|------|------|-------|------|------|------|------|
+| time-mean, attached | 1.53349 | 1.44612 | 1.37332 | 1.30051 | 1.15489 | 1.00928 | 0.71805 |
+| time-mean, Summerfield | 1.53349 | 1.44612 | 1.37332 | 1.30051 | 1.15515 | 1.02677 (1) | 0.85170 (1) |
+| time-mean, no nozzle | 1.31785 | 1.29164 | 1.26979 | 1.24795 | 1.20426 | 1.16057 | 1.07320 |
+| 12 phases, attached | 1.46360 | 1.37623 | 1.30342 | 1.23061 | 1.08500 | 0.93938 | 0.64815 |
+| 12 phases, Summerfield | 1.46360 | 1.37623 (0) | 1.30507 (3) | 1.23906 (5) | 1.12697 (7) | 1.04277 (8) | 0.90597 (12) |
+| 12 phases, Schmucker | 1.46360 | 1.37636 (1) | 1.30796 (5) | 1.24832 (6) | 1.15677 (8) | 1.08006 (9) | 0.94975 (12) |
+| 12 phases, no nozzle | 1.26578 | 1.23957 | 1.21772 | 1.19588 | 1.15219 | 1.10850 | 1.02113 |
+
+READING: the time-mean state separates at ONE ambient (0.20 bar), the phases at a spread of them -- the three
+lowest-pressure phases already at 0.075 bar, half the cycle by 0.10-0.15 bar; the closure keeps the separated wall
+from pulling (the 12-phase C_F at 0.30 bar 0.906 against 0.648 attached) but the cut pair falls below the bare exit
+between 0.10 and 0.15 bar under Summerfield and between 0.15 and 0.20 bar under Schmucker (the walls over-expand
+every phase before it detaches); Schmucker detaches earlier than Summerfield at these wall Mach numbers and prices the
+separated nozzle higher. S1 differs from S0 by at most 1.6e-3 (0.25 bar) and detaches 2 phases already at 0.05 bar. With the swirl (12 phases + swirl) three phases
+detach at 0.035-0.05 bar.
+
+G. INSTRUMENT DEFECTS FOUND AND DISCHARGED IN THE WINDOW. (i) The wavefront replay closed over the FIRST phase's gas
+tables in its jitted steps (record/replay mismatch 0.036 on the 12-phase posing): the tables are now an argument of
+every step (WF-1..3 PASS). (ii) The 12-phase walks died of the kernel's memory-mapping cap 65530 ("LLVM ERROR: Unable to allocate section
+memory"): V1 in its first restoration step, V1m inside segment 2. Cause, measured (`RDE/handoff/f3_2026-09-25/
+twop_mapcap_probe.py`): every jitted step of the wavefront replay takes the WHOLE point array, whose row count differs
+per phase and per design -- ONE 12-phase J gradient added +46051 mappings. The row count is now rounded up to
+rows_block 1024 (the extra rows never read; WF-4 bitwise): +5733 for the same gradient. The cache is also cleared above
+map_clear at every record (Metric.march_record) and inside the restoration; V1m resumed from its checkpoint, V1
+relaunched. (iii) The swirl march's certificate 2.15 of the first pass was the table clamp (0.772 on
+the extended tables; SW-3 keeps the strict <= 1). (iv) GENO's NASA-7 entropy inversion (a7 shift). (v) The jet
+gates' harness (E).
+
+H. STATE AT THE FIRST COMMIT OF THIS SECTION (2026-09-27, ~05:00). V1 -- the phases voting with every phase
+shock-free AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1, K 12, the tournament's posing, T start = S0) -- is in
+its restoration: the pair starts out of that class by the two post-wave folds (KS -0.657 against the floor 0.2351);
+step 1 raised the soft KS -1.270 -> -1.159. Its landing, the eval and the off-design sweep of it follow in a
+follow-up commit. V1m (the class at the time-mean state only) stopped after two segments without an accepted step
+(its log says so). V1s (V1 with the swirl) died of the mapping cap in its first restoration step: the swirl phases
+replay SEQUENTIALLY (no wavefront kinds for the swirl cells) and each phase's swirl solver carries its circulation as
+a compiled constant (a solver set per phase); the swirl design needs the swirl cells in the wavefront replay with the
+circulation as a parameter -- the next engineering step for the meridional problem, not done here. The swirl JUDGES
+run (the designs above are all judged with their swirl). Figure 30 `_rde_tournament/figs/30_rde_tournament.png`
+(generator `RDE/handoff/f3_2026-09-25/twop_rde_tournament_fig.py`, untracked like figures 26-29): (a) the 12 sectors'
+P0, M_x, v; (b) the walls against S0; (c) per-phase C_F against S0 under the 12-phase judge; (d) off design, 12
+phases, Summerfield, against S0 and the bare exit.
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
@@ -640,3 +799,21 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   landing); `twowall_cases.json` the margin block. Class records `_twowall_arc_shape/class_2026-09-26
   .json` (8/8), `_twowall_arc_shape_fine/class_2026-09-27.json`; the shape-only intermediates kept as
   `*_shapeonly_*`. Registry: X-TWOP statement + pass 2026-09-27; findings as listed in 3quinquies.
+- RDE-procedure commit (2026-09-27 night, section 3sexies): NEW carriers `a1_lipjet.py` [X-LJET] (+
+  `lipjet_cases.json`) and `a1_rde_tournament.py` [X-RDET] (+ `rde_tournament_cases.json`: units, source,
+  gates, eval, offdesign, swirl_gates, jet_gates), both new-file clean under the numeric lint (the bar
+  conversion a declared SPEC constant, the family check's band derived). `a1_plug_march.py`: pm_turn,
+  plug_march(lip_jet=...), the five-cell swirl seam of the shroud posing, the margin's shape/plume modes
+  unchanged (the default path bitwise). `a1_swirl_march.py`: the two swirl wall cells, swirl_cells_2w.
+  `a1_wavefront_replay.py`: the gas tables an argument of every step; rows_block (WF-4 bitwise).
+  `a1_twowall.py`: tab_gconst, TWOP_GAS / MU (+ CLASS) / SWIRL / JET / SEP (+ CLASS) / U0_S, the
+  separation closure on the running minimum, the mapping-cap guard at every record, stage wavefront's
+  WF-4; `twowall_cases.json` blocks separation, jet, wavefront.rows_block. Registry: claims X-LJET and
+  X-RDET minted, X-TWOP's statement extended; findings wavefront:gas-table-closure,
+  twowall:walk-mapping-cap-multiphase, twowall:sep-closure-cumprod-bias, rdet:jet-gate-harness-env
+  (minted and discharged) and twowall:shape-margin-blind-to-convergence (minted, CONFIRMED, the owner's);
+  engine-core:F3-table-clamp-silent re-read (its second live instance, the tournament's rejector T-7).
+  Records `_rde_tournament/` (gas and family files, the class record, S1's walk, the gate / eval /
+  off-design logs and JSONs, the aborted walks' logs in their subfolders), `_lipjet/run_2026-09-27.log`,
+  `_twowall/wavefront_K140_N31_2026-09-27.json`; the Q2D extract `.npz` (500 kB) and figure 30
+  untracked. The V1 landing and its judgement follow in a follow-up commit.

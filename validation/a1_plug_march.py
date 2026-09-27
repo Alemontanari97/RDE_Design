@@ -246,12 +246,29 @@ def predict_bu(pt1, pt2, ta, ta_np=None):
 
 
 # ----------------------------------------------------------------------
+# the Prandtl-Meyer turning of the TABULATED gas (S41, the lip jet)
+# ----------------------------------------------------------------------
+def pm_turn(q_a, q_b, ta, n_gl):
+    """theta(q_b) - theta(q_a) along a Prandtl-Meyer expansion of the
+    tabulated gas: the simple-wave relation d(theta) = sqrt(M^2 - 1) dq/q,
+    valid for any equation of state (the local Mach from the table), by
+    n_gl-point Gauss-Legendre quadrature on [q_a, q_b] -- traced in q_a and
+    q_b. At a sharp corner the fan is this planar relation in axisymmetric
+    flow too (the axisymmetric source term vanishes at the corner point)."""
+    xg, wg = np.polynomial.legendre.leggauss(int(n_gl))
+    qm, qh = (q_a + q_b) / 2, (q_b - q_a) / 2
+    qs = qm + qh * jnp.asarray(xg)
+    Ms = A1.state_q(qs, ta)[5]
+    return qh * jnp.sum(jnp.asarray(wg) * jnp.sqrt(jnp.maximum(Ms * Ms - 1, 0.0)) / qs)
+
+
+# ----------------------------------------------------------------------
 # the plug march
 # ----------------------------------------------------------------------
 def plug_march(stations, start, qpa, tab, delta, sched=None,
                consume=True, cells=None, q_edge=None,
                edge_fill=0, rot_pred=None, margin=None, x_traced=False,
-               shroud=None, wedge_every=1, fast=False, graph=None):
+               shroud=None, wedge_every=1, fast=False, graph=None, lip_jet=None):
     """stations = (sx, sy, ssl) spike wall stations (K,), downstream of
     the start line. start = (x0, ys, us, vs) start-line states (row 1 =
     wall/bottom ... row N = edge/top), e.g. the exact corner-fan field
@@ -323,7 +340,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     row IS F's C- (the exit characteristic), rows are only consumed at
     the plug, and the march ends when that row reaches the plug or at
     the last station. No free jet, no pa: the region above F's C- is not
-    computed. Returns out["shroud"] (the shroud points, F last) and
+    computed. [CORRECTED 2026-09-27, measured on the lip-jet oracle
+    a1_lipjet.py: the march does NOT stop where F's C- meets the plug --
+    it runs on to the last station without a top cell, its cells there
+    uncertified (cert 1.8e14) and its plug pressure wrong (6.0 p_a where
+    the exact field has 1.45); the certificate flags such a record. A
+    plug longer than F's C- needs lip_jet.] Returns out["shroud"] (the shroud points, F last) and
     out["lip_col"]; out["edge"] is None. Not combined with `cells`
     (rotated frame) or 6-wide nodes. wedge_every (int, default 1) launches
     a wedge column from every m-th start row (the plug's start row always
@@ -352,6 +374,23 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     -- for a1_wavefront_replay, which re-executes the frozen schedule by
     anti-diagonal batches (the independent cells of a level in one
     vmapped solve) instead of cell by cell.
+    lip_jet (S41 2026-09-27, additive; shroud posing only; default None =
+    every path above unchanged): dict(qpa, n_fan, n_gl) -- the FREE JET
+    after the lip F. At F the flow meets the ambient: a centred
+    Prandtl-Meyer fan of n_fan rays is inserted AT F (rows of the lip
+    column, all at F, the ray states on the tabulated gas's simple-wave
+    relation, pm_turn) from the lip speed q_F to the ambient speed qpa;
+    every later column closes on the FREE-EDGE cell (make_resid_freejet,
+    the single-wall march's) instead of stopping on F's C-, so the plug
+    may run on beyond the lip under the jet (the internal-external
+    nozzle). An OVER-expanded lip (q_F > qpa) needs a lip SHOCK, outside
+    the shock-free class: the jet is then FROZEN at the lip's own speed
+    (no fan, edge speed max(qpa, q_F), continuous at q_F = qpa) and the
+    carrier reads the lip margin p(q_F)/p_a - 1 < 0 from out["lip_q"] as
+    the class violation (a finite surrogate, REQ-NONSTALL). The fan's
+    ray count is a recorded decision (0 when the record's lip is not
+    under-expanded). Not combined with `graph` yet (the wavefront replay
+    has no fan / edge kinds): the jet posing replays sequentially.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     if fast and cells is not None:
@@ -367,6 +406,9 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         ss0 = h00 = None
         NV = 4
     N = len(ys0)
+    if lip_jet is not None and (shroud is None or graph is not None or NV == 6 or cells is not None):
+        raise NotImplementedError("lip_jet: the record-frame 4-wide shroud posing, sequential replay")
+    jet = lip_jet is not None
     if graph is not None:
         if S.mode != "rec" or NV == 6 or cells is not None or shroud is None:
             raise NotImplementedError("graph: the record of the 4-wide shroud posing only")
@@ -380,7 +422,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         t_wb = A1.get_solver(("wb", delta),
                              lambda: make_resid_wallbot(delta))
     else:
-        t_int, t_fj, t_wb = cells
+        t_int, t_fj, t_wb = cells[:3]
     qe_of = (lambda yy: qpa) if q_edge is None else q_edge
 
     def with_ta(t):
@@ -389,8 +431,12 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 (lambda z0, p: t[3](z0, p, ta)) if len(t) > 3 else None)
     s_int, s_fj, s_wb = with_ta(t_int), with_ta(t_fj), with_ta(t_wb)
     if shroud is not None:
-        if cells is not None or NV == 6:
-            raise NotImplementedError("shroud: record-frame 4-wide nodes only")
+        # cells in the shroud posing (S41 2026-09-27, additive): FIVE solver
+        # triples (interior, free jet, plug wall, shroud wall, lip) -- the
+        # free-vortex swirl of a1_swirl_march.swirl_cells_2w; three are the
+        # single-wall seam and stay refused here
+        if (cells is not None and len(cells) != 5) or NV == 6:
+            raise NotImplementedError("shroud: record-frame 4-wide nodes only (cells: the five-process set)")
         try:
             sxs, sys_, sss = (np.asarray(v, float) for v in shroud)
         except jax.errors.TracerArrayConversionError:
@@ -404,11 +450,15 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             sxs, sys_, sss = (jnp.asarray(v) for v in shroud)
         if isinstance(sxs, np.ndarray) and np.any(np.diff(sxs) <= 0.0):
             raise ValueError("shroud stations must increase in x")
-        s_wt = with_ta(A1.get_solver(("wt", delta), lambda: make_resid_walltop(delta)))
-        s_lip = with_ta(A1.get_solver(("wtlip", delta), lambda: A1.make_resid_inwall(delta)))
+        if cells is not None:
+            s_wt, s_lip = with_ta(cells[3]), with_ta(cells[4])
+        else:
+            s_wt = with_ta(A1.get_solver(("wt", delta), lambda: make_resid_walltop(delta)))
+            s_lip = with_ta(A1.get_solver(("wtlip", delta), lambda: A1.make_resid_inwall(delta)))
         lip_done = [False]
         shroud_pts = []
         lip_col = [None]
+        lip_q = [None]                 # (q_F, the jet's edge speed) when the lip jet runs
     cert = dict(worst=0.0, n=0, where=None)
     # region R (S34): the Newton certificate read where the thrust is
     # made -- per-cell ratios kept, the worst over R taken at the end
@@ -895,7 +945,26 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     else:
                         margin_acc(cell_margin(G[(jprev - 1, i - 1)], pt2,
                                                z, pt1))
-        if shroud is not None and lip_done[0]:
+        if shroud is not None and lip_done[0] and jet:
+            # ---- after the lip, the LIP JET: the free edge, fed from THIS
+            # column, at the jet's speed (the single-wall march's edge cell)
+            pt1 = G[(jnew, i)]
+            pt3 = G[(M, i - 1)]
+            if S.mode == "rec":
+                th_g = float(jnp.arctan2(pt3[3], pt3[2]))
+                dx_g = max(float(pt1[0]) - float(pt3[0]), float(pt1[0]) * EPS)
+                z0 = jnp.array([float(pt3[0]) + dx_g,
+                                float(pt3[1]) + dx_g * np.tan(th_g), th_g])
+            else:
+                z0 = jnp.zeros(3)
+            qj_ = lip_q[0][1]
+            p = jnp.concatenate([pt1, pt3, jnp.reshape(qj_, (1,))])
+            z = cell(s_fj, p, z0, tag=("jet", ktag))
+            ept = jnp.stack([z[0], z[1], qj_ * jnp.cos(z[2]), qj_ * jnp.sin(z[2])])
+            M = jnew + 1
+            G[(M, i)] = ept
+            edge_pts.append(ept)
+        elif shroud is not None and lip_done[0]:
             # ---- after the lip: no top cell; the top row is F's C-
             M = jnew
             if M < 2:
@@ -970,6 +1039,24 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             shroud_pts.append(spt)
             if graph is not None:
                 graph["shroud_out"].append((M, i))
+            if jet and lip_done[0] and lip_col[0] == int(i):
+                # ---- THE LIP FAN (lip_jet): rays AT F from q_F to the jet's
+                # speed; a recorded ray count (0 unless under-expanded)
+                qF = jnp.hypot(spt[2], spt[3])
+                thF = jnp.arctan2(spt[3], spt[2])
+                qj = jnp.maximum(jnp.asarray(lip_jet["qpa"], dtype=qF.dtype), qF)
+                lip_q[0] = (qF, qj)
+                if S.mode == "rec":
+                    nf = int(lip_jet["n_fan"]) if float(qF) < float(lip_jet["qpa"]) else 0
+                    S.d["fan_n"] = nf
+                else:
+                    nf = int(S.d["fan_n"])
+                for kf in range(1, nf + 1):
+                    qk = qF + (qj - qF) * (kf / nf)
+                    thk = thF + pm_turn(qF, qk, ta, lip_jet["n_gl"])
+                    M += 1
+                    G[(M, i)] = jnp.stack([spt[0], spt[1], qk * jnp.cos(thk), qk * jnp.sin(thk)])
+                edge_pts.append(G[(M, i)])
         else:
             # ---- new top row: the free edge, fed from THIS column
             pt1 = G[(jnew, i)]
@@ -1092,6 +1179,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         edge=(jnp.stack(edge_pts) if edge_pts else None), wall=jnp.stack(wall_pts),
         shroud=(jnp.stack(shroud_pts) if shroud is not None and shroud_pts else None),
         lip_col=(lip_col[0] if shroud is not None else None),
+        lip_q=(lip_q[0] if shroud is not None and jet else None),
         last_col=col, cert_worst=(cert["worst"] if cert_R is None or S.mode != "rec" else cert_R[0]),
         cert_worst_net=cert["worst"], cert_where_R=(None if cert_R is None else cert_R[1]),
         cert_n=cert["n"],

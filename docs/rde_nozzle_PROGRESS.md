@@ -116,8 +116,19 @@
 ## la lunghezza diventa un esito (twowall:cap-ends-sigmoid-saturate). Revisione
 ## del piano: sezione 6 dell'advisory della procedura RDE. Precisazioni
 ## dell'owner: convenzione di pressione di base identica per tutti i profili
-## (criterio di regime Fiore 6.1). PROSSIMO: la procedura RDE multi-fase
-## (validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md). R-F3-4
+## (criterio di regime Fiore 6.1). Procedura RDE IMPOSTATA (27 settembre
+## notte, ordine dell'owner: run sull'outflow RDE + problema meridiano,
+## getto libero, separazione): torneo Stechmann contro fasi che votano
+## sull'outflow Q2D THOR_CAv3 chocked termicamente ([X-RDET]; getto al
+## labbro [X-LJET]; vortice libero per fase; separazione Summerfield /
+## Schmucker come chiusura e come classe). Lo stato medio sovrastima
+## l'ugello (C_F 1,4461 contro 1,3762 sulle 12 fasi; guadagno -11,5 %),
+## il disegno camminato sullo stato medio piega in ogni altra fase e ne
+## stacca due; il voto delle fasi richiede la classe in OGNI fase (V1 in
+## corso). Difetti trovati e chiusi: tabelle troncate sotto 1050 K (prima
+## passata ritirata), replay a fronte d'onda (tabelle catturate; forme per
+## taglia fino al tetto di mappature), chiusura di separazione cumulativa.
+## Aperto: twowall:shape-margin-blind-to-convergence (dell'owner). R-F3-4
 ## CONIATA (X-PTRN). R-F3-3 aperto: nuova reference, tesi di Fiore (cap. 6
 ## troncamento; thesis_fiore_2019), la scelta del modello e' dell'owner.
 ## R-F3-5 DUTY-1(b) a F5. Difetto trovato: l'Hessiano AD puntuale non e' la

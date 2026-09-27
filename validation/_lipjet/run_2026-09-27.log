@@ -1,0 +1,13 @@
+== [F3/A1] the lip jet of the two-wall march against the planar simple-wave twin [X-LJET] ==
+  M1 1.50 -> M2 2.20 at the lip (0.00, 2.00): dnu 0.417772 rad; q1 1823.2657, q2 2404.7095 (tables 2404.7095)
+  [PASS] L-0 pm_turn(q1, q_pa) 0.4177717711 = dnu 0.4177717711 of the closed form (|d| 4.4e-16 <= 1.6e-15, the quadrature's own halving band + the table floor)
+  coarse K 41 N 21 fan 10: 40 wall points, 52 edge points, cert 0.118 at ('jet', 22); fine K 81 N 41 fan 20: 80 / 103, cert 0.067 at ('jet', 71)
+  [PASS] L-1 every cell Newton-certified at both rungs (worst 0.118 / 0.067)
+  [PASS] L-2 the jet edge: asymptotic angle 0.417861 -> dnu 0.417772 (|d| 8.95e-05 <= Richardson band 1.06e-03); speed 2404.7095 vs 2404.7095
+  [PASS] L-3 the plug pressure matches the exact field: 100 % of 40 stations in the Richardson band (>= 90 %; max |dev|/pa 8.56e-04)
+  [PASS] L-4 mass: last column 8868.30618128 vs start 8867.65275608 (|d| 6.53e-01 <= 8.11e+00)
+  [PASS] L-5 momentum closes in the pa gauge, the free edge contributing zero: 1.956e+03 (coarse 7.878e+03) <= 2.369e+04 on F_in 20133921.5877
+  [PASS] L-6 coverage: the jet march covers all 80 plug stations certified; the march WITHOUT the jet past F's first ray (x 1.118) is uncertified (cert 1.8e+14) and misses the fan (max |dp|/pa 4.55 against 8.56e-04 with the jet)
+  [PASS] R-1 REJECTOR: the ambient speed corrupted by 1 % moves the edge to 0.437560 (|d| 1.98e-02 > band 1.06e-03)
+  [PASS] R-2 REJECTOR: the fan suppressed (n_fan 0, the lip under-expanded) leaves the L-3 band: 45 % of stations in band
+  9/9 PASS in 101 s

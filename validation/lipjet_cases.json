@@ -1,0 +1,10 @@
+{
+  "_doc": "Constants of a1_lipjet.py [X-LJET] (S41 2026-09-27): the lip jet of the two-wall march (plug_march lip_jet) against the planar simple-wave twin of the plug march's own oracle -- the corner fan generated AT the lip mid-march instead of living in the start data.",
+  "oracle": {
+    "value": {"M1": 1.5, "M2": 2.2, "lip": [0.0, 2.0], "y_plug0": 1.0, "x_start": -0.5, "x_end": 3.0,
+              "n_shroud": 11, "rungs": [[41, 21, 10], [81, 41, 20]], "n_gl": 16, "stream_h": 0.0002,
+              "tail_frac": 0.7, "p2_frac_min": 0.9, "rej_qpa_factor": 1.01},
+    "cls": "NUMERIC",
+    "note": "the planar simple-wave twin of plug_march's oracle (M1 1.5 meets the lip corner with ambient p(M2 2.2), lip at (0, 2), the plug = the exact streamline through (x_start, 1)), posed UPSTREAM of the lip: a uniform M1 start line at x_start between the plug (y 1) and a horizontal shroud (y 2) ending at the lip F, n_shroud stations; rungs = (K plug stations, N start rows, n_fan lip rays) halving; n_gl = the Gauss-Legendre order of the Prandtl-Meyer quadrature; stream_h = the RK4 step of the exact streamline; tail_frac = the edge tail averaged for its asymptotic angle and speed; p2_frac_min = the fraction of plug stations whose pressure must sit in the Richardson band (the oracle's own 90 percent rule); rej_qpa_factor = the corrupted ambient speed of rejector R-1 (the oracle's own 1 percent)"
+  }
+}

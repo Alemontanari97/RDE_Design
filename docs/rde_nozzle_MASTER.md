@@ -4683,7 +4683,27 @@ the ends at the cap cannot find it [MEASURED, coarse rung]. With walls ending
 at the exit the phase average of such a posing collapses to the mean-pressure
 design (T3's argument, F linear in P0): the RDE phases disagree only through
 the free jet, the base, separation, gamma(T) and the line profiles
-[PRACTICE].]
+[PRACTICE].
+(5) THE TIME-MEAN STATE OVERSTATES AN RDE NOZZLE, AND A DESIGN TUNED TO IT IS
+FRAGILE (the owner's tournament, 2026-09-27, on the Q2D THOR_CAv3 thermally
+choked outflow: 12 equal sectors with their own gamma, T0, P0, M_x against the
+theta-mean state; [X-RDET]): judged phase by phase the cut Stechmann pair
+gives C_F 1.3762 where the time-mean state says 1.4461 (-4.8 percent) and the
+nozzle's gain over the bare exit 0.1367 where it says 0.1545 (-11.5 percent);
+the two post-wave phases (M 1.78) fold 74-87 mm downstream in the pair itself;
+a walk on the time-mean state (+0.04 percent there) is WORSE under the phases:
+it raises the lip to 1.32 p_a with a compression whose focus sits just past
+the exit at that state and moves 0-3 mm inside in every other phase (all 12
+fold), and two low-pressure phases detach at the design ambient -- per-phase
+M/T0/gamma variation breaks the constraint activity, T-T3-MAP breaker (b)
+[MEASURED, coarse rung]. A phase vote with the class read at the time-mean
+state takes no step in its first segment (a phase's march loses certification
+1.4 mm along its gradient); the class must hold in EVERY phase, attached
+[MEASURED]. The
+corrected shape margin sees such a fold only when the characteristics cross
+(twowall:shape-margin-blind-to-convergence) [MEASURED]. Under a length cap the
+lip's jet never reaches the plug (its first characteristic lands past the
+tip): the free jet enters a capped design only through the lip [MEASURED].]
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

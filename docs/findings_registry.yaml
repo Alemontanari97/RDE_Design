@@ -573,7 +573,7 @@ entries:
 - id: engine-core:F3-table-clamp-silent
   status: CONFIRMED
   severity: medium
-  magnitude: "out-of-box states silently CLAMP (jnp.interp pins T to the table edge with exactly zero exterior derivative - Newton then certifies the wrong-but-consistent system, cert_worst blind) while the quintic path EXTRAPOLATES unboundedly (_locate clips the index); CONFIRMED LIVE S21: the [X-VMON] KAT-B first range left the box and measured lam_ad -0.216 vs -1.185 at M ~ 4.7; the box-membership hypothesis is asserted in the C7 audit and enforced by no carrier"
+  magnitude: "out-of-box states silently CLAMP (jnp.interp pins T to the table edge with exactly zero exterior derivative - Newton then certifies the wrong-but-consistent system, cert_worst blind) while the quintic path EXTRAPOLATES unboundedly (_locate clips the index); CONFIRMED LIVE S21: the [X-VMON] KAT-B first range left the box and measured lam_ad -0.216 vs -1.185 at M ~ 4.7; the box-membership hypothesis is asserted in the C7 audit and enforced by no carrier; CONFIRMED LIVE AGAIN S41 2026-09-27: the RDE tournament's constant-gamma tables (build_tab_gconst, absolute [1050, 3900] K) clamped the RDE exhaust expanded below 1000 K -- the wall pressure stuck at 7280 Pa where the isentrope gives 5000 Pa, certificates blind, every number of the first tournament pass withdrawn; the tournament now builds its tables on a declared range (a1_twowall.tab_gconst, T_tab [300, 3900] K) and CHECKS the box: gate T-7 (every phase's coldest state strictly above T_tab[0]; 745.6 K at the coldest, where the builder's edge would clamp 10 of 12 phases) and the per-phase T_min of stage eval"
   source: "validation/AUDIT_agnostic_2026-08-07.md#engine-core:F3-table-clamp-silent"
   code: ["validation/a1_ideal_march_jax.py:397-409"]
   mechanism: hidden-hypothesis
@@ -2700,3 +2700,53 @@ entries:
   trigger: "any change of the walls' ends parametrisation or the free-jet step"
   note: "Minted 2026-09-27 (S41 night). Dedup by measured grep in the mint window (SR-12): grep -ciE 'sliver|row-growth' docs/findings_registry.yaml = 3 at HEAD before this mint, all three the S25 throat-panel 'merged sliver' row (a different object); no row on the two-wall class's plume scope."
 
+- id: wavefront:gas-table-closure
+  status: DISCHARGED
+  severity: high
+  magnitude: "a1_wavefront_replay's jitted steps closed over the gas tables of the FIRST schedule they compiled for: on the 12-phase posing every phase replayed with phase 0's tables (record/replay mismatch 0.036 in C_F); a single-state posing is unaffected (one table)"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
+  code: ["validation/a1_wavefront_replay.py:104-110"]
+  mechanism: "closure capture (the compiled step bound its tables at trace time; a cache keyed on the shapes reused it across tables)"
+  evidence: "DISCHARGED 2026-09-27: the tables are an ARGUMENT of every jitted step (vmap in_axes (0, 0, None)); WF-1..3 PASS after the edit; T-6 (a1_rde_tournament stage gates): the 12-phase record J_mu 1.376234801 = replay 1.376234801"
+  note: "Minted and discharged 2026-09-27 (S41 night). Dedup by measured grep (SR-12): grep -ciE 'wavefront' docs/findings_registry.yaml at HEAD = 1 (twowall:arc-design-coarse-instrument-unfit, the replay's speed); none on its table capture."
+
+- id: twowall:walk-mapping-cap-multiphase
+  status: DISCHARGED
+  severity: high
+  magnitude: "the 12-phase walks died of the kernel's memory-mapping cap 65530 ('LLVM ERROR: Unable to allocate section memory' / 'LLVM compilation error: Cannot allocate memory'): V1 in its first restoration step, V1m inside segment 2. Cause measured (twop_mapcap_probe.py): every jitted step of the wavefront replay takes the WHOLE point array, whose row count differs per phase and per design, so each (phase, design) compiled its own executables -- ONE 12-phase J gradient added +46051 mappings"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
+  code: ["validation/a1_wavefront_replay.py:177-180", "validation/a1_twowall.py:1339-1348"]
+  mechanism: "compiled-shape explosion (a shape that varies per phase and per design inside every compiled step) + a cache clear only at segment boundaries"
+  evidence: "DISCHARGED 2026-09-27: the point array's row count rounded up to rows_block 1024 (twowall_cases.json wavefront.rows_block; the extra rows are never read): WF-4 bitwise (J, its gradient, the margin), WF-1..3 PASS; the same 12-phase J gradient +5733 mappings instead of +46051 (twop_mapcap_probe_1024.log / _0.log); the cache also cleared above map_clear at every record (Metric.march_record) and inside the restoration; V1m resumed from its checkpoint, V1 relaunched"
+  note: "Minted and discharged 2026-09-27 (S41 night). The S41 2026-09-26 per-segment clear and the lane padding of the batches (a1_wavefront_replay) are the precedents: the batches were padded, the point array was not. Dedup by measured grep: grep -ciE 'mapping cap|memory-mapping|mappings' at HEAD = 1 (pipeline:P1-provenance-package, reviewer-requirement mappings: unrelated)."
+
+- id: twowall:sep-closure-cumprod-bias
+  status: DISCHARGED
+  severity: medium
+  magnitude: "the separation closure's first attachment weight was the CUMULATIVE PRODUCT of per-point sigmoids of the margin p_w/p_sep - 1 (width 0.02): the near-separation factors accumulated, detaching the cut Stechmann plug at 0.30 bar 2.3 stations early (x 0.646 against the criterion's 0.667) and discounting the attached wall upstream of the separation"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
+  code: ["validation/a1_twowall.py:702-710"]
+  mechanism: "smoothing design (a product of sigmoids is not a smooth first-crossing: it integrates the margin's approach)"
+  evidence: "DISCHARGED 2026-09-27: the weight follows the RUNNING MINIMUM of the margin (sigmoid(cummin(z)): 1/2 exactly at the first point below p_sep, a separated wall never reattaches; jax.lax.cummin's adjoint = FD); sepgates SC-2 the first negative-margin point = the closure's detachment on both walls (the same station); gates T-5b the closure J 0.851696 between the hard cuts at -/+3 widths (0.833023, 0.869776)"
+  note: "Minted and discharged 2026-09-27 (S41 night), found by SC-2 in the mint window. T-5b's former band ('closer to the hard cut than the attached is', labelled 'within one station') was looser than its label: replaced by the width-derived bracket. Dedup by measured grep: grep -ciE 'cumprod|cumulative product|attachment weight' at HEAD = 0."
+
+- id: rdet:jet-gate-harness-env
+  status: DISCHARGED
+  severity: low
+  magnitude: "a1_rde_tournament._tw rebuilt the carrier after popping a FIXED list of switches that lacked TWOP_JET (and TWOP_SWIRL, TWOP_U0_S, TWOP_MU_CLASS, TWOP_SEP_CLASS): JT-2's 'without the jet' march ran WITH the jet (both certificates 0.466) and its premise 'uncertified past F's C-' looked refuted"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
+  code: ["validation/a1_rde_tournament.py:109-113"]
+  mechanism: "test harness state leak (environment switches persisting across carrier rebuilds)"
+  evidence: "DISCHARGED 2026-09-27: _tw pops every TWOP_* key; JT-2 rebuilt on measured premises (twop_jet_closure_probe.py): JT-2a the plug upstream of the lip's first characteristic is bitwise with and without the jet, JT-2b the residuals second order; jetgates 5/5"
+  note: "Minted and discharged 2026-09-27 (S41 night). Dedup by measured grep: grep -ciE 'harness' at HEAD = 2 (test-suite:rejector-demos-untargeted, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates: unrelated)."
+
+- id: twowall:shape-margin-blind-to-convergence
+  status: CONFIRMED
+  severity: high
+  magnitude: "the corrected (shape) cell margin = sin of the angle between the two families: it sees a fold only when two characteristics of one family CROSS (the cell inverts, +0.5 -> -0.68 with no warning distance); converging characteristics (a compression focus approaching) keep +0.5. A walk at ONE state can therefore park a compression focus just past the exit: S1 (the Stechmann walk, lip recompressed 1.06 -> 1.32 p_a) scores +0.51 at its state while EVERY one of the 12 phases folds 0-3 mm upstream of the exit (1-4 inverted cells, bow-tie crossings, twop_lip_cells_probe.py)"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
+  code: ["validation/a1_plug_march.py:144-180"]
+  mechanism: "class metric (size-free by construction after the size-floor fix; its approach to a same-family crossing is flat)"
+  owner: "the owner: whether the multi-state design needs a convergence-aware margin (a scale-free same-family leg ratio, which must not flag the centred fans at the throat and the lip) or whether the all-phase class (every phase must stay uncrossed: V1) suffices"
+  trigger: "any single-state design judged at other states; the next class revision"
+  note: "Minted 2026-09-27 (S41 night). Dedup: the size-floor rows (twowall:class-floor-size-artefact, DISCHARGED) are the opposite defect (a floor that saw size, not shape); no row on the shape margin's blindness to convergence (grep -ciE 'convergence-aware|same-family|converging characteristics|compression focus' at HEAD = 0)."

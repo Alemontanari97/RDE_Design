@@ -1,0 +1,22 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 pinned and shroud lip y free from 1.216347); wedge every 1; p_a/P0 3.52959e-02; 1.2 s
+   ramp 1.00 toward the generic start: cert 4.823e-01, KS -0.6571 (floor 0.2435), C_F 1.386073, gap to the reference plug 3.356e-02 / shroud 9.302e-03 m
+E0927 02:27:53.770528   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770645   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770679   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770715   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770751   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770816   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770881   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770912   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770942   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.770972   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771006   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771040   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771071   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771125   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771157   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771187   95087 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 02:27:53.771245   95087 contiguous_section_memory_manager.cc:105] allocateMappedMemory failed with error: Cannot allocate memory
+E0927 02:27:53.771255   95087 contiguous_section_memory_manager.cc:148] Failed to satisfy suballocation request for 1071
+LLVM ERROR: Unable to allocate section memory!

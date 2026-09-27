@@ -361,3 +361,26 @@ module (item 5, not started), the mu-instruments bundle (item 15), the
 experimental anchor (item 13, RK-E; THOR's rig has pressure and heat-flux data,
 no thrust in the record).
 
+
+## 7. The procedure set up on a Q2D outflow (2026-09-27 night; S41 log section 3sexies)
+
+The owner skipped the I3 rung and asked for the tournament directly on an RDE outflow ("girare un caso Q2D di un
+RDE ... espandi direttamente il flusso chocked termicamente"; "il confronto sarà tra gli ugelli creati con lo stato
+mediato alla stechmann contro i nostri creati con le fasi che votano"; order: the runs with the outflow + the
+meridional problem, the free jet, the separation). What stands against the stages above:
+- STAGE 0, outcome (a) on the Q2D THOR_CAv3 limit cycle: the last chamber column is supersonic at EVERY azimuth
+  (M_x 1.44-1.84, 1799 cells; thermally choked) -- the exit line is the IVL, no throat needed. THOR itself (the
+  3-D runs into 1 bar) is not this case: the Q2D exit's mean static pressure is 0.34 bar.
+- STAGE 1, partly: every phase carries its own FREE VORTEX (uniform Gamma = y_mid v and the total stagnation
+  state per phase: a1_swirl_march's five cells in the two-wall march, SW-1..4); the stratified Gamma(psi) with
+  the rothalpy (G1-3..G1-6) is NOT built.
+- STAGE 2, G2-4 exercised on Q2D data (the capped shrouded plug; [X-RDET]): the time-mean state overstates the
+  nozzle (C_F 1.4461 against 1.3762 over the 12 phases on the cut Stechmann pair) and a walk on it folds in every
+  other phase and detaches two; the class over ALL phases is the operative one -- with the class at the time-mean
+  state only (V1m) the walk took no step in two segments (a phase's march uncertified 1.4 mm along its gradient),
+  and the two post-wave phases fold in the Stechmann pair itself. The V1 walk (every phase shock-free and
+  attached) was running when this section was written; its judgement is in the S41 log's follow-up.
+- STAGE 3: the free jet after the lip is built and gated ([X-LJET]); under the length cap it never reaches the
+  plug, so the "shorten / lengthen" votes of the tail phases act through the lip only; separation is priced by
+  a free-shock closure (Summerfield / Schmucker) or held out by the class (TWOP_SEP_CLASS).
+- STAGE 4 (the referee) not started.

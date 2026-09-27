@@ -1,0 +1,12 @@
+== [F3/A1] the RDE tournament: the carrier's new options gated [X-RDET] (stage gates) ==
+  [PASS] T-0 the extended table at the Stechmann exit (M 2.7738, T 967.7 K): p 5000.000 Pa vs the closed-form isentrope 5000.000 (rel 9.1e-08 <= the grid's interpolation band 4.7e-07); REJECTOR the builder's [1050, 3900] K table clamps there: 7280.1 Pa (rel 4.6e-01)
+  [PASS] T-1 the default posing after the edits: J 1.579660988049 = the S41 record 1.579660988049 (bitwise)
+  [PASS] T-2 TWOP_GAS with the default constants: J 1.579660988049 (bitwise with T-1)
+  [PASS] T-3 the gauge form = the legacy thrust on the tournament posing (Stechmann cut at 0.8, p_a 0.050 bar): 1.446124389089 vs 1.446124389089 (|d| 2.2e-16 <= 1.2e-13)
+  [PASS] T-4 TWOP_MU with one phase = the posing's state: record 1.446124389089, replay 1.446124389089, single 1.446124389089 (bitwise record = single)
+  [PASS] T-5a Summerfield at the tournament ambient: nothing detaches on the cut Stechmann nozzle ({'wall': None, 'shroud': None}) and J 1.446124389089 = 1.446124389089
+  [PASS] T-5b at p_a 0.30 bar a wall detaches ({'wall': (0.6670283589945303, 0.3481380310865348), 'shroud': (0.5650096809676786, 0.34260980277317243)}): the closure J 0.851696 lies between the hard cuts at margins -/+3 widths (0.833023, 0.869776; the criterion's own 0.851174; attached 0.718047)
+  [PASS] T-6 phases voting (K 12, Summerfield): record J_mu 1.376234801 = replay 1.376234801; d/d(knot 6) adjoint +3.567064e-04 vs central FD +3.551213e-04 (rel 4.5e-03); worst certificate 0.893; per-phase C_F [2.1631 1.6509 1.2246 0.9405 0.7579 0.6957 0.5579 0.4654 0.3961 2.335
+ 2.8278 2.4945]
+  [PASS] T-7 the table box: every phase's coldest state inside the table (T_min 745.6 .. 1109.4 K > T_tab[0] 300.0 K; the builder's range [1050, ...] K would clamp 10 of 12 phases)
+   9/9 PASS in 283 s

@@ -1,0 +1,13 @@
+{
+ "geno_run": "/data10/falco/RDE/handoff/f3_2026-09-25/geno_rde/stech_run",
+ "gamma": 1.2774418396856517,
+ "R": 342.65257492510824,
+ "T0": 2000.6229797187577,
+ "P0": 141659.5330626758,
+ "M_in": 1.5560972421239787,
+ "T_tab": [
+  300.0,
+  3900.0
+ ],
+ "note": "the Stechmann time-mean state of the Q2D THOR_CAv3 exit (theta-arithmetic means)"
+}

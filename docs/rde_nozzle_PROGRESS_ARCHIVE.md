@@ -3316,3 +3316,8 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## invariati, entrambi gli estremi al tetto, pavimento di classe attivo
 ## (di TAGLIA su celle minuscole all'ingresso, non un urto: finding
 ## twowall:class-floor-size-artefact, trovato la notte stessa);
+
+## 2026-09-27 (S41 notte, procedura RDE impostata): due righe del blocco
+## residui S41 sostituite in loco. Testo uscente, verbatim:
+## (criterio di regime Fiore 6.1). PROSSIMO: la procedura RDE multi-fase
+## (validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md). R-F3-4

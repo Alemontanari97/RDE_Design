@@ -230,6 +230,66 @@ def swirl_cells(delta, G2, G2s):
     return (t_int, t_fj, t_wb)
 
 
+def make_resid_walltop_sw(delta, G2, G2s):
+    """The top-wall (SHROUD) cell, swirl coefficients (S41 2026-09-27, the
+    two-wall march with free-vortex swirl; mirror of the certified
+    a1_plug_march.make_resid_walltop): the column's C+ from pt1 meets the
+    Hermite segment of the shroud; unknowns (x4, u4), v4 = H'(x4) u4."""
+    def resid(z, p, ta):
+        x4, u4 = z
+        x1, y1, u1, v1, xA, yA, sA, xB, yB, sB = p
+        h = xB - xA
+        t = (x4 - xA) / h
+        y4 = ((2.0 * t ** 3 - 3.0 * t ** 2 + 1.0) * yA
+              + (t ** 3 - 2.0 * t ** 2 + t) * h * sA
+              + (-2.0 * t ** 3 + 3.0 * t ** 2) * yB
+              + (t ** 3 - t ** 2) * h * sB)
+        s4 = ((6.0 * t ** 2 - 6.0 * t) * (yA - yB) / h
+              + (3.0 * t ** 2 - 4.0 * t + 1.0) * sA
+              + (3.0 * t ** 2 - 2.0 * t) * sB)
+        v4 = s4 * u4
+        sc = 1.0 / (u1 * u1 + v1 * v1)
+        up, vp, yp = 0.5 * (u1 + u4), 0.5 * (v1 + v4), 0.5 * (y1 + y4)
+        _, lp, qp, rp0, sp = _coef_sw(up, vp, yp, ta, delta, G2, G2s)
+        rp = rp0 - qp * lp
+        return jnp.array([
+            (y4 - y1) - lp * (x4 - x1),
+            sc * (qp * u4 + rp * v4 - (sp * (x4 - x1) + qp * u1 + rp * v1)),
+        ])
+    return resid
+
+
+def make_resid_inwall_sw(delta, G2, G2s):
+    """The inverse wall cell placing the shroud LIP, swirl coefficients
+    (mirror of the certified a1_ideal_march_jax.make_resid_inwall)."""
+    def resid(z, p, ta):
+        x2, u4 = z
+        x1, y1, u1, v1, x3, y3, u3, v3, x4, y4, slope = p
+        D = (x2 - x1) / (x3 - x1)
+        y2 = y1 + D * (y3 - y1)
+        u2 = u1 + D * (u3 - u1)
+        v2 = v1 + D * (v3 - v1)
+        v4 = slope * u4
+        sc = 1.0 / (u1 * u1 + v1 * v1)
+        up, vp, yp = 0.5 * (u2 + u4), 0.5 * (v2 + v4), 0.5 * (y2 + y4)
+        _, lp, qp, rp0, sp = _coef_sw(up, vp, yp, ta, delta, G2, G2s)
+        rp = rp0 - qp * lp
+        return jnp.array([
+            (y4 - y2) - lp * (x4 - x2),
+            sc * ((qp + slope * rp) * u4 - (sp * (x4 - x2) + qp * u2 + rp * v2)),
+        ])
+    return resid
+
+
+def swirl_cells_2w(delta, G2):
+    """The five cell processes of the two-wall march under free-vortex
+    swirl (interior, free jet, plug wall, shroud wall, lip)."""
+    t_int, t_fj, t_wb = swirl_cells(delta, G2, G2)
+    t_wt = A1.get_solver(("wt_sw", delta, float(G2)), lambda: make_resid_walltop_sw(delta, G2, G2))
+    t_lip = A1.get_solver(("wtlip_sw", delta, float(G2)), lambda: make_resid_inwall_sw(delta, G2, G2))
+    return (t_int, t_fj, t_wb, t_wt, t_lip)
+
+
 # ----------------------------------------------------------------------
 # swirl-aware fluxes (mirror of col_fluxes/wall_push_poly with the
 # y-dependent state)

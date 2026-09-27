@@ -1,0 +1,7 @@
+== [F3/A1] the RDE tournament: free-vortex swirl in the two-wall march [X-RDET] (stage swirlgates) ==
+  [PASS] SW-1 the two-wall radial-equilibrium duct preserved (fine rung): max |u/u0 - 1| 3.3e-15, max |v|/u0 4.1e-15, plug p 8.9e-15, shroud p 1.7e-14 off the exact radial equilibrium (p_shroud / p_plug = 1.0535); certified 0.013 / 0.013
+  [PASS] SW-2 Gamma = 0: the five swirl processes reproduce the certified two-wall march (max |d| over the net 0.0e+00)
+  [PASS] SW-3 swirl alive on the tournament posing (S0, K 12): J_mu 1.373414 with swirl vs 1.376235 without (-2.82e-03); per phase dC_F [-1.1043e-05 -7.6211e-04 -2.0910e-03 -3.1641e-03 -3.6699e-03 -3.9345e-03
+ -2.5558e-03 -6.9879e-04  6.4412e-04 -1.1572e-02 -5.5397e-03 -4.8944e-04] for v [ -13.  127.  237.  326.  385.  418.  488.  504.  466. -469. -313.  -85.] m/s; certificates 0.772 / 0.893
+  [PASS] SW-4 the swirl replay = the record (1.373414361673 vs 1.373414361673); adjoint +1.094825e-02 vs central FD +1.094598e-02 along knot 6 (rel 2.1e-04)
+   4/4 PASS in 1663 s

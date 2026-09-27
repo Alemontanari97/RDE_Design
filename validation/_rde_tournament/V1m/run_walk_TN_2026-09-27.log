@@ -1,0 +1,68 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 pinned and shroud lip y free from 1.216347); wedge every 1; p_a/P0 3.52959e-02; 0.9 s
+   ramp 1.00 toward the generic start: cert 8.928e-01, KS +0.5026 (floor 0.2351), C_F 1.376235, gap to the reference plug 3.356e-02 / shroud 9.302e-03 m
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 504 s): asymmetry 4.68e+00 -> floor 1.87e+01; eigenvalues of -H [-1.318e+01  1.269e-07  2.307e-07  5.305e-02  1.088e-01  2.916e-01
+  7.600e-01  2.955e+00  3.093e+00  6.413e+00  7.083e+00  8.763e+00
+  1.265e+01  1.563e+01  1.942e+01  2.145e+01  2.714e+01  2.928e+01
+  3.521e+01  4.194e+01  4.287e+01  4.912e+01  5.641e+01  5.726e+01
+  7.053e+01  7.306e+01  8.946e+01  1.061e+02  1.372e+02] (14 floored)
+    start ladder h 4.460e-05 m: C_F +1.844e-06, KS +0.5025, cert 9.217e-01 -> in class
+    start ladder h 8.920e-05 m: C_F +3.696e-06, KS +0.5025, cert 4.683e-01 -> in class
+    start ladder h 1.784e-04 m: C_F +7.412e-06, KS +0.5025, cert 3.649e-01 -> in class
+    start ladder h 3.568e-04 m: C_F +1.486e-05, KS +0.5016, cert 7.850e-01 -> in class
+    start ladder h 7.136e-04 m: C_F +2.946e-05, KS +0.5018, cert 8.740e-01 -> in class
+    start ladder h 1.427e-03 m: C_F +5.534e-05, KS +0.5018, cert 2.361e+01 -> OUT
+   start T (ramp 1.00): C_F 1.376234840, cert 8.928e-01, KS +0.5026; gap to the reference plug 3.356e-02 / shroud 9.302e-03 m; class scale h* 1.009e-03 m -> tr0 2.523e-04 m, floor 6.307e-05 m; 16 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 2.116e-01 m -> tr0 1.192e-03 (z), floor 2.981e-04 (z)
+   memory mappings at the walk's start: 48952 (cap 65530)
+    [seg  0] J = 1.37623484e+00  |grad| = 8.736e-03  cert = 0.893
+    [seg  0] margin at base: KS - mu0 = +0.2674 (min cell +0.5033, 8888 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.065]]
+   checkpoint at segment 1: C_F 1.376234840; mappings 52818 -> 52818 (cleared above 55000)
+E0927 03:39:47.209527   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209671   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209721   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209752   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209799   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209828   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209858   30543 execution_engine.cc:54] LLVM compilation error: Cannot allocate memory
+E0927 03:39:47.209908   30543 contiguous_section_memory_manager.cc:105] allocateMappedMemory failed with error: Cannot allocate memory
+E0927 03:39:47.209918   30543 contiguous_section_memory_manager.cc:148] Failed to satisfy suballocation request for 409
+LLVM ERROR: Unable to allocate section memory!
+=== RESUMED 2026-09-27 03:44:27 after 'LLVM ERROR: Unable to allocate section memory' in segment 2 (the mapping-cap guard now runs at every record) ===
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 pinned and shroud lip y free from 1.216347); wedge every 1; p_a/P0 3.52959e-02; 1.2 s
+   ramp 1.00 toward the generic start: cert 8.928e-01, KS +0.5026 (floor 0.2351), C_F 1.376235, gap to the reference plug 3.356e-02 / shroud 9.302e-03 m
+   NEWTON METRIC read from the checkpoint (the secant Hessian at this start, computed once)
+    start ladder h 4.460e-05 m: C_F +1.841e-06, KS +0.5025, cert 6.964e-01 -> in class
+    start ladder h 8.920e-05 m: C_F +3.689e-06, KS +0.5025, cert 4.686e-01 -> in class
+    start ladder h 1.784e-04 m: C_F +7.397e-06, KS +0.5025, cert 3.561e-01 -> in class
+    start ladder h 3.568e-04 m: C_F +1.482e-05, KS +0.5016, cert 4.920e-01 -> in class
+    start ladder h 7.136e-04 m: C_F +2.939e-05, KS +0.5018, cert 1.615e-01 -> in class
+    start ladder h 1.427e-03 m: C_F +5.517e-05, KS +0.5018, cert 1.260e+01 -> OUT
+   start T (ramp 1.00): C_F 1.376234801, cert 8.928e-01, KS +0.5026; gap to the reference plug 3.356e-02 / shroud 9.302e-03 m; class scale h* 1.009e-03 m -> tr0 2.523e-04 m, floor 6.307e-05 m; 16 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 2.116e-01 m -> tr0 1.192e-03 (z), floor 2.981e-04 (z)
+   RESUMED from the checkpoint: 1 segments done, C_F 1.376234840, radius 1.788e-03 (z)
+   memory mappings at the walk's start: 49342 (cap 65530)
+    [seg  0] J = 1.37623480e+00  |grad| = 8.721e-03  cert = 0.893
+    [seg  0] margin at base: KS - mu0 = +0.2674 (min cell +0.5033, 8888 cells)
+=== RESUMED 2026-09-27 04:08:16 on the padded wavefront replay (rows_block 1024: one 12-phase J gradient +5733 mappings instead of +46051) ===
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 pinned and shroud lip y free from 1.216347); wedge every 1; p_a/P0 3.52959e-02; 1.0 s
+   ramp 1.00 toward the generic start: cert 8.928e-01, KS +0.5026 (floor 0.2351), C_F 1.376235, gap to the reference plug 3.356e-02 / shroud 9.302e-03 m
+   NEWTON METRIC read from the checkpoint (the secant Hessian at this start, computed once)
+    start ladder h 4.460e-05 m: C_F +1.841e-06, KS +0.5025, cert 6.964e-01 -> in class
+    start ladder h 8.920e-05 m: C_F +3.689e-06, KS +0.5025, cert 4.686e-01 -> in class
+    start ladder h 1.784e-04 m: C_F +7.397e-06, KS +0.5025, cert 3.561e-01 -> in class
+    start ladder h 3.568e-04 m: C_F +1.482e-05, KS +0.5016, cert 4.920e-01 -> in class
+    start ladder h 7.136e-04 m: C_F +2.939e-05, KS +0.5018, cert 1.615e-01 -> in class
+    start ladder h 1.427e-03 m: C_F +5.517e-05, KS +0.5018, cert 1.260e+01 -> OUT
+   start T (ramp 1.00): C_F 1.376234801, cert 8.928e-01, KS +0.5026; gap to the reference plug 3.356e-02 / shroud 9.302e-03 m; class scale h* 1.009e-03 m -> tr0 2.523e-04 m, floor 6.307e-05 m; 16 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 2.116e-01 m -> tr0 1.192e-03 (z), floor 2.981e-04 (z)
+   RESUMED from the checkpoint: 1 segments done, C_F 1.376234840, radius 1.788e-03 (z)
+   memory mappings at the walk's start: 8946 (cap 65530)
+    [seg  0] J = 1.37623480e+00  |grad| = 8.721e-03  cert = 0.893
+    [seg  0] margin at base: KS - mu0 = +0.2674 (min cell +0.5033, 8888 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.059]]
+   checkpoint at segment 2: C_F 1.376234801; mappings 9154 -> 9154 (cleared above 55000)
+=== STOPPED 2026-09-27 04:36:16 by the operator: two segments without an accepted step (checkpoints at segments 1 and 2 = the start 1.376234801); the class read at the time-mean state only leaves the walk no admissible step -- V1 (every phase shock-free and attached) is the phase-voting design ===

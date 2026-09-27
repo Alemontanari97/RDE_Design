@@ -1,0 +1,13 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   designs: ['S0', 'S1']; closure summerfield; p_a 0.050 bar
+   mean             S0  C_F 1.446124 (gain over no nozzle +0.15449); F 896.50 N, Isp 201.54 s; worst cert 0.047; class KS 0.5026; phases with a detached wall 0 of 1
+   mean             S1  C_F 1.446724 (gain over no nozzle +0.15509); F 896.87 N, Isp 201.62 s; worst cert 0.079; class KS 0.5115; phases with a detached wall 0 of 1
+   family_K12.json  S0  C_F 1.376235 (gain over no nozzle +0.13667); F 853.17 N, Isp 191.80 s; worst cert 0.893; class KS -0.6570; phases with a detached wall 0 of 12
+   family_K12.json  S1  C_F 1.376099 (gain over no nozzle +0.13653); F 853.09 N, Isp 191.78 s; worst cert 62.379; class KS -0.6924; phases with a detached wall 2 of 12
+   family_K24.json  S0  C_F 1.374853 (gain over no nozzle +0.13642); F 852.31 N, Isp 191.60 s; worst cert 0.504; class KS -0.6616; phases with a detached wall 1 of 24
+   family_K24.json  S1  C_F 1.374727 (gain over no nozzle +0.13629); F 852.24 N, Isp 191.59 s; worst cert 0.746; class KS -0.6928; phases with a detached wall 3 of 24
+   family_K12.json+swirl S0  C_F 1.373383 (gain over no nozzle +0.13417); F 851.40 N, Isp 191.40 s; worst cert 0.772; class KS -0.6627; phases with a detached wall 3 of 12
+   family_K12.json+swirl S1  C_F 1.373061 (gain over no nozzle +0.13385); F 851.20 N, Isp 191.35 s; worst cert 1.781; class KS -0.6770; phases with a detached wall 3 of 12
+   family_K24.json+swirl S0  C_F 1.371726 (gain over no nozzle +0.13364); F 850.38 N, Isp 191.17 s; worst cert 1.572; class KS -0.6649; phases with a detached wall 7 of 24
+   family_K24.json+swirl S1  C_F 1.371512 (gain over no nozzle +0.13342); F 850.24 N, Isp 191.14 s; worst cert 4.071; class KS -0.6945; phases with a detached wall 7 of 24
+   record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27.json

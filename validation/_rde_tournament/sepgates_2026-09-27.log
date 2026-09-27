@@ -1,0 +1,5 @@
+== [F3/A1] the RDE tournament: separation as a class constraint [X-RDET] (stage sepgates) ==
+  [PASS] SC-1 inert at the tournament ambient (0.05 bar): the smallest wall margin p_w/p_sep - 1 = +2.0246; the class KS 0.502553 -> 0.502553 (drop 0.00e+00 <= the union bound 0.00e+00 over 198 entries); J 1.446124389089 = 1.446124389089
+  [PASS] SC-2 at 0.30 bar the class sees the separation: smallest wall margin -0.4959, KS -0.2608 < the floor 0.2351; the first negative-margin point vs the closure's detachment (x): wall 0.6670 / 0.6670 (one station), shroud 0.5650 / 0.5650 (one station)
+  [PASS] SC-3 the replayed class margin with the separation entries = the record's (0.502553313341 vs 0.502553313341, |d| 1.8e-13 <= 8.1e-12 over 9086 entries); adjoint +1.416195e-01 vs central FD +1.416195e-01 along knot 6 (rel 6.2e-08)
+   3/3 PASS in 47 s

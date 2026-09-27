@@ -1,0 +1,21 @@
+== [F3/A1] the RDE tournament: the free jet in the two-wall carrier [X-RDET] (stage jetgates) ==
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_rde_tournament.py", line 424, in <module>
+    sys.exit(dict(family=family, gates=gates, eval=evaluate, swirlgates=swirlgates, jetgates=jetgates)[st]())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_rde_tournament.py", line 365, in jetgates
+    T, twj = _tw(dict(env, TWOP_JET="1"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_rde_tournament.py", line 114, in _tw
+    return T, T.TwoWall(verbose=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_twowall.py", line 397, in __init__
+    c_["lip_jet"] = dict(qpa=_qpa(pa_abs_, c_["ta"], c_["tab"]["_as"]), n_fan=int(round(J_["fan_rays_over_N"] * self.N)),
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_freejet_unit.py", line 103, in q_at_pa
+    return brentq(f, 1.02 * as_, 3.2 * as_, xtol=1e-10)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_zeros_py.py", line 846, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: f(a) and f(b) must have different signs

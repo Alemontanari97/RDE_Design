@@ -116,6 +116,33 @@ def check(label, ok):
     return bool(ok)
 
 
+def tab_gconst(g, Rg, ts, ps, T_tab=None):
+    """The constant-gamma table of A1.build_tab_gconst, on the SAME formula,
+    over a temperature range of the caller's (S41 2026-09-27): the builder's
+    range is absolute, [1050, 3900] K, and state_q clamps below it -- an RDE
+    exhaust at T0 ~2000 K expanded to M 2.8 goes to ~970 K, where the clamped
+    table froze the pressure at 7.3 kPa (measured). T_tab = [T_lo, T_hi]; None
+    = the builder itself (bitwise)."""
+    if T_tab is None:
+        return A1.build_tab_gconst(g=g, Rg=Rg, ts=ts, ps=ps)
+    cp = g * Rg / (g - 1.0)
+    T = np.linspace(float(T_tab[0]), float(T_tab[1]), A1.N_TAB)
+    return dict(name="gconst", T=jnp.array(T), h=jnp.array(cp * T), s0m=jnp.array(cp * np.log(T)),
+                cp=jnp.array(cp * np.ones_like(T)), Rg=Rg, h0=cp * ts,
+                s0=float(cp * np.log(ts) - Rg * np.log(ps / A1.PREF)), ts=ts, ps=ps, gammamedio=g, _g=g, _cp=cp)
+
+
+class MuSched:
+    """The frozen schedules of the phases (TWOP_MU): an opaque container the
+    record driver passes back to J_replay / margin_replay; S_ref = the
+    reference state's schedule when the class is read there (TWOP_MU_CLASS=ref)."""
+
+    def __init__(self, S, S_ref=None):
+        self.S = S
+        self.S_ref = S_ref
+        self.d = S[0].d                     # a schedule's own dict, for readers that peek
+
+
 class TwoWall:
     """Migdal's inlet and ends, both walls designed."""
 
@@ -123,20 +150,33 @@ class TwoWall:
         t0 = time.time()
         self.K = int(os.environ.get("TWOP_K", POSE["K"])) if K is None else int(K)
         self.N = int(os.environ.get("TWOP_N", POSE["N"])) if N is None else int(N)
-        Rg = ST.R_UNIV / ST.MOLAR_MASS
-        self.tab = A1.prep_tab(A1.build_tab_gconst(g=ST.GAMMA, Rg=Rg, ts=ST.T0, ps=ST.P0))
+        # TWOP_GAS (S41 2026-09-27, the RDE tournament; default: the Migdal
+        # posing's constants, bitwise): a JSON with the inflow state the
+        # nozzle is designed for (gamma, R, T0, P0, M_in) and the GENO run of
+        # its perfect nozzle (geno_run)
+        self.gas_file = os.environ.get("TWOP_GAS", "")
+        if self.gas_file:
+            GAS_ = json.load(open(self.gas_file))
+            self.gam, Rg, self.T0g, self.P0, self.M_in = (float(GAS_[k]) for k in ("gamma", "R", "T0", "P0", "M_in"))
+            self.geno_run = GAS_["geno_run"]
+            self.T_tab = GAS_.get("T_tab")
+        else:
+            self.gam, Rg, self.T0g, self.P0, self.M_in = ST.GAMMA, ST.R_UNIV / ST.MOLAR_MASS, ST.T0, ST.P0, ST.M_INLET
+            self.geno_run = POSE["geno_run"]
+            self.T_tab = None
+        self.tab = A1.prep_tab(tab_gconst(self.gam, Rg, self.T0g, self.P0, self.T_tab))
         self.ta = A1.tab_arrays(self.tab)
-        plug, shroud = ST.geno_walls(POSE["geno_run"])
+        plug, shroud = ST.geno_walls(self.geno_run)
         self.plug, self.shroud = ST.dedup(plug), ST.dedup(shroud)
         x0 = float(self.plug[0, 0])
         self.y_l, self.y_u = float(self.plug[0, 1]), float(self.shroud[0, 1])
-        self.q_i = ST.q_of_mach(ST.M_INLET, self.ta, self.tab["_as"])
+        self.q_i = ST.q_of_mach(self.M_in, self.ta, self.tab["_as"])
         yline = np.linspace(self.y_l, self.y_u, self.N)
         self.start = (x0, yline, np.full(self.N, self.q_i), np.zeros(self.N))
         col0 = np.stack([np.full(self.N, x0), yline, np.full(self.N, self.q_i), np.zeros(self.N)], 1)
         self.F_in = float(col_fluxes(col0, self.ta, 0.0, 1.0)[1])
         eps_i = (self.shroud[-1, 1] ** 2 - self.plug[-1, 1] ** 2) / (self.y_u ** 2 - self.y_l ** 2)
-        self.Me, self.CF_1d, _, AAi = ST.one_d(eps_i, ST.M_INLET, ST.GAMMA)
+        self.Me, self.CF_1d, _, AAi = ST.one_d(eps_i, self.M_in, self.gam)
         self.A_star = np.pi * (self.y_u ** 2 - self.y_l ** 2) / AAi
         self.eps_i = eps_i
         # frozen wall stations (the twin's), the start points closing them
@@ -244,7 +284,8 @@ class TwoWall:
             # the start: Migdal's arcs and heights at the same FRACTIONS of a
             # wall compressed to u_start of the way from the arc's end to L
             u0 = float(os.environ.get("TWOP_U0", POSE["cap_u_start"]))   # TWOP_U0 = 10: the ends AT the cap
-            self.W_ref = np.r_[self.W_ref, u0, u0]
+            u0s = float(os.environ.get("TWOP_U0_S", u0))                  # the shroud's own (S41: the jet posing)
+            self.W_ref = np.r_[self.W_ref, u0, u0s]
         # the design vector's tail by POSITIVE indices (S41 step 2 bis: the
         # free exit heights are appended after the ends)
         self.ia = self.np_ + self.ns_
@@ -266,7 +307,7 @@ class TwoWall:
         head_, _, fac_ = pa_.partition("x")      # "adapted" or "adaptedx<factor>" (e.g. adaptedx2)
         if head_ == "adapted":
             q_e = ST.q_of_mach(self.Me, self.ta, self.tab["_as"])
-            self.pa = float(A1.state_q(jnp.asarray(q_e), self.ta)[1]) / ST.P0
+            self.pa = float(A1.state_q(jnp.asarray(q_e), self.ta)[1]) / self.P0
             if fac_:
                 self.pa *= float(fac_)
         else:
@@ -288,13 +329,115 @@ class TwoWall:
         # the wedge: the twin's thinning rule (m = 1 on this posing)
         dy_row = (self.y_u - self.y_l) / (self.N - 1)
         dx_st = float(self.sx[0] - x0)
-        dy_launch = ST.GN["wedge_rows_per_station"] * dx_st * np.tan(np.arcsin(1.0 / ST.M_INLET))
+        dy_launch = ST.GN["wedge_rows_per_station"] * dx_st * np.tan(np.arcsin(1.0 / self.M_in))
         self.m_w = max(1, int(round(dy_launch / dy_row)))
+        # TWOP_SEP (S41 2026-09-27): the SEPARATION closure of the thrust at
+        # ambient -- "summerfield" (p_sep = k p_a) or "schmucker" (p_sep = p_a
+        # (a M_w - 1)^-b, M_w the wall Mach), constants of record in
+        # twowall_cases.json; along each wall an ATTACHMENT weight, the
+        # cumulative product of sigmoids of (p_w / p_sep - 1) / width from the
+        # inlet (free-shock separation: once detached, the wall downstream sits
+        # at the ambient and contributes nothing in the p_a gauge). A declared
+        # closure (N1 territory, D-GSEP): the certified class keeps phases
+        # attached by constraint; the closure prices the phases that cannot.
+        self.sep = os.environ.get("TWOP_SEP", "")
+        if self.sep and self.sep not in ("summerfield", "schmucker"):
+            raise ValueError("TWOP_SEP is summerfield or schmucker, not %r" % self.sep)
+        # TWOP_SEP_CLASS=1 (S41 2026-09-27, D-GSEP): the separation margin
+        # p_w / p_sep - 1 of every wall point joins the class (entries mu0 +
+        # margin in the KS soft-min): a certified design keeps both walls
+        # attached; the closure above prices what the class does not hold
+        self.sep_class = bool(int(os.environ.get("TWOP_SEP_CLASS", "0")))
+        if self.sep_class and not self.sep:
+            raise ValueError("TWOP_SEP_CLASS needs a criterion (TWOP_SEP)")
+        # TWOP_MU (S41 2026-09-27, the phases VOTE): a JSON phase family
+        # {"phases": [{"w", "gamma", "R", "T0", "P0", "M"}, ...]} -- every
+        # phase an inflow state of its own on the same walls (a uniform start
+        # line at its Mach, a constant-gamma table of its own); the objective
+        # is sum_k w_k C_F,k in units of the posing's P0 A* (the reference
+        # state of TWOP_GAS), the fold class must hold in EVERY phase (a KS
+        # soft-min over the phases' margins), the certificate is the worst
+        self.phases = None
+        self.mu_file = os.environ.get("TWOP_MU", "")
+        # TWOP_MU_CLASS (S41 2026-09-27): where the fold class is read when the
+        # phases vote -- "all" (every phase shock-free: the KS soft-min over
+        # the phases, the default) or "ref" (the posing's own reference state
+        # only, the class of the single-state design: the phases then vote on
+        # the thrust alone, their folds reported, not constrained)
+        self.mu_class = os.environ.get("TWOP_MU_CLASS", "all")
+        if self.mu_class not in ("all", "ref"):
+            raise ValueError("TWOP_MU_CLASS is all or ref, not %r" % self.mu_class)
+        if self.mu_file:
+            FAM_ = json.load(open(self.mu_file))
+            wsum_ = sum(float(ph["w"]) for ph in FAM_["phases"])
+            yl_ = np.linspace(self.y_l, self.y_u, self.N)
+            self.phases = []
+            # TWOP_SWIRL=1 (S41 2026-09-27): every phase carries its FREE
+            # VORTEX, Gamma = y_mid v (the sector's mean azimuthal speed at
+            # the annulus's mean radius, declared); the table is the TOTAL
+            # stagnation state (the swirl energy included), the start keeps
+            # the meridional speed, so the static state at y_mid is the
+            # sector's; the cells are a1_swirl_march's five-process set
+            self.swirl = bool(int(os.environ.get("TWOP_SWIRL", "0")))
+            y_mid = (self.y_l + self.y_u) / 2
+            for ph in FAM_["phases"]:
+                g_, R_, T0_, P0_ = float(ph["gamma"]), float(ph["R"]), float(ph["T0"]), float(ph["P0"])
+                tbm_ = A1.prep_tab(tab_gconst(g_, R_, T0_, P0_, FAM_.get("T_tab", self.T_tab)))
+                tam_ = A1.tab_arrays(tbm_)
+                q_ = ST.q_of_mach(float(ph["M"]), tam_, tbm_["_as"])
+                ctx_ = dict(w=float(ph["w"]) / wsum_, P0=P0_, M=float(ph["M"]), q_i=q_, G2=0.0)
+                if self.swirl:
+                    import a1_swirl_march as SW
+                    cp_ = g_ * R_ / (g_ - 1)
+                    T0t = T0_ + float(ph["v"]) ** 2 / (2 * cp_)
+                    P0t = P0_ * (T0t / T0_) ** (g_ / (g_ - 1))
+                    tb_ = A1.prep_tab(tab_gconst(g_, R_, T0t, P0t, FAM_.get("T_tab", self.T_tab)))
+                    ta_ = A1.tab_arrays(tb_)
+                    G2_ = (y_mid * float(ph["v"])) ** 2
+                    col_ = np.stack([np.full(self.N, x0), yl_, np.full(self.N, q_), np.zeros(self.N)], 1)
+                    ctx_.update(tab=tb_, ta=ta_, G2=G2_, cells=SW.swirl_cells_2w(1.0, G2_),
+                                F_in=float(SW.col_fluxes_sw(col_, ta_, 0.0, G2_)[1]))
+                else:
+                    col_ = np.stack([np.full(self.N, x0), yl_, np.full(self.N, q_), np.zeros(self.N)], 1)
+                    ctx_.update(tab=tbm_, ta=tam_, F_in=float(col_fluxes(col_, tam_, 0.0, 1.0)[1]))
+                ctx_["start"] = (x0, yl_, np.full(self.N, q_), np.zeros(self.N))
+                self.phases.append(ctx_)
+        # TWOP_JET=1 (S41 2026-09-27, the free jet after the lip; needs p_a >
+        # 0): plug_march's lip_jet with each inflow state's own speed at p_a
+        # -- the fan at F and the free edge; the plug may run on beyond the
+        # lip. The lip margin p(q_F)/p_a - 1 joins the class (an
+        # over-expanded lip needs a lip shock: outside the shock-free class,
+        # a finite surrogate). No swirl with the jet yet; the replays are
+        # sequential (the wavefront replay has no fan / edge kinds).
+        self.jet = bool(int(os.environ.get("TWOP_JET", "0")))
+        if self.jet:
+            if not getattr(self, "pa", 0.0) > 0.0:
+                raise ValueError("TWOP_JET needs an ambient (TWOP_PA > 0)")
+            if getattr(self, "swirl", False):
+                raise NotImplementedError("TWOP_JET with TWOP_SWIRL")
+            def _qpa(pa_x, ta_x, as_x):
+                # the speed at p_a on the table's isentrope (a1_freejet_unit's
+                # bracket [1.02, 3.2] a* runs past the limiting speed for
+                # gamma < 1.33 -- q_max / a* = sqrt((g+1)/(g-1)) = 2.87 at
+                # 1.277: the upper end shrinks until the pressure is finite)
+                from scipy.optimize import brentq
+                Bq = CASES["jet"]["qpa_bracket"]
+                fq = lambda q: float(A1.state_q(jnp.float64(q), ta_x)[1]) - pa_x      # noqa: E731
+                lo_, hi_ = Bq[0] * as_x, Bq[1] * as_x
+                while not (np.isfinite(fq(hi_)) and fq(hi_) < 0.0):
+                    hi_ = lo_ + CASES["jet"]["qpa_shrink"] * (hi_ - lo_)
+                return brentq(fq, lo_, hi_, xtol=CASES["jet"]["qpa_xtol"] * as_x)
+            pa_abs_ = self.pa * self.P0
+            J_ = CASES["jet"]
+            for c_ in ([self._ctx_store()] + (self.phases or [])):
+                c_["lip_jet"] = dict(qpa=_qpa(pa_abs_, c_["ta"], c_["tab"]["_as"]), n_fan=int(round(J_["fan_rays_over_N"] * self.N)),
+                                     n_gl=int(J_["n_gl"]))
+            self.wavefront = False
         if verbose:
             say("   posing: Migdal A_e/A_i %.4f (1-D M_e %.6f, C_F,vac %.6f); inlet M %.2f between"
                 " y %.3f and %.3f; K %d plug + %d shroud stations (frozen), N %d; knots %d + %d"
                 " (plug tip y %.6f %s and shroud lip y %s); wedge every %d; p_a/P0 %.5e; %.1f s"
-                % (eps_i, self.Me, self.CF_1d, ST.M_INLET, self.y_l, self.y_u, len(self.sx),
+                % (eps_i, self.Me, self.CF_1d, self.M_in, self.y_l, self.y_u, len(self.sx),
                    len(self.xs), self.N, len(self.kp), len(self.ks), self.tip,
                    "free" if getattr(self, "ie_p", None) is not None else "pinned",
                    ("free from %.6f" % self.W_ref[self.ie_s]) if getattr(self, "ie_s", None) is not None
@@ -415,6 +558,42 @@ class TwoWall:
         return (jnp.asarray(self.sx), py, psl), (jnp.asarray(self.xs), sy, ssl)
 
     def march_record(self, W, margin=None):
+        if self.phases is not None:
+            return self._march_record_mu(W, margin)
+        return self._march_record_ctx(W, margin, None)
+
+    def _march_record_mu(self, W, margin):
+        """Every phase marched on the same walls; the outputs combined: J_mu
+        = sum_k w_k C_F,k, the worst certificate, the KS soft-min of the
+        phases' margins (the class in EVERY phase)."""
+        outs, Ss = [], []
+        ref_class = self.mu_class == "ref" and margin is not None
+        for ph in self.phases:
+            mg_k = dict(margin) if (margin is not None and not ref_class) else None
+            o_k, S_k = self._march_record_ctx(W, mg_k, ph)
+            outs.append(o_k)
+            Ss.append(S_k)
+        o_ref, S_ref = (self._march_record_ctx(W, margin, None) if ref_class else (None, None))
+        Jk = [float(self._J_gen(o_k, ph)) for o_k, ph in zip(outs, self.phases)]
+        out = dict(outs[0])
+        out["J_mu"] = float(sum(ph["w"] * j for ph, j in zip(self.phases, Jk)))
+        out["J_phase"] = Jk
+        out["outs"] = outs
+        out["cert_worst"] = max(float(o_["cert_worst"]) for o_ in outs)
+        if ref_class:
+            out["cert_worst"] = max(out["cert_worst"], float(o_ref["cert_worst"]))
+            out["margin_ks"], out["margin_min"], out["margin_n"] = o_ref["margin_ks"], o_ref["margin_min"], o_ref["margin_n"]
+        elif margin is not None and outs[0].get("margin_ks") is not None:
+            ks = np.array([float(o_["margin_ks"]) for o_ in outs])
+            rho_ = float(margin["rho"])
+            out["margin_ks"] = float(-np.logaddexp.reduce(-rho_ * ks) / rho_)
+            out["margin_min"] = min(float(o_["margin_min"]) for o_ in outs)
+            out["margin_n"] = sum(int(o_["margin_n"]) for o_ in outs)
+            out["margin_phase"] = ks.tolist()
+        return out, MuSched(Ss, S_ref)
+
+    def _march_record_ctx(self, W, margin, ph):
+        start_, q_i_, tab_ = (self.start, self.q_i, self.tab) if ph is None else (ph["start"], ph["q_i"], ph["tab"])
         (a, b, c), (d, e, f) = self.walls(np.asarray(W, float))
         if margin is not None and self.pad and "pad" not in margin:
             margin["pad"] = self.pad
@@ -422,11 +601,17 @@ class TwoWall:
             # set on the caller's dict (like "pad"): the census (cells_out)
             # and the counters the march writes into it must stay visible
             margin["x_max"] = float(max(float(a[-1]), float(d[-1])))
-        graph = {} if self.wavefront else None
-        out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), self.start, self.q_i,
-                            self.tab, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
-                            wedge_every=self.m_w, margin=margin, fast=self.fast, graph=graph,
-                            x_traced=self.cap > 0.0)
+        cells_ = None if ph is None else ph.get("cells")
+        lj_ = (self._ctx() if ph is None else ph).get("lip_jet") if getattr(self, "jet", False) else None
+        graph = {} if self.wavefront and cells_ is None and lj_ is None else None
+        out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), start_, q_i_,
+                            tab_, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
+                            wedge_every=self.m_w, margin=margin, fast=(self.fast and cells_ is None), graph=graph,
+                            x_traced=self.cap > 0.0, cells=cells_, lip_jet=lj_)
+        if lj_ is not None and margin is not None and out.get("margin_ks") is not None:
+            out = self._with_lip_margin(out, margin, (self._ctx() if ph is None else ph)["ta"])
+        if getattr(self, "sep_class", False) and margin is not None and out.get("margin_ks") is not None:
+            out = self._with_sep_margin(out, margin, self._ctx() if ph is None else ph)
         if graph is not None:
             S.plan = WF.plan(graph)
         return out, S
@@ -441,10 +626,128 @@ class TwoWall:
         wgt = 2.0 * jnp.pi * 0.5 * (c[1:, 1] + c[:-1, 1])
         return jnp.sum(0.5 * (p[1:] + p[:-1]) * wgt * dy)
 
+    def _ctx_store(self):
+        """The posing's own context, stored once (it carries the lip jet)."""
+        if not hasattr(self, "_ctx0"):
+            self._ctx0 = dict(w=1.0, tab=self.tab, ta=self.ta, q_i=self.q_i, start=self.start, F_in=self.F_in,
+                              P0=self.P0, M=self.M_in)
+        return self._ctx0
+
+    def _ctx(self):
+        """The posing's own inflow as a phase context."""
+        return self._ctx_store()
+
+    def _p_sep(self, M, pa_abs):
+        C = CASES["separation"]
+        if self.sep == "summerfield":
+            return C["summerfield_k"] * pa_abs + 0.0 * M
+        return pa_abs * (C["schmucker_a"] * M - 1.0) ** (-C["schmucker_b"])
+
+    def _with_sep_margin(self, out, margin, ctx):
+        """D-GSEP: the separation margin p_w / p_sep - 1 of every wall point
+        (plug and shroud) joined to the class as entries mu0 + margin."""
+        out = dict(out)
+        pa_abs = self.pa * self.P0
+        ents = []
+        for key in ("wall", "shroud"):
+            pts = out[key]
+            q = jnp.sqrt(pts[:, 2] ** 2 + pts[:, 3] ** 2)
+            if ctx.get("G2", 0.0) > 0.0:
+                import a1_swirl_march as SW
+                st = SW.state_sw(q, pts[:, 1], ctx["G2"], ctx["ta"])
+            else:
+                st = A1.state_q(q, ctx["ta"])
+            ents.append(margin["mu0"] + st[1] / self._p_sep(st[5], pa_abs) - 1.0)
+        e_ = jnp.concatenate(ents)
+        rho_ = margin["rho"]
+        out["margin_ks"] = -jax.scipy.special.logsumexp(jnp.concatenate([jnp.reshape(-rho_ * out["margin_ks"], (1,)), -rho_ * e_])) / rho_
+        out["margin_min"] = jnp.minimum(out["margin_min"], jnp.min(e_))
+        out["m_sep"] = jnp.min(e_) - margin["mu0"]
+        return out
+
+    def _with_lip_margin(self, out, margin, ta):
+        """The lip margin p(q_F)/p_a - 1 joined to the class: the entry mu0 +
+        m_lip in the KS soft-min with the cells (feasible iff the lip is not
+        over-expanded)."""
+        out = dict(out)
+        if out.get("lip_q") is None:
+            return out
+        qF = out["lip_q"][0]
+        m_lip = A1.state_q(qF, ta)[1] / (self.pa * self.P0) - 1.0
+        e_ = margin["mu0"] + m_lip
+        rho_ = margin["rho"]
+        out["margin_ks"] = -jnp.logaddexp(-rho_ * out["margin_ks"], -rho_ * e_) / rho_
+        out["margin_min"] = jnp.minimum(out["margin_min"], e_)
+        out["m_lip"] = m_lip
+        return out
+
+    def _gauge_push(self, pts, y0, ctx, pa_abs, attach=False):
+        """The gauge push of a wall polyline closed by its start point: sum of
+        (p - p_a) 2 pi y dy, times the attachment weight when the separation
+        closure runs (attach=True returns the point weights instead)."""
+        p0 = jnp.array([self.x0, y0, ctx["q_i"], 0.0])
+        c = jnp.concatenate([p0[None, :], pts[:, :4]], axis=0)
+        q = jnp.sqrt(c[:, 2] ** 2 + c[:, 3] ** 2)
+        if ctx.get("G2", 0.0) > 0.0:
+            import a1_swirl_march as SW
+            st = SW.state_sw(q, c[:, 1], ctx["G2"], ctx["ta"])
+        else:
+            st = A1.state_q(q, ctx["ta"])
+        p = st[1]
+        dy = c[1:, 1] - c[:-1, 1]
+        wgt = 2.0 * jnp.pi * 0.5 * (c[1:, 1] + c[:-1, 1])
+        g = 0.5 * (p[1:] + p[:-1]) - pa_abs
+        att = None
+        if self.sep and pa_abs > 0.0:
+            z = (p / self._p_sep(st[5], pa_abs) - 1.0) / CASES["separation"]["width"]
+            # a free-shock separation never reattaches: the weight follows the
+            # RUNNING MINIMUM of the margin (1/2 exactly at the first point
+            # below p_sep). The first form, a cumulative product of the
+            # sigmoids, accumulated the near-separation factors: it detached
+            # the cut Stechmann plug 2.3 stations early at 0.30 bar (measured
+            # 2026-09-27, sepgates SC-2) and discounted the attached wall
+            # upstream of the separation
+            att = jax.nn.sigmoid(jax.lax.cummin(z))
+            g = g * 0.5 * (att[1:] + att[:-1])
+        if attach:
+            return c, p, att
+        return jnp.sum(g * wgt * dy)
+
+    def _J_gen(self, out, ctx):
+        """C_F of one inflow state (the posing's own or a phase's) in the p_a
+        gauge, in units of the posing's P0 A*: [F_in - p_a A_in - push(plug) +
+        push(shroud)] / (P0 A*), the pushes gauge and attachment-weighted --
+        equal to J_of's form when no wall separates (p_b = p_a on the base)."""
+        pa_abs = self.pa * self.P0
+        A_in = np.pi * (self.y_u ** 2 - self.y_l ** 2)
+        Jn = (ctx["F_in"] - pa_abs * A_in - self._gauge_push(out["wall"], self.y_l, ctx, pa_abs)
+              + self._gauge_push(out["shroud"], self.y_u, ctx, pa_abs))
+        return Jn / (self.P0 * self.A_star)
+
+    def sep_readout(self, out, ctx=None):
+        """Where each wall detaches under the closure: the first point whose
+        attachment weight falls below one half (x, or None), per wall."""
+        ctx = self._ctx() if ctx is None else ctx
+        pa_abs = self.pa * self.P0
+        res = {}
+        for key, y0 in (("wall", self.y_l), ("shroud", self.y_u)):
+            c, p, att = self._gauge_push(out[key], y0, ctx, pa_abs, attach=True)
+            if att is None:
+                res[key] = None
+                continue
+            a_ = np.asarray(att)
+            k_ = np.where(a_ < 0.5)[0]
+            res[key] = (float(np.asarray(c)[k_[0], 0]), float(np.asarray(p)[k_[0]] / pa_abs)) if len(k_) else None
+        return res
+
     def J_of(self, out):
         """Vacuum C_F: F_in + push(plug) (dy < 0 pushes forward) + push(shroud)."""
+        if "J_mu" in out:
+            return out["J_mu"]
+        if self.sep and getattr(self, "pa", 0.0) > 0.0:
+            return self._J_gen(out, self._ctx())
         Jn = self.F_in - self._push(out["wall"], self.y_l) + self._push(out["shroud"], self.y_u)
-        CF = Jn / (ST.P0 * self.A_star)
+        CF = Jn / (self.P0 * self.A_star)
         if getattr(self, "pa", 0.0) > 0.0:
             # the ambient on the outside and on the base (p_b = p_a): minus
             # p_a times the exit annulus closed by the march's own walls
@@ -453,15 +756,47 @@ class TwoWall:
         return CF
 
     def J_replay(self, W, sched, wavefront=None):
+        if getattr(self, "jet", False) and not isinstance(sched, MuSched):
+            return self.J_of(self._replay_out(W, sched, self._ctx(), None, False))
+        if isinstance(sched, MuSched):
+            return sum(ph["w"] * self._J_gen(self._replay_out(W, S_k, ph, None, wavefront), ph)
+                       for ph, S_k in zip(self.phases, sched.S))
         (a, b, c), (d, e, f) = self.walls(W)
         if (self.wavefront if wavefront is None else wavefront) and getattr(sched, "plan", None) is not None:
             out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), self.start, self.tab, 1.0,
-                            int(CASES["wavefront"]["lane"]))
+                            int(CASES["wavefront"]["lane"]), rows_block=int(CASES["wavefront"]["rows_block"]))
             return self.J_of(out)
         S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
                             shroud=(d, e, f), wedge_every=self.m_w, x_traced=self.cap > 0.0)
         return self.J_of(out)
+
+    def _replay_out(self, W, sched, ph, margin, wavefront):
+        """One phase replayed on its own frozen schedule (wavefront or
+        sequential), returning the march's output dict."""
+        (a, b, c), (d, e, f) = self.walls(W)
+        if margin is not None and self.noplume:
+            margin = dict(margin)
+            margin["x_max"] = jnp.maximum(a[-1], d[-1])
+        if (self.wavefront if wavefront is None else wavefront) and getattr(sched, "plan", None) is not None:
+            if margin is not None and self.pad and "pad" not in margin:
+                margin = dict(margin)
+                margin["pad"] = self.pad
+            out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), ph["start"], ph["tab"], 1.0,
+                            int(CASES["wavefront"]["lane"]), margin=margin, rows_block=int(CASES["wavefront"]["rows_block"]))
+            if getattr(self, "sep_class", False) and margin is not None and out.get("margin_ks") is not None:
+                out = self._with_sep_margin(out, margin, ph)
+            return out
+        S_ = A1.Sched("play", sched.d)
+        lj_ = ph.get("lip_jet") if getattr(self, "jet", False) else None
+        out, _ = plug_march((a, b, c), ph["start"], ph["q_i"], ph["tab"], 1.0, sched=S_,
+                            shroud=(d, e, f), wedge_every=self.m_w, margin=margin, x_traced=self.cap > 0.0,
+                            cells=ph.get("cells"), lip_jet=lj_)
+        if lj_ is not None and margin is not None and out.get("margin_ks") is not None:
+            out = self._with_lip_margin(out, margin, ph["ta"])
+        if getattr(self, "sep_class", False) and margin is not None and out.get("margin_ks") is not None:
+            out = self._with_sep_margin(out, margin, ph)
+        return out
 
     def margin_dict(self, mu0=0.0, rho=1.0, m_ref=1.0, cells=False):
         """The fold margin of [X-PMRG] over the WHOLE two-wall net (wedge,
@@ -482,6 +817,15 @@ class TwoWall:
     def margin_replay(self, W, sched, margin, wavefront=None):
         """KS fold margin minus its floor on the frozen schedule
         (differentiable in both walls), the record driver's hook."""
+        if (getattr(self, "jet", False) or getattr(self, "sep_class", False)) and not isinstance(sched, MuSched):
+            return self._replay_out(W, sched, self._ctx(), margin, None)["margin_ks"] - margin["mu0"]
+        if isinstance(sched, MuSched) and self.mu_class == "ref":
+            return self._replay_out(W, sched.S_ref, self._ctx(), margin, wavefront)["margin_ks"] - margin["mu0"]
+        if isinstance(sched, MuSched):
+            ks = jnp.stack([self._replay_out(W, S_k, ph, margin, wavefront)["margin_ks"]
+                            for ph, S_k in zip(self.phases, sched.S)])
+            rho_ = margin["rho"]
+            return -jax.scipy.special.logsumexp(-rho_ * ks) / rho_ - margin["mu0"]
         (a, b, c), (d, e, f) = self.walls(W)
         if self.noplume:
             margin = dict(margin)
@@ -490,7 +834,7 @@ class TwoWall:
             if self.pad and "pad" not in margin:
                 margin["pad"] = self.pad
             out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), self.start, self.tab, 1.0,
-                            int(CASES["wavefront"]["lane"]), margin=margin)
+                            int(CASES["wavefront"]["lane"]), margin=margin, rows_block=int(CASES["wavefront"]["rows_block"]))
             return out["margin_ks"] - margin["mu0"]
         S_ = A1.Sched("play", sched.d)
         out, _ = plug_march((a, b, c), self.start, self.q_i, self.tab, 1.0, sched=S_,
@@ -929,7 +1273,7 @@ def classderive():
     tr0 = h_star / K_RICH
     say("   floors %s; rho %.1f; gap %.2e; h* %.3e m -> tr0 %.3e m, floor %.3e m"
         % (np.array2string(np.array(floors), precision=4), rho, gap, h_star, tr0, tr0 / K_RICH))
-    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, K=tw.K, N=tw.N, shape=tw.shape, noplume=tw.noplume, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
+    rec = dict(npass=list(NPASS), m=[len(tw.kp), len(tw.ks)], kernel=tw.kernel, kmode=tw.kmode, K=tw.K, N=tw.N, shape=tw.shape, noplume=tw.noplume, geno_run=tw.geno_run, CF_ref=J0, CF_1d=tw.CF_1d, m_ref=m_ref,
                N_cells=Nc, floors=floors, rho=rho, gap=gap, rejector=rej, ladder=lad, h_ok=h_ok,
                h_bad=h_bad, h_star=h_star, tr0=tr0, W_ref=W0.tolist(), grad_ref=g0.tolist(),
                seconds=time.time() - t00)
@@ -993,6 +1337,14 @@ class Metric:
         return jnp.asarray(self.Ws) + jnp.asarray(self.T) @ jnp.asarray(Z)
 
     def march_record(self, Z, margin=None):
+        # the mapping-cap guard at EVERY record, outside any trace (S41
+        # 2026-09-27: the 12-phase walk V1m grew from 52818 mappings past the
+        # kernel's cap 65530 inside one segment -- the segment-boundary check
+        # alone let it die, "LLVM ERROR: Unable to allocate section memory");
+        # a clear only recompiles the same executables
+        if sum(1 for _ in open("/proc/self/maps")) > int(CASES["wavefront"]["map_clear"]):
+            jax.clear_caches()
+            self.n_clear = getattr(self, "n_clear", 0) + 1
         return self.tw.march_record(self.Ws + self.T @ np.asarray(Z, float), margin=margin)
 
     def J_replay(self, Z, sched):
@@ -1176,7 +1528,8 @@ def walk():
     if (Cr["m"] != [len(tw.kp), len(tw.ks)] or not Cr.get("kernel", False) == tw.kernel
             or Cr.get("kmode", "data" if Cr.get("kernel", False) else "free") != tw.kmode
             or (Cr.get("K", tw.K), Cr.get("N", tw.N)) != (tw.K, tw.N)
-            or bool(Cr.get("shape", False)) != tw.shape or bool(Cr.get("noplume", False)) != tw.noplume):
+            or bool(Cr.get("shape", False)) != tw.shape or bool(Cr.get("noplume", False)) != tw.noplume
+            or Cr.get("geno_run", POSE["geno_run"]) != tw.geno_run):
         raise ValueError("the class record %s is not this posing's" % fc[-1])
     floors, rho, gap, m_ref = Cr["floors"], Cr["rho"], Cr["gap"], Cr["m_ref"]
     mg0 = tw.margin_dict(mu0=floors[0], rho=rho, m_ref=m_ref)
@@ -1263,6 +1616,12 @@ def walk():
             return rho_r, f_, jax.value_and_grad(f_)(jnp.asarray(W_))
         while need_restore(ok0, k0) and n_it < int(R["max_iter"]):
             n_it += 1
+            # the kernel's mapping cap (S41: the driver's on_segment clears the
+            # caches, the restoration runs BEFORE the driver -- the phase-voting
+            # walk died here, "LLVM ERROR: Unable to allocate section memory",
+            # 2026-09-27): the same conditional clear at every restoration step
+            if sum(1 for _ in open("/proc/self/maps")) > int(CASES["wavefront"]["map_clear"]):
+                jax.clear_caches()
             rho_r, f_soft, (ks_soft, gm) = soft(Ws, S0, k0)
             gm = np.asarray(gm)
             if not np.all(np.isfinite(gm)) or np.linalg.norm(gm) == 0.0:
@@ -1434,8 +1793,8 @@ def walk():
         ex = {}
         for tag, W_, o_ in (("start", Ws, o0), ("end", Wf, of)):
             w_, s_ = np.asarray(o_["wall"]), np.asarray(o_["shroud"])
-            pw = float(A1.state_q(jnp.asarray(np.hypot(w_[-1, 2], w_[-1, 3])), tw.ta)[1]) / ST.P0
-            ps = float(A1.state_q(jnp.asarray(np.hypot(s_[-1, 2], s_[-1, 3])), tw.ta)[1]) / ST.P0
+            pw = float(A1.state_q(jnp.asarray(np.hypot(w_[-1, 2], w_[-1, 3])), tw.ta)[1]) / tw.P0
+            ps = float(A1.state_q(jnp.asarray(np.hypot(s_[-1, 2], s_[-1, 3])), tw.ta)[1]) / tw.P0
             ex[tag] = dict(y_tip=float(w_[-1, 1]), y_lip=float(s_[-1, 1]), p_tip=pw, p_lip=ps,
                            area_ratio=float((s_[-1, 1] ** 2 - w_[-1, 1] ** 2) / (tw.y_u ** 2 - tw.y_l ** 2)))
         say("   EXIT (p_a/P0 %.5e, %s): heights tip %.4f -> %.4f, lip %.4f -> %.4f; A_e/A_i %.4f -> %.4f;"
@@ -1588,6 +1947,20 @@ def wavefront():
     say("   speed-up (steady state, the second wavefront call): J + grad %.1fx, margin + grad %.1fx; the"
         " first call (compiling the padded batches) %.1f / %.1f s"
         % (a[4] / b[4], a[5] / b[5], rows["wavefront"][4], rows["wavefront"][5]))
+    # WF-4 (S41 2026-09-27) the point array's row padding is inert: the replay
+    # with rows_block and without it, bitwise (J, its gradient, the margin)
+    rw = {}
+    for rb in (0, int(CASES["wavefront"]["rows_block"])):
+        def f_(z, rb=rb):
+            st_, sh_ = tw.walls(z)
+            return WF.replay(S.plan, S, tuple(st_), tuple(sh_), tw.start, tw.tab, 1.0, int(CASES["wavefront"]["lane"]),
+                             margin=mg, rows_block=rb)
+        Jr, gr = jax.value_and_grad(lambda z: tw.J_of(f_(z)))(jnp.asarray(W0))
+        rw[rb] = (float(Jr), np.asarray(gr), float(f_(jnp.asarray(W0))["margin_ks"]))
+    r0, r1 = rw[0], rw[int(CASES["wavefront"]["rows_block"])]
+    check("WF-4 the row padding (rows_block %d) is inert: J %s, its gradient %s, the margin %s (bitwise)"
+          % (int(CASES["wavefront"]["rows_block"]), r0[0] == r1[0], bool(np.array_equal(r0[1], r1[1])), r0[2] == r1[2]),
+          r0[0] == r1[0] and bool(np.array_equal(r0[1], r1[1])) and r0[2] == r1[2])
     json.dump(dict(npass=list(NPASS), K=tw.K, N=tw.N, kmode=tw.kmode, n_cells=S.plan["n_cells"],
                    n_levels=S.plan["n_levels"], dJ=dJ, dg=dg, dm=dm, dgm=dgm, tol=tol,
                    t_seq=[a[4], a[5]], t_wf=[b[4], b[5]]),
