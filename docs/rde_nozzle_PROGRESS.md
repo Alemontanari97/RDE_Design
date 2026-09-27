@@ -124,8 +124,11 @@
 ## Schmucker come chiusura e come classe). Lo stato medio sovrastima
 ## l'ugello (C_F 1,4461 contro 1,3762 sulle 12 fasi; guadagno -11,5 %),
 ## il disegno camminato sullo stato medio piega in ogni altra fase e ne
-## stacca due; il voto delle fasi richiede la classe in OGNI fase (V1 in
-## corso). Difetti trovati e chiusi: tabelle troncate sotto 1050 K (prima
+## stacca due; il voto delle fasi richiede la classe in OGNI fase e,
+## tenuta quella, non trova piu' spinta dello strumento (V1: +3,6e-5 al
+## grosso, -1e-6 al fine; provvisorio al segmento 8) ma e' senza urti,
+## attaccato e certificato in tutte e 12 le fasi. Difetti trovati e
+## chiusi: tabelle troncate sotto 1050 K (prima
 ## passata ritirata), replay a fronte d'onda (tabelle catturate; forme per
 ## taglia fino al tetto di mappature), chiusura di separazione cumulativa.
 ## Aperto: twowall:shape-margin-blind-to-convergence (dell'owner). R-F3-4

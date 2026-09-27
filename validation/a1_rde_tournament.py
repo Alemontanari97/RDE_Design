@@ -289,12 +289,21 @@ def evaluate():
     mdot = None
     res = {}
     floor0 = json.load(open(os.path.join(ART, "stech", "class_2026-09-27.json")))["floors"][0]
-    for ev in E["evaluators"]:
-        # "family_K12.json+swirl": the phases with their free vortex (TWOP_SWIRL)
-        fam, _, opt = ev.partition("+")
+    # TOUR_JUDGE=<judge>: this process judges ONE evaluator and writes
+    # eval_<date>_<judge>.json (the judges run as parallel processes; STAGE
+    # evalmerge assembles eval_<date>.json)
+    only = os.environ.get("TOUR_JUDGE", "")
+    for ev in ([only] if only else E["evaluators"]):
+        # "family_K12.json+swirl": the phases with their free vortex (TWOP_SWIRL);
+        # "...@fine": the same judge re-marched at the fine rung (the paired
+        # refinement a coarse-grid difference must survive, M0 S41 item (1))
+        ev0, _, rung = ev.partition("@")
+        fam, _, opt = ev0.partition("+")
         env = dict(base) if fam == "mean" else dict(base, TWOP_MU=os.path.join(ART, fam))
         if opt == "swirl":
             env["TWOP_SWIRL"] = "1"
+        if rung == "fine":
+            env["TWOP_K"], env["TWOP_N"] = E["fine_rung"]
         T, tw = _tw(env)
         mg = tw.margin_dict(mu0=0.0, rho=CASES_TW_RHO(), m_ref=1.0)
         A_phys = tw.A_star * C["r_out_m"] ** 2
@@ -354,7 +363,7 @@ def evaluate():
                 " %.2f .. %.2f" % (ev, name, J, J - J0, F, F / (mdot * E["g0"]), nfold, len(per), floor0, nsep, nunc,
                                    float(o["cert_worst"]), nbox, min(q["T_min"] for q in per), min(q["p_lip"] for q in per),
                                    max(q["p_lip"] for q in per)))
-    fn = os.path.join(ART, "eval_%s.json" % time.strftime("%Y-%m-%d"))
+    fn = os.path.join(ART, "eval_%s%s.json" % (time.strftime("%Y-%m-%d"), ("_" + only.replace("/", "_")) if only else ""))
     json.dump(dict(pa_bar=C["pa_bar"], closure=base["TWOP_SEP"], mdot=mdot, provenance=prov, res=res), open(fn + ".tmp", "w"),
               indent=1, default=float)
     os.replace(fn + ".tmp", fn)
@@ -445,13 +454,50 @@ def swirlgates():
     osr, Ssw = tws.march_record(W)
     Jr = float(tws.J_replay(jnp.asarray(W), Ssw))
     g = np.asarray(jax.grad(lambda z: tws.J_replay(z, Ssw))(jnp.asarray(W)))
-    k_, h_ = CASES["jet_gates"]["knot"], CASES["jet_gates"]["fd_step"]
-    e_ = np.zeros(len(W)); e_[k_] = h_
-    fd = (float(tws.J_replay(jnp.asarray(W + e_), Ssw)) - float(tws.J_replay(jnp.asarray(W - e_), Ssw))) / (2 * h_)
-    check("SW-4 the swirl replay = the record (%.12f vs %.12f); adjoint %+.6e vs central FD %+.6e along knot %d (rel %.1e)"
-          % (Jr, float(osr["J_mu"]), g[k_], fd, k_, abs(g[k_] - fd) / max(abs(fd), A1.EPS)),
+    # the FD LADDER (a1_twowall G-3's instrument): the derivative along the
+    # knot is small with the swirl and the closure (5e-5), so one step's
+    # truncation error is not negligible against it (measured 2026-09-27:
+    # rel 3.1e-2 at h 1e-5, 2.5e-3 at 1e-6, with or without the closure,
+    # twop_sw4_kink_probe.py); the band = K_RICH x the ladder's spread +
+    # the rounding floor C_FLOOR eps |J| / h_min
+    k_ = CASES["jet_gates"]["knot"]
+    fds = []
+    for h_ in CASES["swirl_gates"]["fd_ladder"]:
+        e_ = np.zeros(len(W)); e_[k_] = h_
+        fds.append((float(tws.J_replay(jnp.asarray(W + e_), Ssw)) - float(tws.J_replay(jnp.asarray(W - e_), Ssw))) / (2 * h_))
+    band = A1.K_RICH * abs(fds[0] - fds[-1]) + A1.C_FLOOR * A1.EPS * abs(Jr) / min(CASES["swirl_gates"]["fd_ladder"])
+    check("SW-4 the swirl replay = the record (%.12f vs %.12f); adjoint %+.6e vs the central-FD ladder %s along knot %d"
+          " (|d| %.1e at the finest step <= K_RICH x spread + floor %.1e)"
+          % (Jr, float(osr["J_mu"]), g[k_], ", ".join("%+.6e" % f_ for f_ in fds), k_, abs(g[k_] - fds[-1]), band),
           abs(Jr - float(osr["J_mu"])) <= A1.K_RICH * A1.EPS * len(osr["outs"][0]["wall"]) * len(tws.phases)
-          and abs(g[k_] - fd) <= max(A1.K_RICH * abs(fd) * h_ ** 0.5, A1.EPS ** 0.5))
+          and abs(g[k_] - fds[-1]) <= band)
+    # SW-5 the swirl phases' class margin replayed SEQUENTIALLY (no wavefront
+    # kinds for the swirl cells) = the record's, per phase: the replay takes
+    # the record's fixed-block margin stack (S41 2026-09-27: without it a fresh
+    # margin dict stacked one module per cell count -- the mapping cap)
+    Cr = json.load(open(os.path.join(ART, "stech", "class_2026-09-27.json")))
+    mgc = tws.margin_dict(mu0=Cr["floors"][0], rho=Cr["rho"], m_ref=Cr["m_ref"])
+    om, Sm = tws.march_record(W, margin=dict(mgc))
+    rec_ks = [float(o_["margin_ks"]) for o_ in om["outs"]]
+    rep_ks = [float(tws._replay_out(jnp.asarray(W), S_k, ph, dict(mgc), None)["margin_ks"]) for ph, S_k in zip(tws.phases, Sm.S)]
+    dks = max(abs(a_ - b_) for a_, b_ in zip(rec_ks, rep_ks))
+    # the band, derived: the replay re-solves every cell from its recorded
+    # seed to the certified Newton tolerance, NEWTON_TOL_FACTOR eps max(1, |z|)
+    # (|z| includes the speeds), so a corner may move by that much and a shape
+    # margin by that over the cell's smallest leg -- the census of the record
+    lmin, zmax = np.inf, 0.0
+    for ph in tws.phases:
+        mg_ = tws.margin_dict(mu0=Cr["floors"][0], rho=Cr["rho"], m_ref=Cr["m_ref"], cells=True)
+        o_, _ = tws._march_record_ctx(W, mg_, ph)
+        cor = np.asarray(mg_["cells_out"][2])[:, :, :2]
+        legs = np.linalg.norm(np.roll(cor, -1, axis=0) - cor, axis=2)
+        lmin = min(lmin, float(np.min(legs[legs > 0])))
+        zmax = max(zmax, float(np.max(np.abs(np.asarray(o_["mesh_pts"])))))
+    band = A1.K_RICH * A1.NEWTON_TOL_FACTOR * A1.EPS * max(1.0, zmax) / lmin
+    check("SW-5 the swirl phases' class margin replayed sequentially = the record's: max |d KS| %.1e over the 12 phases"
+          " (<= the Newton tolerance over the smallest leg, K_RICH x 100 eps x %.0f / %.1e m = %.1e; bitwise %d of %d)"
+          % (dks, zmax, lmin, band, sum(1 for a_, b_ in zip(rec_ks, rep_ks) if a_ == b_), len(rec_ks)),
+          dks <= band)
     say("   %d/%d PASS in %.0f s" % (NPASS[0], NPASS[1], time.time() - t0))
     return 0 if NPASS[0] == NPASS[1] else 1
 
@@ -540,6 +586,29 @@ def jetgates():
                                                         oo["cert_worst"], float(two.J_of(oo))),
           float(oo["m_lip"]) < 0 and float(oo["margin_ks"]) < Cr["floors"][0] and np.isfinite(float(two.J_of(oo))))
     say("   %d/%d PASS in %.0f s" % (NPASS[0], NPASS[1], time.time() - t0))
+    return 0 if NPASS[0] == NPASS[1] else 1
+
+
+def evalmerge():
+    """STAGE evalmerge: eval_<date>.json assembled from the per-judge files
+    of the parallel judges (TOUR_JUDGE), in the order of eval.evaluators;
+    the designs and their provenance must agree across the files."""
+    say("== [F3/A1] the RDE tournament: the parallel judges merged [X-RDET] (stage evalmerge) ==")
+    E = CASES["eval"]
+    day = os.environ.get("TOUR_DAY", time.strftime("%Y-%m-%d"))
+    out = None
+    for ev in E["evaluators"]:
+        fn = os.path.join(ART, "eval_%s_%s.json" % (day, ev.replace("/", "_")))
+        d = json.load(open(fn))
+        if out is None:
+            out = dict(pa_bar=d["pa_bar"], closure=d["closure"], mdot=d["mdot"], provenance=d["provenance"], res={})
+        check("judge %s: the designs and their provenance agree (%s)" % (ev, sorted(d["provenance"])),
+              d["provenance"] == out["provenance"] and d["closure"] == out["closure"])
+        out["res"][ev] = d["res"][ev]
+    fn = os.path.join(ART, "eval_%s.json" % day)
+    json.dump(out, open(fn + ".tmp", "w"), indent=1, default=float)
+    os.replace(fn + ".tmp", fn)
+    say("   record: %s" % fn)
     return 0 if NPASS[0] == NPASS[1] else 1
 
 
@@ -696,4 +765,4 @@ def CASES_TW_RHO():
 
 if __name__ == "__main__":
     st = os.environ.get("STAGE", "family")
-    sys.exit(dict(family=family, gates=gates, eval=evaluate, swirlgates=swirlgates, jetgates=jetgates, sepgates=sepgates, offdesign=offdesign)[st]())
+    sys.exit(dict(family=family, gates=gates, eval=evaluate, swirlgates=swirlgates, jetgates=jetgates, sepgates=sepgates, offdesign=offdesign, evalmerge=evalmerge)[st]())

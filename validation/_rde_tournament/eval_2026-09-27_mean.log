@@ -1,0 +1,7 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (checkpoint after 8 segments (walk running)); V1m (checkpoint after 7 segments (walk running)); closure summerfield; p_a 0.050 bar
+   mean                   S0  C_F 1.446124 (gain over no nozzle +0.15449); F 896.50 N, Isp 201.54 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0467), 0 out of the table box (T_min 960 K); lip p/p_a 1.06 .. 1.06
+   mean                   S1  C_F 1.446724 (gain over no nozzle +0.15509); F 896.87 N, Isp 201.62 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0788), 0 out of the table box (T_min 947 K); lip p/p_a 1.32 .. 1.32
+   mean                   V1m C_F 1.446129 (gain over no nozzle +0.15449); F 896.50 N, Isp 201.54 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0422), 0 out of the table box (T_min 958 K); lip p/p_a 1.06 .. 1.06
+   mean                   V1  C_F 1.446142 (gain over no nozzle +0.15451); F 896.51 N, Isp 201.54 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0454), 0 out of the table box (T_min 956 K); lip p/p_a 1.16 .. 1.16
+   record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27_mean.json

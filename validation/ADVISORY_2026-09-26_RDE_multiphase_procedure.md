@@ -376,10 +376,12 @@ meridional problem, the free jet, the separation). What stands against the stage
   the rothalpy (G1-3..G1-6) is NOT built.
 - STAGE 2, G2-4 exercised on Q2D data (the capped shrouded plug; [X-RDET]): the time-mean state overstates the
   nozzle (C_F 1.4461 against 1.3762 over the 12 phases on the cut Stechmann pair) and a walk on it folds in every
-  other phase and detaches two; the class over ALL phases is the operative one -- with the class at the time-mean
-  state only (V1m) the walk took no step in two segments (a phase's march uncertified 1.4 mm along its gradient),
-  and the two post-wave phases fold in the Stechmann pair itself. The V1 walk (every phase shock-free and
-  attached) was running when this section was written; its judgement is in the S41 log's follow-up.
+  other phase and detaches two; the class over ALL phases is the operative one (a folded phase has no shock-free
+  thrust), and the two post-wave phases fold in the Stechmann pair itself -- marginally: two restoration steps
+  (sub-millimetre) put every phase in class. The V1 walk (every phase shock-free and
+  attached; provisional, at its segment-8 checkpoint) finds no more thrust than the instrument resolves (+3.6e-5
+  coarse, -1e-6 fine over 12 phases) but holds the class in all 12 phases -- the vote's value on this posing is the
+  class, not the thrust (S41 log 3sexies D2).
 - STAGE 3: the free jet after the lip is built and gated ([X-LJET]); under the length cap it never reaches the
   plug, so the "shorten / lengthen" votes of the tail phases act through the lip only; separation is priced by
   a free-shock closure (Summerfield / Schmucker) or held out by the class (TWOP_SEP_CLASS).

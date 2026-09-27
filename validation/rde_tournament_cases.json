@@ -43,6 +43,7 @@
       "designs": {
         "S0": "start:_rde_tournament/S1/walk_TN_2026-09-27.json",
         "S1": "_rde_tournament/S1/walk_TN_2026-09-27.json",
+        "V1m": "_rde_tournament/V1m/walk_TN_2026-09-27.json",
         "V1": "_rde_tournament/V1/walk_TN_2026-09-27.json",
         "V1s": "_rde_tournament/V1s/walk_TN_2026-09-27.json"
       },
@@ -51,12 +52,18 @@
         "family_K12.json",
         "family_K24.json",
         "family_K12.json+swirl",
-        "family_K24.json+swirl"
+        "family_K24.json+swirl",
+        "mean@fine",
+        "family_K12.json@fine"
       ],
-      "g0": 9.80665
+      "g0": 9.80665,
+      "fine_rung": [
+        280,
+        61
+      ]
     },
     "cls": "NUMERIC",
-    "note": "the tournament's designs: S0 = the Stechmann perfect pair cut at the cap (the start of the walks, read from the S1 record's W_start), S1 = the capped walk on the Stechmann time-mean state (its class at that state), (V1m, the 12 phases voting on the thrust with the fold class read at the time-mean state only, took no step in two segments: its checkpoint is S0, not judged), V1 = the phases voting with EVERY phase shock-free and attached (the class a KS soft-min over the phases' fold margins and their Summerfield wall margins, TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), V1s = V1 with every phase's free vortex in the march (the meridional problem with its swirl, TWOP_SWIRL=1); evaluators = the mean state, the phase families (K 24 = the binning check) and the families with their swirl ('+swirl'); g0 for the specific impulse (mixture: thrust / (the Q2D mass flow g0))"
+    "note": "the tournament's designs: S0 = the Stechmann perfect pair cut at the cap (the start of the walks, read from the S1 record's W_start), S1 = the capped walk on the Stechmann time-mean state (its class at that state), V1m = the 12 phases voting on the thrust with the fold class read at the time-mean state only, V1 = the phases voting with EVERY phase shock-free and attached (the class a KS soft-min over the phases' fold margins and their Summerfield wall margins, TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), V1s = V1 with every phase's free vortex in the march (the meridional problem with its swirl, TWOP_SWIRL=1); evaluators = the mean state, the phase families (K 24 = the binning check) and the families with their swirl ('+swirl'); g0 for the specific impulse (mixture: thrust / (the Q2D mass flow g0)); '@fine' = the judge re-marched at the fine rung fine_rung (the S41 fine rung (280, 61)): a coarse-grid difference between designs counts only if it survives this paired refinement (M0 LINE ADDENDUM S41 item (1))"
   },
   "swirl_gates": {
     "value": {
@@ -75,10 +82,14 @@
           81,
           41
         ]
+      ],
+      "fd_ladder": [
+        1e-05,
+        1e-06
       ]
     },
     "cls": "NUMERIC",
-    "note": "the two-wall radial-equilibrium duct (the swirl march's exact W-2 world with the shroud as the top wall): straight walls at y_plug and y_shroud, the plug to x_end, the shroud beyond it (x_shroud_end, the lip not reached), a uniform meridional inflow at Mach M with the free vortex w/u = w_over_u at the plug; rungs = (K stations, N rows) halving"
+    "note": "the two-wall radial-equilibrium duct (the swirl march's exact W-2 world with the shroud as the top wall): straight walls at y_plug and y_shroud, the plug to x_end, the shroud beyond it (x_shroud_end, the lip not reached), a uniform meridional inflow at Mach M with the free vortex w/u = w_over_u at the plug; rungs = (K stations, N rows) halving; fd_ladder = the central-difference steps of SW-4's ladder (the derivative along the knot is ~5e-5 with the swirl: a single step's truncation error is not negligible against it)"
   },
   "jet_gates": {
     "value": {

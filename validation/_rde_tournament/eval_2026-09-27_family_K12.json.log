@@ -1,0 +1,7 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (checkpoint after 8 segments (walk running)); V1m (checkpoint after 7 segments (walk running)); closure summerfield; p_a 0.050 bar
+   family_K12.json        S0  C_F 1.376235 (gain over no nozzle +0.13667); F 853.17 N, Isp 191.80 s; phases: 2 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.893), 0 out of the table box (T_min 746 K); lip p/p_a 0.36 .. 1.97
+   family_K12.json        S1  C_F 1.376099 (gain over no nozzle +0.13653); F 853.09 N, Isp 191.78 s; phases: 12 of 12 out of the fold class (KS < 0.2351), 2 detached, 1 uncertified (worst cert 62.4), 0 out of the table box (T_min 684 K); lip p/p_a 0.43 .. 2.41
+   family_K12.json        V1m C_F 1.376238 (gain over no nozzle +0.13667); F 853.17 N, Isp 191.80 s; phases: 2 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.146), 0 out of the table box (T_min 743 K); lip p/p_a 0.36 .. 1.97
+   family_K12.json        V1  C_F 1.376271 (gain over no nozzle +0.13670); F 853.19 N, Isp 191.80 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.867), 0 out of the table box (T_min 746 K); lip p/p_a 0.40 .. 2.16
+   record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27_family_K12.json.json

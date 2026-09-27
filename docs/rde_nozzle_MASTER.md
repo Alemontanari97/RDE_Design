@@ -4696,10 +4696,12 @@ it raises the lip to 1.32 p_a with a compression whose focus sits just past
 the exit at that state and moves 0-3 mm inside in every other phase (all 12
 fold), and two low-pressure phases detach at the design ambient -- per-phase
 M/T0/gamma variation breaks the constraint activity, T-T3-MAP breaker (b)
-[MEASURED, coarse rung]. A phase vote with the class read at the time-mean
-state takes no step in its first segment (a phase's march loses certification
-1.4 mm along its gradient); the class must hold in EVERY phase, attached
-[MEASURED]. The
+[MEASURED, coarse rung]. The class must hold in EVERY phase, attached: a
+phase whose net folds has no shock-free thrust, so a vote that counts it is
+not a design of the class [PRACTICE]; so held, the phase vote finds no more
+thrust than the time-mean design within the instrument (+3.6e-5 coarse,
+-1e-6 at the fine rung over 12 phases) -- its value on a capped posing is
+the class in every phase [MEASURED, provisional at the walk's segment 8]. The
 corrected shape margin sees such a fold only when the characteristics cross
 (twowall:shape-margin-blind-to-convergence) [MEASURED]. Under a length cap the
 lip's jet never reaches the plug (its first characteristic lands past the

@@ -788,6 +788,15 @@ class TwoWall:
                 out = self._with_sep_margin(out, margin, ph)
             return out
         S_ = A1.Sched("play", sched.d)
+        # the fixed-block margin stack in the SEQUENTIAL replay too (S41
+        # 2026-09-27): the record sets margin["pad"] (_march_record_ctx) but a
+        # fresh margin dict reaching this branch -- the restoration's, the
+        # swirl phases' (no wavefront) -- stacked the net's points into ONE
+        # module per cell count: one 12-phase swirl design step went past the
+        # kernel's mapping cap (twop_mapcap_probe.py 1024 swirl)
+        if margin is not None and self.pad and "pad" not in margin:
+            margin = dict(margin)
+            margin["pad"] = self.pad
         lj_ = ph.get("lip_jet") if getattr(self, "jet", False) else None
         out, _ = plug_march((a, b, c), ph["start"], ph["q_i"], ph["tab"], 1.0, sched=S_,
                             shroud=(d, e, f), wedge_every=self.m_w, margin=margin, x_traced=self.cap > 0.0,

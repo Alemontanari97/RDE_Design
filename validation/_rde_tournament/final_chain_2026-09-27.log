@@ -1,0 +1,12 @@
+chain start 2026-09-27 06:19:57
+pid 47248 exit 0 06:20:48
+pid 47249 exit 0 06:28:48
+pid 47250 exit 0 06:37:03
+pid 47251 exit 0 06:45:00
+pid 47252 exit 0 07:09:21
+pid 47253 exit 0 07:09:21
+pid 47254 exit 0 07:09:21
+pid 47255 exit 0 07:09:21
+evalmerge exit 0 07:09:21
+figure exit 1 07:09:22
+chain end 2026-09-27 07:09:22

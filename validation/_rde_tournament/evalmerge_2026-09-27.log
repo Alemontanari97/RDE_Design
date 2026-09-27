@@ -1,0 +1,9 @@
+== [F3/A1] the RDE tournament: the parallel judges merged [X-RDET] (stage evalmerge) ==
+  [PASS] judge mean: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge family_K12.json: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge family_K24.json: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge family_K12.json+swirl: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge family_K24.json+swirl: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge mean@fine: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+  [PASS] judge family_K12.json@fine: the designs and their provenance agree (['S0', 'S1', 'V1', 'V1m'])
+   record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27.json

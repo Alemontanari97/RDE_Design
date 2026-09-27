@@ -3321,3 +3321,8 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## residui S41 sostituite in loco. Testo uscente, verbatim:
 ## (criterio di regime Fiore 6.1). PROSSIMO: la procedura RDE multi-fase
 ## (validation/ADVISORY_2026-09-26_RDE_multiphase_procedure.md). R-F3-4
+
+## 2026-09-27 (S41 mattina, torneo giudicato): due righe del blocco
+## residui S41 sostituite in loco. Testo uscente, verbatim:
+## stacca due; il voto delle fasi richiede la classe in OGNI fase (V1 in
+## corso). Difetti trovati e chiusi: tabelle troncate sotto 1050 K (prima

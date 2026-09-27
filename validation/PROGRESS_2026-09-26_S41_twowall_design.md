@@ -469,9 +469,12 @@ of the posing's P0 A*; T-4 one phase = the posing bitwise; T-6 the replay's adjo
 4.5e-3); TWOP_MU_CLASS = where the fold class is read (ref = the time-mean state only; all = every phase, a KS
 soft-min over the phases); TWOP_SWIRL = every phase's FREE VORTEX (Gamma = y_mid v, the table at the total
 stagnation state, the five swirl cells of `a1_swirl_march.swirl_cells_2w`: SW-1 the two-wall radial-equilibrium duct
-preserved to 1.7e-14, SW-2 Gamma = 0 bitwise, SW-3 alive: -2.82e-3 on the cut Stechmann pair's 12-phase C_F, SW-4 the swirl replay = the record, adjoint vs FD rel 2.1e-4); TWOP_JET (item E); TWOP_SEP / TWOP_SEP_CLASS (item F); TWOP_U0_S (the shroud's own end), TWOP_START=F.
+preserved to 1.7e-14, SW-2 Gamma = 0 bitwise, SW-3 alive: -2.85e-3 on the cut Stechmann pair's 12-phase C_F, SW-4 the swirl replay = the record and its adjoint
+inside the central-difference LADDER's band (the knot derivative is 5e-5 with the swirl and the closure: one step of
+1e-5 misses it by 4 percent in truncation, 1e-6 by 3.5e-3, with or without the closure -- `twop_sw4_kink_probe.py`),
+SW-5 the swirl phases' margin replayed sequentially = the record's inside the Newton tolerance over the smallest leg); TWOP_JET (item E); TWOP_SEP / TWOP_SEP_CLASS (item F); TWOP_U0_S (the shroud's own end), TWOP_START=F.
 Gates of record: `_rde_tournament/gates_2026-09-27.log` 9/9 (T-0 .. T-7; T-7 = the table box: every phase's coldest state
-above T_tab[0] -- 745.6 .. 1109.4 K, where the builder's 1050 K edge would clamp 10 of the 12 phases), `swirlgates_2026-09-27.log` 4/4,
+above T_tab[0] -- 745.6 .. 1109.4 K, where the builder's 1050 K edge would clamp 10 of the 12 phases), `swirlgates_2026-09-27.log` 5/5,
 `jetgates_2026-09-27.log` 5/5, `sepgates_2026-09-27.log` 3/3; the lip-jet oracle [X-LJET] 9/9; the wavefront replay
 WF-1..4 (`a1_twowall.py` stage wavefront: WF-4 the row padding of item G bitwise).
 
@@ -486,6 +489,18 @@ Stechmann P0 A*; the mixture specific impulse on the Q2D mass flow). The Stechma
 | 12 phases + swirl | 1.373383 | 1.373061 | -3.2e-4 |
 | 24 phases + swirl | 1.371726 | 1.371512 | -2.1e-4 |
 
+The PAIRED REFINEMENT (the same designs re-marched at the fine rung (280, 61), `_rde_tournament/eval_fine_S0S1_2026-09-27
+.json`; M0 S41 item (1): a coarse difference counts only if it survives it):
+
+| judge, fine rung | S0 | S1 | S1 - S0 (coarse) |
+|------------------|----|----|------------------|
+| time-mean state | 1.445830 | 1.445958 | +1.3e-4 (+6.0e-4) |
+| 12 phases | 1.375898 | 1.375674 | -2.2e-4 (-1.4e-4) |
+
+S1's gain at its own state shrinks to a fifth, and at the fine rung S1 FOLDS at its own state too (1 of 1 out of the
+class: the lip compression's focus resolved inside the walls); its loss under the phases survives and grows. S0's
+coarse bias: -2.9e-4 (mean) and -3.4e-4 (12 phases).
+
 READING (Stechmann designs). (1) The time-mean state OVERSTATES the nozzle: the 12-phase judge gives the cut pair
 C_F 1.3762 against 1.4461 (-4.8 percent) and the nozzle's gain over the bare exit 0.1367 against 0.1545 (-11.5
 percent); K 24 moves the 12-phase numbers by -1.4e-3 (the binning's own error), the swirl by -2.9e-3 more. (2) The
@@ -494,17 +509,55 @@ downstream, mid-channel (70 / 86 inverted cells; `RDE/handoff/f3_2026-09-25/twop
 other phase keeps +0.50. (3) A walk on the time-mean state (S1, 16 x 6, 1221 s: +0.041 percent there, lip raised,
 p_lip 1.06 -> 1.32 p_a) is WORSE under every phase judge: its lip recompression puts a compression focus just past
 the exit AT the time-mean state (its class reads +0.51) that moves 0-3 mm inside the nozzle in EVERY other phase --
-all 12 fold, 1-4 cells each, bow-tie crossings near the lip (`twop_lip_cells_probe.py`) -- and phase 10's march
+all 12 fold: phases 0-9 with 1-4 inverted cells at the lip (bow-tie crossings among them, probed in phases 2 and 8,
+`twop_lip_cells_probe.py`), phases 10-11 on top of their own folds (76 / 85 cells) -- and phase 10's march
 loses certification (62x); at the design ambient phases 7 and 8 detach (Summerfield margins -0.005 / -0.139; the
 pair's own phase 8 sits at +0.025). The shape margin cannot warn of such a fold: it reads the sine of the angle
 between the families until the characteristics cross (finding twowall:shape-margin-blind-to-convergence). (4) The
 phase view of the exit: the lips range 0.36-1.97 p_a on the pair (the low-pressure phases carry a lip shock in the
 jet), the coldest states 746-1109 K. (5) The phases voting: with the class read at the time-mean state only (V1m)
-the walk took no step in its first segment (its checkpoint = the start value): its start ladder found a phase's
-march uncertified 1.4 mm along the gradient (23.6x on the walk's own ladder; the same point re-marched on the corrected
-closure: 1.07, in phase 2, `twop_v1m_ladder_probe.py`), so its trust region starts below the class scale of the
-single-state walk (tr0 2.5e-4 m against 1.0e-3 m); the operative posing is V1, every phase shock-free
+the start ladder finds a phase's march uncertified 1.4 mm along the gradient (23.6x on the walk's own ladder; the
+same point re-marched on the corrected closure: 1.07, in phase 2, `twop_v1m_ladder_probe.py`), so the trust region
+starts at 2.5e-4 m (the single-state walk: 1.0e-3 m). [CORRECTED the same night: a first reading said V1m "took no
+step in two segments" -- a misreading of the checkpoints: a segment's trial is judged at the NEXT segment's base and
+each V1m run was interrupted before that (the mapping cap, the padding restart, a stop on that very misreading); no
+V1m trial had been judged; the walk was resumed.] The class must hold in every phase on PRINCIPLE: a phase whose net
+folds has no shock-free thrust (the march sums a multi-valued net), so a vote that counts it is not a design of the
+class; the operative posing is V1, every phase shock-free
 AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), and V1s = V1 with the swirl (state in H).
+
+D2. THE TOURNAMENT'S TABLE (stage eval with the seven judges in parallel + evalmerge, `_rde_tournament/eval_2026-09-27
+.json`; V1 and V1m judged at their CHECKPOINTS, segments 8 and 7 of 16, the walks still running -- PROVISIONAL, the
+landing's table replaces it in the next commit). C_F in units of the Stechmann P0 A*, p_a 0.05 bar, Summerfield;
+then the phases out of the fold class / with a detached wall / uncertified:
+
+| judge | S0 | S1 | V1m (seg 7) | V1 (seg 8) |
+|-------|----|----|-------------|------------|
+| time-mean state | 1.446124 | 1.446724 | 1.446129 | 1.446142 |
+| 12 phases | 1.376235 | 1.376099 | 1.376238 | 1.376271 |
+| 24 phases | 1.374853 | 1.374727 | 1.374856 | 1.374884 |
+| 12 phases + swirl | 1.373383 | 1.373061 | 1.373383 | 1.373356 |
+| 24 phases + swirl | 1.371726 | 1.371512 | 1.371731 | 1.371686 |
+| time-mean state, fine (280, 61) | 1.445830 | 1.445958 | 1.445830 | 1.445795 |
+| 12 phases, fine (280, 61) | 1.375898 | 1.375674 | 1.375898 | 1.375897 |
+| 12 phases: folded / detached / uncertified | 2 / 0 / 0 | 12 / 2 / 1 | 2 / 0 / 0 | 0 / 0 / 0 |
+| 24 phases | 5 / 1 / 0 | 19 / 3 / 0 | 5 / 1 / 0 | 1 / 0 / 1 |
+| 12 phases + swirl | 4 / 3 / 0 | 5 / 3 / 2 | 2 / 3 / 0 | 0 / 3 / 2 |
+| 24 phases + swirl | 8 / 7 / 1 | 10 / 7 / 1 | 5 / 7 / 1 | 1 / 6 / 0 |
+| 12 phases, fine | 2 / 0 / 0 | 12 / 2 / 0 | 2 / 0 / 0 | 0 / 0 / 1 |
+
+READING (provisional). (1) THE PHASES VOTING FIND NO MORE THRUST THAN THE INSTRUMENT RESOLVES on this capped posing:
+V1 beats S0 by +3.6e-5 over 12 phases at the coarse rung and by -1e-6 at the fine rung -- the time-mean design, once
+its two post-wave folds are removed, is the phase vote's optimum within the coarse bias (T3's argument survives the
+mild per-phase variation of gamma and M here). (2) What the vote DOES deliver is the class in every phase: V1 is
+shock-free, attached and certified in all 12 phases of its judge, S0 folds in 2, S1 in all 12 with 2 detached. (3) The
+class holds for the bins it was designed on: 24 bins expose one folded, uncertified sector (the most extreme
+post-wave state); the swirl detaches three low-pressure phases of every design (the free vortex lowers the plug-side
+pressure); the fine rung leaves one phase at a certificate above 1 -- each a measured limit of the 12-bin,
+swirl-free, coarse design. (4) Off design (12 phases, Summerfield; `offdesign_2026-09-27.json`, figure 30 panel d) V1 trades a
+little of the low ambient for the high one: -1.3e-4 against S0 at 0.02 bar, +1.1e-4 .. +4.3e-4 from 0.15 to 0.4 bar,
+and it detaches fewer phases at 0.25 / 0.30 bar (9 / 11 against 11 / 12) -- it expands slightly less (its lip at
+1.16 p_a against 1.06 on the time-mean state).
 
 E. THE FREE JET (`a1_plug_march.plug_march(lip_jet=...)`, `validation/a1_lipjet.py` [X-LJET] + `lipjet_cases.json`):
 at the lip F a centred Prandtl-Meyer fan from the lip speed to the ambient speed (Gauss-Legendre on the tabulated
@@ -573,12 +626,17 @@ gates' harness (E).
 H. STATE AT THE FIRST COMMIT OF THIS SECTION (2026-09-27, ~05:00). V1 -- the phases voting with every phase
 shock-free AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1, K 12, the tournament's posing, T start = S0) -- is in
 its restoration: the pair starts out of that class by the two post-wave folds (KS -0.657 against the floor 0.2351);
-step 1 raised the soft KS -1.270 -> -1.159. Its landing, the eval and the off-design sweep of it follow in a
-follow-up commit. V1m (the class at the time-mean state only) stopped after two segments without an accepted step
-(its log says so). V1s (V1 with the swirl) died of the mapping cap in its first restoration step: the swirl phases
-replay SEQUENTIALLY (no wavefront kinds for the swirl cells) and each phase's swirl solver carries its circulation as
-a compiled constant (a solver set per phase); the swirl design needs the swirl cells in the wavefront replay with the
-circulation as a parameter -- the next engineering step for the meridional problem, not done here. The swirl JUDGES
+two restoration steps (3.6e-4 then 1.8e-4 m along the soft-KS gradient, 10 records) put it IN CLASS in every phase
+(KS +0.2598, the binding entry a separation margin +0.025 -- the low-pressure phase 8) with C_F 1.376236 (+1.4e-6
+over S0): the post-wave folds of the Stechmann pair are MARGINAL, a sub-millimetre wall change removes them. The
+walk then started (Newton metric: asymmetry 4.59, floor 18.4; |grad| 8.6e-3). Its landing, the eval and the off-design sweep of it follow in a
+follow-up commit. V1m (the class at the time-mean state only) was resumed after the checkpoint misreading of D
+(its log carries the correction). V1s (V1 with the swirl) died of the mapping cap in its first restoration step:
+the swirl phases replay SEQUENTIALLY (no wavefront kinds for the swirl cells) and that branch did not pad the margin
+stack for a fresh margin dict (one module per cell count; fixed the same night, gate SW-5). Measured after the fix
+(`twop_mapcap_probe.py 1024 swirl`): one 12-phase swirl design step (record + J and margin gradients) +36089 mappings,
+the next +15 -- bounded -- but 22-25 min per step, so a swirl WALK (hours per segment) waits for the swirl cells in
+the wavefront replay with the circulation as a parameter: the next engineering step for the meridional problem. The swirl JUDGES
 run (the designs above are all judged with their swirl). Figure 30 `_rde_tournament/figs/30_rde_tournament.png`
 (generator `RDE/handoff/f3_2026-09-25/twop_rde_tournament_fig.py`, untracked like figures 26-29): (a) the 12 sectors'
 P0, M_x, v; (b) the walls against S0; (c) per-phase C_F against S0 under the 12-phase judge; (d) off design, 12
@@ -817,3 +875,10 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   off-design logs and JSONs, the aborted walks' logs in their subfolders), `_lipjet/run_2026-09-27.log`,
   `_twowall/wavefront_K140_N31_2026-09-27.json`; the Q2D extract `.npz` (500 kB) and figure 30
   untracked. The V1 landing and its judgement follow in a follow-up commit.
+- Follow-up commit (2026-09-27 morning): the tournament JUDGED (section 3sexies D2, provisional at V1's segment 8:
+  the seven judges in parallel, `TOUR_JUDGE` + stage evalmerge; the fine-rung judges `@fine`; the per-phase lip
+  pressure, separation margin and coldest state in stage eval; the design loader reading a running walk's
+  checkpoint); corrections written where the first commit had them: V1m's "no step" (a checkpoint misreading),
+  "1-4 cells each" (phases 0-9 only), the swirl walk's cause (the sequential replay's unpadded margin stack, fixed in
+  `a1_twowall._replay_out`, gate SW-5); SW-4 on the central-difference ladder; the Q2D figure 30 regenerated
+  (untracked). V1's landing replaces the provisional table in the next commit.
