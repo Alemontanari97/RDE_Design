@@ -385,4 +385,20 @@ meridional problem, the free jet, the separation). What stands against the stage
 - STAGE 3: the free jet after the lip is built and gated ([X-LJET]); under the length cap it never reaches the
   plug, so the "shorten / lengthen" votes of the tail phases act through the lip only; separation is priced by
   a free-shock closure (Summerfield / Schmucker) or held out by the class (TWOP_SEP_CLASS).
-- STAGE 4 (the referee) not started.
+- STAGE 4 (the referee): the nozzle-only 3D case with the Q2D inlet (7.1) is its affordable form; not run yet.
+
+### 7.1 The referee, as the owner fixed it (2026-09-27 morning)
+
+The two design methods each emit a profile; a THIRD runner, independent of both, computes the
+wall pressure (the owner: "sono due metodi di design"). Our two-wall march is not that runner: it
+is the SQP's own engine (the phase-voting design is tuned to its class) and a shock-free MOC that
+sums a multi-valued net where a phase folds. The contest: S0 = Stechmann's pair for the time-mean
+state (inlet fixed there, attached at 0.05 bar) against V1 = the tournament design (every phase
+shock-free and attached), both truncated at 86.95 mm (80 percent of Stechmann's plug, a chosen
+length, not an optimum). Two runners built (RDE/THOR/THOR_GPU/NOZZLE_2026-09-27, S41 log 3septies):
+the REDUCED one -- a 2D axisymmetric wedge per phase in MOSE_open, Euler, the phase's state on a
+supersonic inlet, with a LOCAL separation sub-model (Summerfield / Schmucker on the computed wall
+pressure, p_a downstream) -- and the 3D one -- the nozzle alone (no chamber, 3.24 M cells) with the
+Q2D exit snapshot rotating at the measured wave speed on the inlet plane (MOSE bc 410), the Stage-4
+referee of section 3 made affordable. The MOC's per-phase numbers remain the design-side
+diagnostics.

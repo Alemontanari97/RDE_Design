@@ -647,6 +647,109 @@ run (the designs above are all judged with their swirl). Figure 30 `_rde_tournam
 P0, M_x, v; (b) the walls against S0; (c) per-phase C_F against S0 under the 12-phase judge; (d) off design, 12
 phases, Summerfield, against S0 and the bare exit.
 
+## 3septies. The independent referee (the owner, 2026-09-27 morning)
+THE OWNER'S WORDS, in order: "fare un comparison tra stechmann sempre attaccato e la nostra run sqp non è molto
+fair. I due metodi devono produrre un profilo che viene percorso indipendentemente da un terzo runner che calcola
+la pressione. Questo perchè sono due metodi di design"; "Sarebbe anche il caso di trovare una maniera ridotta per
+fare questa valutazione, come sottomodelli della separazione locale"; "risolvi questa cosa e prepara due mesh 3D";
+"22 milioni di celle è esagerato"; "la camera non mesharla, la mesh parte da una soluzione rde sulla parete di
+entrata e comprende solo l'ugello"; "quello che testeremo è un ugello alla stechmann (con l'entrata fissa allo
+stato medio) vs il nostro ottimizzato col torneo (tutti e due devono tenere in conto delle separazioni e devono
+essere troncati ad un valore da te scelto di lunghezza)".
+
+A. THE FLAW OF SECTION 3sexies' JUDGE. The tournament's judge was our own two-wall march with the Summerfield
+closure: the engine the SQP optimises against (V1 is tuned to the judge's class, S0 is not) and a shock-free MOC
+that sums a multi-valued net where a phase folds (S0 was judged on 2 folded phases). Twice biased toward our
+method. The per-phase MOC numbers stay the DESIGN-side diagnostics; the verdict belongs to a runner independent
+of both methods, shock-capturing, with separation modelled and not closed by a formula: CFD.
+
+B. THE CONTEST AS THE OWNER FIXED IT. S0 = Stechmann's method: GENO's perfect pair for the theta-mean (time-mean)
+state of the Q2D exit, its inlet FIXED at that state, attached at its design point (Summerfield margin +2.0 at
+0.05 bar), cut at the chosen length; V1 = our tournament: the 12 phases voting, every phase shock-free AND attached
+(TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), the same length. The length: 86.95 mm = 80 percent of Stechmann's plug (the
+tournament's cap). Reason: past it the plug still yields 2.6e-5 of C_F per mm over the 12 phases (the 22 mm to the
+full plug are worth 1.3e-4 in all, `twop_ends_probe.py`) and the shroud's end yields nothing (its slope is ~0
+there); a convenient truncation, not an optimum -- the chain re-runs at 60-70 percent unchanged. Both walls end
+together because the posing pins both ends at the one cap (S41 step 2, the owner's rule) and, at this ambient, the
+shroud is length-indifferent; a plug longer than the shroud is computable now (the jet), a shroud longer than the
+plug is not (the wake behind the tip is not a boundary of the march).
+
+C. THE REDUCED EVALUATION (2D axisymmetric, per phase). `RDE/THOR/THOR_GPU/NOZZLE_2026-09-27/run_wedge_phase.py`:
+a 1-degree wedge of the nozzle alone (the meridional mesh of the 3D generator, 47 x 32 cells, 2 cells in theta,
+rotational periodicity 200), the phase's inlet state on a 405 supersonic inlet (M, static T and p from the
+sector's (gamma, M, T0, P0) of `family_K12.json`, the sector's composition from the Q2D exit; `phases_405.json`),
+Euler, ONERA-7 (finite-rate or frozen), slip walls, the ambient at 0.05 bar at rest, MOSE_open (CPU, 3 ranks x 8
+threads) time-accurate to 1 ms (18 flow-throughs). Post (`post_wedge.py`): the wall pressure on plug and shroud,
+C_F in the p_a gauge with the MOC's own definition, shocks (rises > 5 percent), and the LOCAL SEPARATION SUB-MODEL:
+Summerfield (p_w < 0.35 p_a) or Schmucker on the computed wall pressure gives the separation point, downstream of
+which the wall is credited p_a (free-shock separation open to the ambient -- the same convention as the MOC
+closure, now on a shock-capturing pressure). Frozen chemistry runs a phase in 1.25 min; finite-rate in 22 min
+(RADAU5 per cell as the plume forms); phase 0 frozen vs reacting differ by 1.2e-3 in C_F (0.06 percent).
+Found and worked around: MOSE_open's [MOSE-Probes] section kills a time-accurate run at step 1 (NaN, then an
+integer divide by zero) -- probes off; the binary takes 32 OpenMP threads per rank when OMP_NUM_THREADS is unset
+(load 220 on 96 cores) -- pinned to 8.
+| phase | S0 CFD | S0 MOC | V1 CFD | V1 MOC | CFD/MOC - 1 | separation (Schmucker) |
+|---|---|---|---|---|---|---|
+| 0 | 2.15685 | 2.16307 | 2.15660 | 2.16290 | -0.29 % | none |
+| 1 | 1.64608 | 1.65089 | 1.64593 | 1.65086 | -0.29 % | none |
+| 2 | 1.22086 | 1.22464 | 1.22081 | 1.22477 | -0.31 % | none |
+| 3 | 0.93748 | 0.94055 | 0.93749 | 0.94072 | -0.33 % | none |
+| 4 | 0.75529 | 0.75788 | 0.75534 | 0.75807 | -0.34 % | none |
+| 5 | 0.69321 | 0.69565 | 0.69328 | 0.69585 | -0.35 % | none |
+| 6 | 0.55585 | 0.55791 | 0.55595 | 0.55810 | -0.37 % | none |
+| 7 | 0.46356 | 0.46537 | 0.46369 | 0.46557 | -0.39 % | none |
+| 8 | 0.39441 | 0.39611 | 0.39455 | 0.39625 | -0.43 % | plug 181 / shroud 167 mm (both designs) |
+| 9 | 2.32911 | 2.33497 | 2.32878 | 2.33501 | -0.25 % | none |
+| 10 | 2.81997 | 2.82780 | 2.81956 | 2.82753 | -0.28 % | none |
+| 11 | 2.48747 | 2.49451 | 2.48714 | 2.49430 | -0.28 % | none |
+| **12-phase average** | **1.372132** | 1.376235 | **1.372048** | 1.376283 | -0.30 % | Schmucker credit +1.5e-04 / +1.4e-04 |
+
+READING OF THE REFEREE (2D axisymmetric Euler per phase, frozen chemistry, the same 12 states both designs were
+judged on; `CASE_2D/batch_frozen_table.json`, figure `CASE_2D/batch_frozen.png`): (1) the CFD sits 0.28-0.31
+percent BELOW the MOC in every phase for both designs -- the coarse 2D discretisation (47 x 32, MINMOD) against the
+MOC's own coarse bias (+2.9e-4 over the 1-D ideal in the S41 gates), a systematic offset that cancels in the
+comparison; (2) NO shock and NO separation in any phase for either design at 0.05 bar (Summerfield never
+triggers; Schmucker flags only the lowest-pressure phase 8 at the last cells of both walls, where p_w falls to
+0.9 p_a: +1.8e-3 on that phase, +1.5e-4 on the average, identical for the two designs); (3) V1 - S0 = -8.4e-5 by
+the referee against +4.8e-5 by the MOC: the two designs differ by less than the referee resolves, in either
+direction -- the tournament's conclusion "no more thrust than the instrument resolves" stands under an
+independent runner; (4) reacting vs frozen chemistry on phase 0: +1.2e-3 (0.06 percent), the frozen batch is the
+one of record (1.25 min per phase against 22). The 3D nozzle-only runner is built but not run.
+
+
+D. THE 3D REFEREE, NOZZLE ONLY. The first build attached the two nozzles to the THOR coarse-ambient v2 chamber
+(chamber + injector verbatim, point-matched, 22.3 M cells; then 13.7 M with the new blocks at 0.4 degree and a
+1:2 theta chimera at the chamber exit) -- the owner: too many cells, and no chamber at all: the mesh starts from an
+RDE solution on the inlet plane. Those meshes, bc and ICs were deleted; the generator keeps both modes.
+`gen_nozzle_mesh.py --nozzle-only`: 10 sectors x {Ambient, Nozzle, Outer}, 30 blocks, 3.24 M cells (channel 47 x
+32 x 90 per sector, dx 1.85 mm, dr 0.44 -> 1.55 mm, 0.4 degree; the exhaust beside the shroud to r 160 mm and
+150 mm downstream, the plug base a wall, a 5 mm slip sting for the polar axis); every interface a 101 connection.
+bc (`build_bc_thor_nozzle.py`): the inlet = MOSE's 410 "mapped state from a time-varying file, periodic" -- the
+Q2D THOR_CAv3 exit snapshot rotated at the wave speed (T0), `q2d_inlet.py`: period 235.5 us (4246 Hz) and the
+travel direction (toward decreasing theta) MEASURED on the Q2D wall probes (lags 47.0 / 94.5 us between probes
+84.6 / 169.1 mm apart, expected 47.1 / 94.2), 181 samples per period (2 degrees), no radial variation (the Q2D has
+none); the IC = the snapshot at t = 0 extruded along the channel, the exhaust at rest at 0.05 bar. Walls slip
+(300), ambient 407 at 0.05 bar. Cases `CASE_3D/nozzle3d_S0`, `nozzle3d_V1` complete (mesh, bc, inlet410 1.6 GB,
+ic 1.4 GB, ONERA-7 kit, input.ini: Euler, frozen, cfl 0.6, 3 periods, a field every quarter period). Smoke test
+(MOSE_open, 10 ranks, 30 steps): the 410 data load and map on every rank, 3 238 200 cells, dt ramping to 7.7e-8 s
+(~3000 steps per lap) -- then a SIGSEGV on 4 ranks at the run's end (the solution write with 10 ranks: to be
+isolated; the wedge cases write cleanly on 3 ranks). NOT launched in production: the owner's call (GPU MOSE_GPU
+has the 410 too, `IO_BC_Open.f90`). Mesh screenshots: figure `MESH/nozzle3d_*_mesh.png`, artifact
+https://claude.ai/artifact/5GtezfynUut8BJ14d17oxw.
+Geometric fact recorded: the THOR chamber's hub reaches its exit at -17.5 degrees (the boat-tail flare) while both
+profiles start axial -- a 17-degree concave corner if the nozzle is attached to the chamber; the nozzle-only case
+has no corner, but its Q2D inlet carries no radial inclination: a limit of the datum, equal for both contestants.
+
+E. THE OWNER'S REDIRECTION (14:55): "cerchiamo il plug ottimo di stechmann e sqp invece dello shroud ... ottimo con
+lo stato di stechmann (usando i metodi classici tipo rao ecc) vs ottimo di sqp con lo stato effettivo in output
+dell'rde. Quindi non shrouded, semplice plug." The contest moves to SIMPLE PLUGS (external expansion from the
+cowl lip at the inlet radius, the free jet at p_a, no shroud): A = the classical ideal plug for Stechmann's
+time-mean state (Rao / Angelino: the [X-AFAN] inverse-march construction or GENO's plug member), truncated; B =
+the SQP plug with the 12 phases voting (the [X-PSPL] free-form spike carrier, single-state today: the phase loop
+of TWOP_MU to be ported), the same truncation, the base at a declared closure (N2 rows), separation by the class.
+Tooling in place for it: the single-wall plug march with the axisymmetric lip fan, the PSPL walker, the two
+referees (the plug-only mesh topology is a simplification of the nozzle-only one). Not started in this window.
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
@@ -892,3 +995,7 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   parallel, merge, figure 30) re-run on the records; D2's table and reading replace the provisional ones everywhere
   they were written (X-RDET, M0 item (5), advisory section 7, PROGRESS block + archive, handoff section 14). The
   per-judge JSONs, the provisional chain log and the walks' Hessian scratch folders removed (reproducible).
+- Referee commit (2026-09-27 afternoon, section 3septies): records only in this repo (log, advisory 7.1, X-RDET
+  statement); the carriers, meshes, cases and results live in `RDE/THOR/THOR_GPU/NOZZLE_2026-09-27/` (README.md
+  there) and the probes in `RDE/handoff/f3_2026-09-25/` (twop_ends_probe, twop_shroud_cut_probe). The shrouded
+  contest is closed by the referee at "indistinguishable"; the plug contest opens next.
