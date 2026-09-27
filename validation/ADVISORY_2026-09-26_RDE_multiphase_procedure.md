@@ -379,9 +379,9 @@ meridional problem, the free jet, the separation). What stands against the stage
   other phase and detaches two; the class over ALL phases is the operative one (a folded phase has no shock-free
   thrust), and the two post-wave phases fold in the Stechmann pair itself -- marginally: two restoration steps
   (sub-millimetre) put every phase in class. The V1 walk (every phase shock-free and
-  attached; provisional, at its segment-8 checkpoint) finds no more thrust than the instrument resolves (+3.6e-5
-  coarse, -1e-6 fine over 12 phases) but holds the class in all 12 phases -- the vote's value on this posing is the
-  class, not the thrust (S41 log 3sexies D2).
+  attached, 16 x 6 segments) finds no more thrust than the instrument resolves (+4.8e-5 coarse, +5.9e-6 fine over
+  12 phases) but holds the class in all 12 phases -- the vote's value on this posing is the class, not the thrust
+  (S41 log 3sexies D2); 24 bins, the swirl and the fine rung mark the next rungs of the vote.
 - STAGE 3: the free jet after the lip is built and gated ([X-LJET]); under the length cap it never reaches the
   plug, so the "shorten / lengthen" votes of the tail phases act through the lip only; separation is priced by
   a free-shock closure (Summerfield / Schmucker) or held out by the class (TWOP_SEP_CLASS).

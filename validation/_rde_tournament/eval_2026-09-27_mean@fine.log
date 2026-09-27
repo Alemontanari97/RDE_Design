@@ -1,7 +1,7 @@
 == [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
-   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (checkpoint after 8 segments (walk running)); V1m (checkpoint after 7 segments (walk running)); closure summerfield; p_a 0.050 bar
+   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (record); V1m (record); closure summerfield; p_a 0.050 bar
    mean@fine              S0  C_F 1.445830 (gain over no nozzle +0.15419); F 896.32 N, Isp 201.50 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.166), 0 out of the table box (T_min 959 K); lip p/p_a 1.06 .. 1.06
    mean@fine              S1  C_F 1.445958 (gain over no nozzle +0.15432); F 896.39 N, Isp 201.51 s; phases: 1 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.239), 0 out of the table box (T_min 946 K); lip p/p_a 1.31 .. 1.31
-   mean@fine              V1m C_F 1.445830 (gain over no nozzle +0.15419); F 896.32 N, Isp 201.50 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.556), 0 out of the table box (T_min 957 K); lip p/p_a 1.06 .. 1.06
-   mean@fine              V1  C_F 1.445795 (gain over no nozzle +0.15416); F 896.29 N, Isp 201.49 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0478), 0 out of the table box (T_min 952 K); lip p/p_a 1.16 .. 1.16
+   mean@fine              V1m C_F 1.445833 (gain over no nozzle +0.15420); F 896.32 N, Isp 201.50 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0577), 0 out of the table box (T_min 955 K); lip p/p_a 1.08 .. 1.08
+   mean@fine              V1  C_F 1.445795 (gain over no nozzle +0.15416); F 896.29 N, Isp 201.49 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.116), 0 out of the table box (T_min 949 K); lip p/p_a 1.16 .. 1.16
    record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27_mean@fine.json

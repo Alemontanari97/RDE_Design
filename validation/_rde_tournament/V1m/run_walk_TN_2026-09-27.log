@@ -155,3 +155,11 @@ LLVM ERROR: Unable to allocate section memory!
     [seg 13] backtrack 1/2 (step 3.562e-03): J = 1.37624824e+00 cert = 0.180 -> worse
     [seg 13] backtrack 1/4 (step 1.781e-03): J = 1.37625228e+00 cert = 0.720 -> worse
     [seg 13] backtrack 1/8 (step 8.905e-04): J = 1.37625329e+00 cert = 0.480 -> worse
+    [seg 13] backtrack 1/16 (step 4.453e-04): J = 1.37625354e+00 cert = 0.476 -> worse
+    [seg 13] ascent 1/2 (step 2.429e-03): J = 1.37627600e+00 cert = 0.747 -> ACCEPT
+    [seg 13] restoration ACCEPTED -> base, radius -> 2.429e-03
+    backtracking: 29 probes, 2 accepted along the segment, 2 accepted on the ascent; 11 records
+   return: C_F 1.376253619 (start 1.376234801, reference 1.371216918, 1-D 1.593085), cert 9.207e-01, KS +0.5035 (in class), |grad|inf 2.520e-02; gap to the reference plug 3.356e-02 / shroud 9.280e-03 m (start 3.356e-02 / 9.302e-03); 11 records, 10113 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 1.2787 -> 1.2787 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 3.52959e-02, exit free: lip): heights tip 0.4865 -> 0.4865, lip 1.2163 -> 1.2162; A_e/A_i 3.3331 -> 3.3321; wall pressure at the tip / lip over p_a 0.888 / 0.711 -> 0.869 / 0.728
+   record: _rde_tournament/V1m/walk_TN_2026-09-27.json

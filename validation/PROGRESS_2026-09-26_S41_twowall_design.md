@@ -489,8 +489,8 @@ Stechmann P0 A*; the mixture specific impulse on the Q2D mass flow). The Stechma
 | 12 phases + swirl | 1.373383 | 1.373061 | -3.2e-4 |
 | 24 phases + swirl | 1.371726 | 1.371512 | -2.1e-4 |
 
-The PAIRED REFINEMENT (the same designs re-marched at the fine rung (280, 61), `_rde_tournament/eval_fine_S0S1_2026-09-27
-.json`; M0 S41 item (1): a coarse difference counts only if it survives it):
+The PAIRED REFINEMENT (the same designs re-marched at the fine rung (280, 61): the '@fine' judges of
+`_rde_tournament/eval_2026-09-27.json`; M0 S41 item (1): a coarse difference counts only if it survives it):
 
 | judge, fine rung | S0 | S1 | S1 - S0 (coarse) |
 |------------------|----|----|------------------|
@@ -527,37 +527,41 @@ class; the operative posing is V1, every phase shock-free
 AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), and V1s = V1 with the swirl (state in H).
 
 D2. THE TOURNAMENT'S TABLE (stage eval with the seven judges in parallel + evalmerge, `_rde_tournament/eval_2026-09-27
-.json`; V1 and V1m judged at their CHECKPOINTS, segments 8 and 7 of 16, the walks still running -- PROVISIONAL, the
-landing's table replaces it in the next commit). C_F in units of the Stechmann P0 A*, p_a 0.05 bar, Summerfield;
-then the phases out of the fold class / with a detached wall / uncertified:
+.json`, the walks' RECORDS: V1 16 x 6 in 13703 s, V1m 16 x 6; a provisional table at V1's segment 8 was committed in
+7abddeb and is replaced here). C_F in units of the Stechmann P0 A*, p_a 0.05 bar, Summerfield; then the phases out of
+the fold class / with a detached wall / uncertified:
 
-| judge | S0 | S1 | V1m (seg 7) | V1 (seg 8) |
-|-------|----|----|-------------|------------|
-| time-mean state | 1.446124 | 1.446724 | 1.446129 | 1.446142 |
-| 12 phases | 1.376235 | 1.376099 | 1.376238 | 1.376271 |
-| 24 phases | 1.374853 | 1.374727 | 1.374856 | 1.374884 |
-| 12 phases + swirl | 1.373383 | 1.373061 | 1.373383 | 1.373356 |
-| 24 phases + swirl | 1.371726 | 1.371512 | 1.371731 | 1.371686 |
-| time-mean state, fine (280, 61) | 1.445830 | 1.445958 | 1.445830 | 1.445795 |
-| 12 phases, fine (280, 61) | 1.375898 | 1.375674 | 1.375898 | 1.375897 |
+| judge | S0 | S1 | V1m | V1 |
+|-------|----|----|-----|----|
+| time-mean state | 1.446124 | 1.446724 | 1.446150 | 1.446149 |
+| 12 phases | 1.376235 | 1.376099 | 1.376254 | 1.376283 |
+| 24 phases | 1.374853 | 1.374727 | 1.374871 | 1.374896 |
+| 12 phases + swirl | 1.373383 | 1.373061 | 1.373386 | 1.373362 |
+| 24 phases + swirl | 1.371726 | 1.371512 | 1.371733 | 1.371692 |
+| time-mean state, fine (280, 61) | 1.445830 | 1.445958 | 1.445833 | 1.445795 |
+| 12 phases, fine (280, 61) | 1.375898 | 1.375674 | 1.375904 | 1.375904 |
 | 12 phases: folded / detached / uncertified | 2 / 0 / 0 | 12 / 2 / 1 | 2 / 0 / 0 | 0 / 0 / 0 |
-| 24 phases | 5 / 1 / 0 | 19 / 3 / 0 | 5 / 1 / 0 | 1 / 0 / 1 |
-| 12 phases + swirl | 4 / 3 / 0 | 5 / 3 / 2 | 2 / 3 / 0 | 0 / 3 / 2 |
-| 24 phases + swirl | 8 / 7 / 1 | 10 / 7 / 1 | 5 / 7 / 1 | 1 / 6 / 0 |
-| 12 phases, fine | 2 / 0 / 0 | 12 / 2 / 0 | 2 / 0 / 0 | 0 / 0 / 1 |
+| 24 phases | 5 / 1 / 0 | 19 / 3 / 0 | 5 / 0 / 0 | 2 / 0 / 1 |
+| 12 phases + swirl | 4 / 3 / 0 | 5 / 3 / 2 | 2 / 3 / 0 | 0 / 3 / 1 |
+| 24 phases + swirl | 8 / 7 / 1 | 10 / 7 / 1 | 5 / 7 / 0 | 2 / 6 / 1 |
+| 12 phases, fine | 2 / 0 / 0 | 12 / 2 / 0 | 3 / 0 / 1 | 1 / 0 / 1 |
 
-READING (provisional). (1) THE PHASES VOTING FIND NO MORE THRUST THAN THE INSTRUMENT RESOLVES on this capped posing:
-V1 beats S0 by +3.6e-5 over 12 phases at the coarse rung and by -1e-6 at the fine rung -- the time-mean design, once
-its two post-wave folds are removed, is the phase vote's optimum within the coarse bias (T3's argument survives the
-mild per-phase variation of gamma and M here). (2) What the vote DOES deliver is the class in every phase: V1 is
-shock-free, attached and certified in all 12 phases of its judge, S0 folds in 2, S1 in all 12 with 2 detached. (3) The
-class holds for the bins it was designed on: 24 bins expose one folded, uncertified sector (the most extreme
-post-wave state); the swirl detaches three low-pressure phases of every design (the free vortex lowers the plug-side
-pressure); the fine rung leaves one phase at a certificate above 1 -- each a measured limit of the 12-bin,
-swirl-free, coarse design. (4) Off design (12 phases, Summerfield; `offdesign_2026-09-27.json`, figure 30 panel d) V1 trades a
-little of the low ambient for the high one: -1.3e-4 against S0 at 0.02 bar, +1.1e-4 .. +4.3e-4 from 0.15 to 0.4 bar,
-and it detaches fewer phases at 0.25 / 0.30 bar (9 / 11 against 11 / 12) -- it expands slightly less (its lip at
-1.16 p_a against 1.06 on the time-mean state).
+READING. (1) THE PHASES VOTING FIND NO MORE THRUST THAN THE INSTRUMENT RESOLVES on this capped posing: V1 - S0 over 12
+phases is +4.8e-5 at the coarse rung and +5.9e-6 at the fine -- the time-mean design, once its two post-wave folds are
+removed (two sub-millimetre restoration steps), is the phase vote's optimum within the coarse bias; T3's argument
+survives the mild per-phase variation of gamma (1.268-1.293) and M (1.46-1.79) here. V1 beats the walk on the
+time-mean state S1 by +1.8e-4 / +2.3e-4 (coarse / fine). (2) What the vote DOES deliver is the class: V1 is shock-free,
+attached and certified in all 12 phases of its judge at its rung (S0: 2 folded; S1: 12 folded, 2 detached, 1
+uncertified). (3) Its measured limits: 24 bins expose 2 folded sectors and 1 uncertified (the extreme post-wave
+states between the 12-bin means); the swirl detaches three low-pressure phases of EVERY design (the free vortex lowers
+the plug-side pressure; V1 was designed without it); the fine rung resolves one fold and one uncertified phase that
+the coarse class did not see -- each a limit of the 12-bin, swirl-free, coarse design, the next rung of the vote.
+(4) Off design (12 phases, Summerfield; `offdesign_2026-09-27.json`, figure 30 panel d) V1 trades a little of the low
+ambient for the high one: -1.1e-4 against S0 at 0.02 bar, +1.3e-4 .. +4.6e-4 from 0.15 to 0.4 bar, and it detaches
+fewer phases at 0.25 / 0.30 bar (9 / 11 against 11 / 12) -- it expands slightly less (its lip at 1.16 p_a against
+1.06 on the time-mean state). (5) V1m (the class read at the time-mean state only; 16 segments after the checkpoint
+misreading was corrected): +1.9e-5 over S0 on 12 phases and the pair's two post-wave folds kept (its class cannot see
+them); at the fine rung 3 folded and 1 uncertified -- the all-phase class is what makes V1 a design of the class.
 
 E. THE FREE JET (`a1_plug_march.plug_march(lip_jet=...)`, `validation/a1_lipjet.py` [X-LJET] + `lipjet_cases.json`):
 at the lip F a centred Prandtl-Meyer fan from the lip speed to the ambient speed (Gauss-Legendre on the tabulated
@@ -623,7 +627,8 @@ relaunched. (iii) The swirl march's certificate 2.15 of the first pass was the t
 the extended tables; SW-3 keeps the strict <= 1). (iv) GENO's NASA-7 entropy inversion (a7 shift). (v) The jet
 gates' harness (E).
 
-H. STATE AT THE FIRST COMMIT OF THIS SECTION (2026-09-27, ~05:00). V1 -- the phases voting with every phase
+H. HOW THE NIGHT WENT (the state at the first commit, ~05:00, kept as written; the landings are in D2). V1 -- the
+phases voting with every phase
 shock-free AND attached (TWOP_MU_CLASS=all TWOP_SEP_CLASS=1, K 12, the tournament's posing, T start = S0) -- is in
 its restoration: the pair starts out of that class by the two post-wave folds (KS -0.657 against the floor 0.2351);
 two restoration steps (3.6e-4 then 1.8e-4 m along the soft-KS gradient, 10 records) put it IN CLASS in every phase
@@ -882,3 +887,8 @@ Migdal); starts probe 2 x 4 min; cone walks ~25 min (stopped); truncated-Migdal 
   "1-4 cells each" (phases 0-9 only), the swirl walk's cause (the sequential replay's unpadded margin stack, fixed in
   `a1_twowall._replay_out`, gate SW-5); SW-4 on the central-difference ladder; the Q2D figure 30 regenerated
   (untracked). V1's landing replaces the provisional table in the next commit.
+- Landing commit (2026-09-27 morning): V1 and V1m landed (records `_rde_tournament/V1/walk_TN_2026-09-27.json`,
+  `_rde_tournament/V1m/walk_TN_2026-09-27.json` with their logs); the final chain (seven judges + off design in
+  parallel, merge, figure 30) re-run on the records; D2's table and reading replace the provisional ones everywhere
+  they were written (X-RDET, M0 item (5), advisory section 7, PROGRESS block + archive, handoff section 14). The
+  per-judge JSONs, the provisional chain log and the walks' Hessian scratch folders removed (reproducible).

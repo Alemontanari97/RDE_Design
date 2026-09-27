@@ -3326,3 +3326,9 @@ Stato precedente (chiusura Sessione 1, HEAD = f4cd429):
 ## residui S41 sostituite in loco. Testo uscente, verbatim:
 ## stacca due; il voto delle fasi richiede la classe in OGNI fase (V1 in
 ## corso). Difetti trovati e chiusi: tabelle troncate sotto 1050 K (prima
+
+## 2026-09-27 (S41 mattina, atterraggio di V1): tre righe del blocco
+## residui S41 sostituite in loco. Testo uscente, verbatim:
+## tenuta quella, non trova piu' spinta dello strumento (V1: +3,6e-5 al
+## grosso, -1e-6 al fine; provvisorio al segmento 8) ma e' senza urti,
+## attaccato e certificato in tutte e 12 le fasi. Difetti trovati e

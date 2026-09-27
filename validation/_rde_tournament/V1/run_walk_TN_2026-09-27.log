@@ -1,0 +1,115 @@
+== [F3] the two-wall walk, start T, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 pinned and shroud lip y free from 1.216347); wedge every 1; p_a/P0 3.52959e-02; 1.0 s
+   ramp 1.00 toward the generic start: cert 8.928e-01, KS -0.6570 (floor 0.2351), C_F 1.376235, gap to the reference plug 3.356e-02 / shroud 9.302e-03 m
+   restoration  1: rho_r 13.0, step 3.57e-04 m along +grad soft KS: soft -1.2703 -> -1.1594, class KS -0.6570 -> -0.6790, min cell -0.6779, cert 0.848, C_F 1.376231, 6 records
+   restoration  2: rho_r 12.7, step 1.78e-04 m along +grad soft KS: soft -1.1661 -> -0.4123, class KS -0.6790 -> +0.2598, min cell +0.2598, cert 0.908, C_F 1.376236, 10 records
+   restoration ended IN CLASS: 2 iterations, 10 records, KS +0.2598 (floor 0.2351)
+   NEWTON METRIC at the start (secant Hessian at h 1e-03, 387 s): asymmetry 4.59e+00 -> floor 1.84e+01; eigenvalues of -H [-1.323e+01  1.267e-07  2.309e-07  5.212e-02  1.091e-01  2.854e-01
+  7.567e-01  2.954e+00  3.087e+00  6.406e+00  7.086e+00  8.778e+00
+  1.265e+01  1.565e+01  1.945e+01  2.142e+01  2.716e+01  2.933e+01
+  3.517e+01  4.214e+01  4.286e+01  4.913e+01  5.642e+01  5.730e+01
+  7.056e+01  7.296e+01  8.956e+01  1.063e+02  1.371e+02] (14 floored)
+    start ladder h 4.460e-05 m: C_F +1.795e-06, KS +0.2617, cert 1.130e-01 -> in class
+    start ladder h 8.920e-05 m: C_F +3.600e-06, KS +0.2636, cert 9.348e-01 -> in class
+    start ladder h 1.784e-04 m: C_F +7.228e-06, KS +0.2674, cert 9.120e-01 -> in class
+    start ladder h 3.568e-04 m: C_F +1.452e-05, KS +0.2751, cert 4.982e-01 -> in class
+    start ladder h 7.136e-04 m: C_F +2.891e-05, KS +0.2908, cert 9.382e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +5.458e-05, KS -0.6547, cert 1.540e+00 -> OUT
+   start T (ramp 1.00): C_F 1.376236208, cert 9.079e-01, KS +0.2598; gap to the reference plug 3.356e-02 / shroud 9.339e-03 m; class scale h* 1.009e-03 m -> tr0 2.523e-04 m, floor 6.307e-05 m; 16 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 2.142e-01 m -> tr0 1.178e-03 (z), floor 2.945e-04 (z)
+   memory mappings at the walk's start: 10898 (cap 65530)
+    [seg  0] J = 1.37623621e+00  |grad| = 8.602e-03  cert = 0.908
+    [seg  0] margin at base: KS - mu0 = +0.0246 (min cell +0.2598, 106208 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[-0.001]]
+   checkpoint at segment 1: C_F 1.376236208; mappings 10925 -> 10925 (cleared above 55000)
+    [seg  1] base not certified (record not certified (worst 1.108e+00))
+    [seg  1] backtrack 1/2: record not certified
+    [seg  1] backtrack 1/4 (step 4.327e-03): J = 1.37624228e+00 cert = 0.896 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 4.327e-03
+   checkpoint at segment 2: C_F 1.376236208; mappings 11072 -> 11072 (cleared above 55000)
+    [seg  2] J = 1.37624228e+00  |grad| = 1.079e-02  cert = 0.896
+    [seg  2] margin at base: KS - mu0 = +0.0660 (min cell +0.3011, 106225 cells)
+    [seg  2] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[-0.0]]
+   checkpoint at segment 3: C_F 1.376242282; mappings 11081 -> 11081 (cleared above 55000)
+    [seg  3] trial J = 1.37612557e+00 worse than 1.37624228e+00; model predicted 1.37612628e+00 (rho 1.01)
+    [seg  3] backtrack 1/2: record not certified
+    [seg  3] backtrack 1/4 (step 4.131e-03): J = 1.37625641e+00 cert = 0.770 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 4.131e-03
+   checkpoint at segment 4: C_F 1.376242282; mappings 11084 -> 11084 (cleared above 55000)
+    [seg  4] J = 1.37625641e+00  |grad| = 9.744e-03  cert = 0.770
+    [seg  4] margin at base: KS - mu0 = +0.1309 (min cell +0.3660, 106228 cells)
+    [seg  4] margin counters: {'m_exec': 18, 'm_dedup': 18}; multipliers [[-0.014]]
+   checkpoint at segment 5: C_F 1.376256409; mappings 11090 -> 11090 (cleared above 55000)
+    [seg  5] trial J = 1.37615135e+00 worse than 1.37625641e+00; model predicted 1.37615718e+00 (rho 1.06)
+    [seg  5] backtrack 1/2 (step 6.040e-03): J = 1.37623169e+00 cert = 0.949 -> worse
+    [seg  5] backtrack 1/4 (step 3.020e-03): J = 1.37625041e+00 cert = 0.516 -> worse
+    [seg  5] backtrack 1/8: record not certified
+    [seg  5] backtrack 1/16 (step 7.550e-04): J = 1.37625596e+00 cert = 0.998 -> worse
+    [seg  5] ascent 1/2 (step 6.197e-03): J = 1.37630319e+00 cert = 0.490 INFEASIBLE -> worse
+    [seg  5] ascent 1/4: record not certified
+    [seg  5] ascent 1/8 (step 1.549e-03): J = 1.37627067e+00 cert = 0.867 -> ACCEPT
+    [seg  5] restoration ACCEPTED -> base, radius -> 1.549e-03
+   checkpoint at segment 6: C_F 1.376256409; mappings 11265 -> 11265 (cleared above 55000)
+    [seg  6] J = 1.37627067e+00  |grad| = 8.711e-03  cert = 0.867
+    [seg  6] margin at base: KS - mu0 = +0.1287 (min cell +0.3640, 106233 cells)
+    [seg  6] margin counters: {'m_exec': 24, 'm_dedup': 24}; multipliers [[-0.0]]
+   checkpoint at segment 7: C_F 1.376270667; mappings 11284 -> 11284 (cleared above 55000)
+    [seg  7] base not certified (record not certified (worst 1.296e+00))
+    [seg  7] backtrack 1/2 (step 6.381e-03): J = 1.37623412e+00 cert = 0.572 -> worse
+    [seg  7] backtrack 1/4: record not certified
+    [seg  7] backtrack 1/8 (step 1.595e-03): J = 1.37626688e+00 cert = 0.583 -> worse
+    [seg  7] backtrack 1/16 (step 7.976e-04): J = 1.37626919e+00 cert = 0.292 -> worse
+    [seg 7] base REJECTED (record not certified (worst 1.296e+00)) -> revert, radius -> 1.162e-03
+   checkpoint at segment 8: C_F 1.376270667; mappings 11269 -> 11269 (cleared above 55000)
+    [seg  8] J = 1.37627067e+00  |grad| = 8.711e-03  cert = 0.867
+    [seg  8] margin at base: KS - mu0 = +0.1287 (min cell +0.3640, 106233 cells)
+    [seg  8] margin counters: {'m_exec': 30, 'm_dedup': 30}; multipliers [[-0.001]]
+   checkpoint at segment 9: C_F 1.376270667; mappings 11271 -> 11271 (cleared above 55000)
+    [seg  9] trial J = 1.37620760e+00 worse than 1.37627067e+00; model predicted 1.37620808e+00 (rho 1.01)
+    [seg  9] backtrack 1/2 (step 4.169e-03): J = 1.37625256e+00 cert = 0.250 -> worse
+    [seg  9] backtrack 1/4: record not certified
+    [seg  9] backtrack 1/8 (step 1.042e-03): J = 1.37626854e+00 cert = 0.581 -> worse
+    [seg  9] backtrack 1/16: record not certified
+    [seg  9] ascent 1/2: record not certified
+    [seg  9] ascent 1/4 (step 8.714e-04): J = 1.37627803e+00 cert = 0.919 -> ACCEPT
+    [seg  9] restoration ACCEPTED -> base, radius -> 8.714e-04
+   checkpoint at segment 10: C_F 1.376270667; mappings 11262 -> 11262 (cleared above 55000)
+    [seg 10] J = 1.37627803e+00  |grad| = 8.181e-03  cert = 0.919
+    [seg 10] margin at base: KS - mu0 = +0.1262 (min cell +0.3613, 106238 cells)
+    [seg 10] margin counters: {'m_exec': 36, 'm_dedup': 36}; multipliers [[-0.001]]
+   checkpoint at segment 11: C_F 1.376278033; mappings 11263 -> 11263 (cleared above 55000)
+    [seg 11] trial J = 1.37622644e+00 worse than 1.37627803e+00; model predicted 1.37622721e+00 (rho 1.02)
+    [seg 11] backtrack 1/2 (step 3.682e-03): J = 1.37626322e+00 cert = 0.097 -> worse
+    [seg 11] backtrack 1/4 (step 1.841e-03): J = 1.37627328e+00 cert = 0.618 -> worse
+    [seg 11] backtrack 1/8: record not certified
+    [seg 11] backtrack 1/16: record not certified
+    [seg 11] ascent 1/2: record not certified
+    [seg 11] ascent 1/4 (step 6.535e-04): J = 1.37628324e+00 cert = 0.381 -> ACCEPT
+    [seg 11] restoration ACCEPTED -> base, radius -> 6.535e-04
+   checkpoint at segment 12: C_F 1.376278033; mappings 11265 -> 11265 (cleared above 55000)
+    [seg 12] J = 1.37628324e+00  |grad| = 7.754e-03  cert = 0.381
+    [seg 12] margin at base: KS - mu0 = +0.1245 (min cell +0.3596, 106241 cells)
+    [seg 12] margin counters: {'m_exec': 42, 'm_dedup': 42}; multipliers [[-0.002]]
+   checkpoint at segment 13: C_F 1.376283238; mappings 11268 -> 11268 (cleared above 55000)
+    [seg 13] base not certified (record not certified (worst 1.374e+00))
+    [seg 13] backtrack 1/2: record not certified
+    [seg 13] backtrack 1/4: record not certified
+    [seg 13] backtrack 1/8: record not certified
+    [seg 13] backtrack: step 2.831e-04 below the floor at 1/16 -> give up
+    [seg 13] base REJECTED (record not certified (worst 1.374e+00)) -> revert, radius -> 4.902e-04
+   checkpoint at segment 14: C_F 1.376283238; mappings 11268 -> 11268 (cleared above 55000)
+    [seg 14] J = 1.37628324e+00  |grad| = 7.754e-03  cert = 0.381
+    [seg 14] margin at base: KS - mu0 = +0.1245 (min cell +0.3596, 106241 cells)
+    [seg 14] margin counters: {'m_exec': 48, 'm_dedup': 48}; multipliers [[-0.002]]
+   checkpoint at segment 15: C_F 1.376283238; mappings 11274 -> 11274 (cleared above 55000)
+    [seg 15] base not certified (record not certified (worst 1.373e+00))
+    [seg 15] backtrack 1/2: record not certified
+    [seg 15] backtrack 1/4: record not certified
+    [seg 15] backtrack 1/8: record not certified
+    [seg 15] backtrack 1/16 (step 3.982e-04): J = 1.37628254e+00 cert = 0.260 -> worse
+    [seg 15] base REJECTED (record not certified (worst 1.373e+00)) -> revert, radius -> 3.676e-04
+    backtracking: 34 probes, 2 accepted along the segment, 3 accepted on the ascent; 11 records
+   return: C_F 1.376283238 (start 1.376236208, reference 1.371216918, 1-D 1.593085), cert 3.811e-01, KS +0.3596 (in class), |grad|inf 2.769e-02; gap to the reference plug 3.344e-02 / shroud 9.303e-03 m (start 3.356e-02 / 9.339e-03); 11 records, 13703 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 1.2787 -> 1.2787 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 3.52959e-02, exit free: lip): heights tip 0.4865 -> 0.4865, lip 1.2163 -> 1.2154; A_e/A_i 3.3331 -> 3.3269; wall pressure at the tip / lip over p_a 0.888 / 0.711 -> 0.902 / 0.792
+   record: _rde_tournament/V1/walk_TN_2026-09-27.json

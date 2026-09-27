@@ -1,7 +1,7 @@
 == [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
-   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (checkpoint after 8 segments (walk running)); V1m (checkpoint after 7 segments (walk running)); closure summerfield; p_a 0.050 bar
+   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); V1 (record); V1m (record); closure summerfield; p_a 0.050 bar
    family_K24.json        S0  C_F 1.374853 (gain over no nozzle +0.13642); F 852.31 N, Isp 191.60 s; phases: 5 of 24 out of the fold class (KS < 0.2351), 1 detached, 0 uncertified (worst cert 0.504), 0 out of the table box (T_min 728 K); lip p/p_a 0.35 .. 2.16
    family_K24.json        S1  C_F 1.374727 (gain over no nozzle +0.13629); F 852.24 N, Isp 191.59 s; phases: 19 of 24 out of the fold class (KS < 0.2351), 3 detached, 0 uncertified (worst cert 0.746), 0 out of the table box (T_min 667 K); lip p/p_a 0.42 .. 2.61
-   family_K24.json        V1m C_F 1.374856 (gain over no nozzle +0.13642); F 852.32 N, Isp 191.60 s; phases: 5 of 24 out of the fold class (KS < 0.2351), 1 detached, 0 uncertified (worst cert 0.358), 0 out of the table box (T_min 726 K); lip p/p_a 0.35 .. 2.17
-   family_K24.json        V1  C_F 1.374884 (gain over no nozzle +0.13645); F 852.33 N, Isp 191.61 s; phases: 1 of 24 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 3.99), 0 out of the table box (T_min 728 K); lip p/p_a 0.38 .. 2.38
+   family_K24.json        V1m C_F 1.374871 (gain over no nozzle +0.13643); F 852.33 N, Isp 191.61 s; phases: 5 of 24 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.253), 0 out of the table box (T_min 725 K); lip p/p_a 0.35 .. 2.21
+   family_K24.json        V1  C_F 1.374896 (gain over no nozzle +0.13646); F 852.34 N, Isp 191.61 s; phases: 2 of 24 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 1.18), 0 out of the table box (T_min 728 K); lip p/p_a 0.38 .. 2.38
    record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_2026-09-27_family_K24.json.json

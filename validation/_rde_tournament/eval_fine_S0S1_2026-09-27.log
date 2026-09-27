@@ -1,7 +1,0 @@
-== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
-   designs: S0 (start of _rde_tournament/S1/walk_TN_2026-09-27.json); S1 (record); closure summerfield; p_a 0.050 bar
-   mean@fine              S0  C_F 1.445830 (gain over no nozzle +0.15419); F 896.32 N, Isp 201.50 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.166), 0 out of the table box (T_min 959 K); lip p/p_a 1.06 .. 1.06
-   mean@fine              S1  C_F 1.445958 (gain over no nozzle +0.15432); F 896.39 N, Isp 201.51 s; phases: 1 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.239), 0 out of the table box (T_min 946 K); lip p/p_a 1.31 .. 1.31
-   family_K12.json@fine   S0  C_F 1.375898 (gain over no nozzle +0.13633); F 852.96 N, Isp 191.75 s; phases: 2 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.292), 0 out of the table box (T_min 745 K); lip p/p_a 0.35 .. 1.96
-   family_K12.json@fine   S1  C_F 1.375674 (gain over no nozzle +0.13611); F 852.82 N, Isp 191.72 s; phases: 12 of 12 out of the fold class (KS < 0.2351), 2 detached, 0 uncertified (worst cert 0.459), 0 out of the table box (T_min 683 K); lip p/p_a 0.43 .. 2.41
-   record: /data10/falco/RDE/RDE_Design/validation/_rde_tournament/eval_fine_S0S1_2026-09-27.json
