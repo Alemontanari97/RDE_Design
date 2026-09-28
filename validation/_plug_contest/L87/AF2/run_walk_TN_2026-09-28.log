@@ -11,3 +11,151 @@ TWOP_STAGE=walk TWOP_ITERS=6 TWOP_START_FROM=/data10/falco/RDE/RDE_Design/valida
     start ladder h 1.784e-04 m: C_F +2.909e-05, KS +0.4353, cert 5.000e-02 -> in class
     start ladder h 3.568e-04 m: C_F +5.815e-05, KS +0.4354, cert 4.568e-02 -> in class
     start ladder h 7.136e-04 m: C_F +1.162e-04, KS +0.4356, cert 6.057e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +2.319e-04, KS +0.4360, cert 4.200e-02 -> in class
+    start ladder h 2.854e-03 m: C_F +4.621e-04, KS +0.4381, cert 4.172e-02 -> in class
+    start ladder h 5.709e-03 m: C_F +9.241e-04, KS +0.4397, cert 4.172e-02 -> in class
+    start ladder h 1.142e-02 m: C_F +1.838e-03, KS +0.4428, cert 4.597e-02 -> in class
+    start ladder h 2.284e-02 m: C_F +3.579e-03, KS +0.4096, cert 1.014e-01 -> in class
+    start ladder h 4.567e-02 m: C_F +6.650e-03, KS -0.5238, cert 4.850e-02 -> OUT
+   start F (ramp nan): C_F 1.349423259, cert 6.071e-02, KS +0.4352; gap to the reference plug 9.798e-02 / shroud 0.000e+00 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 32 segments x 6 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.073e+00 m -> tr0 7.527e-03 (z), floor 1.882e-03 (z)
+   memory mappings at the walk's start: 10748 (cap 65530)
+    [seg  0] J = 1.34942326e+00  |grad| = 1.750e-01  cert = 0.061
+    [seg  0] margin at base: KS - mu0 = +0.2001 (min cell +0.4353, 17143 cells)
+    [seg  0] margin counters: {'m_exec': 6, 'm_dedup': 6}; multipliers [[0.001]]
+   checkpoint at segment 1: C_F 1.349423259; mappings 11252 -> 11252 (cleared above 55000)
+    [seg  1] J = 1.34945553e+00  |grad| = 1.748e-01  cert = 0.042
+    [seg  1] margin at base: KS - mu0 = +0.2005 (min cell +0.4357, 17143 cells)
+    [seg  1] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[0.001]]
+   checkpoint at segment 2: C_F 1.349455535; mappings 11253 -> 11253 (cleared above 55000)
+    [seg  2] J = 1.34947028e+00  |grad| = 1.747e-01  cert = 0.042
+    [seg  2] margin at base: KS - mu0 = +0.2006 (min cell +0.4359, 17143 cells)
+    [seg  2] margin counters: {'m_exec': 18, 'm_dedup': 18}; multipliers [[0.001]]
+   checkpoint at segment 3: C_F 1.349470284; mappings 11254 -> 11254 (cleared above 55000)
+    [seg  3] J = 1.34947277e+00  |grad| = 1.747e-01  cert = 0.044
+    [seg  3] margin at base: KS - mu0 = +0.2007 (min cell +0.4359, 17143 cells)
+    [seg  3] margin counters: {'m_exec': 24, 'm_dedup': 24}; multipliers [[0.001]]
+   checkpoint at segment 4: C_F 1.349472769; mappings 11255 -> 11255 (cleared above 55000)
+    [seg  4] J = 1.34947608e+00  |grad| = 1.747e-01  cert = 0.042
+    [seg  4] margin at base: KS - mu0 = +0.2021 (min cell +0.4373, 17142 cells)
+    [seg  4] margin counters: {'m_exec': 30, 'm_dedup': 30}; multipliers [[0.001]]
+   checkpoint at segment 5: C_F 1.349476076; mappings 11254 -> 11254 (cleared above 55000)
+    [seg  5] J = 1.35322340e+00  |grad| = 1.541e-01  cert = 0.073
+    [seg  5] margin at base: KS - mu0 = +0.2083 (min cell +0.4438, 17152 cells)
+    [seg  5] margin counters: {'m_exec': 36, 'm_dedup': 36}; multipliers [[0.0]]
+   checkpoint at segment 6: C_F 1.353223396; mappings 11253 -> 11253 (cleared above 55000)
+    [seg  6] J = 1.35332948e+00  |grad| = 1.533e-01  cert = 0.042
+    [seg  6] margin at base: KS - mu0 = +0.2103 (min cell +0.4458, 17153 cells)
+    [seg  6] margin counters: {'m_exec': 42, 'm_dedup': 42}; multipliers [[0.0]]
+   checkpoint at segment 7: C_F 1.353329485; mappings 11253 -> 11253 (cleared above 55000)
+    [seg  7] J = 1.35335381e+00  |grad| = 1.532e-01  cert = 0.044
+    [seg  7] margin at base: KS - mu0 = +0.2108 (min cell +0.4463, 17153 cells)
+    [seg  7] margin counters: {'m_exec': 48, 'm_dedup': 48}; multipliers [[0.0]]
+   checkpoint at segment 8: C_F 1.353353811; mappings 11253 -> 11253 (cleared above 55000)
+    [seg  8] J = 1.35338165e+00  |grad| = 1.530e-01  cert = 0.041
+    [seg  8] margin at base: KS - mu0 = +0.2113 (min cell +0.4468, 17153 cells)
+    [seg  8] margin counters: {'m_exec': 54, 'm_dedup': 54}; multipliers [[-0.0]]
+   checkpoint at segment 9: C_F 1.353381650; mappings 11256 -> 11256 (cleared above 55000)
+    [seg  9] J = 1.35342344e+00  |grad| = 1.527e-01  cert = 0.042
+    [seg  9] margin at base: KS - mu0 = +0.2121 (min cell +0.4476, 17154 cells)
+    [seg  9] margin counters: {'m_exec': 60, 'm_dedup': 60, 'gm_nonfinite': 1, 'grad_nonfinite': 1}; multipliers [[-0.003]]
+   checkpoint at segment 10: C_F 1.353423436; mappings 11255 -> 11255 (cleared above 55000)
+    [seg 10] J = 1.35342965e+00  |grad| = 1.526e-01  cert = 0.042
+    [seg 10] margin at base: KS - mu0 = +0.2122 (min cell +0.4477, 17154 cells)
+    [seg 10] margin counters: {'m_exec': 66, 'm_dedup': 66, 'gm_nonfinite': 1, 'grad_nonfinite': 1}; multipliers [[-0.003]]
+    [seg 10] no motion at radius 2.500e-01 -> retry at 1.250e-01 (same record)
+    [seg 10] margin counters: {'m_exec': 72, 'm_dedup': 72, 'gm_nonfinite': 1, 'grad_nonfinite': 1}; multipliers [[-0.0]]
+   checkpoint at segment 11: C_F 1.353429647; mappings 11255 -> 11255 (cleared above 55000)
+    [seg 11] J = 1.35343969e+00  |grad| = 1.525e-01  cert = 0.042
+    [seg 11] margin at base: KS - mu0 = +0.2124 (min cell +0.4480, 17154 cells)
+    [seg 11] margin counters: {'m_exec': 78, 'm_dedup': 78, 'gm_nonfinite': 2, 'grad_nonfinite': 2}; multipliers [[-0.0]]
+   checkpoint at segment 12: C_F 1.353439685; mappings 11256 -> 11256 (cleared above 55000)
+    [seg 12] J = 1.35347978e+00  |grad| = 1.523e-01  cert = 0.042
+    [seg 12] margin at base: KS - mu0 = +0.2132 (min cell +0.4487, 17154 cells)
+    [seg 12] margin counters: {'m_exec': 84, 'm_dedup': 84, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.0]]
+   checkpoint at segment 13: C_F 1.353479782; mappings 11256 -> 11256 (cleared above 55000)
+    [seg 13] J = 1.35354156e+00  |grad| = 1.518e-01  cert = 0.048
+    [seg 13] margin at base: KS - mu0 = +0.2144 (min cell +0.4499, 17154 cells)
+    [seg 13] margin counters: {'m_exec': 90, 'm_dedup': 90, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.001]]
+   checkpoint at segment 14: C_F 1.353541558; mappings 11255 -> 11255 (cleared above 55000)
+    [seg 14] J = 1.35357455e+00  |grad| = 1.516e-01  cert = 0.053
+    [seg 14] margin at base: KS - mu0 = +0.2151 (min cell +0.4506, 17154 cells)
+    [seg 14] margin counters: {'m_exec': 96, 'm_dedup': 96, 'gm_nonfinite': 4, 'grad_nonfinite': 4}; multipliers [[-0.001]]
+   checkpoint at segment 15: C_F 1.353574545; mappings 11252 -> 11252 (cleared above 55000)
+    [seg 15] J = 1.35358145e+00  |grad| = 1.515e-01  cert = 0.042
+    [seg 15] margin at base: KS - mu0 = +0.2152 (min cell +0.4508, 17154 cells)
+    [seg 15] margin counters: {'m_exec': 102, 'm_dedup': 102, 'gm_nonfinite': 5, 'grad_nonfinite': 5}; multipliers [[-0.002]]
+   checkpoint at segment 16: C_F 1.353581449; mappings 11253 -> 11253 (cleared above 55000)
+    [seg 16] J = 1.35358752e+00  |grad| = 1.515e-01  cert = 0.041
+    [seg 16] margin at base: KS - mu0 = +0.2153 (min cell +0.4509, 17154 cells)
+    [seg 16] margin counters: {'m_exec': 108, 'm_dedup': 108, 'gm_nonfinite': 6, 'grad_nonfinite': 6}; multipliers [[-0.002]]
+    [seg 16] no motion at radius 2.500e-01 -> retry at 1.250e-01 (same record)
+    [seg 16] margin counters: {'m_exec': 114, 'm_dedup': 114, 'gm_nonfinite': 6, 'grad_nonfinite': 6}; multipliers [[-0.011]]
+   checkpoint at segment 17: C_F 1.353587521; mappings 11256 -> 11256 (cleared above 55000)
+    [seg 17] J = 1.35358971e+00  |grad| = 1.515e-01  cert = 0.044
+    [seg 17] margin at base: KS - mu0 = +0.2153 (min cell +0.4509, 17154 cells)
+    [seg 17] margin counters: {'m_exec': 120, 'm_dedup': 120, 'gm_nonfinite': 7, 'grad_nonfinite': 7}; multipliers [[-0.001]]
+   checkpoint at segment 18: C_F 1.353589713; mappings 11256 -> 11256 (cleared above 55000)
+    [seg 18] J = 1.35362243e+00  |grad| = 1.512e-01  cert = 0.042
+    [seg 18] margin at base: KS - mu0 = +0.2162 (min cell +0.4518, 17154 cells)
+    [seg 18] margin counters: {'m_exec': 126, 'm_dedup': 126, 'gm_nonfinite': 8, 'grad_nonfinite': 8}; multipliers [[-0.001]]
+   checkpoint at segment 19: C_F 1.353622426; mappings 11252 -> 11252 (cleared above 55000)
+    [seg 19] J = 1.35362843e+00  |grad| = 1.512e-01  cert = 0.041
+    [seg 19] margin at base: KS - mu0 = +0.2163 (min cell +0.4519, 17154 cells)
+    [seg 19] margin counters: {'m_exec': 132, 'm_dedup': 132, 'gm_nonfinite': 9, 'grad_nonfinite': 9}; multipliers [[-0.001]]
+   checkpoint at segment 20: C_F 1.353628429; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 20] J = 1.35363439e+00  |grad| = 1.512e-01  cert = 0.046
+    [seg 20] margin at base: KS - mu0 = +0.2163 (min cell +0.4520, 17154 cells)
+    [seg 20] margin counters: {'m_exec': 139, 'm_dedup': 139, 'gm_nonfinite': 9, 'grad_nonfinite': 9}; multipliers [[-0.001]]
+    [seg 20] no motion at radius 2.500e-01 -> retry at 1.250e-01 (same record)
+    [seg 20] margin counters: {'m_exec': 145, 'm_dedup': 145, 'gm_nonfinite': 9, 'grad_nonfinite': 9}; multipliers [[-0.001]]
+   checkpoint at segment 21: C_F 1.353634386; mappings 11252 -> 11252 (cleared above 55000)
+    [seg 21] J = 1.35370247e+00  |grad| = 1.504e-01  cert = 0.044
+    [seg 21] margin at base: KS - mu0 = +0.2178 (min cell +0.4535, 17154 cells)
+    [seg 21] margin counters: {'m_exec': 151, 'm_dedup': 151, 'gm_nonfinite': 10, 'grad_nonfinite': 10}; multipliers [[-0.003]]
+   checkpoint at segment 22: C_F 1.353702473; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 22] J = 1.35398691e+00  |grad| = 1.482e-01  cert = 0.036
+    [seg 22] margin at base: KS - mu0 = +0.2235 (min cell +0.4594, 17155 cells)
+    [seg 22] margin counters: {'m_exec': 157, 'm_dedup': 157, 'gm_nonfinite': 10, 'grad_nonfinite': 10}; multipliers [[-0.003]]
+   checkpoint at segment 23: C_F 1.353986907; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 23] J = 1.35404266e+00  |grad| = 1.478e-01  cert = 0.042
+    [seg 23] margin at base: KS - mu0 = +0.2245 (min cell +0.4604, 17155 cells)
+    [seg 23] margin counters: {'m_exec': 163, 'm_dedup': 163, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 24: C_F 1.354042662; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 24] J = 1.35409769e+00  |grad| = 1.474e-01  cert = 0.041
+    [seg 24] margin at base: KS - mu0 = +0.2256 (min cell +0.4614, 17155 cells)
+    [seg 24] margin counters: {'m_exec': 169, 'm_dedup': 169, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 25: C_F 1.354097686; mappings 11253 -> 11253 (cleared above 55000)
+    [seg 25] J = 1.35410489e+00  |grad| = 1.473e-01  cert = 0.041
+    [seg 25] margin at base: KS - mu0 = +0.2257 (min cell +0.4616, 17155 cells)
+    [seg 25] margin counters: {'m_exec': 175, 'm_dedup': 175, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 26: C_F 1.354104890; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 26] J = 1.35411208e+00  |grad| = 1.473e-01  cert = 0.050
+    [seg 26] margin at base: KS - mu0 = +0.2258 (min cell +0.4617, 17155 cells)
+    [seg 26] margin counters: {'m_exec': 181, 'm_dedup': 181, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 27: C_F 1.354112077; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 27] J = 1.35411925e+00  |grad| = 1.472e-01  cert = 0.044
+    [seg 27] margin at base: KS - mu0 = +0.2260 (min cell +0.4618, 17155 cells)
+    [seg 27] margin counters: {'m_exec': 187, 'm_dedup': 187, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 28: C_F 1.354119249; mappings 11252 -> 11252 (cleared above 55000)
+    [seg 28] J = 1.35412640e+00  |grad| = 1.472e-01  cert = 0.052
+    [seg 28] margin at base: KS - mu0 = +0.2261 (min cell +0.4620, 17155 cells)
+    [seg 28] margin counters: {'m_exec': 193, 'm_dedup': 193, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.01]]
+   checkpoint at segment 29: C_F 1.354126404; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 29] J = 1.35413354e+00  |grad| = 1.471e-01  cert = 0.041
+    [seg 29] margin at base: KS - mu0 = +0.2262 (min cell +0.4621, 17155 cells)
+    [seg 29] margin counters: {'m_exec': 199, 'm_dedup': 199, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 30: C_F 1.354133543; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 30] J = 1.35414033e+00  |grad| = 1.470e-01  cert = 0.042
+    [seg 30] margin at base: KS - mu0 = +0.2264 (min cell +0.4623, 17155 cells)
+    [seg 30] margin counters: {'m_exec': 205, 'm_dedup': 205, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+   checkpoint at segment 31: C_F 1.354140335; mappings 11251 -> 11251 (cleared above 55000)
+    [seg 31] J = 1.35414743e+00  |grad| = 1.470e-01  cert = 0.042
+    [seg 31] margin at base: KS - mu0 = +0.2266 (min cell +0.4624, 17155 cells)
+    [seg 31] margin counters: {'m_exec': 211, 'm_dedup': 211, 'gm_nonfinite': 11, 'grad_nonfinite': 11}; multipliers [[-0.003]]
+    backtracking: 0 probes, 0 accepted along the segment, 0 accepted on the ascent; 32 records
+   return: C_F 1.354147433 (start 1.349423259, reference 1.361531074, 1-D 1.593085), cert 4.162e-02, KS +0.4617 (in class), |grad|inf 1.551e-01; gap to the reference plug 8.952e-02 / shroud 0.000e+00 m (start 9.798e-02 / 0.000e+00); 32 records, 2811 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.0295 -> 0.0295 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 3.52959e-02, exit free: both): heights tip 0.4865 -> 0.5071, lip 1.0000 -> 1.0000; A_e/A_i 2.0471 -> 1.9922; wall pressure at the tip / lip over p_a 0.591 / 7.467 -> 0.687 / 7.467
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/AF2/walk_FN_2026-09-28.json
+walk AF2 exit 0 11:38:13

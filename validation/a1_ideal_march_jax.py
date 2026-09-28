@@ -198,6 +198,10 @@ T_TAB_LO, T_TAB_HI = 1050.0, 3900.0
 K_RICH = 4.0
 C_FLOOR = 8.0
 NEWTON_TOL_FACTOR = 100.0
+# make_implicit_solver(polish=True): the full-step window over the certification
+# bound (2026-09-28) = the tolerance factor squared (1e4: a relative step below
+# ~1e-10, the quadratic regime of a well-posed cell) -- derived, not a new literal
+POLISH_WINDOW = NEWTON_TOL_FACTOR * NEWTON_TOL_FACTOR
 N_NEWTON = 30
 # C2-F2 (S21): arm per-cell certification on REPLAY ('play')
 # evaluations too (concrete calls only — AD traces are guarded in
@@ -479,8 +483,16 @@ def make_implicit_solver(resid_fn, polish=False):
                 # 0.1 mm move (twop_jetcell_probe: the polished root's step
                 # 1e-16 = certificate 0.002). Opt-in per solver: every other
                 # cell's path is unchanged (bitwise).
+                # The window: a step within POLISH_WINDOW x the bound (1e4: a
+                # relative step below ~1e-10, the quadratic regime of a
+                # well-posed cell) is taken in full -- measured 2026-09-28 on
+                # Stechmann-from-Migdal 87 at phase 10: with the window at 1 the
+                # damped argmin kept halving from 1e-12 down and the loop hit its
+                # cap one iteration short (step 1.6e-13, certificate 1.97; one
+                # more full step 8.8e-17). A wrong branch never enters the window
+                # (the corrupted-ambient rejector R-1 of a1_plug_march gates it).
                 sc_ = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
-                small = jnp.logical_and(jnp.logical_not(bad), jnp.max(jnp.abs(dz)) <= NEWTON_TOL_FACTOR * EPS * sc_)
+                small = jnp.logical_and(jnp.logical_not(bad), jnp.max(jnp.abs(dz)) <= POLISH_WINDOW * NEWTON_TOL_FACTOR * EPS * sc_)
                 z_new = jnp.where(small, z - dz, z_new)
             return (z_new, it + 1,
                     jnp.where(bad, jnp.inf, jnp.max(jnp.abs(dz))))

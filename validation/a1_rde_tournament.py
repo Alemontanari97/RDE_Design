@@ -274,7 +274,8 @@ def load_designs():
             R_ = json.load(open(fn))
             out[name] = (np.asarray(R_["W_start" if start else "W"], float), "start of " + ref[len("start:"):] if start else "record")
             continue
-        ck = os.path.join(os.path.dirname(fn), "walk_TN_checkpoint.json")
+        # the checkpoint carries the START letter (walk_TN / walk_FN / walk_CN): the record's name says which
+        ck = os.path.join(os.path.dirname(fn), os.path.basename(fn)[:7] + "_checkpoint.json")
         if not start and os.path.exists(ck):
             C_ = json.load(open(ck))
             out[name] = (np.asarray(C_["W"], float), "checkpoint after %d segments (walk running)" % int(C_["segments"]))

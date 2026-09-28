@@ -1046,6 +1046,20 @@ the S41 record 1.579660988049, T-3/T-4 bitwise) and the jet gates JT-1..4 5/5 wi
 (JT-3 replay = record 1.439698070323, adjoint -2.473706e-04): the polish changes no recorded number. The walks
 Stechmann-from-cone 87 (polished) and Phases-from-cone 87 (polished), 32 segments each, launched 04:25 (AF2, Bm2).
 
+S. THE POLISH WINDOW (11:00-11:40). The cell of Stechmann-from-Migdal 87 at phase 10 that stayed at 1.83 with the
+first polish (twop_jetcell_probe on that record: station 104, column 136, chord 0.016, theta 1.5 deg, cond(J)
+1.6e10; the step at the recorded root 1.6e-13 against a bound of 8.1e-14, one more full step 8.8e-17): with the
+full step allowed only INSIDE the bound, the damped argmin kept halving from 1e-12 down and the Newton hit its cap
+(N_NEWTON 30) one iteration short. POLISH_WINDOW = 1e4 (a1_ideal_march_jax: the full step is taken within 1e4 x
+the bound, i.e. a relative step below ~1e-10 -- the quadratic regime of a well-posed cell; a wrong branch never
+enters the window, the corrupted-ambient rejector guards it). GATES with the window: the plug march's exact planar
+oracle 6/6 (31 s); Stechmann-from-Migdal 87 under the 12 phases: worst certificate 1.345 -> 0.417 (a wall cell
+now), J per phase unchanged to the last digit; the wavefront stage WF-1..4 4/4 (120 s); the tournament's gates
+9/9 (T-1 bitwise with the S41 record) and jet gates 5/5 (JT-3 the same replay and adjoint as 2026-09-27).
+Stechmann-da-cono 87 with the first polish and 32 segments (AF2) LANDED 11:38: 1.354147 (16 segments: 1.353615;
+the start 1.349423), cert 0.042, KS +0.462, |grad|inf 0.155 -- +5e-4 for 16 more segments, still not stationary.
+Fasi-da-cono 87 (Bm2, 32 segments) continues with the first polish from the cone (its cells at the floor).
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands
