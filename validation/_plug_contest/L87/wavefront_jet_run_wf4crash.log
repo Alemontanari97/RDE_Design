@@ -1,0 +1,28 @@
+== [F3] the wavefront replay against the sequential replay [X-TWOP] (stage wavefront) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.000000); wedge every 1; p_a/P0 3.52959e-02; 0.3 s
+   record with the graph: 17.6 s; 18172 cells in 496 levels (806 batches); 17315 quads
+   sequential J 1.361531074482 (73.5 s with its gradient), KS - mu0 -7.67050865717743 (21.2 s with its gradient)
+   wavefront  J 1.36153107448199 (4.5 s with its gradient), KS - mu0 -7.67050865717743 (4.5 s with its gradient)
+   wavefront-2 J 1.36153107448199 (4.6 s with its gradient), KS - mu0 -7.67050865717743 (3.8 s with its gradient)
+  [PASS] WF-1 J: wavefront = sequential to 3.1e-15 relative (<= 1.6e-11; bitwise False)
+  [PASS] WF-2 grad J: max relative difference 9.4e-13 (<= 1.6e-11; bitwise False)
+  [PASS] WF-3 the class margin 0.0e+00 and its gradient 0.0e+00 (<= 1.6e-11; bitwise True / True)
+   speed-up (steady state, the second wavefront call): J + grad 16.0x, margin + grad 5.6x; the first call (compiling the padded batches) 4.5 / 4.5 s
+Traceback (most recent call last):
+  File "/data10/falco/RDE/RDE_Design/validation/a1_twowall.py", line 2047, in <module>
+    sys.exit({"derive": derive, "class": classderive, "walk": walk,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_twowall.py", line 2032, in wavefront
+    Jr, gr = jax.value_and_grad(lambda z: tw.J_of(f_(z)))(jnp.asarray(W0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_twowall.py", line 2032, in <lambda>
+    Jr, gr = jax.value_and_grad(lambda z: tw.J_of(f_(z)))(jnp.asarray(W0))
+                                                  ^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_twowall.py", line 2030, in f_
+    return WF.replay(S.plan, S, tuple(st_), tuple(sh_), tw.start, tw.tab, 1.0, int(CASES["wavefront"]["lane"]),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data10/falco/RDE/RDE_Design/validation/a1_wavefront_replay.py", line 252, in replay
+    raise ValueError("a jet record replayed without its lip_jet posing")
+ValueError: a jet record replayed without its lip_jet posing
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

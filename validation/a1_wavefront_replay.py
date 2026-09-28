@@ -20,8 +20,13 @@ while_loop freezes the lanes that have converged), the parameters are built
 from the same numbers, the margin aggregates the same corners in the same
 order through the march's own margin_of_corners: the equality with the
 sequential replay is GRADED by a1_twowall stage wavefront (WF-1..WF-3), not
-assumed. Scope: the 4-wide shroud posing (no free jet, no x_traced, no
-rotational nodes), the only one the graph records.
+assumed. Scope: the 4-wide shroud posing (no rotational nodes), x_traced
+stations, and (2026-09-27, the plug contest) the LIP JET: 'fan' rows (the
+corner relation from the lip point, no solve) and 'jet' cells (the free-edge
+cell at the edge speed max(q_pa, q_lip), the lip point an input), so a
+simple plug under its free jet replays by levels too; lip_jet passes the
+posing's q_pa and Gauss order, and the replay returns lip_q for the lip
+margin.
 """
 import functools
 
@@ -32,7 +37,7 @@ import jax.numpy as jnp
 import a1_ideal_march_jax as A1
 import a1_plug_march as PM
 
-KINDS = ("wall", "int", "shroud", "lip")
+KINDS = ("wall", "int", "shroud", "lip", "fan", "jet")
 # batches are padded to a multiple of `lane` lanes (duplicates of the last
 # cell, dropped on output) so that the jitted steps compile once per (kind,
 # padded size) instead of once per batch size -- measured: 566 batches of
@@ -78,9 +83,12 @@ def plan(graph):
                 b["kst"] = np.array([cells[ci]["kst"] for ci in idx])
             if kind == "shroud":
                 b["seg"] = np.array([cells[ci]["seg"] for ci in idx])
+            if kind == "fan":
+                b["frac"] = np.array([cells[ci]["kf"] / cells[ci]["nf"] for ci in idx], dtype=float)
             batches.append(b)
     return dict(n_slots=n, N=N, batches=batches, n_levels=int(clev.max()), n_cells=len(cells),
                 x_traced=bool(graph.get("x_traced", False)),
+                lip=(slot[graph["lip_out"]] if graph.get("lip_out") is not None else -1),
                 wall=np.array([slot[k] for k in graph["wall_out"]]),
                 shroud=np.array([slot[k] for k in graph["shroud_out"]]),
                 quads=(np.array([[sl(k) for k in q] for q in graph["quads"]]) if graph["quads"]
@@ -150,11 +158,49 @@ def _steps(solvers, ta):
                          z[:, 1], sss[-1] * z[:, 1]], axis=1)
         return P.at[outi].set(out)
 
-    _STEPS[key] = dict(int=s_int, wall=s_wall, wall_t=s_wall_t, shroud=s_shroud, lip=s_lip)
+    @jax.jit
+    def s_jet(P, inp, outi, z0, lipi, qpa, ta):
+        # the free-edge cell after the lip at the jet's speed max(q_pa, q_F)
+        # (plug_march's frozen jet on an over-expanded lip), q_F from the
+        # lip point (traced): the same parameters as the sequential cell
+        lip = P[lipi]
+        qj = jnp.maximum(qpa, jnp.hypot(lip[2], lip[3]))
+        npad = inp.shape[0]
+        p = jnp.concatenate([P[inp[:, 0]], P[inp[:, 1]], jnp.broadcast_to(qj, (npad, 1))], axis=1)
+        z = vs["jet"](jax.lax.stop_gradient(z0), p, ta) if "jet" in vs else jnp.zeros((npad, 3))
+        out = jnp.stack([z[:, 0], z[:, 1], qj * jnp.cos(z[:, 2]), qj * jnp.sin(z[:, 2])], axis=1)
+        return P.at[outi].set(out)
+
+    _STEPS[key] = dict(int=s_int, wall=s_wall, wall_t=s_wall_t, shroud=s_shroud, lip=s_lip, jet=s_jet)
     return _STEPS[key]
 
 
-def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None, rows_block=0):
+_FAN = {}
+
+
+def _fan_step(n_gl):
+    """The fan rows at the lip: the corner relation (pm_turn, the tabulated
+    gas's simple wave) from the lip point to the ray fraction, vectorised;
+    the Gauss order is static (one compiled step per order)."""
+    if n_gl in _FAN:
+        return _FAN[n_gl]
+
+    @jax.jit
+    def s_fan(P, lipi, outi, frac, qpa, ta):
+        lip = P[lipi]
+        qF = jnp.hypot(lip[2], lip[3])
+        thF = jnp.arctan2(lip[3], lip[2])
+        qj = jnp.maximum(qpa, qF)
+        qk = qF + (qj - qF) * frac
+        thk = thF + jax.vmap(lambda qb: PM.pm_turn(qF, qb, ta, n_gl))(qk)
+        out = jnp.stack([jnp.broadcast_to(lip[0], qk.shape), jnp.broadcast_to(lip[1], qk.shape),
+                         qk * jnp.cos(thk), qk * jnp.sin(thk)], axis=1)
+        return P.at[outi].set(out)
+    _FAN[n_gl] = s_fan
+    return s_fan
+
+
+def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None, rows_block=0, lip_jet=None):
     """The replay: returns dict(wall, shroud, margin_ks, margin_min, margin_n)
     -- the pieces J_of and the class read -- differentiable in the traced
     station and shroud arrays; lane = the batch padding width. rows_block
@@ -183,6 +229,10 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None, ro
         wall=A1.get_solver(("wb", delta), lambda: PM.make_resid_wallbot(delta))[0],
         shroud=A1.get_solver(("wt", delta), lambda: PM.make_resid_walltop(delta))[0],
         lip=A1.get_solver(("wtlip", delta), lambda: A1.make_resid_inwall(delta))[0])
+    if lip_jet is not None:
+        solvers["jet"] = A1.get_solver(("fj", False, delta), lambda: PM.make_resid_freejet(delta), polish=PM.JET_POLISH)[0]
+        qpa_j = jnp.asarray(float(lip_jet["qpa"]))
+        s_fan = _fan_step(int(lip_jet["n_gl"]))
     steps = _steps(solvers, None)
     zrec = sched.d["z"]
     for b in pl["batches"]:
@@ -197,8 +247,17 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None, ro
         # once per distinct batch size and grew the process to the
         # mapping cap (measured on the first fine-rung walks)
         outi = jnp.asarray(np.r_[b["out"], np.full(npad - n_, pl["n_slots"])])
+        if kind == "fan":
+            if lip_jet is None:
+                raise ValueError("a jet record replayed without its lip_jet posing")
+            P = s_fan(P, int(pl["lip"]), outi, jnp.asarray(b["frac"][pad]), qpa_j, ta)
+            continue
         z0 = jnp.asarray(np.stack([zrec[i] for i in b["zi"]])[pad])
-        if kind == "int":
+        if kind == "jet":
+            if lip_jet is None:
+                raise ValueError("a jet record replayed without its lip_jet posing")
+            P = steps["jet"](P, inp, outi, z0, int(pl["lip"]), qpa_j, ta)
+        elif kind == "int":
             P = steps["int"](P, inp, outi, z0, ta)
         elif kind == "wall" and pl["x_traced"]:
             P = steps["wall_t"](P, inp, outi, z0, jnp.asarray(b["kst"][pad]), sx, sy, ssl, ta)
@@ -209,7 +268,11 @@ def replay(pl, sched, stations, shroud, start, tab, delta, lane, margin=None, ro
         else:
             P = steps["lip"](P, inp, outi, z0, sxs, sys_, sss, ta)
     res = dict(wall=P[pl["wall"]], shroud=P[pl["shroud"]], margin_ks=None, margin_min=None,
-               margin_n=int(pl["quads"].shape[0]))
+               margin_n=int(pl["quads"].shape[0]), lip_q=None)
+    if lip_jet is not None and int(pl.get("lip", -1)) >= 0:
+        lp = P[int(pl["lip"])]
+        qF = jnp.hypot(lp[2], lp[3])
+        res["lip_q"] = (qF, jnp.maximum(qpa_j, qF))
     if margin is not None and pl["quads"].shape[0]:
         q = pl["quads"]
         n_c = q.shape[0]

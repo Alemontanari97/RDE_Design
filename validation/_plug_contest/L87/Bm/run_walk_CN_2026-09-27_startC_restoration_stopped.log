@@ -1,0 +1,9 @@
+walk Bm cap 0.8 L87 segs 16 iters 6 class /data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_2026-09-27.json art /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/Bm start 17:51:21
+TWOP_STAGE=walk TWOP_ITERS=6 TWOP_MU=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/family_K12.json TWOP_SEP=summerfield TWOP_START=C TWOP_FIX={"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-9, "u_s": -10.0, "ye_s": 1.0} PSPL_BACKTRACK=4 TWOP_ART=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/Bm TWOP_SEP_CLASS=1 TWOP_SHAPE=1 TWOP_METRIC=start TWOP_FREE_EXIT=both TWOP_PA=0.0352959 TWOP_MU_CLASS=ref TWOP_U0=10 TWOP_KERNEL=arc TWOP_CAP=0.8 TWOP_GAS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/gas_stechmann.json TWOP_CLASS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_2026-09-27.json TWOP_U0_S=-10 TWOP_JET=1 TWOP_NOPLUME=1 TWOP_SEGS=16 
+== [F3] the two-wall walk, start C, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.000000); wedge every 1; p_a/P0 3.52959e-02; 1.0 s
+   ramp 1.00 toward the generic start: cert 5.670e-01, KS -0.5648 (floor 0.2351), C_F 1.296556, gap to the reference plug 9.420e-02 / shroud 0.000e+00 m
+   restoration  1: rho_r 12.2, step 1.43e-03 m along +grad soft KS: soft -0.9290 -> -0.8643, class KS -0.5648 -> -0.5561, min cell -0.5558, cert 0.308, C_F 1.296572, 4 records
+   restoration  2: rho_r 12.3, step 1.43e-03 m along +grad soft KS: soft -0.8634 -> -0.8548, class KS -0.5561 -> -0.5608, min cell -0.5607, cert 0.333, C_F 1.296523, 7 records
+   restoration  3: rho_r 12.3, step 3.57e-04 m along +grad soft KS: soft -0.8552 -> -0.8215, class KS -0.5608 -> -0.5604, min cell -0.5604, cert 0.587, C_F 1.296496, 12 records
+walk Bm exit 143 19:02:39

@@ -1,0 +1,26 @@
+eval chain L29 start 2026-09-27 17:48:45
+pid 21644 exit 0 17:50:00
+pid 22333 exit 0 18:02:47
+pid 22712 exit 0 18:02:47
+pid 23078 exit 0 19:00:56
+== [F3/A1] the RDE tournament: the parallel judges merged [X-RDET] (stage evalmerge) ==
+  [PASS] judge mean: the designs and their provenance agree (['A', 'A2', 'F', 'T'])
+  [PASS] judge family_K12.json: the designs and their provenance agree (['A', 'A2', 'F', 'T'])
+  [PASS] judge mean@fine: the designs and their provenance agree (['A', 'A2', 'F', 'T'])
+  [PASS] judge family_K12.json@fine: the designs and their provenance agree (['A', 'A2', 'F', 'T'])
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L29/eval_2026-09-27.json
+evalmerge exit 0 19:00:56
+eval chain L29 end 2026-09-27 19:00:56
+eval chain L29 start 2026-09-27 21:07:26
+pid 11857 exit 0 21:09:10
+pid 12651 exit 0 21:41:39
+pid 13054 exit 0 21:41:39
+pid 13424 exit 0 22:33:35
+== [F3/A1] the RDE tournament: the parallel judges merged [X-RDET] (stage evalmerge) ==
+  [PASS] judge mean: the designs and their provenance agree (['A', 'A2', 'B', 'Cc', 'F', 'T'])
+  [PASS] judge family_K12.json: the designs and their provenance agree (['A', 'A2', 'B', 'Cc', 'F', 'T'])
+  [PASS] judge mean@fine: the designs and their provenance agree (['A', 'A2', 'B', 'Cc', 'F', 'T'])
+  [PASS] judge family_K12.json@fine: the designs and their provenance agree (['A', 'A2', 'B', 'Cc', 'F', 'T'])
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L29/eval_2026-09-27.json
+evalmerge exit 0 22:33:36
+eval chain L29 end 2026-09-27 22:33:36

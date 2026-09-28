@@ -1,131 +1,203 @@
 {
-  "_doc": "Constants of a1_rde_tournament.py [X-RDET] (S41 2026-09-27): the nozzle tournament on the Q2D THOR_CAv3 outflow -- nozzles designed on the Stechmann time-mean state against nozzles designed with the phases voting.",
-  "units": {
-    "value": {
-      "bar_Pa": 100000.0
-    },
-    "cls": "SPEC",
-    "note": "1 bar = 1e5 Pa (the SI definition): the ambients and the phase states are declared in bar"
+ "_doc": "Constants of a1_rde_tournament.py [X-RDET] (S41 2026-09-27): the nozzle tournament on the Q2D THOR_CAv3 outflow -- nozzles designed on the Stechmann time-mean state against nozzles designed with the phases voting.",
+ "units": {
+  "value": {
+   "bar_Pa": 100000.0
   },
-  "source": {
-    "value": {
-      "npz": "_rde_tournament/q2d_thor_cav3_exit_t15.5ms.npz",
-      "r_out_m": 0.068,
-      "gap_exit_m": 0.01415,
-      "Ly_m": 0.42278,
-      "geno_run": "/data10/falco/RDE/handoff/f3_2026-09-25/geno_rde/stech_run",
-      "pa_bar": 0.05,
-      "families": [
-        12,
-        24
-      ],
-      "T_tab": [
-        300.0,
-        3900.0
-      ]
-    },
-    "cls": "NUMERIC",
-    "note": "the Q2D THOR_CAv3 limit cycle (leg D, t 15.5 ms, the last chamber cell column at x 104.80 mm, 1799 azimuthal cells, every one supersonic -- thermally choked) extracted by RDE/handoff/f3_2026-09-25/q2d_exit_extract.py; the nozzle inlet annulus = the Q2D exit face (outer radius 68 mm, gap 14.15 mm at x 107.26 mm, Ly 422.78 mm); the Stechmann nozzle = GENO's Migdal perfect pair (nozzle_type 9) for the TIME-MEAN state (theta-arithmetic: a single rotating wave makes a period at a point equal to all angles at an instant, T0) adapted at the tournament's ambient pa_bar (an altitude ambient: the mean exit static pressure is 0.34 bar, the time-mean stagnation 1.42 bar); families = the phase counts (equal azimuthal sectors = equal durations); T_tab = the constant-gamma tables' temperature range (the builder's absolute [1050, 3900] K clamps the RDE exhaust expanded below ~1000 K; 300 K covers every phase's exit)"
+  "cls": "SPEC",
+  "note": "1 bar = 1e5 Pa (the SI definition): the ambients and the phase states are declared in bar"
+ },
+ "source": {
+  "value": {
+   "npz": "_rde_tournament/q2d_thor_cav3_exit_t15.5ms.npz",
+   "r_out_m": 0.068,
+   "gap_exit_m": 0.01415,
+   "Ly_m": 0.42278,
+   "geno_run": "/data10/falco/RDE/handoff/f3_2026-09-25/geno_rde/stech_run",
+   "pa_bar": 0.05,
+   "families": [
+    12,
+    24
+   ],
+   "T_tab": [
+    300.0,
+    3900.0
+   ]
   },
-  "gates": {
-    "value": {
-      "cap": 0.8,
-      "u0": 10,
-      "over_pa_bar": 0.3,
-      "fd_step": 1e-05,
-      "knot": 6
-    },
-    "cls": "NUMERIC",
-    "note": "the gates of the carrier's new options on the tournament posing: the capped posing (cap, ends at the cap u0, the lip free) at the tournament ambient; over_pa_bar = an ambient that over-expands the cut Stechmann nozzle enough for a wall to detach under Summerfield (the separation-closure gate); fd_step, knot = the central difference of the phase-voting replay gate"
+  "cls": "NUMERIC",
+  "note": "the Q2D THOR_CAv3 limit cycle (leg D, t 15.5 ms, the last chamber cell column at x 104.80 mm, 1799 azimuthal cells, every one supersonic -- thermally choked) extracted by RDE/handoff/f3_2026-09-25/q2d_exit_extract.py; the nozzle inlet annulus = the Q2D exit face (outer radius 68 mm, gap 14.15 mm at x 107.26 mm, Ly 422.78 mm); the Stechmann nozzle = GENO's Migdal perfect pair (nozzle_type 9) for the TIME-MEAN state (theta-arithmetic: a single rotating wave makes a period at a point equal to all angles at an instant, T0) adapted at the tournament's ambient pa_bar (an altitude ambient: the mean exit static pressure is 0.34 bar, the time-mean stagnation 1.42 bar); families = the phase counts (equal azimuthal sectors = equal durations); T_tab = the constant-gamma tables' temperature range (the builder's absolute [1050, 3900] K clamps the RDE exhaust expanded below ~1000 K; 300 K covers every phase's exit)"
+ },
+ "gates": {
+  "value": {
+   "cap": 0.8,
+   "u0": 10,
+   "over_pa_bar": 0.3,
+   "fd_step": 1e-05,
+   "knot": 6
   },
-  "eval": {
-    "value": {
-      "designs": {
-        "S0": "start:_rde_tournament/S1/walk_TN_2026-09-27.json",
-        "S1": "_rde_tournament/S1/walk_TN_2026-09-27.json",
-        "V1m": "_rde_tournament/V1m/walk_TN_2026-09-27.json",
-        "V1": "_rde_tournament/V1/walk_TN_2026-09-27.json",
-        "V1s": "_rde_tournament/V1s/walk_TN_2026-09-27.json"
-      },
-      "evaluators": [
-        "mean",
-        "family_K12.json",
-        "family_K24.json",
-        "family_K12.json+swirl",
-        "family_K24.json+swirl",
-        "mean@fine",
-        "family_K12.json@fine"
-      ],
-      "g0": 9.80665,
-      "fine_rung": [
-        280,
-        61
-      ]
-    },
-    "cls": "NUMERIC",
-    "note": "the tournament's designs: S0 = the Stechmann perfect pair cut at the cap (the start of the walks, read from the S1 record's W_start), S1 = the capped walk on the Stechmann time-mean state (its class at that state), V1m = the 12 phases voting on the thrust with the fold class read at the time-mean state only, V1 = the phases voting with EVERY phase shock-free and attached (the class a KS soft-min over the phases' fold margins and their Summerfield wall margins, TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), V1s = V1 with every phase's free vortex in the march (the meridional problem with its swirl, TWOP_SWIRL=1); evaluators = the mean state, the phase families (K 24 = the binning check) and the families with their swirl ('+swirl'); g0 for the specific impulse (mixture: thrust / (the Q2D mass flow g0)); '@fine' = the judge re-marched at the fine rung fine_rung (the S41 fine rung (280, 61)): a coarse-grid difference between designs counts only if it survives this paired refinement (M0 LINE ADDENDUM S41 item (1))"
+  "cls": "NUMERIC",
+  "note": "the gates of the carrier's new options on the tournament posing: the capped posing (cap, ends at the cap u0, the lip free) at the tournament ambient; over_pa_bar = an ambient that over-expands the cut Stechmann nozzle enough for a wall to detach under Summerfield (the separation-closure gate); fd_step, knot = the central difference of the phase-voting replay gate"
+ },
+ "eval": {
+  "value": {
+   "designs": {
+    "S0": "start:_rde_tournament/S1/walk_TN_2026-09-27.json",
+    "S1": "_rde_tournament/S1/walk_TN_2026-09-27.json",
+    "V1m": "_rde_tournament/V1m/walk_TN_2026-09-27.json",
+    "V1": "_rde_tournament/V1/walk_TN_2026-09-27.json",
+    "V1s": "_rde_tournament/V1s/walk_TN_2026-09-27.json"
+   },
+   "evaluators": [
+    "mean",
+    "family_K12.json",
+    "family_K24.json",
+    "family_K12.json+swirl",
+    "family_K24.json+swirl",
+    "mean@fine",
+    "family_K12.json@fine"
+   ],
+   "g0": 9.80665,
+   "fine_rung": [
+    280,
+    61
+   ]
   },
-  "swirl_gates": {
-    "value": {
-      "y_plug": 0.8,
-      "y_shroud": 1.0,
-      "x_end": 1.0,
-      "x_shroud_end": 1.2,
-      "M": 1.6,
-      "w_over_u": 0.3,
-      "rungs": [
-        [
-          41,
-          21
-        ],
-        [
-          81,
-          41
-        ]
-      ],
-      "fd_ladder": [
-        1e-05,
-        1e-06
-      ]
-    },
-    "cls": "NUMERIC",
-    "note": "the two-wall radial-equilibrium duct (the swirl march's exact W-2 world with the shroud as the top wall): straight walls at y_plug and y_shroud, the plug to x_end, the shroud beyond it (x_shroud_end, the lip not reached), a uniform meridional inflow at Mach M with the free vortex w/u = w_over_u at the plug; rungs = (K stations, N rows) halving; fd_ladder = the central-difference steps of SW-4's ladder (the derivative along the knot is ~5e-5 with the swirl: a single step's truncation error is not negligible against it)"
+  "cls": "NUMERIC",
+  "note": "the tournament's designs: S0 = the Stechmann perfect pair cut at the cap (the start of the walks, read from the S1 record's W_start), S1 = the capped walk on the Stechmann time-mean state (its class at that state), V1m = the 12 phases voting on the thrust with the fold class read at the time-mean state only, V1 = the phases voting with EVERY phase shock-free and attached (the class a KS soft-min over the phases' fold margins and their Summerfield wall margins, TWOP_MU_CLASS=all TWOP_SEP_CLASS=1), V1s = V1 with every phase's free vortex in the march (the meridional problem with its swirl, TWOP_SWIRL=1); evaluators = the mean state, the phase families (K 24 = the binning check) and the families with their swirl ('+swirl'); g0 for the specific impulse (mixture: thrust / (the Q2D mass flow g0)); '@fine' = the judge re-marched at the fine rung fine_rung (the S41 fine rung (280, 61)): a coarse-grid difference between designs counts only if it survives this paired refinement (M0 LINE ADDENDUM S41 item (1))"
+ },
+ "swirl_gates": {
+  "value": {
+   "y_plug": 0.8,
+   "y_shroud": 1.0,
+   "x_end": 1.0,
+   "x_shroud_end": 1.2,
+   "M": 1.6,
+   "w_over_u": 0.3,
+   "rungs": [
+    [
+     41,
+     21
+    ],
+    [
+     81,
+     41
+    ]
+   ],
+   "fd_ladder": [
+    1e-05,
+    1e-06
+   ]
   },
-  "jet_gates": {
-    "value": {
-      "u0_shroud": 0.0,
-      "over_pa_bar": 0.6,
-      "knot": 6,
-      "fd_step": 1e-05,
-      "fine_rung": [
-        279,
-        61
-      ]
-    },
-    "cls": "NUMERIC",
-    "note": "the free-jet gates on the tournament posing: u0_shroud = the shroud end's sigmoid start with the plug at the cap (0: the lip at mid-way, the plug running on beyond it; the lip's first characteristic lands past the plug tip, measured 2026-09-27, so the jet cannot reach the plug); over_pa_bar = an ambient above the cut nozzle's lip pressure (the over-expanded lip: out of class by the lip margin); knot and fd_step of the replay gradient check; fine_rung = (K, N) with K-1 and N-1 doubled from the coarse (140, 31): the residuals' order of convergence (JT-2b)"
+  "cls": "NUMERIC",
+  "note": "the two-wall radial-equilibrium duct (the swirl march's exact W-2 world with the shroud as the top wall): straight walls at y_plug and y_shroud, the plug to x_end, the shroud beyond it (x_shroud_end, the lip not reached), a uniform meridional inflow at Mach M with the free vortex w/u = w_over_u at the plug; rungs = (K stations, N rows) halving; fd_ladder = the central-difference steps of SW-4's ladder (the derivative along the knot is ~5e-5 with the swirl: a single step's truncation error is not negligible against it)"
+ },
+ "jet_gates": {
+  "value": {
+   "u0_shroud": 0.0,
+   "over_pa_bar": 0.6,
+   "knot": 6,
+   "fd_step": 1e-05,
+   "fine_rung": [
+    279,
+    61
+   ]
   },
-  "offdesign": {
-    "value": {
-      "pa_bar": [
-        0.02,
-        0.035,
-        0.05,
-        0.075,
-        0.1,
-        0.15,
-        0.2,
-        0.25,
-        0.3,
-        0.4
-      ],
-      "judges": [
-        "mean",
-        "family_K12.json",
-        "family_K12.json+swirl"
-      ]
+  "cls": "NUMERIC",
+  "note": "the free-jet gates on the tournament posing: u0_shroud = the shroud end's sigmoid start with the plug at the cap (0: the lip at mid-way, the plug running on beyond it; the lip's first characteristic lands past the plug tip, measured 2026-09-27, so the jet cannot reach the plug); over_pa_bar = an ambient above the cut nozzle's lip pressure (the over-expanded lip: out of class by the lip margin); knot and fd_step of the replay gradient check; fine_rung = (K, N) with K-1 and N-1 doubled from the coarse (140, 31): the residuals' order of convergence (JT-2b)"
+ },
+ "offdesign": {
+  "value": {
+   "pa_bar": [
+    0.02,
+    0.035,
+    0.05,
+    0.075,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.4
+   ],
+   "judges": [
+    "mean",
+    "family_K12.json",
+    "family_K12.json+swirl"
+   ]
+  },
+  "cls": "NUMERIC",
+  "note": "the off-design sweep: the ambients (bar) around the tournament's 0.05 bar up to where the cut Stechmann nozzle detaches under Summerfield (0.30 bar, T-5b) and beyond; the judges = the time-mean state, the 12 phases, the 12 phases with their swirl"
+ },
+ "plug_contest": {
+  "_doc": "the SIMPLE-PLUG contest (2026-09-27, the owner: classical at the mean state vs SQP with the phases, no shroud): the two-wall carrier with the shroud FROZEN to a straight 2 mm cowl (TWOP_FIX, lip-radius units), the free jet from its lip, the plug at the cap with its tip height free (the base p_b = p_a), the tournament's class record (a geometric criterion on the same net; the posing's own reference under the jet is folded); designs A = the walk at the mean state, B = the walk with family_K12 voting, T = A's start (the Migdal plug cut under the jet); no swirl judge (the jet has no swirl yet)",
+  "value": {
+   "L87": {
+    "art": "_plug_contest/L87",
+    "env": {
+     "TWOP_CAP": 0.8,
+     "TWOP_U0_S": -10,
+     "TWOP_FREE_EXIT": "both",
+     "TWOP_JET": 1,
+     "TWOP_FIX": {
+      "hs": 1.0,
+      "xa_s": 0.0294,
+      "ta_s": 1e-09,
+      "u_s": -10.0,
+      "ye_s": 1.0
+     }
     },
-    "cls": "NUMERIC",
-    "note": "the off-design sweep: the ambients (bar) around the tournament's 0.05 bar up to where the cut Stechmann nozzle detaches under Summerfield (0.30 bar, T-5b) and beyond; the judges = the time-mean state, the 12 phases, the 12 phases with their swirl"
+    "designs": {
+     "A": "_plug_contest/L87/A/walk_TN_2026-09-27.json",
+     "B": "_plug_contest/L87/B/walk_CN_2026-09-27.json",
+     "T": "start:_plug_contest/L87/A/walk_TN_2026-09-27.json",
+     "Bm": "_plug_contest/L87/Bm/walk_FN_2026-09-27.json",
+     "F": "start:_plug_contest/L87/Bm/walk_FN_2026-09-27.json",
+     "AF": "_plug_contest/L87/AF/walk_FN_2026-09-27.json",
+     "Cc": "_plug_contest/L87/curved_p0.7_tip0.40.json",
+     "AF2": "_plug_contest/L87/AF2/walk_FN_2026-09-28.json",
+     "Bm2": "_plug_contest/L87/Bm2/walk_FN_2026-09-28.json"
+    },
+    "evaluators": [
+     "mean",
+     "family_K12.json",
+     "mean@fine",
+     "family_K12.json@fine"
+    ],
+    "note": "B (the class in every phase) from the cone: restoration immobile, stopped 18:00; Bm (the phases vote in J, the class at the mean state) from the classical family's best member F (certified in all 12 phases, in class at the mean state: no restoration): its record walk_FN_*; F = that member (start:); AF = the mean-state walk from the same cone F (start-matched with Bm: the T start is not certified under the phases, so A87 and Bm87 do not share a start -- AF87 vs Bm87 do); AF2 / Bm2 = the same two walks with the free-edge cell's Newton polished (JET_POLISH) and 32 segments, from the cone"
+   },
+   "L29": {
+    "art": "_plug_contest/L29",
+    "env": {
+     "TWOP_CAP": 0.2687,
+     "TWOP_U0_S": -10,
+     "TWOP_FREE_EXIT": "both",
+     "TWOP_JET": 1,
+     "TWOP_FIX": {
+      "hs": 1.0,
+      "xa_s": 0.0294,
+      "ta_s": 1e-09,
+      "u_s": -10.0,
+      "ye_s": 1.0
+     }
+    },
+    "designs": {
+     "A": "_plug_contest/L29/A/walk_TN_2026-09-27.json",
+     "B": "_plug_contest/L29/B/walk_TN_2026-09-27.json",
+     "T": "start:_plug_contest/L29/A/walk_TN_2026-09-27.json",
+     "A2": "_plug_contest/L29/A2/walk_FN_2026-09-27.json",
+     "F": "start:_plug_contest/L29/A2/walk_FN_2026-09-27.json",
+     "Cc": "_plug_contest/L29/curved_p0.85_tip0.68.json",
+     "BF": "_plug_contest/L29/BF/walk_FN_2026-09-27.json"
+    },
+    "evaluators": [
+     "mean",
+     "family_K12.json",
+     "mean@fine",
+     "family_K12.json@fine"
+    ],
+    "note": "A = the walk from Migdal's cut plug (T); A2 = the walk from the classical family's best in-class member F (arc x_a/L 0.1, tip 0.68 lip radii, cone 15.4 deg): at 29 mm F beats A, so A2 is the mean-state contestant and F the classical designer's own answer; BF = the phases' walk (all-phase class) from the cone F: start-matched with A2 (B from T shares its start with A)"
+   },
+   "_curved": "Cc = the best CONCAVE member of the power-law family at each length (folded by the march's class: judged by the referee on the owner's word, 2026-09-27 20:15)"
   }
+ }
 }

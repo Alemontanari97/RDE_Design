@@ -53,6 +53,11 @@ import time
 import collections
 import numpy as np
 
+# JET_POLISH (2026-09-28): the free-edge cell's Newton polished to its floor
+# (A1.make_implicit_solver polish); PLUG_JET_POLISH=0 restores the record's
+# solver bitwise (the gate of the plug contest reads both)
+JET_POLISH = bool(int(os.environ.get("PLUG_JET_POLISH", "1")))
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import a1_ideal_march_jax as A1              # noqa: E402
 import a1_thrust_functional as TF            # noqa: E402
@@ -389,8 +394,11 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
     carrier reads the lip margin p(q_F)/p_a - 1 < 0 from out["lip_q"] as
     the class violation (a finite surrogate, REQ-NONSTALL). The fan's
     ray count is a recorded decision (0 when the record's lip is not
-    under-expanded). Not combined with `graph` yet (the wavefront replay
-    has no fan / edge kinds): the jet posing replays sequentially.
+    under-expanded). With `graph` (2026-09-27, the plug contest) the record
+    writes the fan rows as 'fan' cells (the lip point their one input, the
+    ray fraction static) and the edge cells as 'jet' cells (this column's
+    top, the previous edge point, the lip point for the edge speed), plus
+    graph['lip_out']: the wavefront replay runs the jet posing too.
     Returns out + sched."""
     ta = A1.tab_arrays(tab)
     if fast and cells is not None:
@@ -406,8 +414,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         ss0 = h00 = None
         NV = 4
     N = len(ys0)
-    if lip_jet is not None and (shroud is None or graph is not None or NV == 6 or cells is not None):
-        raise NotImplementedError("lip_jet: the record-frame 4-wide shroud posing, sequential replay")
+    if lip_jet is not None and (shroud is None or NV == 6 or cells is not None):
+        raise NotImplementedError("lip_jet: the record-frame 4-wide shroud posing")
     jet = lip_jet is not None
     if graph is not None:
         if S.mode != "rec" or NV == 6 or cells is not None or shroud is None:
@@ -418,7 +426,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         t_int = A1.get_solver(("intbu", delta),
                               lambda: make_resid_interior_bu(delta))
         t_fj = A1.get_solver(("fj", False, delta),
-                             lambda: make_resid_freejet(delta))
+                             lambda: make_resid_freejet(delta), polish=JET_POLISH)
         t_wb = A1.get_solver(("wb", delta),
                              lambda: make_resid_wallbot(delta))
     else:
@@ -950,6 +958,7 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             # column, at the jet's speed (the single-wall march's edge cell)
             pt1 = G[(jnew, i)]
             pt3 = G[(M, i - 1)]
+            k3 = (M, i - 1)
             if S.mode == "rec":
                 th_g = float(jnp.arctan2(pt3[3], pt3[2]))
                 dx_g = max(float(pt1[0]) - float(pt3[0]), float(pt1[0]) * EPS)
@@ -964,6 +973,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
             M = jnew + 1
             G[(M, i)] = ept
             edge_pts.append(ept)
+            if graph is not None:
+                graph["cells"].append(dict(kind="jet", out=(M, i), inp=[(jnew, i), k3], zi=len(S.d["z"]) - 1))
         elif shroud is not None and lip_done[0]:
             # ---- after the lip: no top cell; the top row is F's C-
             M = jnew
@@ -1046,6 +1057,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                 thF = jnp.arctan2(spt[3], spt[2])
                 qj = jnp.maximum(jnp.asarray(lip_jet["qpa"], dtype=qF.dtype), qF)
                 lip_q[0] = (qF, qj)
+                if graph is not None:
+                    graph["lip_out"] = (M, i)
                 if S.mode == "rec":
                     nf = int(lip_jet["n_fan"]) if float(qF) < float(lip_jet["qpa"]) else 0
                     S.d["fan_n"] = nf
@@ -1056,6 +1069,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
                     thk = thF + pm_turn(qF, qk, ta, lip_jet["n_gl"])
                     M += 1
                     G[(M, i)] = jnp.stack([spt[0], spt[1], qk * jnp.cos(thk), qk * jnp.sin(thk)])
+                    if graph is not None:
+                        graph["cells"].append(dict(kind="fan", out=(M, i), inp=[graph["lip_out"]], kf=kf, nf=nf, zi=-1))
                 edge_pts.append(G[(M, i)])
         else:
             # ---- new top row: the free edge, fed from THIS column

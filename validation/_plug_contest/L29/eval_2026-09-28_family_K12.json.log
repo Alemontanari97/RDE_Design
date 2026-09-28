@@ -1,0 +1,7 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   posing L29: {'TWOP_CAP': '0.2687', 'TWOP_U0_S': '-10', 'TWOP_FREE_EXIT': 'both', 'TWOP_JET': '1', 'TWOP_FIX': '{"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-09, "u_s": -10.0, "ye_s": 1.0}'}
+   designs: A (record); A2 (record); B (record); Cc (record); F (start of _plug_contest/L29/A2/walk_FN_2026-09-27.json); T (start of _plug_contest/L29/A/walk_TN_2026-09-27.json); closure summerfield; p_a 0.050 bar
+   family_K12.json        A   C_F 1.283883 (gain over no nozzle +0.04431); F 795.92 N, Isp 178.93 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0508), 0 out of the table box (T_min 561 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json        B   C_F 1.283752 (gain over no nozzle +0.04418); F 795.84 N, Isp 178.91 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0414), 0 out of the table box (T_min 561 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json        T   C_F 1.283626 (gain over no nozzle +0.04406); F 795.76 N, Isp 178.89 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0386), 0 out of the table box (T_min 560 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json        A2  C_F 1.288677 (gain over no nozzle +0.04911); F 798.89 N, Isp 179.59 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 1.46), 0 out of the table box (T_min 621 K); lip p/p_a 2.75 .. 12.35

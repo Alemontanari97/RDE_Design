@@ -2750,3 +2750,33 @@ entries:
   owner: "the owner: whether the multi-state design needs a convergence-aware margin (a scale-free same-family leg ratio, which must not flag the centred fans at the throat and the lip) or whether the all-phase class (every phase must stay uncrossed: V1) suffices"
   trigger: "any single-state design judged at other states; the next class revision"
   note: "Minted 2026-09-27 (S41 night). Dedup: the size-floor rows (twowall:class-floor-size-artefact, DISCHARGED) are the opposite defect (a floor that saw size, not shape); no row on the shape margin's blindness to convergence (grep -ciE 'convergence-aware|same-family|converging characteristics|compression focus' at HEAD = 0)."
+- id: twowall:class-stage-folded-reference
+  status: CONFIRMED
+  severity: medium
+  magnitude: "on the simple-plug posing (Migdal's plug cut at the cap under the free jet, the tip free) the reference's worst shape-margin cell is -0.5612 (cert 7.6): the class stage's floors (m_ref / 2^k) came out negative, rho negative and the KS +inf -- C-2 FAIL, no usable class record (validation/_plug_contest/L87/class_run.log, class_FAILED_2026-09-27.json)"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3octies. The SIMPLE-PLUG contest"
+  code: ["validation/a1_twowall.py:1166-1178"]
+  mechanism: "posing assumption (the stage's rules take the reference as in class; a folded reference inverts every floor)"
+  owner: "closed by the guard: the stage refuses a folded reference (m_ref <= 0) and says which record to pass (TWOP_CLASS); the fold class is a geometric criterion on the net, so another posing's record of the same net and knots serves (the plug contest uses the tournament's stech/class_2026-09-27.json, as the capped tournament walks did)"
+  trigger: "any posing whose natural reference folds (a free jet on a wall designed for a shroud; a cut Migdal)"
+  note: "Minted 2026-09-27 (the plug contest). Dedup: twowall:class-floor-size-artefact (DISCHARGED) is the size floor; twowall:shape-margin-blind-to-convergence is the metric's blindness to coalescence; no row on the stage's reference assumption (grep 'folded reference' 0 hits before this row)."
+- id: geno:raoplug-lip-state-not-an-inlet
+  status: CONFIRMED
+  severity: low
+  magnitude: "GENO's RaoPlug (nozzle_type 8) run at the Stechmann lip state (M_i 1.556, theta_i 0 at the lip point, y_E 68 mm, the annulus mass) builds its own internal canted throat upstream of the lip (Phase 3, Rc_plug arc -> sonic): at the lip plane its plug wall sits at y 51.9 mm with slope -32 deg and p 40.4 kPa constant over 8 mm -- not the RDE's uniform axial annulus (53.85 mm, slope 0, 37.4 kPa). The member (L 29.2 mm, C_F 1.3950 by GENO) is a reference curve, not a contestant on the RDE inlet plane"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3octies. The SIMPLE-PLUG contest"
+  code: ["GENO/src/lib/RaoPlug_m.f90:401-403", "GENO/src/lib/PlugNozzle_m.f90:757"]
+  mechanism: "posing (the classical Rao aerospike has a canted throat at the lip; a fixed supersonic axial inlet is Humphreys 1971's problem, not Rao 1961's)"
+  owner: "a reading, no fix: the classical fixed-inlet answer is the variational optimum at the mean state, which [X-HMPH] re-obtains with this line's TR-SQP; GENO's direct plug (nozzle_type 10/11, a forward march from a uniform IVL) is WIP-disabled in main.f90 and would be the GENO-side generator if revived"
+  trigger: "any RDE plug posed on GENO's RaoPlug; the direct plug's revival"
+  note: "Minted 2026-09-27. Records RDE/handoff/f3_2026-09-27/geno_rao/ (sweep_th0, scan_ni101, A_rao_lipstate_ref/summary.json). Dedup: no GENO RaoPlug row in this registry (grep RaoPlug/raoplug: 0 hits before this row)."
+- id: plug-march:jet-cell-uncertified-strong-fan
+  status: CONFIRMED
+  severity: medium
+  magnitude: "on the simple-plug posing under the 12 phases (m_lip 1.75 .. 11.3 p_a), the Migdal-cut start T carries an UNCERTIFIED free-edge ('jet') cell at phase 10 (P0 3.09 bar, column 91, cert 5.9) and A87's landing one at phase 11 (cert 1.64); the cone start C is certified in all 12 phases (worst 0.57). The walk driver refuses an uncertified start, so the phases' walk at 87 mm could not start from Migdal's cut plug (RDE/handoff/f3_2026-09-27/twop_plugcert_probe_L87.log)"
+  source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3octies. The SIMPLE-PLUG contest"
+  code: ["validation/a1_plug_march.py:952-972", "validation/a1_freejet_unit.py:69-95"]
+  mechanism: "numerics (the damped Newton picks its iterate by the residual NORM among trial steps; at convergence that norm is the roundoff of the compatibility row (units ~u^3, cond(J) ~1e10 on the free-edge cell) and the argmin drops the full step exactly when it would reach the floor: the record stops one iteration short, its certificate 0.2-0.6 at rest and above 1 under a 0.1 mm move; twop_jetcell_probe 2026-09-28)"
+  owner: "PARTLY FIXED 2026-09-28: a1_ideal_march_jax.make_implicit_solver(polish=True) takes the full Newton step once inside the certification bound, opted in by the free-edge solver alone (a1_plug_march JET_POLISH; PLUG_JET_POLISH=0 = the record's solver bitwise): the cone's jet cells go to the floor (0.495 -> 0.153, J per phase unchanged to the last digit; gates S41 log 3octies R: oracle 6/6, wavefront 4/4, tournament gates 9/9 + 5/5), but one jet cell of Stechmann-from-Migdal 87 at phase 10 stays at 1.83 -- a floor above the bound, probed; open: a conditioning-aware bound for the free-edge cell, gated by the corrupted-ambient rejector"
+  trigger: "any free-jet posing with lip pressure ratios above ~9 p_a; the phases' walks on simple plugs"
+  note: "Minted 2026-09-27. Dedup: the shroud-posing lip (twowall rows) and the jet gates JT-1..4 (a single state, m_lip 0.06 .. 6.5) never saw it; grep 'jet cell' 0 hits before this row."

@@ -1,0 +1,30 @@
+== [F3] the two-wall fold class [X-TWOP] (stage class) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.000000); wedge every 1; p_a/P0 3.52959e-02; 0.3 s
+  [PASS] C-F the fast record lane (fast True, pad 1024) reproduces the legacy lane at the reference within the certificate's own band: 18156 cells, max |dz| 0.0e+00 = 0.00 of the Newton tolerance (<= K_RICH), decisions identical True, J / KS / min relative 0.0e+00 / 0.0e+00 / 0.0e+00 (<= 1.6e-11); 14.8 s against 248.5 s
+   plume cells beyond the last wall's end (x 1.2787): 12786 of 17315, out of the class
+  [FAIL] C-1 the reference is in the fold class over the whole net (min cell -0.5612 > 0, 18 negative)
+  [PASS] C-S(a) KAT: parallelograms with legs down to 3e-03 ell score |sin phi| exactly in shape mode (max error 2.2e-16 <= 8.9e-16)
+  [PASS] C-S(b) the reference's 17315 cells scaled by 0.1 about their centroids keep their shape margins (max |dv| 6.6e-07 <= the shoelace cancellation band 9.7e-05)
+  [PASS] C-S(c) the degeneracy guard never binds on the reference: min legs' product / eps2 = 1.6e+02 (>= 1e+02)
+   READING the two modes' worst cell on the reference: AREA mode -0.7579 at x 2.571 y 1.439 (legs' product 1.3e+00 ell2, shape there -0.758); SHAPE mode -0.7615 at x 2.606 y 1.458 (legs' product 0.31 ell2)
+  [FAIL] C-2 KS brackets the minimum: -0.552425 <= KS inf <= -0.561193 (rho -1113.0, gap -8.77e-03)
+    h 4.460e-05 m: C_F 1.361543877 (+1.28e-05), KS +inf, min -0.5612, cert 7.583e+00
+    h 8.920e-05 m: C_F 1.361556601 (+2.55e-05), KS +inf, min -0.5612, cert 7.581e+00
+    h 1.784e-04 m: C_F 1.361581819 (+5.07e-05), KS +inf, min -0.5611, cert 1.419e+01
+    h 3.568e-04 m: C_F 1.361631326 (+1.00e-04), KS +inf, min -0.5611, cert 9.592e-01
+    h 7.136e-04 m: C_F 1.361726660 (+1.96e-04), KS +inf, min -0.5610, cert 1.433e+00
+    h 1.427e-03 m: C_F 1.361902825 (+3.72e-04), KS +inf, min -0.5607, cert 9.319e-01
+    h 2.854e-03 m: C_F 1.362198842 (+6.68e-04), KS +inf, min -0.5714, cert 1.539e+00
+    h 5.709e-03 m: C_F 1.362579053 (+1.05e-03), KS +inf, min -0.5752, cert 6.135e-01
+    h 1.142e-02 m: C_F 1.362593349 (+1.06e-03), KS +inf, min -0.6237, cert 1.043e+00
+    h 2.284e-02 m: C_F 1.360301731 (-1.23e-03), KS +inf, min -0.7295, cert 9.064e-01
+    h 4.567e-02 m: C_F 1.349193339 (-1.23e-02), KS +inf, min -0.8200, cert 8.815e+00
+    h 9.134e-02 m: C_F 1.302041928 (-5.95e-02), KS +inf, min -0.9998, cert 1.426e+16
+    h 1.827e-01 m: C_F 1.154156861 (-2.07e-01), KS +inf, min -0.9997, cert 3.041e+17
+    h 3.654e-01 m: C_F 1.252465622 (-1.09e-01), KS +inf, min -0.9993, cert 3.698e+16
+   READING the class along +grad J at the reference: bracket [0.022835378215714287, 4.4600348077566966e-05] m
+  [FAIL] C-R REJECTOR: the class never breaks along +grad J inside the ladder -- no rejector
+   floors [-0.2806 -0.1403 -0.0701 -0.0351]; rho -1113.0; gap -8.77e-03; h* nan m -> tr0 nan m, floor nan m
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/class_2026-09-27.json
+
+== 4/7 PASS  (489.6 s) ==

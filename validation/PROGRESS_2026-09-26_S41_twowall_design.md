@@ -750,6 +750,302 @@ of TWOP_MU to be ported), the same truncation, the base at a declared closure (N
 Tooling in place for it: the single-wall plug march with the axisymmetric lip fan, the PSPL walker, the two
 referees (the plug-only mesh topology is a simplification of the nozzle-only one). Not started in this window.
 
+## 3octies. The SIMPLE-PLUG contest (the owner, 2026-09-27 afternoon)
+THE OWNER'S WORDS: "cerchiamo il plug ottimo di stechmann e sqp invece dello shroud. L'idea deve essere, ottimo con lo
+stato di stechmann (usando i metodi classici tipo rao ecc ecc) vs ottimo di sqp con lo stato effettivo in output
+dell'rde. Quindi non shrouded, semplice plug."
+
+A. THE POSING (declared). The RDE annulus at x = 0 (r 53.85 -> 68 mm, the Q2D state, AXIAL: the chamber's, not a
+design feature), the cowl ending AT the exit (the lip at (0, 68 mm)), the plug continuing the hub with slope 0,
+the free jet at p_a 0.05 bar from the lip, the base an open wake p_b = p_a (Sule & Mueller 1973, the tournament's
+convention), separation by Summerfield / Schmucker in the class, one length for both contestants.
+
+B. THE CLASSICAL CONTESTANT, MEASURED. GENO's Rao plug (nozzle_type 8, RaoPlug_m: the single dof theta_E, the
+variational C- curve from the lip, the mass-terminated tip) run at the Stechmann LIP state (M_i 1.556097, theta_i 0
+at the lip point, y_E 68 mm, the Stechmann gas tables, p_a = p_b 5000 Pa, the mass target 0.49653 kg/s of the
+annulus): RDE/handoff/f3_2026-09-27/geno_rao/. (1) The sweep over theta_E (sweep_th0): the C- curve closes on
+the mass only for theta_E in [-17, -1] deg (M_E 1.58 -> 1.96; L 17.6 -> 35.8 mm; the curve goes non-finite before
+the axis at larger turns, 97 percent of the mass at -18.6 deg): at an AXIAL lip Rao's family holds only SHORT
+plugs, L <= 38 mm. (2) The member whose mass-set tip carries the implied base pressure p_a (Me_fixed 1.9526, the
+fine scan): theta_E -13.03 deg, L 29.20 mm (0.429 y_E), eps 2.297, tip radius 37.7 mm, F 864.8 N -> C_F 1.3950
+in the tournament's units (the shrouded pair cut at 87 mm 1.4461 at the same state, the bare exit 1.2916); the
+corner's own ambient 7259 Pa (the member is Rao-optimal at 7.3 kPa, not 5 kPa; the p_a-adapted member M_E ~2.0
+stops at the p_b corner with 9 percent of the mass unpassed). (3) NOT OUR INLET: at the lip plane GENO's plug
+wall sits at y 51.9 mm with slope -32 deg and p 40.4 kPa (constant to x 8 mm) -- GENO's Phase 3 builds its own
+internal canted throat (Rc_plug arc -> sonic) upstream of the lip; the flow reaching the lip plane is not the
+uniform axial annulus of the RDE, so the member cannot be put in front of the referee on the RDE inlet plane.
+The record: geno_rao/A_rao_lipstate_ref/summary.json (the reference curve, not a contestant). GENO's direct plug
+(nozzle_type 10/11, the forward march from a uniform IVL) is WIP, disabled in main.f90.
+THE CLASSICAL METHOD FOR A FIXED INLET is Humphreys, Thompson & Hoffman 1971 (parametric family + MOC, their
+Table 2), which this line's TR-SQP RE-OBTAINS ([X-HMPH] S35, [DIR-REOB]); so the classical contestant is posed as
+the VARIATIONAL OPTIMUM AT THE MEAN STATE on the same carrier -- the SQP on the Stechmann state -- with a
+parametric classical family (cone / arc plugs at the mean state) as its cross-check. The owner informed 15:xx.
+
+C. THE CARRIER FOR BOTH: the two-wall march as a SIMPLE-PLUG march. (1) The shroud reduced to a straight 2 mm
+cowl at the inlet radius (TWOP_FIX = the shroud's knots, arc and end FROZEN -- a1_twowall.full/red, the reduced
+design vector the driver sees; unset = bitwise), the lip jet from its end (TWOP_JET), the plug at the cap, its tip
+height FREE (TWOP_FREE_EXIT=both: the base radius is a design outcome, priced at p_b = p_a by J_of's gauge term).
+Probe 1 (twop_plugonly_probe.py, the Migdal plug cut at 87 mm under the jet, mean state): record 16.5 s, cert
+0.057, m_lip +6.47 (the lip under-expanded: p_lip 7.5 p_a), J 1.3594; the 12-phase record 156 s, but the SEQUENTIAL
+replay's 12-phase J + gradient 734 s: a walk of 16 x 6 segments would take days. (2) THE WAVEFRONT REPLAY EXTENDED
+TO THE JET (a1_plug_march graph: 'fan' cells = the corner relation from the lip point, 'jet' cells = the free-edge
+cell at max(q_pa, q_lip) with the lip point an input, graph['lip_out']; a1_wavefront_replay kinds fan / jet, the
+lip_q returned for the lip margin; a1_twowall no longer forces the sequential path with the jet). Probe 2
+(twop_wfjet_probe.py, WF-5): on the simple-plug posing (18120 cells, 496 levels: int 17794, wall 140, shroud 3,
+lip 1, fan 16, jet 166) the wavefront J is BITWISE the sequential one, grad J to 3.9e-13 relative (tol 1.6e-11),
+the class margin with the lip margin and its gradient bitwise; J + grad 55.6 s -> 1.7 s (33x), margin + grad
+29.9 -> 1.9 s; the 12-phase J + grad 734 s -> 23.5 s, margin + grad 24.4 s. A 12-phase segment (record 152 s +
+6-8 iterations) ~ 9 min: the walks are affordable.
+
+D. THE CLASS ON THE PLUG POSING. Stage class run on the simple-plug posing at the mean state (cap 0.8,
+_plug_contest/L87/class_run.log): the posing's reference -- Migdal's plug cut at the cap under the free jet, the
+tip free -- is FOLDED (worst cell -0.5612 in shape mode, cert 7.6): the class stage's rules (floors = the
+reference's own worst cell / 2^k) have no meaning on a folded reference (C-2 FAIL, rho negative). The fold class is
+a GEOMETRIC criterion on the net (the sine of the angle between the characteristics), the same net (140, 31) and
+knots: the plug contest uses the TOURNAMENT'S class record (stech/class_2026-09-27.json: floor 0.2351, rho 1233,
+gap 0.0073, m_ref 0.470) -- as the capped tournament walks did, whose reference (the compressed Migdal) folds too.
+The failed record kept as class_FAILED_2026-09-27.json.
+
+E. THE REFEREE'S PLUG-ONLY TOPOLOGY (RDE/THOR/THOR_GPU/NOZZLE_2026-09-27, gen_nozzle_mesh.py --plug-only
+--walls, build_bc_thor_nozzle.py): the 'shroud' of the walls JSON is the straight lip line r = 68 mm to the cap,
+the Nozzle / Outer faces on it 101 CONNECTIONS (the free jet crosses it), the cowl lip AT the inlet plane (the
+march's 2 mm cowl is not meshed: a straight wall in uniform flow), the Outer block's first cell 0.5 mm (25 nodes to
+160 mm). Smoke on the placeholder P0 (the S0 plug under the jet), phase 0 frozen: 0.53 min, no shock, C_F 2.021
+(the MOC's phase-0 value of the same plug under the jet 2.025: the referee reads the free jet). Batch scripts
+generalised to a design list (DESIGNS / TAG / EVAL; post_batch --designs --eval).
+
+F. THE STARTS AND THE WALKS (L87, launched 16:49). Starts under the mean state (twop_plugstart_probe): T (Migdal's
+plug cut + the tail deflection) J 1.3653, cert 0.10, KS -0.276; C (arc + chord) 1.3534, 0.31, -0.565; L (nearly
+straight) 1.3577, 0.04, -0.651 -- all out of class, all certified. THE CLASSICAL PARAMETRIC FAMILY at the mean
+state (twop_plugfamily_probe_L87: arcs x_a/L 0.05-0.5 x tips 0.30-0.62 lip radii, 25 members): the best IN-CLASS
+member J 1.34942 (x_a/L 0.1, tip 0.4865 = Migdal's, cone 14.1 deg), the best ignoring the class 1.35729 (folded);
+the restored T start of walk A (1.36449, KS +0.48) already beats the family by 1.5e-2 -- as Humphreys' 20-run grid
+(within 0.5 percent) is beaten by the variational contour. Walk A (mean state): restoration 2 iterations (KS
+-0.276 -> +0.482), Newton metric 62 s (15 dofs), class scale h* 8.1e-3 -> tr0 2.0e-3; by segment 6 C_F 1.364679
+with KS - mu0 +0.0066: THE CLASS BINDS from the third segment (the ascent trials 'INFEASIBLE'), the gain over the
+restored start 1.9e-4. Walk B (the 12 phases) REFUSED its T start: cert 5.87 -- the certificate probe
+(twop_plugcert_probe_L87) puts the uncertified cells in phase 10 (P0 3.09 bar, a 'jet' cell at column 91, cert 5.9)
+and phase 6 (a wall cell, 1.12); T is out of class in 10 phases (min cell -0.74); the cone start C is CERTIFIED in
+all 12 (worst 0.57) and out of class in 9; A's segment-5 landing is uncertified in phase 11 (a jet cell, 1.64). B
+relaunched from C (17:2x): the restoration over 12 phases has 9 to lift. At L29 both T starts are certified and
+in class from the outset (A: KS +0.588; B: cert 0.30, KS +0.531, C_F 1.2836 at the 12 phases): both walk.
+
+G. LANDINGS (mean-state walks). A87: C_F 1.364679 (start 1.364493, the compressed-Migdal reference 1.361531), cert
+0.10, KS +0.242 in class, 13 records, 1417 s; the tip 33.08 -> 33.10 mm, the tip pressure 1.17 p_a, the lip 7.47
+p_a (under-expanded by 7.5: the free jet's first fan turns the whole 39 degrees at the lip). A29 (from T): 1.343042
+(start 1.342782), KS +0.591, cert 0.054, 16 records, 1449 s -- BELOW the classical family's best in-class member
+(1.345469: arc x_a/L 0.1, tip 46.2 mm, cone 15.4 deg): at 29 mm the SQP from Migdal's cut plug does not reach the
+classical designer's best cone in 16 segments (its start is 2.7e-3 lower and the walk gains 2.6e-4). A2 (from the
+family's best, TWOP_START=F): 1.345877 at segment 7 -- the SQP refines the classical member by +4.1e-4; its
+landing is the mean-state contestant at 29 mm (the classical optimum IS its start: the honest form of the fixed-
+inlet contest, Humphreys' own procedure being a parametric grid). The wavefront gate on the jet posing (stage
+wavefront under the plug env, _plug_contest/L87/wavefront_jet_run.log): WF-1 3.1e-15, WF-2 9.4e-13, WF-3 bitwise,
+WF-4 bitwise, 4/4 PASS in 217 s (16x / 5.6x under a load of 120; the first run crashed in WF-4, which replayed
+without the jet posing: lip_jet passed).
+
+H. THE JUDGES AND THE REFEREE ON A87 vs ITS START (eval_2026-09-27.json under TOUR_POSING=L87; the referee
+CASE_2D/*87_phase*_plug, batch_plug87): MOC mean A 1.364679 / T 1.364493 (+1.9e-4); mean@fine 1.364533 / 1.364327
+(A out of the fold class at the fine rung); 12 phases A 1.304317 / T 1.304155 (+1.6e-4; A 9 of 12 phases out of the
+class, 1 uncertified 1.3; T 8 / 1 uncertified 3.0; the lip 2.75 .. 12.35 p_a across the phases); 12 phases @fine
+1.304176 / 1.303997 (+1.8e-4; 12 of 12 out of class for both). THE REFEREE (2D axisymmetric Euler, frozen, 12
+phases): T87 1.297148, A87 1.296474: A - T = -6.7e-4 (Schmucker +1.1e-4 / +0.8e-4, phases 7-8's last cells; no
+shock in any phase) -- the mean-state refinement of the cut Migdal plug is NOT better under the phases by the
+independent runner; the MOC's +1.6e-4 is read on nets that fold in 9 of 12 phases (section 3septies A's flaw, live
+here). CFD / MOC: T -0.54 percent, A -0.60 percent (the shrouded pair: -0.28 .. -0.31 for both designs).
+The simple plug against the shrouded pair at the same 87 mm, by the referee: 1.297 against 1.372 (-5.5 percent);
+against no nozzle (J0 12 phases 1.2395 by the MOC): +0.058 against the pair's +0.133.
+A2 LANDED (17:39): C_F 1.347554 at the mean state (start F 1.345469: +2.1e-3, 0.15 percent; A29 from Migdal's cut
+1.343042), cert 0.72, KS +0.622 in class, 10 records, 1605 s; the tip 46.2 -> 45.7 mm, the tip pressure 3.04 p_a
+(a 29 mm plug leaves the flow at 3 p_a: strongly under-expanded, the classical member's length is short for
+0.05 bar -- Rao's own family said so). At 29 mm the SQP REFINES the classical designer's best cone by 0.15
+percent; at 87 mm it refines Migdal's cut plug by 0.014 percent and the classical cone family sits 1.1 percent
+below both. The mean-state contestant at 29 mm is A2 (F its start, both judged).
+
+I. THE ALL-PHASE CLASS AT 87 mm IS NOT RESTORABLE IN THE TIME AVAILABLE. B87 from the cone C (certified in all 12
+phases, out of class in 9: min cell -0.70): the restoration by ascent of the soft KS moves 1.4e-3 (one station) per
+iteration for 4-7 records of 12 phases each and lifts the soft KS by 0.002 per iteration on a deficit of 1.4 (the
+class KS -0.699 -> -0.7015: not moving) -- hundreds of iterations at ~10 min each. Read with the certificate probe
+(T out of class in 10 phases, C in 9, A87 in 9): a simple plug at 87 mm under an axial supersonic inlet folds
+SOMEWHERE in most phases -- the lip fan in axisymmetric flow converges its C- rays toward the axis and the plug's
+re-turning reflects them into a same-family coalescence; the low-pressure phases fold the cone, the high-pressure
+ones fold Migdal's cut plug. Whether the 12-phase shock-free class of a simple plug at this length is EMPTY or only
+far from every start we own is not decided by this evening's walks (the class stage's rejector logic cannot say
+either: its floors are Migdal's). DECISION (18:00): the phases' contestant at 87 mm is posed as Bm = the 12 phases
+voting in J with the class at the MEAN state (TWOP_MU_CLASS=ref, the tournament's V1m posing), from the cone start;
+B (the class in every phase) is left running for the record of its restoration and stopped when the Bm walk lands.
+At 29 mm the T start is in class in all 12 phases from the outset and B29 walks with the all-phase class.
+The fallback probe (twop_plugcert_probe_L87_fallback): A87's landing under the 12 phases -- cert 1.345 (a jet cell
+at phase 10), out of class in 9 phases (min -0.734); the classical member F87 -- certified (0.495), out of class in 8
+phases (min -0.679, phases 2-9). Every simple plug we own at 87 mm (T, C, A87, F87) folds in the phases with P0
+below ~1.3 bar (2-8) and is in class only in the three post-wave phases (0, 10, 11) and, for some, phase 1: the fold
+sits where the weaker fans of the low-pressure phases land on the plug (wall cells at columns 75-98 of 140, i.e.
+x 47-61 mm) -- a fixed wall cannot un-fold the low-pressure phases without folding the high-pressure ones is the
+conjecture the restoration's crawl supports; not proven here.
+REFEREE AT 29 mm: the 2D wedges die at the first step at cfl 0.8 (NaN in the channel, all four designs; the 87 mm
+wedges ran at 0.8): cfl 0.4 and 0.2 both run to 1 ms and give the SAME C_F on A29 phase 0 (1.986960 at either):
+the 29 mm batch runs at cfl 0.4 (CFL passthrough in run_all_phases.sh), the two test cases deleted after the
+reading.
+B87 (the all-phase class) STOPPED at 18:00 after two restoration iterations (50 min, 11 twelve-phase records: soft
+KS -1.3966 -> -1.3926, class KS -0.699 -> -0.702): its cost was slowing Bm87 and B29; its record is the log
+_plug_contest/L87/B/run_walk_TN_2026-09-27.log (and the refused T start's).
+(Tooling: the batch's "running" census counted a crashed wedge as running -- its run.log has neither "Time of
+operation" nor "forrtl" -- and deadlocked at four crashed cases; the census now reads BAD TERMINATION / NaN /
+KILLED as finished. The 29 mm batch relaunched at cfl 0.4 at 18:03.)
+
+J. THE JUDGES AT 29 mm (eval under TOUR_POSING=L29; B29 still walking): mean A 1.343042 / T 1.342782 / A2 1.347554 /
+F 1.345469; 12 phases A 1.283883 / T 1.283626 / A2 1.288677 / F 1.286992 -- every design IN CLASS in all 12 phases
+and certified (the short plug keeps the class: its fan lands on a wall that has not yet re-turned). A2 - F: +2.1e-3
+at the mean state, +1.7e-3 over the phases (0.13 percent): the SQP's refinement of the classical cone survives the
+phases by the design-side judge. A2's profile (figure 33): the arc shrunk to a corner at the inlet (its wall
+pressure drops from 5.7 to 3.5 p_a within the first station) then a straighter cone to a 45.7 mm tip; F keeps the
+0.1 L arc.
+
+K. THE REFEREE AT 29 mm (48 wedges at cfl 0.4, batch_plug29): no shock and no separation in any phase for any design;
+mu-average CFD / MOC: T29 1.281935 / 1.283626, A29 1.282192 / 1.283883, F29 1.284781 / 1.286992, A2 1.287254 /
+1.288677 (CFD 0.11-0.17 percent below the MOC, the offset common). A2 - F = +2.5e-3 by the REFEREE (+1.7e-3 by the
+MOC over the phases, +2.1e-3 at the mean state): at 29 mm the SQP's refinement of the classical designer's best
+cone SURVIVES the independent runner (+0.19 percent); A2 - T = +5.3e-3 (the Migdal-cut start was the wrong start
+there). At 87 mm the same walk from Migdal's cut plug did not: -6.7e-4 by the referee.
+Bm87 from the cone: the restoration at the MEAN state also crawls (3 iterations in 60 min: soft KS -0.863 ->
+-0.822, class KS -0.556 -> -0.560, 12 records the last) -- stopped 19:02 and RESTARTED from the classical member
+F87 (certified in all 12 phases, IN CLASS at the mean state, KS +0.435: no restoration): the phases' contestant at
+87 mm walks from the classical designer's cone, as A2 does at 29 mm. B29 (the all-phase class, from T) at segment
+3 of 16 (1.283656, +3e-5): ~15 min per segment, lands around 22:30; its checkpoint is the provisional design.
+
+L. "THE PROFILES ALL LOOK CONICAL" (the owner, 19:15) -- MEASURED. Wall angles at 29 mm (x 0.5 / 1 / 2 / 4 / 8 /
+15 / 22 / 28 mm): T and A -2 -4 -9 -17 -20.5 -21 -21 -19 deg (Migdal's cut: a turn over the first 4-8 mm, then
+straight); F -3 -5 -10 -15.4 then -15.4 (the 0.1 L arc, then the cone); A2 -15.7 from the FIRST station (a corner
+at the inlet) then straight. The SQP's own move at 29 mm was to sharpen the classical arc into a corner and keep the
+straight wall. THE CURVED FAMILY (twop_plugcurved_probe: y = y_l - (y_l - y_tip)(x/L)^p, p 0.4 .. 1.3, the tip free,
+a 0.02 L arc at the start; mean state): at 29 mm the CONE (p 1) is the best, in class, 1.346798 (tip 0.68); every
+concave member (p < 1, the Rao-like fast turn) is worse AND folds (p 0.85: 1.346269 out of class; p 0.4: 1.3354);
+convex p 1.3 in class but worse (1.3446); A2 1.347554 beats the whole family. At 87 mm the concave p 0.7 with the
+tip at 0.40 (27 mm) reaches 1.364055 -- 6e-4 under A87 -- but OUT of class (KS -0.80), as is every member of the
+family at 87 mm (the cone 1.3600, out); Migdal's cut plug (A87 1.364679, in class, gently curved -20 -> -4 deg) is
+the best in class. READING: turn-then-straight is what the instruments prefer for a short plug (29 mm); at 87 mm
+the class keeps the design at Migdal's curvature and the concave alternative folds. The landings are budget-limited
+(16 segments; in A2 the trust-constr step returned a point WORSE than the base in 7 of 16 segments -- the
+projected ascent carried the walk, 14 accepted steps of +2e-4 -- and the landing's |grad|inf 2.8e-2 is not small):
+A3 = A2 continued for 16 more segments launched 19:20 to read where the shape goes with more budget.
+A3 (A2 continued, 16 more segments budgeted): landed after 8 records at 1.347770 (+2.2e-4), the tip unchanged
+(0.6717), cert 0.949 -- at the certificate's edge -- and the replay's gradient NON-FINITE at the landing (8
+non-finite margin gradients, "no motion -> stop" at segment 13): the continuation adds 1.6e-4 per segment for two
+segments and then runs into a numerically fragile record; the shape does not leave the corner-and-cone. The 29 mm
+mean-state contestant of record stays A2 (cert 0.72); A3 is the continuation reading.
+
+M. Bm87 FROM THE CONE F87 (19:03 -> the first segment 19:47): the 12-phase J at the start 1.293283, the Newton metric
+757 s (three negative eigenvalues, floored), the class scale at the mean state h* 1.0e-3 -> tr0 2.5e-4 lip radii
+(0.017 mm): the class binds from the first step along +grad J -- Bm87 will land within a fraction of a millimetre of
+F87. Since the phases' walk cannot start from Migdal's cut plug (uncertified under the phases) while A87 does, A87
+and Bm87 do not share a start; AF87 = the MEAN-STATE walk from the same cone F87 launched 19:50 so that the 87 mm
+contest has a start-matched pair (AF87 vs Bm87) beside A87.
+AF87 LANDED (20:09): 1.353615 at the mean state (from the cone F87 1.349423: +4.2e-3, 0.31 percent), in class (KS
++0.451), cert 0.078, |grad|inf 0.13 (budget-limited, non-finite margin gradients in the last segments), 16 records,
+1171 s -- still 1.1e-2 below A87 (Migdal's cut start): at 87 mm the cone's basin is the poorer one, and the walk
+does not cross to Migdal's shape in 16 segments; the start-matched pair at 87 mm is AF87 vs Bm87.
+
+N. B29 LANDED (21:07): the phases voting with the class in EVERY phase, from T (Migdal's cut): 12-phase C_F 1.283752
+(start 1.283626: +1.3e-4), in class in all 12 phases (KS +0.533), cert 0.50, 16 records, 15001 s (4.2 h under the
+evening's load). Against A2 (the mean-state walk from the cone, 1.288677 over the phases): -4.9e-3 -- the START
+decides more than the vote at 29 mm (B29 shares its start with A29, 1.283883 over the phases, and sits 1.3e-4 BELOW it:
+the vote bought nothing there either). BF29 = the phases' walk from the cone F launched
+21:10 (start-matched with A2). The L29 judges and referee re-run with B29 and the concave member Cc29 (chain
+started 21:07).
+
+O. THE 29 mm TABLE WITH B29 AND THE CONCAVE MEMBER (22:34; chain of 21:07; batch_plug29_table.json, eval under
+TOUR_POSING=L29): 12-phase MOC / referee CFD -- T 1.283626 / 1.281935; A 1.283883 / 1.282192; B (the phases' walk
+from T, all-phase class) 1.283752 / 1.282058; F (the classical cone) 1.286992 / 1.284781; A2 (the mean-state walk
+from F) 1.288677 / 1.287254; Cc (the concave power-law member p 0.85, the same tip 0.68, FOLDED by the march's class
+in all 12 phases, one phase uncertified 3.6) 1.287795 / 1.286951. READINGS: (1) the vote buys +1.2e-4 over its
+start T by the referee (+1.3e-4 MOC): nothing, as at 87 mm and in the shrouded tournament; (2) the START decides:
+the cone family's best F beats every walk from Migdal's cut by 2.6e-3 (CFD); (3) THE OWNER'S POINT ("come fa il
+cono a essere migliore"): by the independent runner the CONCAVE wall Cc BEATS the cone F by +2.2e-3 (+0.17
+percent) -- the march's class had discarded it (folded nets), the MOC on those nets gave it +0.8e-3 over F; the
+SQP's corner-and-cone A2 still edges the concave by +3.0e-4 (CFD) / +8.8e-4 (MOC). So: a concave wall is NOT worse
+than the cone by the referee -- it is worse than the corner-and-cone the SQP found, by 0.02 percent, and it is out
+of the shock-free class; the class is what the vote and the walk buy, the thrust differences are 1e-4 .. 1e-3.
+The referee's wall record of Cc29: NO pressure rise above 5 percent on the plug in any phase (the largest 2.5
+percent at phase 8, x 4 mm from the inlet, where the concave wall turns back); the fold the march's class flags is
+a compression the Euler wedge resolves as a 2.5 percent rise, not a shock of consequence: the class is conservative
+here, a reading to carry into the class revision (twowall:shape-margin-blind-to-convergence's sibling: the margin
+flags a coalescence whose strength is not measured).
+
+P. THE 87 mm TABLE, COMPLETE (00:00, 2026-09-28; eval under TOUR_POSING=L87, batch_plug87_table.json; CFD none /
+Summerfield / Schmucker, then the 12-phase MOC): T87 1.297148 / 1.297148 / 1.297257 | 1.304155; A87 1.296474 /
+1.296474 / 1.296554 | 1.304317; F87 (the classical cone, tip 33.1 mm) 1.283042 / 1.285974 / 1.286644 | 1.293283
+(5 phases detached per the MOC); AF87 (mean-state walk from F) 1.286903 / 1.288322 / 1.288902 | 1.295939; Bm87
+(the phases in J, the class at the mean state, from F; landed 1.294249 from 1.293283, +9.7e-4, cert 0.54, KS +0.458)
+1.284235 / 1.286574 / 1.287487 | 1.294249 (6 detached); Cc87 (the CONCAVE power-law member p 0.7, tip 27.2 mm,
+folded by the class in 12 of 12 phases) 1.299544 / 1.299888 / 1.300720 | 1.303411. VERDICT OF THE REFEREE AT 87 mm:
+the concave wall is the BEST design of the evening, +2.4e-3 (none) .. +3.5e-3 (Schmucker) over T87 and +3.1e-3 ..
++4.2e-3 over A87 (0.2-0.3 percent) -- the MOC on its folded nets had it 7e-4 BELOW T87 and the class had excluded it
+from every walk. The cone family (F, AF, Bm) is 1.0-1.4e-2 below Migdal's cut plug by the referee: at 87 mm the
+start decides by an order of magnitude more than either method's walk (A87 - T87 -6.7e-4, Bm87 - F87 +1.2e-3, AF87 -
+F87 +3.9e-3 at the referee). The Summerfield / Schmucker credits are 1-3e-3 on the cone-based designs (their tails
+separate in the low-pressure phases: p_wall < 0.35 p_a) and 0 .. 1e-3 on Migdal's cut and the concave.
+THE REFEREE'S WALL RECORD AT 87 mm (rises above 5 percent between neighbouring cells, all 12 phases): T87 0, A87 0,
+F87 0, Bm87 0 -- Cc87 36 (three per phase, the largest 15.7 percent), AF87 30 (the largest 8.6 percent). The
+concave winner DOES carry the recompressions the class flagged -- weak shocks on the wall, 5-16 percent jumps,
+where the wall turns back toward the axis -- and wins by +0.2-0.3 percent despite them: at 87 mm the shock-free
+class is not the thrust-optimal class for a simple plug on this inlet, by the independent runner. AF87 (the
+mean-state walk from the cone, in class at the mean state, out of class in 9 of 12 phases) carries them too; the
+walks from Migdal's cut plug (T, A) and the cone-based F / Bm do not. The over-expanded tails: Bm87 and F87 reach
+0.15-0.30 p_a in the low-pressure phases (Summerfield credits 2-3e-3), Cc87 0.28 p_a at phase 8 (Summerfield at
+phases 7-8), T87 / A87 0.37 (none).
+
+Q. CORRECTION (03:10, 2026-09-28) TO SECTIONS I AND M: it was NOT the fold class that pinned the phases' walk at 87 mm.
+Fasi-da-cono 87's start ladder (its log): KS +0.4352 at every rung -- the class never broke -- and the ladder went
+OUT at h 1.4e-3 on the CERTIFICATE (1.59), after rungs at 0.87 / 0.49 / 0.84 / 0.99: the 12-phase record's worst
+cell (a free-edge 'jet' cell of a high-P0 phase) sits at the certification limit and crosses it under a 0.1 mm
+move, so the class scale read 1.0e-3 and the trust radius 0.017 mm. The direct probe (twop_classbreak_L87: the cone
+pushed 0.03-0.27 mm along +grad of the phases and of the mean, the cell census at the mean state) confirms it: 0
+cells below the floor at every step, KS +0.435 unchanged. Stechmann-da-cono 87's ladder went to 4.6e-2 (32x
+further) and broke on the class (KS -0.52 at 3.1 mm). SECOND MECHANISM: the phases' Newton metric at the cone --
+the secant Hessian of the 12-phase gradient -- came out with an asymmetry of 18.5 (the mean's 0.05), three
+negative eigenvalues, floored at 74: a Newton step 100x smaller than the mean's (|D| 2.3e-3 against 0.19). Both
+are the same defect: the jet cells of the strongest fans certify marginally (plug-march:jet-cell-uncertified-
+strong-fan), their gradients are noisy, and the 12-phase machinery inherits it. WHAT THE TWO METHODS ASK FOR
+(twop_newton_shapes: the Newton step of each functional at the cone in the MEAN's metric): at 87 mm both ask
+for a concave-then-flat wall -- the mean -3.7 mm at mid-plug (x 36 mm), the arc shrunk to a corner, the tip
+RAISED by 6.2 mm; the phases the same pattern at 60-70 percent amplitude and the tip raised 1.5 mm (their five
+low-pressure phases, P0 0.46-0.77 bar, pull ORTHOGONALLY to the mean with 3-4x the gradient: cos -0.2 .. +0.06,
+|g| 0.8 against 0.2-0.3; the seven others align, cos 0.8-1.0). At 29 mm both ask for less than 0.4 mm (the arc to
+a corner, the tail 0.1 mm lower): the corner-and-cone is near-optimal for both there; the disagreement (cos 0.93)
+sits in the two highest-P0 phases. WHAT CHANGED against the shrouded and Humphreys walks, which bent within the
+class: there the states were one (or the shroud / the canted throat kept every state's net regular and the
+certificates at 0.01-0.1); here a single wall under a free jet from an axial lip carries, in the strongest
+phases, edge cells at the certificate's limit -- the instrument, not the class, is what pinned the phases.
+THE AMBIENT AT 0.3 AND 1 bar BY THE MARCH: not posable -- the jet's speed at p_a has no root above the sonic
+speed when a phase's inlet static pressure is below ~p_a x 1.9 (phase 8 at 0.3 bar: p_in 0.12 bar); the design
+method has no answer there, only the referee.
+
+R. THE JET CELL'S CERTIFICATE, FOUND AND FIXED (03:30-04:00). twop_jetcell_probe on the cone under the 12 phases: the
+worst 'jet' cells (stations 43-52, columns 75-84, chords 0.015 lip radii, theta 5-8 deg, the edge speed = q_pa
+exactly) have |R| 1e-14 on the position rows and 1e-6 on the compatibility row (units ~u^3: roundoff), cond(J)
+0.7-1.5e10, and a Newton step at the recorded root of 0.7-2.5e-14 against a bound of 3.6-5.3e-14: certificates
+0.18-0.60. ONE more Newton iteration from the recorded root drops the step to 1e-16 (certificate 0.002): the root
+is right, the record stops one iteration short. MECHANISM: the damped Newton picks its iterate by the residual
+NORM among trial steps {1, 1/2, ..., 0}; at the end that norm is the big row's roundoff and the argmin no longer
+sees the small rows, so the full step loses to a damped or zero one exactly when it would reach the floor. FIX
+(a1_ideal_march_jax.make_implicit_solver polish=True, opted in by the free-edge solver alone -- a1_plug_march
+JET_POLISH, PLUG_JET_POLISH=0 restores the record's solver bitwise; the key carries the flag): once the undamped
+step is inside the certification bound, take it in full. GATES (this section's rows to follow): the plug march's
+exact planar oracle P-1..P-4 + R-1/R-2; the 12-phase certificates of the cone and of Stechmann-from-Migdal 87
+(the jet cells at the floor, J per phase unchanged to 1e-12); the wavefront stage WF-1..4 on the jet posing; the
+tournament's gates (T-0..T-7 default path bitwise) and jetgates JT-1..4.
+Gate 1 of the polish: the plug march's exact planar oracle (a1_plug_march.py, the corner-fan simple wave twin with
+the free edge; the fj solver polished): all cells certified, P-1 the edge angle within the Richardson band, P-2
+the wall pressure, P-3 mass, P-4 momentum in the p_a gauge, R-1 the corrupted ambient rejected -- 6/6 PASS, 41 s.
+Gate 2: the wavefront stage on the jet posing with the polished solver -- WF-1 3.1e-15, WF-2 9.4e-13, WF-3 and
+WF-4 bitwise, 4/4 PASS (142 s; the sequential and the wavefront replays share the polished solver).
+Gate 3: the 12-phase records of the cone and of Stechmann-from-Migdal 87 with the polished solver: J per phase
+UNCHANGED to the last digit (max |dJ| 0.0 on both), the cone's worst certificate 0.495 -> 0.153 (its jet cell 0.046)
+-- but Stechmann-from-Migdal 87's phase-10 jet cell 1.345 -> 1.831: for THAT cell the full step does not reach a
+floor under the bound (probed next). Gate 4: the tournament's gates T-0..T-7 9/9 (T-1 the default posing bitwise with
+the S41 record 1.579660988049, T-3/T-4 bitwise) and the jet gates JT-1..4 5/5 with the same numbers as 2026-09-27
+(JT-3 replay = record 1.439698070323, adjoint -2.473706e-04): the polish changes no recorded number. The walks
+Stechmann-from-cone 87 (polished) and Phases-from-cone 87 (polished), 32 segments each, launched 04:25 (AF2, Bm2).
+
 ## 4. What is measured about the base-pressure convention (for step 4)
 Fiore 2019 sec. 6.1 (after Nasuti & Onofri 2012): open wake when the lip's last expansion wave
 lands on the separated region behind the base (the base feels p_a); closed wake when it lands

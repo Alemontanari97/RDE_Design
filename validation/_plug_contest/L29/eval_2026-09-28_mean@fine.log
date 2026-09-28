@@ -1,0 +1,10 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   posing L29: {'TWOP_CAP': '0.2687', 'TWOP_U0_S': '-10', 'TWOP_FREE_EXIT': 'both', 'TWOP_JET': '1', 'TWOP_FIX': '{"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-09, "u_s": -10.0, "ye_s": 1.0}'}
+   designs: A (record); A2 (record); B (record); Cc (record); F (start of _plug_contest/L29/A2/walk_FN_2026-09-27.json); T (start of _plug_contest/L29/A/walk_TN_2026-09-27.json); closure summerfield; p_a 0.050 bar
+   mean@fine              A   C_F 1.343018 (gain over no nozzle +0.05138); F 832.58 N, Isp 187.17 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0434), 0 out of the table box (T_min 624 K); lip p/p_a 7.47 .. 7.47
+   mean@fine              B   C_F 1.342884 (gain over no nozzle +0.05125); F 832.50 N, Isp 187.15 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0438), 0 out of the table box (T_min 625 K); lip p/p_a 7.47 .. 7.47
+   mean@fine              T   C_F 1.342762 (gain over no nozzle +0.05113); F 832.42 N, Isp 187.13 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0437), 0 out of the table box (T_min 624 K); lip p/p_a 7.47 .. 7.47
+   mean@fine              A2  C_F 1.347524 (gain over no nozzle +0.05589); F 835.37 N, Isp 187.80 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0332), 0 out of the table box (T_min 667 K); lip p/p_a 7.47 .. 7.47
+   mean@fine              F   C_F 1.345454 (gain over no nozzle +0.05382); F 834.09 N, Isp 187.51 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0334), 0 out of the table box (T_min 646 K); lip p/p_a 7.47 .. 7.47
+   mean@fine              Cc  C_F 1.346259 (gain over no nozzle +0.05462); F 834.59 N, Isp 187.62 s; phases: 1 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0344), 0 out of the table box (T_min 631 K); lip p/p_a 7.47 .. 7.47
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L29/eval_2026-09-28_mean@fine.json

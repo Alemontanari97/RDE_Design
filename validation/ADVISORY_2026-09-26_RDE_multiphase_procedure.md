@@ -402,3 +402,66 @@ pressure, p_a downstream) -- and the 3D one -- the nozzle alone (no chamber, 3.2
 Q2D exit snapshot rotating at the measured wave speed on the inlet plane (MOSE bc 410), the Stage-4
 referee of section 3 made affordable. The MOC's per-phase numbers remain the design-side
 diagnostics.
+
+### 7.2 The simple-plug contest (2026-09-27 afternoon; S41 log section 3octies)
+
+The owner moved the contest from the shrouded pair to SIMPLE PLUGS: "ottimo con lo stato di
+Stechmann (metodi classici tipo Rao) vs ottimo di SQP con lo stato effettivo dell'RDE; non
+shrouded, semplice plug". The posing: the RDE annulus AXIAL at x = 0 (the chamber's, not a design
+feature), the cowl ending at the lip (0, 68 mm), the plug continuing the hub with slope 0, the free
+jet at 0.05 bar, the base an open wake p_b = p_a, separation in the class, the tip height free, one
+length (87 mm = the shrouded pair's envelope; 29 mm = the classical plug's own length).
+
+WHAT "CLASSICAL" MEANS AT A FIXED AXIAL INLET, MEASURED. Rao 1961 (GENO's RaoPlug, run at the
+Stechmann lip state) poses a canted throat at the lip: its family at theta_i = 0 holds only short
+plugs (L <= 38 mm; the member consistent with p_b = p_a: L 29.2 mm, C_F 1.395 by GENO's count) and
+its wall at the lip plane sits at 51.9 mm with slope -32 deg -- GENO's own internal throat, not the
+RDE annulus. It is a reference curve, not a contestant on the RDE inlet plane. The classical method
+for a FIXED inlet is Humphreys 1971 (a parametric family evaluated by the MOC), whose optimum this
+line's TR-SQP re-obtains ([X-HMPH]): the classical contestant is therefore the variational optimum
+AT THE MEAN STATE on the same carrier (walk A), cross-checked against the classical parametric
+family of arc + cone plugs at the mean state (25 members per length); the phases' contestant is the
+same walk with the 12 phases voting (walk B). GENO's direct plug (a forward march from a uniform
+IVL) is WIP-disabled.
+
+THE CARRIER. The two-wall march as a simple-plug march: the shroud frozen to a straight 2 mm cowl
+(TWOP_FIX: a reduced design vector of 15 dofs), the lip jet, the plug at the cap with its tip free.
+The wavefront replay was extended to the jet (fan and jet cell kinds): the 12-phase gradient falls
+from 734 s (sequential) to 23.5 s, bitwise in J. The posing's own reference (Migdal's plug cut
+under the jet) is FOLDED, so the class stage cannot mint floors from it (a guard now refuses); the
+class is a geometric criterion on the net, and the contest uses the tournament's class record.
+
+READINGS AT 87 mm. The classical family's best in-class member (J 1.3494) sits 1.1 percent below the
+restored start of walk A (1.3645); walk A gains 1.9e-4 over its start and then sits on the class
+boundary from its third segment (the tournament's lesson again: the vote and the walk buy the class,
+not thrust). Under the 12 phases the MOC reads A - T = +1.6e-4 on nets that fold in 9 of 12 phases;
+the REFEREE reads -6.7e-4 (T87 1.297148, A87 1.296474; no shock; Schmucker only at the last cells
+of the two lowest-pressure phases): the mean-state refinement is not better by the independent
+runner. The simple plug at 87 mm is 5.5 percent below the shrouded pair of the same length by the
+same referee (1.297 against 1.372). The phases' walk B refused the Migdal-cut start (uncertified
+jet cells at the highest-P0 phase) and restores from the certified cone start. AT 29 mm the
+classical family's best (1.3455) beats the T-started walk (1.3430); the walk started FROM the
+family's best refines it by 2.1e-3 (1.3476): the classical designer's answer as the SQP's warm
+start is the honest form of the fixed-inlet contest there.
+
+THE REFEREE AT 29 mm confirms the refinement: A2 - F = +2.5e-3 (+0.19 percent), no shock or separation in
+any phase for any design. "THE PROFILES LOOK CONICAL" (the owner): measured -- at 29 mm every design is
+turn-then-straight and the curved family (concave to convex, the tip free) puts the cone first and the
+concave Rao-like walls worse and folded; the SQP's own move was to sharpen the classical arc into a
+corner. At 87 mm a concave wall reaches within 6e-4 of Migdal's cut plug but folds: the class keeps the
+design at Migdal's curvature. The all-phase class at 87 mm was not restorable from any certified start
+(every simple plug folds in the phases with P0 below ~1.3 bar): the phases' contestant there is posed
+with the class at the mean state (V1m's posing), started from the classical cone.
+
+THE VERDICT OF THE EVENING (the tables of 00:00). At 87 mm the independent runner crowns the CONCAVE
+wall (the power-law member p 0.7 with the tip at 27 mm, +0.2-0.3 percent over Migdal's cut plug and
+over every walk), a design the shock-free class had excluded: it carries weak wall recompressions
+(5-16 percent jumps) and wins despite them. At 29 mm the SQP's corner-and-cone edges the concave by
+3e-4 and the concave edges the classical cone by 2.2e-3. The phases' vote buys 1e-4 over its start at
+either length; the start decides by 1e-2 at 87 mm (Migdal's cut against the cone). Two lessons for the
+procedure: the shock-free class is a design DECLARATION, not the thrust optimum -- the referee must be
+allowed to judge designs outside it; and the start is a design decision to be voted like the phases.
+
+THE REFEREE for simple plugs: the same two runners with the shroud replaced by a connection line at
+the lip radius (the jet crosses it; the cowl lip at the inlet plane); smoke test passed (phase 0,
+0.5 min, C_F 2.021 against the march's 2.025).

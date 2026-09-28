@@ -249,12 +249,25 @@ def gates():
     return 0 if NPASS[0] == NPASS[1] else 1
 
 
+def posing():
+    """TOUR_POSING (2026-09-27, the plug contest): the name of a block of
+    CASES['plug_contest'] -- its carrier env on top of the tournament's base,
+    its designs, evaluators and artifact directory; unset = the tournament's
+    own (eval block, ART), every path bitwise."""
+    key = os.environ.get("TOUR_POSING", "")
+    if not key:
+        return dict(env={}, designs=CASES["eval"]["designs"], evaluators=CASES["eval"]["evaluators"], art=ART, name="")
+    PC = CASES["plug_contest"][key]
+    env = {k: (json.dumps(v) if isinstance(v, dict) else str(v)) for k, v in PC["env"].items()}
+    return dict(env=env, designs=PC["designs"], evaluators=PC["evaluators"], art=os.path.join(HERE, PC["art"]), name=key)
+
+
 def load_designs():
     """The tournament's designs: {name: (W, provenance)} -- the walk's record,
     else its checkpoint (a walk still running: 'checkpoint after n segments'),
     else absent."""
     out = {}
-    for name, ref in CASES["eval"]["designs"].items():
+    for name, ref in posing()["designs"].items():
         start = ref.startswith("start:")
         fn = os.path.join(HERE, ref[len("start:"):] if start else ref)
         if os.path.exists(fn):
@@ -276,11 +289,15 @@ def evaluate():
     the certificate, the class margin and where each wall detaches."""
     say("== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==")
     C, E = CASES["source"], CASES["eval"]
+    PO = posing()
     gas = os.path.join(ART, "gas_stechmann.json")
     GS = json.load(open(gas))
     base = dict(TWOP_KERNEL="arc", TWOP_CAP=CASES["gates"]["cap"], TWOP_U0=CASES["gates"]["u0"], TWOP_FREE_EXIT="lip",
                 TWOP_GAS=gas, TWOP_PA=C["pa_bar"] * BAR / GS["P0"], TWOP_SHAPE="1", TWOP_NOPLUME="1",
                 TWOP_SEP=os.environ.get("TWOP_SEP", "summerfield"))
+    base.update(PO["env"])
+    if PO["name"]:
+        say("   posing %s: %s" % (PO["name"], PO["env"]))
     LD = load_designs()
     designs = {k: v[0] for k, v in LD.items()}
     prov = {k: v[1] for k, v in LD.items()}
@@ -293,7 +310,7 @@ def evaluate():
     # eval_<date>_<judge>.json (the judges run as parallel processes; STAGE
     # evalmerge assembles eval_<date>.json)
     only = os.environ.get("TOUR_JUDGE", "")
-    for ev in ([only] if only else E["evaluators"]):
+    for ev in ([only] if only else PO["evaluators"]):
         # "family_K12.json+swirl": the phases with their free vortex (TWOP_SWIRL);
         # "...@fine": the same judge re-marched at the fine rung (the paired
         # refinement a coarse-grid difference must survive, M0 S41 item (1))
@@ -363,8 +380,9 @@ def evaluate():
                 " %.2f .. %.2f" % (ev, name, J, J - J0, F, F / (mdot * E["g0"]), nfold, len(per), floor0, nsep, nunc,
                                    float(o["cert_worst"]), nbox, min(q["T_min"] for q in per), min(q["p_lip"] for q in per),
                                    max(q["p_lip"] for q in per)))
-    fn = os.path.join(ART, "eval_%s%s.json" % (time.strftime("%Y-%m-%d"), ("_" + only.replace("/", "_")) if only else ""))
-    json.dump(dict(pa_bar=C["pa_bar"], closure=base["TWOP_SEP"], mdot=mdot, provenance=prov, res=res), open(fn + ".tmp", "w"),
+    os.makedirs(PO["art"], exist_ok=True)
+    fn = os.path.join(PO["art"], "eval_%s%s.json" % (time.strftime("%Y-%m-%d"), ("_" + only.replace("/", "_")) if only else ""))
+    json.dump(dict(pa_bar=C["pa_bar"], closure=base["TWOP_SEP"], mdot=mdot, provenance=prov, posing=PO["name"], env=PO["env"], res=res), open(fn + ".tmp", "w"),
               indent=1, default=float)
     os.replace(fn + ".tmp", fn)
     say("   record: %s" % fn)
@@ -594,18 +612,19 @@ def evalmerge():
     of the parallel judges (TOUR_JUDGE), in the order of eval.evaluators;
     the designs and their provenance must agree across the files."""
     say("== [F3/A1] the RDE tournament: the parallel judges merged [X-RDET] (stage evalmerge) ==")
-    E = CASES["eval"]
+    PO = posing()
     day = os.environ.get("TOUR_DAY", time.strftime("%Y-%m-%d"))
     out = None
-    for ev in E["evaluators"]:
-        fn = os.path.join(ART, "eval_%s_%s.json" % (day, ev.replace("/", "_")))
+    for ev in PO["evaluators"]:
+        fn = os.path.join(PO["art"], "eval_%s_%s.json" % (day, ev.replace("/", "_")))
         d = json.load(open(fn))
         if out is None:
-            out = dict(pa_bar=d["pa_bar"], closure=d["closure"], mdot=d["mdot"], provenance=d["provenance"], res={})
+            out = dict(pa_bar=d["pa_bar"], closure=d["closure"], mdot=d["mdot"], provenance=d["provenance"], posing=d.get("posing", ""),
+                       env=d.get("env", {}), res={})
         check("judge %s: the designs and their provenance agree (%s)" % (ev, sorted(d["provenance"])),
               d["provenance"] == out["provenance"] and d["closure"] == out["closure"])
         out["res"][ev] = d["res"][ev]
-    fn = os.path.join(ART, "eval_%s.json" % day)
+    fn = os.path.join(PO["art"], "eval_%s.json" % day)
     json.dump(out, open(fn + ".tmp", "w"), indent=1, default=float)
     os.replace(fn + ".tmp", fn)
     say("   record: %s" % fn)

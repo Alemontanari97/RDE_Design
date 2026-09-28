@@ -407,8 +407,8 @@ class TwoWall:
         # -- the fan at F and the free edge; the plug may run on beyond the
         # lip. The lip margin p(q_F)/p_a - 1 joins the class (an
         # over-expanded lip needs a lip shock: outside the shock-free class,
-        # a finite surrogate). No swirl with the jet yet; the replays are
-        # sequential (the wavefront replay has no fan / edge kinds).
+        # a finite surrogate). No swirl with the jet yet. The replays run by
+        # the wavefront too since 2026-09-27 (fan / jet kinds; gated WF-5).
         self.jet = bool(int(os.environ.get("TWOP_JET", "0")))
         if self.jet:
             if not getattr(self, "pa", 0.0) > 0.0:
@@ -432,7 +432,37 @@ class TwoWall:
             for c_ in ([self._ctx_store()] + (self.phases or [])):
                 c_["lip_jet"] = dict(qpa=_qpa(pa_abs_, c_["ta"], c_["tab"]["_as"]), n_fan=int(round(J_["fan_rays_over_N"] * self.N)),
                                      n_gl=int(J_["n_gl"]))
-            self.wavefront = False
+        # TWOP_FIX (2026-09-27, the plug contest: the two-wall carrier as a
+        # SIMPLE-PLUG carrier): a JSON dict name -> value of design components
+        # FROZEN at the value -- hs (every shroud knot height), xa_s, ta_s, u_s,
+        # ye_s (and hp, xa_p, ta_p, u_p, ye_p). The design vector the driver
+        # sees is the REDUCED one (W_ref reduced, walls / ends_of take it and
+        # embed it by full()); every start generator builds the full layout
+        # (W_ref_full, _ends_full) and returns red(). Unset: identity, bitwise.
+        # The simple plug: hs = ye_s = y_u, xa_s = x0 + the cowl, ta_s ~ 0 (a
+        # straight cowl of that length), u_s = -10 (its end at its arc end).
+        self.fix_idx, self.fix_val = [], []
+        fx_ = os.environ.get("TWOP_FIX", "")
+        if fx_:
+            names_ = dict(hp=list(range(0, self.np_)), hs=list(range(self.np_, self.np_ + self.ns_)))
+            if self.cap > 0.0 or self.kmode == "arc":
+                names_.update(xa_p=[self.ia], ta_p=[self.ia + 1], xa_s=[self.ia + 2], ta_s=[self.ia + 3])
+            if self.cap > 0.0:
+                names_.update(u_p=[self.ia + 4], u_s=[self.ia + 5])
+            if getattr(self, "ie_s", None) is not None:
+                names_["ye_s"] = [self.ie_s]
+            if getattr(self, "ie_p", None) is not None:
+                names_["ye_p"] = [self.ie_p]
+            for k_, v_ in json.loads(fx_).items():
+                for i_ in names_[k_]:
+                    self.fix_idx.append(int(i_))
+                    self.fix_val.append(float(v_))
+        self.W_ref_full = np.asarray(self.W_ref, float).copy()
+        if self.fix_idx:
+            self.W_ref_full[np.asarray(self.fix_idx)] = np.asarray(self.fix_val)
+        self.n_full = len(self.W_ref_full)
+        self.free_idx = [i_ for i_ in range(self.n_full) if i_ not in set(self.fix_idx)]
+        self.W_ref = self.red(self.W_ref_full)
         if verbose:
             say("   posing: Migdal A_e/A_i %.4f (1-D M_e %.6f, C_F,vac %.6f); inlet M %.2f between"
                 " y %.3f and %.3f; K %d plug + %d shroud stations (frozen), N %d; knots %d + %d"
@@ -440,11 +470,27 @@ class TwoWall:
                 % (eps_i, self.Me, self.CF_1d, self.M_in, self.y_l, self.y_u, len(self.sx),
                    len(self.xs), self.N, len(self.kp), len(self.ks), self.tip,
                    "free" if getattr(self, "ie_p", None) is not None else "pinned",
-                   ("free from %.6f" % self.W_ref[self.ie_s]) if getattr(self, "ie_s", None) is not None
+                   ("free from %.6f" % self.W_ref_full[self.ie_s]) if getattr(self, "ie_s", None) is not None
                    else ("%.6f pinned" % self.lip), self.m_w, getattr(self, "pa", 0.0), time.time() - t0))
 
+    def full(self, W):
+        """The REDUCED design vector embedded in the full layout (traced);
+        identity when nothing is frozen (TWOP_FIX unset)."""
+        if not getattr(self, "fix_idx", None):
+            return jnp.asarray(W)
+        W = jnp.asarray(W)
+        F = jnp.zeros(self.n_full, dtype=W.dtype).at[jnp.asarray(self.free_idx)].set(W)
+        return F.at[jnp.asarray(self.fix_idx)].set(jnp.asarray(self.fix_val, dtype=W.dtype))
+
+    def red(self, Wf):
+        """The full layout reduced to the free components (numpy)."""
+        Wf = np.asarray(Wf, float)
+        return Wf[np.asarray(self.free_idx)] if getattr(self, "fix_idx", None) else Wf
+
     def walls(self, W):
-        """Stations (plug, shroud) of a design, traced."""
+        """Stations (plug, shroud) of a design, traced (W the reduced vector
+        when TWOP_FIX freezes components: see full)."""
+        W = self.full(W)
         if self.cap > 0.0:
             return self._walls_cap(W)
         if self.kmode == "arc":
@@ -501,7 +547,10 @@ class TwoWall:
         return out[0], out[1]
 
     def ends_of(self, W):
-        """The cap posing's ends (x_tip, x_lip) of a design (traced)."""
+        """The cap posing's ends (x_tip, x_lip) of a design (traced; W reduced)."""
+        return self._ends_full(self.full(W))
+
+    def _ends_full(self, W):
         W = jnp.asarray(W)
         i = self.ia
         xa_p, xa_s, u_p, u_s = W[i], W[i + 2], W[i + 4], W[i + 5]
@@ -516,7 +565,7 @@ class TwoWall:
         hp, hs = W[:self.np_], W[self.np_:self.np_ + self.ns_]
         i = self.ia
         xa_p, ta_p, xa_s, ta_s = W[i], W[i + 1], W[i + 2], W[i + 3]
-        x_tip, x_lip = self.ends_of(W)
+        x_tip, x_lip = self._ends_full(W)
         ye_p = self.tip if self.ie_p is None else W[self.ie_p]
         ye_s = self.lip if self.ie_s is None else W[self.ie_s]
         out = []
@@ -603,7 +652,7 @@ class TwoWall:
             margin["x_max"] = float(max(float(a[-1]), float(d[-1])))
         cells_ = None if ph is None else ph.get("cells")
         lj_ = (self._ctx() if ph is None else ph).get("lip_jet") if getattr(self, "jet", False) else None
-        graph = {} if self.wavefront and cells_ is None and lj_ is None else None
+        graph = {} if self.wavefront and cells_ is None else None
         out, S = plug_march((np.asarray(a), np.asarray(b), np.asarray(c)), start_, q_i_,
                             tab_, 1.0, shroud=(np.asarray(d), np.asarray(e), np.asarray(f)),
                             wedge_every=self.m_w, margin=margin, fast=(self.fast and cells_ is None), graph=graph,
@@ -757,7 +806,7 @@ class TwoWall:
 
     def J_replay(self, W, sched, wavefront=None):
         if getattr(self, "jet", False) and not isinstance(sched, MuSched):
-            return self.J_of(self._replay_out(W, sched, self._ctx(), None, False))
+            return self.J_of(self._replay_out(W, sched, self._ctx(), None, wavefront))
         if isinstance(sched, MuSched):
             return sum(ph["w"] * self._J_gen(self._replay_out(W, S_k, ph, None, wavefront), ph)
                        for ph, S_k in zip(self.phases, sched.S))
@@ -783,7 +832,10 @@ class TwoWall:
                 margin = dict(margin)
                 margin["pad"] = self.pad
             out = WF.replay(sched.plan, sched, (a, b, c), (d, e, f), ph["start"], ph["tab"], 1.0,
-                            int(CASES["wavefront"]["lane"]), margin=margin, rows_block=int(CASES["wavefront"]["rows_block"]))
+                            int(CASES["wavefront"]["lane"]), margin=margin, rows_block=int(CASES["wavefront"]["rows_block"]),
+                            lip_jet=(ph.get("lip_jet") if getattr(self, "jet", False) else None))
+            if getattr(self, "jet", False) and margin is not None and out.get("margin_ks") is not None:
+                out = self._with_lip_margin(out, margin, ph["ta"])
             if getattr(self, "sep_class", False) and margin is not None and out.get("margin_ks") is not None:
                 out = self._with_sep_margin(out, margin, ph)
             return out
@@ -1111,6 +1163,19 @@ def classderive():
     v = mg["cells_out"][0]
     m_ref, Nc = float(out["margin_min"]), int(out["margin_n"])
     J0 = float(tw.J_of(out))
+    if not (m_ref > 0.0):
+        # the stage's rules (floors = the reference's own worst cell / 2^k, rho
+        # from the last floor) assume an UNFOLDED reference; on a folded one
+        # they give negative floors, a negative rho and a KS of +inf (measured
+        # 2026-09-27 on the simple-plug posing: Migdal's plug cut under the
+        # free jet, worst cell -0.5612, C-2 FAIL). Refuse loudly: the class is
+        # a geometric criterion on the net, another posing's record of the
+        # same net and knots serves (TWOP_CLASS), the folded start is the
+        # walk's restoration's business
+        say("   the reference is FOLDED (worst cell %+.4f over %d cells, cert %.3e): this stage's floors would be"
+            " its own worst cell / 2^k -- no class record written; pass another posing's record of the same"
+            " net (TWOP_CLASS) to the walk" % (m_ref, Nc, float(out["cert_worst"])))
+        return 1
     if tw.fast or tw.pad:
         # C-F (S41): the record lane's speed switches (plug_march fast=,
         # margin pad=) against the legacy lane at the reference, BITWISE --
@@ -1469,8 +1534,8 @@ def cone_start(tw):
     (min cell +0.0061 / +0.0068), where the compressed Migdal carries 1159 /
     2670 folded cells (its re-turning walls coalesce compressions over the
     last 40 % of the length) and the Hermite start 42 / 1175."""
-    W0 = np.asarray(tw.W_ref, float)
-    x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
+    W0 = np.asarray(tw.W_ref_full, float)
+    x_tip, x_lip = (float(v) for v in tw._ends_full(W0))
     W = W0.copy()
     for i0, n, xa, ta, y0, sgn, frac, xe, ye, sl in (
             (0, tw.np_, W0[tw.ia], W0[tw.ia + 1], tw.y_l, -1.0, tw.fp, x_tip, tw.tip, slice(tw.ia, tw.ia + 2)),
@@ -1480,7 +1545,7 @@ def cone_start(tw):
         _, R, ya, sa = (float(v) for v in tw.arc_of(jnp.float64(xa), jnp.float64(t_c), y0, sgn))
         W[i0:i0 + n] = ya + (ye - ya) * np.asarray(frac[:-1])
         W[sl] = [xa, t_c]
-    return W
+    return tw.red(W)
 
 
 def trunc_start(tw):
@@ -1494,8 +1559,8 @@ def trunc_start(tw):
     pinned lip above, Migdal's contour at the cut), which cannot fold. The
     reading of the truncated Migdal (twop_trunc_migdal): C_F 1.578121 at
     f 0.8, 1.568879 at 0.6, the honest baseline of a length-capped design."""
-    W0 = np.asarray(tw.W_ref, float)
-    x_tip, x_lip = (float(v) for v in tw.ends_of(W0))
+    W0 = np.asarray(tw.W_ref_full, float)
+    x_tip, x_lip = (float(v) for v in tw._ends_full(W0))
     W = W0.copy()
     for i0, n, xa, ta, y0, sgn, frac, xe, ye, gx, gy in (
             (0, tw.np_, W0[tw.ia], W0[tw.ia + 1], tw.y_l, -1.0, tw.fp, x_tip,
@@ -1506,7 +1571,7 @@ def trunc_start(tw):
         t = (xk - xa) / (xe - xa)
         delta = ye - float(np.interp(xe, gx, gy))
         W[i0:i0 + n] = np.interp(xk, gx, gy) + delta * t ** 2
-    return W
+    return tw.red(W)
 
 
 def walk():
@@ -1963,7 +2028,7 @@ def wavefront():
         def f_(z, rb=rb):
             st_, sh_ = tw.walls(z)
             return WF.replay(S.plan, S, tuple(st_), tuple(sh_), tw.start, tw.tab, 1.0, int(CASES["wavefront"]["lane"]),
-                             margin=mg, rows_block=rb)
+                             margin=mg, rows_block=rb, lip_jet=(tw._ctx().get("lip_jet") if getattr(tw, "jet", False) else None))
         Jr, gr = jax.value_and_grad(lambda z: tw.J_of(f_(z)))(jnp.asarray(W0))
         rw[rb] = (float(Jr), np.asarray(gr), float(f_(jnp.asarray(W0))["margin_ks"]))
     r0, r1 = rw[0], rw[int(CASES["wavefront"]["rows_block"])]

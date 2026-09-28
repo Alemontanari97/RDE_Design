@@ -414,7 +414,7 @@ def state_q(q, ta):
 # Newton loop lives inside a jitted primal — never unrolled into the
 # outer graph, single call-site equation per cell)
 # ======================================================================
-def make_implicit_solver(resid_fn):
+def make_implicit_solver(resid_fn, polish=False):
     # Damped, NaN-safe Newton: trial steps t in {1, 1/2, 1/4, 1/16,
     # 1/64, 0}; the t = 0 candidate makes the residual norm monotone
     # non-increasing (a stalled cell keeps its iterate and FAILS the
@@ -465,7 +465,24 @@ def make_implicit_solver(resid_fn):
             norms = jax.vmap(lambda zc: _norm(zc, p, ta))(cands)
             # metric = the size of the (undamped) Newton step at z —
             # the same quantity step_norm certifies post-hoc.
-            return (cands[jnp.argmin(norms)], it + 1,
+            z_new = cands[jnp.argmin(norms)]
+            if polish:
+                # POLISH (2026-09-28, the plug contest's jet cells): once the
+                # undamped step is inside the certification bound, take it in
+                # full. The damped trials are chosen by the residual NORM, whose
+                # rows mix units (position ~1, compatibility ~u^3 ~1e9): at the
+                # end the norm sits on the roundoff of the big row and the
+                # argmin no longer sees the small rows -- the free-edge cell
+                # (cond(J) ~1e10, measured) then keeps a damped or zero step
+                # and stops ONE Newton iteration short of its floor: its
+                # certificate reads 0.2-0.6 at rest and crosses 1 under a
+                # 0.1 mm move (twop_jetcell_probe: the polished root's step
+                # 1e-16 = certificate 0.002). Opt-in per solver: every other
+                # cell's path is unchanged (bitwise).
+                sc_ = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
+                small = jnp.logical_and(jnp.logical_not(bad), jnp.max(jnp.abs(dz)) <= NEWTON_TOL_FACTOR * EPS * sc_)
+                z_new = jnp.where(small, z - dz, z_new)
+            return (z_new, it + 1,
                     jnp.where(bad, jnp.inf, jnp.max(jnp.abs(dz))))
 
         z, _, _ = jax.lax.while_loop(
@@ -749,12 +766,15 @@ class Sched:
 _SOLVERS = {}
 
 
-def get_solver(key, factory):
+def get_solver(key, factory, polish=False):
     """Returns the make_implicit_solver 4-tuple (solve, newton,
     step_norm, solve_cert), compiled once per key (NOTE-5 docstring
-    repair, S25-bis: the tuple gained the fused M5a entry)."""
+    repair, S25-bis: the tuple gained the fused M5a entry). polish
+    (2026-09-28): the solver's Newton takes the full step once inside the
+    certification bound (see make_implicit_solver); part of the key."""
+    key = (key, "polish") if polish else key
     if key not in _SOLVERS:
-        _SOLVERS[key] = make_implicit_solver(factory())
+        _SOLVERS[key] = make_implicit_solver(factory(), polish=polish)
     return _SOLVERS[key]
 
 

@@ -1,0 +1,10 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   posing L87: {'TWOP_CAP': '0.8', 'TWOP_U0_S': '-10', 'TWOP_FREE_EXIT': 'both', 'TWOP_JET': '1', 'TWOP_FIX': '{"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-09, "u_s": -10.0, "ye_s": 1.0}'}
+   designs: A (record); AF (record); Bm (record); Cc (record); F (start of _plug_contest/L87/Bm/walk_FN_2026-09-27.json); T (start of _plug_contest/L87/A/walk_TN_2026-09-27.json); closure summerfield; p_a 0.050 bar
+   mean                   A   C_F 1.364679 (gain over no nozzle +0.07304); F 846.01 N, Isp 190.19 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0326), 0 out of the table box (T_min 557 K); lip p/p_a 7.47 .. 7.47
+   mean                   T   C_F 1.364493 (gain over no nozzle +0.07286); F 845.89 N, Isp 190.16 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0941), 0 out of the table box (T_min 556 K); lip p/p_a 7.47 .. 7.47
+   mean                   Bm  C_F 1.350528 (gain over no nozzle +0.05889); F 837.23 N, Isp 188.21 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0418), 0 out of the table box (T_min 422 K); lip p/p_a 7.47 .. 7.47
+   mean                   F   C_F 1.349423 (gain over no nozzle +0.05779); F 836.55 N, Isp 188.06 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.22), 0 out of the table box (T_min 452 K); lip p/p_a 7.47 .. 7.47
+   mean                   AF  C_F 1.353615 (gain over no nozzle +0.06198); F 839.15 N, Isp 188.64 s; phases: 0 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.042), 0 out of the table box (T_min 468 K); lip p/p_a 7.47 .. 7.47
+   mean                   Cc  C_F 1.364055 (gain over no nozzle +0.07242); F 845.62 N, Isp 190.10 s; phases: 1 of 1 out of the fold class (KS < 0.2351), 0 detached, 0 uncertified (worst cert 0.0666), 0 out of the table box (T_min 493 K); lip p/p_a 7.47 .. 7.47
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/eval_2026-09-27_mean.json

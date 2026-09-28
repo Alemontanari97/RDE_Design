@@ -1,0 +1,92 @@
+{
+ "_doc": "human names of the plug-contest designs (the owner, 2026-09-28 02:40: 'A87 ecc. non significano nulla'); key = the record's short name per length",
+ "L87": {
+  "T": {
+   "it": "Migdal tagliato 87",
+   "en": "Migdal cut 87",
+   "what": "Migdal's plug cut at 87 mm under the free jet: the walks' start"
+  },
+  "A": {
+   "it": "Stechmann-da-Migdal 87",
+   "en": "Stechmann-from-Migdal 87",
+   "what": "the SQP at the time-mean state, started from Migdal cut"
+  },
+  "F": {
+   "it": "Cono classico 87",
+   "en": "Classical cone 87",
+   "what": "the best in-class member of the arc+cone family at the mean state (arc 0.1 L, tip 33 mm)"
+  },
+  "AF": {
+   "it": "Stechmann-da-cono 87",
+   "en": "Stechmann-from-cone 87",
+   "what": "the SQP at the time-mean state, started from the classical cone"
+  },
+  "Bm": {
+   "it": "Fasi-da-cono 87",
+   "en": "Phases-from-cone 87",
+   "what": "the SQP with the 12 phases voting (class at the mean state), started from the classical cone"
+  },
+  "B": {
+   "it": "Fasi-da-Migdal 87 (rifiutato)",
+   "en": "Phases-from-Migdal 87 (refused)",
+   "what": "the phases' walk with the class in every phase: its start uncertified under the phases, its restoration immobile; stopped"
+  },
+  "Cc": {
+   "it": "Concavo 87",
+   "en": "Concave 87",
+   "what": "the concave power-law wall p 0.7, tip 27 mm (the referee's best; outside the shock-free class)"
+  },
+  "AF2": {
+   "it": "Stechmann-da-cono 87 (certificato corretto)",
+   "en": "Stechmann-from-cone 87 (polished)",
+   "what": "the SQP at the time-mean state from the classical cone, the free-edge cell's Newton polished, 32 segments"
+  },
+  "Bm2": {
+   "it": "Fasi-da-cono 87 (certificato corretto)",
+   "en": "Phases-from-cone 87 (polished)",
+   "what": "the SQP with the 12 phases voting (class at the mean state) from the classical cone, the free-edge cell's Newton polished, 32 segments"
+  }
+ },
+ "L29": {
+  "T": {
+   "it": "Migdal tagliato 29",
+   "en": "Migdal cut 29",
+   "what": "Migdal's plug cut at 29 mm: the walks' start"
+  },
+  "A": {
+   "it": "Stechmann-da-Migdal 29",
+   "en": "Stechmann-from-Migdal 29",
+   "what": "the SQP at the time-mean state, started from Migdal cut"
+  },
+  "B": {
+   "it": "Fasi-da-Migdal 29",
+   "en": "Phases-from-Migdal 29",
+   "what": "the SQP with the 12 phases voting (class in every phase), started from Migdal cut"
+  },
+  "F": {
+   "it": "Cono classico 29",
+   "en": "Classical cone 29",
+   "what": "the best in-class member of the arc+cone family at the mean state (arc 0.1 L, tip 46 mm)"
+  },
+  "A2": {
+   "it": "Stechmann-da-cono 29",
+   "en": "Stechmann-from-cone 29",
+   "what": "the SQP at the time-mean state, started from the classical cone"
+  },
+  "A3": {
+   "it": "Stechmann-da-cono 29 (seguito)",
+   "en": "Stechmann-from-cone 29 (continued)",
+   "what": "Stechmann-from-cone 29 walked on for 8 more records; stopped by non-finite gradients"
+  },
+  "BF": {
+   "it": "Fasi-da-cono 29",
+   "en": "Phases-from-cone 29",
+   "what": "the SQP with the 12 phases voting (class in every phase), started from the classical cone"
+  },
+  "Cc": {
+   "it": "Concavo 29",
+   "en": "Concave 29",
+   "what": "the concave power-law wall p 0.85, tip 46 mm (outside the shock-free class)"
+  }
+ }
+}

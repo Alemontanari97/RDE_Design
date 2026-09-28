@@ -1,0 +1,10 @@
+== [F3/A1] the RDE tournament: the designs judged [X-RDET] (stage eval) ==
+   posing L29: {'TWOP_CAP': '0.2687', 'TWOP_U0_S': '-10', 'TWOP_FREE_EXIT': 'both', 'TWOP_JET': '1', 'TWOP_FIX': '{"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-09, "u_s": -10.0, "ye_s": 1.0}'}
+   designs: A (record); A2 (record); B (record); Cc (record); F (start of _plug_contest/L29/A2/walk_FN_2026-09-27.json); T (start of _plug_contest/L29/A/walk_TN_2026-09-27.json); closure summerfield; p_a 0.050 bar
+   family_K12.json@fine   A   C_F 1.283865 (gain over no nozzle +0.04430); F 795.91 N, Isp 178.92 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 2 uncertified (worst cert 3.82e+08), 0 out of the table box (T_min 561 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json@fine   B   C_F 1.283739 (gain over no nozzle +0.04417); F 795.83 N, Isp 178.91 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 109), 0 out of the table box (T_min 561 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json@fine   T   C_F 1.283612 (gain over no nozzle +0.04404); F 795.75 N, Isp 178.89 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 109), 0 out of the table box (T_min 560 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json@fine   A2  C_F 1.288651 (gain over no nozzle +0.04908); F 798.88 N, Isp 179.59 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 109), 0 out of the table box (T_min 621 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json@fine   F   C_F 1.286980 (gain over no nozzle +0.04741); F 797.84 N, Isp 179.36 s; phases: 0 of 12 out of the fold class (KS < 0.2351), 0 detached, 1 uncertified (worst cert 109), 0 out of the table box (T_min 596 K); lip p/p_a 2.75 .. 12.35
+   family_K12.json@fine   Cc  C_F 1.287789 (gain over no nozzle +0.04822); F 798.34 N, Isp 179.47 s; phases: 12 of 12 out of the fold class (KS < 0.2351), 0 detached, 2 uncertified (worst cert 5.37e+09), 0 out of the table box (T_min 568 K); lip p/p_a 2.75 .. 12.35
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L29/eval_2026-09-27_family_K12.json@fine.json
