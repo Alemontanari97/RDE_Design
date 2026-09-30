@@ -181,7 +181,7 @@ STEP_BY_ID = {s[0]: s for s in STEPS}
 STEP_STATUS = {
     'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
     'F2.REPR': 'CONSUMED 2026-09-30 (F2 session 2/6; census R44; owner decisions T1-T4)',
-    'F2.ENGINE': 'NEXT (F2 session 3/6; first acts: inventory of what the plug line built, the cell check, one bell campaign re-run)',
+    'F2.ENGINE': 'IN PROGRESS (F2 session 3/6, census R45: inventory on file; next the cell check, then one bell campaign re-run)',
     'F2.M-RED': 'QUEUED (first F2 campaign, B19(c)); its first act = PILOT-WF (S-REVIEW LOG-11)',
     'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
     # F3 sub-windows (reunion of 2026-09-30): D6 says F3 CLOSED 2026-09-24, but that

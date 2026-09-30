@@ -3299,4 +3299,14 @@ entries:
   mechanism: host-dependent-check
   owner: "the next session on a machine where they can run: the other machine of the plan line (fingerprint e100f996) for X-SCANM; a quiet host for X-LSG0; the GENO case restored under GENO's own protocol (BLOCCATO B20 b) for X-DEFTW"
   trigger: "any claim that cites X-SCANM, X-LSG0 or X-DEFTW as currently passing; F2.ENGINE re-stamp of the carriers"
+- id: registry:age-check-blind-for-checks-documented-by-a-text
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "the claims lint reads a check's age from the file named in its doc field; for 39 on-demand checks of the plug line that field names a session log or a text source, not the script, so changes to the script or to anything it imports after the last pass are invisible: the lint is green for them whatever happened to the code. Three re-run and re-stamped on 2026-09-30 (X-RMAR 9/9, X-O31R PASS, X-LJET 9/9). Owed, 36 checks: X-PLUG X-PSPL X-PAKN X-PGRS X-FMTR X-RAOTB X-RAOCS X-RAOFN X-RAOIS X-RAOWD X-RAOTW X-RAOO3 X-RAOSQ X-OWTW X-OWO3 X-OWSQ X-OWS3 X-PMRG X-OWAB X-BPRS X-CHTW X-HMPH X-TKRN X-FRMR X-ANKR X-TPOS X-IVLT X-RAOHM X-TWMU X-MGDL X-RAOPO X-OWNM X-PTRN X-TWOP X-RDET X-AFAN"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#Found while doing it: 39 checks whose age the lint cannot see"
+  code: []
+  mechanism: staleness-link-reads-the-wrong-file
+  owner: "F2.ENGINE: make the lint take the script (the proof field) into the age check, then re-run and re-stamp the owed checks on this machine"
+  trigger: "any citation of one of the listed checks as currently passing; the F2 exit"
 
