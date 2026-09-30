@@ -405,6 +405,26 @@ Table of record `validation/_plug_contest/SDT/table_2026-09-30.md` (+ .json).
 Cost of the night's CFD: 2 x 35 min (3-D, one node each) + 2 x 25 min (13 wedge cases, one node); 4.6 GB on the
 cluster, removed; fields removed here; the records kept (wf_post.json, cert.json, case.json, logs).
 
+### The third row: the SQP with the 12 phases (01:40, 2026-10-01)
+SbSDT (12 phases voting in the objective, from Rao's plug, 8 segments by budget, |grad| 0.67): tool 1.417165 /
+1.419703, CFD 2-D 1.415139 / 1.417788, CFD 3-D wave frame 1.411675. Over Rao +0.35 percent frozen, +0.32 percent
+rotating. BELOW the mean-state SQP by every judge, including its own objective (1.419703 vs 1.421056 on the 12
+phases): it had fewer segments (8 vs 10, each costing 12 marches) and stopped short. Neither walk converged; the
+table does not rank the two SQPs. Physics reading: on this case the phases do not ask for a different plug --
+the mean-state walk already moves the plug the way the 12 phases want (it scores higher on their average) --
+consistent with the THOR rehearsal (S42: the two SQP plugs within what the walks resolve).
+### Steadiness of the wave-frame run, measured (01:40; owner's question "sei sicuro sia stazionaria?")
+The big jump between Nozzle blocks 15 and 16 is theta = 180 deg, the detonation front of the inlet pattern (0.58
+bar vs 18.5 bar static): imposed. Downstream the front does not stay at 180 deg: in the wave frame the gas crosses
+the 87 mm in ~58 us while the wave turns ~130 deg, so the front is a helix over blocks 16, 17, 18 ... (probes at
+x ~18 mm read 0.61 and 0.63 bar at 179 and 181 deg: the front is at ~207 deg there). Restart 0.5 -> 0.6 ms (field
+diff) and 0.60 -> 0.64 ms (11 probes, one sample per step; restart probes need their files pre-created, else MOSE
+writes nothing): plug wall mean change 1.2e-4 (max 1 percent at one spot), cowl 3e-6, the 7 plug probes drift
+<= 3e-4 in 0.04 ms: STEADY. Base face: -35 percent mean over 0.1 ms, probe -14 percent in 0.04 ms (a drift, not an
+oscillation): NOT steady; the exhaust behind the tip (10-18 percent) and the air outside the cowl (3-10 percent)
+neither. The C_F compared excludes the base; the base values of the wave-frame runs are withdrawn. Continuation
+of RaSDT to 3 ms launched (job 303553, probes appended) to see whether the base settles.
+
 ## Where the session stands (00:05)
 Done (night): the methane case built (CycleFamily v0), Rao vs SQP-at-the-mean-state judged in the wave frame (+0.40 percent SQP,
 lower bound), Rao's frozen pictures vs rotating flow -0.4 percent at this class. Running: the 12-phase SQP walk, X-OWSQ/X-OWS3.

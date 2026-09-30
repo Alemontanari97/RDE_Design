@@ -1,0 +1,71 @@
+walk BcowlB_sdt_fromRao pa/P0 0.024378 start /data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json basis /data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json segs 8 iters 12 tr0 0.008073525393645567 class /data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json cpus 2,3,50 start 22:28:30
+PSPL_WLOG=/data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/BcowlB_sdt_fromRao/accepted_bases.jsonl TWOP_STAGE=walk TWOP_ITERS=12 TWOP_MU=/data10/falco/RDE/RDE_Design/validation/_cycle_family/sdt_ch4_phi1_pcp20/family_K12.json PSPL_FLOOR_LIMIT=1 TWOP_START_FROM=/data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json A1_NEWTON_RESCUE=1 TWOP_SEP=summerfield TWOP_START=F TWOP_FIX={"xa_s": 0.0294, "ta_s": 1e-09, "u_s": -0.44419306935689357} PSPL_BACKTRACK=4 TWOP_REGION=RC TWOP_ART=/data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/BcowlB_sdt_fromRao TWOP_SEP_CLASS=1 TWOP_SHAPE=1 TWOP_FREE_EXIT=both TWOP_PA=0.024378 PSPL_JSCALE=radius TWOP_TR0=0.008073525393645567 TWOP_MU_CLASS=ref TWOP_U0=10 PSPL_TRFOLLOW=1 TWOP_KERNEL=arc TWOP_CAP=0.8 TWOP_BASIS=/data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json TWOP_GAS=/data10/falco/RDE/RDE_Design/validation/_cycle_family/sdt_ch4_phi1_pcp20/gas_mean.json TWOP_CLASS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json TWOP_U0_S=-10 TWOP_JET=1 TWOP_NOPLUME=1 TWOP_SEGS=8 
+== [F3] the two-wall walk, start F, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.650621, C_F,vac 1.618656); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.008900); wedge every 1; p_a/P0 2.43780e-02; 1.4 s
+   start F: the landing of /data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json
+   TWOP_BASIS: W = W_s + T z, T 27 x 12 (rank 12) of /data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json; box: 0 lower, 0 upper bounds
+    start ladder h 4.460e-05 m: C_F +1.929e-05, KS +0.6065, cert 6.831e-02 -> in class
+    start ladder h 8.920e-05 m: C_F +3.851e-05, KS +0.6063, cert 1.284e-01 -> in class
+    start ladder h 1.784e-04 m: C_F +7.679e-05, KS +0.6060, cert 1.565e-01 -> in class
+    start ladder h 3.568e-04 m: C_F +1.527e-04, KS +0.6053, cert 8.953e-02 -> in class
+    start ladder h 7.136e-04 m: C_F +3.016e-04, KS +0.6039, cert 5.706e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +5.882e-04, KS +0.5979, cert 5.524e-02 -> in class
+    start ladder h 2.854e-03 m: C_F +1.118e-03, KS +0.5920, cert 7.687e-02 -> in class
+    start ladder h 5.709e-03 m: C_F +2.010e-03, KS +0.5807, cert 4.531e-02 -> in class
+    start ladder h 1.142e-02 m: C_F +3.182e-03, KS +0.5595, cert 5.282e-02 -> in class
+    start ladder h 2.284e-02 m: C_F +3.488e-03, KS +0.2622, cert 1.465e-01 -> in class
+    start ladder h 4.567e-02 m: C_F -1.133e-03, KS -0.9542, cert 2.075e-01 -> OUT
+   TWOP_TR0: the ladder's radius 8.074e-03 m replaced by the declared 8.074e-03 m
+   start F (ramp nan): C_F 1.414724322, cert 1.385e-01, KS +0.6067; gap to the reference plug 1.371e-01 / shroud 2.437e-01 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 8 segments x 12 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.000e+00 m -> tr0 8.074e-03 (z), floor 2.018e-03 (z)
+   memory mappings at the walk's start: 20068 (cap 65530)
+    [seg  0] J = 1.41472432e+00  |grad| = 4.331e-01  cert = 0.139
+    [seg  0] margin at base: KS - mu0 = +0.5993 (min cell +0.6067, 5883 cells)
+    [seg  0] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.534e-01 (margin 0.5993, rate 3.906e+00 per unit step) -> floor 2.018e-03
+    [seg  0] PSPL_JSCALE: objective x 2.8600e+02 (|grad| 4.331e-01, radius 8.074e-03)
+    [seg  0] margin counters: {'m_exec': 12, 'm_dedup': 13}; multipliers [[2.014]]
+   checkpoint at segment 1: C_F 1.414724322; mappings 20576 -> 20576 (cleared above 55000)
+    [seg  1] J = 1.41480125e+00  |grad| = 5.321e-01  cert = 0.055
+    [seg  1] margin at base: KS - mu0 = +0.6129 (min cell +0.6207, 5885 cells)
+    [seg  1] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.834e-01 (margin 0.6129, rate 3.342e+00 per unit step) -> floor 2.018e-03
+    [seg  1] PSPL_JSCALE: objective x 3.4849e+02 (|grad| 5.321e-01, radius 5.393e-03)
+    [seg  1] margin counters: {'m_exec': 24, 'm_dedup': 26}; multipliers [[0.768]]
+   checkpoint at segment 2: C_F 1.414801251; mappings 20585 -> 20585 (cleared above 55000)
+    [seg  2] trial J = 1.41403966e+00 worse than 1.41480125e+00; model predicted 1.41403957e+00 (rho 1.00)
+    [seg  2] backtrack: step 1.441e-03 below the floor at 1/2 -> give up
+    [seg  2] ascent 1/2 (step 4.324e-03): J = 1.41664559e+00 cert = 0.345 -> ACCEPT
+    [seg  2] restoration ACCEPTED -> base, radius -> 4.324e-03
+   checkpoint at segment 3: C_F 1.414801251; mappings 20586 -> 20586 (cleared above 55000)
+    [seg  3] J = 1.41664559e+00  |grad| = 3.653e-01  cert = 0.345
+    [seg  3] margin at base: KS - mu0 = +0.5863 (min cell +0.5936, 5886 cells)
+    [seg  3] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 2.002e-01 (margin 0.5863, rate 2.928e+00 per unit step) -> floor 2.018e-03
+    [seg  3] PSPL_JSCALE: objective x 6.3317e+02 (|grad| 3.653e-01, radius 4.324e-03)
+    [seg  3] margin counters: {'m_exec': 36, 'm_dedup': 39}; multipliers [[-35.254]]
+   checkpoint at segment 4: C_F 1.416645585; mappings 20598 -> 20598 (cleared above 55000)
+    [seg  4] trial J = 1.41535763e+00 worse than 1.41664559e+00; model predicted 1.41535728e+00 (rho 1.00)
+    [seg  4] backtrack 1/2 (step 3.459e-03): J = 1.41621846e+00 cert = 0.045 -> worse
+    [seg  4] backtrack: step 1.729e-03 below the floor at 1/4 -> give up
+    [seg  4] ascent 1/2 (step 1.038e-02): J = 1.41948836e+00 cert = 0.046 -> ACCEPT
+    [seg  4] restoration ACCEPTED -> base, radius -> 1.038e-02
+   checkpoint at segment 5: C_F 1.416645585; mappings 20629 -> 20629 (cleared above 55000)
+    [seg  5] J = 1.41948836e+00  |grad| = 2.805e-01  cert = 0.046
+    [seg  5] margin at base: KS - mu0 = +0.5536 (min cell +0.5610, 5776 cells)
+    [seg  5] PSPL_FLOOR_LIMIT: distance to the limit along the ascent inf (margin 0.5536, rate -3.873e-01 per unit step) -> floor 2.018e-03
+    [seg  5] PSPL_JSCALE: objective x 3.4353e+02 (|grad| 2.805e-01, radius 1.038e-02)
+    [seg  5] margin counters: {'m_exec': 48, 'm_dedup': 52}; multipliers [[9.881]]
+   checkpoint at segment 6: C_F 1.419488364; mappings 20634 -> 20634 (cleared above 55000)
+    [seg  6] trial J = 1.41939789e+00 worse than 1.41948836e+00; model predicted 1.41939779e+00 (rho 1.00)
+    [seg  6] backtrack 1/2 (step 3.137e-03): J = 1.41970267e+00 cert = 0.042 -> ACCEPT
+    [seg  6] restoration ACCEPTED -> base, radius -> 3.137e-03
+   checkpoint at segment 7: C_F 1.419488364; mappings 20615 -> 20615 (cleared above 55000)
+    [seg  7] J = 1.41970267e+00  |grad| = 3.052e-01  cert = 0.042
+    [seg  7] margin at base: KS - mu0 = +0.5724 (min cell +0.5797, 5776 cells)
+    [seg  7] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.466e-01 (margin 0.5724, rate 3.903e+00 per unit step) -> floor 2.018e-03
+    [seg  7] PSPL_JSCALE: objective x 1.0444e+03 (|grad| 3.052e-01, radius 3.137e-03)
+    [seg  7] margin counters: {'m_exec': 60, 'm_dedup': 65}; multipliers [[-75.291]]
+    backtracking: 4 probes, 1 accepted along the segment, 2 accepted on the ascent; 5 records
+   return: C_F 1.419702671 (start 1.414724322, reference 1.224400935, 1-D 1.618656), cert 4.209e-02, KS +0.5797 (in class), |grad|inf 6.678e-01; gap to the reference plug 1.379e-01 / shroud 2.437e-01 m (start 1.371e-01 / 2.437e-01); 5 records, 8968 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.5176 -> 0.5176 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 2.43780e-02, exit free: both): heights tip 0.6151 -> 0.6010, lip 0.9784 -> 0.9784; A_e/A_i 1.5529 -> 1.5987; wall pressure at the tip / lip over p_a 1.504 / 3.731 -> 1.202 / 3.731
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/BcowlB_sdt_fromRao/walk_FB_2026-10-01.json
+walk BcowlB_sdt_fromRao exit 0 00:58:08
