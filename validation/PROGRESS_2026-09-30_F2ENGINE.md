@@ -89,7 +89,8 @@ rows, not against "PASS" alone: four rows are negative results whose run of reco
 | the record reproduced (rows that record a failing gate) | X-FMTR 2/3 (P0-1: the two routes differ by 1 percent, the row's own statement), X-CHTW 8/9 (T-4b mass along the march, open since S31), X-HMPH 4/6 (R-1/R-3 fail by construction, declared in the row), X-RAOWD (its falsifier FIRED is the result) |
 | pass with the settings of record | X-RAOO3 7/7 (`RAO_GENO_RUN=GENO/CASES/raoplug_run_legacy`), X-TPOS gates 4/4 (`HMPH_CASE=opt HMPH_ZCUT=0.12 ANK_ETA=8 HMPH_K=160 HMPH_N=41`; the default posing raises "tri column rows not ordered" at every commit back to the row's own, so the default was never the record), X-IVLT (through X-TPOS) |
 | pass with the settings of record, read later in the evening | X-RAOSQ PASS (the SQP returns to Rao's optimum, 3621 s), X-RAOHM 7/7 (Humphreys' Rao nozzle in Rao's world), X-PTRN 10/10 (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`) |
-| pending at the time of writing | X-OWAB (the 1-hour cap ran out at A-3; re-run with a longer cap owed), X-OWSQ + X-OWS3, X-RAOFN, X-RAOTW, X-PAKN (4-hour cap; the 1-hour cap ran out at cycle 1) |
+| read at 21:10 | X-RAOTW PASS (our march reproduces GENO's kernel below ED, with RAO_GENO_RUN), X-RAOFN PASS (our objective is Rao's) |
+| still running at 21:10 (3-4 hour caps; the 1-hour cap ran out): X-OWAB, X-OWSQ + X-OWS3, X-PAKN | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
 The default runs of the scripts rewrite their cache files under `validation/_*/` (derive.json, npz): restored from
 git before the commit; the caches of record are the committed ones.
 
