@@ -650,6 +650,8 @@ class TwoWall:
             # set on the caller's dict (like "pad"): the census (cells_out)
             # and the counters the march writes into it must stay visible
             margin["x_max"] = float(max(float(a[-1]), float(d[-1])))
+        if margin is not None and margin.get("channel"):
+            margin["x_channel"] = float(d[-1])
         cells_ = None if ph is None else ph.get("cells")
         lj_ = (self._ctx() if ph is None else ph).get("lip_jet") if getattr(self, "jet", False) else None
         graph = {} if self.wavefront and cells_ is None else None
@@ -873,6 +875,25 @@ class TwoWall:
             d["eps2"] = float(CASES["margin"]["eps2_over_ell2"]) * ell ** 2
         if cells:
             d["cells"] = True
+        if os.environ.get("TWOP_REGION"):
+            # TWOP_REGION=R (S41 plug contest, 2026-09-29; unset = bitwise): the
+            # class read in Humphreys' region R -- the cells on the C- lines
+            # the plug wall consumes before its tip, i.e. the wall's domain of
+            # dependence, where the thrust functional is decided. Measured on
+            # the referee's family (twop_foldcensus / twop_cminus_tracer): 38
+            # of 50 members are put out of the no-fold class by cells whose C-
+            # leaves above the tip (4 to 524 cells, 15 to 57 mm above it), and
+            # in R every member read has its smallest cell at +0.47 .. +0.51.
+            # The CERTIFICATE stays on the whole net (cert_net): region R's own
+            # certificate leaves the free-edge cells out, and those feed the wall.
+            # TWOP_REGION=RC (same date, the plug + cowl posing): region R and
+            # the channel between the walls (the cowl's end is written into
+            # the dict at the march, like x_max), because there the cowl's own
+            # domain of dependence decides its thrust.
+            d["region"] = "R"
+            d["cert_net"] = True
+            if os.environ["TWOP_REGION"] == "RC":
+                d["channel"] = True
         return d
 
     def margin_replay(self, W, sched, margin, wavefront=None):
@@ -1653,6 +1674,39 @@ def walk():
         if Ws is None:
             say("   no certified in-class generic start on the ramp: nothing to walk")
             return 1
+    # TWOP_BASIS (S41 plug + cowl, 2026-09-29; unset = bitwise): the walk in the
+    # coordinates z of a DECLARED linear map W = W_s + T z, T (n x m, m <= n)
+    # read from a JSON {"T": ...} -- the Metric hook with a map of record in
+    # place of the start's secant Hessian. Measured at the first joint landing
+    # (Acowl_straight30; twop_stall_probe_cowl, twop_cowl_metric_probe): the
+    # cowl's 11 knots, 2.5 mm apart, give a knot-scale zig-zag gradient (+1.5,
+    # -2.9, +1.7 against 0.02 .. 0.13 on the plug's knots) that folds the net
+    # 0.014 mm along it, and the walk stopped after 0.005 mm with |grad|inf
+    # 2.94; the smooth part of the cowl's motion (its cant: the angle the
+    # channel delivers to the lip, the owner's theta_i) is what the joint
+    # design walks on. The restoration ascends the margin along the map's own
+    # direction T T^T grad too (a start assembled from walls designed apart
+    # carries its shock: the joint walk removes it, the owner 2026-09-29).
+    basis, T_b = os.environ.get("TWOP_BASIS", ""), None
+    if basis:
+        if os.environ.get("TWOP_METRIC"):
+            raise ValueError("TWOP_BASIS and TWOP_METRIC are alternatives")
+        B_j = json.load(open(basis))
+        T_b = np.asarray(B_j["T"], float)
+        if T_b.ndim != 2 or T_b.shape[0] != len(Ws) or T_b.shape[1] > len(Ws):
+            raise ValueError("TWOP_BASIS %s: T is %s, the design vector has %d components"
+                             % (basis, T_b.shape, len(Ws)))
+        # the map's BOX in z (optional "lb" / "ub", null = free): the ENVELOPE
+        # of the plug + cowl posing -- a cowl family whose coefficients are
+        # non-positive stays inside the engine's outer radius, the box is that
+        # statement exactly (twop_cowl_basis); z is counted from the start
+        # file's design, so the restoration's own displacement is carried
+        zb_lo = np.array([-np.inf if v is None else float(v) for v in B_j.get("lb", [None] * T_b.shape[1])])
+        zb_hi = np.array([np.inf if v is None else float(v) for v in B_j.get("ub", [None] * T_b.shape[1])])
+        z_r = np.zeros(T_b.shape[1])
+        say("   TWOP_BASIS: W = W_s + T z, T %d x %d (rank %d) of %s; box: %d lower, %d upper bounds"
+            % (T_b.shape[0], T_b.shape[1], int(np.linalg.matrix_rank(T_b)), basis,
+               int(np.sum(np.isfinite(zb_lo))), int(np.sum(np.isfinite(zb_hi)))))
     ok0, o0, S0, c0, k0 = in_class(Ws)
     # the DRIVER's feasibility test is KS >= mu0 with no gap (a start with
     # KS in (mu0 - gap, mu0) opens its restoration phase, which takes no step:
@@ -1703,12 +1757,21 @@ def walk():
                     % (bool(np.all(np.isfinite(gm))), float(np.linalg.norm(gm))))
                 break
             d = gm / np.linalg.norm(gm)
+            move = lambda h_: h_ * d                                 # noqa: E731
+            if T_b is not None:
+                dz_ = T_b.T @ gm
+                if np.linalg.norm(T_b @ dz_) == 0.0:
+                    say("   restoration: the margin gradient has no component on the basis")
+                    break
+                dz_ = dz_ / np.linalg.norm(T_b @ dz_)
+                z_of = lambda h_: np.clip(z_r + h_ * dz_, zb_lo, zb_hi)     # noqa: E731
+                move = lambda h_: T_b @ (z_of(h_) - z_r)             # noqa: E731
             # the line search opens at 4 x the last accepted step (never above ell)
             h, moved, tried = min(ell_r, 4.0 * h_last), False, []
             while h >= h_min:
-                okh, oh, Sh, ch, kh = in_class(Ws + h * d)
+                okh, oh, Sh, ch, kh = in_class(Ws + move(h))
                 n_rec_r += 1
-                ks_h = float(tw.margin_replay(jnp.asarray(Ws + h * d), Sh,
+                ks_h = float(tw.margin_replay(jnp.asarray(Ws + move(h)), Sh,
                                               tw.margin_dict(mu0=floors[0], rho=rho_r, m_ref=m_ref)))
                 tried.append((h, ks_h, kh, ch))
                 if np.isfinite(ch) and ch <= 1.0 and ks_h > float(ks_soft):
@@ -1716,7 +1779,9 @@ def walk():
                         " class KS %+.4f -> %+.4f, min cell %+.4f, cert %.3f, C_F %.6f, %d records"
                         % (n_it, rho_r, h, float(ks_soft), ks_h, k0, kh, float(oh["margin_min"]), ch,
                            float(tw.J_of(oh)), n_rec_r))
-                    Ws, ok0, o0, S0, c0, k0, moved, h_last = Ws + h * d, okh, oh, Sh, ch, kh, True, h
+                    Ws, ok0, o0, S0, c0, k0, moved, h_last = Ws + move(h), okh, oh, Sh, ch, kh, True, h
+                    if T_b is not None:
+                        z_r = z_of(h)
                     break
                 h *= 0.5
             if not moved:
@@ -1729,14 +1794,18 @@ def walk():
     # the radius at the start: the class scale along +grad J
     J_s, g_s = jax.value_and_grad(lambda z: tw.J_replay(z, S0))(jnp.asarray(Ws))
     g_s = np.asarray(g_s)
-    metric = os.environ.get("TWOP_METRIC", "")
+    metric = "basis" if T_b is not None else os.environ.get("TWOP_METRIC", "")
     ck = os.path.join(ART, "walk_%sN_checkpoint.json" % start)
     C0 = None
     if os.environ.get("TWOP_RESUME") and os.path.exists(ck):
         C0 = json.load(open(ck))
         if C0["W_start"] != Ws.tolist():
             C0 = None
-    if metric == "start" and C0 is not None and "T" in C0:
+    if metric == "basis":
+        T = T_b
+        dN = T @ (T.T @ g_s)
+        u = dN / np.linalg.norm(dN)
+    elif metric == "start" and C0 is not None and "T" in C0:
         T = np.array(C0["T"])
         say("   NEWTON METRIC read from the checkpoint (the secant Hessian at this start, computed once)")
         dN = T @ (T.T @ g_s)
@@ -1785,16 +1854,27 @@ def walk():
         tr0 = ell
         say("   start OUT of class (KS %+.4f < floor %.4f): the restoration radius = the station spacing"
             " %.3e m (declared); the walk opens in restoration" % (k0, floors[0], tr0))
-    elif h_ok is None or h_bad is None or h_bad <= h_ok:
+    elif (h_ok is None or h_bad is None or h_bad <= h_ok) and not os.environ.get("TWOP_TR0"):
         say("   the class scale is not bracketed at the start: no radius, nothing to walk")
         return 1
+    elif h_ok is None or h_bad is None or h_bad <= h_ok:
+        tr0 = float(os.environ["TWOP_TR0"])
+        say("   the class scale is not bracketed at the start: the radius is TWOP_TR0 (declared)")
     else:
         tr0 = float(np.sqrt(h_ok * h_bad)) / K_RICH
+    if os.environ.get("TWOP_TR0"):
+        # TWOP_TR0 (2026-09-28): the start radius DECLARED instead of read from
+        # the ladder -- with the phases voting the ladder reads the free-edge
+        # cell's certificate scale (micrometres) where the mean state's class
+        # scale is centimetres (measured: Bm2 against AF2), and the walk
+        # spends its first segments below a millimetre. Unset: bitwise.
+        say("   TWOP_TR0: the ladder's radius %.3e m replaced by the declared %.3e m" % (tr0, float(os.environ["TWOP_TR0"])))
+        tr0 = float(os.environ["TWOP_TR0"])
     say("   start %s (ramp %.2f): C_F %.9f, cert %.3e, KS %+.4f; gap to the reference plug %.3e / shroud"
         " %.3e m; class scale h* %.3e m -> tr0 %.3e m, floor %.3e m; %d segments x %d iterations,"
         " backtrack %d" % (start, lam_r, float(tw.J_of(o0)), c0, k0, gp0, gs0, tr0 * K_RICH, tr0,
                            tr0 / K_RICH, segs, iters, bt))
-    if metric == "start":
+    if metric in ("start", "basis"):
         # the radius in z: the W-scale h* along the Newton direction over
         # the W-length of a unit z-step along it
         zlen = float(np.linalg.norm(T @ (T.T @ g_s)) / np.linalg.norm(T.T @ g_s))
@@ -1810,7 +1890,7 @@ def walk():
         # (measured 2026-09-26: 32742 mappings after two segments; 31912 ->
         # 1667 after clearing). TWOP_RESUME=1 restarts from the checkpoint's
         # incumbent with its radius and its metric (no second Hessian).
-        Z0, seg0, tr_z = np.zeros(len(Ws)), 0, tr0_z
+        Z0, seg0, tr_z = np.zeros(T.shape[1]), 0, tr0_z
         if C0 is not None:
             Z0, seg0, tr_z = np.array(C0["Z"]), int(C0["segments"]), float(C0.get("tr", tr0_z))
             say("   RESUMED from the checkpoint: %d segments done, C_F %.9f, radius %.3e (z)"
@@ -1838,9 +1918,16 @@ def walk():
             say("   checkpoint at segment %d: C_F %.9f; mappings %d -> %d (cleared above %d)"
                 % (seg0 + seg, float(tw.J_of(oc)), m_before, n_maps(), int(CASES["wavefront"]["map_clear"])))
 
+        z_box = None
+        if metric == "basis" and (np.any(np.isfinite(zb_lo)) or np.any(np.isfinite(zb_hi))):
+            # keep_feasible False: with it a start ON the box (the straight
+            # cowl on the envelope) freezes its components (measured on a
+            # quadratic, scipy 1.17: the bound components never leave zero)
+            from scipy.optimize import Bounds
+            z_box = Bounds(zb_lo - z_r, zb_hi - z_r, keep_feasible=False)
         Zf, hist, n_rec = P.run_trsqp(Z0, {}, dict(throat=pre), tw.ta, sign=+1.0,
                                       max_segments=segs - seg0, maxiter_per_seg=iters, margin=mg0,
-                                      tr0=tr_z, tr_floor=tr0_z / K_RICH, bounds=None, backtrack=bt,
+                                      tr0=tr_z, tr_floor=tr0_z / K_RICH, bounds=z_box, backtrack=bt,
                                       on_segment=on_segment)
         Z = np.asarray(Zf, float)
         Wf = Ws + T @ Z
@@ -1885,7 +1972,9 @@ def walk():
                grad=gf.tolist(), gap_ref=[gp, gs], gap_ref_start=[gp0, gs0], records=n_rec,
                segments=len(hist), seconds=time.time() - t00, tr0=tr0, backtrack=bt, segs=segs,
                iters=iters, counters=dict(mg0.get("counters", {})), metric=metric)
-    fn = os.path.join(ART, "walk_%s%s_%s.json" % (start, "N" if metric == "start" else "",
+    if basis:
+        rec.update(basis=basis, Z=Z.tolist(), Z_restoration=z_r.tolist())
+    fn = os.path.join(ART, "walk_%s%s_%s.json" % (start, dict(start="N", basis="B").get(metric, ""),
                                                    time.strftime("%Y-%m-%d")))
     json.dump(rec, open(fn, "w"), indent=1, default=float)
     say("   record: %s" % fn)

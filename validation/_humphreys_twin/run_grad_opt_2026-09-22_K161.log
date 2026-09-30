@@ -1,0 +1,28 @@
+== [F3] Humphreys 1971, twin (B) case opt: the gradient at their optimum [X-HMPH] (stage grad) ==
+   lip 7.55 in, L 11.439 in from the lip (1.5151 R), fan turn 56.95 deg -> theta_i -34.00 deg, theta_E 22.95 deg; mdot 148.08 lbm/s imposed through the cut at X0 0.05 R; base model veen; target 32881 lbf
+   their table        J 33006.7 lbf (+3.82e-03 vs the paper's 32881), cert 295803779.984, |grad| 5.158e+05
+                      dJ/dy per knot [lbf/in]: [547.2 -71.2 -38.6  57.2 -91.1  37. ]
+   our landing        J 33074.6 lbf (+5.89e-03 vs the paper's 32881), cert 0.192, |grad| 3.168e+05
+                      dJ/dy per knot [lbf/in]: [-257.6  223.   -35.    54.2    8.2    4.6]
+   perturbed landing  J 33085.7 lbf (+6.23e-03 vs the paper's 32881), cert 1.593, |grad| 1.188e+05
+                      dJ/dy per knot [lbf/in]: [-69.1  55.8  58.9  72.9 -11.6 -11.2]
+   the march's own band on J at their contour: (161,81) 33006.7 lbf vs (321,161) 33132.8 lbf -> 504.3 lbf (1.53e-02 of J); the paper's own grid (Table 1) spans 178 lbf
+   our landing        minus their table: +67.9 lbf at (161,81), +55.7 lbf at (321,161) -- the refinement moves the DIFFERENCE 12.2 lbf
+   perturbed landing  minus their table: +79.0 lbf at (161,81), +69.0 lbf at (321,161) -- the refinement moves the DIFFERENCE 10.0 lbf
+   the march's band on a MOVE: 48.6 lbf (1.47e-03 of J) against the value's 504.3 lbf; the paper's own grid spans 178 lbf
+      knot 0: AD +4.997412e+05  FD +4.997412e+05  |d| 1.345e-03  (ladder spread 3.306e-02 -> band 8.414e-01)
+      knot 1: AD -6.504005e+04  FD -6.504005e+04  |d| 3.906e-03  (ladder spread 1.917e+00 -> band 8.379e+00)
+      knot 2: AD -3.526403e+04  FD -3.526337e+04  |d| 6.635e-01  (ladder spread 6.610e-01 -> band 3.353e+00)
+      knot 3: AD +5.226563e+04  FD +5.226561e+04  |d| 2.392e-02  (ladder spread 7.059e-01 -> band 3.533e+00)
+      knot 4: AD -8.322058e+04  FD -8.322058e+04  |d| 4.100e-03  (ladder spread 3.534e-01 -> band 2.123e+00)
+      knot 5: AD +3.383116e+04  FD +3.383115e+04  |d| 7.337e-03  (ladder spread 2.841e-02 -> band 8.228e-01)
+  [PASS] G-1 at their optimum the AD gradient matches central finite differences inside the band the differences' own scatter supports
+   price of a stay-class move (0.15 in) per knot [lbf]: [82.1 10.7  5.8  8.6 13.7  5.6]
+  [PASS] G-2 at their contour, the inlet knot excluded (the planar cut's own dof, frozen by the posing), no knot buys more than the band the march supports on a MOVE over a stay-class displacement (max 13.7 lbf vs 48.6)
+  [PASS] G-3 the inlet knot DOES buy more (82.1 lbf vs the band on a move 48.6): the one live direction at their optimum is the frozen inlet, not the shape
+   dJ/dy per knot at (321,161) [lbf/in]: [510.5 -62.3 -42.5  57.6 -90.   36.1]   (price [76.6  9.3  6.4  8.6 13.5  5.4])
+  [PASS] G-5 the LANDSCAPE is resolved where the value is not: under (K,N) -> (2K-1,2N-1) the price of a stay-class move changes by less than the band on a move on every knot (max 5.5 lbf vs 48.6)
+   the perturbed walk's tip residue 0.134 in is worth 1.5 lbf on ITS OWN gradient (-11.2 lbf/in)
+  [PASS] G-4 the tip residue the perturbed walk left (0.134 in) is worth 1.5 lbf at first order -- below the band on a move (48.6): the walk does not restore it because nothing pays for it, which is the P-1 failure read at the gradient
+
+== 5/5 PASS  (1311.8 s) ==

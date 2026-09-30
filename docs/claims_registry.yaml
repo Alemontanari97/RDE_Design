@@ -821,7 +821,7 @@ entries:
 
 - id: X-A1IM
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-09-28; suite=none"
+  ondemand: "env=jax+geno; pass=2026-09-30; suite=none"
   class: PRACTICE
   scope: "A1 BRICK 1 (S11): PROFILE-GENERATION MACHINERY — assembled differentiable MoC march (IVL -> fan -> arc throat expansion -> bounding-streamline wall) generating the ideal-nozzle contour end-to-end, GENO nozzle_type 0 twin; VERDICT PASS of record (2026-07-21, all 14 checks incl. four negative controls); tabulated-isentrope backend (DIR-THERMOTAB: Cantera primary generator, GENO NASA-poly interop instance, gconst declared oracle); on-demand carrier (env: jax + WSL gfortran GENO binary), outside CI tiers by declaration"
   statement: "The assembled march is the executable Lemma-B block-triangular system: every cell an implicit custom_vjp unit process (never unrolled); end-to-end contour vs a GENO reduced-case run inside the derived Richardson band (measured: max|dy| ~ 7.6e-9 over 63 wall points, Me twin-identical to 7 digits, max wall angle 16.265 deg = GENO); O3.1 dot-product over the ENTIRE march; per-cell z-space Newton certification; four negative controls."

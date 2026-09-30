@@ -1,0 +1,27 @@
+== [F3] Humphreys 1971, twin: the march from THEIR throat on THEIR geometry [X-HMPH] (stage kernel) ==
+   their wall: the arc rho 0.5000 in from A (-36.25 deg) to T (-48.25 deg), then Table 2 (Hermite on their printed angles) to D; 20128 dense points
+   WALL = the kernel's own parabola (rc 2.845 in, slope -2.25 deg at the throat plane): the attribution control
+   march length capped at 2.00 d from the throat plane
+   frame: rotated -34.00 deg, A -> (0.00000, -1.00000) h, E -> (-0.00000, 1.00000) h
+   kernel: plug rc 2.845 in (the arc) with wall slope -2.25 deg at A, cowl rc 6.799 in (from their mean 0.705, harmonic), R_c 4.001, g2 -1.410 h2 0.590, eps 0.167, y_i 8.08; W/W* through the throat plane 0.9850 (3 terms)
+   T (the arc's end) sits at x' 0.1035 in in the frame
+   the truncated series' own mass: W/W* 0.9850 on the throat plane, 0.9786 on the cut (3 terms) -- the drift is the series' residual
+   cut at z 0.12 = x' 0.0519 in (0.052 d): the kernel's plug parabola y -1.00501 h, slope -3.29 deg; their arc there y -1.00501 h, slope -3.29 deg (gap 0.00 deg)
+   lip E: kernel state M 1.1265, theta' -0.00 deg; corner fan 25 rays to the cut (worst cell cert 0.020), terminal direction +54.91 deg
+  [PASS] H-0 the corner fan through the kernel's field certifies on every cell (0.020)
+   start line ON THE C+ (the march's column family): wall at x' 0.0519 in, top at x' 2.1086 in; 41 kernel rows (M 1.275..1.334), the fan's C+ line 12 (25 rows, M 1.290..3.022), 12 free-jet triangle rows (cells certified 0.019); worst misalignment with the local C+: kernel 2.37e-02, fan 2.89e-02, triangle 1.86e-03 deg; mass 137.30 lbm/s (kernel 0.367, fan 0.510, triangle 0.123)
+  [PASS] H-1 (char) the start line is supersonic on every row (M >= 1.2747), runs wall -> edge along the C+ and its free-jet triangle is certified (0.019)
+   stations: first 5.00e-02 h, growth 1.060, 159 of them to 1.95 d
+   march: 159 stations, cert 3.554e-02 (19403 cells) at ('int', 89, 35), 85.6 s
+  [PASS] H-2 the march from their throat is Newton-certified (3.554e-02)
+   mass vs the cut by column: 2: -0.0004, 4: -0.0004, 8: -0.0003, 16: -0.0003, 32: -0.0001, 64: -0.0001, 81: +0.0002, 128: +0.0008, 160: +0.0020
+  [PASS] H-3 the mass is conserved from the cut to the last column (|dm/m| 2.0e-03 <= 1e-02, the march's class)
+   class: 17663 resolved cells, 3319 folded (18.79 %)
+   folded cells in columns 2..160 (of 160), depth from the top 0.01..0.97; the first at station 0 = x' 0.025 in from the cut
+  [FAIL] H-4 the march is IN CLASS by the incumbent's standard: no folded resolved cell (3319)
+   thrust: F_in 22165 + push 4583 + base -682 = J 26066.5 lbf on 137.30 lbm/s (their 32,881 on 148.08); base radius y_D 4.946 in (their 0.954)
+   J/mdot: ours 189.84, theirs 222.05 lbf s/lbm (-1.45e-01); C_F on A -> E: ours 1.1599, theirs 1.4631 (-2.07e-01); our discharge 0.9542 of the choked 1-D of A -> E (theirs 1.0291)
+  [PASS] H-5 the mass their throat passes through our cut is a physical discharge (0.9542 of the choked 1-D, band 0.95..1.00)
+  [FAIL] H-6 the SPECIFIC thrust reproduces theirs within the thrust class (-1.45e-01 vs 1e-02; their shear 0.2 percent not in ours)
+
+== 5/7 PASS  (103.3 s) ==

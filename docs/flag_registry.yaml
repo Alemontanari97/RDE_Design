@@ -592,3 +592,13 @@ entries:
   tested_pairs: "none — artifact-path knob"
   untested_cartesian: false
   note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
+
+- flag: "A1_NEWTON_RESCUE"
+  default: "0 (off: the cell Newton of record, bitwise)"
+  meaning: "a cell whose damped Newton ends over the certification bound is continued with plain Newton steps from its stalled iterate; the root is kept only if certified (make_implicit_solver; the 12-phase plug walks of 2026-09-30 stopped on such cells, log S42 PROGRESS_2026-09-29_S42_internal_nozzle.md, section T12.1)"
+  read_sites:
+    - "validation/a1_ideal_march_jax.py:220"
+  covering_gate: "none from engine_speed_bench.py; gated by RDE/handoff/plug_2026-09-29/twop_rescue_gate.py (RG-1 certified records bitwise off/on, RG-2 failing records certified, RG-3 thrust on the neighbours' parabola: PASS 2026-09-30)"
+  tested_pairs: "off/on on the 7 records of the lip scan (twop_rescue_gate); on together with PLUG_JET_POLISH default"
+  untested_cartesian: true
+  note: "opt-in, read at import; a cell that ends certified never enters the rescue; row added 2026-09-30 (committed with the S42 log)"

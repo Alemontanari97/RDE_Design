@@ -1,0 +1,77 @@
+== [F3] Rao 1961 Table 1: the TR-SQP re-obtention from OUR start [X-RAOPO] (stage walk) ==
+   our field: inverse march (241, 241), cert 2.526e-02
+   walk world: our start at x0 0.30, 61 rows from the traced wall (y 0.52449) to ED (y 0.80240); F_in 4.17893e+06 N; his Table 1 as the reference wall; frozen to his contour on [0.30, 0.6024]; 8 knots (tip pinned at y_D 0.137)
+   his contour in spline space: e_rep 7.029e-05; record cert 6.545e-02; J_fit 4.56012553e+06 (K 81) vs 4.56812491e+06 (K 161); grad floor 2.885e+04 -> gtol 1.154e+05
+  [PASS] RE-0 his contour marched from our start certifies (6.545e-02)
+  v3 spectrum at W_fit (AD Hessian on the frozen record, asymmetry 5.8e-02 rel): lambda [4.250e+06 1.521e+07 3.300e+07 5.642e+07 7.860e+07 9.822e+07 1.180e+08]
+  k   c_wall      floor g/c   band_k      |start_k|   start/band
+  0   1.643e+07   1.756e-03   7.305e-03   1.508e-04   0.02
+  1   5.385e+07   5.357e-04   2.424e-03   8.293e-05   0.03
+  2   1.110e+08   2.600e-04   1.321e-03   7.725e-04   0.58
+  3   1.749e+08   1.650e-04   9.410e-04   1.790e-04   0.19
+  4   2.367e+08   1.219e-04   7.686e-04   2.545e-03   3.31
+  5   3.069e+08   9.402e-05   6.572e-04   1.259e-03   1.92
+  6   2.877e+08   1.003e-04   6.822e-04   5.459e-03   8.00
+  c_min 1.643e+07 (softest, v = [0.15 0.3  0.41 0.5  0.5  0.41 0.24]); the start is outside its band in 3 of 7 directions
+   spectrum 28 s; band_J 3.257e+04
+-- start 'perturb': dist to his wall 5.054e-03; outside its band in 3 of 7 directions (worst 8.0x) --
+    max [seg  0] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    max [seg  1] J = 4.55912782e+06  |grad|inf = 3.214e+05  cert = 6.545e-02
+    max [seg  1] no motion at radius 7.500e-02 -> retry at 3.750e-02
+    max [seg  2] J = 4.56013025e+06  |grad|inf = 1.384e+04  cert = 6.545e-02
+    max [seg  2] no motion at radius 5.625e-02 -> retry at 2.813e-02
+    max [seg  3] J = 4.56013639e+06  |grad|inf = 7.212e+03  cert = 6.545e-02
+    max [seg  3] no motion at radius 4.219e-02 -> retry at 2.109e-02
+    max [seg  4] trial J = 4.54661726e+06 REJECTED -> revert, radius 1.582e-02
+    max [seg  5] J = 4.56013639e+06  |grad|inf = 7.212e+03  cert = 6.545e-02
+    max [seg  6] trial J = 4.55317766e+06 REJECTED -> revert, radius 1.187e-02
+    max [seg  7] J = 4.56013639e+06  |grad|inf = 7.212e+03  cert = 6.545e-02
+    max [seg  7] no motion at radius 1.187e-02 -> retry at 5.933e-03
+    max [seg  8] J = 4.56014061e+06  |grad|inf = 3.503e+02  cert = 6.545e-02
+    max [seg  9] trial J = 4.55840716e+06 REJECTED -> revert, radius 6.674e-03
+    max [seg 10] J = 4.56014061e+06  |grad|inf = 3.503e+02  cert = 6.545e-02
+    max [seg 11] J = 4.56014061e+06  |grad|inf = 9.370e+01  cert = 6.545e-02
+   landing: 12 records, worst accepted cert 6.545e-02, 1363 s; J 4.56014061e+06 (J - J_fit +1.508e+01); |grad|inf 9.370e+01 (gtol 1.154e+05); dist 9.002e-04; by direction |a|/band [0.1  0.09 0.2  0.14 0.11 0.05 0.  ]
+  [PASS] RE-1b from [X-RAOSQ]'s 1.5-percent perturbed start: every accepted base certified (6.545e-02)
+  [PASS]    ... CONVERGENCE |grad J(W*)|inf 9.370e+01 <= gtol 1.154e+05
+  [PASS]    ... RETURN: every eigen-direction of W* - W_fit inside its band (worst 0.20, dir 2)
+  [PASS]    ... VALUE |J(W*) - J_fit| 1.508e+01 <= band_J 3.257e+04
+    min [seg  0] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg  1] base REJECTED (record not certified (worst 8.158e+15)) -> revert, radius 3.750e-02
+    min [seg  2] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg  3] base REJECTED (record not certified (worst 1.790e+18)) -> revert, radius 2.813e-02
+    min [seg  4] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg  5] base REJECTED (record not certified (worst 2.961e+15)) -> revert, radius 2.109e-02
+    min [seg  6] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg  7] base REJECTED (record not certified (worst 2.303e+16)) -> revert, radius 1.582e-02
+    min [seg  8] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg  9] base REJECTED (record not certified (worst 4.333e+16)) -> revert, radius 1.187e-02
+    min [seg 10] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg 11] base REJECTED (record not certified (worst 2.069e+16)) -> revert, radius 8.899e-03
+    min [seg 12] J = 4.55292254e+06  |grad|inf = 8.613e+05  cert = 6.545e-02
+    min [seg 13] base REJECTED (record not certified (worst 2.968e+17)) -> revert, radius 6.674e-03
+  [FAIL] R-3 REJECTOR: the sign-flipped driver ends FARTHER from his contour (5.054e-03 > 5.054e-03; 14 records, 660 s)
+-- start 'line': dist to his wall 7.430e-03; outside its band in 1 of 7 directions (worst 1.1x) --
+    max [seg  0] J = 4.55946064e+06  |grad|inf = 1.122e+05  cert = 6.545e-02
+    max [seg  0] no motion at radius 5.000e-02 -> retry at 2.500e-02
+    max [seg  1] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+    max [seg  2] trial J = 4.55076121e+06 REJECTED -> revert, radius 2.813e-02
+    max [seg  3] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+    max [seg  4] trial J = 4.54476381e+06 REJECTED -> revert, radius 2.109e-02
+    max [seg  5] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+    max [seg  6] trial J = 4.55209355e+06 REJECTED -> revert, radius 1.582e-02
+    max [seg  7] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+    max [seg  8] trial J = 4.55666766e+06 REJECTED -> revert, radius 1.187e-02
+    max [seg  9] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+    max [seg 10] trial J = 4.55789472e+06 REJECTED -> revert, radius 8.899e-03
+    max [seg 11] J = 4.56010436e+06  |grad|inf = 2.314e+04  cert = 6.545e-02
+   landing: 12 records, worst accepted cert 6.545e-02, 951 s; J 4.56010436e+06 (J - J_fit -2.117e+01); |grad|inf 2.314e+04 (gtol 1.154e+05); dist 2.548e-03; by direction |a|/band [0.21 0.48 0.36 0.17 0.15 0.08 0.07]
+  [PASS] RE-1 from the GENERIC chord start: every accepted base certified (6.545e-02)
+  [PASS]    ... CONVERGENCE |grad J(W*)|inf 2.314e+04 <= gtol 1.154e+05
+  [PASS]    ... RETURN: every eigen-direction of W* - W_fit inside its band (worst 0.48, dir 1)
+  [PASS]    ... VALUE |J(W*) - J_fit| 2.117e+01 <= band_J 3.257e+04
+  [PASS] RE-3 COINCIDENCE: the two landings coincide (worst 0.38 of band, sup 1.66e-03)
+   record: /data10/falco/RDE/RDE_Design/validation/_rao1961_posing/walk_2026-09-24_1732.json
+
+== 10/11 PASS  (3104.0 s) ==
+VERDICT: FAIL

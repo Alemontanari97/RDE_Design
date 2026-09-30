@@ -1135,7 +1135,29 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         alive = {cline.get((j, ilast)) for j in range(2, M + 1)}
         keep = [(a[0] == 1 or cline.get(a) not in alive) and ic >= 3
                 for a, ic in m_qkeys]
+        if mg.get("channel"):
+            # REGION R + THE CHANNEL (S41 plug + cowl, 2026-09-29, additive;
+            # margin["channel"], with margin["x_channel"] = the top wall's
+            # end written by the two-wall carrier at the record, under
+            # TWOP_REGION=RC): between the walls every cell feeds one wall or
+            # the other -- the plug's C- or the cowl's C+ -- and the cowl
+            # carries thrust too; region R alone reads the plug's domain of
+            # dependence. A cell whose four corners lie at or upstream of the
+            # top wall's end is kept with region R's. The choice is a
+            # RECORDED decision (the schedule carries it): the replay's
+            # corners are traced and decide nothing.
+            if S.mode == "rec":
+                xch = float(mg["x_channel"])
+                S.d["chan_keep"] = [bool(ic >= 3 and max(float(q[0][0]), float(q[1][0]), float(q[2][0]), float(q[3][0])) <= xch)
+                                    for q, (a, ic) in zip(m_quads, m_qkeys)]
+            keep = [k_ or c_ for k_, c_ in zip(keep, S.d["chan_keep"])]
         m_quads = [q for q, k_ in zip(m_quads, keep) if k_]
+        # the census' keys and the wavefront replay's quads follow the same
+        # mask (S41 plug contest, 2026-09-29: region R in the two-wall posing;
+        # the graph's quads are appended with m_quads, one to one)
+        m_qkeys = [k for k, k_ in zip(m_qkeys, keep) if k_]
+        if graph is not None and len(graph.get("quads", [])) == len(keep):
+            graph["quads"] = [q for q, k_ in zip(graph["quads"], keep) if k_]
     if mg is not None and mg.get("vec") and m_quads:
         # corners A, B, C, D of every bucket cell, (n, 2) each: every
         # net point is stacked ONCE (a point is a corner of up to four
@@ -1195,7 +1217,8 @@ def plug_march(stations, start, qpa, tab, delta, sched=None,
         shroud=(jnp.stack(shroud_pts) if shroud is not None and shroud_pts else None),
         lip_col=(lip_col[0] if shroud is not None else None),
         lip_q=(lip_q[0] if shroud is not None and jet else None),
-        last_col=col, cert_worst=(cert["worst"] if cert_R is None or S.mode != "rec" else cert_R[0]),
+        last_col=col, cert_worst=(cert["worst"] if cert_R is None or S.mode != "rec" or mg.get("cert_net")
+                                  else cert_R[0]),
         cert_worst_net=cert["worst"], cert_where_R=(None if cert_R is None else cert_R[1]),
         cert_n=cert["n"],
         cert_where=cert["where"],

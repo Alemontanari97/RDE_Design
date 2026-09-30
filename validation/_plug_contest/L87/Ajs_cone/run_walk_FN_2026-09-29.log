@@ -1,0 +1,92 @@
+walk Ajs_cone start /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/start_family_best.json segs 16 iters 12 tr0 0.008073525393645567 class /data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json cpus 2,3,50,51 start 13:47:12
+PSPL_WLOG=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/Ajs_cone/accepted_bases.jsonl TWOP_STAGE=walk TWOP_ITERS=12 TWOP_START_FROM=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/start_family_best.json TWOP_SEP=summerfield TWOP_START=F TWOP_FIX={"hs": 1.0, "xa_s": 0.0294, "ta_s": 1e-9, "u_s": -10.0, "ye_s": 1.0} PSPL_BACKTRACK=4 TWOP_ART=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/Ajs_cone TWOP_SEP_CLASS=1 TWOP_SHAPE=1 TWOP_FREE_EXIT=both TWOP_PA=0.0352959 PSPL_JSCALE=radius TWOP_TR0=0.008073525393645567 TWOP_U0=10 TWOP_KERNEL=arc TWOP_CAP=0.8 TWOP_GAS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/gas_stechmann.json TWOP_CLASS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json TWOP_U0_S=-10 TWOP_JET=1 TWOP_NOPLUME=1 TWOP_SEGS=16 
+== [F3] the two-wall walk, start F, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.000000); wedge every 1; p_a/P0 3.52959e-02; 0.4 s
+   start F: the landing of /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/start_family_best.json
+    start ladder h 4.460e-05 m: C_F +1.013e-05, KS +0.4354, cert 4.178e-02 -> in class
+    start ladder h 8.920e-05 m: C_F +2.024e-05, KS +0.4354, cert 4.202e-02 -> in class
+    start ladder h 1.784e-04 m: C_F +4.038e-05, KS +0.4354, cert 4.182e-02 -> in class
+    start ladder h 3.568e-04 m: C_F +8.039e-05, KS +0.4354, cert 4.185e-02 -> in class
+    start ladder h 7.136e-04 m: C_F +1.593e-04, KS +0.4354, cert 5.481e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +3.128e-04, KS +0.4355, cert 1.060e-01 -> in class
+    start ladder h 2.854e-03 m: C_F +6.041e-04, KS +0.4356, cert 4.192e-02 -> in class
+    start ladder h 5.709e-03 m: C_F +1.137e-03, KS +0.4362, cert 4.208e-02 -> in class
+    start ladder h 1.142e-02 m: C_F +1.949e-03, KS -0.6426, cert 4.184e-02 -> OUT
+   TWOP_TR0: the ladder's radius 2.018e-03 m replaced by the declared 8.074e-03 m
+   start F (ramp nan): C_F 1.349423259, cert 6.071e-02, KS +0.4353; gap to the reference plug 9.798e-02 / shroud 0.000e+00 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 16 segments x 12 iterations, backtrack 4
+    [seg  0] J = 1.34942326e+00  |grad| = 2.274e-01  cert = 0.061
+    [seg  0] margin at base: KS - mu0 = +0.4280 (min cell +0.4353, 17143 cells)
+    [seg  0] PSPL_JSCALE: objective x 5.4479e+02 (|grad| 2.274e-01, radius 8.074e-03)
+    [seg  0] margin counters: {'m_exec': 12, 'm_dedup': 12, 'gm_nonfinite': 1, 'grad_nonfinite': 1}; multipliers [[0.291]]
+    [seg  1] J = 1.35157049e+00  |grad| = 1.933e-01  cert = 0.057
+    [seg  1] margin at base: KS - mu0 = +0.4372 (min cell +0.4445, 17150 cells)
+    [seg  1] PSPL_JSCALE: objective x 4.2714e+02 (|grad| 1.933e-01, radius 1.211e-02)
+    [seg  1] margin counters: {'m_exec': 24, 'm_dedup': 24, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[-0.031]]
+    [seg  2] J = 1.35412157e+00  |grad| = 1.936e-01  cert = 0.042
+    [seg  2] margin at base: KS - mu0 = +0.1179 (min cell +0.1253, 17158 cells)
+    [seg  2] PSPL_JSCALE: objective x 2.8434e+02 (|grad| 1.936e-01, radius 1.817e-02)
+    [seg  2] margin counters: {'m_exec': 38, 'm_dedup': 38, 'gm_nonfinite': 3, 'grad_nonfinite': 3}; multipliers [[1.148]]
+    [seg  3] J = 1.35440566e+00  |grad| = 1.839e-01  cert = 0.043
+    [seg  3] margin at base: KS - mu0 = +0.4389 (min cell +0.4462, 17160 cells)
+    [seg  3] PSPL_JSCALE: objective x 1.9958e+02 (|grad| 1.839e-01, radius 2.725e-02)
+    [seg  3] margin counters: {'m_exec': 50, 'm_dedup': 50, 'gm_nonfinite': 4, 'grad_nonfinite': 4}; multipliers [[0.795]]
+    [seg  4] J = 1.35440977e+00  |grad| = 1.835e-01  cert = 0.042
+    [seg  4] margin at base: KS - mu0 = +0.4391 (min cell +0.4465, 17160 cells)
+    [seg  4] PSPL_JSCALE: objective x 1.3332e+02 (|grad| 1.835e-01, radius 4.087e-02)
+    [seg  4] margin counters: {'m_exec': 62, 'm_dedup': 62, 'gm_nonfinite': 5, 'grad_nonfinite': 5}; multipliers [[0.225]]
+    [seg  5] J = 1.35510833e+00  |grad| = 1.690e-01  cert = 0.042
+    [seg  5] margin at base: KS - mu0 = +0.4529 (min cell +0.4603, 17164 cells)
+    [seg  5] PSPL_JSCALE: objective x 9.6517e+01 (|grad| 1.690e-01, radius 6.131e-02)
+    [seg  5] margin counters: {'m_exec': 74, 'm_dedup': 74, 'gm_nonfinite': 6, 'grad_nonfinite': 6}; multipliers [[0.172]]
+    [seg  6] J = 1.35514644e+00  |grad| = 1.673e-01  cert = 0.036
+    [seg  6] margin at base: KS - mu0 = +0.4539 (min cell +0.4613, 17164 cells)
+    [seg  6] PSPL_JSCALE: objective x 6.4984e+01 (|grad| 1.673e-01, radius 9.196e-02)
+    [seg  6] margin counters: {'m_exec': 86, 'm_dedup': 86, 'gm_nonfinite': 7, 'grad_nonfinite': 7}; multipliers [[0.124]]
+    [seg  7] J = 1.35514838e+00  |grad| = 1.672e-01  cert = 0.042
+    [seg  7] margin at base: KS - mu0 = +0.4540 (min cell +0.4614, 17164 cells)
+    [seg  7] PSPL_JSCALE: objective x 4.3346e+01 (|grad| 1.672e-01, radius 1.379e-01)
+    [seg  7] margin counters: {'m_exec': 88, 'm_dedup': 88, 'gm_nonfinite': 8, 'grad_nonfinite': 8}; multipliers [[-98.111]]
+    [seg  8] base not certified (record not certified (worst 4.038e+16))
+    [seg  8] backtrack 1/2 (step 6.888e-02): J = 1.34057066e+00 cert = 0.395 INFEASIBLE -> worse
+    [seg  8] backtrack 1/4 (step 3.444e-02): J = 1.35419229e+00 cert = 0.080 INFEASIBLE -> worse
+    [seg  8] backtrack 1/8 (step 1.722e-02): J = 1.35598984e+00 cert = 0.042 INFEASIBLE -> worse
+    [seg  8] backtrack 1/16 (step 8.610e-03): J = 1.35602175e+00 cert = 0.042 INFEASIBLE -> worse
+    [seg 8] base REJECTED (record not certified (worst 4.038e+16)) -> revert, radius -> 1.035e-01
+    [seg  9] J = 1.35514838e+00  |grad| = 1.672e-01  cert = 0.042
+    [seg  9] margin at base: KS - mu0 = +0.4540 (min cell +0.4614, 17164 cells)
+    [seg  9] PSPL_JSCALE: objective x 5.7795e+01 (|grad| 1.672e-01, radius 1.035e-01)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:385: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(self.x - self.x_prev, self.g - self.g_prev)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:737: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(delta_x, delta_g)
+    [seg  9] margin counters: {'m_exec': 100, 'm_dedup': 100, 'gm_nonfinite': 10, 'grad_nonfinite': 10}; multipliers [[-0.025]]
+    [seg 10] J = 1.35515858e+00  |grad| = 1.673e-01  cert = 0.041
+    [seg 10] margin at base: KS - mu0 = +0.4541 (min cell +0.4615, 17164 cells)
+    [seg 10] PSPL_JSCALE: objective x 3.8518e+01 (|grad| 1.673e-01, radius 1.552e-01)
+    [seg 10] margin counters: {'m_exec': 112, 'm_dedup': 112, 'gm_nonfinite': 12, 'grad_nonfinite': 12}; multipliers [[0.473]]
+    [seg 11] J = 1.35516073e+00  |grad| = 1.672e-01  cert = 0.041
+    [seg 11] margin at base: KS - mu0 = +0.4542 (min cell +0.4616, 17164 cells)
+    [seg 11] PSPL_JSCALE: objective x 2.5686e+01 (|grad| 1.672e-01, radius 2.328e-01)
+    [seg 11] margin counters: {'m_exec': 124, 'm_dedup': 124, 'gm_nonfinite': 14, 'grad_nonfinite': 14}; multipliers [[0.311]]
+    [seg 12] J = 1.35516106e+00  |grad| = 1.672e-01  cert = 0.042
+    [seg 12] margin at base: KS - mu0 = +0.4542 (min cell +0.4616, 17164 cells)
+    [seg 12] PSPL_JSCALE: objective x 2.3919e+01 (|grad| 1.672e-01, radius 2.500e-01)
+    [seg 12] margin counters: {'m_exec': 136, 'm_dedup': 136, 'gm_nonfinite': 16, 'grad_nonfinite': 16}; multipliers [[0.288]]
+    [seg 13] J = 1.35516115e+00  |grad| = 1.672e-01  cert = 0.042
+    [seg 13] margin at base: KS - mu0 = +0.4542 (min cell +0.4616, 17164 cells)
+    [seg 13] PSPL_JSCALE: objective x 2.3919e+01 (|grad| 1.672e-01, radius 2.500e-01)
+    [seg 13] margin counters: {'m_exec': 148, 'm_dedup': 148, 'gm_nonfinite': 18, 'grad_nonfinite': 18}; multipliers [[0.276]]
+    [seg 14] J = 1.35516125e+00  |grad| = 1.672e-01  cert = 0.042
+    [seg 14] margin at base: KS - mu0 = +0.4542 (min cell +0.4616, 17164 cells)
+    [seg 14] PSPL_JSCALE: objective x 2.3919e+01 (|grad| 1.672e-01, radius 2.500e-01)
+    [seg 14] margin counters: {'m_exec': 160, 'm_dedup': 160, 'gm_nonfinite': 20, 'grad_nonfinite': 20}; multipliers [[-0.074]]
+    [seg 15] J = 1.35516135e+00  |grad| = 1.672e-01  cert = 0.036
+    [seg 15] margin at base: KS - mu0 = +0.4542 (min cell +0.4616, 17164 cells)
+    [seg 15] PSPL_JSCALE: objective x 2.3919e+01 (|grad| 1.672e-01, radius 2.500e-01)
+    [seg 15] margin counters: {'m_exec': 172, 'm_dedup': 172, 'gm_nonfinite': 22, 'grad_nonfinite': 22}; multipliers [[0.058]]
+    backtracking: 4 probes, 0 accepted along the segment, 0 accepted on the ascent; 16 records
+   return: C_F 1.355161352 (start 1.349423259, reference 1.361531074, 1-D 1.593085), cert 3.632e-02, KS +0.4615 (in class), |grad|inf 1.003e-01; gap to the reference plug 8.833e-02 / shroud 0.000e+00 m (start 9.798e-02 / 0.000e+00); 16 records, 1876 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.0295 -> 0.0295 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 3.52959e-02, exit free: both): heights tip 0.4865 -> 0.5014, lip 1.0000 -> 1.0000; A_e/A_i 2.0471 -> 2.0075; wall pressure at the tip / lip over p_a 0.591 / 7.467 -> 0.841 / 7.467
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/Ajs_cone/walk_F_2026-09-29.json
+walk Ajs_cone exit 0 14:18:39

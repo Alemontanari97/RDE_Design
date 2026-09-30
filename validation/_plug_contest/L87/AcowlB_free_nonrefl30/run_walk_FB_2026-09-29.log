@@ -1,0 +1,123 @@
+walk AcowlB_free_nonrefl30 start /data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_start.json basis /data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_basis.json segs 24 iters 12 tr0 0.008073525393645567 class /data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json cpus 12,13,14 start 21:03:43
+PSPL_WLOG=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/AcowlB_free_nonrefl30/accepted_bases.jsonl TWOP_STAGE=walk TWOP_ITERS=12 TWOP_START_FROM=/data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_start.json TWOP_SEP=summerfield TWOP_START=F TWOP_FIX={"xa_s": 0.0294, "ta_s": 1e-09, "u_s": -0.7100656271412635} PSPL_BACKTRACK=4 TWOP_REGION=RC TWOP_ART=/data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/AcowlB_free_nonrefl30 TWOP_SEP_CLASS=1 TWOP_SHAPE=1 TWOP_FREE_EXIT=both TWOP_PA=0.0352959 PSPL_JSCALE=radius TWOP_TR0=0.008073525393645567 TWOP_U0=10 PSPL_TRFOLLOW=1 TWOP_KERNEL=arc TWOP_CAP=0.8 TWOP_BASIS=/data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_basis.json TWOP_GAS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/gas_stechmann.json TWOP_CLASS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json TWOP_U0_S=-10 TWOP_JET=1 TWOP_NOPLUME=1 TWOP_SEGS=24 
+== [F3] the two-wall walk, start F, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.773842, C_F,vac 1.593085); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.008900); wedge every 1; p_a/P0 3.52959e-02; 0.5 s
+   start F: the landing of /data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_start.json
+   TWOP_BASIS: W = W_s + T z, T 27 x 18 (rank 18) of /data10/falco/RDE/handoff/plug_2026-09-29/cowlfam_nonrefl30free_basis.json; box: 0 lower, 0 upper bounds
+    start ladder h 4.460e-05 m: C_F +3.364e-05, KS +0.3503, cert 3.183e-02 -> in class
+    start ladder h 8.920e-05 m: C_F +6.716e-05, KS +0.3554, cert 2.345e-02 -> in class
+    start ladder h 1.784e-04 m: C_F +1.338e-04, KS +0.3657, cert 3.337e-02 -> in class
+    start ladder h 3.568e-04 m: C_F +2.656e-04, KS +0.3860, cert 3.689e-02 -> in class
+    start ladder h 7.136e-04 m: C_F +5.227e-04, KS +0.4259, cert 3.321e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +1.013e-03, KS +0.5025, cert 3.395e-02 -> in class
+    start ladder h 2.854e-03 m: C_F +1.854e-03, KS +0.5604, cert 3.600e-02 -> in class
+    start ladder h 5.709e-03 m: C_F +3.016e-03, KS -0.9565, cert 3.629e-02 -> OUT
+   TWOP_TR0: the ladder's radius 1.009e-03 m replaced by the declared 8.074e-03 m
+   start F (ramp nan): C_F 1.400243540, cert 4.099e-02, KS +0.3451; gap to the reference plug 3.059e-02 / shroud 2.409e-01 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 24 segments x 12 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.188e+00 m -> tr0 6.796e-03 (z), floor 1.699e-03 (z)
+   memory mappings at the walk's start: 10157 (cap 65530)
+    [seg  0] J = 1.40024354e+00  |grad| = 8.978e-01  cert = 0.041
+    [seg  0] margin at base: KS - mu0 = +0.3377 (min cell +0.3451, 4742 cells)
+    [seg  0] PSPL_JSCALE: objective x 1.6391e+02 (|grad| 8.978e-01, radius 6.796e-03)
+    [seg  0] margin counters: {'m_exec': 12, 'm_dedup': 12}; multipliers [[0.464]]
+   checkpoint at segment 1: C_F 1.400243540; mappings 10663 -> 10663 (cleared above 55000)
+    [seg  1] trial J = 1.40264703e+00 INFEASIBLE (KS - mu0 -0.9626) than 1.40024354e+00; model predicted 1.40915404e+00 (rho 0.27)
+    [seg  1] backtrack 1/2 (step 7.068e-03): J = 1.40181602e+00 cert = 0.034 INFEASIBLE -> worse
+    [seg  1] backtrack 1/4 (step 3.534e-03): J = 1.40187604e+00 cert = 0.033 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 3.534e-03
+   checkpoint at segment 2: C_F 1.400243540; mappings 10896 -> 10896 (cleared above 55000)
+    [seg  2] J = 1.40187604e+00  |grad| = 8.667e-01  cert = 0.033
+    [seg  2] margin at base: KS - mu0 = +0.5529 (min cell +0.5603, 4752 cells)
+    [seg  2] PSPL_JSCALE: objective x 3.2652e+02 (|grad| 8.667e-01, radius 3.534e-03)
+    [seg  2] margin counters: {'m_exec': 20, 'm_dedup': 20, 'gm_nonfinite': 1, 'infeasible_base': 1, 'grad_nonfinite': 1}; multipliers [[-2.167]]
+   checkpoint at segment 3: C_F 1.401876037; mappings 10897 -> 10897 (cleared above 55000)
+    [seg  3] trial J = 1.42661911e+00 INFEASIBLE (KS - mu0 -0.9088) than 1.40187604e+00; model predicted 1.42809549e+00 (rho 0.94)
+    [seg  3] backtrack 1/2: record not certified
+    [seg  3] backtrack 1/4 (step 7.409e-03): J = 1.40551572e+00 cert = 0.033 INFEASIBLE -> worse
+    [seg  3] backtrack 1/8 (step 3.704e-03): J = 1.40411043e+00 cert = 0.034 INFEASIBLE -> worse
+    [seg  3] backtrack 1/16 (step 1.852e-03): J = 1.40335981e+00 cert = 0.035 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 1.852e-03
+   checkpoint at segment 4: C_F 1.401876037; mappings 11494 -> 11494 (cleared above 55000)
+    [seg  4] J = 1.40335981e+00  |grad| = 7.330e-01  cert = 0.035
+    [seg  4] margin at base: KS - mu0 = +0.5278 (min cell +0.5352, 4758 cells)
+    [seg  4] PSPL_JSCALE: objective x 7.3656e+02 (|grad| 7.330e-01, radius 1.852e-03)
+    [seg  4] margin counters: {'m_exec': 34, 'm_dedup': 34, 'gm_nonfinite': 1, 'infeasible_base': 2, 'grad_nonfinite': 1}; multipliers [[-0.002]]
+   checkpoint at segment 5: C_F 1.403359813; mappings 11495 -> 11495 (cleared above 55000)
+    [seg  5] J = 1.40370071e+00  |grad| = 9.480e-01  cert = 0.034
+    [seg  5] margin at base: KS - mu0 = +0.4697 (min cell +0.4771, 4760 cells)
+    [seg  5] PSPL_JSCALE: objective x 4.1394e+02 (|grad| 9.480e-01, radius 2.548e-03)
+    [seg  5] margin counters: {'m_exec': 37, 'm_dedup': 37, 'gm_nonfinite': 2, 'infeasible_base': 2, 'grad_nonfinite': 2}; multipliers [[-5.273]]
+   checkpoint at segment 6: C_F 1.403700714; mappings 11495 -> 11495 (cleared above 55000)
+    [seg  6] trial J = 1.40187437e+00 INFEASIBLE (KS - mu0 -0.9753) than 1.40370071e+00; model predicted 1.37047399e+00 (rho 0.05)
+    [seg  6] backtrack: step 1.660e-03 below the floor at 1/2 -> give up
+    [seg  6] ascent 1/2 (step 4.981e-03): J = 1.39727528e+00 cert = 0.033 INFEASIBLE -> worse
+    [seg  6] ascent 1/4 (step 2.491e-03): J = 1.40156767e+00 cert = 0.031 INFEASIBLE -> worse
+    [seg  6] ascent: step 1.245e-03 below the floor at 1/8 -> give up
+    [seg  6] trial J = 1.40187437e+00 REJECTED (INFEASIBLE (KS - mu0 -0.9753) than 1.40370071e+00) -> revert, radius -> 2.491e-03
+   checkpoint at segment 7: C_F 1.403700714; mappings 11506 -> 11506 (cleared above 55000)
+    [seg  7] J = 1.40370071e+00  |grad| = 9.480e-01  cert = 0.034
+    [seg  7] margin at base: KS - mu0 = +0.4697 (min cell +0.4771, 4760 cells)
+    [seg  7] PSPL_JSCALE: objective x 4.2355e+02 (|grad| 9.480e-01, radius 2.491e-03)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:385: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(self.x - self.x_prev, self.g - self.g_prev)
+/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:737: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+  self.H.update(delta_x, delta_g)
+    [seg  7] margin counters: {'m_exec': 54, 'm_dedup': 54, 'gm_nonfinite': 5, 'infeasible_base': 3, 'grad_nonfinite': 5}; multipliers [[466.342]]
+   checkpoint at segment 8: C_F 1.403700714; mappings 11507 -> 11507 (cleared above 55000)
+    [seg  8] trial J = 1.40410930e+00 INFEASIBLE (KS - mu0 -0.9376) than 1.40370071e+00; model predicted 1.41268228e+00 (rho 0.05)
+    [seg  8] backtrack 1/2 (step 3.204e-03): J = 1.40380056e+00 cert = 0.045 -> ACCEPT
+    [seg  8] restoration ACCEPTED -> base, radius -> 3.204e-03
+   checkpoint at segment 9: C_F 1.403700714; mappings 11568 -> 11568 (cleared above 55000)
+    [seg  9] J = 1.40380056e+00  |grad| = 7.184e-01  cert = 0.045
+    [seg  9] margin at base: KS - mu0 = +0.5531 (min cell +0.5604, 4459 cells)
+    [seg  9] PSPL_JSCALE: objective x 4.3450e+02 (|grad| 7.184e-01, radius 3.204e-03)
+    [seg  9] margin counters: {'m_exec': 66, 'm_dedup': 66, 'gm_nonfinite': 5, 'infeasible_base': 4, 'grad_nonfinite': 5}; multipliers [[-0.578]]
+   checkpoint at segment 10: C_F 1.403800564; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 10] J = 1.40601491e+00  |grad| = 6.636e-01  cert = 0.034
+    [seg 10] margin at base: KS - mu0 = +0.5532 (min cell +0.5605, 4464 cells)
+    [seg 10] PSPL_JSCALE: objective x 2.9102e+02 (|grad| 6.636e-01, radius 5.178e-03)
+    [seg 10] margin counters: {'m_exec': 78, 'm_dedup': 78, 'gm_nonfinite': 5, 'infeasible_base': 4, 'grad_nonfinite': 5}; multipliers [[0.051]]
+   checkpoint at segment 11: C_F 1.406014906; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 11] J = 1.40814761e+00  |grad| = 5.900e-01  cert = 0.034
+    [seg 11] margin at base: KS - mu0 = +0.5537 (min cell +0.5611, 4463 cells)
+    [seg 11] PSPL_JSCALE: objective x 2.6145e+02 (|grad| 5.900e-01, radius 6.482e-03)
+    [seg 11] margin counters: {'m_exec': 90, 'm_dedup': 90, 'gm_nonfinite': 6, 'infeasible_base': 4, 'grad_nonfinite': 6}; multipliers [[-66.536]]
+   checkpoint at segment 12: C_F 1.408147613; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 12] trial J = 1.41096081e+00 INFEASIBLE (KS - mu0 -0.8500) than 1.40814761e+00; model predicted 1.41757127e+00 (rho 0.30)
+    [seg 12] backtrack 1/2 (step 2.758e-03): J = 1.40976594e+00 cert = 0.034 -> ACCEPT
+    [seg 12] restoration ACCEPTED -> base, radius -> 2.758e-03
+   checkpoint at segment 13: C_F 1.408147613; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 13] J = 1.40976594e+00  |grad| = 6.920e-01  cert = 0.034
+    [seg 13] margin at base: KS - mu0 = +0.5324 (min cell +0.5397, 4587 cells)
+    [seg 13] PSPL_JSCALE: objective x 5.2403e+02 (|grad| 6.920e-01, radius 2.758e-03)
+    [seg 13] margin counters: {'m_exec': 102, 'm_dedup': 102, 'gm_nonfinite': 6, 'infeasible_base': 5, 'grad_nonfinite': 6}; multipliers [[23.952]]
+   checkpoint at segment 14: C_F 1.409765937; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 14] J = 1.40982553e+00  |grad| = 7.668e-01  cert = 0.034
+    [seg 14] margin at base: KS - mu0 = +0.5537 (min cell +0.5610, 4586 cells)
+    [seg 14] PSPL_JSCALE: objective x 5.1175e+02 (|grad| 7.668e-01, radius 2.548e-03)
+    [seg 14] margin counters: {'m_exec': 114, 'm_dedup': 114, 'gm_nonfinite': 7, 'infeasible_base': 5, 'grad_nonfinite': 7}; multipliers [[35.483]]
+   checkpoint at segment 15: C_F 1.409825527; mappings 11568 -> 11568 (cleared above 55000)
+    [seg 15] trial J = 1.40767245e+00 INFEASIBLE (KS - mu0 -0.9168) than 1.40982553e+00; model predicted 1.41116480e+00 (rho -1.61)
+    [seg 15] backtrack 1/2 (step 1.878e-03): J = 1.41025218e+00 cert = 0.044 INFEASIBLE -> worse
+    [seg 15] backtrack: step 9.391e-04 below the floor at 1/4 -> give up
+    [seg 15] ascent 1/2 (step 5.635e-03): J = 1.40857102e+00 cert = 0.029 INFEASIBLE -> worse
+    [seg 15] ascent 1/4 (step 2.817e-03): J = 1.41000839e+00 cert = 0.033 INFEASIBLE -> worse
+    [seg 15] ascent: step 1.409e-03 below the floor at 1/8 -> give up
+    [seg 15] trial J = 1.40767245e+00 REJECTED (INFEASIBLE (KS - mu0 -0.9168) than 1.40982553e+00) -> revert, radius -> 2.817e-03
+   checkpoint at segment 16: C_F 1.409825527; mappings 11571 -> 11571 (cleared above 55000)
+    [seg 16] J = 1.40982553e+00  |grad| = 7.668e-01  cert = 0.034
+    [seg 16] margin at base: KS - mu0 = +0.5537 (min cell +0.5610, 4586 cells)
+    [seg 16] PSPL_JSCALE: objective x 4.6290e+02 (|grad| 7.668e-01, radius 2.817e-03)
+    [seg 16] margin counters: {'m_exec': 126, 'm_dedup': 126, 'gm_nonfinite': 8, 'infeasible_base': 6, 'grad_nonfinite': 8}; multipliers [[-0.278]]
+   checkpoint at segment 17: C_F 1.409825527; mappings 11570 -> 11570 (cleared above 55000)
+    [seg 17] J = 1.41053274e+00  |grad| = 8.309e-01  cert = 0.034
+    [seg 17] margin at base: KS - mu0 = +0.5401 (min cell +0.5474, 4588 cells)
+    [seg 17] PSPL_JSCALE: objective x 4.7228e+02 (|grad| 8.309e-01, radius 2.548e-03)
+    [seg 17] margin counters: {'m_exec': 138, 'm_dedup': 138, 'gm_nonfinite': 8, 'infeasible_base': 6, 'grad_nonfinite': 8}; multipliers [[21.801]]
+    [seg 17] step 7.030e-05: the second in a row under the radius floor 1.699e-03 -> resolution reached, stop
+    backtracking: 13 probes, 4 accepted along the segment, 0 accepted on the ascent; 14 records
+   return: C_F 1.410532737 (start 1.400243540, reference 1.152251338, 1-D 1.593085), cert 3.400e-02, KS +0.5474 (in class), |grad|inf 2.856e+00; gap to the reference plug 3.169e-02 / shroud 2.322e-01 m (start 3.059e-02 / 2.409e-01); 14 records, 2316 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.4412 -> 0.4412 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 3.52959e-02, exit free: both): heights tip 0.4985 -> 0.4934, lip 0.9812 -> 0.9947; A_e/A_i 1.9152 -> 2.0005; wall pressure at the tip / lip over p_a 3.062 / 5.415 -> 2.908 / 4.488
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/L87/AcowlB_free_nonrefl30/walk_FB_2026-09-29.json
+walk AcowlB_free_nonrefl30 exit 0 21:42:24

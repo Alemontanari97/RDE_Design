@@ -486,6 +486,45 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     slack = 1.01e-3 if tr_floor is None else floor * (1 + 1 / 100)
     n_rec = 0
     hist = []
+    # OBJECTIVE SCALE (S41 plug contest, 2026-09-29; PSPL_JSCALE=radius, unset =
+    # the record's driver bitwise). trust-constr grades a step on a merit
+    # that adds the objective to the constraint's residual: with C_F gaining
+    # 1e-3 per millimetre and the class margin an O(1) sine, a segment of the
+    # record's driver returned NO step from a certified in-class base with
+    # |grad| 0.21 and the class 0.44 inside (measured at the landing of the
+    # mean-state walk from the cone, twop_barrier_probe: the barrier
+    # parameter is not the cause; the objective times 1 / (|g| radius) --
+    # the linear model gains ONE at the radius -- steps 4.4e-3 in six
+    # iterations and 1.0e-2 in twelve, the gain verified by the re-march
+    # to 2e-6; ten times that scale walks through the class). The scale is
+    # read at every segment from the base's own gradient and the radius.
+    jscale_on = os.environ.get("PSPL_JSCALE", "") == "radius"
+    jscale = [1.0, 1.0]     # the segment being posed, the segment of `res`
+    # THE RADIUS FOLLOWS THE STEP (PSPL_TRFOLLOW=1, same date; unset = the
+    # record's driver bitwise). The record's driver grows its radius on every
+    # accepted base, whatever the length actually walked: measured on the
+    # first scaled walks (Ajs_cone, Ajs_P24e02), two segments at 1.3 radii
+    # and then steps of 1e-5 .. 1e-10, each ACCEPTED (a gain of 1e-11 is a
+    # gain) and each growing the radius, to the cap 0.25 -- a radius no step
+    # had ever used, and with it the objective's scale fell by 20. With the
+    # option the growth applies to the length walked, floored at the radius
+    # floor; two segments in a row that walk less than the floor are the
+    # instrument's resolution: the walk stops there, and the landing's KKT
+    # residual says whether it is an optimum.
+    # PSPL_TRFOLLOW=2 (2026-09-29 evening, the plug + cowl walks): before the
+    # stop the driver tries the PROJECTED ASCENT from the incumbent along its
+    # own recorded gradient (the rejection branch's second fallback: it does
+    # not depend on the segment's solver), and stops only if that fails too.
+    # Measured: three joint walks were closed by the rule after two segments
+    # with |grad| 0.6 .. 1.2 in their own coordinates and the class 0.06 ..
+    # 0.35 inside -- trust-constr is an interior-point method, its trust
+    # region is measured in slack-scaled variables and its step next to the
+    # class is proportional to the distance from it (twop_trbox_probe: step
+    # 1.6e-4 under a radius 8.1e-3 with the class 0.0089 inside): a small
+    # step there is the solver's, not the design's resolution.
+    tr_follow = os.environ.get("PSPL_TRFOLLOW", "") in ("1", "2")
+    tr_follow_ascent = os.environ.get("PSPL_TRFOLLOW", "") == "2"
+    small_prev = False
     def _probe(Wt):
         """Re-march a trial point for the backtracking search: its
         certified record, J, gradient and class flag, or None when the
@@ -683,7 +722,7 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                 # the model's own prediction at the trial, for the
                 # reading (rho = actual / predicted gain)
                 if verbose:
-                    Jm = -sign * float(res.fun)
+                    Jm = -sign * float(res.fun) / jscale[1]
                     den = Jm - J_best
                     print("    [seg %2d] trial J = %.8e %s than %.8e;"
                           " model predicted %.8e (rho %s)"
@@ -765,6 +804,8 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                 if not np.all(np.isfinite(g)):
                     ctr["grad_nonfinite"] = ctr.get("grad_nonfinite", 0) + 1
                     g = np.where(np.isfinite(g), g, 0.0)
+            if jscale_on:
+                return -sign * jscale[0] * v, -sign * jscale[0] * g
             return -sign * v, -sign * g
 
         # FOLD-MARGIN CONSTRAINT ([X-MGOV] pattern, plug port [X-PMRG]):
@@ -849,6 +890,13 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             # caught by the record/certify gate and reverted; the
             # restoration has no incumbent to revert to. So phase 1
             # takes ONE iteration per record: the march is the model.
+            if jscale_on and not phase1:
+                gn_ = float(np.linalg.norm(np.where(np.isfinite(g0), g0, 0.0)))
+                jscale[0] = 1.0 / (gn_ * tr) if gn_ * tr > 0.0 else 1.0
+                if verbose:
+                    print("    [seg %2d] PSPL_JSCALE: objective x %.4e"
+                          " (|grad| %.3e, radius %.3e)"
+                          % (seg, jscale[0], gn_, tr), flush=True)
             res = minimize(fun_r if phase1 else fun, W, jac=True,
                            method="trust-constr",
                            constraints=([] if phase1 else cons),
@@ -858,6 +906,7 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                                         initial_tr_radius=tr,
                                         gtol=0.0, xtol=1e-14,
                                         verbose=0))
+            jscale[1] = jscale[0]
             if margin is not None:
                 margin["last_res"] = res
                 if verbose:
@@ -881,6 +930,34 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             if verbose:
                 print("    [seg %2d] no motion -> stop" % seg)
             break
+        if tr_follow and step < floor and small_prev:
+            hit = None
+            if (tr_follow_ascent and backtrack > 0 and W_best is not None
+                    and g_best is not None):
+                gn = float(np.linalg.norm(g_best))
+                if gn > 0.0:
+                    if verbose:
+                        print("    [seg %2d] step %.3e: the second in a row"
+                              " under the radius floor %.3e -> the ascent"
+                              " from the incumbent before stopping"
+                              % (seg, step, floor), flush=True)
+                    hit = _search(W_best, 2.0 * tr * sign * g_best / gn,
+                                  J_best, seg, "ascent")
+            if hit is None:
+                if verbose:
+                    print("    [seg %2d] step %.3e: the second in a row under the"
+                          " radius floor %.3e -> resolution reached, stop"
+                          % (seg, step, floor), flush=True)
+                break
+            n_bt[1] += 1
+            W, pr, a = hit
+            pending = pr
+            tr = max(floor, float(np.linalg.norm(W - W_best)))
+            if verbose:
+                print("    [seg %2d] ascent ACCEPTED -> base, radius -> %.3e"
+                      % (seg, tr), flush=True)
+            continue
+        small_prev = tr_follow and step < floor
         W = np.asarray(res.x, dtype=float)
         # The OUTER radius is ours and is never read back from
         # trust-constr: its internal radius tracks ITS model on a
@@ -888,7 +965,7 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         # this loop ordered (measured: the walk oscillated between one
         # good base and two overshoots, re-recording forever). Grow
         # only on an accepted base, shrink only here.
-        tr = float(min(0.25, 1.5 * tr))
+        tr = float(min(0.25, 1.5 * (max(floor, step) if tr_follow else tr)))
     if backtrack > 0 and verbose:
         print("    backtracking: %d probes, %d accepted along the segment,"
               " %d accepted on the ascent; %d records"

@@ -203,6 +203,21 @@ NEWTON_TOL_FACTOR = 100.0
 # ~1e-10, the quadratic regime of a well-posed cell) -- derived, not a new literal
 POLISH_WINDOW = NEWTON_TOL_FACTOR * NEWTON_TOL_FACTOR
 N_NEWTON = 30
+# NEWTON_RESCUE (2026-09-30, the plug contest's 12-phase walks; opt-in, unset =
+# bitwise): a cell whose damped Newton ends OVER the certification bound is
+# continued with plain (full) Newton steps from its stalled iterate, and the
+# root is kept only if it is certified. Measured (twop_stall_probe, the free-edge
+# cell ('jet', 31) of the grafted plug, certificate 8.1e10): the damped trials
+# are chosen by the residual NORM, whose rows mix units (position ~1,
+# compatibility ~u^3 ~1e9); the full step toward the root RAISES that norm
+# (0.67 -> 1.6e5) and so does every damped trial (0.81 at t = 1/64), the t = 0
+# trial is kept and the cell stalls 1.8e-3 lip radii from its root, which the
+# plain Newton reaches in 3 steps (1.8e-3, 3.2e-7, 3.8e-14). A cell that ends
+# certified never enters the rescue (its path and its root are unchanged), so
+# every certified record is reproduced bitwise; a rescue that does not reach the
+# bound, or meets a non-finite step, returns the stalled iterate and the cell
+# FAILS its certification as before.
+NEWTON_RESCUE = bool(int(os.environ.get("A1_NEWTON_RESCUE", "0")))
 # C2-F2 (S21): arm per-cell certification on REPLAY ('play')
 # evaluations too (concrete calls only — AD traces are guarded in
 # certify). Default False = bit-identical pre-S21 behaviour; the
@@ -497,8 +512,35 @@ def make_implicit_solver(resid_fn, polish=False):
             return (z_new, it + 1,
                     jnp.where(bad, jnp.inf, jnp.max(jnp.abs(dz))))
 
-        z, _, _ = jax.lax.while_loop(
+        z, _, step = jax.lax.while_loop(
             cond, body, (z0, jnp.array(0), jnp.array(jnp.inf)))
+        if NEWTON_RESCUE:
+            def over(zc, st):
+                return st > NEWTON_TOL_FACTOR * EPS * jnp.maximum(
+                    1.0, jnp.max(jnp.abs(zc)))
+
+            def cond_r(carry):
+                zc, it, st = carry
+                return jnp.logical_and(
+                    it < N_NEWTON,
+                    jnp.logical_and(jnp.isfinite(st), over(zc, st)))
+
+            def body_r(carry):
+                zc, it, _ = carry
+                r = resid_fn(zc, p, ta)
+                Jz = jax.jacfwd(resid_fn, argnums=0)(zc, p, ta)
+                dz = jnp.linalg.solve(Jz, r)
+                fin = jnp.all(jnp.isfinite(dz))
+                return (jnp.where(fin, zc - dz, zc), it + 1,
+                        jnp.where(fin, jnp.max(jnp.abs(dz)), jnp.inf))
+
+            zr, _, st_r = jax.lax.while_loop(
+                cond_r, body_r, (z, jnp.array(0), step))
+            keep = jnp.logical_and(
+                jnp.all(jnp.isfinite(zr)),
+                jnp.logical_and(jnp.isfinite(st_r),
+                                jnp.logical_not(over(zr, st_r))))
+            z = jnp.where(keep, zr, z)
         return z
 
     @jax.jit

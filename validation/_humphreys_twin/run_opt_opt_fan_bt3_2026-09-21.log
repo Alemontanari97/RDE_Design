@@ -1,0 +1,65 @@
+== [F3] Humphreys 1971, twin (B) case opt: the TR-SQP at their posing [X-HMPH] (stage opt) ==
+   lip 7.55 in, L 11.439 in from the lip (1.5151 R), fan turn 56.95 deg -> theta_i -34.00 deg, theta_E 22.95 deg; mdot 148.08 lbm/s imposed through the cut at X0 0.05 R; base model veen; target 32881 lbf
+   start radius y_w0 6.037 in (mass-set), F_in 130.3 kN; start = fan; knots [5.455 5.302 5.398 5.67  6.082 6.608]
+   the start (fan): cert 0.034, J 133.2 kN = 29946 lbf (-8.93e-02 vs target)
+    [seg  0] J = 3.62214703e+06  |grad| = 1.493e+06  cert = 0.034
+    [seg  1] base not certified (record not certified (worst 2.887e+16))
+    [seg  1] backtrack 1/2 (step 3.540e-01): J = 3.77624877e+06 cert = 0.039 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 3.540e-01
+    [seg  2] J = 3.77624877e+06  |grad| = 2.484e+06  cert = 0.039
+    [seg  3] base not certified (record not certified (worst 1.014e+17))
+    [seg  3] backtrack 1/2 (step 1.770e-01): J = 3.51827636e+06 cert = 0.058 -> worse
+    [seg  3] backtrack 1/4 (step 8.849e-02): J = 3.81913946e+06 cert = 0.043 -> ACCEPT
+    [seg  3] restoration ACCEPTED -> base, radius -> 8.849e-02
+    [seg  4] J = 3.81913946e+06  |grad| = 2.548e+06  cert = 0.043
+    [seg  5] trial J = 3.70383413e+06 worse than 3.81913946e+06; model predicted 4.15650055e+06 (rho -0.34)
+    [seg  5] backtrack 1/2 (step 4.424e-02): J = 3.84963496e+06 cert = 0.032 -> ACCEPT
+    [seg  5] restoration ACCEPTED -> base, radius -> 4.424e-02
+    [seg  6] J = 3.84963496e+06  |grad| = 1.654e+06  cert = 0.032
+    [seg  7] trial J = 3.83941612e+06 worse than 3.84963496e+06; model predicted 4.06566969e+06 (rho -0.05)
+    [seg  7] backtrack 1/2 (step 1.983e-02): J = 3.86346564e+06 cert = 0.032 -> ACCEPT
+    [seg  7] restoration ACCEPTED -> base, radius -> 1.983e-02
+    [seg  8] J = 3.86346564e+06  |grad| = 7.625e+05  cert = 0.032
+    [seg  9] J = 3.91718493e+06  |grad| = 7.327e+05  cert = 0.162
+    [seg 10] J = 3.94916428e+06  |grad| = 2.855e+05  cert = 0.438
+    [seg 11] J = 3.95341204e+06  |grad| = 8.079e+05  cert = 0.155
+    [seg 12] trial J = 3.86693090e+06 worse than 3.95341204e+06; model predicted 4.32429617e+06 (rho -0.23)
+    [seg 12] backtrack 1/2 (step 3.346e-02): J = 3.94287083e+06 cert = 0.036 -> worse
+    [seg 12] backtrack 1/4 (step 1.673e-02): J = 3.95698359e+06 cert = 0.133 -> ACCEPT
+    [seg 12] restoration ACCEPTED -> base, radius -> 1.673e-02
+    [seg 13] J = 3.95698359e+06  |grad| = 4.231e+05  cert = 0.133
+    [seg 14] base not certified (record not certified (worst 1.165e+00))
+    [seg 14] backtrack 1/2 (step 8.366e-03): J = 3.95844290e+06 cert = 0.136 -> ACCEPT
+    [seg 14] restoration ACCEPTED -> base, radius -> 8.366e-03
+    [seg 15] J = 3.95844290e+06  |grad| = 2.069e+05  cert = 0.136
+    [seg 16] trial J = 3.94629606e+06 worse than 3.95844290e+06; model predicted 4.42880553e+06 (rho -0.03)
+    [seg 16] backtrack 1/2 (step 7.343e-02): J = 3.95901107e+06 cert = 0.165 -> ACCEPT
+    [seg 16] restoration ACCEPTED -> base, radius -> 7.343e-02
+    [seg 17] J = 3.95901107e+06  |grad| = 9.293e+05  cert = 0.165
+    [seg 18] trial J = 3.88752688e+06 worse than 3.95901107e+06; model predicted 4.16446997e+06 (rho -0.35)
+    [seg 18] backtrack 1/2: record not certified
+    [seg 18] backtrack 1/4 (step 1.836e-02): J = 3.96603695e+06 cert = 0.918 -> ACCEPT
+    [seg 18] restoration ACCEPTED -> base, radius -> 1.836e-02
+    [seg 19] J = 3.96603695e+06  |grad| = 3.029e+05  cert = 0.918
+    [seg 20] trial J = 3.96506038e+06 worse than 3.96603695e+06; model predicted 4.19452769e+06 (rho -0.00)
+    [seg 20] backtrack 1/2 (step 9.179e-03): J = 3.96714810e+06 cert = 0.049 -> ACCEPT
+    [seg 20] restoration ACCEPTED -> base, radius -> 9.179e-03
+    [seg 21] J = 3.96714810e+06  |grad| = 2.252e+05  cert = 0.049
+    [seg 22] J = 3.96747017e+06  |grad| = 2.764e+05  cert = 0.190
+    [seg 23] trial J = 3.96655328e+06 worse than 3.96747017e+06; model predicted 4.18671281e+06 (rho -0.00)
+    [seg 23] backtrack 1/2 (step 6.884e-03): J = 3.96820586e+06 cert = 0.982 -> ACCEPT
+    [seg 23] restoration ACCEPTED -> base, radius -> 6.884e-03
+    [seg 24] J = 3.96820586e+06  |grad| = 1.525e+05  cert = 0.982
+    [seg 25] J = 3.96848646e+06  |grad| = 2.063e+05  cert = 0.174
+    [seg 26] J = 3.96907457e+06  |grad| = 1.053e+05  cert = 0.439
+    [seg 27] J = 3.96936629e+06  |grad| = 3.409e+05  cert = 0.496
+    [seg 28] trial J = 3.96273317e+06 worse than 3.96936629e+06; model predicted 4.04871804e+06 (rho -0.08)
+    [seg 28] backtrack 1/2 (step 1.162e-02): J = 3.96978637e+06 cert = 0.198 -> ACCEPT
+    [seg 28] restoration ACCEPTED -> base, radius -> 1.162e-02
+    [seg 29] J = 3.96978637e+06  |grad| = 3.199e+05  cert = 0.198
+    backtracking: 14 probes, 11 accepted along the segment, 0 accepted on the ascent; 19 records
+   TR-SQP: 19 records, J 146.0 kN = 32820 lbf (-1.85e-03 vs the paper's 32881); cert 0.198; y_D 2.717 in
+  [PASS] O-1 the walk's best design is Newton-certified (0.198)
+  [PASS] O-2 the thrust reproduces the paper's within 1 percent (their shear is 0.2 percent; -1.85e-03)
+
+== 2/2 PASS  (1677.9 s) ==
