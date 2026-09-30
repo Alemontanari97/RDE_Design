@@ -736,9 +736,16 @@ la consuma da qui)**:
 - `reconstruction/REFUTE_W2_minipass.md` :103.
 - Banchi domanda dei refuter W-A (REFUTE_CH1..CH8, sezioni "Banco
   utente"/"Attacco al banco") = seconda sorgente, già refutata.
+- `reconstruction/REFUTE_STORIE.md` — Q&A SEED delle 10 sezioni-storia
+  (:107..:708) [FC-2: arco §5→Blocco 2 saldato].
 [Guardia 17 vincola le risposte Q&A su feedback ugello→camera: nessun
 claim di decoupling senza condizione di choking citata. Guardia 18
-vincola il REGISTRO delle risposte.]
+vincola il REGISTRO delle risposte. [FD-4, enforcement CW-4 — NOTE
+per C17-pre e C17]: ogni consumo della gerarchia dei gap porta la
+MAPPA DELLE LETTERE nei [NOTE]: gap(A)=formulazione / gap(B)=modello
+del frame three-design NON coincidono con il namespace storico
+Gap A/Gap B (invertiti) — la nota on-slide usa SOLO le parole
+"formulazione"/"modello", mai le lettere nude.]
 
 ==========================================================================
 ## TIME-BOXING SUL 60' (v3.1 — conteggi misurati su QUESTA lista)

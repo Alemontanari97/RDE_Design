@@ -55,3 +55,29 @@ It consumes no F2 session. Roadmap step served: F2.REPR (it cannot open on a spl
 - Still running at 15:40, stopped or ended later and recorded below: `BcowlB_intnoz10_fromA2`,
   `AcowlB_intnoz10_fromRao4`, `BcowlB_intnoz10_joint_fromRao2_pa020`; stopped at its checkpoint to free the machine:
   `BcowlB_intnoz10_ext_fromRao2`.
+
+## The merge (branch `reunion-f2-plug-2026-09-30`, not yet on `rde-nozzle-program`)
+- Plug work committed on `rde-nozzle-program`: 4d26d66 (S42) and e27b693 (this window's opening). Own checks on
+  the default path PASS (ideal march, plug march 6/6, RDE tournament 9/9); lints green; suite quoted in 4d26d66.
+- Merge of the plan line: 8 conflicts resolved by `RDE/handoff/plug_2026-09-29/reunion_resolve.py` and
+  `reunion_progress.py` (plan text, then the plug line's additions).
+- PROGRESS rebuilt on the plan's slim form. It now says: F2 open, session 1 of 6; F3 opened and closed on the plug
+  line out of order; next = close the foundations review on what is on file, then F2.REPR.
+- Census: the plug line's R37, R38 are R41, R42. This window is R43.
+- The derived roadmap no longer marks the decisive comparison as done: F3.RK1 and F3.PLUG closed on the plug line,
+  F3.TWIN and F3.TOURNAMENT not run.
+- Registries: the plug line's 31 check stamps carry this machine's fingerprint; 10 open plug findings labelled
+  (3 critical: the optimiser stalling from far starts, the validity margin blind to converging waves, GENO's Rao
+  plug building its own inlet); 5 findings of S42 added; 13 labels resolved in the glossary; 2 plan-line scripts
+  given their numeric baseline rows; theory document: registration block S42.
+- Lints on the merged tree: numeric PASS, advisory index PASS, roadmap PASS, glossary at its baseline (its 4 reds
+  and the findings lint's reds are files this machine does not have: literature PDFs, GENO sources).
+
+## Owed before the merge moves to `rde-nozzle-program` (the claims lint is red for these)
+- 12 checks of the bell sector are old by the plan's rule (a file they import changed after their last pass):
+  X-THC1, X-SCANM, X-LSG0, X-TOCV, X-O33B, X-CDKAT, X-VMON, X-MGOV, X-TBAK, X-DEFTW, X-SPDB, X-O31CS. Re-run each
+  on this machine and stamp it.
+- 7 checks were last passed on the other machine (fingerprint e100f996): X-SCANM, X-O32, X-AKNO, X-CDKAT, X-LOCD,
+  X-TBAK, X-STSC. Re-run here, or declare the two machines.
+- Then: full suite on the merged tree, fast-forward `rde-nozzle-program`, remove the worktree.
+

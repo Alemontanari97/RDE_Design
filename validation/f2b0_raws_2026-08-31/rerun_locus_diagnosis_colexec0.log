@@ -1,0 +1,44 @@
+== [X-LOCD] S20 retro-diagnosis: C-1 three-way locus test (JAX 0.11.0) ==
+-- KAT-CLS: classifier known-answer (4 scenarios) --
+  [PASS] scenario (a): depressed on-chain argmin + on-chain fail -> a
+  [PASS] scenario (b): depressed interior argmin -> b
+  [PASS] scenario (c): no depression -> c
+  [PASS] scenario (4): on-chain argmin, healthy off-chain fail -> c annotated
+  [PASS] scenario (4'): on-chain argmin, unhealthy off-chain fail -> b annotated
+-- BASE-CTRL: certified baseline W* (uniform 8-node) --
+  [PASS] baseline certified (cert_worst <= 1)
+  baseline design-wall val: 1675 pts (0 masked), min 6.8837e-01, median 7.7147e-01
+  [PASS] BASE-CTRL: healthy field on the valid side (m_ref > 0; instrument discriminating)
+-- regenerated rejection set: 8 events, 5 distinct designs (C:\Users\amont\Claude\Projects\Presentazione RDE CVA\rde-lecture-code\validation\s22_rejected_designs.json) --
+  distinct cert_worst regenerated: [1.06, 1.17, 1.455, 1.698, 2.458]
+  distinct cert_worst S20 record : [1.06, 1.17, 1.455, 1.698, 2.458]
+  [PASS] S20 rejection signature REPRODUCED (determinism, [P2-T2])
+-- rej-1(seg 1) --
+  [FAIL] rej-1(seg 1): re-record reproduces the rejection (cert_worst > 1)
+-- rej-2(seg 7) --
+  [PASS] rej-2(seg 7): re-record reproduces the rejection (cert_worst > 1)
+  [rej-2(seg 7)] cert_worst 1.826e+00 | argmax cell interior at (3.9601, 0.0525) ctx ('design_col', 30)
+  [rej-2(seg 7)] val field: 1620 pts (0 masked) | val_min 6.1899e-01 at (4.2849, 0.1382) | m_ref 6.8837e-01 thr(m_ref/K) 1.7209e-01
+  [rej-2(seg 7)] locus: d(argmin,chain) 1.7246e+00 vs r_st 7.9690e-02 (interior) | d(fail,chain) 1.6217e+00 vs r_st 8.3965e-02 (off-chain) | val(fail) 8.5739e-01
+  [rej-2(seg 7)] BRANCH (c): no fold signature in the design region
+-- rej-3(seg 15) --
+  [FAIL] rej-3(seg 15): re-record reproduces the rejection (cert_worst > 1)
+-- rej-4(seg 18) --
+  [PASS] rej-4(seg 18): re-record reproduces the rejection (cert_worst > 1)
+  [rej-4(seg 18)] cert_worst 1.092e+00 | argmax cell interior at (4.2491, 0.1418) ctx ('design_col', 26)
+  [rej-4(seg 18)] val field: 1593 pts (0 masked) | val_min 6.1919e-01 at (4.2531, 0.1432) | m_ref 6.8837e-01 thr(m_ref/K) 1.7209e-01
+  [rej-4(seg 18)] locus: d(argmin,chain) 1.6947e+00 vs r_st 7.9856e-02 (interior) | d(fail,chain) 1.6937e+00 vs r_st 7.9856e-02 (off-chain) | val(fail) 6.5124e-01
+  [rej-4(seg 18)] BRANCH (c): no fold signature in the design region
+-- rej-5(seg 22) --
+  [FAIL] rej-5(seg 22): re-record reproduces the rejection (cert_worst > 1)
+-- last certified base (outcome-II returned design) --
+  [PASS] certified base re-certifies (cert_worst <= 1)
+  [base] cert_worst 3.084e-01 | argmax cell interior at (4.2641, 0.1429) ctx ('design_col', 26)
+  [base] val field: 1633 pts (0 masked) | val_min 6.1855e-01 at (4.2641, 0.1429) | m_ref 6.8837e-01 thr(m_ref/K) 1.7209e-01
+  [base] locus: d(argmin,chain) 1.6410e+00 vs r_st 8.0541e-02 (interior) | d(fail,chain) 1.6410e+00 vs r_st 8.0541e-02 (off-chain) | val(fail) 6.1855e-01
+  [base] BRANCH (c): no fold signature in the design region
+  [bridge] base val_min / m_ref = 0.899 (a ratio << 1 at the frontier base SUPPORTS K_disc ~ A_0; ~1 with branch (c) above FIRES the bridge falsifier for this instance)
+-- AGGREGATE (S20 instance, O4 discharge) --
+  branch distribution over 2 rejections: {'c': 2}
+  VERDICT OF RECORD (determinism OK): unanimous branch (c) -> NON-FOLD mechanism — class construction, not physics; BOTH readings falsified AND the K_disc ~ A_0 bridge falsifier FIRES for this instance
+VERDICT: FAIL

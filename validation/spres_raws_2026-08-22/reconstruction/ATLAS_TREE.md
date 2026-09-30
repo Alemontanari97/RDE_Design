@@ -739,7 +739,8 @@ della SPECIFICA d'ordine (§N), risolti qui con collocazioni dichiarate.
 - **CW-5 (NOTA)** — l'atto 2 (GAP) usa celle di N-K/N-J prima dei loro
   anelli: anticipazione DICHIARATA (regola 6 del walk), conforme a
   CKP-S2-4 ("nessun forward reference non dichiarato"). Nessun'altra
-  anticipazione è risultata necessaria: su 21 transizioni, 20 consumano
+  anticipazione è risultata necessaria: delle 20 transizioni [FA-1
+corretto, conteggio misurato], 19 consumano
   solo materiale già camminato.
 
 Conteggio del walk (SR-12, misurato in finestra:

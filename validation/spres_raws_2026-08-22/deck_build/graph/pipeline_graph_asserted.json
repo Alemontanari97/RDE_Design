@@ -1,0 +1,2037 @@
+{
+  "source": "docs/rde_nozzle_pipeline_decision_map.md",
+  "map_version_line": "2026-08-21 (S-FOUNDATIONS-C4) + MAP-AM amendments",
+  "record_counts": {
+    "stages": 8,
+    "ledger_nodes": 62,
+    "nonledger_nodes": 17,
+    "edge_entries": 45
+  },
+  "machine_summary": {
+    "stages": 8,
+    "nodes_total": 79,
+    "ledger_nodes": 62,
+    "nonledger_nodes": 17,
+    "edges_total": 45,
+    "nonledger_roster": [
+      "PIN-WAVE",
+      "CONTRACT-F1..F10-block",
+      "S-5F",
+      "ROUTE-B",
+      "R22-CFD",
+      "CLG",
+      "SDP-CAND-8",
+      "M-RED",
+      "T-DISC",
+      "R22F-FORCHETTA",
+      "OBJ-DOM",
+      "DELTA-CARRIER",
+      "OPTSHIFT",
+      "D-44",
+      "P34",
+      "H20",
+      "DUTY-10"
+    ],
+    "edge_roster": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E6",
+      "E7",
+      "E8",
+      "E36",
+      "E9",
+      "E10",
+      "E11",
+      "E12",
+      "E13",
+      "E14",
+      "E15",
+      "E16",
+      "E17",
+      "E18",
+      "E19",
+      "E20",
+      "E21",
+      "E22",
+      "E23",
+      "E24",
+      "E25",
+      "E26",
+      "E27",
+      "E28",
+      "E29",
+      "E30",
+      "E31",
+      "E32",
+      "E34",
+      "E35",
+      "E38",
+      "E39",
+      "E41",
+      "E-C59",
+      "E-THC",
+      "E42",
+      "E43",
+      "E44",
+      "E45",
+      "E46"
+    ],
+    "status_tally": {
+      "DECIDED": 12,
+      "MIXED": 36,
+      "NEVER": 12,
+      "SA": 2
+    },
+    "status_rosters": {
+      "DECIDED": [
+        "C3",
+        "C4",
+        "C15",
+        "C19",
+        "C23",
+        "C24",
+        "C26",
+        "C30",
+        "C45",
+        "C46",
+        "C47",
+        "C48"
+      ],
+      "MIXED": [
+        "C1",
+        "C2",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C16",
+        "C20",
+        "C21",
+        "C22",
+        "C27",
+        "C28",
+        "C29",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C39",
+        "C40",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C49",
+        "C50",
+        "C56",
+        "C58"
+      ],
+      "NEVER": [
+        "C25",
+        "C38",
+        "C51",
+        "C52",
+        "C53",
+        "C54",
+        "C55",
+        "C57",
+        "C59",
+        "C60",
+        "C61",
+        "C62"
+      ],
+      "SA": [
+        "C17",
+        "C18"
+      ]
+    },
+    "note_C46_status": "DECIDED"
+  },
+  "stages": [
+    {
+      "num": 1,
+      "name": "DATA CONTRACT",
+      "subtitle": "interface, pin, P_amb slot",
+      "ledger_ids": [
+        "C50",
+        "C52",
+        "C53",
+        "C54",
+        "C55"
+      ],
+      "nonledger_ids": [
+        "PIN-WAVE",
+        "CONTRACT-F1..F10-block"
+      ],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 0,
+        "MIXED": 1,
+        "NEVER": 4,
+        "SA": 0
+      }
+    },
+    {
+      "num": 2,
+      "name": "REPRESENTATION",
+      "subtitle": "per-phase fields; ladder S-5F / route-B / 3D",
+      "ledger_ids": [
+        "C49",
+        "C51",
+        "C59"
+      ],
+      "nonledger_ids": [
+        "S-5F",
+        "ROUTE-B",
+        "R22-CFD"
+      ],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 0,
+        "MIXED": 1,
+        "NEVER": 2,
+        "SA": 0
+      }
+    },
+    {
+      "num": 3,
+      "name": "MARCH & UNIT PROCESSES",
+      "subtitle": "MoC, thermo tables, choking guards",
+      "ledger_ids": [
+        "C5",
+        "C6",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C22",
+        "C24",
+        "C25",
+        "C26",
+        "C45"
+      ],
+      "nonledger_ids": [],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 4,
+        "MIXED": 6,
+        "NEVER": 1,
+        "SA": 0
+      }
+    },
+    {
+      "num": 4,
+      "name": "CERTIFICATES & QUALIFICATION",
+      "subtitle": "cert classes, floors, NTF, trip caps",
+      "ledger_ids": [
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C23",
+        "C28",
+        "C38",
+        "C47"
+      ],
+      "nonledger_ids": [
+        "CLG",
+        "SDP-CAND-8"
+      ],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 3,
+        "MIXED": 3,
+        "NEVER": 1,
+        "SA": 2
+      }
+    },
+    {
+      "num": 5,
+      "name": "ESTIMATOR & BANDS",
+      "subtitle": "DWR/C9/C11, M-RED",
+      "ledger_ids": [
+        "C9",
+        "C10",
+        "C11",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C56"
+      ],
+      "nonledger_ids": [
+        "M-RED"
+      ],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 0,
+        "MIXED": 8,
+        "NEVER": 0,
+        "SA": 0
+      }
+    },
+    {
+      "num": 6,
+      "name": "OPTIMIZER & ENGINE",
+      "subtitle": "TR-Newton, C31 A/B, NAND/SAND, exploration tier, quadrature",
+      "ledger_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C7",
+        "C8",
+        "C16",
+        "C27",
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C39",
+        "C40",
+        "C48",
+        "C57",
+        "C58",
+        "C60",
+        "C62"
+      ],
+      "nonledger_ids": [],
+      "secondary_faces": [],
+      "status_tally": {
+        "DECIDED": 4,
+        "MIXED": 17,
+        "NEVER": 3,
+        "SA": 0
+      }
+    },
+    {
+      "num": 7,
+      "name": "AGGREGATION & FRONTIER",
+      "subtitle": "P_amb aggregation, forchetta, delta-carrier/ship-gate",
+      "ledger_ids": [],
+      "nonledger_ids": [
+        "R22F-FORCHETTA",
+        "T-DISC",
+        "OBJ-DOM",
+        "DELTA-CARRIER",
+        "OPTSHIFT"
+      ],
+      "secondary_faces": [
+        "C55"
+      ],
+      "status_tally": {
+        "DECIDED": 0,
+        "MIXED": 0,
+        "NEVER": 0,
+        "SA": 0
+      }
+    },
+    {
+      "num": 8,
+      "name": "VERDICT & CLAIMS",
+      "subtitle": "D-44, staged evidence P34, R22-CFD",
+      "ledger_ids": [
+        "C61"
+      ],
+      "nonledger_ids": [
+        "D-44",
+        "P34",
+        "H20",
+        "DUTY-10"
+      ],
+      "secondary_faces": [
+        "R22-CFD"
+      ],
+      "status_tally": {
+        "DECIDED": 0,
+        "MIXED": 0,
+        "NEVER": 1,
+        "SA": 0
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "PIN-WAVE",
+      "type": "nonledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "pure periodic rotating wave; monitor = T0 flatness; algorithmic pins M0 VI.4bis",
+      "status": "STANDING PIN (user)",
+      "conditions": "memory `periodic-wave-data-scope`; quotient claims [S-T0P]/[T-T0P] (`claims_registry.yaml:1900`, `:2044`); realism residue R20 priced (`findings_registry.yaml:2148`)",
+      "open_duty": "corrector re-scoped to steady sweep perturbation (same memory)",
+      "edges_cell": "E-C59"
+    },
+    {
+      "id": "C50",
+      "type": "ledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "none at contract site (finding `contract:datum-uncertainty-contract-missing`); Form-2 adjudicated",
+      "status": "MIXED",
+      "conditions": "armed at the EARLIER of findings `:1668`/`:2324`; FS-3 at first U-c ensemble; F-ARCH at first campaign-scale comparison (`VERDICT_C50_form2.md#4`)",
+      "open_duty": "F2-C50-CONTRACT-METRIC (6 clauses, `VERDICT_C50_form2` par.7)",
+      "edges_cell": "E36"
+    },
+    {
+      "id": "C52",
+      "type": "ledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "record reading: subsonic patches = declared case-class with monitors (D1 §4.3bis O1-O4); H3-cl expected to FAIL on migrating patterns",
+      "status": "NEVER",
+      "conditions": "`VERDICT_contract_and_L4R1.md#D-1`",
+      "open_duty": "F2 contract window (pin which reading governs)",
+      "edges_cell": "E7, E8"
+    },
+    {
+      "id": "C53",
+      "type": "ledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "record: Γ_d fixed per case, no recorded placement trade; two blinds disagree on direction",
+      "status": "NEVER",
+      "conditions": "both monotone pressures + emptiness verdict must be recorded (`VERDICT_contract_and_L4R1.md#D-2`)",
+      "open_duty": "F2 contract window: placement-band remark in M0 D2.4",
+      "edges_cell": "E7"
+    },
+    {
+      "id": "C54",
+      "type": "ledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "M0 D2.4 keeps I4 bare; blind Jensen counterexample: O(Var) error, no small parameter; annotation NOT yet landed (verified 2026-08-19)",
+      "status": "NEVER",
+      "conditions": "flips DECIDED when the one-line I4 annotation lands, with the M0 anchor as evidence (`VERDICT_contract_and_L4R1.md#D-4`)",
+      "open_duty": "next M0 D2.4 touch",
+      "edges_cell": "E7"
+    },
+    {
+      "id": "C55",
+      "type": "ledger",
+      "stage": 1,
+      "stage_faces": [
+        1,
+        7
+      ],
+      "choice": "single-point default P_amb = {Pa0} (slot minted `docs/rde_nozzle_problem_book.md:553`); question EMPTY under the default",
+      "status": "NEVER",
+      "conditions": "adjudication owed at instantiation time, not before (slot's own sequencing clause; ledger header \"GATED-by-owner on first multi-point instantiation\")",
+      "open_duty": "first multi-point P_amb instantiation",
+      "edges_cell": "E35"
+    },
+    {
+      "id": "CONTRACT-F1..F10-block",
+      "type": "nonledger",
+      "stage": 1,
+      "stage_faces": [
+        1
+      ],
+      "choice": "product-ball acceptance, phase-aligned fields + declared fronts",
+      "status": "(findings rows)",
+      "conditions": "`findings_registry.yaml:1643-1661, :2299-2353` (census §3 stage-1 row)",
+      "open_duty": "per-row owners",
+      "edges_cell": "E36"
+    },
+    {
+      "id": "C49",
+      "type": "ledger",
+      "stage": 2,
+      "stage_faces": [
+        2
+      ],
+      "choice": "fitted-front characteristic marching (S1 piecewise-smooth class, certified class of record)",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.8 C49`; front-fitting = family alignment content exact of record (C9/C11 supplement, Lemma B par.4.3)",
+      "open_duty": "Phase-C Form-2 with genuine captured-only advocate; falls to F2 entry if the batch splits",
+      "edges_cell": "E5, E41"
+    },
+    {
+      "id": "S-5F",
+      "type": "nonledger",
+      "stage": 2,
+      "stage_faces": [
+        2
+      ],
+      "choice": "five-field optimality system = named SCHEMA [S-5F] (`claims_registry.yaml:617`; M0:668); build decision = USER, PENDING (M0:1345 \"S-5F build decision (user, pending)\"; memory `swirl5f-panel-2026-08-19`)",
+      "status": "USER-PENDING",
+      "conditions": "falsifier (claim S-5F): assembled system disagreeing with the AD adjoint on a certified swirl case; path-A uniformity fork: [T-N6-2] hypotheses UNIFORM vs stratified per-phase fields — adoption before mixed-lemma (i) or monitored-neglect (ii) = R5 violation (`findings_registry.yaml:2446-2452`)",
+      "open_duty": "S-5F decision dossier (BLOCCATO 14 (d) touchpoint)",
+      "edges_cell": "E30, E29"
+    },
+    {
+      "id": "ROUTE-B",
+      "type": "nonledger",
+      "stage": 2,
+      "stage_faces": [
+        2
+      ],
+      "choice": "deferred deriver: \"structure deferred to C51-route-B / S-5F (route B treats helical sheets natively)\" (M0:1884-1885, :1947-1948)",
+      "status": "DEFERRED DERIVER",
+      "conditions": "ordered deriver chains M0:2177-2178, :2224, :2265-2266",
+      "open_duty": "rides C51 window",
+      "edges_cell": "E29"
+    },
+    {
+      "id": "C51",
+      "type": "ledger",
+      "stage": 2,
+      "stage_faces": [
+        2
+      ],
+      "choice": "implicit BVP (M0 rung-3a pin: freezing + Newton-Krylov)",
+      "status": "NEVER",
+      "conditions": "`VERDICT_contract_and_L4R1.md#D-5`; adjudication owed at implementation time, not before (judge's own sequencing)",
+      "open_duty": "rung-3a implementation window",
+      "edges_cell": "E29"
+    },
+    {
+      "id": "R22-CFD",
+      "type": "nonledger",
+      "stage": 2,
+      "stage_faces": [
+        2,
+        8
+      ],
+      "choice": "re-scoped to CFD-1/CFD-2 irreducible core (formal-first directive; `findings_registry.yaml:1462-1467`); scheduling dossier PRESENTED, decision = user (`VERDICT_blocco2.md` §6)",
+      "status": "USER-DECISION PENDING",
+      "conditions": "evidence ladder consumed in dossier (§6: paired-run template, ~12M-cell cost class, M-RED dependency, G1 haste-risk)",
+      "open_duty": "user, post-convergence",
+      "edges_cell": "E28, E29"
+    },
+    {
+      "id": "C59",
+      "type": "ledger",
+      "stage": 2,
+      "stage_faces": [
+        2
+      ],
+      "choice": "cycle-average, CANONICAL-INSIDE-THE-PIN: inside the periodic-rotating-wave pin the quotient makes it a theorem-backed CONSEQUENCE, not a choice (`BRIEF_blocco2_phaseD_addendum_c4.md#(e)`, BINDING)",
+      "status": "NEVER",
+      "conditions": "question EMPTY inside the pin; trigger = any weakened-pin regime (multi-frequency / aperiodic / windowed) entering scope",
+      "open_duty": "F2-entry census window (trigger-gated)",
+      "edges_cell": "E-C59"
+    },
+    {
+      "id": "C12",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "Sauer first-order, γ=const, GENO-mirrored (+1e-6 offset); ADJUDICATED-PROTOCOL",
+      "status": "MIXED",
+      "conditions": "composed band carries declared mdot-channel term (K-L second-order as band term, NOT adoption); F-C12-1 net invariance + F-C12-2 vacuousness control (`VERDICT_wave3.md#C12`)",
+      "open_duty": "F2-C12-STARTLINE-REJECTOR; mdot→Me common mode at F4b/F5",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C13",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "GENO foot-ratio guard v1/y1; ADJUDICATED-PROTOCOL",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C13`",
+      "open_duty": "F2-C13-AXIS-ORACLE (gconst axis oracle; + folded F2-C14-EXITBAND)",
+      "edges_cell": "E18"
+    },
+    {
+      "id": "C14",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "axis-cell Me only; ADJUDICATED-CONVERGED",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C14`",
+      "open_duty": "folded F2-C14-EXITBAND (rides C13; was GAP-8 oracle fold)",
+      "edges_cell": "E18"
+    },
+    {
+      "id": "C22",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "linear index scan, full Newton per attempt, monotone-foot predicate; burden on the predicate",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C22`",
+      "open_duty": "F2-C22-FOOTPROBE (rate lever)",
+      "edges_cell": "E17"
+    },
+    {
+      "id": "C15",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "1e-5 GENO-mirrored (S19 knob)",
+      "status": "DECIDED",
+      "conditions": "`ADVISORY_S24_sota_gapmap_2026-08-12.md#\\| C15 \\|`",
+      "open_duty": "—",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C45",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "hardcoded 400-point grid [1.01, 2.8]·a_s; ADJUDICATED-WITH-VALVE",
+      "status": "DECIDED",
+      "conditions": "`VERDICT_wave3.md#C45`",
+      "open_duty": "F2-C45-BRACKETGUARD = execution of findings `engine-core:F7-legge-bracket-fallback` (:599-607), cited not re-minted",
+      "edges_cell": "E24"
+    },
+    {
+      "id": "C24",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "[X-THC1] quintic C1 tables (backend-1); S11 directive: tables = the interface contract (memory `thermo-tabulated-backend`)",
+      "status": "DECIDED",
+      "conditions": "census §3: Cantera/JAX interop definitionally inside C24/C25/C26 — no independent axis (`FOUNDATION_ENUM_census_c4.md#3`)",
+      "open_duty": "—",
+      "edges_cell": "E-THC"
+    },
+    {
+      "id": "C25",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "literals 1050/3900 K, N_TAB=8192",
+      "status": "NEVER",
+      "conditions": "`ADVISORY_S24_sota_gapmap_2026-08-12.md#\\| C25 \\|`",
+      "open_duty": "F2 (with C-C/C-D)",
+      "edges_cell": "E-THC"
+    },
+    {
+      "id": "C26",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "silent clamp (linear) / silent quintic extrapolation (C1); traced box-margin flag adjudicated",
+      "status": "DECIDED",
+      "conditions": "`VERDICT_wave3.md#C26`",
+      "open_duty": "C-D repair window owner F2 (edge-band derivation same window)",
+      "edges_cell": "E-THC"
+    },
+    {
+      "id": "C5",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "normalized ξ re-anchored to live xB; ADJUDICATED-CONVERGED-KEEP, monitor-armed",
+      "status": "MIXED",
+      "conditions": "GAP-34 measured immateriality; F-C5-1 derived threshold + S18 replay control (`VERDICT_wave3.md#C5`)",
+      "open_duty": "F2-C5-KNOTDRIFT-MONITOR",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C6",
+      "type": "ledger",
+      "stage": 3,
+      "stage_faces": [
+        3
+      ],
+      "choice": "dx_loc = median station spacing; guard-object FLIP adjudicated",
+      "status": "MIXED",
+      "conditions": "F-C6-1 with GAP-23 trigger branch; O-F8 fallback = de Casteljau certified subdivision (`VERDICT_wave3.md#C6`)",
+      "open_duty": "F2-C6-GUARD-EDIT",
+      "edges_cell": "E34 (anti-edge)"
+    },
+    {
+      "id": "C19",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "scalar sc = max(1, max\\|z\\|); ADJUDICATED-ON-COST",
+      "status": "DECIDED",
+      "conditions": "`VERDICT_wave3.md#C19`",
+      "open_duty": "F2-C19-SCALECENSUS = findings `engine-core:F8-cert-scale-unit-mixing` owner window (no new row)",
+      "edges_cell": "E23"
+    },
+    {
+      "id": "C20",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "unqualified one-extra-step ratio",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.9 C20`",
+      "open_duty": "F2-C20-CERTQUAL-CAMPAIGN (Tier-0 shared with C21; Tier-1 shared with the C18 window; M0 back-prop R4)",
+      "edges_cell": "E25, E39, E42, E43 [MAP-AM-5]"
+    },
+    {
+      "id": "C21",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "asserted O(h) predictor + stale replay seeds (C2-F2 mitigation)",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.10 C21`",
+      "open_duty": "F2-C21-SEEDCERT-CAMPAIGN",
+      "edges_cell": "E39, E45 [MAP-AM-5]"
+    },
+    {
+      "id": "C18",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "NEWTON_TOL_FACTOR=100, C_FLOOR=8 (spike convention)",
+      "status": "SA",
+      "conditions": "NTF block adjudication: NTF=100 = VALID INSTANCE of derived form NTF = η·κ_q (M0:3649-3766 [LAND-C4-LA2]: NTF-1/4 SCHEMA, NTF-2/3 THEOREM*, NTF-5 PRACTICE; falsifiers NTF-1..NTF-4 as printed)",
+      "open_duty": "derivation duty F2-live (halved-constants sweep executed); F2-NTF-FLOOR-POPULATION + F2-NTF-TERMCOUPLE-TRIPCOUNT (`VERDICT_escalation_c4` R-ESC-4)",
+      "edges_cell": "E25, E26"
+    },
+    {
+      "id": "C17",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "30",
+      "status": "SA",
+      "conditions": "NTF-4 termination coupling names the C17 seam (M0:3726-3741); owner delta of record `VERDICT_wave3` par.3",
+      "open_duty": "F2",
+      "edges_cell": "E26"
+    },
+    {
+      "id": "C28",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "binary outside gates only (quantifier bridge falsified)",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave1.md#2.1 Row C28`",
+      "open_duty": "duties [P-CERTKS]+[P-BSTAT] in GAP-1/GAP-2 window; [P-IPADJ] same critical path",
+      "edges_cell": "surface A ([P-IPADJ] membership, not an E1 endpoint) [MAP-AM-4]; E42 [MAP-AM-5]"
+    },
+    {
+      "id": "C38",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "ratchet exhaustion + raw KKT-open number",
+      "status": "NEVER",
+      "conditions": "`ADVISORY_S24_sota_gapmap_2026-08-12.md#\\| C38 \\|`",
+      "open_duty": "F2",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C47",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "per-file frozen baseline ratchet + multiset fingerprint",
+      "status": "DECIDED",
+      "conditions": "`VERDICT_wave3.md#C47`",
+      "open_duty": "F2-entry hygiene (classification into src/ taxonomy)",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C23",
+      "type": "ledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "full record then P4 gate",
+      "status": "DECIDED",
+      "conditions": "`docs/rde_nozzle_PROGRESS_ARCHIVE.md#LEDGER-CARRIED`",
+      "open_duty": "—",
+      "edges_cell": "—"
+    },
+    {
+      "id": "CLG",
+      "type": "nonledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "CLG-D1..D7 landed [LAND-C4-LA4] (M0:3768-3874): D2 THEOREM* (chain floor law), D5 THEOREM*/SCHEMA-cond-H8, D4-ALT CONJECTURE",
+      "status": "LANDED (labels `VERDICT_escalation_c4` §5.4)",
+      "conditions": "one-lowering policy home = C48 note + findings `engine:cross-lowering-gradient-floor` (:328) (census §3 \"Lowering\" row)",
+      "open_duty": "F2-CLG-SCALE (three-experiment spec, M0:3853)",
+      "edges_cell": "E38"
+    },
+    {
+      "id": "SDP-CAND-8",
+      "type": "nonledger",
+      "stage": 4,
+      "stage_faces": [
+        4
+      ],
+      "choice": "decided S17 brick-2 by SOTA-survey, NO ledger row; CANDIDATE-8 NAMED-NOT-MINTED",
+      "status": "NAMED-NOT-MINTED",
+      "conditions": "census owner assignment: the C58/C31 F2-entry engine census window; trigger = the F2-entry engine act (C60 trigger verbatim) (`FOUNDATION_ENUM_census_c4.md#5`)",
+      "open_duty": "F2-entry engine census (mint-or-retire)",
+      "edges_cell": "E4"
+    },
+    {
+      "id": "C11",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "DWR = TARGET primary (characteristic-native); Richardson/GCI = permanent referee; interim bands = observed-p GCI via [X-O32]/GAP-9; weight of record = DISCRETE AD-adjoint (supplement)",
+      "status": "MIXED",
+      "conditions": "F11a promotion blocked by either F11d leg firing (leg 1 oracle convergence; leg 2 band-site compatibility residuals); DWR-failure path closes C11 GCI/LSQ-primary converged (`VERDICT_wave1.md#2.4`; `VERDICT_C9C11_supplement.md#4.2`)",
+      "open_duty": "F2-C11-ESTIMATOR-CAMPAIGN, leg (a) ORDERED before leg (b)",
+      "edges_cell": "E20, E21, E41"
+    },
+    {
+      "id": "C9",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "goal-oriented characteristic-native adapted placement = TARGET, presumptive pending F9a; uniform-per-run = interim certificate law; A36 static arm adopted now",
+      "status": "MIXED",
+      "conditions": "falsifiers F9a (matched TOTAL count, both reported), F9b (frozen-topology attribution), F9c (IVL immobility), F9a-R (r-arm beat test E_A ≤ E_U/2); three-arm composition closes C9 converged in every outcome (`VERDICT_wave1.md#2.3`; supplement axis A)",
+      "open_duty": "F2-C9-MESHLAW-CAMPAIGN",
+      "edges_cell": "E41"
+    },
+    {
+      "id": "C10",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "refine(r) joint global scaling; per-direction = diagnostic flag",
+      "status": "MIXED",
+      "conditions": "F-C10-1 three single-direction refinements at r=2 (NI/da_deg/Nw) (`VERDICT_wave3.md#C10`)",
+      "open_duty": "F2-C10-PERDIR-FLAG",
+      "edges_cell": "E41"
+    },
+    {
+      "id": "C43",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "presumed h^p at r=1,2 — premise RETIRED as epistemic premise; adjudicated-with-C11",
+      "status": "MIXED",
+      "conditions": "flag on findings row `mesh-amr:observed-order-not-at-band-sites`; K=4 in-loop only at measured p_obs ≥ 0.415 per site (`VERDICT_wave1.md#4.5`)",
+      "open_duty": "F2 (aligned with C11)",
+      "edges_cell": "E20, E27"
+    },
+    {
+      "id": "C41",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "K=4 pointwise two-level; ad-hoc mixes",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#1.4 C41`",
+      "open_duty": "F2-C41-BAND-POLICY",
+      "edges_cell": "E44 [MAP-AM-5]"
+    },
+    {
+      "id": "C42",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "one numeral, 8 roles; role census 10 functional + 3 notified",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#1.5 C42`",
+      "open_duty": "F2-C42-KRICH-ROLE-AUDIT (ordered)",
+      "edges_cell": "E16, E34, E45 [MAP-AM-5]"
+    },
+    {
+      "id": "C56",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "discrete AD-adjoint everywhere; all three roles CLOSED (weight: C11 supplement F11d pinned; gradient: wave-2 consumption; indicator: transitivity)",
+      "status": "MIXED",
+      "conditions": "a fired F11d re-opens this row (`VERDICT_C9C11_supplement.md#4.3`)",
+      "open_duty": "F11d residue rides F2-C11-ESTIMATOR-CAMPAIGN",
+      "edges_cell": "E21, E43 [MAP-AM-5]"
+    },
+    {
+      "id": "M-RED",
+      "type": "nonledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "carrier spec of record: O5-lite legs (A)-(E) on families F-a..F-d, derived bands B-1..B-4 (`findings_registry.yaml` row `pipeline:m-red-campaign`)",
+      "status": "F2-QUEUED",
+      "conditions": "both outcomes pre-registered positive (T3-CONTROL); blocking pre-run pins B-1/B-2 + (J)/(H) a.c.-only convention",
+      "open_duty": "F2 queue, beside X-T3QS-5F + S.22 sub-scope theorem; runs under G1",
+      "edges_cell": "E28, E29"
+    },
+    {
+      "id": "C44",
+      "type": "ledger",
+      "stage": 5,
+      "stage_faces": [
+        5
+      ],
+      "choice": "fixed sqrt(eps)·scale / eps^(1/3)·scale",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C44`",
+      "open_duty": "F2-C44-FDSTEP (with [P-HESSREJ])",
+      "edges_cell": "E27"
+    },
+    {
+      "id": "C31",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "scipy trust-constr (eq-path Sec.4bis-adjudicated; IP path in use since S22); driver of record = segmented TR-Newton at measured curvature (memory `s18-brick2-closed`)",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.1 C31`",
+      "open_duty": "F2 [P-IPADJ]; F2-C31-ENGINE-AB",
+      "edges_cell": "E1, E2, E3, E4; surface A ([P-IPADJ]; E6's printed endpoints are C34→[P-IPADJ], C31 reached via the surface, not as an E6 endpoint) [MAP-AM-4]"
+    },
+    {
+      "id": "C60",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "NAND reduced-space, PRACTICED, INCUMBENT-DECLARED (never weighed vs SAND/LNKS)",
+      "status": "NEVER",
+      "conditions": "`FORK_LEDGER_141_adjudication.md#D-1 (O15)`; trigger = the F2-entry engine act",
+      "open_duty": "F2-entry engine window, adjudicated as a CLUSTER with C57/C58/[P-IPADJ]",
+      "edges_cell": "E3"
+    },
+    {
+      "id": "C57",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "none — local-only from continuation/warm starts (never adjudicated)",
+      "status": "NEVER",
+      "conditions": "`VERDICT_wave2.md#4.14`; interacts with C31 A/B and C49 explorer; user directive axis 4 = adjoint-free at genuine best",
+      "open_duty": "F2-entry adjudication window",
+      "edges_cell": "E1, E5"
+    },
+    {
+      "id": "C58",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "JAX primary per G0 decision of record (`docs/rde_nozzle_G0_decision.md`, DIR-G0); Julia+Enzyme declared alternate; loop-speed falsifier armed, NOT FIRED (S25/S25-bis MET)",
+      "status": "MIXED",
+      "conditions": "adjudication = census+refuter panel as 9(e) delta-sweep of G0 vs 2026 landscape; float64 policy = named sub-axis of this census (census §3/§5, zero-inflation)",
+      "open_duty": "F2-entry engine window (same surface as C31 A/B [P-IPADJ])",
+      "edges_cell": "E2, E3, E4"
+    },
+    {
+      "id": "C48",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "sequential per-segment FD (default; nonfinite-lane guard + hess_lane counter); one-lowering policy carried here",
+      "status": "DECIDED",
+      "conditions": "`docs/rde_nozzle_PROGRESS.md#AGGIUDICAZIONE M6 DI RECORD`; adoption path open, owner F2 (declared nuance, ledger header :113-121)",
+      "open_duty": "F2 adoption = declared version change at session boundary; flag A1_VMAP_HESS=1 interim",
+      "edges_cell": "E38"
+    },
+    {
+      "id": "C16",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "(1,1/2,1/4,1/16,1/64,0), bare argmin non-increase",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C16`",
+      "open_duty": "F2-C16-DAMPAB (engine rebuild window)",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C32",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "fresh full FD Hessian per segment, no carry",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.2 C32`",
+      "open_duty": "G0/T2 review; F2 entry gains [P-QNCARRY]+[P-HESSREJ] (unconditional)",
+      "edges_cell": "E46 [MAP-AM-5]"
+    },
+    {
+      "id": "C33",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "scipy default BFGS (no hess=)",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave2.md#4.3 C33`",
+      "open_duty": "F2-C33-CONSTRHESS (rides R2 pilot flag + GAP-1)",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C34",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "TR_FLOOR=1e-3, tr0=0.05, tr_cap=0.25 (S18 clip)",
+      "status": "MIXED",
+      "conditions": "R3FAM-3 clause: an engine swap at [P-IPADJ] re-prices the rho-histogram accept/reject semantics — re-check at that landing (`VERDICT_wave3.md#1.1`)",
+      "open_duty": "F2-C34-TRFLOOR-DERIVE",
+      "edges_cell": "E6, E27, E44, E45 [MAP-AM-5]"
+    },
+    {
+      "id": "C35",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "literal 1e-10 at every call site",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#1.2`",
+      "open_duty": "F2-C35-XTOL-DERIVE",
+      "edges_cell": "E27"
+    },
+    {
+      "id": "C36",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "Jacobi Dv measured once/walk, objective-only",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#1.3`",
+      "open_duty": "F2-C36-DVREFRESH ([P-DVREFRESH])",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C37",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "any (N,Nv) flip ends segment; DEFAULT+GATED-LEVER",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C37`",
+      "open_duty": "F2-C37-FLIPMAT (F2 entry, G0/T2)",
+      "edges_cell": "E17, E46 [MAP-AM-5]"
+    },
+    {
+      "id": "C39",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "res.v raw (convention closed S24-T1); verification half INSTRUMENTS-CONVERGED",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C39`",
+      "open_duty": "F2-C39-MULTVER (instr. 1-2 land WITH [P-IPADJ]; instr. 3 LSQ referee licensed now)",
+      "edges_cell": "E19"
+    },
+    {
+      "id": "C40",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "LinearConstraint row; ADJUDICATED-CONDITIONAL",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C40`",
+      "open_duty": "folded into F2-C39-MULTVER (`VERDICT_wave3` par.5)",
+      "edges_cell": "E19"
+    },
+    {
+      "id": "C27",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "KS-min, ρ = K_RICH ln(N)/μ0",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave1.md#2.2 Row C27`",
+      "open_duty": "F2-DUTY-C27-AGGCOND (window = findings `margin-governor:G1-three-jump-channels`)",
+      "edges_cell": "E45 [MAP-AM-5]"
+    },
+    {
+      "id": "C29",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "rung-frozen + C3 drift gate; decision rule converged",
+      "status": "MIXED",
+      "conditions": "`VERDICT_wave3.md#C29`",
+      "open_duty": "F2-DUTY-C29-MASKGRAIN (smooth gate = escalation branch only)",
+      "edges_cell": "E22"
+    },
+    {
+      "id": "C30",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "overlap crop + occurrence counter; conservation-of-enforcement invariant",
+      "status": "DECIDED",
+      "conditions": "`VERDICT_wave3.md#C30`",
+      "open_duty": "one-liner build; sequencing pinned: C30 lands FIRST",
+      "edges_cell": "E22"
+    },
+    {
+      "id": "C62",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "uniform trapezoid practiced, INCUMBENT-DECLARED (never adjudicated); coverage anchor = diff par.2.10 (4 forks + FFT probe)",
+      "status": "NEVER",
+      "conditions": "`phaseB_tree_diff.md#Phase-quadrature stratification at events`",
+      "open_duty": "F2 engine window (numerics cluster with C44/C43/C34/C35)",
+      "edges_cell": "E27"
+    },
+    {
+      "id": "C1",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "clamped/natural interpolating cubic, heights-as-dofs; direction converged: migrate to B-spline control-polygon chart of the SAME certified spline space",
+      "status": "MIXED",
+      "conditions": "incumbent chart verdict-bearing until the three migration falsifiers pass (`VERDICT_wave2.md#4.5`); Masters-2017 dof prior with declared transfer scope",
+      "open_duty": "F2-C1-CONTROL-CHART-MIGRATION (items 0-6 + driver leg; GAP-21 carrier)",
+      "edges_cell": "E15"
+    },
+    {
+      "id": "C2",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "natural y''(L)=0; ADJUDICATED-CONDITIONAL",
+      "status": "MIXED",
+      "conditions": "branch A: C1 migration lands → resolves by structure to free-end control points; branch B: live F2 adoption per frozen criteria; GAP-5 numbers = measured priors (`VERDICT_wave2.md#4.6`)",
+      "open_duty": "branch A rides F2-C1-CONTROL-CHART-MIGRATION; branch B = F2-C2-NOTAKNOT-ADOPTION",
+      "edges_cell": "E15"
+    },
+    {
+      "id": "C3",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "clamped tan(thB), constructional (no genuine alternative)",
+      "status": "DECIDED",
+      "conditions": "wave-2 confirmed-rescoped; sharp-vs-floor twin falsifier pinned for any census-window amendment (`VERDICT_wave2.md#2.7/4.7`)",
+      "open_duty": "—",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C4",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "uniform ξ + [X-AKNO] goal-indicator insertion (survey-decision of record)",
+      "status": "DECIDED",
+      "conditions": "wave-3 CONFIRMED-CONSISTENT, measured full-tree sweep (`VERDICT_wave3` par.3 / `VERIF_CONV` par.1)",
+      "open_duty": "—",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C7",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "insertion-only ratchet; insert+remove direction, end-of-cycle sweep, measurement-gated",
+      "status": "MIXED",
+      "conditions": "F-C7-2 band = [D3] derived stopping floor; F-C7-1 retire test own derived band (`VERDICT_wave3` par.6)",
+      "open_duty": "F2-DUTY-C7-REMOVALTEST (GAP-25)",
+      "edges_cell": "—"
+    },
+    {
+      "id": "C8",
+      "type": "ledger",
+      "stage": 6,
+      "stage_faces": [
+        6
+      ],
+      "choice": "print-only dev_warm → armed rejector adopted",
+      "status": "MIXED",
+      "conditions": "F-C8-1 negative control not firing = rejector vacuous, not adopted (`VERDICT_wave3` par.10)",
+      "open_duty": "F2-C8-ARM-DEVWARM (GAP-24; floor constant rides C42 census)",
+      "edges_cell": "E16"
+    },
+    {
+      "id": "R22F-FORCHETTA",
+      "type": "nonledger",
+      "stage": 7,
+      "stage_faces": [
+        7
+      ],
+      "choice": "per-channel BEST/WORST bracket of the 2D-per-phase-averaged vs 3D-unsteady gap (M0:1283 ff., Part III, beside [T-DISC]); worst-direction marker mandatory (Paxson-Miki shroud 58.1→~71.5% of ideal at fixed area ratio, M0:1345)",
+      "status": "LANDED, bracket-not-adequacy",
+      "conditions": "soundness conditions BIND the (vi) row (M0:1957); channels (ii)/(iii) move SCALING-ESTIMATE → MEASURED per family only via M-RED (class-wide still (U)-gated)",
+      "open_duty": "M-RED campaign + RES-CAP residues (`VERDICT_r22f` §4 via `VERDICT_escalation_c4` R-ESC-5)",
+      "edges_cell": "E28, E29, E31"
+    },
+    {
+      "id": "T-DISC",
+      "type": "nonledger",
+      "stage": 7,
+      "stage_faces": [
+        7
+      ],
+      "choice": "[T-DISC-1] THEOREM* + [T-DISC-2](i) THEOREM* + [T-DISC-3/4] SCHEMA: p-only reduction CONVICTED with zero CFD; full-state per-phase average exonerated on the fiber axis (M0:977 ff.; `findings_registry.yaml:1466`)",
+      "status": "LANDED",
+      "conditions": "falsifiers in-block (M0 [T-DISC]); residual exposure = [T-RED] + [R22F-FORCHETTA] (M0:1257-1258)",
+      "open_duty": "—",
+      "edges_cell": "E28"
+    },
+    {
+      "id": "OBJ-DOM",
+      "type": "nonledger",
+      "stage": 7,
+      "stage_faces": [
+        7
+      ],
+      "choice": "ADJUDICATED fix-A objective-of-record at F2 entry; interim = fix-B scoping (landed); OBJDOM-1/3 THEOREM, OBJDOM-2 THEOREM* (E-2 CLOSED DRY r3, `VERDICT_escalation_c4` §5.2)",
+      "status": "ADJUDICATED, IMPL OPEN",
+      "conditions": "F-1 three-branch + F-2 two-path falsifiers pinned; trigger: first F2 verdict consuming dJ/dthB AND before the R2 delta-carrier ships (`findings_registry.yaml:211-212`)",
+      "open_duty": "[OBJ-DOM-IMPL]/[OBJ-DOM-AB]/[OBJ-DOM-REBASE]",
+      "edges_cell": "E9"
+    },
+    {
+      "id": "DELTA-CARRIER",
+      "type": "nonledger",
+      "stage": 7,
+      "stage_faces": [
+        7
+      ],
+      "choice": "LANDED at [T-DCRX] (M0:2616 ff.): DC-1/DC-2 THEOREM*, DC-3 THEOREM (V1-V2), DC-4 THEOREM/SCHEMA-dormant, DC-5 PRACTICE, DC-6 SCHEMA (E-3 CLOSED DRY r3, `VERDICT_escalation_c4` §5.3)",
+      "status": "LANDED, SHIP-GATE ARMED",
+      "conditions": "ship-gate ARMED for every (value, delta) row: \"[OBJ-DOM-IMPL] landed and used on both sides, OR the net-panel band included\" — the row-:300 banded-or-repaired license, correctly read (`VERDICT_blocco2` §4(2); gate SATISFIED `VERDICT_escalation_c4` §3)",
+      "open_duty": "[DC-F2-1..5] incl. certificate-on-entry + (H2b) report-on-fail",
+      "edges_cell": "E9"
+    },
+    {
+      "id": "OPTSHIFT",
+      "type": "nonledger",
+      "stage": 7,
+      "stage_faces": [
+        7
+      ],
+      "choice": "gradient route \\|argmax shift\\| ≤ delta/mu_curv SCHEMA-only (delta AND L_H UNDERIVED — licenses NO number); value route ≤ 2·sqrt(eps_U/mu_red) = only measured-carrier-executable route, sampled-sup estimate class",
+      "status": "SCHEMA-LICENSED ONLY",
+      "conditions": "H-G5 feasible-set convexity required (prox-regularity does NOT license); trigger: any argmax-shift number quoted at any grade; any tightening of forchetta (vi) cells; M-RED rider execution (registry :2498 block, third trigger) [MAP-AM-8]",
+      "open_duty": "F2 in order: X-T3QS-5F / C51-route-B / M-RED gradient rider",
+      "edges_cell": "E29"
+    },
+    {
+      "id": "D-44",
+      "type": "nonledger",
+      "stage": 8,
+      "stage_faces": [
+        8
+      ],
+      "choice": "any public adequacy claim GATED (forchetta = bracket with provenance, never demonstrated adequacy) — `findings_registry.yaml:1468` trigger + `:2163` owner \"F2 or F5 (D-44; R22 = the single highest-value tranche-2 item)\"; S-PRES Block-0 trigger-scan item (ii) (`docs/rde_nozzle_PROGRESS.md:395`)",
+      "status": "ARMED GATE",
+      "conditions": "fires on any public adequacy claim, either way (before/after R22)",
+      "open_duty": "S-PRES Block-0 trigger-scan; R22-CFD deciders",
+      "edges_cell": "E31"
+    },
+    {
+      "id": "P34",
+      "type": "nonledger",
+      "stage": 8,
+      "stage_faces": [
+        8
+      ],
+      "choice": "V0 continuous verification → per-champion validation → pre-registered prediction-first rig/thrust-stand terminal test; never adjudicated anywhere in the record (2 of 2 genuine FORK-141 gaps, registry :2530 ordinal; the other = H20) [MAP-AM-6]",
+      "status": "OPEN",
+      "conditions": "trigger: first engine-level claim drafted for P-1 or any G5/G6 gate act; LIGHT-INSTANTIATION rider on S-PRES (slide-level claims declare their evidence stage)",
+      "open_duty": "P-1/G5-G6 claims window",
+      "edges_cell": "E32"
+    },
+    {
+      "id": "H20",
+      "type": "nonledger",
+      "stage": 8,
+      "stage_faces": [
+        8
+      ],
+      "choice": "no home in the record; plug/E-D sectors REQUIRE the solve + shape-adjoint term (1 of 2 genuine FORK-141 gaps, registry :2521 ordinal) [MAP-AM-6]",
+      "status": "OPEN",
+      "conditions": "distinct-by-declaration from findings :1607 (stability only) and from C61 (closure model)",
+      "open_duty": "F4b external-expansion window (rides the diff par.2.9 base-pressure agenda entry — registry homing; N2 is C61's declared slot, related window only, `docs/rde_nozzle_problem_book.md:348`) [MAP-AM-7]",
+      "edges_cell": "E12"
+    },
+    {
+      "id": "C61",
+      "type": "ledger",
+      "stage": 8,
+      "stage_faces": [
+        8
+      ],
+      "choice": "INCUMBENT-DECLARED, no program adoption: Veen 0.846p/M^1.3 practiced in LEGACY chain only; program p_b = DECLARED SLOT N2 (`docs/rde_nozzle_problem_book.md:348`)",
+      "status": "NEVER",
+      "conditions": "`BASE_PRESSURE_HARVEST_c4.md`; WG10-FAILED carried in the row's CHOICE field (\"Veen 0.846p/M^1.3 (legacy-practiced, WG10-FAILED)\"), failure fact in the note (\"FAILED by WG10 + Humphreys 1971 exhibit\"); the alternatives field carries the WG10 empirical BRACKET as alternative + the N2 \"MUST REPLACE IT\" verdict [MAP-AM-3]",
+      "open_duty": "N2/F4b window (rides F4b external-expansion window)",
+      "edges_cell": "E10, E11, E12, E13"
+    },
+    {
+      "id": "DUTY-10",
+      "type": "nonledger",
+      "stage": 8,
+      "stage_faces": [
+        8
+      ],
+      "choice": "lit-born duty (litmap §3.8): `docs/literature_registry.yaml:426` (vander_veen_1974 row); plan slots: DUTY-10(a) base forced-response validity = F5b (`docs/rde_nozzle_development_plan.md:435-437`), DUTY-10(b) = F6 (:438-439) [MAP-AM-1]",
+      "status": "PLAN-SLOTTED",
+      "conditions": "—",
+      "open_duty": "F5b / F6 [MAP-AM-1]",
+      "edges_cell": "E10, E14"
+    },
+    {
+      "id": "C46",
+      "type": "ledger",
+      "stage": null,
+      "stage_faces": [],
+      "choice": "padding policy, engine-internal (note_C46: not re-listed per stage; evidence ADVISORY_S25bis_diff_convergence)",
+      "status": "DECIDED",
+      "conditions": "",
+      "open_duty": "",
+      "edges_cell": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "E1",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C31",
+        "C57"
+      ],
+      "header": "C31↔C57",
+      "text": "C31↔C57: C57 owner \"interacts with C31 A/B and C49 explorer\" (ledger C57); C31 owner \"F2 [P-IPADJ]; adds F2-C31-ENGINE-AB\"."
+    },
+    {
+      "id": "E2",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C31",
+        "C58"
+      ],
+      "header": "C31↔C58",
+      "text": "C31↔C58: C58 owner \"same decision surface as C31 A/B [P-IPADJ]\" (ledger C58)."
+    },
+    {
+      "id": "E3",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C60",
+        "C31",
+        "C57",
+        "C58"
+      ],
+      "header": "C60↔{C31,C57,C58}",
+      "text": "C60↔{C31,C57,C58}: C60 owner \"adjudicated as a CLUSTER with C57/C58/[P-IPADJ]; trigger = the F2-entry engine act\" (ledger C60)."
+    },
+    {
+      "id": "E4",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C58",
+        "C31",
+        "SDP-CAND-8"
+      ],
+      "header": "SDP-CAND-8→{C58,C31}",
+      "text": "SDP-CAND-8→{C58,C31}: \"the certificate-solver stack is on the SAME F2-entry decision surface as C58/C31 ([P-IPADJ] cluster)\" (`FOUNDATION_ENUM_census_c4.md#5`)."
+    },
+    {
+      "id": "E5",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C57",
+        "C49"
+      ],
+      "header": "C57↔C49",
+      "text": "C57↔C49: C57 alternatives include \"captured-explorer reuse (C49 tier) as the exploration vehicle\" (ledger C57)."
+    },
+    {
+      "id": "E6",
+      "kind": "edge",
+      "surface": "A",
+      "endpoints": [
+        "C34",
+        "[P-IPADJ]"
+      ],
+      "header": "C34→[P-IPADJ]",
+      "text": "C34→[P-IPADJ]: C34 owner carries R3FAM-3 clause \"an engine swap at [P-IPADJ] re-prices the rho-histogram accept/reject semantics — re-check at that landing\" (ledger C34)."
+    },
+    {
+      "id": "E7",
+      "kind": "edge",
+      "surface": "B",
+      "endpoints": [
+        "C52",
+        "C53",
+        "C54"
+      ],
+      "header": "C52↔C53↔C54",
+      "text": "C52↔C53↔C54: all three minted from the same authority, `VERDICT_contract_and_L4R1.md` Part A (iv) agenda D-1/D-2/D-4 (ledger header :52-56 + each row's evidence field)."
+    },
+    {
+      "id": "E8",
+      "kind": "edge",
+      "surface": "B",
+      "endpoints": [
+        "C52",
+        "findings"
+      ],
+      "header": "C52→findings `contract",
+      "text": "C52→findings `contract:chi-character-map-unknown-band-missing`: C52 owner \"feeds the chi character-map finding row\" (ledger C52)."
+    },
+    {
+      "id": "E36",
+      "kind": "edge",
+      "surface": "B",
+      "endpoints": [
+        "C50",
+        "findings"
+      ],
+      "header": "C50→findings `contract",
+      "text": "C50→findings `contract:datum-uncertainty-contract-missing` + `contract:phase-gauge-jitter-alignment-unpinned`: C50 owner \"sequenced with\" both rows (ledger C50)."
+    },
+    {
+      "id": "E9",
+      "kind": "edge",
+      "surface": "C",
+      "endpoints": [
+        "OBJ-DOM",
+        "DELTA-CARRIER"
+      ],
+      "header": "(two-way, sequenced)",
+      "text": "(two-way, sequenced): OBJ-DOM trigger \"first F2 verdict consuming dJ/dthB AND before the R2 delta-carrier ships\" (`findings_registry.yaml:212`); delta-carrier trigger \"sequenced with/after [OBJ-DOM]; ships only with the sliver banded or repaired\" (`:300`); consistency ONLY under (H6') + re-pinned ship-gate, sequence (b) before/with (c) ENFORCED (`VERDICT_blocco2` §4); gate SATISFIED, ship-gate remains ARMED for F2 (value, delta) rows (`VERDICT_escalation_c4` §3)."
+    },
+    {
+      "id": "E10",
+      "kind": "edge",
+      "surface": "D",
+      "endpoints": [
+        "DUTY-10",
+        "vander_veen_1974"
+      ],
+      "header": "vander_veen_1974 → DUTY-10",
+      "text": "vander_veen_1974 → DUTY-10: \"base-constant sensitivity split -> DUTY-10 (litmap sec.3.8)\" (`docs/literature_registry.yaml:426`)."
+    },
+    {
+      "id": "E11",
+      "kind": "edge",
+      "surface": "D",
+      "endpoints": [
+        "C61"
+      ],
+      "header": "Veen/R8 → C61",
+      "text": "Veen/R8 → C61: C61 incumbent cites lit row vander_veen_1974 (\"0.846/M^1.3 -> sec.7.5 unreliability row\"); C61 owner \"shares the diff par.2.9 agenda entry with findings rows litreview:residue-r8-r23-base-pressure-pb2-blocking (:2092, trigger 'PB-2 base-pressure closure window')\" (ledger C61)."
+    },
+    {
+      "id": "E12",
+      "kind": "edge",
+      "surface": "D",
+      "endpoints": [
+        "C61"
+      ],
+      "header": "C61↔H20",
+      "text": "C61↔H20: C61 owner cites `plume:free-boundary-solve-mechanics-missing` (:2519) as \"the neighboring SOLVE mechanics, not this closure-model choice\"; H20 note: \"the solve-mechanics increment lives in H20\" (findings H20 row)."
+    },
+    {
+      "id": "E13",
+      "kind": "edge",
+      "surface": "D",
+      "endpoints": [
+        "ADR-D4"
+      ],
+      "header": "truncation/base axis → ADR-D4",
+      "text": "truncation/base axis → ADR-D4: CT-4 \"the mandatory definition-mapping rider on the ADR-D4 dossier is the ARRIVALS-CAMPAIGN landing item G-11\" (`VERDICT_blocco2.md:330`); BLOCCATO-9 default 0.20, band 0.20-0.40 printed (same block)."
+    },
+    {
+      "id": "E14",
+      "kind": "edge",
+      "surface": "D",
+      "endpoints": [
+        "DUTY-10",
+        "plan"
+      ],
+      "header": "DUTY-10 → plan",
+      "text": "DUTY-10 → plan: DUTY-10(a) at F5b (`docs/rde_nozzle_development_plan.md:435-437` — F5b slot block; F5a is a distinct sibling slot, :425), DUTY-10(b) at F6 (:438-439). [MAP-AM-1]"
+    },
+    {
+      "id": "E15",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C1",
+        "C2"
+      ],
+      "header": "C1↔C2",
+      "text": "C1↔C2: C2 owner \"branch A rides F2-C1-CONTROL-CHART-MIGRATION\" (ledger C2); C1 duty is that migration (ledger C1)."
+    },
+    {
+      "id": "E16",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C8",
+        "C42"
+      ],
+      "header": "C8↔C42",
+      "text": "C8↔C42: C8 owner \"the floor constant rides the C42 role-census outcome\"; C8 note: K_RICH role notification CONSUMED, \"C8 dev_warm arming floor = the third notified role, binding\" (ledger C8; C42 census duty)."
+    },
+    {
+      "id": "E17",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C22",
+        "C37"
+      ],
+      "header": "C22↔C37",
+      "text": "C22↔C37: C22 owner \"F-C22-3 hands the rate lever to C37's band — coupling declared both sides\" (ledger C22)."
+    },
+    {
+      "id": "E18",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C13",
+        "C14"
+      ],
+      "header": "C13↔C14",
+      "text": "C13↔C14: C14 owner \"rides F2-C13-AXIS-ORACLE\"; C13 owner \"+ folded F2-C14-EXITBAND\" (ledger C13/C14)."
+    },
+    {
+      "id": "E19",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C39",
+        "C40"
+      ],
+      "header": "C39↔C40",
+      "text": "C39↔C40: C40 owner \"folded into F2-C39-MULTVER (VERDICT_wave3 par.5)\" (ledger C40)."
+    },
+    {
+      "id": "E20",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C11",
+        "C43"
+      ],
+      "header": "C11↔C43",
+      "text": "C11↔C43: C43 owner \"aligned with C11\"; C11 note \"C43 adjudicated-with-C11 (same window edit)\" (ledger C11/C43)."
+    },
+    {
+      "id": "E21",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C11",
+        "C56"
+      ],
+      "header": "C11↔C56",
+      "text": "C11↔C56: C56 owner \"weight role CLOSED (C11 supplement, F11d pinned)... a fired F11d re-opens this row\" (ledger C56); F11d pinned in the C11 supplement note (ledger C11)."
+    },
+    {
+      "id": "E22",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C30",
+        "C29"
+      ],
+      "header": "C30→C29",
+      "text": "C30→C29: C30 owner \"sequencing pinned: C30 lands FIRST and instruments C29's [R1] replay for free\" (ledger C30)."
+    },
+    {
+      "id": "E23",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C19",
+        "findings"
+      ],
+      "header": "C19→findings `engine-core",
+      "text": "C19→findings `engine-core:F8-cert-scale-unit-mixing`: C19 owner (ledger C19) — \"no new row\"."
+    },
+    {
+      "id": "E24",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C45",
+        "findings"
+      ],
+      "header": "C45→findings `engine-core",
+      "text": "C45→findings `engine-core:F7-legge-bracket-fallback` (:599-607): C45 owner — \"cited, not re-minted; no parallel object\" (ledger C45)."
+    },
+    {
+      "id": "E25",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C18",
+        "C20",
+        "NTF-block"
+      ],
+      "header": "C18↔C20↔NTF-block",
+      "text": "C18↔C20↔NTF-block: C20 owner \"Tier-1 shared with the C18 window\" (ledger C20); NTF-5 seam \"this block is the THEORY HALF of the ONE C18/C20-Tier-1 window\" (M0:3742-3746)."
+    },
+    {
+      "id": "E26",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C17",
+        "NTF-4"
+      ],
+      "header": "C17↔NTF-4",
+      "text": "C17↔NTF-4: \"NTF-4 (termination coupling, C17 seam)\" (M0:3726); C17 owner delta `VERDICT_wave3` par.3."
+    },
+    {
+      "id": "E27",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C62",
+        "C44",
+        "C43",
+        "C34",
+        "C35"
+      ],
+      "header": "C62↔{C44,C43,C34,C35}",
+      "text": "C62↔{C44,C43,C34,C35}: C62 owner \"numerics cluster: quadrature choice adjudicated alongside the C44 FD-step / C43 band-site / C34 and C35 tolerance family\" (ledger C62)."
+    },
+    {
+      "id": "E28",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "M-RED",
+        "forchetta"
+      ],
+      "header": "M-RED→forchetta (ii)/(iii)",
+      "text": "M-RED→forchetta (ii)/(iii): m-red-campaign trigger \"any consumption of a forchetta (ii)/(iii) MEASURED reading\" (findings row); forchetta channel chains \"T-DISC fiber bound → M-RED band B-2 → F2a pre-registered shroud prediction → S-5F build decision (user, pending)\" and \"T-RED → M-RED bands B-1/B-3 → X-T3QS-5F license (F2) → R22-CFD-1\" (M0:1344-1345)."
+    },
+    {
+      "id": "E29",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [],
+      "header": "(vi) deriver chain",
+      "text": "(vi) deriver chain: \"X-T3QS-5F content bound → C51-route-B → M-RED gradient rider → R22-CFD-1\" (M0:1348 deriver column; mirrored M0:2177-2178, :2224, :2265-2266; OPTSHIFT owner \"F2, in order: X-T3QS-5F / C51-route-B / M-RED rider\")."
+    },
+    {
+      "id": "E30",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "S-5F",
+        "uniformity fork"
+      ],
+      "header": "S-5F↔uniformity fork",
+      "text": "S-5F↔uniformity fork: findings `:2446-2452` — path A gated on mixed-lemma (i) or monitored-neglect (ii); \"if S-5F chooses path B, the row's fork transfers to the B-side swirl closure unchanged\"."
+    },
+    {
+      "id": "E31",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "D-44",
+        "S-PRES"
+      ],
+      "header": "D-44→S-PRES/public claims",
+      "text": "D-44→S-PRES/public claims: findings `:1468` \"any public adequacy claim remains gated per D-44 either way\"; PROGRESS `:395` S-PRES trigger-scan item (ii)."
+    },
+    {
+      "id": "E32",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "P34",
+        "S-PRES"
+      ],
+      "header": "P34→S-PRES",
+      "text": "P34→S-PRES: P34 trigger \"LIGHT-INSTANTIATION rider: S-PRES ... trigger-bearing external act\" (findings P34 row)."
+    },
+    {
+      "id": "E34",
+      "kind": "anti-edge",
+      "surface": null,
+      "endpoints": [
+        "C6",
+        "C42"
+      ],
+      "header": "(declared ANTI-edge) C6⊥C42",
+      "text": "(declared ANTI-edge) C6⊥C42: \"C6 deliberately uses its OWN K_amp — declared, keeps the C42 census clean\" (ledger C6 note; `VERDICT_wave3` par.7 item 1). Recorded so the non-edge cannot be mistaken for an omission."
+    },
+    {
+      "id": "E35",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C55",
+        "Stage-7"
+      ],
+      "header": "C55→Stage-7 aggregation face",
+      "text": "C55→Stage-7 aggregation face: ledger header touchpoint \"P_amb aggregation form, the user-ratified parked decision (a), GATED-by-owner on first multi-point instantiation\" (`choice_ledger.yaml:82-83`)."
+    },
+    {
+      "id": "E38",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C48"
+      ],
+      "header": "C48↔CLG",
+      "text": "C48↔CLG: census §3 Lowering row — \"one-lowering policy | C48 note + findings :328 engine:cross-lowering-gradient-floor\" (`FOUNDATION_ENUM_census_c4.md#3`); CLG block M0:3768."
+    },
+    {
+      "id": "E39",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C20",
+        "C21"
+      ],
+      "header": "C20↔C21",
+      "text": "C20↔C21: C20 owner \"Tier-0 shared with C21\" (ledger C20)."
+    },
+    {
+      "id": "E41",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C9",
+        "C10",
+        "C11",
+        "C49"
+      ],
+      "header": "{C9,C10,C11,C49} estimator/mesh surface",
+      "text": "{C9,C10,C11,C49} estimator/mesh surface: C10 note \"C9 mesh law and C11 estimator are landed authority\" (ledger C10); C9/C11 adjudicated in the one PANEL_C9C11 window (`VERDICT_wave1` par.2.3/2.4 + supplement); C49 front-fitting consumed by the supplement's family-alignment clause (ledger C9 supplement text)."
+    },
+    {
+      "id": "E-C59",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C59",
+        "PIN-WAVE"
+      ],
+      "header": "PIN-WAVE→C59",
+      "text": "PIN-WAVE→C59: C59 canonicity holds INSIDE the pin; \"trigger = any weakened-pin regime entering scope\" (ledger C59) — the pin is the edge's load-bearing endpoint."
+    },
+    {
+      "id": "E-THC",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C24",
+        "C25",
+        "C26"
+      ],
+      "header": "C24↔C25↔C26 thermo-table cluster",
+      "text": "C24↔C25↔C26 thermo-table cluster: census §3 \"box/out-of-box = C25/C26\" under the C24/S11 contract row; C26 owner = the C-D repair window C25 shares (\"F2 (with C-C/C-D)\")."
+    },
+    {
+      "id": "E42",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C20",
+        "C28"
+      ],
+      "header": "C20↔C28",
+      "text": "C20↔C28: C20 note \"dependencies of record: C20 -> C28, C56/C11-estimator\"; C28 note wave-2 rider \"wrong-branch discrimination WAITS on C20 Tier-0\" (ledger C20/C28)."
+    },
+    {
+      "id": "E43",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C20",
+        "C56"
+      ],
+      "header": "C20↔C56",
+      "text": "C20↔C56: C56 note \"the C20 branch monitor guards F11d's premise at estimator sites\"; C20 note names C56 (ledger C20/C56)."
+    },
+    {
+      "id": "E44",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C34",
+        "C41"
+      ],
+      "header": "C34↔C41",
+      "text": "C34↔C41: C34 note R3FAM-2 \"NOTIFIED to C41 (a P-tag applies at composition time)\"; C41 note \"the C34 K² instance ... is a live P-tag case for this policy's first pass\" (ledger C34/C41)."
+    },
+    {
+      "id": "E45",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C34",
+        "C21",
+        "C27",
+        "C42",
+        "C8"
+      ],
+      "header": "{C34, C21, C27}→C42 (three legs; the C8 leg is already E16)",
+      "text": "{C34, C21, C27}→C42 (three legs; the C8 leg is already E16): the C42 role census names the three notified roles from C27 (wave-1), C21 (wave-2), and the C34 K² composition instance; C21 note \"NOTIFIED to C42\" (ledger C42/C21)."
+    },
+    {
+      "id": "E46",
+      "kind": "edge",
+      "surface": null,
+      "endpoints": [
+        "C32",
+        "C37"
+      ],
+      "header": "C32↔C37",
+      "text": "C32↔C37: C37 note \"the [P-QNCARRY] arm-B pin stands\" — [P-QNCARRY] = C32's pinned challenger duty (ledger C37/C32)."
+    }
+  ],
+  "surfaces": [
+    {
+      "surface": "A",
+      "title": "F2-entry ENGINE cluster {C31, C57, C58, C60, [P-IPADJ], SDP-CAND-8}.",
+      "members": [
+        "C31",
+        "C57",
+        "C58",
+        "C60",
+        "[P-IPADJ]",
+        "SDP-CAND-8"
+      ]
+    },
+    {
+      "surface": "B",
+      "title": "CONTRACT cluster {C52, C53, C54} (+C50).",
+      "members": [
+        "C52",
+        "C53",
+        "C54",
+        "C50"
+      ]
+    },
+    {
+      "surface": "C",
+      "title": "SHIP-GATE edge OBJ-DOM ↔ DELTA-CARRIER.",
+      "members": [
+        "OBJ-DOM",
+        "DELTA-CARRIER"
+      ]
+    },
+    {
+      "surface": "D",
+      "title": "VEEN → R8 → C61 → ADR-D4 arc (external expansion).",
+      "members": [
+        "C61",
+        "R8",
+        "ADR-D4"
+      ]
+    }
+  ],
+  "asserts": [
+    {
+      "name": "A1-stages",
+      "pass": true,
+      "detail": "measured 8, summary 8, record 8"
+    },
+    {
+      "name": "A2-table-ledger",
+      "pass": true,
+      "detail": "unique ledger rows in stage tables = 61 (expected 61 = 62 - C46)"
+    },
+    {
+      "name": "A3-ledger-62",
+      "pass": true,
+      "detail": "measured 62, summary 62, record 62"
+    },
+    {
+      "name": "A4-ledger-contiguous",
+      "pass": true,
+      "detail": "ledger id set is not exactly C1..C62: diff=[]"
+    },
+    {
+      "name": "A5-nonledger-17",
+      "pass": true,
+      "detail": "measured 17, summary 17, record 17"
+    },
+    {
+      "name": "A6-nonledger-roster",
+      "pass": true,
+      "detail": "roster mismatch: measured-only=[] summary-only=[]"
+    },
+    {
+      "name": "A7-nodes-total",
+      "pass": true,
+      "detail": "measured 79, summary 79"
+    },
+    {
+      "name": "A8-edges-45",
+      "pass": true,
+      "detail": "measured 45, summary 45, record 45"
+    },
+    {
+      "name": "A9-edge-roster",
+      "pass": true,
+      "detail": "measured-only=[] summary-only=[]"
+    },
+    {
+      "name": "A10-antiedge",
+      "pass": true,
+      "detail": "E34 must be the single declared anti-edge"
+    },
+    {
+      "name": "A11-unassigned-ids",
+      "pass": true,
+      "detail": "E33/E37/E40 must not exist (unassigned by design)"
+    },
+    {
+      "name": "A12-surfaces-4",
+      "pass": true,
+      "detail": "cluster surfaces measured 4 (spec L0 draws 4 arcs)"
+    },
+    {
+      "name": "A13-dual-face",
+      "pass": true,
+      "detail": "dual-stage-face nodes measured ['C55', 'R22-CFD'], declared ['C55', 'R22-CFD']"
+    },
+    {
+      "name": "A14-tally",
+      "pass": true,
+      "detail": "measured {'DECIDED': 12, 'MIXED': 36, 'NEVER': 12, 'SA': 2}, summary {'DECIDED': 12, 'MIXED': 36, 'NEVER': 12, 'SA': 2}"
+    },
+    {
+      "name": "A15-roster-DECIDED",
+      "pass": true,
+      "detail": "DECIDED per-id mismatch: measured-only=[] summary-only=[]"
+    },
+    {
+      "name": "A15-roster-MIXED",
+      "pass": true,
+      "detail": "MIXED per-id mismatch: measured-only=[] summary-only=[]"
+    },
+    {
+      "name": "A15-roster-NEVER",
+      "pass": true,
+      "detail": "NEVER per-id mismatch: measured-only=[] summary-only=[]"
+    },
+    {
+      "name": "A15-roster-SA",
+      "pass": true,
+      "detail": "SA per-id mismatch: measured-only=[] summary-only=[]"
+    }
+  ]
+}

@@ -67,6 +67,13 @@ Tests (see each module's docstring):
                                 schema, honesty rules, four-root coverage
   (xxiii) test_glossary         docs/glossary.yaml lint: pinned collisions,
                                 pointer resolution, token-resolution ratchet
+  (xxiv) test_roadmap_coverage  docs/ROADMAP_critical_path.md = DERIVED by
+                                tools/roadmap_derive.py (D6 x atlas x
+                                registries): bijection phases/gates/nodes/
+                                ledger/OPEN findings/BLOCCATO/atlas mentions
+                                <-> steps or OUT:<why>; derived-not-authored
+                                (hash + regeneration); record_query manifest
+                                resolves; seeded rejectors (S-ROADMAP)
         test_examples [slow]    live examples + design study, digits EXACT
 
 Every test prints its own evidence lines; this runner adds timing and the
@@ -105,7 +112,9 @@ FAST = [('(i)   CJ coherence', 'test_cj_coherence'),
         ('(xxii) literature registry lint (4 roots)',
          'test_literature_registry'),
         ('(xxiii) glossary lint (collision+ratchet)',
-         'test_glossary')]
+         'test_glossary'),
+        ('(xxiv) roadmap coverage lint (derived, bijection)',
+         'test_roadmap_coverage')]
 RIGOR = [('(xiv) P-A dual-route carrier [rigor tier]',
           'test_rigor_dualroute'),
          ('(xviii) X-IVXC interval certificate [rigor tier]',

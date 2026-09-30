@@ -1,0 +1,27 @@
+[  3%] Built target fortran_tester
+[  4%] Built target FACE
+[  8%] Built target PENF
+[ 22%] Built target ORION
+[ 23%] Built target fatode
+[ 25%] Built target BeFoR64
+[ 31%] Built target FLAP
+[ 36%] Built target OSlo
+[ 39%] Built target StringiFor
+[ 44%] Built target FiNeR
+Scanning dependencies of target GENOL
+[ 45%] Building Fortran object src/lib/CMakeFiles/GENOL.dir/MoC_Gen_m.f90.o
+[ 47%] Building Fortran object src/lib/CMakeFiles/GENOL.dir/MoC_Dispatch_m.f90.o
+[ 47%] Building Fortran object src/lib/CMakeFiles/GENOL.dir/PlugNozzle_m.f90.o
+[ 48%] Building Fortran object src/lib/CMakeFiles/GENOL.dir/Profile_m.f90.o
+[ 49%] Linking Fortran static library libGENOL.a
+[ 94%] Built target GENOL
+[ 95%] Building Fortran object test/CMakeFiles/test_thermo.dir/test_thermo.f90.o
+[ 96%] Linking Fortran executable test_math
+[ 97%] Linking Fortran executable ../../../bin/GENO
+[ 98%] Linking Fortran executable test_thermo
+[ 99%] Built target test_math
+lto-wrapper: warning: using serial compilation of 4 LTRANS jobs
+lto-wrapper: warning: using serial compilation of 9 LTRANS jobs
+[ 99%] Built target test_thermo
+[100%] Built target GENO
+BUILD_EXIT=0

@@ -304,6 +304,14 @@ in [GRAFT-G10], M0:1311-1320, [ADV]).
 
 ### 1.5 La roadmap: i deciders in ordine, coi costi noti
 
+[V-1 fix, orchestratore 2026-08-23 — arco CH3:455→qui saldato] Riga di
+roadmap del corrector (N-M): **G3 è oggi l'unico gate del piano il cui
+kill threshold non può rigettare** (D6:783-786) — la fase **F5b** lo
+chiude derivando il trigger di correzione come NUMERO (D6:271-273);
+fino ad allora il canale O(St) resta strumentato ma non gated (teoria e
+aperto in CH3 §3.12; qui la collocazione di piano: F5b in coda ai
+deciders, dopo M-RED che ne fornisce le bande).
+
 Ordine ratificato al touchpoint C4 (`docs/rde_nozzle_PROGRESS.md:407-421`):
 
 1. **M-RED — prima campagna F2, in-house** ("(c) M-RED RESTA prima campagna F2
@@ -360,6 +368,13 @@ count portato dall'item 9), RK-B (quadrature-switch neglect), RK-C
 registro.
 
 ### 1.6 Le ASK di record
+
+[V-2 fix, orchestratore 2026-08-23 — arco CH10:274→qui saldato] La
+risposta pronta alla domanda "che input vi serve" è l'**Annex B input
+taxonomy** (D6:1132-1157, casa organica in CH10 §3/K-iv): la scala
+dichiarata di casi A-G — dalle sole specs motore al dato hot-fire
+strumentato — con lo stage di evidenza che ogni gradino compra; ogni
+ASK qui sotto joina quella scala.
 
 Dal record, non inventate per il deck:
 

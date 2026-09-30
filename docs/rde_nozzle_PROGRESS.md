@@ -1,254 +1,66 @@
-﻿# PROGRESS â€” cycle-averaged variational nozzle program (living state)
+# PROGRESS — cycle-averaged variational nozzle program (living state)
 
 > Single source of truth della progressione. Aggiornare a OGNI chiusura
-> di sessione/fase (CLAUDE.md R3). PROTOCOLLO DI APERTURA (dalla S10,
-> ordine S9): memoria di progetto + L0 (SCAFFOLD Â§1: obiettivo e
-> regole) + docs/claims_registry.yaml (l'INDICE della teoria, lintato
-> dal gruppo (xv)) + D6 (stati/gate) + questo file. M0 resta il master
-> del proof layer, letto per profonditÃ , non per ricostruire lo stato.
+> di sessione/fase (CLAUDE.md R3). PROTOCOLLO DI APERTURA (R2, dalla
+> S-ROADMAP 2026-08-31): docs/START_HERE.md PER PRIMO, poi memoria di
+> progetto, M0 (per profondità), D6 (stati/gate), questo file e la
+> roadmap DERIVATA docs/ROADMAP_critical_path.md (rigenerata da
+> tools/roadmap_derive.py, lint (xxiv)). Forma snella (U5 S-ROADMAP):
+> ORA = tabella, NEXT = un passo atomico, BLOCCATO = tabella con
+> `path:`, censimento = UNA tabella in place (SR-7), storia integrale
+> in docs/rde_nozzle_PROGRESS_ARCHIVE.md (append-only, SR-10).
 
-## ORA (2026-08-21, CHIUSURA PIENA S-FOUNDATIONS-C4 — R35 -> CONSUMED.
-## ESEGUITO: (1) BLOCCO 0: gate GO su file (HEAD riconciliato su 4
-## addenda dichiarati + 1 mid-window), counts == closeC3, touchpoint
-## apertura (meter fresco; Lean DEFER a F2; calendari a F2-entry).
-## (2) FASE D DIMOSTRATA E ATTERRATA A CONVERGENZA: centerpiece R22F
-## 4 round x 3 lenti + 27 probe eseguibili (L1 dry pieno; residui
-## nominati delta/L_H UNDERIVED con derivatori ordinati five-field ->
-## route-B -> M-RED -> R22-CFD); 4 minori ESCALATI a forma piena e
-## TUTTI DRY (E-1 r2, E-2/3/4 r3; 53/53 finding sostenuti); E-5
-## delta-r4 refereed, RES-CAP-1 SCARICATO; [T-DISC] + [T-RED] +
-## [T-DCRX] + NTF + CLG + [R22F-FORCHETTA] IN M0 con classi finali;
-## G-c gamba (ii) SCARICATA-citabile (Giles-Pierce 1997 [FULL]);
-## landing confermato (confirm istanza = 3a cattura vera, 6 item
-## completati in-window). (3) LETTERATURA: campagna nozzle-RDE 4
-## paper (0 BREAK su 8 threat consolidati; regola CT-6 standing) +
-## FIELD ATLAS 48 figure + BASE-PRESSURE HARVEST (Purdue CTAP =
-## unica misura hot-fire; Veen 1966-fit FAILED -> N2 sostituisce;
-## Humphreys: p_b sposta argmax x2.45 a valore piatto) + THROAT
-## HARVEST (pin esibito, MAI verificato spettralmente da alcun CFD,
-## gap G1-G9 search-proven); sfida utente lit-census SOSTENUTA 3/4
-## -> emendamento protocollo censimento standing + 31 WANTED cluster
-## mancato. (4) COVERAGE GATE = PASS su file (dual-seed provato nei
-## 2 sensi: SEED-OMIT P34 catturato, SEED-DECOY C50 non flaggato;
-## critic -> 6a/7a istanza classe no-row: C61 p_b-closure + C62
-## quadratura-di-fase; NOVEL-ITEMS recuperata 32=31+1+0; ledger 62
-## = 12/36/12/2). (5) PIPELINE DECISION MAP di record (62 nodi + 45
-## archi verificati 100%, refuter 0 BREAK/0 REPAIR, amendment
-## applicati; doppio consumer F2 + S-PRES). (6) TOUCHPOINT CHIUSURA
-## (utente): CFD-2 in F2 / CFD-1 post-M-RED; BLOCCATO 16 RATIFICATA
-## a F2-entry (scope esteso field-reading); M-RED resta prima
-## campagna F2; procurement top-3 harvest + 3 ask fermi. Kill quota
-## #6/#7/#8 tutti a PERDITA ZERO (artifacts-first + resume). Counts
-## a chiusura (misurati): choice 62 / findings 249 (207 open) /
-## claims 163 / glossario 47 fam + 238 / lit 165 [79 WANTED] + 9
-## bulk. Suite: esito quotato nel log. Log:
-## validation/PROGRESS_2026-08-21_SfoundationsC4.md)
+## ORA (2026-09-30, RIUNIONE dei due rami — R43; S-REVIEW sospesa dal 2026-09-05, da chiudere su file — R40; F2 aperta, sessione 1/6)
 
-## F3 CHIUSA il 2026-09-24 (S39, decisione dell'owner "chiudiamo F3"; log
-## validation/PROGRESS_2026-09-24_S39_F3_exit.md; riga di censimento R38
-## CONSUMED; la storia della fase -- ingresso S37, certificato di valore S38 --
-## e' VERBATIM nell'archivio, banner 2026-09-24 notte). USCITE: ottimo plug
-## certificato in VALORE all'ambiente nominale [X-OWNM] con le ri-ottenzioni
-## di record; oracolo Tabella 1 [X-RAOPO]; istanza a gamma variabile
-## (dichiarata); T-GB THEOREM* su [C-GBCS]; stretch a due pareti NON preso
-## (condizionale). Budget: 3 sessioni su 4, 1 campagna su 2 sull'istanza del
-## plug, fallback non scattato. Ogni affermazione F3 e' SOLO SPINTA,
-## sopravvivenza termica non modellata (vuoto industriale nominato). RESIDUI
-## con proprietario: R-F3-1 il finder all'ambiente nominale (torneo X-PTRN
-## dalla partenza C, in classe in R); R-F3-2 lo stretch a due pareti (DUTY-11
-## al suo ingresso); R-F3-3 il falsificatore di forma di T-GB (dopo BLOCCATO 20
-## i); R-F3-4 la riga di registro X-PTRN mai scritta; R-F3-5 DUTY-1(b) a F5.
-## OMISSIONE DICHIARATA: la ratifica d'ingresso S37 non aveva disposto le
-## righe F3 ENTRY dell'addendum S-GAUNTLET (DUTY-14/11/1(b)); disposte ora
-## (DUTY-14 assegnato a F5a, R12).
+| campo | valore (misurato in finestra, SR-12) |
+|---|---|
+| Fase D6 | F2 GENERAL ENGINE **APERTA** — sessione **1/6 CONSUMATA** (F2-B0, entry act); F0/F1/F1b CLOSED di record (D6 :91, :137); F3/F4b/F5/F6 non aperte; D6 ADDENDUM datato 2026-09-05 (coda del file, user-ratified T1) nomina i passi F2.REPR e F3.TOURNAMENT |
+| HEAD | branch `rde-nozzle-program`; CHECKPOINT S-REVIEW (sospensione safe) = 86c3ffb (+ micro-commit di stamp); prima: apertura F2-B0 = ea91259, chiusura F2-B0 = 4798713 / 127dfdd; conteggio commit misurato alla ripresa (SR-12) |
+| Ultimo gate | lint (vii)(xv)(xix)(xx)(xxii)(xxiii)(xxiv) verdi a chiusura; suite completa plain (log f2b0_raws/suite_full_2026-08-31.log): 23/24 PASS in 1221 s; l'unico rosso (xx) = pipe letterale in una cella dell'indice, riparato in-window e ri-eseguito PASS (113 file rows / 7 block rows / 113 disk .md); LOG-10b |
+| Ultima sessione | S-REVIEW (carrier ADVISORY_SREVIEW_prompt_2026-08-31.md IN PROGRESS + addenda G/H; log validation/PROGRESS_2026-08-31_Sreview.md; raws validation/sreview_raws_2026-08-31/; ASSESSMENT_SREVIEW_foundations_2026-08-31.md IN AUTHORING) — SOSPESA SAFE 2026-09-05 18:55 a metà Stage B (workflow wf_83c30268-aeb: 12 chiamate in cache); prima: F2-B0 (CONSUMED, log PROGRESS_2026-08-31_F2B0.md) |
+| Passo atomico | vedi NEXT (RIPRESA di S-REVIEW allo Stage B, poi landing; poi F2.REPR) |
+| Cammino critico | docs/ROADMAP_critical_path.md — DERIVATO, 16 passi, vista `path: critical` = F2-B0 (CONSUMATO) → F2.REPR → F2.ENGINE → F2.M-RED → F2.CFD-2 → F3.RK1∥ → F3.PLUG → F3.TWIN → PAPER; REFUTER PASS eseguito (finding method:sroadmap-single-author-placements-unrefuted DISCHARGED con flip count: tag 3/75, override 2 flip + 2 move + 3 amend, OUT 12 contestati, fix regex pre-F<n>, 0 critical fuori posto); nessun cammino "completo" citabile senza il PASS di lint (xxiv) |
+| BLOCKING attive | findings `path: critical` 48 / BLOCCATO `path: critical` 3 (B-RAOPLUG, B-CFD1, B-SREVIEW; B-GENO declassato dopo quarantena+build) |
+| Budget orchestrazione | S-REVIEW (in corso): tetto T1 dichiarato 10,0M token subagente, AMENDED dall'utente a 12,5M al confine di Stage B; consumati 5,551,235 prima dello Stage B (refuter 237k + derive 466k + red team 274k + diff MORTO per limite di usage 877k PERSI + diff vivo 3,697k) + Stage B parziale (12 chiamate in cache, totale da leggere alla ripresa); agenti: 4 derivatori + 13 giudici (x2 lanci) + 1 refuter + 1 red team + 12 chiamate Stage B; 3 workflow (SR-9). F2-B0: tetto dichiarato 4 agenti Fable refuter/panel; consumati 4 (R1 tag 255,512 + R2 override/completeness 383,359 + panel advocate 145,920 + panel refuter 207,485 = 992,276 token subagente) + 1 refuter di chiusura su ordine utente al resume (284,098 token, 49 tool uses, 22.5 min; 16 PASS / 16 FAIL / 1 NOTE, 14 ripari applicati in-window — LOG-10c); 0 workflow (SR-9) |
+| Registri | findings 262 (210 OPEN = 48 critical / 118 non-critical / 44 paper; 3 S-CERT rows DISCHARGED at R3 after the closing refuter); choice 62 (NEVER 10: C57/C60 usciti); claims 163 (37 aperti; X-O32 dichiarato FAILING); lit 169 + 9 bulk (root A/B/C/D 42/48/77/59); glossario 51 fam + 248; ADVISORY_INDEX 113 file + 7 block |
+| GENO health | patch audit QUARANTENATA 2026-09-05 (T2: 2 file revertati, patch conservata byte-identica md5 822ca4f); build WSL **VERDE**; ctest 27 run: 10 PASS / 16 md5-step-only (toolchain s3 vs WSL, N-36 atteso) / 1 plugnoz crash (INPUT assente = finding ledger-c1 noto); md5 re-baseline s3-gated (R13); working tree GENO = soli artefatti piattaforma |
+| Stato al 2026-09-30 | Un solo ramo: `rde-nozzle-program` contiene ora la linea del piano (S-PRES, S-ROADMAP, F2-B0, S-REVIEW) e la linea del plug (S26-S42). Le righe qui sopra sono lo stato del piano al 2026-09-05 e restano vere; le due righe qui sotto aggiungono la linea del plug. Log della riunione: validation/PROGRESS_2026-09-30_reunion.md. Niente push. |
+| Linea del plug (R41, R42) | F3 aperta e chiusa il 2026-09-24 sulla linea del plug, FUORI dall'ordine del piano (decisione dell'owner di allora). Dopo: residui F3 (S40), progetto a due pareti e procedura RDE con arbitro CFD (S41), plug con cowl corto e ugello interno, Rao contro SQP (S42). Tutto questo vale come de-risk e come prova generale; il confronto decisivo (TWIN) resta da fare secondo il protocollo preregistrato. Esito della prova generale: a 0.05 bar l'SQP batte Rao dell'1.65 %, ma NON per merito delle fasi (SQP a stato medio e SQP a 12 fasi danno quasi lo stesso plug); a 0.2 bar pareggio; a 1 bar entrambi peggio dell'uscita nuda. |
+| Decisioni dell'owner 2026-09-30 | Non si butta il lavoro del plug; si torna sul piano e si chiude F2; le regole del repo decidono; S-REVIEW si chiude su cio' che e' su file, senza agenti; commit locali si', push no; in validation cio' che nessun log cita si cancella; linguaggio schietto, fisica prima del metodo. |
 
-## NEXT (atomico): S-PRES (milestone ESA, prima presentazione
-## esterna; carrier = validation/ADVISORY_Spres_prompt_2026-08-21.md
-## committato): Block 0 = trigger sweep da comando misurato (riga
-## :1455 two-stage -> eseguire duty S1 o presentare SCHEMA
-## dichiarato; D-44 su claim di adeguatezza; P34 istanziazione
-## leggera; novita' query-bounded) + decisioni utente
-## formato/durata -> estrazione cite-only dal record (pipeline map
-## = spina dorsale; forchetta = slide onesta; atlas + campagne =
-## sezione efflusso/pratica; Gap A/Gap B = value case; genealogia
-## Rao->Hoffman->Kraiko->noi) -> deck -> doppia review (rigor
-## refuter: ogni slide-claim <= classe dell'ancora + comms review)
-## -> loop utente. POI F2 blocco 0 (F3 CHIUSA 2026-09-24, R38; contatore 0/6; re-chain +
-## finestra engine: cluster C31/C57/C58/C60/[P-IPADJ] + M-RED prima
-## campagna; CFD-2 in coda F2; CFD-1 post-M-RED con criteri
-## PM22-vs-Jourdaine; sessione topologia+modellistica a F2-entry).
-## RESIDUI F3 (dopo la chiusura; nessun contatore). S40 (2026-09-24/25, log
-## validation/PROGRESS_2026-09-24_S40_F3_residuals.md, parola dell'owner):
-## R-F3-1 ESEGUITO, NEGATIVO -- il finder da lontano (partenze C, E, classe
-## in R) si ferma su una scogliera di piega 1.5-2.5e-3 di J sotto il membro,
-## 0.84 m in forma; seconda e ultima campagna dell'istanza plug SPESA
-## (f3-residual:finder-stalls-at-fold-cliff). R-F3-2 PRESO: X-TWOP
-## ottimizzatore a due pareti -- posa kernel (archi iniziali di GENO come
-## dato), classe di piega su tutta la rete, metrica di Newton alla partenza --
-## RE-1 su Migdal 3/3 da una partenza generica (atterraggi a 5e-10 in C_F);
-## la posa di PROGETTO (arco deciso dall'ottimizzatore, estremi plug/shroud
-## decisi da ambiente e vincoli, getto libero dopo il labbro) e' APERTA
-## (twowall:design-posing-open, domande dell'owner 2026-09-25). S41
-## (2026-09-26, log validation/PROGRESS_2026-09-26_S41_twowall_design.md):
-## passo 1 PRESO -- archi di circonferenza come variabili, estremi bloccati:
-## 26/26 direzioni identificabili (criterio per direzione), ma i cammini su
-## (140,31) lasciano gli archi di Migdal su guadagni che a (280,61) cadono
-## (A, rapporto 0,35) o si rovesciano con 238 celle piegate (R): Migdal NON
-## battuto, la domanda sugli archi richiede il gradino fine
-## (twowall:arc-design-coarse-instrument-unfit); al gradino FINE gli archi di
-## Migdal si ri-ottengono da se' stessi (passo 1 CONCLUSO). Passo 2 PRESO e
-## CONCLUSO al gradino grosso (26 settembre sera): un solo tetto di lunghezza
-## per plug e shroud, altezze d'uscita bloccate -- l'ottimo con tetto e' il
-## Migdal troncato piu' un'espansione di coda all'area bloccata, archi
-## invariati, entrambi gli estremi al tetto; la classe aveva DUE difetti
-## (pavimento di TAGLIA su celle minuscole all'ingresso; schegge del
-## pennacchio che scattano col disegno), CORRETTI la notte del 26-27
-## (margine di forma + taglio del pennacchio, cancelli C-S, entrambi i
-## finding scaricati) e i cammini rifatti: 80 % = Migdal intero entro il
-## bias, guadagni sul tagliato 0,10/0,41 % in vuoto e 0,05-0,13 % in
-## ambiente, disegno libero in sovraespansione al 42 % della lunghezza;
-## +0,091 % / +0,369 % sul Migdal TAGLIATO all'80 % / 60 % della lunghezza
-## (conferma fine pendente); il Migdal compresso piega e nessuna
-## restaurazione lo ripara (driver:restoration-phase-no-motion). Passo 2 bis
-## (notte): in AMBIENTE (base p_b = p_a, labbro libero) all'ambiente adattato
-## l'ottimo con tetto E' il Migdal tagliato entro il bias dello strumento; al
-## doppio dell'ambiente vince un ugello piu' corto (Migdal tagliato al 44 %):
-## la lunghezza diventa un esito (twowall:cap-ends-sigmoid-saturate). Revisione
-## del piano: sezione 6 dell'advisory della procedura RDE. Precisazioni
-## dell'owner: convenzione di pressione di base identica per tutti i profili
-## (criterio di regime Fiore 6.1). Procedura RDE IMPOSTATA (27 settembre
-## notte, ordine dell'owner: run sull'outflow RDE + problema meridiano,
-## getto libero, separazione): torneo Stechmann contro fasi che votano
-## sull'outflow Q2D THOR_CAv3 chocked termicamente ([X-RDET]; getto al
-## labbro [X-LJET]; vortice libero per fase; separazione Summerfield /
-## Schmucker come chiusura e come classe). Lo stato medio sovrastima
-## l'ugello (C_F 1,4461 contro 1,3762 sulle 12 fasi; guadagno -11,5 %),
-## il disegno camminato sullo stato medio piega in ogni altra fase e ne
-## stacca due; il voto delle fasi richiede la classe in OGNI fase e,
-## tenuta quella, non trova piu' spinta dello strumento (V1: +4,8e-5 al
-## grosso, +5,9e-6 al fine sulle 12 fasi) ma e' senza urti, attaccato e
-## certificato in tutte e 12 le fasi. Difetti trovati e
-## chiusi: tabelle troncate sotto 1050 K (prima
-## passata ritirata), replay a fronte d'onda (tabelle catturate; forme per
-## taglia fino al tetto di mappature), chiusura di separazione cumulativa.
-## Aperto: twowall:shape-margin-blind-to-convergence (dell'owner). R-F3-4
-## CONIATA (X-PTRN). R-F3-3 aperto: nuova reference, tesi di Fiore (cap. 6
-## troncamento; thesis_fiore_2019), la scelta del modello e' dell'owner.
-## R-F3-5 DUTY-1(b) a F5. Difetto trovato: l'Hessiano AD puntuale non e' la
-## curvatura (numerics:ad-hessian-forward-over-custom-vjp; [X-RAOPO] regge).
-## Aperti dell'owner: Panov-Shvets (BLOCCATO 20 i, sblocca R-F3-3). Igiene F2
-## trovata in S37 (testo F2, non toccato): riga X-RMAR ferma a W-5 aperto,
-## "Stechmann 2018" (e' 2019), page-verify Paxson-Miki fatto. Handoff:
-## RDE/handoff/F3_HANDOFF_2026-09-24.md (sezione 8).
+## NEXT (atomico)
+CHIUDERE S-REVIEW su cio' che e' su file (decisione dell'owner 2026-09-30; la corsa a meta' del gruppo di agenti non si riprende da questa macchina, non si rilancia): (1) apertura R2 + roadmap rigenerata + lint (xxiv); (2) verdetto per ciascuna delle sei voci (STRADA, ESPERIMENTO, PRESSIONE DI BASE, RICERCA, PROVA, DATI) dalle posizioni gia' scritte (sreview_raws_2026-08-31/) piu' le prove della linea del plug: pressione di base misurata sui dati (S31), arbitro CFD per fase con convergenza certificata (S41-S42), prova generale del confronto decisivo (S42); (3) landing: finding, righe di letteratura, emendamenti PROPOSTI a D6 e al protocollo TWIN (dati di classe B, troncamento, braccio classico), ASSESSMENT; lint e suite; (4) verdetto GO / GO-CON-PILOT / NO-GO per F2.REPR e F2.ENGINE. POI F2.REPR (sessione 2/6, carrier validation/ADVISORY_F2REPR_prompt_2026-08-31.md). Decisioni dell'owner ancora da prendere alla chiusura: contatore F2 per S-REVIEW (T0), scan di livello 3 (T2), sforamento F2-B0, torneo a due settori (P-D6-5), regola di cadenza R9, righe C63-C66.
 
-## FINESTRA INTER-SESSIONE 2026-08-13 (parallela: LITERATURE REVIEW â€”
-## non tocca la catena S-ORDINE -> S-CERT -> F2, che la INGERISCE)
-25 paper in literature_review/ letti integralmente e confrontati con
-l'impianto; verifica personale su fonti primarie (15 fonti [IO], M0
-alla riga, carrier in codice) + CONTRADDITTORIO consumato (4 refuter,
-REFUTE_A-D). DI RECORD: validation/ASSESSMENT_methodology_position_
-2026-08-13.md (inquadramento 4 chiavi: idea/importanza/metodologia/
-SOTA, con tier di evidenza) + literature_review/reports/VERIFICATION_
-FABLE_2026-08-13.md (giudizio fuso). CAVA NON RATIFICATA:
-ADVISORY_litreview_confrontation (39 innesti/33 correzioni/29
-residui) + ADVISORY_litmap_extension + ADVISORY_sota_definition (non
-convergiuta). ESITI CHIAVE: zero teoremi caduti; ponte P2/G14 regge
-solo a tre gambe (glossa "residual=gradient" DA CANCELLARE â€” KT2015
-la istanzia); T7(c) da riscrivere in forma a cono MINIMALE (D in N_K,
-portata=uguaglianza fuori cono); per-fase = quoziente esatto (lemma
-propagazione DA SCRIVERE in M0) + rung-2 dichiarato; "ZP mal posta"
-e "teoria prevede cecitÃ  Harroun" RITIRATI dai refuter; R16 slip-line
-TIENE ma vincola al GATE F4b, non alla catena; 5 carrier duale-ciechi
-CONFERMATI SUL CODICE (REFUTE_C, righe citate). BLOCCATO (utente):
-ratifiche D-01/C31-minimale/C30. P0: ISABE-2003+Bogdanov 2002 e tesi
-Harroun 2019 (procurement); R22 esperimento disentanglement (F2/F5).
-La prossima sessione della catena principale APRE ingerendo
-l'ASSESSMENT (prima di S-ORDINE).
+## BLOCCATO / GATE APERTI (tabella; `path:` = triage rispetto al TWIN decisivo; storia integrale delle voci in PROGRESS_ARCHIVE)
 
-**Branch `rde-nozzle-program`. Apertura S25-bis: HEAD ad5c48e
-(addendum post-chiusura S25). Commit S25-bis: nel log. CATENA NEXT
-AGGIORNAMENTO CATENA (ratificato dall'utente 2026-08-13, chiusura
-S-ORDINE): tra S-ORDINE (CONSUMATA) e S-CERT si inserisce la
-FINESTRA F-SERVICE RATIFICHE (piccola, in-window per
-never-postpone-resolvables; eseguibile NELLA STESSA SESSIONE di
-S-CERT con CONFINE DURO: mini-R3 verde e committata PRIMA che
-l'audit apra, freeze totale dopo; split di budget SOLO al confine).
-Scope pinnato: (1) ratifiche utente D-01/C31-minimale/C30
-(BLOCCATO 10); (2) batch R4 dalle righe ADOPTED della REV-3
-convergiuta (lemma propagazione, formulazione bloccata PB-2,
-attribuzione E4, H-EXO su T7, 3 non-contenimenti litmap) in M0/D-doc
-con classe di rigore + righe registry/indice stessa finestra (R7);
-(3) fix economici dei 5 carrier duale-ciechi (righe REFUTE_C) sotto
-SR-11: gate ri-eseguiti, lint verdi, stampi pass= stesso giorno,
-version-change dichiarato; (4) esclusioni NOMINATE: D-49 dichiarata
-(limite campione S-CERT se non eseguita), item MOC/GENO-owned
-fuori; (5) al confine si pinna la decisione A2 (O3.1-cs in apertura
-S-CERT vs F2). Ragione tattica di record: l'audit ostile deve
-misurare lo stato VERO, non ri-scoprire ciÃ² che i refuter hanno giÃ 
-trovato. Catena precedente (per riferimento):
+| id | item | stato | path | owner + trigger | carrier |
+|---|---|---|---|---|---|
+| B-G5 | G5 passaggio umano Kraiko-1979/PMM: blocca le SUBMISSION P-1/P-2/P-3, non il lavoro; pacchetto d'invio pronto, residuo = invio dall'account istituzionale | LOCK (utente) | paper | utente; trigger = prima submission | validation/G5_dispatch_email.md + G5_pmm_toc_sweep_1957-1990.md |
+| B-VENUE | Venue P-2 (AIAA J primaria + arXiv a G5∧bozza; fallback Aerospace; JOTA terziaria) | DECISA S4 (delega) | OUT:consumed | — | docs/rde_nozzle_P2_outline.md §7 |
+| B-ADR | ADR panel 2026-07-16: ratifica utente PENDENTE; nessuna implementazione; esecuzione gated alla finestra ADR-D4 (con B9) | APERTO | non-critical | utente; trigger = finestra ADR-D4 (calendario fissato al touchpoint F2-EXIT — T4 di F2-B0 2026-09-05) | validation/ADR_panel_2026-07-16.md (non committato) |
+| B-G0 | G0 stack decision: JAX primario, Julia+Enzyme alternate, GENO dual-code; residuo toolchain CHIUSO; falsificatore loop-speed armato (MET S25/S25-bis) | DECISO S10 | OUT:consumed | ratifica utente solo su trade-off fuori criteri D6 | docs/rde_nozzle_G0_decision.md |
+| B-RAOPLUG | RaoPlug S1/S2 fix in GENO (o status single-oracle Rao-1961 Table-1 dichiarato): ENTRY di F3 (D6 :214-218), prerequisito OP-2/PB-2 | Stato single-oracle Rao 1961 DICHIARATO all'ingresso F3 della linea del plug (S37, 2026-09-24): la condizione d'ingresso e' soddisfatta per dichiarazione. La correzione in GENO resta APERTA (voce B20 b) | critical | repo GENO, suo protocollo (R13); trigger = F3 entry (de-risk RK1 autorizzato in parallelo a F2) | D6 §6 item 3 |
+| B9 | ADR-D4: headline spike re-bless 242.5 s constrained + trunc 0.20 DECISE; esecuzione (README/examples/test/REBLESS) gated alla finestra ADR-D4 col RIDER G-11 (mappa definizioni, banda transiente P-B, chiusura p_b + sensibilità Humphreys ×2.45, Veen WG10-FAILED, Purdue CTAP) | DECISA, esecuzione gated | non-critical | finestra ADR-D4 (calendario al touchpoint F2-EXIT, T4 di F2-B0); il rider p_b viaggia già su C61 + finding litreview:residue-r8-r23 (critical) | SYNTHESIS_nozzle_rde_arrivals.md CT-4; BASE_PRESSURE_HARVEST_c4.md |
+| B10 | Ratifiche D-01/C31-minimale/C30 + decisioni A2=(a), D-49 esclusa | CONSUMATA 2026-08-13 | OUT:consumed | — | PROGRESS_2026-08-13_Fservice.md |
+| B11 | Schedulazione R22-lit (disentanglement 3D/3D-mediato/2D) come primo blocco F2 | CONSUMATA da B19(a) (CFD-2 in coda F2, CFD-1 post-M-RED) | OUT:consumed | — | riga B19 |
+| B12 | P0 procurement: ISABE-2003-117, Bogdanov 2002, tesi Harroun 2019, Shmyglevskii PMM 26(1) 1962 (+ top-3 harvest e 3 ask fermi di B19) | APERTO (WANTED) | paper | utente/procurement; trigger = finestra lit / claim che li cita | docs/literature_registry.yaml (righe WANTED) |
+| B13 | Due one-liner CLAUDE.md (ban mutazioni env + sessioni parallele); memory-mirror UD-5-sub NO | CONSUMATA 2026-08-13 | OUT:consumed | — | CLAUDE.md Preferenze |
+| B14 | Touchpoint confine Fase C (P_amb slot, cava litreview, seed registry, slot Sonnet 141-fork, rotazione) | CONSUMATA 2026-08-19; residui migrati in B15 | OUT:consumed | — | PROGRESS_2026-08-19_SfoundationsC.md |
+| B15 | Touchpoint C3: BLOCCATO 9 decisa; O5 numpy 2.5.2 ADOTTATO (env misurato 2.5.2); Lean con dossier; S-5F rinviata F2-entry; C51 rung-3a F2; G9 slip-sheet F2-entry; AG-1 standing; papers 18 arrivi | CONSUMATA 2026-08-20 | OUT:consumed | — | PROGRESS_2026-08-20_SfoundationsC3.md |
+| B16 | Proposta sessione "topologia-e-modellistica" (campo IE aerospike Harroun Figg. 12-20 + aggiudicazione rappresentazioni 4-campi / 5-field / route-B / ibridi / 3D) | RATIFICATA da B19(b) a F2-entry (scope esteso field-reading) | OUT:consumed | esecuzione = passo F2-B0 (ROADMAP) | PROGRESS_ARCHIVE (testo integrale) |
+| B17 | Touchpoint C4 apertura: meter fresco; Lean DEFER (dossier di record validation/DOSSIER_lean_pricing_2026-08-20.md); calendari ADR-D4 + estrazione P-1; 3 ask paper fermi | CONSUMATO 2026-08-20; residui RINVIATI a F2-EXIT con trigger (T4 di F2-B0 2026-09-05: Lean resta DEFER, calendari fissati al touchpoint F2-EXIT = finestra census-lemma R5c / PAP-RIM R6c) | non-critical | touchpoint F2-EXIT (utente) | validation/DOSSIER_lean_pricing_2026-08-20.md |
+| B18 | S-PRES milestone ESA (catena C4 → S-PRES → F2) | CONSUMED CON PIVOT 2026-08-25 (deck utente fuori repo; prove-per-atlas TRACE/CONSECUTIO/HARVEST) | OUT:consumed | eredità a F2-entry in NEXT | deck_build/BUILD_LOG.md + trace/ |
+| B19 | Touchpoint C4 chiusura: CFD-2 in coda F2; CFD-1 post-M-RED; B16 ratificata F2-entry; M-RED prima campagna F2; procurement top-3 + 3 ask | CONSUMATO 2026-08-21 (decisioni di record) | OUT:consumed | residui aperti = B-CFD1, B12 | PROGRESS_2026-08-21_SfoundationsC4.md |
+| B-CFD1 | Decisione CFD-1 (test del pin su configurazione accoppiata reale, ~12M celle, canale partner/procurement) — SI DECIDE POST-M-RED con dossier + criteri PM22-conforme vs Jourdaine-patologico | APERTO, gated post-M-RED | critical | utente; trigger = chiusura campagna M-RED (banda eps) | pipeline_decision_map.md :77 (R22-CFD); ROADMAP passo F2.CFD-2 (cella corretta F2-B0: il passo di record è F2.CFD-2) |
+| B-GENO | GENO health: quarantena patch audit + build WSL + harness ctest (T2 di F2-B0, autorizzata dall'utente) | ESEGUITA 2026-09-05: 2 file revertati (diff live == patch conservata, md5 822ca4f), build WSL VERDE (il link error dgesv_ di luglio NON riprodotto), ctest 27 run = 10 PASS / 16 md5-step-only (17 baseline s3/gfortran-7.5.0 vs WSL 11.4.0: N-36 atteso, MAI blessate) / 1 plugnoz crash (INPUT assente = finding ledger-c1 noto); scoperte: 17 checksums non 8; submodule FiNeR con gitdir Windows-assoluto (git da WSL fallisce) | non-critical | residuo GENO-side (R13: md5 re-baseline su s3; plugnoz INPUT; double-count spinta = finding critical proprio); trigger = prossima sessione GENO/s3 | validation/PROGRESS_2026-08-31_F2B0.md LOG-4/4bis; f2b0_raws geno_rebuild + geno_ctest logs |
+| B-S5F | Decisione build [S-5F] (percorso A free-vortex / B five-field engine+adjoint / C procurement dati tangenziali; fork lemma-misto vs monitored-neglect, finding theory:s5f-path-a…) + priorità C51 (confermata rung-3a F2) | RINVIATA a F2-entry (B15(d)) | non-critical | utente al touchpoint F2-entry (dentro la sessione B16) | swirl5f_panel_2026-08-19/ DISPATCH §9 |
+| B-NASARES | Residui T3 (studio NASA atterrato a F2-B0, ADJUDICATION_v2 §5(d)): (i) riga viscous loss-accounting mint-or-drop (owner F5, hook δ*-band F2b DUTY-4(i)); (ii) TP 3576 come ancora sperimentale steady-limit del caso A sì/no; (iii) esperimenti gemelli a costo zero E-1/E-2 (~2 h: GENO ivl_file sulla TT' line + cono uniforme M=1.1) | APERTO | non-critical | utente al touchpoint F2-EXIT (con T4-Lean) | validation/nasa_tools_raws_2026-08-25/ADJUDICATION_v2.md §2/§5 |
+| B-UNO | Card O5 (cambio d'ambiente pinnato): installazione Uno = braccio B dell'A/B C31 [P-IPADJ] (preset filtersqp; 10 input di spec DOSSIER_uno_fullread §3); senza install il falsificatore F-C31-2 non è attivabile (dichiarato) | APERTO | non-critical | utente al confine di sessione (touchpoint F2.REPR T4) | validation/f2b0_raws_2026-08-31/VERDICT_engine_cluster_2026-08-31.md V-C31 |
+| B-SREVIEW | Revisione agnostica delle FONDAMENTA (decisione utente T6 di F2-B0, 2026-09-05): verdetto GO / NO-GO / GO-CON-PILOT che gate-a F2.REPR e F2.ENGINE; de-novo del metodo -> diff vs incumbent -> panel a convergenza sui divergenti load-bearing -> red team del numero decisivo | IN PROGRESS, SOSPESA SAFE 2026-09-05 18:55 a metà Stage B (Stage A + red team + carrier St [X-STSC] FATTI; 6 A0 + 3 R1 + dual-seed in cache; verdetti, verifica, landing, refuter di chiusura alla ripresa); lettura provvisoria dell'orchestratore (NON verdetto): GO-CON-PILOT (strada ibrida: progetto per-fase + valutatore nel riferimento d'onda; nessuna dominanza sul criterio pre-registrato); decisioni utente in sospeso T0/T2/ratifica sforamento F2-B0/P-D6-5/R9/C63-C66 ; DECISIONE dell'owner 2026-09-30: chiusura su file, senza agenti (vedi NEXT) | critical | sessione di ripresa (ricetta LOG-10) + utente (touchpoint alla ripresa) | validation/PROGRESS_2026-08-31_Sreview.md + validation/ASSESSMENT_SREVIEW_foundations_2026-08-31.md + sreview_raws_2026-08-31/ |
+| B20 | Linea del plug (F3), voci aperte: (b) correzione e benedizione in GENO di RaoPlug sotto il protocollo GENO; (c) documento italiano brick-2; (e) caso GENO raoplug_ch4o2 e membro a pressione ambiente esatta; (i) scelta del modello di pressione di base (Panov-Shvets; tesi di Fiore come input). Chiuse o superate: (a), (d), (f), (g), (h), (j) | APERTO (b, c, e, i) | non-critical | owner; trigger = prossima sessione GENO (b, e), scelta del modello di base (i) | PROGRESS_ARCHIVE, banner RIUNIONE 2026-09-30 (testo integrale della voce 20) |
+| B-TWIN-PROVA | La prova generale del confronto decisivo (S42) e' fuori protocollo: descrizione del flusso non fissata da F2.REPR, istanza non fissata prima delle run, dati di classe B (uscita Q2D THOR, idrogeno) invece del caso A (metano), area d'uscita e troncamento liberi in un solo braccio, braccio classico preso da GENO. Da decidere: emendare il protocollo oppure rifare il confronto secondo protocollo dopo F2 | APERTO | critical | owner, alla chiusura di S-REVIEW (voce STRADA) | validation/PROGRESS_2026-09-29_S42_internal_nozzle.md + validation/TWIN_PROTOCOL_preregistration_2026-08-31.md |
 
-di record (ratificata dall'utente 2026-08-12): S-ORDINE (R32,
-de-entropizzazione, prompt committato
-validation/ADVISORY_Sordine_prompt_2026-08-12.md, assorbe la prima
-duty R31, gate NOTHING-LOST vincolante) -> S-CERT (R33, audit di
-certificazione AGNOSTICO, prompt committato
-validation/ADVISORY_Scert_prompt_2026-08-12.md: la certificabilita'
-si MISURA con auditor ostili context-free, verdetto
-CERTIFICABILE-CON-RESIDUI / NON-CERTIFICABILE + delta vs l'audit
-2026-08-07) -> F2 GENERAL ENGINE (blocco 0 = decisioni utente
-filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
-
-- **[S25-bis] CONTATORE FINALE SPEED (formale, criterio
-  pessimistic-end pre-registrato)**: SEGMENTO = MET (sintesi post-M1:
-  14.9 s [M-D] / 20.1 s [M-E] vs <= 30; spread tra i due checkpoint
-  dichiarato, entrambi pycount=1); CAMPAGNA = MET (proiezione Â§5:
-  ~10-14 min pessimistic anche senza contare H3/H4, vs <= 25).
-  Catena di record: M0 100.84 s -> M-C 32.09 -> M-D record 5.58 s;
-  replay 0.236 s; val_grad 0.449 s; Hessiana 4.5-7.0 s (<= 8).
-  STOP-WHEN-MET onorato COME RAFFINATO dall'utente in sessione:
-  fuori solo l'overengineering (H2/H5/O1-O4/N8 restano conditional
-  nominate con trigger), dentro le migliorie reali (M6 tentato col
-  suo gate â€” e il gate ha rigettato: il rigetto E' il verdetto).
-- **[S25-bis] AGGIUDICAZIONE M6 DI RECORD (portata a CONVERGENZA su
-  ordine utente)**: implementato SOTA (entry vmap dentro l'engine
-  M4, operandi broadcast, zero ricompile/segmento) -> m6gate FIRED
-  (dH 18% = 5-6x asimmetria schema) -> CAUSA RADICE ISOLATA con tre
-  evidenze convergenti (locus probe): l'adjoint attraverso ~250
-  solve impliciti ha un floor di variabilita' CROSS-LOWERING
-  ~1e-8 rel sul gradiente (perfino eager-vs-jit sequenziale:
-  2.9e-2) che la FD amplifica ~7 ordini; il difetto era la MIA
-  formulazione (lowering miste: righe batched + base separata) ->
-  FORMA CORRETTA (base nello stesso batch, una lowering; controllo
-  permutazione lane BITWISE) misurata: dH 1.68x asimmetria, DENTRO
-  il bound derivato K_RICH x max(asym), auto-asimmetria batched
-  MIGLIORE del sequenziale. STATO: ADOPTION-READY (evidenza
-  completa, riga registry); adozione = version change dichiarato a
-  confine di sessione / F2 con m6gate riformato sul criterio
-  corretto (precedente M3); default sequenziale nel frattempo
-  (blocco 4.5-7 s <= 8, nessuna necessita'); guardia nonfinite-lane
-  SHIPPATA sul path sequenziale (REQ-NONSTALL rafforzato). NUOVE
-  righe registry: cross-lowering-gradient-floor (disciplina: ogni
-  confronto di gradienti pinna UNA lowering) +
-  speed-measurement-variance + il duty di demo per-cella della
-  recorder-dependence. MAPPA DI CONVERGENZA COMPLETA nel log STEP
-  15 (classi A proof-total / B meccanismo-dimostrato / C
-  open-with-owner: NESSUN punto S25/S25-bis silenziosamente
-  non-convergiuto).
-- **[S25-bis] DUE DATI RIGOR NUOVI DI RECORD**: (1) GAP-29/AUDIT:426
-  finalmente ESEGUITO â€” 1 flip (NTF/2 -> cert FAIL: margine x2
-  load-bearing, derivazione = duty F2 viva; C_FLOOR/C_OPS >= 2x
-  headroom misurato); (2) GAP-5 twin â€” la BC naturale porta ~5.7x
-  del residuo corner S19 (baseline riprodotta a 5 cifre; delta
-  two-resolution stabile; shift cd 8.2% = il datum di meccanismo);
-  conseguenze = F2, incumbent intoccata.
-- **[S25-bis] STRUMENTI NUOVI**: findings registry (R31) con lint
-  (xix) e regola anti-re-mint a macchina (il caso sliver = il
-  dimostratore); ratchet numeric-lint su validation/ (R28: canale
-  chiuso, classificazione = F2-entry); h3gate/m5cgate/m6gate nel
-  bench [X-SPDB].
-
-
-## CENSIMENTO â€” TABELLA CONSOLIDATA R1-R37 (S-ORDINE 2026-08-13, S8;
+## CENSIMENTO â€” TABELLA CONSOLIDATA R1-R36 (S-ORDINE 2026-08-13, S8;
 ## estesa in-place R34-R36 dalle finestre 2026-08-13:
 ## una riga per item, stato = il blocco delta PIU' RECENTE che la
 ## tocca; la storia dei delta vive VERBATIM in
@@ -270,14 +82,14 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R10 | rejector field-level C1 | GATED | owner F2, trigger = carrier F2b (scioglie la conditional freeze P-2; 3 istanze della classe) | â€” |
 | R11 | Lemma-B across-shocks | SCHED | F5a entry al piu' tardi | â€” |
 | R12 | a-B2 | ASSIGNED 2026-09-24 (alla chiusura F3, S39: omesso alla ratifica d'ingresso S37, dichiarato) | owner F5a entry adjudication (attivita' del vincolo governata dalla coda della misura di fase: in F3 l'ottimo e' uno stato stazionario) | â€” |
-| R13 | GENO: md5 freeze s3 + N-74(+esteso) + knob jump-depth | GATED | repo GENO, SUO protocollo; trigger = prossima sessione GENO/s3 | RAW_geno_audit_instrumentation (patch 2026-08-13) |
+| R13 | GENO: md5 freeze s3 + N-74(+esteso) + knob jump-depth (+ plugnoz INPUT, double-count spinta) | GATED (F2-B0 2026-09-05: quarantena patch + build WSL verde + ctest classificato ESEGUITI; md5 re-baseline resta s3-gated) | repo GENO, SUO protocollo; trigger = prossima sessione GENO/s3 | RAW_geno_audit_instrumentation (patch 2026-08-13); F2-B0 LOG-4 |
 | R14 | ownership advisory | CLOSED | â€” | BLOCCATO 7 (decisione utente) |
 | R15 | G5 (passaggio umano Kraiko/PMM) | LOCK | utente (blocca SUBMISSION, non lavoro) | G5_pmm_toc_sweep (OF-RECORD) |
 | R16 | acquisizioni letteratura | CONSUMED-with-residue | residuo: Salas (condizionale F4b) + WANTED list (10 righe nel literature registry, incl. P0 procurement handoff 2026-08-13) | docs/literature_registry.yaml |
 | R17 | preprint | LOCK | utente | â€” |
-| R18 | O5 ordine dei limiti (numpy 2.5.2) | GATED | decisione utente a confine sessione (gamba C7; S24+1 opz altrimenti F2 entry) | registry: conditional-class O5 |
+| R18 | O5 ordine dei limiti (numpy 2.5.2) | CONSUMED 2026-08-20 (B15: numpy 2.5.2 ADOTTATO; env RI-MISURATO 2.5.2 / scipy 1.18.0 / jax 0.11.0 a F2-B0 2026-09-05 — riconciliazione R18/B15 catch del refuter R2) | — | registry: conditional-class O5; envfp e100f996 nei carrier ri-stampati |
 | R19 | mu sign test | CONSUMED S24 | â€” | log S24 (mu=0 sul ladder; meta' GENO -> R13) |
-| R20 | item F2/F3/F5a gia' di record | CARRIED (F3 entry leg "single-oracle Rao 1961" MEASURED 2026-08-27 sulla linea brick-2: [X-RAOTB]/[X-RAOCS]/[X-RAOFN]/[X-RAOTW] + O3.3 plug [X-RAOO3]/[X-RAOSQ]; DICHIARATO il 2026-09-24 alla ratifica dell'owner: F3 aperta, R38) | near-axis, duties F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK], plug/C- mirror (margine Lambda-form: ancora da provare), X-T3CTRL | D6 F2/F3; PROGRESS_2026-08-27_S26_rao_modo1.md |
+| R20 | item F2/F3/F5a gia' di record | CARRIED (F3 entry leg "single-oracle Rao 1961" MEASURED 2026-08-27 sulla linea brick-2: [X-RAOTB]/[X-RAOCS]/[X-RAOFN]/[X-RAOTW] + O3.3 plug [X-RAOO3]/[X-RAOSQ]; DICHIARATO il 2026-09-24 alla ratifica dell'owner: F3 aperta, R42) | near-axis, duties F2a incl. mean_swirl, DUTY-4(i), U3', (q;s,h0)+[X-TBAK], plug/C- mirror (margine Lambda-form: ancora da provare), X-T3CTRL | D6 F2/F3; PROGRESS_2026-08-27_S26_rao_modo1.md |
 | R21 | C7 gamba refine/classe-ricca + O5 | SCHED | S24+1 opzionale pre-autorizzata, altrimenti F2 entry | â€” |
 | R22 | ENGINE SPEED | CONSUMED S25+S25bis | â€” | contatore di record: segmento 14.9-20.1 s vs 30 MET, campagna 10-14 min vs 25 MET; [X-SPDB] |
 | R23 | survey termo condizioni | CONSUMED-with-residue | C-A SCARICATA S25; C-B/C-C/C-D GATED (owner F2 / primo ingest ATLAS); flag GPLv3 FLINT lato GENO | ADVISORY_S24_thermo_closure_survey |
@@ -294,268 +106,29 @@ filelock/O5/adozione-M6 + re-chain; contatore "F2 session 0/6").**
 | R34 | REGIME STANDING anti-entropia SR-1..SR-12 | STANDING | enforcement = lint (xix)/(xx)/(xxii)/(xxiii) con rejector + checklist CLAUDE.md R7 (ratificata 2026-08-13); NON si consuma, si mantiene | ADVISORY_SORDINE_plan_2026-08-13 par.5 |
 | R35 | S-FOUNDATIONS (teoria-prima-di-F2, ordine utente 2026-08-13: "arrivare al motore generale con tutta la teoria costruita e dimostrata") | CONSUMED PIENO 2026-08-21 (parte C4 2026-08-20/21: FASE D dimostrata e atterrata a convergenza (centerpiece R22F 4 round x 3 lenti + escalation 4 minori TUTTI DRY + E-5; M0 riceve [T-DISC]/[T-RED]/[T-DCRX]/NTF/CLG/[R22F-FORCHETTA] con classi finali; G-c (ii) scaricata-citabile); Fase C completata a 62 righe (C59-C62 coniate: forma-temporale, NAND/SAND, p_b-closure, quadratura — 7 istanze classe no-row totali); COVERAGE GATE PASS dual-seed provato; PIPELINE DECISION MAP di record (62 nodi/45 archi, refuter 0/0); campagne letteratura (nozzle-RDE 0-BREAK, field atlas, base-pressure, throat) + emendamento protocollo censimento su sfida utente sostenuta; touchpoint chiusura: CFD-2 in F2/CFD-1 post-M-RED, BLOCCATO 16 ratificata F2-entry, M-RED resta F2, procurement top-3+3; catena aggiornata C4 -> S-PRES -> F2; log PROGRESS_2026-08-21_SfoundationsC4.md. Parte C3: Blocco 0 + WAVE 3 COMPLETI â€” 33 righe ledger aggiudicate e ATTERRATE con 0 break (76 finding, 21 repair/39 amendment sostenuti, 0 refuter cassati, escalation-per-regola zero); C50 escalata a Form-2 PIENA su ordine utente: VERDICT_C50_form2 = metrica-unica product-form che SUPERSEDE lo split-by-role (0 residui forced-pick); confirm-on-repairs istanza 2 = SECONDA cattura vera (CR-W3-R10-1: annotazione [T-XWS] dichiarata ma assente in M0 â€” riparata in-window, sunset definitivamente morto); retro-sweep catena su domanda utente (1 tensione naming preset-Uno senza falsificatore, 8 ancore arricchimento, PAIR-8 = SCREEN dichiarato dopo sfida utente sostenuta, PAIR-9 wrong-cite annotato); passa REM incondizionata 20/20 pulita (judge non in strain, criterio pre-registrato); C58 coniata (fondazione AD/JAX â€” user catch, terza istanza classe no-row dopo C49/C56, entry contract = corpus adjudicato); ledger a 58 righe = 12 DECIDED/36 MIXED/2 SA/8 NEVER misurati, tutte le NEVER trigger-armed; 21 arrivi paper registrati/promossi (15 UNREAD->READ-PARTIAL con pagine dichiarate); direttive utente a strumento: valvola AG-1 adottata, enumerazione foundation-choice + arrivals-mapping = categorie coverage gate, PIPELINE DECISION MAP = deliverable C4; SPLIT residuo su meter >75% -> C4: Blocco 2 Fase D (centerpiece 3-lenti, brief pronto) + Blocco 3 chiusura catena; log PROGRESS_2026-08-20_SfoundationsC3.md. Parte C2 2026-08-19 sera: doc1 DRY leg 3+5 CHIUSI + [T-T0P] main atterrato + Fase C onde 1-2 AGGIUDICATE E ATTERRATE (16 righe ledger, C56/C57 coniate, confirm-on-repairs istanza 1 = cattura vera) + audit agnostico triagiato + direttive 8/9+D/E a registro; SPLIT residuo -> C3: wave 3 + Blocco 4 centerpiece + Blocco 5; log PROGRESS_2026-08-19_SfoundationsC2.md. Parte 1 2026-08-17: Fase 0 + Fase A 141 fork + Fase B diff + audit ipotesi + contratto/L4R1 + prove-1 + coverage gate; sessione C Blocchi 0-2 2026-08-18/19: passata r2 15-obiezioni/0-respinte + escalation E-1..E-4 + seed v3 LAYER PROVATO NEI 2 SENSI + leg 6/14 CHIUSI (leg 14 = "THEOREM modulo (H-UP-fam)" guadagnata) + GATE APERTO + LANDING M0/registry COMPLETO ([L4-CERT] m_n+split-cert+W1-W4; claims 149/findings 240/C53; suite 23/23 post-riparazione (vii)); SPLIT residuo = Blocchi 3-5 (Fase C right-sized + centerpiece T-DISC/T-RED/M-RED + ledger fork/coverage gate/R3) in sessione fresca (rotazione ratificata) + doc1 leg 3+5 rev-10 prima azione parallela; log PROGRESS_2026-08-19_SfoundationsC.md) | collocazione: DOPO F-SERVICE+S-CERT, PRIMA di F2. Scope MISURATO (cross-reconciliation 2026-08-13, sweep 13 doc + raws + archivio, standard severo: 1 upgrade C46->DECIDED, 25 NEVER CONFERMATE con nota per-riga): (a) aggiudicazione a convergenza delle scelte F2-CONSUMATE tra le 25 NEVER + meta'-panel delle 13 single-author (panel Form-2 con avvocato genuino dell'alternativa + refuter; input = ledger riconciliato + MC8 di S-CERT); le measurement-gated convergono su protocollo+falsificatore pinnati, meta' misurata = entry duty VINCOLANTE F2; righe F3/F4b/F5-owned chiudono all'ingresso della LORO fase (regola: nessuna fase apre con NEVER sui componenti che consuma); (b) teoria pre-derivabile di classe (a): derivazione NTF, aggiudicazione BC GAP-5, [OBJ-DOM], lemma rilassamento delta-carrier, assorbimento M0 mean-swirl, bound cross-lowering (parte derivabile); (c) DECISIONE UTENTE in-sessione: pin census-lemma+PAP-RIM (resta F2-exit vs anticipo pre-F2) | docs/choice_ledger.yaml (RECONCILIATION block) + questo log STEP 13 |
 | R36 | F-SERVICE ratifiche (finestra pre-S-CERT, catena 1e188a9; RINUMERATA R35->R36 alla riconciliazione col conio parallelo di R35=S-FOUNDATIONS, 3961d3d 14:54 < ea2abce 15:23: il primo conio tiene il numero â€” i riferimenti "census R35" nel messaggio di ea2abce e nel log di finestra leggono QUESTA riga) | CONSUMED 2026-08-13 | â€” | ADVISORY_Fservice_Scert_prompt (Parte 1) + PROGRESS_2026-08-13_Fservice.md: D-01/C31-min/C30 ratificate+eseguite; batch R4 REV-3 ([S-T0P], [T-T7CN], C-HEXO/H-EXO, PB-2 bloccata, E4 lineage, non-contenimenti h/i/j); 5 carrier REFUTE_C riparati SR-11 (o33 R8/R9/R10, mgov dual clause, a1 regime decl; gate ri-eseguiti, stampi 13-08); esclusioni nominate D-49 (limite campione S-CERT, conferma utente)/D-20/GENO-owned; A2=(a) pinnata |
-| R37 | LINEA BRICK-2 PLUG S21-S36 (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | CONSUMED 2026-09-24 come de-risk autorizzato parallelo a F2 (D6 F3): i suoi artefatti entrano in F3, aperta lo stesso giorno (R38); le sue sessioni NON contano nel contatore F3 (decisione owner; sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9S-]*\]' | sort -u`
-al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni.) | owner: BLOCCATO 20 (g) DECISA 2026-09-24, (i) Panov-Shvets sull'ambiente o sullo stato in D (aperta); tecnico, passato a F3 (R38): TR-SQP a due pareti (shroud variabile di progetto, push +dy in J_replay), RE-1 sulla coppia di Migdal da partenze generiche, Veen 1974 Tab. 3 dalla NOSTRA posa; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md, PROGRESS_2026-09-24_S36_shrouded_plug.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + X-TWMU/MGDL + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md, SHROUD_HANDOFF_2026-09-24.md |
-| R38 | FASE F3 GEOMETRY CLASSES (D6; APERTA 2026-09-24 per ratifica dell'owner, ordine F3 prima di F2; ingresso dichiarato: single-oracle Rao 1961 + margine C- PRACTICE condizionale su [X-PMRG]) | CONSUMED 2026-09-24 (S39, "chiudiamo F3") -- contatore finale 3/4 (S37, S38, S39 chiusura senza run decisivi); campagne sull'istanza del plug 1/2; fallback non scattato | residui con proprietario R-F3-1..5 (finder dalla partenza C; stretch a due pareti con DUTY-11; falsificatore di forma di T-GB; riga X-PTRN; DUTY-1(b) a F5); USCITE CHIUSE: (a) meta' valore S38 [X-OWNM] (tetto di T-GB raggiunto all'ambiente nominale), (b) oracolo Tabella 1 S37 [X-RAOPO], (c) istanza a gamma variabile S38 (dichiarata), (d) T-GB THEOREM* su [C-GBCS] S37 (falsificatore di forma nominato, aperto) | log validation/PROGRESS_2026-09-24_S37_F3_entry.md, PROGRESS_2026-09-24_S38_F3_nominal.md, PROGRESS_2026-09-24_S39_F3_exit.md; registry X-RAOPO, C-GBCS, T-GB, X-OWNM; handoff RDE/handoff/F3_HANDOFF_2026-09-24.md |
-
-## BLOCCATO / GATE APERTI
-
-- G5 (umano, biblioteca): blocca le SUBMISSION P-1/P-2/P-3, non il
-  lavoro. PACCHETTO D'INVIO PRONTO (S4): email completa in
-  validation/G5_dispatch_email.md, destinatario web-verificato
-  bibliotecaboaga@uniroma1.it (ILL Boaga; DD anche via NILDE con
-  credenziali IDEM-GARR). RESIDUO UTENTE: solo l'invio dall'account
-  istituzionale (l'assistente non ha canale email autorizzato; per
-  invii diretti futuri autorizzare il connettore Gmail su claude.ai).
-  Item 2a (spoglio TOC PMM): **FATTO in S7** (fb82846,
-  validation/G5_pmm_toc_sweep_1957-1990.md â€” 204/204 fascicoli;
-  G14 regge; wording G6 di P-1 CONTINGENTE alla lettura full-text di
-  Kraiko-Osipov PMM 34(6) 1970, TOP FLAG). Item 2b: lista di lettura
-  RANKED pronta nel deliverable â€” da allegare alla richiesta
-  biblioteca insieme all'Item 1 (TOC Kraiko 1979).
-- Venue P-2: **DECISA (S4, delega utente)** â€” AIAA Journal primaria +
-  preprint arXiv a (G5 pass âˆ§ bozza Lemma A pronta); fallback
-  Aerospace con trigger dichiarati; JOTA terziaria. Decisione di
-  record con evidenze in docs/rde_nozzle_P2_outline.md Â§7. NON PIÃ™
-  BLOCCANTE.
-- ADR panel 2026-07-16 (validation/ADR_panel_2026-07-16.md, NON
-  committato): IN ATTESA DI RATIFICA UTENTE â€” nessuna implementazione
-  avviata, per disciplina.
-- G0: **DECISO in S10** (bfd0063; dossier
-  docs/rde_nozzle_G0_decision.md, [DIR-G0]): JAX primario,
-  Julia+Enzyme alternate, GENO dual-code; il residuo toolchain Ã¨
-  stato CHIUSO (GENO compilato in WSL, contorno 1e-10, X-GENOXC
-  PASS). NON PIÃ™ BLOCCANTE. Ratifica utente attesa SOLO se emergono
-  trade-off fuori dai criteri D6 (es. preferenza strategica
-  single-language); falsificatore loop-speed armato (flip a
-  Julia/Enzyme se il loop A1 assemblato Ã¨ impraticabile).
-- RaoPlug S1/S2 (GENO): prerequisito di OP-2/PB-2, non ancora attaccato.
-
- 9. DECISE (touchpoint C3, utente, 2026-08-20): (a) headline spike
-    600N = RE-BLESS a 242.5 s constrained (+6.6% vs CP; 245.3 s
-    resta companion dichiarato 'infeasible at 20% trunc' per il
-    dossier ADR-D4); (b) default troncamento RESTA 0.20 (banda
-    0.20-0.40 stampata). ESECUZIONE structurally-gated (owner +
-    trigger nominati per never-postpone): le modifiche a README/
-    examples/test/SOLUTION + REBLESS.md viaggiano con la finestra di
-    implementazione ADR-D4 â€” il panel (riga sopra) resta non
-    implementato e la sua ratifica complessiva resta aperta;
-    eseguire il solo headline in C3 sarebbe un passo orfano (R1).
-    ADR-D4 RIDER (G-11, nozzle-RDE arrivals 2026-08-20; carrier =
-    validation/sfoundations_raws_2026-08-13/blocco3/SYNTHESIS_
-    nozzle_rde_arrivals.md CT-4 + (e).2): at the gated ADR-D4
-    re-evaluation confront EXPLICITLY, all [ADV]: (1) definition-
-    mapping duty - P-B's DL_spike/L_cowl = REMOVED fraction of the
-    cowl length vs our RETAINED-fraction plug convention, NOT
-    commensurable without the explicit mapping; (2) P-B transient
-    band evidence - optimum at DL_spike = 40% L_cowl (retains ~60%
-    of the spike [INF]), cliff -5.78% at 80%; (3) P-A: 1.2% Isp
-    truncation cost + 'truncation does not affect inner field'
-    (Fig. 11 caption). RIDER EXTENSION (base-pressure harvest
-    2026-08-20; carrier = blocco3/BASE_PRESSURE_HARVEST_c4.md):
-    (4) the p_b closure is ARGMAX-CRITICAL at near-flat value
-    (Humphreys 1971 pp. 1586-87: swapping the p_b model moved the
-    optimum base height x2.45 and tip slope 13.26->3.08 deg at
-    +0.26% thrust) - the truncation re-evaluation MUST state its
-    p_b closure + sensitivity; (5) the GENO/Veen closure
-    p_b = 0.846p/M^1.3 = a 1966 cold near-wake curve fit FAILED by
-    WG10 (never adopt as-is; N2 replacement duty); (6) the ONLY
-    hot-fire RDE base data = Purdue V1.4 NOZZLELESS CTAP (Harroun
-    2020/2021, open/closed transition P_a/P_c ~= 0.15, closed-wake
-    P_b/P_c ~= 0.08, open-wake base 17-20% below ambient) -
-    nozzleless, not truncated-plug: R8 vacuum confirmed.
- 10. CONSUMATA (F-SERVICE 2026-08-13): D-01/C31-minimale/C30 tutte
-    RATIFICATE dall'utente ed ESEGUITE in-window (glossa cancellata
-    ai due loci + claim 1 riscritto; T7(c) forma a cono minimale
-    [T-T7CN] in M0+P1_sections; attribuzione C30 gated al blocco
-    ladder â€” upgrade "sistema" resta gated su lettura Shmyglevskii
-    1962, righe WANTED/R28). Log: PROGRESS_2026-08-13_Fservice.md.
-    Decisioni al confine pinnate (utente, 2026-08-13): A2 = (a)
-    (O3.1-cs costruito in apertura S-CERT come strumento d'audit);
-    D-49 = ESCLUSA (limite dichiarato del campione S-CERT).
- 11. Schedulazione R22-lit (esperimento disentanglement
-    3D/3D-mediato/2D) â€” candidato primo blocco F2 (handoff).
- 12. P0 procurement: ISABE-2003-117, Bogdanov 2002, tesi Harroun
-    Purdue 2019, Shmyglevskii PMM 26(1) 1962 (righe WANTED nel
-    literature registry).
- 13. CONSUMATA (touchpoint post-S-CERT, 2026-08-13): (a) le due
-    one-liner CLAUDE.md RATIFICATE ed ESEGUITE (ban mutazioni
-    ambiente + regola sessioni parallele, sezione Preferenze);
-    (b) memory-mirror UD-5-sub DECISA-NO (default confermato: il
-    corpus memoria resta solo nel suo store).
- 14. CONSUMATA (touchpoint confine Fase C, 2026-08-19, S-FOUNDATIONS-C):
-    (a) P_amb slot esplicito RATIFICATO ed ESEGUITO (problem book
-    P_amb SLOT OF RECORD + choice ledger C53 + glossario);
-    (b) CAVA LITREVIEW RATIFICATA (ADVISORY_litreview_confrontation:
-    le righe 39 innesti/33 correzioni/29 residui diventano
-    consumabili dai panel di Fase C â€” consumo per-riga alle finestre
-    che le toccano, mai in blocco); (c) mini-registro esiti-semi
-    RATIFICATO ed ESEGUITO (docs/seed_outcome_registry.md);
-    derivation-hash DEFERRED a F2; (d) slot Sonnet per il ledger
-    141-fork CONFERMATO (Blocco 5); (e) ROTAZIONE di sessione al
-    confine Fase C RATIFICATA (questa chiusura). [RESTANO APERTE: consumate o
-    aggiornate dal touchpoint C3 del 2026-08-20, vedi riga 15]:
-    UD/ADR di BLOCCATO 9 + O5 numpy (ri-presentare alla prossima
-    chiusura R3) + pricing Lean (da presentare alla prossima R3)
-    + le DUE decisioni del dispatch swirl5f par.9 (2026-08-19):
-    (i) promozione [S-5F] da SCHEMA a build item â€” percorso A
-    free-vortex carry / B five-field engine+adjoint / C procurement
-    dati tangenziali (giustificazione quantificata = par.3 riga 8,
-    classi di bias B1-B5); (ii) priorita' dell'aggiudicazione C51
-    (il dispatch ne rafforza il caso: righe 6/13, lettura
-    data-anchored-shadow).
- 15. TOUCHPOINT C3 CONSUMATO (utente, 2026-08-20; carrier =
-    checkpoint C3 + questa riga): (a) BLOCCATO 9 DECISO (riga 9
-    aggiornata in place: re-bless 242.5 constrained + trunc 0.20,
-    esecuzione gated ADR-D4); (b) O5 numpy 2.5.2 = ADOTTA A
-    CHIUSURA C3 (install SOLO al confine R3 con fingerprint
-    ri-stampato + suite ri-verificata + dichiarazione nel log; fino
-    ad allora env INVARIATO a 2.5.1); (c) pricing Lean = si
-    presenta CON DOSSIER alla chiusura R3 di C3 (invariato);
-    (d) promozione [S-5F] = RINVIATA a F2-entry (resta SCHEMA; la
-    riga theory:s5f-path-a-freevortex-stratified-gap resta
-    CONFIRMED con trigger armato pre-adozione; dossier presentato
-    al touchpoint con classi B1-B5 e fork lemma-misto vs
-    monitored-neglect); (e) priorita' C51 = CONFERMATA rung-3a in
-    F2 (non si anticipa in C3); (f) G9 slip-sheet = RINVIATA a
-    F2-entry (scope resta slip-free dichiarato, caveat [T-T0P]);
-    (g) AG-1 ADOTTATA regola standing (valvola classe-di-carico al
-    tier prove: righe gap-accounting = sufficient-not-optimized
-    EARLY, generalizza la strategia G8 ratificata; vigente dal
-    Blocco 2 C3; carrier = memoria + checkpoint C3); (h) usage
-    meter dichiarato dall'utente FRESCO (<25%) = wave 3 a forma
-    piena autorizzata (7f onorata: meter chiesto, non asserito);
-    (i) papers-needed CONSUMATA: 18 arrivi in literature/ (manifest
-    = validation/sfoundations_raws_2026-08-13/MANIFEST_papers_
-    foundations_c.md, identita' pagina-1 verificate) inclusi Uno
-    published (user upload) + Becker-Rannacher 2001 (user upload);
-    restano WANTED i 10 hard-procurement storici.
- 16. PROPOSTA UTENTE REGISTRATA (2026-08-20, post-chiusura C3, da
-    ratificare al touchpoint C4 o F2-entry): SESSIONE DEDICATA
-    "topologia-e-modellistica" — (a) chiarire l'EFFETTIVA topologia
-    del campo in un ugello prova (candidato naturale: IE aerospike
-    Harroun 2021, campi pubblicati Figg. 12-20; Fig. 18 = exhibit
-    di record gia' nel brief T-RED) incl. i fogli d'urto elicoidali
-    alimentati azimutalmente; (b) aggiudicare A CONVERGENZA e col
-    protocollo censimento TUTTE le rappresentazioni di modellistica
-    disponibili: per-fase assiale 4-campi (attuale) / 2.5D
-    five-field (contenuto swirl, topologia assiale) / marcia
-    azimutale C51-route-B (elica nativa, |w_rel|>c) / ibridi /
-    3D-per-fase. SEQUENZIAMENTO PROPOSTO: dopo T-DISC/T-RED (C4)
-    che fissano cosa il modello DEVE vedere; consoliderebbe le
-    decisioni oggi sparse S-5F + C51 + census-lemma (i pin F2-exit
-    restano sovrani salvo ratifica esplicita). Ladder di
-    rappresentazione di record (chiarita 2026-08-20): 5-field vede
-    il CONTENUTO swirl ma NON la topologia elicoidale (limite
-    data-anchored-shadow = topologico, non di conteggio campi); la
-    marcia azimutale vede l'elica nativamente.
- 17. TOUCHPOINT C4 APERTURA CONSUMATO (utente, 2026-08-20; carrier =
-    checkpoint C4 + questa riga; rinumerata 16->17 in-window: la
-    sessione parallela ha coniato la propria riga 16 nello stesso
-    intervallo e il commit 2fba2eb ha incluso questa riga non
-    committata — collisione dichiarata e riparata, numerazione
-    rigenerata da lettura misurata del file): (a) usage meter
-    dichiarato FRESCO
-    (<25%) = Blocco 1 (centerpiece 3 lenti until-dry + 4 minori +
-    judge) a forma piena autorizzata (7f onorata); (b) pricing Lean
-    = DEFER A F2-ENTRY (decisione utente; il dossier
-    validation/DOSSIER_lean_pricing_2026-08-20.md resta di record;
-    nessun lavoro Lean in C4; ri-presentazione al touchpoint
-    F2-entry); (c) calendari ADR-D4 + estrazione P-1 = ENTRAMBE LE
-    FINESTRE SI FISSANO AL TOUCHPOINT F2-ENTRY (coerente con gli
-    owner nominati; BLOCCATO 9 resta gated ADR-D4, AG-6 resta duty
-    della finestra P-1). I 3 ask paper fermi (More-Wild ECNoise,
-    ASME V&V 20-2009, Xing-Stern 2010+2011) restano aperti.
- 18. CATENA AGGIORNATA (utente, 2026-08-20, in-sessione C4):
-    tra la chiusura C4 e F2 si inserisce S-PRES — MILESTONE
-    PRESENTAZIONE ESA (prima presentazione esterna del progetto):
-    sviscerare il grafo di progetto con struttura da presentazione
-    scientifica SOTA (poco testo, non over-matematica, intro
-    affilata su letteratura + pratica ugelli RDE + efflusso reale,
-    nulla dato per scontato), OGNI slide-claim ancorato al record
-    alla sua classe di rigore (cite-only, zero claim orfani),
-    doppia review (refuter di rigore + review comunicazione) +
-    loop con l'utente. INPUT SORGENTE = i deliverable C4 (pipeline
-    decision map = spina dorsale; forchetta = slide onesta; field
-    atlas + campagna nozzle-RDE = sezione efflusso/pratica).
-    TRIGGER-SCAN OBBLIGATORIO al Block 0 di S-PRES (presentazione
-    esterna = atto trigger-bearing): (i) riga findings :1455
-    (equivariance+uniqueness S1) SPARA -> eseguire la duty o
-    presentare il claim two-stage dichiaratamente SCHEMA;
-    (ii) D-44: claim di adeguatezza gated (forchetta = bracket con
-    provenienza, mai adequacy dimostrata); (iii) novita'
-    query-bounded anche su slide; sweep completo dei trigger
-    'external presentation/public claim' da comando misurato.
-    Formato/durata = decisioni utente al Block 0 S-PRES. Il prompt
-    di sessione si autora alla chiusura R3 di C4 (quando gli input
-    sono atterrati e citabili).
- 19. TOUCHPOINT C4 CHIUSURA CONSUMATO (utente, 2026-08-21; carrier =
-    checkpoint C4 + questa riga): (a) R22-CFD: CFD-2 (demo pair
-    Harroun coi run per-fase nostri, barra = eps di M-RED, template
-    paired-run Li-Xu 2025, contratto BC documentato dal throat
-    harvest) ENTRA IN CODA F2; CFD-1 (test del pin su configurazione
-    accoppiata reale, item di calcolo massimo) SI DECIDE POST-M-RED
-    con dossier procurement/collaborazione e criteri di riferimento
-    PM22-conforme vs Jourdaine-patologico; (b) BLOCCATO 16
-    RATIFICATA: sessione topologia+modellistica A F2-ENTRY con scope
-    ESTESO alla passata field-reading sistematica (insieme ai dossier
-    S-5F/C51/C58/C60); (c) M-RED RESTA prima campagna F2 (nessun
-    pull-forward); (d) procurement ATTIVO = top-3 harvest
-    (Lim-Humble AIAA 2020-0195, Stechmann PhD 2017,
-    Schwer-Kailasanath AIAA 2012-3943) + i 3 ask fermi (More-Wild
-    ECNoise, ASME V&V 20-2009, Xing-Stern); il resto WANTED passivo.
-
- 20. LINEA BRICK-2 PLUG (2026-08-27, decisioni owner, non bloccanti
-    per la catena principale; aggiornata in place 2026-09-24, S34-S35):
-    (a) DECISA: ramo di lavoro `rde-nozzle-program` (direttiva
-    2026-09-17); push AUTORIZZATO dall'owner il 2026-09-24 dopo un commit
-    conforme alle regole ("purche' il commit sia in linea con il lavoro
-    della git, puoi pushare direttamente su rde-nozzle-program") -- non
-    e' una decisione aperta;
-    (b) GENO: blessing e commit di RaoPlug N-65/N-66 + i fix che fanno
-    girare il run legacy p_b=0 (riproduce la Tab. 1 di Rao a 2.44e-3),
-    CASES/raoplug_gamma123 + plugnoz_axi, sorgente del doc di teoria
-    (cap. 7.2 "The lip fan in axisymmetric flow") — gated dal protocollo
-    GENO (N-75); (c) documento italiano brick-2 (stash@{0}) da
-    aggiornare (W-5 chiuso, catena Rao, §vsrao al membro rao_val) o
-    tenere fuori; (d) ATTERRATA 2026-09-22 (riparazione R4 di S33, M0
-    Parte VI, addendum di linea S26-S33): la lezione "ventaglio =
-    relazione di punto in assialsimmetrico"; (e) S28 2026-09-15: GENO CASES/raoplug_ch4o2 (nuovo
-    case, untracked) da benedire; il ventaglio di fase 1 va in NaN per
-    theta_E >= 0 e la posa "massa+ambiente" cade in un buco della
-    scansione a 21 punti — il membro a PA ESATTA per l'A/B di torneo
-    richiede un intervento GENO sotto protocollo (N-75); il probe del
-    passo C- (env GENO_CMINUS_DIV) vive in un build di prova, mai
-    committato: adottarlo o no e' decisione owner; (f) S28/S29
-    2026-09-15/16: la linea brick-2 non ha mai portato il MARGINE DI
-    PIEGA del programma (X-MGOV esiste solo per la campana): i suoi
-    ottimi S21-S23 sono usciti dalla classe senza urti (S28 addendum
-    B). DECISO 2026-09-16: porting di X-MGOV nel plug + S21-S23
-    vincolati al margine (NEXT-PARALLELO 1-bis); resta owner la
-    dimensione della perturbazione del test di moto v3 (a 1.5 %
-    discrimina in una sola direzione nel nostro mondo); (g) DECISA 2026-09-24 (owner: "riallinearci con il piano e completare
-    le richieste di F3", "procediamo con la tua proposta"): ingresso F3
-    RATIFICATO (single-oracle Rao 1961 dichiarato; margine specchio C-
-    dichiarato PRACTICE condizionale su [X-PMRG]); contatore "F3 session
-    m/4" ISTITUITO da S37 = 1/4; le nove sessioni taggate F3 (S26,
-    S28-S36) erano il de-risk autorizzato e NON contano; ordine F3 prima
-    di F2 (R38); (h) SUPERATA 2026-09-24: la classe si misura in R e
-    in R le marce non piegano; dalla loro gola la Tabella 2 e' RI-OTTENUTA
-    (X-TPOS), la spinta assoluta resta diversa per la loro massa
-    dichiarata incoerente (J/mdot +0.02 %); (i) NUOVA 2026-09-24:
-    Panov-Shvets (Eq. 38 di Humphreys) sull'ambiente (membro di
-    base_pressure) o sullo stato in D (loro nomenclatura, riproduce la
-    Tabella 4) -- oggi la lettura di Humphreys vive solo nella posa
-    (TPOSE_PS_REF=corner), il membro del repo e' invariato. Input nuovo
-    2026-09-25 (S40): la tesi di Fiore (GENO/literature/Thesis_Fiore.pdf,
-    cap. 6: regimi di scia, modelli di pressione di base contro RANS; riga
-    di letteratura thesis_fiore_2019); la scelta non e' banale (i membri
-    non concordano, S30 6.4). (j) CHIUSA 2026-09-24 (S39): F3 chiusa
-    senza lanciare la campagna finder dalla partenza C, che resta il
-    residuo R-F3-1 (seconda campagna dell'istanza non spesa).
+| R37 | S-PRES milestone ESA (catena C4 -> S-PRES -> F2; item BLOCCATO 18) | CONSUMED CON PIVOT 2026-08-25 (S1-S4; deck finale = utente, Desktop/Presentazione_ESA.pptx fuori repo; chiusura = prove-per-atlas TRACE/CONSECUTIO/HARVEST; 2 finding mintate; lint xix/xx/xxii verdi alla chiusura 2026-08-31) | — | log S1 PROGRESS_2026-08-22_Spres1 + SESSION2_LOG + deck_build/BUILD_LOG.md (S3+S4) + trace/ + act_rework/ ; commits c4dc1d0..78c19a9 |
+| R38 | S-ROADMAP (U1'-U7: roadmap DERIVATA D6xatlasxregistri + lint copertura (xxiv), START_HERE + record_query + lint manifest, triage soli-tag path:, R8 gate-first, PROGRESS snello, GENO health, P1_outline) | CONSUMED 2026-08-31 (inline only, 0 subagenti; addenda E/F eseguiti: cammino DERIVATO, deviazioni dello schema D = finding method:sroadmap-schema-authored-from-partial-context SUPERSEDED + plan:h20-c61-registry-homing… CONFIRMED critical; triage 211->213 OPEN = 44/125/44 (2 chiusure con evidenza, 5 mint: schema advisory, homing H20/C61, torneo full-envelope senza passo D6, representation ladder/controparte 3D senza passo D6, tool NASA non atterrati); GENO = passo BLOCKING B-GENO) | residui: B-GENO (utente), lint (xxiv) rigenerato a ogni apertura (R8) | validation/PROGRESS_2026-08-31_Sroadmap.md + docs/ROADMAP_critical_path.md + tools/roadmap_derive.py + tests/test_roadmap_coverage.py |
+| R39 | F2-B0 (F2 BLOCCO 0, "F2 session 1/6": refuter pass sulla roadmap derivata + T1-T5 + panel engine cluster + P0 S-CERT + protocollo TWIN + eredità S-PRES + igiene) | CONSUMED 2026-09-05 (E1 DISCHARGED con flip count; E2 lint xxiv PASS 210 OPEN [48 critical] dopo i ripari del refuter di chiusura; E3 C57/C60 NEVER→MIXED, C58 riga riparata, [P-IPADJ] emendata, SDP-CAND-8 ritirato; E4 TWIN protocol su file + guardiano; E5 T1-T5 registrate, GENO quarantena+build verde+ctest; E6 suite plain: vedi ORA). Scoperte: X-O32 FAILING (controllo negativo non certificabile, discriminatore ESEGUITO: A1_COLEXEC=0 stessa failure + tree 07400a4 stessa failure => indotto dall'ambiente, non dai commit del 13-08), 6 carrier stale da import-closure (gate closure-aware + envfp + fail= grammar), REF-1 KILL su riga C58, delta REF-16/17 su multiplier-rejector | residui: X-O32 fail= (S4 certification-aware re-form) e X-LOCD fail= (re-form con recorder pinnato) = primi atti bench di F2.ENGINE; card O5 Uno (B-UNO); residui NASA (B-NASARES) + Lean/calendari a F2-EXIT | validation/PROGRESS_2026-08-31_F2B0.md + f2b0_raws_2026-08-31/ + TWIN_PROTOCOL_preregistration_2026-08-31.md + ADVISORY_F2REPR_prompt_2026-08-31.md |
+| R40 | S-REVIEW (revisione agnostica delle FONDAMENTA alla milestone F2-entry: refuter sul carrier, enunciato agnostico Q0 + lint, carrier St [X-STSC], Stage A derive/diff, red team, triage, Stage B, landing, GO/NO-GO) | IN PROGRESS — SOSPESA SAFE 2026-09-05 18:55 a metà Stage B (ricetta di ripresa LOG-10); FATTI: refuter (24 FAIL riparati/flaggati), E1 PASS, [X-STSC] committato 612c206, Stage A 4 alberi + 13 giudici (ibrido 4/4 DERIVATO; CONFIRM-BY-DIFF su adjoint/obiettivo/geometria), red team AMEND (10 emendamenti TWIN proposti), triage cap 6, Stage B parziale; tetto AMENDED a 12,5M; 877k persi nel crollo per limite di usage | sessione di ripresa; utente per T0/T2/P-D6-5/R9/C63-C66 | validation/PROGRESS_2026-08-31_Sreview.md + ASSESSMENT_SREVIEW_foundations_2026-08-31.md + sreview_raws_2026-08-31/ |
+| R41 | LINEA BRICK-2 PLUG S21-S36 (RINUMERATA R37->R41 alla riunione 2026-09-30: R37 era gia' S-PRES, coniata prima; nei log e nei commit della linea del plug S26-S41 'R37' si legge R41) (parallela; branch `brick2-plug` fino al 2026-09-17, poi `rde-nozzle-program`; S34-S35 nel worktree tri-experiment, atterrati il 2026-09-24 con push autorizzato dall'owner) | CONSUMED 2026-09-24 come de-risk autorizzato parallelo a F2 (D6 F3): i suoi artefatti entrano in F3, aperta lo stesso giorno (R38); le sue sessioni NON contano nel contatore F3 (decisione owner; sessioni taggate F3 misurate con `git log --format=%s | grep -o '\[F3/A1\]\[S[0-9S-]*\]' | sort -u` al 2026-09-24 sera: S26, S28-S33 = 7 (74 commit); con S34-S35 e S36 = 9 sessioni.) | owner: BLOCCATO 20 (g) DECISA 2026-09-24, (i) Panov-Shvets sull'ambiente o sullo stato in D (aperta); tecnico, passato a F3 (R38): TR-SQP a due pareti (shroud variabile di progetto, push +dy in J_replay), RE-1 sulla coppia di Migdal da partenze generiche, Veen 1974 Tab. 3 dalla NOSTRA posa; residui d'uscita F3 del S28 da rileggere alla luce di X-TPOS/X-RAOHM | log validation/PROGRESS_2026-08-27_S26_rao_modo1.md, PROGRESS_2026-09-09_S27_line_reconstruction.md, PROGRESS_2026-09-15_S28_ourworld.md, PROGRESS_2026-09-16_S29_readjudication.md, PROGRESS_2026-09-17_S30_tournament.md, PROGRESS_2026-09-18_S31_base_data.md, PROGRESS_2026-09-21_S32_throat_kernel.md, PROGRESS_2026-09-22_S33_angle_param.md, PROGRESS_2026-09-23_S34_S35_throat_posing.md, PROGRESS_2026-09-24_S36_shrouded_plug.md; registry X-PLUG/PSPL/PAKN/PGRS/RMAR/FMTR + X-RAO* + X-OW* + X-PMRG/PTRN/AFAN/BPRS/CHTW/HMPH/TKRN/FRMR/ANKR + X-TPOS/IVLT/RAOHM + X-TWMU/MGDL + DIR-REOB; handoff RDE/handoff/NOZZLE_HANDOFF_2026-09-23(_gola).md, SHROUD_HANDOFF_2026-09-24.md |
+| R42 | FASE F3 GEOMETRY CLASSES (RINUMERATA R38->R42 alla riunione 2026-09-30: R38 era gia' S-ROADMAP; nei log S37-S41 e nei commit della linea del plug 'R38' si legge R42) (D6; APERTA 2026-09-24 per ratifica dell'owner, ordine F3 prima di F2; ingresso dichiarato: single-oracle Rao 1961 + margine C- PRACTICE condizionale su [X-PMRG]) | CONSUMED 2026-09-24 (S39, "chiudiamo F3") -- contatore finale 3/4 (S37, S38, S39 chiusura senza run decisivi); campagne sull'istanza del plug 1/2; fallback non scattato | residui con proprietario R-F3-1..5 (finder dalla partenza C; stretch a due pareti con DUTY-11; falsificatore di forma di T-GB; riga X-PTRN; DUTY-1(b) a F5); USCITE CHIUSE: (a) meta' valore S38 [X-OWNM] (tetto di T-GB raggiunto all'ambiente nominale), (b) oracolo Tabella 1 S37 [X-RAOPO], (c) istanza a gamma variabile S38 (dichiarata), (d) T-GB THEOREM* su [C-GBCS] S37 (falsificatore di forma nominato, aperto) | log validation/PROGRESS_2026-09-24_S37_F3_entry.md, PROGRESS_2026-09-24_S38_F3_nominal.md, PROGRESS_2026-09-24_S39_F3_exit.md; registry X-RAOPO, C-GBCS, T-GB, X-OWNM; handoff RDE/handoff/F3_HANDOFF_2026-09-24.md |
+| R43 | RIUNIONE E ORDINE (finestra di servizio, 2026-09-30): la linea del piano e la linea del plug in un solo ramo; validation ripulita; il piano riparte da S-REVIEW | IN CORSO — commit del plug 4d26d66, apertura e27b693, merge in questo commit; restano: impronta d'ambiente e riesecuzione dei controlli resi vecchi dall'unione, glossario, roadmap derivata | sessione di chiusura della finestra | validation/PROGRESS_2026-09-30_reunion.md |
 
 ## LOG SESSIONI
 I log per-sessione vivono in validation/PROGRESS_*.md (indice:
 validation/ADVISORY_INDEX.md). La storia integrale di questo file
 (stati precedenti, delta censimento, NEXT storici, log S1-S25bis)
 e' in docs/rde_nozzle_PROGRESS_ARCHIVE.md (append-only, SR-10).
+
+Ultime sessioni (1 riga/sessione, puntatore al log; storia completa nell'archivio):
+| data | sessione | esito | log |
+|---|---|---|---|
+| 2026-08-21 | S-FOUNDATIONS-C4 (R35) | CONSUMED PIENO: Fase D a convergenza, pipeline decision map, coverage gate PASS | validation/PROGRESS_2026-08-21_SfoundationsC4.md |
+| 2026-08-22/25 | S-PRES S1-S4 (R37) | CONSUMED CON PIVOT: deck utente fuori repo; prove-per-atlas TRACE/CONSECUTIO/HARVEST | validation/PROGRESS_2026-08-22_Spres1.md; spres_raws_2026-08-22/SESSION2_LOG.md; deck_build/BUILD_LOG.md |
+| 2026-08-31 | S-ROADMAP (R38) | CONSUMED: roadmap DERIVATA + lint (xxiv), START_HERE/record_query, triage path:, R8, PROGRESS snello, GENO health (BLOCKING), P1_outline | validation/PROGRESS_2026-08-31_Sroadmap.md |
+| 2026-09-05 | F2-B0 (R39) | CONSUMED: refuter pass (E1/E2), T1-T5, panel engine (E3), P0 S-CERT fix + 6 re-run (X-O32/X-LOCD non riproducono: frontiera di certificazione legata alla versione), TWIN protocol (E4), eredità S-PRES, igiene; NEXT = S-REVIEW (decisione utente) poi F2.REPR, entrambi con carrier | validation/PROGRESS_2026-08-31_F2B0.md |
+| 2026-09-05 | S-REVIEW (R40) | IN PROGRESS, sospesa safe 18:55 a metà Stage B: Stage A (4 de-novo + 13 giudici) + red team + St carrier fatti; ripresa con resumeFromRunId wf_83c30268-aeb (LOG-10) | validation/PROGRESS_2026-08-31_Sreview.md |
+| 2026-08-27 .. 09-28 | Linea del plug S26-S41 (R41, R42) | F3 aperta e chiusa il 2026-09-24 fuori ordine; de-risk del settore plug, due pareti, procedura RDE, arbitro CFD | validation/PROGRESS_2026-09-24_S39_F3_exit.md; validation/PROGRESS_2026-09-26_S41_twowall_design.md |
+| 2026-09-29/30 | S42 (linea del plug) | Rao contro SQP con ugello interno: prova generale del confronto decisivo, fuori protocollo | validation/PROGRESS_2026-09-29_S42_internal_nozzle.md |
+| 2026-09-30 | RIUNIONE E ORDINE (R43) | IN CORSO: un solo ramo, validation ripulita | validation/PROGRESS_2026-09-30_reunion.md |
+

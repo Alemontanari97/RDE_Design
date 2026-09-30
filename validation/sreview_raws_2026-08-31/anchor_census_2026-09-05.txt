@@ -1,0 +1,23 @@
+== ANCHOR CENSUS (tools/anchor_census.py, measured) ==
+file                                            doc:NNN file:NNN   named#    [ids]   dead
+docs/findings_registry.yaml                          12      145      260      127      7
+docs/choice_ledger.yaml                               6       10       58       72      4
+docs/claims_registry.yaml                             0        0      140      138      0
+docs/literature_registry.yaml                         0        0       50       15      0
+docs/glossary.yaml                                    0        2      118       52      0
+docs/flag_registry.yaml                               0       69        0        8      3
+tools/roadmap_derive.py                              28        0        0       16      0
+tests/test_roadmap_coverage.py                        0        0        0        0      0
+docs/rde_nozzle_pipeline_decision_map.md             20       22       49       51     15
+docs/rde_nozzle_MASTER.md                             0        4        0      250      2
+docs/rde_nozzle_development_plan.md                   0        0        0       32      0
+docs/rde_nozzle_PROGRESS.md                           2        0        0       16      0
+docs/START_HERE.md                                    0        0        0        0      0
+validation/ADVISORY_INDEX.md                          0        0        0       28      0
+TOTAL                                                68      252      675      805     31
+line-number anchors 320 vs stable anchors 1480 (named# + [ids]); dead line anchors 31
+  DEAD in docs/findings_registry.yaml: margin_governor.py:620 (file missing), def_twin_falsifier.py:40 (file missing), a1_toc_variational_jax.py:2356 (file missing), def_twin_falsifier.py:137 (file missing), D25U_U3U4.md:61 (file missing), conditionals.md:93 (file missing), a1_toc_variational_jax.py:996 (file missing)
+  DEAD in docs/choice_ledger.yaml: sota_gapmap_raws_2026-08-12/s24_gapv_constraints.md:173 (file missing), ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md:191 (file missing), margin_governor.py:620 (file missing), sota_gapmap_raws_2026-08-12/s24_gapv_cell-cert.md:191 (file missing)
+  DEAD in docs/flag_registry.yaml: a1_toc_variational_jax.py:1391 (file missing), margin_governor.py:219 (file missing), def_twin_falsifier.py:725 (file missing)
+  DEAD in docs/rde_nozzle_pipeline_decision_map.md: docs/rde_nozzle_PROGRESS.md:390, claims_registry.yaml:1900 (file missing), findings_registry.yaml:2148 (file missing), findings_registry.yaml:1643 (file missing), claims_registry.yaml:617 (file missing), findings_registry.yaml:2446 (file missing), findings_registry.yaml:1462 (file missing), VERDICT_blocco2.md:600 (file missing), findings_registry.yaml:1466 (file missing), findings_registry.yaml:211 (file missing), findings_registry.yaml:1468 (file missing), docs/rde_nozzle_PROGRESS.md:395
+  DEAD in docs/rde_nozzle_MASTER.md: findings_registry.yaml:2026 (file missing), a1_toc_variational_jax.py:1748 (file missing)

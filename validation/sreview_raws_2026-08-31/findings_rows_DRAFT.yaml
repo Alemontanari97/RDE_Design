@@ -1,0 +1,102 @@
+# FINDINGS ROWS — DRAFT minted by S-REVIEW (2026-09-05); appended to docs/findings_registry.yaml at landing (order 8)
+# AFTER the Stage-B verdicts + verifiers; status/severity/path finalized then (lint xix: OPEN rows need owner + trigger + path).
+# Schema mirrors the registry rows (id, status, path, severity, magnitude, source, code, mechanism, owner, trigger).
+
+- id: method:deriver-independence-memory-index-injection
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "the harness auto-loads the project MEMORY INDEX (one-line pointers incl. session names and paradigm words) into every subagent's system context; the four de-novo derivers of S-REVIEW were instructed to read only two files and their outputs carry no repo ids (agnosticity lint v2: 0 hits on 4 trees), one deriver declared the injection and its non-use, three did not mention it; the Stage-A convergences are therefore 'independent MODULO the memory-index exposure' (judges graded DERIVED vs NAMED: the road hybrid = 4/4 DERIVED)"
+  source: "validation/PROGRESS_2026-08-31_Sreview.md#LOG-4b"
+  code: ["validation/sreview_raws_2026-08-31/stageA_tree_hyperbolic.md:583-587"]
+  mechanism: harness-context-leak
+  owner: "orchestration lever F6 (S-REVIEW ASSESSMENT §7): future de-novo derivers run in a context WITHOUT the project memory index (working directory outside the project path, or a harness option); until then the DERIVED/NAMED split is the mitigation"
+  trigger: "the next de-novo derivation launch (any session)"
+
+- id: foundations:decisive-test-measures-search-frontier-not-cycle-vs-mean
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "no certified outcome-I optimum exists on ANY sector of record: three campaigns (S20 adaptive knots, S22 governor, S24 F1b) exited certifiability-limited with the margin INACTIVE; as posed, the TWIN's arm P would measure the certification frontier of the SEARCH, not 'cycle vs mean' (SP4 judge q1: Q1 is the right sharpening CONDITIONAL on PILOT-CB K1 or K2 being settled first); a fourth cert-limited exit caps Q2 at INTERMEDIATE by construction"
+  source: "validation/sreview_raws_2026-08-31/stageA_diff_SP4.md#6. PROPOSED FALSIFIER"
+  code: ["validation/PROGRESS_2026-08-07_S20_adaptive.md:1-40", "validation/PROGRESS_2026-08-11_S22_governor.md:1-40", "validation/PROGRESS_2026-08-12_S24_f1b.md:1-40"]
+  mechanism: certification-boundary-paradigm
+  owner: "F2.ENGINE first act: PILOT-CB pre-registered (Arm I certify-then-accept vs Arm E explore-then-certify on the S22 cert-limited instance, both recorders, envfp pinned, equal march budget; outcomes K1/K2/K3/K3' each able to fire) — execution joint clause at F2.REPR (REF-13); ledger C38 closes on the K2 datum"
+  trigger: "before any TWIN arm runs (R-TWIN-4 certification parity)"
+
+- id: certification:a1-margin-numeral-contradicted-by-record-ratio
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "TWIN amendment A-1 makes a design quotable iff cert_worst <= 1/K_RICH (= 1/4) under the pinned recorder, but the record's own S22 base already shows a cross-triple (recorder, lowering) cert_worst ratio of 6.6 > K_RICH (SP8 judge F-1); the numeral is UNMEASURED as a sufficient margin; the roundoff-relative per-cell threshold (C18 single-author NTF x floor) is the candidate cause of recorder-dependent binary verdicts (F-2: band-relative threshold with contraction guard)"
+  source: "validation/sreview_raws_2026-08-31/stageA_diff_SP8.md#5. Proposed falsifier for Stage B"
+  code: ["validation/TWIN_PROTOCOL_preregistration_2026-08-31.md:148-164", "docs/rde_nozzle_MASTER.md:4250-4299"]
+  mechanism: underived-constant
+  owner: "F2.ENGINE first act ([CERT-STAB] protocol on the X-LOCD design set: F-1 rho_meas, F-2 band-relative re-certification, F-3 difference band; reuses the X-O32/X-LOCD re-form runs) + M0 requirement text [CERT-STAB] (ASSESSMENT lever F4)"
+  trigger: "the X-O32 / X-LOCD re-forms (first F2.ENGINE act) — no re-stamp of any FAILING carrier before it"
+
+- id: twin-protocol:uncertainty-budget-absent-before-run
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "TWIN §6 quotes delta only with a band stack of which four of five terms have no number on the decisive sector; the base-pressure term alone (base force 5-12% of thrust x WG10 closure band 15-19% = 0.75-2.3% Isp) is threshold-sized; no St term, no mu-shape term, no thermo (frozen vs equilibrium) term, no representation term is computed; a row without producer must cap the outcome at INTERMEDIATE by rule (red team A-2; SP9 judge three pre-conditions each vs band/3; SP-PB F-PB set + invariance)"
+  source: "validation/sreview_raws_2026-08-31/RED_TEAM_decisive_number.md#RT-1 UNCERTAINTY BUDGET BEFORE ANY RUN"
+  code: ["validation/TWIN_PROTOCOL_preregistration_2026-08-31.md:87-117"]
+  mechanism: unpriced-band-term
+  owner: "F3.TWIN opening (pre-run duty; TWIN §9 PROPOSED amendments A-2 / A-7 / F-PB DA RATIFICARE); the p_b set + invariance test = C61 window; the St term = F2.M-RED (G3 instrument)"
+  trigger: "the instance pin at F3.TWIN opening (no arm runs before the budget table exists)"
+
+- id: twin-protocol:arm-c-mean-state-not-strongest-opponent
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "TWIN §4 pins arm C = the classical design at the MEAN state; [T-T4] says the ideal plug is optimal at the PEAK pressure and the field's practice already runs cycle-averaged sweeps (Paxson-Miki 2022; Stechmann model), so the mean-state arm is a straw man: a design-phase sweep (Dirac-mu design states incl. <Pc>, the mass-flux/thrust-consistent states and the peak) with pre-registered rules (spread_C > band => §4 REFUTED; delta_practice <= 0.5% => MATERIAL unreachable by theorem, pivot without running arm P; Delta_Ab > band/3 => base radius pin) separates the METHOD claim from the DATA claim (SP-CARM judge; red team A-3; SP4 rider A7)"
+  source: "validation/sreview_raws_2026-08-31/stageA_diff_SP-CARM.md#4. Proposed falsifier"
+  code: ["validation/TWIN_PROTOCOL_preregistration_2026-08-31.md:53-77"]
+  mechanism: single-author-comparator
+  owner: "F3.TWIN opening: amendment A-CARM (arm C := design-phase-sweep argmax + literature fixed design as attribution arm) — TWIN §9 PROPOSED block DA RATIFICARE; ledger row C63 'comparator identity' proposed"
+  trigger: "the arm-C builder of F2.ENGINE (required anyway) at the TWIN instance, values only, BEFORE any arm-P run"
+
+- id: twin-protocol:st-license-absent-on-decisive-sector
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "[X-STSC] MEASURED St_n on the truncated-plug class = 0.27-1.41 (record head count: 0.73-1.41) against the program's own license rule (St >= 1: frozen-time rung alone NOT defensible; 0.1-1: corrector MANDATORY) and D1 §8 ('any hardware conclusion from rung 2 without an St error bar is out of contract'); the TWIN protocol has no St field, no scope declaration, no corrector row in §6; no J_1 number exists (D6 :783-786 G3 threshold never derived); the wave-frame backstop depends on an A-REPR outcome the fallback does not provide"
+  source: "validation/sreview_raws_2026-08-31/RED_TEAM_decisive_number.md#RT-7 THE St NUMBER ON THE DECISIVE SECTOR"
+  code: ["validation/st_scoping_number.py:1-60", "docs/rde_nozzle_problem_book.md:466-478", "docs/rde_nozzle_development_plan.md:783-786"]
+  mechanism: unmeasured-license
+  owner: "ROAD verdict of S-REVIEW (ASSESSMENT §1) -> F2.REPR (evaluator representation, A-REPR extended) + F2.M-RED (G3 instrument: FALSIFIER-SP1 r_red/r_corr at Omega/2, Omega, 2 Omega) + TWIN §9 PROPOSED A-7 (St discipline per arm)"
+  trigger: "any quoted rung-2 delta on the plug sector; the instance pin at F3.TWIN opening"
+
+- id: plan:evaluator-representation-of-decisive-delta-unpinned
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "D6 addendum F2.REPR and TWIN §4 pin ONE representation for BOTH arms (the designer's); all four blind lenses + the ROAD judge derive that the EVALUATOR of the decisive delta must be chosen SEPARATELY (exact rotating-frame steady 3-D rung under the single-mode pin, [T-T0]) — the record holds that rung as backstop/meter only ([S-BLITE]; C51 NEVER); at the measured St this is an obligation, not a preference (the per-phase evaluator has no bar at St ~ 1)"
+  source: "validation/sreview_raws_2026-08-31/stageA_diff_SP0.md#0. Verdict in one paragraph"
+  code: ["docs/rde_nozzle_development_plan.md:1170-1185", "validation/TWIN_PROTOCOL_preregistration_2026-08-31.md:66-72", "docs/rde_nozzle_MASTER.md:3027-3044"]
+  mechanism: axiology-declared-not-adjudicated
+  owner: "F2.REPR (D6 PROPOSED amendment P-D6-1: A-REPR names BOTH the designer representation and the evaluator of the decisive delta; F-SP5 as the agreed falsifier); the ROAD Stage-B verdict of S-REVIEW is the authority chain"
+  trigger: "F2.REPR opening (consumes the S-REVIEW ASSESSMENT)"
+
+- id: plan:level-0-choice-rows-absent
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "the choice ledger (62 rows) indexes algorithmic/modelling choices but has NO rows for the ROAD itself, the OBJECTIVE definition, the DECISIVE EXPERIMENT and the DATA CLASS of the decisive test (declared axiology, C57 note); S-REVIEW proposes C63-C66 with adjudication of record from the de-novo trees, the diff judges, the Stage-B panels and the red team"
+  source: "validation/sreview_raws_2026-08-31/LEVEL0_ledger_rows_PROPOSED.md"
+  code: ["docs/choice_ledger.yaml:1-60"]
+  mechanism: no-row-class
+  owner: "user ratification at the next touchpoint (rows proposed, not written); then the ledger lint (xix-f) owner fields"
+  trigger: "F2.REPR opening touchpoint"
+
+- id: search:certification-boundary-paradigm-declared-axiology
+  status: CONFIRMED
+  path: critical
+  severity: medium
+  magnitude: "certify-inside-the-loop (certify-then-accept P4 gate, C23 DECIDED) vs explore-then-certify was never adjudicated (C57 note: constitution-bias residue); the four blind lenses give a genuine 4/4 rival posture; the cheap measured arm (PILOT-CB) is pre-registrable on existing designs, both recorders, equal march budget (SP4 judge §6, §10)"
+  source: "validation/sreview_raws_2026-08-31/stageA_diff_SP4.md#10. PANEL RECOMMENDATION"
+  code: ["docs/choice_ledger.yaml:771-794"]
+  mechanism: axiology-declared-not-adjudicated
+  owner: "S-REVIEW Stage-B SEARCH verdict (this session) -> PILOT-CB pre-registration owner F2.ENGINE first act (joint clause F2.REPR REF-13)"
+  trigger: "the SEARCH Stage-B verdict + verifier (this session)"

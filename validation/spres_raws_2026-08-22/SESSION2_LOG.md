@@ -382,3 +382,53 @@ riproducibile; B7 CH7 p_b-superseded; C6 ledger/matrice) + C5
 (REFUTE_STORIE: trittico ancora-per-ancora, 12 hash, guardia 15,
 rami (a) indebiti) + fix preambolo CH9 (orchestratore). Esiti agli
 atterraggi.
+
+## PROMOZIONE docs/atlas/ — FREEZE (2026-08-23)
+
+Critic finale: verdetto MINI-ONDA -> 4 edit eseguiti (FC-1 re-stamp
+lint 8/8 PASS in addendum LINT_REPORT_WD; FA-1 conteggio CW-5 20;
+FD-4 mappa lettere gap nei NOTE C17-pre/C17; FC-2 arco Q&A-storie nel
+storyboard). Catena Q0->roadmap 20/20 saldature VERE; deck regge al
+primo ascolto; ratifiche CW e orchestratore CONFERMATE. FC-3/FC-4 =
+note alla finestra di promozione (disposte qui: matrici restano in
+raws come appendici citate; caveat omonimia C1 in CH_REF); FD-1/2/3/5
+= note all'authoring (in CRITIC_FINALE.md).
+PROMOSSI 13 file in docs/atlas/: CH1-CH10 + LINEAGE_LEDGER +
+ATLAS_TREE (post-FA-1) + CH_REF. Le matrici lineage (part1-3), i
+REFUTE, gli inventari e i report restano in raws come evidenza citata
+(convenzione L7: advisory mai normativa; l'atlas cita, la raw prova).
+MINT stessa finestra (R7): findings `oracles:o34-gradient-leg-
+unconsumed` (:2552, dedup grep quotato, anchor risolto al heading
+vero); glossario esteso W-A/W-B/W-C/W-D; lint registri POST-mint:
+findings PASS 251/0, glossary PASS 242/0, advisory PASS 106/5/0.
+L'ATLAS E' DI RECORD. Il deck ne è consumer (storyboard v3.1).
+
+## ===== GATE UTENTE — ESEGUITO IN SESSIONE 2 (2026-08-23) =====
+## DECISIONI UTENTE DI RECORD (question-tool, risposte reali):
+## 1. STORYBOARD v3.1: **APPROVATO** come base authoring (note
+##    FD-1/2/3/5 del critic si applicano in stesura).
+## 2. TWIN PB-2: **(b) FORMA ONESTA** (divergenza dichiarata dalla
+##    raccomandazione (a) dell'orchestratore — decisione utente): il
+##    deck porta "macchina pronta, prima campagna F2"; NESSUN calcolo
+##    pre-milestone; la biforcazione C7-ter/C17-bis RISOLTA a (b);
+##    la card expected-outcome "twin se ordinato" in C17 diventa
+##    "twin = prima campagna F2" (edit all'authoring); il twin resta
+##    kill-or-validate di F2 (C-3bis invariata nel merito).
+## 3. S-5F path A/B/C + priorità C51: **RINVIO A F2-ENTRY** — card
+##    non-aggiudicate restano di record, C17-bis le mostra come
+##    aperte dichiarate.
+## 4. Confronto parametrizzazioni (C1): **F2-ENTRY come da card**,
+##    falsificatori di migrazione armati.
+## SESSIONE 3 = AUTHORING DECK dal via (storyboard approvato):
+## pipeline ../project_build build_deck; vincoli: patto E1-E7 +
+## guardia 18 + guardia 15 nelle note relatore + decisione twin (b)
+## applicata a C7-ter/C17/C17-bis + note critic FD-*; poi BLOCCO 2
+## via workflow (protocollo integrale sopra) e BLOCCO 3.
+## ===== FINE GATE =====
+
+## SUITE DI CHIUSURA S2 — QUOTA DI RECORD (2026-08-23)
+## `python tests/run_all.py` POST-promozione/POST-mint/POST-gate:
+## **23/23 test groups PASS in 434 s, EXIT 0** (output integrale in
+## scratchpad suite_close_s2.txt). Dovere ereditato dalla sessione 3:
+## NESSUNO — confine pulito. HEAD di chiusura sessione 2 = questo
+## commit.

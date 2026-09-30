@@ -100,19 +100,50 @@ def run():
             ok = False
             continue
         env, passd, suite = m.group(1), m.group(2), m.group(3)
+        faild, envfp = m.group(4), m.group(5)
         path = e['doc'].partition('#')[0]
-        # (1) staleness link (shared helper; lint enforces too)
-        last, note = lint.carrier_last_commit(path)
-        if note == 'git unavailable':
+        if faild:
+            # declared FAILING carrier (F2-B0 grammar): pass date is
+            # historical; ownership by an OPEN finding enforced by (xv)
+            owners = lint.open_findings_mentioning(eid)
+            n_acct += 1
+            print('  [FAILING] %-8s %-42s declared fail=%s (pass %s '
+                  'historical); owned by: %s'
+                  % (eid, path, faild, passd, ', '.join(owners) or
+                     'NONE (lint xv violation)'))
+            ok &= bool(owners)
+            continue
+        # (1) staleness link (shared closure-aware helper, F2-B0
+        #     2026-08-31; lint enforces too): import closure +
+        #     uncommitted + future-pass + env fingerprint
+        last, note, culprit = lint.closure_last_commit(path)
+        if passd > lint._today():
+            stale_txt = 'FUTURE pass %s > today (gate defused)' % passd
+            ok = False
+        elif note == 'git unavailable':
             stale_txt = 'staleness SKIP (declared: git unavailable)'
         elif note == 'no committed history':
-            stale_txt = 'STALE (no committed history)'
+            stale_txt = 'STALE (no committed history: %s)' % culprit
+            ok = False
+        elif note == 'uncommitted changes':
+            stale_txt = 'STALE (uncommitted changes: %s)' % culprit
             ok = False
         elif last > passd:
-            stale_txt = 'STALE (last commit %s > pass %s)' % (last, passd)
+            stale_txt = ('STALE (closure last commit %s > pass %s: %s)'
+                         % (last, passd, culprit))
             ok = False
         else:
-            stale_txt = 'fresh (pass %s >= last commit %s)' % (passd, last)
+            stale_txt = ('fresh (pass %s >= closure last commit %s)'
+                         % (passd, last))
+        if passd >= lint.ENVFP_EPOCH:
+            if not envfp:
+                stale_txt += '; MISSING envfp (required from %s)' \
+                             % lint.ENVFP_EPOCH
+                ok = False
+            elif envfp != lint.env_fingerprint():
+                stale_txt += ('; ENV DRIFT (stamp %s != host %s)'
+                              % (envfp, lint.env_fingerprint()))
+                ok = False
         # (2)/(3) env-conditional execution or accounting
         avail, env_txt = _env_available(env)
         if suite == 'none':

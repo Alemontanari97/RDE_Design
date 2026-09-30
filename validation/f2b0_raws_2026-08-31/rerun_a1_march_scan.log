@@ -1,0 +1,50 @@
+fan start (Me target 2.613938, mdot 42475.5230)
+arc col 1 angle 0.5000 deg M_ax 1.408367 (Me 2.613938) Nv 1 j2 41
+arc col 2 angle 1.0000 deg M_ax 1.470867 (Me 2.613938) Nv 1 j2 42
+arc col 3 angle 1.5000 deg M_ax 1.532138 (Me 2.613938) Nv 1 j2 43
+arc col 4 angle 2.0000 deg M_ax 1.590708 (Me 2.613938) Nv 1 j2 44
+arc col 5 angle 2.5000 deg M_ax 1.647698 (Me 2.613938) Nv 1 j2 45
+arc col 6 angle 3.0000 deg M_ax 1.703453 (Me 2.613938) Nv 1 j2 46
+arc col 7 angle 3.5000 deg M_ax 1.758294 (Me 2.613938) Nv 1 j2 47
+arc col 8 angle 4.0000 deg M_ax 1.812445 (Me 2.613938) Nv 1 j2 48
+arc col 9 angle 4.5000 deg M_ax 1.866088 (Me 2.613938) Nv 1 j2 49
+arc col 10 angle 5.0000 deg M_ax 1.919369 (Me 2.613938) Nv 1 j2 50
+arc col 11 angle 5.5000 deg M_ax 1.972409 (Me 2.613938) Nv 1 j2 51
+arc col 12 angle 6.0000 deg M_ax 2.025312 (Me 2.613938) Nv 1 j2 52
+arc col 13 angle 6.5000 deg M_ax 2.078168 (Me 2.613938) Nv 1 j2 53
+arc col 14 angle 7.0000 deg M_ax 2.131058 (Me 2.613938) Nv 1 j2 54
+arc col 15 angle 7.5000 deg M_ax 2.184110 (Me 2.613938) Nv 2 j2 55
+arc col 16 angle 8.0000 deg M_ax 2.237449 (Me 2.613938) Nv 2 j2 56
+arc col 17 angle 8.5000 deg M_ax 2.291000 (Me 2.613938) Nv 2 j2 57
+arc col 18 angle 9.0000 deg M_ax 2.344844 (Me 2.613938) Nv 2 j2 58
+arc col 19 angle 9.5000 deg M_ax 2.399035 (Me 2.613938) Nv 2 j2 59
+arc col 20 angle 10.0000 deg M_ax 2.453628 (Me 2.613938) Nv 2 j2 60
+arc col 21 angle 10.5000 deg M_ax 2.508675 (Me 2.613938) Nv 2 j2 61
+arc col 22 angle 11.0000 deg M_ax 2.564229 (Me 2.613938) Nv 2 j2 62
+arc col 23 angle 11.5000 deg M_ax 2.620340 (Me 2.613938) Nv 2 j2 63
+arc col 24 angle 11.4429 deg M_ax 2.613902 (Me 2.613938) Nv 2 j2 63
+arc col 25 angle 11.4433 deg M_ax 2.613938 (Me 2.613938) Nv 2 j2 63
+straightening: 40 columns from i_K=46
+== SCAN COLUMN ARCHITECTURE [X-SCANM]: brick-2 replay engine (JAX 0.11.0) ==
+-- record (adaptive [X-A1IM] march) --
+  contour: 23 arc + 40 streamline points; Me = 2.613938; cert worst 2.311e-02 over 2756 cells
+  [record march certified] PASS
+-- plan reconstruction from the recorded schedule --
+  plan: 20 fan cols, 25 arc attempts (2 interp), 40 straightening cols; 2684 interior cells total
+-- scan replay vs [X-A1IM] Python replay (equivalence) --
+  max|scan - python| = 8.882e-16 (Newton-floor tol 1.630e-12)
+  [scan replay == python replay at Newton floor] PASS
+-- O3.1 dot-product on the scan path --
+  [O3.1] <w,Jv> = 3.0513456795e+00  <J^Tw,v> = 3.0513456695e+00  |diff| = 9.991e-09 (tol 5.032e-08)
+  [O3.1 dot-product on the scan path] PASS
+-- P2 production path: whole-loop jit, bucketed scans (S18, safe-where guard) --
+  first call (incl. whole-loop compile) 7.1 s; max|jit - python| = 6.217e-15 (Newton-floor tol 1.630e-12)
+  [bucketed jit replay == python replay at Newton floor] PASS
+  [O3.1/jit] <w,Jv> = 3.0513456695e+00  <J^Tw,v> = 3.0513456695e+00  |diff| = 4.923e-11 (tol 2.424e-08)  [the safe-where NaN-leak detector]
+  [O3.1 on the whole-loop jit path (leak detector)] PASS
+  [N3 corrupted jit vjp rejected] PASS
+-- negative controls --
+  [N1] mis-indexed plan deviation = 1.552e-03 (floor 1.630e-12)
+  [N1 mis-indexed plan rejected by equivalence] PASS
+  [N2 corrupted scan vjp rejected] PASS
+VERDICT: PASS

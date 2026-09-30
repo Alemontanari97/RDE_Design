@@ -74,7 +74,11 @@ def is_trivial(v):
 
 def scan_file(path, spec):
     """Yield (lineno, value) for every non-trivial literal outside exemptions."""
-    src = open(path, encoding='utf-8').read()
+    # utf-8-sig: a UTF-8 BOM is not a literal; a BOM-prefixed file
+    # must be SCANNED, not crash the scanner (S-ROADMAP 2026-08-31
+    # repair: deck_build/_probe_typography_new.py raised SyntaxError
+    # U+FEFF and took the whole (vii) group down as an EXCEPTION).
+    src = open(path, encoding='utf-8-sig').read()
     tree = ast.parse(src, filename=path)
     exf = list(spec.get('exempt_functions', {}))
     exa = set(spec.get('exempt_assignments', {}))

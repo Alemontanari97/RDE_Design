@@ -113,6 +113,27 @@
   "validation/a1_frame_march.py": 2,
   "validation/a1_annular_kernel.py": 35,
   "validation/_literature_profiles/make_figs.py": 88,
-  "validation/_humphreys_twin/make_figs.py": 71
+  "validation/_humphreys_twin/make_figs.py": 71,
+  "validation/spres_raws_2026-08-22/deck_build/_fig_s4_lot2.py": 154,
+  "validation/spres_raws_2026-08-22/deck_build/_patch_ckps31_a.py": 1,
+  "validation/spres_raws_2026-08-22/deck_build/_patch_spine_builder.py": 1,
+  "validation/spres_raws_2026-08-22/deck_build/_probe_footerband.py": 4,
+  "validation/spres_raws_2026-08-22/deck_build/_probe_subtitles.py": 4,
+  "validation/spres_raws_2026-08-22/deck_build/_probe_typography.py": 5,
+  "validation/spres_raws_2026-08-22/deck_build/build_deck_spres.py": 568,
+  "validation/spres_raws_2026-08-22/deck_build/eqs_spres.py": 5,
+  "validation/spres_raws_2026-08-22/deck_build/extract_figs_spres.py": 67,
+  "validation/spres_raws_2026-08-22/deck_build/relabel_c13val.py": 57,
+  "validation/spres_raws_2026-08-22/deck_build/render_figs_spres.py": 349,
+  "validation/spres_raws_2026-08-22/deck_build/render_graph_slide_variants.py": 82,
+  "validation/spres_raws_2026-08-22/deck_build/render_graph_spres.py": 187,
+  "validation/spres_raws_2026-08-22/deck_build/render_method_flow.py": 29,
+  "validation/spres_raws_2026-08-22/deck_build/specs_a.py": 8,
+  "validation/spres_raws_2026-08-22/deck_build/specs_c12.py": 2,
+  "validation/spres_raws_2026-08-22/deck_build/specs_c34.py": 1,
+  "validation/spres_raws_2026-08-22/deck_build/spreslib.py": 76,
+  "validation/spres_raws_2026-08-22/deck_build/typo_canon.py": 32,
+  "validation/sreview_raws_2026-08-31/check_tables.py": 1,
+  "validation/st_scoping_number.py": 16
  }
 }
