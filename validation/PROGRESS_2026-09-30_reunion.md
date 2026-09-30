@@ -81,3 +81,18 @@ It consumes no F2 session. Roadmap step served: F2.REPR (it cannot open on a spl
   X-TBAK, X-STSC. Re-run here, or declare the two machines.
 - Then: full suite on the merged tree, fast-forward `rde-nozzle-program`, remove the worktree.
 
+## The checks re-run on this machine (2026-09-30 afternoon; logs in `RDE/handoff/plug_2026-09-29/carriers_2026-09-30/`)
+- Passed and stamped with today's date and this machine's fingerprint (10): X-VMON, X-CDKAT, X-THC1, X-O31CS, X-TBAK,
+  X-MGOV, X-STSC, X-SPDB, X-TOCV, X-O33B.
+- Re-run and failing as already recorded on 2026-09-05 (3): X-O32, X-LOCD, X-AKNO. X-LOCD fails because the design
+  returned by the S22 campaign no longer passes the cell check (1.20 against a pass line of 1): the noise near the
+  axis described in the review's closure (LOG-11).
+- Re-run and not passing for reasons of the machine (3): X-SCANM (the system's cap on memory mappings is hit while
+  compiling), X-LSG0 (needs a quiet machine; the shared machine ran at load 66), X-DEFTW (a GENO case is missing in
+  this machine's GENO). Declared failing here, with a finding that owns them.
+- A re-run overwrote one recorded measurement file (`validation/s25_spdb_m0.json`); restored, this machine's output
+  kept aside.
+- The last plug walks were stopped or ended: 12 phases 1.34844 (segment 15, stopped), mean state 1.41733 (ended by
+  its budget), 12 phases on Rao's freedom 1.33437 (stopped), plug and cowl at 0.2 bar 1.12373 (stalled, stopped).
+  None reached its optimum.
+

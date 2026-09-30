@@ -3289,3 +3289,14 @@ entries:
   mechanism: roundoff-relative-threshold-at-ill-conditioned-cells
   owner: "F2.ENGINE, first act: judge a cell by its error against the mesh error with a guard on convergence (the [CERT-STAB] requirement of the review), then re-run the S22 bell campaign"
   trigger: "F2.ENGINE opening; any statement that a campaign was limited by certification"
+- id: carriers:three-checks-cannot-be-refreshed-on-this-machine
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "on the machine of the reunion (s2, fingerprint 9145bf10) three registered checks were re-run on 2026-09-30 and did not pass for reasons of the machine, not of the code: [X-SCANM] (a1_march_scan: one very large compiled program; the system's cap on memory mappings, 65530, is hit during compilation: 'Cannot allocate memory', core dumped); [X-LSG0] (a1_loopspeed_bench: its own precondition 'clean host' fails, the shared machine ran at load 66 from other users); [X-DEFTW] (def_twin_falsifier: the GENO case CASES/defnoz is not in this machine's GENO checkout). Their last passes are historical (2026-09-05 on the other machine, 2026-08-12, 2026-08-13)"
+  source: "validation/PROGRESS_2026-09-30_reunion.md#The checks re-run on this machine"
+  code: []
+  mechanism: host-dependent-check
+  owner: "the next session on a machine where they can run: the other machine of the plan line (fingerprint e100f996) for X-SCANM; a quiet host for X-LSG0; the GENO case restored under GENO's own protocol (BLOCCATO B20 b) for X-DEFTW"
+  trigger: "any claim that cites X-SCANM, X-LSG0 or X-DEFTW as currently passing; F2.ENGINE re-stamp of the carriers"
+
