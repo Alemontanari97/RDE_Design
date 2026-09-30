@@ -90,7 +90,7 @@ rows, not against "PASS" alone: four rows are negative results whose run of reco
 | pass with the settings of record | X-RAOO3 7/7 (`RAO_GENO_RUN=GENO/CASES/raoplug_run_legacy`), X-TPOS gates 4/4 (`HMPH_CASE=opt HMPH_ZCUT=0.12 ANK_ETA=8 HMPH_K=160 HMPH_N=41`; the default posing raises "tri column rows not ordered" at every commit back to the row's own, so the default was never the record), X-IVLT (through X-TPOS) |
 | pass with the settings of record, read later in the evening | X-RAOSQ PASS (the SQP returns to Rao's optimum, 3621 s), X-RAOHM 7/7 (Humphreys' Rao nozzle in Rao's world), X-PTRN 10/10 (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`) |
 | read at 21:10 | X-RAOTW PASS (our march reproduces GENO's kernel below ED, with RAO_GENO_RUN), X-RAOFN PASS (our objective is Rao's) |
-| still running at 21:10 (3-4 hour caps; the 1-hour cap ran out): X-OWAB, X-OWSQ + X-OWS3, X-PAKN | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
+| read at 21:15: X-OWAB 8/8 PASS (2492 s, over the 1-hour cap) | still running (3-4 hour caps): X-OWSQ + X-OWS3, X-PAKN | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
 The default runs of the scripts rewrite their cache files under `validation/_*/` (derive.json, npz): restored from
 git before the commit; the caches of record are the committed ones.
 
