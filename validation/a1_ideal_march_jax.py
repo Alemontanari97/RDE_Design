@@ -218,6 +218,30 @@ N_NEWTON = 30
 # bound, or meets a non-finite step, returns the stalled iterate and the cell
 # FAILS its certification as before.
 NEWTON_RESCUE = bool(int(os.environ.get("A1_NEWTON_RESCUE", "0")))
+# CERT_KAPPA (2026-09-30, F2.ENGINE order 2; opt-in, unset = the check of record,
+# bitwise): the pass line of the cell check follows the CELL'S OWN amplification
+# of rounding instead of one number for every cell. M0 (block NTF-1..3) derives
+# the floor of the extra Newton step at a true root as kappa_eff * EPS * scale
+# and the pass line as a multiple of it; the code pinned the line at
+# NEWTON_TOL_FACTOR for the whole population (valid where kappa_eff <= ~70,
+# measured on one case). Measured 2026-09-30 on the S22 bell designs: near the
+# axis at the end of the contour the same design reads 1.20 / 0.46 / 2.07 with
+# three solver variants (pass is below 1), at cells where the flow is healthy:
+# the line is below what the arithmetic holds there and the verdict is noise.
+# With the option the returned metric is scaled so that every call site's
+# ratio step / (NEWTON_TOL_FACTOR * EPS * scale) reads step / (kappa_c * EPS *
+# scale), kappa_c = NEWTON_TOL_FACTOR x the MEASURED plateau of the next two plain Newton
+# steps (where corrections no longer shrink the cell is at the floor its step
+# cannot go below), kept between NEWTON_TOL_FACTOR (never stricter nor looser
+# than the record where the floor is low) and NEWTON_TOL_FACTOR * POLISH_WINDOW
+# (a relative correction of ~2e-10: inside it one more correction squares the
+# error). The factor between the line and the floor is the record's own: the
+# fixed line sits NEWTON_TOL_FACTOR above a floor of about one rounding unit; two
+# samples of a noisy floor can be several times below its peaks (measured 7x on
+# the S22 bell campaign), so a smaller factor leaves the verdict to chance. A
+# cell still converging has a plateau orders below its step and is judged on
+# the fixed line; a cell whose floor is not finite fails.
+CERT_KAPPA = bool(int(os.environ.get("A1_CERT_KAPPA", "0")))
 # C2-F2 (S21): arm per-cell certification on REPLAY ('play')
 # evaluations too (concrete calls only — AD traces are guarded in
 # certify). Default False = bit-identical pre-S21 behaviour; the
@@ -540,6 +564,14 @@ def make_implicit_solver(resid_fn, polish=False):
                 jnp.all(jnp.isfinite(zr)),
                 jnp.logical_and(jnp.isfinite(st_r),
                                 jnp.logical_not(over(zr, st_r))))
+            if CERT_KAPPA:
+                # with the pass line at the cell's own rounding floor a
+                # cell may sit above the fixed line for good: the plain
+                # steps are kept whenever they end closer to the root
+                # than the stalled iterate (a smaller extra step)
+                keep = jnp.logical_and(
+                    jnp.all(jnp.isfinite(zr)),
+                    jnp.logical_and(jnp.isfinite(st_r), st_r < step))
             z = jnp.where(keep, zr, z)
         return z
 
@@ -551,11 +583,42 @@ def make_implicit_solver(resid_fn, polish=False):
         (pbar,) = vjp_p(-w)
         return pbar
 
+    def _kappa_metric(z, p, ta, r, Jz):
+        # CERT_KAPPA: the extra Newton step measured against the cell's OWN
+        # rounding floor. The floor is MEASURED: two more plain Newton
+        # steps are taken from z. Where Newton still converges the next
+        # step is far smaller than the first (each correction squares the
+        # error): the cell was not solved and the first step is judged
+        # on the fixed line. Where the corrections no longer shrink the
+        # cell sits on the plateau set by the noise of evaluating the
+        # residual (tables, mixed units, cancellations) carried through
+        # J^-1 -- the level the step cannot go below (M0 NTF-1,
+        # kappa_eff) -- and one more correction would not improve it.
+        dz = jnp.linalg.solve(Jz, r)
+        step = jnp.max(jnp.abs(dz))
+        sc = jnp.maximum(1.0, jnp.max(jnp.abs(z)))
+
+        def dz_at(zz):
+            return jnp.linalg.solve(
+                jax.jacfwd(resid_fn, argnums=0)(zz, p, ta),
+                resid_fn(zz, p, ta))
+        z1 = z - dz
+        d1 = dz_at(z1)
+        d2 = dz_at(z1 - d1)
+        plateau = jnp.maximum(jnp.max(jnp.abs(d1)), jnp.max(jnp.abs(d2)))
+        kap = NEWTON_TOL_FACTOR * plateau / (EPS * sc)
+        kc = jnp.clip(kap, NEWTON_TOL_FACTOR,
+                      NEWTON_TOL_FACTOR * POLISH_WINDOW)
+        return jnp.where(jnp.isfinite(kap),
+                         step * NEWTON_TOL_FACTOR / kc, jnp.inf)
+
     @jax.jit
     def step_norm(z, p, ta):
         # certification metric: size of one extra Newton step at z
         r = resid_fn(z, p, ta)
         Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
+        if CERT_KAPPA:
+            return _kappa_metric(z, p, ta, r, Jz)
         return jnp.max(jnp.abs(jnp.linalg.solve(Jz, r)))
 
     @jax.jit
@@ -570,6 +633,8 @@ def make_implicit_solver(resid_fn, polish=False):
         z = newton(z0, p, ta)
         r = resid_fn(z, p, ta)
         Jz = jax.jacfwd(resid_fn, argnums=0)(z, p, ta)
+        if CERT_KAPPA:
+            return z, _kappa_metric(z, p, ta, r, Jz)
         return z, jnp.max(jnp.abs(jnp.linalg.solve(Jz, r)))
 
     @jax.custom_vjp

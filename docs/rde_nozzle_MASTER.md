@@ -3800,6 +3800,29 @@ carrier §§1-4 (floor tracking the requested tolerance below
 than 2*(T + measured-floor); kappa_eff,q95 > 80, or dispersion no
 declared eta covers; margin-scoped termination-with-margin at
 envelope-regime cells).]
+ NTF-6 (operational form, 2026-09-30, F2.ENGINE order 2) [PRACTICE;
+opt-in A1_CERT_KAPPA, the check of record unchanged when unset]: the
+duty F2-NTF-FLOOR-POPULATION named above asked for the realized
+per-cell extra-step multiple. It is now measured INSIDE the check: at
+the returned root two more plain Newton steps are taken; where they no
+longer shrink, their size is the cell's floor (NTF-1's kappa_eff *
+EPS * sc, realized), and the cell passes when its extra step is within
+NTF times that floor. Bounds: never below the line of record (a cell
+with a low floor is judged as before), never above NTF * POLISH_WINDOW
+* EPS * sc (a relative correction of about 2e-10). A cell that is
+still converging has a plateau orders below its step and fails on the
+line of record. WHY: at the near-axis cells at the end of the bell
+contour the realized floor is above the fixed line (one design read
+1.20 / 0.46 / 2.07 with three solver variants, pass below 1): there
+the fixed line measured the arithmetic, not the flow. MEASURED
+2026-09-30: the same design reads 0.115 / 0.141 / 0.166; the five
+designs the S22 campaign rejected certify in all three variants; a
+solver starved to 3 iterations is still rejected (1239); a record with
+a non-finite cell is still rejected; the bell campaign reaches its
+first converged cycle on file (optimality residual 0.78 against a
+target of 0.96). NOT DONE: the population quantiles and eta of the
+duty (one design family measured); the factor NTF between floor and
+line is the record's own, not re-derived.
 
 [LAND-C4-LA4 CLG CROSS-LOWERING GRADIENT-FLOOR DERIVATION BLOCK
 (engine-discipline block, landed S-FOUNDATIONS-C4 2026-08-21).

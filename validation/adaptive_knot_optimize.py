@@ -393,6 +393,7 @@ def main():
     W_cur = W8.copy()
     xi_cur = None
     goal_hist = [rel1]
+    conv_goals = []
     best = dict(W=W8.copy(), xi=None, goal=rel1, cycle=0)
     masses, x_st, m_st = masses0, x_st0, m_st0
     yL = cfg["yt"] * np.sqrt(TV.TCASE["eps"])
@@ -554,6 +555,7 @@ def main():
               "(prev %.4e, improvement %.4e vs tol_stop %.4e)"
               % (cyc, J_n, goal, goal_hist[-1], impr, tol_stop))
         goal_hist.append(goal)
+        conv_goals.append((cyc, goal))   # outcome-I cycles ([D1]-eligible)
         if goal < best["goal"]:
             best = dict(W=W_new.copy(), xi=xi_new.copy(), goal=goal,
                         cycle=cyc)
@@ -592,6 +594,17 @@ def main():
                     "corner mismatch BELOW the S19 baseline (else "
                     "the design-class diagnosis is FALSIFIED)",
                     best["goal"] < rel1)
+    elif conv_goals:
+        # 2026-09-30: a cycle DID converge in-stratum and its goal did
+        # not fall below the baseline. That is [D1] TESTED and failed,
+        # not "untestable" (the branch below printed the wrong reading
+        # for this case until today).
+        c_b, g_b = min(conv_goals, key=lambda cg: cg[1])
+        ok &= check("[D1] the adaptive-class optimum pulls the "
+                    "corner mismatch BELOW the S19 baseline (else "
+                    "the design-class diagnosis is FALSIFIED) — "
+                    "converged cycle %d: %.4e vs %.4e"
+                    % (c_b, g_b, rel1), g_b < rel1)
     else:
         print("  [D1] UNTESTABLE on this run: no cycle converged "
               "in-stratum, so no [D1]-eligible design exists — the "

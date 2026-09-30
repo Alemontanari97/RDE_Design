@@ -602,3 +602,13 @@ entries:
   tested_pairs: "off/on on the 7 records of the lip scan (twop_rescue_gate); on together with PLUG_JET_POLISH default"
   untested_cartesian: true
   note: "opt-in, read at import; a cell that ends certified never enters the rescue; row added 2026-09-30 (committed with the S42 log)"
+
+- flag: "A1_CERT_KAPPA"
+  default: "0 (off: the cell check of record, bitwise)"
+  meaning: "the pass line of the cell check follows the cell's own rounding floor instead of one number for every cell: two more plain Newton steps are taken at the returned root; where they no longer shrink the cell sits on its arithmetic floor and the line is NEWTON_TOL_FACTOR times that floor, kept between the line of record and NEWTON_TOL_FACTOR x POLISH_WINDOW; a cell still converging is judged on the line of record (make_implicit_solver, _kappa_metric; M0 block NTF-6; log validation/PROGRESS_2026-09-30_F2ENGINE.md order 2)"
+  read_sites:
+    - "validation/a1_ideal_march_jax.py:244"
+  covering_gate: "none from engine_speed_bench.py; demonstrated 2026-09-30 by validation/certdiag_locus.py and validation/certdiag_kat.py run with the flag (a solver starved to 3 iterations is still rejected at 1239; the S22 bell base reads 0.115 / 0.141 / 0.166 with three solver variants, where the line of record read 1.20 / 0.46 / 2.07) and by the bell campaign validation/adaptive_knot_optimize.py (first converged cycle on file)"
+  tested_pairs: "off/on on the S22 bell designs; on together with A1_NEWTON_RESCUE on (the campaign) and off (certdiag)"
+  untested_cartesian: true
+  note: "opt-in, read at import; the default path is unchanged (a1_ideal_march_jax.py __main__ PASS and a1_rde_tournament.py gates 9/9 bitwise after the edit); under the flag the rescue of A1_NEWTON_RESCUE keeps the plain steps whenever they end closer to the root; row added 2026-09-30"

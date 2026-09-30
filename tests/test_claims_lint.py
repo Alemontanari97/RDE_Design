@@ -387,6 +387,21 @@ def check(entries, suite=None):
                                  'the staleness gate permanently'
                                  % (eid, passd, _today()))
                     last, note, culprit = closure_last_commit(path)
+                    # AGE FROM THE SCRIPT TOO (2026-09-30, finding registry:age-check-
+                    # blind-for-checks-documented-by-a-text): when the doc field names a
+                    # text and the proof field names the script, the script's import
+                    # closure decides the age as well; the later date wins, a closure
+                    # defect of the script is reported as such.
+                    ppath = e.get('proof', '').partition('#')[0] \
+                        if isinstance(e.get('proof'), str) else ''
+                    if ppath.endswith('.py') and ppath != path:
+                        last2, note2, culprit2 = closure_last_commit(ppath)
+                        if note2 in ('no committed history',
+                                     'uncommitted changes'):
+                            note, culprit = note2, culprit2
+                        elif last2 is not None and (last is None
+                                                    or last2 > last):
+                            last, culprit = last2, culprit2
                     if faild:
                         pass          # declared FAILING: pass date historical
                     elif note == 'no committed history':

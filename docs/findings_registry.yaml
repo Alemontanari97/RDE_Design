@@ -878,7 +878,17 @@ entries:
   mechanism: rejector-weakness
   owner: "F2a data-contract window (D6:174-176 of record: T0-flatness monitor with DERIVED threshold, G6 loud-reject operative FROM F2a; M0 VI.1 names the certificate field so the contract cannot ship without it): CycleFamily v0 + the T0-flatness carrier (derived threshold, two-mode and n-transition rejectors) per D6 item 5-bis; cheap now: a monitor-carrier-PENDING flag at the M0 D2.3/VI.4bis(v) sites"
   trigger: "F2a contract build = first averaged-data contract consumed (the TWIN's case-A family); any impure-mode or mode-transition data entering the program"
-  note: "path flipped non-critical->critical + owner re-homed pre-F5 -> F2a by the F2-B0 refuter pass 2026-09-05 (REFUTER_R1_tags.md Table B: the previous owner was STALE against D6:174-176 — the monitor is an F2a deliverable inside gate G6, and the first averaged-data contract is consumed at F2a, not F5)"
+  note: "CARRIER LANDED 2026-09-30: validation/single_wave_monitor.py [X-SWAV] (one wave, rigid turning, repeats; two derived lines; three rejectors firing); the monitor's first reading of the data of record FAILS the contract (finding data-contract:thor-cav3-wave-strength-wanders-two-percent-turn-to-turn); the harmonic-decay audit is still not written, so this row stays open on that half. Earlier note: path flipped non-critical->critical + owner re-homed pre-F5 -> F2a by the F2-B0 refuter pass 2026-09-05 (REFUTER_R1_tags.md Table B: the previous owner was STALE against D6:174-176 — the monitor is an F2a deliverable inside gate G6, and the first averaged-data contract is consumed at F2a, not F5)"
+- id: data-contract:thor-cav3-wave-strength-wanders-two-percent-turn-to-turn
+  status: CONFIRMED
+  path: critical
+  severity: high
+  magnitude: "the single-wave monitor X-SWAV (validation/single_wave_monitor.py) on the Q2D THOR_CAv3 chamber probes: one wave at 4246 Hz turning rigidly in phase (delays exactly the angle over the wave speed), but the 12 sector means of the pressure pattern change turn to turn by 2.2 percent in average and 6.8 percent RMS (piastra probes, 8 turns; wall probes 2.4 / 10.8 percent), and probe to probe by 0.9 / 2.8 percent; the derived lines are 0.17 percent on the shift (PILOT-WF's line) and the median adjacent-sector step on the redistribution. The 12 phases of record (phases_405.json, from ONE snapshot at t 15.5 ms) therefore carry an uncertainty of about 2 percent on the cycle's mean pressure level, larger than the rehearsal's +1.65 percent margin (S42) and than any line of the decisive comparison"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#Order 4(d) — result"
+  code: []
+  mechanism: data-class-wander-outside-the-frozen-representation
+  owner: "F2.ENGINE / F3.TWIN: the family mu of the decisive comparison built from MANY turns (phase states averaged over turns at the same wave phase; the number of turns from the wander W-3 measures, at the 0.17 percent line), not from one snapshot; the harmonic-decay audit of plan item 5-bis; a probe history at the exit plane. X-SWAV stays declared failing until data meeting the contract are on file"
+  trigger: "any per-phase family built from one snapshot entering an arm of the decisive comparison; any quoted difference between designs below 2 percent of thrust on the phases of record"
 - id: problem-statement:stage-a-audits-premised-not-implemented
   status: CONFIRMED
   path: non-critical

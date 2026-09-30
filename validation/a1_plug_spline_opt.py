@@ -136,6 +136,9 @@ MAXSEG = int(os.environ.get("PSPL_ITERS", 10))
 # RE-MARCHED value, before a rejected segment is thrown away. 0 = the
 # record's reject-and-shrink driver, bit-identical (see run_trsqp).
 BACKTRACK = int(os.environ.get("PSPL_BACKTRACK", 0))
+# PSPL_FLOOR_LIMIT=1 (F2.ENGINE order 5, 2026-09-30): the walk's smallest step derived at every base from the
+# measured distance to the class limit along the ascent (a quarter of it), never above the caller's floor.
+FLOOR_LIMIT = os.environ.get("PSPL_FLOOR_LIMIT", "") == "1"
 # PSPL_PARAM (S33, [X-HMPH] K-10: WAVINESS folds the net, and a spline
 # in y pinned at the cut can only follow a steep contour by wiggling in
 # angle): the COORDINATES of the design vector. "y" (unset, every row of
@@ -484,6 +487,7 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     # below a 1 mm floor the first rejection ended the walk).
     floor = 1e-3 if tr_floor is None else float(tr_floor)
     slack = 1.01e-3 if tr_floor is None else floor * (1 + 1 / 100)
+    floor0 = floor          # the caller's floor (PSPL_FLOOR_LIMIT lowers per segment, never raises)
     n_rec = 0
     hist = []
     # OBJECTIVE SCALE (S41 plug contest, 2026-09-29; PSPL_JSCALE=radius, unset =
@@ -866,6 +870,34 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
                       " (min cell %+.4f, %d cells)"
                       % (seg, m0v, float(out_rec["margin_min"]),
                          int(out_rec["margin_n"])), flush=True)
+            # FLOOR FROM THE DISTANCE TO THE LIMIT (F2.ENGINE order 5,
+            # 2026-09-30; PSPL_FLOOR_LIMIT=1, unset = bit-identical; finding
+            # driver:smallest-step-larger-than-distance-to-the-validity-
+            # limit). The 12-phase walks at 0.2 bar stopped after one
+            # segment with gain still available: the floor (1.7e-3 lip
+            # radii, from the start's scale) was larger than the distance
+            # to the limit where characteristics of one family cross (1.5
+            # to 2.8e-3), so every trial the walk was allowed overshot the
+            # class and was rejected; four times finer, the same walk
+            # gained 0.18 percent over Rao's plug. Here the distance is
+            # MEASURED at every base: the margin over its own rate of
+            # decrease along the ascent direction (first order, the
+            # base's recorded gradients), and the segment's floor is a
+            # quarter of it (never above the caller's floor: a floor
+            # derived from the fold scale stays where the limit is far).
+            if FLOOR_LIMIT and not phase1 and np.isfinite(m0v) and m0v > 0.0:
+                _, gm0 = _mvg(W)
+                ga = np.where(np.isfinite(g0), g0, 0.0) * sign
+                gn0 = float(np.linalg.norm(ga))
+                rate = -float(np.dot(gm0, ga)) / gn0 if gn0 > 0.0 else 0.0
+                d_lim = m0v / rate if rate > 0.0 else np.inf
+                floor = min(floor0, d_lim / 4.0)
+                slack = floor * (1 + 1 / 100)
+                if verbose:
+                    print("    [seg %2d] PSPL_FLOOR_LIMIT: distance to the"
+                          " limit along the ascent %.3e (margin %.4f,"
+                          " rate %.3e per unit step) -> floor %.3e"
+                          % (seg, d_lim, m0v, rate, floor), flush=True)
 
         # NO-MOTION is not always convergence (S23 measured, on the
         # S22 optimum at (121,101)): when the initial radius exceeds
