@@ -326,6 +326,7 @@ entries:
   mechanism: seed-noise-at-marginal-cell
   owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); DEMONSTRATION DUTY (convergence map class B): per-cell isolation — find THE flipping cell at Wp/mild and show its damped-trial path divergence explicitly (cheap, next window); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it -- F2.ENGINE DUTIES ADDED 2026-09-05: (i) X-LOCD re-form (the carrier asserts determinism + branch classification = its scientific content; re-record binary verdicts of cert-marginal designs become INFORMATIONAL rows with the recorder pinned as an explicit argument; then re-run and lift fail=); (ii) every certification-bearing carrier prints the active recorder in its Verdict and pins it in its ondemand spec; (iii) the certified-with-margin requirement (1/K_RICH) enters the certificate stack as a ship-gate row"
   trigger: "any future consumer comparing certifications across recorders; the per-cell demo at the next open window"
+  note: "READ 2026-09-30 (F2.ENGINE order 2): the flipping cells are the near-axis cells at the end of the contour whose extra Newton step cannot go below the noise of the residual (tables, cancellations), above the fixed line; with the line at the cell's own measured floor (A1_CERT_KAPPA) the S22 base no longer flips (0.115 / 0.141 / 0.166 across variants). The per-cell demonstration duty is met by certdiag_locus.py's three-variant read (carriers_2026-09-30/final_LOCD_*.log); status left CONFIRMED because the record's default check (unset flag) still carries the mechanism"
 - id: engine:vmap-hessian-adjoint-divergence
   status: CONFIRMED
   path: non-critical
@@ -3214,7 +3215,7 @@ entries:
   trigger: "before any TWIN arm runs (R-TWIN-4 certification parity)"
 
 - id: certification:a1-margin-numeral-contradicted-by-record-ratio
-  status: CONFIRMED
+  status: DOWNGRADED
   path: critical
   severity: high
   magnitude: "TWIN amendment A-1 makes a design quotable iff cert_worst <= 1/K_RICH (= 1/4) under the pinned recorder, but the record's own S22 base already shows a cross-triple (recorder, lowering) cert_worst ratio of 6.6 > K_RICH (SP8 judge F-1); the numeral is UNMEASURED as a sufficient margin; the roundoff-relative per-cell threshold (C18 single-author NTF x floor) is the candidate cause of recorder-dependent binary verdicts (F-2: band-relative threshold with contraction guard)"
@@ -3223,6 +3224,8 @@ entries:
   mechanism: underived-constant
   owner: "F2.ENGINE first act ([CERT-STAB] protocol on the X-LOCD design set: F-1 rho_meas, F-2 band-relative re-certification, F-3 difference band; reuses the X-O32/X-LOCD re-form runs) + M0 requirement text [CERT-STAB] (ASSESSMENT lever F4)"
   trigger: "the X-O32 / X-LOCD re-forms (first F2.ENGINE act) — no re-stamp of any FAILING carrier before it"
+  evidence: "F2.ENGINE order 2 (2026-09-30, validation/PROGRESS_2026-09-30_F2ENGINE.md): with the cell check on the cell's own arithmetic floor (A1_CERT_KAPPA, M0 NTF-6) the S22 base reads 0.115 / 0.141 / 0.166 across the three solver variants (ratio 1.44 < K_RICH) where the fixed line read 1.20 / 0.46 / 2.07 (ratio 4.5); the five S22 rejections certify in every variant; a starved solver is still rejected. The candidate cause named here (the roundoff-relative fixed threshold) is confirmed as the cause; the F-2 band-relative form is delivered as floor-relative (the cell's realized floor), not mesh-band-relative"
+  note: "DOWNGRADED 2026-09-30: the recorder-dependent verdicts are explained and removed at the S22 design set; what stays open is the population study of the floor (M0 NTF-5 duty) and the re-derivation on the new check of the quotability numeral of the protocol's first amendment (cert_worst <= 1/K_RICH)"
 
 - id: twin-protocol:uncertainty-budget-absent-before-run
   status: CONFIRMED

@@ -181,8 +181,8 @@ STEP_BY_ID = {s[0]: s for s in STEPS}
 STEP_STATUS = {
     'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
     'F2.REPR': 'CONSUMED 2026-09-30 (F2 session 2/6; census R44; owner decisions T1-T4)',
-    'F2.ENGINE': 'IN PROGRESS (F2 session 3/6, census R45: inventory on file; next the cell check, then one bell campaign re-run)',
-    'F2.M-RED': 'QUEUED (first F2 campaign, B19(c)); its first act = PILOT-WF (S-REVIEW LOG-11)',
+    'F2.ENGINE': 'IN PROGRESS (F2 session 3/6 consumed 2026-09-30: cell check on the arithmetic floor, S22 campaign converged/[D1] failed, single-wave + choking monitors, PILOT-WF PASS at 0.05 bar; exit table E4 names the owners; next session 4/6 = CycleFamily v0 from the CJ chain)',
+    'F2.M-RED': 'IN PROGRESS: first act PILOT-WF RUN 2026-09-30 (wave frame vs 12 frozen pictures, Rao plug 0.05 bar: -0.13 percent, PASS at the 0.17 line); second pilot at 0.2 bar owed',
     'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
     # F3 sub-windows (reunion of 2026-09-30): D6 says F3 CLOSED 2026-09-24, but that
     # closure was taken on the plug line, out of the plan's order, and covers the

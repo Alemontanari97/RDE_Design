@@ -1447,3 +1447,17 @@ validation/PROGRESS_2026-09-30_F2REPR.md. Also of record on this date: the revie
 (F2.REPR GO, F2.ENGINE GO with two conditions) and the plan line reunited with the plug line (F3 had been opened
 and closed on the plug line on 2026-09-24, out of this order; F3.TWIN and F3.TOURNAMENT are not run).
 
+**DATED NOTE 2026-09-30 (evening) — F2.ENGINE session 3/6 and the first act of F2.M-RED.** F2.ENGINE orders 1-5 done
+(log validation/PROGRESS_2026-09-30_F2ENGINE.md): the cell check on the cell's own arithmetic floor (M0 NTF-6,
+opt-in A1_CERT_KAPPA), the S22 bell campaign converged with its kill test [D1] tested and failed, the T0 flatness
+monitor of item 5-bis LANDED as the single-wave monitor (X-SWAV) and the U3' choking monitor (X-CHOK); the data of
+record (THOR_CAv3, class B) FAIL the single-wave contract at the thrust-band line: the wave's strength wanders 2
+percent turn to turn, so a per-phase family from one snapshot carries 2 percent on the cycle mean. PILOT-WF (the
+first act of F2.M-RED) RUN and READ: the 3-D flow in the frame turning with the wave (MOSE_open rigid-body frame,
+far field 406) against its 12 frozen pictures on Rao's plug at 0.05 bar: -0.13 percent (equal weights) / -0.16
+(weights of record), azimuthal grid converged (1 and 2 degrees within 0.005), instrument control at +0.001: PASS
+against the declared 0.17 percent line, at this ambient only; a second pilot at 0.2 bar is owed before the
+per-phase judge is used where phases are over-expanded. Owner's request (20:30): the design data from the case-A
+generator (CJ + blowdown, Annex B) instead of the THOR outflow — first act of session 4/6 (CycleFamily v0, item 5).
+Proposed decision P-F2-1: the bell-driver duties inherited by F2.ENGINE order 4 (P-IPADJ, OBJ-DOM-IMPL, P-QNCARRY,
+P-HESSREJ, X-O32 re-form) off the plug-sector critical path. F2 not exited: table E4 of the log names the owners.

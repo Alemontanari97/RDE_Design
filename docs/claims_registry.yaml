@@ -2398,6 +2398,20 @@ entries:
   falsifier: "W-1 (period spread above 1 percent, a wave count other than one, or a count that changes inside the window), W-2 and W-3 at the two derived lines; R-1..R-3 must fire (a monitor that lets a 30 percent counter-wave, a count change or a 10 percent drift through is no monitor)"
   gamma: "EOS-general"
 
+- id: X-CHOK
+  kind: carrier
+  ondemand: "env=jax; pass=2026-09-30; suite=none; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE CHOKING MONITOR OF THE EXTRACTION SURFACE (F2a item U3', 2026-09-30; validation/exit_choking_monitor.py on validation/_rde_tournament/q2d_thor_cav3_exit_t15.5ms.npz = the Q2D THOR_CAv3 exit column and the column before it, 1799 cells, one instant t 15.5 ms). Taking the outflow phase by phase presupposes a surface where in every phase the gas leaves axially faster than sound (no wave travels back: the phases are independent data). Audit quantity = the NORMAL Mach on the surface (M0: never the total Mach); the surface is a plane, so M_x exactly. Line: the smallest margin M_x - 1 above the data's own uncertainty, the wander X-SWAV measures (2 percent of pressure ~ 1 percent of Mach): 0.02. Gates C-1 (exit column), C-2 (previous column); rejector R-1 (a subsonic patch planted on 30 degrees must be rejected and located). One instant only; the wander in time is X-SWAV's."
+  statement: "On the THOR_CAv3 exit the margin M_x - 1 is 0.442 at its smallest (theta 99.5 deg) and 0.841 at its largest; on the column before it 0.261 .. 0.662: the extraction surface is axially supersonic in every cell of every phase with a margin twenty times the data's uncertainty, so the per-phase decomposition has a well-defined surface on this source (U3' answered YES here, for this source; the general rule is the monitor itself). R-1 fires and locates the planted patch."
+  doc: "validation/PROGRESS_2026-09-30_F2ENGINE.md"
+  proof: "validation/exit_choking_monitor.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "C-1 or C-2 with a cell under the line (a subsonic patch: the per-phase data are not independent there and U3' answers NO for the source); R-1 not firing or firing at the wrong place"
+  gamma: "EOS-general"
+
 - id: X-FMTR
   kind: carrier
   ondemand: "env=jax; pass=2026-09-30; suite=none; envfp=9145bf10"
@@ -2729,7 +2743,7 @@ entries:
   gamma: "EOS-general"
 - id: X-RAOHM
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-09-24; suite=none; envfp=9145bf10"
+  ondemand: "env=jax+geno; pass=2026-09-30; suite=none; envfp=9145bf10"
   class: PRACTICE
   scope: "HUMPHREYS' RAO NOZZLE IN RAO'S WORLD (S35 2026-09-24, [F3/A1]): their Table 3 (p. 1587) posed as a GENO RaoPlug run by Rao's own method -- lip transversality at their p_a, D at their x_D, their Veen base of Eq. (12) iterated to a fixed point outside GENO (input of record validation/humphreys1971_rao_geno/input.ini) -- and that field used as THEIR start by the Rao carriers of record ([X-RAOTW], [X-RAOO3], [X-RAOSQ]) with the new knobs RAO_PA_PC (their ambient ratio 14.7/500), RAO_PB (their constant p_b over p0 in the tip identity and the corner relation), RAO_TH / RAO_APERT (the bumps scaled by the length ratio 0.29258 / 1.1766); stage raogeno of a1_humphreys_twin reads the GENO wall against Table 3"
   statement: "The GENO wall reproduces their Table 3 at mean |dy| 1.32e-4 y_E, max 0.00132 in (stage raogeno 2/2, against the Rao-world level of record 2.44e-3), D inside the band, the wall angle within 0.011 deg on the unflagged rows; their 'approximately -58.5 deg' is not the design's sonic-line direction (-55.84 deg) and the printed -28.40556 at x 3.03421 repeats the decimals of its y (flagged). Marched from that field with their ambient and base: twin PASS; O3.3 7/7 at x0 0.10 m (tip identity measured/predicted 1.028, corner Eq. 9 residual 1.0e-3 against 8.8e-2 on the tip-lifted wall); at x0 0.0746 m, outside the twin's verified cuts, the march reaches D 1.3 percent low in Mach and the tip/corner checks fail (5/7). SQP return 6/6 at x0 0.10 m with the initial trust radius scaled by the length ratio (RAO_TR0 0.0124; at the record's 0.05 the rejector's every trial left the class, 14/14 uncertified, 5/6): from a 1.5 percent perturbation (17 x its band in the worst direction) the landing is inside every band (worst 0.08), |J(W*) - J(Rao)| 7e-3 N, and the sign-flipped driver walks away (2.9x the start's distance)."
@@ -2796,7 +2810,7 @@ entries:
 
 - id: X-PTRN
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-09-25; suite=none; envfp=9145bf10"
+  ondemand: "env=jax+geno; pass=2026-09-30; suite=none; envfp=9145bf10"
   class: PRACTICE
   scope: "THE PLUG TOURNAMENT AT FULL EXPANSION BY THE GENERAL METHOD (S29 2026-09-16; row coined S40 2026-09-25, [F3/A1]; validation/a1_plug_tournament.py, stages derive and campaign): our free-form spike (clamped-left natural cubic on 16 uniform knots over (0.35, L 5.8762] m, the tip radius free above the march's floor) searched WITHOUT knowledge of the answer at the NOMINAL ambient in our world (CH4/O2 NASA tables, [X-AFAN]'s axisymmetric lip fan as the start data, PSPL_FAN=axi), the fan streamline as the incumbent (the member), the certified TR-SQP with the fold margin as a constraint and the S32 backtracking; Rao's contour (GENO's member) read only afterwards as the oracle. Class: S29's bucket (default) or Humphreys' region R (PTRN_CLASS=R, S40, the S34 criterion); rungs (81,41) and (161,81); every constant derived on the member SETTINGS OF RECORD (2026-09-30): the derive of record runs with PSPL_FAN=axi (and PTRN_K=81 PTRN_N=41 for the S30/S40 rung); the default run (planar fan, L 5.6102) grades Rao's contour out of class (O-1b, O-2) and is not the record."
   statement: "DERIVES: bucket class 10/10 at (81,41) and (161,81) (S30: m_ref 0.0871 / 0.0480, band_J 1.99e-2 / 1.05e-2 of J; the member equals Rao's contour within the representation band and to 1.0-1.5e-5 of J); region R 12/12 at (81,41) (S40: m_ref 0.0871 over the member's 426 R cells, floors 0.0435 .. 0.0054, tr0 6.106e-3 m; the rejector of the R criterion is the 1.5-percent perturbation, which folds inside R, KS -0.730; the 2 deg foot corner folds outside R and is reported). CAMPAIGNS: from the member (S30) no resolved gain (+4.83e-4 of J = the foot knot's discretisation, Richardson to zero); from the FAR starts C and E, 0.84 m from the member, class in region R, 24 x 8 with backtracking (S40): NEGATIVE -- the walks recover 34 / 49 percent of the thrust gap but stay 0.836 / 0.850 m from the member in shape (band_W 0.0122 m), 2.5e-3 / 1.5e-3 of J below it, not coinciding with each other; they stall at a FOLD CLIFF (the base in class with ~0.015 of slack, every trial at KS - mu0 about -0.83 inside R, closer than the radius floor 1.526e-3 m). The finder claim at the nominal ambient is NOT made; the plug optimum stays certified in value by [X-OWNM]."

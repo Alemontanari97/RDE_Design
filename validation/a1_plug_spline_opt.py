@@ -962,6 +962,31 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             if verbose:
                 print("    [seg %2d] no motion -> stop" % seg)
             break
+        # PSPL_FLOOR_LIMIT, second measurement (the one the record's stop
+        # rule needed): the first-order distance along the ascent can be
+        # infinite while the CONSTRAINED step is short -- the class limit
+        # binds the model's step, not the gradient (measured on the 0.2 bar
+        # walk from Rao's plug: rate of the margin along the ascent
+        # NEGATIVE, step 1.37e-3 under a 2.02e-3 floor with the margin
+        # multiplier active). A short constrained step with the margin
+        # active IS the measured distance to the limit: the floor follows
+        # it (a K_RICH-th of the step), never below the caller's floor over
+        # K_RICH squared, and the step is not read as convergence.
+        if (FLOOR_LIMIT and margin is not None and not phase1
+                and step < floor and floor > floor0 / A1.K_RICH ** 2):
+            mult = [float(np.max(np.abs(np.asarray(x, float))))
+                    for x in (getattr(res, "v", None) or [])]
+            if mult and max(mult) > 0.0:
+                floor = max(floor0 / A1.K_RICH ** 2,
+                            min(floor, step / A1.K_RICH))
+                slack = floor * (1 + 1 / 100)
+                small_prev = False
+                if verbose:
+                    print("    [seg %2d] PSPL_FLOOR_LIMIT: step %.3e under"
+                          " the floor with the class active (multiplier"
+                          " %.3g) = the measured distance to the limit"
+                          " -> floor %.3e" % (seg, step, max(mult), floor),
+                          flush=True)
         if tr_follow and step < floor and small_prev:
             hit = None
             if (tr_follow_ascent and backtrack > 0 and W_best is not None

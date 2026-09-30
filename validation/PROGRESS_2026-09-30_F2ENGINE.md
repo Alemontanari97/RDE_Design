@@ -1,4 +1,4 @@
-# Session log 2026-09-30 — F2.ENGINE, session 3 of 6 (census R45): OPEN, orders 1-3 done, PILOT-WF running
+# Session log 2026-09-30 — F2.ENGINE, session 3 of 6 (census R45): OPEN, orders 1-5 done, PILOT-WF read (PASS at 0.05 bar)
 
 Plain rules for this log: short sentences, one fact per line, physics before method.
 
@@ -88,7 +88,8 @@ rows, not against "PASS" alone: four rows are negative results whose run of reco
 | pass today, default protocol | X-ANKR 4/4, X-PGRS 5/5, X-PLUG 6/6, X-AFAN 8/8, X-FRMR 4/4, X-PSPL 8/8, X-TKRN 7/7, X-TWMU + X-MGDL 5/5, X-BPRS 10/10, X-OWO3, X-OWNM, X-OWTW, X-RAOPO, X-PMRG 11/11, X-TWOP 6/6, X-RDET 2/2 |
 | the record reproduced (rows that record a failing gate) | X-FMTR 2/3 (P0-1: the two routes differ by 1 percent, the row's own statement), X-CHTW 8/9 (T-4b mass along the march, open since S31), X-HMPH 4/6 (R-1/R-3 fail by construction, declared in the row), X-RAOWD (its falsifier FIRED is the result) |
 | pass with the settings of record | X-RAOO3 7/7 (`RAO_GENO_RUN=GENO/CASES/raoplug_run_legacy`), X-TPOS gates 4/4 (`HMPH_CASE=opt HMPH_ZCUT=0.12 ANK_ETA=8 HMPH_K=160 HMPH_N=41`; the default posing raises "tri column rows not ordered" at every commit back to the row's own, so the default was never the record), X-IVLT (through X-TPOS) |
-| pending at the time of writing | X-RAOSQ, X-RAOHM, X-PTRN (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`), X-OWAB, X-OWSQ + X-OWS3, X-RAOFN, X-RAOTW, X-PAKN (4-hour cap; the 1-hour cap ran out at cycle 1) |
+| pass with the settings of record, read later in the evening | X-RAOSQ PASS (the SQP returns to Rao's optimum, 3621 s), X-RAOHM 7/7 (Humphreys' Rao nozzle in Rao's world), X-PTRN 10/10 (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`) |
+| pending at the time of writing | X-OWAB (the 1-hour cap ran out at A-3; re-run with a longer cap owed), X-OWSQ + X-OWS3, X-RAOFN, X-RAOTW, X-PAKN (4-hour cap; the 1-hour cap ran out at cycle 1) |
 The default runs of the scripts rewrite their cache files under `validation/_*/` (derive.json, npz): restored from
 git before the commit; the caches of record are the committed ones.
 
@@ -127,6 +128,63 @@ its two arms consume the same 12 frozen states.
 X-SWAV is declared FAILING (`fail=2026-09-30`) owned by the finding
 data-contract:thor-cav3-wave-strength-wanders-two-percent-turn-to-turn. Data of record committed:
 `validation/_single_wave/thor_cav3_probes_last3ms.npz` (1.2 MB).
+
+## Order 4(a, b, c, e) — the other inherited items, read against the sector of the decisive comparison
+- 4(c) X-LOCD (the locus diagnosis of the S20 rejections): its premise was that the rejections were genuine
+  certification failures to be localised. With the new check (order 2) the five rejected designs certify in
+  every solver variant: there is no locus to diagnose. The row stays declared failing on its own falsifier
+  ("a rejected design whose re-record does not reproduce cert_worst > 1"), now for the right reason, and the
+  finding that owned the cross-recorder flips is DOWNGRADED with the measured cause (the fixed line inside the
+  arithmetic noise of the near-axis cells). No re-form of the script: it did its job, the answer is "none".
+- 4(c) X-O32 (mesh convergence of the bell engine's objective and adjoint), 4(a) [P-IPADJ] (the multiplier
+  rejector of the bell driver), 4(b) [OBJ-DOM-IMPL] (the panel-inclusive objective domain, the throat-angle
+  gradient of the bell), 4(e) [P-QNCARRY] / [P-HESSREJ] (quasi-Newton carry and Hessian-symmetry rejector of
+  the bell driver): ALL FOUR ARE BELL-ENGINE DUTIES (`a1_toc_variational_jax.py`). The decisive comparison is
+  on the truncated plug (protocol section 2), whose engine is the spline walker with its no-fold class, its
+  secant Hessian confirmed by second differences (X-TWOP DUTY-11) and the two walls decoupled. On the plug line
+  the counterparts of these duties are on file; on the bell they are not, and no F2 exit gate on the plug
+  sector consumes them. PROPOSED to the owner (decision P-F2-1, added to the pending list): re-home the four to
+  the bell sector, off the critical path; F2 exits on the plug engine. Not executed here: the owner decides.
+
+## F2a item U3' — the choking monitor of the extraction surface: gates declared BEFORE authoring (R8), 20:02
+What it checks. Taking the outflow phase by phase presupposes a surface downstream of the throat where, in every
+phase, the gas leaves axially faster than sound (no wave can travel back through it and the phases are
+independent data). The monitor reads the extraction surface (the Q2D THOR_CAv3 exit column, 1799 cells, one
+instant) and reports the axial Mach margin M_x - 1 cell by cell; the extraction surface is admissible when the
+margin is positive everywhere and the smallest margin is above the uncertainty of the data (the wander of
+X-SWAV: 2 percent of pressure is about 1 percent of Mach, so the line is 0.02 in Mach). The total Mach is NOT the
+audit quantity (M0: the meridional normal Mach is): here the surface is a plane x = const, so M_x is exact.
+Gates (carrier `validation/exit_choking_monitor.py`, row X-CHOK): C-1 M_x - 1 > 0.02 in every cell; C-2 the same
+on the previous column (the surface is not a fluke of one column); R-1 (must fire): a subsonic patch planted on
+30 degrees of the column (M_x 0.9) is rejected with its location printed.
+Limit of the monitor: one instant (the snapshot); the wander in time is X-SWAV's business.
+
+### U3' — result (carrier `validation/exit_choking_monitor.py`, row X-CHOK, log `carriers_2026-09-30/chok.log`)
+PASS 3/3: on the exit column the margin M_x - 1 is 0.442 at its smallest (theta 99.5 deg) and 0.841 at its
+largest; on the column before it 0.261 to 0.662; the planted subsonic patch is rejected and located. Reading:
+on this source the outflow leaves axially faster than sound everywhere, by a margin twenty times the data's
+uncertainty; the per-phase decomposition has its surface. U3' is answered YES for THOR_CAv3 by an executable
+monitor; the general rule is the monitor itself, to be run on every new source.
+
+## E4 — every F2a / F2b exit item of the plan (D6 F2 block), met with its check or listed with an owner and a date
+| plan item | state 2026-09-30 evening | check / owner and date |
+|---|---|---|
+| F2a: certified stratified-data forward march | MET | `a1_rot_march.py` 9/9 (X-RMAR, pass 2026-09-30) |
+| F2a: stage-A data-contract audits: Crocco residual, characteristic completeness, H-I2 margins | MISSING (Crocco, completeness), MET in part (H-I2/choking: X-CHOK) | owner F2.ENGINE session 4/6; needs the full exit field, not the last column; proposed date: the next session |
+| F2a: T0 flatness monitor with derived threshold, G6 loud reject | MET as the single-wave monitor X-SWAV (rejects the data of record: the loud reject is operative); its harmonic-decay half NOT written | owner F2.ENGINE session 4/6 (harmonic-decay audit: a spectral row on the folded pattern) |
+| F2a: contact/slip adjudication (smeared contact marched as smooth stratified data, declared rigor class) | PARTIAL: the march carries and bounds smooth layers (check W-5 of X-RMAR); the statement with its rigor class not in M0 | owner F2.ENGINE session 4/6: one M0 paragraph (PRACTICE: linear degeneracy, no self-steepening) + the extended margin covering the jump |
+| F2a: U3' choking adjudication with an executable monitor | MET for the source of record: X-CHOK (M_x - 1 >= 0.44 on the exit column); the general rule = the monitor | run on every new source; owner = whoever brings a new source |
+| F2b: adjoint / O3.1 at machine precision on the stratified march | MET | `o31_rot.py` PASS (X-O31R, pass 2026-09-30) |
+| F2b: GENO moc_gen twin agreement in derived bands + independent invariants | PARTIAL: invariants met (mass, entropy, W-4); no run against GENO's layered solver | owner F2.ENGINE session 4/6 (one layered GENO case, derived band); GENO read-only |
+| F2b: extended (q; s, h0) fold/validity margin WITH rejector | MISSING for layered flow (uniform flow: the no-fold class + `margin_governor.py`) | owner F2.ENGINE session 4/6: the fold census on the layered march's own cells + a seeded folded design that must be rejected |
+| F2b: P-1 theory half + general-engine methods freeze at exit | NOT DONE | owner F2 session 5/6 (freeze) -- after the data contract closes on many-turn data (X-SWAV) |
+| the fallback (two-family transport, h0 a named residual) | NOT NEEDED so far: the three-family march exists and passes | - |
+| F2.M-RED first act: PILOT-WF | RUNNING (read below when the runs end) | this log |
+| F2.CFD-2 paired demonstration | PARTLY IN HAND (the per-phase referee with certified convergence, S41-S42) | owner F2 session 5/6 |
+Sessions: 3/6 consumed by this session. The exit of F2 is not declared tonight: two items are missing with an
+owner and a date (the layered fold margin with rejector; the two data audits), one is partial (GENO layered
+twin), and the freeze waits for the data contract. What blocks nothing: the plug-sector program (F3.TWIN
+preparation) can proceed on the plug engine, whose counterparts of these items are on file.
 
 ## PILOT-WF — declared BEFORE any result is read (R8), 2026-09-30 18:55
 Launched on the owner's order "chiudiamo F2" (my reading: it covers the 3-D launch the prompt left to the owner).
@@ -176,5 +234,66 @@ Gates (carrier `validation/single_wave_monitor.py`, row X-SWAV):
 Not covered: probes at one radius and one axial station; the exit plane's own history is not on file (the
 snapshot is one instant), so the monitor speaks for the chamber probes nearest the exit (piastra, x 23.4 mm).
 
-## Where the session stands
-Done: order 1. Next: order 2 (the cell check), then order 3 (the S22 bell campaign re-run).
+### PILOT-WF — result of the 2-degree runs (read 20:40; cases `THOR_GPU/NOZZLE_2026-09-27/CASE_3D/wf_Ra10_*`, records `wf_post.json`; 2-D control `CASE_2D/Ra10w_phase*_wfc`, `referee_cert_wfcc.log`)
+The instrument is sound.
+- Run B (uniform inlet, wave frame, 3-D): C_F 1.383621 at 2.75 ms, the last three dumps within 1.5e-5; flat around
+  the annulus (the 180 columns within 2e-4, std 1.1e-4); the 2-D run of the mean state on the same grid section:
+  1.383607. Difference +0.001 percent, two hundred times below the line. The frame terms, the periodic block
+  connections, the 405 relative inlet and the 406 far field do not move the thrust.
+- Run C (the frozen pictures, 2-D, same grid section, outer boundary at 100 mm): all 13 cases CONVERGED (last
+  three dumps within 4e-7); 12-phase C_F 1.322536 with the weights of record, 1.322119 with equal weights; the
+  earlier grid with the outer boundary at 160 mm gave 1.322538: the boundary position is immaterial.
+The answer at 2 degrees.
+- Run A (12 sectors, wave frame, 3-D): C_F 1.320511 at 2.75 ms, steady to 1e-5 from 0.25 ms on. Against the 12
+  frozen pictures: -0.153 percent (weights of record), -0.122 percent (equal weights, the like-for-like: the 3-D
+  sectors are 30 degrees each). INSIDE the 0.17 percent line, but within a factor 3 of it: by the rule declared
+  above the 1-degree run decides (job 303476, running).
+- Sector by sector the rotating flow is NOT the frozen picture: the weak phases (3 to 8) give 2.5 to 3.3 percent
+  MORE thrust than their frozen runs, the strong phase 9 (just behind the wave) 4.8 percent LESS, phase 10 1.9
+  percent less. Physics: in the wave's frame the sector boundary 8|9 is the detonation's foot standing still;
+  the high-pressure gas behind it spreads sideways into the low-pressure sectors along the plug, so the plug at
+  the strong sector sees less pressure and at the weak sectors more. The redistribution is several percent per
+  sector and cancels to a tenth of a percent in the total: the per-phase average is a good estimate of the
+  cycle thrust even though every single frozen sector is off by percents.
+- The base (priced apart): 3-D 12-sector -0.0369 of C_F, 3-D uniform -0.0352, 2-D mean state -0.0372; settled by
+  1.5 ms in 3-D (the 2-D per-phase bases were not settled at 3 ms: -0.0279, flagged).
+- Cost: 30 ranks x 2 threads on one node, 0.14 s per step, 33066 steps for 3 ms = 77 min (A); the wall thrust
+  is steady from 0.25 ms, so 1 ms would have done for the thrust.
+Reading against the pass line, PROVISIONAL until the 1-degree run: per-phase numbers may carry the decisive
+number at THIS ambient (0.05 bar: every phase under-expanded at the lip, plume attached). The pilot says nothing
+about 0.2 bar, where the frozen per-phase runs were unsteady and some phases over-expanded: a second pilot there
+is the natural next act of F2.M-RED (the wave-frame run is steady by construction and may be the more robust
+instrument exactly where the per-phase runs struggle).
+
+### PILOT-WF — the 1-degree run and the reading (21:00; case `CASE_3D/wf_Ra10d1_phases`, 1.63 M cells, 1 ms)
+- At the same instant (0.75 ms) the 1-degree run gives 1.320464 against 1.320533 at 2 degrees: -0.005 percent;
+  sector by sector the largest change is 0.06 percent (sector 9, the one behind the wave). The azimuthal grid
+  is converged for this question; the difference between the rotating flow and the frozen pictures is real,
+  thirty times the instrument's error (run B) and twenty-five times the grid's.
+- Number of record (2-degree run at 2.75 ms, corrected by the 1-degree offset): C_F 1.320442. Against the 12
+  frozen pictures on the same grid section: -0.127 percent with equal weights (the like-for-like: the 3-D
+  sectors are 30 degrees each), -0.158 percent with the weights of record (a Q2D cell-count artefact on phase
+  6, kept for the record).
+- READING AGAINST THE PASS LINE (0.17 percent, declared before the read): PASS, by a small margin. At 0.05 bar
+  the average of the 12 frozen pictures carries the cycle thrust of Rao's plug to 0.13 percent, and per-phase
+  numbers may carry the decisive number at this ambient. What the pilot does NOT say: anything about 0.2 bar
+  (phases over-expanded at the lip, unsteady frozen runs) or about a design other than this plug. The margin to
+  the line is 0.04 percent: a second pilot at 0.2 bar is the next act of F2.M-RED before the per-phase judge
+  is used where phases are over-expanded.
+- Physics of the residual: the frozen picture overestimates the thrust of the strong sector behind the wave
+  (its pressure leaks sideways along the plug) and underestimates the weak sectors; the two nearly cancel
+  because the plug's pressure integral is close to linear in the sector pressure. The residual -0.13 percent
+  is the part that does not cancel.
+- Records: `CASE_3D/wf_*/wf_post.json`, `case.json`, `run.log`; the fields, the initial conditions and the
+  1-degree mesh deleted here, the cluster copy removed (12 GB); the 2-degree mesh kept for the 0.2 bar pilot.
+
+## Where the session stands (21:10)
+Done: orders 1-5 (order 5's second measurement landed after the first proved blind; its demonstration walk is
+running); the single-wave and choking monitors; 27 owed checks re-stamped; PILOT-WF read at 0.05 bar: PASS.
+Not done for the F2 exit (table E4 above, owners and dates): the two data audits, the layered fold margin with
+rejector, the GENO layered twin, the harmonic-decay half of the monitor, the freeze. Counter: 3/6 consumed.
+Owner's request at 20:30: input data from SD Toolbox (case A of Annex B: CJ + blowdown) instead of the THOR
+outflow (1.5 bar, weak signal, and the 2 percent wander of X-SWAV). Answer: yes, it is the protocol's own data
+class; the CJ chain is in the repo (`src/detonation/cj_states.py`, `src/cycles`, Cantera 3.2 in the venv); the
+CycleFamily v0 generator (plan item 5) is the first act of session 4/6, with the owner's specs (CH4/O2 pinned,
+phi, mean pressure, p_a, annulus).

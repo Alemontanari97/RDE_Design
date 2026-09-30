@@ -135,6 +135,7 @@
   "validation/spres_raws_2026-08-22/deck_build/typo_canon.py": 32,
   "validation/sreview_raws_2026-08-31/check_tables.py": 1,
   "validation/st_scoping_number.py": 16,
-  "validation/single_wave_monitor.py": 24
+  "validation/single_wave_monitor.py": 24,
+  "validation/exit_choking_monitor.py": 11
  }
 }
