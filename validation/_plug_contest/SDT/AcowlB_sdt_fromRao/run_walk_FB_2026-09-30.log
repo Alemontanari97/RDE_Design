@@ -1,0 +1,83 @@
+walk AcowlB_sdt_fromRao pa/P0 0.024378 start /data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json basis /data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json segs 10 iters 12 tr0 0.008073525393645567 class /data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json cpus 15,16,17 start 22:48:39
+PSPL_WLOG=/data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/AcowlB_sdt_fromRao/accepted_bases.jsonl TWOP_STAGE=walk TWOP_ITERS=12 PSPL_FLOOR_LIMIT=1 TWOP_START_FROM=/data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json A1_NEWTON_RESCUE=1 TWOP_SEP=summerfield TWOP_START=F TWOP_FIX={"xa_s": 0.0294, "ta_s": 1e-09, "u_s": -0.44419306935689357} PSPL_BACKTRACK=4 TWOP_REGION=RC TWOP_ART=/data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/AcowlB_sdt_fromRao TWOP_SEP_CLASS=1 TWOP_SHAPE=1 TWOP_FREE_EXIT=both TWOP_PA=0.024378 PSPL_JSCALE=radius TWOP_TR0=0.008073525393645567 TWOP_U0=10 PSPL_TRFOLLOW=1 TWOP_KERNEL=arc TWOP_CAP=0.8 TWOP_BASIS=/data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json TWOP_GAS=/data10/falco/RDE/RDE_Design/validation/_cycle_family/sdt_ch4_phi1_pcp20/gas_mean.json TWOP_CLASS=/data10/falco/RDE/RDE_Design/validation/_rde_tournament/stech/class_nofold_2026-09-28.json TWOP_U0_S=-10 TWOP_JET=1 TWOP_NOPLUME=1 TWOP_SEGS=10 
+== [F3] the two-wall walk, start F, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.650621, C_F,vac 1.618656); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.008900); wedge every 1; p_a/P0 2.43780e-02; 0.4 s
+   start F: the landing of /data10/falco/RDE/handoff/plug_2026-09-29/sdt/start_rao_sdt.json
+   TWOP_BASIS: W = W_s + T z, T 27 x 12 (rank 12) of /data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json; box: 0 lower, 0 upper bounds
+    start ladder h 4.460e-05 m: C_F +1.868e-05, KS +0.6065, cert 1.001e-01 -> in class
+    start ladder h 8.920e-05 m: C_F +3.730e-05, KS +0.6063, cert 3.354e-02 -> in class
+    start ladder h 1.784e-04 m: C_F +7.438e-05, KS +0.6060, cert 3.976e-02 -> in class
+    start ladder h 3.568e-04 m: C_F +1.479e-04, KS +0.6053, cert 4.308e-02 -> in class
+    start ladder h 7.136e-04 m: C_F +2.922e-04, KS +0.6040, cert 4.929e-02 -> in class
+    start ladder h 1.427e-03 m: C_F +5.704e-04, KS +0.5980, cert 3.605e-02 -> in class
+    start ladder h 2.854e-03 m: C_F +1.086e-03, KS +0.5923, cert 4.294e-02 -> in class
+    start ladder h 5.709e-03 m: C_F +1.958e-03, KS +0.5813, cert 3.967e-02 -> in class
+    start ladder h 1.142e-02 m: C_F +3.123e-03, KS +0.5606, cert 4.073e-02 -> in class
+    start ladder h 2.284e-02 m: C_F +3.504e-03, KS -0.0969, cert 4.792e-02 -> OUT
+   TWOP_TR0: the ladder's radius 4.037e-03 m replaced by the declared 8.074e-03 m
+   start F (ramp nan): C_F 1.412293288, cert 1.385e-01, KS +0.6067; gap to the reference plug 1.371e-01 / shroud 2.437e-01 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 10 segments x 12 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.000e+00 m -> tr0 8.074e-03 (z), floor 2.018e-03 (z)
+   memory mappings at the walk's start: 10341 (cap 65530)
+    [seg  0] J = 1.41229329e+00  |grad| = 4.194e-01  cert = 0.139
+    [seg  0] margin at base: KS - mu0 = +0.5993 (min cell +0.6067, 5883 cells)
+    [seg  0] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.577e-01 (margin 0.5993, rate 3.800e+00 per unit step) -> floor 2.018e-03
+    [seg  0] PSPL_JSCALE: objective x 2.9532e+02 (|grad| 4.194e-01, radius 8.074e-03)
+    [seg  0] margin counters: {'m_exec': 12, 'm_dedup': 13}; multipliers [[-14.647]]
+   checkpoint at segment 1: C_F 1.412293288; mappings 10853 -> 10853 (cleared above 55000)
+    [seg  1] trial J = 1.41093303e+00 worse than 1.41229329e+00; model predicted 1.41093313e+00 (rho 1.00)
+    [seg  1] backtrack 1/2 (step 2.162e-03): J = 1.41174592e+00 cert = 0.047 -> worse
+    [seg  1] backtrack: step 1.081e-03 below the floor at 1/4 -> give up
+    [seg  1] ascent 1/2 (step 6.486e-03): J = 1.41445421e+00 cert = 0.052 -> ACCEPT
+    [seg  1] restoration ACCEPTED -> base, radius -> 6.486e-03
+   checkpoint at segment 2: C_F 1.412293288; mappings 10853 -> 10853 (cleared above 55000)
+    [seg  2] J = 1.41445421e+00  |grad| = 3.188e-01  cert = 0.052
+    [seg  2] margin at base: KS - mu0 = +0.5711 (min cell +0.5784, 5885 cells)
+    [seg  2] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.818e+00 (margin 0.5711, rate 3.141e-01 per unit step) -> floor 2.018e-03
+    [seg  2] PSPL_JSCALE: objective x 4.8357e+02 (|grad| 3.188e-01, radius 6.486e-03)
+    [seg  2] margin counters: {'m_exec': 24, 'm_dedup': 26}; multipliers [[3.437]]
+   checkpoint at segment 3: C_F 1.414454212; mappings 10855 -> 10855 (cleared above 55000)
+    [seg  3] J = 1.41479767e+00  |grad| = 4.622e-01  cert = 0.038
+    [seg  3] margin at base: KS - mu0 = +0.6050 (min cell +0.6125, 5885 cells)
+    [seg  3] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.245e-01 (margin 0.6050, rate 4.860e+00 per unit step) -> floor 2.018e-03
+    [seg  3] PSPL_JSCALE: objective x 1.8837e+02 (|grad| 4.622e-01, radius 1.149e-02)
+    [seg  3] margin counters: {'m_exec': 36, 'm_dedup': 39}; multipliers [[-8.736]]
+   checkpoint at segment 4: C_F 1.414797670; mappings 10853 -> 10853 (cleared above 55000)
+    [seg  4] trial J = 1.41430669e+00 worse than 1.41479767e+00; model predicted 1.41430669e+00 (rho 1.00)
+    [seg  4] backtrack: step 1.678e-03 below the floor at 1/2 -> give up
+    [seg  4] ascent 1/2 (step 5.034e-03): J = 1.41655013e+00 cert = 0.032 -> ACCEPT
+    [seg  4] restoration ACCEPTED -> base, radius -> 5.034e-03
+   checkpoint at segment 5: C_F 1.414797670; mappings 10852 -> 10852 (cleared above 55000)
+    [seg  5] J = 1.41655013e+00  |grad| = 3.010e-01  cert = 0.032
+    [seg  5] margin at base: KS - mu0 = +0.5773 (min cell +0.5846, 5885 cells)
+    [seg  5] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 3.422e-01 (margin 0.5773, rate 1.687e+00 per unit step) -> floor 2.018e-03
+    [seg  5] PSPL_JSCALE: objective x 6.6003e+02 (|grad| 3.010e-01, radius 5.034e-03)
+    [seg  5] margin counters: {'m_exec': 48, 'm_dedup': 52}; multipliers [[5.312]]
+   checkpoint at segment 6: C_F 1.416550128; mappings 10853 -> 10853 (cleared above 55000)
+    [seg  6] trial J = 1.41595003e+00 worse than 1.41655013e+00; model predicted 1.41595003e+00 (rho 1.00)
+    [seg  6] backtrack 1/2 (step 4.143e-03): J = 1.41650007e+00 cert = 0.043 -> worse
+    [seg  6] backtrack 1/4 (step 2.071e-03): J = 1.41658470e+00 cert = 0.031 -> ACCEPT
+    [seg  6] restoration ACCEPTED -> base, radius -> 2.071e-03
+   checkpoint at segment 7: C_F 1.416550128; mappings 10855 -> 10855 (cleared above 55000)
+    [seg  7] J = 1.41658470e+00  |grad| = 3.339e-01  cert = 0.031
+    [seg  7] margin at base: KS - mu0 = +0.5863 (min cell +0.5936, 5885 cells)
+    [seg  7] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.804e-01 (margin 0.5863, rate 3.250e+00 per unit step) -> floor 2.018e-03
+    [seg  7] PSPL_JSCALE: objective x 1.4459e+03 (|grad| 3.339e-01, radius 2.071e-03)
+    [seg  7] margin counters: {'m_exec': 60, 'm_dedup': 65}; multipliers [[-67.316]]
+   checkpoint at segment 8: C_F 1.416584703; mappings 10855 -> 10855 (cleared above 55000)
+    [seg  8] trial J = 1.41558201e+00 worse than 1.41658470e+00; model predicted 1.41558201e+00 (rho 1.00)
+    [seg  8] backtrack 1/2 (step 2.433e-03): J = 1.41620696e+00 cert = 0.046 -> worse
+    [seg  8] backtrack: step 1.216e-03 below the floor at 1/4 -> give up
+    [seg  8] ascent 1/2 (step 7.299e-03): J = 1.41851261e+00 cert = 0.029 -> ACCEPT
+    [seg  8] restoration ACCEPTED -> base, radius -> 7.299e-03
+   checkpoint at segment 9: C_F 1.416584703; mappings 10854 -> 10854 (cleared above 55000)
+    [seg  9] J = 1.41851261e+00  |grad| = 2.516e-01  cert = 0.029
+    [seg  9] margin at base: KS - mu0 = +0.5591 (min cell +0.5664, 5778 cells)
+    [seg  9] PSPL_FLOOR_LIMIT: distance to the limit along the ascent 1.457e+01 (margin 0.5591, rate 3.838e-02 per unit step) -> floor 2.018e-03
+    [seg  9] PSPL_JSCALE: objective x 5.4449e+02 (|grad| 2.516e-01, radius 7.299e-03)
+    [seg  9] margin counters: {'m_exec': 72, 'm_dedup': 78, 'gm_nonfinite': 1, 'grad_nonfinite': 1}; multipliers [[-22.589]]
+    backtracking: 7 probes, 1 accepted along the segment, 3 accepted on the ascent; 6 records
+   return: C_F 1.418512614 (start 1.412293288, reference 1.506580473, 1-D 1.618656), cert 2.913e-02, KS +0.5664 (in class), |grad|inf 7.170e-01; gap to the reference plug 1.376e-01 / shroud 2.437e-01 m (start 1.371e-01 / 2.437e-01); 6 records, 1326 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.5176 -> 0.5176 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 2.43780e-02, exit free: both): heights tip 0.6151 -> 0.5967, lip 0.9784 -> 0.9784; A_e/A_i 1.5529 -> 1.6125; wall pressure at the tip / lip over p_a 4.219 / 7.699 -> 3.291 / 7.699
+   record: /data10/falco/RDE/RDE_Design/validation/_plug_contest/SDT/AcowlB_sdt_fromRao/walk_FB_2026-09-30.json
+walk AcowlB_sdt_fromRao exit 0 23:10:49

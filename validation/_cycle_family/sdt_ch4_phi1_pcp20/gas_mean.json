@@ -1,0 +1,13 @@
+{
+ "geno_run": "/data10/falco/RDE/handoff/f3_2026-09-25/geno_rde/stech_run",
+ "gamma": 1.1934721116891684,
+ "R": 343.76338232726215,
+ "T0": 3131.9832848121705,
+ "P0": 2078189.0174057435,
+ "M_in": 1.556,
+ "T_tab": [
+  300.0,
+  4200.0
+ ],
+ "note": "CycleFamily v0 time-mean state of det|CH4|20|1.00; the GENO run gives the annulus geometry only (the S42 posing)"
+}

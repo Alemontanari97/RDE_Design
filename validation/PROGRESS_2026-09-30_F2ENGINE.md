@@ -90,7 +90,7 @@ rows, not against "PASS" alone: four rows are negative results whose run of reco
 | pass with the settings of record | X-RAOO3 7/7 (`RAO_GENO_RUN=GENO/CASES/raoplug_run_legacy`), X-TPOS gates 4/4 (`HMPH_CASE=opt HMPH_ZCUT=0.12 ANK_ETA=8 HMPH_K=160 HMPH_N=41`; the default posing raises "tri column rows not ordered" at every commit back to the row's own, so the default was never the record), X-IVLT (through X-TPOS) |
 | pass with the settings of record, read later in the evening | X-RAOSQ PASS (the SQP returns to Rao's optimum, 3621 s), X-RAOHM 7/7 (Humphreys' Rao nozzle in Rao's world), X-PTRN 10/10 (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`) |
 | read at 21:10 | X-RAOTW PASS (our march reproduces GENO's kernel below ED, with RAO_GENO_RUN), X-RAOFN PASS (our objective is Rao's) |
-| read at 21:15: X-OWAB 8/8 PASS (2492 s, over the 1-hour cap) | still running (3-4 hour caps): X-OWSQ + X-OWS3, X-PAKN | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
+| read at 21:15: X-OWAB 8/8 PASS (2492 s, over the 1-hour cap) | read at 22:20: X-PAKN 12/14 (9392 s): A-8 and A-9 fail, the two rows the registry records as failing/void since S22 (the record reproduced) | still running: X-OWSQ + X-OWS3 | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
 The default runs of the scripts rewrite their cache files under `validation/_*/` (derive.json, npz): restored from
 git before the commit; the caches of record are the committed ones.
 
@@ -287,6 +287,99 @@ instrument exactly where the per-phase runs struggle).
   is the part that does not cancel.
 - Records: `CASE_3D/wf_*/wf_post.json`, `case.json`, `run.log`; the fields, the initial conditions and the
   1-degree mesh deleted here, the cluster copy removed (12 GB); the 2-degree mesh kept for the 0.2 bar pilot.
+
+## 21:30 — the owner's order for the night: Rao's plug against the SQP plug, both run with the RDE solution, on the SD Toolbox case
+Order: "vorrei che stasera arrivassimo a fare un confronto tra plug fatto con rao e girato con la soluzione rde e
+plug fatto con sqp ottimizzato e girato con rde". Data: stoichiometric methane at high pressure, from the
+literature on disk. The case on disk: Stechmann, Heister & Harroun (JSR 2019), CH4/O2 phi 1, mean chamber
+pressure 20 atm, fill temperature 200 K, ambient 1 atm (their aerospike row): the matched detonation cycle is
+already computed in the repo (`data/st_nozzle_opt.json`, state det|CH4|20|1.00: post-detonation stagnation
+80.9 atm, fill 1.77 atm, pressure ratio 45.1 over the cycle, T_CJ 3897 K, R 388, c* 1934 m/s) by the CJ chain
+of `src/thrust/stechmann_nozzle.py` (Cantera + SD Toolbox).
+### CycleFamily v0 (plan item 5) — gates declared BEFORE authoring (R8)
+The family: Pc(xi) = P0 exp(-xi ln PR) (the paper's Eqs. 13-14), T(xi) isentropic from T_CJ with the paper's
+gamma_s, 12 sectors of equal time (= equal angle in the wave frame), each sector's (P0, T0) = its time mean;
+gas of the design tool per phase: constant gamma and R = the FROZEN products at the extraction state of the
+phase (equilibrium composition at the phase's own stagnation state, then frozen; the CFD runs the same
+composition with its tabulated thermo); extraction Mach M_in = 1.556 (the S42 posing, kept so the internal
+nozzle and the annulus are the THOR hardware: a THOR-sized CH4/O2 engine at 20 atm); ambient 1 atm.
+Gates (carrier `validation/cycle_family_v0.py`, row X-CYCF): F-1 the cycle mean of Pc equals Pcp (1 + DC) of
+the matched state to 1e-6; F-2 the 12 sector means integrate the exponential exactly (analytic vs quadrature
+to 1e-9); F-3 mass per cycle = the CP combustor's (the matching, recomputed) within the matched tolerance 1e-2;
+F-4 every phase's composition sums to one and its frozen gamma lies in (1, 5/3); F-5 the single-wave contract
+holds by construction (one period, rigid, no wander: the monitor's W-1..W-3 on a synthetic probe record give
+zero residual) and the extraction plane is supersonic in every phase (X-CHOK's rule); R-1 (must fire): a
+family whose mean pressure is off by 1 percent is refused by F-1.
+Consequence for the comparison: with a pressure ratio of 45 over the cycle and 1 atm outside, the last third
+of the cycle leaves the lip below ambient: the case the S-REVIEW asked for.
+
+### CycleFamily v0 — result (carrier `validation/cycle_family_v0.py`, X-CYCF; records `validation/_cycle_family/sdt_ch4_phi1_pcp20/`)
+PASS 8/8 (F-1..F-5b and the rejector). The family: 12 sectors with P0 from 68.5 atm (just behind the wave) down
+to 2.1 atm (the refill), T0 3824 to 2522 K; the products recombine as the gas cools, so R falls from 384 to
+325 J/kg/K and the frozen gamma runs 1.188 to 1.216; mean state P0 20.5 atm, T0 3132 K, gamma 1.1935, R 343.8.
+THE AMBIENT: at 1 atm (the paper's) the last three phases leave the extraction plane BELOW ambient (0.57 to 1.08
+of p_a at M_in 1.556): the internal nozzle would carry a shock inside for a quarter of the cycle, which the
+design tool has no model for (F4b). The pilot posing is 0.5 atm: every phase leaves the plane above ambient
+(1.14 to 37 of p_a); after the internal expansion the last three phases are over-expanded at the lip -- the case
+the S-REVIEW asked for, at the tool's edge but inside it. Declared; a 1 atm column of the same two plugs in the
+CFD costs nothing more and is owed.
+The design tool's gas: constant gamma and R per phase (its own model); the CFD: the equilibrium products of the
+phase frozen through the nozzle, on a 14-species methane kit (the frozen kit of MOSE_open's rocket-nozzle test,
+13 species to 5000 K, plus N2 for the ambient air; traces the kit lacks, below 1e-6, dropped and renormalised).
+The referee chain (mesh, bc, ic, wave-frame case, post) now reads its species from the kit in use (`kit.py`,
+`NOZ_KIT`, `NOZ_PHASES`; a case records its kit and its P0 A* normalisation: 8964.6 N here = P0_mean x A* of the
+THOR annulus at M_in, the design tool's own). Smoke test: a methane wedge case runs 60 steps.
+A mistake, repaired: the internal-nozzle tool writes `start_intnoz_b10p0.json` beside itself, so the methane run
+overwrote the S42 THOR record; regenerated on the THOR posing bit for bit (lip 35.761 mm / 66.484 mm, M 1.8039,
+-8.707 deg, C_F 1.390969: the S42 numbers), the methane one moved to `sdt/start_intnoz_sdt_b10p0.json`.
+The chain of the night (all under `RDE/handoff/plug_2026-09-29/sdt/`): internal nozzle -10 deg at the methane
+mean state (lip at 35.20 mm / 66.53 mm, M 1.784, -8.74 deg, p/p_a 7.83; start nozzle+cone C_F 1.4206, in class)
+-> Rao's mass-matched member from that lip by GENO (constant-gamma thermo written for the methane mean state,
+`geno_base/`) at 0.5 atm and the 87 mm budget -> the graft -> the SQP walk with the 12 phases from Rao's plug
+(PSPL_FLOOR_LIMIT, RESCUE) -> both plugs in the wave frame (3-D) and per phase (2-D) at 0.5 atm.
+
+### The classical arm on the methane case (22:20; `sdt/rao_sdt/rao.json`, `sdt/start_rao_sdt.json`)
+Rao's members from the lip state (r 66.53 mm, M 1.784, -8.74 deg) are all designed for 2.0 to 2.6 bar: the ambient
+of Rao's own optimum at the budget's length is 2.62 bar, five times the 0.5 atm the plug will run at (the same
+situation as the THOR rehearsal: Rao's member of the budget's length is under-expanded at the mean state).
+Rule applied: the budget's length (the length constraint active): Me_fixed 2.0942, L 51.81 mm (total 87.01),
+theta_E +2.40 deg, mass matched to 1e-6. Grafted on the internal nozzle at the lip plane (shift +0.217 mm, the
+direction jumps from -10.0 to -12.09 deg: a corner, declared as in S42). Marched at the mean state: C_F 1.412293
+(certificate 0.139, class +0.607); the tool's 12-phase reading and the CFD follow. The wave frame of the methane
+engine: the CJ speed 2439 m/s (the chain's own CJ state) over the mid-annulus circumference: 6364 Hz, declared
+(a real wave runs at 80-90 percent of D_CJ; both plugs are judged at the same speed).
+Runs launched 22:27: `wf_RaSDT_phases` (3-D, 1 ms, job 303530; the still air's relative Mach at the outer
+boundary is now 12) and the 13 wedge cases `RaSDT_phaseNN_sdt` at 0.5 atm (job 303531, 1.5 ms, 6 dumps, window
+from 1 ms); the SQP walk with the 12 phases from Rao's plug (`_plug_contest/SDT/BcowlB_sdt_fromRao`, 8 segments,
+PSPL_FLOOR_LIMIT, RESCUE) launched 22:25.
+
+### Order 5 — the demonstration walk read (23:05; `_plug_contest/L87/BcowlB_intnoz10_fromRao_pa020_floorlimit`, v1 = the first form)
+The 0.2 bar 12-phase walk from Rao's plug (the one that stopped after one segment in S42, C_F 1.122714):
+- first form (distance along the ascent, v1): "infinite" at every base -- the margin GROWS along the gradient
+  -- the floor stayed 2.02e-3 and the walk stopped exactly as in S42, at 1.122714. The measure was blind.
+- second form (the constrained step with the class active is the distance): at segment 1 the step 2.07e-4 under
+  the floor with the multiplier 7.5 lowered the floor to 1.26e-4; the walk went on: 1.122714 -> 1.122891 (seg 2)
+  -> 1.122898 -> 1.122904 (seg 4), then steps of 1e-5 with the multiplier at 84: the walk sits ON the class
+  boundary. Gain +0.017 percent over the S42 landing; the +0.18 percent the S42 note quotes for "a four times
+  finer step" came from a walk whose class file was the lost original, not reproduced here.
+Reading (physics): at 0.2 bar the plug from Rao's design is held by the no-fold class, not by the floor; the floor
+hid it by one segment. The measured-distance rule is the right stop rule; the finding's magnitude (0.18 percent)
+is not reproduced, the finding stays open on that number. Class file used: the reconstructed one.
+
+### Rao's methane plug run with the RDE solution (23:10; `CASE_3D/wf_RaSDT_phases/wf_post.json`, `referee_cert_sdtc.log`)
+- Per phase (2-D, 0.5 atm, 1.5 ms, window from 1 ms): C_F 4.831 (phase 0, just behind the wave) down to 0.102
+  (phase 11); phases 7, 10, 11 UNSTEADY (over-expanded at the lip: separation, the last three of the cycle);
+  12-phase average 1.412844 +- 1.6e-4 (equal weights: the family's). Mean state 1.410272 (tool 1.412293: +0.14
+  percent, the tool and the CFD agree on this gas as on the THOR one).
+- Wave frame (3-D, 6364 Hz, 0.75 ms, steady to 1e-5 from 0.25 ms): C_F 1.407115. Against the 12 frozen pictures:
+  -0.405 percent -- OUTSIDE the 0.17 percent line. Sector by sector, monotone from the wave: the strong sector
+  behind the wave -6.4 percent, then -3.8, -1.0, +2.4 ... up to +16.8 percent on the weakest sector. With a
+  pressure ratio of 45 over the cycle the sideways spreading of the high-pressure gas along the plug moves 5 to
+  17 percent per sector and 0.4 percent of the total. Reading for F2.M-RED: at THIS data class the frozen
+  pictures do NOT carry the number to the line; the wave-frame judge is the judge of record here (the pilot's
+  second question answered without a second 0.2 bar THOR run: a stronger cycle is the harder case).
+- The 3-D run: 13632 steps for 1 ms, 35 min on one node (14 species); the relative Mach of the still air at the
+  outer boundary is 12 and the 406 far field held.
 
 ## Where the session stands (21:10)
 Done: orders 1-5 (order 5's second measurement landed after the first proved blind; its demonstration walk is
