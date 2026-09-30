@@ -1437,3 +1437,13 @@ corrupted and CANNOT substitute; registry row wanted_kliegel_levine_
 algebra alternate to Rice). NOTE: the :1023 "Ransom/Hoffman/Thompson
 3-D MOC (to locate)" line stays OPEN — Armstrong is NOT that lineage;
 check Zucrow-Hoffman Vol. 2 on disk before procuring.
+
+**DATED NOTE 2026-09-30 — F2.REPR CONSUMED (F2 session 2/6).** Closed on the owner's decisions, without the census:
+both arms of the decisive comparison are DESIGNED per phase, axisymmetric, without swirl (the FALLBACK above) and
+CHECKED with the free-vortex swirl per phase; the difference is JUDGED in the frame turning with the wave by 3-D CFD
+(MOSE_open rotating frame), a measure of record once PILOT-WF passes. Ledger C49, C51, C59 DECIDED; S-5F not built,
+re-owned to F5b; the wave-frame marching solver re-owned to F6. Protocol amendment A-REPR appended. Log
+validation/PROGRESS_2026-09-30_F2REPR.md. Also of record on this date: the review of the foundations closed on file
+(F2.REPR GO, F2.ENGINE GO with two conditions) and the plan line reunited with the plug line (F3 had been opened
+and closed on the plug line on 2026-09-24, out of this order; F3.TWIN and F3.TOURNAMENT are not run).
+

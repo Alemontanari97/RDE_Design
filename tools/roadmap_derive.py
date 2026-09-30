@@ -180,8 +180,8 @@ STEP_BY_ID = {s[0]: s for s in STEPS}
 # engine window. Anchors: PROGRESS ORA "Fase D6" + census R39.
 STEP_STATUS = {
     'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
-    'F2.REPR': 'NEXT (F2 session 2/6; S-REVIEW closed on file 2026-09-30: GO)',
-    'F2.ENGINE': 'QUEUED (F2 budget 4-6 sessions)',
+    'F2.REPR': 'CONSUMED 2026-09-30 (F2 session 2/6; census R44; owner decisions T1-T4)',
+    'F2.ENGINE': 'NEXT (F2 session 3/6; first acts: inventory of what the plug line built, the cell check, one bell campaign re-run)',
     'F2.M-RED': 'QUEUED (first F2 campaign, B19(c)); its first act = PILOT-WF (S-REVIEW LOG-11)',
     'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
     # F3 sub-windows (reunion of 2026-09-30): D6 says F3 CLOSED 2026-09-24, but that
@@ -193,7 +193,7 @@ STEP_STATUS = {
     'F3.TWIN': 'NOT RUN (rehearsal only, S42, outside the pre-registered protocol; BLOCCATO B-TWIN-PROVA)',
     'F3.TOURNAMENT': 'NOT RUN',
 }
-CARRY_FORWARD = {'F2-B0': 'F2.ENGINE'}   # consumed step -> next open step
+CARRY_FORWARD = {'F2-B0': 'F2.ENGINE', 'F2.REPR': 'F2.ENGINE'}   # consumed step -> next open step
 
 # Sub-step keyword rules inside F2 / F3 (applied AFTER the phase is fixed
 # by a literal token in the source row; declared here, printed in the doc).

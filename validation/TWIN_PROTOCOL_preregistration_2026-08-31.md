@@ -161,4 +161,14 @@ Both arms run under the SAME constraint vector, enforced by rejector:
   and quotable only if BOTH recorders agree on PASS; any recorder/version
   change after an arm's run re-fires R-TWIN-0. Seeded test: a design at
   cert_worst 0.9 must be refused as quotable.
-- A-REPR expected from F2.REPR; instance pin at F3.TWIN opening.
+- **A-REPR (2026-09-30, F2.REPR, owner's decisions T1 and T2)** — REPRESENTATION, IDENTICAL FOR BOTH ARMS.
+  DESIGN: each arm is designed on the per-phase, axisymmetric description WITHOUT swirl (the engine's four
+  fields). This is the declared fallback of the F2.REPR step. CHECK: both final designs are re-evaluated with the
+  free-vortex swirl per phase; a design whose low-pressure phases detach only with the swirl is reported as such.
+  JUDGE: the difference delta of section 6 is read on ONE evaluator for both arms = the 3-D steady flow in the
+  frame turning with the wave, by CFD (MOSE_open, rotating frame). Its value is a MEASURE, not certified by the
+  engine's stack (declared). It becomes the evaluator of record when PILOT-WF has shown it reproduces the
+  laboratory-frame thrust of one plug within one third of the thrust-stand band; until then no arm may be quoted
+  (R-TWIN-5 stays armed on the evaluator). Re-owned with triggers: the five-field swirl engine and the wave-frame
+  marching solver (F5b / F6).
+- Instance pin at F3.TWIN opening. Amendments A-2..A-15 of the review are PROPOSED, not applied (owner).
