@@ -381,8 +381,34 @@ is not reproduced, the finding stays open on that number. Class file used: the r
 - The 3-D run: 13632 steps for 1 ms, 35 min on one node (14 species); the relative Mach of the still air at the
   outer boundary is 12 and the 406 far field held.
 
-## Where the session stands (21:10)
-Done: orders 1-5 (order 5's second measurement landed after the first proved blind; its demonstration walk is
+### THE COMPARISON OF THE NIGHT (00:00): Rao's plug against the SQP plug, both run with the RDE solution, on the methane case
+Table of record `validation/_plug_contest/SDT/table_2026-09-30.md` (+ .json).
+| design | tool mean | tool 12 ph | CFD 2-D mean | CFD 2-D 12 ph | CFD 3-D wave frame | 2-D unsteady phases |
+|---|---|---|---|---|---|---|
+| Rao (budget's length, from the lip state) | 1.412293 | 1.414724 | 1.410272 | 1.412844 | 1.407115 | 7, 10, 11 |
+| SQP at the mean state, from Rao's plug (10 segments by budget, not at its optimum) | 1.418513 | 1.421056 | 1.416519 | 1.419177 | 1.412733 | 7, 9, 10, 11 |
+- SQP over Rao: +0.44 percent by every frozen judge (tool mean and 12 phases, CFD mean and 12 phases, all within
+  0.01 of each other), +0.40 percent in the rotating flow. The difference between the designs is real, it is
+  small, and it survives the change of judge. It is a LOWER bound for the SQP: the walk stopped by budget with
+  |grad| 0.72; the 12-phase walk (`BcowlB_sdt_fromRao`) runs on and its column is owed.
+- Where the SQP gains, sector by sector in the rotating flow: 0.0 percent right behind the wave, +0.6 to +0.8 in
+  the middle of the cycle (sectors 2 to 8), +0.4 and +0.1 in the last, over-expanded sectors. The SQP moved the
+  tip inward (41.8 -> 40.6 mm) and put the gain where the pressure ratio is moderate.
+- The frozen pictures overestimate BOTH plugs by 0.40 to 0.45 percent (outside the 0.17 line): the offset is the
+  flow's, not the design's, and it cancels in the comparison to 0.05 percent. For a comparison the per-phase judge
+  is adequate at this class; for the absolute number the wave-frame judge is needed.
+- The tool and the CFD agree to 0.14 percent on the methane gas at every reading (as on the THOR gas): the tool's
+  per-phase model with the separation closure holds up on the over-expanded phases too (phase 11: tool 0.101,
+  CFD 0.102).
+- Both plugs are of the 87 mm budget: Rao's member is designed for 2.6 bar (under-expanded at the mean state
+  by five); the length constraint, not the ambient, sets Rao's contour here as in the THOR rehearsal.
+Cost of the night's CFD: 2 x 35 min (3-D, one node each) + 2 x 25 min (13 wedge cases, one node); 4.6 GB on the
+cluster, removed; fields removed here; the records kept (wf_post.json, cert.json, case.json, logs).
+
+## Where the session stands (00:05)
+Done (night): the methane case built (CycleFamily v0), Rao vs SQP-at-the-mean-state judged in the wave frame (+0.40 percent SQP,
+lower bound), Rao's frozen pictures vs rotating flow -0.4 percent at this class. Running: the 12-phase SQP walk, X-OWSQ/X-OWS3.
+Earlier in the evening: orders 1-5 (order 5's second measurement landed after the first proved blind; its demonstration walk is
 running); the single-wave and choking monitors; 27 owed checks re-stamped; PILOT-WF read at 0.05 bar: PASS.
 Not done for the F2 exit (table E4 above, owners and dates): the two data audits, the layered fold margin with
 rejector, the GENO layered twin, the harmonic-decay half of the monitor, the freeze. Counter: 3/6 consumed.
