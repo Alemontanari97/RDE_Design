@@ -1,6 +1,6 @@
 # ASSESSMENT OF RECORD — S-REVIEW: agnostic review of the FOUNDATIONS at the F2-entry milestone (EXECUTED 2026-09-05 on the carrier dated 2026-08-31)
 
-> STATUS: IN AUTHORING — §0, §1, §3 (Stage-B cells), §6, §8-§10 are filled from the Stage-B VERDICT + VERIFY files at landing; nothing here is quotable until the closing refuter's delta-audit is logged in `validation/PROGRESS_2026-08-31_Sreview.md`. Every claim below cites its file; the files under `validation/sreview_raws_2026-08-31/` are the authority.
+> STATUS: CLOSED ON FILE 2026-09-30 (owner's decision: the half-run panel is not resumed). Sections 0, 1, 3, 8, 9, 10 are the orchestrator's single-author verdict on the positions on file plus measurements made since (plug line S26-S42, one probe of 2026-09-30); the judges and verifiers did not sit and the closing refuter did not run. Detail: `validation/PROGRESS_2026-08-31_Sreview.md` LOG-11. The proposals stay PROPOSED until ratified.
 
 Consumer (R8): the JPP referee who will judge the decisive number ("why not X?"; "why this road?") + the PM ("is this the shortest credible path?"). Downstream consumer: the F2.REPR session (carrier `validation/ADVISORY_F2REPR_prompt_2026-08-31.md`), which opens ONLY on GO / GO-CON-PILOT.
 
@@ -12,12 +12,13 @@ Method of record (SR-9 detail in §9): order-1 refuter on the carrier (24 FAIL r
 
 | gate | verdict | conditioning road outcome | NEXT |
 |---|---|---|---|
-| F2.REPR | (pending Stage B) | (pending) | (pending) |
-| F2.ENGINE | (pending Stage B) | (pending) | (pending) |
+| F2.REPR | GO | decide TWO descriptions: the designer's (per phase, axisymmetric) and the judge's (wave frame, 3-D) | F2.REPR, session 2 of 6 |
+| F2.ENGINE | GO WITH TWO CONDITIONS | first act: the cell check judged against the mesh error, then one bell campaign re-run; size of the engine set by F2.REPR | after F2.REPR |
+| F2.M-RED | first campaign = PILOT-WF | one plug in the wave frame against its 12 per-phase runs; pass line = one third of the thrust-stand band | may start in parallel |
 
 ## 1. Level 0 — THE ROAD (Q0): the three questions (§G.3), the dominance scoring, the verdict
 
-(filled from `stageA_diff_SP0.md`, `stageB_ROAD_*.md`, `stageB_JUDGE_J1.md`, `stageB_VERIFY_*.md`; the pre-registered dominance criterion and GO map are in the session log LOG-2.)
+VERDICT (LOG-11 item 1): GO WITH A PILOT. Design phase by phase; judge in the frame that turns with the wave. The gas crosses the truncated plug in a time comparable to the wave's passage, so frozen pictures alone are not defensible there. The judge is available as a CFD option (MOSE_open rotating frame), not only as a marching solver to be built. PILOT-WF decides whether per-phase numbers may carry the decisive number.
 
 Facts already of record from Stage A (`stageA_diff_SP0.md`): all four blind lenses DERIVE the wave-frame steadification ([T-T0]) and rank the SAME road first — a HYBRID whose design loop is the per-phase axisymmetric engine and whose EVALUATOR of the decisive delta is the exact steady rotating-frame 3-D field, with a bracket/ceiling screen before any optimizer runs and a tuned classical comparator; the ROAD judge classifies it as the 4/4 DERIVED top pick, NOT orchestrator-seeded ("NONE of (a)-(h) was absent from the trees"). No lens recommends road (b) as the stand-alone carrier of the decisive number (V rank 2, H rank 3 "must be paired with an exact evaluator", O rank 4, P rank 5). Three questions: (q1) PARTLY — Q1 is the right sharpening ON the plug sector where the collapse theorem does not decide, not where operability is the lever; (q2) Q2 = Q1 on the plug; Q0 needs Q2 + the screen + the ceiling arm + the O-c branch; (q3) YES — designer rung ≠ evaluator rung, all four derived. The user's two questions at the boundary (cost fork per-phase adjoint vs designing directly on the 3-D march; mesh/adjoint cost tiers) are inside the ROAD item's agreed falsifier (session log LOG-7b/7c).
 
@@ -35,7 +36,7 @@ Declared caveats: quasi-1D u; wave speed = U_CJ (a deficit LOWERS St, one-sided)
 
 ## 3. Level 1 — sub-problem verdicts (E4, two classes)
 
-See `sreview_raws_2026-08-31/ASSESSMENT_section3_draft.md` (merged here at landing): Stage-B VERDICT class = ROAD (SP0 + SP1 + SP5-evaluator), EXP (SP9 + SP-CARM), PB (SP-PB + SP2 cluster), SEARCH (SP4), PROOF (SP8), DATA (SP7); CONFIRM-BY-DIFF class = SP-OBJ (objective form; Stage-0 screen as a NEW landing duty), SP3 (the discrete AD-adjoint STANDS — the user's explicit question; falsifier = whole-march primal-independent gradient test), SP6 (control-polygon migration direction stands), SP2/C49 (fitted march stands); DEFERRED = SP5's ladder census to F2.REPR with three injections.
+STAGE-B OUTCOME, closed on file (LOG-11): ROAD go with a pilot; EXP amend (best classical arm, screen first, attribution arm; the case chosen where part of the cycle is over-expanded at the lip); PB amend (base-pressure row; same cut in both arms); DATA amend (real RDE outflow carries the decisive answer); SEARCH no pilot yet, fix the check first; PROOF amend (cell judged against the mesh error). Draft of the cells: `sreview_raws_2026-08-31/ASSESSMENT_section3_draft.md`: Stage-B VERDICT class = ROAD (SP0 + SP1 + SP5-evaluator), EXP (SP9 + SP-CARM), PB (SP-PB + SP2 cluster), SEARCH (SP4), PROOF (SP8), DATA (SP7); CONFIRM-BY-DIFF class = SP-OBJ (objective form; Stage-0 screen as a NEW landing duty), SP3 (the discrete AD-adjoint STANDS — the user's explicit question; falsifier = whole-march primal-independent gradient test), SP6 (control-polygon migration direction stands), SP2/C49 (fitted march stands); DEFERRED = SP5's ladder census to F2.REPR with three injections.
 
 ## 4. Red team of the decisive number (Q2 -> Q0): proposed TWIN amendments DA RATIFICARE
 
@@ -55,12 +56,12 @@ See `sreview_raws_2026-08-31/ASSESSMENT_section3_draft.md` (merged here at landi
 
 ## 8. Proposed level-0 choice-ledger rows and D6 / TWIN amendments (DA RATIFICARE — nothing applied)
 
-`LEVEL0_ledger_rows_PROPOSED.md` (C63 road / C64 objective / C65 decisive experiment / C66 data class), `D6_amendments_PROPOSED.md` (P-D6-1..8), `TWIN_amendments_PROPOSED.md` (A-2..A-11 + the Stage-B additions). Status cells filled at landing.
+`LEVEL0_ledger_rows_PROPOSED.md` (C63 road / C64 objective / C65 decisive experiment / C66 data class), `D6_amendments_PROPOSED.md` (P-D6-1..8), `TWIN_amendments_PROPOSED.md` (A-2..A-11 + the Stage-B additions). STATUS 2026-09-30: all PROPOSED, none applied; A-12..A-15 added from the rehearsal S42 (same cut and exit area in both arms or free in both; the ambient of the case chosen where phases are over-expanded; real-outflow data; classical arm from the same engine, GENO only after the inlets are shown identical). The owner ratifies.
 
 ## 9. Orchestration report (SR-9), independence caveat, dual-seed canaries
 
-(filled at landing; running total before Stage B = 5,551,235 subagent tokens incl. 877,009 lost to the usage crash; ceiling amended by the user to 12.5M at the Stage-B boundary.) Independence caveat of record: the harness auto-loads the project memory index into every subagent's context (LOG-4b); outputs carry no repo ids; judges graded DERIVED vs NAMED. Literature use measured: 0 PDF reads by derivers (by design), judges and red team (registry only); the Stage-B roles are bound to the on-disk PDFs (LOG-6b).
+Running total before Stage B = 5,551,235 subagent tokens incl. 877,009 lost to the usage crash; ceiling 12.5M. Stage B ran partially on 09-05 (12 calls; total never reported). Closure of 2026-09-30: 0 subagents. The judges, the verifiers and the closing refuter did NOT run: this assessment is not refereed. Independence caveat of record: the harness auto-loads the project memory index into every subagent's context (LOG-4b); outputs carry no repo ids; judges graded DERIVED vs NAMED. Literature use measured: 0 PDF reads by derivers (by design), judges and red team (registry only); the Stage-B roles are bound to the on-disk PDFs (LOG-6b).
 
 ## 10. HANDOFF to F2.REPR (or RE-PLAN)
 
-(filled at landing.)
+F2.REPR opens on GO. It receives: this file; LOG-11; the plug line's S42 log (what the phases do and do not change on a truncated plug); the fact that a wave-frame judge exists as a CFD option; the three injections of SP5. It must pin BOTH descriptions (designer and judge) and say whether real profiles across the annulus are in scope (that sets the size of F2.ENGINE). Pending owner decisions: T0, T2, the F2-B0 overrun, P-D6-5, R9, C63-C66, the TWIN amendments.

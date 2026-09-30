@@ -4798,6 +4798,35 @@ the decisive comparison (findings twin-protocol:rehearsal-run-outside-the-
 preregistration, path critical). No SQP walk reached its optimum: the SQP
 numbers are lower bounds.
 
+[S-REVIEW CLOSURE BLOCK — WHAT THE REVIEW OF THE FOUNDATIONS LEAVES IN THE
+RECORD] (2026-09-30, closed on file without judges; log
+validation/PROGRESS_2026-08-31_Sreview.md LOG-11; assessment
+validation/ASSESSMENT_SREVIEW_foundations_2026-08-31.md; single-author
+verdict, every statement PRACTICE unless said otherwise).
+
+(1) ROAD. The design loop stays per phase (frozen pictures of the rotating
+flow). The decisive difference is judged in the frame that turns with the
+wave, where the flow is steady ([T-T0], THEOREM, unchanged). Reason: on the
+truncated plug the gas crossing time is comparable to the wave's passage
+([X-STSC]: ratio 0.7 to 1.4 at the record head count). PILOT-WF measures
+the error of the frozen pictures on one plug; pass line = one third of the
+thrust-stand band.
+(2) THE CELL CHECK. Its pass line is a multiple of machine rounding. At the
+near-axis cells at the end of the bell contour that line is below what the
+arithmetic holds: one design reads 1.20, 0.46, 2.07 with three variants of
+the cell solver (pass is below 1), where the flow is healthy. The three
+bell campaigns of record that ended "limited by certification" (S20, S22,
+S24) were stopped there. Requirement for F2.ENGINE, first act: a cell is
+judged by its error against the mesh error, with a guard on convergence.
+Until then no campaign exit may be read as a limit of the certifiable set.
+(3) THE DECISIVE COMPARISON. Classical arm = the best classical design
+(design pressure swept from the mean to the peak), built by the same
+engine. Same cut and same exit area in both arms. A base-pressure row.
+The case is chosen where part of the cycle is over-expanded at the lip;
+elsewhere the expected reading is SMALL (S42 block above). The data of the
+decisive answer is the real outflow of an RDE. All PROPOSED to the owner.
+
+
 
 ==============================================================================
 PART VII — DOCUMENT MAP, PHASES, THESIS

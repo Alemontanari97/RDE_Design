@@ -1646,3 +1646,8 @@ entries:
     meaning: "Labels of single checks printed by the plug line's scripts, cited by registry rows: C-S the shape checks of the cell margin (two-wall script); G-5, G-5a the identifiability and curvature checks of the two-wall posing; JT-1..4 the lip-jet checks and T-1..T-7 the checks of the RDE tournament script (T-5b: a wall detaches at a raised ambient); SC-2 a separation-closure check; R-S a restoration step. They name lines of a script's own output, nothing else."
     resolver: "validation/PROGRESS_2026-09-26_S41_twowall_design.md + validation/a1_rde_tournament.py"
     first_seen: "S40-S41 2026-09-25 .. 2026-09-28; glossary row at the reunion 2026-09-30"
+  - token: "S-REVIEW / SP-OBJ / FALSIFIER-SP1 / F-SP5 / F-PB / F-3 / A-CARM / A-2 / A-7 / P-D6-1 / PILOT-CB / PILOT-WF / CERT-STAB"
+    namespace: "review-label"
+    meaning: "Labels of the review of the foundations (S-REVIEW, 2026-09-05, closed on file 2026-09-30): SP-x the sub-problems it judged; FALSIFIER-SP1, F-SP5, F-PB, F-3 the tests its positions agreed on; A-2..A-15 and A-CARM the PROPOSED amendments to the protocol of the decisive comparison; P-D6-1..8 the PROPOSED amendments to the plan; PILOT-CB the proposed pilot on the search strategy (not run); PILOT-WF the pilot that judges one plug in the frame turning with the wave against its per-phase runs; CERT-STAB the requirement that the cell check be stable against solver variants."
+    resolver: "validation/PROGRESS_2026-08-31_Sreview.md + validation/ASSESSMENT_SREVIEW_foundations_2026-08-31.md"
+    first_seen: "S-REVIEW 2026-09-05; glossary row at the closure on file 2026-09-30"

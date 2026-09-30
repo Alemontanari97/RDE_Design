@@ -363,3 +363,88 @@ Checkpoint commit follows this entry (pathspec, never -A, never GENO/): session 
 CHECKPOINT COMMIT OF RECORD = 86c3ffb (branch rde-nozzle-program; commit count 304; pathspec-only, never -A, never GENO/). The resumed session re-measures every count at its open (SR-12).
 
 RESUME NOTE (post-checkpoint, 2026-09-05): git autocrlf may rewrite validation/sreview_raws_2026-08-31/workflow_stageB_converge.js with CRLF on a fresh checkout; the harness REFUSES a scriptPath script containing CR bytes (measured today). Before the resume run: `python -c "p='validation/sreview_raws_2026-08-31/workflow_stageB_converge.js';b=open(p,'rb').read().replace(b'\r\n',b'\n');open(p,'wb').write(b)"` with p = that path, mode rb/wb, replacing CRLF by LF — the prompts (cache keys) are unaffected by the script line endings.
+
+## LOG-11 — CLOSED ON FILE (2026-09-30; owner's decision: "chiudo su cio' che c'e'", no agents)
+
+Plain rules for this entry: short sentences, physics before method.
+
+WHY NOT THE RESUME OF LOG-10. The half-run panel (workflow `wf_83c30268-aeb`) lives in another machine's session and
+cannot be resumed from this one. The owner decided not to relaunch it. So the judges did not sit and no verifier ran.
+What follows is the orchestrator's verdict on the positions already on file (six advocate positions, three refuter
+rounds, both seeds complete) plus measurements made since then on the plug line (S26-S42) and one probe run today.
+It is a single-author verdict. The proposals it makes stay PROPOSED until the owner ratifies them.
+
+GATE-FIRST (R8). Consumer: the owner, and the F2.REPR session. Exit: one verdict per item with its evidence; the
+draft rows landed; the proposals listed; one verdict for F2.REPR and F2.ENGINE. Orchestration: 0 subagents.
+Counter: this entry consumes no F2 session (owner's pending decision T0: proposed NOT COUNTED).
+
+THE SIX VERDICTS
+
+1. ROAD — GO WITH A PILOT. Design phase by phase; judge the designs in the frame that turns with the wave.
+   Why: the design tool treats the rotating flow as a set of frozen pictures. That is fair only if the gas crosses
+   the nozzle much faster than the wave moves. On the truncated plug the two times are comparable (ratio 0.7 to 1.4
+   at the record head count, [X-STSC]). In the wave's frame the flow is steady and nothing is assumed.
+   Both sides on file agree the hybrid is not refuted; the open point was who pays for the judge.
+   New since 09-05: the judge need not be a new marching solver. MOSE_open has a rotating-frame option (read in the
+   code on 2026-09-30, not yet run). The plug line's per-phase CFD referee agrees with the design tool on thrust
+   differences to 2 percent, but it shares the frozen-picture assumption, so it cannot settle this.
+   PILOT-WF (owner F2.M-RED, first campaign): one plug, one ambient, the 3-D steady flow in the wave frame against
+   the 12 per-phase runs of the same plug. If the cycle-averaged thrust differs by less than one third of the
+   thrust-stand band (0.17 percent of thrust), per-phase numbers may carry the decisive number; if not, every arm
+   of the decisive comparison is judged in the wave frame. Deviation from the refuter's amendment AM-2 (bell first,
+   with the record's corrector): declared; the tools that exist today are on the plug.
+
+2. EXP (the decisive experiment) — AMEND. The classical arm must be the best classical design, not only the one at
+   the mean state; a screen runs before the campaign; an attribution arm separates the method from the data.
+   New: the rehearsal of S42. On one case at near-vacuum the design made at the mean state and the design made over
+   the cycle are the same plug (difference 0.04 percent of thrust, not from the phases). The refuter had predicted
+   a null there. The literature's fixed design (Rao through GENO) is 1.65 percent behind, for reasons that are not
+   the phases: it builds its own inlet and it does not see the ambient or the cut. So: at an ambient below every
+   phase's lip pressure the decisive comparison will read SMALL. The phases matter where part of the cycle is
+   over-expanded at the lip (measured at 0.2 bar: the mean-state design is better at the mean state and worse over
+   the cycle). The case of the decisive comparison must be chosen there, and the tool needs a shock at the lip first.
+
+3. PB (base pressure) — AMEND. The decisive comparison carries a base-pressure row.
+   Both sides on file agree on the row and on the direct term. New: S31 graded the closures on ten measured points
+   (the legacy closure is 2 to 5 times too deep). S42: the CFD puts 0.34 and 0.45 of ambient on two plugs cut at
+   different radii (0.24 and 0.50 on the coarse mesh); pricing the base with it moved the difference between the two
+   by about 1 percent of thrust. With the same cut in both arms the direct term cancels. So: same cut in both arms,
+   and a band on the base pressure for what remains.
+
+4. DATA — AMEND. The decisive answer is given on the real outflow of an RDE, not on the specs-only model.
+   New: the statement "no generator of real per-phase data exists" is no longer true. The plug line cuts the outflow
+   of the Q2D THOR run into 12 phases and feeds both the tool and the CFD. Measured there: the time-mean state
+   overstates the thrust by 4.8 percent against the cycle. Limits: hydrogen, not the methane case of the protocol;
+   uniform state per phase, no profile across the annulus.
+
+5. SEARCH — NO PILOT YET; FIX THE CHECK FIRST. The three bell campaigns did not stop on physics.
+   Probe of today (`RDE/handoff/plug_2026-09-29/carriers_2026-09-30/probe_LOCD_*.log`, script locus_diagnosis.py):
+   the designs the check rejected sit where the flow is healthy (no wave crossing), near the axis at the end of the
+   contour. The same returned design reads 1.20, 0.46 and 2.07 (pass is below 1) with three variants of the cell
+   solver; the rejected ones shuffle between 1.0 and 6. The pass line is set tighter than the arithmetic of the
+   machine can hold at those cells. The optimiser was stopped by noise. The plug line met the same family twice
+   (a solver stalling short of its answer; a smallest step larger than the room left) and walked again once fixed.
+   So the question "certify inside the loop or explore then certify" cannot be answered before the check is sound.
+
+6. PROOF — AMEND. Judge a cell by its error against the error of the mesh, with a guard on convergence, not
+   against machine rounding. Evidence: the probe above; and the rule "quotable if below one quarter" does not
+   protect (the record's own ratio across solver variants was 6.6; today 4.5 on the returned design).
+   Owner: F2.ENGINE, first act. After it: re-run one bell campaign (S22) and read what stops it.
+
+VERDICT FOR THE NEXT STEPS (E6)
+- F2.REPR: GO. It decides two things, not one: how the designer describes the flow (per phase, axisymmetric, with or
+  without swirl) and how the judge does (wave frame, 3-D). Input: this entry, the assessment, the S42 log.
+- F2.ENGINE: GO WITH TWO CONDITIONS. First act = the new check (item 6) and the re-run of one bell campaign
+  (item 5). Its size is set by F2.REPR: the 12 phases used so far are uniform across the annulus and need no
+  layered-flow march; real profiles would.
+- F2.M-RED: its first campaign is PILOT-WF (item 1).
+
+PROPOSALS LEFT TO THE OWNER (nothing applied): `LEVEL0_ledger_rows_PROPOSED.md` (C63-C66), `D6_amendments_PROPOSED.md`
+(P-D6-1..8), `TWIN_amendments_PROPOSED.md` (A-2..A-11, plus A-12..A-15 added today from the rehearsal), and the
+pending decisions of LOG-10 item 5 (T0, T2, the F2-B0 overrun, P-D6-5, R9).
+
+LANDED: 9 findings rows from the draft, 1 new (the pass line at near-axis cells), 21 wanted-literature rows;
+assessment sections 0, 1, 3, 8, 9, 10; triage outcome table; PROGRESS; roadmap regenerated.
+NOT DONE, declared: the judges, the verifiers, the canaries' verification, the closing refuter. SR-9: 0 subagent
+tokens in this entry; the Stage-B partial total of 09-05 was never read (the stopped workflow reported none).
+

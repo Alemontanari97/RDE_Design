@@ -180,9 +180,9 @@ STEP_BY_ID = {s[0]: s for s in STEPS}
 # engine window. Anchors: PROGRESS ORA "Fase D6" + census R39.
 STEP_STATUS = {
     'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
-    'F2.REPR': 'NEXT (F2 session 2/6; gated by the S-REVIEW GO, BLOCCATO B-SREVIEW)',
+    'F2.REPR': 'NEXT (F2 session 2/6; S-REVIEW closed on file 2026-09-30: GO)',
     'F2.ENGINE': 'QUEUED (F2 budget 4-6 sessions)',
-    'F2.M-RED': 'QUEUED (first F2 campaign, B19(c))',
+    'F2.M-RED': 'QUEUED (first F2 campaign, B19(c)); its first act = PILOT-WF (S-REVIEW LOG-11)',
     'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
     # F3 sub-windows (reunion of 2026-09-30): D6 says F3 CLOSED 2026-09-24, but that
     # closure was taken on the plug line, out of the plan's order, and covers the

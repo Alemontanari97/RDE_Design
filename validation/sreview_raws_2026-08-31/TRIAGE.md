@@ -35,3 +35,15 @@ Degradation order if the boundary rule fires (running total + 4.3M sub-ceiling >
 - SP6 DELTA-SWEEP done inline: C1 migration direction stands; F-C1b falsifier lands with the C1 duty.
 - SP5: FULL-PANEL = the F2.REPR census as planned — DEFERRED to its owner with three injections (evaluator-role branch + F-SP5; Hyp L5 regime map as the C51 input; C59 closed by diff, "3-D-per-phase" rung re-read).
 - SP2: C49 CONFIRM-BY-DIFF (delta-sweep: incumbent STANDS, 3/4 tier-inversion noted); cluster {C61, H20, A4/A14/A15} handled inside PB/ROAD; adjoint-consistency falsifier lands with SP3's duty.
+
+## Stage-B outcome (closed on file 2026-09-30; no judges, no verifiers; detail in the session log LOG-11)
+
+| item | on file | outcome | main evidence added since 09-05 |
+|---|---|---|---|
+| ROAD | A0, R1 (not refuted) | GO with PILOT-WF | a wave-frame judge exists as a CFD option; the per-phase CFD shares the tool's assumption |
+| EXP | A0, R1 (not refuted) | AMEND | rehearsal S42: mean-state design = per-phase design at near-vacuum; they differ where the lip is over-expanded |
+| PB | A0, R1 (weight contested) | AMEND (row + same cut in both arms) | S31 grading on ten points; S42 CFD base pressure on two cuts |
+| DATA | A0 | AMEND (real outflow carries the answer) | the plug line feeds tool and CFD from the Q2D THOR outflow |
+| SEARCH | A0 | no pilot yet; fix the check first | probe of 09-30: same design 1.20 / 0.46 / 2.07 with three solver variants |
+| PROOF | A0 | AMEND (cell judged against the mesh error) | same probe; plug line's stalled cell (S42) |
+

@@ -35,3 +35,13 @@ judges every classical closure inappropriate for the RDE (Harroun 2021 p. 669), 
 dependent even in sign (Schwer 2018), and the closure moves the ARGMAX by O(1) (Humphreys 1971): the sign of delta on
 the decisive sector can be BRACKETED from inside the record (A-2) but not certified against it until a V1.4-class
 CTAP measurement on a truncated plug exists (procurement class, external).
+
+## Added 2026-09-30 from the rehearsal S42 (PROPOSED, none applied)
+
+| id | amendment | evidence |
+|---|---|---|
+| A-12 | Exit area and cut of the plug: the SAME in both arms, or FREE in both. Never free in one only. | S42: the SQP moved both (tip 41.5 -> 33.8 mm); much of its lead over Rao's plug is there |
+| A-13 | The ambient of the case is chosen where part of the cycle reaches the lip below ambient pressure; a case where every phase is under-expanded is declared a screen, expected SMALL. | S42: 0.05 bar, mean-state and per-phase designs coincide; 0.2 bar, they separate |
+| A-14 | Data: the real outflow of an RDE cut into phases is admitted as the data of the decisive answer (propellant as available); the specs-only case stays as the predictive extension. | S41-S42: Q2D THOR outflow, 12 phases; time-mean state overstates thrust by 4.8 percent |
+| A-15 | The classical arm is built by the same engine. An independent code (GENO) counts as a cross-check only after its inlet is shown identical to the engine's. | S42: GENO's Rao plug builds its own inlet upstream of the lip |
+
