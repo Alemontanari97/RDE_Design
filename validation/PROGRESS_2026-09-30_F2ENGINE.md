@@ -567,3 +567,15 @@ outflow (1.5 bar, weak signal, and the 2 percent wander of X-SWAV). Answer: yes,
 class; the CJ chain is in the repo (`src/detonation/cj_states.py`, `src/cycles`, Cantera 3.2 in the venv); the
 CycleFamily v0 generator (plan item 5) is the first act of session 4/6, with the owner's specs (CH4/O2 pinned,
 phi, mean pressure, p_a, annulus).
+
+## 12:30, 2026-10-01 — the owner's decisions on the F2-close prompt
+1. The night of 10-01 counts as F2 session 4/6 (counter: 4/6 consumed).
+3. CFD-2: the methane table (Rao, the SQP on the plug, the SQP with the 12 phases, the SQP on plug + cowl; the tool
+   against 2-D per-phase CFD and 3-D wave-frame CFD) is accepted as the paired demonstration; Harroun's aerospike
+   moves to the paper.
+4. CFD-1 after F2.
+2 and 5 asked back by the owner (what P-F2-1 is; what is wrong with the outer boundary): answered in the session.
+Also: the two long runs of the night (settled bases of the SQP plug and of plug + cowl) died at 06:31 on a full
+/scratch (No space left on device; slowed before by the night's filesystem hang: 0.86 / 0.76 ms in two hours);
+the guarded collector did not remove them; relaunched at 12:35 (jobs 303591, 303592).
+
