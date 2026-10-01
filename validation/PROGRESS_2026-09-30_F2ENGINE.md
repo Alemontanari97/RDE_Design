@@ -578,4 +578,16 @@ phi, mean pressure, p_a, annulus).
 Also: the two long runs of the night (settled bases of the SQP plug and of plug + cowl) died at 06:31 on a full
 /scratch (No space left on device; slowed before by the night's filesystem hang: 0.86 / 0.76 ms in two hours);
 the guarded collector did not remove them; relaunched at 12:35 (jobs 303591, 303592).
+2. P-F2-1 REJECTED (12:45, "P-F2-1 e' da fare in vista del commit"): the four bell-driver duties are done inside F2,
+   before the closing commit -- (a) the complementarity band + multiplier re-estimate (constraints:multiplier-rejector-
+   missing), (b) the panel-inclusive objective of record, fix-A, discharged by the analytic throat-panel A/B
+   (variational-driver:objective-omits-throat-panel), (c) the Hessian symmetry-defect rejector before symmetrisation and
+   the quasi-Newton carry challenger (driver-nonsmooth:hessian-no-rejector), (d) the X-O32 negative control re-formed
+   (carriers:x-o32-negative-control-uncertifiable-on-current-tree; first diagnostic launched 12:50: the check of record
+   with A1_CERT_KAPPA=1 A1_NEWTON_RESCUE=1 -- yesterday's abort was a NON-FINITE cell, "worst inf", which the new
+   check alone does not change).
+5. The still air: the owner confirms that in the rotating frame it must be seen counter-rotating (relative velocity
+   -Omega x r = at rest in the laboratory), never made to rotate. The initial field of the wave-frame cases imposes
+   exactly that (checked: v + Omega z = 0, w - Omega y = 0 in the exhaust blocks), and so would the far field proposed;
+   the 406 defect is that it lets no air in.
 

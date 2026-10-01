@@ -26,7 +26,23 @@ family mixes two averaging rules), X-FRES (the 3-sector rejector does not fire: 
    the wall thrust in 3 ms). Fixing it needs either a new boundary in MOSE_open (the owner's code, not touched by
    these sessions) or a longer radial domain; needed before 1 atm cases or runs longer than 3 ms.
 
+## Owner's answers (2026-10-01 12:30-12:45)
+1 yes (the night = session 4/6); 2 P-F2-1 REJECTED: the four bell-driver duties are done in F2 before the closing
+commit; 3(b) the methane table is the paired demonstration; 4 CFD-1 after F2; 5 the still air counter-rotating in the
+frame (at rest in the laboratory), the far field to be fixed in MOSE_open (owner's code).
+
 ## Orders (after the decisions)
+0. THE FOUR BELL-DRIVER DUTIES (validation/a1_toc_variational_jax.py and its carriers), cheapest first, each with its
+   gates declared in the log before authoring and a rejector that must fire:
+   (d) X-O32: its first-order negative control aborts on a non-finite cell; diagnose (run of 10-01 12:50 with the new
+       cell check and the rescue), then re-form it so the control certifies and is rejected by the rate band;
+   (c) the Hessian: measure the symmetry defect BEFORE symmetrising, against the error model of its finite
+       differences; reject a Hessian whose defect leaves the band; directional second differences on one S18 segment;
+       the quasi-Newton carry as a challenger to fresh differences;
+   (a) the multipliers: a complementarity band as a check row, a counter on the silent except path, the multipliers
+       re-estimated by least squares on the recorded S18/S24 gradients;
+   (b) the objective domain: the panel-inclusive objective (the throat panel from theta = 0) in the bell carrier,
+       discharged by the analytic throat-panel A/B; every recorded bell verdict re-read on it.
 1. If 3(b): write the paired demonstration (one page: the table, the bands, what is and is not shown).
 2. The methods freeze: one page per method (march, gradient, certificates, monitors, family, judges) with its carrier
    and its date; the theory half (M0) checked against it; the freeze recorded in D6 as a dated note.

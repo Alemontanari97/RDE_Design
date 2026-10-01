@@ -1648,7 +1648,7 @@ entries:
     first_seen: "S40-S41 2026-09-25 .. 2026-09-28; glossary row at the reunion 2026-09-30"
   - token: "P-F2-1"
     namespace: "owner-decision"
-    meaning: "Proposal of the F2.ENGINE session (2026-09-30): the duties inherited by F2.ENGINE order 4 that belong to the bell driver (the interior-point multiplier input, the objective-domain guard, the quasi-Newton carry and the Hessian-symmetry rejector, the X-O32 re-form) taken off the plug-sector critical path; recorded as accepted for now on 2026-10-01 together with the parking of the layered items, to be confirmed."
+    meaning: "Proposal of the F2.ENGINE session (2026-09-30): the duties inherited by F2.ENGINE order 4 that belong to the bell driver (the interior-point multiplier input, the objective-domain guard, the quasi-Newton carry and the Hessian-symmetry rejector, the X-O32 re-form) taken off the plug-sector critical path; REJECTED by the owner on 2026-10-01 ('da fare in vista del commit'): the four duties are done inside F2 before the closing commit."
     resolver: "validation/PROGRESS_2026-09-30_F2ENGINE.md + docs/findings_registry.yaml#f2-exit:layered-margin-and-geno-layered-twin-parked"
     first_seen: "F2.ENGINE session 3/6, 2026-09-30"
   - token: "W-1 / W-2 / W-3 / R-1 / R-2 / R-3 / NTF-6 / X-SWAV"
