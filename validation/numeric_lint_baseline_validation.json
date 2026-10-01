@@ -137,6 +137,8 @@
   "validation/st_scoping_number.py": 16,
   "validation/single_wave_monitor.py": 24,
   "validation/exit_choking_monitor.py": 11,
-  "validation/cycle_family_v0.py": 32
+  "validation/cycle_family_v0.py": 32,
+  "validation/data_admission_audit.py": 36,
+  "validation/family_resolution_audit.py": 22
  }
 }

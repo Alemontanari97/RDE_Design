@@ -4892,3 +4892,42 @@ incorporated in D2.5 (canonicity conditional across shocks).
 Target venue of record for P-1/P-3 (methodological + first results):
 JPP class (Journal of Propulsion and Power), with the mathematics
 papers (P-4/P-5) aimed at applied-mathematics venues.
+
+[F2a DATA-CONTRACT BLOCK — WHAT THE CONTRACT CHECKS, AND THE CONTACTS] (2026-10-01, F2.ENGINE night of session
+3/6; log validation/PROGRESS_2026-09-30_F2ENGINE.md; every statement PRACTICE unless said otherwise).
+(1) ADMISSION (stage A, carrier [X-ADMA]). A family is admitted when every phase carries a complete physical
+state whose gas constant is the one of its composition; when the extraction surface is spacelike with margin
+(Lemma 4: M_n - 1 >= 0.02, the data's own uncertainty in Mach) and the recorded stagnation state is the one its
+static state and Mach imply; and when the profiles across the gap are a possible steady flow (Crocco, parallel
+extraction: a radial pressure gradient needs radial velocity or streamline curvature). On uniform phases the
+Crocco condition holds identically; it bites only on layered data. MEASURED: the generated methane family passes;
+the THOR family FAILS the first condition by up to 0.87 percent on R -- its thermodynamic states are arithmetic
+sector means, its composition mass-weighted: one family must use ONE flux-conserving average. Harmless for a
+constant-gamma thrust (it does not depend on R at fixed inlet p, T, M, gamma), a violation all the same.
+(2) THE SINGLE WAVE AND ITS CHOKING ([X-SWAV], [X-CHOK]). The monitor reads the pattern's 12 sector means turn by
+turn and probe by probe: one wave, rigid in phase, repeating; lines derived from the representation (the 0.17
+percent shift line, the median adjacent-sector step). MEASURED: the THOR outflow is one wave rigid in phase but
+its strength wanders 2 percent turn to turn -- a one-snapshot family carries that on the cycle mean. Its exit is
+axially supersonic everywhere (M_x - 1 >= 0.44): the per-phase decomposition has its surface there (U3' YES for
+that source; the rule is the monitor).
+(3) THE CYCLE FAMILY OF CASE A ([X-CYCF]). Specs -> the matched detonation cycle (CJ + exponential blowdown,
+Stechmann-Heister-Harroun) -> K sectors of equal time, each the time mean of the blowdown, its gas the equilibrium
+products at its own stagnation state, then frozen. Generated families satisfy (1) and (2) by construction.
+(4) CONTACTS (the F2a ownership of contact/slip surfaces; DEFAULT of record, PRACTICE). A contact -- a jump of
+entropy and composition at equal pressure and velocity, the main carrier of stratification in an RDE exhaust --
+lies along a streamline, and its characteristic family is linearly degenerate: in an inviscid march it neither
+steepens (no self-steepening, unlike a shock) nor spreads. The march therefore carries it as a STEEP SMOOTH LAYER
+on its streamline grid: entropy and total enthalpy are transported on each streamline exactly in the continuum
+(the march's own invariants, [X-RMAR] W-4), the only error is the jump smeared over one streamline spacing, which
+converges with the grid. Fitted contacts (their own degenerate-front theory) are an F4b extension; nothing here is
+inherited from the shock certificates. The validity margin of layered flow across such a jump (the extended margin)
+is PARKED with the layered twin (finding f2-exit:layered-margin-and-geno-layered-twin-parked): no data class of the
+program carries radial layers today.
+(5) THE FROZEN PICTURES AGAINST THE ROTATING FLOW ([PILOT-WF], F2.M-RED first act; MEASURED). In the frame turning
+with the wave the flow on the plug is steady; its wall thrust against the average of the 12 frozen per-phase runs:
+-0.13 percent on the THOR outflow (PASS at the 0.17 percent line), -0.40 percent on the methane case (pressure ratio
+45 over the cycle: FAIL) -- sector by sector -6 percent behind the wave to +17 percent on the weakest sector, because
+the gas crosses the plug while the wave turns ~130 degrees and the high-pressure gas spreads sideways. The offset is
+the flow's: it cancels to 0.05 percent between designs. Reading of record: the per-phase judge ranks designs; the
+absolute cycle thrust of a strong cycle is judged in the wave frame.
+

@@ -2902,6 +2902,40 @@ entries:
   mechanism: open-question-carrier
   owner: "F4b certificate window (the [X-VMON] grid identity check rides the first fitted-front/Lambda-form touch of F4b)"
   trigger: "F4b entry; any citation of the (6)-vs-(G) identity as settled either way"
+- id: family-resolution:line-non-discriminating-on-the-methane-case
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "the sector-resolution audit X-FRES (the harmonic-decay half of the single-wave monitor): the pre-declared rejector R-1 (a 3-sector family must fail the 0.17 percent resolution line) does NOT fire on the methane case -- K3 is within 3.2e-4 (Rao's plug) and 3.5e-4 (the SQP plug) of K48, because the cycle-averaged thrust is nearly linear in the phase state (the mean state alone is 0.17 percent off). The measurement stands (12 sectors resolve C_F to 1.8e-5, Richardson-consistent, the Rao-SQP difference unmoved); the gate as declared cannot discriminate resolution at that line on this case"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#Item 4 — result (carrier `validation/family_resolution_audit.py`, X-FRES), 03:15"
+  code: []
+  mechanism: rejector-weakness
+  owner: "the next F2 session: re-pose R-1 (a planted mis-weighted family; or a functional where the nonlinearity bites, the over-expanded phases at a higher ambient); never by moving the line after the measurement"
+  trigger: "any citation of X-FRES as a passing gate; a data class with a stronger nonlinearity (higher ambient, separation inside the cycle)"
+
+- id: data-contract:thor-family-two-averaging-rules
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "the data admission audit X-ADMA (A-1) on the THOR_CAv3 family: the recorded gas constant of each phase is not the one of its recorded composition (-0.33 percent phase 9, +0.22 phase 11, -0.87 the mean state). Cause measured on the Q2D exit npz: gamma, R, T0, P0 of the family (family_K12.json, the design tool's states; copied into RDE/Nozzle/phases_405.json) are ARITHMETIC sector means over the cells, the composition given to the CFD is the MASS-WEIGHTED sector mean; cell by cell the Q2D's R and composition agree to 6e-6. Effect on results negligible (a constant-gamma gas's C_F at fixed inlet p, T, M, gamma does not depend on R), but the tool and the CFD were fed two slightly different gases"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#Item 1 — result (carrier `validation/data_admission_audit.py`, X-ADMA), 02:52"
+  code: []
+  mechanism: two-averaging-rules-in-one-family
+  owner: "the next THOR family build (or the decisive comparison if it uses THOR data): one flux-conserving sector average (mass, momentum, energy) for every quantity of a phase, re-run X-ADMA"
+  trigger: "any new family built from the Q2D extraction; any quoted tool-vs-CFD difference on the THOR family below 0.3 percent"
+
+- id: f2-exit:layered-margin-and-geno-layered-twin-parked
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "two F2b exit items PARKED by the owner on 2026-10-01 (~02:00, 'ok per ora appendiamoli', answer to the proposal in the F2.ENGINE log, section E4): (a) the EXTENDED (q; s, h0) fold/validity margin for RADIALLY LAYERED inflow, delivered with a rejector that fires (uniform-flow counterparts exist: the plug no-fold class, margin_governor.py on the bell); (b) the GENO moc_gen twin on a layered case in derived bands (the layered march conserves mass and entropy, X-RMAR W-4; no run against GENO's layered solver). Reason of record: no data class of the program carries radial layers today -- the Q2D THOR outflow has no radial variation across the gap, the CycleFamily v0 phases are uniform -- so neither item bites on the decisive comparison as posed; the layered march itself exists and passes (X-RMAR 9/9, X-O31R)"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#E4 — every F2a / F2b exit item of the plan (D6 F2 block), met with its check or listed with an owner and a date"
+  code: []
+  mechanism: named-conditional-untriggered
+  owner: "F4b (first layered data class) or the decisive comparison if its data class acquires radial layers"
+  trigger: "the first data class with radial stratification (a 2-D or 3-D chamber outflow resolved across the gap, a layered injector model) entering an arm of the decisive comparison or any design claim"
+  note: "minted 2026-10-01 on the owner's decision; P-F2-1 (the bell-driver duties of F2.ENGINE order 4 off the plug critical path) was proposed in the same sentence and is recorded as accepted for now, to be confirmed at the next session"
+
 - id: f3-exit:entry-duties-missed-at-ratification
   status: DISCHARGED
   severity: medium

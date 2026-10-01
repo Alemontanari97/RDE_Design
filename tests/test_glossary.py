@@ -75,7 +75,8 @@ CORPUS_YAMLS = ('claims_registry.yaml', 'findings_registry.yaml',
 # (2 linked families B-F<n>/RF-<n> + 6 entries + 1 prose case-fix);
 # the family patterns also resolved the pre-existing B-F10/B-F11 debt,
 # hence the ratchet-down (R28 discipline: baseline follows reality).
-TOKEN_BASELINE = 52
+# ratchet-down 2026-10-01 (F2.ENGINE night): R-3 resolved by the glossary row of the F2a rejector labels -> 51.
+TOKEN_BASELINE = 51
 
 EXTS = ('md', 'py', 'json', 'yaml', 'yml', 'pdf', 'f90', 'patch',
         'png', 'txt', 'zip', 'log')

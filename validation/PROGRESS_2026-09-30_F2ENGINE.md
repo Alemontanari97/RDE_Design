@@ -90,7 +90,7 @@ rows, not against "PASS" alone: four rows are negative results whose run of reco
 | pass with the settings of record | X-RAOO3 7/7 (`RAO_GENO_RUN=GENO/CASES/raoplug_run_legacy`), X-TPOS gates 4/4 (`HMPH_CASE=opt HMPH_ZCUT=0.12 ANK_ETA=8 HMPH_K=160 HMPH_N=41`; the default posing raises "tri column rows not ordered" at every commit back to the row's own, so the default was never the record), X-IVLT (through X-TPOS) |
 | pass with the settings of record, read later in the evening | X-RAOSQ PASS (the SQP returns to Rao's optimum, 3621 s), X-RAOHM 7/7 (Humphreys' Rao nozzle in Rao's world), X-PTRN 10/10 (`PSPL_FAN=axi PTRN_K=81 PTRN_N=41`) |
 | read at 21:10 | X-RAOTW PASS (our march reproduces GENO's kernel below ED, with RAO_GENO_RUN), X-RAOFN PASS (our objective is Rao's) |
-| read at 21:15: X-OWAB 8/8 PASS (2492 s, over the 1-hour cap) | read at 22:20: X-PAKN 12/14 (9392 s): A-8 and A-9 fail, the two rows the registry records as failing/void since S22 (the record reproduced) | still running: X-OWSQ + X-OWS3 | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
+| read at 21:15: X-OWAB 8/8 PASS (2492 s, over the 1-hour cap) | read at 22:20: X-PAKN 12/14 (9392 s): A-8 and A-9 fail, the two rows the registry records as failing/void since S22 (the record reproduced) | read at 02:55 (3-hour cap): X-OWSQ + X-OWS3 PASS (v3 bands: worst direction 0.19 of its band, J* = J_fit + 18 N, the sign-flipped twin walks away) | read and stamp at the next session (logs `carriers_2026-09-30/record_*_long.log`) |
 The default runs of the scripts rewrite their cache files under `validation/_*/` (derive.json, npz): restored from
 git before the commit; the caches of record are the committed ones.
 
@@ -176,8 +176,8 @@ monitor; the general rule is the monitor itself, to be run on every new source.
 | F2a: contact/slip adjudication (smeared contact marched as smooth stratified data, declared rigor class) | PARTIAL: the march carries and bounds smooth layers (check W-5 of X-RMAR); the statement with its rigor class not in M0 | owner F2.ENGINE session 4/6: one M0 paragraph (PRACTICE: linear degeneracy, no self-steepening) + the extended margin covering the jump |
 | F2a: U3' choking adjudication with an executable monitor | MET for the source of record: X-CHOK (M_x - 1 >= 0.44 on the exit column); the general rule = the monitor | run on every new source; owner = whoever brings a new source |
 | F2b: adjoint / O3.1 at machine precision on the stratified march | MET | `o31_rot.py` PASS (X-O31R, pass 2026-09-30) |
-| F2b: GENO moc_gen twin agreement in derived bands + independent invariants | PARTIAL: invariants met (mass, entropy, W-4); no run against GENO's layered solver | owner F2.ENGINE session 4/6 (one layered GENO case, derived band); GENO read-only |
-| F2b: extended (q; s, h0) fold/validity margin WITH rejector | MISSING for layered flow (uniform flow: the no-fold class + `margin_governor.py`) | owner F2.ENGINE session 4/6: the fold census on the layered march's own cells + a seeded folded design that must be rejected |
+| F2b: GENO moc_gen twin agreement in derived bands + independent invariants | PARTIAL: invariants met (mass, entropy, W-4); no run against GENO's layered solver | PARKED by the owner 2026-10-01 (finding f2-exit:layered-margin-and-geno-layered-twin-parked; trigger: the first layered data class) |
+| F2b: extended (q; s, h0) fold/validity margin WITH rejector | MISSING for layered flow (uniform flow: the no-fold class + `margin_governor.py`) | PARKED by the owner 2026-10-01 (same finding; no program data class carries radial layers today) |
 | F2b: P-1 theory half + general-engine methods freeze at exit | NOT DONE | owner F2 session 5/6 (freeze) -- after the data contract closes on many-turn data (X-SWAV) |
 | the fallback (two-family transport, h0 a named residual) | NOT NEEDED so far: the three-family march exists and passes | - |
 | F2.M-RED first act: PILOT-WF | RUNNING (read below when the runs end) | this log |
@@ -424,6 +424,104 @@ writes nothing): plug wall mean change 1.2e-4 (max 1 percent at one spot), cowl 
 oscillation): NOT steady; the exhaust behind the tip (10-18 percent) and the air outside the cowl (3-10 percent)
 neither. The C_F compared excludes the base; the base values of the wave-frame runs are withdrawn. Continuation
 of RaSDT to 3 ms launched (job 303553, probes appended) to see whether the base settles.
+
+## 02:00 — the owner's decision and the session's budget, declared
+- Owner (2026-10-01 ~02:00): "ok per ora appendiamoli". Items 2 and 3 of the remaining list (layered fold margin
+  with rejector; GENO layered twin) PARKED as named residuals (finding f2-exit:layered-margin-and-geno-layered-
+  twin-parked). P-F2-1, proposed in the same sentence, recorded as accepted for now, to be confirmed.
+- Remaining for the F2 exit: (1) the two data audits (Crocco residual, characteristic completeness), (4) the
+  harmonic-decay half of the single-wave monitor and the M0 paragraph on contacts, (5) F2.CFD-2 written to its
+  template + the owner's CFD-1 decision, (6) the methods freeze and the theory half. Estimate: one session.
+- BUDGET, declared: the plan caps a session at 3 hours of decisive runs. This session ran far more (PILOT-WF:
+  five 3-D runs; the methane comparison: four 3-D runs, five SQP walks, 52 wedge cases), every launch on the
+  owner's orders of the evening ("chiudiamo F2", the SDT comparison). Not hidden; the counter stays 3/6.
+
+## Night work after 02:00 — declared
+Continued inside the counter 3/6 on the owner's "chiudiamo F2"; whether it counts as session 4/6 is the owner's call
+in the morning. Order: the cowl's CFD (running), the base continuation (running), item 4 (the sectors' resolution =
+the harmonic-decay half of the monitor), item 1 (the data admission audits), the M0 paragraphs. Item 5 (CFD-2) is
+named in the record as the PAIRED RUN ON HARROUN'S AEROSPIKE (JPP 2021, read in full; template Li-Xu 2025): its
+geometry and conditions are graphical reads of the paper, and the CFD-1 decision is the owner's -> not tonight.
+### Item 4 — does a 12-sector family resolve the cycle? Gates declared BEFORE authoring (R8), 02:47
+Physics: a blowdown with a detonation front is a periodic signal with a JUMP, so its harmonics fall only as 1/n;
+the equal-weight 12-sector family is exact for anything linear in the sector means (mass, mean pressure: X-CYCF
+F-1/F-2) but the thrust is NOT linear in P0 (the pressure term, the over-expanded phases), so 12 sectors carry a
+discretisation error on C_F that only a refinement can measure. Carrier `validation/family_resolution_audit.py`
+(row X-FRES): the same design marched on the family at K = 12, 24, 48 (CycleFamily v0, the methane case).
+- H-1 the spectrum: |c_n| of Pc(xi) against the 1/n law of a jump (fit exponent within 0.1 of -1) -- the spectral
+  (trapezoid-on-the-circle) switch of M0 VI.4bis is NOT licensed for this data class; reported.
+- H-2 resolution: |C_F(K12) - C_F(K48)| <= 0.17 percent of C_F (PILOT-WF's line) on Rao's plug AND on the SQP plug;
+  the K-sequence monotone and Richardson-consistent (the K12 error estimated from K24/K48 within a factor 2).
+- H-3 the comparison survives: the Rao-SQP difference at K12 vs K48 within 0.05 percent of C_F.
+- R-1 (must fire): a family with K = 3 sectors fails H-2.
+
+### Item 1 — the data admission audits (stage A of the contract): gates declared BEFORE authoring (R8), 02:49
+What they check, physically: before a family of RDE outflow states feeds a design, (i) every phase must carry a
+complete, physical state; (ii) the extraction surface must be one the march can start from -- every characteristic
+leaves it into the nozzle (M0 Lemma 4: axially supersonic, with margin), and the recorded stagnation state must be
+the one its static state and Mach imply; (iii) the profiles across the gap must be a possible steady flow (Crocco):
+in a flow extracted as parallel (no radial velocity), a radial pressure gradient cannot be held. On the families of
+the program the phases are uniform across the gap, so (iii) is satisfied identically -- declared, not hidden: the
+Crocco audit bites only on layered data (the class just parked).
+Carrier `validation/data_admission_audit.py` (row X-ADMA), run on the THOR family (`RDE/Nozzle/phases_405.json`) and
+the methane family (`validation/_cycle_family/sdt_ch4_phi1_pcp20/phases_cfd.json`):
+- A-1 complete and physical: p > 0, T and T0 inside the family's table range, composition sums to one (1e-9),
+  1 < gamma < 5/3, the recorded R equals the composition's (1e-4: molar-mass tables differ in the fifth digit).
+- A-2 Lemma 4: M_n - 1 >= 0.02 (X-CHOK's line) on every phase; T0 = T (1 + (gamma-1)/2 M^2) and P0 = p (T0/T)^(gamma/
+  (gamma-1)) as recorded (1e-6 relative for the generated family; the THOR family is a Q2D extraction: reported,
+  graded at 1e-3).
+- A-3 Crocco (parallel extraction): max over the gap of |dp/dr| x gap / p <= 1e-3 on every phase (identically 0 on
+  uniform phases).
+- R-1 a planted phase with M_n 0.95 fails A-2; R-2 a planted phase whose composition sums to 1.01 fails A-1; R-3 a
+  planted layered phase with a 10 percent radial pressure gradient in parallel flow fails A-3.
+
+### Item 1 — result (carrier `validation/data_admission_audit.py`, X-ADMA), 02:52
+- Methane family (CycleFamily v0): A-1, A-2, A-3 PASS (R against the composition 4e-12, normal-Mach margin 0.556,
+  stagnation state as recorded to 3e-12; Crocco identically zero: uniform phases).
+- THOR family (`RDE/Nozzle/phases_405.json`): A-2 and A-3 PASS (margin 0.299), **A-1 FAILS**: the recorded gas
+  constant is not the one of the recorded composition -- -0.33 percent on phase 9, +0.22 on phase 11, -0.87 on the
+  mean state. Cause, measured on the Q2D exit: the family's gamma, R, T0, P0 (the design tool's states, family_K12.json)
+  are ARITHMETIC sector means over the cells, while the composition handed to the CFD is the MASS-WEIGHTED sector mean:
+  two averaging rules, two slightly different gases; cell by cell the Q2D's R and composition agree to 6e-6. The error
+  is largest where the composition varies most inside a sector (the sectors around the front). Effect on the THOR
+  results: negligible -- at fixed inlet p, T, Mach and gamma the thrust of a constant-gamma gas does not depend on R
+  (R scales only temperature and density) -- but the contract was violated and the audit caught it. The right rule
+  for collapsing a non-uniform sector into one state is a single, flux-conserving average (mass, momentum, energy).
+  X-ADMA declared FAILING on the THOR family, owned by finding data-contract:thor-family-two-averaging-rules.
+- The three planted phases are rejected (R-1 subsonic, R-2 composition, R-3 layered pressure gradient).
+
+### Item 4 — result (carrier `validation/family_resolution_audit.py`, X-FRES), 03:15
+- H-1 PASS: the blowdown's harmonics fall exactly as 1/n (slope -1.000): a jump; the spectral switch of VI.4bis is
+  not licensed for this data class.
+- H-2 PASS on both plugs: C_F(K) Rao 1.414724 (K12) / 1.414747 (K24) / 1.414749 (K48), SQP 1.421056 / 1.421081 /
+  1.421081; the K12 error 1.8e-5 of C_F, monotone, Richardson-consistent. H-3 PASS: SQP over Rao 0.4475 percent at
+  K12, 0.4476 at K48.
+- R-1 DID NOT FIRE: K = 3 is within 3.2e-4 (Rao) and 3.5e-4 (SQP) of K48, well inside the declared 0.17 percent line.
+  Physics: the cycle-averaged thrust is nearly LINEAR in the phase state at this ambient -- even the mean state alone
+  is only 0.17 percent off (the tool's 12-phase/mean ratio 1.0017). The resolution line as declared does not tell a
+  coarse family from a fine one on this case; the gate is non-discriminating, so by the declared rules the carrier
+  FAILS (not tuned after the fact). What stands is the measurement: 12 sectors resolve the cycle thrust to 2e-5.
+  X-FRES declared failing, owned by finding family-resolution:line-non-discriminating-on-the-methane-case (re-pose the
+  rejector at the next session: a planted mis-weighted family, or the over-expanded functional where nonlinearity bites).
+
+### Where Rao cannot act: the cowl (03:45; owner's question "avevi permesso a sqp di modificare anche la cowl?")
+Answer of record: in the three rows above the SQP moved the PLUG only (11 knots + tip height; the cowl and the hub
+arc held, the same cowl as Rao's) -- but its first four knots lie under the cowl (15.6 to 33.7 mm, lip 35.2 mm), so
+it also reshaped the inner wall of the internal nozzle, which Rao keeps as the -10 deg cone. Then the joint walk,
+plug + cowl (3 smooth cowl modes from where the hub's first wave reaches the cowl, 16.9 mm, to the lip; no envelope,
+the owner's 09-29 decision), mean state, from the SQP plug, 10 segments by budget (|grad| 0.50, not converged):
+| design | tool mean | tool 12 ph | CFD 2-D mean | CFD 2-D 12 ph | CFD 3-D wave frame |
+|---|---|---|---|---|---|
+| Rao | 1.412293 | 1.414724 | 1.410272 | 1.412844 | 1.407115 |
+| SQP plug only (mean state) | 1.418513 | 1.421056 | 1.416519 | 1.419177 | 1.412733 |
+| SQP plug + cowl (mean state) | 1.423976 | 1.426231 | 1.422260 | 1.424774 | 1.419340 |
+Plug + cowl over Rao: +0.81 to +0.87 percent by every judge, +0.87 in the rotating flow; over the plug-only SQP
++0.47 percent rotating. Physics: the cowl opens outward by 0.72 mm at its lip (inside the 68 mm annulus): the gas
+expands a little more inside the nozzle and the pressure on the cowl's inner wall stops pulling backward (the cowl
+term -0.0287 -> -0.0127 of C_F); the plug term barely moves (-0.129 -> -0.125). The gain is where the classical
+method has no freedom: it takes the lip state as given. Phases 7 and 9 are no longer unsteady in 2-D (only 10, 11).
+Lower bound (walk by budget). Caveat of record: the march's C_F jumps 3-4e-4 when a cowl point appears next to the
+lip (finding of 09-29); the gain is twenty times that, and the CFD confirms it.
 
 ## Where the session stands (00:05)
 Done (night): the methane case built (CycleFamily v0), Rao vs SQP-at-the-mean-state judged in the wave frame (+0.40 percent SQP,

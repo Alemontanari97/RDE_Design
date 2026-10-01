@@ -2412,6 +2412,34 @@ entries:
   falsifier: "F-1..F-5b at their stated tolerances; R-1 not firing; the family failing X-SWAV or X-CHOK (it must pass both by construction)"
   gamma: "EOS-general"
 
+- id: X-FRES
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-01; suite=none; fail=2026-10-01; envfp=9145bf10"
+  class: PRACTICE
+  scope: "DOES A K-SECTOR FAMILY RESOLVE THE CYCLE? (F2a, the harmonic-decay half of the single-wave monitor; F2.ENGINE night 2026-09-30/10-01; validation/family_resolution_audit.py). H-1 the spectrum of the blowdown (|c_n| against the 1/n law of a jump), H-2 the design tool's cycle C_F on the same plugs (Rao's, the SQP's) at K = 12, 24, 48 sectors of CycleFamily v0 (methane, 0.5 atm) within 0.17 percent, monotone and Richardson-consistent, H-3 the Rao-SQP difference unmoved within 0.05 percent, R-1 a 3-sector family must fail H-2."
+  statement: "The blowdown is a jump (harmonics as 1/n: the spectral quadrature switch is not licensed). 12 sectors resolve the cycle-averaged C_F to 1.8e-5 on both plugs (K12/24/48: Rao 1.414724 / 1.414747 / 1.414749; SQP 1.421056 / 1.421081 / 1.421081), the difference SQP-Rao 0.4475 / 0.4476 percent. The declared rejector does NOT fire (K3 within 3.5e-4): the thrust is nearly linear in the phase state at this ambient, so the 0.17 percent line cannot tell a coarse family from a fine one here -- declared failing (fail=2026-10-01), owned by finding family-resolution:line-non-discriminating-on-the-methane-case."
+  doc: "validation/PROGRESS_2026-09-30_F2ENGINE.md"
+  proof: "validation/family_resolution_audit.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "H-1..H-3 at their stated tolerances; R-1 must fire for the gate to count"
+  gamma: "EOS-general"
+
+- id: X-ADMA
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-01; suite=none; fail=2026-10-01; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE DATA ADMISSION AUDITS, stage A of the data contract (F2a; F2.ENGINE night 2026-09-30/10-01; validation/data_admission_audit.py) on every family of the program: A-1 complete and physical (p > 0, T and T0 inside the family's table range, composition sums to one at 1e-9, 1 < gamma < 5/3, the recorded R equals the composition's at 1e-4), A-2 M0 Lemma 4 (normal Mach margin >= 0.02, X-CHOK's line; the stagnation state as recorded: 1e-6 for a generated family, 1e-3 for an extraction), A-3 Crocco compatibility for a parallel extraction (|dp/dr| x gap / p <= 1e-3; identically zero on uniform phases: it bites only on layered data). Rejectors planted on the methane family: R-1 a phase at M 0.95, R-2 a composition summing to 1.01, R-3 a layered phase with a 10 percent radial pressure rise -- all fire."
+  statement: "The methane family (CycleFamily v0) is admitted: R against its composition 4e-12, normal-Mach margin 0.556, stagnation state as recorded to 3e-12. The THOR family is NOT: its recorded gas constant differs from its recorded composition's by up to 0.87 percent (the mean state; 0.33 percent on phase 9) because its thermodynamic states are arithmetic sector means while its composition is the mass-weighted mean (two averaging rules). Declared failing on the THOR family (fail=2026-10-01), owned by finding data-contract:thor-family-two-averaging-rules; the effect on the THOR results is negligible (constant-gamma C_F does not depend on R), the contract violation is real."
+  doc: "validation/PROGRESS_2026-09-30_F2ENGINE.md"
+  proof: "validation/data_admission_audit.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "A-1..A-3 at their stated tolerances on any family entering a design; R-1..R-3 not firing"
+  gamma: "EOS-general"
+
 - id: X-CHOK
   kind: carrier
   ondemand: "env=jax; pass=2026-09-30; suite=none; envfp=9145bf10"
@@ -2596,7 +2624,7 @@ entries:
 
 - id: X-OWSQ
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-09-15; suite=none; envfp=9145bf10"
+  ondemand: "env=jax+geno; pass=2026-10-01; suite=none; envfp=9145bf10"
   class: PRACTICE
   scope: "F3 EXIT LEG, OUR WORLD — THE PLUG-SECTOR O3.3, MOTION HALF (SQP-RETURN): FALSIFIER FIRED, result of record (S28 2026-09-15; VERDICT FAIL 5/6, run of record validation/_ourworld/run_sqpret_2026-09-15.log, 10051 s): the [X-RAOSQ] v2 instrument verbatim on the [X-OWTW] posing (GENO's ideal-spike member in OUR gas at the member's lip ambient, start line at x0 1.50, K 161, 8-knot cubic spline on [x0 + 0.35 L_r, x_D], tip pinned at the 0.01 y_E cut, near-cut zone frozen to GENO's wall; 1.5 percent alternating perturbation) — S1 e_rep 4.863e-4 (Rao's world 4.8e-5: the same 8 knots on a spike 2.2x longer in lip radii), J_fit 6.44496391e7 at K 161 vs 6.44831602e7 at K 321, gradient floor 1.53e4 -> gtol 6.12e4; S2 start 6.099e-3 from GENO = 2.9x band_W (Rao's world 20.8x), c_hat 3.18e8, band_W = K_RICH (e_rep + g/c_hat) = 2.138e-3, band_J 1.34e5; S3 12 segments, every accepted base certified (worst 0.364; one uncertified base 1.5e10 rejected, three worse trials rejected): J* = J_fit + 18.0 N = J_p + 5.93e3 N, |grad|inf 7.68e5 -> 368 (0.6 percent of gtol), max|y(W*) - y_GENO| 2.494e-3 = 1.17x band_W; P1 PASS, P2 PASS, P3 FAIL, P4a PASS, P4b PASS; S4 R1 the sign-flipped driver walks to 5.52e-2 (9x the start, J_p - J 5.63e5 N) PASS. ATTRIBUTION, MEASURED the same evening (AD Hessian of the replayed J at W_fit on its frozen record, 7 x 7, scratch hess_wfit_2026-09-15): the curvature along the alternating perturbation reproduces c_hat to 10 percent (2.87e8 vs 3.18e8) — the Hessian is right where v2 looked — and the softest eigen-direction (a smooth lowering of the whole spike, weighted downstream) is 32x softer (9.9e6), with a location floor of 1.55e-3 alone against the 4.8e-5 v2 declared; the return is complete in VALUE (18 N on 6.4e7, 7000x inside band_J; gradient a fortieth of its floor) and the 17 percent excess in LOCATION is the soft direction the scalar band could not see. Reading: NOT a second maximum but a LOCATION FLOOR UNDER-DECLARED (one scalar curvature, measured along the stiffest direction, for a 7-dimensional design space). Instrument v3 declared (per-eigen-direction bands, designs saved) and re-run on both worlds the same night; this row stays the record of the fired v2 falsifier"
   statement: "In our world, on the axisymmetric ideal-spike member, the certified TR-SQP started 2.9 bands off GENO's contour returns to it in VALUE (J* = J_fit + 18 N, gradient closed to a fortieth of its measured floor, the sign-flipped twin walks away) but stops 1.17x band_W away in LOCATION: the pre-registered P3 falsifier of [X-RAOSQ] fired, the motion half of the plug-sector O3.3 licence is NOT established on our world at this posing, and the measured cause is a location floor declared from the stiffest curvature alone."
@@ -2610,7 +2638,7 @@ entries:
 
 - id: X-OWS3
   kind: carrier
-  ondemand: "env=jax+geno; pass=2026-09-15; suite=none; envfp=9145bf10"
+  ondemand: "env=jax+geno; pass=2026-10-01; suite=none; envfp=9145bf10"
   class: PRACTICE
   scope: "F3 EXIT LEG, OUR WORLD — THE PLUG-SECTOR O3.3, MOTION HALF, INSTRUMENT v3 (S28 2026-09-15 night; VERDICT PASS 6/6, run of record validation/_ourworld/run_sqpret_v3_2026-09-15.log, 10192 s; designs + spectrum validation/_ourworld/sqpret_v3_designs_2026-09-15.npz): the [X-RAOSQ] v3 instrument (location floor graded PER EIGEN-DIRECTION of the AD Hessian of the replayed J at W_fit on its frozen record: band_k = K_RICH (e_rep + g_floor / c_k), c_k the curvature in the wall metric; the sup-norm distance and the v2 scalar band printed, not graded) on the [X-OWTW] posing (GENO's axisymmetric ideal-spike member in OUR gas at the member's lip ambient, x0 1.50, K 161, 8 knots on [x0 + 0.35 L_r, x_D], tip pinned at the 0.01 y_E cut, 1.5 percent alternating perturbation, SEG 12, SEG_R1 14). S1/S2 as the v2 run of record ([X-OWSQ]): e_rep 4.863e-4, floor 1.53e4, gtol 6.12e4, start 6.099e-3, c_hat 3.18e8; spectrum: c along the perturbation from the Hessian 2.87e8 (c_hat to 10 percent), eigen-curvatures 9.87e6 .. 2.63e8 (the softest 32x softer than c_hat: a smooth lowering of the whole spike weighted downstream; FD-of-gradient puts it 20 percent softer still, inside K_RICH, declared), bands 8.15e-3 (softest) .. 2.18e-3 (stiffest); the start lies outside its band in ONE direction (the stiffest, 2.8x) — at this perturbation the motion test discriminates in that direction only, declared. S3 identical to the v2 walk (12 records, worst cert 0.364, J* = J_fit + 18.0 N = J_p + 5.93e3 N, |grad| 7.68e5 -> 368, sup-norm distance 2.494e-3 = 1.17x band_W(v2)): return by direction 0.18, 0.19, 0.08, 0.03, 0.01, 0.00, 0.00 of the bands (the residual lives in the two softest directions, 1.51e-3 and 9.79e-4 in wall units; curvature along it 7.3e6); P1 PASS, P2 PASS, P3 (v3) PASS worst 0.19 of band, P4a PASS, P4b PASS; S4 R1 the sign-flipped driver walks to 5.52e-2 (9x the start, J_p - J 5.63e5 N) PASS. Rao's world under the same v3 re-run the same night: 6/6 with every v2 number reproduced ([X-RAOSQ] re-stamped). Reading: the v2 P3 failure was the sup-norm test reading the soft-direction floor as a miss; graded direction by direction the return is complete in value and in location"
   statement: "CERTIFICATION CLASS under [DIR-REOB] (2026-09-22): BASIN, NOT a finder certificate -- the perturbation is 1.5 percent off GENO's contour, inside the instrument's own bands; the licence held is the motion half of O3.3 (the optimum is a local attractor of the certified walk), not re-obtention from afar. What follows is the record as written. In our world, on the axisymmetric ideal-spike member, the certified TR-SQP started 1.5 percent off GENO's contour returns to it in VALUE (J* = J_fit + 18 N, gradient a fortieth of its floor, sign-flipped twin walks 9x away) and in LOCATION direction by direction (worst 0.19 of the band derived from the spline representation error and the gradient floor along each eigen-direction of the Hessian at the fit): the motion half of the plug-sector O3.3 licence holds on our world at the v3 posing, with the start discriminated in one direction at this perturbation size."
