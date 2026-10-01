@@ -3380,9 +3380,9 @@ entries:
   status: CONFIRMED
   path: non-critical
   severity: medium
-  magnitude: "on the methane shrouded posing (cap 0.65 = 133 mm) the mean-state walk on knot heights lands with wall undulations up to 0.7 mm (waves of ~25 mm) and +0.296 percent at the mean state / +0.259 percent over the 12 phases by the design tool; the Euler CFD rejects it against the cut Migdal: 2-D per phase (frozen, no rotation) -0.116 percent over the 12 phases and -0.137 percent at the mean state, 3-D wave frame -0.128 percent, lower in all 12 sectors -- the loss is not the rotation; in 5 smooth polynomial modes (the kernel arcs frozen) the same walk is stationary at +0.007 / +0.04 percent: the gain was the undulations"
+  magnitude: "on the methane shrouded posing (cap 0.65 = 133 mm) the mean-state walk on knot heights lands with wall undulations up to 0.7 mm (waves of ~25 mm) and +0.296 percent at the mean state / +0.259 percent over the 12 phases by the design tool; the Euler CFD rejects it against the cut Migdal: 2-D per phase (frozen, no rotation) -0.116 percent over the 12 phases and -0.137 percent at the mean state, on the fine level -0.206 / -0.196 percent (the loss grows with refinement), 3-D wave frame -0.128 percent, lower in all 12 sectors -- the loss is not the rotation; in 5 smooth polynomial modes (the kernel arcs frozen) the same walk is stationary at +0.007 / +0.04 percent: the gain was the undulations"
   source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#The shrouded nozzle on the methane case"
   code: []
   mechanism: model-credits-wall-waves
-  owner: "the design line: two-wall and cowl walks in smooth wall bases (the owner's rule of 2026-10-01: no undulations, a smooth angle transition); the fine level (f) of the 2-D referee on the wavy design reads whether the CFD resolution enters"
+  owner: "the design line: two-wall and cowl walks in smooth wall bases (the owner's rule of 2026-10-01: no undulations, a smooth angle transition); the fine level (f) of the 2-D referee read on 2026-10-01: the loss grows with refinement, so the CFD resolution does not explain it"
   trigger: "any knot-height walk on two walls quoted without a smooth basis; any tool gain on a design whose wall angle oscillates along the wall (beyond the kernel's own turn and straightening)"

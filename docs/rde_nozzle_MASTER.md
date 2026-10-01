@@ -4948,7 +4948,8 @@ pictures overstate the thrust more than for the plug: tool -> 2-D -0.81 percent,
 (8) WALL UNDULATIONS ARE THE TOOL'S, NOT THE FLOW'S (2026-10-01; MEASURED on that instance, PRACTICE as a rule;
 finding twowall:tool-credits-wall-undulations). A walk on knot heights can land on walls that undulate below the
 instrument's scale (0.7 mm, 25 mm waves); the march credits their recompressions (+0.26 percent over the 12 phases)
-and the Euler CFD does not pay them, frozen or rotating (-0.12 / -0.13 percent). Rule of record (the owner): designed
+and the Euler CFD does not pay them, frozen or rotating (-0.12 / -0.13 percent; -0.21 percent on the 2-D fine level:
+the loss grows with refinement). Rule of record (the owner): designed
 walls carry no undulations -- the walks run in smooth wall bases and a design whose wall angle changes the sign of its
 slope more than its kernel's own turn and straightening (an oscillating angle) is not a credible design, whatever
 the tool scores it.

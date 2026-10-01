@@ -637,8 +637,10 @@ waveframe:far-field-406-drains-outside-air (owner: the MOSE_open far field, the 
   rotation) -0.116 percent over the 12 phases (1.520854 / 1.522620), -0.137 percent at the mean state
   (`RDE/handoff/plug_2026-09-29/referee_cert_sdtshc.log`); 3-D wave frame -0.128 percent (1.513620 / 1.515563, steady
   to 4e-6 between 0.3 and 0.6 ms; `RDE/Nozzle/CASE_3D/wf_{TSh65,SSh65}_phases/wf_post.json`), lower in all 12 sectors.
-  The loss is NOT the rotation: the design tool credits wall undulations that the Euler CFD does not pay (fine level
-  f of the 2-D referee running at commit time). Finding twowall:tool-credits-wall-undulations.
+  The loss is NOT the rotation: the design tool credits wall undulations that the Euler CFD does not pay. Read at
+  18:48 on the FINE level f of the 2-D referee (twice the nodes in every direction): -0.206 percent over the 12 phases
+  (1.521349 / 1.524489), -0.196 percent at the mean state (`referee_cert_sdtshf.log`) -- the loss GROWS with refinement
+  (level c -0.116 percent): not the CFD's resolution. Finding twowall:tool-credits-wall-undulations.
 - Smooth walls (the owner's rule): 5 polynomial delta modes after the kernel arcs (plug 2, zero at the arc end and at
   the pinned tip; shroud 3, the lip free; `RDE/handoff/plug_2026-09-29/sdt/shroud_smooth_basis.py`), walk stationary
   (|grad| 6e-4 in the basis) at +0.007 percent (mean state) / +0.04 percent (12 phases) (`shroud_cap065_smooth/`,
@@ -646,7 +648,10 @@ waveframe:far-field-406-drains-outside-air (owner: the MOSE_open far field, the 
   downstream gain nothing. The owner (18:40): the cut Migdal is the TIC of a bell -- minimum divergence, not maximum
   thrust at the cut length; the thrust-optimised contour differs by its initial expansion. So this null result does
   NOT make the cut Migdal the thrust optimum; the walk with the 4 kernel-arc parameters freed as well (end x, end
-  angle of both arcs: `sdt/shroud_smooth_basis.py --kernel`, `_plug_contest/SDT/shroud_cap065_smoothK/`) is running.
+  angle of both arcs: `sdt/shroud_smooth_basis.py --kernel`, `_plug_contest/SDT/shroud_cap065_smoothK/`), read at
+  18:47: +0.021 percent at the mean state (1.529293 from 1.528976), stopped by its resolution rule (two steps in a row
+  under the radius floor, a multiplier active), |grad|inf 0.16 -- not a certified optimum; which constraint binds is
+  open. No CFD on it (owner 18:55: 3-D and 2-D only on designs to test).
 - The frozen phases against the rotating flow on the cut Migdal: tool -> 2-D -0.81 percent, 2-D -> 3-D -0.46 percent
   (Rao's plug: 0.13 and 0.41 percent).
 
