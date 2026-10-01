@@ -474,6 +474,59 @@ def mu_dual_clause(mu, margin_active, slack=None):
 
 
 # ======================================================================
+# P-IPADJ (F2 CLOSE 2026-10-01; finding constraints:multiplier-rejector-
+# missing): the multiplier read in the S24 convention of record, its
+# extraction failures counted, complementarity tested on the RECORDED
+# multiplier, and the [R2'] least-squares re-estimate.
+# ======================================================================
+def mu_from_res(res, counters):
+    """The margin multiplier of a run_trsqp result in the S24 convention
+    of record (T1, scipy trust-constr): res.v[-1] is the USER multiplier
+    of the lower-bound margin constraint m >= 0, v <= 0 at an active
+    margin, so mu = -v >= 0. An extraction failure is COUNTED
+    (counters['mu_extract_fail']) and returns None -- never a silent 0."""
+    try:
+        vlist = [np.atleast_1d(np.asarray(vv)).ravel() for vv in res.v]
+        return -float(vlist[-1][0]) if len(vlist) > 1 else None
+    except Exception:                                   # noqa: BLE001
+        counters["mu_extract_fail"] = counters.get("mu_extract_fail", 0) + 1
+        return None
+
+
+def complementarity_band(J, n_cells):
+    """K_RICH x the march's certification floor on the objective
+    (NEWTON_TOL_FACTOR eps N_cells |J|): the smallest objective change
+    the march resolves. A KKT-consistent stop carries |mu m| below it
+    (the complementarity part of a three-part termination,
+    Wachter-Biegler, in the objective's own resolution)."""
+    return A1.K_RICH * A1.NEWTON_TOL_FACTOR * EPS * n_cells * abs(J)
+
+
+def complementarity_check(mu, m_value, band):
+    """|mu x m| <= band at the stop, m the margin constraint's value.
+    Returns (ok, msg); an unextracted mu is a FAIL, never a pass."""
+    if mu is None:
+        return False, ("mu NOT EXTRACTED (counted): complementarity "
+                       "cannot be checked")
+    prod = abs(mu * m_value)
+    ok = bool(prod <= band)
+    return ok, ("|mu m| = %.3e against the complementarity band %.3e -> "
+                "%s" % (prod, band, "ok" if ok else "VIOLATED"))
+
+
+def lsq_multipliers(gf, rows):
+    """[R2'] least-squares multipliers (Gill-Murray-Wright): v minimises
+    ||gf + R^T v||, R the constraint gradients (one per row). Returns
+    (v, relative residual, condition number of R R^T): a large
+    condition number is the LICQ degradation only an LSQ residual sees."""
+    R = np.atleast_2d(np.asarray(rows, float))
+    g = np.asarray(gf, float)
+    v = np.linalg.lstsq(R.T, -g, rcond=None)[0]
+    res = float(np.linalg.norm(g + R.T @ v) / max(np.linalg.norm(g), EPS))
+    return v, res, float(np.linalg.cond(R @ R.T))
+
+
+# ======================================================================
 # campaign (T4) — margin-constrained re-optimization on the ladder
 # ======================================================================
 def active_cusp_census(val, pts, mu0, gap, nodes, r_loc):
@@ -615,13 +668,21 @@ def campaign(gov, tab, cfg, state_fn, solv):
                  n_act, n_on, n_int, n_cl,
                  "ACTIVE" if margin_active else "inactive"))
         # multiplier (B-stationarity qualifier — O1 undischarged)
-        mu_est = None
-        try:
-            vlist = [np.atleast_1d(np.asarray(vv)).ravel()
-                     for vv in res.v]
-            mu_est = float(vlist[-1][0]) if len(vlist) > 1 else None
-        except Exception:
-            pass
+        # P-IPADJ: S24 sign convention (mu = -v), extraction failures counted
+        mu_est = mu_from_res(res, counters) if res is not None else None
+        if res is not None and not margin_active:
+            # P-IPADJ: complementarity on the RECORDED multiplier (the
+            # inactive-margin check used to test a value forced to 0)
+            try:
+                c_val = float(np.atleast_1d(np.asarray(res.constr[-1]))[0])
+            except Exception:                           # noqa: BLE001
+                counters["constr_extract_fail"] = counters.get("constr_extract_fail", 0) + 1
+                c_val = m_final - mu0
+            cok, cmsg = complementarity_check(
+                mu_est, c_val, complementarity_band(float(-res.fun), int(out_n["cert_n"])))
+            print("  [rung %d] complementarity at the INACTIVE margin "
+                  "(recorded mu): %s" % (k, cmsg))
+            ok &= cok
         print("  [rung %d] multiplier (B-STATIONARITY estimate, no "
               "mu defined until O1): %s" % (k, mu_est))
         # [D1]-constrained metric on outcome-I only
@@ -689,14 +750,59 @@ def main():
     # wrong one — pure float logic, runs in every stage.
     d_ok1, _ = mu_dual_clause(+1.0, True, slack=0.0)
     d_ok2, _ = mu_dual_clause(-1.0, True, slack=0.0)
-    d_ok3, _ = mu_dual_clause(0.0, False)
     print("  [S1/A37 dual clause] positive control %s; seed rejector "
-          "(wrong-side mu at active margin) %s; complementarity at "
-          "inactive margin %s"
+          "(wrong-side mu at active margin) %s"
           % ("PASS" if d_ok1 else "FAIL",
-             "FIRES" if not d_ok2 else "FAILS-TO-FIRE",
-             "PASS" if d_ok3 else "FAIL"))
-    ok &= d_ok1 and (not d_ok2) and d_ok3
+             "FIRES" if not d_ok2 else "FAILS-TO-FIRE"))
+    ok &= d_ok1 and (not d_ok2)
+    # P-IPADJ (F2 CLOSE 2026-10-01): complementarity is tested on a
+    # RECORDED multiplier against a derived band (the old row tested a
+    # value forced to 0 at the inactive margin: a tautology).
+    st = gov["st"]
+    W0 = np.asarray(O33.W_STAR, float)
+    runj0 = TV.make_run_toc_scan_jit(tab, cfg, st["plan"], state_fn=state_c1, solvers=solv)
+
+    def f_obj(Wv):
+        return -TV.thrust_J(runj0(Wv), tab, state_fn=state_c1)
+
+    J0 = -float(f_obj(jnp.asarray(W0)))
+    n_cells = int(st["out"]["cert_n"])
+    band_c = complementarity_band(J0, n_cells)
+    rec = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      "s24_multiplier_record.json")))["s24_stop"]["value"]
+    mu_s24 = -float(rec["res_v_margin"])          # the S24 convention: mu = -v
+    c_fire, c_msg_fire = complementarity_check(mu_s24, rec["margin_value"], band_c)
+    c_pos, c_msg_pos = complementarity_check(0.25 * band_c / rec["margin_value"], rec["margin_value"], band_c)
+    print("  [P-IPADJ complementarity] band = K_RICH x the objective's certification floor at W* = %.3e "
+          "(J %.6e, %d cells); the RECORDED S24 stop (res.v %+.4e, margin %.4f): %s -> %s; a KKT-consistent "
+          "inactive stop: %s -> %s" % (band_c, J0, n_cells, rec["res_v_margin"], rec["margin_value"], c_msg_fire,
+                                       "FIRES" if not c_fire else "FAILS-TO-FIRE", c_msg_pos,
+                                       "PASS" if c_pos else "FAIL"))
+    ok &= (not c_fire) and c_pos
+    # [R2'] least-squares multipliers on the recorded S18 landing W*
+    gf = np.asarray(jax.grad(f_obj)(jnp.asarray(W0)))
+    mfn0 = make_margin_fn(tab, cfg, st["plan"], state_c1, solv, gov["rho"], gov["ladder"][0],
+                          gov["m_ref"], gov["q_ref"])
+    gm0 = np.asarray(jax.grad(mfn0)(jnp.asarray(W0)))
+    a_lip = np.zeros(len(W0))
+    a_lip[-1] = 1.0
+    v1, r1, k1 = lsq_multipliers(gf, [a_lip])
+    v2, r2, k2 = lsq_multipliers(gf, [a_lip, gm0])
+    rel_g = A1.NEWTON_TOL_FACTOR * EPS * n_cells
+    print("  [R2' LSQ multipliers at W*, READING] lip row only: v_lip %+.6e, residual %.3e of |grad f|; with the "
+          "margin row: v_lip %+.6e, mu = -v_m %+.6e, residual %.3e, cond(R R^T) %.3e (LICQ trusted below "
+          "1/(K_RICH rel_g) = %.3e)" % (v1[0], r1, v2[0], -v2[1], r2, k2, 1.0 / (A1.K_RICH * rel_g)))
+    v_true = np.array([2.0, -3.0])
+    gsyn = -(v_true[0] * a_lip + v_true[1] * gm0)
+    vk, rk, kk = lsq_multipliers(gsyn, [a_lip, gm0])
+    kat = bool(np.all(np.abs(vk - v_true) <= A1.K_RICH * EPS * kk * np.max(np.abs(v_true))) and rk <= A1.K_RICH * EPS * kk)
+    _, _, kp = lsq_multipliers(gf, [a_lip, a_lip * (1.0 + EPS)])
+    licq_fires = bool(kp > 1.0 / (A1.K_RICH * rel_g))
+    print("  [R2' LSQ] known-answer (v = (2, -3) planted on the measured rows): recovered %s, residual %.1e -> %s; "
+          "LICQ rejector (two parallel rows, cond %.2e) %s" % (np.array2string(vk, precision=12), rk,
+                                                               "PASS" if kat else "FAIL", kp,
+                                                               "FIRES" if licq_fires else "FAILS-TO-FIRE"))
+    ok &= kat and licq_fires
     if stage == "campaign" and ok:
         ok2, rep = campaign(gov, tab, cfg, state_c1, solv)
         ok &= ok2

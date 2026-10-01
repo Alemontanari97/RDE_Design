@@ -1,0 +1,15 @@
+{
+  "_doc": "Constants of hessian_symmetry_audit.py [X-HSYM] (F2 CLOSE 2026-10-01, duty P-HESSREJ of finding driver-nonsmooth:hessian-no-rejector).",
+  "audit": {
+    "value": {
+      "corrupt_scale": 1.5,
+      "newton_step": 0.001,
+      "n_dirs": 3,
+      "seed": 7,
+      "gtol_gscale_factor": 1e-08,
+      "xtol": 1e-10
+    },
+    "cls": "NUMERIC",
+    "note": "corrupt_scale: the rejector's seeded kink -- one Hessian column scaled by 1.5, the O(1) error of a forward difference whose step straddles a kink of the replay (finding text: 'column O(1) wrong'); newton_step: the length (design units) of the step along which the quasi-Newton carry is compared with fresh differences, the scale of a TR step of the bell driver near its landing (tr0 ~ 1e-3..1e-2 in the S18/S24 logs); n_dirs, seed: the directional-curvature check's seeded unit directions; gtol_gscale_factor, xtol: the X-TOCV optimizer-tolerance rule of record (gtol floor 1e-8 |g|, xtol 1e-10), used by HS-5 only to run ONE driver segment of one iteration (the check under test fires before any step)"
+  }
+}

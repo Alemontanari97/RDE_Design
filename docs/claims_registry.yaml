@@ -1299,6 +1299,34 @@ entries:
   falsifier: "its rows: measured order below 2 - dp_tot on a conclusive triple kills the S-LBML rate claim; the first-order negative control must be killed by the same band; per-level replay-vs-record fidelity at the Newton floor"
   gamma: "EOS-general"
 
+- id: X-HSYM
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-01; suite=none; fail=2026-10-01; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE BELL DRIVER'S HESSIAN, ITS SYMMETRY DEFECT MEASURED BEFORE SYMMETRISATION (F2 close 2026-10-01, duty [P-HESSREJ] of finding driver-nonsmooth:hessian-no-rejector); on-demand carrier (env: jax), validation/hessian_symmetry_audit.py on one S18 segment (W* = the S18 landing, C^1 quintic closure, frozen-schedule replay). The driver's forward-difference Hessian of the exact adjoint gradient (step sqrt(eps) max(|W|, 1)) against the error model of the differences: truncation from the half-step columns, rounding 2 eps_g / dH. HS-1 the defect inside the band; HS-2 a column corrupted with the band taken before the corruption (a biased column) leaves it; HS-3 directional curvature against Richardson second differences of J; HS-4 the BFGS carry against fresh differences (reading); HS-5 the driver's own hook (A1_HESSREJ=1) must refuse a segment whose dH column is doctored (a kink in (dH/2, dH]); HS-5b the column doctored at both steps (a biased column) must be refused."
+  statement: "At the S18 landing the driver's Hessian has max symmetry defect 0.471 of its measured band; three directional curvatures match the Richardson second differences; fresh differences beat the BFGS carry. The driver hook refuses a biased column (ratio 103) but NOT a kink: a kink within one step moves the half-step column too, so the measured truncation absorbs it and the defect/band ratio stays <= 1/(2 K_RICH) = 1/8 for any kink (measured 0.183). DECLARED FAILING on HS-5, owned by finding driver-nonsmooth:hessian-no-rejector (kink half)."
+  doc: "validation/PROGRESS_2026-10-01_F2CLOSE.md"
+  proof: "validation/hessian_symmetry_audit.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "HS-1 with an entry out of the band on a healthy segment; HS-2 or HS-5b not firing; HS-3 a directional curvature outside its Richardson bar; HS-5 (the kink) firing would refute the 1/(2 K_RICH) bound"
+  gamma: "EOS-general"
+
+- id: X-OBJD
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-01; suite=none; fail=2026-10-01; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE THROAT PANEL OF THE BELL OBJECTIVE, the analytic A/B (F2 close 2026-10-01; duties [OBJ-DOM-IMPL], [OBJ-DOM-AB], [OBJ-DOM-REBASE] of finding variational-driver:objective-omits-throat-panel; protocol validation/sfoundations_raws_2026-08-13/phaseD/phaseD_minor_objdom.md section 2); on-demand carrier (env: jax), validation/objdom_ab.py at the S18 landing (C^1 quintic closure, one frozen plan). J_A (a1_toc_variational_jax.py, A1_OBJDOM=A) = the coded J + the throat panel from theta = 0 (the IVL wall point prepended, the same trapezoid: F-1 branch (i)). T-0 the theta = 0 station is the record's IVL wall point; T-1 the driver's switch; P-2 both gradients on one plan; F-1(a) they differ only in theta_B; F-1(b) the theta_B difference equals the branch-(i) closed form (p' by central differences), rejector = the exact-integral target; F-2 the tilt in the driver's coordinates against 10 gtol (expected to fire); P-3 the driver's TR-SQP under J_A from W* at the unchanged gtol; P-4 the identity J_A - J_B = the panel's closed form on the ladder r = 1, 2."
+  statement: "The panel is 1149.3 J-units (4.1e-5 of J) at the S18 landing; the two gradients differ only in theta_B, by 8425.16 J-units/rad, equal to the branch-(i) closed form to 2e-11 relative; the tilt is 4.9e4 x the O3 acceptance in the driver's coordinates (fix-A stands); the identity a.1 holds to 1.8e-9 at r = 1, 2. The driver does NOT re-earn stationarity under J_A from W*: 12 segments, 12 wall-search decision flips, KKT 1.4e3..2.1e4 against 1.055. DECLARED FAILING on P-3, owned by finding variational-driver:objective-omits-throat-panel."
+  doc: "validation/PROGRESS_2026-10-01_F2CLOSE.md"
+  proof: "validation/objdom_ab.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "T-0 or T-1 not bitwise; a contour component of the gradient difference above eps_g (hidden W-dependence of the panel); the theta_B difference off the branch-(i) closed form beyond its bar; F-2 not firing (the absorption branch would re-open the adjudication); P-3 converging (would discharge the stationarity half)"
+  gamma: "EOS-general"
+
 - id: X-O33B
   kind: carrier
   ondemand: "env=jax; pass=2026-09-30; suite=none; envfp=9145bf10"

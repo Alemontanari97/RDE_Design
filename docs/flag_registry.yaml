@@ -612,3 +612,23 @@ entries:
   tested_pairs: "off/on on the S22 bell designs; on together with A1_NEWTON_RESCUE on (the campaign) and off (certdiag)"
   untested_cartesian: true
   note: "opt-in, read at import; the default path is unchanged (a1_ideal_march_jax.py __main__ PASS and a1_rde_tournament.py gates 9/9 bitwise after the edit); under the flag the rescue of A1_NEWTON_RESCUE keeps the plain steps whenever they end closer to the root; row added 2026-09-30"
+
+- flag: "A1_OBJDOM"
+  default: "coded (the bell objective of record: the coded J from the first arc station, bitwise)"
+  meaning: "A = the panel-inclusive bell objective J_A (the throat panel from theta = 0 added: the IVL wall point prepended to the wall array, the same trapezoid; F-1 branch (i) of the objective-domain protocol), in every objective site of a1_toc_variational_jax.py (objective_J); any other value raises"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1224"
+  covering_gate: "validation/objdom_ab.py [X-OBJD] (T-1: the switch bitwise both ways; F-1/F-2/P-4 PASS, P-3 FAIL: declared failing, finding variational-driver:objective-omits-throat-panel)"
+  tested_pairs: "unset/A at the S18 landing (one plan); A with the TR-SQP driver (P-3)"
+  untested_cartesian: true
+  note: "opt-in, read at every objective call (trace time under jit); row added 2026-10-01 (F2 close)"
+
+- flag: "A1_HESSREJ"
+  default: "0 (off: the driver's Hessian of record, symmetrised blind, bitwise)"
+  meaning: "1 = run_trsqp measures the half-step Hessian columns at every segment base and raises HessianDefectError when the symmetry defect BEFORE symmetrisation leaves the band of the measured error model; refuses a biased column, NOT a kink (a kink moves the half-step columns too: ratio <= 1/(2 K_RICH)); needs the sequential Hessian (A1_VMAP_HESS unset)"
+  read_sites:
+    - "validation/a1_toc_variational_jax.py:1879"
+  covering_gate: "validation/hessian_symmetry_audit.py [X-HSYM] HS-5 (kink, does not fire: declared failing), HS-5b (biased column, fires), HS-5 control (healthy segment proceeds)"
+  tested_pairs: "off/on on one S18 segment; on with the doctor hook _HESS_DOCTOR"
+  untested_cartesian: true
+  note: "opt-in, read per segment; row added 2026-10-01 (F2 close)"

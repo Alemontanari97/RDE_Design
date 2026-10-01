@@ -25,7 +25,7 @@
   "validation/a1_source_flow_oracle.py": 32,
   "validation/a1_swirl_march.py": 45,
   "validation/a1_thrust_functional.py": 10,
-  "validation/a1_toc_variational_jax.py": 31,
+  "validation/a1_toc_variational_jax.py": 29,
   "validation/a1_wall_march.py": 10,
   "validation/acontraction_front_probe.py": 32,
   "validation/adaptive_knot_optimize.py": 12,

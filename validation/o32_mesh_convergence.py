@@ -403,20 +403,24 @@ def make_solvers_foot(state_fn, delta_eff):
     form. Consistent, provably O(h). This is the carrier's principled
     negative control: identical code path and identical certification,
     KNOWN wrong order."""
-    def coef(u, v, y, ta):
+    def coef(u, v, y, ta, y_src):
+        # y_src (F2 CLOSE 2026-10-01): the radius of the axisymmetric source's 1/y factor ONLY -- the segment
+        # midpoint (foot + head)/2, the one term singular at the axis (a foot ON the axis gave 0/0 at the first
+        # interior cell of every level); every characteristic coefficient and c^2 v stay at the foot: the local
+        # error stays O(h^2) per step, the scheme first order.
         q = jnp.sqrt(u * u + v * v)
         A = jnp.arctan2(v, u)
         _, _, _, c, _, M = state_fn(q, ta)
         mu = jnp.arcsin(1.0 / M)
         return (jnp.tan(A - mu), jnp.tan(A + mu), u * u - c * c,
-                2.0 * u * v, delta_eff * c * c * v / y)
+                2.0 * u * v, delta_eff * c * c * v / y_src)
 
     def resid_int(z, p, ta):
         x4, y4, u4, v4 = z
         x1, y1, u1, v1, x2, y2, u2, v2 = p
-        lm, _, qm, rm0, sm = coef(u1, v1, y1, ta)      # FOOT, not mid
+        lm, _, qm, rm0, sm = coef(u1, v1, y1, ta, 0.5 * (y1 + y4))      # FOOT, not mid
         rm = rm0 - qm * lm
-        _, lp, qp, rp0, sp = coef(u2, v2, y2, ta)      # FOOT, not mid
+        _, lp, qp, rp0, sp = coef(u2, v2, y2, ta, 0.5 * (y2 + y4))      # FOOT, not mid
         rp = rp0 - qp * lp
         return jnp.array([
             (y4 - y1) - lm * (x4 - x1),
@@ -428,7 +432,7 @@ def make_solvers_foot(state_fn, delta_eff):
     def resid_axi(z, p, ta):
         x4, u4 = z
         x1, y1, u1, v1 = p
-        lm, _, qm, rm0, sm = coef(u1, v1, y1, ta)
+        lm, _, qm, rm0, sm = coef(u1, v1, y1, ta, 0.5 * y1)            # the head is on the axis (y4 = 0)
         rm = rm0 - qm * lm
         return jnp.array([
             (0.0 - y1) - lm * (x4 - x1),
@@ -442,7 +446,7 @@ def make_solvers_foot(state_fn, delta_eff):
         y2 = y1 + D * (y3 - y1)
         u2 = u1 + D * (u3 - u1)
         v2 = v1 + D * (v3 - v1)
-        _, lp, qp, rp0, sp = coef(u2, v2, y2, ta)      # FOOT, not mid
+        _, lp, qp, rp0, sp = coef(u2, v2, y2, ta, 0.5 * (y2 + y4))      # FOOT, not mid
         rp = rp0 - qp * lp
         return jnp.array([
             (y4 - y2) - lp * (x4 - x2),

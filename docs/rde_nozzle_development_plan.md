@@ -1461,3 +1461,27 @@ per-phase judge is used where phases are over-expanded. Owner's request (20:30):
 generator (CJ + blowdown, Annex B) instead of the THOR outflow — first act of session 4/6 (CycleFamily v0, item 5).
 Proposed decision P-F2-1: the bell-driver duties inherited by F2.ENGINE order 4 (P-IPADJ, OBJ-DOM-IMPL, P-QNCARRY,
 P-HESSREJ, X-O32 re-form) off the plug-sector critical path. F2 not exited: table E4 of the log names the owners.
+
+**DATED NOTE 2026-10-02 — F2 CLOSED (F2 sessions 4/6 and 5/6; census R45; log validation/PROGRESS_2026-10-01_F2CLOSE.md).**
+Owner's decisions of 2026-10-01 12:30-12:45 (E1): the night of 10-01 counts as session 4/6; P-F2-1 REJECTED, so the four
+bell-driver duties were done inside F2; CFD-2 = the methane table; CFD-1 after F2; the wave-frame far field is fixed in
+MOSE_open (the owner's code). The four duties, each with gates declared before authoring and a rejector: (d) X-O32's
+first-order control aborted because its first cell's foot is the axis point (0/0 in the axisymmetric source); re-formed
+(1/y at the segment midpoint), it now certifies at every level and the h^2 band rejects it (p 0.997); X-O32 stays
+failing for its non-conclusive production rows (owned). (a) the multipliers: the complementarity row fires on the
+recorded S24 stop (3.6e5 x its band), the least-squares multipliers at the S18 landing are well posed (cond 3);
+DISCHARGED. (c) the Hessian: the symmetry defect is measured against the error model of the differences (0.47 of the
+band at the S18 landing); the driver hook (A1_HESSREJ, opt-in) refuses a biased column but cannot refuse a kink, which
+moves the half-step columns too (defect/band <= 1/(2 K_RICH) for any kink): X-HSYM declared failing, the kink half owned.
+(b) the objective domain: the panel-inclusive objective J_A (A1_OBJDOM=A, opt-in) is 4.1e-5 of J above the coded one, its
+gradient differs only in theta_B, by exactly the panel's derivative, and that tilt is 4.9e4 x the O3 acceptance: fix-A
+stands; the driver does not re-earn stationarity under J_A (one wall-search decision flip per segment): X-OBJD declared
+failing, the default switch and the re-baseline owned by the bell sector's next window. E2: the paired demonstration
+validation/CFD2_paired_demo_2026-10-01.md. E3: the methods freeze validation/F2_methods_freeze_2026-10-01.md, M0 checked
+against it. E4: F2 is CLOSED with named residuals, each with an owner: the layered fold margin and the GENO layered twin
+(PARKED by the owner); the data checks failing on the THOR data (X-SWAV, X-ADMA) and the non-discriminating resolution
+rejector (X-FRES); the two bell-driver halves above; the second wave-frame pilot at 0.2 bar (before the per-phase judge
+is used on over-expanded phases); the far field (MOSE_open); CFD-1. The edits to the bell carrier aged its 35 importers:
+all were re-run on 2026-10-02 before the closing commit (log, section "The record runs"). Next by the derived roadmap:
+phase F3 (F3.RK1 in parallel with F3.PLUG, then F3.TWIN), with the program's comparison of record -- the design with
+the 12 phases against the classical mean-state design -- as its first reading.

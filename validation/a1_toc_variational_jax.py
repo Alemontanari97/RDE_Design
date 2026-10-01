@@ -107,6 +107,8 @@ TCASE = dict(NI=21, Ne=41, da_deg=0.5, eps=4.0, xtronc=4.0,
              yt=1.0, rtu=1.5, rtd=0.45)
 M_NODES = 8          # interior+lip wall nodes (design dofs y_1..y_m)
 NW = 60              # contour wall stations (march resolution)
+IVL_XNUDGE = 0.000001  # the IVL's abscissa nudge (named 2026-10-01, F2 close:
+                       # shared by the 3 IVL sites and throat_station)
 # S20 (adaptive design class, log step 4): normalized interior knot
 # abscissae xi in (0, 1], length M_NODES, LAST ENTRY = 1.0 (the lip).
 # None (default) = the uniform class xi_k = k/M — bit-identical to
@@ -464,7 +466,7 @@ def run_toc_record(W, tab, cfg, state_fn=A1.state_q, solvers=None,
     eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
     jj = np.arange(NI)
     y_ivl = yt * (1.0 - jj / (NI - 1.0))
-    x_raw = c1 * y_ivl**2 + 0.000001
+    x_raw = c1 * y_ivl**2 + IVL_XNUDGE
     u_ivl = as_ * (1.0 + alpha * x_raw + c2 * y_ivl**2)
     x_ivl = x_raw - eshift
     ivl = [jnp.array([x_ivl[k], y_ivl[k], u_ivl[k], 0.0])
@@ -700,7 +702,7 @@ def run_toc_scan(W, tab, cfg, plan, state_fn=A1.state_q, solvers=None):
     eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
     jj = jnp.arange(NI)
     y_ivl = yt * (1.0 - jj / (NI - 1.0))
-    x_raw = c1 * y_ivl**2 + 0.000001
+    x_raw = c1 * y_ivl**2 + IVL_XNUDGE
     u_ivl = as_ * (1.0 + alpha * x_raw + c2 * y_ivl**2)
     x_ivl = x_raw - eshift
     ivl = jnp.stack([x_ivl, y_ivl, u_ivl, jnp.zeros(NI)], axis=1)
@@ -977,7 +979,7 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
         eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
         jj = jnp.arange(NI)
         y_ivl = yt * (1.0 - jj / (NI - 1.0))
-        x_raw = c1 * y_ivl**2 + 0.000001
+        x_raw = c1 * y_ivl**2 + IVL_XNUDGE
         u_ivl = as_ * (1.0 + alpha * x_raw + c2 * y_ivl**2)
         x_ivl = x_raw - eshift
         ivl = jnp.stack([x_ivl, y_ivl, u_ivl, jnp.zeros(NI)], axis=1)
@@ -1127,7 +1129,7 @@ def make_run_toc_scan_jit(tab, cfg, plan, state_fn=A1.state_q,
         # one compiled dispatch per FD-row batch.
         def entry(Wmat, ops_):
             def sj(Wv, o):
-                return -thrust_J(run(Wv, o), tab, state_fn=state_fn)
+                return -objective_J(run(Wv, o), tab, cfg, state_fn=state_fn)
             return jax.vmap(jax.value_and_grad(sj),
                             in_axes=(0, None))(Wmat, ops_)
     else:
@@ -1184,6 +1186,85 @@ def thrust_J(wall, tab, state_fn=A1.state_q):
     py = p * y
     dy = y[1:] - y[:-1]
     return 2.0 * jnp.pi * jnp.sum(0.5 * (py[1:] + py[:-1]) * dy)
+
+
+# [OBJ-DOM-IMPL] (F2 close 2026-10-01; finding variational-driver:
+# objective-omits-throat-panel, adjudication OBJDOM-4 = fix-A): the
+# coded J starts at the first arc station theta_1 = thB/n_B; the
+# panel-inclusive J_A adds the throat panel [0, theta_1]. Rule P-1:
+# (1) panel pressure = the kernel flow at both ends — p(0) at the
+# theta = 0 station = the IVL wall point (plan-frozen, W-independent),
+# p(theta_1) at the first arc station; (2) quadrature = F-1 branch
+# (i), the theta = 0 station prepended to the wall array (one more
+# trapezoid of the same rule). Opt-in: A1_OBJDOM=A; unset = the coded
+# J, the code of record, bitwise. The panel is a post-replay term:
+# the replay, its plan and the engine key are untouched. Carrier
+# [X-OBJD] validation/objdom_ab.py.
+def throat_station(cfg, tab):
+    """theta = 0 station [x, y, u, v]: the IVL wall point (k = 0 of
+    the IVL formulas of run_toc_record: y = yt, x = 1e-6, v = 0)."""
+    gm = tab["gammamedio"]
+    delta = 1.0
+    yt, rtu = cfg["yt"], cfg["rtu"]
+    alpha = np.sqrt((1.0 + delta) / ((gm + 1.0) * rtu * yt))
+    c1 = -(gm + 1.0) * alpha / (2.0 * (3.0 + delta))
+    c2 = (gm + 1.0) * alpha**2 / (2.0 * (1.0 + delta))
+    eshift = -(gm + 1.0) * alpha * yt**2 / (2.0 * (3.0 + delta))
+    x_raw = c1 * yt**2 + IVL_XNUDGE
+    u0 = tab["_as"] * (1.0 + alpha * x_raw + c2 * yt**2)
+    return jnp.array([x_raw - eshift, yt, u0, 0.0])
+
+
+def thrust_J_A(wall, tab, throat, state_fn=A1.state_q):
+    return thrust_J(jnp.concatenate([throat[None, :], wall], axis=0),
+                    tab, state_fn=state_fn)
+
+
+def objdom():
+    v = os.environ.get("A1_OBJDOM", "coded")
+    if v not in ("coded", "A"):
+        raise ValueError("A1_OBJDOM must be 'coded' (default) or 'A', "
+                         "got %r" % v)
+    return v
+
+
+def objective_J(wall, tab, cfg, state_fn=A1.state_q):
+    """The bell objective of the run: the coded J (default) or J_A."""
+    if objdom() == "A":
+        return thrust_J_A(wall, tab, throat_station(cfg, tab),
+                          state_fn=state_fn)
+    return thrust_J(wall, tab, state_fn=state_fn)
+
+
+# [P-HESSREJ] (F2 close 2026-10-01; finding driver-nonsmooth:hessian-
+# no-rejector; carrier [X-HSYM] HS-1..HS-5): the symmetry defect of the
+# forward-difference Hessian, measured BEFORE symmetrisation, against
+# the error model of the differences themselves (Nocedal-Wright:
+# truncation measured by the half-step columns, 2 |H(dH) - H(dH/2)|;
+# rounding 2 eps_g / dH_j, eps_g = NEWTON_TOL_FACTOR eps N_cells
+# max|g|). Band_ij = K_RICH (e_ij + e_ji). Opt-in in run_trsqp:
+# A1_HESSREJ=1 refuses a segment whose defect leaves the band (typed
+# HessianDefectError, never a silent symmetrisation); unset = the code
+# of record, bitwise. _HESS_DOCTOR = dict(col=j, scale=s[, both=True]):
+# the X-HSYM HS-5 hook (scales one column of the dH step, or of both
+# steps). MEASURED LIMIT (X-HSYM HS-5, 2026-10-01): a kink within one
+# step moves the half-step columns too, so the band absorbs it (ratio
+# <= 1/(2 K_RICH)); the check refuses a BIASED column (wrong at both
+# steps), not a kink — finding driver-nonsmooth:hessian-no-rejector.
+_HESS_DOCTOR = None
+
+
+class HessianDefectError(RuntimeError):
+    pass
+
+
+def hessian_defect_band(H1, H2, dH, eps_g):
+    """(defect, band) of the forward-difference Hessian H1 (step dH)
+    with the half-step columns H2 (step dH/2)."""
+    trunc = 2.0 * np.abs(H1 - H2)
+    rnd = 2.0 * eps_g / np.asarray(dH)[None, :] * np.ones((len(dH), 1))
+    e = trunc + rnd
+    return np.abs(H1 - H1.T), A1.K_RICH * (e + e.T)
 
 
 # (driver, oracle and checks live in main(); see the S17 log)
@@ -1665,7 +1746,7 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
         dec_base = [(c["N"], c["Nv"]) for c in plan["arc"]]
 
         def scalar_J(Wv):
-            return -thrust_J(runj(Wv), tab, state_fn=state_fn)
+            return -objective_J(runj(Wv), tab, cfg, state_fn=state_fn)
         val_grad = jax.jit(jax.value_and_grad(scalar_J))
 
         # M2 (S25): ONE-SLOT fun+jac memo keyed on the physical-W
@@ -1795,6 +1876,40 @@ def run_trsqp(W0, tab, cfg, yL, gtol, xtol, max_segments=100,
                     nf_events["hess_lane"] += 1
                     gj = np.where(np.isfinite(gj), gj, g_base)
                 Hw[:, jH] = (gj - g_base) / dH
+        if os.environ.get("A1_HESSREJ", "0") == "1":
+            # [P-HESSREJ] (F2 close 2026-10-01): the half-step
+            # columns measure the truncation; the defect BEFORE the
+            # symmetrisation must sit inside the band, else the
+            # segment is REFUSED (typed error, counted in the text)
+            if runvgb is not None:
+                # the half-step columns are sequential: a batched H1
+                # would mix two adjoint paths (5.6e-8 apart, m6gate)
+                raise ValueError("A1_HESSREJ=1 needs the sequential "
+                                 "Hessian (A1_VMAP_HESS unset)")
+            Hw2 = np.empty((n, n))
+            for jH in range(n):
+                eH = np.zeros(n)
+                eH[jH] = 0.5 * dHs[jH]
+                Hw2[:, jH] = (_vg(W + eH)[1] - g_base) / eH[jH]
+            if _HESS_DOCTOR is not None:
+                Hw[:, _HESS_DOCTOR["col"]] *= _HESS_DOCTOR["scale"]
+                if _HESS_DOCTOR.get("both"):
+                    Hw2[:, _HESS_DOCTOR["col"]] *= _HESS_DOCTOR["scale"]
+            eps_g = (A1.NEWTON_TOL_FACTOR * EPS * int(out_rec["cert_n"])
+                     * float(np.max(np.abs(g_base))))
+            hdef, hband = hessian_defect_band(Hw, Hw2, dHs, eps_g)
+            hout = ~(hdef <= hband)
+            if hout.any():
+                nf_events["hess_rej"] = nf_events.get("hess_rej", 0) + 1
+                raise HessianDefectError(
+                    "[seg %d] Hessian REFUSED: symmetry defect outside "
+                    "the band at %d entries (max defect/band %.3e; "
+                    "hess_rej %d)" % (seg, int(hout.sum()),
+                                      float(np.max(hdef / hband)),
+                                      nf_events["hess_rej"]))
+            print("  [seg %d] [P-HESSREJ] Hessian defect inside the "
+                  "band (max defect/band %.3f)"
+                  % (seg, float(np.max(hdef / hband))), flush=True)
         Hw = 0.5 * (Hw + Hw.T)
         Hu = (Dv[:, None] * Hw) * Dv[None, :]
 
@@ -2192,7 +2307,7 @@ def main():
 
     print("-- O3.1 on the TOC gradient chain (PRODUCTION jit path) --")
     def scalar_J(Wv):
-        return thrust_J(runj0(Wv), tab, state_fn=state_c1)
+        return objective_J(runj0(Wv), tab, cfg, state_fn=state_c1)
 
     # C2-F2 (S21): the verdict-bearing FD probe evaluations are now
     # CERTIFIED — a cert_diag build of the same jit replay returns the
@@ -2205,7 +2320,7 @@ def main():
     def scalar_J_cert(Wv):
         wall, worstd = runj0d(Wv)
         probe_worst.append(float(worstd))
-        return float(thrust_J(wall, tab, state_fn=state_c1))
+        return float(objective_J(wall, tab, cfg, state_fn=state_c1))
 
     Wj = jnp.asarray(W0)
     J0 = float(scalar_J(Wj))
@@ -2333,7 +2448,7 @@ def main():
         runj_s = make_run_toc_scan_jit(tab, cfg, plan_s,
                                        state_fn=state_c1,
                                        solvers=solv_c1)
-        J_star = float(thrust_J(runj_s(jnp.asarray(W_star)), tab,
+        J_star = float(objective_J(runj_s(jnp.asarray(W_star)), tab, cfg,
                                 state_fn=state_c1))
         print("  J(seed W0) = %.7e  J(perturbed start) -> J* = %.7e "
               "(dJ vs seed %.2e)" % (J_seed, J_star, J_star - J_seed))

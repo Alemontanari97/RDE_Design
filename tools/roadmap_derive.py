@@ -181,9 +181,9 @@ STEP_BY_ID = {s[0]: s for s in STEPS}
 STEP_STATUS = {
     'F2-B0': 'CONSUMED 2026-09-05 (F2 session 1/6; census R39)',
     'F2.REPR': 'CONSUMED 2026-09-30 (F2 session 2/6; census R44; owner decisions T1-T4)',
-    'F2.ENGINE': 'IN PROGRESS (session 3/6 + night 10-01: cell check, monitors X-SWAV/X-CHOK, CycleFamily v0, admission audits X-ADMA, sector resolution X-FRES; layered margin + GENO layered twin PARKED by the owner 10-01; left: CFD-2 on Harroun + CFD-1 decision, methods freeze)',
-    'F2.M-RED': 'FIRST ACT DONE: PILOT-WF (wave frame vs 12 frozen pictures) THOR 0.05 bar -0.13 percent PASS, methane case -0.40 percent FAIL (the offset cancels between designs to 0.05 percent): per-phase judge ranks, wave-frame judge gives the absolute of a strong cycle',
-    'F2.CFD-2': 'QUEUED (F2 tail, B19(a))',
+    'F2.ENGINE': 'CLOSED 2026-10-02 (F2 sessions 3/6-5/6: cell check, data monitors, CycleFamily v0, the four bell-driver duties; F2 CLOSED with named residuals, D6 dated note 2026-10-02; census R45)',
+    'F2.M-RED': 'CLOSED 2026-10-02 with F2 (first act PILOT-WF: THOR 0.05 bar -0.13 percent PASS, methane -0.40 percent FAIL, the offset cancels between designs to 0.05-0.14 percent; the 0.2 bar pilot a named residual)',
+    'F2.CFD-2': 'CLOSED 2026-10-02 (owner decision 3(b): the methane table = the paired demonstration, validation/CFD2_paired_demo_2026-10-01.md; Harroun to the paper; CFD-1 after F2)',
     # F3 sub-windows (reunion of 2026-09-30): D6 says F3 CLOSED 2026-09-24, but that
     # closure was taken on the plug line, out of the plan's order, and covers the
     # plug SECTOR only. The decisive comparison and the tournament were never run
@@ -193,7 +193,9 @@ STEP_STATUS = {
     'F3.TWIN': 'NOT RUN (rehearsal only, S42, outside the pre-registered protocol; BLOCCATO B-TWIN-PROVA)',
     'F3.TOURNAMENT': 'NOT RUN',
 }
-CARRY_FORWARD = {'F2-B0': 'F2.ENGINE', 'F2.REPR': 'F2.ENGINE'}   # consumed step -> next open step
+CARRY_FORWARD = {'F2-B0': 'F3.TWIN', 'F2.REPR': 'F3.TWIN',     # consumed step -> next open step
+                 'F2.ENGINE': 'F3.TWIN', 'F2.M-RED': 'F3.TWIN',  # (F2 CLOSED 2026-10-02: F3.RK1 and F3.PLUG are
+                 'F2.CFD-2': 'F3.TWIN'}                           # closed on the plug line, F3.TWIN is the next open)
 
 # Sub-step keyword rules inside F2 / F3 (applied AFTER the phase is fixed
 # by a literal token in the source row; declared here, printed in the doc).
@@ -400,8 +402,8 @@ BLOC_OVERRIDES = {
               'is F2.REPR; the row\'s "rung-3a" text is an M-RED-regex '
               'hijack (refuter R2 2026-09-05); owner = user at the '
               'F2-entry touchpoint INSIDE the B16 session'),
-    'B-CFD1': ('F2.CFD-2', 'PROGRESS B19(a): CFD-1 decided POST-M-RED, '
-               'inside the F2 CFD window'),
+    'B-CFD1': ('F3.TWIN', 'owner 2026-10-01 (F2-close prompt, decision 4): '
+               'CFD-1 after F2; F2.CFD-2 closed 2026-10-02'),
     'B-GENO': ('F2-B0', 'PROGRESS NEXT item (2): GENO health at F2 BLOCCO 0'),
     'B-SREVIEW': ('F2.REPR', 'the S-REVIEW GO / NO-GO gates the NEXT session '
                  '(PROGRESS NEXT + both carriers); without this declared '
