@@ -523,6 +523,38 @@ method has no freedom: it takes the lip state as given. Phases 7 and 9 are no lo
 Lower bound (walk by budget). Caveat of record: the march's C_F jumps 3-4e-4 when a cowl point appears next to the
 lip (finding of 09-29); the gain is twenty times that, and the CFD confirms it.
 
+### The base and the far field, measured to 3 ms (04:40; `RDE/Nozzle/CASE_3D/wf_RaSDTlong/wf_post.json`, probes `wf_RaSDTview_phases/OUTPUT/probes_0.64-3ms/`)
+Rao's methane plug in the wave frame continued 0.64 -> 3 ms (job 303553, 110 min on one node):
+- WALL THRUST STEADY: C_F 1.407115 (0.75 ms) / 1.407112 (1.39) / 1.407083 (2.14) / 1.407070 (2.89) / 1.407069 (3.0):
+  drift 3e-5 in 2.25 ms; the probes on the plug drift locally (-0.2 to -0.5 percent) but the integral does not.
+- THE BASE SETTLES, late: -0.02444 (1.39 ms), -0.02442 (2.14), -0.02442 (2.89, 3.0) of C_F; the base probe flat
+  at 0.179 bar (0.35 p_a) from ~1.4 ms. At 0.75 ms it read -0.0193: the base values of the 1-ms runs are NOT
+  comparable between designs. The base is worth 1.7 percent of C_F here. Long runs of the SQP plug and of plug+cowl
+  to 2.2 ms launched (jobs 303575, 303576) for a settled base comparison.
+- THE FAR FIELD IS A DEFECT: the air outside the cowl keeps losing pressure (probe 0.47 -> 0.19 bar; the outer row
+  down to 0.085 p_a), because the 406 outlet turns any inflow into a wall: the air the jet entrains is never
+  replaced. In 3 ms it does not reach the wall thrust (above), but it must be fixed before longer runs or a 1 atm
+  case: a far field that admits the still air at its own state (in the rotating frame: the lab-still air's
+  relative total state, imposed as a static-state inflow, not as 407's stagnation inflow that blew up on 09-30).
+- Reduced read-back (extract_p.py on the cluster: coordinates + pressure, 13.6 MB a dump) verified: the 1.39 ms dump
+  read in full and reduced gives the same C_F and base to all printed digits.
+
+### Figure and next prompt (04:45)
+`validation/_plug_contest/SDT/01_shapes_rao_sqp_cowl.png`: the walls of Rao, the SQP on the plug, the SQP on plug and
+cowl; the plug angle; each plug's distance from Rao's (tip radius 41.8 / 40.6 / 40.8 mm); the cowl's distance from
+Rao's (+0.72 mm at the lip for the joint design). Not inspected by eye in this session (the image viewer did not
+answer): to be looked at before any use. Next session's prompt: `validation/ADVISORY_F2CLOSE_prompt_2026-10-01.md`.
+
+### A near miss, repaired (05:00-05:10)
+At ~05:00 monolith stopped answering (login hangs; the host pings). Every waiter of these sessions read the queue
+with `ssh ... squeue | grep -q job` -- a failed connection reads as "the job is not in the queue", i.e. "ended".
+The long-run chain therefore declared SaSDT ended at 05:00 (it was at 0.1 of its 2.2 ms), went to extract its dumps,
+and its next step would have REMOVED THE RUN'S FOLDER ON THE CLUSTER while the job ran. Stopped at 05:07 (PIDs read
+from ps) before any removal. Repair: `handoff/plug_2026-09-29/jobstate.sh` answers RUNNING / GONE / UNKNOWN (the queue
+must answer with a sentinel line); every waiter (wf_collect.sh, sdt/view_collect.sh, sdt/sdt_long.sh) keeps waiting on
+UNKNOWN; the cluster copy is removed only after a normal end ("Elapsed" in run.log) AND with the reduced dumps here.
+Collector restarted (sdt/long2.log).
+
 ## Where the session stands (00:05)
 Done (night): the methane case built (CycleFamily v0), Rao vs SQP-at-the-mean-state judged in the wave frame (+0.40 percent SQP,
 lower bound), Rao's frozen pictures vs rotating flow -0.4 percent at this class. Running: the 12-phase SQP walk, X-OWSQ/X-OWS3.
