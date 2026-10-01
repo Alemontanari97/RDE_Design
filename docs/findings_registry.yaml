@@ -3356,4 +3356,33 @@ entries:
   mechanism: staleness-link-reads-the-wrong-file
   owner: "F2.ENGINE: make the lint take the script (the proof field) into the age check, then re-run and re-stamp the owed checks on this machine"
   trigger: "any citation of one of the listed checks as currently passing; the F2 exit"
-
+- id: waveframe:far-field-406-drains-outside-air
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "the 406 far field of the wave-frame runs (back pressure, tangential velocity extrapolated, inflow turned into local slip) lets no air in: on Rao's methane run the Outer blocks' median pressure falls from 0.688 to 0.451 p_a and their cold-cell fraction from 0.41 to 0.00 between 0.5 and 3.0 ms, the outermost row reaches 2441 K; the base follows (1.028 -> 0.615 p_a), so the 'settled base' of the wave-frame runs (-0.0244 of C_F) was the drained state and is retracted; the wall thrust is untouched (constant to 4e-5 relative over 3 ms); the 2-D wedges (407 ambient) are not concerned"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#RETRACTION: the base does not settle, the outside air drains"
+  code: []
+  mechanism: boundary-condition-drains-the-reservoir
+  owner: "the owner (MOSE_open source, the owner's code): a far field that admits the still air at its own state in the rotating frame (relative velocity -Omega x r); until then no base or outside-flow value of a wave-frame run is quoted"
+  trigger: "any base or outside-flow number from a wave-frame run; the F2 exit's CFD-2 page"
+- id: shroud-sdt:symmetric-kernel-migdal-does-not-close-at-the-adapted-ratio
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "GENO's Migdal nozzle (nozzle_type 9) for the methane gas (gamma 1.1935, M_in 1.556) on the THOR annulus (y_l 0.7919) with the SYMMETRIC kernel (both arcs 0.2 lip radii) does not close at the area ratio adapted to 0.5 atm (4.904): MIGDAL_ERROR y_K 0.8758 below the required 0.8892, identical at NI 801 / 1001 / 1201; 4.80 / 4.85 fail, 4.75 passes. It is the kernel's split of the expansion, not the annulus: arcs 0.1 / 0.2 (shroud / plug) close at 4.904 (plug tip 2.7 mm, lip 92.0 mm), 0.2 / 0.4 too (plug 178.9 mm, tip 13.2 mm, lip 92.9 mm); 0.4 / 0.2 and 0.2 / 0.1 do not. The day's shrouded runs used the symmetric 4.75 member (exit 1.044 p_a at the mean state), not the adapted reference"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#The shrouded nozzle on the methane case"
+  code: []
+  mechanism: design-family-kernel-choice
+  owner: "the shrouded line on the methane case: rebuild the reference as an adapted Migdal with an asymmetric kernel (the kernel itself a posing choice to declare) and re-judge the shrouded designs against it"
+  trigger: "any shrouded comparison on the methane case quoted against 'the ideal nozzle'"
+- id: twowall:tool-credits-wall-undulations
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "on the methane shrouded posing (cap 0.65 = 133 mm) the mean-state walk on knot heights lands with wall undulations up to 0.7 mm (waves of ~25 mm) and +0.296 percent at the mean state / +0.259 percent over the 12 phases by the design tool; the Euler CFD rejects it against the cut Migdal: 2-D per phase (frozen, no rotation) -0.116 percent over the 12 phases and -0.137 percent at the mean state, 3-D wave frame -0.128 percent, lower in all 12 sectors -- the loss is not the rotation; in 5 smooth polynomial modes (the kernel arcs frozen) the same walk is stationary at +0.007 / +0.04 percent: the gain was the undulations"
+  source: "validation/PROGRESS_2026-09-30_F2ENGINE.md#The shrouded nozzle on the methane case"
+  code: []
+  mechanism: model-credits-wall-waves
+  owner: "the design line: two-wall and cowl walks in smooth wall bases (the owner's rule of 2026-10-01: no undulations, a smooth angle transition); the fine level (f) of the 2-D referee on the wavy design reads whether the CFD resolution enters"
+  trigger: "any knot-height walk on two walls quoted without a smooth basis; any tool gain on a design whose wall angle oscillates along the wall (beyond the kernel's own turn and straightening)"

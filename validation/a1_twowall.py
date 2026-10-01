@@ -238,10 +238,15 @@ class TwoWall:
             self.kernel = True
         if self.kernel:
             def arc_end(w):
+                # the arc's END: its START (curvature 0 -> 1/R at the inlet) is a jump of the same size, seen
+                # through the one-sided stencils of the three nested gradients below -- the first
+                # POSE["arc_start_skip"] stations are skipped (2026-10-01: on the methane Migdal, eps 4.75, the
+                # start's jump is the larger one and the argmax took x = 0; the paper and THOR readings unchanged)
                 x_, y_ = w[:, 0], w[:, 1]
                 kap = np.gradient(np.arctan(np.gradient(y_, x_)), x_)
                 dk = np.gradient(kap, x_)
-                return float(x_[int(np.argmax(np.abs(np.where(x_ < POSE["arc_scan_x"], dk, 0.0))))])
+                scan = (x_ < POSE["arc_scan_x"]) & (np.arange(len(x_)) >= int(POSE["arc_start_skip"]))
+                return float(x_[int(np.argmax(np.abs(np.where(scan, dk, 0.0))))])
             gp_, gs_ = np.gradient(self.plug[:, 1], self.plug[:, 0]), np.gradient(self.shroud[:, 1], self.shroud[:, 0])
             self.xa_p, self.xa_s = arc_end(self.plug), arc_end(self.shroud)
             self.ya_p = float(np.interp(self.xa_p, self.plug[:, 0], self.plug[:, 1]))

@@ -4930,4 +4930,25 @@ with the wave the flow on the plug is steady; its wall thrust against the averag
 the gas crosses the plug while the wave turns ~130 degrees and the high-pressure gas spreads sideways. The offset is
 the flow's: it cancels to 0.05 percent between designs. Reading of record: the per-phase judge ranks designs; the
 absolute cycle thrust of a strong cycle is judged in the wave frame.
-
+(6) THE BASE OF A WAVE-FRAME RUN IS NOT JUDGED (2026-10-01, MEASURED; finding
+waveframe:far-field-406-drains-outside-air). The far field that blocks inflow lets the still air drain: on Rao's
+methane run the air beside the cowl falls from 0.69 to 0.45 p_a in 3 ms and no cold air is left; the base pressure
+follows it (1.03 -> 0.62 p_a). What looked like a base settling by 2 ms was the drained state. The wall thrust does
+not feel it (supersonic walls). A far field that admits the still air at its own state is needed before the base of
+a rotating-flow run is priced.
+(7) THE SHROUDED NOZZLE ON THE METHANE CASE (2026-10-01, MEASURED, one instance). With GENO's symmetric kernel (equal arc
+radii) Migdal's perfect annular nozzle does not close at the ratio adapted to 0.5 atm (4.90; 4.75 is the largest that
+closes); an asymmetric kernel that gives the shroud more of the expansion closes it (the plug's tip 2.7 or 13.2 mm from
+the axis instead of crossing it): the kernel of a perfect annular nozzle decides how the expansion splits between the
+two walls, and the day's runs used the symmetric 4.75 member. Cut to 133 mm (65 percent of its plug, the shroud's own lip) and kept with its initial
+expansion (the kernel arcs frozen), smooth bends downstream gain nothing (+0.04 percent over the 12 phases). The cut
+Migdal is the TIC of the annular family (minimum divergence, not maximum thrust at the cut length); the freedom of a
+thrust-optimised contour is the initial expansion, measured next with the arcs free [OPEN]. For this nozzle the frozen per-phase
+pictures overstate the thrust more than for the plug: tool -> 2-D -0.81 percent, 2-D -> 3-D -0.46 percent.
+(8) WALL UNDULATIONS ARE THE TOOL'S, NOT THE FLOW'S (2026-10-01; MEASURED on that instance, PRACTICE as a rule;
+finding twowall:tool-credits-wall-undulations). A walk on knot heights can land on walls that undulate below the
+instrument's scale (0.7 mm, 25 mm waves); the march credits their recompressions (+0.26 percent over the 12 phases)
+and the Euler CFD does not pay them, frozen or rotating (-0.12 / -0.13 percent). Rule of record (the owner): designed
+walls carry no undulations -- the walks run in smooth wall bases and a design whose wall angle changes the sign of its
+slope more than its kernel's own turn and straightening (an oscillating angle) is not a credible design, whatever
+the tool scores it.

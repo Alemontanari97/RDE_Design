@@ -257,7 +257,7 @@ The answer at 2 degrees.
   sector and cancels to a tenth of a percent in the total: the per-phase average is a good estimate of the
   cycle thrust even though every single frozen sector is off by percents.
 - The base (priced apart): 3-D 12-sector -0.0369 of C_F, 3-D uniform -0.0352, 2-D mean state -0.0372; settled by
-  1.5 ms in 3-D (the 2-D per-phase bases were not settled at 3 ms: -0.0279, flagged).
+  1.5 ms in 3-D [RETRACTED 2026-10-01 for the 3-D values: see RETRACTION: the base does not settle, the outside air drains] (the 2-D per-phase bases were not settled at 3 ms: -0.0279, flagged).
 - Cost: 30 ranks x 2 threads on one node, 0.14 s per step, 33066 steps for 3 ms = 77 min (A); the wall thrust
   is steady from 0.25 ms, so 1 ms would have done for the thrust.
 Reading against the pass line, PROVISIONAL until the 1-degree run: per-phase numbers may carry the decisive
@@ -527,7 +527,7 @@ lip (finding of 09-29); the gain is twenty times that, and the CFD confirms it.
 Rao's methane plug in the wave frame continued 0.64 -> 3 ms (job 303553, 110 min on one node):
 - WALL THRUST STEADY: C_F 1.407115 (0.75 ms) / 1.407112 (1.39) / 1.407083 (2.14) / 1.407070 (2.89) / 1.407069 (3.0):
   drift 3e-5 in 2.25 ms; the probes on the plug drift locally (-0.2 to -0.5 percent) but the integral does not.
-- THE BASE SETTLES, late: -0.02444 (1.39 ms), -0.02442 (2.14), -0.02442 (2.89, 3.0) of C_F; the base probe flat
+- [RETRACTED 2026-10-01: see RETRACTION: the base does not settle, the outside air drains] THE BASE SETTLES, late: -0.02444 (1.39 ms), -0.02442 (2.14), -0.02442 (2.89, 3.0) of C_F; the base probe flat
   at 0.179 bar (0.35 p_a) from ~1.4 ms. At 0.75 ms it read -0.0193: the base values of the 1-ms runs are NOT
   comparable between designs. The base is worth 1.7 percent of C_F here. Long runs of the SQP plug and of plug+cowl
   to 2.2 ms launched (jobs 303575, 303576) for a settled base comparison.
@@ -590,4 +590,84 @@ the guarded collector did not remove them; relaunched at 12:35 (jobs 303591, 303
    -Omega x r = at rest in the laboratory), never made to rotate. The initial field of the wave-frame cases imposes
    exactly that (checked: v + Omega z = 0, w - Omega y = 0 in the exhaust blocks), and so would the far field proposed;
    the 406 defect is that it lets no air in.
+
+## 2026-10-01 afternoon and evening — the presentation day: a retraction, the shrouded nozzle on the methane case, the owner's correction
+Not an F2 session (the counter stays 4/6): material for the owner's talk of 2026-10-02 (figures and texts in
+`RDE/THOR/THOR_GPU/PRES_2026-10-02/F_nozzle/`, deck section 6 in `/data10/falco/Presentazione_venerdi/nozzle/`), with
+the findings below. Owner's directives of the day: the THOR outflow is no longer used for nozzle work (too weak);
+designed walls carry no undulations (always a smooth angle transition); the program's comparison is design WITH the
+phases against the classical design at the mean state.
+
+### RETRACTION: the base does not settle, the outside air drains
+The 406 far field (back pressure, tangential velocity extrapolated, inflow turned into local slip) lets no air in, so
+the still air around the jet drains and is replaced by exhaust. Read on Rao's methane run from its own field dumps
+(`RDE/handoff/plug_2026-09-29/waveframe_drain_check.py`, log `carriers_2026-10-01/waveframe_drain_RaSDT.log`):
+| t | base p/p_a | Outer blocks median p/p_a | Outer cells still cold (T < 400 K) | outermost row median p/p_a, T |
+|---|---|---|---|---|
+| 0.5 ms | 1.028 | 0.688 | 0.41 | 0.693, 1442 K |
+| 0.6 ms | 0.848 | 0.683 | 0.40 | 0.661, 1437 K |
+| 3.0 ms | 0.615 | 0.451 | 0.00 | 0.462, 2441 K |
+The base follows the outside air down; its "settled" value (-0.0244 of C_F) is the drained state, not physics. The
+wall thrust does not feel it (constant to 4e-5 relative over 3 ms: the flow on the walls is supersonic). Retracted:
+every base value of a wave-frame run (this log's PILOT-WF base line and "THE BASE SETTLES" of 04:40). The 2-D
+per-phase wedge runs use the 407 ambient far field (still air at rest) and are not concerned. Finding
+waveframe:far-field-406-drains-outside-air (owner: the MOSE_open far field, the owner's code).
+
+### The shrouded nozzle on the methane case (the THOR outflow no longer used)
+- The reference. GENO's Migdal nozzle (nozzle_type 9) for the methane gas on the THOR annulus (y_l 0.7919, M_in
+  1.556): the area ratio adapted to 0.5 atm is 4.904 (constant gamma 1.1935). With GENO's SYMMETRIC kernel (both
+  arcs of radius 0.2 lip radii, the stech_run setting) the construction does not close there: MIGDAL_ERROR y_K 0.8758
+  < 0.8892 required, identical at NI 801 / 1001 / 1201 (the lower half's mass does not fit inside the meeting radius);
+  4.85 and 4.80 fail, 4.75 passes (Me 2.8994, exit pressure 1.044 p_a at the mean state). The owner (18:45): the shroud
+  can take the expansion, the plug need not reach the axis -- RIGHT: at 4.904 an asymmetric kernel that sends more of
+  the flow outward closes (arc radii shroud / plug 0.1 / 0.2: plug 203.5 mm, tip 2.7 mm, shroud lip 92.0 mm; 0.2 / 0.4:
+  plug 178.9 mm, tip 13.2 mm, shroud 148.6 mm, lip 92.9 mm), 0.4 / 0.2 and 0.2 / 0.1 do not (`sdt/geno_mk_*`). The
+  kernel decides how the expansion splits between the walls; the day's shrouded runs used the symmetric 4.75 member
+  (`sdt/geno_migdal_sdt_e475`, gas file `sdt/gas_shroud_sdt.json`, record `geno_migdal_sdt_README.txt`): their
+  reference is a slightly under-expanded Migdal, and adapted references exist. Finding
+  shroud-sdt:symmetric-kernel-migdal-does-not-close-at-the-adapted-ratio.
+- The posing. The two-wall carrier with that Migdal (plug 3.0165, shroud 1.9564 lip radii), the stech no-fold class
+  record with its geno_run swapped (the carrier's own rule for a folded reference; `_plug_contest/SDT/shroud_cap*/class_nofold_sdtshroud_2026-10-01.json`),
+  Newton rescue on. Caps <= 0.6 do not march certified on this gas (the plug is cut where it is steep: certificates
+  1e13-1e16); 0.65 / 0.70 / 0.75 / 0.80 do. Cap 0.65 = 133 mm = the shroud's own lip.
+- Mean-state walks (knot heights): cap 0.8 +0.025 percent (`_plug_contest/SDT/shroud_cap08/`); cap 0.65 +0.296 percent
+  at the mean state, +0.259 percent over the 12 phases (`shroud_cap065/`, tool reads `RDE/handoff/plug_2026-09-29/sdt/twop_phase_eval_shroud_{TSh65,SSh65}.json`).
+  The cap-0.65 design moves the walls by up to 0.7 mm in waves of ~25 mm.
+- The judges on that wavy design against Migdal cut at 133 mm: 2-D per-phase Euler (level c, frozen phases, NO
+  rotation) -0.116 percent over the 12 phases (1.520854 / 1.522620), -0.137 percent at the mean state
+  (`RDE/handoff/plug_2026-09-29/referee_cert_sdtshc.log`); 3-D wave frame -0.128 percent (1.513620 / 1.515563, steady
+  to 4e-6 between 0.3 and 0.6 ms; `RDE/Nozzle/CASE_3D/wf_{TSh65,SSh65}_phases/wf_post.json`), lower in all 12 sectors.
+  The loss is NOT the rotation: the design tool credits wall undulations that the Euler CFD does not pay (fine level
+  f of the 2-D referee running at commit time). Finding twowall:tool-credits-wall-undulations.
+- Smooth walls (the owner's rule): 5 polynomial delta modes after the kernel arcs (plug 2, zero at the arc end and at
+  the pinned tip; shroud 3, the lip free; `RDE/handoff/plug_2026-09-29/sdt/shroud_smooth_basis.py`), walk stationary
+  (|grad| 6e-4 in the basis) at +0.007 percent (mean state) / +0.04 percent (12 phases) (`shroud_cap065_smooth/`,
+  `twop_phase_eval_shroud_SSm65.json`) -- WITH THE KERNEL ARCS FROZEN: keeping Migdal's initial expansion, smooth bends
+  downstream gain nothing. The owner (18:40): the cut Migdal is the TIC of a bell -- minimum divergence, not maximum
+  thrust at the cut length; the thrust-optimised contour differs by its initial expansion. So this null result does
+  NOT make the cut Migdal the thrust optimum; the walk with the 4 kernel-arc parameters freed as well (end x, end
+  angle of both arcs: `sdt/shroud_smooth_basis.py --kernel`, `_plug_contest/SDT/shroud_cap065_smoothK/`) is running.
+- The frozen phases against the rotating flow on the cut Migdal: tool -> 2-D -0.81 percent, 2-D -> 3-D -0.46 percent
+  (Rao's plug: 0.13 and 0.41 percent).
+
+### The carrier fix: the kernel arc's end
+`validation/a1_twowall.py` arc_end took the arc's START (x = 0, curvature 0 -> 1/R) on the methane Migdal: the start's
+jump (|dk| 35914) is larger there than the end's (35466); on the THOR posing the end's wins (47705 vs 35914) and the
+paper posing's reading is unchanged. Fixed by skipping the first arc_start_skip = 3 stations (the reach of the three
+nested one-sided gradients at the wall's start; the constant in twowall_cases.json): arc ends 0.072878 / 0.064645
+(paper), 0.069475 / 0.058943 (THOR) unchanged, 0.086368 / 0.071478 on the methane run. Re-run on 2026-10-01 (logs `RDE/handoff/plug_2026-09-29/carriers_2026-10-01/`):
+X-RDET family 2/2 and gates 9/9 in 182 s (T-1 the default posing bitwise with the S41 record 1.579660988049), X-TWOP
+derive 6/6 in 725 s (G-2 replay = record 1.579880616442, as on 09-30); both stamped pass=2026-10-01 (the first pass
+with an x-threshold variant of the skip is kept as `firstpass_xskip1e-3_*.log`, same readings).
+
+### The owner's correction: design with the phases against the classical mean-state design
+The owner (18:00): the program compares design WITH the phases against the classical design at the mean state. The
+day's headline plug designs (SaSDT, SjSDT) and the shrouded walks were walked at the MEAN state; only SbSDT had the 12
+phases in its objective (8 segments, stopped by budget, below SaSDT under every judge). The comparison is now run with
+the same start (Rao), class, basis, flags (Newton rescue, floor limit) and stopping rule: the mean-state control
+(`_plug_contest/SDT/AcowlB_sdt_fromRao`, resumed with a 24-segment budget; the driver ended it at 18:17 after its
+segment 14 (record: 11 segments), at 1.425302 at the mean state from Rao's 1.412293, |grad|inf 0.51: not stationary) and the 12-phase walk (`BcowlB_sdt_fromRao`, resumed from its checkpoint to 24 segments, running); the smooth
+shrouded walk with the 12 phases (`shroud_cap065_smooth_B/`, running). Judge chain per design
+(`RDE/handoff/plug_2026-09-29/sdt/judge_walk_sdt.sh`): the 3-D wave frame (1 ms), the 13 wedge runs, the tool's 12
+phases. The deck's section 6 will carry only that comparison.
 
