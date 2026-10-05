@@ -214,3 +214,7 @@ Both arms run under the SAME constraint vector, enforced by rejector:
   REJECTORS: R-TWIN-0/3 (the hashes above printed in both arms' verdicts), R-TWIN-4 + A-1, R-TWIN-5 (A-REPR + the gate);
   R-TWIN-6 does not apply (the plug arms do not consume dJ/dtheta_B, the bell kernel's angle; declared); R-TWIN-1
   (perturbed eps refused) and R-TWIN-2 (wrong-design discriminator) are OWED before the verdict is quoted.
+- **A-INST erratum (2026-10-05, same day, before any arm result was read)** — the cowl's lip is at x 35.196 mm, r 66.533 mm
+  (the tool's lip state: the design files' `lip` entry, and the cowl's last station traced by the carrier), not r 65.80 mm:
+  that number was the mesh summary's `r_lip`, which is the channel's outer line at x = L, not the cowl's lip. The constraint
+  is unchanged: the lip state is identical in both arms (R-TWIN-1 compares `fix` and `lip` to the last bit).
