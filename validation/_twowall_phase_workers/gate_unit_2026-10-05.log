@@ -1,0 +1,12 @@
+== [F3.TWIN] phase workers, unit: serial against 12 workers at /data10/falco/RDE/RDE_Design_phasepar/validation/_twowall_phase_workers/checkpoint_B24.json (C_F 1.432230187) ==
+   serial: record 194.9 s, value and gradient 61.1 s
+   12 workers (warm): record 32.5 s, value and gradient 5.8 s
+  [PASS] U-1 the 12-phase record: every phase's output and schedule, J_mu 1.432230186719, certificate, margin -- bitwise (0 differing paths)
+  [PASS] U-2 the objective on the frozen schedules: value True, gradient in W True (max |diff| 0.0e+00) -- bitwise
+  [PASS] U-3 value without gradient True; the walk's coordinates (TWOP_BASIS metric): value True, gradient in z True
+  [PASS] R-1 rejector: at W_0 + 1 ulp (1.1e-16) the same comparison finds 147270 differing record paths, value differs, gradient differs (must differ)
+  [PASS] R-3 rejector: the same 12 phase gradients summed first-to-last differ from the serial gradient by 1.7e-16 (must differ: the summation order is part of the bitwise claim)
+  [PASS] R-2 a killed worker surfaces as PhaseWorkerDied (an Exception: False -- the driver's revert branch cannot catch it)
+
+== 6/6 PASS  (488 s) ==
+VERDICT: PASS
