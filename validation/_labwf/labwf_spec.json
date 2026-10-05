@@ -1,0 +1,23 @@
+{
+ "what": "LAB-WF (2026-10-05): the laboratory-frame 3-D run (inlet BC 410 turning at 6364.5 Hz) against the wave-frame 3-D run (MOSE_open rotating frame) of the same plug (Rao's methane plug RaSDT), everything else identical (mesh wf3d_RaSDT, kit KIT_CH4, the 12 sector states phases_cfd.json 8302efd2, far field 406, CFL 0.4, RK2/HLLC/MUSCL-minmod, binary MOSE_open dcc627d8). Lab job 304078 (wn10, 1 ms = 6.4 turns, 12 dumps); wave run of record wf_RaSDT_phases (1 ms, 4 dumps).",
+ "thrust_stand_band": 0.005,
+ "band_source": "validation/TWIN_PROTOCOL_preregistration_2026-08-31.md section 6 (the 0.5-1 percent thrust-stand band); amendment A-REPR: the wave-frame evaluator is admitted when a laboratory-frame run of one plug reproduces its wall thrust within ONE THIRD of that band",
+ "t_skip_s": 0.0003,
+ "t_skip_note": "the lab dumps from 2 turns on (the first 0.3 ms carry the start transient); written in compare_lab_wave.py before the run ended",
+ "inlet_table": {
+  "nt": 180,
+  "deficit_rel_inlet_term": {
+   "180": -0.0005389,
+   "360": -0.0002695,
+   "720": -0.0001347,
+   "1440": -6.737e-05,
+   "2880": -3.368e-05
+  },
+  "note": "time-mean inlet momentum flux of the 410 table (each primitive interpolated linearly between samples, as MOSE_open does) over the wave frame's sector value, computed from the table alone (no CFD), for nt samples per period: first order, to zero. The lab run used nt = 180 (one 2-degree column per sample)."
+ },
+ "files": {
+  "lab": "lab_post.json",
+  "wave": "wave_post.json",
+  "compare": "compare_lab_wave.json"
+ }
+}

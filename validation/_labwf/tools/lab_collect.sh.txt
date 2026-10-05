@@ -1,0 +1,8 @@
+#!/bin/bash
+# lab_collect.sh <case>: bring back the lab-frame run's reduced dumps, probes and logs; read them (post_labframe.py) and
+# compare with the wave-frame run of the same design (compare_lab_wave.py). The two last 3-D ASCII fields stay on the cluster.
+c=${1:?case}; R=afalco@monolith.uniroma1.it; RD=/scratch/afalco/NOZZLE_2026-09-27/CASE_3D_wf; N=/data10/falco/RDE/Nozzle
+H=/data10/falco/RDE/handoff/plug_2026-09-29; PY=/data10/falco/RDE/RDE_Design-rde-nozzle-program/.venv-a1/bin/python
+rsync -a --include '*_p.npz' --include '*.txt' --include 'residual-history.dat' --exclude '*' $R:$RD/$c/OUTPUT/ $N/CASE_3D/$c/OUTPUT/
+rsync -a $R:$RD/$c/run.log $R:$RD/$c.out $N/CASE_3D/$c/
+$PY $H/post_labframe.py $N/CASE_3D/$c

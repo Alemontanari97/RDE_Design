@@ -218,3 +218,8 @@ Both arms run under the SAME constraint vector, enforced by rejector:
   (the tool's lip state: the design files' `lip` entry, and the cowl's last station traced by the carrier), not r 65.80 mm:
   that number was the mesh summary's `r_lip`, which is the channel's outer line at x = L, not the cowl's lip. The constraint
   is unchanged: the lip state is identical in both arms (R-TWIN-1 compares `fix` and `lip` to the last bit).
+- **A-REPR gate RESULT (2026-10-05, recorded 2026-10-06)** — LAB-WF PASSED: the laboratory-frame run of Rao's methane plug
+  reproduces the wave-frame wall thrust to -0.058 percent (line 0.167): the walls -0.0065 percent, the rest the inlet
+  table's time sampling (-0.051, predicted -0.050 from the table alone). The 3-D wave-frame CFD is the evaluator of record
+  of this twin. Carrier [X-LABWF] (`validation/labwf_check.py`, data `validation/_labwf/`), page
+  `validation/LABWF_lab_vs_wave_frame_2026-10-05.md`. Not shown: the base and the plume (the base is not judged).

@@ -681,7 +681,7 @@ none
 ## 7. Counts (measured by this tool)
 
 - phases 8 (+PAPER track) / gates 7 / graph nodes 79 / ledger rows 62 / OPEN findings 241 (critical 61, non-critical 136, paper 44) / BLOCCATO rows 24 / atlas mentions 370
-- claims registry 212 rows: 38 open-class (SCHEMA/CONJECTURE) placed-or-OUT; THEOREM/THEOREM*/PRACTICE = 174 closed statements (OUT by class, indexed by lint xv)
+- claims registry 213 rows: 38 open-class (SCHEMA/CONJECTURE) placed-or-OUT; THEOREM/THEOREM*/PRACTICE = 175 closed statements (OUT by class, indexed by lint xv)
 - overrides 98 / OUT 77
 
-<!-- roadmap-derive content-hash: 75338514a3ed55db2b6371c6a6183bcee68b746263d719b26656ab53f622932f -->
+<!-- roadmap-derive content-hash: d6094dfae054a58c73372e599b2715c6f434e5b1fe4030cb81a570a70e544a40 -->

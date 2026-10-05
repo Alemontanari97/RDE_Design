@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""NOZZLE 2026-10-05, THE LAB-FRAME TWIN of a wave-frame case (owner: "un caso puramente unsteady con il sistema di
+riferimento fisso ed uno nel sistema di riferimento della detonazione, per vedere se sono equivalenti").
+Same mesh, kit, sector states, far field (406), CFL, scheme and binary as waveframe_case.py; the ONLY difference is the
+frame: no rotating frame, absolute velocities, and the inlet pattern turns in time instead of standing still.
+  inlet  BC 410, INPUT/inlet410.tec, periodic (MOSE_open interpolates every primitive linearly in time, period = last
+         sample - first sample): the state at the face azimuth theta and time t is the wave-frame state at
+         theta_w = theta + Omega t (the wave travels toward decreasing theta at F_WAVE, as in waveframe_case.py), i.e. the
+         sector phase_of(theta_w), axial velocity u_s of the sector, NO swirl (v = w = 0, as the 405 inlet in the
+         laboratory); NT samples per period (default 180 = one 2-degree column per sample), the last = the first.
+  ic     the channel = the inlet pattern at t = 0 extruded along x, the exhaust = air at rest (absolute velocity 0).
+  probes on the plug and cowl walls and on the base (index-position = block i j k), one sample per DT_PROBE: in the
+         laboratory a fixed probe sees p(theta_p + Omega t) of the wave frame -- the continuous equivalence check.
+Builds CASE_3D/lab_<design>_<mode>/ (mesh link, bc, inlet410, ic, the kit, input.ini, probe list). NOT launched.
+usage: labframe_case.py <mesh.dat> <design> phases [--pamb 50662.5] [--tamb 290] [--tend 1e-3] [--dumps-per-period 2]
+                        [--cfl 0.4] [--nt 180] [--dt-probe 2.5e-7]"""
+import argparse
+import json
+import os
+import subprocess
+import sys
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import waveframe_case as WF                                     # noqa: E402  (KIT, OMEGA, F_WAVE, phase_of, centres, rows, PY)
+import tecmesh                                                  # noqa: E402  (put on the path by waveframe_case)
+import kit as KITMOD                                            # noqa: E402
+
+KIT, RU, WSP, AIR, TURB = WF.KIT, WF.RU, WF.WSP, WF.AIR, WF.TURB
+INI = """[MOSE-Parameters]
+iter-threshold = 2000000
+time-threshold = {tend}
+newrun = false
+[MOSE-IO]
+sol-overwrite = false
+sol-diter = 100000000
+sol-dtime = {sol_dtime}
+shell-diter = 500
+sol-format = tecplot ascii
+[MOSE-Physics]
+equations = euler
+chemistry = frozen
+[MOSE-Numerics]
+cfl = {cfl}
+cfl-rise-threshold = 100
+time-accurate = true
+time-scheme = RK2
+irs-beta = 0.0
+integration-variables = cons
+riemann-solver = HLLC
+space-reconstruction = MUSCL
+flux-limiter = minmod
+[GPB-Phase1]
+phase = ONERA-7
+Tmax = 5000
+"""
+# probes: (name, block, i, j, k) -- cell indices; Nozzle blocks 11-20 (47 x 32 x 18 cells), Ambient 1-10 (base face i = 1)
+PROBES = [("lab_plug_i05", 15, 5, 1, 9), ("lab_plug_i10", 15, 10, 1, 9), ("lab_plug_i24", 15, 24, 1, 9),
+          ("lab_plug_i40", 15, 40, 1, 9), ("lab_plug_i46", 15, 46, 1, 9), ("lab_cowl_i05", 15, 5, 32, 9),
+          ("lab_cowl_i15", 15, 15, 32, 9), ("lab_base_j04", 5, 1, 4, 9)]
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("mesh"); ap.add_argument("design"); ap.add_argument("mode", choices=("phases",))
+    ap.add_argument("--pamb", type=float, default=50662.5); ap.add_argument("--tamb", type=float, default=290.0)
+    ap.add_argument("--tend", type=float, default=1.0e-3); ap.add_argument("--dumps-per-period", type=int, default=2)
+    ap.add_argument("--cfl", type=float, default=0.4); ap.add_argument("--nt", type=int, default=180)
+    ap.add_argument("--dt-probe", type=float, default=2.5e-7)
+    a = ap.parse_args()
+    mesh = os.path.abspath(a.mesh)
+    summ = mesh.replace(".dat", "_summary.json")
+    period = 1.0 / WF.F_WAVE
+    C = os.path.join(HERE, "CASE_3D", "lab_%s_%s" % (a.design, a.mode))
+    for sub in ("MESH", "INPUT", "OUTPUT", "bin"):
+        os.makedirs(os.path.join(C, sub), exist_ok=True)
+
+    def ln(src, dst):
+        if os.path.islink(dst) or os.path.exists(dst):
+            os.remove(dst)
+        os.symlink(src, dst)
+    ln(mesh, os.path.join(C, "MESH", "mesh.tec"))
+    for f in KIT.files:
+        ln(os.path.join(KIT.dir, f), os.path.join(C, "INPUT", f))
+    PH = json.load(open(KITMOD.phases_file()))
+    P = PH["phases"]
+    WF.NSEC = len(P) - 1
+    YP = np.array([KIT.y(p["Y"]) for p in P])                                  # (nstate, nsp)
+    a_s = np.array([np.sqrt(p["gamma"] * p["R"] * p["T"]) for p in P])
+    u_s = np.array([p["mach"] for p in P]) * a_s
+    T_s = np.array([p["T"] for p in P]); p_s = np.array([p["p"] for p in P]); g_s = np.array([p["gamma"] for p in P])
+    R_s = RU / (1.0 / np.sum(YP / WSP, axis=1))
+    rho_s = p_s / (R_s * T_s)
+    zones = tecmesh.zone_index(mesh)
+    # ---- the 410 table: one zone per (Nozzle block, sample)
+    times = np.linspace(0.0, period, a.nt + 1)
+    out = os.path.join(C, "INPUT", "inlet410.tec")
+    names = " ".join('"rho(%d)"' % (q + 1) for q in range(KIT.n))
+    nfaces = 0
+    with open(out + ".tmp", "w") as f:
+        f.write('VARIABLES = "x" "y" "z" %s "u" "v" "w" "p"\n' % names)
+        for iz, z in enumerate(zones):
+            if not z[0].startswith("Nozzle"):
+                continue
+            X, Y, Z = tecmesh.read_zone(mesh, zones, iz)
+            Xf, Yf, Zf = X[0], Y[0], Z[0]                                         # the f1 plane nodes (nj, nk)
+            yf = 0.25 * (Y[0, :-1, :-1] + Y[0, 1:, :-1] + Y[0, :-1, 1:] + Y[0, 1:, 1:])  # face centres, as waveframe_case
+            zf = 0.25 * (Z[0, :-1, :-1] + Z[0, 1:, :-1] + Z[0, :-1, 1:] + Z[0, 1:, 1:])
+            thd = np.degrees(np.arctan2(zf, yf))
+            nj, nk = Xf.shape
+            nfaces += (nj - 1) * (nk - 1)
+            zero = np.zeros_like(thd)
+            for n, t in enumerate(times):
+                k = WF.phase_of(thd + 360.0 * t / period, "phases")              # theta_w = theta + Omega t
+                f.write('ZONE T="B%d_T%d", I=%d, J=%d, SOLUTIONTIME=%.15E\n' % (iz + 1, n, nj, nk, t))
+                f.write(WF.rows(Xf) + WF.rows(Yf) + WF.rows(Zf))
+                for s in range(KIT.n):
+                    f.write(WF.rows(rho_s[k] * YP[k, s]))
+                f.write(WF.rows(u_s[k]) + WF.rows(zero) + WF.rows(zero) + WF.rows(p_s[k]))
+    os.replace(out + ".tmp", out)
+    subprocess.run([WF.PY, os.path.join(HERE, "build_bc_thor_nozzle.py"), mesh, summ, os.path.join(C, "INPUT", "bc.txt"), "--pamb", "%.3f" % a.pamb,
+                    "--tamb", "%.3f" % a.tamb, "--far", "406", "--inlet410", "INPUT/inlet410.tec, periodic"], check=True,
+                   stdout=open(os.path.join(C, "bc_build.log"), "w"), stderr=subprocess.STDOUT)
+    # ---- the initial field, ABSOLUTE velocities
+    Rair = RU / (1.0 / np.sum(AIR / WSP))
+    rho_a = a.pamb / (Rair * a.tamb)
+    ic = os.path.join(C, "INPUT", "ic.tec")
+    with open(ic + ".tmp", "w") as f:
+        f.write(' VARIABLES ="x" "y" "z" ' + "".join('"rho(%d)"' % (q + 1) for q in range(KIT.n)) + ' "u" "v" "w" "p" "kappa" "omega" "T" "g" "R"\n')
+        for iz, (name, ni, nj, nk, _) in enumerate(zones):
+            X, Y, Z = tecmesh.read_zone(mesh, zones, iz)
+            f.write(" ZONE  T = Block%d, I=%d, J=%d, K=%d, DATAPACKING=BLOCK, VARLOCATION=([1-3]=NODAL,[4-%d]=CELLCENTERED), SOLUTIONTIME=%.15E\n"
+                    % (iz + 1, ni, nj, nk, KIT.n + 12, 0.0))
+            for arr in (X, Y, Z):
+                f.write(WF.rows(arr))
+            yc, zc = WF.centres(Y), WF.centres(Z)
+            th = np.arctan2(zc, yc)
+            one = np.ones_like(th)
+            if name.startswith("Nozzle"):
+                k = WF.phase_of(np.degrees(th), "phases")
+                cells = [rho_s[k] * YP[k, s] for s in range(KIT.n)] + [u_s[k], 0.0 * one, 0.0 * one, p_s[k], TURB[0] * one, TURB[1] * one,
+                                                                      T_s[k], g_s[k], R_s[k]]
+            else:
+                cells = [rho_a * AIR[s] * one for s in range(KIT.n)] + [0.0 * one, 0.0 * one, 0.0 * one, a.pamb * one, TURB[0] * one, TURB[1] * one,
+                                                                    a.tamb * one, 1.4 * one, Rair * one]
+            for c in cells:
+                f.write(WF.rows(c))
+    os.replace(ic + ".tmp", ic)
+    ini = INI.format(tend=a.tend, sol_dtime=period / a.dumps_per_period, cfl=a.cfl)
+    ini += "[MOSE-Probes]\n" + "".join("probe%d = %s\n" % (q + 1, pr[0]) for q, pr in enumerate(PROBES))
+    for nm, b, i, j, k in PROBES:
+        ini += "[%s]\nindex-position = %d %d %d %d\ndtime = %.6e\nvariables = p\n" % (nm, b, i, j, k, a.dt_probe)
+    open(os.path.join(C, "input.ini"), "w").write(ini)
+    open(os.path.join(C, "probes.txt"), "w").write("\n".join(pr[0] for pr in PROBES) + "\n")   # pre-created empty by the job (restart: newrun = false)
+    json.dump(dict(design=a.design, mode=a.mode, frame="laboratory", mesh=mesh, pamb=a.pamb, tamb=a.tamb, tend=a.tend, cfl=a.cfl, omega=WF.OMEGA,
+                   f_wave=WF.F_WAVE, period=period, nt=a.nt, dumps_per_period=a.dumps_per_period, kit=KIT.dir, phases=KITMOD.phases_file(),
+                   P0A=PH.get("P0A"), nsec=WF.NSEC, axis=[-1.0, 0.0, 0.0], frozen=True, far=406, probes=PROBES, dt_probe=a.dt_probe,
+                   inlet="410 periodic: sector of theta + Omega t (wave toward decreasing theta), axial u_s, no swirl"),
+              open(os.path.join(C, "case.json"), "w"), indent=1)
+    print("built %s: %d inlet faces x %d samples (%.2f deg each), period %.4e s; inlet410 %.0f MB, ic %.0f MB"
+          % (C, nfaces, a.nt + 1, 360.0 / a.nt, period, os.path.getsize(out) / 1e6, os.path.getsize(ic) / 1e6))
+
+
+if __name__ == "__main__":
+    main()

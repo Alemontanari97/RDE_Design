@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""THE LAB-FRAME TWIN, read (2026-10-05; case built by RDE/Nozzle/labframe_case.py). For every reduced dump
+(OUTPUT/field<N>_p.npz, extract_p.py) of a lab_<design>_<mode> case: the wall thrust integrated around the annulus with
+the SAME definition as post_waveframe.py,
+  C_F = [F_in - p_a A_in - push(plug) + push(cowl)] / (P0 A*),   push = sum (p_wall - p_a) dtheta r dr,
+with two differences that are the frame's:
+  * the inlet momentum flux of a column is the one the 410 table imposes at the dump time (each primitive interpolated
+    linearly between the two bracketing samples, as MOSE_open's time series), not a fixed sector value;
+  * a column at the laboratory azimuth theta belongs to the wave-frame sector of theta_w = theta + Omega t, so the
+    12 sector thrusts are binned on theta_w: they are directly comparable with the wave-frame run's sectors.
+In the laboratory the pattern turns rigidly; once periodic, the annulus integral must not depend on t.
+usage: post_labframe.py <case dir>   -> <case dir>/lab_post.json"""
+import argparse, glob, json, os, sys
+import numpy as np
+N = "/data10/falco/RDE/Nozzle"
+sys.path.insert(0, N)
+from post_wedge import RU, wsp_of                                    # noqa: E402
+import kit as KITMOD                                                 # noqa: E402
+
+ap = argparse.ArgumentParser(); ap.add_argument("case")
+a = ap.parse_args()
+C = json.load(open(os.path.join(a.case, "case.json")))
+assert C.get("frame") == "laboratory", "not a lab-frame case"
+S = json.load(open(C["mesh"].replace(".dat", "_summary.json")))
+PH = json.load(open(C["phases"]))
+P = PH["phases"]
+P0A = float(C["P0A"])
+WSP = wsp_of(C); KIT = KITMOD.Kit(C.get("kit"))
+NSEC, T, NT, pa = int(C["nsec"]), float(C["period"]), int(C["nt"]), float(C["pamb"])
+DT = T / NT
+lipc, plug_only = int(S.get("cowl_lip_cells", 0)), bool(S.get("plug_only", False))
+jt = int(S["j_tip"])
+YP = np.array([KIT.y(p["Y"]) for p in P])
+R_s = RU / np.sum(YP / WSP, axis=1)
+T_s = np.array([p["T"] for p in P]); p_s = np.array([p["p"] for p in P]); g_s = np.array([p["gamma"] for p in P])
+rho_s = p_s / (R_s * T_s); u_s = np.array([p["mach"] for p in P]) * np.sqrt(g_s * R_s * T_s)
+
+
+def phase_of(theta_deg):
+    return (np.floor(np.mod(np.asarray(theta_deg) - 180.0, 360.0) / (360.0 / NSEC)).astype(int)) % NSEC
+
+
+def flux_410(theta_deg, t):
+    """rho u^2 + p imposed by the 410 table at the face azimuth theta and time t (linear in each primitive)."""
+    tm = np.mod(t, T)
+    n = int(np.floor(tm / DT + 1e-12)); w = tm / DT - n
+    k0 = phase_of(theta_deg + 360.0 * n * DT / T); k1 = phase_of(theta_deg + 360.0 * (n + 1) * DT / T)
+    rho = (1 - w) * rho_s[k0] + w * rho_s[k1]; u = (1 - w) * u_s[k0] + w * u_s[k1]; p = (1 - w) * p_s[k0] + w * p_s[k1]
+    return rho * u * u + p
+
+
+def read_npz(f):
+    d = np.load(f)
+    Z_ = []
+    for b_ in range(1, int(d["nblocks"][0]) + 1):
+        ni, nj, nk = (int(v) for v in d["b%d_dims" % b_])
+        nn = ni * nj * nk
+        xyz = d["b%d_xyz" % b_]
+        nodes = [xyz[q * nn:(q + 1) * nn].reshape((ni, nj, nk), order="F") for q in range(3)]
+        Z_.append(dict(dims=(ni, nj, nk), nodes=nodes, p=d["b%d_p" % b_].reshape((ni - 1, nj - 1, nk - 1), order="F")))
+    return Z_, float(d["t"][0])
+
+
+def columns(Z, t):
+    """Per azimuthal column: theta_lab, dtheta, F_in - pa A_in, push plug, push cowl (Nozzle blocks); base per column."""
+    cols, base_cols = [], []
+    for nz, z in enumerate(Z):
+        name = S["blocks"][str(nz + 1)]["name"]
+        X, Y, Zc = z["nodes"]; p = z["p"]
+        r = np.hypot(Y, Zc)
+        th = np.unwrap(np.arctan2(Zc[0, 0, :], Y[0, 0, :]))
+        dth = np.diff(th); thc = np.degrees(0.5 * (th[1:] + th[:-1])) % 360.0
+        if name.startswith("Nozzle"):
+            rp, rc = r[:, 0, 0], r[:, -1, 0]
+            gp = p[:, 0, :] - pa; gc = p[:, -1, :] - pa
+            if plug_only:
+                gc = np.where((np.arange(gc.shape[0]) >= lipc)[:, None], 0.0, gc)
+            wp = 0.5 * (rp[1:] + rp[:-1]) * np.diff(rp); wc = 0.5 * (rc[1:] + rc[:-1]) * np.diff(rc)
+            A_in = 0.5 * (rc[0] ** 2 - rp[0] ** 2)
+            fl = flux_410(thc, t)
+            for q in range(len(thc)):
+                cols.append([thc[q], dth[q], (fl[q] - pa) * A_in * dth[q], float(gp[:, q] @ wp) * dth[q], float(gc[:, q] @ wc) * dth[q]])
+        if name.startswith("Ambient"):
+            rb = r[0, :jt, 0]; pb = p[0, :jt - 1, :]
+            wb = 0.5 * np.diff(rb ** 2)[:, None]
+            base = np.sum((pb - pa) * wb, axis=0) + (pb[0] - pa) * 0.5 * rb[0] ** 2
+            for q in range(len(thc)):
+                base_cols.append([thc[q], dth[q], float(base[q]) * dth[q]])
+    return np.array(cols), np.array(base_cols)
+
+
+def f_in_sample_mean(thc, A_in_dth):
+    """The inlet term averaged over one sample interval of the table (the pattern moves one column per sample, so this is
+    also its average over the period): a dump catches the table at an arbitrary phase w of the interval, and the
+    columns in transition carry primitives interpolated linearly, whose momentum flux is not the sectors' average."""
+    ws = (np.arange(256) + 0.5) / 256.0
+    return float(np.mean([np.sum((flux_410(thc, w_ * DT) - pa) * A_in_dth) for w_ in ws]))
+
+
+out = os.path.join(a.case, "lab_post.json")
+rows = []
+for f in sorted(glob.glob(os.path.join(a.case, "OUTPUT", "field*_p.npz")), key=lambda s: (len(s), s)):
+    Z, t = read_npz(f)
+    if not t or t <= 0.0:
+        continue
+    noz, bas = columns(Z, t)
+    if "FIN_MEAN" not in globals():                                   # once: the columns (theta, A_in dtheta) do not change
+        A_in_dth = noz[:, 2] / np.maximum(flux_410(noz[:, 0], t) - pa, 1e-300)
+        FIN_MEAN = f_in_sample_mean(noz[:, 0], A_in_dth) / P0A
+    cf_col = (noz[:, 2] - noz[:, 3] + noz[:, 4]) / P0A
+    per_unit = cf_col / noz[:, 1] * 2 * np.pi
+    thw = np.mod(noz[:, 0] + 360.0 * t / T, 360.0)                  # the wave-frame azimuth of each column
+    # the dump catches the pattern shifted by a fraction of a column: the columns' thrust per unit angle is interpolated
+    # (periodic, linear) onto the wave frame's own column centres before the sectors are summed -- binning the shifted
+    # columns directly would hand each boundary column to one side (measured: +69 percent on the weakest sector)
+    o = np.argsort(thw); xs, fs = thw[o], per_unit[o]
+    xp = np.r_[xs[-1] - 360.0, xs, xs[0] + 360.0]; fp = np.r_[fs[-1], fs, fs[0]]
+    thc_w = np.sort(np.mod(noz[:, 0], 360.0))                          # the (unshifted) column centres = the wave run's
+    pu_w = np.interp(thc_w, xp, fp)
+    k = phase_of(thc_w)
+    sec = {int(s): float(pu_w[k == s].mean()) for s in range(NSEC)}
+    row = dict(file=os.path.basename(f), t=t, turns=t / T, CF=float(cf_col.sum()), F_in=float(noz[:, 2].sum() / P0A),
+               push_plug=float(noz[:, 3].sum() / P0A), push_cowl=float(noz[:, 4].sum() / P0A), base_gauge=float(bas[:, 2].sum() / P0A),
+               turn=float(noz[:, 1].sum() / (2 * np.pi)), col_min=float(per_unit.min()), col_max=float(per_unit.max()), sector=sec,
+               F_in_sample_mean=FIN_MEAN, CF_inlet_mean=float(cf_col.sum() - noz[:, 2].sum() / P0A + FIN_MEAN))
+    rows.append(row)
+    print("t %.4e (%.2f turns)  C_F %.6f (inlet at the dump instant %.6f; with the inlet's period mean %.6f: C_F %.6f) plug %.6f cowl %.6f base %.6f"
+          % (t, t / T, row["CF"], row["F_in"], FIN_MEAN, row["CF_inlet_mean"], row["push_plug"], row["push_cowl"], row["base_gauge"]), flush=True)
+json.dump(dict(case=os.path.basename(a.case.rstrip("/")), frame="laboratory", period=T, pamb=pa, dumps=rows), open(out, "w"), indent=1)
+print("written", out)

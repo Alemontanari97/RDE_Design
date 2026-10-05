@@ -1,0 +1,86 @@
+{
+ "design": "RaSDT",
+ "mode": "phases",
+ "frame": "laboratory",
+ "mesh": "/data10/falco/RDE/Nozzle/MESH/wf3d_RaSDT.dat",
+ "pamb": 50662.5,
+ "tamb": 290.0,
+ "tend": 0.001,
+ "cfl": 0.4,
+ "omega": 39989.33288754448,
+ "f_wave": 6364.5,
+ "period": 0.000157121533506167,
+ "nt": 180,
+ "dumps_per_period": 2,
+ "kit": "/data10/falco/RDE/Nozzle/KIT_CH4",
+ "phases": "/data10/falco/RDE/RDE_Design/validation/_cycle_family/sdt_ch4_phi1_pcp20/phases_cfd.json",
+ "P0A": 8964.600272478094,
+ "nsec": 12,
+ "axis": [
+  -1.0,
+  0.0,
+  0.0
+ ],
+ "frozen": true,
+ "far": 406,
+ "probes": [
+  [
+   "lab_plug_i05",
+   15,
+   5,
+   1,
+   9
+  ],
+  [
+   "lab_plug_i10",
+   15,
+   10,
+   1,
+   9
+  ],
+  [
+   "lab_plug_i24",
+   15,
+   24,
+   1,
+   9
+  ],
+  [
+   "lab_plug_i40",
+   15,
+   40,
+   1,
+   9
+  ],
+  [
+   "lab_plug_i46",
+   15,
+   46,
+   1,
+   9
+  ],
+  [
+   "lab_cowl_i05",
+   15,
+   5,
+   32,
+   9
+  ],
+  [
+   "lab_cowl_i15",
+   15,
+   15,
+   32,
+   9
+  ],
+  [
+   "lab_base_j04",
+   5,
+   1,
+   4,
+   9
+  ]
+ ],
+ "dt_probe": 2.5e-07,
+ "inlet": "410 periodic: sector of theta + Omega t (wave toward decreasing theta), axial u_s, no swirl"
+}

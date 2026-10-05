@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""THE WAVE-FRAME PILOT, read (2026-09-30). For every dump of a wf_<design>_<mode> case (waveframe_case.py): the wall
+thrust of the 3D field integrated around the annulus, with the SAME definition as the per-phase wedge runs (post_cert.py):
+  C_F = [F_in - p_a A_in - push(plug) + push(cowl)] / (P0 A*),   push = sum (p_wall - p_a) dtheta r dr,
+the cowl a wall up to its lip only; the base (the plug's cut face) priced apart. Per dump also:
+  the thrust of each 30-degree sector scaled to the full annulus (what each per-phase run estimates),
+  the spread of the columns around the annulus (the uniform control must be flat),
+  the ambient pressure on the outermost row (the frame's hypersonic far field must stay at p_a).
+usage: post_waveframe.py <case dir> [--keep-fields]   -> <case dir>/wf_post.json; the dumps read are then DELETED unless --keep-fields"""
+import argparse, glob, json, os, sys
+import numpy as np
+N = "/data10/falco/RDE/Nozzle"
+sys.path.insert(0, N)
+from post_wedge import read_field, RU, wsp_of                        # noqa: E402
+import kit as KITMOD                                                 # noqa: E402
+P0A_THOR = 619.9315800783319
+
+ap = argparse.ArgumentParser(); ap.add_argument("case"); ap.add_argument("--keep-fields", action="store_true")
+a = ap.parse_args()
+C = json.load(open(os.path.join(a.case, "case.json")))
+S = json.load(open(C["mesh"].replace(".dat", "_summary.json")))
+PH = json.load(open(C.get("phases") or os.path.join(N, "phases_405.json")))
+P = PH["phases"]
+P0A = float(C.get("P0A") or PH.get("P0A") or P0A_THOR)
+WSP = wsp_of(C); KIT = KITMOD.Kit(C.get("kit"))
+lipc, plug_only, jt, pa = int(S.get("cowl_lip_cells", 0)), bool(S.get("plug_only", False)), int(S["j_tip"]), float(C["pamb"])
+out = os.path.join(a.case, "wf_post.json")
+rows = json.load(open(out))["dumps"] if os.path.exists(out) else []
+done = {r["file"] for r in rows}
+
+
+NSEC = int(C.get("nsec") or 12)
+
+
+def phase_of(theta_deg):
+    if C["mode"] == "uniform":
+        return np.full(np.shape(theta_deg), NSEC, dtype=int)
+    return (np.floor(np.mod(np.asarray(theta_deg) - 180.0, 360.0) / (360.0 / NSEC)).astype(int)) % NSEC
+
+
+def flux_in(k):
+    p = P[k]
+    Rin = RU / np.sum(KIT.y(p["Y"]) / WSP)
+    return p["p"] / (Rin * p["T"]) * (p["mach"] * np.sqrt(p["gamma"] * Rin * p["T"])) ** 2 + p["p"]
+
+
+FLUX = np.array([flux_in(k) for k in range(len(P))])
+def read_npz(f):
+    """A dump reduced by extract_p.py (coordinates + cell pressure): the same structures as read_field."""
+    d = np.load(f)
+    Z_ = []
+    for b_ in range(1, int(d["nblocks"][0]) + 1):
+        ni, nj, nk = (int(v) for v in d["b%d_dims" % b_])
+        nn = ni * nj * nk
+        xyz = d["b%d_xyz" % b_]
+        nodes = [xyz[q * nn:(q + 1) * nn].reshape((ni, nj, nk), order="F") for q in range(3)]
+        Z_.append(dict(name="Block%d" % b_, dims=(ni, nj, nk), nodes=nodes,
+                       cells={"p": d["b%d_p" % b_].reshape((ni - 1, nj - 1, nk - 1), order="F")}, t=float(d["t"][0])))
+    return ["x", "y", "z", "p"], Z_
+
+
+for f in sorted(glob.glob(os.path.join(a.case, "OUTPUT", "field*.tec")) + glob.glob(os.path.join(a.case, "OUTPUT", "field*_p.npz"))):
+    if os.path.basename(f) in done or os.path.islink(f):
+        continue
+    names, Z = read_npz(f) if f.endswith(".npz") else read_field(f)
+    t = Z[0]["t"]
+    if not t or t <= 0.0:
+        continue
+    cols = []                                                        # per azimuthal column: theta, dtheta, F_in - pa A_in, push plug, push cowl, base
+    far = []
+    for nz, z in enumerate(Z):
+        z["name"] = S["blocks"][str(nz + 1)]["name"]                  # the dumps name the zones Block<n>: the family from the mesh summary
+        X, Y, Zc = z["nodes"]; p = z["cells"]["p"]
+        r = np.hypot(Y, Zc)
+        th = np.unwrap(np.arctan2(Zc[0, 0, :], Y[0, 0, :]))
+        dth = np.diff(th); thc = np.degrees(0.5 * (th[1:] + th[:-1])) % 360.0
+        if z["name"].startswith("Nozzle"):
+            rp, rc = r[:, 0, 0], r[:, -1, 0]
+            gp = p[:, 0, :] - pa                                     # (ni-1, nk-1)
+            gc = p[:, -1, :] - pa
+            if plug_only:
+                gc = np.where((np.arange(gc.shape[0]) >= lipc)[:, None], 0.0, gc)
+            wp = (0.5 * (rp[1:] + rp[:-1]) * np.diff(rp))[:, None]
+            wc = (0.5 * (rc[1:] + rc[:-1]) * np.diff(rc))[:, None]
+            A_in = 0.5 * (rc[0] ** 2 - rp[0] ** 2)                   # per unit angle
+            k = phase_of(thc)
+            for q in range(len(thc)):
+                cols.append([thc[q], dth[q], (FLUX[k[q]] - pa) * A_in * dth[q], float(np.sum(gp[:, q] * wp[:, 0])) * dth[q],
+                             float(np.sum(gc[:, q] * wc[:, 0])) * dth[q], 0.0, int(k[q])])
+        else:
+            far.append(p[:, -1, :].ravel())                          # the outermost row (r = rmax)
+        if z["name"].startswith("Ambient"):
+            rb = r[0, :jt, 0]
+            pb = p[0, :jt - 1, :]                                    # (jt-1, nk-1)
+            wb = 0.5 * np.diff(rb ** 2)[:, None]
+            base = np.sum((pb - pa) * wb, axis=0) + (pb[0] - pa) * 0.5 * rb[0] ** 2
+            for q in range(len(thc)):
+                cols.append([thc[q], dth[q], 0.0, 0.0, 0.0, float(base[q]) * dth[q], -1])
+    cols = np.array(cols)
+    noz = cols[cols[:, 6] >= 0]; bas = cols[cols[:, 6] < 0]
+    cf_col = (noz[:, 2] - noz[:, 3] + noz[:, 4]) / P0A               # each column's share of C_F
+    per_unit = cf_col / noz[:, 1] * 2 * np.pi                        # each column scaled to the full annulus
+    row = dict(file=os.path.basename(f), t=float(t), CF=float(cf_col.sum()), push_plug=float(noz[:, 3].sum() / P0A), push_cowl=float(noz[:, 4].sum() / P0A),
+               base_gauge=float(bas[:, 5].sum() / P0A), turn=float(noz[:, 1].sum() / (2 * np.pi)),
+               col_min=float(per_unit.min()), col_max=float(per_unit.max()), col_std=float(per_unit.std()),
+               far_p_min=float(min(v.min() for v in far) / pa), far_p_max=float(max(v.max() for v in far) / pa))
+    sec = {}
+    for k in sorted(set(noz[:, 6].astype(int))):
+        m = noz[:, 6].astype(int) == k
+        sec[int(k)] = float(cf_col[m].sum() / noz[m, 1].sum() * 2 * np.pi)
+    row["sector"] = sec
+    # the wall pressure around the annulus at three stations of the plug (for the record of the pattern)
+    rows.append(row)
+    rows.sort(key=lambda r_: r_["t"])
+    json.dump(dict(case=os.path.basename(a.case.rstrip("/")), mode=C["mode"], pamb=pa, dumps=rows), open(out, "w"), indent=1)
+    print("t %.3e  C_F %.6f  plug %.6f cowl %.6f base %.6f | columns %.4f .. %.4f (std %.2e) | far field p/pa %.3f .. %.3f"
+          % (t, row["CF"], row["push_plug"], row["push_cowl"], row["base_gauge"], row["col_min"], row["col_max"], row["col_std"], row["far_p_min"], row["far_p_max"]), flush=True)
+    if not a.keep_fields and os.path.basename(os.path.dirname(f)) == "OUTPUT" and os.path.basename(f).startswith("field") and "/CASE_3D/wf_" in os.path.abspath(f):
+        os.remove(f)

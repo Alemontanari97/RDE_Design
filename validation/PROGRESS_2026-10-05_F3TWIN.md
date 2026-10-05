@@ -135,7 +135,21 @@ Plain rules for this log: short sentences, one fact per line, physics before met
   sign change of the moments = one turn and one straightening of the continuous wall, exactly. Coordinates = every free
   knot height (23, as the knot-height walk), 24 rows (12 moments per wall; the natural end carries none); linearity of the
   rows checked at a random z: 3e-11. Walk launched ~17:15 in the worktree (`shroud_cap065_curvsign`, CPUs 31,32,34).
-- RESULT 2: (pending)
+- RESULT 2 (two runs): the 24 general rows stopped the walk at once, with and without a lowered barrier (PSPL_BARRIER=1e-6,
+  added in the worktree): trust-constr's trial was WORSE than the base and the driver's own model agreed (rho 1.00), then
+  two sub-floor steps -> "resolution reached". With many general inequalities the interior point does not take the
+  objective's step here; the form is right, the sub-solver is not.
+- THIRD FORM (`sdt/moment_basis.py`): the MOMENTS as the coordinates. Given the moments, the heights follow by integrating
+  the spline (linear; the carrier's own moment solve returns them: checked 5.6e-15 / 3.4e-14 at a random z), so the
+  one-sign-change rule is a BOX (free end) plus ONE row for the pinned plug tip's dependent moment (2.1e-15) -- the form the
+  driver walks with the trial cut. 23 coordinates, as the knot-height walk.
+- RESULT 3 (~21:05, worktree `shroud_cap065_moment`): C_F 1.529945 = +0.063 percent over the cut Migdal at the mean state,
+  certificate 0.222 (quotable by A-1), in class, |grad| 0.24 (budget 24). SMOOTH: plug excess 0.000 deg with one slope sign
+  change (the inflection), shroud 0.199 deg with one (the start's own: a slight opposite curvature just after the arc).
+- Reading: with every knot free the walk no longer undulates -- the smooth-angle rule holds by construction on the
+  continuous wall. The gain stays small (+0.06 percent, below what the tool resolves on the shroud): at 133 mm the cut
+  Migdal is already near the optimum of this posing. Next in step 2: the lateral envelope as a row (the lip height is
+  linear in the moments), then the merge after the twin's verdict.
 
 ## 5. The harness on the rehearsal pair (B24 against A24, anchor Rao)
 - First run: arm P read 2e-8 off its record and a 12-phase certificate of 1e9: the harness imported the march module
@@ -147,3 +161,70 @@ Plain rules for this log: short sentences, one fact per line, physics before met
   records exactly; a design moved by 1e-4 on one knot refused (2.8e-6 against 1e-10). Over mu: P 1.432445101, C
   1.427734389, Rao 1.414724322 -> delta +0.3299 percent (P +1.2526, C +0.9196 over Rao); certificates 0.044 / 0.047.
   This is the REHEARSAL pair; it reproduces the 10-01 table to the last digit.
+
+## 6. A mistake caught on the evaluator of arm C (20:35)
+- The chain started the two 2-D levels in parallel; level c crashed reading the walls file while level f was writing its
+  alias into it (JSONDecodeError). I relaunched level c BY HAND with only NOZ_WALLS set: the referee then fell back to its
+  defaults, the THOR hydrogen-air kit and the THOR phases (phases_405.json, 1.4 bar), and returned C_F 0.79 over the 12
+  phases with every phase unsteady (phase 0 1.44 against 4.88 for A24 at the same phase). Read in the cases' case.json
+  (kit MESHcoarseambient, phases_405.json); level f, started by the chain with the environment, has KIT_CH4 and the
+  methane phases.
+- The 13 wrong cases moved (not deleted) to `RDE/Nozzle/CASE_2D/_quarantine_wrongkit_2026-10-05/` with their log; level c
+  re-run with the full environment (job 304099, kit checked in case.json). The chain now starts the second level only
+  after the first has submitted (twin_judge_sdt.sh).
+- Trap for every hand relaunch of referee_cert.py / waveframe_case.py: without NOZ_KIT and NOZ_PHASES they silently use
+  the THOR kit and phases.
+
+## 7. Arm C on the evaluator of record (3-D, the wave frame)
+- Job 304096 (16 499 iterations, 48 min): C_F 1.428346 / 1.428356 / 1.428344 at 0.25 / 0.50 / 0.75 ms (steady to 1e-5);
+  plug push -0.14973, cowl -0.02803. Against the same judge: Rao 1.407115 (+1.51 percent), the rehearsal's A24 1.417983
+  (+0.73 percent: the 40 more segments at the mean state are worth that much to the independent judge too), SjSDT
+  (plug + cowl, rehearsal) 1.419340.
+- The tool on arm C (`sdt/twop_phase_eval_twinC.log`): mean 1.437324, 12 phases 1.439647 (ratio 1.0016), certificate
+  0.044 (quotable); against Rao read the same way (1.414724) +1.762 percent. Tool to 3-D: -0.785 percent (A24 -0.683, Rao
+  -0.538): the offset grows a little with the more aggressive designs -- a term for the bands, not a ranking change yet.
+- Arm P at its last reading: 1.43615 over the 12 phases (resumed segment 16 of 41), 0.24 percent below arm C.
+- 2-D per phase, level f (job 304097, KIT_CH4 + methane phases checked): C_F over the 12 phases 1.439262 (time +- 3.4e-4;
+  phases 9-11 unsteady as for every plug of this case), mean state 1.43655; against the tool -0.027 percent. Level c
+  (re-run with the methane kit, job 304099): 1.437686 (time +- 3.0e-4), mean state 1.43516. The two levels differ by
+  +0.110 percent (f over c): the 2-D resolution term of the band.
+- ARM C, ALL JUDGES (C_F over the 12 phases): tool 1.439647 | 2-D c 1.437686 | 2-D f 1.439262 | 3-D wave frame 1.428350.
+- The chain printed "line 40: o: command not found" after its last useful step: I edited twin_judge_sdt.sh while it was
+  running (bash reads a script as it goes). The steps had all run; the file is correct for arm P. Never edit a running
+  chain script.
+
+## 8. The step that does not grow with the distance (owner, ~21:10: "il nostro passo non e' tanto piu' grande quanto piu'
+## e' distante l'ottimo?" -> "vai, fallo mentre aspettiamo")
+- Measured on arm C's 40 resumed segments: radius mean 4.7e-3 (z), grown x1.5 per accepted base, halved per rejection;
+  |grad| ~0.25 all along (the optimum still far); gain 4.7e-4 per segment = ~40 percent of g . r; 14 of 40 solver trials
+  WORSE than the base while the frozen model predicted that very loss (rho 1.00): the model is right, the sub-solver is
+  not (trust-constr returns its LAST iterate); trust-constr's BFGS restarts from the identity at every segment (scipy
+  1.17.1 default) on a problem whose secant Hessian spans 0.8 .. 146.
+- Worktree driver (opt-in, unset = bit-identical): PSPL_SAFE=1 (the best feasible visited point on the model; none better
+  -> the model's Cauchy point at the radius), PSPL_TRGROW=k (x k when the last accepted base agreed with its model,
+  0.75 <= rho <= 1.33, and the step reached the radius), PSPL_WARMBFGS=1 (one BFGS carried across segments, rescaled with
+  the objective's scale).
+- Launched 22:17 (`sdt/drv2_walk.sh`): identity gate = 2 segments from Rao with the record tree and with the worktree,
+  no switches (CPUs 24,25 / 28,31); the test = arm C's walk from Rao with SAFE + TRGROW 3 + WARMBFGS + TRCAP, budget 64
+  (CPUs 32,34; `RDE_Design_step2/validation/_plug_contest/SDT/AcowlB_sdt_fromRao_drv2`). Reference = arm C's curve
+  (record driver): 1.41229 (seg 1), 1.41658 (9), 1.42524 (24), 1.42897 (40), 1.43485 (56), 1.43732 (64).
+- IDENTITY GATE PASSED (22:27): 2 segments from Rao, record tree vs worktree with no switch: the walk lines identical (0
+  diff lines over 10 segment lines + ladder + return), the records' W and C_F identical (only `ramp` differs: NaN in both).
+- First segments of the test: seg 0 the solver visited no point better than the base -> the Cauchy point (the record
+  driver marches its worse last iterate there and loses the segment); seg 1 J 1.414824 (record driver: 1.412293 until
+  segment 2, 1.41658 at segment 9); at seg 1 the best visited point was worth 2.5 times the last iterate's model gain.
+- RESULT of the test (00:38, 64 segments, knot-height basis + SAFE + TRGROW 3 + WARMBFGS + TRCAP): C_F at the mean state
+  1.452417 against the record driver's 1.437324 at the same budget = +1.05 percent; the curve at segments 8 / 16 / 24 /
+  31 / 40 / 48 / 56: 1.41974 / 1.42892 / 1.43335 / 1.43803 / 1.44179 / 1.44669 / 1.44964 (record driver 1.41658 /
+  1.42071 / 1.42524 / ~1.4264 / 1.42897 / 1.43158 / 1.43485): the record's 64-segment value reached at segment ~31. Solver
+  trials worse than the base: 0 (record driver: 14 of 40); SAFE used the best visited point 31 times, the Cauchy point 24
+  times. Radius up to 0.037 when the model agreed (record mean 0.0047). NOT stationary (|grad| 0.16, +3e-4 at the last
+  segment). Certificate 0.049.
+- Its design: tip r 32.0 mm (arm C 36.5, Rao 41.8), A_e/A_i 1.97 (1.80 / 1.55); turn to -18.0 deg at 60.9 mm, straightening
+  to -8.5 deg over the last 26 mm, wall pressure at the tip 4.33 p_a (arm C 3.63): a recompression along the wall, and a
+  0.84 deg reversal of the angle inside the turn (arm C 0.09): NOT clean by the smooth-angle rule, and the kind of gain the
+  tool can over-credit. Not judged by CFD (a diagnostic run: asked to the owner).
+- Next, launched 00:55: the same walk in MOMENT coordinates (`sdt/moment_basis.py --walls plug`, adapted to TWOP_FIX; the
+  inflection = the split with the least wrong-sign curvature in the start, knot 6 -- the first-sign-change rule put it at
+  knot 1 on the grafted Rao start; a sign slip in the violation count was caught and fixed before the launch), folder
+  `RDE_Design_step2/validation/_plug_contest/SDT/AcowlB_sdt_fromRao_drv2_moment`, CPUs 32,34.

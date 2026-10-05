@@ -2947,3 +2947,17 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "its gates: G-0a/b (with the source OFF the inverse march must reproduce the corner relation on every mesh point and IA.spike's streamline, both shrinking under refinement — a wrong role of pt2 or a wrong compatibility sign fails it at 1e-2, not 1e-8), G-1 (every inverse cell certified on every rung; the fictitious cells reported apart), G-2 (mass through the terminal ray = mdot within the tip floor's own share + K_RICH x the ladder difference: a wall that is not the mass-closing streamline fails it), G-3 (the wall converges under refinement; band_W = K_RICH x the last difference), G-4 (REPORTED: the oracle's tip abscissa, y_sp0 and wall distance against band_W — the tip-floor abscissa is an ill-conditioned coordinate, 2 mm of radius = 0.27 m of abscissa on the 1 deg tail, declared), G-5a/b (the plug march from the cut at X0 with the construction's data and wall must certify at N and 2N-1 and its wall pressure must CONVERGE to the fan's under row doubling). Run of record 2026-09-16 21:05: 8/8 PASS, validation/_axi_fan/run_derive_2026-09-16.log, derive.json, oracle_walls.npz"
   gamma: "EOS-general"
+
+- id: X-LABWF
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-06; suite=none; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE LABORATORY FRAME AGAINST THE WAVE FRAME, 3-D (LAB-WF, 2026-10-05, owner's request; the A-REPR evaluator gate of the twin protocol): the same plug (Rao's methane plug RaSDT, 87 mm, 0.5 atm) run by MOSE_open in the laboratory frame (inlet BC 410 turning at 6364.5 Hz, job 304078, 1 ms) and in the frame turning with the detonation wave (rotating frame, inlet standing still, the run of record wf_RaSDT_phases), everything else identical (mesh, kit, the 12 sector states, far field 406, CFL, scheme, binary dcc627d8). validation/labwf_check.py reads the committed reductions in validation/_labwf/ (the CFD tools filed there as text with their md5): G-1 the line (one third of the 0.5 percent thrust-stand band), G-2 the walls alone, G-3 the rest equal to the inlet table's sampling predicted from the table alone, G-4 the lab thrust flat in time; rejectors R-1 (the lab thrust moved by twice the line) and R-2 (the walls moved by half the line). Page validation/LABWF_lab_vs_wave_frame_2026-10-05.md."
+  statement: "For the wall thrust the laboratory frame and the wave frame are equivalent: lab C_F 1.406303 (flat to 1.8e-5 over turns 2-6) against the wave frame's 1.407115, -0.058 percent (line 0.167); the walls differ by -0.0065 percent of C_F and the rest, -0.051, is the inlet table's time sampling (predicted -0.050 from the table alone; first order in the samples per turn, to zero). The 3-D wave-frame CFD is the evaluator of record of F3.TWIN (A-REPR gate passed). Not shown: the base and the plume (the 406 far field acts differently in the two frames), a second plug, a finer grid."
+  doc: "validation/LABWF_lab_vs_wave_frame_2026-10-05.md"
+  proof: "validation/labwf_check.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "G-1 (the two frames' wall thrust apart by more than the line: the wave frame is not the twin's evaluator), G-2 (the walls alone apart by a quarter of the line: a frame effect), G-3 (the remainder not the inlet table's), G-4 (the lab thrust drifting in time: not periodic yet); R-1 or R-2 not firing"
+  gamma: "EOS-general"

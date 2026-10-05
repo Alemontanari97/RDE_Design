@@ -1,0 +1,32 @@
+#!/bin/bash
+#SBATCH -p premium
+#SBATCH -N 1
+#SBATCH --ntasks=80
+#SBATCH --exclusive
+#SBATCH --exclude=wn09
+#SBATCH -t 03:00:00
+# THE LAB-FRAME TWIN (2026-10-05, labframe_case.py): the same node layout, binary and settings as wf_run.sbatch (30 ranks,
+# one block each, x 2 threads); the probe files pre-created (the run starts from OUTPUT/field.tec with newrun = false, and
+# MOSE_open opens probe files status='OLD' on a restart); after the run every dump is reduced to coordinates + pressure
+# (extract_p.py) and the 3-D ASCII field deleted, except the last two.
+# usage: sbatch -J <name> -o <log> lab_run.sbatch <case dir>
+module load intel-2023.0.0/intel_Comps-2023.0.0 intel-2023.0.0/intel_MPI-2023.0.0 intel-2023.0.0/intel_MKL-2023.0.0
+BIN=/scratch/afalco/NOZZLE_2026-09-27/MOSE_open_src/bin/MOSE
+EX=/scratch/afalco/NOZZLE_2026-09-27/CASE_3D_wf/extract_p.py
+cd "${1:?case dir}" || exit 1
+export OMP_NUM_THREADS=2 I_MPI_HYDRA_BOOTSTRAP=fork OMP_STACKSIZE=256M
+ulimit -s unlimited
+echo "job $SLURM_JOB_ID node $(hostname) $(date) binary $(md5sum $BIN | cut -c1-8)"
+df -h /scratch | tail -1
+mkdir -p OUTPUT bin && ln -sf $BIN bin/MOSE
+[ -f OUTPUT/field.tec ] || cp INPUT/ic.tec OUTPUT/field.tec
+while read p; do [ -n "$p" ] && touch OUTPUT/$p.txt; done < probes.txt
+mpirun -np 30 -genv OMP_NUM_THREADS 2 bash -c 'ulimit -s unlimited; exec ./bin/MOSE' > run.log 2>&1
+echo "MOSE END rc=$? $(date)"
+cd OUTPUT || exit 1
+last2=$(ls field[0-9]*.tec 2>/dev/null | sort -V | tail -2)
+for f in $(ls field[0-9]*.tec 2>/dev/null | sort -V); do
+  python3 $EX $f ${f%.tec}_p.npz && { echo "$last2" | grep -qx "$f" || rm -f $f; }
+done
+ls -la *_p.npz | wc -l
+echo END $(date)

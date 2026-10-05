@@ -1,0 +1,29 @@
+{
+ "design": "RaSDT",
+ "mode": "phases",
+ "mesh": "/data10/falco/RDE/Nozzle/MESH/wf3d_RaSDT.dat",
+ "pamb": 50662.5,
+ "tamb": 290.0,
+ "tend": 0.001,
+ "cfl": 0.4,
+ "omega": 39989.33288754448,
+ "f_wave": 6364.5,
+ "kit": "/data10/falco/RDE/Nozzle/KIT_CH4",
+ "phases": "/data10/falco/RDE/RDE_Design/validation/_cycle_family/sdt_ch4_phi1_pcp20/phases_cfd.json",
+ "P0A": 8964.600272478094,
+ "nsec": 12,
+ "axis": [
+  -1.0,
+  0.0,
+  0.0
+ ],
+ "frozen": true,
+ "mrel_inlet": [
+  2.392179934258746,
+  3.419603602565755
+ ],
+ "wtheta_inlet": [
+  2161.9522883422674,
+  2710.020665126036
+ ]
+}
