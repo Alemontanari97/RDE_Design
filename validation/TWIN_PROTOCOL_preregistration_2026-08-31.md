@@ -172,3 +172,45 @@ Both arms run under the SAME constraint vector, enforced by rejector:
   (R-TWIN-5 stays armed on the evaluator). Re-owned with triggers: the five-field swirl engine and the wave-frame
   marching solver (F5b / F6).
 - Instance pin at F3.TWIN opening. Amendments A-2..A-15 of the review are PROPOSED, not applied (owner).
+- **A-INST (2026-10-05, F3.TWIN opened; owner's word "vai con il piano", 2026-10-05 ~15:20, on the plan "the decisive
+  comparison on the plug: walks to convergence, bands at two resolutions, CFD 2-D and 3-D on both designs")** — THE
+  INSTANCE, PINNED BEFORE THE ARMS' FINAL RUNS. Written while both arms are being resumed (2026-10-05 15:37) and before
+  any of their new segments is read.
+  REHEARSAL DECLARED: the SDT walks of 2026-09-30/10-01 (A 24 segments, B 24, the plug + cowl pairs) and their table
+  (+1.43 against +1.09 percent over Rao at the mean state, tool only) are the REHEARSAL of this twin, not its result.
+  INSTANCE (content hashes md5[:8]): data = CycleFamily v0 case A, CH4/O2 phi 1, Pcp 20 atm, Ti 200 K (Stechmann-
+  Heister-Harroun matched cycle, 12 equal-time sectors of the blowdown; mean P0 20.5 atm, T0 3132 K, gamma 1.1935):
+  `validation/_cycle_family/sdt_ch4_phi1_pcp20/family_K12.json` a310b43d (= mu, both arms evaluated on it),
+  `gas_mean.json` 2ca9effc, `phases_cfd.json` 8302efd2 (the CFD's sector states). Hardware = THOR annulus exit, inlet
+  M 1.556 between y 0.792 and 1.000, internal nozzle -10 deg, hub arc 6 mm, cowl to its lip at x 35.20 mm (r_lip
+  65.80 mm), all FIXED and identical (TWOP_FIX of the start). Constraint vector of section 5: (1) eps = pi r_lip^2 / A*
+  is fixed by the fixed lip (identical by construction; the plug's tip radius is free and becomes the base); (2) L =
+  87 mm from the annulus exit; (3) truncation = the cut at L (the same cap TWOP_CAP 0.8 in both arms); (4) p_b closure =
+  the open wake p_b = p_a in both arms (Sule-Mueller open-wake case), and the base is NOT judged by the 3-D evaluator
+  (its far field drains the outside air: finding waveframe:far-field-406-drains-outside-air); (5) class = no fold in
+  region R and the channel at the MEAN state (`validation/_rde_tournament/stech/class_nofold_2026-09-28.json` 4e505fba),
+  Summerfield separation in class, the per-cell certificate (A1_NEWTON_RESCUE=1); (6) representation = A-REPR plus the
+  wall basis `validation/_plug_contest/SDT/twin_inputs/basis_plug_only.json` f0a01aed (12 numbers: the plug radius at
+  11 stations from 15.6 to 79.6 mm and at its tip), start for BOTH arms = the Rao graft
+  `validation/_plug_contest/SDT/twin_inputs/start_rao_sdt.json` a7997732; ambient p_a/P0 = 0.024378 (0.5 atm).
+  ARMS: P = the TR-SQP walk with the 12 phases in J (TWOP_MU = family_K12, class at the mean state); C = the SAME walk on
+  the mean state (the classical side of record: the fixed-inlet variational optimum at the mean point, owner's rule of
+  2026-09-28). Rao's plug at the mean state (GENO) is reported as the literature anchor, not as an arm.
+  STOPPING RULE (identical): the walk's own stop (a trial rejected at the radius floor, no motion, or two sub-floor
+  steps in a row) or 64 segments of 12 iterations, whichever comes first; a budget stop is declared as such and the
+  arm's |grad| at the landing is printed against its measured gradient floor (stationarity is then NOT claimed).
+  METRIC: same inlet hardware and same mu, so the metered mass flow is the same in both arms and the Isp ratio equals
+  the C_F ratio: delta = C_F(P)/C_F(C) - 1, every C_F over the 12 phases of mu.
+  BANDS: the tool at two resolutions (the record rung K 140 + 123 stations, N 31, and K 280, N 61; Richardson with
+  K_RICH); 2-D Euler per phase at levels c and f; 3-D at the 2-degree grid with the 1-degree term of PILOT-WF declared.
+  CERTIFICATION: A-1 applies (quotable only with cert_worst <= 1/K_RICH under the pinned recorder).
+  EVALUATOR GATE (A-REPR): the 3-D wave-frame CFD becomes the evaluator of record only if the laboratory-frame twin of
+  ONE plug reproduces its wall thrust within one third of the thrust-stand band (0.17 percent of C_F): run LAB-WF,
+  2026-10-05, Rao's plug on this instance, MOSE_open dcc627d8, same mesh/scheme/far field, the inlet as BC 410 turning
+  at 6364.5 Hz (`RDE/Nozzle/labframe_case.py`, job 304078, reader `RDE/handoff/plug_2026-09-29/compare_lab_wave.py`,
+  pass line written in the reader before the run ended). If LAB-WF fails, the evaluator of record is the
+  laboratory-frame run itself, for both arms.
+  SWIRL CHECK (A-REPR): both final designs re-evaluated with the free-vortex swirl per phase.
+  REJECTORS: R-TWIN-0/3 (the hashes above printed in both arms' verdicts), R-TWIN-4 + A-1, R-TWIN-5 (A-REPR + the gate);
+  R-TWIN-6 does not apply (the plug arms do not consume dJ/dtheta_B, the bell kernel's angle; declared); R-TWIN-1
+  (perturbed eps refused) and R-TWIN-2 (wrong-design discriminator) are OWED before the verdict is quoted.
