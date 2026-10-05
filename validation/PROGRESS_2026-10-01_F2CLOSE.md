@@ -298,3 +298,8 @@ Owner's correction of the afternoon: same optimiser, same start (Rao), same rule
 - Owner, 22:25: "committa". The closing commit is made now, before the record runs: the claims lint is red at this commit
   ONLY for the age of the 35 checks importing the bell carrier (their stamps 2026-09-30 precede the carrier's commit);
   the record runs start at 00:00 and their stamps (2026-10-02) land in the next commit.
+- 2026-10-05, the stamps: the four lanes ran 2026-10-02 00:00-02:11, every result as expected (no unexpected failure).
+  30 rows stamped pass=2026-10-02 (29 run directly + X-IVLT through X-TPOS, the 09-30 rule, X-TPOS log equal to its
+  record except timings); X-CHTW 8/9, X-HMPH 4/6, X-PAKN 12/14 fail the same rows as their records; X-HSYM, X-OBJD,
+  X-O32 fail=2026-10-02 for their declared reasons. X-IVLT was missing from the cascade lists (27 stale rows, 26
+  scheduled): covered by X-TPOS. Claims lint 0 violations, suite 17/24 (the 7 environmental reds of s2).
