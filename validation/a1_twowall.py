@@ -143,6 +143,185 @@ class MuSched:
         self.d = S[0].d                     # a schedule's own dict, for readers that peek
 
 
+# ----------------------------------------------------------------------
+# PHASE WORKERS (2026-10-05, opt-in TWOP_PHASE_WORKERS=n > 1; unset or <= 1 =
+# the serial loops, bitwise). WHY: with the phases voting, a walk spends its
+# time in two loops over the phases -- the record (_march_record_mu: 12
+# marches of 15 s and the reference's 23 s, 201 s in all) and the objective's
+# value and gradient (J_replay on a MuSched: 36 s) -- measured on the SDT
+# 12-phase plug arm, where one segment took 16.5 min on one core. The phases
+# are independent in both: the same walls, a gas of their own, no state shared
+# but the compilation caches. n worker PROCESSES (spawn: jax does not fork),
+# each with its own TwoWall built from the same environment, take the phases
+# round-robin and are kept for the walk's life; the parent marches the
+# reference (TWOP_MU_CLASS=ref) while they march the phases. A record returns
+# every phase's own output and schedule, so the MuSched is the serial one; the
+# objective's gradient is the sum of the phases' gradients in the order of
+# the serial reverse pass (phase 11 first: each phase reads W once, through
+# full(W)), so the walk is the serial walk bit for bit -- graded by
+# twowall_phase_workers_gate.py (records, J and gradient bitwise, a rejector
+# that perturbs one input by 1e-12, and the two walks' segment lines). Scope:
+# the four-wide posings (no TWOP_SWIRL).
+# ----------------------------------------------------------------------
+class PhaseWorkerDied(BaseException):
+    """A phase worker ended or its pipe broke. An infrastructure fault, NOT a
+    rejected design: a BaseException, so that the record driver's `except
+    Exception` (an uncertified base -> revert and shrink) cannot read it as
+    one; the walk stops and resumes from its checkpoint."""
+
+
+def _phase_worker(conn):
+    """The serving loop of one phase worker: ("rec", W, margin, ks) marches
+    the phases ks; ("J" | "Jg", W, {k: S_k}, ks, wavefront) replays them for
+    w_k C_F,k (and its gradient in W) -- the very expressions of the serial
+    loops. An exception is sent back with the phase it hit, to be raised by
+    the parent as the serial loop would have raised it."""
+    import pickle
+    import traceback
+    os.environ["TWOP_PHASE_WORKERS"] = "0"
+    tw = TwoWall(verbose=False)
+    cap = int(CASES["wavefront"]["map_clear"])
+    while True:
+        try:
+            msg = conn.recv()
+        except (EOFError, OSError):
+            return
+        if msg is None:
+            return
+        op, W, arg, ks = msg[:4]
+        res, k_at = [], None
+        try:
+            # the mapping-cap guard of Metric.march_record, in every worker
+            if sum(1 for _ in open("/proc/self/maps")) > cap:
+                jax.clear_caches()
+            for k in ks:
+                k_at = k
+                ph = tw.phases[k]
+                if op == "rec":
+                    o_k, S_k = tw._march_record_ctx(W, dict(arg) if arg is not None else None, ph)
+                    res.append((k, o_k, S_k))
+                    continue
+                S_k, wf = arg[k], msg[4]
+                f = lambda z, ph=ph, S_k=S_k: ph["w"] * tw._J_gen(tw._replay_out(z, S_k, ph, None, wf), ph)  # noqa: E731
+                if op == "Jg":
+                    v, g = jax.value_and_grad(f)(jnp.asarray(W))
+                    res.append((k, float(v), np.asarray(g)))
+                else:
+                    res.append((k, float(f(jnp.asarray(W))), None))
+            conn.send(("ok", res))
+        except Exception as err:
+            try:
+                pickle.dumps(err)
+                e_ = err
+            except Exception:
+                e_ = RuntimeError(repr(err))
+            conn.send(("err", (k_at, e_, traceback.format_exc())))
+
+
+class PhasePool:
+    """n spawned phase workers, the phases dealt round-robin (worker i owns
+    phases i, i + n, ...). send() hands every worker its share; gather()
+    collects them all (always all: the pipes stay in step) and raises the
+    error of the LOWEST failing phase, the one the serial loop meets first."""
+
+    def __init__(self, n_phases, n_workers):
+        import atexit
+        import multiprocessing as mp
+        ctx = mp.get_context("spawn")
+        n_workers = max(1, min(int(n_workers), int(n_phases)))
+        self.assign = [list(range(n_phases))[i::n_workers] for i in range(n_workers)]
+        self.conns, self.procs = [], []
+        for i in range(n_workers):
+            a, b = ctx.Pipe()
+            p = ctx.Process(target=_phase_worker, args=(b,), daemon=True, name="twop-phase-%d" % i)
+            p.start()
+            b.close()
+            self.conns.append(a)
+            self.procs.append(p)
+        self.pending = False
+        atexit.register(self.close)
+
+    def send(self, op, W, arg, extra=None):
+        if self.pending:
+            raise RuntimeError("PhasePool.send with a request still out")
+        W = np.asarray(W, float)
+        for c, p, ks in zip(self.conns, self.procs, self.assign):
+            msg = (op, W, arg, ks) if op == "rec" else (op, W, {k: arg[k] for k in ks}, ks, extra)
+            try:
+                c.send(msg)
+            except (BrokenPipeError, OSError) as err:
+                raise PhaseWorkerDied("phase worker %s: send failed (%r, exit code %s)" % (p.name, err, p.exitcode))
+        self.pending = True
+
+    def gather(self):
+        res, errs = {}, []
+        try:
+            for c, p in zip(self.conns, self.procs):
+                try:
+                    st, pay = c.recv()
+                except (EOFError, OSError) as err:
+                    raise PhaseWorkerDied("phase worker %s ended (%r, exit code %s)" % (p.name, err, p.exitcode))
+                if st == "ok":
+                    for it in pay:
+                        res[it[0]] = it[1:]
+                else:
+                    errs.append(pay)
+        finally:
+            self.pending = False
+        if errs:
+            k_at, e_, tb = min(errs, key=lambda t: t[0])
+            print("   phase worker error at phase %s:\n%s" % (k_at, tb), file=sys.stderr, flush=True)
+            raise e_
+        return res
+
+    def close(self):
+        for c in self.conns:
+            try:
+                c.send(None)
+            except Exception:
+                pass
+        for p in self.procs:
+            p.join(timeout=5)
+            if p.is_alive():
+                p.terminate()
+
+
+def _mu_J_pool(pool, n, W, sched, wavefront):
+    """sum_k w_k C_F,k on the frozen schedules, its phases replayed by the
+    workers, differentiable in W (a custom VJP whose backward pass returns
+    the workers' gradient sum). The value is the serial generator's sum (0 +
+    term_0 + term_1 + ...); the gradient sums the phases from the last to the
+    first, the order in which the serial reverse pass accumulates W's
+    cotangents (each phase reads W once)."""
+    Ss = sched.S
+
+    def host(w, grad):
+        pool.send("Jg" if grad else "J", w, Ss, wavefront)
+        res = pool.gather()
+        v = np.float64(sum(res[k][0] for k in range(n)))
+        if not grad:
+            return v
+        g = None
+        for k in range(n - 1, -1, -1):
+            g = res[k][1].copy() if g is None else g + res[k][1]
+        return v, np.asarray(g, np.float64)
+
+    sv = jax.ShapeDtypeStruct((), jnp.float64)
+
+    @jax.custom_vjp
+    def J(w):
+        return jax.pure_callback(lambda w_: host(np.asarray(w_), False), sv, w)
+
+    def J_fwd(w):
+        return jax.pure_callback(lambda w_: host(np.asarray(w_), True), (sv, jax.ShapeDtypeStruct(w.shape, jnp.float64)), w)
+
+    def J_bwd(g, ct):
+        return (ct * g,)
+
+    J.defvjp(J_fwd, J_bwd)
+    return J(jnp.asarray(W, jnp.float64))
+
+
 class TwoWall:
     """Migdal's inlet and ends, both walls designed."""
 
@@ -611,6 +790,21 @@ class TwoWall:
         ssl = jnp.where(ins, jnp.asarray(self.gs_s), ssl)
         return (jnp.asarray(self.sx), py, psl), (jnp.asarray(self.xs), sy, ssl)
 
+    def _phase_pool(self):
+        """The phase workers of TWOP_PHASE_WORKERS (see PhasePool), started
+        at the first record or replay that needs them; None = serial."""
+        if self.phases is None or getattr(self, "_pool_off", False):
+            return None
+        if getattr(self, "_pool", None) is None:
+            n_ = int(os.environ.get("TWOP_PHASE_WORKERS", "0") or 0)
+            if n_ <= 1:
+                self._pool_off = True
+                return None
+            if getattr(self, "swirl", False):
+                raise NotImplementedError("TWOP_PHASE_WORKERS with TWOP_SWIRL (not graded)")
+            self._pool = PhasePool(len(self.phases), n_)
+        return self._pool
+
     def march_record(self, W, margin=None):
         if self.phases is not None:
             return self._march_record_mu(W, margin)
@@ -622,13 +816,39 @@ class TwoWall:
         phases' margins (the class in EVERY phase)."""
         outs, Ss = [], []
         ref_class = self.mu_class == "ref" and margin is not None
-        for ph in self.phases:
-            mg_k = dict(margin) if (margin is not None and not ref_class) else None
-            o_k, S_k = self._march_record_ctx(W, mg_k, ph)
-            outs.append(o_k)
-            Ss.append(S_k)
-        o_ref, S_ref = (self._march_record_ctx(W, margin, None) if ref_class else (None, None))
-        Jk = [float(self._J_gen(o_k, ph)) for o_k, ph in zip(outs, self.phases)]
+        pool = self._phase_pool()
+        if pool is None:
+            for ph in self.phases:
+                mg_k = dict(margin) if (margin is not None and not ref_class) else None
+                o_k, S_k = self._march_record_ctx(W, mg_k, ph)
+                outs.append(o_k)
+                Ss.append(S_k)
+            o_ref, S_ref = (self._march_record_ctx(W, margin, None) if ref_class else (None, None))
+        else:
+            # the phases on the workers (each gets its own copy of the margin
+            # dict, as the serial dict(margin) per phase), the reference here
+            # meanwhile; a phase's error wins over the reference's (the serial
+            # loop meets it first) and puts back the caller's margin dict the
+            # reference's march wrote into (serially it never ran)
+            snap = dict(margin) if margin is not None else None
+            pool.send("rec", W, dict(margin) if (margin is not None and not ref_class) else None)
+            err_ref = None
+            try:
+                o_ref, S_ref = (self._march_record_ctx(W, margin, None) if ref_class else (None, None))
+            except Exception as err:
+                err_ref = err
+            try:
+                res = pool.gather()
+            except Exception:
+                if margin is not None:
+                    margin.clear()
+                    margin.update(snap)
+                raise
+            if err_ref is not None:
+                raise err_ref
+            outs = [res[k][0] for k in range(len(self.phases))]
+            Ss = [res[k][1] for k in range(len(self.phases))]
+        Jk =[float(self._J_gen(o_k, ph)) for o_k, ph in zip(outs, self.phases)]
         out = dict(outs[0])
         out["J_mu"] = float(sum(ph["w"] * j for ph, j in zip(self.phases, Jk)))
         out["J_phase"] = Jk
@@ -815,6 +1035,9 @@ class TwoWall:
         if getattr(self, "jet", False) and not isinstance(sched, MuSched):
             return self.J_of(self._replay_out(W, sched, self._ctx(), None, wavefront))
         if isinstance(sched, MuSched):
+            pool = self._phase_pool()
+            if pool is not None:
+                return _mu_J_pool(pool, len(self.phases), W, sched, wavefront)
             return sum(ph["w"] * self._J_gen(self._replay_out(W, S_k, ph, None, wavefront), ph)
                        for ph, S_k in zip(self.phases, sched.S))
         (a, b, c), (d, e, f) = self.walls(W)
@@ -1834,8 +2057,18 @@ def walk():
     else:
         u = g_s / np.linalg.norm(g_s)
     ell = float(tw.sx[-1] - tw.x0) / len(tw.sx)
+    # TWOP_SKIP_LADDER=1 (2026-10-05; needs TWOP_TR0; unset = bitwise): no start
+    # ladder. With the radius declared the ladder's reading is printed and
+    # discarded (TWOP_TR0 below), yet its ~10 in-class records were paid at
+    # every launch and every RESUME -- ~10 x 201 s on the SDT 12-phase arm,
+    # measured 2026-10-05. The ladder's records feed nothing else (a record has
+    # no state but the compilation caches): the walk is the same walk, graded by
+    # twowall_phase_workers_gate.py (segment lines with and without it).
+    skip_ladder = bool(int(os.environ.get("TWOP_SKIP_LADDER", "0") or 0))
+    if skip_ladder and not os.environ.get("TWOP_TR0"):
+        raise ValueError("TWOP_SKIP_LADDER needs the declared radius TWOP_TR0")
     h_ok, h_bad = None, None
-    for k in CASES["walk"]["ladder_k"]:
+    for k in ([] if skip_ladder else CASES["walk"]["ladder_k"]):
         h = ell * 2.0 ** k
         okh, oh, _, ch, kh = in_class(Ws + h * u)
         say("    start ladder h %.3e m: C_F %+.3e, KS %+.4f, cert %.3e -> %s"
@@ -1846,7 +2079,11 @@ def walk():
             h_bad = h
         if h_ok is not None and h_bad is not None and h_bad > h_ok:
             break
-    if (h_ok is None or h_bad is None or h_bad <= h_ok) and not ok0 and tw.cap > 0.0:
+    if skip_ladder:
+        tr0 = float(os.environ["TWOP_TR0"])
+        say("   TWOP_SKIP_LADDER: no start ladder, the radius is the declared TWOP_TR0 %.3e m%s"
+            % (tr0, "" if ok0 else " (start OUT of class: the walk opens in restoration)"))
+    elif (h_ok is None or h_bad is None or h_bad <= h_ok) and not ok0 and tw.cap > 0.0:
         # a CAP posing starts OUT of class (a compressed Migdal folds: measured
         # S41, 1159 / 2670 negative cells at caps 0.8 / 0.6): the class scale
         # cannot be read there; the radius is the class record's tr0 (the
@@ -1867,7 +2104,7 @@ def walk():
         say("   the class scale is not bracketed at the start: the radius is TWOP_TR0 (declared)")
     else:
         tr0 = float(np.sqrt(h_ok * h_bad)) / K_RICH
-    if os.environ.get("TWOP_TR0"):
+    if os.environ.get("TWOP_TR0") and not skip_ladder:
         # TWOP_TR0 (2026-09-28): the start radius DECLARED instead of read from
         # the ladder -- with the phases voting the ladder reads the free-edge
         # cell's certificate scale (micrometres) where the mean state's class
