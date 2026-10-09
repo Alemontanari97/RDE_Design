@@ -75,9 +75,10 @@ this.
 ## 4. The design problem (identical for the arms P and M)
 1. Hardware: the annulus at the station (53.85 to 68.00 mm); the chamber upstream is not designed.
 2. Start: every phase on the vertical line at the station, uniform across the gap and axial (the carrier as revalidated).
-3. Design variables: the hub (plug) and the cowl from the station, walked jointly; the hub's turn angle at the entrance is a
-   design coordinate. The basis (knot stations, the turn's parametrisation, bounds) is open item O1; it is the same for P and M.
-4. Constraints: the plug ends at L = 58.45 mm from the station; the lip point is fixed (open item O2); the base is cut at L with
+3. Design variables: THE COWL IS GIVEN (owner 2026-10-09, O2: Rao, the competitor, has no way to optimise it). What the walks
+   move is open item O1 (proposed: the plug from the lip plane to L, the hub under the cowl given as in Rao's construction:
+   the same freedoms as Rao). The same for every arm. This replaces the free entrance of the earlier recommendation.
+4. Constraints: the plug ends at L = 58.45 mm from the station; the lip point is the given cowl's end; the base is cut at L with
    p_b = p_a and not judged; p_a = 50 000 Pa; every march certified (certificate <= 1, with the default Newton rescue); a
    landing is quotable only with its worst certificate <= 1/K_RICH = 0.25 (amendment A-1).
 5. Veto (the class), the same set for P and M: in every REAL phase of the K-phase family, no fold of characteristics in region
@@ -98,11 +99,12 @@ this.
 ## 5. Arms, references, and the same problem
 - P and M solve the same problem (4.1 to 4.5, the same basis, starts, driver, budget and stopping rule) and differ only in the
   objective (4.6).
-- Classical controls C (Liu), E (Cumpsty-Horlock), F (Kaemming-Paxson): each designed on its own mean state at the station in
-  its paper's convention, with the class on that state. They are references (what a classical designer delivers), not arms of
-  the same problem; the same judges evaluate them.
-- Rao (GENO) is not an arm (its problem has a free length and a uniform lip state); if shown, it is a literature design
-  evaluated by the same judges.
+- Rao (GENO) is the COMPETITOR (owner 2026-10-09): Rao's plug on the given cowl's lip, with the same freedoms as the walks
+  (O1) and the same length L, designed on the C6 mean state, so that it solves the same problem as M; M may beat it only where
+  the length or the given cowl bind, and every such gain is explained with the equations (the revalidation's rule).
+- Classical controls: Rao's plug on the mean states C (Liu), E (Cumpsty-Horlock), F (Kaemming-Paxson), each in its paper's
+  convention (the plug study's practice). They are references (what a classical designer delivers); the same judges evaluate
+  them.
 - Identity card, content-hashed in every verdict: row, convention (tool hash, K), station, basis, L, lip point, base rule, veto
   (definition and the list of real phases), certificate, ambient, gas tables, grid, driver, starts, budget, stopping rule, code
   commit. Between P and M only the objective may differ. Rejector: a pair with one item changed (L by 0.1 mm; one knot freed)
@@ -120,15 +122,15 @@ this.
   by the convention's declared effect, so the pressure on the walls is compared as well. The convention's error weighs more at
   7.5 mm: the difference of the two stations' gaps estimates it.
 - R-c: the gain P - M at each station, by the tool and by the CFD. The same sign and size at both stations means the conclusion
-  does not depend on the convention.
+  does not depend on the convention. The competitor is read the same way: P - R and M - R (R = Rao, section 5).
 - The 3-D runs: the plug study's set-up (MOSE_open f4498666, Euler, frozen ONERA-7, a 45-degree sector holding one wave, the
   row with its swirl as the inflow: per-face states in the wave frame, the 410 table in the laboratory frame). Each landing runs
   in the wave frame until three dumps (400, 450, 500 us) agree; the thrust is read over that window. One laboratory-frame twin
-  at 12.5 mm; one grid check on one design (proposed: the channel's cells halved axially and radially; open item O4). Minimum
-  6 runs (P and M at both stations, the twin, the grid check), 12 with the classical controls; about 3-4 hours each.
+  at 12.5 mm. The CFD margin is measured before the campaign on a case already run (O4, O4a). Minimum 8 runs (P, M and R at
+  both stations, and the twin), 14 with the classical controls; about 3-4 hours each.
 
 ## 7. Order of work (each step on the owner's go)
-1. The open items O1-O4 fixed; the protocol filed.
+1. The open items O1, O2a and O4a fixed; the CFD margin run (O4); Rao's plugs on the given lip (GENO, s3).
 2. The veto mask (4.5) with its unit test; the quick regression.
 3. The families written from the rows by the convention's tool (`tools/convention_sonic.py` extended to write them), with its
    identity tests and a rejector (a subsonic phase left without C5 must be refused by X-ADMA's A-2); X-ADMA on the families.
@@ -149,12 +151,23 @@ Decided by the owner on 2026-10-09:
 - Both stations; the effect of the convention certified by 3-D runs ("tenere entrambe le sezioni ... certificato da apposite
   run 3D").
 - L = 58.45 mm from each station ("usiamo a").
-- On the recommendations ("ok"): the entrance free from the station, 0.5 bar, the controls C/E/F, the veto on the real phases,
-  the lip point fixed, the convention C1-C6 with K = 24, a protocol of its own; the problem definition unambiguous rather than
+- On the recommendations ("ok"): the entrance free from the station (superseded by O2 below), 0.5 bar, the controls C/E/F, the
+  veto on the real phases, the lip point fixed, the convention C1-C6 with K = 24, a protocol of its own; the problem definition unambiguous rather than
   short ("non deve essere necessariamente corta, basta che sia senza equivoci").
+Decided by the owner on 2026-10-09, late evening:
+- O2: "inizialmente avremo una cowl data siccome rao, che sara' il nostro competitor, non ha modi di ottimizzarla come sqp":
+  the cowl is given; Rao is the competitor.
+- O3: "le soglie me le presenterai ed io decidero' l'importanza del guadagno": no thresholds set in advance; every difference
+  is presented with its measured bands (the tool's grid and K bands, the CFD margin) and the owner judges its importance.
+- O4: "la misura dell'errore CFD la possiamo gia' fare girando una versione di un caso che abbiamo gia' girato e vedendo il
+  margine": the CFD margin from a refined re-run of a case already run, before the campaign.
 Open, to be fixed before the first walk:
-- O1 the basis: knot stations of hub and cowl, the parametrisation of the hub's turn, the bounds.
-- O2 the lip point. Proposed: 37.00 mm from the station, radius 64.37 mm (the plug study's 0.5 bar fixed-length E design).
-- O3 the decision thresholds on P - M. For reference: the old protocol's SMALL below 0.5 % of the thrust (about 17 N) and
-  MATERIAL above 1 % (about 35 N), against 9 N between the plug study's mean-state designs at equal length.
-- O4 the grid check's refinement (proposed in section 6).
+- O1 what the walks move (the owner asked what "modes" means; explained 2026-10-09: the revalidated tool moves the radii of a
+  set of wall points joined by a smooth cubic spline). Proposed: the plug from the lip plane to L, the radii of 9 equally spaced
+  points and the end radius (10 numbers), the start point and slope given by the given hub at the lip plane; the smoothness
+  rule (owner 2026-10-01) as a check on every landing (the wall angle must not oscillate along x).
+- O2a which given cowl. Proposed: the internal nozzle of the plug study's 0.5 bar fixed-length E design (hub turned to -17 deg
+  in the first 6-7 mm then a straight cone; the cowl straight at 68.00 mm to 12 mm, then turning to the lip at 37.00 mm from
+  the station, radius 64.37 mm), placed at each station; the hub under the cowl given as well (as Rao has it).
+- O4a which case for the CFD margin. Proposed: that same E design, wave frame, the real row at 7.5 mm, re-run with the
+  channel's cells halved axially and radially; the difference in thrust and wall force is the margin.

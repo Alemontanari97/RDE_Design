@@ -3935,3 +3935,6 @@ PASSO ATOMICO (2026-10-09, dopo il commit b5ccf96 della rivalidazione): F3.TWIN 
 
 ### BLOCKING attive (testo sostituito)
 | BLOCKING attive | misurati il 2026-10-09 (tools/progress_counts.py): findings OPEN `path: critical` 61 / BLOCCATO `path: critical` 5 (B-RAOPLUG, B-CFD1, B-TWIN-PROVA, B-REVAL, B-REVAL-INLET) |
+
+### B-PROBDEF (testo sostituito il 2026-10-09 a tarda sera)
+| B-PROBDEF | F3.TWIN: i punti aperti O1-O4 della definizione del problema (O1 la base di progetto, O2 il punto del labbro, O3 le soglie di decisione su P - M, O4 la verifica di griglia della CFD) | APERTO | critical | owner; trigger = prima della prima camminata della campagna | validation/_problem_real_outflow/PROBLEM_DEFINITION.md (sezione 9) |
