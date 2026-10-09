@@ -23,7 +23,7 @@ folder, or to --out); the certified records in out/ are the reference and are on
   The GENO run outputs are not in git (their decks and md5 manifest are): when absent the run stops with exit 2 and
   says how to regenerate them.
 Exit 0 iff no CHANGED case, no verdict lost in A, every march certified, the walk identical and the rejector caught.
-usage: quick_regression.py [--out DIR] [--skip-walk]
+usage: quick_regression.py [--out DIR] [--skip-walk]   (without --out a passing run removes its temporary folder)
 """
 import json
 import os
@@ -263,4 +263,8 @@ say("== quick regression: %s in %.0f s%s; report %s" % (
     os.path.join(OUTDIR, "quick_regression.json")))
 for b in bad:
     say("   FAIL: %s" % b)
+if not bad and "--out" not in args:            # no stale files: a passing run without --out leaves nothing behind
+    import shutil
+    shutil.rmtree(OUTDIR, ignore_errors=True)
+    say("   (temporary folder removed; pass --out DIR to keep the report)")
 sys.exit(0 if not bad else 1)
