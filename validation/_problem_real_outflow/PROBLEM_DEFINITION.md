@@ -75,10 +75,17 @@ this.
 ## 4. The design problem (identical for the arms P and M)
 1. Hardware: the annulus at the station (53.85 to 68.00 mm); the chamber upstream is not designed.
 2. Start: every phase on the vertical line at the station, uniform across the gap and axial (the carrier as revalidated).
-3. Design variables: THE COWL IS GIVEN (owner 2026-10-09, O2: Rao, the competitor, has no way to optimise it). What the walks
-   move is open item O1 (proposed: the plug from the lip plane to L, the hub under the cowl given as in Rao's construction:
-   the same freedoms as Rao). The same for every arm. This replaces the free entrance of the earlier recommendation.
-4. Constraints: the plug ends at L = 58.45 mm from the station; the lip point is the given cowl's end; the base is cut at L with
+3. Design variables, the same for every contender (owner 2026-10-09, O1 and O2): the injection angle beta of the internal
+   nozzle, and the plug's knot heights downstream of the lip (the knots as validated). At each beta the internal nozzle is the
+   NON-REFLECTING construction: the hub turns to beta on a short arc and goes on as a straight cone at beta; the cowl is the
+   streamline of the field that hub makes alone, ended where the arc's last wave lands on it; the lip and the state delivered
+   there are the construction's. The cowl is not optimised by anyone (Rao cannot); it follows beta. The plug's knots are
+   offsets carried by the cone at beta; the knots under the cowl stay on the cone (the same freedoms as Rao: A-INLET's cone
+   pair). The construction is non-reflecting for one inflow state only: the state it is built on is open item O2b; the knot
+   stations, open item O2c, are fixed when the family is built. Tool: the wrapper `validation/twowall_inlet_family.py`
+   (beta as a coordinate, a1_twowall.py not edited) and the family builder of the plug study, both written before the
+   revalidation and never committed: committed and re-gated with today's code before use (section 7).
+4. Constraints: the plug ends at L = 58.45 mm from the station; the lip is the construction's at beta; the base is cut at L with
    p_b = p_a and not judged; p_a = 50 000 Pa; every march certified (certificate <= 1, with the default Newton rescue); a
    landing is quotable only with its worst certificate <= 1/K_RICH = 0.25 (amendment A-1).
 5. Veto (the class), the same set for P and M: in every REAL phase of the K-phase family, no fold of characteristics in region
@@ -99,13 +106,15 @@ this.
 ## 5. Arms, references, and the same problem
 - P and M solve the same problem (4.1 to 4.5, the same basis, starts, driver, budget and stopping rule) and differ only in the
   objective (4.6).
-- Rao (GENO) is the COMPETITOR (owner 2026-10-09): Rao's plug on the given cowl's lip, with the same freedoms as the walks
-  (O1) and the same length L, designed on the C6 mean state, so that it solves the same problem as M; M may beat it only where
-  the length or the given cowl bind, and every such gain is explained with the equations (the revalidation's rule).
+- Rao (GENO) is the COMPETITOR (owner 2026-10-09): Rao's plug on the construction's lip, designed on the C6 mean state (the
+  same problem as M); its two degrees of freedom, beta and the base pressure p_b, are set so that the plug ends at L and passes
+  the engine's mass ("Rao with the length given and the angle free", A-INLET of the twin protocol). M may beat it only where
+  the length or the construction bind, and every such gain is explained with the equations (the revalidation's rule).
 - Classical controls: Rao's plug on the mean states C (Liu), E (Cumpsty-Horlock), F (Kaemming-Paxson), each in its paper's
   convention (the plug study's practice). They are references (what a classical designer delivers); the same judges evaluate
   them.
-- Identity card, content-hashed in every verdict: row, convention (tool hash, K), station, basis, L, lip point, base rule, veto
+- Identity card, content-hashed in every verdict: row, convention (tool hash, K), station, the construction's family (its file,
+  the state it is built on), w_beta's scale, the knot stations and which are frozen, L, base rule, veto
   (definition and the list of real phases), certificate, ambient, gas tables, grid, driver, starts, budget, stopping rule, code
   commit. Between P and M only the objective may differ. Rejector: a pair with one item changed (L by 0.1 mm; one knot freed)
   must be refused.
@@ -130,7 +139,9 @@ this.
   both stations, and the twin), 14 with the classical controls; about 3-4 hours each.
 
 ## 7. Order of work (each step on the owner's go)
-1. The open items O1, O2a and O4a fixed; the CFD margin run (O4); Rao's plugs on the given lip (GENO, s3).
+1. The open items O2b, O2c and O4a fixed; the CFD margin run (O4). The wrapper and the family builder committed and
+   re-gated with today's code (the quick regression first); the families of the construction built at both stations; Rao's
+   members on them (GENO, s3).
 2. The veto mask (4.5) with its unit test; the quick regression.
 3. The families written from the rows by the convention's tool (`tools/convention_sonic.py` extended to write them), with its
    identity tests and a rejector (a subsonic phase left without C5 must be refused by X-ADMA's A-2); X-ADMA on the families.
@@ -151,8 +162,9 @@ Decided by the owner on 2026-10-09:
 - Both stations; the effect of the convention certified by 3-D runs ("tenere entrambe le sezioni ... certificato da apposite
   run 3D").
 - L = 58.45 mm from each station ("usiamo a").
-- On the recommendations ("ok"): the entrance free from the station (superseded by O2 below), 0.5 bar, the controls C/E/F, the
-  veto on the real phases, the lip point fixed, the convention C1-C6 with K = 24, a protocol of its own; the problem definition unambiguous rather than
+- On the recommendations ("ok"): the entrance free from the station (made precise by O2 below: the injection angle free, the
+  cowl its non-reflecting construction), 0.5 bar, the controls C/E/F, the veto on the real phases, the lip point fixed
+  (superseded by O2: the lip follows the angle), the convention C1-C6 with K = 24, a protocol of its own; the problem definition unambiguous rather than
   short ("non deve essere necessariamente corta, basta che sia senza equivoci").
 Decided by the owner on 2026-10-09, late evening:
 - O2: "inizialmente avremo una cowl data siccome rao, che sara' il nostro competitor, non ha modi di ottimizzarla come sqp":
@@ -161,13 +173,15 @@ Decided by the owner on 2026-10-09, late evening:
   is presented with its measured bands (the tool's grid and K bands, the CFD margin) and the owner judges its importance.
 - O4: "la misura dell'errore CFD la possiamo gia' fare girando una versione di un caso che abbiamo gia' girato e vedendo il
   margine": the CFD margin from a refined re-run of a case already run, before the campaign.
+- O1: "teniamo per ora i nodi come abbiamo validato, questa cosa dei [modi] la teniamo in stiva siccome l'idea mi piace": the
+  walks move knot heights as validated (the wall through them is a cubic spline); the smoothness rule (owner 2026-10-01) is a
+  check on every landing (the wall angle must not oscillate along x). PARKED, not used now: a modal basis (each coordinate
+  bends the whole wall in a smooth pattern, so the wall cannot undulate).
+- O2, refined: "siccome rao necessita di due DOF per realizzare lunghezza e pb in realta' l'angolo del mozzo dovrebbe essere
+  parte dell'ottimizzazione e poi venir riconnesso allo stato uscente dal nozzle con una cowl non riflettente": the injection
+  angle is a design coordinate of every contender, the cowl the non-reflecting construction at that angle (section 4.3).
 Open, to be fixed before the first walk:
-- O1 what the walks move (the owner asked what "modes" means; explained 2026-10-09: the revalidated tool moves the radii of a
-  set of wall points joined by a smooth cubic spline). Proposed: the plug from the lip plane to L, the radii of 9 equally spaced
-  points and the end radius (10 numbers), the start point and slope given by the given hub at the lip plane; the smoothness
-  rule (owner 2026-10-01) as a check on every landing (the wall angle must not oscillate along x).
-- O2a which given cowl. Proposed: the internal nozzle of the plug study's 0.5 bar fixed-length E design (hub turned to -17 deg
-  in the first 6-7 mm then a straight cone; the cowl straight at 68.00 mm to 12 mm, then turning to the lip at 37.00 mm from
-  the station, radius 64.37 mm), placed at each station; the hub under the cowl given as well (as Rao has it).
+- O2b the state the construction is built on. Proposed: the C6 mean state (the state of M and of Rao), at each station.
+- O2c the knot stations of the plug downstream of the lip (fixed when the family's range of lips is known).
 - O4a which case for the CFD margin. Proposed: that same E design, wave frame, the real row at 7.5 mm, re-run with the
   channel's cells halved axially and radially; the difference in thrust and wall force is the margin.

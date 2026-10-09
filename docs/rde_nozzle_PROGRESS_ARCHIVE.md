@@ -3938,3 +3938,6 @@ PASSO ATOMICO (2026-10-09, dopo il commit b5ccf96 della rivalidazione): F3.TWIN 
 
 ### B-PROBDEF (testo sostituito il 2026-10-09 a tarda sera)
 | B-PROBDEF | F3.TWIN: i punti aperti O1-O4 della definizione del problema (O1 la base di progetto, O2 il punto del labbro, O3 le soglie di decisione su P - M, O4 la verifica di griglia della CFD) | APERTO | critical | owner; trigger = prima della prima camminata della campagna | validation/_problem_real_outflow/PROBLEM_DEFINITION.md (sezione 9) |
+
+### B-PROBDEF (testo sostituito il 2026-10-09, ore 23)
+| B-PROBDEF | F3.TWIN: i punti aperti della definizione del problema. Decisi dall'owner il 2026-10-09 a tarda sera: O2 cowl data e Rao come concorrente, O3 nessuna soglia fissata prima (risultati con le loro bande, l'owner giudica), O4 il margine della CFD da un caso gia' girato rifatto raffinato. Aperti: O1 cosa muovono le camminate (proposta: il plug dal piano del labbro a L, raggi di 9 punti + raggio finale), O2a quale cowl data (proposta: l'ugello interno del progetto E a lunghezza fissa, 0.5 bar), O4a quale caso per il margine (proposta: lo stesso E nel riferimento dell'onda, celle del canale dimezzate) | APERTO | critical | owner; trigger = prima della prima camminata della campagna | validation/_problem_real_outflow/PROBLEM_DEFINITION.md (sezione 9) |
