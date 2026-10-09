@@ -181,6 +181,15 @@ sub-hypothesis of the O1-O4 subsonic case-class under which
 collapse-in-form survives on the subsonic sector (see T-T3-MAP
 clause (d)); expected to FAIL on migrating patch patterns (K-P
 Fig. 6); its audit is CARRIER-D D2 of the advisory record.]
+[REAL-OUTFLOW CAMPAIGN: SUBSONIC CASE-CLASS DECLARED (dated 2026-10-09, owner; census R47; PRACTICE).
+The decisive comparison takes the real outflow as data: the Q2D-HP rows at 7.5 and 12.5 mm from the plate. Both stations carry
+axially subsonic patches (time x P0 measure 32.4 % and 10.0 %, a high-pressure subsonic slice behind the oblique shock
+included), and no station of a constant-area chamber is L4 (smallest Mx 0.89 at 19.5 mm). Closure DECLARED before any run
+(rule (4) of the protocol of record below): O3 in its sonic-family form I3 -- a phase whose conserved state is axially subsonic
+enters choked at Mach 1.02 with its own P0 and T0 (validation/_problem_real_outflow/PROBLEM_DEFINITION.md, C1-C6). The
+downgrades of D1 4.3bis apply to those phases (H-I2 violated there; their mdot set by the closure); the O4 anchor (the 3-D CFD)
+measures them only at the final validation. The per-phase linearity F = P0 a(M, gamma; Sigma) - Pa b(Sigma) (the mixture form
+of T-T3-MAP (b)) is why a phase design can differ from a mean-state design only through Mach, gamma, Pa/P0 and swirl.]
 
 [D-S1] D2.5 (Solution classes). S1: piecewise-smooth MOC-regular (finitely
 many transversal fronts, no wall-shock formation): classically

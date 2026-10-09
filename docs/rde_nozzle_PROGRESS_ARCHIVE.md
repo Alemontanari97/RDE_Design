@@ -3914,3 +3914,24 @@ PROSSIMA SESSIONE (F3, dopo la chiusura di F2 del 2026-10-02): (1) IL confronto 
 PASSO ATOMICO (2026-10-09): il NULLA OSTA dell'owner al commit della rivalidazione. Poi, lo stesso giorno: commit per pathspec espliciti (codice a1_qntr.py + i due default, harness validation/_revalidation_2026-10-07/ senza le corse GENO, i log e il PDF salvo parola dell'owner, registri, M0, questo file, il log di sessione); rilancio di ogni prova (test del modello, vecchi verificatori, letture t17 senza cache) e timbri (il lint confronta il GIORNO del commit con la data di passaggio); commit dei timbri; suite veloce in un worktree isolato. Push mai senza la parola dell'owner. DOPO: F3.TWIN secondo la roadmap derivata sull'ingresso deciso il 2026-10-09 (il vero outflow, linea Q2D-HP; i controlli del contratto dei dati - ammissione, onda singola, choking - da rifare su quei dati; le derivate e l'obiettivo a 12 fasi da rifare sulla sua posa); residui: il secondo massimo del bell ideale (bell:ideal-bell-second-top-open), il margine in modalita' forma che non vede le caratteristiche convergenti (twowall:shape-margin-blind-to-convergence, critico di F3.PLUG). Decisioni dell'owner in sospeso del 2026-10-02 invariate (push, T0, T2, sforamento F2-B0, P-D6-5, R9, C63-C66, emendamenti A-2..A-15).
 | R46 | RIVALIDAZIONE dell'ottimizzatore rde-nozzle (ordine dell'owner 2026-10-07; copertura dei bell, driver agnostico, presentazione a slide; cernita del registro 2026-10-09) | IN CORSO 2026-10-09: risultati certificati (doc/slides.pdf; 57/60), test del modello rilanciati col codice da committare e dotati di rejector, cernita di 46 verificatori; commit IN ATTESA del nulla osta (B-REVAL) | B-REVAL, B-REVAL-INLET | validation/PROGRESS_2026-10-09_revalidation.md; validation/_revalidation_2026-10-07/ |
 | 2026-10-07/09 | RIVALIDAZIONE (R46) | IN CORSO: l'ottimizzatore ritrova gli ottimi noti con una sola impostazione; cernita del registro; commit in attesa del nulla osta |
+
+
+## 2026-10-09 (sera, R47): testi di PROGRESS sostituiti dalla definizione del problema della campagna sull'outflow vero
+
+### ORA heading (testo sostituito)
+## ORA (2026-10-09, RIVALIDAZIONE dell'ottimizzatore — R46, COMMITTATA b5ccf96 sul nulla osta dell'owner, prove rapide X-RVQCK istituite; F3.TWIN aperta il 2026-10-05 (e32835a, log validation/PROGRESS_2026-10-05_F3TWIN.md); F2 CHIUSA il 2026-10-02 — R45, sessioni F2 3/6, 4/6 e 5/6 consumate; F2.REPR chiusa — R44; S-REVIEW chiusa su file — R40; RIUNIONE — R43)
+
+### Passo atomico (testo sostituito)
+| Passo atomico | vedi NEXT (nulla osta dell'owner -> commit della rivalidazione, rilancio delle prove lo stesso giorno, timbri) |
+
+### Ultima sessione (testo sostituito)
+| Ultima sessione | RIVALIDAZIONE dell'ottimizzatore (2026-10-07/09, ordine dell'owner; log validation/PROGRESS_2026-10-09_revalidation.md; harness validation/_revalidation_2026-10-07/, consegna doc/slides.pdf, cernita doc/TRIAGE_2026-10-09.md); prima: F3.TWIN aperta il 2026-10-05 (validation/PROGRESS_2026-10-05_F3TWIN.md), chiusura di F2 2026-10-01/02 (validation/PROGRESS_2026-10-01_F2CLOSE.md) |
+
+### Registri (testo sostituito)
+| Registri | misurati il 2026-10-09 con tools/progress_counts.py (SR-12): findings 310 (OPEN 243 = 61 critical / 138 non-critical / 44 paper); choice 62 (15 DECIDED / 37 MIXED / 8 NEVER / 2 SINGLE-AUTHOR); claims 217 (38 aperti SCHEMA/CONJECTURE; i carrier con fail= includono i 22 ritirati dalla cernita del 2026-10-09 e X-RVBEL); ADVISORY_INDEX 155 file + 8 blocchi; letteratura 202 righe; envfp 9145bf10 |
+
+### NEXT (testo sostituito)
+PASSO ATOMICO (2026-10-09, dopo il commit b5ccf96 della rivalidazione): F3.TWIN secondo la roadmap derivata sull'ingresso deciso dall'owner (il vero outflow, linea Q2D-HP): i controlli del contratto dei dati (ammissione, onda singola, choking) su quei dati, poi la posa e le due camminate (con le fasi e allo stato medio) con lo stesso ottimizzatore, partenze, regole e budget; le derivate e l'obiettivo a 12 fasi (t07/t07b) rifatti su quella posa. REGOLA: ogni versione futura dello strumento passa prima le prove rapide (X-RVQCK, quick_regression.py): nessun caso CHANGED; un caso DRIFT si cita solo dopo il suo protocollo completo. Push mai senza la parola dell'owner. Residui: il secondo massimo del bell ideale (bell:ideal-bell-second-top-open); il margine in modalita' forma che non vede le caratteristiche convergenti (twowall:shape-margin-blind-to-convergence, critico di F3.PLUG). Decisioni dell'owner in sospeso del 2026-10-02 invariate (push, T0, T2, sforamento F2-B0, P-D6-5, R9, C63-C66, emendamenti A-2..A-15).
+
+### BLOCKING attive (testo sostituito)
+| BLOCKING attive | misurati il 2026-10-09 (tools/progress_counts.py): findings OPEN `path: critical` 61 / BLOCCATO `path: critical` 5 (B-RAOPLUG, B-CFD1, B-TWIN-PROVA, B-REVAL, B-REVAL-INLET) |

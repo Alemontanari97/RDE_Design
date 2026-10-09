@@ -1,0 +1,112 @@
+1atm/A/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 26.65 mm after it)
+   first cut with min Mx > 1.02: 11.12 mm after the inlet;  first cut from which it STAYS above: 11.12 mm
+     cut  6.0 mm: min axial Mach 0.995
+     cut  8.0 mm: min axial Mach 0.994
+     cut 10.0 mm: min axial Mach 1.002
+     cut 12.0 mm: min axial Mach 1.040
+     cut 14.0 mm: min axial Mach 1.085
+     cut 16.0 mm: min axial Mach 1.129
+     cut 18.0 mm: min axial Mach 1.138
+     cut 20.0 mm: min axial Mach 1.173
+     cut 24.0 mm: min axial Mach 1.171
+1atm/C/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 24.22 mm after it)
+   first cut with min Mx > 1.02: 11.37 mm after the inlet;  first cut from which it STAYS above: 11.37 mm
+     cut  6.0 mm: min axial Mach 0.992
+     cut  8.0 mm: min axial Mach 0.991
+     cut 10.0 mm: min axial Mach 1.000
+     cut 12.0 mm: min axial Mach 1.031
+     cut 14.0 mm: min axial Mach 1.081
+     cut 16.0 mm: min axial Mach 1.124
+     cut 18.0 mm: min axial Mach 1.134
+     cut 20.0 mm: min axial Mach 1.166
+     cut 24.0 mm: min axial Mach 1.141
+1atm/E/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 28.35 mm after it)
+   first cut with min Mx > 1.02: 6.37 mm after the inlet;  first cut from which it STAYS above: 6.37 mm
+     cut  6.0 mm: min axial Mach 1.020
+     cut  8.0 mm: min axial Mach 1.046
+     cut 10.0 mm: min axial Mach 1.072
+     cut 12.0 mm: min axial Mach 1.120
+     cut 14.0 mm: min axial Mach 1.158
+     cut 16.0 mm: min axial Mach 1.180
+     cut 18.0 mm: min axial Mach 1.192
+     cut 20.0 mm: min axial Mach 1.225
+     cut 24.0 mm: min axial Mach 1.239
+     cut 28.0 mm: min axial Mach 1.264
+0.5bar/C/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 33.28 mm after it)
+   first cut with min Mx > 1.02: 11.38 mm after the inlet;  first cut from which it STAYS above: none mm
+     cut  6.0 mm: min axial Mach 0.990
+     cut  8.0 mm: min axial Mach 0.990
+     cut 10.0 mm: min axial Mach 0.993
+     cut 12.0 mm: min axial Mach 1.036
+     cut 14.0 mm: min axial Mach 1.078
+     cut 16.0 mm: min axial Mach 1.122
+     cut 18.0 mm: min axial Mach 1.152
+     cut 20.0 mm: min axial Mach 1.177
+     cut 24.0 mm: min axial Mach 1.209
+     cut 28.0 mm: min axial Mach 1.164
+     cut 32.0 mm: min axial Mach 1.058
+0.5bar/E/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 39.80 mm after it)
+   first cut with min Mx > 1.02: 6.13 mm after the inlet;  first cut from which it STAYS above: 6.13 mm
+     cut  6.0 mm: min axial Mach 1.017
+     cut  8.0 mm: min axial Mach 1.047
+     cut 10.0 mm: min axial Mach 1.073
+     cut 12.0 mm: min axial Mach 1.125
+     cut 14.0 mm: min axial Mach 1.166
+     cut 16.0 mm: min axial Mach 1.190
+     cut 18.0 mm: min axial Mach 1.214
+     cut 20.0 mm: min axial Mach 1.242
+     cut 24.0 mm: min axial Mach 1.276
+     cut 28.0 mm: min axial Mach 1.312
+     cut 32.0 mm: min axial Mach 1.296
+     cut 36.0 mm: min axial Mach 1.233
+0.5bar_Lfix/C/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 33.67 mm after it)
+   first cut with min Mx > 1.02: 11.37 mm after the inlet;  first cut from which it STAYS above: 11.37 mm
+     cut  6.0 mm: min axial Mach 0.989
+     cut  8.0 mm: min axial Mach 0.989
+     cut 10.0 mm: min axial Mach 0.999
+     cut 12.0 mm: min axial Mach 1.040
+     cut 14.0 mm: min axial Mach 1.085
+     cut 16.0 mm: min axial Mach 1.129
+     cut 18.0 mm: min axial Mach 1.148
+     cut 20.0 mm: min axial Mach 1.177
+     cut 24.0 mm: min axial Mach 1.199
+     cut 28.0 mm: min axial Mach 1.163
+     cut 32.0 mm: min axial Mach 1.090
+0.5bar_Lfix/E/wave: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 37.00 mm after it)
+   first cut with min Mx > 1.02: 6.13 mm after the inlet;  first cut from which it STAYS above: 6.13 mm
+     cut  6.0 mm: min axial Mach 1.017
+     cut  8.0 mm: min axial Mach 1.046
+     cut 10.0 mm: min axial Mach 1.071
+     cut 12.0 mm: min axial Mach 1.123
+     cut 14.0 mm: min axial Mach 1.163
+     cut 16.0 mm: min axial Mach 1.186
+     cut 18.0 mm: min axial Mach 1.213
+     cut 20.0 mm: min axial Mach 1.239
+     cut 24.0 mm: min axial Mach 1.274
+     cut 28.0 mm: min axial Mach 1.303
+     cut 32.0 mm: min axial Mach 1.280
+     cut 36.0 mm: min axial Mach 1.231
+1atm/C/lab: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 24.22 mm after it)
+   first cut with min Mx > 1.02: 11.12 mm after the inlet;  first cut from which it STAYS above: 11.12 mm
+     cut  6.0 mm: min axial Mach 0.979
+     cut  8.0 mm: min axial Mach 0.997
+     cut 10.0 mm: min axial Mach 1.006
+     cut 12.0 mm: min axial Mach 1.035
+     cut 14.0 mm: min axial Mach 1.085
+     cut 16.0 mm: min axial Mach 1.119
+     cut 18.0 mm: min axial Mach 1.124
+     cut 20.0 mm: min axial Mach 1.157
+     cut 24.0 mm: min axial Mach 1.141
+0.5bar_Lfix/C/lab: axial Mach on vertical cuts (inlet at x = 96.30 mm; lip 33.67 mm after it)
+   first cut with min Mx > 1.02: 11.12 mm after the inlet;  first cut from which it STAYS above: 11.12 mm
+     cut  6.0 mm: min axial Mach 0.982
+     cut  8.0 mm: min axial Mach 0.995
+     cut 10.0 mm: min axial Mach 1.004
+     cut 12.0 mm: min axial Mach 1.045
+     cut 14.0 mm: min axial Mach 1.088
+     cut 16.0 mm: min axial Mach 1.130
+     cut 18.0 mm: min axial Mach 1.137
+     cut 20.0 mm: min axial Mach 1.170
+     cut 24.0 mm: min axial Mach 1.193
+     cut 28.0 mm: min axial Mach 1.163
+     cut 32.0 mm: min axial Mach 1.086

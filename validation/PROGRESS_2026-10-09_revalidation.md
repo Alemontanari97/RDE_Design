@@ -111,3 +111,25 @@ harness: `validation/_revalidation_2026-10-07/HANDOFF_2026-10-08.md`; deliverabl
   31 GB) and `validation/_plug_contest/SDT` (96 files, 76 tracked) deleted; X-FRES noted (its SDT inputs are gone).
 - Open: the ideal bell's second top; the shape-mode margin that does
   not see converging characteristics (finding twowall:shape-margin-blind-to-convergence, F3.PLUG critical).
+
+## 2026-10-09 evening: the problem definition of the real-outflow campaign (census R47)
+- Opening (R8): consumer = the owner; exit criterion = a problem definition the owner approves as unambiguous ("non deve
+  essere necessariamente corta, basta che sia senza equivoci"); orchestration: 0 subagents, 0 workflows (advisor reviews only).
+- The owner's questions: how many phases the design needs, what the adjoints do with such a varied inflow, how the phases vote,
+  and that a reference method run in parallel solves the same problem.
+- Measured (validation/_problem_real_outflow/tools, outputs in out/): at 7.5 mm 40 % of the period is axially supersonic, at
+  12.5 mm 84 %; no station of the constant-area chamber is (smallest Mx 0.89 at 19.5 mm); a high-pressure, axially subsonic
+  slice sits behind the oblique shock; the ideal exhaust speed falls by only 0.2 % from 7.5 to 12.5 mm; the Q2D-HP family files
+  mix total stagnation with the axial Mach (+11 % mass and momentum if fed to the tool; finding
+  data-contract:q2dhp-family-total-stagnation-with-axial-mach; nothing consumed them).
+- Corrected in the window: a "3 % of ideal exhaust speed" quoted to the owner for a downstream station was wrong (computed from
+  the mass-averaged P0, not sample by sample: the right figure is 0.4-0.7 %); a "mixing loss" of the flux-conserving rule was a
+  mass-against-time weighting artefact (the time-mean P0 is kept within 0.2 %). Both corrected before any decision rested on them.
+- Decisions of the owner (quoted in the file, section 9): the optimisation independent of the CFD, a written simplified
+  convention for the subsonic phases, both stations, L = 58.45 mm from each station, the recommendations accepted. Committed:
+  validation/_problem_real_outflow/PROBLEM_DEFINITION.md + tools + outputs; the dated case-class note in M0 (R4); the finding;
+  the trigger note on contract:chi-character-map-unknown-band-missing; PROGRESS (ORA, NEXT, B-PROBDEF, R47) and its archive.
+- Open (B-PROBDEF): O1 the basis, O2 the lip point, O3 the decision thresholds, O4 the CFD grid check. A tool change is needed
+  for the veto on the real phases only (a per-phase mask in the carrier), gated by a unit test and the quick regression.
+- Not touched (owner's decision pending): the six modified tracked files of other windows (the twin protocol's A-INLET amendment
+  and the F3.TWIN log of 2026-10-05/06; four artifacts of carriers retired on 2026-10-09, rewritten by re-runs on 2026-10-02).

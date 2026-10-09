@@ -2535,6 +2535,17 @@ entries:
   mechanism: contract-slot-uninstantiated
   owner: "F2 contract window, sequenced with the C52 mixed-signature adjudication (choice-ledger row of the contract-diff agenda item)"
   trigger: "first use of the declared subsonic case-class (D1 sec.4.3bis O1-O4)"
+  note: "TRIGGER FIRED 2026-10-09 (census R47): the real-outflow campaign uses the declared subsonic case-class with closure O3 (validation/_problem_real_outflow/PROBLEM_DEFINITION.md, convention C5); its line Mx < 1.02 (the X-CHOK band) sends near-sonic phases to the conservative branch (the sonic surrogate), this row's prescription at a fixed band. The row stays CONFIRMED until the character map is a datum component of the contract."
+- id: data-contract:q2dhp-family-total-stagnation-with-axial-mach
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "validation/_q2d_hp_inflow/*_family_K*.json (written by RDE/codes/Q2D/test/GAILLARD_2CP/g2cp_inflow.py, outside this repository) carry T0 and P0 computed with the TOTAL Mach (swirl included) and M = the AXIAL Mach: fed to the carrier (TWOP_MU, no swirl) they march +11.1 percent mass and axial momentum over the cycle (+39 percent mass on phase 0), and TWOP_SWIRL=1 would count the swirl twice (measured, validation/_problem_real_outflow/out/family_contract.txt). The admission audit X-ADMA reads the other format (*_phases_K*.json, consistent for the CFD) and cannot see it: the family format carries no static state. Nothing consumed these files (the CFD and the mean states read the 528-sample rows); the real-outflow campaign builds its phases from the rows by its own convention (C1-C6)."
+  source: "validation/_problem_real_outflow/PROBLEM_DEFINITION.md#T0 and P0 with the total Mach but M axial"
+  code: []
+  mechanism: instrumentation-gap
+  owner: "the Q2D-HP inflow generator (the Q2D line) for the files; the data contract (X-ADMA) for an audit of the family format"
+  trigger: "any use of validation/_q2d_hp_inflow/*_family_K*.json as a design inflow, or any family file written without its static state"
 - id: contract:quasi-steady-apriori-admission-number-missing
   status: CONFIRMED
   path: non-critical
