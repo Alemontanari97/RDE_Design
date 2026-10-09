@@ -3013,3 +3013,16 @@ entries:
   suffices_symbolic: "n/a"
   falsifier: "the reach, limit and pair checks of t17 bellideal (failing as declared)."
   gamma: "EOS-general"
+- id: X-RVQCK
+  kind: carrier
+  ondemand: "env=jax; pass=2026-10-09; suite=default; envfp=9145bf10"
+  class: PRACTICE
+  scope: "THE QUICK REGRESSION of the tool (owner, 2026-10-09: quick, indicative tests that certify future versions with past cases; validation/_revalidation_2026-10-07/tests/quick_regression.py, executed by every full suite through the on-demand tier, about 7.5 minutes on one core, nothing written into the repository; its import closure holds the tool's modules, so any change to them makes this row stale until the regression is re-run and re-stamped). A: the fast model checks t01 (gas), t02 (cells), t09 (Rao 1961, Humphreys 1971) re-run with their output redirected, every row keeping its certified verdict. B: every certified landing of the eight optimiser cases ([X-PSPL], [X-OWSQ], [X-RAOSQ], [X-OWS3], [X-HMPH], [X-TWOP], [X-TOCV], [X-RVBEL]) and each case's reference re-marched on its walk grid against the certified thrust: IDENTICAL (relative change <= 1e-13), DRIFT (every landing's gap to the reference moved by less than a tenth of what one grid doubling does to the same gaps in the certified reading, and the reference by less than a tenth of its own level-1 to level-2 change), CHANGED (beyond); every march certified. C: the certified planar walk B0 re-run bit for bit. The classifier is checked first on synthetic changes. The GENO run outputs it reads are not in git (decks and md5 manifest are): absent, it stops with exit 2 and says how to regenerate them."
+  statement: "PASS on 2026-10-09 on the tree of commit b5ccf96 (423 s): t01/t02/t09 verdicts kept and values unmoved; the classifier reads a synthetic 1e-12 change as DRIFT and 1e-5 as CHANGED; all eight cases IDENTICAL (relative change 0; worst certificate 0.758); the rejector caught (the planar landing on the next grid, 3.7e-7: CHANGED); the planar walk B0 bit-identical. Rule for a future version: no case CHANGED; a DRIFT case is quoted only after its full protocol is re-run; a CHANGED case is re-certified with its full protocol."
+  doc: "validation/_revalidation_2026-10-07/tests/quick_regression.py"
+  proof: "validation/_revalidation_2026-10-07/tests/quick_regression.py"
+  inherits: []
+  carrier: []
+  suffices_symbolic: "n/a"
+  falsifier: "a case CHANGED or UNCERTIFIED, a verdict of t01/t02/t09 lost, the planar walk not bit-identical, the rejector not caught, or the classifier misreading a synthetic change"
+  gamma: "EOS-general"

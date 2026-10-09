@@ -97,10 +97,16 @@ harness: `validation/_revalidation_2026-10-07/HANDOFF_2026-10-08.md`; deliverabl
    carriers (`_frame_march`, `_humphreys_twin`, `_ourworld`, `_ourworld_nominal`, `_rao1961_posing`, `s25_spdb_m0.json`)
    and the F3.TWIN session's files of 10-05/06 (`_plug_contest/SDT/*`, `_twowall*`, `twowall_inlet_family*`).
 
+## Commit and quick regression (2026-10-09, owner's go: "ok possiamo committare")
+- Commit b5ccf96 (480 files: 388 added, 76 deleted, 16 modified; tag [F3.TWIN][PIANO/R46]); after it the claims lint
+  has 0 violations (every stamp fresh) and the fast suite on a clean copy of HEAD is 15/20 with the five
+  environmental reds of before.
+- THE QUICK REGRESSION (owner, 2026-10-09: "prove rapide ed indicative che ci permettano di certificare possibili versioni future con casi passati"): validation/_revalidation_2026-10-07/tests/quick_regression.py, carrier X-RVQCK, run by every full suite (on-demand tier, about 7.5 minutes on one core, nothing written into the repository). It re-runs the fast model checks (gas, cells, the papers' tables) against their certified verdicts, re-marches every certified landing of the eight optimiser cases on its walk grid against the certified thrust (IDENTICAL / DRIFT / CHANGED, the band = a tenth of what one grid doubling does to the same gaps in the certified reading), re-runs the certified planar walk bit for bit, and must catch a rejector (the planar landing on the next grid). Rule for a future version: no case CHANGED; a DRIFT case is quoted only after its full protocol is re-run; a CHANGED case is re-certified with its full protocol.
+
 ## HANDOFF
-- State: every re-run of 2026-10-09 done; registry, findings, M0, PROGRESS edited in the working tree; nothing
-  committed; push never without the owner's word.
-- Next atomic step: the owner's go -> the commit procedure above.
+- State: committed (b5ccf96, then the quick regression); push never without the owner's word.
+- Next atomic step: F3.TWIN on the real outflow (the Q2D-HP line); every future version of the tool passes the quick
+  regression first.
 - Done on the owner's yes ("per quei 3 hai il mio si"): X-CYCF retired; `RDE/handoff/plug_2026-09-29/sdt` (985 files,
   31 GB) and `validation/_plug_contest/SDT` (96 files, 76 tracked) deleted; X-FRES noted (its SDT inputs are gone).
 - Open: the ideal bell's second top; the shape-mode margin that does
