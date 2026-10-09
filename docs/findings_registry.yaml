@@ -3388,3 +3388,25 @@ entries:
   mechanism: model-credits-wall-waves
   owner: "the design line: two-wall and cowl walks in smooth wall bases (the owner's rule of 2026-10-01: no undulations, a smooth angle transition); the fine level (f) of the 2-D referee read on 2026-10-01: the loss grows with refinement, so the CFD resolution does not explain it"
   trigger: "any knot-height walk on two walls quoted without a smooth basis; any tool gain on a design whose wall angle oscillates along the wall (beyond the kernel's own turn and straightening)"
+- id: revalidation:carriers-retired-2026-10-09
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "23 on-demand carriers RETIRED by the owner's triage of 2026-10-09 after the revalidation of the optimiser (validation/_revalidation_2026-10-07): X-O31CS, X-RAOO3, X-OWO3, X-RAOFN, X-O33B, X-CDKAT, X-SPDB, X-FMTR, X-PAKN, X-PGRS, X-OWAB, X-PTRN, X-OWNM, X-MGOV, X-TBAK, X-IVLT, X-TKRN, X-ANKR, X-FRMR, X-TPOS, X-RAOWD, X-RDET, and X-CYCF (the synthetic SDT cycle family, retired on the owner's decision of 2026-10-09 that the real outflow replaces the SDT and THOR inlets). Their records (2026-08 .. 10-02) are not re-run and not certified: each is covered by a revalidation test, not used by the tool, or tied to a posing the owner excluded (the THOR outflow for nozzle design; Humphreys' unpublished throat). Stamped fail=2026-10-09: the lint's channel for a record nobody vouches for, not a failed re-run"
+  source: "validation/_revalidation_2026-10-07/doc/TRIAGE_2026-10-09.md#Retired (not re-run"
+  code: []
+  mechanism: superseded-record
+  owner: "the owner (program); reactivation of any one = a re-run of its own protocol on the committed code and a new stamp"
+  trigger: "a design claim, a paper section or a plan gate that cites one of these carriers as evidence; for X-IVLT, X-TKRN, X-ANKR, X-FRMR, X-TPOS also an inflow of the decisive comparison with subsonic parts at the nozzle's entry line"
+  note: "minted 2026-10-09 with the triage. The IDs stay in the registry because they are cited 182 times in brackets in docs/*.md, 73 of them in the append-only PROGRESS_ARCHIVE (orphan lint); the former statements are kept in each row as HISTORY"
+- id: bell:ideal-bell-second-top-open
+  status: CONFIRMED
+  path: non-critical
+  severity: medium
+  magnitude: "the optimiser on GENO's ideal bell at its full length (CH4/O2 frozen, eps 4; 8 points, lip pinned) converges from one of two starts on a SECOND strict local maximum of the computed thrust: theta_B 8.2 deg against 12.5, wall 29 mm per m away, -29 ppm at (81,240) and -42 at (161,480); the thrust dips 14 ppm on the straight line between the two results (t23); the secant Hessian is negative definite at both results and 64 true marches along its principal directions are all lower (t24). Checks C2 (stretched start) and C3 (both) of the revalidation FAIL: X-RVBEL is declared failing"
+  source: "validation/_revalidation_2026-10-07/doc/TRIAGE_2026-10-09.md#X-RVBEL"
+  code: []
+  mechanism: multimodal-objective
+  owner: "the bell sector (F4b) or the next bell campaign: a finer wall description that does not hit the march's jumps, then the same two starts"
+  trigger: "a bell design claim at full length, or a bell entering an arm of the decisive comparison"
+  note: "excluded so far: the 8-point wall (with 12 points the stretched start hits march jumps of -230 .. -345 N over 2e-5 wall changes), the omitted throat panel (t22: the coded objective is smooth where the panel count changes), the axial-margin rejector (the same 0.04 m/s at both results). Not settled: whether the second top exists in the continuous problem"

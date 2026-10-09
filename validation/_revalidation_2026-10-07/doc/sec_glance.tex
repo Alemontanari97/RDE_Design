@@ -1,0 +1,48 @@
+\section{At a glance}
+\textbf{The question.} Does the SQP optimiser (\texttt{run\_trsqp}, and the production walker \texttt{TwoWall.walk()}
+that drives it) find the optimum when the optimum is known? Every case below has an optimum known independently of the
+model: an exact bound, or Rao's variational contour computed by GENO (validated). GENO is branch
+\texttt{exp/ws-c-prod-nozzles} at \texttt{28c7e7a}, binary md5 \texttt{1e2e2729\dots}, with the Rao 2-DOF code present;
+its Rao runs here use the 1-DOF validation mode (\texttt{Me\_fixed}: Rao's own lip state); the older mass-match binary was
+never used. The analytic and Rao cases are run from two starts; the production carrier and the walker from one
+in-class start each.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lXcX@{}}\toprule
+\S & optimiser case (known optimum) & re-obtained? & key number\\\midrule
+\ref{s:planar} & Planar plug (exact ideal plug, $T=\dot mV_a$) & \yes, up to the spline basis & 2 distant starts $\to$ one point, $9\times10^{-6}$ below the bound\\
+\ref{s:raoch4} & Rao's plug, methane gas, lip Mach 1.556 (GENO's Rao) & \yes & shape $3\times10^{-4}$; $J$ $2\times10^{-6}$ below Rao at fine grids\\
+\ref{s:rao61} & Rao 1961, $\varepsilon=3.81$ (the paper's Table 1) & \no\ (default); \yes\ (short steps) & default stops $0.8$--$1.4\times10^{-5}$ short; one step per segment: 2 starts $\to$ one point ($1.7\times10^{-7}$), $1.3\times10^{-6}$ below Rao in the limit\\
+\ref{s:axial} & Axial exit: Rao's $\theta_E=0$ member ($T=\dot mV_a$) & \yes, up to the spline basis & 2 starts $\to$ one point; $4\times10^{-6}$ below Rao's contour in the limit (spline basis $2.8\times10^{-6}$); Rao's contour $=\dot mV_a$ within $6\times10^{-5}$\\
+\ref{s:migdal} & Production carrier, perfect annular nozzle ($F_\mathrm{1D}$), with and without the no-fold class & \yes & $1.3\times10^{-6}$ below GENO at the fine grid\\
+\ref{s:walker} & Production walker (Newton metric, class, its radius rule), same nozzle & \yes\ (in-class start); \no\ from the generic start & same point as \S\ref{s:migdal} in 3 records (Newton metric); generic start folds: nothing to walk\\\bottomrule
+\end{tabularx}\end{center}
+
+\textbf{The rule used for every case.} The walk maximises the march's thrust $J_h=J+e_h$, where $e_h$ is the march's
+shape-dependent error. Its landing satisfies $\nabla J=-\nabla e_h$, so it may sit \emph{above} the true optimum by up to
+$e_h$ at the walk's grid. The test is therefore: re-march finer; the excess must vanish. In every converged case
+(planar, methane, axial, annular, Rao 1961 with short steps) the landing beats the best design of its basis at the walk's
+grid --- the walk did its job on the objective it sees --- and falls 1--$2\times10^{-6}$ below it when re-marched finer:
+the measured cost of maximising $J_h$ rather than $J$.
+
+\plain{How to read the small numbers}{%
+All differences are fractions of the thrust: $10^{-6}$ is 1\,N per MN. They come from four ordinary sources.
+\emph{Computing error} --- the thrust is computed on a grid, like a measurement with a ruler; halving the grid spacing
+divides the error by about 4, and every result is re-measured on three grids. \emph{Shape representation} --- the
+designed wall is a smooth curve through 9--12 points; where the ideal wall bends abruptly (where the first wave from the
+lip lands) such a curve cannot follow it exactly, which costs a few $10^{-6}$. \emph{Tuning to the ruler} --- the
+optimiser only sees the coarse-grid thrust and also exploits that grid's small errors; re-measured on a fine grid, its
+result loses 1--$2\times10^{-6}$. \emph{Flat top} --- near the optimum many shapes give almost the same thrust, so shapes
+can differ by 0.3--0.5\,mm per metre while the thrust differs by less than $10^{-6}$.}
+
+\textbf{What the optimiser stands on} (checked first, \S\ref{s:der}--\ref{s:t06}): its gradient is the derivative of the
+march it accepts (AD = FD within $10^{-5}$); the march converges at order 2 to exact solutions (planar fan, axisymmetric
+source flow) and to GENO's wall pressures; Rao's and Humphreys' printed contours are reproduced by GENO within their
+printing (\S\ref{s:lit}).
+
+\textbf{Defects found} (\S\ref{s:defects}): (1) a wall cell's damped Newton stalls where the $C^+$ is nearly horizontal
+($\theta+\mu\approx0$, steep plugs): correct marches are rejected; the rescue fixes it (opt-in on 10-07, the default since 10-08). (2) The SQP's restoration
+step is inert: a start outside the no-fold class never moves. (3) With the class on, scipy's interior-point segment can
+return a worse point: the walk stalls. (4) The stop rule (two short steps) fires on ill-conditioned objectives while
+the gradient is still large (Rao 1961's plug): the walk stops short; one-step segments reach the optimum from both
+starts, at about 2 hours per walk. \textbf{Physics limit:} the low-$P_0$ phases of the 12-phase cycle fold; their objective is undefined there.

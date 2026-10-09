@@ -1,0 +1,381 @@
+{
+ "test": "t10_summary",
+ "n_pass": 9,
+ "n": 12,
+ "rows": [
+  {
+   "label": "rao61_e381_pbR_mi15, bump: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": -6.994448890351014e-06,
+   "tol": 2.208279832479729e-07,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15, half: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": -1.213544548658181e-05,
+   "tol": 4.727460950691808e-07,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15, cont_bump_it2: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": 6.273836683383183e-07,
+   "tol": 9.030097742450604e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15, cont_half_it2: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": 4.550058752210503e-07,
+   "tol": 1.4635126348696156e-09,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15: every re-march of the ladder certified",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15: pair bump / half -- one value, within the grid's resolution of differences (yardstick)",
+   "value": 5.141065656744104e-06,
+   "tol": 8.708670687328309e-07,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "rao61_e381_pbR_mi15: pair cont_bump_it2 / cont_half_it2 -- one value, within the grid's resolution of differences (yardstick)",
+   "value": 1.723779383677737e-07,
+   "tol": 8.708670687328309e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "axial_e381_RD04_mi15, bump: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": 4.4695348283738423e-07,
+   "tol": 3.152514836473085e-09,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "axial_e381_RD04_mi15, half: reach -- the landing is not below the best spline by more than the remaining gain",
+   "value": 4.4689503589330715e-07,
+   "tol": 2.2136754929997086e-09,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "axial_e381_RD04_mi15: every re-march of the ladder certified",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "axial_e381_RD04_mi15: pair bump / half -- one value, within the grid's resolution of differences (yardstick)",
+   "value": 5.844769113139137e-11,
+   "tol": 9.045806558691823e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "axial_e381_RD04_mi15: GENO's contour reaches the bound mdot V_a in the limit (Richardson)",
+   "value": -4.703376563267481e-05,
+   "tol": 6.385862033700851e-05,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 1362.6776287555695,
+ "extra": {
+  "rao61_e381_pbR_mi15": {
+   "ladder": [
+    {
+     "level": 1,
+     "K": 120,
+     "N": 132,
+     "geno": 7164849.79040093,
+     "cert_geno": 0.5660429111613073,
+     "bound": 7213401.109509439,
+     "fit": 7164840.4928224,
+     "cert_fit": 0.28426966071992527,
+     "bump": 7164790.37881751,
+     "cert_bump": 0.24004386810709535,
+     "half": 7164753.544107879,
+     "cert_half": 0.41114998126249597,
+     "cont_bump_it2": 7164844.987567795,
+     "cert_cont_bump_it2": 0.37638482562458603,
+     "cont_half_it2": 7164843.752550209,
+     "cert_cont_half_it2": 0.38414340857125284
+    },
+    {
+     "level": 2,
+     "K": 240,
+     "N": 262,
+     "geno": 7162908.223442476,
+     "cert_geno": 0.6288908117648794,
+     "bound": 7213403.723490657,
+     "fit": 7162903.271922482,
+     "cert_fit": 0.3151257875809878,
+     "bump": 7162843.0844467245,
+     "cert_bump": 0.9320055711613854,
+     "half": 7162805.061988767,
+     "cert_half": 0.695530410021458,
+     "cont_bump_it2": 7162897.973935434,
+     "cert_cont_bump_it2": 0.5627232151773047,
+     "cont_half_it2": 7162896.48487773,
+     "cert_cont_half_it2": 0.5703852659494061
+    },
+    {
+     "level": 3,
+     "K": 480,
+     "N": 522,
+     "geno": 7162403.564215779,
+     "cert_geno": 0.45616255800359373,
+     "bound": 7213404.398786639,
+     "fit": 7162400.507315226,
+     "cert_fit": 0.11172231507153892,
+     "bump": 7162340.037759047,
+     "cert_bump": 0.48203851503809736,
+     "half": 7162301.012238979,
+     "cert_half": 0.9277516540531633,
+     "cont_bump_it2": 7162393.438816019,
+     "cert_cont_bump_it2": 0.9270571367406121,
+     "cont_half_it2": 7162392.160087327,
+     "cert_cont_half_it2": 0.6176891805570902
+    }
+   ],
+   "limits": {
+    "bump": [
+     -8.445299639516214e-06,
+     2.6650355390342965e-09,
+     4.0
+    ],
+    "half": [
+     -1.3914624143958057e-05,
+     2.332699007400794e-08,
+     3.126529717834104
+    ],
+    "cont_bump_it2": [
+     -1.041484040646902e-06,
+     5.45947732115421e-08,
+     2.466959494116663
+    ],
+    "cont_half_it2": [
+     -1.205503055595583e-06,
+     4.0080327803278766e-08,
+     2.6862742227329712
+    ],
+    "fit": [
+     -2.2222759096228993e-07,
+     2.0457055382222402e-07,
+     1.1971269288933462
+    ],
+    "geno_over_bound": [
+     -0.00709488995285264,
+     2.4603614901269437e-05,
+     1.9438524198755966
+    ]
+   },
+   "J_geno_walk": 7164845.422777201,
+   "J_fit_walk": 7164836.125206536,
+   "walks": {
+    "bump": {
+     "start": -0.00011887462270876448,
+     "landing": -8.292114103913839e-06,
+     "over_bound": -0.006738040793593858,
+     "dy_max": 0.002807657118554574,
+     "grad": 0.0018843987903827022,
+     "remaining": 2.208279832479729e-07,
+     "bases": 14,
+     "seconds": 2932.4991528987885,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "backtrack": 4,
+      "tr0": 0.01,
+      "tr_floor": 3.90625e-05,
+      "max_segments": 30,
+      "maxiter": 6
+     }
+    },
+    "half": {
+     "start": -0.003187611744912555,
+     "landing": -1.3433110700122874e-05,
+     "over_bound": -0.00674314719228819,
+     "dy_max": 0.0035375262546621933,
+     "grad": 0.004034100011257009,
+     "remaining": 4.727460950691808e-07,
+     "bases": 21,
+     "seconds": 4389.021823644638,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "backtrack": 4,
+      "tr0": 0.01,
+      "tr_floor": 3.90625e-05,
+      "max_segments": 30,
+      "maxiter": 6
+     }
+    },
+    "cont_bump_it2": {
+     "start": -8.292114103913839e-06,
+     "landing": -6.702815451564703e-07,
+     "over_bound": -0.006730470254478149,
+     "dy_max": 0.00048447578295207627,
+     "grad": 0.0003010032580816868,
+     "remaining": 9.030097742450604e-10,
+     "bases": 59,
+     "seconds": 7681.196748971939,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "backtrack": 4,
+      "tr0": 0.001,
+      "tr_floor": 1e-06,
+      "max_segments": 60,
+      "maxiter": 2
+     }
+    },
+    "cont_half_it2": {
+     "start": -1.3433110700122874e-05,
+     "landing": -8.426593383070724e-07,
+     "over_bound": -0.00673064147220237,
+     "dy_max": 0.0005666892705141757,
+     "grad": 0.0004878375449565385,
+     "remaining": 1.4635126348696156e-09,
+     "bases": 54,
+     "seconds": 6727.419579982758,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "metric": "",
+      "backtrack": 4,
+      "tr0": 0.001,
+      "tr_floor": 1e-06,
+      "max_segments": 60,
+      "maxiter": 2
+     }
+    }
+   }
+  },
+  "axial_e381_RD04_mi15": {
+   "ladder": [
+    {
+     "level": 1,
+     "K": 120,
+     "N": 132,
+     "geno": 5915016.069025865,
+     "cert_geno": 0.0699579677628643,
+     "bound": 5914150.240250894,
+     "fit": 5914948.894894441,
+     "cert_fit": 0.0699579677628643,
+     "bump": 5914951.538741799,
+     "cert_bump": 0.09214717013611387,
+     "half": 5914951.538394215,
+     "cert_half": 0.0699579677628643
+    },
+    {
+     "level": 2,
+     "K": 240,
+     "N": 262,
+     "geno": 5914530.658295078,
+     "cert_geno": 0.288035022242501,
+     "bound": 5914151.516772917,
+     "fit": 5914519.8617984485,
+     "cert_fit": 0.21182284256531606,
+     "bump": 5914512.82631748,
+     "cert_bump": 0.24822664090886926,
+     "half": 5914512.9425831335,
+     "cert_half": 0.822759399142757
+    },
+    {
+     "level": 3,
+     "K": 480,
+     "N": 522,
+     "geno": 5914251.43917485,
+     "cert_geno": 0.5306922805346195,
+     "bound": 5914151.934427854,
+     "fit": 5914237.772905241,
+     "cert_fit": 0.7424937927498378,
+     "bump": 5914231.594523226,
+     "cert_bump": 0.14579586270499237,
+     "half": 5914231.701161172,
+     "cert_half": 0.7487037423339316
+    }
+   ],
+   "limits": {
+    "bump": [
+     -8.997952241055309e-07,
+     1.4486479388615333e-07,
+     1.0
+    ],
+    "half": [
+     -8.83391503565193e-07,
+     1.4323783929765553e-07,
+     1.0
+    ],
+    "fit": [
+     -2.796051613596181e-06,
+     4.853163076451043e-07,
+     1.0
+    ],
+    "geno_over_bound": [
+     -4.703376563267481e-05,
+     6.385862033700851e-05,
+     0.7994414034294379
+    ]
+   },
+   "J_geno_walk": 5915012.251484002,
+   "J_fit_walk": 5914945.077399738,
+   "walks": {
+    "bump": {
+     "start": -0.0001886284208182376,
+     "landing": -1.0909588381791124e-05,
+     "over_bound": 0.00013592649039861904,
+     "dy_max": 0.00038609304892245344,
+     "grad": 2.690145993790366e-05,
+     "remaining": 3.152514836473085e-09,
+     "bases": 10,
+     "seconds": 2134.9619760513306,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "backtrack": 4,
+      "tr0": 0.01,
+      "tr_floor": 3.90625e-05,
+      "max_segments": 30,
+      "maxiter": 6
+     }
+    },
+    "half": {
+     "start": -0.013123370289381042,
+     "landing": -1.09096468287051e-05,
+     "over_bound": 0.0001359264319429343,
+     "dy_max": 0.0003824653447911386,
+     "grad": 1.8890030873597512e-05,
+     "remaining": 2.2136754929997086e-09,
+     "bases": 20,
+     "seconds": 4506.975570678711,
+     "switches": {
+      "PSPL_JSCALE": "radius",
+      "PSPL_TRFOLLOW": "1",
+      "A1_NEWTON_RESCUE": "1",
+      "backtrack": 4,
+      "tr0": 0.01,
+      "tr_floor": 3.90625e-05,
+      "max_segments": 30,
+      "maxiter": 6
+     }
+    }
+   }
+  }
+ }
+}

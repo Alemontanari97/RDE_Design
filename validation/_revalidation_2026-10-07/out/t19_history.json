@@ -1,0 +1,44 @@
+{
+ "bump": {
+  "old": {
+   "bases": 14,
+   "seconds": 2932.4991528987885,
+   "records": 14,
+   "landing_minus_fit": -6.994448890351014e-06
+  },
+  "cont": {
+   "bases": 59,
+   "seconds": 7681.196748971939,
+   "records": 59,
+   "landing_minus_fit": 6.273836683383183e-07
+  },
+  "new": {
+   "bases": 4,
+   "seconds": 4887.638150691986,
+   "records": 4,
+   "landing_minus_fit": 7.742941881635599e-07,
+   "stop": "CONVERGED"
+  }
+ },
+ "half": {
+  "old": {
+   "bases": 21,
+   "seconds": 4389.021823644638,
+   "records": 21,
+   "landing_minus_fit": -1.213544548658181e-05
+  },
+  "cont": {
+   "bases": 54,
+   "seconds": 6727.419579982758,
+   "records": 54,
+   "landing_minus_fit": 4.550058752210503e-07
+  },
+  "new": {
+   "bases": 8,
+   "seconds": 6621.847657203674,
+   "records": 8,
+   "landing_minus_fit": 7.726016668683136e-07,
+   "stop": "CONVERGED"
+  }
+ }
+}

@@ -1,0 +1,378 @@
+{
+ "test": "t09_literature",
+ "n_pass": 19,
+ "n": 21,
+ "rows": [
+  {
+   "label": "Rao e381: our ED satisfies the C- compatibility (10), max residual per step",
+   "value": 8.596346799270762e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381: ED cut at the printed R_D reproduces L, eps, C_F, theta_D (max |diff| / tolerance; worst: th_D)",
+   "value": 1.1585282745210743,
+   "tol": 1.0,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381, p_b = 0: GENO's L, M_D, eps, C_F vs our solver (max relative difference)",
+   "value": 3.618219594447858e-05,
+   "tol": 0.0002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381, cut at Rao's D: GENO's L, M_D, eps, C_F vs our solver (max relative difference)",
+   "value": 0.0001497970935377957,
+   "tol": 0.0002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381: printed contour vs GENO, 15 points downstream of x_s, max |normal distance| / R_E",
+   "value": 0.0008142547822709501,
+   "tol": 0.001,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069: our ED satisfies the C- compatibility (10), max residual per step",
+   "value": 1.2423495764849867e-15,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069: ED cut at the printed R_D reproduces L, eps, C_F, theta_D (max |diff| / tolerance; worst: C_F)",
+   "value": 0.6613457047442113,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069, p_b = 0: GENO's L, M_D, eps, C_F vs our solver (max relative difference)",
+   "value": 8.22071680761649e-06,
+   "tol": 0.0002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069, cut at Rao's D: GENO's L, M_D, eps, C_F vs our solver (max relative difference)",
+   "value": 3.6518490891479516e-05,
+   "tol": 0.0002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069: printed contour vs GENO, 16 points downstream of x_s, max |normal distance| / R_E",
+   "value": 0.0006638421877861124,
+   "tol": 0.001,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381: p_a / P_c from (8) vs printed 0.0355",
+   "value": 6.460909009926158e-05,
+   "tol": 5e-05,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381 ideal spike: C_F (one-dimensional, exact) vs printed 1.5909",
+   "value": -3.1487215428338544e-05,
+   "tol": 5e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e1069 ideal spike: C_F (one-dimensional, exact) vs printed 1.7326",
+   "value": 3.716249196394905e-05,
+   "tol": 5e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Rao e381 ideal spike: length sqrt(M_a^2-1) vs the text's 2.428",
+   "value": 0.0002551893829640939,
+   "tol": 0.0005,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rejector: Rao e1069: ED cut at the printed R_D vs the printed L, eps, C_F, theta_D (max ratio), gamma 1.24",
+   "value": 182.30739867565958,
+   "tol": 1.0,
+   "ok": true,
+   "unit": "",
+   "rejector": true
+  },
+  {
+   "label": "HTH 1971 Rao nozzle: our R_E vs printed 8.33 in",
+   "value": 0.0011290889856638842,
+   "tol": 0.005,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "HTH 1971 Rao nozzle: our R_D vs Table 3 end point 1.37506 in",
+   "value": 1.4946666027970679e-05,
+   "tol": 0.0001,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "HTH 1971 Rao nozzle: our theta_D vs Table 3 -13.25333 deg",
+   "value": 1.1151883818172337e-05,
+   "tol": 0.005,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "HTH 1971 Rao nozzle: our thrust vs printed 34,253 lbf (their two methods differ by 2 lbf)",
+   "value": 0.6359089949692134,
+   "tol": 5.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "HTH 1971: GENO's L, M_D, p_a vs our solver (max relative difference)",
+   "value": 1.6857035615158722e-05,
+   "tol": 0.0002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "HTH 1971: Table 3 vs GENO, 18 points downstream of x_s, max |normal distance| / R_E",
+   "value": 3.673951987451995e-05,
+   "tol": 0.001,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 7.118093967437744,
+ "extra": {
+  "e381": {
+   "printed": {
+    "M_E": 2.4,
+    "th_E": -8.25,
+    "p_a": 0.0355,
+    "eps": 3.81,
+    "L": 1.164,
+    "R_D": 0.137,
+    "C_F": 1.5804,
+    "th_D": -19.73,
+    "ideal_L": 2.433,
+    "ideal_L_text": 2.428,
+    "ideal_C_F": 1.5909,
+    "trunc_R_D": 0.245,
+    "trunc_C_F": 1.5783
+   },
+   "exact": {
+    "L": 1.17666872445835,
+    "R_D": 0.12331044596556048,
+    "eps": 3.795459238711287,
+    "C_F": 1.5802802171978534,
+    "th_D": -20.646255214004196,
+    "M_D": 2.192910285358874,
+    "p_a": 0.03556460909009926
+   },
+   "cut": {
+    "L": 1.1639985388846295,
+    "R_D": 0.1369999198359162,
+    "eps": 3.809432489639938,
+    "C_F": 1.580400248403426,
+    "th_D": -19.686809318156,
+    "M_D": 2.202945852930383
+   },
+   "pb_cut": 0.0033074956353629503,
+   "geno_exact": {
+    "L": 1.17662615,
+    "R_D": 0.123341726,
+    "M_D": 2.192928757324536,
+    "th_D": -20.64670889966673,
+    "p_a": 0.03556461666666667,
+    "eps": 3.7954901652913513,
+    "C_F": 1.5802805510584625
+   },
+   "geno_cut": {
+    "L": 1.16397288,
+    "R_D": 0.137016964,
+    "M_D": 2.2029539514317364,
+    "th_D": -19.686991300201754,
+    "p_a": 0.03556461666666667,
+    "eps": 3.8094515881990643,
+    "C_F": 1.5806369877672632
+   },
+   "dist": [
+    0.0006976870921230105,
+    -0.0004155312486911334,
+    5.6821938693128954e-05,
+    -0.00022972267013798928,
+    -0.0006698487803238748,
+    0.00019670557864852556,
+    -0.00013201569740049787,
+    2.8186346656668087e-05,
+    -0.0008072616387101602,
+    -0.0006527285191201135,
+    6.894203575092272e-05,
+    -0.00012866607251019077,
+    -0.0006535252470911377,
+    -0.00039504280897770147,
+    -0.0008142547822709501,
+    -3.198838981275857e-05
+   ],
+   "inside": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "ideal": {
+    "M_a": 2.626104199144675,
+    "L": 2.428255189382964,
+    "C_F": 1.5908685127845716,
+    "p_a": 0.04403336254270639
+   }
+  },
+  "e1069": {
+   "printed": {
+    "M_E": 3.2,
+    "th_E": -6.0,
+    "eps": 10.69,
+    "L": 1.731,
+    "R_D": 0.126,
+    "C_F": 1.7269,
+    "th_D": -14.94,
+    "ideal_L": 3.271,
+    "ideal_C_F": 1.7326,
+    "trunc_C_F": 1.7252
+   },
+   "exact": {
+    "L": 1.7392883881972863,
+    "R_D": 0.12052746221879915,
+    "eps": 10.676729638667364,
+    "C_F": 1.726845994958633,
+    "th_D": -15.25166391946384,
+    "M_D": 3.023078192110616,
+    "p_a": 0.008868709157364046
+   },
+   "cut": {
+    "L": 1.7312957176021655,
+    "R_D": 0.1260006726216836,
+    "eps": 10.690896163444693,
+    "C_F": 1.7268657430288672,
+    "th_D": -14.94442797655128,
+    "M_D": 3.0261354009509445
+   },
+   "pb_cut": 0.000371179255989354,
+   "geno_exact": {
+    "L": 1.73927409,
+    "R_D": 0.120533833,
+    "M_D": 3.0230829589427137,
+    "th_D": -15.251689713893871,
+    "p_a": 0.008868708333333333,
+    "eps": 10.676746339816253,
+    "C_F": 1.7268460304545994
+   },
+   "geno_cut": {
+    "L": 1.73127375,
+    "R_D": 0.126011566,
+    "M_D": 3.026141931492368,
+    "th_D": -14.94445954549597,
+    "p_a": 0.008868708333333333,
+    "eps": 10.690925635510546,
+    "C_F": 1.7269288055597747
+   },
+   "dist": [
+    0.006630155474450788,
+    -0.0006638421877861124,
+    -6.654261597232407e-05,
+    0.0003341447616190637,
+    -0.0002441232996468578,
+    0.0003513458393225589,
+    -0.00031396640274696284,
+    -0.00024298585735551292,
+    6.964409867745354e-05,
+    0.0005121413751901974,
+    -0.000247846017876974,
+    0.0001968004501202837,
+    -0.0006060922120246651,
+    -0.00029125264445817854,
+    -0.0001766115968285656,
+    -0.000305268981961776,
+    -8.175529262866787e-05
+   ],
+   "inside": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "ideal": {
+    "M_a": 3.416061425261562,
+    "L": 3.2664163331026947,
+    "C_F": 1.7326371624919639,
+    "p_a": 0.01055659347779216
+   }
+  },
+  "hth": {
+   "R_E_in": 8.331129088985664,
+   "R_D_in": 1.375074946666028,
+   "th_D": -13.253318848116182,
+   "thrust_lbf": 34253.63590899497,
+   "M_E": 2.6021591866600513,
+   "th_E": -6.001608356489116,
+   "geno_L": 1.38247958,
+   "ours_L": 1.3825028849003689,
+   "dist": [
+    0.00014909513495578385,
+    5.448414213101059e-06,
+    9.25011858818199e-06,
+    1.2040806615277143e-05,
+    1.4173075442304416e-05,
+    1.5645193052365184e-05,
+    1.6496768140891717e-05,
+    1.7818660092476574e-05,
+    1.888022449620947e-05,
+    1.7884136617648472e-05,
+    1.7769275466465253e-05,
+    1.715116358781996e-05,
+    1.39841924080733e-05,
+    9.01997334245032e-06,
+    1.7839536505495092e-07,
+    -1.1696101045269512e-05,
+    -2.5822909840631697e-05,
+    -3.673951987451995e-05,
+    -2.8011653140167367e-05
+   ]
+  }
+ }
+}

@@ -1,0 +1,146 @@
+{
+ "test": "t08a_summary",
+ "n_pass": 9,
+ "n": 11,
+ "rows": [
+  {
+   "label": "O1 A0_K80 reaches the class optimum in value: J(landing) - J(fit) >= -1e-7 T",
+   "value": 1.4424201123519609e-06,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O1 B0_K80 reaches the class optimum in value: J(landing) - J(fit) >= -1e-7 T",
+   "value": 6.722926696456355e-07,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O1 B0_K80_f256 reaches the class optimum in value: J(landing) - J(fit) >= -1e-7 T",
+   "value": 1.7058516066370544e-06,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O1 C0_K80_f256 reaches the class optimum in value: J(landing) - J(fit) >= -1e-7 T",
+   "value": 1.7061835025922178e-06,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O2 B and C (distant starts) land on the same value",
+   "value": -3.318959551634748e-10,
+   "tol": 1e-08,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O2 B and C land on the same contour (max |dy|)",
+   "value": 0.00011543050595912152,
+   "tol": 0.002,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O3 at (320,81) the landing B is not above the fit beyond the march's own error (one-sided)",
+   "value": -1.423512469345134e-06,
+   "tol": 1.6761161125700141e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O3 at (320,81) the landing C is not above the fit beyond the march's own error (one-sided)",
+   "value": -1.320566437645887e-06,
+   "tol": 1.6761161125700141e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O5 the exact optimum mdot V_a is the march's limit on the ideal contour (finest |J/T - 1| <= 2|change|)",
+   "value": 1.6761161125700141e-07,
+   "tol": 3.6878844507093334e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "O6 the representation's cost: the class optimum (the fit) is below the exact optimum by more than the march's error [expected: the 12-knot spline cannot follow the ideal's curvature jumps]",
+   "value": -9.131436951248517e-06,
+   "tol": 2.676116112570014e-07,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "O4 the class-constrained walk B1 reaches the unconstrained value (within 1e-6 T) [stall expected]",
+   "value": -7.171905566361048e-05,
+   "tol": 1e-06,
+   "ok": false,
+   "unit": ""
+  }
+ ],
+ "seconds": 486.9370939731598,
+ "extra": {
+  "rows": [
+   {
+    "K": 80,
+    "N": 21,
+    "fit": -1.085397900491003e-05,
+    "B": -9.148127398272976e-06,
+    "C": -9.147795502317813e-06,
+    "A": -9.41155889255807e-06,
+    "ideal": 4.092092144913906e-06
+   },
+   {
+    "K": 160,
+    "N": 41,
+    "fit": -7.053541752677361e-06,
+    "B": -8.868245873872027e-06,
+    "C": -8.73018702496342e-06,
+    "A": -7.97935131169325e-06,
+    "ideal": 2.011553836611668e-06
+   },
+   {
+    "K": 320,
+    "N": 81,
+    "fit": -8.963825339991516e-06,
+    "B": -1.038733780933665e-05,
+    "C": -1.0284391777637403e-05,
+    "A": -9.783877270908015e-06,
+    "ideal": 1.6761161125700141e-07
+   }
+  ],
+  "walks": {
+   "A0_K80": {
+    "gap": -9.41155889255807e-06,
+    "dy": 0.0007458458748708652
+   },
+   "B0_K80": {
+    "gap": -1.0181686335264395e-05,
+    "dy": 0.0033561946172641632
+   },
+   "B0_K80_f256": {
+    "gap": -9.148127398272976e-06,
+    "dy": 0.0015757821584276993
+   },
+   "C0_K80_f256": {
+    "gap": -9.147795502317813e-06,
+    "dy": 0.0014624561979639933
+   },
+   "B1_K80": {
+    "gap": -8.086718306188345e-05,
+    "dy": 0.013790619157667244
+   },
+   "B1_K80_f256": {
+    "gap": -4.9410304822194995e-05,
+    "dy": 0.011857460111237922
+   },
+   "A1_K80": {
+    "gap": -0.0008324479971281162,
+    "dy": 0.020075681028787373
+   }
+  }
+ }
+}

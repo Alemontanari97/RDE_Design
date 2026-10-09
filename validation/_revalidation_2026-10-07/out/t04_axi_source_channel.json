@@ -1,0 +1,188 @@
+{
+ "test": "t04_axi_source_channel",
+ "n_pass": 13,
+ "n": 13,
+ "rows": [
+  {
+   "label": "R0 reference: momentum theorem (walls + inlet) / exit-plane flux - 1",
+   "value": 3.369144963016879e-10,
+   "tol": 2e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "R0 reference: mass through the exit plane / analytic rate - 1",
+   "value": -1.1675049815806915e-10,
+   "tol": 2e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S1 plug wall pressure L1 decreases at every refinement",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S1 plug wall pressure L1 order, two finest grids (>= 1.5)",
+   "value": 2.0066439280505572,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S1 shroud wall pressure L1 decreases at every refinement",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S1 shroud wall pressure L1 order, two finest grids (>= 1.5)",
+   "value": 2.0183435850099123,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S2 field speed max error order, two finest grids (>= 1.5)",
+   "value": 1.9928869635762918,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S3 mass, last column (finest), band 2|change|",
+   "value": 1.606469746695538e-05,
+   "tol": 9.66760791677678e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S3 mass, start column (finest) vs analytic, band 2|change|",
+   "value": 1.1504881323176619e-06,
+   "tol": 7.041867018742127e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S4 thrust (carrier's functional) vs exact (finest), band 2|change|",
+   "value": 1.033603991373866e-05,
+   "tol": 6.220440806927732e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S4 thrust error order, two finest grids (>= 1.5)",
+   "value": 2.003279302739523,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "S5 worst certificate <= 1",
+   "value": 0.0576209271751075,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rejector: S4 thrust vs exact (finest), march without the axisymmetric source term",
+   "value": 0.33582579117077827,
+   "tol": 4.2823651950207795e-05,
+   "ok": true,
+   "unit": "",
+   "rejector": true
+  }
+ ],
+ "seconds": 277.0305631160736,
+ "extra": {
+  "grids": [
+   {
+    "K": 40,
+    "N": 11,
+    "plug": [
+     0.0008135524916871985,
+     0.0015661089918461147
+    ],
+    "shroud": [
+     0.00033619452460642736,
+     0.0008032791568223808
+    ],
+    "field": 0.00018521208764354924,
+    "mass": 0.0010205106918685924,
+    "mass_in": 7.501063247850048e-05,
+    "T": 1652666.7629145174,
+    "Tx": 1651573.418559142,
+    "eT": 0.0006620016664651285,
+    "cert": 0.03353525270508428,
+    "lip": 33,
+    "n": 1367
+   },
+   {
+    "K": 80,
+    "N": 21,
+    "plug": [
+     0.00020446021330207804,
+     0.0004106212433617483
+    ],
+    "shroud": [
+     8.35880021738893e-05,
+     0.0001982911092142314
+    ],
+    "field": 4.720561234172749e-05,
+    "mass": 0.0002575741514014851,
+    "mass_in": 1.8750224024755013e-05,
+    "T": 1651847.2732564807,
+    "Tx": 1651573.418559142,
+    "eT": 0.00016581442536023339,
+    "cert": 0.049377190051501485,
+    "lip": 64,
+    "n": 5272
+   },
+   {
+    "K": 160,
+    "N": 41,
+    "plug": [
+     5.127530580535153e-05,
+     0.00010341903915403399
+    ],
+    "shroud": [
+     2.079100404757573e-05,
+     5.139322421911705e-05
+    ],
+    "field": 1.1917485590928756e-05,
+    "mass": 6.440273655083928e-05,
+    "mass_in": 4.671421141688725e-06,
+    "T": 1651641.856860533,
+    "Tx": 1651573.418559142,
+    "eT": 4.143824344837732e-05,
+    "cert": 0.04989279641656882,
+    "lip": 127,
+    "n": 20776
+   },
+   {
+    "K": 320,
+    "N": 81,
+    "plug": [
+     1.2759928658177458e-05,
+     2.5797511551826456e-05
+    ],
+    "shroud": [
+     5.132081000720569e-06,
+     1.2778345942508027e-05
+    ],
+    "field": 2.994097106134852e-06,
+    "mass": 1.606469746695538e-05,
+    "mass_in": 1.1504881323176619e-06,
+    "T": 1651590.4892879166,
+    "Tx": 1651573.418559142,
+    "eT": 1.033603991373866e-05,
+    "cert": 0.0576209271751075,
+    "lip": 253,
+    "n": 82499
+   }
+  ]
+ }
+}

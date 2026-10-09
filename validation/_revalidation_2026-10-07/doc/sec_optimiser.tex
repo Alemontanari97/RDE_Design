@@ -1,0 +1,82 @@
+\section{The optimiser against known optima}\label{s:opt}
+The driver is \texttt{run\_trsqp} with the production switches (backtracking 4, objective scaled by the radius, radius
+follows the step). Each case has an optimum known independently of the model, and is run from at least two starts.
+
+\textbf{The bound.} On a plane downstream of any shock-free plug with the jet edge and the base at $p_a$, the thrust is
+$T=\int(\rho u^2+p-p_a)\,dA$. Per unit mass, with $u=V\cos\theta\le V$,
+\begin{equation}
+u+\frac{p-p_a}{\rho u}\le V+\frac{p-p_a}{\rho V}\le V_a,\qquad
+\text{since}\ \ \frac{d}{dp}\Big[V+\frac{p-p_a}{\rho V}\Big]=-\frac{p-p_a}{(\rho V)^2}\,\frac{d(\rho V)}{dp}\ \ \text{and}\ \ \frac{d(\rho V)}{dp}>0\ \text{(supersonic)},
+\end{equation}
+so $T\le\dot mV_a$, with equality only for a uniform axial exit at $p_a$ (the ideal plug). In vacuum with a fixed exit
+area the same argument gives $F_\mathrm{1D}$ (the perfect nozzle). On a fixed inflow and a fixed end point, Rao's
+contour is the optimum (Humphreys et al.\ 1971 confirm it numerically).
+
+\subsection{Planar plug: the exact ideal plug (9/11)}\label{s:planar}
+The planar flow of \S\ref{s:t03}; the plug is a cubic spline through 12 knots; optimum $T=\dot mV_a$.
+\begin{center}\includegraphics[width=\linewidth]{../figs/11_profiles_planar.png}\end{center}
+\verdict{\yes, up to the basis. The two distant starts (the ideal plug of a $15^\circ$ fan, $1.6\times10^{-3}$ below;
+a straight line, $3\times10^{-2}$ below) land on one contour ($1.2\times10^{-4}$) and one value ($3\times10^{-10}$),
+$9.1\times10^{-6}$ below the bound; the start near the ideal, run with a 16 times coarser radius floor, stops
+$2.6\times10^{-7}$ lower. That gap is the spline's: the ideal plug's curvature jumps where the fan's first wave lands ($x=0.666$), a
+$C^2$ spline cannot, its wall-angle error is $\delta\theta_\mathrm{rms}=2.1\times10^{-3}$ rad, and at a maximum
+$\Delta T/T\approx-2\,\delta\theta_\mathrm{rms}^2=-9\times10^{-6}$. The march itself converges to $\dot mV_a$ on the exact
+ideal contour ($+1.7\times10^{-7}$ at 320 stations).}
+\textbf{With the no-fold class on: no.} From a start inside the class the walk stalls at $-4.9\times10^{-5}$ while the
+class is far from active (margin $+0.59$): scipy's interior-point segment returns a point worse than its start for every
+barrier and scaling tried (defect 3, \S\ref{s:defects}); from a start outside the class there is no step at all
+(defect 2).
+
+\subsection{Rao's plug, methane gas, lip Mach 1.556 (4/4)}\label{s:raoch4}
+The model starts on GENO's last internal $C^+$ (Rao's inflow is an output of Rao, \S\ref{s:t06}); the walk designs the plug
+from $x_s$ (where the lip's first wave lands) to the end $D$ (pinned); everything else is GENO's.
+\begin{center}\includegraphics[width=\linewidth]{../figs/11_profiles_rao_methane.png}\end{center}
+\begin{center}\small
+\begin{tabular}{rccc}\toprule
+stations & best spline of Rao's contour & SQP result (bump start) & SQP result (straight-line start)\\\midrule
+120 (walk) & $-9.4\times10^{-7}$ & $+1.01\times10^{-6}$ & $+1.01\times10^{-6}$\\
+240 & $-1.8\times10^{-7}$ & $-2.01\times10^{-6}$ & $-2.07\times10^{-6}$\\
+480 & $-2.4\times10^{-7}$ & $-2.08\times10^{-6}$ & $-2.14\times10^{-6}$\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes. Two starts land on one point, $3\times10^{-4}$ from Rao's contour. At the walk's grid it is
+$1.0\times10^{-6}$ \emph{above} Rao --- suspect by our rule, and explained by $J_h=J+e_h$: re-marched finer it falls
+$2.1\times10^{-6}$ \emph{below} Rao ($1.8\times10^{-6}$ below the best spline), as Rao's theory requires: the cost
+of maximising $J_h$ rather than $J$. A flat optimum allows
+the $3\times10^{-4}$ shape difference: $\Delta J\simeq\tfrac12\delta W^\top H\,\delta W$.}
+
+\input{sec_t10}
+
+\subsection{Production carrier on the perfect annular nozzle (4/5)}\label{s:migdal}
+The carrier itself (\texttt{TwoWall}: GENO's arcs as data, 12 + 12 spline knots, exit points pinned, vacuum) on
+GENO's Migdal walls (\S\ref{s:t05}); optimum $C_{F,\mathrm{1D}}=1.647385$.
+\begin{center}\includegraphics[width=\linewidth]{../figs/11_profiles_migdal.png}\end{center}
+\begin{center}\small
+\begin{tabular}{rccc}\toprule
+stations & GENO's walls & SQP, no class & SQP, class on\\\midrule
+140 (walk) & $+1.552\times10^{-4}$ & $+1.571\times10^{-4}$ & $+1.571\times10^{-4}$\\
+280 & $+3.76\times10^{-5}$ & $+3.71\times10^{-5}$ & $+3.70\times10^{-5}$\\
+560 & $+6.3\times10^{-6}$ & $+5.0\times10^{-6}$ & $+5.0\times10^{-6}$\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes, with and without the class. Both land on GENO's pair ($5\times10^{-4}$ in shape, a flat optimum); the
+small excess at the walk's grid disappears when re-marched ($1.3\times10^{-6}$ below GENO at 560 stations), and GENO's
+pair converges to $C_{F,\mathrm{1D}}$ (values above are $C_F/C_{F,\mathrm{1D}}-1$). The one miss: from a start outside the
+class (1\,\% bump, folded) the class-on walk does not move (defect 2).}
+
+\subsection{The production walker on the same nozzle}\label{s:walker}
+The production walker (\texttt{TwoWall.walk()}, what the launch scripts run) picks its start, reads the radius from the
+class scale along the start's gradient (a ladder of trial steps), builds a Newton metric from a secant Hessian
+(\texttt{TWOP\_METRIC=start}), and calls \texttt{run\_trsqp} in those coordinates with the no-fold class on
+(production constants). Posing and optimum as in \S\ref{s:migdal}.
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+start & records & landing $C_F$ & distance to \S\ref{s:migdal}'s landing\\\midrule
+GENO's walls + 0.2\,\% bump (in class) & 3 & 1.647643905 & $1.5\times10^{-5}$ (knots)\\
+straight walls, ramped toward GENO's & --- & nothing to walk & ---\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes\ from an in-class start: the walker lands on the point of \S\ref{s:migdal} ($C_F$ equal to 9 digits,
+$|\nabla J|_\infty=2\times10^{-8}$, in class) in 3 records instead of 11--13 (259 s in all against 485 s, although its
+own overhead --- an 11-step radius ladder and a 62 s secant Hessian --- is included): the metric from the start's
+Hessian (all 22 eigenvalues of $-H$ positive, none floored) makes each segment a near-Newton step. Its start is only
+$2\times10^{-3}$ from GENO's walls: on this posing the class admits only near starts. \no\ from the generic start:
+the straight walls and every ramp toward GENO's walls fold the channel (KS $-0.68$ already at 25\,\%), and the walker's
+own restoration exists only for capped posings, so it stops with ``nothing to walk'' (defect 2).}

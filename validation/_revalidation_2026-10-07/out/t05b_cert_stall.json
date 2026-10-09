@@ -1,0 +1,71 @@
+{
+ "test": "t05b_cert_stall",
+ "n_pass": 5,
+ "n": 5,
+ "rows": [
+  {
+   "label": "B1 plain Newton converges quadratically from the returned point (second step / first)",
+   "value": 0.0014107748426488455,
+   "tol": 0.01,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B2 the full step raises the mixed-unit residual norm (norm after / before > 1)",
+   "value": 60.17998163452621,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B3 the C+ is near horizontal at the cell (|theta + mu| < 3 deg) and the foot chord too (|phi| < 1 deg)",
+   "value": -0.6249583120705502,
+   "tol": 3.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B4 the rescued march is certified",
+   "value": 0.10791923973164173,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B4 the rescue moves the wall pressures by less than 1e-10 (one Newton step at the floor)",
+   "value": 3.6148861681795097e-13,
+   "tol": 1e-10,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 19.082398891448975,
+ "extra": {
+  "cell": {
+   "column": 66,
+   "rows": [
+    2,
+    3
+   ],
+   "steps": [
+    2.2546065082470714e-11,
+    3.180742141907325e-14,
+    3.180742141907325e-14,
+    3.180742141907325e-14
+   ],
+   "norms": [
+    2.418065747633627e-13,
+    1.4551915228366855e-11,
+    1.4551915228366855e-11,
+    1.4551915228366855e-11
+   ],
+   "cond": 34248462137461.477,
+   "theta_wall": -24.772238168304902,
+   "mu": 24.147279856234352,
+   "chord": 0.07230351572528451
+  },
+  "cert_default": 1.9591325149268246,
+  "cert_rescue": 0.10791923973164173,
+  "dp": 3.6148861681795097e-13
+ }
+}

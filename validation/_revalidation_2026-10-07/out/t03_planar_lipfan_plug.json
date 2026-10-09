@@ -1,0 +1,137 @@
+{
+ "test": "t03_planar_lipfan_plug",
+ "n_pass": 10,
+ "n": 10,
+ "rows": [
+  {
+   "label": "R0 reference: momentum theorem, (F_in - push_plug + push_cowl) / exit flux - 1",
+   "value": -5.959817084288943e-10,
+   "tol": 2e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P1 wall pressure L1 error decreases at every refinement",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P1 wall pressure L1 error (finest), units of p1",
+   "value": 1.2526064759184541e-05,
+   "tol": 7.556815378608045e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P2 jet edge max error decreases at every refinement",
+   "value": 0.0,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P2 jet edge max error (finest), band 2|change|",
+   "value": 4.9461074568490915e-05,
+   "tol": 0.0002983327738155239,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P3 mass, last column vs inlet (finest), band 2|change|",
+   "value": 1.541134707405689e-05,
+   "tol": 9.295378438203264e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P4 thrust vs exact (finest), band 2|T_f - T_c|/T_ex",
+   "value": -2.768197526759053e-07,
+   "tol": 3.039112060364515e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P4 thrust error order between the two finest grids (>= 1.0)",
+   "value": 2.166500796256364,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "P5 worst Newton certificate over the ladder <= 1",
+   "value": 0.02032471224455626,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rejector: P2 jet edge max error (finest), lip jet's ambient x1.02",
+   "value": 0.040534164442124876,
+   "tol": 0.0003015617723747255,
+   "ok": true,
+   "unit": "",
+   "rejector": true
+  }
+ ],
+ "seconds": 231.0494029521942,
+ "extra": {
+  "grids": [
+   {
+    "K": 40,
+    "N": 11,
+    "L1": 0.0005506599442130639,
+    "Linf": 0.0023711691670534273,
+    "edge": 0.0021723904373283087,
+    "mass": 0.0006767138135514994,
+    "T": 970947.834123711,
+    "eT": -2.6091344170198205e-05,
+    "cert": 0.01716998774028801,
+    "m_w": 1,
+    "n_cells": 1378
+   },
+   {
+    "K": 80,
+    "N": 21,
+    "L1": 0.00019634050122359142,
+    "Linf": 0.0008776470766764375,
+    "edge": 0.0007782485085603419,
+    "mass": 0.00024244745135471035,
+    "T": 970969.184307002,
+    "eT": -4.102906186465027e-06,
+    "cert": 0.014905986188109217,
+    "m_w": 1,
+    "n_cells": 5311
+   },
+   {
+    "K": 160,
+    "N": 41,
+    "L1": 5.0309641652224764e-05,
+    "Linf": 0.00022234857419532782,
+    "edge": 0.00019862746147625288,
+    "mass": 6.188823876507321e-05,
+    "T": 970974.3747819155,
+    "eT": 1.2427357776179093e-06,
+    "cert": 0.02032471224455626,
+    "m_w": 1,
+    "n_cells": 20940
+   },
+   {
+    "K": 320,
+    "N": 81,
+    "L1": 1.2526064759184541e-05,
+    "Linf": 5.72277805860793e-05,
+    "edge": 4.9461074568490915e-05,
+    "mass": 1.541134707405689e-05,
+    "T": 970972.8993342682,
+    "eT": -2.768197526759053e-07,
+    "cert": 0.019279579630337627,
+    "m_w": 1,
+    "n_cells": 83338
+   }
+  ],
+  "T_exact": 970973.1681188204,
+  "M2": 2.112037255778883
+ }
+}

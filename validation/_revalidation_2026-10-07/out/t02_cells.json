@@ -1,0 +1,143 @@
+{
+ "test": "t02_cells",
+ "n_pass": 17,
+ "n": 17,
+ "rows": [
+  {
+   "label": "A1 planar fan: local order, position (>= 2.7)",
+   "value": 3.0080348486626067,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "A2 planar fan: local order, velocity (>= 2.7)",
+   "value": 3.067592546485157,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "A3 planar fan: Newton certificate <= 1 at every h",
+   "value": 0.007748979669183592,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B1 axi source: local order, position (>= 2.7)",
+   "value": 3.0046024393577375,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B2 axi source: local order, velocity (>= 2.7)",
+   "value": 3.0025655591865803,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B3 axi source: Newton certificate <= 1 at every h",
+   "value": 0.010559253670304487,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "B4 rejector: dropping the source term degrades the velocity order to < 2.5",
+   "value": 1.001284613493849,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C1 uniform (delta 0): interior cell exact",
+   "value": 2.2913430211324827e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C2 uniform (delta 0): plug-wall cell exact (u4)",
+   "value": 1.1811199965073262e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C3 uniform (delta 0): shroud-wall cell exact (x4, u4)",
+   "value": 1.1811199965073262e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C4 uniform (delta 0): lip (inverse-wall) cell exact (u4)",
+   "value": 1.1811199965073262e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C5 uniform (delta 0): free-edge cell exact (x4, y4, theta4)",
+   "value": 1.6653345369377348e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C1 uniform (delta 1): interior cell exact",
+   "value": 1.1102244249533108e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C2 uniform (delta 1): plug-wall cell exact (u4)",
+   "value": 0.0,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C3 uniform (delta 1): shroud-wall cell exact (x4, u4)",
+   "value": 1.1102230246251565e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C4 uniform (delta 1): lip (inverse-wall) cell exact (u4)",
+   "value": 0.0,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C5 uniform (delta 1): free-edge cell exact (x4, y4, theta4)",
+   "value": 1.9605192789111383e-16,
+   "tol": 1e-12,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 12.017916679382324,
+ "extra": {
+  "orders": {
+   "fan": [
+    3.0080348486626067,
+    3.067592546485157
+   ],
+   "src": [
+    3.0046024393577375,
+    3.0025655591865803
+   ],
+   "rejector": [
+    2.002055349997504,
+    1.001284613493849
+   ]
+  }
+ }
+}

@@ -139,6 +139,10 @@ BACKTRACK = int(os.environ.get("PSPL_BACKTRACK", 0))
 # PSPL_FLOOR_LIMIT=1 (F2.ENGINE order 5, 2026-09-30): the walk's smallest step derived at every base from the
 # measured distance to the class limit along the ascent (a quarter of it), never above the caller's floor.
 FLOOR_LIMIT = os.environ.get("PSPL_FLOOR_LIMIT", "") == "1"
+# PSPL_DRIVER (2026-10-08, revalidation; owner: the tool must find the optimum without knowing it): "qntr" (default)
+# = a1_qntr, the quasi-Newton trust region on the true march with a stop rule on the predicted remaining gain;
+# "legacy" = the segmented trust-constr driver below, bit-identical to every record before that date.
+DRIVER = os.environ.get("PSPL_DRIVER", "qntr")
 # PSPL_PARAM (S33, [X-HMPH] K-10: WAVINESS folds the net, and a spline
 # in y pinned at the cut can only follow a steep contour by wiggling in
 # angle): the COORDINATES of the design vector. "y" (unset, every row of
@@ -467,7 +471,22 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
     (seg, W_best, tr) invoked at the top of every segment with the
     certified incumbent and the current radius -- the two-wall walks use
     it to checkpoint and to clear jax's compilation caches (a long walk
-    dies at the kernel's memory-mapping cap otherwise, measured)."""
+    dies at the kernel's memory-mapping cap otherwise, measured).
+
+    PSPL_DRIVER=qntr (the default since 2026-10-08) hands the walk to
+    a1_qntr (docstring there): same hooks, same return; maxiter_per_seg,
+    tr_floor and backtrack belong to this driver and are not used."""
+    if DRIVER == "qntr":
+        import a1_qntr as QN
+        mg = None
+        if margin is not None:
+            mg = lambda z, s: margin_and_grad(z, w, c, s, margin)   # noqa: E731
+        walk = QN.Walk(lambda z: march_record(z, w, c, margin=margin),
+                       lambda z, s: J_and_grad(z, w, c, ta, s), mg=mg,
+                       mtol=(0.0 if margin is None else float(margin.get("tol", 0.0))),
+                       sign=sign, verbose=verbose)
+        return walk.run(W0, max_segments=max_segments, tr0=tr0, bounds=bounds,
+                        on_segment=on_segment)
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf

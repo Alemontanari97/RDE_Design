@@ -1,0 +1,24 @@
+\section{Derivatives (18/18 for one state; 6/6 for the 12 phases)}\label{s:der}
+The walk records a march (its discrete decisions: which column brackets each wall foot, how many fan rays\dots),
+replays that frozen schedule, and differentiates the replay by reverse-mode AD through the implicit cells
+($\bar p=-(\partial r/\partial p)^\top(\partial r/\partial z)^{-\top}\bar z$). Checked in the production posing
+(methane gas, 15 design components, 140 stations $\times$ 31 rows; its constant-Mach inflow is parked as unrealistic,
+but the derivative machinery does not depend on it).
+\begin{center}\small
+\begin{tabular}{lcc}\toprule
+check & measured & tolerance\\\midrule
+replay $=$ record ($J$ and the no-fold margin) & $0$, $1.1\times10^{-16}$ & $10^{-10}$ (Newton certificate)\\
+wavefront replay $=$ sequential replay ($J$, $\nabla J$) & $2\times10^{-16}$, $10^{-14}$ & $10^{-10}$, $10^{-8}$\\
+AD $-$ FD of $J$, 10 directions & $\le1.0\times10^{-5}$ & spread of FD over $h=10^{-4..-6}$\\
+AD $-$ FD of the margin, 2 directions & $\le6.7\times10^{-8}$ & same\\
+re-recorded $=$ replay along $\pm\nabla J$, $h\le10^{-3}$ & $\le9\times10^{-16}$ & ---\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes: the SQP's gradient is the derivative of the march it accepts, and along $+\nabla J$ no discrete decision
+changes within $10^{-3}$ (the frozen model \emph{is} the objective there). The FD spread exists because the gas tables
+are piecewise linear: the slope of $\ln p$ jumps by $(c_p/R)\Delta T/T\approx10^{-3}$ at every table node.}
+
+\textbf{12 phases.} The phase-weighted objective $J_\mu=\sum_k w_kC_{F,k}$ is a sum of independent marches on the same
+walls: where all 12 phases are certified its gradient equals FD (6/6, e.g.\ $0.0368654$ vs $0.0368658$). At the
+reference design phases 10--11 ($P_0=2.9$ and $2.1$ bar) fold: the plug designed for $M\approx2.6$ expands them to
+$p\approx0.045\,P_0=0.26\,p_a$, below the jet's edge pressure; the edge reflects the expansions as compressions that
+coalesce, so no shock-free solution exists and $J_\mu$ is undefined there (physics, not code).

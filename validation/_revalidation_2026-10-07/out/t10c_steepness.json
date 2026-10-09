@@ -1,0 +1,37 @@
+{
+ "test": "t10c_steepness",
+ "n_pass": 1,
+ "n": 1,
+ "rows": [
+  {
+   "label": "Rao 1961 is the steepest plug of the set (smallest theta + mu)",
+   "value": -3.269365085963627,
+   "tol": 0.0,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 58.60227966308594,
+ "extra": {
+  "Rao, methane, lip Mach 1.556": {
+   "min_theta_plus_mu": 5.526781683497614,
+   "at_x": 0.0990475346119459
+  },
+  "Rao 1961, eps 3.81": {
+   "min_theta_plus_mu": -3.269365085963627,
+   "at_x": 0.04695720926010941
+  },
+  "axial exit": {
+   "min_theta_plus_mu": 0.12973584766993923,
+   "at_x": 0.04775251697872671
+  },
+  "planar ideal plug": {
+   "min_theta_plus_mu": 19.501572621248236,
+   "at_x": 0.55
+  },
+  "annular (Migdal) plug": {
+   "min_theta_plus_mu": 4.685977002951698,
+   "at_x": 0.13039852162552198
+  }
+ }
+}

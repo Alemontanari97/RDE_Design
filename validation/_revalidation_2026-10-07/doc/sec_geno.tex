@@ -1,0 +1,38 @@
+\section{The march on GENO's walls}
+GENO (branch \texttt{exp/ws-c-prod-nozzles}, commit \texttt{28c7e7a}, run on s3) designs the walls; the model marches on
+them from GENO's own initial data. If both are right, the pressures agree to GENO's own error.
+
+\subsection{GENO's perfect annular nozzle (Migdal): 19/20 (21/21 on 2026-10-09, rescue by default)}\label{s:t05}
+Two cases: methane mean gas, $M_i=1.556$, $\varepsilon=4$; air, $M_i=1.5$, $\varepsilon=6$; vacuum. References: GENO's
+wall pressure, the uniform exit, and the one-dimensional thrust $F_\mathrm{1D}=\dot mV_e+p_eA_e$ (the perfect nozzle).
+\verdict{\yes. Wall pressure converges to GENO's at order 2 ($3.3\times10^{-5}$ at 560 stations); thrust to
+$F_\mathrm{1D}$ (Richardson limit $F_\mathrm{1D}(1-1.6\times10^{-6})$, order 1.9). One march of the ladder has a stalled
+Newton (\S\ref{s:t05b}).}
+\begin{center}\includegraphics[width=\linewidth]{../figs/05_geno_migdal.png}\end{center}
+\textbf{GENO's default walls are polygons.} GENO writes one wall vertex per exit column ($N_e$). At its default
+$N_e=100$ a vertex turns the wall by up to $6.3\times10^{-3}$ rad, a corner that sends a wave
+$|\delta p/p|\le\gamma M^2\delta/\sqrt{M^2-1}$; the model, once finer than the vertices, resolves them (the exit stops
+converging, below). The tests use $N_e=2000$ ($3.2\times10^{-4}$ rad per vertex).
+\begin{center}\includegraphics[width=0.85\linewidth]{../figs/05b_geno_migdal_ne100_walls.png}\end{center}
+
+\subsection{The certificate failure is a stalled Newton (5/5)}\label{s:t05b}
+The failing plug-wall cell parameterises its $C^-$ foot by $y$ on the previous column, a $C^+$ chord:
+\begin{equation}
+\frac{\partial x}{\partial y}\Big|_\mathrm{foot}=\frac{x_B-x_A}{y_B-y_A}\approx\cot(\theta+\mu),\qquad
+\theta_\mathrm{wall}+\mu=-24.77^\circ+24.15^\circ=-0.63^\circ,
+\end{equation}
+so the chord is at $0.07^\circ$, $\partial x/\partial y=792$ and $\mathrm{cond}(J)=3.4\times10^{13}$. The damped Newton ranks its trial steps by a residual norm whose rows have different units (position $\sim y$,
+compatibility $\sim u^3$), so near the root it refuses the full step and stops one step short; plain Newton from there
+converges quadratically ($2\times10^{-11}\to3\times10^{-14}$).
+\verdict{The root is right; the solver stops early where the $C^+$ is horizontal. The rescue (opt-in on 10-07, the default since 10-08)
+(\texttt{A1\_NEWTON\_RESCUE=1}) certifies the same march and moves the wall pressures by $4\times10^{-13}$.}
+
+\subsection{GENO's Rao plug under its free jet: 4/5 (6/6 on 2026-10-09, rescue by default)}\label{s:t06}
+GENO's Rao (methane gas, lip Mach 1.556, length 0.448) returns its lip ambient $p_a=96086$ Pa. The model starts on
+GENO's last internal $C^+$, adds the lip fan to $p_a$, and marches on GENO's plug. GENO's own data are consistent only to
+$e_\mathrm{mass}=7.7\times10^{-6}$ and $e_\mathrm{mom}=8.3\times10^{-5}$ (its $C^+$ against its control surface $ED$).
+\verdict{\yes. The wall pressure converges to GENO's to $7\times10^{-5}$, GENO's own inconsistency; the thrust agrees
+within $e_\mathrm{mom}$. One grid has a stalled Newton (same cause as \S\ref{s:t05b}). Rao in GENO cannot start from a
+characteristic given by the user: the inflow upstream of the lip is an output of the design, so the model must take
+GENO's.}
+\begin{center}\includegraphics[width=\linewidth]{../figs/06_geno_rao.png}\end{center}

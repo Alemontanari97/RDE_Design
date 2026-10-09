@@ -1,0 +1,55 @@
+{
+ "test": "t16_bell_march",
+ "n_pass": 6,
+ "n": 6,
+ "rows": [
+  {
+   "label": "toc: every march certified",
+   "value": 0.26704292575395977,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "toc: observed order between the two finest pairs >= 1.5",
+   "value": 1.7592104707154048,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "ideal: every march certified",
+   "value": 0.26704292575395977,
+   "tol": 1.0,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "ideal: observed order between the two finest pairs >= 1.5",
+   "value": 2.4411934757528675,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "C_F(TOC) - C_F(ideal): model -0.008484 vs GENO -0.0084",
+   "value": -8.375234175232553e-05,
+   "tol": 0.00010052733859129078,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rejector: C_F(TOC) - C_F(ideal) vs GENO, TOC exit radius x1.01",
+   "value": 0.0025136988990873107,
+   "tol": 0.00010052733859129078,
+   "ok": true,
+   "unit": "",
+   "rejector": true
+  }
+ ],
+ "seconds": 279.3994171619415,
+ "extra": {
+  "dCF_model": -0.008483752341752289,
+  "dCF_geno": -0.008399999999999963
+ }
+}

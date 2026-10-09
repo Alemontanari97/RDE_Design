@@ -1,0 +1,31 @@
+\section{Literature anchor: Rao 1961, Humphreys et al.\ 1971 (18/20)}\label{s:lit}
+The optimiser cases take GENO's Rao contour as the optimum; here that contour is tied to the papers. Rao's optimum
+carries, along its exit characteristic $ED$ (a $C^-$ from the lip $E$ to the plug end $D$),
+$w\cos(\theta+\alpha)/\cos\alpha=C_2$ and $R\rho w^2\sin^2\theta\tan\alpha=C_3$, with $(p-p_{a|b})\cot\alpha/(\tfrac12\rho
+w^2)=-\sin2\theta$ at $E$ (giving $p_a$) and at $D$ (ending $ED$). We solve these from the paper alone
+(\texttt{ref/rao1961.py}; the result is an exact $C^-$ to $10^{-15}$); GENO is given Rao's lip state.
+
+\begin{center}\footnotesize
+\begin{tabular}{llcccc}\toprule
+member & quantity & Rao, printed & ours, $p_b=0$ & ours, at Rao's $R_D$ & GENO, at Rao's $R_D$\\\midrule
+$\varepsilon=3.81$ & $L/R_E$ & 1.164 & 1.1767 & 1.1640 & 1.1640\\
+($M_E=2.4$, & $\pi R_E^2/A^*$ & 3.81 & 3.7955 & 3.8094 & 3.8095\\
+$\theta_E=-8.25^\circ$) & $C_F$ (vacuum) & 1.5804 & 1.5803 & 1.5804 & 1.5806\\
+ & $\theta_D$ & $-19.73^\circ$ & $-20.65^\circ$ & $-19.69^\circ$ & $-19.69^\circ$\\\midrule
+$\varepsilon=10.69$ & $L/R_E$ & 1.731 & 1.7393 & 1.7313 & 1.7313\\
+($3.2$, $-6^\circ$) & $C_F$ & 1.7269 & 1.7268 & 1.7269 & 1.7269\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes. Rao's tables are the exact solution of his own equations ended at his printed $R_D$ ($L$, $\varepsilon$,
+$C_F$ to the printed digits; GENO the same); his end point corresponds to a base pressure of $0.0033\,P_c$ instead of
+$0$, i.e.\ his march stopped about one step early. The printed contours lie on GENO's within $8\times10^{-4}R_E$ (31
+points; 3-decimal printing allows $7\times10^{-4}$). The two misses are the paper's: $p_a/P_c$ is printed $0.0355$ for
+$0.035565$ (truncated), and $\theta_D$ at his end point is $0.043^\circ$ off for a printing tolerance of $0.037^\circ$.}
+\begin{center}\includegraphics[width=\linewidth]{../figs/09_rao1961_literature.png}\end{center}
+
+\textbf{Humphreys et al.\ 1971} (their Rao nozzle: 148.08 lbm/s, end at 11.518 in from the lip, $p_a=14.7$ psia,
+$P_c=500$ psia, $\gamma=1.23$, base $0.846\,p_D/M_D^{1.3}$): our solution gives $R_E=8.3311$ in (printed 8.33),
+$R_D=1.37507$ in (1.37506), thrust 34{,}254 lbf (34{,}253); GENO lies within 0.0003 in of their 19-point contour (their
+$-12.27^\circ$ at $x=5.337$ in is a misprint for $-22.27^\circ$: GENO $-22.29^\circ$). Their main result is the premise of
+\S\ref{s:opt}: a direct optimiser started on a characteristic of Rao's own field re-obtains Rao's thrust (34{,}373 vs
+34{,}375 lbf); their fixed-inlet optimum is not reproducible (start line not published, worth 8\,\% of thrust).
+\begin{center}\includegraphics[width=\linewidth]{../figs/09_humphreys1971.png}\end{center}

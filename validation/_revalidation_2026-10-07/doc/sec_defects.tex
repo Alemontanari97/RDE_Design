@@ -1,0 +1,68 @@
+\section{Defects, limits, findings on GENO}\label{s:defects}
+\begin{center}\footnotesize
+\begin{tabularx}{\linewidth}{@{}lXX@{}}\toprule
+ & what happens, and why & effect / remedy\\\midrule
+\multicolumn{3}{@{}l}{\textbf{Defects of the model}}\\
+1 & A wall cell's damped Newton stops one step short of a correct root. Its trial steps are ranked by a residual norm
+whose rows have different units ($y$ vs $u^3$); worst where the $C^+$ is horizontal, $\partial x/\partial y=\cot(\theta+\mu)$,
+$\theta+\mu\to0$ (\S\ref{s:t05b}; Rao 1961's steep plug, \S\ref{s:rao61}). & A correct march is rejected; on a steep
+plug the uncertified cells moved $J$ by $2.4\times10^{-4}$. Opt-in fix exists: \texttt{A1\_NEWTON\_RESCUE=1}. The same
+near-singular cells make the reverse gradient non-finite at nearby designs (Rao 1961: the knot next to $x_s$ at
+$\pm10^{-4}$), so the walker's secant-Hessian metric cannot be built there.\\
+2 & The SQP's restoration phase is inert: \texttt{trust-constr} with \texttt{maxiter=1} (scipy 1.17) evaluates and
+returns, step 0 for any problem. The production walker has its own restoration (ascent of the margin) only for capped
+posings. & A start outside the no-fold class never moves (\S\ref{s:planar}, \S\ref{s:migdal}); on the uncapped two-wall
+posing the walker's generic start and every ramp toward it fold (KS $-0.68$ at 25\,\%): nothing to walk (\S\ref{s:walker}).\\
+3 & With the class on, scipy runs its interior-point variant; at a base where $\nabla J$ and the margin's gradient are
+anti-aligned ($\cos=-0.71$) every segment returned a worse point, for every barrier and scaling tried. & The walk stalls
+$5\times10^{-5}$ below the optimum (planar case); base-dependent (the annular case reached the optimum).\\\midrule
+4 & The stop rule (two steps in a row under the radius floor) reads slow progress as convergence. Rao 1961's plug is
+ill-conditioned (best step along $\nabla J$ $2.4\times10^{-4}$) and 6-iteration segments overshoot the frozen replay's
+exact range (a segment is not bounded by its radius: $2.8$ at radius $10^{-3}$ on a quadratic), so steps are cut back,
+shrink, and the walk stops with $|\nabla J|/J=1.9\times10^{-3}$. & The landing stops short of the optimum
+(\S\ref{s:rao61}). The walker's Newton metric cures this where it can be built (\S\ref{s:walker}; not here, defect 1).
+One \texttt{trust-constr} step per segment and a floor of $10^{-6}$ --- not a production setting --- closed the gap from
+both starts, at about 2 hours per walk for 9 knots.\\\midrule
+\multicolumn{3}{@{}l}{\textbf{Physics limit}}\\
+5 & Low-$P_0$ phases of the cycle over-expand below the jet's edge pressure; compressions coalesce. & No shock-free
+solution: the 12-phase objective is undefined where they fold (\S\ref{s:der}).\\\midrule
+\multicolumn{3}{@{}l}{\textbf{Findings on GENO} (reference code, not modified)}\\
+6 & Rao's input $\theta_i$ is not the flow angle at the lip: GENO places $(M_E,\theta_E)$ by \emph{one} midpoint step of
+$\theta+\nu=$ const, while its field obeys the physical outer-lip fan $\theta-\nu=$ const; the cowl flow upstream of $E$
+is at $2\theta_E-\theta_i$. & Inputs must be chosen by emulating that step (done here exactly: GENO's own
+$\theta_i=35.33373^\circ$ for Rao's member is reproduced).\\
+7 & Rao cannot start from a user's characteristic: its inflow is an output. & The model must take GENO's data.\\
+8 & Default exit sampling $N_e=100$ makes polygon walls ($6\times10^{-3}$ rad per vertex). & Use $N_e\ge1000$.\\
+9 & Rao's internal states drift from the isentrope by $4\times10^{-5}$; wall points and wall angles disagree by
+$7\times10^{-4}$ rad near $D$; resolution fixed in the code. & Sets GENO's error floor in \S\ref{s:t06}.\\
+10 & The lip-fan scan covers only $60^\circ$ below $\theta_i$; the ideal spike (control surface reaching the axis) diverges
+in both Rao (type 8) and the ideal plug (type 5): $c^2v/y$ at $y\to0$. & Rao 1961's $\varepsilon=10.69$ member needs
+$M_i\ge1.3$; the axial-exit case ends the plug at $R_D=0.4$.\\\bottomrule
+\end{tabularx}\end{center}
+
+\plain{The defects in plain words}{%
+\textbf{1.} On very steep plugs a small equation-solving step inside the flow computation sometimes stops one step short:
+the result is right but gets flagged as unreliable and is thrown away. A built-in option fixes it.
+\textbf{2.} If the starting shape breaks the ``no folded flow'' rule, the optimiser has no working way to first repair it:
+it simply does not move.
+\textbf{3.} With the ``no folded flow'' rule switched on, the external optimisation library can propose a worse shape at
+some starting points; the walk then gets stuck below the optimum.
+\textbf{4.} The stopping rule says ``finished'' when moves become small; on a narrow ridge (Rao 1961) that happens before
+the top. Short planned steps fix it, at a cost in time.
+\textbf{5.} (Physics, not a bug.) At low chamber pressure a plug designed for the mean state over-expands the flow; shocks
+must form, and a shock-free model has no answer there.}
+
+\textbf{Do the RDE plugs live in the bad regime?} Defects 1 and 4 grow as the $C^+$ columns at the wall flatten,
+$\theta_\mathrm{wall}+\mu\to0$. Smallest value along each designed plug (\texttt{t10c\_steepness}): planar ideal plug
+$+19.5^\circ$, Rao methane plug (lip Mach 1.556, the RDE-like case) $+5.5^\circ$, annular nozzle $+4.7^\circ$, axial exit
+$+0.13^\circ$, Rao 1961 $-3.3^\circ$. The default walk stopped short only on Rao 1961, the only plug where the value
+is negative (the columns descend); the axial exit, at $+0.13^\circ$, converged. The RDE-like plug sits well away from it.
+
+\textbf{Not covered:} the walker's basis map (\texttt{TWOP\_BASIS}) and its restoration for capped posings; the
+phase-worker pool and the generation of the 12-phase family; the physics of the
+Summerfield separation closure; the throat posing, the rotational inlet, swirl, base-pressure closures; the inlet-family
+wrapper; the CFD referee. The constant-Mach (SDT) inflow is parked (owner, 2026-10-07).
+
+{\sloppy\textbf{Reproduction.} On s2: \texttt{run.sh <test>}; walks \texttt{run\_walk.sh <log> <cpus> <script> <args>}
+(\texttt{t10\_rao\_walk.py} with \texttt{A1\_NEWTON\_RESCUE=1}); GENO on s3: \texttt{run\_geno.sh <case>}. Logs, numbers,
+figures in \texttt{logs/}, \texttt{out/}, \texttt{figs/}.\par}

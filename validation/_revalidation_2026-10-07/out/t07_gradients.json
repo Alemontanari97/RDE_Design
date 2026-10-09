@@ -1,0 +1,268 @@
+{
+ "test": "t07_gradients",
+ "n_pass": 20,
+ "n": 23,
+ "rows": [
+  {
+   "label": "mean state D1 replay J = record J (relative)",
+   "value": 0.0,
+   "tol": 1e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D1 replay margin = record margin (absolute, margin units)",
+   "value": 1.1102230246251565e-16,
+   "tol": 1e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D2 wavefront J = sequential J (relative)",
+   "value": 2.220446049250313e-16,
+   "tol": 1e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D2 wavefront grad = sequential grad (max rel to |grad|_inf)",
+   "value": 9.913587977640604e-15,
+   "tol": 1e-08,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along random 0: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": 2.950865771407518e-06,
+   "tol": 4.834798117414607e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "rejector: mean state D3 J along random 0: |AD - FD| with AD x(1 + 1e-3)",
+   "value": 3.966471303773478e-05,
+   "tol": 4.834798117414607e-06,
+   "ok": true,
+   "unit": "",
+   "rejector": true
+  },
+  {
+   "label": "mean state D3 J along random 1: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": 9.400645483541303e-07,
+   "tol": 1.1833418689377595e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along random 2: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -1.5034527700297229e-06,
+   "tol": 1.4274452730944631e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along random 3: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -7.613552029051007e-06,
+   "tol": 2.1380121006941977e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 0: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": 9.788133477345654e-06,
+   "tol": 2.6864396263093226e-05,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 5: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -4.45634584615804e-06,
+   "tol": 6.925697793036534e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 9: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -2.297834639083604e-07,
+   "tol": 3.335187681585694e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 10: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -1.4843653001195278e-08,
+   "tol": 1.1310508085671245e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 13: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -4.181200476419068e-12,
+   "tol": 1.3655743202889425e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D3 J along component 14: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": 8.126111922246437e-08,
+   "tol": 8.213751900854049e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D5 margin along random 0: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": 1.598218890563885e-08,
+   "tol": 2.214809666662405e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D5 margin along random 1: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": -6.654411049966669e-08,
+   "tol": 3.924636440695364e-07,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "mean state D4 the true objective ascends along +grad at h 1e-3 (sign of the true derivative)",
+   "value": 0.3138115299754496,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "D6 phase weights sum to 1",
+   "value": 0.0,
+   "tol": 1e-14,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "12 phases D1 replay J = record J (relative)",
+   "value": 0.0,
+   "tol": 1e-10,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "12 phases D1 replay margin = record margin (absolute, margin units)",
+   "value": -1.6277480052728777e-07,
+   "tol": 1e-10,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "12 phases D6 J along random 0: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": NaN,
+   "tol": 0.017030983916477282,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "12 phases D6 J along random 1: |AD - FD| (band: ladder spread, floor 1e-6 |AD|)",
+   "value": NaN,
+   "tol": 0.0005402672276222376,
+   "ok": false,
+   "unit": ""
+  }
+ ],
+ "seconds": 1179.937828540802,
+ "extra": {
+  "single": {
+   "J": 1.3993512194232653,
+   "grad": [
+    0.009016136045376927,
+    0.09032653290549934,
+    0.028690906468611076,
+    0.0045699679869972455,
+    0.007637562763819151,
+    0.007585399453559695,
+    0.005488604457929772,
+    0.009117118756657869,
+    0.0033291538792383827,
+    -0.0045595101256173795,
+    0.16346481321874548,
+    -0.05133756215951605,
+    0.01792435942251007,
+    1.1882453175953361e-06,
+    -0.2435783173565417
+   ],
+   "margin": 0.5183748279370995,
+   "grad_m": [
+    0.008275184782433486,
+    0.016853546452759126,
+    0.008939624118615288,
+    0.007421141574627247,
+    0.008441949166359519,
+    0.008670503598913038,
+    0.011103565976015884,
+    0.005691095988538592,
+    0.03476285856690164,
+    -4.524795994915799,
+    5.2022372693000465,
+    -0.04851011335343952,
+    0.0013480184836931787,
+    -4.071135040791001e-06,
+    -1.0145293087762037
+   ],
+   "D4": [
+    [
+     0.001,
+     0.3138115299754496,
+     0.0,
+     2.220446049250313e-16
+    ],
+    [
+     0.0001,
+     0.3136182484853034,
+     2.220446049250313e-16,
+     2.220446049250313e-16
+    ],
+    [
+     1e-05,
+     0.31361226241477524,
+     -2.220446049250313e-16,
+     0.0
+    ]
+   ]
+  },
+  "phases": {
+   "J": 1.401910054376329,
+   "grad": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ],
+   "margin": -1.0096919372954742,
+   "grad_m": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ]
+  }
+ }
+}

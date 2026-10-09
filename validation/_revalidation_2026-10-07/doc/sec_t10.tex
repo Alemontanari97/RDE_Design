@@ -1,0 +1,90 @@
+\subsection{Rao 1961, $\varepsilon=3.81$: the literature case}\label{s:rao61}
+GENO reproduces Rao's Table 1 (\S\ref{s:lit}). The model starts on GENO's last internal $C^+$ and designs the plug from
+$x_s$ to Rao's end point $D$. Two choices are forced, both explained by equations:
+\begin{itemize}
+\item \emph{Lip Mach 1.5 in GENO instead of Rao's sonic lip.} At 1.1 the last internal $C^+$ is nearly sonic
+($\mu\to90^\circ$) and the march from it is uncertified. Raising $M_i$ changes only GENO's internal channel: the field
+between $ED$ and the $M=1.5$ fan ray, hence the plug downstream of $x_s$, is Rao's.
+\item \emph{Newton rescue on.} This plug is steep: at $x_s$ the wall is at $-44.1^\circ$ with $\mu=41.4^\circ$, so
+$\theta+\mu=-2.7^\circ$, the $C^+$ columns are horizontal and the default Newton stalls (defect 1); the stalled cells move
+$J$ by $2.4\times10^{-4}$.
+\end{itemize}
+\begin{center}\includegraphics[width=\linewidth]{../figs/10_profiles_rao1961.png}\end{center}
+\begin{center}\small
+\begin{tabular}{lcccc}\toprule
+run & \multicolumn{2}{c}{$(J-J_\mathrm{best\ spline})/J$} & $|\nabla J|/J$ & shape\\
+ & walk grid & fine limit & at stop & vs Rao\\\midrule
+default, start: bump & $-7.0\times10^{-6}$ & $-8.4\times10^{-6}$ & $1.9\times10^{-3}$ & $2.8\times10^{-3}$\\
+default, start: halfway & $-1.2\times10^{-5}$ & $-1.4\times10^{-5}$ & $4.0\times10^{-3}$ & $3.5\times10^{-3}$\\
+one step per segment, from the bump landing & $+6.3\times10^{-7}$ & $-1.0\times10^{-6}$ & $3.0\times10^{-4}$ & $4.8\times10^{-4}$\\
+one step per segment, from the halfway landing & $+4.6\times10^{-7}$ & $-1.2\times10^{-6}$ & $4.9\times10^{-4}$ & $5.7\times10^{-4}$\\\bottomrule
+\end{tabular}\end{center}
+The best spline of Rao's contour is $2\times10^{-7}$ below Rao's contour itself in the limit (the basis' cost here).
+Yardstick for comparing two designs on the walk's grid: the difference between two designs not optimised on any grid
+(best spline $-$ Rao's contour) moves by $9\times10^{-7}$ from the walk grid to the finest.
+\verdict{\no\ with the default settings, \yes\ with short steps. The default walk stops below the best spline of Rao's
+contour on every grid ($0.8$--$1.4\times10^{-5}$ in the limit), with the gradient still large; its two starts end
+$5\times10^{-6}$ apart, far beyond the yardstick. Continued with one \texttt{trust-constr} step per segment (radius
+$\le10^{-3}$, floor $10^{-6}$; 59 and 54 segments, about 2 hours each), both starts beat the best spline at the walk's grid,
+fall $1.0$--$1.2\times10^{-6}$ below it finer (the cost of maximising $J_h$, as in every converged case), agree with each
+other to $1.7\times10^{-7}$ in $J$ and $2\times10^{-4}$ in shape, and lie $5\times10^{-4}$ from Rao's contour. The model's
+optimum is Rao's; the default optimiser stops short of it on this steep plug.}
+\plain{The problem with Rao 1961, in plain words}{%
+\textbf{What we saw.} We started the optimiser from two wrong shapes. In both cases it improved them and then
+declared itself finished, but too early: the plug was still about 3\,mm per metre of lip radius away from Rao's shape,
+the thrust about $10^{-5}$ below what was reachable, and the two runs stopped at two different places. In every other
+case the same optimiser reached the known optimum.
+
+\textbf{Why.} Think of climbing to the top of a long, narrow ridge in fog. Seen from the wall shape, the thrust of this
+plug is like that: very steep across the ridge, almost flat along it. The optimiser always heads for the steepest way up,
+which points \emph{across} the ridge; after a tiny step it is already past the crest and going down, so it zig-zags in
+small steps and moves slowly along the ridge towards the summit. Two things made it worse.
+(1) Each move is planned on a local ``map'' of the thrust drawn where the optimiser stands. The map is exact only for
+moves of about 1.5\,mm per metre; the planner was allowed to stride far past its edge (its stride grows at every
+planning step), so it walked into places where the map was wrong --- once it promised a 1.2\,\% gain, physically impossible
+because it is above the ideal thrust --- and the move had to be thrown away and shortened.
+(2) The stopping rule says ``two tiny moves in a row: I must be at the top''. On a narrow ridge every move is tiny, so it
+stopped while the ground was still clearly rising (the slope was 20 times larger than where the other cases stopped).
+
+\textbf{What fixed it.} Plan only one short step per move, never beyond the map, and make the ``tiny'' threshold much
+smaller. Both starts then climb all the way to Rao's shape and agree with each other (to $2\times10^{-7}$ in thrust, 0.2\,mm
+per metre in shape); it simply takes about 60 more moves (2 hours) after the default run's 15--20.
+
+\textbf{Why only here, and does it matter.} This plug is unusually steep right after the lip ($-44^\circ$): the lines along
+which the flow is computed lie almost flat, which is what makes the ridge narrow. The RDE-like plug is far from this
+(\S\ref{s:defects}). The thrust lost by stopping early is small ($10^{-5}$, i.e.\ 10\,N per MN), but the shape was not the
+optimum, and the point of this test is that the tool finds the optimum. With default settings on a plug this steep, it
+does not; with short steps, it does.}
+
+\textbf{Why the default walk stops short here} (measured). (1) \emph{Ill-conditioning:} along $\nabla J$ the best step
+is $2.4\times10^{-4}$ (gain $6\times10^{-7}$), so steps stay short and zig-zag while $|\nabla J|$ stays large. (2)
+\emph{Long segments:} 6 \texttt{trust-constr} iterations grow the step far beyond the radius (on a quadratic at radius
+$10^{-3}$: $2.8$), past the frozen replay's exact range ($1.5\times10^{-3}$ at the optimum, figure; less away from it:
+from the halfway landing a $10^{-3}$ step is predicted $+1.2\,\%$ and is a loss), so segments are rejected and cut back.
+The stop rule then fires after two short steps. The walker's Newton metric cannot be built here (defect 1).
+\begin{center}\includegraphics[width=0.62\linewidth]{../figs/10b_step_model.png}\end{center}
+
+\subsection{Axial exit: Rao's $\theta_E=0$ member}\label{s:axial}
+The exit is axial when the flow leaves the plug parallel to the axis. In Rao's equations $\theta_D=0$ forces
+\begin{equation}
+C_3=R\,\rho w^2\sin^2\theta\tan\alpha\big|_D=0\ \Rightarrow\ \theta\equiv0\ \text{on }ED\ \Rightarrow\ w=C_2,\ \ p_E=p_a:
+\end{equation}
+uniform axial flow at $p_a$ across $ED$, the ideal plug, whose thrust is the bound $\dot mV_a$ in exact flow. GENO cannot carry $ED$ to
+the axis (\S\ref{s:defects}, item 10), so the plug ends at $R_D=0.4$ (the base, at $p_a$, carries no force); GENO's inverse solver
+builds the contour from that uniform $ED$ (Rao's gas $\gamma=1.23$, $M_a=2.626$, lip Mach 1.5). The
+optimum is known exactly, without GENO: $T=\dot mV_a$.
+\begin{center}\includegraphics[width=\linewidth]{../figs/10_profiles_axial.png}\end{center}
+\begin{center}\small
+\begin{tabular}{lcccc}\toprule
+ & walk grid (120 stations) & 240 & 480 & limit\\\midrule
+GENO's contour vs $\dot mV_a$ & $+1.46\times10^{-4}$ & $+6.4\times10^{-5}$ & $+1.7\times10^{-5}$ & $0$ within $6\times10^{-5}$\\
+best spline vs GENO's contour & $-1.14\times10^{-5}$ & $-1.8\times10^{-6}$ & $-2.3\times10^{-6}$ & $-2.8\times10^{-6}$\\
+SQP result vs best spline (both starts) & $+4.5\times10^{-7}$ & $-1.2\times10^{-6}$ & $-1.04\times10^{-6}$ & $-0.9\times10^{-6}$\\\bottomrule
+\end{tabular}\end{center}
+\verdict{\yes, up to the spline basis. Two starts ($1.9\times10^{-4}$ and $1.3\times10^{-2}$ below) land on one point
+($6\times10^{-11}$ in $J$, $5\times10^{-6}$ in shape, $|\nabla J|/J=2\times10^{-5}$), above the best spline of Rao's contour at
+the walk's grid. Re-marched finer, the result is $0.9\times10^{-6}$ below that spline --- the cost of maximising the
+march's $J_h$ rather than $J$ --- and the spline is $2.8\times10^{-6}$ below Rao's contour: its 9 knots miss Rao's wall angle by $1.5\times10^{-3}$ rad rms, and at a
+maximum $\Delta J/J\approx-2\,\delta\theta^2=-4.6\times10^{-6}$, the same order. Re-marched, Rao's contour equals
+$\dot mV_a$ within $6\times10^{-5}$ (the march converges slowly here, order 0.8, so the limit is not sharper); the
+first-grid gap of the spline ($-1.1\times10^{-5}$) was march error, not basis.}

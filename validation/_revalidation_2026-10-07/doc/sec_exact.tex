@@ -1,0 +1,37 @@
+\section{The march against exact solutions}
+The march (\texttt{a1\_plug\_march.plug\_march}) builds columns along $C^+$ lines from the plug stations; the plug
+point is an inverse cell fed by the $C^-$ from the previous column; a column ends at the shroud, at the lip, or at the
+free edge where $p=p_a$; the lip fan follows $d\theta=\sqrt{M^2-1}\,dq/q$. The thrust it reports is
+\begin{equation}
+J=F_\mathrm{in}-p_aA_\mathrm{in}-\sum_\mathrm{plug}(\bar p-p_a)\,\bar w\,\Delta y+\sum_\mathrm{shroud}(\bar p-p_a)\,\bar w\,\Delta y,
+\qquad \bar w=2\pi\bar y\ \text{(axisymmetric)},\ 1\ \text{(planar)}.
+\end{equation}
+
+\subsection{Gas tables (38/38)}\label{s:t01}
+The model interpolates $h(T)$ and $s_0(T)$ linearly. $h$ is exact; for $s_0=c_p\ln T$ on a grid $\Delta T$,
+$|\delta p/p|=|\delta s_0|/R\le (c_p/R)\,\Delta T^2/8T^2$.
+\verdict{\pass. $p$ and $\rho$ within $1.2\times10^{-7}$ (bound $4.9\times10^{-7}$); $T,c,M$ exact to $10^{-15}$; the
+lip-fan turn to $10^{-12}$ rad. 13 gases (the methane mean state and its 12 phases).}
+\begin{center}\includegraphics[width=0.8\linewidth]{../figs/01_thermo_tables.png}\end{center}
+
+\subsection{One characteristic cell (17/17)}\label{s:t02}
+A cell is the trapezoidal form of
+$dy/dx=\tan(\theta\pm\mu)$, $(u^2-c^2)du+[2uv-(u^2-c^2)\lambda_\pm]dv-\delta\,c^2v/y\,dx=0$: local error $O(h^3)$.
+It is fed exact feet in two exact fields (planar fan, axisymmetric source flow).
+\verdict{\pass. Local order 3.0 in both fields. Rejector: the planar cell in the axisymmetric field gives order 1 in
+velocity, because the dropped term $\delta c^2v/y\,dx$ is $O(h)$ per step --- the test sees the axisymmetric term.}
+\begin{center}\includegraphics[width=0.6\linewidth]{../figs/02_cell_local_order.png}\end{center}
+
+\subsection{Planar plug under its free jet, exact centred expansion (8/8)}\label{s:t03}
+Uniform $M=1.556$ at $-20^\circ$, a $20^\circ$ fan at the lip, the plug = the exact streamline: the exact flow is
+uniform $\to$ fan $\to$ uniform, thrust $\rho_2q_2^2h_2$.
+\verdict{\pass. Wall pressure, jet edge, mass and thrust errors fall by 4 per refinement (order 2.0); thrust
+$-2.8\times10^{-7}$ at the finest grid (320 stations, 81 rows).}
+\begin{center}\includegraphics[width=\linewidth]{../figs/03_planar_lipfan_plug.png}\end{center}
+
+\subsection{Axisymmetric two-wall channel, exact source flow (12/12)}\label{s:t04}
+Radial flow between coaxial cones ($10^\circ$, $25^\circ$): both walls are streamlines and $v\neq0$, so the plug cell,
+the shroud cell and the axisymmetric term all act.
+\verdict{\pass. Order 2.00 in every quantity between every pair of grids; the carrier's thrust within
+$1.0\times10^{-5}$ of the exact one at the finest grid.}
+\begin{center}\includegraphics[width=\linewidth]{../figs/04_axi_source_channel.png}\end{center}

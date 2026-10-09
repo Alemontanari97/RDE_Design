@@ -4953,3 +4953,69 @@ the loss grows with refinement). Rule of record (the owner): designed
 walls carry no undulations -- the walks run in smooth wall bases and a design whose wall angle changes the sign of its
 slope more than its kernel's own turn and straightening (an oscillating angle) is not a credible design, whatever
 the tool scores it.
+
+[REVALIDATION BLOCK — THE OPTIMISER RE-OBTAINS KNOWN OPTIMA; THE AGNOSTIC DRIVER; THE NEWTON RESCUE; THE REGISTRY TRIAGE]
+(2026-10-07/09, owner's order; harness validation/_revalidation_2026-10-07/, deliverable doc/slides.pdf, triage
+doc/TRIAGE_2026-10-09.md; every statement PRACTICE and MEASURED unless said otherwise).
+(1) THE ORDER. Every optimiser result before 2026-10-07 is not trusted. The optimiser must re-obtain known optima from
+distant starts with ONE setting for every case (it will not know the optimum in production); where it does not, the
+reason is given with equations and in plain words. Rao's method on the same problem is the optimum: a landing above
+it is a defect to explain on our side, never a gain.
+(2) THE MODEL, AGAINST EXACT SOLUTIONS AND GENO (re-run 2026-10-09 with the committed defaults; every test carries a
+rejector, a corrupted variant that must fail the check it mirrors): the cells at order >= 2.7 against exact smooth
+fields [X-A1IM]; the assembled marches against the exact planar lip expansion and the exact axisymmetric source
+channel [X-LJET], [X-TWMU]; GENO's Migdal walls and GENO's Rao field [X-MGDL], [X-RAOTW]; the gas tables against the
+closed form [X-RVGAS]; the derivatives on the production posing and the 12-phase objective [X-RVGRD], [X-RVPHS]; Rao
+1961 and Humphreys 1971 by an independent solver of Rao's equations and by GENO [X-RAOPO], [X-RAOHM]; the bell engine
+against GENO's two bells [X-TOCV].
+(3) THE AGNOSTIC DRIVER (validation/a1_qntr.py; the default of run_trsqp since 2026-10-08, PSPL_DRIVER=legacy restores
+the former segmented trust-constr driver). A quasi-Newton trust region on the TRUE march: every trial is marched,
+certified and measured, no step is accepted on the frozen replay alone; the curvature starts from a measured secant
+Hessian and is updated by damped BFGS; the radius follows the ratio of measured to predicted gain; the walk stops
+CONVERGED when the predicted remaining gain is below 1e-8 J (re-checked with a measured Hessian), on RESOLUTION when
+steps fall below the radius floor or five short trials in a row miss their prediction by more than half (the
+objective is not smooth at that scale), or on BUDGET; a trial that breaks the no-fold margin is restored onto it, and
+the linearised class is solved by SLSQP. WHY: the former driver steps on the frozen replay, which is exact only while
+the march's discrete decisions do not change (to 1.5e-3 of wall displacement in the three Rao posings; beyond 2e-3
+its error jumps to 1e-2); on Rao's eps 3.81 spike, steep near the throat (theta_wall + mu -> 0), its model promised
+gains its steps did not deliver (from one landing a 1e-3 step is predicted +1.2 percent, above the bound, and is a
+loss), and from two distant starts it stopped at -8.9 / -14.3 ppm where the closest curve of the design class sits at
+-0.4. The new driver accepts only measured gains; with the same setting as every other case it reaches -1.30 / -1.35
+[X-RAOSQ].
+(4) THE NEWTON RESCUE BY DEFAULT (a1_ideal_march_jax.NEWTON_RESCUE, since 2026-10-08; A1_NEWTON_RESCUE=0 restores the
+former behaviour). A cell's damped Newton ranks its trial steps by a residual norm whose rows carry different units
+(position and compatibility); at a horizontal C+ (theta_wall + mu = -0.63 deg, the foot chord at 0.07 deg, cond(J)
+3.4e13) the full step raises that norm and the damped loop ends on its trip cap, although plain Newton from the
+returned point converges quadratically (second step / first 1.4e-3). The rescue continues with plain Newton steps
+and keeps the root only if certified: certified records are unchanged, the stalled cells certify, the wall pressure
+moves by 3.6e-13 (one Newton step at the rounding floor).
+(5) WHAT IS CERTIFIED. Two distant starts per case, landings re-marched on three grids; ppm of thrust against the known
+optimum at the finest grid, the closest curve of the design class (the best member, by least squares on the
+optimum's wall) in brackets as the yardstick: planar ideal plug -10.3 (-9.0) [X-PSPL]; GENO's Rao plug in methane
+-2.11 / -2.18 (-0.24) [X-OWSQ]; Rao 1961 -1.30 / -1.35 (-0.43) [X-RAOSQ]; the ideal spike (the bound mdot V_a) -3.31 /
+-3.47 (-2.31) [X-OWS3]; Humphreys 1971's Rao nozzle -0.90 / -0.91 (-0.89; their direct method -58) [X-HMPH]; Migdal's
+two walls -1.33 / -1.32 with and without the no-fold rule [X-TWOP]; the bell TOC +0.34 / +0.35 over its closest curve
+on the grid twice as fine [X-TOCV]. Checks per start (converged; reaches the closest curve on its own grid within the
+predicted remaining gain; the starts agree; not above the optimum): 57/60, the three failures are the ideal bell. A
+walk tunes to the error of its own grid (1-2 ppm on the plugs; 3-5 ppm for the bell at (41,120), 0.3 at twice the
+grid): the certified number is read on finer grids, never on the walk's.
+(6) THE IDEAL BELL'S SECOND TOP (OPEN; [X-RVBEL], finding bell:ideal-bell-second-top-open). On GENO's ideal bell at its
+full length one start re-obtains it, the other converges on a second strict local maximum of the computed thrust
+(theta_B 8.2 deg against 12.5; -29 ppm at (81,240), -42 at (161,480)): the thrust dips 14 ppm on the straight line
+between the two results, the secant Hessian is negative definite at both and 64 true marches along its principal
+directions are all lower. Excluded: the 8-point wall (with 12 points that start hits march jumps), the omitted throat
+panel, the axial-margin rejector. Not settled: whether the second top exists in the continuous problem.
+(7) WHAT A CHECK CANNOT SEE (rejector lesson). On the planar lip-fan case the thrust does not see a 2 percent error of
+the jet's ambient (+5.3e-8 against a band of 3.0e-6): downstream of the fan the plug is the streamline of the axial
+region, a horizontal wall, and a pressure error there has no axial projection. The jet edge sees it. A free-boundary
+model accepted on its thrust alone is not a check of the boundary.
+(8) THE REGISTRY TRIAGE (owner, 2026-10-09). The closure-staleness lint flagged 46 carriers. 9 re-run with the
+committed code (4 used by the tool or the paper, 5 used only when their trigger fires); 15 keep their ID and point to
+the revalidation tests; 22 are retired (stamp fail=2026-10-09, owned by the OPEN finding
+revalidation:carriers-retired-2026-10-09); 4 new carriers ([X-RVGAS], [X-RVGRD], [X-RVPHS], [X-RVBEL]). Nothing is
+deleted: the IDs are cited 182 times in docs/*.md, 73 of them in the append-only archive.
+(9) THE INFLOW OF THE DECISIVE COMPARISON (owner, 2026-10-09). The real outflow of the engine, taken from a simulation as
+the nozzle's input, replaces the synthetic constant-Mach SDT family and the THOR outflow. A test that uses the SDT gas
+only as a test gas (model and reference on the same gas) keeps its verdict, which is about the code; the derivative and
+12-phase checks run on the SDT posing are checks of the machinery, to be re-run on the real-outflow posing. The
+synthetic SDT cycle family generator is retired and the SDT trial runs and walks were deleted on the owner's yes.

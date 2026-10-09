@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,hyperref,tabularx,enumitem}
+\usepackage[font=small]{caption}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+\newcommand{\yes}{\textcolor{green!45!black}{\textbf{yes}}}
+\newcommand{\no}{\textcolor{red!70!black}{\textbf{no}}}
+\newcommand{\pass}{\textcolor{green!45!black}{\textbf{PASS}}}
+\newcommand{\fail}{\textcolor{red!70!black}{\textbf{FAIL}}}
+\newcommand{\verdict}[1]{\par\smallskip\noindent\colorbox{gray!12}{\parbox{\dimexpr\linewidth-2\fboxsep}{\textbf{Verdict.} #1}}\par\smallskip}
+\newcommand{\plain}[2]{\par\smallskip\noindent\fcolorbox{blue!35!black}{blue!4}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\textbf{#1}\par\smallskip #2}}\par\smallskip}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\setlist{itemsep=1pt,topsep=2pt}
+\title{rde-nozzle: validation of the SQP optimiser}
+\author{2026-10-07/08 --- harness \texttt{RDE\_Design/validation/\_revalidation\_2026-10-07/}}
+\date{}
+\begin{document}
+\maketitle
+\noindent\fbox{\parbox{0.97\linewidth}{\small\textbf{Superseded where it differs.} This report records the first day of the revalidation (2026-10-07/08) with the former driver and the Newton rescue opt-in. The certified results are in \texttt{doc/slides.pdf} (the agnostic driver, one setting for every case) and in the re-runs of 2026-10-09 (\texttt{doc/TRIAGE\_2026-10-09.md}: every model check re-run with the committed defaults and given a rejector; t05 21/21 and t06 6/6 with the rescue by default). The former driver's results below are kept as the record of why it was replaced.}}\par\medskip
+\vspace{-6mm}
+\input{sec_glance}
+\clearpage
+\input{sec_optimiser}
+\input{sec_derivatives}
+\input{sec_exact}
+\clearpage
+\input{sec_geno}
+\clearpage
+\input{sec_literature}
+\clearpage
+\input{sec_defects}
+\end{document}

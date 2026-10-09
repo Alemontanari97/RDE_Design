@@ -217,7 +217,10 @@ N_NEWTON = 30
 # every certified record is reproduced bitwise; a rescue that does not reach the
 # bound, or meets a non-finite step, returns the stalled iterate and the cell
 # FAILS its certification as before.
-NEWTON_RESCUE = bool(int(os.environ.get("A1_NEWTON_RESCUE", "0")))
+# DEFAULT ON since 2026-10-08 (revalidation, defect 1: Rao 1961's steep plug, theta_wall + mu < 0, stalls cells that the
+# plain Newton certifies; certified cells never enter the rescue, so every certified record is unchanged).
+# A1_NEWTON_RESCUE=0 restores the opt-out behaviour.
+NEWTON_RESCUE = bool(int(os.environ.get("A1_NEWTON_RESCUE", "1")))
 # CERT_KAPPA (2026-09-30, F2.ENGINE order 2; opt-in, unset = the check of record,
 # bitwise): the pass line of the cell check follows the CELL'S OWN amplification
 # of rounding instead of one number for every cell. M0 (block NTF-1..3) derives

@@ -1,0 +1,78 @@
+{
+ "test": "t08c_summary",
+ "n_pass": 4,
+ "n": 5,
+ "rows": [
+  {
+   "label": "M4 the driver restores an out-of-class start [expected to fail: inert restoration]",
+   "value": -0.1083970514139324,
+   "tol": null,
+   "ok": false,
+   "unit": ""
+  },
+  {
+   "label": "M1 the landing equals GENO's pair at the walk's grid within the march's error there",
+   "value": 1.8450394716484908e-06,
+   "tol": 0.00015521113633432115,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "M1 the landing is in class (KS - mu0 >= 0)",
+   "value": 0.010744667389470039,
+   "tol": null,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "M2 at (560,121) the landing is not above GENO's pair beyond the march's error there (one-sided)",
+   "value": -1.3193197425653835e-06,
+   "tol": 6.278044654584036e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "M3 the class-constrained walk reaches the unconstrained value within 1e-6",
+   "value": -4.241043072283901e-10,
+   "tol": 1e-06,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 463.7421610355377,
+ "extra": {
+  "rows": [
+   {
+    "K": 140,
+    "N": 31,
+    "geno": 0.00015521113633432115,
+    "geno_cert": 0.026489018143535464,
+    "landing0": 0.00015705646217645253,
+    "landing0_cert": 0.06616955443212856,
+    "landing1": 0.00015705603800575396,
+    "landing1_cert": 0.05498659862889818
+   },
+   {
+    "K": 280,
+    "N": 61,
+    "geno": 3.756816924016526e-05,
+    "geno_cert": 0.06278741261814402,
+    "landing0": 3.70453068481158e-05,
+    "landing0_cert": 0.03743373720482007,
+    "landing1": 3.704477113530835e-05,
+    "landing1_cert": 0.041786605128582885
+   },
+   {
+    "K": 560,
+    "N": 121,
+    "geno": 6.278044654584036e-06,
+    "geno_cert": 0.06150119921210909,
+    "landing0": 4.958724912018653e-06,
+    "landing0_cert": 0.06150119921210909,
+    "landing1": 4.958803778265519e-06,
+    "landing1_cert": 0.06150119921210909
+   }
+  ],
+  "CF_1d": 1.6473851728476703
+ }
+}

@@ -1,0 +1,80 @@
+{
+ "test": "t08b_summary",
+ "n_pass": 4,
+ "n": 4,
+ "rows": [
+  {
+   "label": "Q1 landing A0 not above GENO's Rao contour at the finest level beyond the march's error (one-sided)",
+   "value": -2.075911387566798e-06,
+   "tol": 9.96823670085245e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Q2 landing A0 re-obtains GENO's value at the finest level (|dJ| <= march's error)",
+   "value": -2.075911387566798e-06,
+   "tol": 9.96823670085245e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Q1 landing C0 not above GENO's Rao contour at the finest level beyond the march's error (one-sided)",
+   "value": -2.141549240941565e-06,
+   "tol": 9.96823670085245e-06,
+   "ok": true,
+   "unit": ""
+  },
+  {
+   "label": "Q2 landing C0 re-obtains GENO's value at the finest level (|dJ| <= march's error)",
+   "value": -2.141549240941565e-06,
+   "tol": 9.96823670085245e-06,
+   "ok": true,
+   "unit": ""
+  }
+ ],
+ "seconds": 793.8752462863922,
+ "extra": {
+  "rows": [
+   {
+    "level": 1,
+    "K": 120,
+    "N": 132,
+    "J_geno": 2679619.625539078,
+    "cert_geno": 1.1396392807923565,
+    "fit": -9.399517930663848e-07,
+    "fit_cert": 1.1338669071636083,
+    "A0": 1.0127704617168831e-06,
+    "A0_cert": 0.092219026380217,
+    "C0": 1.0093682589751296e-06,
+    "C0_cert": 2.279003038423547
+   },
+   {
+    "level": 2,
+    "K": 240,
+    "N": 262,
+    "J_geno": 2679527.023130646,
+    "cert_geno": 0.042707840270920325,
+    "fit": -1.771904777347899e-07,
+    "fit_cert": 0.06912296504604908,
+    "A0": -2.0055103964189414e-06,
+    "A0_cert": 0.13915898240281627,
+    "C0": -2.0724588787324194e-06,
+    "C0_cert": 0.042707840270920325
+   },
+   {
+    "level": 3,
+    "K": 480,
+    "N": 522,
+    "J_geno": 2679500.312971033,
+    "cert_geno": 0.07540642942103404,
+    "fit": -2.38644480954342e-07,
+    "fit_cert": 0.07836926230416218,
+    "A0": -2.075911387566798e-06,
+    "A0_cert": 0.08334012726298168,
+    "C0": -2.141549240941565e-06,
+    "C0_cert": 0.06362873749836824
+   }
+  ],
+  "err": 9.96823670085245e-06
+ }
+}

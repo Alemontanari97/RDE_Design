@@ -1,0 +1,444 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\scriptsize\insertframenumber/\inserttotalframenumber\hspace*{3mm}\vspace*{1.5mm}}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamercolor{frametitle}{fg=blue!40!black}
+\setbeamertemplate{itemize items}{\textbullet}
+\usepackage{booktabs,amsmath,amssymb,graphicx,xcolor,tabularx}
+\newcommand{\yes}{\textcolor{green!45!black}{\textbf{yes}}}
+\newcommand{\no}{\textcolor{red!70!black}{\textbf{no}}}
+\newcommand{\partly}{\textcolor{orange!80!black}{\textbf{partly}}}
+\newcommand{\verdict}[1]{\colorbox{gray!13}{\parbox{\dimexpr\linewidth-2\fboxsep}{\scriptsize\textbf{Verdict.} #1}}}
+\newcommand{\plain}[2]{\fcolorbox{blue!35!black}{blue!4}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\footnotesize\textbf{#1}\enspace #2}}}
+\newcommand{\why}[1]{\fcolorbox{blue!35!black}{blue!4}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\scriptsize\textbf{Why, in plain words.}\enspace #1}}}
+\newcommand{\caseframe}[6]{%
+\begin{frame}{#1}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\includegraphics[width=\linewidth,height=0.56\textheight,keepaspectratio]{../figs/#2}\\[0.5mm]
+\resizebox{\linewidth}{!}{\input{#4}}
+\end{column}
+\begin{column}{0.45\textwidth}
+\scriptsize
+\textbf{Known optimum.} #3\par\smallskip
+\verdict{#5}\par\smallskip
+\why{#6}
+\end{column}
+\end{columns}
+\end{frame}}
+\newcommand{\ppm}{\,ppm}
+\input{num_planar}\input{num_methane}\input{num_rao61}\input{num_axial}\input{num_hth}\input{num_migdal}\input{num_bell}\input{num_bellideal}
+\input{num_stubs}
+\input{num_extra}
+
+\title{Does the optimiser find the optimum?}
+\subtitle{rde-nozzle revalidation: plugs, bells, annular nozzle}
+\author{harness \texttt{RDE\_Design/validation/\_revalidation\_2026-10-07/}}
+\date{2026-10-08}
+
+\begin{document}
+
+% =====================================================================================================================
+\begin{frame}
+\titlepage
+\vspace{-6mm}
+\begin{center}\small
+Every case has an optimum known \emph{without} the model: an exact bound, a paper, or Rao's method in GENO
+(branch \texttt{exp/ws-c-prod-nozzles}, validated).\\[1mm]
+The optimiser is run from two distant starts with \textbf{one setting for every case}; it is never told the optimum.
+\end{center}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{The answer, case by case}
+\centering\small
+\resizebox{0.97\linewidth}{!}{\input{num_score}}
+
+\vspace{3mm}
+\begin{minipage}{0.95\linewidth}\footnotesize
+\textbf{Result vs optimum}: the optimiser's thrust minus the optimum's, re-computed on the finest of three grids, for each
+of the two starts, in \textbf{ppm} (parts per million of thrust: 1\ppm\ = 1\,N per MN). The optimiser describes a wall
+by a smooth curve through 8--12 points; the closest such curve to the optimum is itself a little below a sharp optimum
+(in brackets): that is about the most any walk can reach. Bells: measured against the closest curve to GENO's wall (the
+bell engine marches only its own curves). \textbf{Found?}: both starts reach the optimum within the grid and the curve
+description; ``partly'': one start does, the other stops on a second, lower top. \textbf{Times} in the case tables: s2
+was shared with other users' jobs at normal priority from $\sim$13:20; our runs got 25--35\,\% of a core.
+\end{minipage}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{The optimiser's checks, case by case}
+\centering
+\resizebox{0.86\linewidth}{!}{\input{num_checks}}
+
+\vspace{1.5mm}
+\begin{minipage}{0.97\linewidth}\scriptsize
+\textbf{C1} the driver declares convergence (gain still predicted, curvature re-measured, $<10^{-8}$ of thrust).
+\textbf{C2} on its own grid the result reaches the closest curve to the optimum (tolerance: the gain still predicted).
+\textbf{C3} the two starts agree within the grid's resolution of wall comparisons in that case (the smaller of the
+two starts' shifts from its own grid to the limit). \textbf{C4} on the finest grid the result is not above the optimum
+beyond what the grid resolves there (shift of the closest curve's distance from the optimum between the two finest grids;
+n/a for bells: the bell engine cannot march GENO's wall). Grey: measured value $\le$ tolerance, ppm. The three FAILs are
+the ideal bell's second top: a real top of the posed problem (backup slide), not a wrong stop of the driver.
+\end{minipage}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{How to read the numbers}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Three sources of small differences, none of them the optimiser's:}
+\begin{itemize}\footnotesize
+\item \textbf{Grid.} Thrust is computed on a grid (like measuring with a ruler); halving the spacing divides the error
+by about 4. Every result is re-computed on 3 grids and extrapolated.
+\item \textbf{Wall description.} 8--12 points + a smooth curve cannot follow a wall whose curvature jumps (where the
+first lip wave lands, where the bell leaves the throat arc). Cost: a few ppm.
+\item \textbf{Tuning to the ruler.} The walk maximises the thrust \emph{on its grid}, including that grid's error:
+\[J_h=J+e_h\quad\Rightarrow\quad \nabla J=-\nabla e_h\ \text{at the landing,}\]
+so it can sit \emph{above} the closest curve on the optimiser's grid and 1--2\ppm\ below it on a finer one.
+\end{itemize}
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{What counts as ``found''}
+\begin{enumerate}\footnotesize
+\item On the optimiser's own grid the landing is at least as good as the closest curve of the optimum (it did its job on
+the objective it sees).
+\item Two distant starts land on one point (thrust and wall).
+\item On finer grids the landing is within the grid / wall-description effects above of the optimum --- never
+\emph{above} the optimum beyond its error (Rao is the optimum of the same problem: a gain would be a defect of ours).
+\end{enumerate}
+\vspace{1mm}
+\plain{Flat top.}{Near an optimum many walls give almost the same thrust: walls 0.3--0.5\,mm per metre apart can differ
+by less than 1\ppm. Shapes are therefore compared to that scale, not to zero.}
+\plain{No-fold rule.}{The model is shock-free: characteristics of one family must not cross. Where the optimiser could
+gain by folding them (a shock in reality), the rule forbids it; it is a constraint of the walk.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{The driver: what was wrong, what changed}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\textbf{Before} (segmented \texttt{trust-constr}, \texttt{PSPL\_DRIVER=legacy})\\[1mm]
+\footnotesize
+\begin{enumerate}
+\item A segment walks a \emph{frozen} copy of the march, exact only within $\sim10^{-3}$ of its base, but its step is
+not bounded by its radius (2.8 at radius $10^{-3}$, measured): it predicted $+1$--$4\,\%$, the real march said
+``worse''.
+\item The curvature was rebuilt from nothing at every segment: gradient-like steps, slow on a narrow ridge.
+\item Stop rule ``two short steps'' read slow progress as the top.
+\item Restoration inert (a start breaking the no-fold rule never moved); with the rule on, interior-point segments
+returned worse points.
+\end{enumerate}
+\end{column}
+\begin{column}{0.49\textwidth}
+\textbf{Now} (\texttt{a1\_qntr}, default)\\[1mm]
+\footnotesize
+\begin{enumerate}
+\item Every trial point is the \textbf{true march}; the frozen copy is used only for the gradient \emph{at} a marched
+point, where it is exact.
+\item Step from a quadratic model whose curvature $B$ is measured once (secant Hessian) and \textbf{kept} (BFGS):
+\[d=\arg\max_{\|d\|\le\Delta}\ g^\top d-\tfrac12 d^\top Bd,\quad \rho=\tfrac{\text{actual gain}}{\text{predicted gain}}.\]
+\item Stop only when the gain still predicted, $\tfrac12 g^\top B^{-1}g$, is below $10^{-8}J$ \textbf{and} stays below
+with $B$ re-measured there.
+\item Restoration = the same machinery on the rule's margin; the rule is a linear constraint of the model.
+\end{enumerate}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\plain{In plain words.}{Climbing a hill in fog: the old method trusted a map valid for one step but walked ten,
+forgot the shape of the hill after every stretch, and stopped when its steps got short. The new one checks every step
+on the real ground, remembers the shape of the hill, and stops only when even its best estimate of the remaining
+climb is below one part in $10^8$.}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{Rao 1961: the case that exposed it}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\includegraphics[width=\linewidth]{../figs/19_rao61_history.png}
+\end{column}
+\begin{column}{0.42\textwidth}
+\footnotesize
+Rao's $\varepsilon=3.81$ plug is very steep near the throat: the right-running characteristics at the wall turn
+\emph{downwards} ($\theta_\mathrm{wall}+\mu=-3.3^\circ$, every other plug here $>0$). The thrust then varies along a
+narrow ridge: the best step along the gradient is $2.4\times10^{-4}$ for a gain of 0.6\ppm.
+
+\medskip
+\textbf{Old driver:} ended \RaoSixtyOneOldBumpMinusFitWalk\ and \RaoSixtyOneOldHalfMinusFitWalk\ppm\ from the closest
+curve (optimiser's grid). \textbf{New driver, same settings as every case:} \RaoSixtyOneBumpTrials{} and
+\RaoSixtyOneHalfTrials{} steps, \RaoSixtyOneBumpTime{} and \RaoSixtyOneHalfTime{} (on a loaded machine), both above that
+curve on their grid.
+
+\medskip
+\why{The old method walked along a knife-edge ridge with steps that kept falling off it; after each fall it took
+shorter steps until they looked like ``no progress''. Remembering the ridge's shape (the curvature) lets the new method
+step along the ridge instead of across it.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{What the optimiser stands on (model checks)}
+\centering\footnotesize
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}llll@{}}\toprule
+check & against & result & \\\midrule
+gas tables & exact & $p,\rho$ within $1.2\times10^{-7}$ (bound $4.9\times10^{-7}$) & \yes\\
+one characteristic cell & two exact fields & local order 3.0 & \yes\\
+planar plug, centred expansion & exact & order 2.0; thrust $-0.28$\ppm\ at the finest grid & \yes\\
+axisymmetric two-wall channel & exact source flow & order 2.00; thrust within 10\ppm & \yes\\
+plug + shroud on GENO's Migdal walls & GENO, $F_\mathrm{1D}$ & wall $p$ order 2; thrust limit $-1.6$\ppm\ from $F_\mathrm{1D}$ & \yes\\
+plug on GENO's Rao (methane) & GENO & wall $p$ to $7\times10^{-5}$ = GENO's own consistency & \yes\\
+\textbf{bell} march on GENO's TOC and ideal bell & grids, GENO & order 1.8 / 2.4; $\Delta C_F$(TOC$-$ideal) $=-0.008484$ vs GENO $-0.0084$ & \yes\\
+gradients (reverse AD) & finite differences & equal within $10^{-5}$; replay $=$ march to $10^{-16}$ & \yes\\
+Rao 1961, Humphreys 1971 & the papers & tables reproduced within printing (18/20; both misses the paper's) & \yes\\\bottomrule
+\end{tabular}}
+
+\vspace{2mm}
+\begin{minipage}{0.9\linewidth}\footnotesize
+The march is the method of characteristics: second-order accurate, exact solutions recovered at order 2, GENO's walls
+and pressures recovered to GENO's own consistency. Where a cell is nearly singular (right-running characteristic
+horizontal at the wall) its Newton solve could stop one step short; the rescue that fixes it is now \textbf{on by
+default} (certified cells unchanged bit for bit). Re-run on 2026-10-09 with the committed code; every check now carries a \emph{rejector} (a deliberately corrupted model must fail it): all 10 caught. Details: \texttt{doc/validation.pdf} (first day, partly superseded) and \texttt{doc/TRIAGE\_2026-10-09.md}.
+\end{minipage}
+\end{frame}
+
+% =====================================================================================================================
+\caseframe{Planar plug vs the exact ideal plug}{17_planar.png}{With the jet edge and the base at $p_a$, per unit mass
+$u+\frac{p-p_a}{\rho u}\le V_a$ (supersonic flow), so $T\le\dot mV_a$, with equality only for a uniform axial exit:
+the exact ideal plug.}{num_planar_table}{\yes. \PLANARVERDICT}{\PLANARWHY}
+
+% =====================================================================================================================
+\caseframe{Rao plug, methane gas, lip Mach 1.556 (RDE-like)}{17_methane.png}{GENO's Rao contour: the model starts on GENO's last internal characteristic and designs the
+plug from $x_s$ (where the first lip wave lands) to the end $D$; Rao's contour is the maximum of exactly this problem.}{num_methane_table}{\METHANEVERDICT}{\METHANEWHY}
+
+% =====================================================================================================================
+\caseframe{Rao 1961, $\varepsilon=3.81$ (the paper's Table 1)}{17_rao61.png}{Rao's contour (his Table 1 = GENO's, within printing); same posing as the methane plug,
+$\gamma=1.23$, $M_E=2.4$, $\theta_E=-8.25^\circ$.}{num_rao61_table}{\RAOVERDICT}{\RAOWHY}
+
+% =====================================================================================================================
+\caseframe{Axial exit: Rao's $\theta_E=0$ member}{17_axial.png}{With $\theta_E=0$ Rao's conditions give $C_3=0$, so $\theta\equiv0$ on the control surface:
+uniform axial flow at $p_a$, the bound $T=\dot mV_a$. GENO cannot reach the axis, so the plug ends at $R_D=0.4$ (base
+at $p_a$). GENO's contour reaches the bound to \AxialGenoBound\ppm\ in the limit: the start line is GENO's own data, which
+close mass and momentum against GENO's exit surface only to $10^{-5}$--$10^{-4}$ (measured on the methane case);
+results are compared with GENO's contour on that same line.}{num_axial_table}{\AXIALVERDICT}{\AXIALWHY}
+
+% =====================================================================================================================
+\begin{frame}{Rao vs Humphreys et al.\ 1971 vs our optimiser: the same plug}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\includegraphics[width=\linewidth,height=0.47\textheight,keepaspectratio]{../figs/17_hth.png}\\[0.5mm]
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}llr@{}}\toprule
+method & start line & thrust\\\midrule
+Rao's method (their Table 3) & Rao's sonic line & 34\,253\,lbf\\
+\quad the same, our solver of Rao's equations & & 34\,254\,lbf\\\midrule
+Humphreys' variational method & a characteristic of Rao's field & 34\,373\,lbf\\
+\quad ``compared to \dots\ for Rao's nozzle'' (their words) & & 34\,375\,lbf\\
+our optimiser (2 starts): ratio to Rao's contour $\times$ 34\,375 & GENO's characteristic of Rao's field & \HthLbf\\\midrule
+Humphreys' fixed-inlet optimum & their own start line, wall friction & 32\,881\,lbf\\\bottomrule
+\end{tabular}}\\[0.5mm]
+\resizebox{\linewidth}{!}{\input{num_hth_table}}
+\end{column}
+\begin{column}{0.45\textwidth}
+\scriptsize
+\textbf{Their Rao nozzle:} 148.08\,lbm/s, 500\,psia, 6000\,$^\circ$R, $\gamma$ 1.23, $p_a$ 14.7\,psia, length 11.518\,in,
+their base model. \textbf{Our start line:} GENO's characteristic of Rao's field (GENO's lip Mach 1.7: at 1.5 one cell
+of that fixed line is not certified).
+
+\smallskip
+\verdict{\HTHVERDICT}
+\smallskip
+\why{\HTHWHY}
+\end{column}
+\end{columns}
+\end{frame}
+
+% =====================================================================================================================
+\caseframe{Bell, $\varepsilon=4$, length $4\,r_t$: Rao's thrust-optimised contour}{17_bell.png}{Rao 1958: maximum vacuum thrust at fixed length and exit radius (GENO type 2, CH$_4$/O$_2$
+frozen gas, 54\,\% of the ideal length). Ours: throat arc to $\theta_B$, then a curve through 8 points, lip pinned;
+reference = the best such curve of GENO's wall.}{num_bell_table}{\BELLVERDICT}{\BELLWHY}
+
+% =====================================================================================================================
+\caseframe{Bell, $\varepsilon=4$, at its ideal length: the ideal bell}{17_bellideal.png}{In vacuum at fixed exit area the thrust is at most $F_\mathrm{1D}=\dot mV_e+p_eA_e$, reached
+only by a uniform parallel exit: GENO's ideal bell (type 0), length $7.34\,r_t$. Reference: its closest curve.}{num_bellideal_table}{\BELLIDEALVERDICT}{\BELLIDEALWHY}
+
+% =====================================================================================================================
+\caseframe{Annular nozzle (GENO's Migdal walls): carrier and production walker}{17_migdal.png}{Inlet and exit annulus fixed, vacuum: $C_F\le C_{F,\mathrm{1D}}=1.647385$, reached by
+Migdal's perfect nozzle (GENO's walls). Both walls are designed: 12 + 12 points.}{num_migdal_table}{\MIGDALVERDICT}{\MIGDALWHY}
+
+% =====================================================================================================================
+\begin{frame}{When nobody knows the optimum: what the tool tells you}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\small
+On a new design there is no Rao to compare with. The tool reports two numbers of its own, and the known cases
+calibrate them:
+\begin{enumerate}
+\item \textbf{Stop reason and predicted remaining gain} $\tfrac12g^\top B^{-1}g/J$ with $B$ measured at the landing:
+``CONVERGED'' means below $10^{-8}$.
+\item \textbf{Spread between two starts}: run twice from distant walls; the two landings must agree in thrust and
+wall.
+\end{enumerate}
+\plain{Rule of thumb.}{If both starts say CONVERGED and agree to $<1$\ppm, the landing is the optimum of the posed
+problem up to grid and wall description (a few ppm). If they disagree, the problem has two tops or the wall
+description is too coarse --- not a reason to trust either. The ideal-bell rows show why: one start says ``converged''
+(0.006\ppm\ left to gain) on a top 29\ppm\ below the other's.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\centering\footnotesize
+\resizebox{\linewidth}{!}{\input{num_calib}}
+\end{column}
+\end{columns}
+\end{frame}
+
+% =====================================================================================================================
+\begin{frame}{What is still open (1/2): precision and multiple tops}
+\small
+\begin{itemize}
+\item \OPENONE
+\item \OPENTWO
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is still open (2/2)}
+\small
+\begin{itemize}
+\item \OPENTHREE
+\item \textbf{Physics, not code:} at low chamber pressure a plug designed for the mean state over-expands the flow;
+compressions coalesce, no shock-free solution exists, and the 12-phase objective is undefined there.
+\item \textbf{Not covered:} the walker's basis map and capped posings; the 12-phase family generation; base-pressure
+closures; swirl; the inlet-family wrapper; the CFD referee. The constant-Mach (SDT) inflow is parked.
+\item \textbf{Git:} nothing committed (owner's order). Changed tracked files: \texttt{a1\_plug\_spline\_opt.py} (driver
+switch), \texttt{a1\_ideal\_march\_jax.py} (rescue default); new: \texttt{a1\_qntr.py}. Other sessions using the same tree
+were told how to restore the old defaults. Keep/remove list to agree.
+\end{itemize}
+\end{frame}
+
+% =====================================================================================================================
+\appendix
+\begin{frame}{Backup: the ideal bell's two tops}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\includegraphics[width=\linewidth]{../figs/23_bell_two_tops.png}
+
+\scriptsize
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}lcc@{}}\toprule
+ & second top & ideal bell\\\midrule
+attachment angle & 8.16\textdegree & 12.53\textdegree\\
+Hessian eigenvalues ($/J$) & $-18.7\dots-0.21$ & $-18.7\dots-0.34$\\
+all 8 negative & \yes & \yes\\
+true marches at $\pm2\times10^{-3}$, $\pm10^{-2}$ & 32/32 lower & 32/32 lower\\
+gain still predicted & 0.015\ppm & 0.001\ppm\\\bottomrule
+\end{tabular}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\scriptsize
+\textbf{What is claimed.} With the 8-point wall on the $81\times240$ grid, the thrust the march computes has two
+\emph{strict local maxima}, 30--45\ppm\ apart.
+
+\smallskip
+\textbf{The evidence} (t23, t24). At both results: the curvature (secant Hessian of the marched thrust) is negative in all
+8 principal directions, and the true march, moved along each of them in both senses by $2\times10^{-3}$ and $10^{-2}$,
+always gives less thrust (64 marches, largest change $-0.55$\ppm). Along the straight line between the two results the
+thrust falls 14\ppm\ below the lower one before rising to the higher (left). So the driver's ``converged'' was right:
+not a saddle, not a stop short.
+
+\smallskip
+\textbf{What is not settled.} Whether the second top exists in the continuous problem: it is not the throat-arc panel the
+objective leaves out (the objective is smooth where the arc gains a station) nor the axial-Mach margin (0.04\,m/s at
+both); with a 12-point wall the same start meets jumps of the march ($-230$ to $-345$\,N over wall changes of
+$2\times10^{-5}$) and stops before either top, while the cylinder start finds the ideal bell again. Two distant starts
+are the protection.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Backup: the references reproduce the papers}
+\footnotesize
+The optimum of the Rao cases is GENO's contour; here GENO and our solver of Rao's equations are tied to the papers
+(the case slides show the papers' points together with the SQP results).
+
+\footnotesize
+Rao's exit-characteristic conditions solved from the paper alone (\texttt{ref/rao1961.py}):
+$w\cos(\theta+\alpha)/\cos\alpha=C_2$, $R\rho w^2\sin^2\theta\tan\alpha=C_3$, corner conditions at $E$ ($p_a$) and $D$.
+
+\smallskip
+\resizebox{0.6\linewidth}{!}{\begin{tabular}{@{}lccc@{}}\toprule
+$\varepsilon=3.81$ & Rao, printed & ours at $R_D$ & GENO at $R_D$\\\midrule
+$L/R_E$ & 1.164 & 1.1640 & 1.1640\\
+$\pi R_E^2/A^*$ & 3.81 & 3.8094 & 3.8095\\
+$C_F$ (vacuum) & 1.5804 & 1.5804 & 1.5806\\
+$\theta_D$ & $-19.73^\circ$ & $-19.69^\circ$ & $-19.69^\circ$\\\bottomrule
+\end{tabular}}
+
+\smallskip
+Rao's tables = his equations ended at his printed $R_D$ (a base pressure of $0.0033\,P_c$, one march step early).
+Humphreys 1971: $R_E=8.3311$ in (printed 8.33), $R_D=1.37507$ (1.37506), thrust 34\,254\,lbf (34\,253); GENO within
+0.0003\,in of their 19 points; their $-12.27^\circ$ at $x=5.337$ is a misprint for $-22.27^\circ$.
+
+\end{frame}
+
+\begin{frame}{Backup: bells in the literature --- Allman \& Hoffman 1981}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\footnotesize
+Allman \& Hoffman (AIAA J.\ 19(6), 1981) optimised bell walls \emph{directly} --- a 2nd-degree polynomial, three
+search methods --- and compared with Rao's contours at 15 lengths: vacuum thrust 0.05--0.21\,\% (500--2100\ppm)
+below Rao's, 0.22--0.66\,\% with ambient pressure; ``each method converges to the unique maximum thrust contour'', the
+deficit being ``the restriction of a second-degree polynomial''.
+
+\medskip
+Here: an 8-point curve, the same kind of direct optimisation, lands within \BELLVSAH\ of the closest curve to Rao's: the
+representation, not the method, sets the deficit --- their conclusion, one wall description later.
+\end{column}
+\begin{column}{0.48\textwidth}
+\footnotesize
+\begin{tabular}{@{}rrrr@{}}\toprule
+length (cm) & Rao (N) & polynomial (N) & $\Delta F$\\\midrule
+5.897 & 21362.4 & 21341.9 & $-0.10\,\%$\\
+11.616 & 23315.1 & 23284.8 & $-0.13\,\%$\\
+24.518 & 25217.5 & 25186.8 & $-0.12\,\%$\\
+42.968 & 26402.0 & 26361.5 & $-0.15\,\%$\\
+62.221 & 27050.1 & 26991.4 & $-0.21\,\%$\\\bottomrule
+\end{tabular}
+
+\smallskip
+(their Table 1, vacuum rows; conditions in AFAPL-TR-77-1, not reproducible here)
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Backup: findings on GENO (reference code, not modified)}
+\footnotesize
+\begin{itemize}
+\item Rao's input $\theta_i$ is not the flow angle at the lip: GENO places $(M_E,\theta_E)$ by one midpoint step of
+$\theta+\nu=$ const; inputs must emulate that step (done exactly here).
+\item Rao cannot start from a user's characteristic: its inflow is an output; the model takes GENO's.
+\item Default exit sampling $N_e=100$ makes polygon walls ($6\times10^{-3}$ rad per vertex): use $N_e\ge1000$.
+\item The lip-fan scan covers only $60^\circ$; the ideal spike (control surface to the axis) diverges ($c^2v/y$ at
+$y\to0$): the axial-exit case ends the plug at $R_D=0.4$.
+\item TOP (type 4) at the ideal length reports $C_F$ above the ideal bell's ($+3.6\times10^{-5}$ in $I_{sp}$): a
+parabola with an internal shock, credited isentropically --- not used as a reference here.
+\item Type 3 (``conical'') with this input returns the ideal contour; the cone start was built analytically (and is
+outside the shock-free model: a cell crosses the axis).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Backup: reproduction}
+\footnotesize
+On s2 (venv \texttt{venv-a1}), from \texttt{RDE\_Design/validation/\_revalidation\_2026-10-07/}:
+\begin{itemize}
+\item walks: \texttt{run\_walk.sh <log> <cpu> <script> <args>} with \texttt{t08a\_planar\_walk.py},
+\texttt{t08b\_rao\_walk.py}, \texttt{t08c\_migdal\_walk.py}, \texttt{t10\_rao\_walk.py}, \texttt{t15\_bell\_walk.py};
+the production walker: \texttt{TWOP\_STAGE=walk TWOP\_START=F TWOP\_METRIC=start python a1\_twowall.py} (log
+\texttt{logs/t13\_walker\_F\_qntr.log});
+\item readings and figures: \texttt{t17\_slides.py <case>}, numbers \texttt{t18\_numbers.py}, then
+\texttt{tectonic slides.tex} in \texttt{doc/};
+\item GENO on s3: \texttt{run\_geno.sh <case>} (\texttt{geno/bell\_*}, \texttt{geno/rao61\_*}, \dots).
+\end{itemize}
+Driver: \texttt{PSPL\_DRIVER=qntr} (default) / \texttt{legacy}; tolerance \texttt{QNTR\_TOL} (default $10^{-8}$);
+Newton rescue \texttt{A1\_NEWTON\_RESCUE=1} (default) / 0.
+\end{frame}
+
+\end{document}
