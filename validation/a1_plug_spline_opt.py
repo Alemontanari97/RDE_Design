@@ -425,6 +425,13 @@ def J_and_grad(W, w, c, ta, sched):
     return float(v), np.asarray(g, dtype=float)
 
 
+def _qntr_hooks(w, c, ta, margin):
+    """The hooks run_trsqp hands a1_qntr, rebuilt in a secant worker
+    (QNTR_WORKERS): the same expressions as the parent's lambdas."""
+    return {"J": lambda z, s: J_and_grad(z, w, c, ta, s),
+            "M": (None if margin is None else (lambda z, s: margin_and_grad(z, w, c, s, margin)))}
+
+
 # ======================================================================
 # the driver: trust-region SQP with a record/certify gate per segment
 # ======================================================================
@@ -481,12 +488,28 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
         mg = None
         if margin is not None:
             mg = lambda z, s: margin_and_grad(z, w, c, s, margin)   # noqa: E731
+        pool = None
+        if QN.WORKERS > 0:
+            # QNTR_WORKERS (2026-10-23, opt-in): the secant Hessians' columns on
+            # spawned workers holding the same hooks (_qntr_hooks); a context
+            # that does not pickle keeps the serial secant, said aloud
+            import pickle
+            try:
+                pickle.dumps((w, c, ta, margin))
+                pool = QN.SecantPool(QN.WORKERS, "a1_plug_spline_opt", "_qntr_hooks", (w, c, ta, margin))
+            except Exception as err:                              # noqa: BLE001
+                print("   QNTR_WORKERS=%d: the walk's context does not pickle (%s) -> serial secant"
+                      % (QN.WORKERS, (str(err).splitlines() or [repr(err)])[0]), flush=True)
         walk = QN.Walk(lambda z: march_record(z, w, c, margin=margin),
                        lambda z, s: J_and_grad(z, w, c, ta, s), mg=mg,
                        mtol=(0.0 if margin is None else float(margin.get("tol", 0.0))),
-                       sign=sign, verbose=verbose)
-        return walk.run(W0, max_segments=max_segments, tr0=tr0, bounds=bounds,
-                        on_segment=on_segment)
+                       sign=sign, verbose=verbose, pool=pool)
+        try:
+            return walk.run(W0, max_segments=max_segments, tr0=tr0, bounds=bounds,
+                            on_segment=on_segment)
+        finally:
+            if pool is not None:
+                pool.close()
     W = np.asarray(W0, dtype=float)
     W_cert = None
     W_best, J_best = None, -np.inf

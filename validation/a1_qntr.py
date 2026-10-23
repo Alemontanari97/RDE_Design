@@ -57,6 +57,18 @@ QNTR_TOL (default 1e-8): the relative gain below which a further move is not wor
 a march -- one decade under the smallest difference this campaign reads (1e-7),
 two under the march's discretisation error (~1e-6). It is a statement about the
 precision wanted, the same for every case.
+
+QNTR_WORKERS (2026-10-23, opt-in; unset or 0 = the serial secant, bit-identical):
+the columns of a secant Hessian are 2n independent gradients on ONE frozen
+schedule (measured on the revalidation's plug walks: the two secant Hessians are
+85-94 percent of a walk's wall time, out/t17_*.json). With QNTR_WORKERS = k the
+caller may hand the Walk a SecantPool: k spawned processes that rebuild the
+caller's hooks from a picklable context and return the 2n gradients, which are
+then assembled column by column exactly as the serial loop does -- each gradient
+is the same expression on the same inputs, so the matrix is the serial matrix bit
+for bit (graded by validation/qntr_workers_gate.py). Only the secant is spread;
+marches and the gradient at a marched point stay in the parent. The workers inherit
+the parent's CPU mask: launch the parent on k + 1 cores.
 """
 import os
 import time
@@ -64,7 +76,127 @@ import time
 import numpy as np
 
 TOL = float(os.environ.get("QNTR_TOL", "1e-8"))
+WORKERS = int(os.environ.get("QNTR_WORKERS", "0") or 0)
 LAST = {}          # the last walk's report (stop reason, predicted gain, counts)
+
+
+class SecantWorkerDied(BaseException):
+    """A secant worker ended or its pipe broke: an infrastructure fault, not a
+    failed trial (a BaseException, so that no `except Exception` of a caller can
+    read it as a rejected design)."""
+
+
+def _secant_worker(conn):
+    """One secant worker: ("init", module, factory, pickled ctx) builds the hooks
+    with module.factory(*ctx) -> {"J": jg, "M": mg or None}; ("grad", which, Ws, sched)
+    returns [jg(W, sched)[1] for W in Ws] (or mg's); None ends the loop. An
+    exception is sent back and raised by the parent."""
+    import importlib
+    import pickle
+    import traceback
+    os.environ["QNTR_WORKERS"] = "0"
+    hooks = None
+    while True:
+        try:
+            msg = conn.recv()
+        except (EOFError, OSError):
+            return
+        if msg is None:
+            return
+        try:
+            if msg[0] == "init":
+                # the module first (it sets jax's precision), THEN the context's arrays
+                mod = importlib.import_module(msg[1])
+                hooks = getattr(mod, msg[2])(*pickle.loads(msg[3]))
+                conn.send(("ok", None))
+                continue
+            _, which, Ws, sched = msg
+            f = hooks[which]
+            conn.send(("ok", [np.asarray(f(W, sched)[1], float) for W in Ws]))
+        except Exception as err:                                  # noqa: BLE001
+            try:
+                pickle.dumps(err)
+                e_ = err
+            except Exception:                                     # noqa: BLE001
+                e_ = RuntimeError(repr(err))
+            conn.send(("err", (e_, traceback.format_exc())))
+
+
+class SecantPool:
+    """k spawned workers holding the caller's hooks, rebuilt in each worker by
+    module.factory(*ctx) (ctx pickled once). grads(which, Ws, sched) deals the
+    points round-robin (worker i gets points i, i + k, ...), gathers every
+    worker (the pipes stay in step) and returns the gradients in the order of Ws.
+    The parent's __main__ is NOT re-imported by the workers (a harness script
+    run as __main__ would otherwise run again in every worker)."""
+
+    def __init__(self, k, module, factory, ctx):
+        import atexit
+        import multiprocessing as mp
+        import sys
+        mp_ = mp.get_context("spawn")
+        self.conns, self.procs = [], []
+        mm = sys.modules["__main__"]
+        saved = (getattr(mm, "__spec__", None), mm.__dict__.get("__file__"))
+        try:
+            mm.__spec__ = None
+            mm.__dict__.pop("__file__", None)
+            for i in range(int(k)):
+                a, b = mp_.Pipe()
+                p = mp_.Process(target=_secant_worker, args=(b,), daemon=True, name="qntr-secant-%d" % i)
+                p.start()
+                b.close()
+                self.conns.append(a)
+                self.procs.append(p)
+        finally:
+            mm.__spec__ = saved[0]
+            if saved[1] is not None:
+                mm.__file__ = saved[1]
+        atexit.register(self.close)
+        import pickle
+        blob = pickle.dumps(ctx)
+        self._call([("init", module, factory, blob)] * len(self.conns))
+
+    def _call(self, msgs):
+        for c, p, m in zip(self.conns, self.procs, msgs):
+            try:
+                c.send(m)
+            except (BrokenPipeError, OSError) as err:
+                raise SecantWorkerDied("secant worker %s: send failed (%r, exit code %s)" % (p.name, err, p.exitcode))
+        res, errs = [], []
+        for c, p in zip(self.conns, self.procs):
+            try:
+                st, pay = c.recv()
+            except (EOFError, OSError) as err:
+                raise SecantWorkerDied("secant worker %s ended (%r, exit code %s)" % (p.name, err, p.exitcode))
+            res.append(pay)
+            if st != "ok":
+                errs.append(pay)
+        if errs:
+            e_, tb = errs[0]
+            print("   secant worker error:\n%s" % tb, flush=True)
+            raise e_
+        return res
+
+    def grads(self, which, Ws, sched):
+        k = len(self.conns)
+        parts = self._call([("grad", which, Ws[i::k], sched) for i in range(k)])
+        out = [None] * len(Ws)
+        for i, part in enumerate(parts):
+            out[i::k] = part
+        return out
+
+    def close(self):
+        for c in self.conns:
+            try:
+                c.send(None)
+            except Exception:                                     # noqa: BLE001
+                pass
+        for p in self.procs:
+            p.join(timeout=5)
+            if p.is_alive():
+                p.terminate()
+        self.conns, self.procs = [], []
 
 
 def _sym_floor(H, rel=1e-10):
@@ -152,10 +284,12 @@ def model_gain(g, B, d):
 class Walk:
     """The driver on three hooks: record(W) -> (out, sched) [raises on failure],
     jg(W, sched) -> (J, grad) on that frozen schedule, mg(W, sched) -> (m, grad m)
-    (class margin minus its floor; only with a margin)."""
+    (class margin minus its floor; only with a margin). pool (optional): a
+    SecantPool whose hooks "J" / "M" are jg / mg rebuilt in its workers."""
 
-    def __init__(self, record, jg, mg=None, mtol=0.0, sign=1.0, verbose=1, say=print):
+    def __init__(self, record, jg, mg=None, mtol=0.0, sign=1.0, verbose=1, say=print, pool=None):
         self.record, self.jg, self.mg = record, jg, mg
+        self.pool = pool
         self.mtol, self.sign, self.verbose, self.say = float(mtol), float(sign), verbose, say
         self.n_rec = 0
         self.n_grad = 0
@@ -197,11 +331,21 @@ class Walk:
         bad = []
         t0 = time.time()
         f = self.jg if which == "J" else self.mg
+        if self.pool is not None:
+            pts = []
+            for j in range(n):
+                e = np.zeros(n)
+                e[j] = h
+                pts += [W + e, W - e]
+            gs = self.pool.grads("J" if which == "J" else "M", pts, pt["sched"])
         for j in range(n):
             e = np.zeros(n)
             e[j] = h
-            gp = np.asarray(f(W + e, pt["sched"])[1], float)
-            gm_ = np.asarray(f(W - e, pt["sched"])[1], float)
+            if self.pool is not None:
+                gp, gm_ = gs[2 * j], gs[2 * j + 1]
+            else:
+                gp = np.asarray(f(W + e, pt["sched"])[1], float)
+                gm_ = np.asarray(f(W - e, pt["sched"])[1], float)
             self.n_grad += 2
             col = (gp - gm_) / (2.0 * h)
             if np.all(np.isfinite(col)):

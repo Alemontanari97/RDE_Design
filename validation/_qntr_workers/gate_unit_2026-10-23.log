@@ -1,0 +1,9 @@
+== QNTR_WORKERS unit: secant Hessian of J serial against 6 workers (a1_qntr.run measures only J's) ==
+  [PASS] methane C0: the certified landing marches and certifies (ok)
+  [PASS] U methane C0, secant of J (9x9): bitwise True, max |diff| 0.0e+00, unmeasurable columns [] / []
+   methane C0: serial 1635.9 s, 6 workers 190.3 s (x8.60; under the machine's load of the moment)
+  [PASS] R-1 the pool's gradient at W_0 + 1 ulp differs from the serial one at W (max |diff| 3.7e-08; must differ), at W itself it is the serial one (True)
+  [PASS] R-2 a killed worker surfaces as SecantWorkerDied (an Exception: False)
+
+== 4/4 PASS  (2211 s) ==
+VERDICT: PASS

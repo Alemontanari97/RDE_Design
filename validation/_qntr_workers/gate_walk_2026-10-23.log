@@ -1,0 +1,8 @@
+== QNTR_WORKERS walk: certified walks re-run with 4 workers (output in /tmp/qntr_workers_gate_oplr707j) ==
+  [PASS] W t08a_walk_B0_K80_qntr with 4 workers: landing W, J 970964.284148260485, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08a_walk_B0_K80_qntr: 217 s with 4 workers (record: 100 s, of which secant nan s; the record's load is not this one)
+  [PASS] W t08b_walk_C0_qntr with 4 workers: landing W, J 2679618.576365871355, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08b_walk_C0_qntr: 1516 s with 4 workers (record: 6063 s, of which secant 5419 s; the record's load is not this one)
+
+== 2/2 PASS  (1733 s) ==
+VERDICT: PASS

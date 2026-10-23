@@ -153,6 +153,7 @@
   "validation/_revalidation_2026-10-07/tests/t23_bell_two_tops.py": 10,
   "validation/_revalidation_2026-10-07/tests/t24_bell_top_check.py": 7,
   "validation/a1_qntr.py": 18,
-  "validation/_revalidation_2026-10-07/tests/quick_regression.py": 14
+  "validation/_revalidation_2026-10-07/tests/quick_regression.py": 14,
+  "validation/qntr_workers_gate.py": 2
  }
 }

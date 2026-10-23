@@ -47,10 +47,19 @@ ENV_B = {
     "TWOP_GAS": MAIN + "/_cycle_family/sdt_ch4_phi1_pcp20/gas_mean.json", "TWOP_ITERS": "12", "TWOP_JET": "1",
     "TWOP_KERNEL": "arc", "TWOP_MU_CLASS": "ref", "TWOP_MU": MAIN + "/_cycle_family/sdt_ch4_phi1_pcp20/family_K12.json",
     "TWOP_NOPLUME": "1", "TWOP_PA": "0.024378", "TWOP_REGION": "RC", "TWOP_SEP_CLASS": "1", "TWOP_SEP": "summerfield",
-    "TWOP_SHAPE": "1", "TWOP_STAGE": "walk", "TWOP_START": "F", "TWOP_START_FROM": HAND + "/sdt/start_rao_sdt.json",
+    "TWOP_SHAPE": "1", "TWOP_STAGE": "walk", "TWOP_START": "F", "TWOP_START_FROM": os.path.join(GD, "art_start", "start_from_checkpoint_B24.json"),
     "TWOP_TR0": "0.008073525393645567", "TWOP_U0": "10", "TWOP_U0_S": "-10",
 }
 NPASS = [0, 0]
+
+
+def ensure_start():
+    """The arm's start file (HAND/sdt/start_rao_sdt.json) was deleted with the SDT
+    folder on 2026-10-09; the checkpoint carries the same start as W_start (the
+    resume test compares the two), so it is rewritten from there (2026-10-23)."""
+    C = json.load(open(CK))
+    os.makedirs(os.path.dirname(ENV_B["TWOP_START_FROM"]), exist_ok=True)
+    json.dump({"W": C["W_start"]}, open(ENV_B["TWOP_START_FROM"], "w"))
 
 
 def check(label, ok):
@@ -98,6 +107,7 @@ def same(a, b, path="", diffs=None):
 
 def unit():
     import numpy as np
+    ensure_start()
     for k, v in ENV_B.items():
         os.environ[k] = v
     os.environ["TWOP_ART"] = os.path.join(GD, "art_unit")
@@ -185,7 +195,7 @@ def unit():
     return 0 if NPASS[0] == NPASS[1] else 1
 
 
-KEEP = re.compile(r"^\s*(\[seg|checkpoint at segment|return:|RESUMED|start F \(|Newton walk|ENDS|EXIT)")
+KEEP = re.compile(r"^\s*(\[seg|\[qntr|checkpoint at segment|return:|RESUMED|start F \(|Newton walk|ENDS|EXIT)")
 
 
 def walk_lines(log):
@@ -197,11 +207,13 @@ def walk_lines(log):
             continue
         s = re.sub(r"; mappings \d+ -> \d+ \(cleared above \d+\)", "", s)
         s = re.sub(r"[;,] \d+ records, \d+ s$", "", s)
+        s = re.sub(r", \d+ s \(marches \d+ s, gradients \d+ s, secant Hessians \d+ s\)", "", s)   # a1_qntr STOP line
         out.append(s)
     return out
 
 
 def walks():
+    ensure_start()
     segs = int(os.environ.get("PPG_SEGS", "2"))
     nw = int(os.environ.get("PPG_WORKERS", "12"))
     cs = os.environ.get("PPG_CPUS_SERIAL", "").split(",")
@@ -260,7 +272,7 @@ def walks():
     for a, b, what in (("L_ladder", "L_skip", "L the mean-state walk with and without the start ladder"),
                        ("P_serial", "P_workers", "P the 12-phase walk serial and with %d workers" % nw)):
         la, lb = L[a], L[b]
-        nseg = sum(1 for s in la if "[seg" in s)
+        nseg = sum(1 for s in la if "[seg" in s or "[qntr " in s)
         ra, rb = rec(a), rec(b)
         dr = same(ra, rb) if (ra is not None and rb is not None) else ["record missing"]
         ok = la == lb and nseg > 0 and any("return:" in s for s in la) and not dr
