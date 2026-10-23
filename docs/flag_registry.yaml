@@ -112,6 +112,9 @@
 #
 entries:
 
+# CLEANUP 2026-10-23 (validation cleanup after the revalidation, branch rde-nozzle-revalidation, validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md): 15 rows dropped
+# because every read site of the flag was in a file removed by the cleanup (the files and these rows are at commit
+# 89391fe): A1_SPDB_REC_REPS, A1_SPDB_FAST_REPS, A1_SPDB_GATE_SEGS, A1_SPDB_GATE_ITER, A1_SPDB_GATE_NI, A1_SPDB_GATE_NW, A1_SPDB_GATE_DA, A1_MGOV_STAGE, A1_BWAK_STAGE, A1_PTRN_STAGE, A1_O32_STAGE, A1_O32_RMAX, A1_LOCD_REJ, A1_LOCD_BASE, A1_MGOV_BASE.
 - flag: "A1_COLEXEC"
   default: "\"1\""
   meaning: "select the per-cell legacy recorder (=0) vs the per-column compiled executor (=1, M5c) for the march/cert record path; folded into the record-context hash key (R4: the active recorder is part of record identity)"
@@ -372,87 +375,6 @@ entries:
   tested_pairs: "none"
   untested_cartesian: false
 
-- flag: "A1_SPDB_REC_REPS"
-  default: "\"3\""
-  meaning: "repetition count for RECORD-mode timing medians (declared budget knob, never a tolerance)"
-  read_sites:
-    - "validation/engine_speed_bench.py:69"
-  covering_gate: "mode_measure(\"record\") in engine_speed_bench.py"
-  tested_pairs: "none — scalar rep count, not an arbitration axis"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_FAST_REPS"
-  default: "\"5\""
-  meaning: "repetition count for FAST-mode timing medians / m4gate's own args-vs-constants A/B rep loop"
-  read_sites:
-    - "validation/engine_speed_bench.py:70"
-  covering_gate: "mode_measure(\"fast\"), m4gate"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_GATE_SEGS"
-  default: "\"3\""
-  meaning: "segment count for the short arbitration walk shared by m12gate / mbwalk / h3gate (_short_walk helper)"
-  read_sites:
-    - "validation/engine_speed_bench.py:71"
-  covering_gate: "m12gate, mode_mbwalk, h3gate"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_GATE_ITER"
-  default: "\"4\""
-  meaning: "per-segment TR-SQP iteration cap for the same short arbitration walk"
-  read_sites:
-    - "validation/engine_speed_bench.py:72"
-  covering_gate: "m12gate, mode_mbwalk, h3gate"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_GATE_NI"
-  default: "\"11\""
-  meaning: "gate march-net node count (declared resolution knob, not a tolerance): a coarser net keeps the memo/preplan/executor A/B pairs affordable; the property under test is declared resolution-independent"
-  read_sites:
-    - "validation/engine_speed_bench.py:296"
-    - "validation/engine_speed_bench.py:516"
-    - "validation/engine_speed_bench.py:684"
-    - "validation/engine_speed_bench.py:976"
-  covering_gate: "m12gate (296), mode_mbwalk (516), m5cgate mild leg only (684 — the m5cgate \"full\" leg uses the pristine DT.CASE net, untouched by this env var), h3gate (976)"
-  tested_pairs: "none — mesh-resolution knob, not an arbitration flag"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_GATE_NW"
-  default: "\"30\""
-  meaning: "gate march-net wall-station count, paired with A1_SPDB_GATE_NI at each of the same four sites"
-  read_sites:
-    - "validation/engine_speed_bench.py:297"
-    - "validation/engine_speed_bench.py:517"
-    - "validation/engine_speed_bench.py:685"
-    - "validation/engine_speed_bench.py:977"
-  covering_gate: "same as A1_SPDB_GATE_NI: m12gate, mode_mbwalk, m5cgate mild leg, h3gate"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_SPDB_GATE_DA"
-  default: "\"1.0\""
-  meaning: "gate march-net angular step (deg), paired with A1_SPDB_GATE_NI/NW at each of the same four sites"
-  read_sites:
-    - "validation/engine_speed_bench.py:298"
-    - "validation/engine_speed_bench.py:518"
-    - "validation/engine_speed_bench.py:686"
-    - "validation/engine_speed_bench.py:978"
-  covering_gate: "same as A1_SPDB_GATE_NI: m12gate, mode_mbwalk, m5cgate mild leg, h3gate"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_MGOV_STAGE"
-  default: "\"derive\""
-  meaning: "stage selector for margin_governor.py's own __main__ ([X-MGOV] margin governor driver): \"derive\" | \"campaign\""
-  read_sites:
-    - "validation/margin_governor.py:642"
-  covering_gate: "none from engine_speed_bench.py; own script's manual stage control"
-  tested_pairs: "none"
-  untested_cartesian: false
-
 - flag: "A1_PMRG_STAGE"
   default: "\"derive\""
   meaning: "stage selector for a1_plug_margin.py's own __main__ ([X-PMRG] the fold margin of the plug, S29 2026-09-16): \"derive\" (D0-D4 + rejectors, writes _plug_margin/derive.json) | \"campaign\" (margin-constrained TR-SQP on the floor ladder from the streamline; consumes derive.json); the budget/instance knobs of the same script (PMRG_SEGS, PMRG_ITERS, PMRG_STARTS, PMRG_RUNGS, PMRG_LADDER, PMRG_ART) carry no A1_ prefix and are outside this census by construction — instance parameters, never arbitration"
@@ -461,14 +383,6 @@ entries:
   covering_gate: "none from engine_speed_bench.py; own script's manual stage control (derive stage of record 11/11 on 2026-09-16; campaign smoke-tested, not of record)"
   tested_pairs: "none"
   untested_cartesian: false
-
-- flag: "A1_BWAK_STAGE"
-  default: "\"gates\""
-  meaning: "stage selector for validation/a1_base_wake.py's own __main__ (the base wake of a truncated plug, W1-W2 of record S30 2026-09-17, the mechanistic route to the N2 closure that [X-BPRS] showed the classical family cannot arbitrate): \"gates\" (W1 -- the bubble-side constant-pressure cell proved to BE the certified edge cell read on the other characteristic family, by mirroring in the planar limit, and the corner expansion integrated on our tabulated gas against its three known-answer checks) | \"geometry\" (W2 -- the bubble on our own member at the [X-BPRS] caps: the corner turn, the straight boundary the centred fan emits, the earliest wave of the incoming Mach line, and the undisturbed reattachment abscissa). The instance knob BWAK_ART carries no A1_ prefix and is outside this census by construction. NOT YET COVERED: W3, the certified march that quantifies the axisymmetric source inside the fan region, then the Korst mixing-layer algebra and the escape-criterion Newton on p_b."
-  read_sites:
-    - "validation/a1_base_wake.py:396"
-  covering_gate: "its own stages (W1 5/5 and W2 3/3 of record, 2026-09-17, _base_wake/run_brick1 and run_brick2); no suite gate -- ondemand, and the carrier is INCOMPLETE by declaration"
-  tested_pairs: "gates vs geometry on the same member (S30 2026-09-17)"
 
 - flag: "A1_BASE_MODEL"
   default: "\"\" (unset: the functional of every row of record)"
@@ -485,33 +399,6 @@ entries:
     - "validation/base_pressure.py:672"
   covering_gate: "the stages' own rows (data 7/7, derive 10/10 and band 3/3 of record, 2026-09-18; derive 10/10 and band 2/2 of 2026-09-17); no suite gate -- the carrier is ondemand (env=jax+geno)"
   tested_pairs: "derive vs band on the same member and the same derive.json (S30 2026-09-17)"
-
-- flag: "A1_PTRN_STAGE"
-  default: "\"derive\""
-  meaning: "stage selector for a1_plug_tournament.py's own __main__ ([X-PTRN] the plug tournament at full expansion by the general method, S29 2026-09-16): \"derive\" (posing on our world, the fan-streamline incumbent, its fold margin, band_J, fold scale -> tr0, Rao's contour read afterwards as the oracle, the cornered rejector; writes _plug_tournament/derive.json) | \"campaign\" (margin-constrained TR-SQP from the incumbent and from its generic 1.5 percent perturbation, tip bounded below; consumes derive.json); the budget/instance knobs of the same script (PTRN_M, PTRN_K, PTRN_N, PTRN_SEGS, PTRN_ITERS, PTRN_STARTS, PTRN_ART) carry no A1_ prefix and are outside this census by construction — instance parameters, never arbitration"
-  read_sites:
-    - "validation/a1_plug_tournament.py:107"
-  covering_gate: "none from engine_speed_bench.py; own script's manual stage control (derive stage of record pending 2026-09-16; campaign launched only on the owner's word)"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_O32_STAGE"
-  default: "\"all\""
-  meaning: "stage selector for o32_mesh_convergence.py's __main__ (ORACLE O3.2: mesh convergence of the primal/adjoint pair): \"est\" | \"all\""
-  read_sites:
-    - "validation/o32_mesh_convergence.py:575"
-  covering_gate: "none from engine_speed_bench.py; own on-demand carrier's manual stage control"
-  tested_pairs: "none"
-  untested_cartesian: false
-
-- flag: "A1_O32_RMAX"
-  default: "\"4\""
-  meaning: "mesh-refinement ladder length (r = 1..rmax, h = 1/r) for O3.2"
-  read_sites:
-    - "validation/o32_mesh_convergence.py:576"
-  covering_gate: "none"
-  tested_pairs: "none"
-  untested_cartesian: false
 
 - flag: "A1_O33_STAGE"
   default: "\"all\""
@@ -553,26 +440,6 @@ entries:
 # --- census (repair of record 2026-08-13, S-ORDINE T2 lint step;
 # --- found by lint group (xx) at its first run) ---
 
-- flag: "A1_LOCD_REJ"
-  default: "os.path.join(HERE, \"s22_rejected_designs.json\") (dynamic; validation/s22_rejected_designs.json)"
-  meaning: "path to the rejected-designs JSON analyzed by locus_diagnosis.py ([X-LOCD] three-way locus retro-diagnosis, S22) — the A1_REJ_SAVE artifact of the regeneration run"
-  read_sites:
-    - "validation/locus_diagnosis.py:112"
-  covering_gate: "none from engine_speed_bench.py; consumed by locus_diagnosis.py's own on-demand carrier run (env: jax)"
-  tested_pairs: "none — artifact-path knob, not combined with any other flag"
-  untested_cartesian: false
-  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
-
-- flag: "A1_LOCD_BASE"
-  default: "os.path.join(HERE, \"s22_certlim_base.json\") (dynamic; validation/s22_certlim_base.json)"
-  meaning: "path to the certified-baseline JSON (the A1_AKN_CERTLIM_SAVE artifact) analyzed when present by locus_diagnosis.py's baseline-control row"
-  read_sites:
-    - "validation/locus_diagnosis.py:114"
-  covering_gate: "none from engine_speed_bench.py; consumed by locus_diagnosis.py's own on-demand carrier run (env: jax)"
-  tested_pairs: "none — artifact-path knob"
-  untested_cartesian: false
-  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
-
 - flag: "A1_DEFTW_ATLAS"
   default: "os.path.join(A1.GENO_DIR, \"CASES\", \"defnoz\", \"INPUT\") (dynamic)"
   meaning: "override the GENO atlas INPUT folder used by the DEF-twin leg-1 GENO runner (geno_case_run; part of the declared thermo pairing — GENO never modified)"
@@ -580,16 +447,6 @@ entries:
     - "validation/def_twin_falsifier.py:201"
   covering_gate: "none from engine_speed_bench.py; consumed by def_twin_falsifier.py's own leg1/derive/campaign stage pipeline (A1_DEFTW_STAGE)"
   tested_pairs: "none — scratch/atlas path knob"
-  untested_cartesian: false
-  note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
-
-- flag: "A1_MGOV_BASE"
-  default: "os.path.join(HERE, \"s22_certlim_base.json\") (dynamic; validation/s22_certlim_base.json)"
-  meaning: "path to the S22 certified-base JSON consumed by margin_governor.py's derive/campaign stages ([X-MGOV]; same artifact class as A1_LOCD_BASE)"
-  read_sites:
-    - "validation/margin_governor.py:142"
-  covering_gate: "none from engine_speed_bench.py; consumed by margin_governor.py's own stage pipeline (A1_MGOV_STAGE)"
-  tested_pairs: "none — artifact-path knob"
   untested_cartesian: false
   note: "line-wrapped read invisible to the original single-line census; row added 2026-08-13"
 

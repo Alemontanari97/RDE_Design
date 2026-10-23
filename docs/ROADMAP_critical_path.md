@@ -262,6 +262,7 @@ Order of record: F2.CFD-2 sits INSIDE F2 (PROGRESS B19(a) "in coda F2"), hence B
 | finding | shroud-sdt:symmetric-kernel-migdal-does-not-close-at-the-adapted-ratio | OUT:non-critical-touch-gated |
 | finding | twowall:tool-credits-wall-undulations | OUT:non-critical-touch-gated |
 | finding | revalidation:carriers-retired-2026-10-09 | OUT:non-critical-touch-gated |
+| finding | revalidation:cleanup-2026-10-23 | OUT:non-critical-touch-gated |
 | bloc | B-VENUE | OUT:consumed |
 | bloc | B-G0 | OUT:consumed |
 | bloc | B10 | OUT:consumed |
@@ -685,8 +686,8 @@ none
 
 ## 7. Counts (measured by this tool)
 
-- phases 8 (+PAPER track) / gates 7 / graph nodes 79 / ledger rows 62 / OPEN findings 244 (critical 61, non-critical 139, paper 44) / BLOCCATO rows 27 / atlas mentions 370
+- phases 8 (+PAPER track) / gates 7 / graph nodes 79 / ledger rows 62 / OPEN findings 245 (critical 61, non-critical 140, paper 44) / BLOCCATO rows 27 / atlas mentions 370
 - claims registry 218 rows: 38 open-class (SCHEMA/CONJECTURE) placed-or-OUT; THEOREM/THEOREM*/PRACTICE = 180 closed statements (OUT by class, indexed by lint xv)
-- overrides 98 / OUT 81
+- overrides 98 / OUT 82
 
-<!-- roadmap-derive content-hash: 6457ce1ac4173f25561477398f38dd33ad35e3c7cb28f5ea3030a58291ac1971 -->
+<!-- roadmap-derive content-hash: 6c537dbaf74935e1bd62c35386886989743ae3637a97715fb904e867d8cf6f78 -->

@@ -1,8 +1,0 @@
-{
-  "_doc": "The recorded multiplier of the S24 decisive run (rung 1-bis, the bell margin-governor walk of 2026-08-12) at its certifiability-limited stop, read by margin_governor.py's complementarity self-test (F2 CLOSE 2026-10-01, duty P-IPADJ of finding constraints:multiplier-rejector-missing).",
-  "s24_stop": {
-    "value": {"res_v_margin": 48582.0, "margin_value": 0.0731},
-    "cls": "MEASURED",
-    "note": "res_v_margin: the raw scipy trust-constr user multiplier of the margin constraint m >= 0 at the stop, +4.8582e4 (validation/PROGRESS_2026-08-12_S24_f1b.md, step 13 (d): 'res.v (T1 convention) = +4.8582e4 -- with the margin INACTIVE this is the interior-point barrier estimate'); margin_value: the margin at the stop, 3.55e3 / 4.8582e4 = 0.0731 (ADVISORY_S24_sota_gapmap_2026-08-12.md GAP-12: 'at the S24 stop |mu m| = 3.55e3', the case caught by hand, barrier artifact demoted at step 13d)"
-  }
-}

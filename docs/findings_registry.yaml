@@ -238,10 +238,11 @@ entries:
   severity: medium
   magnitude: "margin jumps K_RICH*m_ref/n_act per lane crossing finite/nonfinite; three channels one origin (frac_bad, ks_part subset, n_fin->0 switch); continuity only at frac_bad = 0"
   source: "validation/ADVISORY_S25_pipeline_sense_CONVERGED_2026-08-12.md#[G1-DISC]"
-  code: ["validation/margin_governor.py:175-201"]
+  code: []
   mechanism: modeled-discontinuity
   owner: "F2, GAP-27/GAP-1 window; ONE declaration clause in the [X-MGOV] surrogate declaration covering all three channels"
   trigger: "owed independently of GAP-1 outcome (G1 keeps its REQ-NONSTALL duty under the governor re-scoping)"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/margin_governor.py:175-201"
 - id: thermotab:C-A-edge-stencil
   status: DISCHARGED
   severity: low
@@ -322,11 +323,11 @@ entries:
   severity: medium
   magnitude: "at the cert-MARGINAL Wp (mild gate net) the per-cell and per-column recorders land on OPPOSITE sides of the certification bound: 3.757 vs 0.585 (ulp seed differences amplified through the damped-trial selection of a near-non-convergent cell; per-path determinism holds; legacy behavior UNCHANGED vs S25); CLASS WIDENED of record (convergence review RF-7): the mechanism covers ANY thresholded record decision — cert verdict, truncation float(z[0])>L, wall_search revision, margin-floor raise — per-instance gate = the m5cgate dec-vector identity CROSS-VERSION INSTANCE 2026-09-05 (F2 block-0 closure-aware re-run of X-LOCD, two recorders): the S20/S22 rejection SIGNATURE reproduces deterministically on both recorders ([1.06, 1.17, 1.455, 1.698, 2.458]) but the RE-RECORD binary verdicts of those cert-marginal designs (cert_worst 1.06-2.46, i.e. within a factor K_RICH of the bound) do NOT: per-column recorder (default today) -> rej-1 and rej-4 now CERTIFY and the S22-certified base FAILS (cert_worst 2.023e+00); per-cell recorder (A1_COLEXEC=0, the S22-era path) -> base re-certifies (3.084e-01) but rej-1, rej-3, rej-5 now CERTIFY; S22 of record had 5/5 rejected + base certified. The O4 scientific verdict is UNCHANGED on both (branch (c) unanimous on every reproduced rejection, bridge falsifier fires), so the class-construction mechanism of record stands; what is version- and recorder-bound is the BINARY certification verdict AT MARGINAL DESIGNS. Consequence for the TWIN (why path flips to critical): a final design certified only marginally could flip PASS/FAIL under a recorder or version change -> the protocol now requires certification WITH MARGIN (TWIN protocol amendment A-1: cert_worst <= 1/K_RICH under the pinned recorder for a quotable arm; the band (1/K_RICH, 1] = cert-marginal, quotable only if both recorders agree) THIRD INSTANCE same day: the FRESH X-AKNO walk (per-column recorder) reproduces the S20 outcome class (same knots, certified prefix J to 4 digits, outcome II) but crawls a DIFFERENT frontier (first-offender cert_worst 1.916 at cell 2010; returned base J 2.7775710e+07 vs 2.7775702e+07; KKT 255 vs 380) -- the crawl path through marginal designs is not version-stable, the outcome class is"
   source: "validation/a1_toc_variational_jax.py#MEASURED PROPERTY OF RECORD"
-  code: ["validation/a1_toc_variational_jax.py:255-330", "validation/locus_diagnosis.py:1-60"]
+  code: ["validation/a1_toc_variational_jax.py:255-330"]
   mechanism: seed-noise-at-marginal-cell
   owner: "declared semantics of record: the ACTIVE recorder is the certification authority; any cross-path adjudication pins ONE recorder (m12gate repair applied S25-bis); DEMONSTRATION DUTY (convergence map class B): per-cell isolation — find THE flipping cell at Wp/mild and show its damped-trial path divergence explicitly (cheap, next window); a stronger invariant (recorder-independent cert at marginal designs) = F2-entry candidate if a consumer ever needs it -- F2.ENGINE DUTIES ADDED 2026-09-05: (i) X-LOCD re-form (the carrier asserts determinism + branch classification = its scientific content; re-record binary verdicts of cert-marginal designs become INFORMATIONAL rows with the recorder pinned as an explicit argument; then re-run and lift fail=); (ii) every certification-bearing carrier prints the active recorder in its Verdict and pins it in its ondemand spec; (iii) the certified-with-margin requirement (1/K_RICH) enters the certificate stack as a ship-gate row"
   trigger: "any future consumer comparing certifications across recorders; the per-cell demo at the next open window"
-  note: "READ 2026-09-30 (F2.ENGINE order 2): the flipping cells are the near-axis cells at the end of the contour whose extra Newton step cannot go below the noise of the residual (tables, cancellations), above the fixed line; with the line at the cell's own measured floor (A1_CERT_KAPPA) the S22 base no longer flips (0.115 / 0.141 / 0.166 across variants). The per-cell demonstration duty is met by certdiag_locus.py's three-variant read (carriers_2026-09-30/final_LOCD_*.log); status left CONFIRMED because the record's default check (unset flag) still carries the mechanism"
+  note: "READ 2026-09-30 (F2.ENGINE order 2): the flipping cells are the near-axis cells at the end of the contour whose extra Newton step cannot go below the noise of the residual (tables, cancellations), above the fixed line; with the line at the cell's own measured floor (A1_CERT_KAPPA) the S22 base no longer flips (0.115 / 0.141 / 0.166 across variants). The per-cell demonstration duty is met by certdiag_locus.py's three-variant read (carriers_2026-09-30/final_LOCD_*.log); status left CONFIRMED because the record's default check (unset flag) still carries the mechanism; code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/locus_diagnosis.py:1-60"
 - id: engine:vmap-hessian-adjoint-divergence
   status: CONFIRMED
   path: non-critical
@@ -353,10 +354,11 @@ entries:
   severity: low
   magnitude: "M-D vs M-E same-day clean-host (pycount=1 both) pessimistic-end segment 14.9 vs 20.1 s (record median 5.58 vs 8.30 s) — cause undiagnosed (thermal/OS scheduling class); BOTH inside the <=30 target with margin, verdict unaffected"
   source: "validation/PROGRESS_2026-08-12_S25bis_speed.md#STEP 11"
-  code: ["validation/engine_speed_bench.py:142-250"]
+  code: []
   mechanism: host-variance-undiagnosed
   owner: "next clean-host measure re-baselines with interleaved reps across a longer window; declare the band, never a point"
   trigger: "any speed verdict with < 1.5x margin to its target (today's margin is 1.5-2x)"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/engine_speed_bench.py:142-250"
 - id: structure:monolithic-driver-module
   status: CONFIRMED
   path: non-critical
@@ -742,20 +744,22 @@ entries:
   severity: low
   magnitude: "the first-order negative control runs PRIMAL-only (with_grad=False, G identically 0) - the adjoint band, the sole falsifier of claim (iv), is never demonstrated to fire end-to-end on known-wrong-order physics; the adjoint noise floor borrows the primal accumulation law with no written justification; mitigation: the estimator selftest machine-rejects a first-order sequence"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:5"
-  code: ["validation/o32_mesh_convergence.py:651-662"]
+  code: []
   mechanism: rejector-weakness
   owner: "next O3.2 touch (paired with the fixed-topology-ladder duty, D6 item 9): run the foot-solver ladder once with with_grad=True + derive or empirically bound the adjoint-specific floor"
   trigger: "next o32 run consumed by a verdict, or the gradient-half falsifier registration (see foundations-U:LBML-gradient-rate-rejector-cannot-fire)"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/o32_mesh_convergence.py:651-662"
 - id: benches:o32-topo-window-monitors-print-only
   status: CONFIRMED
   path: non-critical
   severity: low
   magnitude: "two self-declared verdict-relevant monitors cannot fire: res topo (axis-column fraction) is print-only, and no per-level assertion checks that every level's wall span covers the frozen window [a,b] (ideal-ladder end station h-dependent via m_stop); mitigations: TOC lip at x = L structurally covered, dp_model NON-CONCLUSIVE backstop"
   source: "validation/AUDIT_agnostic_2026-08-07.md#benches:6"
-  code: ["validation/o32_mesh_convergence.py:540-552", "validation/o32_mesh_convergence.py:667-669"]
+  code: []
   mechanism: rejector-weakness
   owner: "next o32 touch: gate the topo fraction (derived smoothness bound) + per-level window-coverage assert"
   trigger: "next o32 ladder consumed by a verdict"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/o32_mesh_convergence.py:540-552, validation/o32_mesh_convergence.py:667-669"
 - id: benches:cplus-chain-float-key
   status: REFUTED
   severity: medium
@@ -1277,10 +1281,11 @@ entries:
   severity: medium
   magnitude: "every two-resolution band presumes the h^p model at r=1,2 while the repo's own three-level measurement at the twin returned NON-CONCLUSIVE (p_fine=2.5347, dp_tot=0.6704 > 0.5 cap) and a standing counterexample exists (f2 drift GROWS under refinement, 9.48e-03 -> 1.42e-02); K_RICH is not conditioned on an observed p; verifier-corrected threshold: deployed bands protect the COARSE member so under-coverage begins at p < log2(4/3) = 0.415; severity split MEDIUM(mesh-verifier)/LOW(thermo-verifier) carried MEDIUM by the judge on the corner-row signature (Q7 folded)"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-9"
-  code: ["validation/o32_mesh_convergence.py:218-294"]
+  code: []
   mechanism: hidden-hypothesis
   owner: "F2 engine window: extend the ALREADY-BUILT [X-O32] estimator to the banded quantities (contour band, band_u, def_twin F-branches, corner row) + third resolution in contour_compare + NON-CONCLUSIVE propagation rule (degraded-p coverage factor); feeds the R25 K_RICH audit"
   trigger: "next band-bearing verdict at an unverified observed order, or the R25 K_RICH audit window"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/o32_mesh_convergence.py:218-294"
 - id: thermo-bands:band-composition-no-declared-rule
   status: CONFIRMED
   path: critical
@@ -1307,11 +1312,12 @@ entries:
   severity: medium
   magnitude: "res.v is consumed raw into verdict-adjacent quantities (lam -> Pa_impl) and an except-pass turns extraction failure into mu_use = 0.0 with no counter; the driver checks stationarity + feasibility, never complementarity; measured arithmetic reproduced: at the S24 stop |mu*m| = 3.55e3 — a derived complementarity band fires on exactly the case that was caught BY HAND (barrier artifact demoted at step 13d) DELTA 2026-09-05 (F2 block-0 engine-cluster panel, refuter REF-16/REF-17, verified at source by the orchestrator; the anti-re-mint rule routed this here, same code span): (i) margin_governor.py:620-622 reads mu_est = +vlist[-1][0] with NO negation -- the sign OPPOSITE to the scipy res.v convention of record (S24 T1: mu(M0) = -res.v[-1][0] >= 0 for the lower-bound margin inequality; def_twin_falsifier.py:40-41 and a1_toc_variational_jax.py:2356 follow the convention) -- and :645-649 feeds it to mu_dual_clause whose result GATES the carrier verdict (ok &= dok): a committed carrier PASS/FAIL rests on the sign of an [P-IPADJ]-unadjudicated quantity; (ii) :638 forces mu_use = 0.0 whenever the margin is inactive and mu_dual_clause (:462-466) then checks mu == 0.0 at inactive margins with slack = 0.0 -- a TAUTOLOGY at the call site: the of-record smearing symptom (S24 res.v = +4.86e4 at an INACTIVE constraint) can never fire it; (iii) the C31 information-only multiplier discipline is 2/3 practiced on disk and enforced by no assert or lint"
   source: "validation/ADVISORY_S24_sota_gapmap_2026-08-12.md#GAP-12"
-  code: ["validation/a1_toc_variational_jax.py:2356-2364", "validation/margin_governor.py:617-649", "validation/margin_governor.py:458-470"]
+  code: ["validation/a1_toc_variational_jax.py:2356-2364"]
   mechanism: rejector-weakness
   evidence: "validation/PROGRESS_2026-10-01_F2CLOSE.md#Result (a) (F2 close 2026-10-01; carrier X-MGOV derive PASS): the margin multiplier read in the S24 convention of record (mu = -v) by margin_governor.mu_from_res, an extraction failure counted (mu_extract_fail), never a silent 0; the tautological inactive-margin row replaced by a test of the RECORDED multiplier at every inactive-margin landing; complementarity band = K_RICH x the objective's certification floor at W* (9.774e-3); C-1 the recorded S24 stop (validation/s24_multiplier_record.json: res.v +4.8582e4 at margin 0.0731, |mu m| 3.551e3) FIRES at 3.6e5 x the band, C-2 a KKT-consistent stop passes; [R2'] LSQ at the S18 landing: lip multiplier +1.054906e7, residual 2.36e-4 of |grad f|, margin mu -32.8 (zero to the lip row's scale), cond(R R^T) 2.97 against the LICQ limit 2.84e9; known answer (2, -3) recovered to 3.6e-16; LICQ rejector (parallel rows, cond 5.1e16) fires. Residue, declared: the S24 half of the LSQ needs the S24 landing design, which was never written (the stop exists only as log text); the S24 stop is refuted by the complementarity row itself, and every future bell walk is tested at its landing by the same row."
   owner: "complementarity band as a check() row + counter on the except-pass path (cheap first rows) + [R2'] LSQ multiplier re-estimate on the recorded S18/S24 gradients (Gill-Murray-Wright; Wachter-Biegler three-part termination) — F2 driver window -- CONSUMED AS INPUT by [P-IPADJ] (F2 first engine act on C28's critical path; verdict F2 block-0 2026-09-05, VERDICT_engine_cluster V-C31): repair the sign to the S24 convention, replace the tautological inactive-margin check with a test on the RECORDED res.v (the S24 +4.86e4 symptom must FIRE it), add the enforcement assert the discipline lacks; re-run [X-MGOV] and re-stamp"
   trigger: "first margin-active verdict, or any verdict leaning on res.v (Pa_impl class) or a near-threshold KKT residual"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/margin_governor.py:617-649, validation/margin_governor.py:458-470"
 - id: constraints:mask-rung-freeze-granularity
   status: CONFIRMED
   path: non-critical
@@ -1612,10 +1618,11 @@ entries:
   severity: low
   magnitude: "O3.1 (transpose identity 2.7e-10) certifies SELF-consistency of the discrete pair; the common-mode hole (transpose-consistent-but-wrong pairs invisible to it) is now DEMONSTRATED and CLOSED AT THE UNIT-PROCESS LEVEL by [X-O31CS] (built at S-CERT opening per the pinned A2=(a) decision): the consistent-wrong pair passes the O3.1-style self check at machine zero AND is detected by the primal-independent complex-step IFT side (gate PASS EXIT 0, 2026-08-13; CS3 deviations 8.5e-11..2.9e-8 vs derived bands). RESIDUAL: coverage = interior process only — wall/axis/legge/whole-march composition remain O3.1-only"
   source: "validation/ADVISORY_litreview_confrontation_2026-08-13.md#O3.1-cs — trasposizione a PRIMALE INDIPENDENTE"
-  code: ["validation/o31cs_instrument.py:1-40"]
+  code: []
   mechanism: oracle-scope
   owner: "F2 (extend [X-O31CS] coverage to the wall process — the shape-gradient carrier — with the same twin pattern; then composition)"
   trigger: "F2 first oracle block, or any new hand-written custom_vjp rule entering the engine"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/o31cs_instrument.py:1-40"
 - id: carriers:dual-feasibility-blind-five
   status: DISCHARGED
   severity: high
@@ -1644,10 +1651,11 @@ entries:
   severity: medium
   magnitude: "X-CDKAT numbers of record do NOT reproduce (7-14% drift, no declared band, no re-stamp after env change): baseline 1.813425e-01 vs registry 2.106398e-01; multiplier x1.272e6 vs x1.1e6; replay 2.315e-01 vs 2.156e-01/2.125e-01; the perturbation-dominated values (2.307537e+05, 6.062e+08) reproduce exactly = env/lowering-drift mechanism confirmed; qualitative PASS holds, record numbers fail MC1 — the carrier-evidence of audit-scert:staleness-import-closure-blind"
   source: "validation/PROGRESS_2026-08-13_Scert.md#P1"
-  code: ["validation/certdiag_kat.py:1-20"]
+  code: []
   mechanism: staleness
   owner: "F2.ENGINE window of F2-C20-CERTQUAL-CAMPAIGN: derive the BAND for the env-sensitive certification floor (baseline cert_worst 2.106398e-01 at S21 -> 1.813425e-01 at S-CERT and again at the 2026-09-05 re-run: the drift is stable across the two later runs). LANDED 2026-09-05 (F2 block-0 re-stamp): statement-number REFRESH in the X-CDKAT scope + env pin envfp=e100f996 in the ondemand stamp (closure-aware staleness gate) -- causal attribution is now measurable across pinned envs; the MC1 drop is declared"
   trigger: "next X-CDKAT re-stamp on a DIFFERENT envfp (attribution run); the C20 certification-floor campaign (band)"
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/certdiag_kat.py:1-20"
 - id: provenance:f7-design-vector-irrecoverable
   status: CONFIRMED
   path: non-critical
@@ -2888,12 +2896,12 @@ entries:
   severity: high
   magnitude: "F2 block-0 closure-aware staleness re-run 2026-09-05 of the O3.2 carrier X-O32 (validation/o32_mesh_convergence.py, pass-of-record 2026-08-12; import closure a1_toc_variational_jax / a1_ideal_march_jax / a1_march_scan / thermotab_c1_jax committed 2026-08-13): S1 estimator KAT PASS (1.67e-13), S2 ideal ladder r=1..4 replay==record PASS, S3 TOC ladder r=1..4 replay==record PASS, then S4 NEGATIVE CONTROL aborts -- the deliberately degraded foot first-order march (make_solvers_foot, foot_thc1) is UNCERTIFIABLE at r=1 (toc_ladder assert cert_worst <= 1 fires with worst = inf), so the pre-registered N1 rejection-by-h^2-band test NEVER EXECUTES: the negative control is INCONCLUSIVE, not passed, and the carrier's pass stamp no longer reproduces on the current tree (claims registry X-O32 now carries fail=2026-09-05). HYPOTHESIS (not proven): the M5c per-column executor's nonfinite -> +inf certification mapping (a1_toc_variational_jax.py:996-1001, landed S25-bis after the pass) now surfaces a non-converged lane of the degraded march that the legacy path handled differently. DISCRIMINATOR pre-registered: re-run with A1_COLEXEC=0 (legacy arbitration) -- same failure = genuine regression of the degraded march under the 2026-08-13 record-path edits; PASS = guard-induced, and then S4 must be made certification-aware (an uncertifiable degraded march is itself a REJECTION outcome, asserted as such, never silent). Full log: validation/f2b0_raws_2026-08-31/rerun_o32.log DISCRIMINATOR 1 EXECUTED 2026-09-05 (A1_COLEXEC=0, legacy per-cell arbitration): S1-S3 PASS again, S4 fails IDENTICALLY (foot level r=1 not certified, worst inf) -> hypothesis A (M5c per-column nonfinite->+inf guard) REFUTED: the degraded first-order march is uncertifiable on BOTH record paths of the current tree, so the mechanism sits in the 2026-08-13 record-path/certification edits shared by both paths (or in the env). DISCRIMINATOR 2 pre-registered and launched in-window: the same bench on a git worktree at 07400a4 (the tree of the 2026-08-12 pass) under the SAME env e100f996 -- S4 PASS there = regression introduced by the 2026-08-13 commits (bisect 8046434 / ea2abce next); S4 FAIL there too = env-induced (jax 0.11 / numpy 2.5.2 vs the pass-era env), then the carrier's pass was env-bound and the envfp discipline is exactly the repair DISCRIMINATOR 2 EXECUTED 2026-09-05 (git worktree at 07400a4 = the tree of the 2026-08-12 pass, GENO reachable read-only, SAME env e100f996): S1-S3 PASS, S4 fails IDENTICALLY (foot level r=1 not certified, worst inf) -> hypothesis B (2026-08-13 record-path commits) REFUTED; ENV-INDUCED is the SURVIVING HYPOTHESIS BY ELIMINATION (not a positive demonstration: the pass-era env is not available to re-run; two candidate mechanisms were refuted, one remains): the degraded first-order negative-control march produces a non-finite Newton step under the current jax/numpy/scipy stack while the sound paths (S1-S3) are env-robust on both trees. VERDICT of the pair: the 2026-08-12 pass is at least ENV-BOUND and the closure-aware envfp stamp introduced this session is the repair for that class; no commit bisect is warranted. Remaining duty (F2.ENGINE first bench act): make S4 certification-aware (an uncertifiable degraded march = a REJECTION outcome asserted as such, with the offending non-finite step logged), then re-run to PASS and lift fail="
   source: "validation/PROGRESS_2026-08-31_F2B0.md#LOG-7"
-  code: ["validation/o32_mesh_convergence.py:467-505", "validation/a1_toc_variational_jax.py:996-1001"]
+  code: ["validation/a1_toc_variational_jax.py:996-1001"]
   mechanism: carrier-nonreproducible-negative-control
   evidence: "validation/PROGRESS_2026-10-01_F2CLOSE.md#Result (d) (F2 close 2026-10-01): MECHANISM FOUND, not the environment -- the foot unit process took every coefficient at the segment foot, including the axisymmetric source delta c^2 v / y; the first interior cell's C- foot is the axis point (y = 0, v = 0): 0/0 at every resolution. Re-form (validation/o32_mesh_convergence.py, declared before authoring): only the factor 1/y of the source is taken at the segment midpoint, every characteristic coefficient stays at the foot (still the explicit-Euler control). D-1 the foot march certifies at r = 1..4 (3933 / 15161 / 33695 / 59525 cells); D-2 the h^2 band REJECTS it (p_hat 0.9925 / 0.9970, dp_tot 0.0046, conclusive: rate claim killed); D-3 S1-S3 equal the 12:50 run digit for digit. X-O32 stays fail= for its NON-CONCLUSIVE production rows (owned by mesh-amr:observed-order-not-at-band-sites), not for the control."
   owner: "F2.ENGINE oracle/bench window (rides mesh-amr:observed-order-not-at-band-sites, same O3.2 object): both pre-registered discriminators EXECUTED at F2 block-0 (legacy arbitration: same failure; pass-era tree under today's env: same failure) => env-induced = surviving hypothesis by elimination on the degraded negative-control march; duty = re-form S4 as certification-aware rejection (offending non-finite step logged), re-run X-O32 to a PASS on the current env and lift fail=; C-O33 statement carries the dated caveat until then"
   trigger: "F2.ENGINE first bench touch; any citation of X-O32 numbers as current; lifting the fail= stamp on X-O32"
-
+  note: "code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/o32_mesh_convergence.py:467-505"
 - id: twin-protocol:preregistration-2026-08-31
   status: CONFIRMED
   path: critical
@@ -3053,11 +3061,11 @@ entries:
   severity: medium
   magnitude: "the pointwise AD Hessian of a replayed march (jax.hessian: forward mode over the cell solver's custom_vjp reverse) is not the functional's curvature: on the S37 walk world every eigenvalue is 16-27 percent LOW against the secant Hessian (central differences of the exact reverse gradient on the frozen record at 1 mm and 0.1 mm, asymmetric 4.7e-4, verified by second differences of J to 0.2 percent); on the two-wall posing it is 30 percent asymmetric and one diagonal reads -404 against about -1200 at finite scale (and -92184 with an exactly implicit forward tangent: near-singular cells dominate pointwise second derivatives there); a one-cell test is exact, the mechanism is not isolated beyond that. Verdicts: [X-RAOPO] re-graded on the secant spectrum holds (returns 0.22 / 0.57, coincidence 0.46 of band; were 0.20 / 0.48 / 0.38); [X-RAOSQ] v3 and [X-OWS3] not re-measured, inside by margin (returns 0.07 / 0.19 of band)"
   source: "validation/PROGRESS_2026-09-24_S40_F3_residuals.md#3. A defect of record found on the way"
-  code: ["validation/rao1961_sqp_return.py:311-329"]
+  code: []
   mechanism: numerics
   owner: "the next session that runs rao1961_sqp_return.spectrum_at or any jax.hessian of a replayed march: replace it by the secant instrument of validation/a1_twowall.py (G-5 / G-5a) and re-run the spectra of [X-RAOSQ] v3, [X-OWS3], [X-RAOPO]"
   trigger: "any band or identifiability claim resting on a pointwise AD Hessian of the march"
-  note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'jax.hessian|forward over|ad-hessian' docs/findings_registry.yaml = 0 before this mint (related, distinct: engine:cross-lowering-gradient-floor, the gradient's re-lowering floor that FD Hessians amplify; driver-nonsmooth:hessian-no-rejector, the driver's quasi-Newton matrix)."
+  note: "Minted 2026-09-25 (S40). Dedup by measured grep in the mint window (SR-12): grep -ciE 'jax.hessian|forward over|ad-hessian' docs/findings_registry.yaml = 0 before this mint (related, distinct: engine:cross-lowering-gradient-floor, the gradient's re-lowering floor that FD Hessians amplify; driver-nonsmooth:hessian-no-rejector, the driver's quasi-Newton matrix).; code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/rao1961_sqp_return.py:311-329"
 
 - id: driver:restoration-phase-no-motion
   status: CONFIRMED
@@ -3142,10 +3150,10 @@ entries:
   severity: low
   magnitude: "a1_rde_tournament._tw rebuilt the carrier after popping a FIXED list of switches that lacked TWOP_JET (and TWOP_SWIRL, TWOP_U0_S, TWOP_MU_CLASS, TWOP_SEP_CLASS): JT-2's 'without the jet' march ran WITH the jet (both certificates 0.466) and its premise 'uncertified past F's C-' looked refuted"
   source: "validation/PROGRESS_2026-09-26_S41_twowall_design.md#3sexies. The RDE procedure on a Q2D outflow"
-  code: ["validation/a1_rde_tournament.py:109-113"]
+  code: []
   mechanism: "test harness state leak (environment switches persisting across carrier rebuilds)"
   evidence: "DISCHARGED 2026-09-27: _tw pops every TWOP_* key; JT-2 rebuilt on measured premises (twop_jet_closure_probe.py): JT-2a the plug upstream of the lip's first characteristic is bitwise with and without the jet, JT-2b the residuals second order; jetgates 5/5"
-  note: "Minted and discharged 2026-09-27 (S41 night). Dedup by measured grep: grep -ciE 'harness' at HEAD = 2 (test-suite:rejector-demos-untargeted, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates: unrelated)."
+  note: "Minted and discharged 2026-09-27 (S41 night). Dedup by measured grep: grep -ciE 'harness' at HEAD = 2 (test-suite:rejector-demos-untargeted, litreview:graft-a3-a4-a5-a17-a18-adjoint-oracle-candidates: unrelated).; code spans removed with their files by the cleanup of 2026-10-23 (validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md; the files are at commit 89391fe): validation/a1_rde_tournament.py:109-113"
 
 - id: twowall:shape-margin-blind-to-convergence
   status: CONFIRMED
@@ -3410,6 +3418,17 @@ entries:
   owner: "the owner (program); reactivation of any one = a re-run of its own protocol on the committed code and a new stamp"
   trigger: "a design claim, a paper section or a plan gate that cites one of these carriers as evidence; for X-IVLT, X-TKRN, X-ANKR, X-FRMR, X-TPOS also an inflow of the decisive comparison with subsonic parts at the nozzle's entry line"
   note: "minted 2026-10-09 with the triage. The IDs stay in the registry because they are cited 182 times in brackets in docs/*.md, 73 of them in the append-only PROGRESS_ARCHIVE (orphan lint); the former statements are kept in each row as HISTORY"
+- id: revalidation:cleanup-2026-10-23
+  status: CONFIRMED
+  path: non-critical
+  severity: low
+  magnitude: "622 tracked files removed from validation/ on branch rde-nozzle-revalidation (base 89391fe; rde-nozzle-program keeps them): the code, cases and run folders of the carriers retired on 2026-10-09, the records of the optimiser campaigns before the revalidation, seven orphan brick-2 scripts; seven more carriers RETIRED: X-AKNO, X-DEFTW, X-LOCD, X-LSG0, X-O32, X-HSYM, X-OBJD"
+  source: "validation/_revalidation_2026-10-07/doc/CLEANUP_2026-10-23.md#The criterion"
+  code: []
+  mechanism: superseded-record
+  owner: "the owner (program); reactivation of a removed carrier or record = git checkout 89391fe -- <path>, then a re-run of its own protocol on the committed code and a new stamp"
+  trigger: "a design claim, a paper section or a plan gate that cites a removed record or one of the seven carriers as evidence"
+  note: "minted 2026-10-23 with the cleanup (owner: clean validation/ of what the revalidation did not certify, push to a revalidation branch; the list approved as a whole). The seven IDs stay in the claims registry (orphan lint), with the former statements kept as HISTORY."
 - id: bell:ideal-bell-second-top-open
   status: CONFIRMED
   path: non-critical
