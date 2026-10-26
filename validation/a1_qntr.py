@@ -58,7 +58,9 @@ a march -- one decade under the smallest difference this campaign reads (1e-7),
 two under the march's discretisation error (~1e-6). It is a statement about the
 precision wanted, the same for every case.
 
-QNTR_WORKERS (2026-10-23, opt-in; unset or 0 = the serial secant, bit-identical):
+QNTR_WORKERS (2026-10-23; THE DEFAULT since 2026-10-26, owner: "rendiamo questo
+calcolo parallelizzato il nuovo default se da gli stessi risultati"; 0 = the serial
+secant, bit-identical):
 the columns of a secant Hessian are 2n independent gradients on ONE frozen
 schedule (measured on the revalidation's plug walks: the two secant Hessians are
 85-94 percent of a walk's wall time, out/t17_*.json). With QNTR_WORKERS = k the
@@ -68,7 +70,14 @@ then assembled column by column exactly as the serial loop does -- each gradient
 is the same expression on the same inputs, so the matrix is the serial matrix bit
 for bit (graded by validation/qntr_workers_gate.py). Only the secant is spread;
 marches and the gradient at a marched point stay in the parent. The workers inherit
-the parent's CPU mask: launch the parent on k + 1 cores.
+the parent's CPU mask: launch the parent on k + 1 cores. UNSET, k = default_workers():
+the cores of the process's CPU mask but the parent's, at most WORKER_CAP (a resource
+bound, not a tolerance: the setting the walk gate graded, and two walks so placed stay
+inside s2's rule of 12 threads); a process launched on one core keeps the serial secant.
+The matrix does not depend on k (each gradient is computed whole by one process):
+graded with k = 4 and 6, and with the default on every certified walk that reaches
+run_trsqp (qntr_workers_gate.py default). The same rule serves TWOP_PHASE_WORKERS
+(a1_twowall) through workers(name).
 """
 import os
 import time
@@ -76,7 +85,27 @@ import time
 import numpy as np
 
 TOL = float(os.environ.get("QNTR_TOL", "1e-8"))
-WORKERS = int(os.environ.get("QNTR_WORKERS", "0") or 0)
+WORKER_CAP = 4
+
+
+def default_workers():
+    """The worker count of a switch left unset: the cores of this process's CPU
+    mask but one (the parent's), at most WORKER_CAP; 0 on a single core."""
+    try:
+        n = len(os.sched_getaffinity(0))
+    except AttributeError:                # no CPU masks on this platform
+        n = os.cpu_count() or 1
+    return max(0, min(WORKER_CAP, n - 1))
+
+
+def workers(name):
+    """The worker count of the switch `name` (QNTR_WORKERS, TWOP_PHASE_WORKERS):
+    its value when set (0 = serial), default_workers() when unset or empty."""
+    v = os.environ.get(name, "").strip()
+    return int(v) if v else default_workers()
+
+
+WORKERS = workers("QNTR_WORKERS")
 LAST = {}          # the last walk's report (stop reason, predicted gain, counts)
 
 

@@ -490,9 +490,10 @@ def run_trsqp(W0, w, c, ta, sign=+1.0, max_segments=MAXSEG,
             mg = lambda z, s: margin_and_grad(z, w, c, s, margin)   # noqa: E731
         pool = None
         if QN.WORKERS > 0:
-            # QNTR_WORKERS (2026-10-23, opt-in): the secant Hessians' columns on
-            # spawned workers holding the same hooks (_qntr_hooks); a context
-            # that does not pickle keeps the serial secant, said aloud
+            # QNTR_WORKERS (2026-10-23; the default since 2026-10-26, a1_qntr.workers):
+            # the secant Hessians' columns on spawned workers holding the same hooks
+            # (_qntr_hooks); a context that does not pickle keeps the serial secant,
+            # said aloud
             import pickle
             try:
                 pickle.dumps((w, c, ta, margin))

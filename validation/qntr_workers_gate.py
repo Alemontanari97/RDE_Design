@@ -16,9 +16,17 @@ The claim is graded bit for bit, never to a tolerance:
           serial secant, said aloud; the methane C0: the pool) (output redirected, nothing in the repository
           rewritten): landing W and J, the accepted-base history and the
           report's counts identical to the certified records; the wall times.
-Usage: python validation/qntr_workers_gate.py unit|walk   (env QNTR_GATE_WORKERS,
-default 4; launch on that many cores plus one). Needs the revalidation's GENO
-run outputs (geno/rao_sdt_L0448: not in git, see its md5 manifest).
+  default -- (2026-10-26, the workers made the default) EVERY certified walk that
+          reaches run_trsqp (the 14 records of WALKS) re-run with QNTR_WORKERS
+          UNSET, i.e. with the default a1_qntr.default_workers() of the gate's
+          CPU mask, against its record as in `walk`; each run also reports the
+          files its a1_* modules and rv were imported from, which must lie in
+          this tree (t08c puts the main working tree's ref/ on sys.path).
+          Optional record names after the mode select a subset.
+Usage: python validation/qntr_workers_gate.py unit|walk|default [records...]
+(env QNTR_GATE_WORKERS, default 4, for unit and walk; launch on that many cores
+plus one; default takes the mask's). Needs the revalidation's GENO run outputs
+(geno/: not in git, see their md5 manifest).
 """
 import json
 import os
@@ -114,38 +122,82 @@ def unit():
     return 0 if NPASS[0] == NPASS[1] else 1
 
 
-def walk():
+# every certified walk that reaches run_trsqp: (harness script, argv, record), launched as
+# _revalidation_2026-10-07/logs/lanes_qntr.sh and the t10 lanes launched them
+WALKS = [("t08a_planar_walk.py", ["A", "1"], "t08a_walk_A1_K80_qntr"),
+         ("t08a_planar_walk.py", ["B", "0"], "t08a_walk_B0_K80_qntr"),
+         ("t08a_planar_walk.py", ["B", "1"], "t08a_walk_B1_K80_qntr"),
+         ("t08a_planar_walk.py", ["C", "0"], "t08a_walk_C0_K80_qntr"),
+         ("t08b_rao_walk.py", ["A", "0"], "t08b_walk_A0_qntr"),
+         ("t08b_rao_walk.py", ["C", "0"], "t08b_walk_C0_qntr"),
+         ("t08c_migdal_walk.py", ["0"], "t08c_walk_0_qntr"),
+         ("t08c_migdal_walk.py", ["1"], "t08c_walk_1_qntr")]
+WALKS += [("t10_rao_walk.py", [case, start], "t10_walk_%s_%s_qntr" % (case, start))
+          for case in ("axial_e381_RD04_mi15", "hth71_rao_mi17", "rao61_e381_pbR_mi15") for start in ("bump", "half")]
+MODULES = ("a1_qntr", "a1_plug_spline_opt", "a1_twowall", "a1_ideal_march_jax", "rv")
+
+
+def walk(mode="walk", names=()):
     import numpy as np
     outdir = tempfile.mkdtemp(prefix="qntr_workers_gate_")
     t00 = time.time()
-    print("== QNTR_WORKERS walk: certified walks re-run with %d workers (output in %s) ==" % (NW, outdir), flush=True)
-    for script, argv, rec in (("t08a_planar_walk.py", ["B", "0"], "t08a_walk_B0_K80_qntr"),
-                              ("t08b_rao_walk.py", ["C", "0"], "t08b_walk_C0_qntr")):
-        path = os.path.join(RVD, "tests", script)
-        code = ("import sys, runpy; sys.path.insert(0, %r); import rv; rv.OUT = %r; rv.FIGS = %r; "
-                "sys.argv = [%r] + %r; runpy.run_path(%r, run_name='__main__')"
-                % (os.path.join(RVD, "ref"), outdir, outdir, path, argv, path))
+    if mode == "walk":
+        runs = [w for w in WALKS if w[2] in ("t08a_walk_B0_K80_qntr", "t08b_walk_C0_qntr")]
         env = dict(os.environ, QNTR_WORKERS=str(NW))
+        nw = NW
+        print("== QNTR_WORKERS walk: certified walks re-run with %d workers (output in %s) ==" % (NW, outdir), flush=True)
+    else:
+        import a1_qntr as QN
+        runs = [w for w in WALKS if not names or w[2] in names]
+        if names and len(runs) != len(set(names)):
+            raise SystemExit("unknown records: %s" % sorted(set(names) - {w[2] for w in WALKS}))
+        env = {k: v for k, v in os.environ.items() if k != "QNTR_WORKERS"}
+        nw = QN.default_workers()
+        print("== QNTR_WORKERS default: %d certified walks re-run with QNTR_WORKERS unset (the default of this CPU mask:"
+              " %d workers; output in %s) ==" % (len(runs), nw, outdir), flush=True)
+    root = os.path.dirname(HERE)
+    for script, argv, rec in runs:
+        path = os.path.join(RVD, "tests", script)
+        code = ("import sys, runpy, json; sys.path.insert(0, %r); import rv; rv.OUT = %r; rv.FIGS = %r; "
+                "sys.argv = [%r] + %r; runpy.run_path(%r, run_name='__main__'); "
+                "print('MODULE-ORIGINS ' + json.dumps({m: getattr(sys.modules.get(m), '__file__', None) for m in %r}))"
+                % (os.path.join(RVD, "ref"), outdir, outdir, path, argv, path, MODULES))
         t = time.time()
         r = subprocess.run([sys.executable, "-c", code], cwd=os.path.join(RVD, "tests"), env=env,
                            capture_output=True, text=True)
         sec = time.time() - t
         open(os.path.join(outdir, rec + ".log"), "w").write(r.stdout + r.stderr)
         try:
-            new, new_rep = (json.load(open(os.path.join(outdir, rec + s + ".json"))) for s in ("", "_report"))
+            new = json.load(open(os.path.join(outdir, rec + ".json")))
         except FileNotFoundError as err:
             check("%s: the walk ran (exit %d, %s; log %s)" % (rec, r.returncode, err, outdir), False)
             continue
-        old, old_rep = certified(rec), certified(rec + "_report")
+        old = certified(rec)
+        # the driver's report: its own json (t08a/b/c) or the record's "qntr" entry (t10)
+        rep = os.path.join(outdir, rec + "_report.json")
+        new_rep = json.load(open(rep)) if os.path.exists(rep) else new.get("qntr") or {}
+        old_rep = (certified(rec + "_report") if os.path.exists(os.path.join(RVD, "out", rec + "_report.json"))
+                   else old.get("qntr") or {})
+        if mode != "walk":
+            org = [ln for ln in r.stdout.splitlines() if ln.startswith("MODULE-ORIGINS ")]
+            org = json.loads(org[-1][len("MODULE-ORIGINS "):]) if org else {}
+            here = all(f is None or os.path.abspath(f).startswith(root + os.sep) for f in org.values()) and bool(org)
+            check("O %s: a1_* and rv imported from this tree (%s)" % (rec, ", ".join(
+                "%s %s" % (m, "-" if f is None else os.path.relpath(f, root)) for m, f in sorted(org.items()))), here)
+            print("   %s: %s" % (rec, "serial secant (no worker in this CPU mask)" if nw == 0 else
+                                 "serial secant (the context does not pickle, said aloud)"
+                                 if "does not pickle" in r.stdout else "secant on the pool"), flush=True)
         keys = ("stop", "segments", "accepted", "rejected", "records", "secants", "gradients")
         same = (np.array_equal(np.asarray(new["landing"]["W"], float), np.asarray(old["landing"]["W"], float))
                 and new["landing"]["J"] == old["landing"]["J"]
                 and np.array_equal(np.asarray(new["hist"], float), np.asarray(old["hist"], float))
-                and all(new_rep.get(k) == old_rep.get(k) for k in keys))
+                and bool(old_rep) and all(new_rep.get(k) == old_rep.get(k) for k in keys))
         check("W %s with %d workers: landing W, J %.12f, history and counts %s identical to the certified record"
-              % (rec, NW, new["landing"]["J"], "/".join(keys)), same)
-        print("   %s: %.0f s with %d workers (record: %.0f s, of which secant %.0f s; the record's load is not this one)"
-              % (rec, sec, NW, old_rep.get("seconds", float("nan")), old_rep.get("t_secant", float("nan"))), flush=True)
+              % (rec, nw, new["landing"]["J"], "/".join(keys)), same)
+        print("   %s: %.0f s with %d workers, walk %.0f s, secant %.0f s (record: %.0f s, of which secant %.0f s; the"
+              " record's load is not this one)"
+              % (rec, sec, nw, new_rep.get("seconds", float("nan")), new_rep.get("t_secant", float("nan")),
+                 old_rep.get("seconds", float("nan")), old_rep.get("t_secant", float("nan"))), flush=True)
     print("\n== %d/%d PASS  (%.0f s) ==" % (NPASS[0], NPASS[1], time.time() - t00), flush=True)
     print("VERDICT: %s" % ("PASS" if NPASS[0] == NPASS[1] else "FAIL"), flush=True)
     return 0 if NPASS[0] == NPASS[1] else 1
@@ -153,6 +205,6 @@ def walk():
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
-    if mode not in ("unit", "walk"):
-        raise SystemExit("usage: qntr_workers_gate.py unit|walk")
-    sys.exit(unit() if mode == "unit" else walk())
+    if mode not in ("unit", "walk", "default"):
+        raise SystemExit("usage: qntr_workers_gate.py unit|walk|default [records...]")
+    sys.exit(unit() if mode == "unit" else walk(mode, sys.argv[2:]))

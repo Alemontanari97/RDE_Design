@@ -111,7 +111,7 @@ def unit():
     for k, v in ENV_B.items():
         os.environ[k] = v
     os.environ["TWOP_ART"] = os.path.join(GD, "art_unit")
-    os.environ.pop("TWOP_PHASE_WORKERS", None)
+    os.environ["TWOP_PHASE_WORKERS"] = "0"        # the serial arm (unset is the default: workers)
     os.makedirs(os.environ["TWOP_ART"], exist_ok=True)
     import jax
     import jax.numpy as jnp
@@ -228,7 +228,7 @@ def walks():
     runs = {
         "L_ladder": (dict(ENV_B), cs[0]),
         "L_skip": (dict(ENV_B, TWOP_SKIP_LADDER="1"), cs[1]),
-        "P_serial": (dict(ENV_B, TWOP_SKIP_LADDER="1"), cs[2]),
+        "P_serial": (dict(ENV_B, TWOP_SKIP_LADDER="1", TWOP_PHASE_WORKERS="0"), cs[2]),
         "P_workers": (dict(ENV_B, TWOP_SKIP_LADDER="1", TWOP_PHASE_WORKERS=str(nw)), cp),
     }
     for k in ("L_ladder", "L_skip"):              # the mean-state arm: the phases off

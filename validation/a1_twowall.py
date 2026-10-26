@@ -144,7 +144,8 @@ class MuSched:
 
 
 # ----------------------------------------------------------------------
-# PHASE WORKERS (2026-10-05, opt-in TWOP_PHASE_WORKERS=n > 1; unset or <= 1 =
+# PHASE WORKERS (2026-10-05; THE DEFAULT since 2026-10-26, a1_qntr.workers:
+# TWOP_PHASE_WORKERS=n, unset = a1_qntr.default_workers() of the CPU mask, n <= 1 =
 # the serial loops, bitwise). WHY: with the phases voting, a walk spends its
 # time in two loops over the phases -- the record (_march_record_mu: 12
 # marches of 15 s and the reference's 23 s, 201 s in all) and the objective's
@@ -796,7 +797,8 @@ class TwoWall:
         if self.phases is None or getattr(self, "_pool_off", False):
             return None
         if getattr(self, "_pool", None) is None:
-            n_ = int(os.environ.get("TWOP_PHASE_WORKERS", "0") or 0)
+            import a1_qntr as QN
+            n_ = QN.workers("TWOP_PHASE_WORKERS")
             if n_ <= 1:
                 self._pool_off = True
                 return None
