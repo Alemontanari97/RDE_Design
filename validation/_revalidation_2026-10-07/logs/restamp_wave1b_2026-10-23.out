@@ -1,0 +1,6 @@
+base_pressure    exit 0  245 s
+o31_rot          exit 0  250 s
+rot_march        exit 0  480 s
+axi_fan          exit 0  1110 s
+plug_margin      exit 0  2351 s
+wave 1b done 2026-10-23 19:14:42

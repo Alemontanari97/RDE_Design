@@ -1,0 +1,19 @@
+== [F3] the two-wall walk, start F, class-constrained [X-TWOP] (stage walk) ==
+   posing: Migdal A_e/A_i 3.3674 (1-D M_e 2.650621, C_F,vac 1.618656); inlet M 1.56 between y 0.792 and 1.000; K 140 plug + 123 shroud stations (frozen), N 31; knots 12 + 12 (plug tip y 0.486481 free and shroud lip y free from 1.008900); wedge every 1; p_a/P0 2.43780e-02; 1.6 s
+   start F: the landing of /data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/art_start/start_from_checkpoint_B24.json
+   TWOP_BASIS: W = W_s + T z, T 27 x 12 (rank 12) of /data10/falco/RDE/handoff/plug_2026-09-29/basis_plug_only.json; box: 0 lower, 0 upper bounds
+   TWOP_SKIP_LADDER: no start ladder, the radius is the declared TWOP_TR0 8.074e-03 m
+   start F (ramp nan): C_F 1.414724322, cert 1.385e-01, KS +0.6067; gap to the reference plug 1.371e-01 / shroud 2.437e-01 m; class scale h* 3.229e-02 m -> tr0 8.074e-03 m, floor 2.018e-03 m; 26 segments x 12 iterations, backtrack 4
+   Newton walk in z: a unit z-step along the Newton direction moves the walls 1.000e+00 m -> tr0 8.074e-03 (z), floor 2.018e-03 (z)
+   RESUMED from the checkpoint: 24 segments done, C_F 1.432230187, radius 7.731e-03 (z)
+   memory mappings at the walk's start: 3770 (cap 65530)
+    [qntr] start: J 1.4322301867e+00, secant Hessian at h 7.73e-05 (0 columns unmeasurable []); eigenvalues of -H in [4.451e-01, 2.039e+02]
+   checkpoint at segment 24: C_F 1.432230187; mappings 10201 -> 10201 (cleared above 55000)
+    [qntr  0]   J 1.4336217237e+00  step 7.731e-03/7.731e-03  pred 1.390e-03 ared 1.392e-03 rho +1.00  remaining(model) 2.08e-02|J|  m +5.695e-01 -> radius 1.546e-02
+   checkpoint at segment 25: C_F 1.433621724; mappings 10201 -> 10201 (cleared above 55000)
+    [qntr  1]   J 1.4360974123e+00  step 1.546e-02/1.546e-02  pred 2.467e-03 ared 2.476e-03 rho +1.00  remaining(model) 1.81e-02|J|  m +5.677e-01 -> radius 3.093e-02
+    [qntr] STOP BUDGET after 2 trials (2 accepted, 0 rejected, 1 secant Hessians, 3 records): J 1.4360974123e+00, predicted remaining gain 1.81e-02 |J|, |grad|inf 9.714e-02, 1052 s (marches 246 s, gradients 67 s, secant Hessians 523 s)
+   return: C_F 1.436097412 (start 1.414724322, reference 1.224400935, 1-D 1.618656), cert 5.474e-02, KS +0.5750 (in class), |grad|inf 3.717e-01; gap to the reference plug 1.261e-01 / shroud 2.437e-01 m (start 1.371e-01 / 2.437e-01); 3 records, 1474 s
+   ENDS under the cap L 1.2788 m: plug tip 1.2787 -> 1.2787, shroud lip 0.5176 -> 0.5176 (Migdal 1.5985 / 1.4004)
+   EXIT (p_a/P0 2.43780e-02, exit free: both): heights tip 0.6151 -> 0.5462, lip 0.9784 -> 0.9784; A_e/A_i 1.5529 -> 1.7672; wall pressure at the tip / lip over p_a 1.504 / 3.731 -> 0.977 / 3.731
+   record: /data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/walk_P_workers/walk_FB_2026-10-23.json

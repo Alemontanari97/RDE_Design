@@ -1,0 +1,10 @@
+quick_regression exit 0  1866 s
+t17_bellideal    exit 0  2131 s
+t17_bell         exit 0  2146 s
+t17_planar       exit 0  2177 s
+t17_migdal       exit 0  2746 s
+t17_axial        exit 0  2757 s
+t17_hth          exit 0  2851 s
+t17_methane      exit 0  3438 s
+t17_rao61        exit 0  3682 s
+wave 2 done 2026-10-23 19:58:09

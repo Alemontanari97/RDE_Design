@@ -1,0 +1,10 @@
+== [F3.TWIN] phase workers, walks: 2 segments past the checkpoint (24) ==
+   L_skip    exit 0, 360 s  (/data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/walk_L_skip/walk.log)
+   L_ladder  exit 0, 593 s  (/data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/walk_L_ladder/walk.log)
+   P_workers exit 0, 1481 s  (/data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/walk_P_workers/walk.log)
+   P_serial  exit 0, 4195 s  (/data10/falco/RDE/_wt_rde_revalidation/validation/_twowall_phase_workers/walk_P_serial/walk.log)
+  [PASS] L the mean-state walk with and without the start ladder: 12 path lines (2 segment lines), identical True; the record json identical
+  [PASS] P the 12-phase walk serial and with 3 workers: 12 path lines (2 segment lines), identical True; the record json identical
+
+== 2/2 PASS  (4200 s) ==
+VERDICT: PASS

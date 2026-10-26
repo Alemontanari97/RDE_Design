@@ -1,0 +1,11 @@
+o31_rot          exit 1  5 s
+plug_margin      exit 1  5 s
+base_pressure    exit 1  5 s
+axi_fan          exit 1  5 s
+rot_march        exit 1  55 s
+chutkey_twin     exit 1  185 s
+t04              exit 0  375 s
+t05              exit 0  660 s
+t07b             exit 0  765 s
+t07              exit 1  2476 s
+wave 1 done 2026-10-23 19:03:55
