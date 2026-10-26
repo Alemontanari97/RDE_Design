@@ -1,0 +1,32 @@
+== QNTR_WORKERS default: 7 certified walks re-run with QNTR_WORKERS unset (the default of this CPU mask: 4 workers; output in /tmp/qntr_workers_gate_vl_fkjj8) ==
+  [PASS] O t08a_walk_B0_K80_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t08a_walk_B0_K80_qntr: serial secant (the context does not pickle, said aloud)
+  [PASS] W t08a_walk_B0_K80_qntr with 4 workers: landing W, J 970964.284148260485, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08a_walk_B0_K80_qntr: 156 s with 4 workers, walk 99 s, secant 64 s (record: 100 s, of which secant nan s; the record's load is not this one)
+  [PASS] O t08a_walk_C0_K80_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t08a_walk_C0_K80_qntr: serial secant (the context does not pickle, said aloud)
+  [PASS] W t08a_walk_C0_K80_qntr with 4 workers: landing W, J 970964.287235430209, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08a_walk_C0_K80_qntr: 250 s with 4 workers, walk 194 s, secant 95 s (record: 189 s, of which secant nan s; the record's load is not this one)
+  [PASS] O t08b_walk_C0_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t08b_walk_C0_qntr: secant on the pool
+  [PASS] W t08b_walk_C0_qntr with 4 workers: landing W, J 2679618.576365871355, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08b_walk_C0_qntr: 1132 s with 4 workers, walk 925 s, secant 472 s (record: 6063 s, of which secant 5419 s; the record's load is not this one)
+  [PASS] O t08c_walk_1_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t08c_walk_1_qntr: secant on the pool
+  [PASS] W t08c_walk_1_qntr with 4 workers: landing W, J 1.647643903914, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t08c_walk_1_qntr: 291 s with 4 workers, walk 240 s, secant 54 s (record: 308 s, of which secant nan s; the record's load is not this one)
+  [PASS] O t10_walk_axial_e381_RD04_mi15_bump_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t10_walk_axial_e381_RD04_mi15_bump_qntr: secant on the pool
+  [PASS] W t10_walk_axial_e381_RD04_mi15_bump_qntr with 4 workers: landing W, J 5914947.722671180964, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t10_walk_axial_e381_RD04_mi15_bump_qntr: 648 s with 4 workers, walk 507 s, secant 336 s (record: 3767 s, of which secant 3528 s; the record's load is not this one)
+  [PASS] O t10_walk_hth71_rao_mi17_bump_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t10_walk_hth71_rao_mi17_bump_qntr: secant on the pool
+  [PASS] W t10_walk_hth71_rao_mi17_bump_qntr with 4 workers: landing W, J 5931047.504291815683, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t10_walk_hth71_rao_mi17_bump_qntr: 830 s with 4 workers, walk 678 s, secant 363 s (record: 7295 s, of which secant 6262 s; the record's load is not this one)
+  [PASS] O t10_walk_rao61_e381_pbR_mi15_half_qntr: a1_* and rv imported from this tree (a1_ideal_march_jax validation/a1_ideal_march_jax.py, a1_plug_spline_opt validation/a1_plug_spline_opt.py, a1_qntr validation/a1_qntr.py, a1_twowall validation/a1_twowall.py, rv validation/_revalidation_2026-10-07/ref/rv.py)
+   t10_walk_rao61_e381_pbR_mi15_half_qntr: secant on the pool
+  [PASS] W t10_walk_rao61_e381_pbR_mi15_half_qntr with 4 workers: landing W, J 7164841.660778052174, history and counts stop/segments/accepted/rejected/records/secants/gradients identical to the certified record
+   t10_walk_rao61_e381_pbR_mi15_half_qntr: 965 s with 4 workers, walk 798 s, secant 419 s (record: 5990 s, of which secant nan s; the record's load is not this one)
+
+== 14/14 PASS  (4273 s) ==
+VERDICT: PASS
